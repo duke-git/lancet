@@ -1,0 +1,67 @@
+// Copyright 2021 dudaodong@gmail.com. All rights reserved.
+// Use of this source code is governed by MIT license.
+
+// Package netutil implements some basic functions to send http request and get ip info.
+// Note:
+// HttpGet, HttpPost, HttpDelete, HttpPut, HttpPatch, function param `url` is required.
+// HttpGet, HttpPost, HttpDelete, HttpPut, HttpPatch, function param `params` is variable, the order is:
+// params[0] is header which type should be http.Header or map[string]string,
+// params[1] is query param which type should be url.Values or map[string]interface{},
+// params[2] is post body which type should be []byte.
+// params[3] is http client which type should be http.Client.
+package netutil
+
+import (
+	"fmt"
+	"net/http"
+	"sort"
+	"strings"
+)
+
+//HttpGet send get http request
+func HttpGet(url string, params ...interface{}) (*http.Response, error) {
+	return request(http.MethodGet, url, params...)
+}
+
+//HttpPost send post http request
+func HttpPost(url string, params ...interface{}) (*http.Response, error) {
+	return request(http.MethodPost, url, params...)
+}
+
+//HttpPut send put http request
+func HttpPut(url string, params ...interface{}) (*http.Response, error) {
+	return request(http.MethodPut, url, params...)
+}
+
+//HttpDelete send delete http request
+func HttpDelete(url string, params ...interface{}) (*http.Response, error) {
+	return request(http.MethodDelete, url, params...)
+}
+
+// HttpPatch send patch http request
+func HttpPatch(url string, params ...interface{}) (*http.Response, error) {
+	return request(http.MethodPatch, url, params...)
+}
+
+// ConvertMapToQueryString convert map to sorted url query string
+func ConvertMapToQueryString(param map[string]interface{}) string {
+	if param == nil {
+		return ""
+	}
+	var keys []string
+	for key := range param {
+		keys = append(keys, key)
+	}
+	sort.Strings(keys)
+
+	var build strings.Builder
+	for i, v := range keys {
+		build.WriteString(v)
+		build.WriteString("=")
+		build.WriteString(fmt.Sprintf("%v", param[v]))
+		if i != len(keys)-1 {
+			build.WriteString("&")
+		}
+	}
+	return build.String()
+}
