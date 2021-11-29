@@ -2,7 +2,6 @@
 // Use of this source code is governed by MIT license.
 
 // Package fileutil implements some basic functions for file operations
-
 package fileutil
 
 import (
@@ -12,7 +11,7 @@ import (
 	"os"
 )
 
-// IsFileExists checks if a file or directory exists
+// IsExist checks if a file or directory exists
 func IsExist(path string) bool {
 	_, err := os.Stat(path)
 	if err == nil {
@@ -35,7 +34,7 @@ func CreateFile(path string) bool {
 	return true
 }
 
-// IsFileExists checks if the path is directy or not
+// IsDir checks if the path is directory or not
 func IsDir(path string) bool {
 	file, err := os.Stat(path)
 	if err != nil {
@@ -70,9 +69,8 @@ func CopyFile(srcFilePath string, dstFilePath string) error {
 		if err != nil {
 			if err == io.EOF {
 				return nil
-			} else {
-				return err
 			}
+			return err
 		}
 	}
 }

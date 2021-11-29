@@ -1,10 +1,11 @@
 package fileutil
 
 import (
-	"github.com/duke-git/lancet/utils"
 	"os"
 	"reflect"
 	"testing"
+
+	"github.com/duke-git/lancet/utils"
 )
 
 func TestIsExist(t *testing.T) {

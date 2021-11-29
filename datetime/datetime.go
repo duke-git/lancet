@@ -2,7 +2,6 @@
 // Use of this source code is governed by MIT license.
 
 // Package datetime implements some functions to format date and time.
-
 // Note:
 // 1. `format` param in FormatTimeToStr function should be as flow:
 //"yyyy-mm-dd hh:mm:ss"
@@ -23,7 +22,6 @@
 //"mm"
 //"hh:mm:ss"
 //"mm:ss"
-
 package datetime
 
 import (

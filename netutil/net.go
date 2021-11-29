@@ -47,6 +47,7 @@ func GetPublicIpInfo() (*PublicIpInfo, error) {
 	return &ip, nil
 }
 
+// PublicIpInfo public ip info: country, region, isp, city, lat, lon, ip
 type PublicIpInfo struct {
 	Status      string  `json:"status"`
 	Country     string  `json:"country"`

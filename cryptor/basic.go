@@ -21,13 +21,13 @@ func Base64StdEncode(s string) string {
 	return base64.StdEncoding.EncodeToString([]byte(s))
 }
 
-// Base64StdEncode decode a base64 encoded string
+// Base64StdDecode decode a base64 encoded string
 func Base64StdDecode(s string) string {
 	b, _ := base64.StdEncoding.DecodeString(s)
 	return string(b)
 }
 
-// Md5Str return the md5 value of string
+// Md5String return the md5 value of string
 func Md5String(s string) string {
 	h := md5.New()
 	h.Write([]byte(s))

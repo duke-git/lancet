@@ -9,6 +9,7 @@ import (
 	"testing"
 )
 
+// LogFailedTestInfo log test failed info for internal use
 func LogFailedTestInfo(t *testing.T, testCase, input, expected, result interface{}) {
 	errInfo := fmt.Sprintf("Test case %v:  input is %+v, expected %v, but result is %v", testCase, input, expected, result)
 	t.Error(errInfo)

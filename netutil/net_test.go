@@ -2,9 +2,10 @@ package netutil
 
 import (
 	"fmt"
-	"github.com/duke-git/lancet/utils"
 	"net"
 	"testing"
+
+	"github.com/duke-git/lancet/utils"
 )
 
 func TestGetInternalIp(t *testing.T) {

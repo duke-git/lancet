@@ -4,9 +4,10 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
-	"github.com/duke-git/lancet/utils"
 	"log"
 	"testing"
+
+	"github.com/duke-git/lancet/utils"
 )
 
 func TestHttpGet(t *testing.T) {

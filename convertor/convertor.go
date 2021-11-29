@@ -20,7 +20,7 @@ func ToBool(s string) (bool, error) {
 	return strconv.ParseBool(s)
 }
 
-// ToBool convert interface to bytes
+// ToBytes convert interface to bytes
 func ToBytes(data interface{}) ([]byte, error) {
 	var buf bytes.Buffer
 	enc := gob.NewEncoder(&buf)

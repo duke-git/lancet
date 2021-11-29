@@ -65,7 +65,7 @@ func AesCbcEncrypt(data, key []byte) []byte {
 	return encrypted
 }
 
-// AesEcbDecrypt decrypt data with key use AES CBC algorithm
+// AesCbcDecrypt decrypt data with key use AES CBC algorithm
 // len(key) should be 16, 24 or 32
 func AesCbcDecrypt(encrypted, key []byte) []byte {
 	block, _ := aes.NewCipher(key)
