@@ -11,6 +11,11 @@ import (
 )
 
 func TestHttpGet(t *testing.T) {
+	_, e := HttpGet("", nil)
+	if e == nil {
+		t.FailNow()
+	}
+
 	url := "https://gutendex.com/books?"
 	queryParams := make(map[string]interface{})
 	queryParams["ids"] = "1"

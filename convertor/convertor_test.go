@@ -2,9 +2,10 @@ package convertor
 
 import (
 	"fmt"
-	"github.com/duke-git/lancet/utils"
 	"reflect"
 	"testing"
+
+	"github.com/duke-git/lancet/utils"
 )
 
 func TestToChar(t *testing.T) {
@@ -58,8 +59,12 @@ func TestToBytes(t *testing.T) {
 }
 
 func TestToInt(t *testing.T) {
-	cases := []interface{}{"123", "-123", 123, "abc", false, "111111111111111111111111111111111111111"}
-	expected := []int64{123, -123, 123, 0, 0, 0}
+	cases := []interface{}{"123", "-123", 123,
+		uint(123), uint8(123), uint16(123), uint32(123), uint64(123),
+		float32(12.3), float64(12.3),
+		"abc", false, "111111111111111111111111111111111111111"}
+
+	expected := []int64{123, -123, 123, 123, 123, 123, 123, 123, 12, 12, 0, 0, 0}
 
 	for i := 0; i < len(cases); i++ {
 		res, _ := ToInt(cases[i])
@@ -71,8 +76,14 @@ func TestToInt(t *testing.T) {
 }
 
 func TestToFloat(t *testing.T) {
-	cases := []interface{}{"", "-1", "-.11", "1.23e3", ".123e10", "abc"}
-	expected := []float64{0, -1, -0.11, 1230, 0.123e10, 0}
+	cases := []interface{}{
+		"", "-1", "-.11", "1.23e3", ".123e10", "abc",
+		int(0), int8(1), int16(-1), int32(123), int64(123),
+		uint(123), uint8(123), uint16(123), uint32(123), uint64(123),
+		float64(12.3), float32(12.3),
+	}
+	expected := []float64{0, -1, -0.11, 1230, 0.123e10, 0,
+		0, 1, -1, 123, 123, 123, 123, 123, 123, 123, 12.3, 12.300000190734863}
 
 	for i := 0; i < len(cases); i++ {
 		res, _ := ToFloat(cases[i])
@@ -84,41 +95,37 @@ func TestToFloat(t *testing.T) {
 }
 
 func TestToString(t *testing.T) {
-	// basic type
-	toString(t, "a1", "a1")
-	toString(t, 111, "111")
-	toString(t, 111.01, "111.01")
-	toString(t, true, "true")
-	//toString(t, 1.5+10i, "(1.5+10i)")
-
-	// slice
-	aSlice := []int{1, 2, 3}
-	toString(t, aSlice, "[1,2,3]")
-
 	// map
 	aMap := make(map[string]int)
 	aMap["a"] = 1
 	aMap["b"] = 2
 	aMap["c"] = 3
 
-	toString(t, aMap, "{\"a\":1,\"b\":2,\"c\":3}")
-
 	// struct
 	type TestStruct struct {
 		Name string
 	}
 	aStruct := TestStruct{Name: "TestStruct"}
-	toString(t, aStruct, "{\"Name\":\"TestStruct\"}")
-}
 
-func toString(t *testing.T, test interface{}, expected string) {
-	res := ToString(test)
-	if res != expected {
-		utils.LogFailedTestInfo(t, "ToString", test, expected, res)
-		t.FailNow()
+	cases := []interface{}{
+		int(0), int8(1), int16(-1), int32(123), int64(123),
+		uint(123), uint8(123), uint16(123), uint32(123), uint64(123),
+		float64(12.3), float32(12.3),
+		true, false,
+		[]int{1, 2, 3}, aMap, aStruct, []byte{104, 101, 108, 108, 111}}
+
+	expected := []string{"0", "1", "-1", "123", "123", "123", "123", "123",
+		"123", "123", "12.3", "12.300000190734863", "true", "false",
+		"[1,2,3]", "{\"a\":1,\"b\":2,\"c\":3}", "{\"Name\":\"TestStruct\"}", "hello"}
+
+	for i := 0; i < len(cases); i++ {
+		res := ToString(cases[i])
+		if res != expected[i] {
+			utils.LogFailedTestInfo(t, "ToString", cases[i], expected[i], res)
+			t.FailNow()
+		}
 	}
 }
-
 func TestToJson(t *testing.T) {
 	// map
 	aMap := make(map[string]int)

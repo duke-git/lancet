@@ -14,6 +14,15 @@ func TestContain(t *testing.T) {
 
 	var t2 []string
 	contain(t, t2, "1", false)
+
+	m := make(map[string]int)
+	m["a"] = 1
+	contain(t, m, "a", true)
+	contain(t, m, "b", false)
+
+	s := "hello"
+	contain(t, s, "h", true)
+	contain(t, s, "s", false)
 }
 
 func contain(t *testing.T, test interface{}, value interface{}, expected bool) {
@@ -167,28 +176,21 @@ func TestMap(t *testing.T) {
 }
 
 func TestReduce(t *testing.T) {
-	s1 := []int{1, 2, 3, 4}
-	f1 := func(i, v1, v2 int) int {
+	cases := [][]int{
+		{},
+		{1},
+		{1, 2, 3, 4}}
+	expected := []int{0, 1, 10}
+	f := func(i, v1, v2 int) int {
 		return v1 + v2
 	}
-	e1 := 10
-	r1 := Reduce(s1, f1, 0)
-	if e1 != r1 {
-		utils.LogFailedTestInfo(t, "Reduce", s1, e1, r1)
-		t.FailNow()
+	for i := 0; i < len(cases); i++ {
+		res := Reduce(cases[i], f, 0)
+		if res != expected[i] {
+			utils.LogFailedTestInfo(t, "Reduce", cases[i], expected[i], res)
+			t.FailNow()
+		}
 	}
-
-	// failed Reduce function should be func(i int, v1, v2 int) int
-	//s1 := []int{1, 2, 3, 4}
-	//f1 := func(i string, v1, v2 int) int { //i should be int
-	//	return v1+v2
-	//}
-	//e1 := 10
-	//r1 := Reduce(s1, f1, 0)
-	//if e1 != r1 {
-	//	utils.LogFailedTestInfo(t, "Reduce", s1, e1, r1)
-	//	t.FailNow()
-	//}
 }
 
 func TestIntSlice(t *testing.T) {

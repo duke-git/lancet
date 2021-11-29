@@ -137,17 +137,16 @@ func Map(slice, function interface{}) interface{} {
 // The function signature should be func(index int, value1, value2 interface{}) interface{} .
 func Reduce(slice, function, zero interface{}) interface{} {
 	sv := sliceValue(slice)
+	elementType := sv.Type().Elem()
 
 	len := sv.Len()
 	if len == 0 {
 		return zero
 	} else if len == 1 {
-		return sv.Index(0)
+		return sv.Index(0).Interface()
 	}
 
-	elementType := sv.Type().Elem()
 	fn := functionValue(function)
-
 	if checkSliceCallbackFuncSignature(fn, elementType, elementType, elementType) {
 		t := elementType.String()
 		panic("Reduce function must be of type func(int, " + t + ", " + t + ")" + t)
