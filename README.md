@@ -5,7 +5,6 @@
     </p>
 <div align="center" style="text-align: center;">
 
-
 </div>
 
 English | [简体中文](./README_zh-CN.md)
@@ -53,7 +52,7 @@ func main() {
 
 ### API Documentation
 
-#### 1. convertor contains some functions for data convertion.
+#### 1. convertor contains some functions for data convertion
 
 - Support conversion between commonly used data types.
 - Usage: import "github.com/duke-git/lancet/cryptor"
@@ -91,7 +90,7 @@ func ToString(value interface{}) string //convert value to string
 func StructToMap(value interface{}) (map[string]interface{}, error) //convert struct to map, only convert exported field, tag `json` should be set
 ```
 
-#### 2. cryptor is for data encryption and decryption.
+#### 2. cryptor is for data encryption and decryption
 
 - Support md5, hmac, aes, des, ras.
 - Usage: import "github.com/duke-git/lancet/cryptor"
@@ -284,7 +283,7 @@ func HttpPatch(url string, params ...interface{}) (*http.Response, error) //http
 func ConvertMapToQueryString(param map[string]interface{}) string //convert map to url query string
 ```
 
-#### 7. random is for rand string and int generation.
+#### 7. random is for rand string and int generation
 
 - Generate random string and int.
 - Usage: import "github.com/duke-git/lancet/random".
@@ -336,7 +335,7 @@ func main() {
 }
 ```
 
-- Function list: 
+- Function list:
 
 ```go
 func Contain(slice interface{}, value interface{}) bool //check if the value is in the slice or not
@@ -379,7 +378,7 @@ func main() {
 }
 ```
 
-- Function list: 
+- Function list:
 
 ```go
 func After(s, char string) string //create substring in source string after position when char first appear
