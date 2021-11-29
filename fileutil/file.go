@@ -17,7 +17,7 @@ func IsExist(path string) bool {
 	if err == nil {
 		return true
 	}
-	if errors.Is(err, os.ErrExist) {
+	if errors.Is(err, os.ErrNotExist) {
 		return false
 	}
 	return false

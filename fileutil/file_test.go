@@ -9,8 +9,8 @@ import (
 )
 
 func TestIsExist(t *testing.T) {
-	cases := []string{"./", "./a.txt"}
-	expected := []bool{true, false}
+	cases := []string{"./", "./file.go", "./a.txt"}
+	expected := []bool{true, true, false}
 
 	for i := 0; i < len(cases); i++ {
 		res := IsExist(cases[i])
