@@ -87,11 +87,11 @@ func TestCopyFile(t *testing.T) {
 }
 
 func TestListFileNames(t *testing.T) {
-	filesInCurrentPath, err := ListFileNames("./")
+	filesInCurrentPath, err := ListFileNames("../datetime/")
 	if err != nil {
 		t.FailNow()
 	}
-	expected := []string{"file.go", "file_test.go"}
+	expected := []string{"datetime.go", "datetime_test.go"}
 	if !reflect.DeepEqual(filesInCurrentPath, expected) {
 		utils.LogFailedTestInfo(t, "ToChar", "./", expected, filesInCurrentPath)
 		t.FailNow()

@@ -1,3 +1,6 @@
 .idea/*
 .vscode/*
 .DS_Store
+cryptor/*.txt
+fileutil/*.txt
+cryptor/*.pem

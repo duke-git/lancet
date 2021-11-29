@@ -26,11 +26,7 @@ func IsNumberStr(s string) bool {
 // IsFloatStr check if the string can convert to a float.
 func IsFloatStr(s string) bool {
 	_, e := strconv.ParseFloat(s, 64)
-
-	if e != nil {
-		return false
-	}
-	return true
+	return e == nil
 }
 
 // IsIntStr check if the string can convert to a integer.
@@ -42,10 +38,7 @@ func IsIntStr(s string) bool {
 // IsIp check if the string is a ip address.
 func IsIp(ipstr string) bool {
 	ip := net.ParseIP(ipstr)
-	if ip == nil {
-		return false
-	}
-	return true
+	return ip != nil
 }
 
 // IsIpV4 check if the string is a ipv4 address.

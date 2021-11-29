@@ -190,7 +190,7 @@ func isCreditCard(t *testing.T, source string, expected bool) {
 }
 
 func TestIsBase64(t *testing.T) {
-	isBase64(t, "aGVsbG8", true)
+	isBase64(t, "aGVsbG8=", true)
 	isBase64(t, "123456", false)
 }
 
