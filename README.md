@@ -5,6 +5,12 @@
     </p>
 <div align="center" style="text-align: center;">
 
+![Go version](https://img.shields.io/badge/go-%3E%3D1.16-9cf)
+[![Project version](https://img.shields.io/badge/version-1.0.2-green.svg)](https://github.com/duke-git/lancet/releases)
+[![GoDoc](https://godoc.org/github.com//duke-git/lancet?status.svg)](https://pkg.go.dev/github.com/duke-git/lancet)
+[![Go Report Card](https://goreportcard.com/badge/github.com/duke-git/lancet)](https://goreportcard.com/report/github.com/duke-git/lancet)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/duke-git/lancet/blob/main/LICENSE)
+
 </div>
 
 English | [简体中文](./README_zh-CN.md)
