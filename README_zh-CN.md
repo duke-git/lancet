@@ -63,7 +63,7 @@ func main() {
 #### 1. convertor数据转换包
 
 - 转换函数支持常用数据类型之间的转换
-- 导入包：import "github.com/duke-git/lancet/cryptor"
+- 导入包：import "github.com/duke-git/lancet/convertor"
 
 ```go
 package main
