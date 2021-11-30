@@ -23,7 +23,7 @@
 - 👏 全面、高效、可复用
 - 💪 100+常用go工具函数，支持string、slice、datetime、net、crypt...
 - 💅 只依赖go标准库
-- 🌍 所有导出函数单测试覆盖率100%
+- 🌍 所有导出函数单元测试覆盖率100%
 
 ### 安装
 
@@ -100,7 +100,7 @@ func StructToMap(value interface{}) (map[string]interface{}, error) //struct串�
 
 #### 2. cryptor加解密包
 
-- 加密函数是支持md5, hmac, aes, des, ras
+- 加密函数支持md5, hmac, aes, des, ras
 - 导入包：import "github.com/duke-git/lancet/cryptor"
 
 ```go
