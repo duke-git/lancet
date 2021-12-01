@@ -124,7 +124,7 @@ func setQueryParam(req *http.Request, reqUrl string, queryParam interface{}) err
 		case map[string]interface{}:
 			values = url.Values{}
 			for k := range v {
-				values.Set(k, fmt.Sprintf("%s", v[k]))
+				values.Set(k, fmt.Sprintf("%v", v[k]))
 			}
 		case url.Values:
 			values = v
