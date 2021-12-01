@@ -207,7 +207,7 @@ func main() {
 }
 ```
 
-- 函数列表：
+- Function list：
 
 ```go
 func CreateFile(path string) bool // create a file in path
