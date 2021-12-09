@@ -96,15 +96,39 @@ func TestConvertSlice(t *testing.T) {
 	//}
 }
 
+func TestEvery(t *testing.T) {
+	nums := []int{1, 2, 3, 5}
+	isEven := func(i, num int) bool {
+		return num%2 == 0
+	}
+	res := Every(nums, isEven)
+	if res != false {
+		utils.LogFailedTestInfo(t, "Every", nums, false, res)
+		t.FailNow()
+	}
+}
+
+func TestSome(t *testing.T) {
+	nums := []int{1, 2, 3, 5}
+	isEven := func(i, num int) bool {
+		return num%2 == 0
+	}
+	res := Some(nums, isEven)
+	if res != true {
+		utils.LogFailedTestInfo(t, "Some", nums, true, res)
+		t.FailNow()
+	}
+}
+
 func TestFilter(t *testing.T) {
-	s1 := []int{1, 2, 3, 4, 5}
+	nums := []int{1, 2, 3, 4, 5}
 	even := func(i, num int) bool {
 		return num%2 == 0
 	}
 	e1 := []int{2, 4}
-	r1 := Filter(s1, even)
+	r1 := Filter(nums, even)
 	if !reflect.DeepEqual(r1, e1) {
-		utils.LogFailedTestInfo(t, "Filter", s1, e1, r1)
+		utils.LogFailedTestInfo(t, "Filter", nums, e1, r1)
 		t.FailNow()
 	}
 

@@ -89,6 +89,50 @@ func Difference(slice1, slice2 interface{}) interface{} {
 	return res.Interface()
 }
 
+// Every return true if all of the values in the slice pass the predicate function.
+// The function signature should be func(index int, value interface{}) bool .
+func Every(slice, function interface{}) bool {
+	sv := sliceValue(slice)
+	fn := functionValue(function)
+
+	elemType := sv.Type().Elem()
+	if checkSliceCallbackFuncSignature(fn, elemType, reflect.ValueOf(true).Type()) {
+		panic("Filter function must be of type func(int, " + elemType.String() + ")" + reflect.ValueOf(true).Type().String())
+	}
+
+	var indexes []int
+	for i := 0; i < sv.Len(); i++ {
+		flag := fn.Call([]reflect.Value{reflect.ValueOf(i), sv.Index(i)})[0]
+		if flag.Bool() {
+			indexes = append(indexes, i)
+		}
+	}
+
+	return len(indexes) == sv.Len()
+}
+
+// Some return true if any of the values in the list pass the predicate function.
+// The function signature should be func(index int, value interface{}) bool .
+func Some(slice, function interface{}) bool {
+	sv := sliceValue(slice)
+	fn := functionValue(function)
+
+	elemType := sv.Type().Elem()
+	if checkSliceCallbackFuncSignature(fn, elemType, reflect.ValueOf(true).Type()) {
+		panic("Filter function must be of type func(int, " + elemType.String() + ")" + reflect.ValueOf(true).Type().String())
+	}
+
+	var indexes []int
+	for i := 0; i < sv.Len(); i++ {
+		flag := fn.Call([]reflect.Value{reflect.ValueOf(i), sv.Index(i)})[0]
+		if flag.Bool() {
+			indexes = append(indexes, i)
+		}
+	}
+
+	return len(indexes) > 0
+}
+
 // Filter iterates over elements of slice, returning an slice of all elements `signature` returns truthy for.
 // The function signature should be func(index int, value interface{}) bool .
 func Filter(slice, function interface{}) interface{} {
