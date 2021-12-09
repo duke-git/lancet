@@ -115,6 +115,28 @@ func Filter(slice, function interface{}) interface{} {
 	return res.Interface()
 }
 
+// Find iterates over elements of slice, returning the first one that passes a truth test on function.
+// The function signature should be func(index int, value interface{}) bool .
+func Find(slice, function interface{}) interface{} {
+	sv := sliceValue(slice)
+	fn := functionValue(function)
+
+	elemType := sv.Type().Elem()
+	if checkSliceCallbackFuncSignature(fn, elemType, reflect.ValueOf(true).Type()) {
+		panic("Filter function must be of type func(int, " + elemType.String() + ")" + reflect.ValueOf(true).Type().String())
+	}
+
+	var index int
+	for i := 0; i < sv.Len(); i++ {
+		flag := fn.Call([]reflect.Value{reflect.ValueOf(i), sv.Index(i)})[0]
+		if flag.Bool() {
+			index = i
+			break
+		}
+	}
+	return sv.Index(index).Interface()
+}
+
 // Map creates an slice of values by running each element of `slice` thru `function`.
 // The function signature should be func(index int, value interface{}) interface{}.
 func Map(slice, function interface{}) interface{} {

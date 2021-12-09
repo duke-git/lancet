@@ -137,6 +137,18 @@ func TestFilter(t *testing.T) {
 
 }
 
+func TestFind(t *testing.T) {
+	nums := []int{1, 2, 3, 4, 5}
+	even := func(i, num int) bool {
+		return num%2 == 0
+	}
+	res := Find(nums, even)
+	if res != 2 {
+		utils.LogFailedTestInfo(t, "Find", nums, 2, res)
+		t.FailNow()
+	}
+}
+
 func TestMap(t *testing.T) {
 	s1 := []int{1, 2, 3, 4}
 	multiplyTwo := func(i, num int) int {
