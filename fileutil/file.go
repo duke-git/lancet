@@ -5,6 +5,7 @@
 package fileutil
 
 import (
+	"bufio"
 	"errors"
 	"io"
 	"io/ioutil"
@@ -73,6 +74,53 @@ func CopyFile(srcFilePath string, dstFilePath string) error {
 			return err
 		}
 	}
+}
+
+//ClearFile write empty string to path file
+func ClearFile(path string) error {
+	f, err := os.OpenFile(path, os.O_WRONLY|os.O_TRUNC, 0777)
+	if err != nil {
+		return err
+	}
+	defer f.Close()
+
+	_, err = f.WriteString("")
+	return err
+}
+
+//ReadFileToString return string of file content
+func ReadFileToString(path string) (string, error) {
+	bytes, err := ioutil.ReadFile(path)
+	if err != nil {
+		return "", err
+	}
+	return string(bytes), nil
+}
+
+// ReadFileByLine
+func ReadFileByLine(path string)([]string, error)  {
+	f, err := os.Open(path)
+	if err != nil {
+		return nil, err
+	}
+	defer f.Close()
+
+	res := make([]string, 0)
+	buf := bufio.NewReader(f)
+
+	for {
+		line, _, err := buf.ReadLine()
+		l := string(line)
+		if err == io.EOF {
+			break
+		}
+		if err != nil {
+			continue
+		}
+		res = append(res, l)
+	}
+
+	return res, nil
 }
 
 // ListFileNames return all file names in the path

@@ -378,11 +378,6 @@ func TestUpdateByIndex(t *testing.T) {
 	r3 := []string{"a", "b", "1"}
 	updateByIndex(t, t1, 2, "1", r3)
 
-	//failed
-	//t1 = []string{"a","b","c"}
-	//r4 := []string{"a", "b", "1"}
-	//updateByIndex(t, t1, 3, "1", r4)
-
 }
 
 func updateByIndex(t *testing.T, test interface{}, index int, value, expected interface{}) {

@@ -96,5 +96,43 @@ func TestListFileNames(t *testing.T) {
 		utils.LogFailedTestInfo(t, "ToChar", "./", expected, filesInCurrentPath)
 		t.FailNow()
 	}
+}
 
+func TestReadFileToString(t *testing.T) {
+	path := "./text.txt"
+	CreateFile(path)
+	f, _ := os.OpenFile(path, os.O_WRONLY|os.O_TRUNC, 0777)
+	f.WriteString("hello world")
+
+	res, _ := ReadFileToString(path)
+	if res != "hello world" {
+		utils.LogFailedTestInfo(t, "ReadFileToString", path, "hello world", res)
+	}
+}
+
+func TestClearFile(t *testing.T) {
+	path := "./text.txt"
+	CreateFile(path)
+	f, _ := os.OpenFile(path, os.O_WRONLY|os.O_TRUNC, 0777)
+	f.WriteString("hello world")
+
+	CreateFile(path)
+
+	res, _ := ReadFileToString(path)
+	if res != "" {
+		utils.LogFailedTestInfo(t, "CreateFile", path, "", res)
+	}
+}
+
+func TestReadFileByLine(t *testing.T) {
+	path := "./text.txt"
+	CreateFile(path)
+	f, _ := os.OpenFile(path, os.O_WRONLY|os.O_TRUNC, 0777)
+	f.WriteString("hello\nworld")
+
+	expected := []string{"hello", "world"}
+	res, _ := ReadFileByLine(path)
+	if !reflect.DeepEqual(res, expected) {
+		utils.LogFailedTestInfo(t, "ReadFileByLine", path, expected, res)
+	}
 }
