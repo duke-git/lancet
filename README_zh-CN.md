@@ -6,7 +6,7 @@
 <div align="center" style="text-align: center;">
 
 ![Go version](https://img.shields.io/badge/go-%3E%3D1.16<recommend>-9cf)
-[![Release](https://img.shields.io/badge/release-1.0.5-green.svg)](https://github.com/duke-git/lancet/releases)
+[![Release](https://img.shields.io/badge/release-1.0.6-green.svg)](https://github.com/duke-git/lancet/releases)
 [![GoDoc](https://godoc.org/github.com//duke-git/lancet?status.svg)](https://pkg.go.dev/github.com/duke-git/lancet)
 [![Go Report Card](https://goreportcard.com/badge/github.com/duke-git/lancet)](https://goreportcard.com/report/github.com/duke-git/lancet)
 [![codecov](https://codecov.io/gh/duke-git/lancet/branch/main/graph/badge.svg?token=FC48T1F078)](https://codecov.io/gh/duke-git/lancet)
@@ -211,12 +211,15 @@ func main() {
 - 函数列表：
 
 ```go
+func ClearFile(path string) error //清空文件内容
 func IsExist(path string) bool  //判断文件/目录是否存在
 func CreateFile(path string) bool //创建文件
 func IsDir(path string) bool //判断是否为目录
 func RemoveFile(path string) error //删除文件
 func CopyFile(srcFilePath string, dstFilePath string) error //复制文件
 func ListFileNames(path string) ([]string, error) //列出目录下所有文件名称
+func ReadFileToString(path string) (string, error) //读取文件内容为字符串
+func ReadFileByLine(path string)([]string, error) //按行读取文件内容
 ```
 
 #### 5. formatter格式化处理包
@@ -351,6 +354,8 @@ func Chunk(slice []interface{}, size int) [][]interface{} //均分slice
 func ConvertSlice(originalSlice interface{}, newSliceType reflect.Type) interface{} //将originalSlice转换为 newSliceType
 func Difference(slice1, slice2 interface{}) interface{} //返回
 func DeleteByIndex(slice interface{}, start int, end ...int) (interface{}, error) //删除切片中start到end位置的值
+func Every(slice, function interface{}) bool //slice中所有元素都符合函数条件时返回true, 否则返回false. 函数签名：func(index int, value interface{}) bool
+func Find(slice, function interface{}) interface{} //查找slice中第一个符合条件的元素，函数签名：func(index int, value interface{}) bool
 func Filter(slice, function interface{}) interface{} //过滤slice, 函数签名：func(index int, value interface{}) bool
 func IntSlice(slice interface{}) ([]int, error) //转成int切片
 func InterfaceSlice(slice interface{}) []interface{} //转成interface{}切片
@@ -358,6 +363,7 @@ func InsertByIndex(slice interface{}, index int, value interface{}) (interface{}
 func Map(slice, function interface{}) interface{} //遍历切片, 函数签名：func(index int, value interface{}) interface{}
 func ReverseSlice(slice interface{}) //反转切片
 func Reduce(slice, function, zero interface{}) interface{} //切片reduce操作， 函数签名：func(index int, value1, value2 interface{}) interface{}
+func Some(slice, function interface{}) bool //slice中任意一个元素都符合函数条件时返回true, 否则返回false. 函数签名：func(index int, value interface{}) bool
 func SortByField(slice interface{}, field string, sortType ...string) error //对struct切片进行排序
 func StringSlice(slice interface{}) []string //转为string切片
 func Unique(slice interface{}) interface{} //去重切片

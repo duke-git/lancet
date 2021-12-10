@@ -6,7 +6,7 @@
 <div align="center" style="text-align: center;">
 
 ![Go version](https://img.shields.io/badge/go-%3E%3D1.16<recommend>-9cf)
-[![Release](https://img.shields.io/badge/release-1.0.5-green.svg)](https://github.com/duke-git/lancet/releases)
+[![Release](https://img.shields.io/badge/release-1.0.6-green.svg)](https://github.com/duke-git/lancet/releases)
 [![GoDoc](https://godoc.org/github.com//duke-git/lancet?status.svg)](https://pkg.go.dev/github.com/duke-git/lancet)
 [![Go Report Card](https://goreportcard.com/badge/github.com/duke-git/lancet)](https://goreportcard.com/report/github.com/duke-git/lancet)
 [![codecov](https://codecov.io/gh/duke-git/lancet/branch/main/graph/badge.svg?token=FC48T1F078)](https://codecov.io/gh/duke-git/lancet)
@@ -210,12 +210,15 @@ func main() {
 - Function list：
 
 ```go
+func ClearFile(path string) error //write empty string to path file
 func CreateFile(path string) bool // create a file in path
 func CopyFile(srcFilePath string, dstFilePath string) error //copy src file to dst file
 func IsExist(path string) bool  //checks if a file or directory exists
 func IsDir(path string) bool //checks if the path is directy or not
 func ListFileNames(path string) ([]string, error) //return all file names in the path
 func RemoveFile(path string) error //remove the path file
+func ReadFileToString(path string) (string, error) //return string of file content
+func ReadFileByLine(path string)([]string, error) //read file content by line
 ```
 
 #### 5. formatter is for data format
@@ -350,7 +353,9 @@ func Chunk(slice []interface{}, size int) [][]interface{} //creates an slice of 
 func ConvertSlice(originalSlice interface{}, newSliceType reflect.Type) interface{} //convert originalSlice to newSliceType
 func Difference(slice1, slice2 interface{}) interface{} //creates an slice of whose element not included in the other given slice
 func DeleteByIndex(slice interface{}, start int, end ...int) (interface{}, error) //delete the element of slice from start index to end index - 1
+func Every(slice, function interface{}) bool //return true if all of the values in the slice pass the predicate function, function signature should be func(index int, value interface{}) bool
 func Filter(slice, function interface{}) interface{} //filter slice, function signature should be func(index int, value interface{}) bool
+func Find(slice, function interface{}) interface{} //iterates over elements of slice, returning the first one that passes a truth test on function.function signature should be func(index int, value interface{}) bool .
 func IntSlice(slice interface{}) ([]int, error) //convert value to int slice
 func InterfaceSlice(slice interface{}) []interface{} //convert value to interface{} slice
 func InsertByIndex(slice interface{}, index int, value interface{}) (interface{}, error) //insert the element into slice at index.
@@ -358,6 +363,7 @@ func Map(slice, function interface{}) interface{} //map lisce, function signatur
 func ReverseSlice(slice interface{}) //revere slice
 func Reduce(slice, function, zero interface{}) interface{} //reduce slice, function signature should be func(index int, value1, value2 interface{}) interface{}
 func SortByField(slice interface{}, field string, sortType ...string) error //sort struct slice by field
+func Some(slice, function interface{}) bool //return true if any of the values in the list pass the predicate function, function signature should be func(index int, value interface{}) bool
 func StringSlice(slice interface{}) []string //convert value to string slice
 func Unique(slice interface{}) interface{} //remove duplicate elements in slice
 func UpdateByIndex(slice interface{}, index int, value interface{}) (interface{}, error) //update the slice element at index.
