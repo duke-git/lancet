@@ -97,8 +97,8 @@ func ReadFileToString(path string) (string, error) {
 	return string(bytes), nil
 }
 
-// ReadFileByLine
-func ReadFileByLine(path string)([]string, error)  {
+// ReadFileByLine read file line by line
+func ReadFileByLine(path string) ([]string, error) {
 	f, err := os.Open(path)
 	if err != nil {
 		return nil, err
