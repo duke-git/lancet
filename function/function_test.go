@@ -3,6 +3,7 @@ package function
 import (
 	"fmt"
 	"reflect"
+	"strings"
 	"testing"
 	"time"
 )
@@ -67,6 +68,26 @@ func TestCurry(t *testing.T) {
 	if v != 3 {
 		t.FailNow()
 	}
+}
+
+func TestCompose(t *testing.T) {
+	toUpper := func(a... string) string {
+		return strings.ToUpper(a[0])
+	}
+
+	toLower := func(a... string) string {
+		return strings.ToLower(a[0])
+	}
+
+	expect := toUpper(toLower("aBCde"))
+	cf := Compose(toUpper, toLower)
+	res := cf("aBCde")
+
+	fmt.Println(res, expect)
+	if res != expect {
+		t.FailNow()
+	}
+
 }
 
 func TestDelay(t *testing.T) {

@@ -1,7 +1,7 @@
 // Copyright 2021 dudaodong@gmail.com. All rights reserved.
 // Use of this source code is governed by MIT license
 
-// Package function implements some functions for functional programming.
+// Package function implements some functions for control the function execution and some is for functional programming.
 
 package function
 
@@ -47,7 +47,22 @@ func (f Fn) Curry(i interface{}) func(...interface{}) interface{} {
 	}
 }
 
-// Delay make the function excution after delayed time
+// Compose compose the functions from right to left
+func Compose(fnList ...func(...string) string) func(...string) string {
+	return func(s... string) string {
+		f := fnList[0]
+		restFn := fnList[1:]
+
+		if len(fnList) == 1 {
+			return f(s...)
+		}
+
+		return f(Compose(restFn...)(s...))
+	}
+}
+
+
+// Delay make the function execution after delayed time
 func Delay(delay time.Duration, fn interface{}, args ...interface{}) {
 	time.Sleep(delay)
 	invokeFunc(fn, args...)
