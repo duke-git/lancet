@@ -6,7 +6,7 @@
 <div align="center" style="text-align: center;">
 
 ![Go version](https://img.shields.io/badge/go-%3E%3D1.16<recommend>-9cf)
-[![Release](https://img.shields.io/badge/release-1.0.6-green.svg)](https://github.com/duke-git/lancet/releases)
+[![Release](https://img.shields.io/badge/release-1.0.7-green.svg)](https://github.com/duke-git/lancet/releases)
 [![GoDoc](https://godoc.org/github.com//duke-git/lancet?status.svg)](https://pkg.go.dev/github.com/duke-git/lancet)
 [![Go Report Card](https://goreportcard.com/badge/github.com/duke-git/lancet)](https://goreportcard.com/report/github.com/duke-git/lancet)
 [![codecov](https://codecov.io/gh/duke-git/lancet/branch/main/graph/badge.svg?token=FC48T1F078)](https://codecov.io/gh/duke-git/lancet)
@@ -247,7 +247,39 @@ func main() {
 func Comma(v interface{}, symbol string) string  //用逗号每隔3位分割数字/字符串
 ```
 
-#### 6. netutil网络处理包
+#### 6. function包可以控制函数执行，支持部分函数式编程
+
+- 控制函数执行，支持部分函数式编程
+- 导入包：import "github.com/duke-git/lancet/function"
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/function"
+)
+
+func main() {
+    var print = func(s string) {
+		fmt.Println(s)
+	}
+	function.Delay(2*time.Second, print, "hello world")
+}
+```
+
+- Function list:
+
+```go
+func After(n int, fn interface{}) func(args ...interface{}) []reflect.Value  //创建一个函数, 只有在运行了n次之后才有效果
+func Before(n int, fn interface{}) func(args ...interface{}) []reflect.Value  //创建一个函数,调用不超过n次。 当n已经达到时，最后一个函数调用的结果将被记住并返回
+func (f Fn) Curry(i interface{}) func(...interface{}) interface{}  //函数柯里化
+func Compose(fnList ...func(...interface{}) interface{}) func(...interface{}) interface{}  //从右至左组合函数
+func Delay(delay time.Duration, fn interface{}, args ...interface{})  //延迟调用函数
+func Schedule(d time.Duration, fn interface{}, args ...interface{}) chan bool //每隔duration时间调用函数, 关闭返回通道可以停止调用
+```
+
+#### 7. netutil网络处理包
 
 - 处理ip, http请求相关函数
 - 导入包：import "github.com/duke-git/lancet/netutil"
@@ -294,7 +326,7 @@ func HttpPatch(url string, params ...interface{}) (*http.Response, error) //http
 func ConvertMapToQueryString(param map[string]interface{}) string //将map转换成url query string
 ```
 
-#### 7. random随机数处理包
+#### 8. random随机数处理包
 
 - 生成和处理随机数
 - 导入包：import "github.com/duke-git/lancet/random"
@@ -323,7 +355,7 @@ func RandInt(min, max int) int //生成随机int
 func RandString(length int) string //生成随机string
 ```
 
-#### 8. slice切片操作包
+#### 9. slice切片操作包
 
 - 切片操作相关函数
 - 导入包：import "github.com/duke-git/lancet/slice"
@@ -370,7 +402,7 @@ func Unique(slice interface{}) interface{} //去重切片
 func UpdateByIndex(slice interface{}, index int, value interface{}) (interface{}, error) //在切片中index位置更新value
 ```
 
-#### 9. strutil字符串处理包
+#### 10. strutil字符串处理包
 
 - 字符串操作相关函数
 - 导入包：import "github.com/duke-git/lancet/strutil"
@@ -410,7 +442,7 @@ func ReverseStr(s string) string //字符串逆袭
 func SnakeCase(s string) string //字符串转为SnakeCase, "fooBar" -> "foo_bar"
 ```
 
-#### 10. validator验证器包
+#### 11. validator验证器包
 
 - 数据校验相关函数
 - 导入包：import "github.com/duke-git/lancet/validator"

@@ -6,7 +6,7 @@
 <div align="center" style="text-align: center;">
 
 ![Go version](https://img.shields.io/badge/go-%3E%3D1.16<recommend>-9cf)
-[![Release](https://img.shields.io/badge/release-1.0.6-green.svg)](https://github.com/duke-git/lancet/releases)
+[![Release](https://img.shields.io/badge/release-1.0.7-green.svg)](https://github.com/duke-git/lancet/releases)
 [![GoDoc](https://godoc.org/github.com//duke-git/lancet?status.svg)](https://pkg.go.dev/github.com/duke-git/lancet)
 [![Go Report Card](https://goreportcard.com/badge/github.com/duke-git/lancet)](https://goreportcard.com/report/github.com/duke-git/lancet)
 [![codecov](https://codecov.io/gh/duke-git/lancet/branch/main/graph/badge.svg?token=FC48T1F078)](https://codecov.io/gh/duke-git/lancet)
@@ -246,7 +246,39 @@ func main() {
 func Comma(v interface{}, symbol string) string  //add comma to number by every 3 numbers from right. ahead by symbol char
 ```
 
-#### 6. netutil is for net process
+#### 6. function can control the function execution and support functional programming
+
+- Control function execution and support functional programming.
+- Usage: import "github.com/duke-git/lancet/function"
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/function"
+)
+
+func main() {
+    var print = func(s string) {
+		fmt.Println(s)
+	}
+	function.Delay(2*time.Second, print, "hello world")
+}
+```
+
+- Function list:
+
+```go
+func After(n int, fn interface{}) func(args ...interface{}) []reflect.Value  //creates a function that invokes func once it's called n or more times
+func Before(n int, fn interface{}) func(args ...interface{}) []reflect.Value  //creates a function that invokes func once it's called less than n times
+func (f Fn) Curry(i interface{}) func(...interface{}) interface{}  //make a curryed function
+func Compose(fnList ...func(...interface{}) interface{}) func(...interface{}) interface{}  //compose the functions from right to left
+func Delay(delay time.Duration, fn interface{}, args ...interface{})  //invoke function after delayed time
+func Schedule(d time.Duration, fn interface{}, args ...interface{}) chan bool //invoke function every duration time, util close the returned bool chan
+```
+
+#### 7. netutil is for net process
 
 - Ip and http request method.
 - Usage: import "github.com/duke-git/lancet/netutil".
@@ -293,7 +325,7 @@ func HttpPatch(url string, params ...interface{}) (*http.Response, error) //http
 func ConvertMapToQueryString(param map[string]interface{}) string //convert map to url query string
 ```
 
-#### 7. random is for rand string and int generation
+#### 8. random is for rand string and int generation
 
 - Generate random string and int.
 - Usage: import "github.com/duke-git/lancet/random".
@@ -322,7 +354,7 @@ func RandInt(min, max int) int //generate random int
 func RandString(length int) string //generate random string
 ```
 
-#### 8. slice is for process slice
+#### 9. slice is for process slice
 
 - Contain function for process slice.
 - Usage: import "github.com/duke-git/lancet/slice"
@@ -369,7 +401,7 @@ func Unique(slice interface{}) interface{} //remove duplicate elements in slice
 func UpdateByIndex(slice interface{}, index int, value interface{}) (interface{}, error) //update the slice element at index.
 ```
 
-#### 9. strutil is for processing string
+#### 10. strutil is for processing string
 
 - Contain functions to precess string
 - Usage: import "github.com/duke-git/lancet/strutil"
@@ -409,7 +441,7 @@ func ReverseStr(s string) string //return string whose char order is reversed to
 func SnakeCase(s string) string //covert string to snake_case "fooBar" -> "foo_bar"
 ```
 
-#### 10. validator is for data validation
+#### 11. validator is for data validation
 
 - Contain function for data validation.
 - Usage: import "github.com/duke-git/lancet/validator".
