@@ -71,19 +71,17 @@ func TestCurry(t *testing.T) {
 }
 
 func TestCompose(t *testing.T) {
-	toUpper := func(a... string) string {
-		return strings.ToUpper(a[0])
+	toUpper := func(a ...interface{}) interface{} {
+		return strings.ToUpper(a[0].(string))
 	}
-
-	toLower := func(a... string) string {
-		return strings.ToLower(a[0])
+	toLower := func(a ...interface{}) interface{} {
+		return strings.ToLower(a[0].(string))
 	}
 
 	expect := toUpper(toLower("aBCde"))
 	cf := Compose(toUpper, toLower)
 	res := cf("aBCde")
 
-	fmt.Println(res, expect)
 	if res != expect {
 		t.FailNow()
 	}

@@ -48,8 +48,8 @@ func (f Fn) Curry(i interface{}) func(...interface{}) interface{} {
 }
 
 // Compose compose the functions from right to left
-func Compose(fnList ...func(...string) string) func(...string) string {
-	return func(s... string) string {
+func Compose(fnList ...func(...interface{}) interface{}) func(...interface{}) interface{} {
+	return func(s... interface{}) interface{} {
 		f := fnList[0]
 		restFn := fnList[1:]
 
