@@ -12,6 +12,8 @@
 package netutil
 
 import (
+	"encoding/json"
+	"errors"
 	"fmt"
 	"net/http"
 	"sort"
@@ -41,6 +43,15 @@ func HttpDelete(url string, params ...interface{}) (*http.Response, error) {
 // HttpPatch send patch http request
 func HttpPatch(url string, params ...interface{}) (*http.Response, error) {
 	return request(http.MethodPatch, url, params...)
+}
+
+// ParseResponse convert the http response to interface{} obj
+func ParseResponse(resp *http.Response, obj interface{}) error {
+	if resp == nil {
+		return errors.New("InvalidResp")
+	}
+	defer resp.Body.Close()
+	return json.NewDecoder(resp.Body).Decode(obj)
 }
 
 // ConvertMapToQueryString convert map to sorted url query string

@@ -102,3 +102,27 @@ func TestConvertMapToQueryString(t *testing.T) {
 		t.FailNow()
 	}
 }
+
+func TestParseResponse(t *testing.T) {
+	url := "http://public-api-v1.aspirantzhang.com/users"
+	type User struct {
+		Id    int    `json:"id"`
+		Name  string `json:"name"`
+		Email string `json:"email"`
+	}
+	type UserResp struct {
+		Data []User `json:"data"`
+	}
+	resp, err := HttpGet(url)
+	if err != nil {
+		log.Fatal(err)
+		t.FailNow()
+	}
+	userResp := &UserResp{}
+	err = ParseResponse(resp, userResp)
+	if err != nil {
+		log.Fatal(err)
+		t.FailNow()
+	}
+	fmt.Println(userResp.Data)
+}
