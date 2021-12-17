@@ -119,7 +119,7 @@ func TestParseResponse(t *testing.T) {
 		t.FailNow()
 	}
 	userResp := &UserResp{}
-	err = ParseResponse(resp, userResp)
+	err = ParseHttpResponse(resp, userResp)
 	if err != nil {
 		log.Fatal(err)
 		t.FailNow()
