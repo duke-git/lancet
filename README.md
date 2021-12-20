@@ -6,7 +6,7 @@
 <div align="center" style="text-align: center;">
 
 ![Go version](https://img.shields.io/badge/go-%3E%3D1.16<recommend>-9cf)
-[![Release](https://img.shields.io/badge/release-1.0.7-green.svg)](https://github.com/duke-git/lancet/releases)
+[![Release](https://img.shields.io/badge/release-1.0.8-green.svg)](https://github.com/duke-git/lancet/releases)
 [![GoDoc](https://godoc.org/github.com//duke-git/lancet?status.svg)](https://pkg.go.dev/github.com/duke-git/lancet)
 [![Go Report Card](https://goreportcard.com/badge/github.com/duke-git/lancet)](https://goreportcard.com/report/github.com/duke-git/lancet)
 [![codecov](https://codecov.io/gh/duke-git/lancet/branch/main/graph/badge.svg?token=FC48T1F078)](https://codecov.io/gh/duke-git/lancet)
@@ -323,6 +323,7 @@ func HttpPut(url string, params ...interface{}) (*http.Response, error) //http p
 func HttpDelete(url string, params ...interface{}) (*http.Response, error) //http delete request
 func HttpPatch(url string, params ...interface{}) (*http.Response, error) //http patch request
 func ConvertMapToQueryString(param map[string]interface{}) string //convert map to url query string
+func ParseHttpResponse(resp *http.Response, obj interface{}) error //decode http response to specified interface
 ```
 
 #### 8. random is for rand string and int generation

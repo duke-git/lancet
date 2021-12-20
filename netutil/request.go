@@ -45,7 +45,7 @@ func HttpPatch(url string, params ...interface{}) (*http.Response, error) {
 	return request(http.MethodPatch, url, params...)
 }
 
-// ParseHttpResponse convert the http response to interface{} obj
+// ParseHttpResponse decode http response to specified interface
 func ParseHttpResponse(resp *http.Response, obj interface{}) error {
 	if resp == nil {
 		return errors.New("InvalidResp")
