@@ -49,7 +49,7 @@ func (f Fn) Curry(i interface{}) func(...interface{}) interface{} {
 
 // Compose compose the functions from right to left
 func Compose(fnList ...func(...interface{}) interface{}) func(...interface{}) interface{} {
-	return func(s... interface{}) interface{} {
+	return func(s ...interface{}) interface{} {
 		f := fnList[0]
 		restFn := fnList[1:]
 
@@ -60,7 +60,6 @@ func Compose(fnList ...func(...interface{}) interface{}) func(...interface{}) in
 		return f(Compose(restFn...)(s...))
 	}
 }
-
 
 // Delay make the function execution after delayed time
 func Delay(delay time.Duration, fn interface{}, args ...interface{}) {
