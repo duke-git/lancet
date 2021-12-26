@@ -122,15 +122,15 @@ func Some(slice, function interface{}) bool {
 		panic("Filter function must be of type func(int, " + elemType.String() + ")" + reflect.ValueOf(true).Type().String())
 	}
 
-	var indexes []int
+	has := false
 	for i := 0; i < sv.Len(); i++ {
 		flag := fn.Call([]reflect.Value{reflect.ValueOf(i), sv.Index(i)})[0]
 		if flag.Bool() {
-			indexes = append(indexes, i)
+			has = true
 		}
 	}
 
-	return len(indexes) > 0
+	return has
 }
 
 // Filter iterates over elements of slice, returning an slice of all elements `signature` returns truthy for.
