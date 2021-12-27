@@ -97,7 +97,7 @@ func Every(slice, function interface{}) bool {
 
 	elemType := sv.Type().Elem()
 	if checkSliceCallbackFuncSignature(fn, elemType, reflect.ValueOf(true).Type()) {
-		panic("Filter function must be of type func(int, " + elemType.String() + ")" + reflect.ValueOf(true).Type().String())
+		panic("function param should be of type func(int, " + elemType.String() + ")" + reflect.ValueOf(true).Type().String())
 	}
 
 	var indexes []int
@@ -119,7 +119,7 @@ func Some(slice, function interface{}) bool {
 
 	elemType := sv.Type().Elem()
 	if checkSliceCallbackFuncSignature(fn, elemType, reflect.ValueOf(true).Type()) {
-		panic("Filter function must be of type func(int, " + elemType.String() + ")" + reflect.ValueOf(true).Type().String())
+		panic("function param should be of type func(int, " + elemType.String() + ")" + reflect.ValueOf(true).Type().String())
 	}
 
 	has := false
@@ -141,7 +141,7 @@ func Filter(slice, function interface{}) interface{} {
 
 	elemType := sv.Type().Elem()
 	if checkSliceCallbackFuncSignature(fn, elemType, reflect.ValueOf(true).Type()) {
-		panic("Filter function must be of type func(int, " + elemType.String() + ")" + reflect.ValueOf(true).Type().String())
+		panic("function param should be of type func(int, " + elemType.String() + ")" + reflect.ValueOf(true).Type().String())
 	}
 
 	var indexes []int
@@ -167,7 +167,7 @@ func Find(slice, function interface{}) interface{} {
 
 	elemType := sv.Type().Elem()
 	if checkSliceCallbackFuncSignature(fn, elemType, reflect.ValueOf(true).Type()) {
-		panic("Filter function must be of type func(int, " + elemType.String() + ")" + reflect.ValueOf(true).Type().String())
+		panic("function param should be of type func(int, " + elemType.String() + ")" + reflect.ValueOf(true).Type().String())
 	}
 
 	var index int
@@ -189,7 +189,7 @@ func Map(slice, function interface{}) interface{} {
 
 	elemType := sv.Type().Elem()
 	if checkSliceCallbackFuncSignature(fn, elemType, nil) {
-		panic("Map function must be of type func(int, " + elemType.String() + ")" + elemType.String())
+		panic("function param should be of type func(int, " + elemType.String() + ")" + elemType.String())
 	}
 
 	res := reflect.MakeSlice(sv.Type(), sv.Len(), sv.Len())
@@ -215,7 +215,7 @@ func Reduce(slice, function, zero interface{}) interface{} {
 	fn := functionValue(function)
 	if checkSliceCallbackFuncSignature(fn, elementType, elementType, elementType) {
 		t := elementType.String()
-		panic("Reduce function must be of type func(int, " + t + ", " + t + ")" + t)
+		panic("function param should be of type func(int, " + t + ", " + t + ")" + t)
 	}
 
 	var params [3]reflect.Value
