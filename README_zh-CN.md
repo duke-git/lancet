@@ -6,7 +6,7 @@
 <div align="center" style="text-align: center;">
 
 ![Go version](https://img.shields.io/badge/go-%3E%3D1.16<recommend>-9cf)
-[![Release](https://img.shields.io/badge/release-1.0.10-green.svg)](https://github.com/duke-git/lancet/releases)
+[![Release](https://img.shields.io/badge/release-1.1.0-green.svg)](https://github.com/duke-git/lancet/releases)
 [![GoDoc](https://godoc.org/github.com//duke-git/lancet?status.svg)](https://pkg.go.dev/github.com/duke-git/lancet)
 [![Go Report Card](https://goreportcard.com/badge/github.com/duke-git/lancet)](https://goreportcard.com/report/github.com/duke-git/lancet)
 [![codecov](https://codecov.io/gh/duke-git/lancet/branch/main/graph/badge.svg?token=FC48T1F078)](https://codecov.io/gh/duke-git/lancet)
@@ -392,6 +392,7 @@ func Find(slice, function interface{}) interface{} //查找slice中第一个符�
 func Filter(slice, function interface{}) interface{} //过滤slice, 函数签名：func(index int, value interface{}) bool
 func IntSlice(slice interface{}) ([]int, error) //转成int切片
 func InterfaceSlice(slice interface{}) []interface{} //转成interface{}切片
+func Intersection(slices ...interface{}) interface{} //slice交集，去重
 func InsertByIndex(slice interface{}, index int, value interface{}) (interface{}, error) //在切片中index位置插入value
 func Map(slice, function interface{}) interface{} //遍历切片, 函数签名：func(index int, value interface{}) interface{}
 func ReverseSlice(slice interface{}) //反转切片
@@ -400,7 +401,9 @@ func Some(slice, function interface{}) bool //slice中任意一个元素都符�
 func SortByField(slice interface{}, field string, sortType ...string) error //对struct切片进行排序
 func StringSlice(slice interface{}) []string //转为string切片
 func Unique(slice interface{}) interface{} //去重切片
+func Union(slices ...interface{}) interface{} //slice并集, 去重
 func UpdateByIndex(slice interface{}, index int, value interface{}) (interface{}, error) //在切片中index位置更新value
+func Without(slice interface{}, values ...interface{}) interface{} //slice去除values
 ```
 
 #### 10. strutil字符串处理包

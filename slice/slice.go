@@ -417,7 +417,7 @@ func Unique(slice interface{}) interface{} {
 
 }
 
-// Union creates an slice of unique values, in order, from all given slices. using == for equality comparisons.
+// Union creates a slice of unique values, in order, from all given slices. using == for equality comparisons.
 func Union(slices ...interface{}) interface{} {
 	if len(slices) == 0 {
 		return nil
@@ -443,7 +443,7 @@ func Union(slices ...interface{}) interface{} {
 	return Unique(res.Interface())
 }
 
-// Intersection creates an slice of unique values that included by all slices.
+// Intersection creates a slice of unique values that included by all slices.
 func Intersection(slices ...interface{}) interface{} {
 	if len(slices) == 0 {
 		return nil
@@ -541,7 +541,7 @@ func SortByField(slice interface{}, field string, sortType ...string) error {
 	return nil
 }
 
-// Without creates an array excluding all given values
+// Without creates a slice excluding all given values
 func Without(slice interface{}, values ...interface{}) interface{} {
 	sv := sliceValue(slice)
 	if sv.Len() == 0 {

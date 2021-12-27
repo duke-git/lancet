@@ -6,7 +6,7 @@
 <div align="center" style="text-align: center;">
 
 ![Go version](https://img.shields.io/badge/go-%3E%3D1.16<recommend>-9cf)
-[![Release](https://img.shields.io/badge/release-1.0.10-green.svg)](https://github.com/duke-git/lancet/releases)
+[![Release](https://img.shields.io/badge/release-1.1.0-green.svg)](https://github.com/duke-git/lancet/releases)
 [![GoDoc](https://godoc.org/github.com//duke-git/lancet?status.svg)](https://pkg.go.dev/github.com/duke-git/lancet)
 [![Go Report Card](https://goreportcard.com/badge/github.com/duke-git/lancet)](https://goreportcard.com/report/github.com/duke-git/lancet)
 [![codecov](https://codecov.io/gh/duke-git/lancet/branch/main/graph/badge.svg?token=FC48T1F078)](https://codecov.io/gh/duke-git/lancet)
@@ -391,6 +391,7 @@ func Filter(slice, function interface{}) interface{} //filter slice, function si
 func Find(slice, function interface{}) interface{} //iterates over elements of slice, returning the first one that passes a truth test on function.function signature should be func(index int, value interface{}) bool .
 func IntSlice(slice interface{}) ([]int, error) //convert value to int slice
 func InterfaceSlice(slice interface{}) []interface{} //convert value to interface{} slice
+func Intersection(slices ...interface{}) interface{} //creates a slice of unique values that included by all slices.
 func InsertByIndex(slice interface{}, index int, value interface{}) (interface{}, error) //insert the element into slice at index.
 func Map(slice, function interface{}) interface{} //map lisce, function signature should be func(index int, value interface{}) interface{}
 func ReverseSlice(slice interface{}) //revere slice
@@ -399,7 +400,9 @@ func SortByField(slice interface{}, field string, sortType ...string) error //so
 func Some(slice, function interface{}) bool //return true if any of the values in the list pass the predicate function, function signature should be func(index int, value interface{}) bool
 func StringSlice(slice interface{}) []string //convert value to string slice
 func Unique(slice interface{}) interface{} //remove duplicate elements in slice
+func Union(slices ...interface{}) interface{} //Union creates a slice of unique values, in order, from all given slices. using == for equality comparisons.
 func UpdateByIndex(slice interface{}, index int, value interface{}) (interface{}, error) //update the slice element at index.
+func Without(slice interface{}, values ...interface{}) interface{} //creates a slice excluding all given values
 ```
 
 #### 10. strutil is for processing string
