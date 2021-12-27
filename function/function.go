@@ -2,7 +2,6 @@
 // Use of this source code is governed by MIT license
 
 // Package function implements some functions for control the function execution and some is for functional programming.
-
 package function
 
 import (
@@ -36,7 +35,7 @@ func Before(n int, fn interface{}) func(args ...interface{}) []reflect.Value {
 		return res
 	}
 }
-
+// Fn is for curry function which is func(...interface{}) interface{}
 type Fn func(...interface{}) interface{}
 
 // Curry make a curryed function
