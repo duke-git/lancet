@@ -379,22 +379,28 @@ func Unique(slice interface{}) interface{} {
 		return slice
 	}
 
-	var res []interface{}
+	var temp []interface{}
+	len := 0
 	for i := 0; i < sv.Len(); i++ {
 		v := sv.Index(i).Interface()
-		flag := true
-		for j := range res {
-			if v == res[j] {
-				flag = false
+		skip := true
+		for j := range temp {
+			if v == temp[j] {
+				skip = false
 				break
 			}
 		}
-		if flag {
-			res = append(res, v)
+		if skip {
+			temp = append(temp, v)
+			len++
 		}
 	}
 
-	return res
+	res := reflect.MakeSlice(sv.Type(), len, len)
+	for i := 0; i < len; i++ {
+		res.Index(i).Set(reflect.ValueOf(temp[i]))
+	}
+	return res.Interface()
 
 	// if use map filter, the result slice element order is random, not same as origin slice
 	//mp := make(map[interface{}]bool)
@@ -409,6 +415,66 @@ func Unique(slice interface{}) interface{} {
 	//}
 	//return res
 
+}
+
+// Union creates an slice of unique values, in order, from all given slices. using == for equality comparisons.
+func Union(slices ...interface{}) interface{} {
+	if len(slices) == 0 {
+		return nil
+	}
+	// append all slices, then unique it
+	var allSlice []interface{}
+	len := 0
+	for i := range slices {
+		sv := sliceValue(slices[i])
+		len += sv.Len()
+		for j := 0; j < sv.Len(); j++ {
+			v := sv.Index(j).Interface()
+			allSlice = append(allSlice, v)
+		}
+	}
+
+	sv := sliceValue(slices[0])
+	res := reflect.MakeSlice(sv.Type(), len, len)
+	for i := 0; i < len; i++ {
+		res.Index(i).Set(reflect.ValueOf(allSlice[i]))
+	}
+
+	return Unique(res.Interface())
+}
+
+// Intersection creates an slice of unique values that included by all slices.
+func Intersection(slices ...interface{}) interface{} {
+	if len(slices) == 0 {
+		return nil
+	}
+
+	reduceFunc := func(index int, slice1, slice2 interface{}) interface{} {
+		set := make([]interface{}, 0)
+		hash := make(map[interface{}]bool)
+
+		sv1 := reflect.ValueOf(slice1)
+		for i := 0; i < sv1.Len(); i++ {
+			v := sv1.Index(i).Interface()
+			hash[v] = true
+		}
+
+		sv2 := reflect.ValueOf(slice2)
+		for i := 0; i < sv2.Len(); i++ {
+			el := sv2.Index(i).Interface()
+			if _, found := hash[el]; found {
+				set = append(set, el)
+			}
+		}
+		res := reflect.MakeSlice(sv1.Type(), len(set), len(set))
+		for i := 0; i < len(set); i++ {
+			res.Index(i).Set(reflect.ValueOf(set[i]))
+		}
+		return res.Interface()
+	}
+
+	res := Reduce(slices, reduceFunc, nil)
+	return Union(res)
 }
 
 // ReverseSlice return slice of element order is reversed to the given slice
@@ -473,4 +539,26 @@ func SortByField(slice interface{}, field string, sortType ...string) error {
 		ReverseSlice(slice)
 	}
 	return nil
+}
+
+// Without creates an array excluding all given values
+func Without(slice interface{}, values ...interface{}) interface{} {
+	sv := sliceValue(slice)
+	if sv.Len() == 0 {
+		return slice
+	}
+	var indexes []int
+	for i := 0; i < sv.Len(); i++ {
+		v := sv.Index(i).Interface()
+		if !Contain(values, v) {
+			indexes = append(indexes, i)
+		}
+	}
+
+	res := reflect.MakeSlice(sv.Type(), len(indexes), len(indexes))
+	for i := range indexes {
+		res.Index(i).Set(sv.Index(indexes[i]))
+	}
+
+	return res.Interface()
 }

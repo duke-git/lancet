@@ -395,7 +395,7 @@ func updateByIndex(t *testing.T, test interface{}, index int, value, expected in
 func TestUnique(t *testing.T) {
 	t1 := []int{1, 2, 2, 3}
 	e1 := []int{1, 2, 3}
-	r1, _ := IntSlice(Unique(t1))
+	r1 := Unique(t1)
 	if !reflect.DeepEqual(r1, e1) {
 		utils.LogFailedTestInfo(t, "Unique", t1, e1, r1)
 		t.FailNow()
@@ -403,11 +403,58 @@ func TestUnique(t *testing.T) {
 
 	t2 := []string{"a", "a", "b", "c"}
 	e2 := []string{"a", "b", "c"}
-	r2 := StringSlice(Unique(t2))
+	r2 := Unique(t2)
 	if !reflect.DeepEqual(r2, e2) {
 		utils.LogFailedTestInfo(t, "Unique", t2, e2, r2)
 		t.FailNow()
 	}
+}
+
+func TestUnion(t *testing.T) {
+	s1 := []int{1, 3, 4, 6}
+	s2 := []int{1, 2, 5, 6}
+	s3 := []int{0, 4, 5, 7}
+
+	expected1 := []int{1, 3, 4, 6, 2, 5, 0, 7}
+	res1 := Union(s1, s2, s3)
+	if !reflect.DeepEqual(res1, expected1) {
+		utils.LogFailedTestInfo(t, "Union", s1, expected1, res1)
+		t.FailNow()
+	}
+
+	expected2 := []int{1, 3, 4, 6}
+	res2 := Union(s1)
+	if !reflect.DeepEqual(res2, expected2) {
+		utils.LogFailedTestInfo(t, "Union", s1, expected2, res2)
+		t.FailNow()
+	}
+}
+
+func TestIntersection(t *testing.T) {
+	s1 := []int{1, 2, 2, 3}
+	s2 := []int{1, 2, 3, 4}
+	s3 := []int{0, 2, 3, 5, 6}
+	s4 := []int{0, 5, 6}
+
+	expected := [][]int{
+		{2, 3},
+		{1, 2, 3},
+		{1, 2, 3},
+		{},
+	}
+	res := []interface{}{
+		Intersection(s1, s2, s3),
+		Intersection(s1, s2),
+		Intersection(s1),
+		Intersection(s1, s4),
+	}
+	for i := 0; i < len(res); i++ {
+		if !reflect.DeepEqual(res[i], expected[i]) {
+			utils.LogFailedTestInfo(t, "Intersection", "Intersection", expected[i], res[i])
+			t.FailNow()
+		}
+	}
+
 }
 
 func TestReverseSlice(t *testing.T) {
@@ -468,4 +515,15 @@ func TestSortByField(t *testing.T) {
 		t.FailNow()
 	}
 
+}
+
+func TestWithout(t *testing.T) {
+	s := []int{1, 2, 3, 4, 5}
+	expected := []int{3, 4, 5}
+	res := Without(s, 1, 2)
+
+	if !reflect.DeepEqual(res, expected) {
+		utils.LogFailedTestInfo(t, "Without", s, expected, res)
+		t.FailNow()
+	}
 }
