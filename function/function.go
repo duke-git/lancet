@@ -38,7 +38,7 @@ func Before(n int, fn interface{}) func(args ...interface{}) []reflect.Value {
 // Fn is for curry function which is func(...interface{}) interface{}
 type Fn func(...interface{}) interface{}
 
-// Curry make a curryed function
+// Curry make a curry function
 func (f Fn) Curry(i interface{}) func(...interface{}) interface{} {
 	return func(values ...interface{}) interface{} {
 		v := append([]interface{}{i}, values...)
