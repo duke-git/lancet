@@ -70,6 +70,7 @@ func TestLowerFirst(t *testing.T) {
 	lowerFirst(t, "foo", "foo")
 	lowerFirst(t, "BAR", "bAR")
 	lowerFirst(t, "FOo", "fOo")
+	lowerFirst(t, "FOo大", "fOo大")
 }
 
 func lowerFirst(t *testing.T, test string, expected string) {
