@@ -474,7 +474,7 @@ func Intersection(slices ...interface{}) interface{} {
 	}
 
 	res := Reduce(slices, reduceFunc, nil)
-	return Union(res)
+	return Unique(res)
 }
 
 // ReverseSlice return slice of element order is reversed to the given slice
