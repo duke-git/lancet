@@ -34,7 +34,7 @@ func TestHttpGet(t *testing.T) {
 func TestHttpPost(t *testing.T) {
 	url := "http://api.postcodes.io/postcodes"
 	type Postcode struct {
-		Postcodes  []string `json:"postcodes"`
+		Postcodes []string `json:"postcodes"`
 	}
 	postcode := Postcode{[]string{"OX49 5NU"}}
 	bodyParams, _ := json.Marshal(postcode)
