@@ -32,16 +32,12 @@ func TestHttpGet(t *testing.T) {
 }
 
 func TestHttpPost(t *testing.T) {
-	url := "http://public-api-v1.aspirantzhang.com/users"
-	type User struct {
-		Name  string `json:"name"`
-		Email string `json:"email"`
+	url := "http://api.postcodes.io/postcodes"
+	type Postcode struct {
+		Postcodes  []string `json:"postcodes"`
 	}
-	user := User{
-		"test",
-		"test@test.com",
-	}
-	bodyParams, _ := json.Marshal(user)
+	postcode := Postcode{[]string{"OX49 5NU"}}
+	bodyParams, _ := json.Marshal(postcode)
 	header := map[string]string{
 		"Content-Type": "application/json",
 	}
