@@ -35,6 +35,7 @@ func Before(n int, fn interface{}) func(args ...interface{}) []reflect.Value {
 		return res
 	}
 }
+
 // Fn is for curry function which is func(...interface{}) interface{}
 type Fn func(...interface{}) interface{}
 
