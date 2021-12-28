@@ -7,6 +7,7 @@ package strutil
 import (
 	"regexp"
 	"strings"
+	"unicode"
 )
 
 // CamelCase covert string to camelCase string.
@@ -40,18 +41,16 @@ func Capitalize(s string) string {
 		return ""
 	}
 
-	res := ""
-	for i, v := range []rune(s) {
+	out := make([]rune, len(s))
+	for i, v := range s {
 		if i == 0 {
-			if v >= 97 && v <= 122 {
-				v -= 32
-			}
-			res += string(v)
+			out[i] = unicode.ToUpper(v)
 		} else {
-			res += strings.ToLower(string(v))
+			out[i] = unicode.ToLower(v)
 		}
 	}
-	return res
+
+	return string(out)
 }
 
 // LowerFirst converts the first character of string to lower case.
