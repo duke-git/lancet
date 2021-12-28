@@ -8,6 +8,7 @@ import (
 	"regexp"
 	"strings"
 	"unicode"
+	"unicode/utf8"
 )
 
 // CamelCase covert string to camelCase string.
@@ -59,20 +60,10 @@ func LowerFirst(s string) string {
 		return ""
 	}
 
-	res := ""
-	for i, v := range []rune(s) {
-		if i == 0 {
-			if v >= 65 && v <= 96 {
-				v += 32
-				res += string(v)
-			} else {
-				return s
-			}
-		} else {
-			res += string(v)
-		}
-	}
-	return res
+	r, size := utf8.DecodeRuneInString(s)
+	r = unicode.ToLower(r)
+
+	return string(r) + s[size:]
 }
 
 // PadEnd pads string on the right side if it's shorter than size.
