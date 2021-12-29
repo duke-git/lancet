@@ -135,7 +135,10 @@ func TestFormatStrToTime(t *testing.T) {
 		"2021/01"}
 
 	for i := 0; i < len(cases); i++ {
-		res := FormatStrToTime(datetimeStr[i], cases[i])
+		res, err := FormatStrToTime(datetimeStr[i], cases[i])
+		if err != nil {
+			t.Fatal(err)
+		}
 		expected, _ := time.Parse(formats[i], datetimeStr[i])
 		if res != expected {
 			utils.LogFailedTestInfo(t, "FormatTimeToStr", cases[i], expected, res)
