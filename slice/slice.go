@@ -100,15 +100,15 @@ func Every(slice, function interface{}) bool {
 		panic("function param should be of type func(int, " + elemType.String() + ")" + reflect.ValueOf(true).Type().String())
 	}
 
-	var indexes []int
+	var currentLength int
 	for i := 0; i < sv.Len(); i++ {
 		flag := fn.Call([]reflect.Value{reflect.ValueOf(i), sv.Index(i)})[0]
 		if flag.Bool() {
-			indexes = append(indexes, i)
+			currentLength++
 		}
 	}
 
-	return len(indexes) == sv.Len()
+	return currentLength == sv.Len()
 }
 
 // Some return true if any of the values in the list pass the predicate function.
