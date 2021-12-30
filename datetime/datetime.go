@@ -25,7 +25,7 @@
 package datetime
 
 import (
-	"strconv"
+	"fmt"
 	"time"
 )
 
@@ -56,24 +56,17 @@ func init() {
 
 // AddMinute add or sub minute to the time
 func AddMinute(t time.Time, minute int64) time.Time {
-	s := strconv.FormatInt(minute, 10)
-	m, _ := time.ParseDuration(s + "m")
-	return t.Add(m)
+	return t.Add(time.Minute * time.Duration(minute))
 }
 
 // AddHour add or sub hour to the time
 func AddHour(t time.Time, hour int64) time.Time {
-	s := strconv.FormatInt(hour, 10)
-	h, _ := time.ParseDuration(s + "h")
-	return t.Add(h)
+	return t.Add(time.Hour * time.Duration(hour))
 }
 
 // AddDay add or sub day to the time
 func AddDay(t time.Time, day int64) time.Time {
-	dayHours := day * 24
-	d := strconv.FormatInt(dayHours, 10)
-	h, _ := time.ParseDuration(d + "h")
-	return t.Add(h)
+	return t.Add(24 * time.Hour * time.Duration(day))
 }
 
 // GetNowDate return format yyyy-mm-dd of current date
@@ -109,7 +102,11 @@ func FormatTimeToStr(t time.Time, format string) string {
 }
 
 // FormatStrToTime convert string to time
-func FormatStrToTime(str, format string) time.Time {
-	t, _ := time.Parse(timeFormat[format], str)
-	return t
+func FormatStrToTime(str, format string) (time.Time, error) {
+	v, ok := timeFormat[format]
+	if !ok {
+		return time.Time{}, fmt.Errorf("format %s not found", format)
+	}
+
+	return time.Parse(v, str)
 }
