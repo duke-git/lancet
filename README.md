@@ -145,6 +145,8 @@ func HmacMd5(data, key string) string //get hmac md5 value
 func HmacSha1(data, key string) string //get hmac sha1 value
 func HmacSha256(data, key string) string //get hmac sha256 value
 func HmacSha512(data, key string) string //get hmac sha512 value
+func Md5String(s string) string //return the md5 value of string
+func Md5File(filename string) (string, error) //return the md5 value of file
 func Sha1(data string) string //get sha1 value
 func Sha256(data string) string //getsha256 value
 func Sha512(data string) string //get sha512 value

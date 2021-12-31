@@ -146,6 +146,8 @@ func HmacMd5(data, key string) string //获取hmac md5值
 func HmacSha1(data, key string) string //获取hmac sha1值
 func HmacSha256(data, key string) string //获取hmac sha256值
 func HmacSha512(data, key string) string //获取hmac sha512值
+func Md5String(s string) string //获取字符串md5值
+func Md5File(filename string) (string, error) //获取文件md5值
 func Sha1(data string) string //获取sha1值
 func Sha256(data string) string //获取sha256值
 func Sha512(data string) string //获取sha512值
