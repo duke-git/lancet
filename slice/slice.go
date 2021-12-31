@@ -363,6 +363,7 @@ func UpdateByIndex(slice interface{}, index int, value interface{}) (interface{}
 	if index < 0 || index >= v.Len() {
 		return slice, errors.New("InvalidSliceIndex")
 	}
+
 	if reflect.TypeOf(slice).Elem() != reflect.TypeOf(value) {
 		return slice, errors.New("InvalidValueType")
 	}
@@ -380,7 +381,7 @@ func Unique(slice interface{}) interface{} {
 	}
 
 	var temp []interface{}
-	len := 0
+
 	for i := 0; i < sv.Len(); i++ {
 		v := sv.Index(i).Interface()
 		skip := true
@@ -392,12 +393,11 @@ func Unique(slice interface{}) interface{} {
 		}
 		if skip {
 			temp = append(temp, v)
-			len++
 		}
 	}
 
-	res := reflect.MakeSlice(sv.Type(), len, len)
-	for i := 0; i < len; i++ {
+	res := reflect.MakeSlice(sv.Type(), len(temp), len(temp))
+	for i := 0; i < len(temp); i++ {
 		res.Index(i).Set(reflect.ValueOf(temp[i]))
 	}
 	return res.Interface()
@@ -423,21 +423,21 @@ func Union(slices ...interface{}) interface{} {
 		return nil
 	}
 	// append all slices, then unique it
-	var allSlice []interface{}
+	var allSlices []interface{}
 	len := 0
 	for i := range slices {
 		sv := sliceValue(slices[i])
 		len += sv.Len()
 		for j := 0; j < sv.Len(); j++ {
 			v := sv.Index(j).Interface()
-			allSlice = append(allSlice, v)
+			allSlices = append(allSlices, v)
 		}
 	}
 
 	sv := sliceValue(slices[0])
 	res := reflect.MakeSlice(sv.Type(), len, len)
 	for i := 0; i < len; i++ {
-		res.Index(i).Set(reflect.ValueOf(allSlice[i]))
+		res.Index(i).Set(reflect.ValueOf(allSlices[i]))
 	}
 
 	return Unique(res.Interface())
@@ -547,6 +547,7 @@ func Without(slice interface{}, values ...interface{}) interface{} {
 	if sv.Len() == 0 {
 		return slice
 	}
+
 	var indexes []int
 	for i := 0; i < sv.Len(); i++ {
 		v := sv.Index(i).Interface()
