@@ -13,10 +13,12 @@ import (
 	"unsafe"
 )
 
-// Contain check if the value is in the slice or not
-func Contain(slice interface{}, value interface{}) bool {
-	v := reflect.ValueOf(slice)
-	switch reflect.TypeOf(slice).Kind() {
+// Contain check if the value is in the iterable type or not
+func Contain(iterableType interface{}, value interface{}) bool {
+
+	v := reflect.ValueOf(iterableType)
+
+	switch kind := reflect.TypeOf(iterableType).Kind(); kind {
 	case reflect.Slice, reflect.Array:
 		for i := 0; i < v.Len(); i++ {
 			if v.Index(i).Interface() == value {
@@ -29,9 +31,15 @@ func Contain(slice interface{}, value interface{}) bool {
 			return true
 		}
 	case reflect.String:
-		s := fmt.Sprintf("%v", slice)
-		ss := fmt.Sprintf("%v", value)
+		s := iterableType.(string)
+		ss, ok := value.(string)
+		if !ok {
+			panic("kind mismatch")
+		}
+
 		return strings.Contains(s, ss)
+	default:
+		panic(fmt.Sprintf("kind %s is not support", iterableType))
 	}
 
 	return false
@@ -252,32 +260,34 @@ func InterfaceSlice(slice interface{}) []interface{} {
 
 // StringSlice convert param to slice of string.
 func StringSlice(slice interface{}) []string {
-	var res []string
-
 	v := sliceValue(slice)
+
+	out := make([]string, v.Len())
 	for i := 0; i < v.Len(); i++ {
-		res = append(res, fmt.Sprint(v.Index(i)))
+		v, ok := v.Index(i).Interface().(string)
+		if !ok {
+			panic("invalid element type")
+		}
+		out[i] = v
 	}
 
-	return res
+	return out
 }
 
 // IntSlice convert param to slice of int.
-func IntSlice(slice interface{}) ([]int, error) {
-	var res []int
-
+func IntSlice(slice interface{}) []int {
 	sv := sliceValue(slice)
+
+	out := make([]int, sv.Len())
 	for i := 0; i < sv.Len(); i++ {
-		v := sv.Index(i).Interface()
-		switch v := v.(type) {
-		case int:
-			res = append(res, v)
-		default:
-			return nil, errors.New("InvalidSliceElementType")
+		v, ok := sv.Index(i).Interface().(int)
+		if !ok {
+			panic("invalid element type")
 		}
+		out[i] = v
 	}
 
-	return res, nil
+	return out
 }
 
 // ConvertSlice convert original slice to new data type element of slice.
