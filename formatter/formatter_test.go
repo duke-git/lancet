@@ -3,7 +3,7 @@ package formatter
 import (
 	"testing"
 
-	"github.com/duke-git/lancet/utils"
+	"github.com/duke-git/lancet/internal"
 )
 
 func TestComma(t *testing.T) {
@@ -22,7 +22,7 @@ func TestComma(t *testing.T) {
 func comma(t *testing.T, test interface{}, symbol string, expected interface{}) {
 	res := Comma(test, symbol)
 	if res != expected {
-		utils.LogFailedTestInfo(t, "Comma", test, expected, res)
+		internal.LogFailedTestInfo(t, "Comma", test, expected, res)
 		t.FailNow()
 	}
 }

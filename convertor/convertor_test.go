@@ -5,7 +5,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/duke-git/lancet/utils"
+	"github.com/duke-git/lancet/internal"
 )
 
 func TestToChar(t *testing.T) {
@@ -18,7 +18,7 @@ func TestToChar(t *testing.T) {
 	for i := 0; i < len(cases); i++ {
 		res := ToChar(cases[i])
 		if !reflect.DeepEqual(res, expected[i]) {
-			utils.LogFailedTestInfo(t, "ToChar", cases[i], expected[i], res)
+			internal.LogFailedTestInfo(t, "ToChar", cases[i], expected[i], res)
 			t.FailNow()
 		}
 	}
@@ -31,7 +31,7 @@ func TestToBool(t *testing.T) {
 	for i := 0; i < len(cases); i++ {
 		res, _ := ToBool(cases[i])
 		if res != expected[i] {
-			utils.LogFailedTestInfo(t, "ToBool", cases[i], expected[i], res)
+			internal.LogFailedTestInfo(t, "ToBool", cases[i], expected[i], res)
 			t.FailNow()
 		}
 	}
@@ -52,7 +52,7 @@ func TestToBytes(t *testing.T) {
 		res, _ := ToBytes(cases[i])
 		fmt.Println(res)
 		if !reflect.DeepEqual(res, expected[i]) {
-			utils.LogFailedTestInfo(t, "ToBytes", cases[i], expected[i], res)
+			internal.LogFailedTestInfo(t, "ToBytes", cases[i], expected[i], res)
 			t.FailNow()
 		}
 	}
@@ -69,7 +69,7 @@ func TestToInt(t *testing.T) {
 	for i := 0; i < len(cases); i++ {
 		res, _ := ToInt(cases[i])
 		if res != expected[i] {
-			utils.LogFailedTestInfo(t, "ToInt", cases[i], expected[i], res)
+			internal.LogFailedTestInfo(t, "ToInt", cases[i], expected[i], res)
 			t.FailNow()
 		}
 	}
@@ -88,7 +88,7 @@ func TestToFloat(t *testing.T) {
 	for i := 0; i < len(cases); i++ {
 		res, _ := ToFloat(cases[i])
 		if res != expected[i] {
-			utils.LogFailedTestInfo(t, "ToFloat", cases[i], expected[i], res)
+			internal.LogFailedTestInfo(t, "ToFloat", cases[i], expected[i], res)
 			t.FailNow()
 		}
 	}
@@ -121,7 +121,7 @@ func TestToString(t *testing.T) {
 	for i := 0; i < len(cases); i++ {
 		res := ToString(cases[i])
 		if res != expected[i] {
-			utils.LogFailedTestInfo(t, "ToString", cases[i], expected[i], res)
+			internal.LogFailedTestInfo(t, "ToString", cases[i], expected[i], res)
 			t.FailNow()
 		}
 	}
@@ -136,7 +136,7 @@ func TestToJson(t *testing.T) {
 	mapJson := "{\"a\":1,\"b\":2,\"c\":3}"
 	r1, _ := ToJson(aMap)
 	if r1 != mapJson {
-		utils.LogFailedTestInfo(t, "ToJson", aMap, mapJson, r1)
+		internal.LogFailedTestInfo(t, "ToJson", aMap, mapJson, r1)
 		t.FailNow()
 	}
 
@@ -148,7 +148,7 @@ func TestToJson(t *testing.T) {
 	structJson := "{\"Name\":\"TestStruct\"}"
 	r2, _ := ToJson(aStruct)
 	if r2 != structJson {
-		utils.LogFailedTestInfo(t, "ToJson", aMap, mapJson, r1)
+		internal.LogFailedTestInfo(t, "ToJson", aMap, mapJson, r1)
 		t.FailNow()
 	}
 }
@@ -170,7 +170,7 @@ func TestStructToMap(t *testing.T) {
 	//exp1["100"] = 100
 
 	if !reflect.DeepEqual(pm1, m1) {
-		utils.LogFailedTestInfo(t, "StructToMap", p1, m1, pm1)
+		internal.LogFailedTestInfo(t, "StructToMap", p1, m1, pm1)
 		t.FailNow()
 	}
 
@@ -185,7 +185,7 @@ func TestStructToMap(t *testing.T) {
 	m2["100"] = 100
 
 	if reflect.DeepEqual(pm2, m2) {
-		utils.LogFailedTestInfo(t, "StructToMap", p2, m2, pm2)
+		internal.LogFailedTestInfo(t, "StructToMap", p2, m2, pm2)
 		t.FailNow()
 	}
 }
@@ -197,7 +197,7 @@ func TestColorHexToRGB(t *testing.T) {
 	expected := "0,51,102"
 
 	if colorRGB != expected {
-		utils.LogFailedTestInfo(t, "ColorHexToRGB", colorHex, expected, colorRGB)
+		internal.LogFailedTestInfo(t, "ColorHexToRGB", colorHex, expected, colorRGB)
 		t.FailNow()
 	}
 }
@@ -211,7 +211,7 @@ func TestColorRGBToHex(t *testing.T) {
 	expected := "#003366"
 
 	if colorHex != expected {
-		utils.LogFailedTestInfo(t, "ColorHexToRGB", colorRGB, expected, colorHex)
+		internal.LogFailedTestInfo(t, "ColorHexToRGB", colorRGB, expected, colorHex)
 		t.FailNow()
 	}
 }

@@ -4,7 +4,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/duke-git/lancet/utils"
+	"github.com/duke-git/lancet/internal"
 )
 
 func TestContain(t *testing.T) {
@@ -28,7 +28,7 @@ func TestContain(t *testing.T) {
 func contain(t *testing.T, test interface{}, value interface{}, expected bool) {
 	res := Contain(test, value)
 	if res != expected {
-		utils.LogFailedTestInfo(t, "Contain", test, expected, res)
+		internal.LogFailedTestInfo(t, "Contain", test, expected, res)
 		t.FailNow()
 	}
 }
@@ -78,7 +78,7 @@ func TestChunk(t *testing.T) {
 func chunk(t *testing.T, test []interface{}, num int, expected [][]interface{}) {
 	res := Chunk(test, num)
 	if !reflect.DeepEqual(res, expected) {
-		utils.LogFailedTestInfo(t, "Chunk", test, expected, res)
+		internal.LogFailedTestInfo(t, "Chunk", test, expected, res)
 		t.FailNow()
 	}
 }
@@ -103,7 +103,7 @@ func TestEvery(t *testing.T) {
 	}
 	res := Every(nums, isEven)
 	if res != false {
-		utils.LogFailedTestInfo(t, "Every", nums, false, res)
+		internal.LogFailedTestInfo(t, "Every", nums, false, res)
 		t.FailNow()
 	}
 }
@@ -115,7 +115,7 @@ func TestSome(t *testing.T) {
 	}
 	res := Some(nums, isEven)
 	if res != true {
-		utils.LogFailedTestInfo(t, "Some", nums, true, res)
+		internal.LogFailedTestInfo(t, "Some", nums, true, res)
 		t.FailNow()
 	}
 }
@@ -128,7 +128,7 @@ func TestFilter(t *testing.T) {
 	e1 := []int{2, 4}
 	r1 := Filter(nums, even)
 	if !reflect.DeepEqual(r1, e1) {
-		utils.LogFailedTestInfo(t, "Filter", nums, e1, r1)
+		internal.LogFailedTestInfo(t, "Filter", nums, e1, r1)
 		t.FailNow()
 	}
 
@@ -155,7 +155,7 @@ func TestFilter(t *testing.T) {
 
 	r2 := Filter(students, filterFunc)
 	if !reflect.DeepEqual(r2, e2) {
-		utils.LogFailedTestInfo(t, "Filter", students, e2, r2)
+		internal.LogFailedTestInfo(t, "Filter", students, e2, r2)
 		t.FailNow()
 	}
 
@@ -168,7 +168,7 @@ func TestFind(t *testing.T) {
 	}
 	res := Find(nums, even)
 	if res != 2 {
-		utils.LogFailedTestInfo(t, "Find", nums, 2, res)
+		internal.LogFailedTestInfo(t, "Find", nums, 2, res)
 		t.FailNow()
 	}
 }
@@ -181,7 +181,7 @@ func TestMap(t *testing.T) {
 	e1 := []int{2, 4, 6, 8}
 	r1 := Map(s1, multiplyTwo)
 	if !reflect.DeepEqual(r1, e1) {
-		utils.LogFailedTestInfo(t, "Map", s1, e1, r1)
+		internal.LogFailedTestInfo(t, "Map", s1, e1, r1)
 		t.FailNow()
 	}
 
@@ -206,7 +206,7 @@ func TestMap(t *testing.T) {
 	}
 	r2 := Map(students, mapFunc)
 	if !reflect.DeepEqual(r2, e2) {
-		utils.LogFailedTestInfo(t, "Filter", students, e2, r2)
+		internal.LogFailedTestInfo(t, "Filter", students, e2, r2)
 		t.FailNow()
 	}
 }
@@ -223,7 +223,7 @@ func TestReduce(t *testing.T) {
 	for i := 0; i < len(cases); i++ {
 		res := Reduce(cases[i], f, 0)
 		if res != expected[i] {
-			utils.LogFailedTestInfo(t, "Reduce", cases[i], expected[i], res)
+			internal.LogFailedTestInfo(t, "Reduce", cases[i], expected[i], res)
 			t.FailNow()
 		}
 	}
@@ -240,7 +240,7 @@ func intSlice(t *testing.T, test interface{}, expected []int) {
 	res := IntSlice(test)
 
 	if !reflect.DeepEqual(res, expected) {
-		utils.LogFailedTestInfo(t, "IntSlice", test, expected, res)
+		internal.LogFailedTestInfo(t, "IntSlice", test, expected, res)
 		t.FailNow()
 	}
 }
@@ -255,7 +255,7 @@ func TestStringSlice(t *testing.T) {
 func stringSlice(t *testing.T, test interface{}, expected []string) {
 	res := StringSlice(test)
 	if !reflect.DeepEqual(res, expected) {
-		utils.LogFailedTestInfo(t, "StringSlice", test, expected, res)
+		internal.LogFailedTestInfo(t, "StringSlice", test, expected, res)
 		t.FailNow()
 	}
 }
@@ -269,7 +269,7 @@ func TestInterfaceSlice(t *testing.T) {
 func interfaceSlice(t *testing.T, test interface{}, expected []interface{}) {
 	res := InterfaceSlice(test)
 	if !reflect.DeepEqual(res, expected) {
-		utils.LogFailedTestInfo(t, "InterfaceSlice", test, expected, res)
+		internal.LogFailedTestInfo(t, "InterfaceSlice", test, expected, res)
 		t.FailNow()
 	}
 }
@@ -321,7 +321,7 @@ func deleteByIndex(t *testing.T, origin, test interface{}, start, end int, expec
 	}
 
 	if !reflect.DeepEqual(res, expected) {
-		utils.LogFailedTestInfo(t, "DeleteByIndex", origin, expected, res)
+		internal.LogFailedTestInfo(t, "DeleteByIndex", origin, expected, res)
 		t.FailNow()
 	}
 }
@@ -358,7 +358,7 @@ func insertByIndex(t *testing.T, test interface{}, index int, value, expected in
 	}
 
 	if !reflect.DeepEqual(res, expected) {
-		utils.LogFailedTestInfo(t, "InsertByIndex", test, expected, res)
+		internal.LogFailedTestInfo(t, "InsertByIndex", test, expected, res)
 		t.FailNow()
 	}
 }
@@ -385,7 +385,7 @@ func updateByIndex(t *testing.T, test interface{}, index int, value, expected in
 	}
 
 	if !reflect.DeepEqual(res, expected) {
-		utils.LogFailedTestInfo(t, "UpdateByIndex", test, expected, res)
+		internal.LogFailedTestInfo(t, "UpdateByIndex", test, expected, res)
 		t.FailNow()
 	}
 }
@@ -395,7 +395,7 @@ func TestUnique(t *testing.T) {
 	e1 := []int{1, 2, 3}
 	r1 := Unique(t1)
 	if !reflect.DeepEqual(r1, e1) {
-		utils.LogFailedTestInfo(t, "Unique", t1, e1, r1)
+		internal.LogFailedTestInfo(t, "Unique", t1, e1, r1)
 		t.FailNow()
 	}
 
@@ -403,7 +403,7 @@ func TestUnique(t *testing.T) {
 	e2 := []string{"a", "b", "c"}
 	r2 := Unique(t2)
 	if !reflect.DeepEqual(r2, e2) {
-		utils.LogFailedTestInfo(t, "Unique", t2, e2, r2)
+		internal.LogFailedTestInfo(t, "Unique", t2, e2, r2)
 		t.FailNow()
 	}
 }
@@ -416,14 +416,14 @@ func TestUnion(t *testing.T) {
 	expected1 := []int{1, 3, 4, 6, 2, 5, 0, 7}
 	res1 := Union(s1, s2, s3)
 	if !reflect.DeepEqual(res1, expected1) {
-		utils.LogFailedTestInfo(t, "Union", s1, expected1, res1)
+		internal.LogFailedTestInfo(t, "Union", s1, expected1, res1)
 		t.FailNow()
 	}
 
 	expected2 := []int{1, 3, 4, 6}
 	res2 := Union(s1)
 	if !reflect.DeepEqual(res2, expected2) {
-		utils.LogFailedTestInfo(t, "Union", s1, expected2, res2)
+		internal.LogFailedTestInfo(t, "Union", s1, expected2, res2)
 		t.FailNow()
 	}
 }
@@ -448,7 +448,7 @@ func TestIntersection(t *testing.T) {
 	}
 	for i := 0; i < len(res); i++ {
 		if !reflect.DeepEqual(res[i], expected[i]) {
-			utils.LogFailedTestInfo(t, "Intersection", "Intersection", expected[i], res[i])
+			internal.LogFailedTestInfo(t, "Intersection", "Intersection", expected[i], res[i])
 			t.FailNow()
 		}
 	}
@@ -460,7 +460,7 @@ func TestReverseSlice(t *testing.T) {
 	e1 := []int{5, 4, 3, 2, 1}
 	ReverseSlice(s1)
 	if !reflect.DeepEqual(s1, e1) {
-		utils.LogFailedTestInfo(t, "ReverseSlice", s1, e1, s1)
+		internal.LogFailedTestInfo(t, "ReverseSlice", s1, e1, s1)
 		t.FailNow()
 	}
 
@@ -468,7 +468,7 @@ func TestReverseSlice(t *testing.T) {
 	e2 := []string{"e", "d", "c", "b", "a"}
 	ReverseSlice(s2)
 	if !reflect.DeepEqual(s2, e2) {
-		utils.LogFailedTestInfo(t, "ReverseSlice", s2, e2, s2)
+		internal.LogFailedTestInfo(t, "ReverseSlice", s2, e2, s2)
 		t.FailNow()
 	}
 }
@@ -479,7 +479,7 @@ func TestDifference(t *testing.T) {
 	e1 := []int{1, 2, 3}
 	r1 := Difference(s1, s2)
 	if !reflect.DeepEqual(r1, e1) {
-		utils.LogFailedTestInfo(t, "Difference", s1, e1, r1)
+		internal.LogFailedTestInfo(t, "Difference", s1, e1, r1)
 		t.FailNow()
 	}
 }
@@ -509,7 +509,7 @@ func TestSortByField(t *testing.T) {
 	}
 
 	if !reflect.DeepEqual(students, sortByAge) {
-		utils.LogFailedTestInfo(t, "SortByField", students, sortByAge, students)
+		internal.LogFailedTestInfo(t, "SortByField", students, sortByAge, students)
 		t.FailNow()
 	}
 
@@ -521,7 +521,7 @@ func TestWithout(t *testing.T) {
 	res := Without(s, 1, 2)
 
 	if !reflect.DeepEqual(res, expected) {
-		utils.LogFailedTestInfo(t, "Without", s, expected, res)
+		internal.LogFailedTestInfo(t, "Without", s, expected, res)
 		t.FailNow()
 	}
 }

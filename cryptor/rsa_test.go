@@ -3,7 +3,7 @@ package cryptor
 import (
 	"testing"
 
-	"github.com/duke-git/lancet/utils"
+	"github.com/duke-git/lancet/internal"
 )
 
 func TestRsaEncrypt(t *testing.T) {
@@ -13,7 +13,7 @@ func TestRsaEncrypt(t *testing.T) {
 	decrypted := RsaDecrypt(encrypted, "rsa_private.pem")
 
 	if string(data) != string(decrypted) {
-		utils.LogFailedTestInfo(t, "RsaEncrypt/RsaDecrypt", string(data), string(data), string(decrypted))
+		internal.LogFailedTestInfo(t, "RsaEncrypt/RsaDecrypt", string(data), string(data), string(decrypted))
 		t.FailNow()
 	}
 }

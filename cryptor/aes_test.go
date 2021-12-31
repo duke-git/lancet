@@ -3,7 +3,7 @@ package cryptor
 import (
 	"testing"
 
-	"github.com/duke-git/lancet/utils"
+	"github.com/duke-git/lancet/internal"
 )
 
 func TestAesEcbEncrypt(t *testing.T) {
@@ -14,7 +14,7 @@ func TestAesEcbEncrypt(t *testing.T) {
 	aesEcbDecrypt := AesEcbDecrypt(aesEcbEncrypt, []byte(key))
 
 	if string(aesEcbDecrypt) != data {
-		utils.LogFailedTestInfo(t, "AesEcbEncrypt/AesEcbDecrypt", data, data, string(aesEcbDecrypt))
+		internal.LogFailedTestInfo(t, "AesEcbEncrypt/AesEcbDecrypt", data, data, string(aesEcbDecrypt))
 		t.FailNow()
 	}
 }
@@ -27,7 +27,7 @@ func TestAesCbcEncrypt(t *testing.T) {
 	aesCbcDecrypt := AesCbcDecrypt(aesCbcEncrypt, []byte(key))
 
 	if string(aesCbcDecrypt) != data {
-		utils.LogFailedTestInfo(t, "AesCbcEncrypt/AesCbcDecrypt", data, data, string(aesCbcDecrypt))
+		internal.LogFailedTestInfo(t, "AesCbcEncrypt/AesCbcDecrypt", data, data, string(aesCbcDecrypt))
 		t.FailNow()
 	}
 }
@@ -40,7 +40,7 @@ func TestAesCtrCrypt(t *testing.T) {
 	aesCtrDeCrypt := AesCtrCrypt(aesCtrCrypt, []byte(key))
 
 	if string(aesCtrDeCrypt) != data {
-		utils.LogFailedTestInfo(t, "AesCtrCrypt", data, data, string(aesCtrDeCrypt))
+		internal.LogFailedTestInfo(t, "AesCtrCrypt", data, data, string(aesCtrDeCrypt))
 		t.FailNow()
 	}
 }
@@ -53,7 +53,7 @@ func TestAesCfbEncrypt(t *testing.T) {
 	aesCfbDecrypt := AesCfbDecrypt(aesCfbEncrypt, []byte(key))
 
 	if string(aesCfbDecrypt) != data {
-		utils.LogFailedTestInfo(t, "AesCfbEncrypt/AesCfbDecrypt", data, data, string(aesCfbDecrypt))
+		internal.LogFailedTestInfo(t, "AesCfbEncrypt/AesCfbDecrypt", data, data, string(aesCfbDecrypt))
 		t.FailNow()
 	}
 }
@@ -66,7 +66,7 @@ func TestAesOfbEncrypt(t *testing.T) {
 	aesOfbDecrypt := AesOfbDecrypt(aesOfbEncrypt, []byte(key))
 
 	if string(aesOfbDecrypt) != data {
-		utils.LogFailedTestInfo(t, "AesOfbEncrypt/AesOfbDecrypt", data, data, string(aesOfbDecrypt))
+		internal.LogFailedTestInfo(t, "AesOfbEncrypt/AesOfbDecrypt", data, data, string(aesOfbDecrypt))
 		t.FailNow()
 	}
 }

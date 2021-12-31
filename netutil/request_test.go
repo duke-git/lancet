@@ -7,7 +7,7 @@ import (
 	"log"
 	"testing"
 
-	"github.com/duke-git/lancet/utils"
+	"github.com/duke-git/lancet/internal"
 )
 
 func TestHttpGet(t *testing.T) {
@@ -112,7 +112,7 @@ func TestConvertMapToQueryString(t *testing.T) {
 	expected := "a=1&b=2&c=3"
 	r := ConvertMapToQueryString(m)
 	if r != expected {
-		utils.LogFailedTestInfo(t, "ConvertMapToQueryString", m, expected, r)
+		internal.LogFailedTestInfo(t, "ConvertMapToQueryString", m, expected, r)
 		t.FailNow()
 	}
 }

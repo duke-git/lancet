@@ -5,14 +5,14 @@ import (
 	"net"
 	"testing"
 
-	"github.com/duke-git/lancet/utils"
+	"github.com/duke-git/lancet/internal"
 )
 
 func TestGetInternalIp(t *testing.T) {
 	internalIp := GetInternalIp()
 	ip := net.ParseIP(internalIp)
 	if ip == nil {
-		utils.LogFailedTestInfo(t, "GetInternalIp", "GetInternalIp", "", ip)
+		internal.LogFailedTestInfo(t, "GetInternalIp", "GetInternalIp", "", ip)
 		t.FailNow()
 	}
 }
@@ -40,7 +40,7 @@ func TestIsPublicIP(t *testing.T) {
 		res := IsPublicIP(ips[i])
 
 		if res != expected[i] {
-			utils.LogFailedTestInfo(t, "IsPublicIP", ips[i], expected[i], res)
+			internal.LogFailedTestInfo(t, "IsPublicIP", ips[i], expected[i], res)
 			t.FailNow()
 		}
 	}

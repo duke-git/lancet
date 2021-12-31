@@ -3,7 +3,7 @@ package validator
 import (
 	"testing"
 
-	"github.com/duke-git/lancet/utils"
+	"github.com/duke-git/lancet/internal"
 )
 
 func TestIsNumberStr(t *testing.T) {
@@ -17,7 +17,7 @@ func TestIsNumberStr(t *testing.T) {
 func isNumberStr(t *testing.T, source string, expected bool) {
 	res := IsNumberStr(source)
 	if res != expected {
-		utils.LogFailedTestInfo(t, "IsNumberStr", source, expected, res)
+		internal.LogFailedTestInfo(t, "IsNumberStr", source, expected, res)
 		t.FailNow()
 	}
 }
@@ -33,7 +33,7 @@ func TestIsFloatStr(t *testing.T) {
 func isFloatStr(t *testing.T, source string, expected bool) {
 	res := IsFloatStr(source)
 	if res != expected {
-		utils.LogFailedTestInfo(t, "IsFloatStr", source, expected, res)
+		internal.LogFailedTestInfo(t, "IsFloatStr", source, expected, res)
 		t.FailNow()
 	}
 }
@@ -48,7 +48,7 @@ func TestIsIntStr(t *testing.T) {
 func isIntStr(t *testing.T, source string, expected bool) {
 	res := IsIntStr(source)
 	if res != expected {
-		utils.LogFailedTestInfo(t, "IsIntStr", source, expected, res)
+		internal.LogFailedTestInfo(t, "IsIntStr", source, expected, res)
 		t.FailNow()
 	}
 }
@@ -63,7 +63,7 @@ func TestIsIp(t *testing.T) {
 func isIp(t *testing.T, source string, expected bool) {
 	res := IsIp(source)
 	if res != expected {
-		utils.LogFailedTestInfo(t, "IsIp", source, expected, res)
+		internal.LogFailedTestInfo(t, "IsIp", source, expected, res)
 		t.FailNow()
 	}
 }
@@ -76,7 +76,7 @@ func TestIsIpV4(t *testing.T) {
 func isIpV4(t *testing.T, source string, expected bool) {
 	res := IsIpV4(source)
 	if res != expected {
-		utils.LogFailedTestInfo(t, "IsIpV4", source, expected, res)
+		internal.LogFailedTestInfo(t, "IsIpV4", source, expected, res)
 		t.FailNow()
 	}
 }
@@ -89,7 +89,7 @@ func TestIsIpV6(t *testing.T) {
 func isIpV6(t *testing.T, source string, expected bool) {
 	res := IsIpV6(source)
 	if res != expected {
-		utils.LogFailedTestInfo(t, "IsIpV6", source, expected, res)
+		internal.LogFailedTestInfo(t, "IsIpV6", source, expected, res)
 		t.FailNow()
 	}
 }
@@ -102,7 +102,7 @@ func TestIsDns(t *testing.T) {
 func isDns(t *testing.T, source string, expected bool) {
 	res := IsDns(source)
 	if res != expected {
-		utils.LogFailedTestInfo(t, "IsDns", source, expected, res)
+		internal.LogFailedTestInfo(t, "IsDns", source, expected, res)
 		t.FailNow()
 	}
 }
@@ -115,7 +115,7 @@ func TestIsEmail(t *testing.T) {
 func isEmail(t *testing.T, source string, expected bool) {
 	res := IsEmail(source)
 	if res != expected {
-		utils.LogFailedTestInfo(t, "IsEmail", source, expected, res)
+		internal.LogFailedTestInfo(t, "IsEmail", source, expected, res)
 		t.FailNow()
 	}
 }
@@ -129,7 +129,7 @@ func TestContainChinese(t *testing.T) {
 func containChinese(t *testing.T, source string, expected bool) {
 	res := ContainChinese(source)
 	if res != expected {
-		utils.LogFailedTestInfo(t, "IsContainChineseChar", source, expected, res)
+		internal.LogFailedTestInfo(t, "IsContainChineseChar", source, expected, res)
 		t.FailNow()
 	}
 }
@@ -142,7 +142,7 @@ func TestIsChineseMobile(t *testing.T) {
 func isChineseMobile(t *testing.T, source string, expected bool) {
 	res := IsChineseMobile(source)
 	if res != expected {
-		utils.LogFailedTestInfo(t, "IsChineseMobile", source, expected, res)
+		internal.LogFailedTestInfo(t, "IsChineseMobile", source, expected, res)
 		t.FailNow()
 	}
 }
@@ -156,7 +156,7 @@ func TestIsChinesePhone(t *testing.T) {
 func isChinesePhone(t *testing.T, source string, expected bool) {
 	res := IsChinesePhone(source)
 	if res != expected {
-		utils.LogFailedTestInfo(t, "IsChinesePhone", source, expected, res)
+		internal.LogFailedTestInfo(t, "IsChinesePhone", source, expected, res)
 		t.FailNow()
 	}
 }
@@ -171,7 +171,7 @@ func TestIsChineseIdNum(t *testing.T) {
 func isChineseIdNum(t *testing.T, source string, expected bool) {
 	res := IsChineseIdNum(source)
 	if res != expected {
-		utils.LogFailedTestInfo(t, "IsChineseIdNum", source, expected, res)
+		internal.LogFailedTestInfo(t, "IsChineseIdNum", source, expected, res)
 		t.FailNow()
 	}
 }
@@ -184,7 +184,7 @@ func TestIsCreditCard(t *testing.T) {
 func isCreditCard(t *testing.T, source string, expected bool) {
 	res := IsCreditCard(source)
 	if res != expected {
-		utils.LogFailedTestInfo(t, "IsCreditCard", source, expected, res)
+		internal.LogFailedTestInfo(t, "IsCreditCard", source, expected, res)
 		t.FailNow()
 	}
 }
@@ -197,7 +197,7 @@ func TestIsBase64(t *testing.T) {
 func isBase64(t *testing.T, source string, expected bool) {
 	res := IsBase64(source)
 	if res != expected {
-		utils.LogFailedTestInfo(t, "IsBase64", source, expected, res)
+		internal.LogFailedTestInfo(t, "IsBase64", source, expected, res)
 		t.FailNow()
 	}
 }
@@ -212,7 +212,7 @@ func TestIsEmptyString(t *testing.T) {
 func isEmptyString(t *testing.T, source string, expected bool) {
 	res := IsEmptyString(source)
 	if res != expected {
-		utils.LogFailedTestInfo(t, "IsEmptyString", source, expected, res)
+		internal.LogFailedTestInfo(t, "IsEmptyString", source, expected, res)
 		t.FailNow()
 	}
 }
@@ -228,7 +228,7 @@ func TestIsAlpha(t *testing.T) {
 func isAlpha(t *testing.T, source string, expected bool) {
 	res := IsAlpha(source)
 	if res != expected {
-		utils.LogFailedTestInfo(t, "IsAlpha", source, expected, res)
+		internal.LogFailedTestInfo(t, "IsAlpha", source, expected, res)
 		t.FailNow()
 	}
 }
@@ -243,7 +243,7 @@ func TestIsRegexMatch(t *testing.T) {
 func isRegexMatch(t *testing.T, source, regex string, expected bool) {
 	res := IsRegexMatch(source, regex)
 	if res != expected {
-		utils.LogFailedTestInfo(t, "IsRegexMatch", source, expected, res)
+		internal.LogFailedTestInfo(t, "IsRegexMatch", source, expected, res)
 		t.FailNow()
 	}
 }
@@ -261,7 +261,7 @@ func TestIsStrongPassword(t *testing.T) {
 func isStrongPassword(t *testing.T, source string, length int, expected bool) {
 	res := IsStrongPassword(source, length)
 	if res != expected {
-		utils.LogFailedTestInfo(t, "IsStrongPassword", source, expected, res)
+		internal.LogFailedTestInfo(t, "IsStrongPassword", source, expected, res)
 		t.FailNow()
 	}
 }
@@ -277,7 +277,7 @@ func TestIsWeakPassword(t *testing.T) {
 func isWeakPassword(t *testing.T, source string, expected bool) {
 	res := IsWeakPassword(source)
 	if res != expected {
-		utils.LogFailedTestInfo(t, "IsWeakPassword", source, expected, res)
+		internal.LogFailedTestInfo(t, "IsWeakPassword", source, expected, res)
 		t.FailNow()
 	}
 }

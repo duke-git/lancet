@@ -5,7 +5,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/duke-git/lancet/utils"
+	"github.com/duke-git/lancet/internal"
 )
 
 func TestIsExist(t *testing.T) {
@@ -15,7 +15,7 @@ func TestIsExist(t *testing.T) {
 	for i := 0; i < len(cases); i++ {
 		res := IsExist(cases[i])
 		if res != expected[i] {
-			utils.LogFailedTestInfo(t, "IsExist", cases[i], expected[i], res)
+			internal.LogFailedTestInfo(t, "IsExist", cases[i], expected[i], res)
 			t.FailNow()
 		}
 	}
@@ -26,15 +26,15 @@ func TestCreateFile(t *testing.T) {
 	if CreateFile(f) {
 		file, err := os.Open(f)
 		if err != nil {
-			utils.LogFailedTestInfo(t, "CreateFile", f, f, "create file error: "+err.Error())
+			internal.LogFailedTestInfo(t, "CreateFile", f, f, "create file error: "+err.Error())
 			t.FailNow()
 		}
 		if file.Name() != f {
-			utils.LogFailedTestInfo(t, "CreateFile", f, f, file.Name())
+			internal.LogFailedTestInfo(t, "CreateFile", f, f, file.Name())
 			t.FailNow()
 		}
 	} else {
-		utils.LogFailedTestInfo(t, "CreateFile", f, f, "create file error")
+		internal.LogFailedTestInfo(t, "CreateFile", f, f, "create file error")
 		t.FailNow()
 	}
 }
@@ -46,7 +46,7 @@ func TestIsDir(t *testing.T) {
 	for i := 0; i < len(cases); i++ {
 		res := IsDir(cases[i])
 		if res != expected[i] {
-			utils.LogFailedTestInfo(t, "IsDir", cases[i], expected[i], res)
+			internal.LogFailedTestInfo(t, "IsDir", cases[i], expected[i], res)
 			t.FailNow()
 		}
 	}
@@ -57,11 +57,11 @@ func TestRemoveFile(t *testing.T) {
 	if CreateFile(f) {
 		err := RemoveFile(f)
 		if err != nil {
-			utils.LogFailedTestInfo(t, "RemoveFile", f, f, err.Error())
+			internal.LogFailedTestInfo(t, "RemoveFile", f, f, err.Error())
 			t.FailNow()
 		}
 	} else {
-		utils.LogFailedTestInfo(t, "RemoveFile", f, f, "create file error")
+		internal.LogFailedTestInfo(t, "RemoveFile", f, f, "create file error")
 		t.FailNow()
 	}
 }
@@ -76,11 +76,11 @@ func TestCopyFile(t *testing.T) {
 	if err != nil {
 		file, err := os.Open(dstFile)
 		if err != nil {
-			utils.LogFailedTestInfo(t, "CopyFile", srcFile, dstFile, "create file error: "+err.Error())
+			internal.LogFailedTestInfo(t, "CopyFile", srcFile, dstFile, "create file error: "+err.Error())
 			t.FailNow()
 		}
 		if file.Name() != dstFile {
-			utils.LogFailedTestInfo(t, "CopyFile", srcFile, dstFile, file.Name())
+			internal.LogFailedTestInfo(t, "CopyFile", srcFile, dstFile, file.Name())
 			t.FailNow()
 		}
 	}
@@ -93,7 +93,7 @@ func TestListFileNames(t *testing.T) {
 	}
 	expected := []string{"datetime.go", "datetime_test.go"}
 	if !reflect.DeepEqual(filesInCurrentPath, expected) {
-		utils.LogFailedTestInfo(t, "ToChar", "./", expected, filesInCurrentPath)
+		internal.LogFailedTestInfo(t, "ToChar", "./", expected, filesInCurrentPath)
 		t.FailNow()
 	}
 }
@@ -106,7 +106,7 @@ func TestReadFileToString(t *testing.T) {
 
 	res, _ := ReadFileToString(path)
 	if res != "hello world" {
-		utils.LogFailedTestInfo(t, "ReadFileToString", path, "hello world", res)
+		internal.LogFailedTestInfo(t, "ReadFileToString", path, "hello world", res)
 	}
 }
 
@@ -120,7 +120,7 @@ func TestClearFile(t *testing.T) {
 
 	res, _ := ReadFileToString(path)
 	if res != "" {
-		utils.LogFailedTestInfo(t, "CreateFile", path, "", res)
+		internal.LogFailedTestInfo(t, "CreateFile", path, "", res)
 	}
 }
 
@@ -133,6 +133,6 @@ func TestReadFileByLine(t *testing.T) {
 	expected := []string{"hello", "world"}
 	res, _ := ReadFileByLine(path)
 	if !reflect.DeepEqual(res, expected) {
-		utils.LogFailedTestInfo(t, "ReadFileByLine", path, expected, res)
+		internal.LogFailedTestInfo(t, "ReadFileByLine", path, expected, res)
 	}
 }

@@ -3,7 +3,7 @@ package strutil
 import (
 	"testing"
 
-	"github.com/duke-git/lancet/utils"
+	"github.com/duke-git/lancet/internal"
 )
 
 func TestCamelCase(t *testing.T) {
@@ -16,7 +16,7 @@ func TestCamelCase(t *testing.T) {
 func camelCase(t *testing.T, test string, expected string) {
 	res := CamelCase(test)
 	if res != expected {
-		utils.LogFailedTestInfo(t, "CamelCase", test, expected, res)
+		internal.LogFailedTestInfo(t, "CamelCase", test, expected, res)
 		t.FailNow()
 	}
 }
@@ -30,7 +30,7 @@ func TestCapitalize(t *testing.T) {
 func capitalize(t *testing.T, test string, expected string) {
 	res := Capitalize(test)
 	if res != expected {
-		utils.LogFailedTestInfo(t, "Capitalize", test, expected, res)
+		internal.LogFailedTestInfo(t, "Capitalize", test, expected, res)
 		t.FailNow()
 	}
 }
@@ -45,7 +45,7 @@ func TestKebabCase(t *testing.T) {
 func kebabCase(t *testing.T, test string, expected string) {
 	res := KebabCase(test)
 	if res != expected {
-		utils.LogFailedTestInfo(t, "KebabCase", test, expected, res)
+		internal.LogFailedTestInfo(t, "KebabCase", test, expected, res)
 		t.FailNow()
 	}
 }
@@ -61,7 +61,7 @@ func TestSnakeCase(t *testing.T) {
 func snakeCase(t *testing.T, test string, expected string) {
 	res := SnakeCase(test)
 	if res != expected {
-		utils.LogFailedTestInfo(t, "SnakeCase", test, expected, res)
+		internal.LogFailedTestInfo(t, "SnakeCase", test, expected, res)
 		t.FailNow()
 	}
 }
@@ -76,7 +76,7 @@ func TestLowerFirst(t *testing.T) {
 func lowerFirst(t *testing.T, test string, expected string) {
 	res := LowerFirst(test)
 	if res != expected {
-		utils.LogFailedTestInfo(t, "LowerFirst", test, expected, res)
+		internal.LogFailedTestInfo(t, "LowerFirst", test, expected, res)
 		t.FailNow()
 	}
 }
@@ -92,7 +92,7 @@ func TestPadEnd(t *testing.T) {
 func padEnd(t *testing.T, source string, size int, fillString string, expected string) {
 	res := PadEnd(source, size, fillString)
 	if res != expected {
-		utils.LogFailedTestInfo(t, "PadEnd", source, expected, res)
+		internal.LogFailedTestInfo(t, "PadEnd", source, expected, res)
 		t.FailNow()
 	}
 }
@@ -108,7 +108,7 @@ func TestPadStart(t *testing.T) {
 func padStart(t *testing.T, source string, size int, fillString string, expected string) {
 	res := PadStart(source, size, fillString)
 	if res != expected {
-		utils.LogFailedTestInfo(t, "PadEnd", source, expected, res)
+		internal.LogFailedTestInfo(t, "PadEnd", source, expected, res)
 		t.FailNow()
 	}
 }
@@ -122,7 +122,7 @@ func TestBefore(t *testing.T) {
 func before(t *testing.T, source, char, expected string) {
 	res := Before(source, char)
 	if res != expected {
-		utils.LogFailedTestInfo(t, "Before", source, expected, res)
+		internal.LogFailedTestInfo(t, "Before", source, expected, res)
 		t.FailNow()
 	}
 }
@@ -136,7 +136,7 @@ func TestBeforeLast(t *testing.T) {
 func beforeLast(t *testing.T, source, char, expected string) {
 	res := BeforeLast(source, char)
 	if res != expected {
-		utils.LogFailedTestInfo(t, "BeforeLast", source, expected, res)
+		internal.LogFailedTestInfo(t, "BeforeLast", source, expected, res)
 		t.FailNow()
 	}
 }
@@ -150,7 +150,7 @@ func TestAfter(t *testing.T) {
 func after(t *testing.T, source, char, expected string) {
 	res := After(source, char)
 	if res != expected {
-		utils.LogFailedTestInfo(t, "After", source, expected, res)
+		internal.LogFailedTestInfo(t, "After", source, expected, res)
 		t.FailNow()
 	}
 }
@@ -164,7 +164,7 @@ func TestAfterLast(t *testing.T) {
 func afterLast(t *testing.T, source, char, expected string) {
 	res := AfterLast(source, char)
 	if res != expected {
-		utils.LogFailedTestInfo(t, "AfterLast", source, expected, res)
+		internal.LogFailedTestInfo(t, "AfterLast", source, expected, res)
 		t.FailNow()
 	}
 }
@@ -179,7 +179,7 @@ func TestIsString(t *testing.T) {
 func isString(t *testing.T, test interface{}, expected bool) {
 	res := IsString(test)
 	if res != expected {
-		utils.LogFailedTestInfo(t, "IsString", test, expected, res)
+		internal.LogFailedTestInfo(t, "IsString", test, expected, res)
 		t.FailNow()
 	}
 }
@@ -195,7 +195,7 @@ func TestReverseStr(t *testing.T) {
 func reverseStr(t *testing.T, test string, expected string) {
 	res := ReverseStr(test)
 	if res != expected {
-		utils.LogFailedTestInfo(t, "ReverseStr", test, expected, res)
+		internal.LogFailedTestInfo(t, "ReverseStr", test, expected, res)
 		t.FailNow()
 	}
 }
