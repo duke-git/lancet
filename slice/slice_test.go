@@ -237,10 +237,8 @@ func TestIntSlice(t *testing.T) {
 }
 
 func intSlice(t *testing.T, test interface{}, expected []int) {
-	res, err := IntSlice(test)
-	if err != nil {
-		t.Error("IntSlice Error: " + err.Error())
-	}
+	res := IntSlice(test)
+
 	if !reflect.DeepEqual(res, expected) {
 		utils.LogFailedTestInfo(t, "IntSlice", test, expected, res)
 		t.FailNow()
