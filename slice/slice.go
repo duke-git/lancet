@@ -7,6 +7,7 @@ package slice
 import (
 	"errors"
 	"fmt"
+	"math"
 	"reflect"
 	"sort"
 	"strings"
@@ -330,6 +331,37 @@ func DeleteByIndex(slice interface{}, start int, end ...int) (interface{}, error
 	}
 
 	return v.Interface(), nil
+}
+
+// Drop creates a slice with `n` elements dropped from the beginning when n > 0, or `n` elements dropped from the ending when n < 0
+func Drop(slice interface{}, n int) interface{} {
+	sv := sliceValue(slice)
+
+	if n == 0 {
+		return slice
+	}
+
+	svLen := sv.Len()
+
+	if math.Abs(float64(n)) >= float64(svLen) {
+		return reflect.MakeSlice(sv.Type(), 0, 0).Interface()
+	}
+
+	if n > 0 {
+		res := reflect.MakeSlice(sv.Type(), svLen-n, svLen-n)
+		for i := 0; i < res.Len(); i++ {
+			res.Index(i).Set(sv.Index(i + n))
+		}
+
+		return res.Interface()
+	} else {
+		res := reflect.MakeSlice(sv.Type(), svLen+n, svLen+n)
+		for i := 0; i < res.Len(); i++ {
+			res.Index(i).Set(sv.Index(i))
+		}
+
+		return res.Interface()
+	}
 }
 
 // InsertByIndex insert the element into slice at index.

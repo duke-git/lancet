@@ -326,6 +326,29 @@ func deleteByIndex(t *testing.T, origin, test interface{}, start, end int, expec
 	}
 }
 
+func TestDrop(t *testing.T) {
+	drop(t, []int{}, 0, []int{})
+	drop(t, []int{}, 1, []int{})
+	drop(t, []int{}, -1, []int{})
+
+	drop(t, []int{1, 2, 3, 4, 5}, 0, []int{1, 2, 3, 4, 5})
+	drop(t, []int{1, 2, 3, 4, 5}, 1, []int{2, 3, 4, 5})
+	drop(t, []int{1, 2, 3, 4, 5}, 5, []int{})
+	drop(t, []int{1, 2, 3, 4, 5}, 6, []int{})
+
+	drop(t, []int{1, 2, 3, 4, 5}, -1, []int{1, 2, 3, 4})
+	drop(t, []int{1, 2, 3, 4, 5}, -5, []int{})
+	drop(t, []int{1, 2, 3, 4, 5}, -6, []int{})
+}
+
+func drop(t *testing.T, test interface{}, n int, expected interface{}) {
+	res := Drop(test, n)
+	if !reflect.DeepEqual(res, expected) {
+		internal.LogFailedTestInfo(t, "Drop", test, expected, res)
+		t.FailNow()
+	}
+}
+
 func TestInsertByIndex(t *testing.T) {
 	t1 := []string{"a", "b", "c"}
 
