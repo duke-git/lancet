@@ -559,3 +559,13 @@ func TestWithout(t *testing.T) {
 		t.FailNow()
 	}
 }
+
+func TestShuffle(t *testing.T) {
+	s := []int{1, 2, 3, 4, 5}
+	res := Shuffle(s)
+
+	if reflect.TypeOf(s) != reflect.TypeOf(res) {
+		internal.LogFailedTestInfo(t, "Shuffle", s, res, res)
+		t.FailNow()
+	}
+}

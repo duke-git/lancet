@@ -8,6 +8,7 @@ import (
 	"errors"
 	"fmt"
 	"math"
+	"math/rand"
 	"reflect"
 	"sort"
 	"strings"
@@ -550,6 +551,19 @@ func ReverseSlice(slice interface{}) {
 	for i, j := 0, sv.Len()-1; i < j; i, j = i+1, j-1 {
 		swp(i, j)
 	}
+}
+
+// Shuffle creates an slice of shuffled values
+func Shuffle(slice interface{}) interface{} {
+	sv := sliceValue(slice)
+	length := sv.Len()
+
+	res := reflect.MakeSlice(sv.Type(), length, length)
+	for i, v := range rand.Perm(length) {
+		res.Index(i).Set(sv.Index(v))
+	}
+
+	return res.Interface()
 }
 
 // SortByField return sorted slice by field
