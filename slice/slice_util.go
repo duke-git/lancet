@@ -52,3 +52,14 @@ func checkSliceCallbackFuncSignature(fn reflect.Value, types ...reflect.Type) bo
 	}
 	return true
 }
+
+// sliceElemType get slice element type
+func sliceElemType(reflectType reflect.Type) reflect.Type {
+	for {
+		if reflectType.Kind() != reflect.Slice {
+			return reflectType
+		}
+
+		reflectType = reflectType.Elem()
+	}
+}

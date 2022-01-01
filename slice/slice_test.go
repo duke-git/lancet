@@ -173,6 +173,17 @@ func TestFind(t *testing.T) {
 	}
 }
 
+func TestFlattenDeep(t *testing.T) {
+	input := [][][]string{{{"a", "b"}}, {{"c", "d"}}}
+	expected := []string{"a", "b", "c", "d"}
+
+	res := FlattenDeep(input)
+	if !reflect.DeepEqual(res, expected) {
+		internal.LogFailedTestInfo(t, "FlattenDeep", input, expected, res)
+		t.FailNow()
+	}
+}
+
 func TestMap(t *testing.T) {
 	s1 := []int{1, 2, 3, 4}
 	multiplyTwo := func(i, num int) int {

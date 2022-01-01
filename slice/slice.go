@@ -190,6 +190,30 @@ func Find(slice, function interface{}) interface{} {
 	return sv.Index(index).Interface()
 }
 
+// FlattenDeep flattens slice recursive
+func FlattenDeep(slice interface{}) interface{} {
+	sv := sliceValue(slice)
+	st := sliceElemType(sv.Type())
+	tmp := reflect.MakeSlice(reflect.SliceOf(st), 0, 0)
+	res := flattenRecursive(sv, tmp)
+	return res.Interface()
+}
+
+func flattenRecursive(value reflect.Value, result reflect.Value) reflect.Value {
+	for i := 0; i < value.Len(); i++ {
+		item := value.Index(i)
+		kind := item.Kind()
+
+		if kind == reflect.Slice {
+			result = flattenRecursive(item, result)
+		} else {
+			result = reflect.Append(result, item)
+		}
+	}
+
+	return result
+}
+
 // Map creates an slice of values by running each element of `slice` thru `function`.
 // The function signature should be func(index int, value interface{}) interface{}.
 func Map(slice, function interface{}) interface{} {
@@ -521,9 +545,9 @@ func Intersection(slices ...interface{}) interface{} {
 
 // ReverseSlice return slice of element order is reversed to the given slice
 func ReverseSlice(slice interface{}) {
-	v := sliceValue(slice)
-	swp := reflect.Swapper(v.Interface())
-	for i, j := 0, v.Len()-1; i < j; i, j = i+1, j-1 {
+	sv := sliceValue(slice)
+	swp := reflect.Swapper(sv.Interface())
+	for i, j := 0, sv.Len()-1; i < j; i, j = i+1, j-1 {
 		swp(i, j)
 	}
 }
@@ -532,8 +556,8 @@ func ReverseSlice(slice interface{}) {
 // Slice element should be struct, field type should be int, uint, string, or bool
 // default sortType is ascending (asc), if descending order, set sortType to desc
 func SortByField(slice interface{}, field string, sortType ...string) error {
-	v := sliceValue(slice)
-	t := v.Type().Elem()
+	sv := sliceValue(slice)
+	t := sv.Type().Elem()
 
 	if t.Kind() == reflect.Ptr {
 		t = t.Elem()
@@ -566,8 +590,8 @@ func SortByField(slice interface{}, field string, sortType ...string) error {
 	}
 
 	sort.Slice(slice, func(i, j int) bool {
-		a := v.Index(i)
-		b := v.Index(j)
+		a := sv.Index(i)
+		b := sv.Index(j)
 		if t.Kind() == reflect.Ptr {
 			a = a.Elem()
 			b = b.Elem()
