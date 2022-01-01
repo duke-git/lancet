@@ -6,7 +6,7 @@
 <div align="center" style="text-align: center;">
 
 ![Go version](https://img.shields.io/badge/go-%3E%3D1.16<recommend>-9cf)
-[![Release](https://img.shields.io/badge/release-1.1.4-green.svg)](https://github.com/duke-git/lancet/releases)
+[![Release](https://img.shields.io/badge/release-1.1.5-green.svg)](https://github.com/duke-git/lancet/releases)
 [![GoDoc](https://godoc.org/github.com//duke-git/lancet?status.svg)](https://pkg.go.dev/github.com/duke-git/lancet)
 [![Go Report Card](https://goreportcard.com/badge/github.com/duke-git/lancet)](https://goreportcard.com/report/github.com/duke-git/lancet)
 [![codecov](https://codecov.io/gh/duke-git/lancet/branch/main/graph/badge.svg?token=FC48T1F078)](https://codecov.io/gh/duke-git/lancet)
@@ -278,6 +278,10 @@ func (f Fn) Curry(i interface{}) func(...interface{}) interface{}  //make a curr
 func Compose(fnList ...func(...interface{}) interface{}) func(...interface{}) interface{}  //compose the functions from right to left
 func Delay(delay time.Duration, fn interface{}, args ...interface{})  //invoke function after delayed time
 func Schedule(d time.Duration, fn interface{}, args ...interface{}) chan bool //invoke function every duration time, util close the returned bool chan
+func (w *Watcher) Start() //start the watch timer.
+func (w *Watcher) Stop() //stop the watch timer
+func (w *Watcher) Reset() {} //reset the watch timer.
+func (w *Watcher) GetElapsedTime() time.Duration //获取代码段运行时间
 ```
 
 #### 7. netutil is for net process
@@ -388,9 +392,11 @@ func Chunk(slice []interface{}, size int) [][]interface{} //creates an slice of 
 func ConvertSlice(originalSlice interface{}, newSliceType reflect.Type) interface{} //convert originalSlice to newSliceType
 func Difference(slice1, slice2 interface{}) interface{} //creates an slice of whose element not included in the other given slice
 func DeleteByIndex(slice interface{}, start int, end ...int) (interface{}, error) //delete the element of slice from start index to end index - 1
+func Drop(slice interface{}, n int) interface{} //creates a slice with `n` elements dropped from the beginning when n > 0, or `n` elements dropped from the ending when n < 0
 func Every(slice, function interface{}) bool //return true if all of the values in the slice pass the predicate function, function signature should be func(index int, value interface{}) bool
 func Filter(slice, function interface{}) interface{} //filter slice, function signature should be func(index int, value interface{}) bool
 func Find(slice, function interface{}) interface{} //iterates over elements of slice, returning the first one that passes a truth test on function.function signature should be func(index int, value interface{}) bool .
+func FlattenDeep(slice interface{}) interface{} //flattens slice recursive
 func IntSlice(slice interface{}) ([]int, error) //convert value to int slice
 func InterfaceSlice(slice interface{}) []interface{} //convert value to interface{} slice
 func Intersection(slices ...interface{}) interface{} //creates a slice of unique values that included by all slices.
@@ -398,6 +404,7 @@ func InsertByIndex(slice interface{}, index int, value interface{}) (interface{}
 func Map(slice, function interface{}) interface{} //map lisce, function signature should be func(index int, value interface{}) interface{}
 func ReverseSlice(slice interface{}) //revere slice
 func Reduce(slice, function, zero interface{}) interface{} //reduce slice, function signature should be func(index int, value1, value2 interface{}) interface{}
+func Shuffle(slice interface{}) interface{} //creates an slice of shuffled values
 func SortByField(slice interface{}, field string, sortType ...string) error //sort struct slice by field
 func Some(slice, function interface{}) bool //return true if any of the values in the list pass the predicate function, function signature should be func(index int, value interface{}) bool
 func StringSlice(slice interface{}) []string //convert value to string slice

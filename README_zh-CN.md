@@ -6,7 +6,7 @@
 <div align="center" style="text-align: center;">
 
 ![Go version](https://img.shields.io/badge/go-%3E%3D1.16<recommend>-9cf)
-[![Release](https://img.shields.io/badge/release-1.1.4-green.svg)](https://github.com/duke-git/lancet/releases)
+[![Release](https://img.shields.io/badge/release-1.1.5-green.svg)](https://github.com/duke-git/lancet/releases)
 [![GoDoc](https://godoc.org/github.com//duke-git/lancet?status.svg)](https://pkg.go.dev/github.com/duke-git/lancet)
 [![Go Report Card](https://goreportcard.com/badge/github.com/duke-git/lancet)](https://goreportcard.com/report/github.com/duke-git/lancet)
 [![codecov](https://codecov.io/gh/duke-git/lancet/branch/main/graph/badge.svg?token=FC48T1F078)](https://codecov.io/gh/duke-git/lancet)
@@ -279,6 +279,10 @@ func (f Fn) Curry(i interface{}) func(...interface{}) interface{}  //函数柯�
 func Compose(fnList ...func(...interface{}) interface{}) func(...interface{}) interface{}  //从右至左组合函数
 func Delay(delay time.Duration, fn interface{}, args ...interface{})  //延迟调用函数
 func Schedule(d time.Duration, fn interface{}, args ...interface{}) chan bool //每隔duration时间调用函数, 关闭返回通道可以停止调用
+func (w *Watcher) Start() //开时watcher
+func (w *Watcher) Stop() //开时watcher
+func (w *Watcher) Reset() {} //重置代码watcher
+func (w *Watcher) GetElapsedTime() time.Duration //get code excution elapsed time.
 ```
 
 #### 7. netutil网络处理包
@@ -389,9 +393,11 @@ func Chunk(slice []interface{}, size int) [][]interface{} //均分slice
 func ConvertSlice(originalSlice interface{}, newSliceType reflect.Type) interface{} //将originalSlice转换为 newSliceType
 func Difference(slice1, slice2 interface{}) interface{} //返回
 func DeleteByIndex(slice interface{}, start int, end ...int) (interface{}, error) //删除切片中start到end位置的值
+func Drop(slice interface{}, n int) interface{} //创建一个新切片，当n大于0时删除原切片前n个元素，当n小于0时删除原切片后n个元素
 func Every(slice, function interface{}) bool //slice中所有元素都符合函数条件时返回true, 否则返回false. 函数签名：func(index int, value interface{}) bool
 func Find(slice, function interface{}) interface{} //查找slice中第一个符合条件的元素，函数签名：func(index int, value interface{}) bool
 func Filter(slice, function interface{}) interface{} //过滤slice, 函数签名：func(index int, value interface{}) bool
+func FlattenDeep(slice interface{}) interface{} //将slice递归为一维切片。
 func IntSlice(slice interface{}) ([]int, error) //转成int切片
 func InterfaceSlice(slice interface{}) []interface{} //转成interface{}切片
 func Intersection(slices ...interface{}) interface{} //slice交集，去重
@@ -399,6 +405,7 @@ func InsertByIndex(slice interface{}, index int, value interface{}) (interface{}
 func Map(slice, function interface{}) interface{} //遍历切片, 函数签名：func(index int, value interface{}) interface{}
 func ReverseSlice(slice interface{}) //反转切片
 func Reduce(slice, function, zero interface{}) interface{} //切片reduce操作， 函数签名：func(index int, value1, value2 interface{}) interface{}
+func Shuffle(slice interface{}) interface{} //创建一个被打乱值的切片
 func Some(slice, function interface{}) bool //slice中任意一个元素都符合函数条件时返回true, 否则返回false. 函数签名：func(index int, value interface{}) bool
 func SortByField(slice interface{}, field string, sortType ...string) error //对struct切片进行排序
 func StringSlice(slice interface{}) []string //转为string切片
