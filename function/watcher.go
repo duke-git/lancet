@@ -20,6 +20,7 @@ func (w *Watcher) Stop() {
 	w.stopTime = time.Now().UnixNano()
 	w.excuting = false
 }
+
 // GetElapsedTime get excute elapsed time.
 func (w *Watcher) GetElapsedTime() time.Duration {
 	if w.excuting {
@@ -27,4 +28,11 @@ func (w *Watcher) GetElapsedTime() time.Duration {
 	} else {
 		return time.Duration(w.stopTime - w.startTime)
 	}
+}
+
+// Reset the watch timer.
+func (w *Watcher) Reset() {
+	w.startTime = 0
+	w.stopTime = 0
+	w.excuting = false
 }
