@@ -197,7 +197,7 @@ func GroupBy(slice, function interface{}) (interface{}, interface{}) {
 
 // Find iterates over elements of slice, returning the first one that passes a truth test on function.
 // The function signature should be func(index int, value interface{}) bool .
-func Find(slice, function interface{}) interface{} {
+func Find(slice, function interface{}) (interface{}, bool) {
 	sv := sliceValue(slice)
 	fn := functionValue(function)
 
@@ -206,7 +206,7 @@ func Find(slice, function interface{}) interface{} {
 		panic("function param should be of type func(int, " + elemType.String() + ")" + reflect.ValueOf(true).Type().String())
 	}
 
-	var index int
+	index := -1
 	for i := 0; i < sv.Len(); i++ {
 		flag := fn.Call([]reflect.Value{reflect.ValueOf(i), sv.Index(i)})[0]
 		if flag.Bool() {
@@ -214,7 +214,13 @@ func Find(slice, function interface{}) interface{} {
 			break
 		}
 	}
-	return sv.Index(index).Interface()
+
+	if index == -1 {
+		var none interface{}
+		return none, false
+	}
+
+	return sv.Index(index).Interface(), true
 }
 
 // FlattenDeep flattens slice recursive

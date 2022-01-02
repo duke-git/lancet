@@ -395,7 +395,7 @@ func DeleteByIndex(slice interface{}, start int, end ...int) (interface{}, error
 func Drop(slice interface{}, n int) interface{} //creates a slice with `n` elements dropped from the beginning when n > 0, or `n` elements dropped from the ending when n < 0
 func Every(slice, function interface{}) bool //return true if all of the values in the slice pass the predicate function, function signature should be func(index int, value interface{}) bool
 func Filter(slice, function interface{}) interface{} //filter slice, function signature should be func(index int, value interface{}) bool
-func Find(slice, function interface{}) interface{} //iterates over elements of slice, returning the first one that passes a truth test on function.function signature should be func(index int, value interface{}) bool .
+func Find(slice, function interface{}) (interface{}, bool) //iterates over elements of slice, returning the first one that passes a truth test on function.function signature should be func(index int, value interface{}) bool .
 func FlattenDeep(slice interface{}) interface{} //flattens slice recursive
 func IntSlice(slice interface{}) ([]int, error) //convert value to int slice
 func InterfaceSlice(slice interface{}) []interface{} //convert value to interface{} slice
