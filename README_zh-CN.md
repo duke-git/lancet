@@ -21,7 +21,7 @@
 ### 特性
 
 - 👏 全面、高效、可复用
-- 💪 100+常用go工具函数，支持string、slice、datetime、net、crypt...
+- 💪 140+常用go工具函数，支持string、slice、datetime、net、crypt...
 - 💅 只依赖go标准库
 - 🌍 所有导出函数单元测试覆盖率100%
 
@@ -413,7 +413,7 @@ func Unique(slice interface{}) interface{} //去重切片
 func Union(slices ...interface{}) interface{} //slice并集, 去重
 func UpdateByIndex(slice interface{}, index int, value interface{}) (interface{}, error) //在切片中index位置更新value
 func Without(slice interface{}, values ...interface{}) interface{} //slice去除values
-func GroupBy(slice, function interface{}) (interface{}, interface{}) 
+func GroupBy(slice, function interface{}) (interface{}, interface{}) //根据函数function的逻辑分slice为两组slice
 ```
 
 #### 10. strutil字符串处理包

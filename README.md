@@ -21,7 +21,7 @@ English | [简体中文](./README_zh-CN.md)
 ### Feature
 
 - 👏 Comprehensive, efficient and reusable.
-- 💪 100+ common go util functions, support string, slice, datetime, net, crypt...
+- 💪 140+ common go util functions, support string, slice, datetime, net, crypt...
 - 💅 Only depend on the go standard library.
 - 🌍 Unit test for exery exported function.
 
