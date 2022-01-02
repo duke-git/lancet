@@ -190,10 +190,25 @@ func TestFind(t *testing.T) {
 	even := func(i, num int) bool {
 		return num%2 == 0
 	}
-	res := Find(nums, even)
+	res, ok := Find(nums, even)
+	if !ok {
+		t.Fatal("found nothing")
+	}
+
 	if res != 2 {
 		internal.LogFailedTestInfo(t, "Find", nums, 2, res)
 		t.FailNow()
+	}
+}
+
+func TestFindFoundNothing(t *testing.T) {
+	nums := []int{1, 1, 1, 1, 1, 1}
+	findFunc := func(i, num int) bool {
+		return num > 1
+	}
+	_, ok := Find(nums, findFunc)
+	if ok {
+		t.Fatal("found something")
 	}
 }
 
