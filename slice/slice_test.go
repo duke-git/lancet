@@ -161,6 +161,30 @@ func TestFilter(t *testing.T) {
 
 }
 
+func TestGroupBy(t *testing.T) {
+	nums := []int{1, 2, 3, 4, 5, 6}
+	evenFunc := func(i, num int) bool {
+		return (num % 2) == 0
+	}
+	expectedEven := []int{2, 4, 6}
+	even, odd := GroupBy(nums, evenFunc)
+
+	t.Log("odd", odd)
+
+	t.Log("even", even)
+
+	if !reflect.DeepEqual(IntSlice(even), expectedEven) {
+		internal.LogFailedTestInfo(t, "GroupBy even", nums, expectedEven, even)
+		t.FailNow()
+	}
+
+	expectedOdd := []int{1, 3, 5}
+	if !reflect.DeepEqual(IntSlice(odd), expectedOdd) {
+		internal.LogFailedTestInfo(t, "GroupBy odd", nums, expectedOdd, odd)
+		t.FailNow()
+	}
+}
+
 func TestFind(t *testing.T) {
 	nums := []int{1, 2, 3, 4, 5}
 	even := func(i, num int) bool {

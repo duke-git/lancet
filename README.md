@@ -412,6 +412,7 @@ func Unique(slice interface{}) interface{} //remove duplicate elements in slice
 func Union(slices ...interface{}) interface{} //Union creates a slice of unique values, in order, from all given slices. using == for equality comparisons.
 func UpdateByIndex(slice interface{}, index int, value interface{}) (interface{}, error) //update the slice element at index.
 func Without(slice interface{}, values ...interface{}) interface{} //creates a slice excluding all given values
+func GroupBy(slice, function interface{}) (interface{}, interface{}) // groups slice into two categories
 ```
 
 #### 10. strutil is for processing string

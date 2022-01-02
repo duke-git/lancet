@@ -169,6 +169,32 @@ func Filter(slice, function interface{}) interface{} {
 	return res.Interface()
 }
 
+// GroupBy iterate over elements of the slice, each element will be group by criteria, returns two slices
+// The function signature should be func(index int, value interface{}) bool .
+func GroupBy(slice, function interface{}) (interface{}, interface{}) {
+	sv := sliceValue(slice)
+	fn := functionValue(function)
+
+	elemType := sv.Type().Elem()
+	if checkSliceCallbackFuncSignature(fn, elemType, reflect.ValueOf(true).Type()) {
+		panic("function param should be of type func(int, " + elemType.String() + ")" + reflect.ValueOf(true).Type().String())
+	}
+
+	groupB := reflect.MakeSlice(sv.Type(), 0, 0)
+	groupA := reflect.MakeSlice(sv.Type(), 0, 0)
+
+	for i := 0; i < sv.Len(); i++ {
+		flag := fn.Call([]reflect.Value{reflect.ValueOf(i), sv.Index(i)})[0]
+		if flag.Bool() {
+			groupA = reflect.Append(groupA, sv.Index(i))
+		} else {
+			groupB = reflect.Append(groupB, sv.Index(i))
+		}
+	}
+
+	return groupA.Interface(), groupB.Interface()
+}
+
 // Find iterates over elements of slice, returning the first one that passes a truth test on function.
 // The function signature should be func(index int, value interface{}) bool .
 func Find(slice, function interface{}) interface{} {

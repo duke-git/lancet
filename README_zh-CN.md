@@ -413,6 +413,7 @@ func Unique(slice interface{}) interface{} //去重切片
 func Union(slices ...interface{}) interface{} //slice并集, 去重
 func UpdateByIndex(slice interface{}, index int, value interface{}) (interface{}, error) //在切片中index位置更新value
 func Without(slice interface{}, values ...interface{}) interface{} //slice去除values
+func GroupBy(slice, function interface{}) (interface{}, interface{}) 
 ```
 
 #### 10. strutil字符串处理包
