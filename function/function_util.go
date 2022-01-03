@@ -31,7 +31,7 @@ func functionValue(function interface{}) reflect.Value {
 	return v
 }
 
-func MustBeFunction(function interface{}) {
+func mustBeFunction(function interface{}) {
 	v := reflect.ValueOf(function)
 	if v.Kind() != reflect.Func {
 		panic(fmt.Sprintf("Invalid function type, value of type %T", function))

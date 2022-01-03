@@ -12,7 +12,7 @@ import (
 // After creates a function that invokes func once it's called n or more times
 func After(n int, fn interface{}) func(args ...interface{}) []reflect.Value {
 	// Catch programming error while constructing the closure
-	MustBeFunction(fn)
+	mustBeFunction(fn)
 	return func(args ...interface{}) []reflect.Value {
 		n--
 		if n < 1 {
@@ -25,7 +25,7 @@ func After(n int, fn interface{}) func(args ...interface{}) []reflect.Value {
 // Before creates a function that invokes func once it's called less than n times
 func Before(n int, fn interface{}) func(args ...interface{}) []reflect.Value {
 	// Catch programming error while constructing the closure
-	MustBeFunction(fn)
+	mustBeFunction(fn)
 	var res []reflect.Value
 	return func(args ...interface{}) []reflect.Value {
 		if n > 0 {
@@ -73,7 +73,7 @@ func Delay(delay time.Duration, fn interface{}, args ...interface{}) {
 // Schedule invoke function every duration time, util close the returned bool chan
 func Schedule(d time.Duration, fn interface{}, args ...interface{}) chan bool {
 	// Catch programming error while constructing the closure
-	MustBeFunction(fn)
+	mustBeFunction(fn)
 	quit := make(chan bool)
 	go func() {
 		for {

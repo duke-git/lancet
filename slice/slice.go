@@ -411,14 +411,14 @@ func Drop(slice interface{}, n int) interface{} {
 		}
 
 		return res.Interface()
-	} else {
-		res := reflect.MakeSlice(sv.Type(), svLen+n, svLen+n)
-		for i := 0; i < res.Len(); i++ {
-			res.Index(i).Set(sv.Index(i))
-		}
-
-		return res.Interface()
 	}
+
+	res := reflect.MakeSlice(sv.Type(), svLen+n, svLen+n)
+	for i := 0; i < res.Len(); i++ {
+		res.Index(i).Set(sv.Index(i))
+	}
+
+	return res.Interface()
 }
 
 // InsertByIndex insert the element into slice at index.

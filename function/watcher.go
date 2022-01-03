@@ -25,9 +25,8 @@ func (w *Watcher) Stop() {
 func (w *Watcher) GetElapsedTime() time.Duration {
 	if w.excuting {
 		return time.Duration(time.Now().UnixNano() - w.startTime)
-	} else {
-		return time.Duration(w.stopTime - w.startTime)
 	}
+	return time.Duration(w.stopTime - w.startTime)
 }
 
 // Reset the watch timer.
