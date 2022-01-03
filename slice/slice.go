@@ -154,18 +154,14 @@ func Filter(slice, function interface{}) interface{} {
 		panic("function param should be of type func(int, " + elemType.String() + ")" + reflect.ValueOf(true).Type().String())
 	}
 
-	var indexes []int
+	res := reflect.MakeSlice(sv.Type(), 0, 0)
 	for i := 0; i < sv.Len(); i++ {
 		flag := fn.Call([]reflect.Value{reflect.ValueOf(i), sv.Index(i)})[0]
 		if flag.Bool() {
-			indexes = append(indexes, i)
+			res = reflect.Append(res, sv.Index(i))
 		}
 	}
 
-	res := reflect.MakeSlice(sv.Type(), len(indexes), len(indexes))
-	for i := range indexes {
-		res.Index(i).Set(sv.Index(indexes[i]))
-	}
 	return res.Interface()
 }
 
