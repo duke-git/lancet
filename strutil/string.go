@@ -205,3 +205,34 @@ func ReverseStr(s string) string {
 	}
 	return string(r)
 }
+
+// Wrap a string with another string.
+func Wrap(str string, wrapWith string) string {
+	if str == "" || wrapWith == "" {
+		return str
+	}
+	var sb strings.Builder
+	sb.WriteString(wrapWith)
+	sb.WriteString(str)
+	sb.WriteString(wrapWith)
+
+	return sb.String()
+}
+
+// Unwrap a given string from anther string. will change str value
+func Unwrap(str string, wrapToken string) string {
+	if str == "" || wrapToken == "" {
+		return str
+	}
+
+	firstIndex := strings.Index(str, wrapToken)
+	lastIndex := strings.LastIndex(str, wrapToken)
+
+	if firstIndex == 0 && lastIndex > 0 && lastIndex <= len(str)-1 {
+		if len(wrapToken) <= lastIndex {
+			str = str[len(wrapToken):lastIndex]
+		}
+	}
+
+	return str
+}

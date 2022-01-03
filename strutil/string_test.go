@@ -187,15 +187,51 @@ func isString(t *testing.T, test interface{}, expected bool) {
 func TestReverseStr(t *testing.T) {
 	reverseStr(t, "abc", "cba")
 	reverseStr(t, "12345", "54321")
-
-	//failed
-	//reverseStr(t, "abc", "abc")
 }
 
 func reverseStr(t *testing.T, test string, expected string) {
 	res := ReverseStr(test)
 	if res != expected {
 		internal.LogFailedTestInfo(t, "ReverseStr", test, expected, res)
+		t.FailNow()
+	}
+}
+
+func TestWrap(t *testing.T) {
+	wrap(t, "ab", "", "ab")
+	wrap(t, "", "*", "")
+	wrap(t, "ab", "*", "*ab*")
+	wrap(t, "ab", "\"", "\"ab\"")
+	wrap(t, "ab", "'", "'ab'")
+}
+
+func wrap(t *testing.T, test string, wrapWith string, expected string) {
+	res := Wrap(test, wrapWith)
+	if res != expected {
+		internal.LogFailedTestInfo(t, "Wrap", test, expected, res)
+		t.FailNow()
+	}
+}
+
+func TestUnwrap(t *testing.T) {
+	unwrap(t, "", "*", "")
+	unwrap(t, "ab", "", "ab")
+	unwrap(t, "ab", "*", "ab")
+	unwrap(t, "**ab**", "*", "*ab*")
+	unwrap(t, "**ab**", "**", "ab")
+	unwrap(t, "\"ab\"", "\"", "ab")
+	unwrap(t, "*ab", "*", "*ab")
+	unwrap(t, "ab*", "*", "ab*")
+	unwrap(t, "***", "*", "*")
+	unwrap(t, "**", "*", "")
+	unwrap(t, "***", "**", "***")
+	unwrap(t, "**", "**", "**")
+}
+
+func unwrap(t *testing.T, test string, wrapToken string, expected string) {
+	res := Unwrap(test, wrapToken)
+	if res != expected {
+		internal.LogFailedTestInfo(t, "Unwrap", test+"->"+wrapToken, expected, res)
 		t.FailNow()
 	}
 }
