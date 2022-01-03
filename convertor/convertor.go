@@ -45,44 +45,34 @@ func ToChar(s string) []string {
 
 // ToString convert value to string
 func ToString(value interface{}) string {
-	var res string
+	res := ""
 	if value == nil {
 		return res
 	}
-	switch v := value.(type) {
-	case float64:
-		res = strconv.FormatFloat(v, 'f', -1, 64)
-	case float32:
-		res = strconv.FormatFloat(float64(v), 'f', -1, 64)
-	case int:
-		res = strconv.Itoa(v)
-	case uint:
-		res = strconv.Itoa(int(v))
-	case int8:
-		res = strconv.Itoa(int(v))
-	case uint8:
-		res = strconv.Itoa(int(v))
-	case int16:
-		res = strconv.Itoa(int(v))
-	case uint16:
-		res = strconv.Itoa(int(v))
-	case int32:
-		res = strconv.Itoa(int(v))
-	case uint32:
-		res = strconv.Itoa(int(v))
-	case int64:
-		res = strconv.FormatInt(v, 10)
-	case uint64:
-		res = strconv.FormatUint(v, 10)
+
+	v := reflect.ValueOf(value)
+
+	switch value.(type) {
+	case float32, float64:
+		res = strconv.FormatFloat(v.Float(), 'f', -1, 64)
+		return res
+	case int, int8, int16, int32, int64:
+		res = strconv.FormatInt(v.Int(), 10)
+		return res
+	case uint, uint8, uint16, uint32, uint64:
+		res = strconv.FormatUint(v.Uint(), 10)
+		return res
 	case string:
-		res = value.(string)
+		res = v.String()
+		return res
 	case []byte:
-		res = string(value.([]byte))
+		res = string(v.Bytes())
+		return res
 	default:
 		newValue, _ := json.Marshal(value)
 		res = string(newValue)
+		return res
 	}
-	return res
 }
 
 // ToJson convert value to a valid json string

@@ -108,14 +108,19 @@ func TestToString(t *testing.T) {
 	aStruct := TestStruct{Name: "TestStruct"}
 
 	cases := []interface{}{
+		"", nil,
 		int(0), int8(1), int16(-1), int32(123), int64(123),
 		uint(123), uint8(123), uint16(123), uint32(123), uint64(123),
 		float64(12.3), float32(12.3),
 		true, false,
 		[]int{1, 2, 3}, aMap, aStruct, []byte{104, 101, 108, 108, 111}}
 
-	expected := []string{"0", "1", "-1", "123", "123", "123", "123", "123",
-		"123", "123", "12.3", "12.300000190734863", "true", "false",
+	expected := []string{
+		"", "",
+		"0", "1", "-1",
+		"123", "123", "123", "123", "123", "123", "123",
+		"12.3", "12.300000190734863",
+		"true", "false",
 		"[1,2,3]", "{\"a\":1,\"b\":2,\"c\":3}", "{\"Name\":\"TestStruct\"}", "hello"}
 
 	for i := 0; i < len(cases); i++ {
