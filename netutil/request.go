@@ -22,27 +22,27 @@ import (
 
 //HttpGet send get http request
 func HttpGet(url string, params ...interface{}) (*http.Response, error) {
-	return request(http.MethodGet, url, params...)
+	return doHttpRequest(http.MethodGet, url, params...)
 }
 
 //HttpPost send post http request
 func HttpPost(url string, params ...interface{}) (*http.Response, error) {
-	return request(http.MethodPost, url, params...)
+	return doHttpRequest(http.MethodPost, url, params...)
 }
 
 //HttpPut send put http request
 func HttpPut(url string, params ...interface{}) (*http.Response, error) {
-	return request(http.MethodPut, url, params...)
+	return doHttpRequest(http.MethodPut, url, params...)
 }
 
 //HttpDelete send delete http request
 func HttpDelete(url string, params ...interface{}) (*http.Response, error) {
-	return request(http.MethodDelete, url, params...)
+	return doHttpRequest(http.MethodDelete, url, params...)
 }
 
 // HttpPatch send patch http request
 func HttpPatch(url string, params ...interface{}) (*http.Response, error) {
-	return request(http.MethodPatch, url, params...)
+	return doHttpRequest(http.MethodPatch, url, params...)
 }
 
 // ParseHttpResponse decode http response to specified interface

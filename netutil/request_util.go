@@ -10,7 +10,7 @@ import (
 	"strings"
 )
 
-func request(method, reqUrl string, params ...interface{}) (*http.Response, error) {
+func doHttpRequest(method, reqUrl string, params ...interface{}) (*http.Response, error) {
 	if len(reqUrl) == 0 {
 		return nil, errors.New("url should be specified")
 	}
@@ -24,53 +24,29 @@ func request(method, reqUrl string, params ...interface{}) (*http.Response, erro
 	}
 
 	client := &http.Client{}
+	err := setUrl(req, reqUrl)
+	if err != nil {
+		return nil, err
+	}
+
 	switch len(params) {
-	case 0:
-		err := setUrl(req, reqUrl)
-		if err != nil {
-			return nil, err
-		}
 	case 1:
-		err := setUrl(req, reqUrl)
-		if err != nil {
-			return nil, err
-		}
 		err = setHeader(req, params[0])
 		if err != nil {
 			return nil, err
 		}
 	case 2:
-		err := setHeader(req, params[0])
-		if err != nil {
-			return nil, err
-		}
-		err = setQueryParam(req, reqUrl, params[1])
+		err := setHeaderAndQueryParam(req, reqUrl, params[0], params[1])
 		if err != nil {
 			return nil, err
 		}
 	case 3:
-		err := setHeader(req, params[0])
-		if err != nil {
-			return nil, err
-		}
-		err = setQueryParam(req, reqUrl, params[1])
-		if err != nil {
-			return nil, err
-		}
-		err = setBodyByte(req, params[2])
+		err := setHeaderAndQueryAndBody(req, reqUrl, params[0], params[1], params[2])
 		if err != nil {
 			return nil, err
 		}
 	case 4:
-		err := setHeader(req, params[0])
-		if err != nil {
-			return nil, err
-		}
-		err = setQueryParam(req, reqUrl, params[1])
-		if err != nil {
-			return nil, err
-		}
-		err = setBodyByte(req, params[2])
+		err := setHeaderAndQueryAndBody(req, reqUrl, params[0], params[1], params[2])
 		if err != nil {
 			return nil, err
 		}
@@ -78,11 +54,38 @@ func request(method, reqUrl string, params ...interface{}) (*http.Response, erro
 		if err != nil {
 			return nil, err
 		}
-
 	}
 
 	resp, e := client.Do(req)
 	return resp, e
+}
+
+func setHeaderAndQueryParam(req *http.Request, reqUrl string, header, queryParam interface{}) error {
+	err := setHeader(req, header)
+	if err != nil {
+		return err
+	}
+	err = setQueryParam(req, reqUrl, queryParam)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func setHeaderAndQueryAndBody(req *http.Request, reqUrl string, header, queryParam, body interface{}) error {
+	err := setHeader(req, header)
+	if err != nil {
+		return err
+	}
+	err = setQueryParam(req, reqUrl, queryParam)
+	if err != nil {
+		return err
+	}
+	err = setBodyByte(req, body)
+	if err != nil {
+		return err
+	}
+	return nil
 }
 
 func setHeader(req *http.Request, header interface{}) error {
@@ -109,6 +112,7 @@ func setHeader(req *http.Request, header interface{}) error {
 
 	return nil
 }
+
 func setUrl(req *http.Request, reqUrl string) error {
 	u, err := url.Parse(reqUrl)
 	if err != nil {
@@ -117,6 +121,7 @@ func setUrl(req *http.Request, reqUrl string) error {
 	req.URL = u
 	return nil
 }
+
 func setQueryParam(req *http.Request, reqUrl string, queryParam interface{}) error {
 	var values url.Values
 	if queryParam != nil {
