@@ -453,6 +453,8 @@ func PadEnd(source string, size int, padStr string) string //pads string on the 
 func PadStart(source string, size int, padStr string) string//pads string on the left side if it's shorter than size
 func ReverseStr(s string) string //return string whose char order is reversed to the given string
 func SnakeCase(s string) string //covert string to snake_case "fooBar" -> "foo_bar"
+func Wrap(str string, wrapWith string) string //wrap a string with another string.
+func Unwrap(str string, wrapToken string) string //unwrap a given string from anther string. will change str value
 ```
 
 #### 11. validator is for data validation

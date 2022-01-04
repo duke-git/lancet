@@ -452,7 +452,9 @@ func KebabCase(s string) string //字符串转为KebabCase, "foo_Bar" -> "foo-ba
 func LowerFirst(s string) string //字符串的第一个字母转为小写字母
 func PadEnd(source string, size int, padStr string) string //字符串末尾填充size个字符
 func PadStart(source string, size int, padStr string) string//字符串开头填充size个字符
-func ReverseStr(s string) string //字符串逆袭
+func ReverseStr(s string) string //字符串逆序
+func Wrap(str string, wrapWith string) string //包裹字符串 Wrap("abc", "*") -> *abc*.
+func Unwrap(str string, wrapToken string) string //解包裹字符串 Wrap("*abc*", "*") -> abc.
 func SnakeCase(s string) string //字符串转为SnakeCase, "fooBar" -> "foo_bar"
 ```
 
