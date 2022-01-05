@@ -235,6 +235,22 @@ func TestFlattenDeep(t *testing.T) {
 	}
 }
 
+func TestForEach(t *testing.T) {
+	numbers := []int{1, 2, 3, 4, 5}
+	expected := []int{3, 4, 5, 6, 7}
+
+	var numbersAddTwo []int
+	ForEach(numbers, func(index int, value int) {
+		numbersAddTwo = append(numbersAddTwo, value+2)
+	})
+
+	if !reflect.DeepEqual(numbersAddTwo, expected) {
+		internal.LogFailedTestInfo(t, "ForEach", numbers, expected, numbersAddTwo)
+		t.FailNow()
+	}
+
+}
+
 func TestMap(t *testing.T) {
 	s1 := []int{1, 2, 3, 4}
 	multiplyTwo := func(i, num int) int {

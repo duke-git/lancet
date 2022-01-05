@@ -265,6 +265,22 @@ func flattenRecursive(value reflect.Value, result reflect.Value) reflect.Value {
 	return result
 }
 
+// ForEach iterates over elements of slice and invokes function for each element
+// The function signature should be func(index int, value interface{}).
+func ForEach(slice, function interface{}) {
+	sv := sliceValue(slice)
+	fn := functionValue(function)
+
+	elemType := sv.Type().Elem()
+	if checkSliceCallbackFuncSignature(fn, elemType, nil) {
+		panic("function param should be of type func(int, " + elemType.String() + ")" + elemType.String())
+	}
+
+	for i := 0; i < sv.Len(); i++ {
+		fn.Call([]reflect.Value{reflect.ValueOf(i), sv.Index(i)})
+	}
+}
+
 // Map creates an slice of values by running each element of `slice` thru `function`.
 // The function signature should be func(index int, value interface{}) interface{}.
 func Map(slice, function interface{}) interface{} {
