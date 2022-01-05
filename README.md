@@ -281,7 +281,7 @@ func Schedule(d time.Duration, fn interface{}, args ...interface{}) chan bool //
 func (w *Watcher) Start() //start the watch timer.
 func (w *Watcher) Stop() //stop the watch timer
 func (w *Watcher) Reset() {} //reset the watch timer.
-func (w *Watcher) GetElapsedTime() time.Duration //获取代码段运行时间
+func (w *Watcher) GetElapsedTime() time.Duration //return time duration from watcher start to end.
 ```
 
 #### 7. netutil is for net process
