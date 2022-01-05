@@ -115,7 +115,7 @@ func TestNone(t *testing.T) {
 	}
 	res := None(nums, check)
 	if res != false {
-		internal.LogFailedTestInfo(t, "Every", nums, false, res)
+		internal.LogFailedTestInfo(t, "None", nums, false, res)
 		t.FailNow()
 	}
 }
