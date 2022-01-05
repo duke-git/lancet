@@ -108,6 +108,18 @@ func TestEvery(t *testing.T) {
 	}
 }
 
+func TestNone(t *testing.T) {
+	nums := []int{1, 2, 3, 5}
+	check := func(i, num int) bool {
+		return num%2 == 1
+	}
+	res := None(nums, check)
+	if res != false {
+		internal.LogFailedTestInfo(t, "Every", nums, false, res)
+		t.FailNow()
+	}
+}
+
 func TestSome(t *testing.T) {
 	nums := []int{1, 2, 3, 5}
 	isEven := func(i, num int) bool {

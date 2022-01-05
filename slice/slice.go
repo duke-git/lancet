@@ -121,6 +121,28 @@ func Every(slice, function interface{}) bool {
 	return currentLength == sv.Len()
 }
 
+// None return true if all the values in the slice mismatch the criteria
+// The function signature should be func(index int, value interface{}) bool .
+func None(slice, function interface{}) bool {
+	sv := sliceValue(slice)
+	fn := functionValue(function)
+
+	elemType := sv.Type().Elem()
+	if checkSliceCallbackFuncSignature(fn, elemType, reflect.ValueOf(true).Type()) {
+		panic("function param should be of type func(int, " + elemType.String() + ")" + reflect.ValueOf(true).Type().String())
+	}
+
+	var currentLength int
+	for i := 0; i < sv.Len(); i++ {
+		flag := fn.Call([]reflect.Value{reflect.ValueOf(i), sv.Index(i)})[0]
+		if !flag.Bool() {
+			currentLength++
+		}
+	}
+
+	return currentLength == sv.Len()
+}
+
 // Some return true if any of the values in the list pass the predicate function.
 // The function signature should be func(index int, value interface{}) bool .
 func Some(slice, function interface{}) bool {
