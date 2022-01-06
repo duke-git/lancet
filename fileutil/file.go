@@ -9,7 +9,9 @@ import (
 	"bufio"
 	"errors"
 	"io"
+	"io/fs"
 	"io/ioutil"
+	"net/http"
 	"os"
 	"path/filepath"
 	"strings"
@@ -239,4 +241,58 @@ func UnZip(zipFile string, destPath string) error {
 		}
 	}
 	return nil
+}
+
+// IsLink checks if a file is symbol link or not
+func IsLink(path string) bool {
+	fi, err := os.Lstat(path)
+	if err != nil {
+		return false
+	}
+	return fi.Mode()&os.ModeSymlink != 0
+}
+
+// FileMode return file's mode and permission
+func FileMode(path string) (fs.FileMode, error) {
+	fi, err := os.Lstat(path)
+	if err != nil {
+		return 0, err
+	}
+	return fi.Mode(), nil
+}
+
+// MiMeType return file mime type
+// file should be string or *os.File
+func MiMeType(file interface{}) string {
+	var mediatype string
+
+	readBuffer := func(f *os.File) ([]byte, error) {
+		buffer := make([]byte, 512)
+		_, err := f.Read(buffer)
+		if err != nil {
+			return nil, err
+		}
+		return buffer, nil
+	}
+
+	if filePath, ok := file.(string); ok {
+		f, err := os.Open(filePath)
+		if err != nil {
+			return mediatype
+		}
+		buffer, err := readBuffer(f)
+		if err != nil {
+			return mediatype
+		}
+		return http.DetectContentType(buffer)
+	}
+
+	if f, ok := file.(*os.File); ok {
+		buffer, err := readBuffer(f)
+		if err != nil {
+			return mediatype
+		}
+		return http.DetectContentType(buffer)
+	}
+	return mediatype
 }

@@ -181,3 +181,53 @@ func TestZipAndUnZip(t *testing.T) {
 	os.Remove(zipFile)
 	os.RemoveAll(unZipPath)
 }
+
+func TestFileMode(t *testing.T) {
+	srcFile := "./text.txt"
+	CreateFile(srcFile)
+
+	mode, err := FileMode(srcFile)
+	if err != nil {
+		t.Fail()
+	}
+	t.Log(mode)
+
+	os.Remove(srcFile)
+}
+
+func TestIsLink(t *testing.T) {
+	srcFile := "./text.txt"
+	CreateFile(srcFile)
+
+	linkFile := "./text.link"
+	if !IsExist(linkFile) {
+		_ = os.Symlink(srcFile, linkFile)
+	}
+	if !IsLink(linkFile) {
+		internal.LogFailedTestInfo(t, "IsLink", linkFile, "true", "false")
+		t.FailNow()
+	}
+
+	if IsLink("./file.go") {
+		internal.LogFailedTestInfo(t, "IsLink", "./file.go", "false", "true")
+		t.FailNow()
+	}
+	os.Remove(srcFile)
+	os.Remove(linkFile)
+}
+
+func TestMiMeType(t *testing.T) {
+	mt1 := MiMeType("./file.go")
+	expected := "text/plain; charset=utf-8"
+
+	if mt1 != expected {
+		internal.LogFailedTestInfo(t, "MiMeType", "./file.go", expected, mt1)
+		t.FailNow()
+	}
+	f, _ := os.Open("./file.go")
+	mt2 := MiMeType(f)
+	if mt2 != expected {
+		internal.LogFailedTestInfo(t, "MiMeType", "./file.go", expected, mt2)
+		t.FailNow()
+	}
+}
