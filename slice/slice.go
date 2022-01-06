@@ -187,6 +187,28 @@ func Filter(slice, function interface{}) interface{} {
 	return res.Interface()
 }
 
+// Count iterates over elements of slice, returns a count of all matched elements
+// The function signature should be func(index int, value interface{}) bool .
+func Count(slice, function interface{}) int {
+	sv := sliceValue(slice)
+	fn := functionValue(function)
+
+	elemType := sv.Type().Elem()
+	if checkSliceCallbackFuncSignature(fn, elemType, reflect.ValueOf(true).Type()) {
+		panic("function param should be of type func(int, " + elemType.String() + ")" + reflect.ValueOf(true).Type().String())
+	}
+
+	var counter int
+	for i := 0; i < sv.Len(); i++ {
+		flag := fn.Call([]reflect.Value{reflect.ValueOf(i), sv.Index(i)})[0]
+		if flag.Bool() {
+			counter++
+		}
+	}
+
+	return counter
+}
+
 // GroupBy iterate over elements of the slice, each element will be group by criteria, returns two slices
 // The function signature should be func(index int, value interface{}) bool .
 func GroupBy(slice, function interface{}) (interface{}, interface{}) {

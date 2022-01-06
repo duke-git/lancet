@@ -197,6 +197,19 @@ func TestGroupBy(t *testing.T) {
 	}
 }
 
+func TestCount(t *testing.T) {
+	nums := []int{1, 2, 3, 4, 5, 6}
+	evenFunc := func(i, num int) bool {
+		return (num % 2) == 0
+	}
+	c := Count(nums, evenFunc)
+
+	if c != 3 {
+		internal.LogFailedTestInfo(t, "Count", nums, 3, c)
+		t.FailNow()
+	}
+}
+
 func TestFind(t *testing.T) {
 	nums := []int{1, 2, 3, 4, 5}
 	even := func(i, num int) bool {
