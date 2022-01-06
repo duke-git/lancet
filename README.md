@@ -414,6 +414,7 @@ func Union(slices ...interface{}) interface{} //Union creates a slice of unique 
 func UpdateByIndex(slice interface{}, index int, value interface{}) (interface{}, error) //update the slice element at index.
 func Without(slice interface{}, values ...interface{}) interface{} //creates a slice excluding all given values
 func GroupBy(slice, function interface{}) (interface{}, interface{}) // groups slice into two categories
+func Count(slice, function interface{}) int // Count iterates over elements of slice, returns a count of all matched elements
 ```
 
 #### 10. strutil is for processing string
