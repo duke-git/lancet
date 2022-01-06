@@ -3,4 +3,6 @@
 .DS_Store
 cryptor/*.txt
 fileutil/*.txt
+fileutil/*.zip
+fileutil/unzip/*
 cryptor/*.pem

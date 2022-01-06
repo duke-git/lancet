@@ -37,6 +37,7 @@ func TestCreateFile(t *testing.T) {
 		internal.LogFailedTestInfo(t, "CreateFile", f, f, "create file error")
 		t.FailNow()
 	}
+	os.Remove(f)
 }
 
 func TestIsDir(t *testing.T) {
@@ -70,20 +71,22 @@ func TestCopyFile(t *testing.T) {
 	srcFile := "./text.txt"
 	CreateFile(srcFile)
 
-	dstFile := "./text_copy.txt"
+	destFile := "./text_copy.txt"
 
-	err := CopyFile(srcFile, dstFile)
+	err := CopyFile(srcFile, destFile)
 	if err != nil {
-		file, err := os.Open(dstFile)
+		file, err := os.Open(destFile)
 		if err != nil {
-			internal.LogFailedTestInfo(t, "CopyFile", srcFile, dstFile, "create file error: "+err.Error())
+			internal.LogFailedTestInfo(t, "CopyFile", srcFile, destFile, "create file error: "+err.Error())
 			t.FailNow()
 		}
-		if file.Name() != dstFile {
-			internal.LogFailedTestInfo(t, "CopyFile", srcFile, dstFile, file.Name())
+		if file.Name() != destFile {
+			internal.LogFailedTestInfo(t, "CopyFile", srcFile, destFile, file.Name())
 			t.FailNow()
 		}
 	}
+	os.Remove(srcFile)
+	os.Remove(destFile)
 }
 
 func TestListFileNames(t *testing.T) {
@@ -101,32 +104,41 @@ func TestListFileNames(t *testing.T) {
 func TestReadFileToString(t *testing.T) {
 	path := "./text.txt"
 	CreateFile(path)
+
 	f, _ := os.OpenFile(path, os.O_WRONLY|os.O_TRUNC, 0777)
 	f.WriteString("hello world")
 
 	res, _ := ReadFileToString(path)
 	if res != "hello world" {
 		internal.LogFailedTestInfo(t, "ReadFileToString", path, "hello world", res)
+		t.FailNow()
 	}
+	os.Remove(path)
 }
 
 func TestClearFile(t *testing.T) {
 	path := "./text.txt"
 	CreateFile(path)
+
 	f, _ := os.OpenFile(path, os.O_WRONLY|os.O_TRUNC, 0777)
 	f.WriteString("hello world")
 
-	CreateFile(path)
-
-	res, _ := ReadFileToString(path)
-	if res != "" {
-		internal.LogFailedTestInfo(t, "CreateFile", path, "", res)
+	err := ClearFile(path)
+	if err != nil {
+		t.Error("Clear file error: ", err)
 	}
+	fileContent, _ := ReadFileToString(path)
+	if fileContent != "" {
+		internal.LogFailedTestInfo(t, "ClearFile", path, "", fileContent)
+		t.FailNow()
+	}
+	os.Remove(path)
 }
 
 func TestReadFileByLine(t *testing.T) {
 	path := "./text.txt"
 	CreateFile(path)
+
 	f, _ := os.OpenFile(path, os.O_WRONLY|os.O_TRUNC, 0777)
 	f.WriteString("hello\nworld")
 
@@ -134,5 +146,38 @@ func TestReadFileByLine(t *testing.T) {
 	res, _ := ReadFileByLine(path)
 	if !reflect.DeepEqual(res, expected) {
 		internal.LogFailedTestInfo(t, "ReadFileByLine", path, expected, res)
+		t.FailNow()
 	}
+	os.Remove(path)
+}
+
+func TestZipAndUnZip(t *testing.T) {
+	srcFile := "./text.txt"
+	CreateFile(srcFile)
+
+	file, _ := os.OpenFile(srcFile, os.O_WRONLY|os.O_TRUNC, 0777)
+	file.WriteString("hello\nworld")
+
+	zipFile := "./text.zip"
+	err := Zip(srcFile, zipFile)
+	if err != nil {
+		internal.LogFailedTestInfo(t, "Zip", srcFile, zipFile, err)
+		t.FailNow()
+	}
+
+	unZipPath := "./unzip"
+	err = UnZip(zipFile, unZipPath)
+	if err != nil {
+		internal.LogFailedTestInfo(t, "UnZip", srcFile, unZipPath, err)
+		t.FailNow()
+	}
+
+	unZipFile := "./unzip/text.txt"
+	if !IsExist(unZipFile) {
+		internal.LogFailedTestInfo(t, "UnZip", zipFile, zipFile, err)
+		t.FailNow()
+	}
+	os.Remove(srcFile)
+	os.Remove(zipFile)
+	os.RemoveAll(unZipPath)
 }
