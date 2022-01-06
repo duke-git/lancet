@@ -6,7 +6,7 @@
 <div align="center" style="text-align: center;">
 
 ![Go version](https://img.shields.io/badge/go-%3E%3D1.16<recommend>-9cf)
-[![Release](https://img.shields.io/badge/release-1.1.7-green.svg)](https://github.com/duke-git/lancet/releases)
+[![Release](https://img.shields.io/badge/release-1.1.8-green.svg)](https://github.com/duke-git/lancet/releases)
 [![GoDoc](https://godoc.org/github.com//duke-git/lancet?status.svg)](https://pkg.go.dev/github.com/duke-git/lancet)
 [![Go Report Card](https://goreportcard.com/badge/github.com/duke-git/lancet)](https://goreportcard.com/report/github.com/duke-git/lancet)
 [![codecov](https://codecov.io/gh/duke-git/lancet/branch/main/graph/badge.svg?token=FC48T1F078)](https://codecov.io/gh/duke-git/lancet)
@@ -214,14 +214,19 @@ func main() {
 
 ```go
 func ClearFile(path string) error //清空文件内容
-func IsExist(path string) bool  //判断文件/目录是否存在
 func CreateFile(path string) bool //创建文件
+func FileMode(path string) (fs.FileMode, error) //返回文件mode信息
+func MiMeType(file interface{}) string //返回文件mime类型
+func IsExist(path string) bool  //判断文件/目录是否存在
 func IsDir(path string) bool //判断是否为目录
+func IsLink(path string) bool //检查文件是否为符号链接文件
 func RemoveFile(path string) error //删除文件
 func CopyFile(srcFilePath string, dstFilePath string) error //复制文件
 func ListFileNames(path string) ([]string, error) //列出目录下所有文件名称
 func ReadFileToString(path string) (string, error) //读取文件内容为字符串
 func ReadFileByLine(path string)([]string, error) //按行读取文件内容
+func Zip(fpath string, destPath string) error //压缩文件fpath参数可以是文件或目录，destPath是压缩后目标文件
+func UnZip(zipFile string, destPath string) error //解压文件，并将文件存储在destPath目录中
 ```
 
 #### 5. formatter格式化处理包
@@ -399,6 +404,7 @@ func None(slice, function interface{}) bool //slice中所有元素都不符合�
 func Find(slice, function interface{}) (interface{}, bool)//查找slice中第一个符合条件的元素，函数签名：func(index int, value interface{}) bool
 func Filter(slice, function interface{}) interface{} //过滤slice, 函数签名：func(index int, value interface{}) bool
 func FlattenDeep(slice interface{}) interface{} //将slice递归为一维切片。
+func ForEach(slice, function interface{}) //遍历切片，在每个元素上执行函数，函数签名：func(index int, value interface{})
 func IntSlice(slice interface{}) ([]int, error) //转成int切片
 func InterfaceSlice(slice interface{}) []interface{} //转成interface{}切片
 func Intersection(slices ...interface{}) interface{} //slice交集，去重

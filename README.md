@@ -6,7 +6,7 @@
 <div align="center" style="text-align: center;">
 
 ![Go version](https://img.shields.io/badge/go-%3E%3D1.16<recommend>-9cf)
-[![Release](https://img.shields.io/badge/release-1.1.7-green.svg)](https://github.com/duke-git/lancet/releases)
+[![Release](https://img.shields.io/badge/release-1.1.8-green.svg)](https://github.com/duke-git/lancet/releases)
 [![GoDoc](https://godoc.org/github.com//duke-git/lancet?status.svg)](https://pkg.go.dev/github.com/duke-git/lancet)
 [![Go Report Card](https://goreportcard.com/badge/github.com/duke-git/lancet)](https://goreportcard.com/report/github.com/duke-git/lancet)
 [![codecov](https://codecov.io/gh/duke-git/lancet/branch/main/graph/badge.svg?token=FC48T1F078)](https://codecov.io/gh/duke-git/lancet)
@@ -215,12 +215,17 @@ func main() {
 func ClearFile(path string) error //write empty string to path file
 func CreateFile(path string) bool // create a file in path
 func CopyFile(srcFilePath string, dstFilePath string) error //copy src file to dst file
+func FileMode(path string) (fs.FileMode, error) //return file's mode and permission
+func MiMeType(file interface{}) string //return file mime type, file should be string or *os.File
 func IsExist(path string) bool  //checks if a file or directory exists
+func IsLink(path string) bool //checks if a file is symbol link or not
 func IsDir(path string) bool //checks if the path is directy or not
 func ListFileNames(path string) ([]string, error) //return all file names in the path
 func RemoveFile(path string) error //remove the path file
 func ReadFileToString(path string) (string, error) //return string of file content
 func ReadFileByLine(path string)([]string, error) //read file content by line
+func Zip(fpath string, destPath string) error //create zip file, fpath could be a single file or a directory
+func UnZip(zipFile string, destPath string) error //unzip the file and save it to destPath
 ```
 
 #### 5. formatter is for data format
@@ -398,6 +403,7 @@ func None(slice, function interface{}) bool // return true if all the values in 
 func Filter(slice, function interface{}) interface{} //filter slice, function signature should be func(index int, value interface{}) bool
 func Find(slice, function interface{}) (interface{}, bool) //iterates over elements of slice, returning the first one that passes a truth test on function.function signature should be func(index int, value interface{}) bool .
 func FlattenDeep(slice interface{}) interface{} //flattens slice recursive
+func ForEach(slice, function interface{}) //iterates over elements of slice and invokes function for each element, function signature should be func(index int, value interface{}) 
 func IntSlice(slice interface{}) ([]int, error) //convert value to int slice
 func InterfaceSlice(slice interface{}) []interface{} //convert value to interface{} slice
 func Intersection(slices ...interface{}) interface{} //creates a slice of unique values that included by all slices.

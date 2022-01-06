@@ -154,8 +154,8 @@ func ListFileNames(path string) ([]string, error) {
 	return res, nil
 }
 
-// Zip create zip file, srcFile could be a single file or a directory
-func Zip(srcFile string, destPath string) error {
+// Zip create zip file, fpath could be a single file or a directory
+func Zip(fpath string, destPath string) error {
 	zipFile, err := os.Create(destPath)
 	if err != nil {
 		return err
@@ -165,7 +165,7 @@ func Zip(srcFile string, destPath string) error {
 	archive := zip.NewWriter(zipFile)
 	defer archive.Close()
 
-	filepath.Walk(srcFile, func(path string, info os.FileInfo, err error) error {
+	filepath.Walk(fpath, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
 			return err
 		}
@@ -175,7 +175,7 @@ func Zip(srcFile string, destPath string) error {
 			return err
 		}
 
-		header.Name = strings.TrimPrefix(path, filepath.Dir(srcFile)+"/")
+		header.Name = strings.TrimPrefix(path, filepath.Dir(fpath)+"/")
 
 		if info.IsDir() {
 			header.Name += "/"
