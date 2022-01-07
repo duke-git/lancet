@@ -79,10 +79,10 @@ func ToString(value interface{}) string {
 func ToJson(value interface{}) (string, error) {
 	res, err := json.Marshal(value)
 	if err != nil {
-		res = []byte("")
+		return "", err
 	}
 
-	return string(res), err
+	return string(res), nil
 }
 
 // ToFloat convert value to a float64, if input is not a float return 0.0 and error
