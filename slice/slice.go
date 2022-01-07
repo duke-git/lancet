@@ -167,7 +167,7 @@ func Some(slice, function interface{}) bool {
 
 // Filter iterates over elements of slice, returning an slice of all elements `signature` returns truthy for.
 // The fn signature should be func(int, T) bool.
-func Filter[T any](slice []T, fn func(index int, t T) bool) []T {
+func Filter [T any] (slice []T, fn func(index int, t T) bool) []T {
 	res := make([]T, 0, 0)
 	for i, v := range slice {
 		if fn(i, v) {
@@ -279,7 +279,7 @@ func flattenRecursive(value reflect.Value, result reflect.Value) reflect.Value {
 
 // ForEach iterates over elements of slice and invokes function for each element
 // The fn signature should be func(int, T ).
-func ForEach[T any] (slice []T, fn func(index int, t T)) {
+func ForEach [T any] (slice []T, fn func(index int, t T)) {
 	for i, v := range slice {
 		fn(i, v)
 	}
@@ -287,7 +287,7 @@ func ForEach[T any] (slice []T, fn func(index int, t T)) {
 
 // Map creates an slice of values by running each element of `slice` thru `function`.
 // The fn signature should be func(int, T).
-func Map[T any, U any](slice []T, fn func(index int, t T) U) []U {
+func Map [T any, U any] (slice []T, fn func(index int, t T) U) []U {
 	res := make([]U, len(slice), cap(slice))
 	for i, v := range slice {
 		res[i] = fn(i, v)
