@@ -401,7 +401,7 @@ func Drop(slice interface{}, n int) interface{} //creates a slice with `n` eleme
 func Every(slice, function interface{}) bool //return true if all of the values in the slice pass the predicate function, function signature should be func(index int, value interface{}) bool
 func None(slice, function interface{}) bool // return true if all the values in the slice mismatch the criteria
 func Filter [T any] (slice []T, fn func(index int, t T) bool) []T //filter slice, fn signature should be func(int, T) bool.
-func Find(slice, function interface{}) (interface{}, bool) //iterates over elements of slice, returning the first one that passes a truth test on function.function signature should be func(index int, value interface{}) bool .
+func Find[T any](slice []T, fn func(index int, t T) bool) (*T, bool) //iterates over elements of slice, returning the first one that passes a truth test on function.function signature should be func(index int, value interface{}) bool .
 func FlattenDeep(slice interface{}) interface{} //flattens slice recursive
 func ForEach [T any] (slice []T, fn func(index int, t T)) //iterates over elements of slice and invokes function for each element, fn signature should be func(int, T ).
 func IntSlice(slice interface{}) ([]int, error) //convert value to int slice

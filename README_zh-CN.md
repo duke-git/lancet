@@ -401,7 +401,7 @@ func DeleteByIndex(slice interface{}, start int, end ...int) (interface{}, error
 func Drop(slice interface{}, n int) interface{} //创建一个新切片，当n大于0时删除原切片前n个元素，当n小于0时删除原切片后n个元素
 func Every(slice, function interface{}) bool //slice中所有元素都符合函数条件时返回true, 否则返回false. 函数签名：func(index int, value interface{}) bool
 func None(slice, function interface{}) bool //slice中所有元素都不符合函数条件时返回true, 否则返回false. 函数签名：func(index int, value interface{}) bool
-func Find(slice, function interface{}) (interface{}, bool)//查找slice中第一个符合条件的元素，函数签名：func(index int, value interface{}) bool
+func Find[T any](slice []T, fn func(index int, t T) bool) (*T, bool)//查找slice中第一个符合条件的元素，函数签名：func(index int, value interface{}) bool
 func Filter(slice, function interface{}) interface{} //过滤slice, 函数签名：func(index int, value interface{}) bool
 func FlattenDeep(slice interface{}) interface{} //将slice递归为一维切片。
 func ForEach(slice, function interface{}) //遍历切片，在每个元素上执行函数，函数签名：func(index int, value interface{})
