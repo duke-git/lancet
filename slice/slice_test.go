@@ -220,7 +220,7 @@ func TestFind(t *testing.T) {
 		t.Fatal("found nothing")
 	}
 
-	if res != 2 {
+	if *res != 2 {
 		internal.LogFailedTestInfo(t, "Find", nums, 2, res)
 		t.FailNow()
 	}
