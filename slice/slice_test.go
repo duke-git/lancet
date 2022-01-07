@@ -253,9 +253,11 @@ func TestForEach(t *testing.T) {
 	expected := []int{3, 4, 5, 6, 7}
 
 	var numbersAddTwo []int
-	ForEach(numbers, func(index int, value int) {
+	addTwo := func(index int, value int) {
 		numbersAddTwo = append(numbersAddTwo, value+2)
-	})
+	}
+
+	ForEach(numbers, addTwo)
 
 	if !reflect.DeepEqual(numbersAddTwo, expected) {
 		internal.LogFailedTestInfo(t, "ForEach", numbers, expected, numbersAddTwo)
@@ -265,14 +267,16 @@ func TestForEach(t *testing.T) {
 }
 
 func TestMap(t *testing.T) {
-	s1 := []int{1, 2, 3, 4}
+	numbers := []int{1, 2, 3, 4}
 	multiplyTwo := func(i, num int) int {
 		return num * 2
 	}
-	e1 := []int{2, 4, 6, 8}
-	r1 := Map(s1, multiplyTwo)
-	if !reflect.DeepEqual(r1, e1) {
-		internal.LogFailedTestInfo(t, "Map", s1, e1, r1)
+
+	expected := []int{2, 4, 6, 8}
+	actual := Map(numbers, multiplyTwo)
+
+	if !reflect.DeepEqual(actual, expected) {
+		internal.LogFailedTestInfo(t, "Map", numbers, expected, actual)
 		t.FailNow()
 	}
 

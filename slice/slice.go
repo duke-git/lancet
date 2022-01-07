@@ -166,25 +166,15 @@ func Some(slice, function interface{}) bool {
 }
 
 // Filter iterates over elements of slice, returning an slice of all elements `signature` returns truthy for.
-// The function signature should be func(index int, value interface{}) bool .
-func Filter(slice, function interface{}) interface{} {
-	sv := sliceValue(slice)
-	fn := functionValue(function)
-
-	elemType := sv.Type().Elem()
-	if checkSliceCallbackFuncSignature(fn, elemType, reflect.ValueOf(true).Type()) {
-		panic("function param should be of type func(int, " + elemType.String() + ")" + reflect.ValueOf(true).Type().String())
-	}
-
-	res := reflect.MakeSlice(sv.Type(), 0, 0)
-	for i := 0; i < sv.Len(); i++ {
-		flag := fn.Call([]reflect.Value{reflect.ValueOf(i), sv.Index(i)})[0]
-		if flag.Bool() {
-			res = reflect.Append(res, sv.Index(i))
+// The fn signature should be func(int, T) bool.
+func Filter[T any](slice []T, fn func(index int, t T) bool) []T {
+	res := make([]T, 0, 0)
+	for i, v := range slice {
+		if fn(i, v) {
+			res = append(res, v)
 		}
 	}
-
-	return res.Interface()
+	return res
 }
 
 // Count iterates over elements of slice, returns a count of all matched elements
@@ -288,37 +278,22 @@ func flattenRecursive(value reflect.Value, result reflect.Value) reflect.Value {
 }
 
 // ForEach iterates over elements of slice and invokes function for each element
-// The function signature should be func(index int, value interface{}).
-func ForEach(slice, function interface{}) {
-	sv := sliceValue(slice)
-	fn := functionValue(function)
-
-	elemType := sv.Type().Elem()
-	if checkSliceCallbackFuncSignature(fn, elemType, nil) {
-		panic("function param should be of type func(int, " + elemType.String() + ")" + elemType.String())
-	}
-
-	for i := 0; i < sv.Len(); i++ {
-		fn.Call([]reflect.Value{reflect.ValueOf(i), sv.Index(i)})
+// The fn signature should be func(int, T ).
+func ForEach[T any] (slice []T, fn func(index int, t T)) {
+	for i, v := range slice {
+		fn(i, v)
 	}
 }
 
 // Map creates an slice of values by running each element of `slice` thru `function`.
-// The function signature should be func(index int, value interface{}) interface{}.
-func Map(slice, function interface{}) interface{} {
-	sv := sliceValue(slice)
-	fn := functionValue(function)
-
-	elemType := sv.Type().Elem()
-	if checkSliceCallbackFuncSignature(fn, elemType, nil) {
-		panic("function param should be of type func(int, " + elemType.String() + ")" + elemType.String())
+// The fn signature should be func(int, T).
+func Map[T any, U any](slice []T, fn func(index int, t T) U) []U {
+	res := make([]U, len(slice), cap(slice))
+	for i, v := range slice {
+		res[i] = fn(i, v)
 	}
 
-	res := reflect.MakeSlice(sv.Type(), sv.Len(), sv.Len())
-	for i := 0; i < sv.Len(); i++ {
-		res.Index(i).Set(fn.Call([]reflect.Value{reflect.ValueOf(i), sv.Index(i)})[0])
-	}
-	return res.Interface()
+	return res
 }
 
 // Reduce creates an slice of values by running each element of `slice` thru `function`.
