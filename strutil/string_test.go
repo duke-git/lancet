@@ -7,231 +7,163 @@ import (
 )
 
 func TestCamelCase(t *testing.T) {
-	camelCase(t, "foo_bar", "fooBar")
-	camelCase(t, "Foo-Bar", "fooBar")
-	camelCase(t, "Foo&bar", "fooBar")
-	camelCase(t, "foo bar", "fooBar")
-}
+	assert := internal.NewAssert(t, "TestCamelCase")
 
-func camelCase(t *testing.T, test string, expected string) {
-	res := CamelCase(test)
-	if res != expected {
-		internal.LogFailedTestInfo(t, "CamelCase", test, expected, res)
-		t.FailNow()
-	}
+	assert.Equal("fooBar", CamelCase("foo_bar"))
+	assert.Equal("fooBar", CamelCase("Foo-Bar"))
+	assert.Equal("fooBar", CamelCase("Foo&bar"))
+	assert.Equal("fooBar", CamelCase("foo bar"))
+
+	assert.NotEqual("FooBar", CamelCase("foo_bar"))
 }
 
 func TestCapitalize(t *testing.T) {
-	capitalize(t, "foo", "Foo")
-	capitalize(t, "fOO", "Foo")
-	capitalize(t, "FOo", "Foo")
-}
+	assert := internal.NewAssert(t, "TestCapitalize")
 
-func capitalize(t *testing.T, test string, expected string) {
-	res := Capitalize(test)
-	if res != expected {
-		internal.LogFailedTestInfo(t, "Capitalize", test, expected, res)
-		t.FailNow()
-	}
+	assert.Equal("Foo", Capitalize("foo"))
+	assert.Equal("Foo", Capitalize("Foo"))
+	assert.Equal("Foo", Capitalize("Foo"))
+
+	assert.NotEqual("foo", Capitalize("Foo"))
 }
 
 func TestKebabCase(t *testing.T) {
-	kebabCase(t, "Foo Bar-", "foo-bar")
-	kebabCase(t, "foo_Bar", "foo-bar")
-	kebabCase(t, "fooBar", "foo-bar")
-	kebabCase(t, "__FOO_BAR__", "f-o-o-b-a-r")
-}
+	assert := internal.NewAssert(t, "TestKebabCase")
 
-func kebabCase(t *testing.T, test string, expected string) {
-	res := KebabCase(test)
-	if res != expected {
-		internal.LogFailedTestInfo(t, "KebabCase", test, expected, res)
-		t.FailNow()
-	}
+	assert.Equal("foo-bar", KebabCase("Foo Bar-"))
+	assert.Equal("foo-bar", KebabCase("foo_Bar"))
+	assert.Equal("foo-bar", KebabCase("fooBar"))
+	assert.Equal("f-o-o-b-a-r", KebabCase("__FOO_BAR__"))
+
+	assert.NotEqual("foo_bar", KebabCase("fooBar"))
 }
 
 func TestSnakeCase(t *testing.T) {
-	snakeCase(t, "Foo Bar-", "foo_bar")
-	snakeCase(t, "foo_Bar", "foo_bar")
-	snakeCase(t, "fooBar", "foo_bar")
-	snakeCase(t, "__FOO_BAR__", "f_o_o_b_a_r")
-	snakeCase(t, "aBbc-s$@a&%_B.B^C", "a_bbc_s_a_b_b_c")
-}
+	assert := internal.NewAssert(t, "TestSnakeCase")
 
-func snakeCase(t *testing.T, test string, expected string) {
-	res := SnakeCase(test)
-	if res != expected {
-		internal.LogFailedTestInfo(t, "SnakeCase", test, expected, res)
-		t.FailNow()
-	}
+	assert.Equal("foo_bar", SnakeCase("Foo Bar-"))
+	assert.Equal("foo_bar", SnakeCase("foo_Bar"))
+	assert.Equal("foo_bar", SnakeCase("fooBar"))
+	assert.Equal("f_o_o_b_a_r", SnakeCase("__FOO_BAR__"))
+	assert.Equal("a_bbc_s_a_b_b_c", SnakeCase("aBbc-s$@a&%_B.B^C"))
+
+	assert.NotEqual("foo-bar", SnakeCase("foo_Bar"))
 }
 
 func TestLowerFirst(t *testing.T) {
-	lowerFirst(t, "foo", "foo")
-	lowerFirst(t, "BAR", "bAR")
-	lowerFirst(t, "FOo", "fOo")
-	lowerFirst(t, "FOo大", "fOo大")
-}
+	assert := internal.NewAssert(t, "TestLowerFirst")
 
-func lowerFirst(t *testing.T, test string, expected string) {
-	res := LowerFirst(test)
-	if res != expected {
-		internal.LogFailedTestInfo(t, "LowerFirst", test, expected, res)
-		t.FailNow()
-	}
+	assert.Equal("foo", LowerFirst("foo"))
+	assert.Equal("bAR", LowerFirst("BAR"))
+	assert.Equal("fOo", LowerFirst("FOo"))
+	assert.Equal("fOo大", LowerFirst("FOo大"))
+
+	assert.NotEqual("Bar", LowerFirst("BAR"))
 }
 
 func TestPadEnd(t *testing.T) {
-	padEnd(t, "a", 1, "b", "a")
-	padEnd(t, "a", 2, "b", "ab")
-	padEnd(t, "abcd", 6, "mno", "abcdmn")
-	padEnd(t, "abcd", 6, "m", "abcdmm")
-	padEnd(t, "abc", 6, "ab", "abcaba")
-}
+	assert := internal.NewAssert(t, "TestPadEnd")
 
-func padEnd(t *testing.T, source string, size int, fillString string, expected string) {
-	res := PadEnd(source, size, fillString)
-	if res != expected {
-		internal.LogFailedTestInfo(t, "PadEnd", source, expected, res)
-		t.FailNow()
-	}
+	assert.Equal("a", PadEnd("a", 1, "b"))
+	assert.Equal("ab", PadEnd("a", 2, "b"))
+	assert.Equal("abcdmn", PadEnd("abcd", 6, "mno"))
+	assert.Equal("abcdmm", PadEnd("abcd", 6, "m"))
+	assert.Equal("abcaba", PadEnd("abc", 6, "ab"))
+
+	assert.NotEqual("ba", PadEnd("a", 2, "b"))
 }
 
 func TestPadStart(t *testing.T) {
-	padStart(t, "a", 1, "b", "a")
-	padStart(t, "a", 2, "b", "ba")
-	padStart(t, "abcd", 6, "mno", "mnabcd")
-	padStart(t, "abcd", 6, "m", "mmabcd")
-	padStart(t, "abc", 6, "ab", "abaabc")
-}
+	assert := internal.NewAssert(t, "TestPadStart")
 
-func padStart(t *testing.T, source string, size int, fillString string, expected string) {
-	res := PadStart(source, size, fillString)
-	if res != expected {
-		internal.LogFailedTestInfo(t, "PadEnd", source, expected, res)
-		t.FailNow()
-	}
+	assert.Equal("a", PadStart("a", 1, "b"))
+	assert.Equal("ba", PadStart("a", 2, "b"))
+	assert.Equal("mnabcd", PadStart("abcd", 6, "mno"))
+	assert.Equal("mmabcd", PadStart("abcd", 6, "m"))
+	assert.Equal("abaabc", PadStart("abc", 6, "ab"))
+
+	assert.NotEqual("ab", PadStart("a", 2, "b"))
 }
 
 func TestBefore(t *testing.T) {
-	before(t, "lancet", "", "lancet")
-	before(t, "github.com/test/lancet", "/", "github.com")
-	before(t, "github.com/test/lancet", "test", "github.com/")
-}
+	assert := internal.NewAssert(t, "TestBefore")
 
-func before(t *testing.T, source, char, expected string) {
-	res := Before(source, char)
-	if res != expected {
-		internal.LogFailedTestInfo(t, "Before", source, expected, res)
-		t.FailNow()
-	}
+	assert.Equal("lancet", Before("lancet", ""))
+	assert.Equal("github.com", Before("github.com/test/lancet", "/"))
+	assert.Equal("github.com/", Before("github.com/test/lancet", "test"))
 }
 
 func TestBeforeLast(t *testing.T) {
-	beforeLast(t, "lancet", "", "lancet")
-	beforeLast(t, "github.com/test/lancet", "/", "github.com/test")
-	beforeLast(t, "github.com/test/test/lancet", "test", "github.com/test/")
-}
+	assert := internal.NewAssert(t, "TestBeforeLast")
 
-func beforeLast(t *testing.T, source, char, expected string) {
-	res := BeforeLast(source, char)
-	if res != expected {
-		internal.LogFailedTestInfo(t, "BeforeLast", source, expected, res)
-		t.FailNow()
-	}
+	assert.Equal("lancet", BeforeLast("lancet", ""))
+	assert.Equal("github.com/test", BeforeLast("github.com/test/lancet", "/"))
+	assert.Equal("github.com/test/", BeforeLast("github.com/test/test/lancet", "test"))
+
+	assert.NotEqual("github.com/", BeforeLast("github.com/test/test/lancet", "test"))
 }
 
 func TestAfter(t *testing.T) {
-	after(t, "lancet", "", "lancet")
-	after(t, "github.com/test/lancet", "/", "test/lancet")
-	after(t, "github.com/test/lancet", "test", "/lancet")
-}
+	assert := internal.NewAssert(t, "TestAfter")
 
-func after(t *testing.T, source, char, expected string) {
-	res := After(source, char)
-	if res != expected {
-		internal.LogFailedTestInfo(t, "After", source, expected, res)
-		t.FailNow()
-	}
+	assert.Equal("lancet", After("lancet", ""))
+	assert.Equal("test/lancet", After("github.com/test/lancet", "/"))
+	assert.Equal("/lancet", After("github.com/test/lancet", "test"))
 }
 
 func TestAfterLast(t *testing.T) {
-	afterLast(t, "lancet", "", "lancet")
-	afterLast(t, "github.com/test/lancet", "/", "lancet")
-	afterLast(t, "github.com/test/test/lancet", "test", "/lancet")
-}
+	assert := internal.NewAssert(t, "TestAfterLast")
 
-func afterLast(t *testing.T, source, char, expected string) {
-	res := AfterLast(source, char)
-	if res != expected {
-		internal.LogFailedTestInfo(t, "AfterLast", source, expected, res)
-		t.FailNow()
-	}
+	assert.Equal("lancet", AfterLast("lancet", ""))
+	assert.Equal("lancet", AfterLast("github.com/test/lancet", "/"))
+	assert.Equal("/lancet", AfterLast("github.com/test/lancet", "test"))
+	assert.Equal("/lancet", AfterLast("github.com/test/test/lancet", "test"))
+
+	assert.NotEqual("/test/lancet", AfterLast("github.com/test/test/lancet", "test"))
 }
 
 func TestIsString(t *testing.T) {
-	isString(t, "lancet", true)
-	isString(t, 1, false)
-	isString(t, true, false)
-	isString(t, []string{}, false)
-}
+	assert := internal.NewAssert(t, "TestIsString")
 
-func isString(t *testing.T, test interface{}, expected bool) {
-	res := IsString(test)
-	if res != expected {
-		internal.LogFailedTestInfo(t, "IsString", test, expected, res)
-		t.FailNow()
-	}
+	assert.Equal(true, IsString("lancet"))
+	assert.Equal(true, IsString(""))
+	assert.Equal(false, IsString(1))
+	assert.Equal(false, IsString(true))
+	assert.Equal(false, IsString([]string{}))
 }
 
 func TestReverseStr(t *testing.T) {
-	reverseStr(t, "abc", "cba")
-	reverseStr(t, "12345", "54321")
-}
+	assert := internal.NewAssert(t, "TestReverseStr")
 
-func reverseStr(t *testing.T, test string, expected string) {
-	res := ReverseStr(test)
-	if res != expected {
-		internal.LogFailedTestInfo(t, "ReverseStr", test, expected, res)
-		t.FailNow()
-	}
+	assert.Equal("cba", ReverseStr("abc"))
+	assert.Equal("54321", ReverseStr("12345"))
 }
 
 func TestWrap(t *testing.T) {
-	wrap(t, "ab", "", "ab")
-	wrap(t, "", "*", "")
-	wrap(t, "ab", "*", "*ab*")
-	wrap(t, "ab", "\"", "\"ab\"")
-	wrap(t, "ab", "'", "'ab'")
-}
+	assert := internal.NewAssert(t, "TestWrap")
 
-func wrap(t *testing.T, test string, wrapWith string, expected string) {
-	res := Wrap(test, wrapWith)
-	if res != expected {
-		internal.LogFailedTestInfo(t, "Wrap", test, expected, res)
-		t.FailNow()
-	}
+	assert.Equal("ab", Wrap("ab", ""))
+	assert.Equal("", Wrap("", "*"))
+	assert.Equal("*ab*", Wrap("ab", "*"))
+	assert.Equal("\"ab\"", Wrap("ab", "\""))
+	assert.Equal("'ab'", Wrap("ab", "'"))
 }
 
 func TestUnwrap(t *testing.T) {
-	unwrap(t, "", "*", "")
-	unwrap(t, "ab", "", "ab")
-	unwrap(t, "ab", "*", "ab")
-	unwrap(t, "**ab**", "*", "*ab*")
-	unwrap(t, "**ab**", "**", "ab")
-	unwrap(t, "\"ab\"", "\"", "ab")
-	unwrap(t, "*ab", "*", "*ab")
-	unwrap(t, "ab*", "*", "ab*")
-	unwrap(t, "***", "*", "*")
-	unwrap(t, "**", "*", "")
-	unwrap(t, "***", "**", "***")
-	unwrap(t, "**", "**", "**")
-}
+	assert := internal.NewAssert(t, "TestUnwrap")
 
-func unwrap(t *testing.T, test string, wrapToken string, expected string) {
-	res := Unwrap(test, wrapToken)
-	if res != expected {
-		internal.LogFailedTestInfo(t, "Unwrap", test+"->"+wrapToken, expected, res)
-		t.FailNow()
-	}
+	assert.Equal("", Unwrap("", "*"))
+	assert.Equal("ab", Unwrap("ab", ""))
+	assert.Equal("ab", Unwrap("ab", "*"))
+	assert.Equal("*ab*", Unwrap("**ab**", "*"))
+	assert.Equal("ab", Unwrap("**ab**", "**"))
+	assert.Equal("ab", Unwrap("\"ab\"", "\""))
+	assert.Equal("*ab", Unwrap("*ab", "*"))
+	assert.Equal("ab*", Unwrap("ab*", "*"))
+	assert.Equal("*", Unwrap("***", "*"))
+
+	assert.Equal("", Unwrap("**", "*"))
+	assert.Equal("***", Unwrap("***", "**"))
+	assert.Equal("**", Unwrap("**", "**"))
+
 }
