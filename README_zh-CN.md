@@ -393,27 +393,27 @@ func main() {
 - 函数列表：
 
 ```go
-func Contain(slice interface{}, value interface{}) bool //判断slice是否包含value
-func Chunk(slice []interface{}, size int) [][]interface{} //均分slice
+func Contain[T comparable](slice []T, value T) bool //判断slice是否包含value
+func Chunk[T any](slice []T, size int) [][]T //均分slice
 func ConvertSlice(originalSlice interface{}, newSliceType reflect.Type) interface{} //将originalSlice转换为 newSliceType
-func Difference(slice1, slice2 interface{}) interface{} //返回
+func Difference[T comparable](slice1, slice2 []T) []T //返回切片，其元素在slice1中，不在slice2中
 func DeleteByIndex(slice interface{}, start int, end ...int) (interface{}, error) //删除切片中start到end位置的值
 func Drop(slice interface{}, n int) interface{} //创建一个新切片，当n大于0时删除原切片前n个元素，当n小于0时删除原切片后n个元素
-func Every(slice, function interface{}) bool //slice中所有元素都符合函数条件时返回true, 否则返回false. 函数签名：func(index int, value interface{}) bool
-func None(slice, function interface{}) bool //slice中所有元素都不符合函数条件时返回true, 否则返回false. 函数签名：func(index int, value interface{}) bool
+func Every[T any](slice []T, fn func(index int, t T) bool) bool //slice中所有元素都符合函数条件时返回true, 否则返回false. 函数签名：func(index int, t T) bool
+func None[T any](slice []T, fn func(index int, t T) bool) bool //slice中所有元素都不符合函数条件时返回true, 否则返回false. 函数签名：func(index int, value interface{}) bool
 func Find[T any](slice []T, fn func(index int, t T) bool) (*T, bool)//查找slice中第一个符合条件的元素，函数签名：func(index int, value interface{}) bool
-func Filter(slice, function interface{}) interface{} //过滤slice, 函数签名：func(index int, value interface{}) bool
-func FlattenDeep(slice interface{}) interface{} //将slice递归为一维切片。
-func ForEach(slice, function interface{}) //遍历切片，在每个元素上执行函数，函数签名：func(index int, value interface{})
+func Filter [T any] (slice []T, fn func(index int, t T) bool) []T //过滤slice
+func FlattenDeep(slice interface{}) interface{} //将slice递归为一维切片
+func ForEach [T any] (slice []T, fn func(index int, t T)) //遍历切片，在每个元素上执行函数
 func IntSlice(slice interface{}) ([]int, error) //转成int切片
 func InterfaceSlice(slice interface{}) []interface{} //转成interface{}切片
 func Intersection(slices ...interface{}) interface{} //slice交集，去重
 func InsertByIndex(slice interface{}, index int, value interface{}) (interface{}, error) //在切片中index位置插入value
 func Map(slice, function interface{}) interface{} //遍历切片, 函数签名：func(index int, value interface{}) interface{}
 func ReverseSlice(slice interface{}) //反转切片
-func Reduce(slice, function, zero interface{}) interface{} //切片reduce操作， 函数签名：func(index int, value1, value2 interface{}) interface{}
+func Reduce[T any](slice []T, fn func(index int, t1, t2 T) T, initial T) T //切片reduce操作
 func Shuffle(slice interface{}) interface{} //创建一个被打乱值的切片
-func Some(slice, function interface{}) bool //slice中任意一个元素都符合函数条件时返回true, 否则返回false. 函数签名：func(index int, value interface{}) bool
+func Some[T any](slice []T, fn func(index int, t T) bool) bool //slice中任意一个元素都符合函数条件时返回true, 否则返回false.
 func SortByField(slice interface{}, field string, sortType ...string) error //对struct切片进行排序
 func StringSlice(slice interface{}) []string //转为string切片
 func Unique(slice interface{}) interface{} //去重切片

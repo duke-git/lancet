@@ -392,14 +392,14 @@ func main() {
 - Function list:
 
 ```go
-func Contain(slice interface{}, value interface{}) bool //check if the value is in the slice or not
-func Chunk(slice []interface{}, size int) [][]interface{} //creates an slice of elements split into groups the length of `size`.
+func Contain[T comparable](slice []T, value T) bool //check if the value is in the slice or not
+func Chunk[T any](slice []T, size int) [][]T //creates an slice of elements split into groups the length of size.
 func ConvertSlice(originalSlice interface{}, newSliceType reflect.Type) interface{} //convert originalSlice to newSliceType
-func Difference(slice1, slice2 interface{}) interface{} //creates an slice of whose element not included in the other given slice
+func Difference[T comparable](slice1, slice2 []T) []T //creates an slice of whose element not included in the other given slice
 func DeleteByIndex(slice interface{}, start int, end ...int) (interface{}, error) //delete the element of slice from start index to end index - 1
 func Drop(slice interface{}, n int) interface{} //creates a slice with `n` elements dropped from the beginning when n > 0, or `n` elements dropped from the ending when n < 0
-func Every(slice, function interface{}) bool //return true if all of the values in the slice pass the predicate function, function signature should be func(index int, value interface{}) bool
-func None(slice, function interface{}) bool // return true if all the values in the slice mismatch the criteria
+func Every[T any](slice []T, fn func(index int, t T) bool) bool  //return true if all of the values in the slice pass the predicate function
+func None[T any](slice []T, fn func(index int, t T) bool) bool // return true if all the values in the slice mismatch the criteria
 func Filter [T any] (slice []T, fn func(index int, t T) bool) []T //filter slice, fn signature should be func(int, T) bool.
 func Find[T any](slice []T, fn func(index int, t T) bool) (*T, bool) //iterates over elements of slice, returning the first one that passes a truth test on function.function signature should be func(index int, value interface{}) bool .
 func FlattenDeep(slice interface{}) interface{} //flattens slice recursive
@@ -410,10 +410,10 @@ func Intersection(slices ...interface{}) interface{} //creates a slice of unique
 func InsertByIndex(slice interface{}, index int, value interface{}) (interface{}, error) //insert the element into slice at index.
 func Map [T any, U any] (slice []T, fn func(index int, t T) U) []U //map lisce, fn signature should be func(int, T).
 func ReverseSlice(slice interface{}) //revere slice
-func Reduce(slice, function, zero interface{}) interface{} //reduce slice, function signature should be func(index int, value1, value2 interface{}) interface{}
+func Reduce[T any](slice []T, fn func(index int, t1, t2 T) T, initial T) T //reduce slice
 func Shuffle(slice interface{}) interface{} //creates an slice of shuffled values
 func SortByField(slice interface{}, field string, sortType ...string) error //sort struct slice by field
-func Some(slice, function interface{}) bool //return true if any of the values in the list pass the predicate function, function signature should be func(index int, value interface{}) bool
+func Some[T any](slice []T, fn func(index int, t T) bool) bool //return true if any of the values in the list pass the predicate fn function
 func StringSlice(slice interface{}) []string //convert value to string slice
 func Unique(slice interface{}) interface{} //remove duplicate elements in slice
 func Union(slices ...interface{}) interface{} //Union creates a slice of unique values, in order, from all given slices. using == for equality comparisons.
