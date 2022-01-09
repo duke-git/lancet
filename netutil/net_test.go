@@ -1,7 +1,6 @@
 package netutil
 
 import (
-	"fmt"
 	"net"
 	"testing"
 
@@ -9,23 +8,25 @@ import (
 )
 
 func TestGetInternalIp(t *testing.T) {
+	assert := internal.NewAssert(t, "TestBefore")
+
 	internalIp := GetInternalIp()
 	ip := net.ParseIP(internalIp)
-	if ip == nil {
-		internal.LogFailedTestInfo(t, "GetInternalIp", "GetInternalIp", "", ip)
-		t.FailNow()
-	}
+	assert.IsNotNil(ip)
 }
 
 func TestGetPublicIpInfo(t *testing.T) {
+	assert := internal.NewAssert(t, "TestGetPublicIpInfo")
+
 	publicIpInfo, err := GetPublicIpInfo()
-	if err != nil {
-		t.FailNow()
-	}
-	fmt.Printf("public ip info is: %+v \n", *publicIpInfo)
+	assert.IsNil(err)
+
+	t.Logf("public ip info is: %+v \n", *publicIpInfo)
 }
 
 func TestIsPublicIP(t *testing.T) {
+	assert := internal.NewAssert(t, "TestIsPublicIP")
+
 	ips := []net.IP{
 		net.ParseIP("127.0.0.1"),
 		net.ParseIP("192.168.0.1"),
@@ -37,11 +38,7 @@ func TestIsPublicIP(t *testing.T) {
 	expected := []bool{false, false, false, false, true}
 
 	for i := 0; i < len(ips); i++ {
-		res := IsPublicIP(ips[i])
-
-		if res != expected[i] {
-			internal.LogFailedTestInfo(t, "IsPublicIP", ips[i], expected[i], res)
-			t.FailNow()
-		}
+		actual := IsPublicIP(ips[i])
+		assert.Equal(expected[i], actual)
 	}
 }
