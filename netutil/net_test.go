@@ -8,7 +8,7 @@ import (
 )
 
 func TestGetInternalIp(t *testing.T) {
-	assert := internal.NewAssert(t, "TestBefore")
+	assert := internal.NewAssert(t, "TestGetInternalIp")
 
 	internalIp := GetInternalIp()
 	ip := net.ParseIP(internalIp)
