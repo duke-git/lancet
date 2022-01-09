@@ -8,34 +8,25 @@ import (
 )
 
 func TestContain(t *testing.T) {
-	t1 := []string{"a", "b", "c", "d"}
-	contain(t, t1, "a", true)
-	contain(t, t1, "e", false)
+	assert := internal.NewAssert(t, "TestContain")
 
-	var t2 []string
-	contain(t, t2, "1", false)
+	assert.Equal(true, Contain([]string{"a", "b", "c"}, "a"))
+	assert.Equal(false, Contain([]string{"a", "b", "c"}, "d"))
+	assert.Equal(true, Contain([]string{""}, ""))
+	assert.Equal(false, Contain([]string{}, ""))
 
-	m := make(map[string]int)
-	m["a"] = 1
-	contain(t, m, "a", true)
-	contain(t, m, "b", false)
+	var m = map[string]int{"a": 1}
+	assert.Equal(true, Contain(m, "a"))
+	assert.Equal(false, Contain(m, "b"))
 
-	s := "hello"
-	contain(t, s, "h", true)
-	contain(t, s, "s", false)
-}
-
-func contain(t *testing.T, test interface{}, value interface{}, expected bool) {
-	res := Contain(test, value)
-	if res != expected {
-		internal.LogFailedTestInfo(t, "Contain", test, expected, res)
-		t.FailNow()
-	}
+	assert.Equal(true, Contain("abc", "a"))
+	assert.Equal(false, Contain("abc", "d"))
 }
 
 func TestChunk(t *testing.T) {
-	t1 := []string{"a", "b", "c", "d", "e"}
+	assert := internal.NewAssert(t, "TestChunk")
 
+	arr := []string{"a", "b", "c", "d", "e"}
 	r1 := [][]interface{}{
 		{"a"},
 		{"b"},
@@ -43,26 +34,26 @@ func TestChunk(t *testing.T) {
 		{"d"},
 		{"e"},
 	}
-	chunk(t, InterfaceSlice(t1), 1, r1)
+	assert.Equal(r1, Chunk(InterfaceSlice(arr), 1))
 
 	r2 := [][]interface{}{
 		{"a", "b"},
 		{"c", "d"},
 		{"e"},
 	}
-	chunk(t, InterfaceSlice(t1), 2, r2)
+	assert.Equal(r2, Chunk(InterfaceSlice(arr), 2))
 
 	r3 := [][]interface{}{
 		{"a", "b", "c"},
 		{"d", "e"},
 	}
-	chunk(t, InterfaceSlice(t1), 3, r3)
+	assert.Equal(r3, Chunk(InterfaceSlice(arr), 3))
 
 	r4 := [][]interface{}{
 		{"a", "b", "c", "d"},
 		{"e"},
 	}
-	chunk(t, InterfaceSlice(t1), 4, r4)
+	assert.Equal(r4, Chunk(InterfaceSlice(arr), 4))
 
 	r5 := [][]interface{}{
 		{"a"},
@@ -71,16 +62,7 @@ func TestChunk(t *testing.T) {
 		{"d"},
 		{"e"},
 	}
-	chunk(t, InterfaceSlice(t1), 5, r5)
-
-}
-
-func chunk(t *testing.T, test []interface{}, num int, expected [][]interface{}) {
-	res := Chunk(test, num)
-	if !reflect.DeepEqual(res, expected) {
-		internal.LogFailedTestInfo(t, "Chunk", test, expected, res)
-		t.FailNow()
-	}
+	assert.Equal(r5, Chunk(InterfaceSlice(arr), 5))
 }
 
 func TestConvertSlice(t *testing.T) {
@@ -101,11 +83,9 @@ func TestEvery(t *testing.T) {
 	isEven := func(i, num int) bool {
 		return num%2 == 0
 	}
-	res := Every(nums, isEven)
-	if res != false {
-		internal.LogFailedTestInfo(t, "Every", nums, false, res)
-		t.FailNow()
-	}
+
+	assert := internal.NewAssert(t, "TestEvery")
+	assert.Equal(false, Every(nums, isEven))
 }
 
 func TestNone(t *testing.T) {
@@ -113,42 +93,34 @@ func TestNone(t *testing.T) {
 	check := func(i, num int) bool {
 		return num%2 == 1
 	}
-	res := None(nums, check)
-	if res != false {
-		internal.LogFailedTestInfo(t, "None", nums, false, res)
-		t.FailNow()
-	}
+
+	assert := internal.NewAssert(t, "TestNone")
+	assert.Equal(false, None(nums, check))
 }
 
 func TestSome(t *testing.T) {
 	nums := []int{1, 2, 3, 5}
-	isEven := func(i, num int) bool {
+	hasEven := func(i, num int) bool {
 		return num%2 == 0
 	}
-	res := Some(nums, isEven)
-	if res != true {
-		internal.LogFailedTestInfo(t, "Some", nums, true, res)
-		t.FailNow()
-	}
+
+	assert := internal.NewAssert(t, "TestSome")
+	assert.Equal(true, Some(nums, hasEven))
 }
 
 func TestFilter(t *testing.T) {
 	nums := []int{1, 2, 3, 4, 5}
-	even := func(i, num int) bool {
+	isEven := func(i, num int) bool {
 		return num%2 == 0
 	}
-	e1 := []int{2, 4}
-	r1 := Filter(nums, even)
-	if !reflect.DeepEqual(r1, e1) {
-		internal.LogFailedTestInfo(t, "Filter", nums, e1, r1)
-		t.FailNow()
-	}
+
+	assert := internal.NewAssert(t, "TestFilter")
+	assert.Equal([]int{2, 4}, Filter(nums, isEven))
 
 	type student struct {
 		name string
 		age  int
 	}
-
 	students := []student{
 		{"a", 10},
 		{"b", 11},
@@ -156,8 +128,7 @@ func TestFilter(t *testing.T) {
 		{"d", 13},
 		{"e", 14},
 	}
-
-	e2 := []student{
+	studentsOfAageGreat12 := []student{
 		{"d", 13},
 		{"e", 14},
 	}
@@ -165,12 +136,7 @@ func TestFilter(t *testing.T) {
 		return s.age > 12
 	}
 
-	r2 := Filter(students, filterFunc)
-	if !reflect.DeepEqual(r2, e2) {
-		internal.LogFailedTestInfo(t, "Filter", students, e2, r2)
-		t.FailNow()
-	}
-
+	assert.Equal(studentsOfAageGreat12, Filter(students, filterFunc))
 }
 
 func TestGroupBy(t *testing.T) {
@@ -179,22 +145,12 @@ func TestGroupBy(t *testing.T) {
 		return (num % 2) == 0
 	}
 	expectedEven := []int{2, 4, 6}
+	expectedOdd := []int{1, 3, 5}
 	even, odd := GroupBy(nums, evenFunc)
 
-	t.Log("odd", odd)
-
-	t.Log("even", even)
-
-	if !reflect.DeepEqual(IntSlice(even), expectedEven) {
-		internal.LogFailedTestInfo(t, "GroupBy even", nums, expectedEven, even)
-		t.FailNow()
-	}
-
-	expectedOdd := []int{1, 3, 5}
-	if !reflect.DeepEqual(IntSlice(odd), expectedOdd) {
-		internal.LogFailedTestInfo(t, "GroupBy odd", nums, expectedOdd, odd)
-		t.FailNow()
-	}
+	assert := internal.NewAssert(t, "TestGroupBy")
+	assert.Equal(expectedEven, even)
+	assert.Equal(expectedOdd, odd)
 }
 
 func TestCount(t *testing.T) {
@@ -202,12 +158,9 @@ func TestCount(t *testing.T) {
 	evenFunc := func(i, num int) bool {
 		return (num % 2) == 0
 	}
-	c := Count(nums, evenFunc)
 
-	if c != 3 {
-		internal.LogFailedTestInfo(t, "Count", nums, 3, c)
-		t.FailNow()
-	}
+	assert := internal.NewAssert(t, "TestCount")
+	assert.Equal(3, Count(nums, evenFunc))
 }
 
 func TestFind(t *testing.T) {
@@ -220,10 +173,8 @@ func TestFind(t *testing.T) {
 		t.Fatal("found nothing")
 	}
 
-	if *res != 2 {
-		internal.LogFailedTestInfo(t, "Find", nums, 2, res)
-		t.FailNow()
-	}
+	assert := internal.NewAssert(t, "TestFind")
+	assert.Equal(2, *res)
 }
 
 func TestFindFoundNothing(t *testing.T) {
@@ -232,20 +183,19 @@ func TestFindFoundNothing(t *testing.T) {
 		return num > 1
 	}
 	_, ok := Find(nums, findFunc)
-	if ok {
-		t.Fatal("found something")
-	}
+	// if ok {
+	// 	t.Fatal("found something")
+	// }
+	assert := internal.NewAssert(t, "TestFindFoundNothing")
+	assert.Equal(false, ok)
 }
 
 func TestFlattenDeep(t *testing.T) {
 	input := [][][]string{{{"a", "b"}}, {{"c", "d"}}}
 	expected := []string{"a", "b", "c", "d"}
 
-	res := FlattenDeep(input)
-	if !reflect.DeepEqual(res, expected) {
-		internal.LogFailedTestInfo(t, "FlattenDeep", input, expected, res)
-		t.FailNow()
-	}
+	assert := internal.NewAssert(t, "TestFlattenDeep")
+	assert.Equal(expected, FlattenDeep(input))
 }
 
 func TestForEach(t *testing.T) {
@@ -259,26 +209,19 @@ func TestForEach(t *testing.T) {
 
 	ForEach(numbers, addTwo)
 
-	if !reflect.DeepEqual(numbersAddTwo, expected) {
-		internal.LogFailedTestInfo(t, "ForEach", numbers, expected, numbersAddTwo)
-		t.FailNow()
-	}
-
+	assert := internal.NewAssert(t, "TestForEach")
+	assert.Equal(expected, numbersAddTwo)
 }
 
 func TestMap(t *testing.T) {
-	numbers := []int{1, 2, 3, 4}
+	nums := []int{1, 2, 3, 4}
 	multiplyTwo := func(i, num int) int {
 		return num * 2
 	}
 
-	expected := []int{2, 4, 6, 8}
-	actual := Map(numbers, multiplyTwo)
 
-	if !reflect.DeepEqual(actual, expected) {
-		internal.LogFailedTestInfo(t, "Map", numbers, expected, actual)
-		t.FailNow()
-	}
+	assert := internal.NewAssert(t, "TestMap")
+	assert.Equal([]int{2, 4, 6, 8}, Map(nums, multiplyTwo))
 
 	type student struct {
 		name string
@@ -289,8 +232,7 @@ func TestMap(t *testing.T) {
 		{"b", 2},
 		{"c", 3},
 	}
-
-	e2 := []student{
+	studentsOfAdd10Aage := []student{
 		{"a", 11},
 		{"b", 12},
 		{"c", 13},
@@ -299,11 +241,8 @@ func TestMap(t *testing.T) {
 		s.age += 10
 		return s
 	}
-	r2 := Map(students, mapFunc)
-	if !reflect.DeepEqual(r2, e2) {
-		internal.LogFailedTestInfo(t, "Filter", students, e2, r2)
-		t.FailNow()
-	}
+
+	assert.Equal(studentsOfAdd10Aage, Map(students, mapFunc))
 }
 
 func TestReduce(t *testing.T) {
@@ -311,239 +250,154 @@ func TestReduce(t *testing.T) {
 		{},
 		{1},
 		{1, 2, 3, 4}}
+
 	expected := []int{0, 1, 10}
+
 	f := func(i, v1, v2 int) int {
 		return v1 + v2
 	}
+
+	assert := internal.NewAssert(t, "TestReduce")
+
 	for i := 0; i < len(cases); i++ {
-		res := Reduce(cases[i], f, 0)
-		if res != expected[i] {
-			internal.LogFailedTestInfo(t, "Reduce", cases[i], expected[i], res)
-			t.FailNow()
-		}
+		actual := Reduce(cases[i], f, 0)
+		assert.Equal(expected[i], actual)
 	}
 }
 
 func TestIntSlice(t *testing.T) {
-	var t1 []interface{}
-	t1 = append(t1, 1, 2, 3, 4, 5)
-	expect := []int{1, 2, 3, 4, 5}
-	intSlice(t, t1, expect)
-}
+	var nums []interface{}
+	nums = append(nums, 1, 2, 3)
 
-func intSlice(t *testing.T, test interface{}, expected []int) {
-	res := IntSlice(test)
-
-	if !reflect.DeepEqual(res, expected) {
-		internal.LogFailedTestInfo(t, "IntSlice", test, expected, res)
-		t.FailNow()
-	}
+	assert := internal.NewAssert(t, "TestIntSlice")
+	assert.Equal([]int{1, 2, 3}, IntSlice(nums))
 }
 
 func TestStringSlice(t *testing.T) {
-	var t1 []interface{}
-	t1 = append(t1, "a", "b", "c", "d", "e")
-	expect := []string{"a", "b", "c", "d", "e"}
-	stringSlice(t, t1, expect)
-}
+	var strs []interface{}
+	strs = append(strs, "a", "b", "c")
 
-func stringSlice(t *testing.T, test interface{}, expected []string) {
-	res := StringSlice(test)
-	if !reflect.DeepEqual(res, expected) {
-		internal.LogFailedTestInfo(t, "StringSlice", test, expected, res)
-		t.FailNow()
-	}
+	assert := internal.NewAssert(t, "TestStringSlice")
+	assert.Equal([]string{"a", "b", "c"}, StringSlice(strs))
 }
 
 func TestInterfaceSlice(t *testing.T) {
-	t1 := []string{"a", "b", "c", "d", "e"}
-	expect := []interface{}{"a", "b", "c", "d", "e"}
-	interfaceSlice(t, t1, expect)
-}
+	strs := []string{"a", "b", "c"}
+	expect := []interface{}{"a", "b", "c"}
 
-func interfaceSlice(t *testing.T, test interface{}, expected []interface{}) {
-	res := InterfaceSlice(test)
-	if !reflect.DeepEqual(res, expected) {
-		internal.LogFailedTestInfo(t, "InterfaceSlice", test, expected, res)
-		t.FailNow()
-	}
+	assert := internal.NewAssert(t, "TestInterfaceSlice")
+	assert.Equal(expect, InterfaceSlice(strs))
 }
 
 func TestDeleteByIndex(t *testing.T) {
-	origin := []string{"a", "b", "c", "d", "e"}
+	assert := internal.NewAssert(t, "TestDeleteByIndex")
 
 	t1 := []string{"a", "b", "c", "d", "e"}
 	r1 := []string{"b", "c", "d", "e"}
-	deleteByIndex(t, origin, t1, 0, 0, r1)
+	a1, _ := DeleteByIndex(t1, 0)
+	assert.Equal(r1, a1)
 
-	t1 = []string{"a", "b", "c", "d", "e"}
+	t2 := []string{"a", "b", "c", "d", "e"}
 	r2 := []string{"a", "b", "c", "e"}
-	deleteByIndex(t, origin, t1, 3, 0, r2)
+	a2, _ := DeleteByIndex(t2, 3)
+	assert.Equal(r2, a2)
 
-	t1 = []string{"a", "b", "c", "d", "e"}
-	r3 := []string{"a", "b", "c", "d"}
-	deleteByIndex(t, origin, t1, 4, 0, r3)
+	t3 := []string{"a", "b", "c", "d", "e"}
+	r3 := []string{"c", "d", "e"}
+	a3, _ := DeleteByIndex(t3, 0, 2)
+	assert.Equal(r3, a3)
 
-	t1 = []string{"a", "b", "c", "d", "e"}
-	r4 := []string{"c", "d", "e"}
-	deleteByIndex(t, origin, t1, 0, 2, r4)
+	t4 := []string{"a", "b", "c", "d", "e"}
+	r4 := []string{}
+	a4, _ := DeleteByIndex(t4, 0, 5)
+	assert.Equal(r4, a4)
 
-	t1 = []string{"a", "b", "c", "d", "e"}
-	r5 := []string{} // var r5 []string{} failed
-	deleteByIndex(t, origin, t1, 0, 5, r5)
+	t5 := []string{"a", "b", "c", "d", "e"}
+	_, err := DeleteByIndex(t5, 1, 1)
+	assert.IsNotNil(err)
 
-	// failed
-	//t1 = []string{"a", "b", "c", "d","e"}
-	//r6 := []string{"a", "c", "d","e"}
-	//deleteByIndex(t, origin, t1, 1, 1, r6)
-
-	// failed
-	//t1 = []string{"a", "b", "c", "d","e"}
-	//r7 := []string{}
-	//deleteByIndex(t, origin, t1, 0, 6, r7)
-}
-
-func deleteByIndex(t *testing.T, origin, test interface{}, start, end int, expected interface{}) {
-	var res interface{}
-	var err error
-	if end != 0 {
-		res, err = DeleteByIndex(test, start, end)
-	} else {
-		res, err = DeleteByIndex(test, start)
-	}
-	if err != nil {
-		t.Error("DeleteByIndex Error: " + err.Error())
-	}
-
-	if !reflect.DeepEqual(res, expected) {
-		internal.LogFailedTestInfo(t, "DeleteByIndex", origin, expected, res)
-		t.FailNow()
-	}
+	_, err = DeleteByIndex(t5, 0, 6)
+	assert.IsNotNil(err)
 }
 
 func TestDrop(t *testing.T) {
-	drop(t, []int{}, 0, []int{})
-	drop(t, []int{}, 1, []int{})
-	drop(t, []int{}, -1, []int{})
+	assert := internal.NewAssert(t, "TestInterfaceSlice")
 
-	drop(t, []int{1, 2, 3, 4, 5}, 0, []int{1, 2, 3, 4, 5})
-	drop(t, []int{1, 2, 3, 4, 5}, 1, []int{2, 3, 4, 5})
-	drop(t, []int{1, 2, 3, 4, 5}, 5, []int{})
-	drop(t, []int{1, 2, 3, 4, 5}, 6, []int{})
+	assert.Equal([]int{}, Drop([]int{}, 0))
+	assert.Equal([]int{}, Drop([]int{}, 1))
+	assert.Equal([]int{}, Drop([]int{}, -1))
 
-	drop(t, []int{1, 2, 3, 4, 5}, -1, []int{1, 2, 3, 4})
-	drop(t, []int{1, 2, 3, 4, 5}, -5, []int{})
-	drop(t, []int{1, 2, 3, 4, 5}, -6, []int{})
-}
+	assert.Equal([]int{1, 2, 3, 4, 5}, Drop([]int{1, 2, 3, 4, 5}, 0))
+	assert.Equal([]int{2, 3, 4, 5}, Drop([]int{1, 2, 3, 4, 5}, 1))
+	assert.Equal([]int{}, Drop([]int{1, 2, 3, 4, 5}, 5))
+	assert.Equal([]int{}, Drop([]int{1, 2, 3, 4, 5}, 6))
 
-func drop(t *testing.T, test interface{}, n int, expected interface{}) {
-	res := Drop(test, n)
-	if !reflect.DeepEqual(res, expected) {
-		internal.LogFailedTestInfo(t, "Drop", test, expected, res)
-		t.FailNow()
-	}
+	assert.Equal([]int{1, 2, 3, 4}, Drop([]int{1, 2, 3, 4, 5}, -1))
+	assert.Equal([]int{}, Drop([]int{1, 2, 3, 4, 5}, -6))
+	assert.Equal([]int{}, Drop([]int{1, 2, 3, 4, 5}, -6))
 }
 
 func TestInsertByIndex(t *testing.T) {
+	assert := internal.NewAssert(t, "TestInsertByIndex")
+
 	t1 := []string{"a", "b", "c"}
+	r1, _ := InsertByIndex(t1, 0, "1")
+	assert.Equal([]string{"1", "a", "b", "c"}, r1)
 
-	r1 := []string{"1", "a", "b", "c"}
-	insertByIndex(t, t1, 0, "1", r1)
+	r2, _ := InsertByIndex(t1, 1, "1")
+	assert.Equal([]string{"a", "1", "b", "c"}, r2)
 
-	r2 := []string{"a", "1", "b", "c"}
-	insertByIndex(t, t1, 1, "1", r2)
+	r3, _ := InsertByIndex(t1, 3, "1")
+	assert.Equal([]string{"a", "b", "c", "1"}, r3)
 
-	r3 := []string{"a", "b", "c", "1"}
-	insertByIndex(t, t1, 3, "1", r3)
+	r4, _ := InsertByIndex(t1, 0, []string{"1", "2", "3"})
+	assert.Equal([]string{"1", "2", "3", "a", "b", "c"}, r4)
 
-	r4 := []string{"1", "2", "3", "a", "b", "c"}
-	insertByIndex(t, t1, 0, []string{"1", "2", "3"}, r4)
+	r5, _ := InsertByIndex(t1, 3, []string{"1", "2", "3"})
+	assert.Equal([]string{"a", "b", "c", "1", "2", "3"}, r5)
 
-	r5 := []string{"a", "1", "2", "3", "b", "c"}
-	insertByIndex(t, t1, 1, []string{"1", "2", "3"}, r5)
+	_, err := InsertByIndex(t1, 4, "1")
+	assert.IsNotNil(err)
 
-	r6 := []string{"a", "b", "1", "2", "3", "c"}
-	insertByIndex(t, t1, 2, []string{"1", "2", "3"}, r6)
-
-	r7 := []string{"a", "b", "c", "1", "2", "3"}
-	insertByIndex(t, t1, 3, []string{"1", "2", "3"}, r7)
-}
-
-func insertByIndex(t *testing.T, test interface{}, index int, value, expected interface{}) {
-	res, err := InsertByIndex(test, index, value)
-	if err != nil {
-		t.Error("InsertByIndex Error: " + err.Error())
-	}
-
-	if !reflect.DeepEqual(res, expected) {
-		internal.LogFailedTestInfo(t, "InsertByIndex", test, expected, res)
-		t.FailNow()
-	}
+	_, err = InsertByIndex(t1, 0, 1)
+	assert.IsNotNil(err)
 }
 
 func TestUpdateByIndex(t *testing.T) {
+	assert := internal.NewAssert(t, "TestUpdateByIndex")
+
 	t1 := []string{"a", "b", "c"}
-	r1 := []string{"1", "b", "c"}
-	updateByIndex(t, t1, 0, "1", r1)
+	r1, _ := UpdateByIndex(t1, 0, "1")
+	assert.Equal([]string{"1", "b", "c"}, r1)
 
-	t1 = []string{"a", "b", "c"}
-	r2 := []string{"a", "1", "c"}
-	updateByIndex(t, t1, 1, "1", r2)
+	t2 := []string{"a", "b", "c"}
+	r2, _ := UpdateByIndex(t2, 1, "1")
+	assert.Equal([]string{"a", "1", "c"}, r2)
 
-	t1 = []string{"a", "b", "c"}
-	r3 := []string{"a", "b", "1"}
-	updateByIndex(t, t1, 2, "1", r3)
+	_, err := UpdateByIndex([]string{"a", "b", "c"}, 4, "1")
+	assert.IsNotNil(err)
 
-}
-
-func updateByIndex(t *testing.T, test interface{}, index int, value, expected interface{}) {
-	res, err := UpdateByIndex(test, index, value)
-	if err != nil {
-		t.Error("UpdateByIndex Error: " + err.Error())
-	}
-
-	if !reflect.DeepEqual(res, expected) {
-		internal.LogFailedTestInfo(t, "UpdateByIndex", test, expected, res)
-		t.FailNow()
-	}
+	_, err = UpdateByIndex([]string{"a", "b", "c"}, 0, 1)
+	assert.IsNotNil(err)
 }
 
 func TestUnique(t *testing.T) {
-	t1 := []int{1, 2, 2, 3}
-	e1 := []int{1, 2, 3}
-	r1 := Unique(t1)
-	if !reflect.DeepEqual(r1, e1) {
-		internal.LogFailedTestInfo(t, "Unique", t1, e1, r1)
-		t.FailNow()
-	}
+	assert := internal.NewAssert(t, "TestUnique")
 
-	t2 := []string{"a", "a", "b", "c"}
-	e2 := []string{"a", "b", "c"}
-	r2 := Unique(t2)
-	if !reflect.DeepEqual(r2, e2) {
-		internal.LogFailedTestInfo(t, "Unique", t2, e2, r2)
-		t.FailNow()
-	}
+	assert.Equal([]int{1, 2, 3}, Unique([]int{1, 2, 2, 3}))
+	assert.Equal([]string{"a", "b", "c"}, Unique([]string{"a", "a", "b", "c"}))
 }
 
 func TestUnion(t *testing.T) {
+	assert := internal.NewAssert(t, "TestUnion")
+
 	s1 := []int{1, 3, 4, 6}
 	s2 := []int{1, 2, 5, 6}
 	s3 := []int{0, 4, 5, 7}
 
-	expected1 := []int{1, 3, 4, 6, 2, 5, 0, 7}
-	res1 := Union(s1, s2, s3)
-	if !reflect.DeepEqual(res1, expected1) {
-		internal.LogFailedTestInfo(t, "Union", s1, expected1, res1)
-		t.FailNow()
-	}
-
-	expected2 := []int{1, 3, 4, 6}
-	res2 := Union(s1)
-	if !reflect.DeepEqual(res2, expected2) {
-		internal.LogFailedTestInfo(t, "Union", s1, expected2, res2)
-		t.FailNow()
-	}
+	assert.Equal([]int{1, 3, 4, 6, 2, 5, 0, 7}, Union(s1, s2, s3))
+	assert.Equal([]int{1, 3, 4, 6, 2, 5}, Union(s1, s2))
+	assert.Equal([]int{1, 3, 4, 6}, Union(s1))
 }
 
 func TestIntersection(t *testing.T) {
@@ -564,45 +418,37 @@ func TestIntersection(t *testing.T) {
 		Intersection(s1),
 		Intersection(s1, s4),
 	}
-	for i := 0; i < len(res); i++ {
-		if !reflect.DeepEqual(res[i], expected[i]) {
-			internal.LogFailedTestInfo(t, "Intersection", "Intersection", expected[i], res[i])
-			t.FailNow()
-		}
-	}
 
+	assert := internal.NewAssert(t, "TestIntersection")
+
+	for i := 0; i < len(res); i++ {
+		assert.Equal(res[i], expected[i])
+	}
 }
 
 func TestReverseSlice(t *testing.T) {
+	assert := internal.NewAssert(t, "TestIntersection")
+
 	s1 := []int{1, 2, 3, 4, 5}
-	e1 := []int{5, 4, 3, 2, 1}
 	ReverseSlice(s1)
-	if !reflect.DeepEqual(s1, e1) {
-		internal.LogFailedTestInfo(t, "ReverseSlice", s1, e1, s1)
-		t.FailNow()
-	}
+	assert.Equal([]int{5, 4, 3, 2, 1}, s1)
 
 	s2 := []string{"a", "b", "c", "d", "e"}
-	e2 := []string{"e", "d", "c", "b", "a"}
 	ReverseSlice(s2)
-	if !reflect.DeepEqual(s2, e2) {
-		internal.LogFailedTestInfo(t, "ReverseSlice", s2, e2, s2)
-		t.FailNow()
-	}
+	assert.Equal([]string{"e", "d", "c", "b", "a"}, s2)
 }
 
 func TestDifference(t *testing.T) {
+	assert := internal.NewAssert(t, "TestIntersection")
+
 	s1 := []int{1, 2, 3, 4, 5}
 	s2 := []int{4, 5, 6}
-	e1 := []int{1, 2, 3}
-	r1 := Difference(s1, s2)
-	if !reflect.DeepEqual(r1, e1) {
-		internal.LogFailedTestInfo(t, "Difference", s1, e1, r1)
-		t.FailNow()
-	}
+	assert.Equal([]int{1, 2, 3}, Difference(s1, s2))
 }
 
 func TestSortByField(t *testing.T) {
+	assert := internal.NewAssert(t, "TestWithout")
+
 	type student struct {
 		name string
 		age  int
@@ -613,8 +459,7 @@ func TestSortByField(t *testing.T) {
 		{"c", 5},
 		{"d", 6},
 	}
-
-	sortByAge := []student{
+	studentsOfSortByAge := []student{
 		{"b", 15},
 		{"a", 10},
 		{"d", 6},
@@ -622,35 +467,35 @@ func TestSortByField(t *testing.T) {
 	}
 
 	err := SortByField(students, "age", "desc")
-	if err != nil {
-		t.Error("IntSlice Error: " + err.Error())
-	}
+	assert.IsNil(err)
 
-	if !reflect.DeepEqual(students, sortByAge) {
-		internal.LogFailedTestInfo(t, "SortByField", students, sortByAge, students)
-		t.FailNow()
-	}
-
+	assert.Equal(students, studentsOfSortByAge)
 }
 
 func TestWithout(t *testing.T) {
-	s := []int{1, 2, 3, 4, 5}
-	expected := []int{3, 4, 5}
-	res := Without(s, 1, 2)
-
-	if !reflect.DeepEqual(res, expected) {
-		internal.LogFailedTestInfo(t, "Without", s, expected, res)
-		t.FailNow()
-	}
+	assert := internal.NewAssert(t, "TestWithout")
+	assert.Equal([]int{3, 4, 5}, Without([]int{1, 2, 3, 4, 5}, 1, 2))
+	assert.Equal([]int{1, 2, 3, 4, 5}, Without([]int{1, 2, 3, 4, 5}))
 }
 
 func TestShuffle(t *testing.T) {
+	assert := internal.NewAssert(t, "TestShuffle")
+
 	s := []int{1, 2, 3, 4, 5}
 	res := Shuffle(s)
 	t.Log("Shuffle result: ", res)
 
-	if reflect.TypeOf(s) != reflect.TypeOf(res) {
-		internal.LogFailedTestInfo(t, "Shuffle", s, res, res)
-		t.FailNow()
-	}
+	assert.Equal(reflect.TypeOf(s), reflect.TypeOf(res))
+
+	rv := reflect.ValueOf(res)
+	assert.Equal(5, rv.Len())
+
+	assert.Equal(true, rv.Kind() == reflect.Slice)
+	assert.Equal(true, rv.Type().Elem().Kind() == reflect.Int)
+
+	assert.Equal(true, Contain(res, 1))
+	assert.Equal(true, Contain(res, 2))
+	assert.Equal(true, Contain(res, 3))
+	assert.Equal(true, Contain(res, 4))
+	assert.Equal(true, Contain(res, 5))
 }

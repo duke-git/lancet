@@ -2,26 +2,31 @@ package function
 
 import (
 	"testing"
+
+	"github.com/duke-git/lancet/internal"
 )
 
 func TestWatcher(t *testing.T) {
+	assert := internal.NewAssert(t, "TestWatcher")
+
 	w := &Watcher{}
 	w.Start()
 
 	longRunningTask()
 
-	if !w.excuting {
-		t.FailNow()
-	}
+	assert.Equal(true, w.excuting)
 
 	w.Stop()
 
 	eapsedTime := w.GetElapsedTime().Milliseconds()
 	t.Log("Elapsed Time (milsecond)", eapsedTime)
 
-	if w.excuting {
-		t.FailNow()
-	}
+	assert.Equal(false, w.excuting)
+
+	w.Reset()
+	
+	assert.Equal(int64(0), w.startTime)
+	assert.Equal(int64(0), w.stopTime)
 }
 
 func longRunningTask() {

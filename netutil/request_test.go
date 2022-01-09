@@ -2,7 +2,6 @@ package netutil
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"log"
 	"testing"
@@ -23,7 +22,7 @@ func TestHttpGet(t *testing.T) {
 	}
 
 	body, _ := ioutil.ReadAll(resp.Body)
-	fmt.Println("response: ", resp.StatusCode, string(body))
+	t.Log("response: ", resp.StatusCode, string(body))
 }
 
 func TestHttpPost(t *testing.T) {
@@ -44,7 +43,7 @@ func TestHttpPost(t *testing.T) {
 		t.FailNow()
 	}
 	body, _ := ioutil.ReadAll(resp.Body)
-	fmt.Println("response: ", resp.StatusCode, string(body))
+	t.Log("response: ", resp.StatusCode, string(body))
 }
 
 func TestHttpPut(t *testing.T) {
@@ -66,7 +65,7 @@ func TestHttpPut(t *testing.T) {
 		t.FailNow()
 	}
 	body, _ := ioutil.ReadAll(resp.Body)
-	fmt.Println("response: ", resp.StatusCode, string(body))
+	t.Log("response: ", resp.StatusCode, string(body))
 }
 
 func TestHttpPatch(t *testing.T) {
@@ -88,7 +87,7 @@ func TestHttpPatch(t *testing.T) {
 		t.FailNow()
 	}
 	body, _ := ioutil.ReadAll(resp.Body)
-	fmt.Println("response: ", resp.StatusCode, string(body))
+	t.Log("response: ", resp.StatusCode, string(body))
 }
 
 func TestHttpDelete(t *testing.T) {
@@ -99,22 +98,18 @@ func TestHttpDelete(t *testing.T) {
 		t.FailNow()
 	}
 	body, _ := ioutil.ReadAll(resp.Body)
-	fmt.Println("response: ", resp.StatusCode, string(body))
+	t.Log("response: ", resp.StatusCode, string(body))
 }
 
 func TestConvertMapToQueryString(t *testing.T) {
+	assert := internal.NewAssert(t, "TestConvertMapToQueryString")
+
 	var m = map[string]interface{}{
 		"c": 3,
 		"a": 1,
 		"b": 2,
 	}
-
-	expected := "a=1&b=2&c=3"
-	r := ConvertMapToQueryString(m)
-	if r != expected {
-		internal.LogFailedTestInfo(t, "ConvertMapToQueryString", m, expected, r)
-		t.FailNow()
-	}
+	assert.Equal("a=1&b=2&c=3", ConvertMapToQueryString(m))
 }
 
 func TestParseResponse(t *testing.T) {
@@ -142,5 +137,5 @@ func TestParseResponse(t *testing.T) {
 		log.Fatal(err)
 		t.FailNow()
 	}
-	fmt.Println("response: ", toDoResp)
+	t.Log("response: ", toDoResp)
 }

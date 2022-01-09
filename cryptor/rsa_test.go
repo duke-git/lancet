@@ -12,8 +12,6 @@ func TestRsaEncrypt(t *testing.T) {
 	encrypted := RsaEncrypt(data, "rsa_public.pem")
 	decrypted := RsaDecrypt(encrypted, "rsa_private.pem")
 
-	if string(data) != string(decrypted) {
-		internal.LogFailedTestInfo(t, "RsaEncrypt/RsaDecrypt", string(data), string(data), string(decrypted))
-		t.FailNow()
-	}
+	assert := internal.NewAssert(t, "TestRsaEncrypt")
+	assert.Equal(string(data), string(decrypted))
 }

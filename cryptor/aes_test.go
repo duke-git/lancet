@@ -13,10 +13,8 @@ func TestAesEcbEncrypt(t *testing.T) {
 	aesEcbEncrypt := AesEcbEncrypt([]byte(data), []byte(key))
 	aesEcbDecrypt := AesEcbDecrypt(aesEcbEncrypt, []byte(key))
 
-	if string(aesEcbDecrypt) != data {
-		internal.LogFailedTestInfo(t, "AesEcbEncrypt/AesEcbDecrypt", data, data, string(aesEcbDecrypt))
-		t.FailNow()
-	}
+	assert := internal.NewAssert(t, "TestAesEcbEncrypt")
+	assert.Equal(data, string(aesEcbDecrypt))
 }
 
 func TestAesCbcEncrypt(t *testing.T) {
@@ -26,10 +24,8 @@ func TestAesCbcEncrypt(t *testing.T) {
 	aesCbcEncrypt := AesCbcEncrypt([]byte(data), []byte(key))
 	aesCbcDecrypt := AesCbcDecrypt(aesCbcEncrypt, []byte(key))
 
-	if string(aesCbcDecrypt) != data {
-		internal.LogFailedTestInfo(t, "AesCbcEncrypt/AesCbcDecrypt", data, data, string(aesCbcDecrypt))
-		t.FailNow()
-	}
+	assert := internal.NewAssert(t, "TestAesCbcEncrypt")
+	assert.Equal(data, string(aesCbcDecrypt))
 }
 
 func TestAesCtrCrypt(t *testing.T) {
@@ -39,10 +35,8 @@ func TestAesCtrCrypt(t *testing.T) {
 	aesCtrCrypt := AesCtrCrypt([]byte(data), []byte(key))
 	aesCtrDeCrypt := AesCtrCrypt(aesCtrCrypt, []byte(key))
 
-	if string(aesCtrDeCrypt) != data {
-		internal.LogFailedTestInfo(t, "AesCtrCrypt", data, data, string(aesCtrDeCrypt))
-		t.FailNow()
-	}
+	assert := internal.NewAssert(t, "TestAesCtrCrypt")
+	assert.Equal(data, string(aesCtrDeCrypt))
 }
 
 func TestAesCfbEncrypt(t *testing.T) {
@@ -52,10 +46,8 @@ func TestAesCfbEncrypt(t *testing.T) {
 	aesCfbEncrypt := AesCfbEncrypt([]byte(data), []byte(key))
 	aesCfbDecrypt := AesCfbDecrypt(aesCfbEncrypt, []byte(key))
 
-	if string(aesCfbDecrypt) != data {
-		internal.LogFailedTestInfo(t, "AesCfbEncrypt/AesCfbDecrypt", data, data, string(aesCfbDecrypt))
-		t.FailNow()
-	}
+	assert := internal.NewAssert(t, "TestAesCfbEncrypt")
+	assert.Equal(data, string(aesCfbDecrypt))
 }
 
 func TestAesOfbEncrypt(t *testing.T) {
@@ -65,8 +57,6 @@ func TestAesOfbEncrypt(t *testing.T) {
 	aesOfbEncrypt := AesOfbEncrypt([]byte(data), []byte(key))
 	aesOfbDecrypt := AesOfbDecrypt(aesOfbEncrypt, []byte(key))
 
-	if string(aesOfbDecrypt) != data {
-		internal.LogFailedTestInfo(t, "AesOfbEncrypt/AesOfbDecrypt", data, data, string(aesOfbDecrypt))
-		t.FailNow()
-	}
+	assert := internal.NewAssert(t, "TestAesOfbEncrypt")
+	assert.Equal(data, string(aesOfbDecrypt))
 }

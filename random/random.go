@@ -39,7 +39,7 @@ func RandInt(min, max int) int {
 // RandBytes generate random byte slice
 func RandBytes(length int) []byte {
 	if length < 1 {
-		return nil
+		return []byte{}
 	}
 	b := make([]byte, length)
 
