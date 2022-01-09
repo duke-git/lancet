@@ -1,90 +1,67 @@
 package datetime
 
 import (
-	"github.com/duke-git/lancet/internal"
 	"testing"
 	"time"
+
+	"github.com/duke-git/lancet/internal"
 )
 
 func TestAddDay(t *testing.T) {
-	now := time.Now()
+	assert := internal.NewAssert(t, "TestAddDay")
 
+	now := time.Now()
 	after2Days := AddDay(now, 2)
 	diff1 := after2Days.Sub(now)
-	if diff1.Hours() != 48 {
-		internal.LogFailedTestInfo(t, "AddDay", now, 48, diff1.Hours())
-		t.FailNow()
-	}
+	assert.Equal(float64(48), diff1.Hours())
 
 	before2Days := AddDay(now, -2)
 	diff2 := before2Days.Sub(now)
-	if diff2.Hours() != -48 {
-		internal.LogFailedTestInfo(t, "AddDay", now, -48, diff2.Hours())
-		t.FailNow()
-	}
-
+	assert.Equal(float64(-48), diff2.Hours())
 }
-func TestAddHour(t *testing.T) {
-	now := time.Now()
 
+func TestAddHour(t *testing.T) {
+	assert := internal.NewAssert(t, "TestAddHour")
+
+	now := time.Now()
 	after2Hours := AddHour(now, 2)
 	diff1 := after2Hours.Sub(now)
-	if diff1.Hours() != 2 {
-		internal.LogFailedTestInfo(t, "AddHour", now, 2, diff1.Hours())
-		t.FailNow()
-	}
+	assert.Equal(float64(2), diff1.Hours())
 
 	before2Hours := AddHour(now, -2)
 	diff2 := before2Hours.Sub(now)
-	if diff2.Hours() != -2 {
-		internal.LogFailedTestInfo(t, "AddHour", now, -2, diff2.Hours())
-		t.FailNow()
-	}
+	assert.Equal(float64(-2), diff2.Hours())
 }
 
 func TestAddMinute(t *testing.T) {
-	now := time.Now()
+	assert := internal.NewAssert(t, "TestAddMinute")
 
+	now := time.Now()
 	after2Minutes := AddMinute(now, 2)
 	diff1 := after2Minutes.Sub(now)
-	if diff1.Minutes() != 2 {
-		internal.LogFailedTestInfo(t, "AddMinute", now, 2, diff1.Minutes())
-		t.FailNow()
-	}
+	assert.Equal(float64(2), diff1.Minutes())
 
 	before2Minutes := AddMinute(now, -2)
 	diff2 := before2Minutes.Sub(now)
-	if diff2.Minutes() != -2 {
-		internal.LogFailedTestInfo(t, "AddMinute", now, -2, diff2.Minutes())
-		t.FailNow()
-	}
+	assert.Equal(float64(-2), diff2.Minutes())
 }
 
 func TestGetNowDate(t *testing.T) {
-	date := GetNowDate()
+	assert := internal.NewAssert(t, "TestGetNowDate")
 	expected := time.Now().Format("2006-01-02")
-	if date != expected {
-		internal.LogFailedTestInfo(t, "GetNowDate", "", expected, date)
-		t.FailNow()
-	}
+	assert.Equal(expected, GetNowDate())
 }
 
 func TestGetNotTime(t *testing.T) {
-	ts := GetNowTime()
+	assert := internal.NewAssert(t, "TestGetNotTime")
 	expected := time.Now().Format("15:04:05")
-	if ts != expected {
-		internal.LogFailedTestInfo(t, "GetNowTime", "", expected, ts)
-		t.FailNow()
-	}
+	assert.Equal(expected, GetNowTime())
 }
 
 func TestGetNowDateTime(t *testing.T) {
-	ts := GetNowDateTime()
+	assert := internal.NewAssert(t, "TestGetNowDateTime")
 	expected := time.Now().Format("2006-01-02 15:04:05")
-	if ts != expected {
-		internal.LogFailedTestInfo(t, "GetNowDateTime", "", expected, ts)
-		t.FailNow()
-	}
+	assert.Equal(expected, GetNowDateTime())
 }
 
 //todo
@@ -98,6 +75,8 @@ func TestGetNowDateTime(t *testing.T) {
 //}
 
 func TestFormatTimeToStr(t *testing.T) {
+	assert := internal.NewAssert(t, "TestFormatTimeToStr")
+
 	datetime, _ := time.Parse("2006-01-02 15:04:05", "2021-01-02 16:04:08")
 	cases := []string{
 		"yyyy-mm-dd hh:mm:ss", "yyyy-mm-dd",
@@ -110,16 +89,15 @@ func TestFormatTimeToStr(t *testing.T) {
 		"16:04:08", "2021/01"}
 
 	for i := 0; i < len(cases); i++ {
-		res := FormatTimeToStr(datetime, cases[i])
-		if res != expected[i] {
-			internal.LogFailedTestInfo(t, "FormatTimeToStr", cases[i], expected[i], res)
-			t.FailNow()
-		}
-	}
+		actual := FormatTimeToStr(datetime, cases[i])
+		assert.Equal(expected[i], actual)
 
+	}
 }
 
 func TestFormatStrToTime(t *testing.T) {
+	assert := internal.NewAssert(t, "TestFormatStrToTime")
+
 	formats := []string{
 		"2006-01-02 15:04:05", "2006-01-02",
 		"02-01-06 15:04:05", "2006/01/02 15:04:05",
@@ -135,14 +113,11 @@ func TestFormatStrToTime(t *testing.T) {
 		"2021/01"}
 
 	for i := 0; i < len(cases); i++ {
-		res, err := FormatStrToTime(datetimeStr[i], cases[i])
+		actual, err := FormatStrToTime(datetimeStr[i], cases[i])
 		if err != nil {
 			t.Fatal(err)
 		}
 		expected, _ := time.Parse(formats[i], datetimeStr[i])
-		if res != expected {
-			internal.LogFailedTestInfo(t, "FormatTimeToStr", cases[i], expected, res)
-			t.FailNow()
-		}
+		assert.Equal(expected, actual)
 	}
 }
