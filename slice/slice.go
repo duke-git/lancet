@@ -123,24 +123,23 @@ func Filter[T any](slice []T, fn func(index int, t T) bool) []T {
 
 // Count iterates over elements of slice, returns a count of all matched elements
 // The function signature should be func(index int, value interface{}) bool .
-func Count(slice, function interface{}) int {
-	sv := sliceValue(slice)
-	fn := functionValue(function)
-
-	elemType := sv.Type().Elem()
-	if checkSliceCallbackFuncSignature(fn, elemType, reflect.ValueOf(true).Type()) {
-		panic("function param should be of type func(int, " + elemType.String() + ")" + reflect.ValueOf(true).Type().String())
+func Count[T any](slice []T, fn func(index int, t T) bool) int {
+	if fn == nil {
+		panic("fn is missing")
+	}
+	
+	if len(slice) == 0 {
+		return 0
 	}
 
-	var counter int
-	for i := 0; i < sv.Len(); i++ {
-		flag := fn.Call([]reflect.Value{reflect.ValueOf(i), sv.Index(i)})[0]
-		if flag.Bool() {
-			counter++
+	var count int
+	for i, v := range slice {
+		if fn(i, v) {
+			count++
 		}
 	}
 
-	return counter
+	return count
 }
 
 // GroupBy iterate over elements of the slice, each element will be group by criteria, returns two slices

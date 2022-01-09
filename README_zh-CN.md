@@ -421,7 +421,7 @@ func Union(slices ...interface{}) interface{} //slice并集, 去重
 func UpdateByIndex(slice interface{}, index int, value interface{}) (interface{}, error) //在切片中index位置更新value
 func Without(slice interface{}, values ...interface{}) interface{} //slice去除values
 func GroupBy(slice, function interface{}) (interface{}, interface{}) //根据函数function的逻辑分slice为两组slice
-func Count(slice, function interface{}) int 
+Count[T any](slice []T, fn func(index int, t T) bool) int
 ```
 
 #### 10. strutil字符串处理包
