@@ -2,72 +2,62 @@ package fileutil
 
 import (
 	"os"
-	"reflect"
 	"testing"
 
 	"github.com/duke-git/lancet/internal"
 )
 
 func TestIsExist(t *testing.T) {
+	assert := internal.NewAssert(t, "TestIsExist")
+
 	cases := []string{"./", "./file.go", "./a.txt"}
 	expected := []bool{true, true, false}
 
 	for i := 0; i < len(cases); i++ {
-		res := IsExist(cases[i])
-		if res != expected[i] {
-			internal.LogFailedTestInfo(t, "IsExist", cases[i], expected[i], res)
-			t.FailNow()
-		}
+		actual := IsExist(cases[i])
+		assert.Equal(expected[i], actual)
 	}
 }
 
 func TestCreateFile(t *testing.T) {
+	assert := internal.NewAssert(t, "TestCreateFile")
+
 	f := "./text.txt"
 	if CreateFile(f) {
 		file, err := os.Open(f)
-		if err != nil {
-			internal.LogFailedTestInfo(t, "CreateFile", f, f, "create file error: "+err.Error())
-			t.FailNow()
-		}
-		if file.Name() != f {
-			internal.LogFailedTestInfo(t, "CreateFile", f, f, file.Name())
-			t.FailNow()
-		}
+		assert.IsNil(err)
+		assert.Equal(f, file.Name())
 	} else {
-		internal.LogFailedTestInfo(t, "CreateFile", f, f, "create file error")
 		t.FailNow()
 	}
 	os.Remove(f)
 }
 
 func TestIsDir(t *testing.T) {
+	assert := internal.NewAssert(t, "TestIsDir")
+
 	cases := []string{"./", "./a.txt"}
 	expected := []bool{true, false}
 
 	for i := 0; i < len(cases); i++ {
-		res := IsDir(cases[i])
-		if res != expected[i] {
-			internal.LogFailedTestInfo(t, "IsDir", cases[i], expected[i], res)
-			t.FailNow()
-		}
+		actual := IsDir(cases[i])
+		assert.Equal(expected[i], actual)
 	}
 }
 
 func TestRemoveFile(t *testing.T) {
+	assert := internal.NewAssert(t, "TestRemoveFile")
+
 	f := "./text.txt"
 	if CreateFile(f) {
 		err := RemoveFile(f)
-		if err != nil {
-			internal.LogFailedTestInfo(t, "RemoveFile", f, f, err.Error())
-			t.FailNow()
-		}
-	} else {
-		internal.LogFailedTestInfo(t, "RemoveFile", f, f, "create file error")
-		t.FailNow()
+		assert.IsNil(err)
 	}
 }
 
 func TestCopyFile(t *testing.T) {
+	assert := internal.NewAssert(t, "TestCopyFile")
+
 	srcFile := "./text.txt"
 	CreateFile(srcFile)
 
@@ -76,126 +66,118 @@ func TestCopyFile(t *testing.T) {
 	err := CopyFile(srcFile, destFile)
 	if err != nil {
 		file, err := os.Open(destFile)
-		if err != nil {
-			internal.LogFailedTestInfo(t, "CopyFile", srcFile, destFile, "create file error: "+err.Error())
-			t.FailNow()
-		}
-		if file.Name() != destFile {
-			internal.LogFailedTestInfo(t, "CopyFile", srcFile, destFile, file.Name())
-			t.FailNow()
-		}
+		assert.IsNil(err)
+		assert.Equal(destFile, file.Name())
 	}
 	os.Remove(srcFile)
 	os.Remove(destFile)
 }
 
 func TestListFileNames(t *testing.T) {
-	filesInCurrentPath, err := ListFileNames("../datetime/")
-	if err != nil {
-		t.FailNow()
-	}
+	assert := internal.NewAssert(t, "TestListFileNames")
+
+	filesInPath, err := ListFileNames("../datetime/")
+	assert.IsNil(err)
+
 	expected := []string{"datetime.go", "datetime_test.go"}
-	if !reflect.DeepEqual(filesInCurrentPath, expected) {
-		internal.LogFailedTestInfo(t, "ToChar", "./", expected, filesInCurrentPath)
-		t.FailNow()
-	}
+	assert.Equal(expected, filesInPath)
 }
 
 func TestReadFileToString(t *testing.T) {
+	assert := internal.NewAssert(t, "TestReadFileToString")
+
 	path := "./text.txt"
 	CreateFile(path)
 
 	f, _ := os.OpenFile(path, os.O_WRONLY|os.O_TRUNC, 0777)
 	f.WriteString("hello world")
 
-	res, _ := ReadFileToString(path)
-	if res != "hello world" {
-		internal.LogFailedTestInfo(t, "ReadFileToString", path, "hello world", res)
-		t.FailNow()
-	}
+	content, _ := ReadFileToString(path)
+	assert.Equal("hello world", content)
+
 	os.Remove(path)
 }
 
 func TestClearFile(t *testing.T) {
+	assert := internal.NewAssert(t, "TestClearFile")
+
 	path := "./text.txt"
 	CreateFile(path)
 
 	f, _ := os.OpenFile(path, os.O_WRONLY|os.O_TRUNC, 0777)
+	defer f.Close()
+
 	f.WriteString("hello world")
 
 	err := ClearFile(path)
-	if err != nil {
-		t.Error("Clear file error: ", err)
-	}
-	fileContent, _ := ReadFileToString(path)
-	if fileContent != "" {
-		internal.LogFailedTestInfo(t, "ClearFile", path, "", fileContent)
-		t.FailNow()
-	}
+	assert.IsNil(err)
+
+	content, _ := ReadFileToString(path)
+	assert.Equal("", content)
+
 	os.Remove(path)
 }
 
 func TestReadFileByLine(t *testing.T) {
+	assert := internal.NewAssert(t, "TestReadFileByLine")
+
 	path := "./text.txt"
 	CreateFile(path)
 
 	f, _ := os.OpenFile(path, os.O_WRONLY|os.O_TRUNC, 0777)
+	defer f.Close()
 	f.WriteString("hello\nworld")
 
 	expected := []string{"hello", "world"}
-	res, _ := ReadFileByLine(path)
-	if !reflect.DeepEqual(res, expected) {
-		internal.LogFailedTestInfo(t, "ReadFileByLine", path, expected, res)
-		t.FailNow()
-	}
+	actual, _ := ReadFileByLine(path)
+	assert.Equal(expected, actual)
+
 	os.Remove(path)
 }
 
 func TestZipAndUnZip(t *testing.T) {
+	assert := internal.NewAssert(t, "TestZipAndUnZip")
+
 	srcFile := "./text.txt"
 	CreateFile(srcFile)
 
 	file, _ := os.OpenFile(srcFile, os.O_WRONLY|os.O_TRUNC, 0777)
+	defer file.Close()
 	file.WriteString("hello\nworld")
 
 	zipFile := "./text.zip"
 	err := Zip(srcFile, zipFile)
-	if err != nil {
-		internal.LogFailedTestInfo(t, "Zip", srcFile, zipFile, err)
-		t.FailNow()
-	}
+	assert.IsNil(err)
 
 	unZipPath := "./unzip"
 	err = UnZip(zipFile, unZipPath)
-	if err != nil {
-		internal.LogFailedTestInfo(t, "UnZip", srcFile, unZipPath, err)
-		t.FailNow()
-	}
+	assert.IsNil(err)
 
 	unZipFile := "./unzip/text.txt"
-	if !IsExist(unZipFile) {
-		internal.LogFailedTestInfo(t, "UnZip", zipFile, zipFile, err)
-		t.FailNow()
-	}
+	assert.Equal(true, IsExist(unZipFile))
+
 	os.Remove(srcFile)
 	os.Remove(zipFile)
 	os.RemoveAll(unZipPath)
 }
 
 func TestFileMode(t *testing.T) {
+	assert := internal.NewAssert(t, "TestFileMode")
+
 	srcFile := "./text.txt"
 	CreateFile(srcFile)
 
 	mode, err := FileMode(srcFile)
-	if err != nil {
-		t.Fail()
-	}
+	assert.IsNil(err)
+
 	t.Log(mode)
 
 	os.Remove(srcFile)
 }
 
 func TestIsLink(t *testing.T) {
+	assert := internal.NewAssert(t, "TestIsLink")
+
 	srcFile := "./text.txt"
 	CreateFile(srcFile)
 
@@ -203,31 +185,18 @@ func TestIsLink(t *testing.T) {
 	if !IsExist(linkFile) {
 		_ = os.Symlink(srcFile, linkFile)
 	}
-	if !IsLink(linkFile) {
-		internal.LogFailedTestInfo(t, "IsLink", linkFile, "true", "false")
-		t.FailNow()
-	}
+	assert.Equal(true, IsLink(linkFile))
 
-	if IsLink("./file.go") {
-		internal.LogFailedTestInfo(t, "IsLink", "./file.go", "false", "true")
-		t.FailNow()
-	}
+	assert.Equal(false, IsLink("./file.go"))
+
 	os.Remove(srcFile)
 	os.Remove(linkFile)
 }
 
 func TestMiMeType(t *testing.T) {
-	mt1 := MiMeType("./file.go")
-	expected := "text/plain; charset=utf-8"
+	assert := internal.NewAssert(t, "TestMiMeType")
 
-	if mt1 != expected {
-		internal.LogFailedTestInfo(t, "MiMeType", "./file.go", expected, mt1)
-		t.FailNow()
-	}
 	f, _ := os.Open("./file.go")
-	mt2 := MiMeType(f)
-	if mt2 != expected {
-		internal.LogFailedTestInfo(t, "MiMeType", "./file.go", expected, mt2)
-		t.FailNow()
-	}
+	assert.Equal("text/plain; charset=utf-8", MiMeType(f))
+	assert.Equal("text/plain; charset=utf-8", MiMeType("./file.go"))
 }
