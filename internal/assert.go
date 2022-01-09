@@ -48,10 +48,28 @@ func (a *Assert) Greater(expected, actual interface{}) {
 	}
 }
 
+// GreaterOrEqual check if expected is greate than or equal with actual
+func (a *Assert) GreaterOrEqual(expected, actual interface{}) {
+	isGreatOrEqual := compare(expected, actual) == compareGreater || compare(expected, actual) == compareEqual
+	if !isGreatOrEqual {
+		expectedInfo := fmt.Sprintf(">= %v", expected)
+		logFailedInfo(a.T, a.CaseName, expectedInfo, actual)
+	}
+}
+
 // Less check if expected is less than actual
 func (a *Assert) Less(expected, actual interface{}) {
 	if compare(expected, actual) != compareLess {
 		expectedInfo := fmt.Sprintf("< %v", expected)
+		logFailedInfo(a.T, a.CaseName, expectedInfo, actual)
+	}
+}
+
+// Less check if expected is less than or equal with actual
+func (a *Assert) LessOrEqual(expected, actual interface{}) {
+	isLessOrEqual := compare(expected, actual) == compareLess || compare(expected, actual) == compareEqual
+	if !isLessOrEqual {
+		expectedInfo := fmt.Sprintf("<= %v", expected)
 		logFailedInfo(a.T, a.CaseName, expectedInfo, actual)
 	}
 }

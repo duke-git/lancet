@@ -9,7 +9,9 @@ func TestAssert(t *testing.T) {
 	assert.Equal(0, 0)
 	assert.NotEqual(1, 0)
 	assert.Greater(1, 0)
+	assert.GreaterOrEqual(1, 1)
 	assert.Less(0, 1)
+	assert.LessOrEqual(0, 0)
 
 	assert.Greater(1.1, 0.1)
 	assert.Less(0.1, 1.1)
