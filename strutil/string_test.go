@@ -165,5 +165,4 @@ func TestUnwrap(t *testing.T) {
 	assert.Equal("", Unwrap("**", "*"))
 	assert.Equal("***", Unwrap("***", "**"))
 	assert.Equal("**", Unwrap("**", "**"))
-
 }

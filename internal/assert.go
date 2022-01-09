@@ -3,6 +3,7 @@ package internal
 import (
 	"fmt"
 	"reflect"
+	"runtime"
 	"testing"
 )
 
@@ -142,7 +143,8 @@ func compare(x, y interface{}) int {
 
 // logFailedInfo make test failed and log error info
 func logFailedInfo(t *testing.T, caseName string, expected, actual interface{}) {
-	errInfo := fmt.Sprintf("Test case %v:  expected: %v, actual: %v", caseName, expected, actual)
+	_, file, line, _ := runtime.Caller(2)
+	errInfo := fmt.Sprintf("Case %v failed. file: %v, line: %v, expected: %v, actual: %v.", caseName, file, line, expected, actual)
 	t.Error(errInfo)
 	t.FailNow()
 }
