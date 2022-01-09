@@ -1,11 +1,3 @@
-/*
- * @Descripttion:
- * @version: v1.0.0
- * @Author: dudaodong@kingsoft.com
- * @Date: 2021-11-29 11:43:28
- * @LastEditors: dudaodong@kingsoft.com
- * @LastEditTime: 2021-12-01 18:05:29
- */
 package random
 
 import (
