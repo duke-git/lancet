@@ -47,9 +47,9 @@ func TestIsDir(t *testing.T) {
 
 func TestRemoveFile(t *testing.T) {
 	assert := internal.NewAssert(t, "TestRemoveFile")
-
 	f := "./text.txt"
-	if CreateFile(f) {
+	if !IsExist(f) {
+		CreateFile(f)
 		err := RemoveFile(f)
 		assert.IsNil(err)
 	}

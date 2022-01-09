@@ -13,7 +13,7 @@ func TestBase64StdEncode(t *testing.T) {
 
 func TestBase64StdDecode(t *testing.T) {
 	assert := internal.NewAssert(t, "TestBase64StdDecode")
-	assert.Equal("hello world", Base64StdEncode("aGVsbG8gd29ybGQ="))
+	assert.Equal("hello world", Base64StdDecode("aGVsbG8gd29ybGQ="))
 }
 
 func TestMd5String(t *testing.T) {
