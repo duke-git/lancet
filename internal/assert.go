@@ -1,3 +1,7 @@
+// Copyright 2021 dudaodong@gmail.com. All rights reserved.
+// Use of this source code is governed by MIT license
+
+// Package internal is for internal use.
 package internal
 
 import (
@@ -28,7 +32,7 @@ func NewAssert(t *testing.T, caseName string) *Assert {
 // Equal check if expected is equal with actual
 func (a *Assert) Equal(expected, actual interface{}) {
 	if compare(expected, actual) != compareEqual {
-		logFailedInfo(a.T, a.CaseName, expected, actual)
+		makeTestFailed(a.T, a.CaseName, expected, actual)
 	}
 }
 
@@ -36,7 +40,7 @@ func (a *Assert) Equal(expected, actual interface{}) {
 func (a *Assert) NotEqual(expected, actual interface{}) {
 	if compare(expected, actual) == compareEqual {
 		expectedInfo := fmt.Sprintf("not %v", expected)
-		logFailedInfo(a.T, a.CaseName, expectedInfo, actual)
+		makeTestFailed(a.T, a.CaseName, expectedInfo, actual)
 	}
 }
 
@@ -44,7 +48,7 @@ func (a *Assert) NotEqual(expected, actual interface{}) {
 func (a *Assert) Greater(expected, actual interface{}) {
 	if compare(expected, actual) != compareGreater {
 		expectedInfo := fmt.Sprintf("> %v", expected)
-		logFailedInfo(a.T, a.CaseName, expectedInfo, actual)
+		makeTestFailed(a.T, a.CaseName, expectedInfo, actual)
 	}
 }
 
@@ -53,7 +57,7 @@ func (a *Assert) GreaterOrEqual(expected, actual interface{}) {
 	isGreatOrEqual := compare(expected, actual) == compareGreater || compare(expected, actual) == compareEqual
 	if !isGreatOrEqual {
 		expectedInfo := fmt.Sprintf(">= %v", expected)
-		logFailedInfo(a.T, a.CaseName, expectedInfo, actual)
+		makeTestFailed(a.T, a.CaseName, expectedInfo, actual)
 	}
 }
 
@@ -61,34 +65,34 @@ func (a *Assert) GreaterOrEqual(expected, actual interface{}) {
 func (a *Assert) Less(expected, actual interface{}) {
 	if compare(expected, actual) != compareLess {
 		expectedInfo := fmt.Sprintf("< %v", expected)
-		logFailedInfo(a.T, a.CaseName, expectedInfo, actual)
+		makeTestFailed(a.T, a.CaseName, expectedInfo, actual)
 	}
 }
 
-// Less check if expected is less than or equal with actual
+// LessOrEqual check if expected is less than or equal with actual
 func (a *Assert) LessOrEqual(expected, actual interface{}) {
 	isLessOrEqual := compare(expected, actual) == compareLess || compare(expected, actual) == compareEqual
 	if !isLessOrEqual {
 		expectedInfo := fmt.Sprintf("<= %v", expected)
-		logFailedInfo(a.T, a.CaseName, expectedInfo, actual)
+		makeTestFailed(a.T, a.CaseName, expectedInfo, actual)
 	}
 }
 
-// IsNil check if actual is nil
-func (a *Assert) IsNil(actual interface{}) {
-	if actual != nil {
-		logFailedInfo(a.T, a.CaseName, nil, actual)
+// IsNil check if value is nil
+func (a *Assert) IsNil(value interface{}) {
+	if value != nil {
+		makeTestFailed(a.T, a.CaseName, nil, value)
 	}
 }
 
-// IsNil check if actual is not nil
-func (a *Assert) IsNotNil(actual interface{}) {
-	if actual == nil {
-		logFailedInfo(a.T, a.CaseName, "not nil", actual)
+// IsNotNil check if value is not nil
+func (a *Assert) IsNotNil(value interface{}) {
+	if value == nil {
+		makeTestFailed(a.T, a.CaseName, "not nil", value)
 	}
 }
 
-// compare x and y retun :
+// compare x and y return :
 // x > y -> 1, x < y -> -1, x == y -> 0, x != y -> -2
 func compare(x, y interface{}) int {
 	vx := reflect.ValueOf(x)
@@ -160,7 +164,7 @@ func compare(x, y interface{}) int {
 }
 
 // logFailedInfo make test failed and log error info
-func logFailedInfo(t *testing.T, caseName string, expected, actual interface{}) {
+func makeTestFailed(t *testing.T, caseName string, expected, actual interface{}) {
 	_, file, line, _ := runtime.Caller(2)
 	errInfo := fmt.Sprintf("Case %v failed. file: %v, line: %v, expected: %v, actual: %v.", caseName, file, line, expected, actual)
 	t.Error(errInfo)
