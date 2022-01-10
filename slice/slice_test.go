@@ -1,7 +1,6 @@
 package slice
 
 import (
-	"reflect"
 	"testing"
 
 	"github.com/duke-git/lancet/internal"
@@ -398,15 +397,15 @@ func TestIntersection(t *testing.T) {
 	}
 }
 
-func TestReverseSlice(t *testing.T) {
+func TestReverse(t *testing.T) {
 	assert := internal.NewAssert(t, "TestIntersection")
 
 	s1 := []int{1, 2, 3, 4, 5}
-	ReverseSlice(s1)
+	Reverse(s1)
 	assert.Equal([]int{5, 4, 3, 2, 1}, s1)
 
 	s2 := []string{"a", "b", "c", "d", "e"}
-	ReverseSlice(s2)
+	Reverse(s2)
 	assert.Equal([]string{"e", "d", "c", "b", "a"}, s2)
 }
 
@@ -457,17 +456,5 @@ func TestShuffle(t *testing.T) {
 	res := Shuffle(s)
 	t.Log("Shuffle result: ", res)
 
-	assert.Equal(reflect.TypeOf(s), reflect.TypeOf(res))
-
-	rv := reflect.ValueOf(res)
-	assert.Equal(5, rv.Len())
-
-	assert.Equal(true, rv.Kind() == reflect.Slice)
-	assert.Equal(true, rv.Type().Elem().Kind() == reflect.Int)
-
-	// assert.Equal(true, Contain(res, 1))
-	// assert.Equal(true, Contain(res, 2))
-	// assert.Equal(true, Contain(res, 3))
-	// assert.Equal(true, Contain(res, 4))
-	// assert.Equal(true, Contain(res, 5))
+	assert.Equal(5, len(res))
 }

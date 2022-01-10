@@ -409,9 +409,9 @@ func InterfaceSlice(slice interface{}) []interface{} //convert value to interfac
 func Intersection(slices ...interface{}) interface{} //creates a slice of unique values that included by all slices.
 func InsertByIndex(slice interface{}, index int, value interface{}) (interface{}, error) //insert the element into slice at index.
 func Map [T any, U any] (slice []T, fn func(index int, t T) U) []U //map lisce, fn signature should be func(int, T).
-func ReverseSlice(slice interface{}) //revere slice
+func Reverse[T any](slice []T)//revere slice
 func Reduce[T any](slice []T, fn func(index int, t1, t2 T) T, initial T) T //reduce slice
-func Shuffle(slice interface{}) interface{} //creates an slice of shuffled values
+func Shuffle[T any](slice []T) []T  //creates an slice of shuffled values
 func SortByField(slice interface{}, field string, sortType ...string) error //sort struct slice by field
 func Some[T any](slice []T, fn func(index int, t T) bool) bool //return true if any of the values in the list pass the predicate fn function
 func StringSlice(slice interface{}) []string //convert value to string slice
