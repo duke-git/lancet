@@ -7,277 +7,163 @@ import (
 )
 
 func TestIsNumberStr(t *testing.T) {
-	isNumberStr(t, "3.", true)
-	isNumberStr(t, "+3.", true)
-	isNumberStr(t, "-3.", true)
-	isNumberStr(t, "+3e2", true)
-	isNumberStr(t, "abc", false)
-}
+	assert := internal.NewAssert(t, "TestIsNumberStr")
 
-func isNumberStr(t *testing.T, source string, expected bool) {
-	res := IsNumberStr(source)
-	if res != expected {
-		internal.LogFailedTestInfo(t, "IsNumberStr", source, expected, res)
-		t.FailNow()
-	}
+	assert.Equal(true, IsNumberStr("3."))
+	assert.Equal(true, IsNumberStr("+3."))
+	assert.Equal(true, IsNumberStr("-3."))
+	assert.Equal(true, IsNumberStr("+3e2"))
+	assert.Equal(false, IsNumberStr("abc"))
 }
 
 func TestIsFloatStr(t *testing.T) {
-	isFloatStr(t, "3.", true)
-	isFloatStr(t, "+3.", true)
-	isFloatStr(t, "-3.", true)
-	isFloatStr(t, "12", true)
-	isFloatStr(t, "abc", false)
-}
+	assert := internal.NewAssert(t, "TestIsFloatStr")
 
-func isFloatStr(t *testing.T, source string, expected bool) {
-	res := IsFloatStr(source)
-	if res != expected {
-		internal.LogFailedTestInfo(t, "IsFloatStr", source, expected, res)
-		t.FailNow()
-	}
+	assert.Equal(true, IsFloatStr("3."))
+	assert.Equal(true, IsFloatStr("+3."))
+	assert.Equal(true, IsFloatStr("-3."))
+	assert.Equal(true, IsFloatStr("12"))
+	assert.Equal(false, IsFloatStr("abc"))
 }
 
 func TestIsIntStr(t *testing.T) {
-	isIntStr(t, "+3", true)
-	isIntStr(t, "-3", true)
-	isIntStr(t, "3.", false)
-	isIntStr(t, "abc", false)
-}
+	assert := internal.NewAssert(t, "TestIsIntStr")
 
-func isIntStr(t *testing.T, source string, expected bool) {
-	res := IsIntStr(source)
-	if res != expected {
-		internal.LogFailedTestInfo(t, "IsIntStr", source, expected, res)
-		t.FailNow()
-	}
+	assert.Equal(true, IsIntStr("+3"))
+	assert.Equal(true, IsIntStr("-3"))
+	assert.Equal(false, IsIntStr("3."))
+	assert.Equal(false, IsIntStr("abc"))
 }
 
 func TestIsIp(t *testing.T) {
-	isIp(t, "127.0.0.1", true)
-	isIp(t, "::0:0:0:0:0:0:1", true)
-	isIp(t, "120.0.0", false)
-	isIp(t, "abc", false)
-}
+	assert := internal.NewAssert(t, "TestIsIntStr")
 
-func isIp(t *testing.T, source string, expected bool) {
-	res := IsIp(source)
-	if res != expected {
-		internal.LogFailedTestInfo(t, "IsIp", source, expected, res)
-		t.FailNow()
-	}
+	assert.Equal(true, IsIp("127.0.0.1"))
+	assert.Equal(true, IsIp("::0:0:0:0:0:0:1"))
+	assert.Equal(false, IsIp("127.0.0"))
+	assert.Equal(false, IsIp("127"))
 }
 
 func TestIsIpV4(t *testing.T) {
-	isIpV4(t, "127.0.0.1", true)
-	isIpV4(t, "::0:0:0:0:0:0:1", false)
-}
+	assert := internal.NewAssert(t, "TestIsIpV4")
 
-func isIpV4(t *testing.T, source string, expected bool) {
-	res := IsIpV4(source)
-	if res != expected {
-		internal.LogFailedTestInfo(t, "IsIpV4", source, expected, res)
-		t.FailNow()
-	}
+	assert.Equal(true, IsIpV4("127.0.0.1"))
+	assert.Equal(false, IsIpV4("::0:0:0:0:0:0:1"))
 }
 
 func TestIsIpV6(t *testing.T) {
-	isIpV6(t, "127.0.0.1", false)
-	isIpV6(t, "::0:0:0:0:0:0:1", true)
-}
+	assert := internal.NewAssert(t, "TestIsIpV6")
 
-func isIpV6(t *testing.T, source string, expected bool) {
-	res := IsIpV6(source)
-	if res != expected {
-		internal.LogFailedTestInfo(t, "IsIpV6", source, expected, res)
-		t.FailNow()
-	}
+	assert.Equal(false, IsIpV6("127.0.0.1"))
+	assert.Equal(true, IsIpV6("::0:0:0:0:0:0:1"))
 }
 
 func TestIsDns(t *testing.T) {
-	isDns(t, "abc.com", true)
-	isDns(t, "a.b.com", false)
-}
+	assert := internal.NewAssert(t, "TestIsDns")
 
-func isDns(t *testing.T, source string, expected bool) {
-	res := IsDns(source)
-	if res != expected {
-		internal.LogFailedTestInfo(t, "IsDns", source, expected, res)
-		t.FailNow()
-	}
+	assert.Equal(true, IsDns("abc.com"))
+	assert.Equal(false, IsDns("a.b.com"))
 }
 
 func TestIsEmail(t *testing.T) {
-	isEmail(t, "abc@xyz.com", true)
-	isEmail(t, "a.b@@com", false)
-}
+	assert := internal.NewAssert(t, "TestIsEmail")
 
-func isEmail(t *testing.T, source string, expected bool) {
-	res := IsEmail(source)
-	if res != expected {
-		internal.LogFailedTestInfo(t, "IsEmail", source, expected, res)
-		t.FailNow()
-	}
+	assert.Equal(true, IsEmail("abc@xyz.com"))
+	assert.Equal(false, IsEmail("a.b@@com"))
 }
 
 func TestContainChinese(t *testing.T) {
-	containChinese(t, "你好", true)
-	containChinese(t, "hello", false)
-	containChinese(t, "hello你好", true)
-}
+	assert := internal.NewAssert(t, "TestContainChinese")
 
-func containChinese(t *testing.T, source string, expected bool) {
-	res := ContainChinese(source)
-	if res != expected {
-		internal.LogFailedTestInfo(t, "IsContainChineseChar", source, expected, res)
-		t.FailNow()
-	}
+	assert.Equal(true, ContainChinese("你好"))
+	assert.Equal(true, ContainChinese("你好hello"))
+	assert.Equal(false, ContainChinese("hello"))
 }
 
 func TestIsChineseMobile(t *testing.T) {
-	isChineseMobile(t, "13263527980", true)
-	isChineseMobile(t, "434324324", false)
-}
+	assert := internal.NewAssert(t, "TestIsChineseMobile")
 
-func isChineseMobile(t *testing.T, source string, expected bool) {
-	res := IsChineseMobile(source)
-	if res != expected {
-		internal.LogFailedTestInfo(t, "IsChineseMobile", source, expected, res)
-		t.FailNow()
-	}
+	assert.Equal(true, IsChineseMobile("13263527980"))
+	assert.Equal(false, IsChineseMobile("434324324"))
 }
 
 func TestIsChinesePhone(t *testing.T) {
-	isChinesePhone(t, "010-32116675", true)
-	isChinesePhone(t, "0464-8756213", true)
-	isChinesePhone(t, "123-87562", false)
-}
+	assert := internal.NewAssert(t, "TestIsChinesePhone")
 
-func isChinesePhone(t *testing.T, source string, expected bool) {
-	res := IsChinesePhone(source)
-	if res != expected {
-		internal.LogFailedTestInfo(t, "IsChinesePhone", source, expected, res)
-		t.FailNow()
-	}
+	assert.Equal(true, IsChinesePhone("010-32116675"))
+	assert.Equal(true, IsChinesePhone("0464-8756213"))
+	assert.Equal(false, IsChinesePhone("123-87562"))
+
 }
 
 func TestIsChineseIdNum(t *testing.T) {
-	isChineseIdNum(t, "210911192105130715", true)
-	isChineseIdNum(t, "21091119210513071X", true)
-	isChineseIdNum(t, "21091119210513071x", true)
-	isChineseIdNum(t, "123456", false)
-}
+	assert := internal.NewAssert(t, "TestIsChineseIdNum")
 
-func isChineseIdNum(t *testing.T, source string, expected bool) {
-	res := IsChineseIdNum(source)
-	if res != expected {
-		internal.LogFailedTestInfo(t, "IsChineseIdNum", source, expected, res)
-		t.FailNow()
-	}
+	assert.Equal(true, IsChineseIdNum("210911192105130715"))
+	assert.Equal(true, IsChineseIdNum("21091119210513071X"))
+	assert.Equal(true, IsChineseIdNum("21091119210513071x"))
+	assert.Equal(false, IsChineseIdNum("123456"))
 }
 
 func TestIsCreditCard(t *testing.T) {
-	isCreditCard(t, "4111111111111111", true)
-	isCreditCard(t, "123456", false)
-}
+	assert := internal.NewAssert(t, "TestIsCreditCard")
 
-func isCreditCard(t *testing.T, source string, expected bool) {
-	res := IsCreditCard(source)
-	if res != expected {
-		internal.LogFailedTestInfo(t, "IsCreditCard", source, expected, res)
-		t.FailNow()
-	}
+	assert.Equal(true, IsCreditCard("4111111111111111"))
+	assert.Equal(false, IsCreditCard("123456"))
 }
 
 func TestIsBase64(t *testing.T) {
-	isBase64(t, "aGVsbG8=", true)
-	isBase64(t, "123456", false)
-}
+	assert := internal.NewAssert(t, "TestIsBase64")
 
-func isBase64(t *testing.T, source string, expected bool) {
-	res := IsBase64(source)
-	if res != expected {
-		internal.LogFailedTestInfo(t, "IsBase64", source, expected, res)
-		t.FailNow()
-	}
+	assert.Equal(true, IsBase64("aGVsbG8="))
+	assert.Equal(false, IsBase64("123456"))
 }
 
 func TestIsEmptyString(t *testing.T) {
-	isEmptyString(t, "111", false)
-	isEmptyString(t, " ", false)
-	isEmptyString(t, "\t", false)
-	isEmptyString(t, "", true)
-}
+	assert := internal.NewAssert(t, "TestIsEmptyString")
 
-func isEmptyString(t *testing.T, source string, expected bool) {
-	res := IsEmptyString(source)
-	if res != expected {
-		internal.LogFailedTestInfo(t, "IsEmptyString", source, expected, res)
-		t.FailNow()
-	}
+	assert.Equal(true, IsEmptyString(""))
+	assert.Equal(false, IsEmptyString("111"))
+	assert.Equal(false, IsEmptyString(" "))
+	assert.Equal(false, IsEmptyString("\t"))
 }
 
 func TestIsAlpha(t *testing.T) {
-	isAlpha(t, "abc", true)
-	isAlpha(t, "111", false)
-	isAlpha(t, " ", false)
-	isAlpha(t, "\t", false)
-	isAlpha(t, "", false)
-}
+	assert := internal.NewAssert(t, "TestIsAlpha")
 
-func isAlpha(t *testing.T, source string, expected bool) {
-	res := IsAlpha(source)
-	if res != expected {
-		internal.LogFailedTestInfo(t, "IsAlpha", source, expected, res)
-		t.FailNow()
-	}
+	assert.Equal(true, IsAlpha("abc"))
+	assert.Equal(false, IsAlpha("111"))
+	assert.Equal(false, IsAlpha(" "))
+	assert.Equal(false, IsAlpha("\t"))
+	assert.Equal(false, IsAlpha(""))
 }
 
 func TestIsRegexMatch(t *testing.T) {
-	isRegexMatch(t, "abc", `^[a-zA-Z]+$`, true)
-	isRegexMatch(t, "1ab", `^[a-zA-Z]+$`, false)
-	isRegexMatch(t, "111", `^[a-zA-Z]+$`, false)
-	isRegexMatch(t, "", `^[a-zA-Z]+$`, false)
-}
+	assert := internal.NewAssert(t, "TestIsRegexMatch")
 
-func isRegexMatch(t *testing.T, source, regex string, expected bool) {
-	res := IsRegexMatch(source, regex)
-	if res != expected {
-		internal.LogFailedTestInfo(t, "IsRegexMatch", source, expected, res)
-		t.FailNow()
-	}
+	assert.Equal(true, IsRegexMatch("abc", `^[a-zA-Z]+$`))
+	assert.Equal(false, IsRegexMatch("1ab", `^[a-zA-Z]+$`))
+	assert.Equal(false, IsRegexMatch("", `^[a-zA-Z]+$`))
 }
 
 func TestIsStrongPassword(t *testing.T) {
-	isStrongPassword(t, "abc", 3, false)
-	isStrongPassword(t, "abc123", 6, false)
-	isStrongPassword(t, "abcABC", 6, false)
-	isStrongPassword(t, "abc123@#$", 9, false)
-	isStrongPassword(t, "abcABC123@#$", 16, false)
-	isStrongPassword(t, "abcABC123@#$", 12, true)
-	isStrongPassword(t, "abcABC123@#$", 10, true)
-}
+	assert := internal.NewAssert(t, "TestIsStrongPassword")
 
-func isStrongPassword(t *testing.T, source string, length int, expected bool) {
-	res := IsStrongPassword(source, length)
-	if res != expected {
-		internal.LogFailedTestInfo(t, "IsStrongPassword", source, expected, res)
-		t.FailNow()
-	}
+	assert.Equal(false, IsStrongPassword("abc", 3))
+	assert.Equal(false, IsStrongPassword("abc123", 6))
+	assert.Equal(false, IsStrongPassword("abcABC", 6))
+	assert.Equal(false, IsStrongPassword("abc123@#$", 9))
+	assert.Equal(false, IsStrongPassword("abcABC123@#$", 16))
+	assert.Equal(true, IsStrongPassword("abcABC123@#$", 12))
+	assert.Equal(true, IsStrongPassword("abcABC123@#$", 10))
 }
 
 func TestIsWeakPassword(t *testing.T) {
-	isWeakPassword(t, "abc", true)
-	isWeakPassword(t, "123", true)
-	isWeakPassword(t, "abc123", true)
-	isWeakPassword(t, "abcABC123", true)
-	isWeakPassword(t, "abc123@#$", false)
-}
+	assert := internal.NewAssert(t, "TestIsWeakPassword")
 
-func isWeakPassword(t *testing.T, source string, expected bool) {
-	res := IsWeakPassword(source)
-	if res != expected {
-		internal.LogFailedTestInfo(t, "IsWeakPassword", source, expected, res)
-		t.FailNow()
-	}
+	assert.Equal(true, IsWeakPassword("abc"))
+	assert.Equal(true, IsWeakPassword("123"))
+	assert.Equal(true, IsWeakPassword("abc123"))
+	assert.Equal(true, IsWeakPassword("abcABC123"))
+	assert.Equal(false, IsWeakPassword("abc123@#$"))
 }

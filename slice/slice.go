@@ -11,45 +11,23 @@ import (
 	"math/rand"
 	"reflect"
 	"sort"
-	"strings"
 	"unsafe"
 )
 
 // Contain check if the value is in the iterable type or not
-func Contain(iterableType interface{}, value interface{}) bool {
-
-	v := reflect.ValueOf(iterableType)
-
-	switch kind := reflect.TypeOf(iterableType).Kind(); kind {
-	case reflect.Slice, reflect.Array:
-		for i := 0; i < v.Len(); i++ {
-			if v.Index(i).Interface() == value {
-				return true
-			}
-		}
-
-	case reflect.Map:
-		if v.MapIndex(reflect.ValueOf(value)).IsValid() {
+func Contain[T comparable](slice []T, value T) bool {
+	for _, v := range slice {
+		if v == value {
 			return true
 		}
-	case reflect.String:
-		s := iterableType.(string)
-		ss, ok := value.(string)
-		if !ok {
-			panic("kind mismatch")
-		}
-
-		return strings.Contains(s, ss)
-	default:
-		panic(fmt.Sprintf("kind %s is not support", iterableType))
 	}
 
 	return false
 }
 
-// Chunk creates an slice of elements split into groups the length of `size`.
-func Chunk(slice []interface{}, size int) [][]interface{} {
-	var res [][]interface{}
+// Chunk creates an slice of elements split into groups the length of size.
+func Chunk[T any](slice []T, size int) [][]T {
+	var res [][]T
 
 	if len(slice) == 0 || size <= 0 {
 		return res
@@ -58,7 +36,7 @@ func Chunk(slice []interface{}, size int) [][]interface{} {
 	length := len(slice)
 	if size == 1 || size >= length {
 		for _, v := range slice {
-			var tmp []interface{}
+			var tmp []T
 			tmp = append(tmp, v)
 			res = append(res, tmp)
 		}
@@ -80,93 +58,59 @@ func Chunk(slice []interface{}, size int) [][]interface{} {
 	return res
 }
 
-// Difference creates an slice of whose element not included in the other given slice
-func Difference(slice1, slice2 interface{}) interface{} {
-	v := sliceValue(slice1)
-
-	var indexes []int
-	for i := 0; i < v.Len(); i++ {
-		vi := v.Index(i).Interface()
-		if !Contain(slice2, vi) {
-			indexes = append(indexes, i)
+// Difference creates an slice of whose element in slice1 but not in slice2
+func Difference[T comparable](slice1, slice2 []T) []T {
+	var res []T
+	for _, v := range slice1 {
+		if !Contain(slice2, v) {
+			res = append(res, v)
 		}
 	}
 
-	res := reflect.MakeSlice(v.Type(), len(indexes), len(indexes))
-	for i := range indexes {
-		res.Index(i).Set(v.Index(indexes[i]))
-	}
-	return res.Interface()
+	return res
 }
 
 // Every return true if all of the values in the slice pass the predicate function.
-// The function signature should be func(index int, value interface{}) bool .
-func Every(slice, function interface{}) bool {
-	sv := sliceValue(slice)
-	fn := functionValue(function)
-
-	elemType := sv.Type().Elem()
-	if checkSliceCallbackFuncSignature(fn, elemType, reflect.ValueOf(true).Type()) {
-		panic("function param should be of type func(int, " + elemType.String() + ")" + reflect.ValueOf(true).Type().String())
-	}
-
+// The fn function signature should be func(int, T) bool .
+func Every[T any](slice []T, fn func(index int, t T) bool) bool {
 	var currentLength int
-	for i := 0; i < sv.Len(); i++ {
-		flag := fn.Call([]reflect.Value{reflect.ValueOf(i), sv.Index(i)})[0]
-		if flag.Bool() {
+
+	for i, v := range slice {
+		if fn(i, v) {
 			currentLength++
 		}
 	}
 
-	return currentLength == sv.Len()
+	return currentLength == len(slice)
 }
 
 // None return true if all the values in the slice mismatch the criteria
-// The function signature should be func(index int, value interface{}) bool .
-func None(slice, function interface{}) bool {
-	sv := sliceValue(slice)
-	fn := functionValue(function)
-
-	elemType := sv.Type().Elem()
-	if checkSliceCallbackFuncSignature(fn, elemType, reflect.ValueOf(true).Type()) {
-		panic("function param should be of type func(int, " + elemType.String() + ")" + reflect.ValueOf(true).Type().String())
-	}
-
+// The fn function signature should be func(int, T) bool .
+func None[T any](slice []T, fn func(index int, t T) bool) bool {
 	var currentLength int
-	for i := 0; i < sv.Len(); i++ {
-		flag := fn.Call([]reflect.Value{reflect.ValueOf(i), sv.Index(i)})[0]
-		if !flag.Bool() {
+
+	for i, v := range slice {
+		if !fn(i, v) {
 			currentLength++
 		}
 	}
 
-	return currentLength == sv.Len()
+	return currentLength == len(slice)
 }
 
 // Some return true if any of the values in the list pass the predicate function.
-// The function signature should be func(index int, value interface{}) bool .
-func Some(slice, function interface{}) bool {
-	sv := sliceValue(slice)
-	fn := functionValue(function)
-
-	elemType := sv.Type().Elem()
-	if checkSliceCallbackFuncSignature(fn, elemType, reflect.ValueOf(true).Type()) {
-		panic("function param should be of type func(int, " + elemType.String() + ")" + reflect.ValueOf(true).Type().String())
-	}
-
-	has := false
-	for i := 0; i < sv.Len(); i++ {
-		flag := fn.Call([]reflect.Value{reflect.ValueOf(i), sv.Index(i)})[0]
-		if flag.Bool() {
-			has = true
+// The fn function signature should be func(int, T) bool.
+func Some[T any](slice []T, fn func(index int, t T) bool) bool {
+	for i, v := range slice {
+		if fn(i, v) {
+			return true
 		}
 	}
-
-	return has
+	return false
 }
 
 // Filter iterates over elements of slice, returning an slice of all elements `signature` returns truthy for.
-// The fn signature should be func(int, T) bool.
+// The fn function signature should be func(int, T) bool.
 func Filter[T any](slice []T, fn func(index int, t T) bool) []T {
 	res := make([]T, 0, 0)
 	for i, v := range slice {
@@ -179,24 +123,23 @@ func Filter[T any](slice []T, fn func(index int, t T) bool) []T {
 
 // Count iterates over elements of slice, returns a count of all matched elements
 // The function signature should be func(index int, value interface{}) bool .
-func Count(slice, function interface{}) int {
-	sv := sliceValue(slice)
-	fn := functionValue(function)
-
-	elemType := sv.Type().Elem()
-	if checkSliceCallbackFuncSignature(fn, elemType, reflect.ValueOf(true).Type()) {
-		panic("function param should be of type func(int, " + elemType.String() + ")" + reflect.ValueOf(true).Type().String())
+func Count[T any](slice []T, fn func(index int, t T) bool) int {
+	if fn == nil {
+		panic("fn is missing")
 	}
 
-	var counter int
-	for i := 0; i < sv.Len(); i++ {
-		flag := fn.Call([]reflect.Value{reflect.ValueOf(i), sv.Index(i)})[0]
-		if flag.Bool() {
-			counter++
+	if len(slice) == 0 {
+		return 0
+	}
+
+	var count int
+	for i, v := range slice {
+		if fn(i, v) {
+			count++
 		}
 	}
 
-	return counter
+	return count
 }
 
 // GroupBy iterate over elements of the slice, each element will be group by criteria, returns two slices
@@ -226,31 +169,26 @@ func GroupBy(slice, function interface{}) (interface{}, interface{}) {
 }
 
 // Find iterates over elements of slice, returning the first one that passes a truth test on function.
-// The function signature should be func(index int, value interface{}) bool .
-func Find(slice, function interface{}) (interface{}, bool) {
-	sv := sliceValue(slice)
-	fn := functionValue(function)
-
-	elemType := sv.Type().Elem()
-	if checkSliceCallbackFuncSignature(fn, elemType, reflect.ValueOf(true).Type()) {
-		panic("function param should be of type func(int, " + elemType.String() + ")" + reflect.ValueOf(true).Type().String())
+// The fn function signature should be func(int, T) bool .
+// If return T is nil then no items matched the predicate func
+func Find[T any](slice []T, fn func(index int, t T) bool) (*T, bool) {
+	if len(slice) == 0 {
+		return nil, false
 	}
 
 	index := -1
-	for i := 0; i < sv.Len(); i++ {
-		flag := fn.Call([]reflect.Value{reflect.ValueOf(i), sv.Index(i)})[0]
-		if flag.Bool() {
+	for i, v := range slice {
+		if fn(i, v) {
 			index = i
 			break
 		}
 	}
 
 	if index == -1 {
-		var none interface{}
-		return none, false
+		return nil, false
 	}
 
-	return sv.Index(index).Interface(), true
+	return &slice[index], true
 }
 
 // FlattenDeep flattens slice recursive
@@ -278,14 +216,14 @@ func flattenRecursive(value reflect.Value, result reflect.Value) reflect.Value {
 }
 
 // ForEach iterates over elements of slice and invokes function for each element
-// The fn signature should be func(int, T ).
+// The fn signature should be func(int, T).
 func ForEach[T any](slice []T, fn func(index int, t T)) {
 	for i, v := range slice {
 		fn(i, v)
 	}
 }
 
-// Map creates an slice of values by running each element of `slice` thru `function`.
+// Map creates an slice of values by running each element of slice thru fn function.
 // The fn signature should be func(int, T).
 func Map[T any, U any](slice []T, fn func(index int, t T) U) []U {
 	res := make([]U, len(slice), cap(slice))
@@ -296,40 +234,23 @@ func Map[T any, U any](slice []T, fn func(index int, t T) U) []U {
 	return res
 }
 
-// Reduce creates an slice of values by running each element of `slice` thru `function`.
-// The function signature should be func(index int, value1, value2 interface{}) interface{} .
-func Reduce(slice, function, zero interface{}) interface{} {
-	sv := sliceValue(slice)
-	elementType := sv.Type().Elem()
-
-	len := sv.Len()
-	if len == 0 {
-		return zero
-	} else if len == 1 {
-		return sv.Index(0).Interface()
+// Reduce creates an slice of values by running each element of slice thru fn function.
+// The fn function signature should be fn func(int, T) T .
+func Reduce[T any](slice []T, fn func(index int, t1, t2 T) T, initial T) T {
+	if len(slice) == 0 {
+		return initial
 	}
 
-	fn := functionValue(function)
-	if checkSliceCallbackFuncSignature(fn, elementType, elementType, elementType) {
-		t := elementType.String()
-		panic("function param should be of type func(int, " + t + ", " + t + ")" + t)
+	res := fn(0, initial, slice[0])
+
+	tmp := make([]T, 2, 2)
+	for i := 1; i < len(slice); i++ {
+		tmp[0] = res
+		tmp[1] = slice[i]
+		res = fn(i, tmp[0], tmp[1])
 	}
 
-	var params [3]reflect.Value
-	params[0] = reflect.ValueOf(0)
-	params[1] = sv.Index(0)
-	params[2] = sv.Index(1)
-
-	res := fn.Call(params[:])[0]
-
-	for i := 2; i < len; i++ {
-		params[0] = reflect.ValueOf(i)
-		params[1] = res
-		params[2] = sv.Index(i)
-		res = fn.Call(params[:])[0]
-	}
-
-	return res.Interface()
+	return res
 }
 
 // InterfaceSlice convert param to slice of interface.
@@ -504,106 +425,82 @@ func UpdateByIndex(slice interface{}, index int, value interface{}) (interface{}
 }
 
 // Unique remove duplicate elements in slice.
-func Unique(slice interface{}) interface{} {
-	sv := sliceValue(slice)
-	if sv.Len() == 0 {
-		return slice
+func Unique[T comparable](slice []T) []T {
+	if len(slice) == 0 {
+		return []T{}
 	}
 
-	var temp []interface{}
-
-	for i := 0; i < sv.Len(); i++ {
-		v := sv.Index(i).Interface()
+	// here no use map filter. if use it, the result slice element order is random, not same as origin slice
+	var res []T
+	for i := 0; i < len(slice); i++ {
+		v := slice[i]
 		skip := true
-		for j := range temp {
-			if v == temp[j] {
+		for j := range res {
+			if v == res[j] {
 				skip = false
 				break
 			}
 		}
 		if skip {
-			temp = append(temp, v)
+			res = append(res, v)
 		}
 	}
 
-	res := reflect.MakeSlice(sv.Type(), len(temp), len(temp))
-	for i := 0; i < len(temp); i++ {
-		res.Index(i).Set(reflect.ValueOf(temp[i]))
-	}
-	return res.Interface()
-
-	// if use map filter, the result slice element order is random, not same as origin slice
-	//mp := make(map[interface{}]bool)
-	//for i := 0; i < sv.Len(); i++ {
-	//	v := sv.Index(i).Interface()
-	//	mp[v] = true
-	//}
-	//
-	//var res []interface{}
-	//for k := range mp {
-	//	res = append(res, mp[k])
-	//}
-	//return res
-
+	return res
 }
 
 // Union creates a slice of unique values, in order, from all given slices. using == for equality comparisons.
-func Union(slices ...interface{}) interface{} {
+func Union[T comparable](slices ...[]T) []T {
 	if len(slices) == 0 {
-		return nil
+		return []T{}
 	}
+
 	// append all slices, then unique it
-	var allSlices []interface{}
-	len := 0
-	for i := range slices {
-		sv := sliceValue(slices[i])
-		len += sv.Len()
-		for j := 0; j < sv.Len(); j++ {
-			v := sv.Index(j).Interface()
-			allSlices = append(allSlices, v)
+	var allElements []T
+
+	for _, slice := range slices {
+		for _, v := range slice {
+			allElements = append(allElements, v)
 		}
 	}
 
-	sv := sliceValue(slices[0])
-	res := reflect.MakeSlice(sv.Type(), len, len)
-	for i := 0; i < len; i++ {
-		res.Index(i).Set(reflect.ValueOf(allSlices[i]))
-	}
-
-	return Unique(res.Interface())
+	return Unique(allElements)
 }
 
 // Intersection creates a slice of unique values that included by all slices.
-func Intersection(slices ...interface{}) interface{} {
+func Intersection[T comparable](slices ...[]T) []T {
+	var res []T
 	if len(slices) == 0 {
-		return nil
+		return []T{}
+	}
+	if len(slices) == 1 {
+		return Unique(slices[0])
 	}
 
-	reduceFunc := func(index int, slice1, slice2 interface{}) interface{} {
-		set := make([]interface{}, 0)
-		hash := make(map[interface{}]bool)
-
-		sv1 := reflect.ValueOf(slice1)
-		for i := 0; i < sv1.Len(); i++ {
-			v := sv1.Index(i).Interface()
-			hash[v] = true
-		}
-
-		sv2 := reflect.ValueOf(slice2)
-		for i := 0; i < sv2.Len(); i++ {
-			el := sv2.Index(i).Interface()
-			if _, found := hash[el]; found {
-				set = append(set, el)
+	//return elements both in slice1 and slice2
+	reduceFunc := func(slice1, slice2 []T) []T {
+		s := make([]T, 0, 0)
+		for _, v := range slice1 {
+			if Contain(slice2, v) {
+				s = append(s, v)
 			}
 		}
-		res := reflect.MakeSlice(sv1.Type(), len(set), len(set))
-		for i := 0; i < len(set); i++ {
-			res.Index(i).Set(reflect.ValueOf(set[i]))
-		}
-		return res.Interface()
+		return s
 	}
 
-	res := Reduce(slices, reduceFunc, nil)
+	res = reduceFunc(slices[0], slices[1])
+
+	if len(slices) == 2 {
+		return Unique(res)
+	}
+
+	tmp := make([][]T, 2, 2)
+	for i := 2; i < len(slices); i++ {
+		tmp[0] = res
+		tmp[1] = slices[i]
+		res = reduceFunc(tmp[0], tmp[1])
+	}
+
 	return Unique(res)
 }
 
