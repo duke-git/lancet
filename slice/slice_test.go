@@ -397,7 +397,7 @@ func TestIntersection(t *testing.T) {
 	}
 }
 
-func TestReverseSlice(t *testing.T) {
+func TestReverse(t *testing.T) {
 	assert := internal.NewAssert(t, "TestIntersection")
 
 	s1 := []int{1, 2, 3, 4, 5}
