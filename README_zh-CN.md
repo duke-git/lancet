@@ -410,9 +410,9 @@ func InterfaceSlice(slice interface{}) []interface{} //转成interface{}切片
 func Intersection(slices ...interface{}) interface{} //slice交集，去重
 func InsertByIndex(slice interface{}, index int, value interface{}) (interface{}, error) //在切片中index位置插入value
 func Map(slice, function interface{}) interface{} //遍历切片, 函数签名：func(index int, value interface{}) interface{}
-func ReverseSlice(slice interface{}) //反转切片
+func Reverse[T any](slice []T) //反转切片
 func Reduce[T any](slice []T, fn func(index int, t1, t2 T) T, initial T) T //切片reduce操作
-func Shuffle(slice interface{}) interface{} //创建一个被打乱值的切片
+func Shuffle[T any](slice []T) []T  //创建一个被打乱值的切片
 func Some[T any](slice []T, fn func(index int, t T) bool) bool //slice中任意一个元素都符合函数条件时返回true, 否则返回false.
 func SortByField(slice interface{}, field string, sortType ...string) error //对struct切片进行排序
 func StringSlice(slice interface{}) []string //转为string切片

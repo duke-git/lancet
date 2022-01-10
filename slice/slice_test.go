@@ -402,11 +402,11 @@ func TestReverseSlice(t *testing.T) {
 	assert := internal.NewAssert(t, "TestIntersection")
 
 	s1 := []int{1, 2, 3, 4, 5}
-	ReverseSlice(s1)
+	Reverse(s1)
 	assert.Equal([]int{5, 4, 3, 2, 1}, s1)
 
 	s2 := []string{"a", "b", "c", "d", "e"}
-	ReverseSlice(s2)
+	Reverse(s2)
 	assert.Equal([]string{"e", "d", "c", "b", "a"}, s2)
 }
 

@@ -504,26 +504,22 @@ func Intersection[T comparable](slices ...[]T) []T {
 	return Unique(res)
 }
 
-// ReverseSlice return slice of element order is reversed to the given slice
-func ReverseSlice(slice interface{}) {
-	sv := sliceValue(slice)
-	swp := reflect.Swapper(sv.Interface())
-	for i, j := 0, sv.Len()-1; i < j; i, j = i+1, j-1 {
-		swp(i, j)
+// Reverse return slice of element order is reversed to the given slice
+func Reverse[T any](slice []T) {
+	for i, j := 0, len(slice)-1; i < j; i, j = i+1, j-1 {
+		slice[i], slice[j] = slice[j], slice[i]
 	}
 }
 
 // Shuffle creates an slice of shuffled values
-func Shuffle(slice interface{}) interface{} {
-	sv := sliceValue(slice)
-	length := sv.Len()
+func Shuffle[T any](slice []T) []T {
 
-	res := reflect.MakeSlice(sv.Type(), length, length)
-	for i, v := range rand.Perm(length) {
-		res.Index(i).Set(sv.Index(v))
+	res := make([]T, len(slice))
+	for i, v := range rand.Perm(len(slice)) {
+		res[i] = slice[v]
 	}
 
-	return res.Interface()
+	return res
 }
 
 // SortByField return sorted slice by field
@@ -576,9 +572,18 @@ func SortByField(slice interface{}, field string, sortType ...string) error {
 	})
 
 	if sortType[0] == "desc" {
-		ReverseSlice(slice)
+		reverseSlice(slice)
 	}
 	return nil
+}
+
+// todo remove after migration
+func reverseSlice(slice interface{}) {
+	sv := sliceValue(slice)
+	swp := reflect.Swapper(sv.Interface())
+	for i, j := 0, sv.Len()-1; i < j; i, j = i+1, j-1 {
+		swp(i, j)
+	}
 }
 
 // Without creates a slice excluding all given values
