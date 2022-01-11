@@ -263,32 +263,18 @@ func TestInterfaceSlice(t *testing.T) {
 func TestDeleteByIndex(t *testing.T) {
 	assert := internal.NewAssert(t, "TestDeleteByIndex")
 
-	t1 := []string{"a", "b", "c", "d", "e"}
-	r1 := []string{"b", "c", "d", "e"}
-	a1, _ := DeleteByIndex(t1, 0)
-	assert.Equal(r1, a1)
+	assert.Equal([]string{"a", "b", "c"}, DeleteByIndex([]string{"a", "b", "c"}, -1))
+	assert.Equal([]string{"a", "b", "c"}, DeleteByIndex([]string{"a", "b", "c"}, 3))
+	assert.Equal([]string{"b", "c"}, DeleteByIndex([]string{"a", "b", "c"}, 0))
+	assert.Equal([]string{"a", "c"}, DeleteByIndex([]string{"a", "b", "c"}, 1))
+	assert.Equal([]string{"a", "b"}, DeleteByIndex([]string{"a", "b", "c"}, 2))
 
-	t2 := []string{"a", "b", "c", "d", "e"}
-	r2 := []string{"a", "b", "c", "e"}
-	a2, _ := DeleteByIndex(t2, 3)
-	assert.Equal(r2, a2)
-
-	t3 := []string{"a", "b", "c", "d", "e"}
-	r3 := []string{"c", "d", "e"}
-	a3, _ := DeleteByIndex(t3, 0, 2)
-	assert.Equal(r3, a3)
-
-	t4 := []string{"a", "b", "c", "d", "e"}
-	r4 := []string{}
-	a4, _ := DeleteByIndex(t4, 0, 5)
-	assert.Equal(r4, a4)
-
-	t5 := []string{"a", "b", "c", "d", "e"}
-	_, err := DeleteByIndex(t5, 1, 1)
-	assert.IsNotNil(err)
-
-	_, err = DeleteByIndex(t5, 0, 6)
-	assert.IsNotNil(err)
+	assert.Equal([]string{"b", "c"}, DeleteByIndex([]string{"a", "b", "c"}, 0, 1))
+	assert.Equal([]string{"c"}, DeleteByIndex([]string{"a", "b", "c"}, 0, 2))
+	assert.Equal([]string{}, DeleteByIndex([]string{"a", "b", "c"}, 0, 3))
+	assert.Equal([]string{}, DeleteByIndex([]string{"a", "b", "c"}, 0, 4))
+	assert.Equal([]string{"a"}, DeleteByIndex([]string{"a", "b", "c"}, 1, 3))
+	assert.Equal([]string{"a"}, DeleteByIndex([]string{"a", "b", "c"}, 1, 4))
 }
 
 func TestDrop(t *testing.T) {
@@ -311,45 +297,23 @@ func TestDrop(t *testing.T) {
 func TestInsertByIndex(t *testing.T) {
 	assert := internal.NewAssert(t, "TestInsertByIndex")
 
-	t1 := []string{"a", "b", "c"}
-	r1, _ := InsertByIndex(t1, 0, "1")
-	assert.Equal([]string{"1", "a", "b", "c"}, r1)
-
-	r2, _ := InsertByIndex(t1, 1, "1")
-	assert.Equal([]string{"a", "1", "b", "c"}, r2)
-
-	r3, _ := InsertByIndex(t1, 3, "1")
-	assert.Equal([]string{"a", "b", "c", "1"}, r3)
-
-	r4, _ := InsertByIndex(t1, 0, []string{"1", "2", "3"})
-	assert.Equal([]string{"1", "2", "3", "a", "b", "c"}, r4)
-
-	r5, _ := InsertByIndex(t1, 3, []string{"1", "2", "3"})
-	assert.Equal([]string{"a", "b", "c", "1", "2", "3"}, r5)
-
-	_, err := InsertByIndex(t1, 4, "1")
-	assert.IsNotNil(err)
-
-	_, err = InsertByIndex(t1, 0, 1)
-	assert.IsNotNil(err)
+	strs := []string{"a", "b", "c"}
+	assert.Equal([]string{"a", "b", "c"}, InsertByIndex(strs, -1, "1"))
+	assert.Equal([]string{"a", "b", "c"}, InsertByIndex(strs, 4, "1"))
+	assert.Equal([]string{"1", "a", "b", "c"}, InsertByIndex(strs, 0, "1"))
+	assert.Equal([]string{"a", "b", "c", "1"}, InsertByIndex(strs, 3, "1"))
+	assert.Equal([]string{"1", "2", "3", "a", "b", "c"}, InsertByIndex(strs, 0, []string{"1", "2", "3"}))
+	assert.Equal([]string{"a", "b", "c", "1", "2", "3"}, InsertByIndex(strs, 3, []string{"1", "2", "3"}))
+	t.Log(strs)
 }
 
 func TestUpdateByIndex(t *testing.T) {
 	assert := internal.NewAssert(t, "TestUpdateByIndex")
 
-	t1 := []string{"a", "b", "c"}
-	r1, _ := UpdateByIndex(t1, 0, "1")
-	assert.Equal([]string{"1", "b", "c"}, r1)
-
-	t2 := []string{"a", "b", "c"}
-	r2, _ := UpdateByIndex(t2, 1, "1")
-	assert.Equal([]string{"a", "1", "c"}, r2)
-
-	_, err := UpdateByIndex([]string{"a", "b", "c"}, 4, "1")
-	assert.IsNotNil(err)
-
-	_, err = UpdateByIndex([]string{"a", "b", "c"}, 0, 1)
-	assert.IsNotNil(err)
+	assert.Equal([]string{"a", "b", "c"}, UpdateByIndex([]string{"a", "b", "c"}, -1, "1"))
+	assert.Equal([]string{"1", "b", "c"}, UpdateByIndex([]string{"a", "b", "c"}, 0, "1"))
+	assert.Equal([]string{"a", "b", "2"}, UpdateByIndex([]string{"a", "b", "c"}, 2, "2"))
+	assert.Equal([]string{"a", "b", "c"}, UpdateByIndex([]string{"a", "b", "c"}, 3, "2"))
 }
 
 func TestUnique(t *testing.T) {
@@ -418,7 +382,7 @@ func TestDifference(t *testing.T) {
 }
 
 func TestSortByField(t *testing.T) {
-	assert := internal.NewAssert(t, "TestWithout")
+	assert := internal.NewAssert(t, "TestSortByField")
 
 	type student struct {
 		name string

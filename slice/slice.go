@@ -5,7 +5,6 @@
 package slice
 
 import (
-	"errors"
 	"fmt"
 	"math"
 	"math/rand"
@@ -216,7 +215,7 @@ func flattenRecursive(value reflect.Value, result reflect.Value) reflect.Value {
 }
 
 // ForEach iterates over elements of slice and invokes function for each element
-// The fn signature should be func(int, T).
+// The fn function signature should be func(int, T).
 func ForEach[T any](slice []T, fn func(index int, t T)) {
 	for i, v := range slice {
 		fn(i, v)
@@ -224,7 +223,7 @@ func ForEach[T any](slice []T, fn func(index int, t T)) {
 }
 
 // Map creates an slice of values by running each element of slice thru fn function.
-// The fn signature should be func(int, T).
+// The fn function signature should be func(int, T).
 func Map[T any, U any](slice []T, fn func(index int, t T) U) []U {
 	res := make([]U, len(slice), cap(slice))
 	for i, v := range slice {
@@ -321,107 +320,87 @@ func ConvertSlice(originalSlice interface{}, newSliceType reflect.Type) interfac
 }
 
 // DeleteByIndex delete the element of slice from start index to end index - 1.
-// Delete i: s = append(s[:i], s[i+1:]...)
-// Delete i to j: s = append(s[:i], s[j:]...)
-func DeleteByIndex(slice interface{}, start int, end ...int) (interface{}, error) {
-	v := sliceValue(slice)
-	i := start
-	if v.Len() == 0 || i < 0 || i > v.Len() {
-		return nil, errors.New("InvalidStartIndex")
-	}
-	if len(end) > 0 {
-		j := end[0]
-		if j <= i || j > v.Len() {
-			return nil, errors.New("InvalidEndIndex")
-		}
-		v = reflect.AppendSlice(v.Slice(0, i), v.Slice(j, v.Len()))
-	} else {
-		v = reflect.AppendSlice(v.Slice(0, i), v.Slice(i+1, v.Len()))
-	}
+func DeleteByIndex[T any](slice []T, start int, end ...int) []T {
+	size := len(slice)
 
-	return v.Interface(), nil
-}
-
-// Drop creates a slice with `n` elements dropped from the beginning when n > 0, or `n` elements dropped from the ending when n < 0
-func Drop(slice interface{}, n int) interface{} {
-	sv := sliceValue(slice)
-
-	if n == 0 {
+	if start < 0 || start > size-1 {
 		return slice
 	}
 
-	svLen := sv.Len()
-
-	if math.Abs(float64(n)) >= float64(svLen) {
-		return reflect.MakeSlice(sv.Type(), 0, 0).Interface()
-	}
-
-	if n > 0 {
-		res := reflect.MakeSlice(sv.Type(), svLen-n, svLen-n)
-		for i := 0; i < res.Len(); i++ {
-			res.Index(i).Set(sv.Index(i + n))
+	if len(end) > 0 {
+		end := end[0]
+		if end <= start {
+			return slice
+		}
+		if end > size {
+			end = size
 		}
 
-		return res.Interface()
+		slice = append(slice[:start], slice[end:]...)
+		return slice
 	}
 
-	res := reflect.MakeSlice(sv.Type(), svLen+n, svLen+n)
-	for i := 0; i < res.Len(); i++ {
-		res.Index(i).Set(sv.Index(i))
+	if start == size-1 {
+		slice = append(slice[:start])
+	} else {
+		slice = append(slice[:start], slice[start+1:]...)
 	}
 
-	return res.Interface()
+	return slice
 }
 
-// InsertByIndex insert the element into slice at index.
-// Insert value: s = append(s[:i], append([]T{x}, s[i:]...)...)
-// Insert slice: a = append(a[:i], append(b, a[i:]...)...)
-func InsertByIndex(slice interface{}, index int, value interface{}) (interface{}, error) {
-	v := sliceValue(slice)
+// Drop creates a slice with `n` elements dropped from the beginning when n > 0, or `n` elements dropped from the ending when n < 0
+func Drop[T any](slice []T, n int) []T {
+	size := len(slice)
 
-	if index < 0 || index > v.Len() {
-		return slice, errors.New("InvalidSliceIndex")
+	if size == 0 || n == 0 {
+		return slice
 	}
 
-	// value is slice
-	vv := reflect.ValueOf(value)
-	if vv.Kind() == reflect.Slice {
-		if reflect.TypeOf(slice).Elem() != reflect.TypeOf(value).Elem() {
-			return slice, errors.New("InvalidValueType")
-		}
-		v = reflect.AppendSlice(v.Slice(0, index), reflect.AppendSlice(vv.Slice(0, vv.Len()), v.Slice(index, v.Len())))
-		return v.Interface(), nil
+	if math.Abs(float64(n)) >= float64(size) {
+		return []T{}
 	}
 
-	// value is not slice
-	if reflect.TypeOf(slice).Elem() != reflect.TypeOf(value) {
-		return slice, errors.New("InvalidValueType")
-	}
-	if index == v.Len() {
-		return reflect.Append(v, reflect.ValueOf(value)).Interface(), nil
+	if n < 0 {
+		return slice[0 : size+n]
 	}
 
-	v = reflect.AppendSlice(v.Slice(0, index+1), v.Slice(index, v.Len()))
-	v.Index(index).Set(reflect.ValueOf(value))
+	return slice[n:size]
+}
 
-	return v.Interface(), nil
+// InsertByIndex insert the value or other slice into slice at index.
+func InsertByIndex[T any](slice []T, index int, value interface{}) []T {
+	size := len(slice)
+
+	if index < 0 || index > size {
+		return slice
+	}
+
+	// value is T
+	if v, ok := value.(T); ok {
+		slice = append(slice[:index], append([]T{v}, slice[index:]...)...)
+		return slice
+	}
+
+	// value is []T
+	if v, ok := value.([]T); ok {
+		slice = append(slice[:index], append(v, slice[index:]...)...)
+		return slice
+	}
+
+	return slice
 }
 
 // UpdateByIndex update the slice element at index.
-func UpdateByIndex(slice interface{}, index int, value interface{}) (interface{}, error) {
-	v := sliceValue(slice)
+func UpdateByIndex[T any](slice []T, index int, value T) []T {
+	size := len(slice)
 
-	if index < 0 || index >= v.Len() {
-		return slice, errors.New("InvalidSliceIndex")
+	if index < 0 || index >= size {
+		return slice
 	}
+	slice = append(slice[:index], append([]T{value}, slice[index+1:]...)...)
 
-	if reflect.TypeOf(slice).Elem() != reflect.TypeOf(value) {
-		return slice, errors.New("InvalidValueType")
-	}
-
-	v.Index(index).Set(reflect.ValueOf(value))
-
-	return v.Interface(), nil
+	return slice
 }
 
 // Unique remove duplicate elements in slice.
@@ -587,24 +566,18 @@ func reverseSlice(slice interface{}) {
 }
 
 // Without creates a slice excluding all given values
-func Without(slice interface{}, values ...interface{}) interface{} {
-	sv := sliceValue(slice)
-	if sv.Len() == 0 {
-		return slice
-	}
-
+func Without[T comparable](slice []T, values ...T) []T {
 	var indexes []int
-	for i := 0; i < sv.Len(); i++ {
-		v := sv.Index(i).Interface()
-		if !Contain(values, v) {
+	for i := 0; i < len(slice); i++ {
+		if !Contain(values, slice[i]) {
 			indexes = append(indexes, i)
 		}
 	}
 
-	res := reflect.MakeSlice(sv.Type(), len(indexes), len(indexes))
-	for i := range indexes {
-		res.Index(i).Set(sv.Index(indexes[i]))
+	res := make([]T, len(indexes), len(indexes))
+	for i, v := range indexes {
+		res[i] = slice[v]
 	}
 
-	return res.Interface()
+	return res
 }
