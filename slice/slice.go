@@ -566,18 +566,18 @@ func reverseSlice(slice interface{}) {
 }
 
 // Without creates a slice excluding all given values
-func Without[T comparable](slice []T, values ...T) []T {
-	var indexes []int
-	for i := 0; i < len(slice); i++ {
-		if !Contain(values, slice[i]) {
-			indexes = append(indexes, i)
-		}
-	}
+// func Without[T comparable](slice []T, values ...T) []T {
+// 	var indexes []int
+// 	for i := 0; i < len(slice); i++ {
+// 		if !Contain(values, slice[i]) {
+// 			indexes = append(indexes, i)
+// 		}
+// 	}
 
-	res := make([]T, len(indexes), len(indexes))
-	for i, v := range indexes {
-		res[i] = slice[v]
-	}
+// 	res := make([]T, len(indexes), len(indexes))
+// 	for i, v := range indexes {
+// 		res[i] = slice[v]
+// 	}
 
-	return res
-}
+// 	return res
+// }
