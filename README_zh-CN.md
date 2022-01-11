@@ -416,11 +416,19 @@ func Shuffle[T any](slice []T) []T  //创建一个被打乱值的切片
 func Some[T any](slice []T, fn func(index int, t T) bool) bool //slice中任意一个元素都符合函数条件时返回true, 否则返回false.
 func SortByField(slice interface{}, field string, sortType ...string) error //对struct切片进行排序
 func StringSlice(slice interface{}) []string //转为string切片
+<<<<<<< HEAD
 func Unique[T comparable](slice []T) []T //去重切片
 func Union[T comparable](slices ...[]T) []T //slice并集, 去重
 func UpdateByIndex[T any](slice []T, index int, value T) []T //在切片中index位置更新value
 func Without[T comparable](slice []T, values ...T) []T //slice去除values
 func GroupBy(slice, function interface{}) (interface{}, interface{}) //根据函数function的逻辑分slice为两组slice
+=======
+func Unique(slice interface{}) interface{} //去重切片
+func Union(slices ...interface{}) interface{} //slice并集, 去重
+func UpdateByIndex(slice interface{}, index int, value interface{}) (interface{}, error) //在切片中index位置更新value
+func Without[T comparable](slice []T, values ...T) []T//slice去除values
+func GroupBy[T any](slice []T, fn func(index int, t T) bool) ([]T, []T) //根据函数function的逻辑分slice为两组slice
+>>>>>>> c906d8aea7d772f6f32821e6563aa398dde22127
 func Count[T any](slice []T, fn func(index int, t T) bool) int //遍历slice的元素，返回所有匹配元素的计数
 ```
 

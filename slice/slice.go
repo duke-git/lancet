@@ -143,28 +143,29 @@ func Count[T any](slice []T, fn func(index int, t T) bool) int {
 
 // GroupBy iterate over elements of the slice, each element will be group by criteria, returns two slices
 // The function signature should be func(index int, value interface{}) bool .
-func GroupBy(slice, function interface{}) (interface{}, interface{}) {
-	sv := sliceValue(slice)
-	fn := functionValue(function)
+func GroupBy[T any](slice []T, fn func(index int, t T) bool) ([]T, []T) {
 
-	elemType := sv.Type().Elem()
-	if checkSliceCallbackFuncSignature(fn, elemType, reflect.ValueOf(true).Type()) {
-		panic("function param should be of type func(int, " + elemType.String() + ")" + reflect.ValueOf(true).Type().String())
+	if fn == nil {
+		panic("fn is missing")
 	}
 
-	groupB := reflect.MakeSlice(sv.Type(), 0, 0)
-	groupA := reflect.MakeSlice(sv.Type(), 0, 0)
+	if len(slice) == 0 {
+		return make([]T, 0), make([]T, 0)
+	}
 
-	for i := 0; i < sv.Len(); i++ {
-		flag := fn.Call([]reflect.Value{reflect.ValueOf(i), sv.Index(i)})[0]
-		if flag.Bool() {
-			groupA = reflect.Append(groupA, sv.Index(i))
+	groupB := make([]T, 0)
+	groupA := make([]T, 0)
+
+	for i, v := range slice {
+		ok := fn(i, v)
+		if ok {
+			groupA = append(groupA, v)
 		} else {
-			groupB = reflect.Append(groupB, sv.Index(i))
+			groupB = append(groupB, v)
 		}
 	}
 
-	return groupA.Interface(), groupB.Interface()
+	return groupA, groupB
 }
 
 // Find iterates over elements of slice, returning the first one that passes a truth test on function.
@@ -566,18 +567,17 @@ func reverseSlice(slice interface{}) {
 }
 
 // Without creates a slice excluding all given values
-// func Without[T comparable](slice []T, values ...T) []T {
-// 	var indexes []int
-// 	for i := 0; i < len(slice); i++ {
-// 		if !Contain(values, slice[i]) {
-// 			indexes = append(indexes, i)
-// 		}
-// 	}
+func Without[T comparable](slice []T, values ...T) []T {
+	if len(values) == 0 || len(slice) == 0 {
+		return slice
+	}
 
-// 	res := make([]T, len(indexes), len(indexes))
-// 	for i, v := range indexes {
-// 		res[i] = slice[v]
-// 	}
+	out := make([]T, 0, len(slice))
+	for _, v := range slice {
+		if !Contain(values, v) {
+			out = append(out, v)
+		}
+	}
 
-// 	return res
-// }
+	return out
+}
