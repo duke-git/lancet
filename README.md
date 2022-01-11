@@ -415,19 +415,11 @@ func Shuffle[T any](slice []T) []T  //creates an slice of shuffled values
 func SortByField(slice interface{}, field string, sortType ...string) error //sort struct slice by field
 func Some[T any](slice []T, fn func(index int, t T) bool) bool //return true if any of the values in the list pass the predicate fn function
 func StringSlice(slice interface{}) []string //convert value to string slice
-<<<<<<< HEAD
 func Unique[T comparable](slice []T) []T //remove duplicate elements in slice
 func Union[T comparable](slices ...[]T) []T //Union creates a slice of unique values, in order, from all given slices. using == for equality comparisons.
 func UpdateByIndex[T any](slice []T, index int, value T) []T //update the slice element at index.
 func Without[T comparable](slice []T, values ...T) []T //creates a slice excluding all given values
-func GroupBy(slice, function interface{}) (interface{}, interface{}) // groups slice into two categories
-=======
-func Unique(slice interface{}) interface{} //remove duplicate elements in slice
-func Union(slices ...interface{}) interface{} //Union creates a slice of unique values, in order, from all given slices. using == for equality comparisons.
-func UpdateByIndex(slice interface{}, index int, value interface{}) (interface{}, error) //update the slice element at index.
-func Without[T comparable](slice []T, values ...T) []T//creates a slice excluding all given values
 func GroupBy[T any](slice []T, fn func(index int, t T) bool) ([]T, []T) // groups slice into two categories
->>>>>>> c906d8aea7d772f6f32821e6563aa398dde22127
 func Count[T any](slice []T, fn func(index int, t T) bool) int // Count iterates over elements of slice, returns a count of all matched elements
 ```
 
