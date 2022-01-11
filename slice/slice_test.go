@@ -381,8 +381,8 @@ func TestDifference(t *testing.T) {
 	assert.Equal([]int{1, 2, 3}, Difference(s1, s2))
 }
 
-func TestSortByFieldDesc(t *testing.T) {
-	assert := internal.NewAssert(t, "TestSortByField")
+func TestSortByField(t *testing.T) {
+	assert := internal.NewAssert(t, "TestWithout")
 
 	type student struct {
 		name string
@@ -402,31 +402,6 @@ func TestSortByFieldDesc(t *testing.T) {
 	}
 
 	err := SortByField(students, "age", "desc")
-	assert.IsNil(err)
-
-	assert.Equal(students, studentsOfSortByAge)
-}
-func TestSortByFieldAsc(t *testing.T) {
-	assert := internal.NewAssert(t, "TestSortByField")
-
-	type student struct {
-		name string
-		age  int
-	}
-	students := []student{
-		{"a", 10},
-		{"b", 15},
-		{"c", 5},
-		{"d", 6},
-	}
-	studentsOfSortByAge := []student{
-		{"c", 5},
-		{"d", 6},
-		{"a", 10},
-		{"b", 15},
-	}
-
-	err := SortByField(students, "age")
 	assert.IsNil(err)
 
 	assert.Equal(students, studentsOfSortByAge)

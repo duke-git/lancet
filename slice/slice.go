@@ -156,7 +156,7 @@ func Count[T any](slice []T, fn func(index int, t T) bool) int {
 }
 
 // GroupBy iterate over elements of the slice, each element will be group by criteria, returns two slices
-// The function signature should be func(int, value T) bool .
+// The function signature should be func(index int, T) bool .
 func GroupBy[T any](slice []T, fn func(index int, t T) bool) ([]T, []T) {
 
 	if fn == nil {
