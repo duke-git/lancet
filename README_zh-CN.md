@@ -6,7 +6,7 @@
 <div align="center" style="text-align: center;">
 
 ![Go version](https://img.shields.io/badge/go-%3E%3D1.16<recommend>-9cf)
-[![Release](https://img.shields.io/badge/release-1.1.8-green.svg)](https://github.com/duke-git/lancet/releases)
+[![Release](https://img.shields.io/badge/release-1.1.9-green.svg)](https://github.com/duke-git/lancet/releases)
 [![GoDoc](https://godoc.org/github.com//duke-git/lancet?status.svg)](https://pkg.go.dev/github.com/duke-git/lancet)
 [![Go Report Card](https://goreportcard.com/badge/github.com/duke-git/lancet)](https://goreportcard.com/report/github.com/duke-git/lancet)
 [![codecov](https://codecov.io/gh/duke-git/lancet/branch/main/graph/badge.svg?token=FC48T1F078)](https://codecov.io/gh/duke-git/lancet)
@@ -396,7 +396,7 @@ func main() {
 func Contain(slice interface{}, value interface{}) bool //判断slice是否包含value
 func Chunk(slice []interface{}, size int) [][]interface{} //均分slice
 func ConvertSlice(originalSlice interface{}, newSliceType reflect.Type) interface{} //将originalSlice转换为 newSliceType
-func Difference(slice1, slice2 interface{}) interface{} //返回
+func Difference(slice1, slice2 interface{}) interface{} //返回切片，其元素在slice1中，不在slice2中
 func DeleteByIndex(slice interface{}, start int, end ...int) (interface{}, error) //删除切片中start到end位置的值
 func Drop(slice interface{}, n int) interface{} //创建一个新切片，当n大于0时删除原切片前n个元素，当n小于0时删除原切片后n个元素
 func Every(slice, function interface{}) bool //slice中所有元素都符合函数条件时返回true, 否则返回false. 函数签名：func(index int, value interface{}) bool
