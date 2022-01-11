@@ -399,9 +399,9 @@ func ConvertSlice(originalSlice interface{}, newSliceType reflect.Type) interfac
 func Difference[T comparable](slice1, slice2 []T) []T //返回切片，其元素在slice1中，不在slice2中
 func DeleteByIndex[T any](slice []T, start int, end ...int) []T //删除切片中start到end位置的值(不包含end)
 func Drop[T any](slice []T, n int) []T //创建一个新切片，当n大于0时删除原切片前n个元素，当n小于0时删除原切片后n个元素
-func Every[T any](slice []T, fn func(index int, t T) bool) bool //slice中所有元素都符合函数条件时返回true, 否则返回false. 函数签名：func(index int, t T) bool
-func None[T any](slice []T, fn func(index int, t T) bool) bool //slice中所有元素都不符合函数条件时返回true, 否则返回false. 函数签名：func(index int, value interface{}) bool
-func Find[T any](slice []T, fn func(index int, t T) bool) (*T, bool)//查找slice中第一个符合条件的元素，函数签名：func(index int, value interface{}) bool
+func Every[T any](slice []T, fn func(index int, t T) bool) bool //slice中所有元素都符合函数条件时返回true, 否则返回false. 函数签名：func(int, t T) bool
+func None[T any](slice []T, fn func(index int, t T) bool) bool //slice中所有元素都不符合函数条件时返回true, 否则返回false. 函数签名：func(int, T) bool
+func Find[T any](slice []T, fn func(index int, t T) bool) (*T, bool)//查找slice中第一个符合条件的元素，函数签名：func(int, T) bool
 func Filter [T any] (slice []T, fn func(index int, t T) bool) []T //过滤slice
 func FlattenDeep(slice interface{}) interface{} //将slice递归为一维切片
 func ForEach [T any] (slice []T, fn func(index int, t T)) //遍历切片，在每个元素上执行函数

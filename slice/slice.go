@@ -72,8 +72,11 @@ func Difference[T comparable](slice1, slice2 []T) []T {
 // Every return true if all of the values in the slice pass the predicate function.
 // The fn function signature should be func(int, T) bool .
 func Every[T any](slice []T, fn func(index int, t T) bool) bool {
-	var currentLength int
+	if fn == nil {
+		panic("fn is missing")
+	}
 
+	var currentLength int
 	for i, v := range slice {
 		if fn(i, v) {
 			currentLength++
@@ -86,8 +89,11 @@ func Every[T any](slice []T, fn func(index int, t T) bool) bool {
 // None return true if all the values in the slice mismatch the criteria
 // The fn function signature should be func(int, T) bool .
 func None[T any](slice []T, fn func(index int, t T) bool) bool {
-	var currentLength int
+	if fn == nil {
+		panic("fn is missing")
+	}
 
+	var currentLength int
 	for i, v := range slice {
 		if !fn(i, v) {
 			currentLength++
@@ -100,6 +106,10 @@ func None[T any](slice []T, fn func(index int, t T) bool) bool {
 // Some return true if any of the values in the list pass the predicate function.
 // The fn function signature should be func(int, T) bool.
 func Some[T any](slice []T, fn func(index int, t T) bool) bool {
+	if fn == nil {
+		panic("fn is missing")
+	}
+
 	for i, v := range slice {
 		if fn(i, v) {
 			return true
@@ -111,6 +121,10 @@ func Some[T any](slice []T, fn func(index int, t T) bool) bool {
 // Filter iterates over elements of slice, returning an slice of all elements `signature` returns truthy for.
 // The fn function signature should be func(int, T) bool.
 func Filter[T any](slice []T, fn func(index int, t T) bool) []T {
+	if fn == nil {
+		panic("fn is missing")
+	}
+
 	res := make([]T, 0, 0)
 	for i, v := range slice {
 		if fn(i, v) {
@@ -121,7 +135,7 @@ func Filter[T any](slice []T, fn func(index int, t T) bool) []T {
 }
 
 // Count iterates over elements of slice, returns a count of all matched elements
-// The function signature should be func(index int, value interface{}) bool .
+// The function signature should be func(int, T) bool .
 func Count[T any](slice []T, fn func(index int, t T) bool) int {
 	if fn == nil {
 		panic("fn is missing")
@@ -142,7 +156,7 @@ func Count[T any](slice []T, fn func(index int, t T) bool) int {
 }
 
 // GroupBy iterate over elements of the slice, each element will be group by criteria, returns two slices
-// The function signature should be func(index int, value interface{}) bool .
+// The function signature should be func(int, value T) bool .
 func GroupBy[T any](slice []T, fn func(index int, t T) bool) ([]T, []T) {
 
 	if fn == nil {
@@ -172,6 +186,10 @@ func GroupBy[T any](slice []T, fn func(index int, t T) bool) ([]T, []T) {
 // The fn function signature should be func(int, T) bool .
 // If return T is nil then no items matched the predicate func
 func Find[T any](slice []T, fn func(index int, t T) bool) (*T, bool) {
+	if fn == nil {
+		panic("fn is missing")
+	}
+
 	if len(slice) == 0 {
 		return nil, false
 	}
@@ -218,6 +236,10 @@ func flattenRecursive(value reflect.Value, result reflect.Value) reflect.Value {
 // ForEach iterates over elements of slice and invokes function for each element
 // The fn function signature should be func(int, T).
 func ForEach[T any](slice []T, fn func(index int, t T)) {
+	if fn == nil {
+		panic("fn is missing")
+	}
+
 	for i, v := range slice {
 		fn(i, v)
 	}
@@ -226,6 +248,10 @@ func ForEach[T any](slice []T, fn func(index int, t T)) {
 // Map creates an slice of values by running each element of slice thru fn function.
 // The fn function signature should be func(int, T).
 func Map[T any, U any](slice []T, fn func(index int, t T) U) []U {
+	if fn == nil {
+		panic("fn is missing")
+	}
+
 	res := make([]U, len(slice), cap(slice))
 	for i, v := range slice {
 		res[i] = fn(i, v)
@@ -237,6 +263,10 @@ func Map[T any, U any](slice []T, fn func(index int, t T) U) []U {
 // Reduce creates an slice of values by running each element of slice thru fn function.
 // The fn function signature should be fn func(int, T) T .
 func Reduce[T any](slice []T, fn func(index int, t1, t2 T) T, initial T) T {
+	if fn == nil {
+		panic("fn is missing")
+	}
+
 	if len(slice) == 0 {
 		return initial
 	}
