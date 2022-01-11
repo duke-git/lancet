@@ -419,8 +419,8 @@ func StringSlice(slice interface{}) []string //转为string切片
 func Unique(slice interface{}) interface{} //去重切片
 func Union(slices ...interface{}) interface{} //slice并集, 去重
 func UpdateByIndex(slice interface{}, index int, value interface{}) (interface{}, error) //在切片中index位置更新value
-func Without(slice interface{}, values ...interface{}) interface{} //slice去除values
-func GroupBy(slice, function interface{}) (interface{}, interface{}) //根据函数function的逻辑分slice为两组slice
+func Without[T comparable](slice []T, values ...T) []T//slice去除values
+func GroupBy[T any](slice []T, fn func(index int, t T) bool) ([]T, []T) //根据函数function的逻辑分slice为两组slice
 func Count[T any](slice []T, fn func(index int, t T) bool) int //遍历slice的元素，返回所有匹配元素的计数
 ```
 

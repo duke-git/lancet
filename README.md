@@ -418,8 +418,8 @@ func StringSlice(slice interface{}) []string //convert value to string slice
 func Unique(slice interface{}) interface{} //remove duplicate elements in slice
 func Union(slices ...interface{}) interface{} //Union creates a slice of unique values, in order, from all given slices. using == for equality comparisons.
 func UpdateByIndex(slice interface{}, index int, value interface{}) (interface{}, error) //update the slice element at index.
-func Without(slice interface{}, values ...interface{}) interface{} //creates a slice excluding all given values
-func GroupBy(slice, function interface{}) (interface{}, interface{}) // groups slice into two categories
+func Without[T comparable](slice []T, values ...T) []T//creates a slice excluding all given values
+func GroupBy[T any](slice []T, fn func(index int, t T) bool) ([]T, []T) // groups slice into two categories
 func Count[T any](slice []T, fn func(index int, t T) bool) int // Count iterates over elements of slice, returns a count of all matched elements
 ```
 
