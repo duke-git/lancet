@@ -675,18 +675,38 @@ func SortByField(slice interface{}, field string, sortType ...string) error {
 	}
 
 	// Create a less function based on the field's kind.
-	var less func(a, b reflect.Value) bool
+	var compare func(a, b reflect.Value) bool
 	switch sf.Type.Kind() {
 	case reflect.Int, reflect.Int8, reflect.Int16, reflect.Int32, reflect.Int64:
-		less = func(a, b reflect.Value) bool { return a.Int() < b.Int() }
+		if len(sortType) > 0 && sortType[0] == "desc" {
+			compare = func(a, b reflect.Value) bool { return a.Int() > b.Int() }
+		} else {
+			compare = func(a, b reflect.Value) bool { return a.Int() < b.Int() }
+		}
 	case reflect.Uint, reflect.Uint8, reflect.Uint16, reflect.Uint32, reflect.Uint64:
-		less = func(a, b reflect.Value) bool { return a.Uint() < b.Uint() }
+		if len(sortType) > 0 && sortType[0] == "desc" {
+			compare = func(a, b reflect.Value) bool { return a.Uint() > b.Uint() }
+		} else {
+			compare = func(a, b reflect.Value) bool { return a.Uint() < b.Uint() }
+		}
 	case reflect.Float32, reflect.Float64:
-		less = func(a, b reflect.Value) bool { return a.Float() < b.Float() }
+		if len(sortType) > 0 && sortType[0] == "desc" {
+			compare = func(a, b reflect.Value) bool { return a.Float() > b.Float() }
+		} else {
+			compare = func(a, b reflect.Value) bool { return a.Float() < b.Float() }
+		}
 	case reflect.String:
-		less = func(a, b reflect.Value) bool { return a.String() < b.String() }
+		if len(sortType) > 0 && sortType[0] == "desc" {
+			compare = func(a, b reflect.Value) bool { return a.String() > b.String() }
+		} else {
+			compare = func(a, b reflect.Value) bool { return a.String() < b.String() }
+		}
 	case reflect.Bool:
-		less = func(a, b reflect.Value) bool { return !a.Bool() && b.Bool() }
+		if len(sortType) > 0 && sortType[0] == "desc" {
+			compare = func(a, b reflect.Value) bool { return a.Bool() && !b.Bool() }
+		} else {
+			compare = func(a, b reflect.Value) bool { return !a.Bool() && b.Bool() }
+		}
 	default:
 		return fmt.Errorf("field type %s not supported", sf.Type)
 	}
@@ -700,12 +720,9 @@ func SortByField(slice interface{}, field string, sortType ...string) error {
 		}
 		a = a.FieldByIndex(sf.Index)
 		b = b.FieldByIndex(sf.Index)
-		return less(a, b)
+		return compare(a, b)
 	})
 
-	if sortType[0] == "desc" {
-		ReverseSlice(slice)
-	}
 	return nil
 }
 
