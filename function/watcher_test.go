@@ -24,7 +24,7 @@ func TestWatcher(t *testing.T) {
 	assert.Equal(false, w.excuting)
 
 	w.Reset()
-	
+
 	assert.Equal(int64(0), w.startTime)
 	assert.Equal(int64(0), w.stopTime)
 }

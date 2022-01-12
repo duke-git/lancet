@@ -18,7 +18,7 @@ const (
 	compareGreater
 )
 
-// Assert is a simple implementation of assertion, only for internal useage
+// Assert is a simple implementation of assertion, only for internal usage
 type Assert struct {
 	T        *testing.T
 	CaseName string
@@ -154,9 +154,8 @@ func compare(x, y interface{}) int {
 	default:
 		if reflect.DeepEqual(x, y) {
 			return compareEqual
-		} else {
-			return compareNotEqual
 		}
+		return compareNotEqual
 	}
 
 	return compareNotEqual
