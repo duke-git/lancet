@@ -5,17 +5,72 @@
 package validator
 
 import (
+	"encoding/json"
 	"net"
 	"regexp"
 	"strconv"
+	"strings"
 	"unicode"
 )
 
 var isAlphaRegexMatcher *regexp.Regexp = regexp.MustCompile(`^[a-zA-Z]+$`)
 
 // IsAlpha checks if the string contains only letters (a-zA-Z)
-func IsAlpha(s string) bool {
-	return isAlphaRegexMatcher.MatchString(s)
+func IsAlpha(str string) bool {
+	return isAlphaRegexMatcher.MatchString(str)
+}
+
+// IsAllUpper check if the string is all upper case letters A-Z
+func IsAllUpper(str string) bool {
+	for _, r := range str {
+		if !unicode.IsUpper(r) {
+			return false
+		}
+	}
+	return str != ""
+}
+
+// IsAllLower check if the string is all lower case letters a-z
+func IsAllLower(str string) bool {
+	for _, r := range str {
+		if !unicode.IsLower(r) {
+			return false
+		}
+	}
+	return str != ""
+}
+
+// ContainUpper check if the string contain at least one upper case letter A-Z
+func ContainUpper(str string) bool {
+	for _, r := range str {
+		if unicode.IsUpper(r) && unicode.IsLetter(r) {
+			return true
+		}
+	}
+	return false
+}
+
+// ContainLower check if the string contain at least one lower case letter A-Z
+func ContainLower(str string) bool {
+	for _, r := range str {
+		if unicode.IsLower(r) && unicode.IsLetter(r) {
+			return true
+		}
+	}
+	return false
+}
+
+var containLetterRegexMatcher *regexp.Regexp = regexp.MustCompile(`[a-zA-Z]`)
+
+// ContainLetter check if the string contain at least one letter
+func ContainLetter(str string) bool {
+	return containLetterRegexMatcher.MatchString(str)
+}
+
+// Is checks if the string is valid JSON
+func IsJSON(str string) bool {
+	var js json.RawMessage
+	return json.Unmarshal([]byte(str), &js) == nil
 }
 
 // IsNumberStr check if the string can convert to a number.
@@ -24,16 +79,16 @@ func IsNumberStr(s string) bool {
 }
 
 // IsFloatStr check if the string can convert to a float.
-func IsFloatStr(s string) bool {
-	_, e := strconv.ParseFloat(s, 64)
+func IsFloatStr(str string) bool {
+	_, e := strconv.ParseFloat(str, 64)
 	return e == nil
 }
 
 var isIntStrRegexMatcher *regexp.Regexp = regexp.MustCompile(`^[\+-]?\d+$`)
 
 // IsIntStr check if the string can convert to a integer.
-func IsIntStr(s string) bool {
-	return isIntStrRegexMatcher.MatchString(s)
+func IsIntStr(str string) bool {
+	return isIntStrRegexMatcher.MatchString(str)
 }
 
 // IsIp check if the string is a ip address.
@@ -48,13 +103,7 @@ func IsIpV4(ipstr string) bool {
 	if ip == nil {
 		return false
 	}
-	for i := 0; i < len(ipstr); i++ {
-		switch ipstr[i] {
-		case '.':
-			return true
-		}
-	}
-	return false
+	return strings.Contains(ipstr, ".")
 }
 
 // IsIpV6 check if the string is a ipv6 address.
@@ -63,11 +112,13 @@ func IsIpV6(ipstr string) bool {
 	if ip == nil {
 		return false
 	}
-	for i := 0; i < len(ipstr); i++ {
-		switch ipstr[i] {
-		case ':':
-			return true
-		}
+	return strings.Contains(ipstr, ":")
+}
+
+// IsPort check if the string is a valid net port.
+func IsPort(str string) bool {
+	if i, err := strconv.ParseInt(str, 10, 64); err == nil && i > 0 && i < 65536 {
+		return true
 	}
 	return false
 }
@@ -130,14 +181,14 @@ func IsBase64(base64 string) bool {
 }
 
 // IsEmptyString check if the string is empty.
-func IsEmptyString(s string) bool {
-	return len(s) == 0
+func IsEmptyString(str string) bool {
+	return len(str) == 0
 }
 
 // IsRegexMatch check if the string match the regexp
-func IsRegexMatch(s, regex string) bool {
+func IsRegexMatch(str, regex string) bool {
 	reg := regexp.MustCompile(regex)
-	return reg.MatchString(s)
+	return reg.MatchString(str)
 }
 
 // IsStrongPassword check if the string is strong password, if len(password) is less than the length param, return false

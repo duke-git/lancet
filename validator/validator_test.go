@@ -6,6 +6,96 @@ import (
 	"github.com/duke-git/lancet/internal"
 )
 
+func TestIsAllUpper(t *testing.T) {
+	assert := internal.NewAssert(t, "TestIsAllUpper")
+
+	assert.Equal(true, IsAllUpper("ABC"))
+	assert.Equal(false, IsAllUpper(""))
+	assert.Equal(false, IsAllUpper("abc"))
+	assert.Equal(false, IsAllUpper("aBC"))
+	assert.Equal(false, IsAllUpper("1BC"))
+	assert.Equal(false, IsAllUpper("1bc"))
+	assert.Equal(false, IsAllUpper("123"))
+	assert.Equal(false, IsAllUpper("你好"))
+	assert.Equal(false, IsAllUpper("A&"))
+	assert.Equal(false, IsAllUpper("&@#$%^&*"))
+}
+
+func TestIsAllLower(t *testing.T) {
+	assert := internal.NewAssert(t, "TestIsAllLower")
+
+	assert.Equal(true, IsAllLower("abc"))
+	assert.Equal(false, IsAllLower("ABC"))
+	assert.Equal(false, IsAllLower(""))
+	assert.Equal(false, IsAllLower("aBC"))
+	assert.Equal(false, IsAllLower("1BC"))
+	assert.Equal(false, IsAllLower("1bc"))
+	assert.Equal(false, IsAllLower("123"))
+	assert.Equal(false, IsAllLower("你好"))
+	assert.Equal(false, IsAllLower("A&"))
+	assert.Equal(false, IsAllLower("&@#$%^&*"))
+}
+
+func TestContainLower(t *testing.T) {
+	assert := internal.NewAssert(t, "TestContainLower")
+
+	assert.Equal(true, ContainLower("abc"))
+	assert.Equal(true, ContainLower("aBC"))
+	assert.Equal(true, ContainLower("1bc"))
+	assert.Equal(true, ContainLower("a&"))
+
+	assert.Equal(false, ContainLower("ABC"))
+	assert.Equal(false, ContainLower(""))
+	assert.Equal(false, ContainLower("1BC"))
+	assert.Equal(false, ContainLower("123"))
+	assert.Equal(false, ContainLower("你好"))
+	assert.Equal(false, ContainLower("&@#$%^&*"))
+}
+
+func TestContainUpper(t *testing.T) {
+	assert := internal.NewAssert(t, "TestContainUpper")
+
+	assert.Equal(true, ContainUpper("ABC"))
+	assert.Equal(true, ContainUpper("aBC"))
+	assert.Equal(true, ContainUpper("1BC"))
+	assert.Equal(true, ContainUpper("A&"))
+
+	assert.Equal(false, ContainUpper("abc"))
+	assert.Equal(false, ContainUpper(""))
+	assert.Equal(false, ContainUpper("1bc"))
+	assert.Equal(false, ContainUpper("123"))
+	assert.Equal(false, ContainUpper("你好"))
+	assert.Equal(false, ContainUpper("&@#$%^&*"))
+}
+
+func TestContainLetter(t *testing.T) {
+	assert := internal.NewAssert(t, "TestContainLetter")
+
+	assert.Equal(true, ContainLetter("ABC"))
+	assert.Equal(true, ContainLetter("1Bc"))
+	assert.Equal(true, ContainLetter("1ab"))
+	assert.Equal(true, ContainLetter("A&"))
+
+	assert.Equal(false, ContainLetter(""))
+	assert.Equal(false, ContainLetter("123"))
+	assert.Equal(false, ContainLetter("你好"))
+	assert.Equal(false, ContainLetter("&@#$%^&*"))
+}
+
+func TestIsJSON(t *testing.T) {
+	assert := internal.NewAssert(t, "TestIsJSON")
+
+	assert.Equal(true, IsJSON("{}"))
+	assert.Equal(true, IsJSON("{\"name\": \"test\"}"))
+	assert.Equal(true, IsJSON("[]"))
+	assert.Equal(true, IsJSON("123"))
+
+	assert.Equal(false, IsJSON(""))
+	assert.Equal(false, IsJSON("abc"))
+	assert.Equal(false, IsJSON("你好"))
+	assert.Equal(false, IsJSON("&@#$%^&*"))
+}
+
 func TestIsNumberStr(t *testing.T) {
 	assert := internal.NewAssert(t, "TestIsNumberStr")
 
@@ -33,6 +123,18 @@ func TestIsIntStr(t *testing.T) {
 	assert.Equal(true, IsIntStr("-3"))
 	assert.Equal(false, IsIntStr("3."))
 	assert.Equal(false, IsIntStr("abc"))
+}
+
+func TestIsPort(t *testing.T) {
+	assert := internal.NewAssert(t, "TestIsPort")
+
+	assert.Equal(true, IsPort("1"))
+	assert.Equal(true, IsPort("65535"))
+	assert.Equal(false, IsPort("abc"))
+	assert.Equal(false, IsPort("123abc"))
+	assert.Equal(false, IsPort(""))
+	assert.Equal(false, IsPort("-1"))
+	assert.Equal(false, IsPort("65536"))
 }
 
 func TestIsIp(t *testing.T) {
