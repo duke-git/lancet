@@ -24,6 +24,21 @@ func Contain[T comparable](slice []T, value T) bool {
 	return false
 }
 
+// ContainSubSlice check if the slice contain subslice or not
+func ContainSubSlice[T comparable](slice, subslice []T) bool {
+	unique := make(map[T]bool)
+	for _, v := range slice {
+		unique[v] = true
+	}
+	for _, v := range subslice {
+		if !unique[v] {
+			return false
+		}
+	}
+
+	return true
+}
+
 // Chunk creates an slice of elements split into groups the length of size.
 func Chunk[T any](slice []T, size int) [][]T {
 	var res [][]T

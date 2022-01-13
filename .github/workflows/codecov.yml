@@ -1,13 +1,13 @@
-name: Test and coverage
+name: test
 on:
   push:
     branches:
       - main
-      - v2
+      # - v2
   pull_request:
     branches:
       - main
-      - v2
+      # - v2
 jobs:
   build:
     runs-on: ubuntu-latest

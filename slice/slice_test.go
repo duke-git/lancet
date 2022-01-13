@@ -17,6 +17,14 @@ func TestContain(t *testing.T) {
 	assert.Equal(true, Contain([]int{1, 2, 3}, 1))
 }
 
+func TestContainSubSlice(t *testing.T) {
+	assert := internal.NewAssert(t, "TestContainSubSlice")
+	assert.Equal(true, ContainSubSlice([]string{"a", "a", "b", "c"}, []string{"a", "a"}))
+	assert.Equal(false, ContainSubSlice([]string{"a", "a", "b", "c"}, []string{"a", "d"}))
+	assert.Equal(true, ContainSubSlice([]int{1, 2, 3}, []int{1}))
+	assert.Equal(false, ContainSubSlice([]int{1, 2, 3}, []int{0}))
+}
+
 func TestChunk(t *testing.T) {
 	assert := internal.NewAssert(t, "TestChunk")
 
