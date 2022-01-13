@@ -17,7 +17,6 @@ import (
 
 // Contain check if the value is in the iterable type or not
 func Contain(iterableType interface{}, value interface{}) bool {
-
 	v := reflect.ValueOf(iterableType)
 
 	switch kind := reflect.TypeOf(iterableType).Kind(); kind {
@@ -45,6 +44,30 @@ func Contain(iterableType interface{}, value interface{}) bool {
 	}
 
 	return false
+}
+
+// ContainSubSlice check if the slice contain subslice or not
+func ContainSubSlice(slice interface{}, subslice interface{}) bool {
+	super := sliceValue(slice)
+	sub := sliceValue(subslice)
+
+	if super.Type().Elem().Kind() != sub.Type().Elem().Kind() {
+		return false
+	}
+
+	unique := make(map[interface{}]bool)
+	for i := 0; i < super.Len(); i++ {
+		v := super.Index(i).Interface()
+		unique[v] = true
+	}
+	for i := 0; i < sub.Len(); i++ {
+		v := sub.Index(i).Interface()
+		if !unique[v] {
+			return false
+		}
+	}
+
+	return true
 }
 
 // Chunk creates an slice of elements split into groups the length of `size`.

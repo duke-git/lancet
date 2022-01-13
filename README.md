@@ -6,7 +6,7 @@
 <div align="center" style="text-align: center;">
 
 ![Go version](https://img.shields.io/badge/go-%3E%3D1.16<recommend>-9cf)
-[![Release](https://img.shields.io/badge/release-1.1.9-green.svg)](https://github.com/duke-git/lancet/releases)
+[![Release](https://img.shields.io/badge/release-1.1.10-green.svg)](https://github.com/duke-git/lancet/releases)
 [![GoDoc](https://godoc.org/github.com//duke-git/lancet?status.svg)](https://pkg.go.dev/github.com/duke-git/lancet)
 [![Go Report Card](https://goreportcard.com/badge/github.com/duke-git/lancet)](https://goreportcard.com/report/github.com/duke-git/lancet)
 [![test](https://github.com/duke-git/lancet/actions/workflows/codecov.yml/badge.svg?branch=main&event=push)](https://github.com/duke-git/lancet/actions/workflows/codecov.yml)
@@ -394,7 +394,8 @@ func main() {
 
 ```go
 func Contain(slice interface{}, value interface{}) bool //check if the value is in the slice or not
-func Chunk(slice []interface{}, size int) [][]interface{} //creates an slice of elements split into groups the length of `size`.
+func ContainSubSlice(slice interface{}, subslice interface{}) bool //check if the slice contain subslice or not
+func Chunk(slice []interface{}, size int) [][]interface{} //creates an slice of elements split into groups the length of `size`
 func ConvertSlice(originalSlice interface{}, newSliceType reflect.Type) interface{} //convert originalSlice to newSliceType
 func Difference(slice1, slice2 interface{}) interface{} //creates an slice of whose element not included in the other given slice
 func DeleteByIndex(slice interface{}, start int, end ...int) (interface{}, error) //delete the element of slice from start index to end index - 1
@@ -402,7 +403,7 @@ func Drop(slice interface{}, n int) interface{} //creates a slice with `n` eleme
 func Every(slice, function interface{}) bool //return true if all of the values in the slice pass the predicate function, function signature should be func(index int, value interface{}) bool
 func None(slice, function interface{}) bool // return true if all the values in the slice mismatch the criteria
 func Filter(slice, function interface{}) interface{} //filter slice, function signature should be func(index int, value interface{}) bool
-func Find(slice, function interface{}) (interface{}, bool) //iterates over elements of slice, returning the first one that passes a truth test on function.function signature should be func(index int, value interface{}) bool .
+func Find(slice, function interface{}) (interface{}, bool) //iterates over elements of slice, returning the first one that passes a truth test on function.function signature should be func(index int, value interface{}) bool
 func FlattenDeep(slice interface{}) interface{} //flattens slice recursive
 func ForEach(slice, function interface{}) //iterates over elements of slice and invokes function for each element, function signature should be func(index int, value interface{}) 
 func IntSlice(slice interface{}) ([]int, error) //convert value to int slice
@@ -417,7 +418,7 @@ func SortByField(slice interface{}, field string, sortType ...string) error //so
 func Some(slice, function interface{}) bool //return true if any of the values in the list pass the predicate function, function signature should be func(index int, value interface{}) bool
 func StringSlice(slice interface{}) []string //convert value to string slice
 func Unique(slice interface{}) interface{} //remove duplicate elements in slice
-func Union(slices ...interface{}) interface{} //Union creates a slice of unique values, in order, from all given slices. using == for equality comparisons.
+func Union(slices ...interface{}) interface{} //Union creates a slice of unique values, in order, from all given slices. using == for equality comparisons
 func UpdateByIndex(slice interface{}, index int, value interface{}) (interface{}, error) //update the slice element at index.
 func Without(slice interface{}, values ...interface{}) interface{} //creates a slice excluding all given values
 func GroupBy(slice, function interface{}) (interface{}, interface{}) // groups slice into two categories
