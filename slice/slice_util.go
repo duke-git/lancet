@@ -5,31 +5,6 @@ import (
 	"reflect"
 )
 
-// func quickSort[T comparable](slice []T, low, high int) []T {
-// 	if low < high {
-// 		var p int
-// 		slice, p = partitionForQuickSort(slice, low, high)
-// 		slice = quickSort(slice, low, p-1)
-// 		slice = quickSort(slice, p+1, high)
-// 	}
-
-// 	return slice
-// }
-
-// func partitionForQuickSort[T comparable](slice []T, low, high int) ([]T, int) {
-// 	p := slice[high]
-// 	i := low
-// 	for j := low; j < high; j++ {
-// 		//???, error: comparable don't support operator <
-// 		if slice[j] < p {
-// 			slice[i], slice[j] = slice[j], slice[i]
-// 			i++
-// 		}
-// 	}
-// 	slice[i], slice[high] = slice[high], slice[i]
-// 	return slice, i
-// }
-
 // sliceValue return the reflect value of a slice
 func sliceValue(slice interface{}) reflect.Value {
 	v := reflect.ValueOf(slice)
