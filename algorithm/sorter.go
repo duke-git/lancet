@@ -6,7 +6,43 @@ package algorithm
 
 import "github.com/duke-git/lancet/lancetconstraints"
 
-// SelectionSort use selection to sort slice,
+// BubbleSort use bubble to sort slice.
+func BubbleSort[T any](slice []T, comparator lancetconstraints.Comparator) []T {
+	for i := 0; i < len(slice); i++ {
+		for j := 0; j < len(slice)-1-i; j++ {
+			if comparator.Compare(slice[j], slice[j+1]) == 1 {
+				swap(slice, j, j+1)
+			}
+		}
+	}
+	return slice
+}
+
+// InsertionSort use insertion to sort slice.
+func InsertionSort[T any](slice []T, comparator lancetconstraints.Comparator) []T {
+	size := len(slice)
+	if size <= 1 {
+		return slice
+	}
+
+	for i := 1; i < size; i++ {
+		currentItem := slice[i]
+		preIndex := i - 1
+		preItem := slice[preIndex]
+
+		isPreLessThanCurrent := comparator.Compare(preItem, currentItem) == -1
+		for preIndex >= 0 && isPreLessThanCurrent {
+			slice[preIndex+1] = slice[preIndex]
+			preIndex--
+		}
+
+		slice[preIndex+1] = preItem
+	}
+
+	return slice
+}
+
+// SelectionSort use selection to sort slice.
 func SelectionSort[T any](slice []T, comparator lancetconstraints.Comparator) []T {
 	for i := 0; i < len(slice); i++ {
 		min := i
