@@ -63,7 +63,7 @@ func main() {
 #### 1. convertor contains some functions for data convertion
 
 - Support conversion between commonly used data types.
-- Usage: import "github.com/duke-git/lancet/cryptor"
+- Usage: import "github.com/duke-git/lancet/convertor"
 
 ```go
 package main
