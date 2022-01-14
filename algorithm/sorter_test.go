@@ -110,3 +110,16 @@ func TestSelectionSort(t *testing.T) {
 
 	asssert.Equal(expected, actual)
 }
+
+func TestShellSort(t *testing.T) {
+	asssert := internal.NewAssert(t, "TestShellSort")
+
+	comparator := &peopleAageComparator{}
+	sortedPeopleByAge := ShellSort(peoples, comparator)
+	t.Log(sortedPeopleByAge)
+
+	expected := "[{d 8} {b 10} {c 17} {a 20} {e 28}]"
+	actual := fmt.Sprintf("%v", sortedPeopleByAge)
+
+	asssert.Equal(expected, actual)
+}

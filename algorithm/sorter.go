@@ -10,7 +10,8 @@ import "github.com/duke-git/lancet/lancetconstraints"
 func BubbleSort[T any](slice []T, comparator lancetconstraints.Comparator) []T {
 	for i := 0; i < len(slice); i++ {
 		for j := 0; j < len(slice)-1-i; j++ {
-			if comparator.Compare(slice[j], slice[j+1]) == 1 {
+			isCurrGreatThanNext := comparator.Compare(slice[j], slice[j+1]) == 1
+			if isCurrGreatThanNext {
 				swap(slice, j, j+1)
 			}
 		}
@@ -54,6 +55,30 @@ func SelectionSort[T any](slice []T, comparator lancetconstraints.Comparator) []
 		}
 		swap(slice, i, min)
 	}
+	return slice
+}
+
+// ShellSort shell sort slice.
+func ShellSort[T any](slice []T, comparator lancetconstraints.Comparator) []T {
+	size := len(slice)
+	if size <= 1 {
+		return slice
+	}
+
+	gap := 1
+	for gap < size/3 {
+		gap = 3*gap + 1
+	}
+
+	for gap >= 1 {
+		for i := gap; i < size; i++ {
+			for j := i; j >= gap && comparator.Compare(slice[j], slice[j-gap]) == -1; j -= gap {
+				swap(slice, j, j-gap)
+			}
+		}
+		gap /= 3
+	}
+
 	return slice
 }
 
