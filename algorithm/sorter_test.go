@@ -123,3 +123,42 @@ func TestShellSort(t *testing.T) {
 
 	asssert.Equal(expected, actual)
 }
+
+func TestQuickSort(t *testing.T) {
+	asssert := internal.NewAssert(t, "TestQuickSort")
+
+	comparator := &peopleAageComparator{}
+	sortedPeopleByAge := QuickSort(peoples, 0, len(peoples)-1, comparator)
+	t.Log(sortedPeopleByAge)
+
+	expected := "[{d 8} {b 10} {c 17} {a 20} {e 28}]"
+	actual := fmt.Sprintf("%v", sortedPeopleByAge)
+
+	asssert.Equal(expected, actual)
+}
+
+func TestHeapSort(t *testing.T) {
+	asssert := internal.NewAssert(t, "TestHeapSort")
+
+	comparator := &peopleAageComparator{}
+	sortedPeopleByAge := HeapSort(peoples, comparator)
+	t.Log(sortedPeopleByAge)
+
+	expected := "[{d 8} {b 10} {c 17} {a 20} {e 28}]"
+	actual := fmt.Sprintf("%v", sortedPeopleByAge)
+
+	asssert.Equal(expected, actual)
+}
+
+func TestMergeSort(t *testing.T) {
+	asssert := internal.NewAssert(t, "TestHeapSort")
+
+	comparator := &peopleAageComparator{}
+	sortedPeopleByAge := MergeSort(peoples, 0, len(peoples)-1, comparator)
+	t.Log(sortedPeopleByAge)
+
+	expected := "[{d 8} {b 10} {c 17} {a 20} {e 28}]"
+	actual := fmt.Sprintf("%v", sortedPeopleByAge)
+
+	asssert.Equal(expected, actual)
+}

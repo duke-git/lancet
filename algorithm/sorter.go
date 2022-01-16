@@ -82,33 +82,108 @@ func ShellSort[T any](slice []T, comparator lancetconstraints.Comparator) []T {
 	return slice
 }
 
-// func QuickSort[T comparable](slice []T, low, high int) []T {
-// 	if low < high {
-// 		var p int
-// 		slice, p = partitionForQuickSort(slice, low, high)
-// 		slice = quickSort(slice, low, p-1)
-// 		slice = quickSort(slice, p+1, high)
-// 	}
+// QuickSort quick sorting for slice, low is 0 and high is len(slice)-1
+func QuickSort[T any](slice []T, low, high int, comparator lancetconstraints.Comparator) []T {
+	if low < high {
+		p := partition(slice, low, high, comparator)
+		QuickSort(slice, low, p-1, comparator)
+		QuickSort(slice, p+1, high, comparator)
+	}
 
-// 	return slice
-// }
+	return slice
+}
+
+// partition split slice into two parts
+func partition[T any](slice []T, low, high int, comparator lancetconstraints.Comparator) int {
+	p := slice[high]
+	i := low
+	for j := low; j < high; j++ {
+		if comparator.Compare(slice[j], p) == -1 { //slice[j] < p
+			swap(slice, i, j)
+			i++
+		}
+	}
+
+	swap(slice, i, high)
+
+	return i
+}
+
+// HeapSort use heap to sort slice
+func HeapSort[T any](slice []T, comparator lancetconstraints.Comparator) []T {
+	size := len(slice)
+
+	for i := size/2 - 1; i >= 0; i-- {
+		sift(slice, i, size-1, comparator)
+	}
+	for j := size - 1; j > 0; j-- {
+		swap(slice, 0, j)
+		sift(slice, 0, j-1, comparator)
+	}
+
+	return slice
+}
+
+func sift[T any](slice []T, low, high int, comparator lancetconstraints.Comparator) {
+	i := low
+	j := 2*i + 1
+
+	temp := slice[i]
+	for j <= high {
+		if j < high && comparator.Compare(slice[j], slice[j+1]) == -1 { //slice[j] < slice[j+1]
+			j++
+		}
+		if comparator.Compare(temp, slice[j]) == -1 { //tmp < slice[j]
+			slice[i] = slice[j]
+			i = j
+			j = 2*i + 1
+		} else {
+			break
+		}
+	}
+	slice[i] = temp
+}
+
+// MergeSort merge sorting for slice
+func MergeSort[T any](slice []T, low, high int, comparator lancetconstraints.Comparator) []T {
+	if low < high {
+		mid := (low + high) / 2
+		MergeSort(slice, low, mid, comparator)
+		MergeSort(slice, mid+1, high, comparator)
+		merge(slice, low, mid, high, comparator)
+	}
+
+	return slice
+}
+
+func merge[T any](slice []T, low, mid, high int, comparator lancetconstraints.Comparator) {
+	i := low
+	j := mid + 1
+	temp := []T{}
+
+	for i <= mid && j <= high {
+		//slice[i] < slice[j]
+		if comparator.Compare(slice[i], slice[j]) == -1 {
+			temp = append(temp, slice[i])
+			i++
+		} else {
+			temp = append(temp, slice[j])
+			j++
+		}
+	}
+
+	if i <= mid {
+		temp = append(temp, slice[i:mid+1]...)
+	} else {
+		temp = append(temp, slice[j:high+1]...)
+	}
+
+	for k := 0; k < len(temp); k++ {
+		slice[low+k] = temp[k]
+	}
+}
 
 // swap two slice value at index i and j
 func swap[T any](slice []T, i, j int) {
 	slice[i], slice[j] = slice[j], slice[i]
 }
-
-// func partition[T comparable](slice []T, low, high int) ([]T, int) {
-// 	p := slice[high]
-// 	i := low
-// 	for j := low; j < high; j++ {
-// 		//???, error: comparable don't support operator <
-// 		if slice[j] < p {
-// 			slice[i], slice[j] = slice[j], slice[i]
-// 			i++
-// 		}
-// 	}
-// 	slice[i], slice[high] = slice[high], slice[i]
-
-// 	return slice, i
-// }
