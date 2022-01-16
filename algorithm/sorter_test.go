@@ -151,10 +151,23 @@ func TestHeapSort(t *testing.T) {
 }
 
 func TestMergeSort(t *testing.T) {
-	asssert := internal.NewAssert(t, "TestHeapSort")
+	asssert := internal.NewAssert(t, "TestMergeSort")
 
 	comparator := &peopleAageComparator{}
 	sortedPeopleByAge := MergeSort(peoples, 0, len(peoples)-1, comparator)
+	t.Log(sortedPeopleByAge)
+
+	expected := "[{d 8} {b 10} {c 17} {a 20} {e 28}]"
+	actual := fmt.Sprintf("%v", sortedPeopleByAge)
+
+	asssert.Equal(expected, actual)
+}
+
+func TestCountSort(t *testing.T) {
+	asssert := internal.NewAssert(t, "TestCountSort")
+
+	comparator := &peopleAageComparator{}
+	sortedPeopleByAge := CountSort(peoples, comparator)
 	t.Log(sortedPeopleByAge)
 
 	expected := "[{d 8} {b 10} {c 17} {a 20} {e 28}]"

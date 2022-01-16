@@ -1,7 +1,7 @@
 // Copyright 2021 dudaodong@gmail.com. All rights reserved.
 // Use of this source code is governed by MIT license
 
-// Package algorithm contain some algorithm functions. eg. sort, find, list, linklist, stack, queue, tree, graph. TODO
+// Package algorithm contain some basic algorithm functions. eg. sort, search, list, linklist, stack, queue, tree, graph. TODO
 package algorithm
 
 import "github.com/duke-git/lancet/lancetconstraints"
@@ -181,6 +181,25 @@ func merge[T any](slice []T, low, mid, high int, comparator lancetconstraints.Co
 	for k := 0; k < len(temp); k++ {
 		slice[low+k] = temp[k]
 	}
+}
+
+// CountSort use count sorting for slice
+func CountSort[T any](slice []T, comparator lancetconstraints.Comparator) []T {
+	size := len(slice)
+	out := make([]T, size)
+
+	for i := 0; i < size; i++ {
+		count := 0
+		for j := 0; j < size; j++ {
+			//slice[i] > slice[j]
+			if comparator.Compare(slice[i], slice[j]) == 1 {
+				count++
+			}
+		}
+		out[count] = slice[i]
+	}
+
+	return out
 }
 
 // swap two slice value at index i and j
