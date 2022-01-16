@@ -1,9 +1,7 @@
-<div align="center">
-    <h1 style="width: 100%; text-align: center;">Lancet</h1>
-    <p style="font-size: 18px">
-        Lancet is a comprehensive, efficient, and reusable util function library of go. Inspired by the java apache common package and lodash.js.
-    </p>
-<div align="center" style="text-align: center;">
+<h1 style="width: 100%;">Lancet</h1>
+<p style="font-size: 18px"> 
+    Lancet is a comprehensive, efficient, and reusable util function library of go. Inspired by the java apache common package and lodash.js.
+</p>
 
 ![Go version](https://img.shields.io/badge/go-%3E%3D1.16<recommend>-9cf)
 [![Release](https://img.shields.io/badge/release-1.1.10-green.svg)](https://github.com/duke-git/lancet/releases)
@@ -13,13 +11,12 @@
 [![codecov](https://codecov.io/gh/duke-git/lancet/branch/main/graph/badge.svg?token=FC48T1F078)](https://codecov.io/gh/duke-git/lancet)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/duke-git/lancet/blob/main/LICENSE)
 
-</div>
 
 English | [简体中文](./README_zh-CN.md)
 
-</div>
 
 ### Feature
+---
 
 - 👏 Comprehensive, efficient and reusable.
 - 💪 140+ common go util functions, support string, slice, datetime, net, crypt...
@@ -27,12 +24,14 @@ English | [简体中文](./README_zh-CN.md)
 - 🌍 Unit test for every exported function.
 
 ### Installation
+---
 
 ```go
 go get github.com/duke-git/lancet
 ```
 
 ### Usage
+---
 Lancet organizes the code into package structure, and you need to import the corresponding package name when use it. For example, if you use string-related functions,import the strutil package like below:
 
 ```go
@@ -40,6 +39,7 @@ import "github.com/duke-git/lancet/strutil"
 ```
 
 ### Example
+---
 
 Here takes the string function ReverseStr (reverse order string) as an example, and the strutil package needs to be imported.
 
@@ -59,7 +59,7 @@ func main() {
 ```
 
 ### API Documentation
-
+---
 #### 1. convertor contains some functions for data convertion
 
 - Support conversion between commonly used data types.

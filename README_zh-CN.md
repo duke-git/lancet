@@ -1,9 +1,7 @@
-<div align="center">
-    <h1 style="width: 100%; text-align: center;">Lancet</h1>
-    <p style="font-size: 18px">
-        lancet（柳叶刀）是一个全面、高效、可复用的go语言工具函数库。 lancet受到了java apache common包和lodash.js的启发。
-    </p>
-<div align="center" style="text-align: center;">
+<h1 style="width: 100%;">Lancet</h1>
+<p style="font-size: 18px">
+    lancet（柳叶刀）是一个全面、高效、可复用的go语言工具函数库。 lancet受到了java apache common包和lodash.js的启发。
+</p>
 
 ![Go version](https://img.shields.io/badge/go-%3E%3D1.16<recommend>-9cf)
 [![Release](https://img.shields.io/badge/release-1.1.10-green.svg)](https://github.com/duke-git/lancet/releases)
@@ -13,27 +11,25 @@
 [![codecov](https://codecov.io/gh/duke-git/lancet/branch/main/graph/badge.svg?token=FC48T1F078)](https://codecov.io/gh/duke-git/lancet)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/duke-git/lancet/blob/main/LICENSE)
 
-</div>
 
 简体中文 | [English](./README.md)
 
-</div>
 
 ### 特性
-
+---
 - 👏 全面、高效、可复用
 - 💪 140+常用go工具函数，支持string、slice、datetime、net、crypt...
 - 💅 只依赖go标准库
 - 🌍 所有导出函数单元测试覆盖率100%
 
 ### 安装
-
+---
 ```go
 go get github.com/duke-git/lancet
 ```
 
 ### 用法
-
+---
 lancet是以包的结构组织代码的，使用时需要导入相应的包名。例如：如果使用字符串相关函数，需要导入strutil包:
 
 ```go
@@ -41,7 +37,7 @@ import "github.com/duke-git/lancet/strutil"
 ```
 
 ### 例子
-
+---
 此处以字符串工具函数ReverseStr（逆序字符串）为例，需要导入strutil包:
 
 ```go
@@ -60,7 +56,7 @@ func main() {
 ```
 
 ### API文档
-
+---
 #### 1. convertor数据转换包
 
 - 转换函数支持常用数据类型之间的转换
