@@ -1,38 +1,34 @@
-<div align="center">
-    <h1 style="width: 100%; text-align: center;">Lancet</h1>
-    <p style="font-size: 18px">
-        lancet（柳叶刀）是一个全面、高效、可复用的go语言工具函数库。 lancet受到了java apache common包和lodash.js的启发。
-    </p>
-<div align="center" style="text-align: center;">
+# Lancet
+<p style="font-size: 18px">
+    lancet（柳叶刀）是一个全面、高效、可复用的go语言工具函数库。 lancet受到了java apache common包和lodash.js的启发。
+</p>
 
 ![Go version](https://img.shields.io/badge/go-%3E%3D1.16<recommend>-9cf)
-[![Release](https://img.shields.io/badge/release-1.1.10-green.svg)](https://github.com/duke-git/lancet/releases)
+[![Release](https://img.shields.io/badge/release-1.2.0-green.svg)](https://github.com/duke-git/lancet/releases)
 [![GoDoc](https://godoc.org/github.com//duke-git/lancet?status.svg)](https://pkg.go.dev/github.com/duke-git/lancet)
 [![Go Report Card](https://goreportcard.com/badge/github.com/duke-git/lancet)](https://goreportcard.com/report/github.com/duke-git/lancet)
 [![test](https://github.com/duke-git/lancet/actions/workflows/codecov.yml/badge.svg?branch=main&event=push)](https://github.com/duke-git/lancet/actions/workflows/codecov.yml)
 [![codecov](https://codecov.io/gh/duke-git/lancet/branch/main/graph/badge.svg?token=FC48T1F078)](https://codecov.io/gh/duke-git/lancet)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/duke-git/lancet/blob/main/LICENSE)
 
-</div>
 
 简体中文 | [English](./README.md)
 
-</div>
 
-### 特性
+## 特性
 
 - 👏 全面、高效、可复用
-- 💪 140+常用go工具函数，支持string、slice、datetime、net、crypt...
+- 💪 160+常用go工具函数，支持string、slice、datetime、net、crypt...
 - 💅 只依赖go标准库
 - 🌍 所有导出函数单元测试覆盖率100%
 
-### 安装
+## 安装
 
 ```go
 go get github.com/duke-git/lancet
 ```
 
-### 用法
+## 用法
 
 lancet是以包的结构组织代码的，使用时需要导入相应的包名。例如：如果使用字符串相关函数，需要导入strutil包:
 
@@ -40,7 +36,7 @@ lancet是以包的结构组织代码的，使用时需要导入相应的包名�
 import "github.com/duke-git/lancet/strutil"
 ```
 
-### 例子
+## 例子
 
 此处以字符串工具函数ReverseStr（逆序字符串）为例，需要导入strutil包:
 
@@ -59,9 +55,8 @@ func main() {
 }
 ```
 
-### API文档
-
-#### 1. convertor数据转换包
+## API文档
+### 1. convertor数据转换包
 
 - 转换函数支持常用数据类型之间的转换
 - 导入包：import "github.com/duke-git/lancet/convertor"
@@ -99,7 +94,7 @@ func ToString(value interface{}) string //interface转成string
 func StructToMap(value interface{}) (map[string]interface{}, error) //struct串转成map, 需要设置struct tag `json`
 ```
 
-#### 2. cryptor加解密包
+### 2. cryptor加解密包
 
 - 加密函数支持md5, hmac, aes, des, ras
 - 导入包：import "github.com/duke-git/lancet/cryptor"
@@ -158,7 +153,7 @@ func RsaDecrypt(data []byte, privateKeyFileName string) []byte //RSA解密
 
 ```
 
-#### 3. datetime日期时间处理包
+### 3. datetime日期时间处理包
 
 - 处理日期时间
 - 导入包：import "github.com/duke-git/lancet/datetime"
@@ -193,7 +188,7 @@ func FormatTimeToStr(t time.Time, format string) string //时间格式化字符�
 func FormatStrToTime(str, format string) time.Time //字符串转换成时间
 ```
 
-#### 4. fileutil文件处理包
+### 4. fileutil文件处理包
 
 - 文件处理常用函数
 - 导入包：import "github.com/duke-git/lancet/fileutil"
@@ -230,7 +225,7 @@ func Zip(fpath string, destPath string) error //压缩文件fpath参数可以是
 func UnZip(zipFile string, destPath string) error //解压文件，并将文件存储在destPath目录中
 ```
 
-#### 5. formatter格式化处理包
+### 5. formatter格式化处理包
 
 - 格式化相关处理函数
 - 导入包：import "github.com/duke-git/lancet/formatter"
@@ -255,7 +250,7 @@ func main() {
 func Comma(v interface{}, symbol string) string  //用逗号每隔3位分割数字/字符串
 ```
 
-#### 6. function包可以控制函数执行，支持部分函数式编程
+### 6. function包可以控制函数执行，支持部分函数式编程
 
 - 控制函数执行，支持部分函数式编程
 - 导入包：import "github.com/duke-git/lancet/function"
@@ -291,7 +286,7 @@ func (w *Watcher) Reset() {} //重置代码watcher
 func (w *Watcher) GetElapsedTime() time.Duration //get code excution elapsed time.
 ```
 
-#### 7. netutil网络处理包
+### 7. netutil网络处理包
 
 - 处理ip, http请求相关函数
 - 导入包：import "github.com/duke-git/lancet/netutil"
@@ -339,7 +334,7 @@ func ConvertMapToQueryString(param map[string]interface{}) string //将map转换
 func ParseHttpResponse(resp *http.Response, obj interface{}) error //将http响应解码成特定interface
 ```
 
-#### 8. random随机数处理包
+### 8. random随机数处理包
 
 - 生成和处理随机数
 - 导入包：import "github.com/duke-git/lancet/random"
@@ -368,7 +363,49 @@ func RandInt(min, max int) int //生成随机int
 func RandString(length int) string //生成随机string
 ```
 
-#### 9. slice切片操作包
+### 9. retry重试执行函数
+
+- 重试执行函数直到函数成功或被context停止
+- 默认重试次数5, 默认执行间隔3秒.
+- Usage: import "github.com/duke-git/lancet/retry".
+
+```go
+package main
+
+import (
+    "fmt"
+    "io/ioutil"
+    "log"
+    "github.com/duke-git/lancet/retry"
+)
+
+func main() {
+    var number int
+	increaseNumber := func() error {
+		number++
+		if number == 3 {
+			return nil
+		}
+		return errors.New("error occurs")
+	}
+
+	err := retry.Retry(increaseNumber, retry.RetryDuration(time.Microsecond*50))
+
+    fmt.Println(number) //3
+}
+```
+
+- Function list:
+
+```go
+type RetryFunc func() error //要重试执行的函数
+func RetryTimes(n uint) //设置重试次数，默认5次
+func RetryDuration(d time.Duration) //设置重试间隔时间，默认3秒
+func Context(ctx context.Context) //context config
+func Retry(retryFunc RetryFunc, opts ...Option) error //重试函数
+```
+
+### 10. slice切片操作包
 
 - 切片操作相关函数
 - 导入包：import "github.com/duke-git/lancet/slice"
@@ -426,7 +463,7 @@ func GroupBy[T any](slice []T, fn func(index int, t T) bool) ([]T, []T) //根据
 func Count[T any](slice []T, fn func(index int, t T) bool) int //遍历slice的元素，返回所有匹配元素的计数
 ```
 
-#### 10. strutil字符串处理包
+### 11. strutil字符串处理包
 
 - 字符串操作相关函数
 - 导入包：import "github.com/duke-git/lancet/strutil"
@@ -468,7 +505,41 @@ func Unwrap(str string, wrapToken string) string //解包裹字符串 Wrap("*abc
 func SnakeCase(s string) string //字符串转为SnakeCase, "fooBar" -> "foo_bar"
 ```
 
-#### 11. validator验证器包
+### 12. system系统包
+
+- 包含一些操作系统，运行时，shell命令执行的函数.
+- Usage: import "github.com/duke-git/lancet/system".
+
+```go
+package main
+
+import (
+    "fmt"
+    "io/ioutil"
+    "log"
+    "github.com/duke-git/lancet/system"
+)
+
+func main() {
+    envFoo := system.GetOsEnv("foo")
+    fmt.Println(envFoo)
+}
+```
+
+- Function list:
+
+```go
+func IsWindows() bool //判断操作系统是windows
+func IsLinux() bool //判断操作系统是linux
+func IsMac() bool //判断操作系统是macos
+func GetOsEnv(key string) string //获取名称为key的环境变量
+func SetOsEnv(key, value string) error //设置环境变量
+func RemoveOsEnv(key string) error //删除指定key的环境变量
+func CompareOsEnv(key, comparedEnv string) bool //获取名称为key的环境变量并和comparedEnv比较
+func ExecCommand(command string) (err error, stdout, stderr string) //执行shell命令（/bin/bash)
+```
+
+### 13. validator验证器包
 
 - 数据校验相关函数
 - 导入包：import "github.com/duke-git/lancet/validator"
@@ -496,6 +567,12 @@ func main() {
 func ContainChinese(s string) bool //判断字符串中是否含有中文字符
 func IsAlpha(s string) bool //判断字符串是否只含有字母
 func IsBase64(base64 string) bool //判断字符串是base64
+func IsAllUpper(str string) bool //断字符串是否全是大写字母
+func IsAllLower(str string) bool //断字符串是否全是小写字母
+func ContainUpper(str string) bool //判断字符串是否包含大写字母
+func ContainLower(str string) bool //判断字符串是否包含小写字母
+func ContainLetter(str string) bool //判断字符串是否包含字母
+func IsJSON(str string) bool //判断字符串是否是JSON
 func IsChineseMobile(mobileNum string) bool //判断字符串是否是手机号
 func IsChineseIdNum(id string) bool //判断字符串是否是身份证号
 func IsChinesePhone(phone string) bool //判断字符串是否是座机电话号码

@@ -1,45 +1,42 @@
-<div align="center">
-    <h1 style="width: 100%; text-align: center;">Lancet</h1>
-    <p style="font-size: 18px">
-        Lancet is a comprehensive, efficient, and reusable util function library of go. Inspired by the java apache common package and lodash.js.
-    </p>
-<div align="center" style="text-align: center;">
+# Lancet
+<p style="font-size: 18px"> 
+    Lancet is a comprehensive, efficient, and reusable util function library of go. Inspired by the java apache common package and lodash.js.
+</p>
 
 ![Go version](https://img.shields.io/badge/go-%3E%3D1.16<recommend>-9cf)
-[![Release](https://img.shields.io/badge/release-1.1.10-green.svg)](https://github.com/duke-git/lancet/releases)
+[![Release](https://img.shields.io/badge/release-1.2.0-green.svg)](https://github.com/duke-git/lancet/releases)
 [![GoDoc](https://godoc.org/github.com//duke-git/lancet?status.svg)](https://pkg.go.dev/github.com/duke-git/lancet)
 [![Go Report Card](https://goreportcard.com/badge/github.com/duke-git/lancet)](https://goreportcard.com/report/github.com/duke-git/lancet)
 [![test](https://github.com/duke-git/lancet/actions/workflows/codecov.yml/badge.svg?branch=main&event=push)](https://github.com/duke-git/lancet/actions/workflows/codecov.yml)
 [![codecov](https://codecov.io/gh/duke-git/lancet/branch/main/graph/badge.svg?token=FC48T1F078)](https://codecov.io/gh/duke-git/lancet)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/duke-git/lancet/blob/main/LICENSE)
 
-</div>
 
 English | [简体中文](./README_zh-CN.md)
 
-</div>
 
-### Feature
+## Feature
 
 - 👏 Comprehensive, efficient and reusable.
-- 💪 140+ common go util functions, support string, slice, datetime, net, crypt...
+- 💪 160+ common go util functions, support string, slice, datetime, net, crypt...
 - 💅 Only depend on the go standard library.
 - 🌍 Unit test for every exported function.
 
-### Installation
+## Installation
 
 ```go
 go get github.com/duke-git/lancet
 ```
 
-### Usage
+## Usage
+
 Lancet organizes the code into package structure, and you need to import the corresponding package name when use it. For example, if you use string-related functions,import the strutil package like below:
 
 ```go
 import "github.com/duke-git/lancet/strutil"
 ```
 
-### Example
+## Example
 
 Here takes the string function ReverseStr (reverse order string) as an example, and the strutil package needs to be imported.
 
@@ -58,12 +55,11 @@ func main() {
 }
 ```
 
-### API Documentation
-
-#### 1. convertor contains some functions for data convertion
+## API Documentation
+### 1. convertor contains some functions for data convertion
 
 - Support conversion between commonly used data types.
-- Usage: import "github.com/duke-git/lancet/cryptor"
+- Usage: import "github.com/duke-git/lancet/convertor"
 
 ```go
 package main
@@ -98,7 +94,7 @@ func ToString(value interface{}) string //convert value to string
 func StructToMap(value interface{}) (map[string]interface{}, error) //convert struct to map, only convert exported field, tag `json` should be set
 ```
 
-#### 2. cryptor is for data encryption and decryption
+### 2. cryptor is for data encryption and decryption
 
 - Support md5, hmac, aes, des, ras.
 - Usage: import "github.com/duke-git/lancet/cryptor"
@@ -157,7 +153,7 @@ func RsaDecrypt(data []byte, privateKeyFileName string) []byte //RSA decrypt
 
 ```
 
-#### 3. datetime parse and format datetime
+### 3. datetime parse and format datetime
 
 - Parse and format datetime
 - Usage: import "github.com/duke-git/lancet/datetime"
@@ -192,7 +188,7 @@ func FormatTimeToStr(t time.Time, format string) string //convert time to string
 func FormatStrToTime(str, format string) time.Time //convert string to time
 ```
 
-#### 4. fileutil basic functions for file operations
+### 4. fileutil basic functions for file operations
 
 - Basic functions for file operations.
 - Usage: import "github.com/duke-git/lancet/fileutil"
@@ -229,7 +225,7 @@ func Zip(fpath string, destPath string) error //create zip file, fpath could be 
 func UnZip(zipFile string, destPath string) error //unzip the file and save it to destPath
 ```
 
-#### 5. formatter is for data format
+### 5. formatter is for data format
 
 - Contain some formatting function
 - Usage: import "github.com/duke-git/lancet/formatter"
@@ -254,7 +250,7 @@ func main() {
 func Comma(v interface{}, symbol string) string  //add comma to number by every 3 numbers from right. ahead by symbol char
 ```
 
-#### 6. function can control the function execution and support functional programming
+### 6. function can control the function execution and support functional programming
 
 - Control function execution and support functional programming.
 - Usage: import "github.com/duke-git/lancet/function"
@@ -290,7 +286,7 @@ func (w *Watcher) Reset() {} //reset the watch timer.
 func (w *Watcher) GetElapsedTime() time.Duration //return time duration from watcher start to end.
 ```
 
-#### 7. netutil is for net process
+### 7. netutil is for net process
 
 - Ip and http request method.
 - Usage: import "github.com/duke-git/lancet/netutil".
@@ -338,7 +334,7 @@ func ConvertMapToQueryString(param map[string]interface{}) string //convert map 
 func ParseHttpResponse(resp *http.Response, obj interface{}) error //decode http response to specified interface
 ```
 
-#### 8. random is for rand string and int generation
+### 8. random is for rand string and int generation
 
 - Generate random string and int.
 - Usage: import "github.com/duke-git/lancet/random".
@@ -367,7 +363,49 @@ func RandInt(min, max int) int //generate random int
 func RandString(length int) string //generate random string
 ```
 
-#### 9. slice is for process slice
+### 9. retry is for executing a function repeatedly until it was successful or canceled by the context.
+
+- Executes a function repeatedly until it was successful or canceled by the context.
+- Default retry times is 5, default retry duration is 3 second.
+- Usage: import "github.com/duke-git/lancet/retry".
+
+```go
+package main
+
+import (
+    "fmt"
+    "io/ioutil"
+    "log"
+    "github.com/duke-git/lancet/retry"
+)
+
+func main() {
+    var number int
+	increaseNumber := func() error {
+		number++
+		if number == 3 {
+			return nil
+		}
+		return errors.New("error occurs")
+	}
+
+	err := retry.Retry(increaseNumber, retry.RetryDuration(time.Microsecond*50))
+
+    fmt.Println(number) //3
+}
+```
+
+- Function list:
+
+```go
+type RetryFunc func() error //function that retry executes
+func RetryTimes(n uint) //set times of retry
+func RetryDuration(d time.Duration) //generate random string
+func Context(ctx context.Context) //set retry context config
+func Retry(retryFunc RetryFunc, opts ...Option) error //executes the retryFunc repeatedly until it was successful or canceled by the context
+```
+
+### 10. slice is for process slice
 
 - Contain function for process slice.
 - Usage: import "github.com/duke-git/lancet/slice"
@@ -425,7 +463,7 @@ func GroupBy[T any](slice []T, fn func(index int, t T) bool) ([]T, []T) // group
 func Count[T any](slice []T, fn func(index int, t T) bool) int // Count iterates over elements of slice, returns a count of all matched elements
 ```
 
-#### 10. strutil is for processing string
+### 11. strutil is for processing string
 
 - Contain functions to precess string
 - Usage: import "github.com/duke-git/lancet/strutil"
@@ -466,8 +504,41 @@ func SnakeCase(s string) string //covert string to snake_case "fooBar" -> "foo_b
 func Wrap(str string, wrapWith string) string //wrap a string with another string.
 func Unwrap(str string, wrapToken string) string //unwrap a given string from anther string. will change str value
 ```
+### 12. system contain some functions about os, runtime, shell command.
 
-#### 11. validator is for data validation
+- Generate random string and int.
+- Usage: import "github.com/duke-git/lancet/system".
+
+```go
+package main
+
+import (
+    "fmt"
+    "io/ioutil"
+    "log"
+    "github.com/duke-git/lancet/system"
+)
+
+func main() {
+    envFoo := system.GetOsEnv("foo")
+    fmt.Println(envFoo)
+}
+```
+
+- Function list:
+
+```go
+func IsWindows() bool //check if current os is windows
+func IsLinux() bool //check if current os is linux
+func IsMac() bool //check if current os is macos
+func GetOsEnv(key string) string //gets the value of the environment variable named by the key.
+func SetOsEnv(key, value string) error //sets the value of the environment variable named by the key.
+func RemoveOsEnv(key string) error //remove a single environment variable.
+func CompareOsEnv(key, comparedEnv string) bool //gets env named by the key and compare it with comparedEnv
+func ExecCommand(command string) (err error, stdout, stderr string) //use shell /bin/bash -c to execute command
+```
+
+### 13. validator is for data validation
 
 - Contain function for data validation.
 - Usage: import "github.com/duke-git/lancet/validator".
@@ -495,6 +566,12 @@ func main() {
 func ContainChinese(s string) bool //check if the string contain mandarin chinese
 func IsAlpha(s string) bool //checks if the string contains only letters (a-zA-Z)
 func IsBase64(base64 string) bool //check if the string is base64 string
+func IsAllUpper(str string) bool //check if the string is all upper case letters A-Z
+func IsAllLower(str string) bool //check if the string is all lower case letters a-z
+func ContainUpper(str string) bool //check if the string contain at least one upper case letter A-Z
+func ContainLower(str string) bool //check if the string contain at least one lower case letter a-z
+func ContainLetter(str string) bool //check if the string contain at least one letter
+func IsJSON(str string) bool //checks if the string is valid JSON
 func IsChineseMobile(mobileNum string) bool //check if the string is chinese mobile number
 func IsChineseIdNum(id string) bool //check if the string is chinese id number
 func IsChinesePhone(phone string) bool //check if the string is chinese phone number
