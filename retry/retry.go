@@ -15,7 +15,9 @@ import (
 )
 
 const (
-	DefaultRetryTimes    = 5
+	// DefaultRetryTimes times of retry
+	DefaultRetryTimes = 5
+	// DefaultRetryDuration time duration of two retries
 	DefaultRetryDuration = time.Second * 3
 )
 
@@ -26,7 +28,7 @@ type RetryConfig struct {
 	retryDuration time.Duration
 }
 
-// RetryFn is function that retry executes
+// RetryFunc is function that retry executes
 type RetryFunc func() error
 
 // Option is for adding retry config

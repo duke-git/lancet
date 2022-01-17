@@ -51,7 +51,7 @@ func CompareOsEnv(key, comparedEnv string) bool {
 }
 
 // ExecCommand use shell /bin/bash -c to execute command
-func ExecCommand(command string) (err error, stdout, stderr string) {
+func ExecCommand(command string) (stdout, stderr string, err error) {
 	var out bytes.Buffer
 	var errout bytes.Buffer
 

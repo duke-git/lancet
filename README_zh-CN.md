@@ -536,7 +536,7 @@ func GetOsEnv(key string) string //获取名称为key的环境变量
 func SetOsEnv(key, value string) error //设置环境变量
 func RemoveOsEnv(key string) error //删除指定key的环境变量
 func CompareOsEnv(key, comparedEnv string) bool //获取名称为key的环境变量并和comparedEnv比较
-func ExecCommand(command string) (err error, stdout, stderr string) //执行shell命令（/bin/bash)
+func ExecCommand(command string) (stdout, stderr string, err error) //执行shell命令（/bin/bash)
 ```
 
 ### 13. validator验证器包

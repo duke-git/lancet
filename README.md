@@ -535,7 +535,7 @@ func GetOsEnv(key string) string //gets the value of the environment variable na
 func SetOsEnv(key, value string) error //sets the value of the environment variable named by the key.
 func RemoveOsEnv(key string) error //remove a single environment variable.
 func CompareOsEnv(key, comparedEnv string) bool //gets env named by the key and compare it with comparedEnv
-func ExecCommand(command string) (err error, stdout, stderr string) //use shell /bin/bash -c to execute command
+func ExecCommand(command string) (stdout, stderr string, err error) //use shell /bin/bash -c to execute command
 ```
 
 ### 13. validator is for data validation
