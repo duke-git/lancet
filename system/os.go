@@ -16,7 +16,7 @@ func IsWindows() bool {
 	return runtime.GOOS == "windows"
 }
 
-// IsLinux check if current os system is linux
+// IsLinux check if current os is linux
 func IsLinux() bool {
 	return runtime.GOOS == "linux"
 }

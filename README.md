@@ -4,7 +4,7 @@
 </p>
 
 ![Go version](https://img.shields.io/badge/go-%3E%3D1.16<recommend>-9cf)
-[![Release](https://img.shields.io/badge/release-1.1.10-green.svg)](https://github.com/duke-git/lancet/releases)
+[![Release](https://img.shields.io/badge/release-1.2.0-green.svg)](https://github.com/duke-git/lancet/releases)
 [![GoDoc](https://godoc.org/github.com//duke-git/lancet?status.svg)](https://pkg.go.dev/github.com/duke-git/lancet)
 [![Go Report Card](https://goreportcard.com/badge/github.com/duke-git/lancet)](https://goreportcard.com/report/github.com/duke-git/lancet)
 [![test](https://github.com/duke-git/lancet/actions/workflows/codecov.yml/badge.svg?branch=main&event=push)](https://github.com/duke-git/lancet/actions/workflows/codecov.yml)
@@ -18,7 +18,7 @@ English | [简体中文](./README_zh-CN.md)
 ## Feature
 
 - 👏 Comprehensive, efficient and reusable.
-- 💪 140+ common go util functions, support string, slice, datetime, net, crypt...
+- 💪 160+ common go util functions, support string, slice, datetime, net, crypt...
 - 💅 Only depend on the go standard library.
 - 🌍 Unit test for every exported function.
 
@@ -363,7 +363,49 @@ func RandInt(min, max int) int //generate random int
 func RandString(length int) string //generate random string
 ```
 
-### 9. slice is for process slice
+### 9. retry is for executing a function repeatedly until it was successful or canceled by the context.
+
+- Executes a function repeatedly until it was successful or canceled by the context.
+- Default retry times is 5, default retry duration is 3 second.
+- Usage: import "github.com/duke-git/lancet/retry".
+
+```go
+package main
+
+import (
+    "fmt"
+    "io/ioutil"
+    "log"
+    "github.com/duke-git/lancet/retry"
+)
+
+func main() {
+    var number int
+	increaseNumber := func() error {
+		number++
+		if number == 3 {
+			return nil
+		}
+		return errors.New("error occurs")
+	}
+
+	err := retry.Retry(increaseNumber, retry.RetryDuration(time.Microsecond*50))
+
+    fmt.Println(number) //3
+}
+```
+
+- Function list:
+
+```go
+type RetryFunc func() error //function that retry executes
+func RetryTimes(n uint) //set times of retry
+func RetryDuration(d time.Duration) //generate random string
+func Context(ctx context.Context) //set retry context config
+func Retry(retryFunc RetryFunc, opts ...Option) error //executes the retryFunc repeatedly until it was successful or canceled by the context
+```
+
+### 10. slice is for process slice
 
 - Contain function for process slice.
 - Usage: import "github.com/duke-git/lancet/slice"
@@ -421,7 +463,7 @@ func GroupBy(slice, function interface{}) (interface{}, interface{}) // groups s
 func Count(slice, function interface{}) int // Count iterates over elements of slice, returns a count of all matched elements
 ```
 
-### 10. strutil is for processing string
+### 11. strutil is for processing string
 
 - Contain functions to precess string
 - Usage: import "github.com/duke-git/lancet/strutil"
@@ -462,8 +504,41 @@ func SnakeCase(s string) string //covert string to snake_case "fooBar" -> "foo_b
 func Wrap(str string, wrapWith string) string //wrap a string with another string.
 func Unwrap(str string, wrapToken string) string //unwrap a given string from anther string. will change str value
 ```
+### 12. system contain some functions about os, runtime, shell command.
 
-### 11. validator is for data validation
+- Generate random string and int.
+- Usage: import "github.com/duke-git/lancet/system".
+
+```go
+package main
+
+import (
+    "fmt"
+    "io/ioutil"
+    "log"
+    "github.com/duke-git/lancet/system"
+)
+
+func main() {
+    envFoo := system.GetOsEnv("foo")
+    fmt.Println(envFoo)
+}
+```
+
+- Function list:
+
+```go
+func IsWindows() bool //check if current os is windows
+func IsLinux() bool //check if current os is linux
+func IsMac() bool //check if current os is macos
+func GetOsEnv(key string) string //gets the value of the environment variable named by the key.
+func SetOsEnv(key, value string) error //sets the value of the environment variable named by the key.
+func RemoveOsEnv(key string) error //remove a single environment variable.
+func CompareOsEnv(key, comparedEnv string) bool //gets env named by the key and compare it with comparedEnv
+func ExecCommand(command string) (err error, stdout, stderr string) //use shell /bin/bash -c to execute command
+```
+
+### 13. validator is for data validation
 
 - Contain function for data validation.
 - Usage: import "github.com/duke-git/lancet/validator".
@@ -491,6 +566,12 @@ func main() {
 func ContainChinese(s string) bool //check if the string contain mandarin chinese
 func IsAlpha(s string) bool //checks if the string contains only letters (a-zA-Z)
 func IsBase64(base64 string) bool //check if the string is base64 string
+func IsAllUpper(str string) bool //check if the string is all upper case letters A-Z
+func IsAllLower(str string) bool //check if the string is all lower case letters a-z
+func ContainUpper(str string) bool //check if the string contain at least one upper case letter A-Z
+func ContainLower(str string) bool //check if the string contain at least one lower case letter a-z
+func ContainLetter(str string) bool //check if the string contain at least one letter
+func IsJSON(str string) bool //checks if the string is valid JSON
 func IsChineseMobile(mobileNum string) bool //check if the string is chinese mobile number
 func IsChineseIdNum(id string) bool //check if the string is chinese id number
 func IsChinesePhone(phone string) bool //check if the string is chinese phone number

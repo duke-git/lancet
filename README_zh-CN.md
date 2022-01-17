@@ -4,7 +4,7 @@
 </p>
 
 ![Go version](https://img.shields.io/badge/go-%3E%3D1.16<recommend>-9cf)
-[![Release](https://img.shields.io/badge/release-1.1.10-green.svg)](https://github.com/duke-git/lancet/releases)
+[![Release](https://img.shields.io/badge/release-1.2.0-green.svg)](https://github.com/duke-git/lancet/releases)
 [![GoDoc](https://godoc.org/github.com//duke-git/lancet?status.svg)](https://pkg.go.dev/github.com/duke-git/lancet)
 [![Go Report Card](https://goreportcard.com/badge/github.com/duke-git/lancet)](https://goreportcard.com/report/github.com/duke-git/lancet)
 [![test](https://github.com/duke-git/lancet/actions/workflows/codecov.yml/badge.svg?branch=main&event=push)](https://github.com/duke-git/lancet/actions/workflows/codecov.yml)
@@ -18,7 +18,7 @@
 ## 特性
 
 - 👏 全面、高效、可复用
-- 💪 140+常用go工具函数，支持string、slice、datetime、net、crypt...
+- 💪 160+常用go工具函数，支持string、slice、datetime、net、crypt...
 - 💅 只依赖go标准库
 - 🌍 所有导出函数单元测试覆盖率100%
 
@@ -363,7 +363,49 @@ func RandInt(min, max int) int //生成随机int
 func RandString(length int) string //生成随机string
 ```
 
-### 9. slice切片操作包
+### 9. retry重试执行函数
+
+- 重试执行函数直到函数成功或被context停止
+- 默认重试次数5, 默认执行间隔3秒.
+- Usage: import "github.com/duke-git/lancet/retry".
+
+```go
+package main
+
+import (
+    "fmt"
+    "io/ioutil"
+    "log"
+    "github.com/duke-git/lancet/retry"
+)
+
+func main() {
+    var number int
+	increaseNumber := func() error {
+		number++
+		if number == 3 {
+			return nil
+		}
+		return errors.New("error occurs")
+	}
+
+	err := retry.Retry(increaseNumber, retry.RetryDuration(time.Microsecond*50))
+
+    fmt.Println(number) //3
+}
+```
+
+- Function list:
+
+```go
+type RetryFunc func() error //要重试执行的函数
+func RetryTimes(n uint) //设置重试次数，默认5次
+func RetryDuration(d time.Duration) //设置重试间隔时间，默认3秒
+func Context(ctx context.Context) //context config
+func Retry(retryFunc RetryFunc, opts ...Option) error //重试函数
+```
+
+### 10. slice切片操作包
 
 - 切片操作相关函数
 - 导入包：import "github.com/duke-git/lancet/slice"
@@ -421,7 +463,7 @@ func GroupBy(slice, function interface{}) (interface{}, interface{}) //根据函
 func Count(slice, function interface{}) int 
 ```
 
-### 10. strutil字符串处理包
+### 11. strutil字符串处理包
 
 - 字符串操作相关函数
 - 导入包：import "github.com/duke-git/lancet/strutil"
@@ -463,7 +505,41 @@ func Unwrap(str string, wrapToken string) string //解包裹字符串 Wrap("*abc
 func SnakeCase(s string) string //字符串转为SnakeCase, "fooBar" -> "foo_bar"
 ```
 
-### 11. validator验证器包
+### 12. system系统包
+
+- 包含一些操作系统，运行时，shell命令执行的函数.
+- Usage: import "github.com/duke-git/lancet/system".
+
+```go
+package main
+
+import (
+    "fmt"
+    "io/ioutil"
+    "log"
+    "github.com/duke-git/lancet/system"
+)
+
+func main() {
+    envFoo := system.GetOsEnv("foo")
+    fmt.Println(envFoo)
+}
+```
+
+- Function list:
+
+```go
+func IsWindows() bool //判断操作系统是windows
+func IsLinux() bool //判断操作系统是linux
+func IsMac() bool //判断操作系统是macos
+func GetOsEnv(key string) string //获取名称为key的环境变量
+func SetOsEnv(key, value string) error //设置环境变量
+func RemoveOsEnv(key string) error //删除指定key的环境变量
+func CompareOsEnv(key, comparedEnv string) bool //获取名称为key的环境变量并和comparedEnv比较
+func ExecCommand(command string) (err error, stdout, stderr string) //执行shell命令（/bin/bash)
+```
+
+### 13. validator验证器包
 
 - 数据校验相关函数
 - 导入包：import "github.com/duke-git/lancet/validator"
@@ -491,6 +567,12 @@ func main() {
 func ContainChinese(s string) bool //判断字符串中是否含有中文字符
 func IsAlpha(s string) bool //判断字符串是否只含有字母
 func IsBase64(base64 string) bool //判断字符串是base64
+func IsAllUpper(str string) bool //断字符串是否全是大写字母
+func IsAllLower(str string) bool //断字符串是否全是小写字母
+func ContainUpper(str string) bool //判断字符串是否包含大写字母
+func ContainLower(str string) bool //判断字符串是否包含小写字母
+func ContainLetter(str string) bool //判断字符串是否包含字母
+func IsJSON(str string) bool //判断字符串是否是JSON
 func IsChineseMobile(mobileNum string) bool //判断字符串是否是手机号
 func IsChineseIdNum(id string) bool //判断字符串是否是身份证号
 func IsChinesePhone(phone string) bool //判断字符串是否是座机电话号码
