@@ -1,4 +1,4 @@
-<h1 style="width: 100%;">Lancet</h1>
+# Lancet
 <p style="font-size: 18px"> 
     Lancet is a comprehensive, efficient, and reusable util function library of go. Inspired by the java apache common package and lodash.js.
 </p>
@@ -15,31 +15,28 @@
 English | [简体中文](./README_zh-CN.md)
 
 
-### Feature
----
+## Feature
 
 - 👏 Comprehensive, efficient and reusable.
 - 💪 140+ common go util functions, support string, slice, datetime, net, crypt...
 - 💅 Only depend on the go standard library.
 - 🌍 Unit test for every exported function.
 
-### Installation
----
+## Installation
 
 ```go
 go get github.com/duke-git/lancet
 ```
 
-### Usage
----
+## Usage
+
 Lancet organizes the code into package structure, and you need to import the corresponding package name when use it. For example, if you use string-related functions,import the strutil package like below:
 
 ```go
 import "github.com/duke-git/lancet/strutil"
 ```
 
-### Example
----
+## Example
 
 Here takes the string function ReverseStr (reverse order string) as an example, and the strutil package needs to be imported.
 
@@ -58,9 +55,8 @@ func main() {
 }
 ```
 
-### API Documentation
----
-#### 1. convertor contains some functions for data convertion
+## API Documentation
+### 1. convertor contains some functions for data convertion
 
 - Support conversion between commonly used data types.
 - Usage: import "github.com/duke-git/lancet/convertor"
@@ -98,7 +94,7 @@ func ToString(value interface{}) string //convert value to string
 func StructToMap(value interface{}) (map[string]interface{}, error) //convert struct to map, only convert exported field, tag `json` should be set
 ```
 
-#### 2. cryptor is for data encryption and decryption
+### 2. cryptor is for data encryption and decryption
 
 - Support md5, hmac, aes, des, ras.
 - Usage: import "github.com/duke-git/lancet/cryptor"
@@ -157,7 +153,7 @@ func RsaDecrypt(data []byte, privateKeyFileName string) []byte //RSA decrypt
 
 ```
 
-#### 3. datetime parse and format datetime
+### 3. datetime parse and format datetime
 
 - Parse and format datetime
 - Usage: import "github.com/duke-git/lancet/datetime"
@@ -192,7 +188,7 @@ func FormatTimeToStr(t time.Time, format string) string //convert time to string
 func FormatStrToTime(str, format string) time.Time //convert string to time
 ```
 
-#### 4. fileutil basic functions for file operations
+### 4. fileutil basic functions for file operations
 
 - Basic functions for file operations.
 - Usage: import "github.com/duke-git/lancet/fileutil"
@@ -229,7 +225,7 @@ func Zip(fpath string, destPath string) error //create zip file, fpath could be 
 func UnZip(zipFile string, destPath string) error //unzip the file and save it to destPath
 ```
 
-#### 5. formatter is for data format
+### 5. formatter is for data format
 
 - Contain some formatting function
 - Usage: import "github.com/duke-git/lancet/formatter"
@@ -254,7 +250,7 @@ func main() {
 func Comma(v interface{}, symbol string) string  //add comma to number by every 3 numbers from right. ahead by symbol char
 ```
 
-#### 6. function can control the function execution and support functional programming
+### 6. function can control the function execution and support functional programming
 
 - Control function execution and support functional programming.
 - Usage: import "github.com/duke-git/lancet/function"
@@ -290,7 +286,7 @@ func (w *Watcher) Reset() {} //reset the watch timer.
 func (w *Watcher) GetElapsedTime() time.Duration //return time duration from watcher start to end.
 ```
 
-#### 7. netutil is for net process
+### 7. netutil is for net process
 
 - Ip and http request method.
 - Usage: import "github.com/duke-git/lancet/netutil".
@@ -338,7 +334,7 @@ func ConvertMapToQueryString(param map[string]interface{}) string //convert map 
 func ParseHttpResponse(resp *http.Response, obj interface{}) error //decode http response to specified interface
 ```
 
-#### 8. random is for rand string and int generation
+### 8. random is for rand string and int generation
 
 - Generate random string and int.
 - Usage: import "github.com/duke-git/lancet/random".
@@ -367,7 +363,7 @@ func RandInt(min, max int) int //generate random int
 func RandString(length int) string //generate random string
 ```
 
-#### 9. slice is for process slice
+### 9. slice is for process slice
 
 - Contain function for process slice.
 - Usage: import "github.com/duke-git/lancet/slice"
@@ -425,7 +421,7 @@ func GroupBy(slice, function interface{}) (interface{}, interface{}) // groups s
 func Count(slice, function interface{}) int // Count iterates over elements of slice, returns a count of all matched elements
 ```
 
-#### 10. strutil is for processing string
+### 10. strutil is for processing string
 
 - Contain functions to precess string
 - Usage: import "github.com/duke-git/lancet/strutil"
@@ -467,7 +463,7 @@ func Wrap(str string, wrapWith string) string //wrap a string with another strin
 func Unwrap(str string, wrapToken string) string //unwrap a given string from anther string. will change str value
 ```
 
-#### 11. validator is for data validation
+### 11. validator is for data validation
 
 - Contain function for data validation.
 - Usage: import "github.com/duke-git/lancet/validator".

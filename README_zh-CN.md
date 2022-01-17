@@ -1,4 +1,4 @@
-<h1 style="width: 100%;">Lancet</h1>
+# Lancet
 <p style="font-size: 18px">
     lancet（柳叶刀）是一个全面、高效、可复用的go语言工具函数库。 lancet受到了java apache common包和lodash.js的启发。
 </p>
@@ -15,29 +15,29 @@
 简体中文 | [English](./README.md)
 
 
-### 特性
----
+## 特性
+
 - 👏 全面、高效、可复用
 - 💪 140+常用go工具函数，支持string、slice、datetime、net、crypt...
 - 💅 只依赖go标准库
 - 🌍 所有导出函数单元测试覆盖率100%
 
-### 安装
----
+## 安装
+
 ```go
 go get github.com/duke-git/lancet
 ```
 
-### 用法
----
+## 用法
+
 lancet是以包的结构组织代码的，使用时需要导入相应的包名。例如：如果使用字符串相关函数，需要导入strutil包:
 
 ```go
 import "github.com/duke-git/lancet/strutil"
 ```
 
-### 例子
----
+## 例子
+
 此处以字符串工具函数ReverseStr（逆序字符串）为例，需要导入strutil包:
 
 ```go
@@ -55,9 +55,8 @@ func main() {
 }
 ```
 
-### API文档
----
-#### 1. convertor数据转换包
+## API文档
+### 1. convertor数据转换包
 
 - 转换函数支持常用数据类型之间的转换
 - 导入包：import "github.com/duke-git/lancet/convertor"
@@ -95,7 +94,7 @@ func ToString(value interface{}) string //interface转成string
 func StructToMap(value interface{}) (map[string]interface{}, error) //struct串转成map, 需要设置struct tag `json`
 ```
 
-#### 2. cryptor加解密包
+### 2. cryptor加解密包
 
 - 加密函数支持md5, hmac, aes, des, ras
 - 导入包：import "github.com/duke-git/lancet/cryptor"
@@ -154,7 +153,7 @@ func RsaDecrypt(data []byte, privateKeyFileName string) []byte //RSA解密
 
 ```
 
-#### 3. datetime日期时间处理包
+### 3. datetime日期时间处理包
 
 - 处理日期时间
 - 导入包：import "github.com/duke-git/lancet/datetime"
@@ -189,7 +188,7 @@ func FormatTimeToStr(t time.Time, format string) string //时间格式化字符�
 func FormatStrToTime(str, format string) time.Time //字符串转换成时间
 ```
 
-#### 4. fileutil文件处理包
+### 4. fileutil文件处理包
 
 - 文件处理常用函数
 - 导入包：import "github.com/duke-git/lancet/fileutil"
@@ -226,7 +225,7 @@ func Zip(fpath string, destPath string) error //压缩文件fpath参数可以是
 func UnZip(zipFile string, destPath string) error //解压文件，并将文件存储在destPath目录中
 ```
 
-#### 5. formatter格式化处理包
+### 5. formatter格式化处理包
 
 - 格式化相关处理函数
 - 导入包：import "github.com/duke-git/lancet/formatter"
@@ -251,7 +250,7 @@ func main() {
 func Comma(v interface{}, symbol string) string  //用逗号每隔3位分割数字/字符串
 ```
 
-#### 6. function包可以控制函数执行，支持部分函数式编程
+### 6. function包可以控制函数执行，支持部分函数式编程
 
 - 控制函数执行，支持部分函数式编程
 - 导入包：import "github.com/duke-git/lancet/function"
@@ -287,7 +286,7 @@ func (w *Watcher) Reset() {} //重置代码watcher
 func (w *Watcher) GetElapsedTime() time.Duration //get code excution elapsed time.
 ```
 
-#### 7. netutil网络处理包
+### 7. netutil网络处理包
 
 - 处理ip, http请求相关函数
 - 导入包：import "github.com/duke-git/lancet/netutil"
@@ -335,7 +334,7 @@ func ConvertMapToQueryString(param map[string]interface{}) string //将map转换
 func ParseHttpResponse(resp *http.Response, obj interface{}) error //将http响应解码成特定interface
 ```
 
-#### 8. random随机数处理包
+### 8. random随机数处理包
 
 - 生成和处理随机数
 - 导入包：import "github.com/duke-git/lancet/random"
@@ -364,7 +363,7 @@ func RandInt(min, max int) int //生成随机int
 func RandString(length int) string //生成随机string
 ```
 
-#### 9. slice切片操作包
+### 9. slice切片操作包
 
 - 切片操作相关函数
 - 导入包：import "github.com/duke-git/lancet/slice"
@@ -422,7 +421,7 @@ func GroupBy(slice, function interface{}) (interface{}, interface{}) //根据函
 func Count(slice, function interface{}) int 
 ```
 
-#### 10. strutil字符串处理包
+### 10. strutil字符串处理包
 
 - 字符串操作相关函数
 - 导入包：import "github.com/duke-git/lancet/strutil"
@@ -464,7 +463,7 @@ func Unwrap(str string, wrapToken string) string //解包裹字符串 Wrap("*abc
 func SnakeCase(s string) string //字符串转为SnakeCase, "fooBar" -> "foo_bar"
 ```
 
-#### 11. validator验证器包
+### 11. validator验证器包
 
 - 数据校验相关函数
 - 导入包：import "github.com/duke-git/lancet/validator"
