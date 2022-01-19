@@ -1,10 +1,23 @@
 package system
 
 import (
+	"strings"
 	"testing"
 
 	"github.com/duke-git/lancet/internal"
 )
+
+func TestOsDetection(t *testing.T) {
+	assert := internal.NewAssert(t, "TestOsJudgment")
+
+	osType, _, _ := ExecCommand("echo $OSTYPE")
+	if strings.Index(osType, "linux") != -1 {
+		assert.Equal(true, IsLinux())
+	}
+	if strings.Index(osType, "darwin") != -1 {
+		assert.Equal(true, IsMac())
+	}
+}
 
 func TestOsEnvOperation(t *testing.T) {
 	assert := internal.NewAssert(t, "TestOsEnvOperation")
@@ -18,6 +31,14 @@ func TestOsEnvOperation(t *testing.T) {
 
 	assert.Equal(true, CompareOsEnv("foo", "foo_value"))
 	assert.Equal(false, CompareOsEnv("foo", "abc"))
+	assert.Equal(false, CompareOsEnv("abc", "abc"))
+	assert.Equal(false, CompareOsEnv("abc", "abc"))
+
+	err := RemoveOsEnv("foo")
+	if err != nil {
+		t.Fail()
+	}
+	assert.Equal(false, CompareOsEnv("foo", "foo_value"))
 }
 
 func TestExecCommand(t *testing.T) {
