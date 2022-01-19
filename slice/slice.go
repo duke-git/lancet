@@ -10,7 +10,6 @@ import (
 	"math/rand"
 	"reflect"
 	"sort"
-	"unsafe"
 )
 
 // Contain check if the value is in the iterable type or not
@@ -343,26 +342,6 @@ func IntSlice(slice interface{}) []int {
 	}
 
 	return out
-}
-
-// ConvertSlice convert original slice to new data type element of slice.
-func ConvertSlice(originalSlice interface{}, newSliceType reflect.Type) interface{} {
-	sv := sliceValue(originalSlice)
-	if newSliceType.Kind() != reflect.Slice {
-		panic(fmt.Sprintf("Invalid newSliceType(non-slice type of type %T)", newSliceType))
-	}
-
-	newSlice := reflect.New(newSliceType)
-
-	hdr := (*reflect.SliceHeader)(unsafe.Pointer(newSlice.Pointer()))
-
-	var newElemSize = int(sv.Type().Elem().Size()) / int(newSliceType.Elem().Size())
-
-	hdr.Cap = sv.Cap() * newElemSize
-	hdr.Len = sv.Len() * newElemSize
-	hdr.Data = sv.Pointer()
-
-	return newSlice.Elem().Interface()
 }
 
 // DeleteByIndex delete the element of slice from start index to end index - 1.

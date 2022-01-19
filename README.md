@@ -434,7 +434,6 @@ func main() {
 func Contain[T comparable](slice []T, value T) bool //check if the value is in the slice or not
 func ContainSubSlice[T comparable](slice, subslice []T) bool //check if the slice contain subslice or not
 func Chunk[T any](slice []T, size int) [][]T //creates an slice of elements split into groups the length of size.
-func ConvertSlice(originalSlice interface{}, newSliceType reflect.Type) interface{} //convert originalSlice to newSliceType
 func Difference[T comparable](slice1, slice2 []T) []T //creates an slice of whose element not included in the other given slice
 func DeleteByIndex[T any](slice []T, start int, end ...int) []T //delete the element of slice from start index to end index - 1
 func Drop[T any](slice []T, n int) []T //creates a slice with `n` elements dropped from the beginning when n > 0, or `n` elements dropped from the ending when n < 0

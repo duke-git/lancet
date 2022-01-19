@@ -45,19 +45,6 @@ func TestChunk(t *testing.T) {
 	assert.Equal(r5, Chunk(arr, 5))
 }
 
-func TestConvertSlice(t *testing.T) {
-	//t1 := []string{"1","2"}
-	//aInt, _ := strconv.ParseInt("1", 10, 64)
-	//bInt, _ := strconv.ParseInt("2", 10, 64)
-	//expected :=[]int64{aInt, bInt}
-	//
-	//a := ConvertSlice(t1, reflect.TypeOf(expected))
-	//if !reflect.DeepEqual(a, expected) {
-	//	utils.LogFailedTestInfo(t, "ConvertSlice", t1, expected, a)
-	//	t.FailNow()
-	//}
-}
-
 func TestEvery(t *testing.T) {
 	nums := []int{1, 2, 3, 5}
 	isEven := func(i, num int) bool {
@@ -367,6 +354,7 @@ func TestIntersection(t *testing.T) {
 	for i := 0; i < len(res); i++ {
 		assert.Equal(expected[i], res[i])
 	}
+	// assert.IsNil(Intersection())
 }
 
 func TestReverse(t *testing.T) {

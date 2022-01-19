@@ -434,7 +434,6 @@ func main() {
 func Contain[T comparable](slice []T, value T) bool //判断slice是否包含value
 func ContainSubSlice[T comparable](slice, subslice []T) bool  //判断slice是否包含subslice
 func Chunk[T any](slice []T, size int) [][]T //均分slice
-func ConvertSlice(originalSlice interface{}, newSliceType reflect.Type) interface{} //将originalSlice转换为 newSliceType
 func Difference[T comparable](slice1, slice2 []T) []T //返回切片，其元素在slice1中，不在slice2中
 func DeleteByIndex[T any](slice []T, start int, end ...int) []T //删除切片中start到end位置的值(不包含end)
 func Drop[T any](slice []T, n int) []T //创建一个新切片，当n大于0时删除原切片前n个元素，当n小于0时删除原切片后n个元素
