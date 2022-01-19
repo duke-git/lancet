@@ -434,7 +434,6 @@ func main() {
 func Contain(slice interface{}, value interface{}) bool //check if the value is in the slice or not
 func ContainSubSlice(slice interface{}, subslice interface{}) bool //check if the slice contain subslice or not
 func Chunk(slice []interface{}, size int) [][]interface{} //creates an slice of elements split into groups the length of `size`
-func ConvertSlice(originalSlice interface{}, newSliceType reflect.Type) interface{} //convert originalSlice to newSliceType
 func Difference(slice1, slice2 interface{}) interface{} //creates an slice of whose element not included in the other given slice
 func DeleteByIndex(slice interface{}, start int, end ...int) (interface{}, error) //delete the element of slice from start index to end index - 1
 func Drop(slice interface{}, n int) interface{} //creates a slice with `n` elements dropped from the beginning when n > 0, or `n` elements dropped from the ending when n < 0

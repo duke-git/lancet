@@ -434,7 +434,6 @@ func main() {
 func Contain(slice interface{}, value interface{}) bool //判断slice是否包含value
 func ContainSubSlice(slice interface{}, subslice interface{}) bool //判断slice是否包含subslice
 func Chunk(slice []interface{}, size int) [][]interface{} //均分slice
-func ConvertSlice(originalSlice interface{}, newSliceType reflect.Type) interface{} //将originalSlice转换为 newSliceType
 func Difference(slice1, slice2 interface{}) interface{} //返回切片，其元素在slice1中，不在slice2中
 func DeleteByIndex(slice interface{}, start int, end ...int) (interface{}, error) //删除切片中start到end位置的值
 func Drop(slice interface{}, n int) interface{} //创建一个新切片，当n大于0时删除原切片前n个元素，当n小于0时删除原切片后n个元素
