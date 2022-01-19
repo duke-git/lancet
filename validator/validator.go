@@ -67,7 +67,7 @@ func ContainLetter(str string) bool {
 	return containLetterRegexMatcher.MatchString(str)
 }
 
-// Is checks if the string is valid JSON
+// IsJSON checks if the string is valid JSON
 func IsJSON(str string) bool {
 	var js json.RawMessage
 	return json.Unmarshal([]byte(str), &js) == nil

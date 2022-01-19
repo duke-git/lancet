@@ -4,7 +4,7 @@
 </p>
 
 ![Go version](https://img.shields.io/badge/go-%3E%3D1.16<recommend>-9cf)
-[![Release](https://img.shields.io/badge/release-1.2.0-green.svg)](https://github.com/duke-git/lancet/releases)
+[![Release](https://img.shields.io/badge/release-1.2.1-green.svg)](https://github.com/duke-git/lancet/releases)
 [![GoDoc](https://godoc.org/github.com//duke-git/lancet?status.svg)](https://pkg.go.dev/github.com/duke-git/lancet)
 [![Go Report Card](https://goreportcard.com/badge/github.com/duke-git/lancet)](https://goreportcard.com/report/github.com/duke-git/lancet)
 [![test](https://github.com/duke-git/lancet/actions/workflows/codecov.yml/badge.svg?branch=main&event=push)](https://github.com/duke-git/lancet/actions/workflows/codecov.yml)
@@ -535,7 +535,7 @@ func GetOsEnv(key string) string //gets the value of the environment variable na
 func SetOsEnv(key, value string) error //sets the value of the environment variable named by the key.
 func RemoveOsEnv(key string) error //remove a single environment variable.
 func CompareOsEnv(key, comparedEnv string) bool //gets env named by the key and compare it with comparedEnv
-func ExecCommand(command string) (err error, stdout, stderr string) //use shell /bin/bash -c to execute command
+func ExecCommand(command string) (stdout, stderr string, err error) //use shell /bin/bash -c to execute command
 ```
 
 ### 13. validator is for data validation
