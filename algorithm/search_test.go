@@ -8,6 +8,14 @@ import (
 
 var sortedNumbers = []int{1, 2, 3, 4, 5, 6, 7, 8}
 
+func TestLinearSearch(t *testing.T) {
+	asssert := internal.NewAssert(t, "TestLinearSearch")
+
+	comparator := &intComparator{}
+	asssert.Equal(4, LinearSearch(sortedNumbers, 5, comparator))
+	asssert.Equal(-1, LinearSearch(sortedNumbers, 9, comparator))
+}
+
 func TestBinarySearch(t *testing.T) {
 	asssert := internal.NewAssert(t, "TestBinarySearch")
 

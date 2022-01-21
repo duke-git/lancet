@@ -6,6 +6,17 @@ package algorithm
 
 import "github.com/duke-git/lancet/lancetconstraints"
 
+// LinearSearch Simple linear search algorithm that iterates over all elements of an slice
+// If a target is found, the index of the target is returned. Else the function return -1
+func LinearSearch[T any](slice []T, target T, comparator lancetconstraints.Comparator) int {
+	for i, v := range slice {
+		if comparator.Compare(v, target) == 0 {
+			return i
+		}
+	}
+	return -1
+}
+
 // BinarySearch search for target within a sorted slice, recursive call itself.
 // If a target is found, the index of the target is returned. Else the function return -1
 func BinarySearch[T any](slice []T, target T, lowIndex, highIndex int, comparator lancetconstraints.Comparator) int {
