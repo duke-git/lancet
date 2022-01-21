@@ -262,7 +262,7 @@ func FileMode(path string) (fs.FileMode, error) {
 }
 
 // MiMeType return file mime type
-// file should be string or *os.File
+// param `file` should be string(file path) or *os.File
 func MiMeType(file interface{}) string {
 	var mediatype string
 
