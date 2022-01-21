@@ -93,6 +93,28 @@ func TestDelay(t *testing.T) {
 	Delay(2*time.Second, print, "test delay")
 }
 
+func TestDebounced(t *testing.T) {
+	assert := internal.NewAssert(t, "TestDebounced")
+
+	count := 0
+	add := func() {
+		count++
+	}
+
+	debouncedAdd := Debounced(add, 50*time.Microsecond)
+	debouncedAdd()
+	debouncedAdd()
+	debouncedAdd()
+	debouncedAdd()
+
+	time.Sleep(100 * time.Millisecond)
+	assert.Equal(1, count)
+
+	debouncedAdd()
+	time.Sleep(100 * time.Millisecond)
+	assert.Equal(2, count)
+}
+
 func TestSchedule(t *testing.T) {
 	assert := internal.NewAssert(t, "TestSchedule")
 

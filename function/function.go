@@ -70,6 +70,23 @@ func Delay(delay time.Duration, fn interface{}, args ...interface{}) {
 	invokeFunc(fn, args...)
 }
 
+// Debounced creates a debounced function that delays invoking fn until after wait duration have elapsed since the last time the debounced function was invoked.
+func Debounced(fn func(), duration time.Duration) func() {
+	timer := time.NewTimer(duration)
+	timer.Stop()
+
+	go func() {
+		for {
+			select {
+			case <-timer.C:
+				go fn()
+			}
+		}
+	}()
+
+	return func() { timer.Reset(duration) }
+}
+
 // Schedule invoke function every duration time, util close the returned bool chan
 func Schedule(d time.Duration, fn interface{}, args ...interface{}) chan bool {
 	// Catch programming error while constructing the closure
