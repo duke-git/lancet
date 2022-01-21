@@ -6,6 +6,8 @@ package algorithm
 
 import "github.com/duke-git/lancet/lancetconstraints"
 
+// Search algorithms see https://github.com/TheAlgorithms/Go/tree/master/search
+
 // LinearSearch Simple linear search algorithm that iterates over all elements of an slice
 // If a target is found, the index of the target is returned. Else the function return -1
 func LinearSearch[T any](slice []T, target T, comparator lancetconstraints.Comparator) int {
@@ -19,17 +21,19 @@ func LinearSearch[T any](slice []T, target T, comparator lancetconstraints.Compa
 
 // BinarySearch search for target within a sorted slice, recursive call itself.
 // If a target is found, the index of the target is returned. Else the function return -1
-func BinarySearch[T any](slice []T, target T, lowIndex, highIndex int, comparator lancetconstraints.Comparator) int {
-	if highIndex < lowIndex || len(slice) == 0 {
+func BinarySearch[T any](sortedSlice []T, target T, lowIndex, highIndex int, comparator lancetconstraints.Comparator) int {
+	if highIndex < lowIndex || len(sortedSlice) == 0 {
 		return -1
 	}
 
 	midIndex := int(lowIndex + (highIndex-lowIndex)/2)
-	// slice[midIndex] > target
-	if comparator.Compare(slice[midIndex], target) == 1 {
-		return BinarySearch(slice, target, lowIndex, midIndex-1, comparator)
-	} else if comparator.Compare(slice[midIndex], target) == -1 {
-		return BinarySearch(slice, target, midIndex+1, highIndex, comparator)
+	isMidValGreatTarget := comparator.Compare(sortedSlice[midIndex], target) == 1
+	isMidValLessTarget := comparator.Compare(sortedSlice[midIndex], target) == -1
+
+	if isMidValGreatTarget {
+		return BinarySearch(sortedSlice, target, lowIndex, midIndex-1, comparator)
+	} else if isMidValLessTarget {
+		return BinarySearch(sortedSlice, target, midIndex+1, highIndex, comparator)
 	}
 
 	return midIndex
@@ -37,16 +41,19 @@ func BinarySearch[T any](slice []T, target T, lowIndex, highIndex int, comparato
 
 // BinaryIterativeSearch search for target within a sorted slice.
 // If a target is found, the index of the target is returned. Else the function return -1
-func BinaryIterativeSearch[T any](slice []T, target T, lowIndex, highIndex int, comparator lancetconstraints.Comparator) int {
+func BinaryIterativeSearch[T any](sortedSlice []T, target T, lowIndex, highIndex int, comparator lancetconstraints.Comparator) int {
 	startIndex := lowIndex
 	endIndex := highIndex
 
 	var midIndex int
 	for startIndex <= endIndex {
 		midIndex = int(startIndex + (endIndex-startIndex)/2)
-		if comparator.Compare(slice[midIndex], target) == 1 {
+		isMidValGreatTarget := comparator.Compare(sortedSlice[midIndex], target) == 1
+		isMidValLessTarget := comparator.Compare(sortedSlice[midIndex], target) == -1
+
+		if isMidValGreatTarget {
 			endIndex = midIndex - 1
-		} else if comparator.Compare(slice[midIndex], target) == -1 {
+		} else if isMidValLessTarget {
 			startIndex = midIndex + 1
 		} else {
 			return midIndex
