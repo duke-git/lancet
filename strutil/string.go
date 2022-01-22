@@ -54,6 +54,18 @@ func Capitalize(s string) string {
 	return string(out)
 }
 
+// UpperFirst converts the first character of string to upper case.
+func UpperFirst(s string) string {
+	if len(s) == 0 {
+		return ""
+	}
+
+	r, size := utf8.DecodeRuneInString(s)
+	r = unicode.ToUpper(r)
+
+	return string(r) + s[size:]
+}
+
 // LowerFirst converts the first character of string to lower case.
 func LowerFirst(s string) string {
 	if len(s) == 0 {

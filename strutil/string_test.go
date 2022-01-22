@@ -50,6 +50,17 @@ func TestSnakeCase(t *testing.T) {
 	assert.NotEqual("foo-bar", SnakeCase("foo_Bar"))
 }
 
+func TestUpperFirst(t *testing.T) {
+	assert := internal.NewAssert(t, "TestLowerFirst")
+
+	assert.Equal("Foo", UpperFirst("foo"))
+	assert.Equal("BAR", UpperFirst("bAR"))
+	assert.Equal("FOo", UpperFirst("FOo"))
+	assert.Equal("FOo大", UpperFirst("fOo大"))
+
+	assert.NotEqual("Bar", UpperFirst("BAR"))
+}
+
 func TestLowerFirst(t *testing.T) {
 	assert := internal.NewAssert(t, "TestLowerFirst")
 
