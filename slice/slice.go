@@ -102,21 +102,64 @@ func Chunk(slice []interface{}, size int) [][]interface{} {
 	return res
 }
 
-// Difference creates an slice of whose element not included in the other given slice
-func Difference(slice1, slice2 interface{}) interface{} {
-	v := sliceValue(slice1)
+// Compact creates an slice with all falsey values removed. The values false, nil, 0, and "" are falsey
+func Compact(slice interface{}) interface{} {
+	sv := sliceValue(slice)
 
 	var indexes []int
-	for i := 0; i < v.Len(); i++ {
-		vi := v.Index(i).Interface()
-		if !Contain(slice2, vi) {
+	for i := 0; i < sv.Len(); i++ {
+		item := sv.Index(i).Interface()
+		if item != nil && item != false && item != "" && item != 0 {
+			indexes = append(indexes, i)
+		}
+	}
+	res := reflect.MakeSlice(sv.Type(), len(indexes), len(indexes))
+	for i := range indexes {
+		res.Index(i).Set(sv.Index(indexes[i]))
+	}
+
+	return res.Interface()
+}
+
+// Concat creates a new slice concatenating slice with any additional slices and/or values.
+func Concat(slice interface{}, values ...interface{}) interface{} {
+	sv := sliceValue(slice)
+	size := sv.Len()
+
+	res := reflect.MakeSlice(sv.Type(), size, size)
+	for i := 0; i < size; i++ {
+		res.Index(i).Set(sv.Index(i))
+	}
+
+	for _, v := range values {
+		if reflect.TypeOf(v).Kind() == reflect.Slice {
+			vv := reflect.ValueOf(v)
+			for i := 0; i < vv.Len(); i++ {
+				res = reflect.Append(res, vv.Index(i))
+			}
+		} else {
+			res = reflect.Append(res, reflect.ValueOf(v))
+		}
+	}
+
+	return res.Interface()
+}
+
+// Difference creates an slice of whose element in slice1, not in slice2
+func Difference(slice1, slice2 interface{}) interface{} {
+	sv := sliceValue(slice1)
+
+	var indexes []int
+	for i := 0; i < sv.Len(); i++ {
+		item := sv.Index(i).Interface()
+		if !Contain(slice2, item) {
 			indexes = append(indexes, i)
 		}
 	}
 
-	res := reflect.MakeSlice(v.Type(), len(indexes), len(indexes))
+	res := reflect.MakeSlice(sv.Type(), len(indexes), len(indexes))
 	for i := range indexes {
-		res.Index(i).Set(v.Index(indexes[i]))
+		res.Index(i).Set(sv.Index(indexes[i]))
 	}
 	return res.Interface()
 }

@@ -36,42 +36,41 @@ func TestChunk(t *testing.T) {
 	assert := internal.NewAssert(t, "TestChunk")
 
 	arr := []string{"a", "b", "c", "d", "e"}
-	r1 := [][]interface{}{
-		{"a"},
-		{"b"},
-		{"c"},
-		{"d"},
-		{"e"},
-	}
+	r1 := [][]interface{}{{"a"}, {"b"}, {"c"}, {"d"}, {"e"}}
 	assert.Equal(r1, Chunk(InterfaceSlice(arr), 1))
 
-	r2 := [][]interface{}{
-		{"a", "b"},
-		{"c", "d"},
-		{"e"},
-	}
+	r2 := [][]interface{}{{"a", "b"}, {"c", "d"}, {"e"}}
 	assert.Equal(r2, Chunk(InterfaceSlice(arr), 2))
 
-	r3 := [][]interface{}{
-		{"a", "b", "c"},
-		{"d", "e"},
-	}
+	r3 := [][]interface{}{{"a", "b", "c"}, {"d", "e"}}
 	assert.Equal(r3, Chunk(InterfaceSlice(arr), 3))
 
-	r4 := [][]interface{}{
-		{"a", "b", "c", "d"},
-		{"e"},
-	}
+	r4 := [][]interface{}{{"a", "b", "c", "d"}, {"e"}}
 	assert.Equal(r4, Chunk(InterfaceSlice(arr), 4))
 
-	r5 := [][]interface{}{
-		{"a"},
-		{"b"},
-		{"c"},
-		{"d"},
-		{"e"},
-	}
+	r5 := [][]interface{}{{"a"}, {"b"}, {"c"}, {"d"}, {"e"}}
 	assert.Equal(r5, Chunk(InterfaceSlice(arr), 5))
+}
+
+func TestCompact(t *testing.T) {
+	assert := internal.NewAssert(t, "TesCompact")
+
+	assert.Equal([]int{}, Compact([]int{0}))
+	assert.Equal([]int{1, 2, 3}, Compact([]int{0, 1, 2, 3}))
+	assert.Equal([]string{}, Compact([]string{""}))
+	assert.Equal([]string{""}, Compact([]string{" "}))
+	assert.Equal([]string{"a", "b", "0"}, Compact([]string{"", "a", "b", "0"}))
+	assert.Equal([]bool{true, true}, Compact([]bool{false, true, true}))
+}
+
+func TestConcat(t *testing.T) {
+	assert := internal.NewAssert(t, "Concat")
+
+	assert.Equal([]int{0}, Concat([]int{}, 0))
+	assert.Equal([]int{1, 2, 3, 4, 5}, Concat([]int{1, 2, 3}, 4, 5))
+	assert.Equal([]int{1, 2, 3, 4, 5}, Concat([]int{1, 2, 3}, []int{4, 5}))
+	assert.Equal([]int{1, 2, 3, 4, 5}, Concat([]int{1, 2, 3}, []int{4}, []int{5}))
+	assert.Equal([]int{1, 2, 3, 4, 5}, Concat([]int{1, 2, 3}, []int{4}, 5))
 }
 
 func TestEvery(t *testing.T) {
