@@ -589,3 +589,29 @@ func IsIpV6(ipstr string) bool //判断字符串是否是ipv6
 func IsStrongPassword(password string, length int) bool //判断字符串是否是强密码（大小写字母+数字+特殊字符）
 func IsWeakPassword(password string) bool //判断字符串是否是弱密码（只有字母或数字）
 ```
+
+### 14. error helpers
+
+- Contain functions to handle errors
+- Usage: import "github.com/duke-git/lancet/xerror"
+
+```go
+package main
+
+import (
+    "fmt"
+    "io/ioutil"
+    "log"
+    "github.com/duke-git/lancet/errors"
+)
+
+func main() {
+	x := Unwrap(strconv.Atoi("42")) 
+}
+```
+
+- Function list:
+
+```go
+Unwrap[T any](val T, err error)
+```

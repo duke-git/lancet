@@ -588,3 +588,29 @@ func IsIpV6(ipstr string) bool //check if the string is a ipv6 address
 func IsStrongPassword(password string, length int) bool //check if the string is strong password (alpha(lower+upper) + number + special chars(!@#$%^&*()?><))
 func IsWeakPassword(password string) bool //check if the string is weak password（only letter or only number or letter + number）
 ```
+
+### 14. error helpers
+
+- Contain functions to handle errors
+- Usage: import "github.com/duke-git/lancet/xerror"
+
+```go
+package main
+
+import (
+    "fmt"
+    "io/ioutil"
+    "log"
+    "github.com/duke-git/lancet/errors"
+)
+
+func main() {
+	x := Unwrap(strconv.Atoi("42")) // Unwrap if err is nil then it returns a valid value otherwise it panics
+}
+```
+
+- Function list:
+
+```go
+Unwrap[T any](val T, err error)
+```
