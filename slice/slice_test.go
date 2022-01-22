@@ -58,7 +58,7 @@ func TestCompact(t *testing.T) {
 	assert.Equal([]int{}, Compact([]int{0}))
 	assert.Equal([]int{1, 2, 3}, Compact([]int{0, 1, 2, 3}))
 	assert.Equal([]string{}, Compact([]string{""}))
-	assert.Equal([]string{""}, Compact([]string{" "}))
+	assert.Equal([]string{" "}, Compact([]string{" "}))
 	assert.Equal([]string{"a", "b", "0"}, Compact([]string{"", "a", "b", "0"}))
 	assert.Equal([]bool{true, true}, Compact([]bool{false, true, true}))
 }
