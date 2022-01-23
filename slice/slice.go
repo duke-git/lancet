@@ -164,6 +164,45 @@ func Difference(slice1, slice2 interface{}) interface{} {
 	return res.Interface()
 }
 
+// DifferenceBy it accepts iteratee which is invoked for each element of slice
+// and values to generate the criterion by which they're compared.
+// like lodash.js differenceBy: https://lodash.com/docs/4.17.15#differenceBy,
+// the iterateeFn function signature should be func(index int, value interface{}) interface{}.
+func DifferenceBy(slice interface{}, comparedSlice interface{}, iterateeFn interface{}) interface{} {
+	sv := sliceValue(slice)
+	smv := sliceValue(comparedSlice)
+	fn := functionValue(iterateeFn)
+
+	elemType := sv.Type().Elem()
+	if checkSliceCallbackFuncSignature(fn, elemType, nil) {
+		panic("function param should be of type func(" + elemType.String() + ")" + elemType.String())
+	}
+
+	slice1 := reflect.MakeSlice(sv.Type(), sv.Len(), sv.Len())
+	for i := 0; i < sv.Len(); i++ {
+		slice1.Index(i).Set(fn.Call([]reflect.Value{reflect.ValueOf(i), sv.Index(i)})[0])
+	}
+
+	slice2 := reflect.MakeSlice(smv.Type(), smv.Len(), smv.Len())
+	for i := 0; i < smv.Len(); i++ {
+		slice2.Index(i).Set(fn.Call([]reflect.Value{reflect.ValueOf(i), smv.Index(i)})[0])
+	}
+
+	sliceAfterMap := slice1.Interface()
+	comparedSliceAfterMap := slice2.Interface()
+
+	res := reflect.MakeSlice(sv.Type(), 0, 0)
+	sm := sliceValue(sliceAfterMap)
+	for i := 0; i < sm.Len(); i++ {
+		item := sm.Index(i).Interface()
+		if !Contain(comparedSliceAfterMap, item) {
+			res = reflect.Append(res, sv.Index(i))
+		}
+	}
+
+	return res.Interface()
+}
+
 // Every return true if all of the values in the slice pass the predicate function.
 // The function signature should be func(index int, value interface{}) bool .
 func Every(slice, function interface{}) bool {

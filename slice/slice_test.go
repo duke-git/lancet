@@ -439,6 +439,17 @@ func TestDifference(t *testing.T) {
 	assert.Equal([]int{1, 2, 3}, Difference(s1, s2))
 }
 
+func TestDifferenceBy(t *testing.T) {
+	assert := internal.NewAssert(t, "TestDifferenceBy")
+
+	s1 := []int{1, 2, 3, 4, 5} //after add one: 2 3 4 5 6
+	s2 := []int{3, 4, 5} //after add one: 4 5 6
+	addOne := func(i int, v int) int {
+		return v + 1
+	}
+	assert.Equal([]int{1, 2}, DifferenceBy(s1, s2, addOne))
+}
+
 func TestSortByFielDesc(t *testing.T) {
 	assert := internal.NewAssert(t, "TestWithout")
 
