@@ -56,5 +56,7 @@ func TestExecCommand(t *testing.T) {
 		t.Logf("error: %v\n", err)
 	}
 
-	assert.IsNotNil(err)
+	if !IsWindows() {
+		assert.IsNotNil(err)
+	}
 }
