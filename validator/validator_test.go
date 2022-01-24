@@ -160,11 +160,21 @@ func TestIsIpV6(t *testing.T) {
 	assert.Equal(true, IsIpV6("::0:0:0:0:0:0:1"))
 }
 
+func TestIsUrl(t *testing.T) {
+	assert := internal.NewAssert(t, "TestIsUrl")
+
+	assert.Equal(true, IsUrl("http://abc.com"))
+	assert.Equal(true, IsUrl("abc.com"))
+	assert.Equal(true, IsUrl("a.b.com"))
+	assert.Equal(false, IsUrl("abc"))
+}
+
 func TestIsDns(t *testing.T) {
 	assert := internal.NewAssert(t, "TestIsDns")
 
 	assert.Equal(true, IsDns("abc.com"))
 	assert.Equal(false, IsDns("a.b.com"))
+	assert.Equal(false, IsDns("http://abc.com"))
 }
 
 func TestIsEmail(t *testing.T) {

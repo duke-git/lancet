@@ -4,7 +4,7 @@
 </p>
 
 ![Go version](https://img.shields.io/badge/go-%3E%3D1.16<recommend>-9cf)
-[![Release](https://img.shields.io/badge/release-1.2.1-green.svg)](https://github.com/duke-git/lancet/releases)
+[![Release](https://img.shields.io/badge/release-1.2.2-green.svg)](https://github.com/duke-git/lancet/releases)
 [![GoDoc](https://godoc.org/github.com//duke-git/lancet?status.svg)](https://pkg.go.dev/github.com/duke-git/lancet)
 [![Go Report Card](https://goreportcard.com/badge/github.com/duke-git/lancet)](https://goreportcard.com/report/github.com/duke-git/lancet)
 [![test](https://github.com/duke-git/lancet/actions/workflows/codecov.yml/badge.svg?branch=main&event=push)](https://github.com/duke-git/lancet/actions/workflows/codecov.yml)
@@ -279,6 +279,7 @@ func Before(n int, fn interface{}) func(args ...interface{}) []reflect.Value  //
 func (f Fn) Curry(i interface{}) func(...interface{}) interface{}  //函数柯里化
 func Compose(fnList ...func(...interface{}) interface{}) func(...interface{}) interface{}  //从右至左组合函数
 func Delay(delay time.Duration, fn interface{}, args ...interface{})  //延迟调用函数
+func Debounced(fn func(), duration time.Duration) func() //go防抖函数，在duration时间内连续调用只会执行一次.
 func Schedule(d time.Duration, fn interface{}, args ...interface{}) chan bool //每隔duration时间调用函数, 关闭返回通道可以停止调用
 func (w *Watcher) Start() //开时watcher
 func (w *Watcher) Stop() //开时watcher
@@ -434,7 +435,10 @@ func main() {
 func Contain[T comparable](slice []T, value T) bool //判断slice是否包含value
 func ContainSubSlice[T comparable](slice, subslice []T) bool  //判断slice是否包含subslice
 func Chunk[T any](slice []T, size int) [][]T //均分slice
+func Compact[T any](slice []T) []T //去除slice中的false vule. false values are false, nil, 0, and ""
+func Concat[T any](slice []T, values ...[]T) []T //连接values到slice中
 func Difference[T comparable](slice1, slice2 []T) []T //返回切片，其元素在slice1中，不在slice2中
+func DifferenceBy[T any](slice []T, comparedSlice []T, iteratee func(index int, t T) T) []T //将slice 和comparedSlice中每个元素调用iterateeFn后作比较，如果不相等返回slice中的元素。
 func DeleteByIndex[T any](slice []T, start int, end ...int) []T //删除切片中start到end位置的值(不包含end)
 func Drop[T any](slice []T, n int) []T //创建一个新切片，当n大于0时删除原切片前n个元素，当n小于0时删除原切片后n个元素
 func Every[T any](slice []T, fn func(index int, t T) bool) bool //slice中所有元素都符合函数条件时返回true, 否则返回false. 函数签名：func(int, t T) bool
@@ -495,6 +499,7 @@ func CamelCase(s string) string //字符串转为cameCase, "foo bar" -> "fooBar"
 func Capitalize(s string) string //字符串转为Capitalize, "fOO" -> "Foo"
 func IsString(v interface{}) bool //判断是否是字符串
 func KebabCase(s string) string //字符串转为KebabCase, "foo_Bar" -> "foo-bar"
+func UpperFirst(s string) string //字符串的第一个字母转为大写字母
 func LowerFirst(s string) string //字符串的第一个字母转为小写字母
 func PadEnd(source string, size int, padStr string) string //字符串末尾填充size个字符
 func PadStart(source string, size int, padStr string) string//字符串开头填充size个字符
@@ -587,6 +592,7 @@ func IsIp(ipstr string) bool //判断字符串是否是ip
 func IsIpV4(ipstr string) bool //判断字符串是否是ipv4
 func IsIpV6(ipstr string) bool //判断字符串是否是ipv6
 func IsStrongPassword(password string, length int) bool //判断字符串是否是强密码（大小写字母+数字+特殊字符）
+func IsUrl(str string) bool //判断字符串是否是url
 func IsWeakPassword(password string) bool //判断字符串是否是弱密码（只有字母或数字）
 ```
 

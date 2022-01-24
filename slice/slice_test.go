@@ -29,6 +29,7 @@ func TestChunk(t *testing.T) {
 	assert := internal.NewAssert(t, "TestChunk")
 
 	arr := []string{"a", "b", "c", "d", "e"}
+
 	r1 := [][]string{{"a"}, {"b"}, {"c"}, {"d"}, {"e"}}
 	assert.Equal(r1, Chunk(arr, 1))
 
@@ -43,6 +44,27 @@ func TestChunk(t *testing.T) {
 
 	r5 := [][]string{{"a"}, {"b"}, {"c"}, {"d"}, {"e"}}
 	assert.Equal(r5, Chunk(arr, 5))
+}
+
+func TestCompact(t *testing.T) {
+	assert := internal.NewAssert(t, "TesCompact")
+
+	assert.Equal([]int{}, Compact([]int{0}))
+	assert.Equal([]int{1, 2, 3}, Compact([]int{0, 1, 2, 3}))
+	assert.Equal([]string{}, Compact([]string{""}))
+	assert.Equal([]string{" "}, Compact([]string{" "}))
+	assert.Equal([]string{"a", "b", "0"}, Compact([]string{"", "a", "b", "0"}))
+	assert.Equal([]bool{true, true}, Compact([]bool{false, true, true}))
+}
+
+func TestConcat(t *testing.T) {
+	assert := internal.NewAssert(t, "Concat")
+
+	// assert.Equal([]int{0}, Concat([]int{}, 0))
+	// assert.Equal([]int{1, 2, 3, 4, 5}, Concat([]int{1, 2, 3}, 4, 5))
+	assert.Equal([]int{1, 2, 3, 4, 5}, Concat([]int{1, 2, 3}, []int{4, 5}))
+	assert.Equal([]int{1, 2, 3, 4, 5}, Concat([]int{1, 2, 3}, []int{4}, []int{5}))
+	// assert.Equal([]int{1, 2, 3, 4, 5}, Concat([]int{1, 2, 3}, []int{4}, 5))
 }
 
 func TestEvery(t *testing.T) {
@@ -375,6 +397,17 @@ func TestDifference(t *testing.T) {
 	s1 := []int{1, 2, 3, 4, 5}
 	s2 := []int{4, 5, 6}
 	assert.Equal([]int{1, 2, 3}, Difference(s1, s2))
+}
+
+func TestDifferenceBy(t *testing.T) {
+	assert := internal.NewAssert(t, "TestDifferenceBy")
+
+	s1 := []int{1, 2, 3, 4, 5} //after add one: 2 3 4 5 6
+	s2 := []int{3, 4, 5}       //after add one: 4 5 6
+	addOne := func(i int, v int) int {
+		return v + 1
+	}
+	assert.Equal([]int{1, 2}, DifferenceBy(s1, s2, addOne))
 }
 
 func TestSortByFielDesc(t *testing.T) {

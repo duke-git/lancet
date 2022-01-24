@@ -13,9 +13,9 @@ import (
 )
 
 // Contain check if the value is in the iterable type or not
-func Contain[T comparable](slice []T, value T) bool {
+func Contain[T any](slice []T, value T) bool {
 	for _, v := range slice {
-		if v == value {
+		if reflect.DeepEqual(v, value) {
 			return true
 		}
 	}
@@ -71,12 +71,55 @@ func Chunk[T any](slice []T, size int) [][]T {
 	return res
 }
 
-// Difference creates an slice of whose element in slice1 but not in slice2
-func Difference[T comparable](slice1, slice2 []T) []T {
-	var res []T
-	for _, v := range slice1 {
-		if !Contain(slice2, v) {
+// Compact creates an slice with all falsey values removed. The values false, nil, 0, and "" are falsey
+func Compact[T any](slice []T) []T {
+	res := make([]T, 0, 0)
+	for _, v := range slice {
+		if !reflect.DeepEqual(v, nil) &&
+			!reflect.DeepEqual(v, false) &&
+			!reflect.DeepEqual(v, "") &&
+			!reflect.DeepEqual(v, 0) {
 			res = append(res, v)
+		}
+	}
+
+	return res
+}
+
+// Concat creates a new slice concatenating slice with any additional slices and/or values.
+func Concat[T any](slice []T, values ...[]T) []T {
+	res := append([]T{}, slice...)
+
+	for _, v := range values {
+		res = append(res, v...)
+	}
+
+	return res
+}
+
+// Difference creates an slice of whose element in slice but not in comparedSlice
+func Difference[T comparable](slice, comparedSlice []T) []T {
+	var res []T
+	for _, v := range slice {
+		if !Contain(comparedSlice, v) {
+			res = append(res, v)
+		}
+	}
+
+	return res
+}
+
+// DifferenceBy it accepts iteratee which is invoked for each element of slice
+// and values to generate the criterion by which they're compared.
+// like lodash.js differenceBy: https://lodash.com/docs/4.17.15#differenceBy,
+func DifferenceBy[T any](slice []T, comparedSlice []T, iteratee func(index int, t T) T) []T {
+	orginSliceAfterMap := Map(slice, iteratee)
+	comparedSliceAfterMap := Map(comparedSlice, iteratee)
+
+	res := make([]T, 0, 0)
+	for i, v := range orginSliceAfterMap {
+		if !Contain(comparedSliceAfterMap, v) {
+			res = append(res, slice[i])
 		}
 	}
 
