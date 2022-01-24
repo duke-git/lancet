@@ -24,18 +24,24 @@ func Contain[T any](slice []T, value T) bool {
 }
 
 // ContainSubSlice check if the slice contain subslice or not
-func ContainSubSlice[T comparable](slice, subslice []T) bool {
-	unique := make(map[T]bool)
-	for _, v := range slice {
-		unique[v] = true
-	}
+func ContainSubSlice[T any](slice, subslice []T) bool {
 	for _, v := range subslice {
-		if !unique[v] {
+		if !Contain(slice, v) {
 			return false
 		}
 	}
-
 	return true
+
+	// unique := make(map[T]bool)
+	// for _, v := range slice {
+	// 	unique[v] = true
+	// }
+	// for _, v := range subslice {
+	// 	if !unique[v] {
+	// 		return false
+	// 	}
+	// }
+	// return true
 }
 
 // Chunk creates an slice of elements split into groups the length of size.
@@ -512,7 +518,7 @@ func UpdateByIndex[T any](slice []T, index int, value T) []T {
 }
 
 // Unique remove duplicate elements in slice.
-func Unique[T comparable](slice []T) []T {
+func Unique[T any](slice []T) []T {
 	if len(slice) == 0 {
 		return []T{}
 	}
@@ -523,7 +529,7 @@ func Unique[T comparable](slice []T) []T {
 		v := slice[i]
 		skip := true
 		for j := range res {
-			if v == res[j] {
+			if reflect.DeepEqual(v, res[j]) {
 				skip = false
 				break
 			}
@@ -537,7 +543,7 @@ func Unique[T comparable](slice []T) []T {
 }
 
 // Union creates a slice of unique values, in order, from all given slices. using == for equality comparisons.
-func Union[T comparable](slices ...[]T) []T {
+func Union[T any](slices ...[]T) []T {
 	if len(slices) == 0 {
 		return []T{}
 	}
@@ -555,7 +561,7 @@ func Union[T comparable](slices ...[]T) []T {
 }
 
 // Intersection creates a slice of unique values that included by all slices.
-func Intersection[T comparable](slices ...[]T) []T {
+func Intersection[T any](slices ...[]T) []T {
 	var res []T
 	if len(slices) == 0 {
 		return []T{}
@@ -682,7 +688,7 @@ func SortByField(slice interface{}, field string, sortType ...string) error {
 }
 
 // Without creates a slice excluding all given values
-func Without[T comparable](slice []T, values ...T) []T {
+func Without[T any](slice []T, values ...T) []T {
 	if len(values) == 0 || len(slice) == 0 {
 		return slice
 	}
