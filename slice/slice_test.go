@@ -172,6 +172,20 @@ func TestFind(t *testing.T) {
 	assert.Equal(2, res)
 }
 
+func TestFindLast(t *testing.T) {
+	nums := []int{1, 2, 3, 4, 5}
+	even := func(i, num int) bool {
+		return num%2 == 0
+	}
+	res, ok := FindLast(nums, even)
+	if !ok {
+		t.Fatal("found nothing")
+	}
+
+	assert := internal.NewAssert(t, "TestFind")
+	assert.Equal(4, res)
+}
+
 func TestFindFoundNothing(t *testing.T) {
 	nums := []int{1, 1, 1, 1, 1, 1}
 	findFunc := func(i, num int) bool {
@@ -443,7 +457,7 @@ func TestDifferenceBy(t *testing.T) {
 	assert := internal.NewAssert(t, "TestDifferenceBy")
 
 	s1 := []int{1, 2, 3, 4, 5} //after add one: 2 3 4 5 6
-	s2 := []int{3, 4, 5} //after add one: 4 5 6
+	s2 := []int{3, 4, 5}       //after add one: 4 5 6
 	addOne := func(i int, v int) int {
 		return v + 1
 	}
