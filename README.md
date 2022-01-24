@@ -612,5 +612,5 @@ func main() {
 - Function list:
 
 ```go
-Unwrap[T any](val T, err error)
+Unwrap[T any](val T, err error) //if err is nil then it returns a valid value otherwise it panics
 ```

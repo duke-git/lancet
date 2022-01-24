@@ -592,7 +592,7 @@ func IsWeakPassword(password string) bool //判断字符串是否是弱密码（
 
 ### 14. error helpers
 
-- Contain functions to handle errors
+- 错误处理函数
 - Usage: import "github.com/duke-git/lancet/xerror"
 
 ```go
@@ -613,5 +613,5 @@ func main() {
 - Function list:
 
 ```go
-Unwrap[T any](val T, err error)
+Unwrap[T any](val T, err error) //如果err是nil，返回有效的val值。否则， panics
 ```
