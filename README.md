@@ -439,12 +439,14 @@ func Compact[T any](slice []T) []T //creates an slice with all falsey values rem
 func Concat[T any](slice []T, values ...[]T) []T //creates a new slice concatenating slice with any additional slices and/or values
 func Difference[T comparable](slice1, slice2 []T) []T //creates an slice of whose element not included in the other given slice
 func DifferenceBy[T any](slice []T, comparedSlice []T, iteratee func(index int, t T) T) []T //it accepts iteratee which is invoked for each element of slice and values to generate the criterion by which they're compared.
+func DifferenceWith[T any](slice []T, comparedSlice []T, comparator func(value, otherValue T) bool) []T //accepts comparator which is invoked to compare elements of slice to values. The order and references of result values are determined by the first slice.
 func DeleteByIndex[T any](slice []T, start int, end ...int) []T //delete the element of slice from start index to end index - 1
 func Drop[T any](slice []T, n int) []T //creates a slice with `n` elements dropped from the beginning when n > 0, or `n` elements dropped from the ending when n < 0
 func Every[T any](slice []T, predicate func(index int, t T) bool) bool  //return true if all of the values in the slice pass the predicate function
 func None[T any](slice []T, predicate func(index int, t T) bool) bool // return true if all the values in the slice mismatch the criteria
 func Filter [T any] (slice []T, predicate func(index int, t T) bool) []T //iterates over elements of slice, returning an slice of all elements pass the predicate function
 func Find[T any](slice []T, predicate func(index int, t T) bool) (*T, bool) //iterates over elements of slice, returning the first one that passes a truth test on iteratee function. If return T is nil then no items matched the predicate func
+func FindLast[T any](slice []T, predicate func(index int, t T) bool) (*T, bool) //iterates over elements of slice from end to begin, returning the first one that passes a truth test on predicate function. if return T is nil then no items matched the predicate func
 func FlattenDeep(slice interface{}) interface{} //flattens slice recursive
 func ForEach [T any] (slice []T, iteratee func(index int, t T)) //iterates over elements of slice and invokes function for each element
 func IntSlice(slice interface{}) ([]int, error) //convert value to int slice

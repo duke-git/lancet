@@ -257,10 +257,10 @@ func GroupBy[T any](slice []T, groupFn func(index int, t T) bool) ([]T, []T) {
 	return groupA, groupB
 }
 
-// Find iterates over elements of slice, returning the first one that passes a truth test on iteratee function.
+// Find iterates over elements of slice, returning the first one that passes a truth test on predicate function.
 // If return T is nil then no items matched the predicate func
-func Find[T any](slice []T, iteratee func(index int, t T) bool) (*T, bool) {
-	if iteratee == nil {
+func Find[T any](slice []T, predicate func(index int, t T) bool) (*T, bool) {
+	if predicate == nil {
 		panic("fn is missing")
 	}
 
@@ -270,7 +270,33 @@ func Find[T any](slice []T, iteratee func(index int, t T) bool) (*T, bool) {
 
 	index := -1
 	for i, v := range slice {
-		if iteratee(i, v) {
+		if predicate(i, v) {
+			index = i
+			break
+		}
+	}
+
+	if index == -1 {
+		return nil, false
+	}
+
+	return &slice[index], true
+}
+
+// FindLast iterates over elements of slice from end to begin, returning the first one that passes a truth test on predicate function.
+// If return T is nil then no items matched the predicate func
+func FindLast[T any](slice []T, predicate func(index int, t T) bool) (*T, bool) {
+	if predicate == nil {
+		panic("fn is missing")
+	}
+
+	if len(slice) == 0 {
+		return nil, false
+	}
+
+	index := -1
+	for i := len(slice) - 1; i >= 0; i-- {
+		if predicate(i, slice[i]) {
 			index = i
 			break
 		}

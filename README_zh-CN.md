@@ -438,12 +438,14 @@ func Chunk[T any](slice []T, size int) [][]T //均分slice
 func Compact[T any](slice []T) []T //去除slice中的false vule. false values are false, nil, 0, and ""
 func Concat[T any](slice []T, values ...[]T) []T //连接values到slice中
 func Difference[T comparable](slice1, slice2 []T) []T //返回切片，其元素在slice1中，不在slice2中
-func DifferenceBy[T any](slice []T, comparedSlice []T, iteratee func(index int, t T) T) []T //将slice 和comparedSlice中每个元素调用iterateeFn后作比较，如果不相等返回slice中的元素。
+func DifferenceBy[T any](slice []T, comparedSlice []T, iteratee func(index int, t T) T) []T //将slice 和comparedSlice中每个元素调用iterateeFn后作比较，如果不相等返回slice中的元素
+func DifferenceWith[T any](slice []T, comparedSlice []T, comparator func(value, otherValue T) bool) []T //将slice 和comparedSlice中每个元素调用comparator后作比较，如果为false，返回slice中的元素
 func DeleteByIndex[T any](slice []T, start int, end ...int) []T //删除切片中start到end位置的值(不包含end)
 func Drop[T any](slice []T, n int) []T //创建一个新切片，当n大于0时删除原切片前n个元素，当n小于0时删除原切片后n个元素
 func Every[T any](slice []T, predicate func(index int, t T) bool) bool//slice中所有元素都符合函数条件时返回true, 否则返回false
 func None[T any](slice []T, predicate func(index int, t T) bool) bool //slice中所有元素都不符合函数条件时返回true, 否则返回false
-func Find[T any](slice []T, predicate func(index int, t T) bool) (*T, bool) //查找slice中第一个符合条件的元素，没有找到时返回nil
+func Find[T any](slice []T, predicate func(index int, t T) bool) (*T, bool) //查找slice中第一个符合条件的元素，没有找到时返回nil, false
+func FindLast[T any](slice []T, predicate func(index int, t T) bool) (*T, bool) //从后往前查找slice中第一个符合条件的元素，没有找到时返回nil, false
 func Filter [T any] (slice []T, predicate func(index int, t T) bool) []T//过滤slice中元素符合predicate函数
 func FlattenDeep(slice interface{}) interface{} //将slice递归为一维切片
 func ForEach [T any] (slice []T, iteratee func(index int, t T)) //遍历切片，在每个元素上执行iteratee函数
