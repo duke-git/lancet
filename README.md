@@ -4,7 +4,7 @@
 </p>
 
 ![Go version](https://img.shields.io/badge/go-%3E%3D1.16<recommend>-9cf)
-[![Release](https://img.shields.io/badge/release-1.2.1-green.svg)](https://github.com/duke-git/lancet/releases)
+[![Release](https://img.shields.io/badge/release-1.2.2-green.svg)](https://github.com/duke-git/lancet/releases)
 [![GoDoc](https://godoc.org/github.com//duke-git/lancet?status.svg)](https://pkg.go.dev/github.com/duke-git/lancet)
 [![Go Report Card](https://goreportcard.com/badge/github.com/duke-git/lancet)](https://goreportcard.com/report/github.com/duke-git/lancet)
 [![test](https://github.com/duke-git/lancet/actions/workflows/codecov.yml/badge.svg?branch=main&event=push)](https://github.com/duke-git/lancet/actions/workflows/codecov.yml)
@@ -278,6 +278,7 @@ func After(n int, fn interface{}) func(args ...interface{}) []reflect.Value  //c
 func Before(n int, fn interface{}) func(args ...interface{}) []reflect.Value  //creates a function that invokes func once it's called less than n times
 func (f Fn) Curry(i interface{}) func(...interface{}) interface{}  //make a curryed function
 func Compose(fnList ...func(...interface{}) interface{}) func(...interface{}) interface{}  //compose the functions from right to left
+func Debounced(fn func(), duration time.Duration) func() //creates a debounced function that delays invoking fn until after wait duration have elapsed since the last time the debounced function was invoked.
 func Delay(delay time.Duration, fn interface{}, args ...interface{})  //invoke function after delayed time
 func Schedule(d time.Duration, fn interface{}, args ...interface{}) chan bool //invoke function every duration time, util close the returned bool chan
 func (w *Watcher) Start() //start the watch timer.
@@ -434,7 +435,10 @@ func main() {
 func Contain(slice interface{}, value interface{}) bool //check if the value is in the slice or not
 func ContainSubSlice(slice interface{}, subslice interface{}) bool //check if the slice contain subslice or not
 func Chunk(slice []interface{}, size int) [][]interface{} //creates an slice of elements split into groups the length of `size`
+func Compact(slice interface{}) interface{} //creates an slice with all falsey values removed. The values false, nil, 0, and "" are falsey
+func Concat(slice interface{}, values ...interface{}) interface{} //creates a new slice concatenating slice with any additional slices and/or values
 func Difference(slice1, slice2 interface{}) interface{} //creates an slice of whose element not included in the other given slice
+func DifferenceBy(slice interface{}, comparedSlice interface{}, iterateeFn interface{}) interface{} //it accepts iteratee which is invoked for each element of slice and values to generate the criterion by which they're compared.
 func DeleteByIndex(slice interface{}, start int, end ...int) (interface{}, error) //delete the element of slice from start index to end index - 1
 func Drop(slice interface{}, n int) interface{} //creates a slice with `n` elements dropped from the beginning when n > 0, or `n` elements dropped from the ending when n < 0
 func Every(slice, function interface{}) bool //return true if all of the values in the slice pass the predicate function, function signature should be func(index int, value interface{}) bool
@@ -496,6 +500,7 @@ func Capitalize(s string) string //convert the first character of a string to up
 func IsString(v interface{}) bool //check if the value data type is string or not
 func KebabCase(s string) string //covert string to kebab-case, "foo_Bar" -> "foo-bar"
 func LowerFirst(s string) string //convert the first character of string to lower case
+func UpperFirst(s string) string //converts the first character of string to upper case
 func PadEnd(source string, size int, padStr string) string //pads string on the right side if it's shorter than size
 func PadStart(source string, size int, padStr string) string//pads string on the left side if it's shorter than size
 func ReverseStr(s string) string //return string whose char order is reversed to the given string
@@ -586,5 +591,6 @@ func IsIp(ipstr string) bool //check if the string is a ip address
 func IsIpV4(ipstr string) bool //check if the string is a ipv4 address
 func IsIpV6(ipstr string) bool //check if the string is a ipv6 address
 func IsStrongPassword(password string, length int) bool //check if the string is strong password (alpha(lower+upper) + number + special chars(!@#$%^&*()?><))
+func IsUrl(str string) bool //check if the string is url
 func IsWeakPassword(password string) bool //check if the string is weak password（only letter or only number or letter + number）
 ```
