@@ -441,29 +441,29 @@ func Difference[T comparable](slice1, slice2 []T) []T //creates an slice of whos
 func DifferenceBy[T any](slice []T, comparedSlice []T, iteratee func(index int, t T) T) []T //it accepts iteratee which is invoked for each element of slice and values to generate the criterion by which they're compared.
 func DeleteByIndex[T any](slice []T, start int, end ...int) []T //delete the element of slice from start index to end index - 1
 func Drop[T any](slice []T, n int) []T //creates a slice with `n` elements dropped from the beginning when n > 0, or `n` elements dropped from the ending when n < 0
-func Every[T any](slice []T, fn func(index int, t T) bool) bool  //return true if all of the values in the slice pass the predicate function
-func None[T any](slice []T, fn func(index int, t T) bool) bool // return true if all the values in the slice mismatch the criteria
-func Filter [T any] (slice []T, fn func(index int, t T) bool) []T //filter slice, fn signature should be func(int, T) bool.
-func Find[T any](slice []T, fn func(index int, t T) bool) (*T, bool) //iterates over elements of slice, returning the first one that passes a truth test on function.function signature should be func(int, T) bool .
+func Every[T any](slice []T, predicate func(index int, t T) bool) bool  //return true if all of the values in the slice pass the predicate function
+func None[T any](slice []T, predicate func(index int, t T) bool) bool // return true if all the values in the slice mismatch the criteria
+func Filter [T any] (slice []T, predicate func(index int, t T) bool) []T //iterates over elements of slice, returning an slice of all elements pass the predicate function
+func Find[T any](slice []T, predicate func(index int, t T) bool) (*T, bool) //iterates over elements of slice, returning the first one that passes a truth test on iteratee function. If return T is nil then no items matched the predicate func
 func FlattenDeep(slice interface{}) interface{} //flattens slice recursive
-func ForEach [T any] (slice []T, fn func(index int, t T)) //iterates over elements of slice and invokes function for each element, fn signature should be func(int, T ).
+func ForEach [T any] (slice []T, iteratee func(index int, t T)) //iterates over elements of slice and invokes function for each element
 func IntSlice(slice interface{}) ([]int, error) //convert value to int slice
 func InterfaceSlice(slice interface{}) []interface{} //convert value to interface{} slice
 func Intersection[T comparable](slices ...[]T) []T //creates a slice of unique values that included by all slices.
 func InsertByIndex[T any](slice []T, index int, value interface{}) []T //insert the value or other slice into slice at index.
-func Map [T any, U any] (slice []T, fn func(index int, t T) U) []U //map lisce, fn signature should be func(int, T).
+func Map [T any, U any] (slice []T, iteratee func(index int, t T) U) []U //creates an slice of values by running each element of slice thru iteratee function.
 func Reverse[T any](slice []T)//revere slice
-func Reduce[T any](slice []T, fn func(index int, t1, t2 T) T, initial T) T //reduce slice
+func Reduce[T any](slice []T, iteratee func(index int, t1, t2 T) T, initial T) T //creates an slice of values by running each element of slice thru iteratee function
 func Shuffle[T any](slice []T) []T  //creates an slice of shuffled values
 func SortByField(slice interface{}, field string, sortType ...string) error //sort struct slice by field
-func Some[T any](slice []T, fn func(index int, t T) bool) bool //return true if any of the values in the list pass the predicate fn function
+func Some[T any](slice []T, predicate func(index int, t T) bool) bool //return true if any of the values in the list pass the predicate function
 func StringSlice(slice interface{}) []string //convert value to string slice
 func Unique[T comparable](slice []T) []T //remove duplicate elements in slice
 func Union[T comparable](slices ...[]T) []T //Union creates a slice of unique values, in order, from all given slices. using == for equality comparisons.
 func UpdateByIndex[T any](slice []T, index int, value T) []T //update the slice element at index.
 func Without[T comparable](slice []T, values ...T) []T //creates a slice excluding all given values
-func GroupBy[T any](slice []T, fn func(index int, t T) bool) ([]T, []T) // groups slice into two categories
-func Count[T any](slice []T, fn func(index int, t T) bool) int // Count iterates over elements of slice, returns a count of all matched elements
+func GroupBy[T any](slice []T, groupFn func(index int, t T) bool) ([]T, []T) //iterate over elements of the slice, each element will be group by criteria, returns two slices
+func Count[T any](slice []T, predicate func(index int, t T) bool) int // iterates over elements of slice, returns a count of all matched elements
 ```
 
 ### 11. strutil is for processing string

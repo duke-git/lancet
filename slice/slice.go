@@ -12,7 +12,7 @@ import (
 	"sort"
 )
 
-// Contain check if the value is in the iterable type or not
+// Contain check if the value is in the slice or not
 func Contain[T any](slice []T, value T) bool {
 	for _, v := range slice {
 		if reflect.DeepEqual(v, value) {
@@ -127,15 +127,14 @@ func DifferenceBy[T any](slice []T, comparedSlice []T, iteratee func(index int, 
 }
 
 // Every return true if all of the values in the slice pass the predicate function.
-// The fn function signature should be func(int, T) bool .
-func Every[T any](slice []T, fn func(index int, t T) bool) bool {
-	if fn == nil {
+func Every[T any](slice []T, predicate func(index int, t T) bool) bool {
+	if predicate == nil {
 		panic("fn is missing")
 	}
 
 	var currentLength int
 	for i, v := range slice {
-		if fn(i, v) {
+		if predicate(i, v) {
 			currentLength++
 		}
 	}
@@ -144,15 +143,14 @@ func Every[T any](slice []T, fn func(index int, t T) bool) bool {
 }
 
 // None return true if all the values in the slice mismatch the criteria
-// The fn function signature should be func(int, T) bool .
-func None[T any](slice []T, fn func(index int, t T) bool) bool {
-	if fn == nil {
+func None[T any](slice []T, predicate func(index int, t T) bool) bool {
+	if predicate == nil {
 		panic("fn is missing")
 	}
 
 	var currentLength int
 	for i, v := range slice {
-		if !fn(i, v) {
+		if !predicate(i, v) {
 			currentLength++
 		}
 	}
@@ -161,30 +159,28 @@ func None[T any](slice []T, fn func(index int, t T) bool) bool {
 }
 
 // Some return true if any of the values in the list pass the predicate function.
-// The fn function signature should be func(int, T) bool.
-func Some[T any](slice []T, fn func(index int, t T) bool) bool {
-	if fn == nil {
+func Some[T any](slice []T, predicate func(index int, t T) bool) bool {
+	if predicate == nil {
 		panic("fn is missing")
 	}
 
 	for i, v := range slice {
-		if fn(i, v) {
+		if predicate(i, v) {
 			return true
 		}
 	}
 	return false
 }
 
-// Filter iterates over elements of slice, returning an slice of all elements `signature` returns truthy for.
-// The fn function signature should be func(int, T) bool.
-func Filter[T any](slice []T, fn func(index int, t T) bool) []T {
-	if fn == nil {
+// Filter iterates over elements of slice, returning an slice of all elements pass the predicate function
+func Filter[T any](slice []T, predicate func(index int, t T) bool) []T {
+	if predicate == nil {
 		panic("fn is missing")
 	}
 
 	res := make([]T, 0, 0)
 	for i, v := range slice {
-		if fn(i, v) {
+		if predicate(i, v) {
 			res = append(res, v)
 		}
 	}
@@ -192,9 +188,8 @@ func Filter[T any](slice []T, fn func(index int, t T) bool) []T {
 }
 
 // Count iterates over elements of slice, returns a count of all matched elements
-// The function signature should be func(int, T) bool .
-func Count[T any](slice []T, fn func(index int, t T) bool) int {
-	if fn == nil {
+func Count[T any](slice []T, predicate func(index int, t T) bool) int {
+	if predicate == nil {
 		panic("fn is missing")
 	}
 
@@ -204,7 +199,7 @@ func Count[T any](slice []T, fn func(index int, t T) bool) int {
 
 	var count int
 	for i, v := range slice {
-		if fn(i, v) {
+		if predicate(i, v) {
 			count++
 		}
 	}
@@ -213,10 +208,8 @@ func Count[T any](slice []T, fn func(index int, t T) bool) int {
 }
 
 // GroupBy iterate over elements of the slice, each element will be group by criteria, returns two slices
-// The function signature should be func(index int, T) bool .
-func GroupBy[T any](slice []T, fn func(index int, t T) bool) ([]T, []T) {
-
-	if fn == nil {
+func GroupBy[T any](slice []T, groupFn func(index int, t T) bool) ([]T, []T) {
+	if groupFn == nil {
 		panic("fn is missing")
 	}
 
@@ -228,7 +221,7 @@ func GroupBy[T any](slice []T, fn func(index int, t T) bool) ([]T, []T) {
 	groupA := make([]T, 0)
 
 	for i, v := range slice {
-		ok := fn(i, v)
+		ok := groupFn(i, v)
 		if ok {
 			groupA = append(groupA, v)
 		} else {
@@ -239,11 +232,10 @@ func GroupBy[T any](slice []T, fn func(index int, t T) bool) ([]T, []T) {
 	return groupA, groupB
 }
 
-// Find iterates over elements of slice, returning the first one that passes a truth test on function.
-// The fn function signature should be func(int, T) bool .
+// Find iterates over elements of slice, returning the first one that passes a truth test on iteratee function.
 // If return T is nil then no items matched the predicate func
-func Find[T any](slice []T, fn func(index int, t T) bool) (*T, bool) {
-	if fn == nil {
+func Find[T any](slice []T, iteratee func(index int, t T) bool) (*T, bool) {
+	if iteratee == nil {
 		panic("fn is missing")
 	}
 
@@ -253,7 +245,7 @@ func Find[T any](slice []T, fn func(index int, t T) bool) (*T, bool) {
 
 	index := -1
 	for i, v := range slice {
-		if fn(i, v) {
+		if iteratee(i, v) {
 			index = i
 			break
 		}
@@ -291,36 +283,33 @@ func flattenRecursive(value reflect.Value, result reflect.Value) reflect.Value {
 }
 
 // ForEach iterates over elements of slice and invokes function for each element
-// The fn function signature should be func(int, T).
-func ForEach[T any](slice []T, fn func(index int, t T)) {
-	if fn == nil {
+func ForEach[T any](slice []T, iteratee func(index int, t T)) {
+	if iteratee == nil {
 		panic("fn is missing")
 	}
 
 	for i, v := range slice {
-		fn(i, v)
+		iteratee(i, v)
 	}
 }
 
-// Map creates an slice of values by running each element of slice thru fn function.
-// The fn function signature should be func(int, T).
-func Map[T any, U any](slice []T, fn func(index int, t T) U) []U {
-	if fn == nil {
+// Map creates an slice of values by running each element of slice thru iteratee function.
+func Map[T any, U any](slice []T, iteratee func(index int, t T) U) []U {
+	if iteratee == nil {
 		panic("fn is missing")
 	}
 
 	res := make([]U, len(slice), cap(slice))
 	for i, v := range slice {
-		res[i] = fn(i, v)
+		res[i] = iteratee(i, v)
 	}
 
 	return res
 }
 
-// Reduce creates an slice of values by running each element of slice thru fn function.
-// The fn function signature should be fn func(int, T) T .
-func Reduce[T any](slice []T, fn func(index int, t1, t2 T) T, initial T) T {
-	if fn == nil {
+// Reduce creates an slice of values by running each element of slice thru iteratee function.
+func Reduce[T any](slice []T, iteratee func(index int, t1, t2 T) T, initial T) T {
+	if iteratee == nil {
 		panic("fn is missing")
 	}
 
@@ -328,13 +317,13 @@ func Reduce[T any](slice []T, fn func(index int, t1, t2 T) T, initial T) T {
 		return initial
 	}
 
-	res := fn(0, initial, slice[0])
+	res := iteratee(0, initial, slice[0])
 
 	tmp := make([]T, 2, 2)
 	for i := 1; i < len(slice); i++ {
 		tmp[0] = res
 		tmp[1] = slice[i]
-		res = fn(i, tmp[0], tmp[1])
+		res = iteratee(i, tmp[0], tmp[1])
 	}
 
 	return res

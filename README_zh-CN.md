@@ -441,29 +441,29 @@ func Difference[T comparable](slice1, slice2 []T) []T //返回切片，其元素
 func DifferenceBy[T any](slice []T, comparedSlice []T, iteratee func(index int, t T) T) []T //将slice 和comparedSlice中每个元素调用iterateeFn后作比较，如果不相等返回slice中的元素。
 func DeleteByIndex[T any](slice []T, start int, end ...int) []T //删除切片中start到end位置的值(不包含end)
 func Drop[T any](slice []T, n int) []T //创建一个新切片，当n大于0时删除原切片前n个元素，当n小于0时删除原切片后n个元素
-func Every[T any](slice []T, fn func(index int, t T) bool) bool //slice中所有元素都符合函数条件时返回true, 否则返回false. 函数签名：func(int, t T) bool
-func None[T any](slice []T, fn func(index int, t T) bool) bool //slice中所有元素都不符合函数条件时返回true, 否则返回false. 函数签名：func(int, T) bool
-func Find[T any](slice []T, fn func(index int, t T) bool) (*T, bool)//查找slice中第一个符合条件的元素，函数签名：func(int, T) bool
-func Filter [T any] (slice []T, fn func(index int, t T) bool) []T //过滤slice
+func Every[T any](slice []T, predicate func(index int, t T) bool) bool//slice中所有元素都符合函数条件时返回true, 否则返回false
+func None[T any](slice []T, predicate func(index int, t T) bool) bool //slice中所有元素都不符合函数条件时返回true, 否则返回false
+func Find[T any](slice []T, predicate func(index int, t T) bool) (*T, bool) //查找slice中第一个符合条件的元素，没有找到时返回nil
+func Filter [T any] (slice []T, predicate func(index int, t T) bool) []T//过滤slice中元素符合predicate函数
 func FlattenDeep(slice interface{}) interface{} //将slice递归为一维切片
-func ForEach [T any] (slice []T, fn func(index int, t T)) //遍历切片，在每个元素上执行函数
+func ForEach [T any] (slice []T, iteratee func(index int, t T)) //遍历切片，在每个元素上执行iteratee函数
 func IntSlice(slice interface{}) ([]int, error) //转成int切片
 func InterfaceSlice(slice interface{}) []interface{} //转成interface{}切片
 func Intersection[T comparable](slices ...[]T) []T //slice交集，去重
 func InsertByIndex[T any](slice []T, index int, value interface{}) []T //在切片中index位置插入value
-func Map [T any, U any] (slice []T, fn func(index int, t T) U) []U //遍历切片
+func Map [T any, U any] (slice []T, iteratee func(index int, t T) U) []U //遍历切片，返回遍历结果
 func Reverse[T any](slice []T) //反转切片
-func Reduce[T any](slice []T, fn func(index int, t1, t2 T) T, initial T) T //切片reduce操作
+func Reduce[T any](slice []T, iteratee func(index int, t1, t2 T) T, initial T) T //切片reduce操作
 func Shuffle[T any](slice []T) []T  //创建一个被打乱值的切片
-func Some[T any](slice []T, fn func(index int, t T) bool) bool //slice中任意一个元素都符合函数条件时返回true, 否则返回false.
+func Some[T any](slice []T, predicate func(index int, t T) bool) bool //slice中任意一个元素都符合函数条件时返回true, 否则返回false.
 func SortByField(slice interface{}, field string, sortType ...string) error //对struct切片进行排序
 func StringSlice(slice interface{}) []string //转为string切片
 func Unique[T comparable](slice []T) []T //去重切片
 func Union[T comparable](slices ...[]T) []T //slice并集, 去重
 func UpdateByIndex[T any](slice []T, index int, value T) []T //在切片中index位置更新value
 func Without[T comparable](slice []T, values ...T) []T //slice去除values
-func GroupBy[T any](slice []T, fn func(index int, t T) bool) ([]T, []T) //根据函数function的逻辑分slice为两组slice
-func Count[T any](slice []T, fn func(index int, t T) bool) int //遍历slice的元素，返回所有匹配元素的计数
+func GroupBy[T any](slice []T, groupFn func(index int, t T) bool) ([]T, []T) //根据函数groupFn的逻辑分slice为两组slice
+func Count[T any](slice []T, predicate func(index int, t T) bool) int //遍历slice的元素，返回所有匹配元素的数量
 ```
 
 ### 11. strutil字符串处理包
