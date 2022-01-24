@@ -182,7 +182,7 @@ func TestFindLast(t *testing.T) {
 		t.Fatal("found nothing")
 	}
 
-	assert := internal.NewAssert(t, "TestFind")
+	assert := internal.NewAssert(t, "TestFindLast")
 	assert.Equal(4, res)
 }
 
