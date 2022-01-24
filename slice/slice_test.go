@@ -380,7 +380,7 @@ func TestIntersection(t *testing.T) {
 }
 
 func TestReverse(t *testing.T) {
-	assert := internal.NewAssert(t, "TestIntersection")
+	assert := internal.NewAssert(t, "TestReverse")
 
 	s1 := []int{1, 2, 3, 4, 5}
 	Reverse(s1)
@@ -392,11 +392,22 @@ func TestReverse(t *testing.T) {
 }
 
 func TestDifference(t *testing.T) {
-	assert := internal.NewAssert(t, "TestIntersection")
+	assert := internal.NewAssert(t, "TestDifference")
 
 	s1 := []int{1, 2, 3, 4, 5}
 	s2 := []int{4, 5, 6}
 	assert.Equal([]int{1, 2, 3}, Difference(s1, s2))
+}
+
+func TestDifferenceWith(t *testing.T) {
+	assert := internal.NewAssert(t, "TestDifferenceWith")
+
+	s1 := []int{1, 2, 3, 4, 5}
+	s2 := []int{4, 5, 6, 7, 8}
+	isDouble := func(v1, v2 int) bool {
+		return v2 == 2*v1
+	}
+	assert.Equal([]int{1, 5}, DifferenceWith(s1, s2, isDouble))
 }
 
 func TestDifferenceBy(t *testing.T) {
@@ -411,7 +422,7 @@ func TestDifferenceBy(t *testing.T) {
 }
 
 func TestSortByFielDesc(t *testing.T) {
-	assert := internal.NewAssert(t, "TestWithout")
+	assert := internal.NewAssert(t, "TestSortByFielDesc")
 
 	type student struct {
 		name string
@@ -437,7 +448,7 @@ func TestSortByFielDesc(t *testing.T) {
 }
 
 func TestSortByFieldAsc(t *testing.T) {
-	assert := internal.NewAssert(t, "TestSortByField")
+	assert := internal.NewAssert(t, "TestSortByFieldAsc")
 
 	type student struct {
 		name string

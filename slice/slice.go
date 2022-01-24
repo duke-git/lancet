@@ -126,6 +126,31 @@ func DifferenceBy[T any](slice []T, comparedSlice []T, iteratee func(index int, 
 	return res
 }
 
+//DifferenceWith accepts comparator which is invoked to compare elements of slice to values. The order and references of result values are determined by the first slice. The comparator is invoked with two arguments: (arrVal, othVal).
+func DifferenceWith[T any](slice []T, comparedSlice []T, comparator func(value, otherValue T) bool) []T {
+	res := make([]T, 0, 0)
+
+	getIndex := func(arr []T, item T, comparison func(v1, v2 T) bool) int {
+		index := -1
+		for i, v := range arr {
+			if comparison(item, v) {
+				index = i
+				break
+			}
+		}
+		return index
+	}
+
+	for i, v := range slice {
+		index := getIndex(comparedSlice, v, comparator)
+		if index == -1 {
+			res = append(res, slice[i])
+		}
+	}
+
+	return res
+}
+
 // Every return true if all of the values in the slice pass the predicate function.
 func Every[T any](slice []T, predicate func(index int, t T) bool) bool {
 	if predicate == nil {
