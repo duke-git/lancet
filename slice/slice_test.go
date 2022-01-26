@@ -167,20 +167,6 @@ func TestFind(t *testing.T) {
 }
 
 func TestFindLast(t *testing.T) {
-	nums := []int{2, 3, 4, 5}
-	even := func(i, num int) bool {
-		return num%2 == 0
-	}
-	res, ok := FindLast(nums, even)
-	if !ok {
-		t.Fatal("found nothing")
-	}
-
-	assert := internal.NewAssert(t, "TestFindLast")
-	assert.Equal(4, *res)
-}
-
-func TestFindLast(t *testing.T) {
 	nums := []int{1, 2, 3, 4, 5}
 	even := func(i, num int) bool {
 		return num%2 == 0
@@ -191,7 +177,7 @@ func TestFindLast(t *testing.T) {
 	}
 
 	assert := internal.NewAssert(t, "TestFindLast")
-	assert.Equal(4, res)
+	assert.Equal(4, *res)
 }
 
 func TestFindFoundNothing(t *testing.T) {
