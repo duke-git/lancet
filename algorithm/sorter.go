@@ -1,7 +1,7 @@
 // Copyright 2021 dudaodong@gmail.com. All rights reserved.
 // Use of this source code is governed by MIT license
 
-// Package algorithm contain some basic algorithm functions. eg. sort, search, list, linklist, stack, queue, tree, graph. TODO
+// Package algorithm contain some basic algorithm functions. eg. sort, search
 package algorithm
 
 import "github.com/duke-git/lancet/lancetconstraints"
