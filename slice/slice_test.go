@@ -180,6 +180,20 @@ func TestFindLast(t *testing.T) {
 	assert.Equal(4, *res)
 }
 
+func TestFindLast(t *testing.T) {
+	nums := []int{1, 2, 3, 4, 5}
+	even := func(i, num int) bool {
+		return num%2 == 0
+	}
+	res, ok := FindLast(nums, even)
+	if !ok {
+		t.Fatal("found nothing")
+	}
+
+	assert := internal.NewAssert(t, "TestFindLast")
+	assert.Equal(4, res)
+}
+
 func TestFindFoundNothing(t *testing.T) {
 	nums := []int{1, 1, 1, 1, 1, 1}
 	findFunc := func(i, num int) bool {
