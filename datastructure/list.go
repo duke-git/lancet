@@ -8,6 +8,7 @@ import (
 	"reflect"
 )
 
+// List is a linear table, implemented with slice
 type List[T any] struct {
 	data []T
 }
