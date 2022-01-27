@@ -96,7 +96,7 @@ func StructToMap(value interface{}) (map[string]interface{}, error) //struct串�
 
 ### 2. cryptor加解密包
 
-- 加密函数支持md5, hmac, aes, des, ras
+- 加密函数支持md5, hmac, aes, des, rsa
 - 导入包：import "github.com/duke-git/lancet/cryptor"
 
 ```go

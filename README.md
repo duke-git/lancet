@@ -96,7 +96,7 @@ func StructToMap(value interface{}) (map[string]interface{}, error) //convert st
 
 ### 2. cryptor is for data encryption and decryption
 
-- Support md5, hmac, aes, des, ras.
+- Support md5, hmac, aes, des, rsa.
 - Usage: import "github.com/duke-git/lancet/cryptor"
 
 ```go
