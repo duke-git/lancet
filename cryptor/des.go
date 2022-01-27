@@ -19,10 +19,12 @@ func DesEcbEncrypt(data, key []byte) []byte {
 	length := (len(data) + des.BlockSize) / des.BlockSize
 	plain := make([]byte, length*des.BlockSize)
 	copy(plain, data)
+
 	pad := byte(len(plain) - len(data))
 	for i := len(data); i < len(plain); i++ {
 		plain[i] = pad
 	}
+
 	encrypted := make([]byte, len(plain))
 	for bs, be := 0, cipher.BlockSize(); bs <= len(data); bs, be = bs+cipher.BlockSize(), be+cipher.BlockSize() {
 		cipher.Encrypt(encrypted[bs:be], plain[bs:be])
@@ -36,7 +38,7 @@ func DesEcbEncrypt(data, key []byte) []byte {
 func DesEcbDecrypt(encrypted, key []byte) []byte {
 	cipher, _ := des.NewCipher(generateDesKey(key))
 	decrypted := make([]byte, len(encrypted))
-	//
+
 	for bs, be := 0, cipher.BlockSize(); bs < len(encrypted); bs, be = bs+cipher.BlockSize(), be+cipher.BlockSize() {
 		cipher.Decrypt(decrypted[bs:be], encrypted[bs:be])
 	}
@@ -59,6 +61,7 @@ func DesCbcEncrypt(data, key []byte) []byte {
 
 	encrypted := make([]byte, len(data))
 	blockMode.CryptBlocks(encrypted, data)
+
 	return encrypted
 }
 
@@ -72,6 +75,7 @@ func DesCbcDecrypt(encrypted, key []byte) []byte {
 	decrypted := make([]byte, len(encrypted))
 	blockMode.CryptBlocks(decrypted, encrypted)
 	decrypted = pkcs7UnPadding(decrypted)
+
 	return decrypted
 }
 
@@ -105,6 +109,7 @@ func DesCfbEncrypt(data, key []byte) []byte {
 
 	stream := cipher.NewCFBEncrypter(block, iv)
 	stream.XORKeyStream(encrypted[des.BlockSize:], data)
+
 	return encrypted
 }
 
@@ -120,6 +125,7 @@ func DesCfbDecrypt(encrypted, key []byte) []byte {
 
 	stream := cipher.NewCFBDecrypter(block, iv)
 	stream.XORKeyStream(encrypted, encrypted)
+
 	return encrypted
 }
 
@@ -139,6 +145,7 @@ func DesOfbEncrypt(data, key []byte) []byte {
 
 	stream := cipher.NewOFB(block, iv)
 	stream.XORKeyStream(encrypted[des.BlockSize:], data)
+
 	return encrypted
 }
 
@@ -161,6 +168,6 @@ func DesOfbDecrypt(data, key []byte) []byte {
 	mode.XORKeyStream(decrypted, data)
 
 	decrypted = pkcs7UnPadding(decrypted)
-	return decrypted
 
+	return decrypted
 }
