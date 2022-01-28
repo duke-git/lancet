@@ -7,4 +7,3 @@ fileutil/*.zip
 fileutil/*.link
 fileutil/unzip/*
 cryptor/*.pem
-docs/*
