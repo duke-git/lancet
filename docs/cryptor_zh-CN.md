@@ -192,6 +192,7 @@ func main() {
   	key := "abcdefghijklmnop"
     encrypted := cryptor.AesCbcEncrypt([]byte(data), []byte(key))
 		decrypted := cryptor.AesCbcDecrypt(encrypted, []byte(key))
+    
     fmt.Println(string(decrypted)) //hello world
 }
 ```
@@ -462,7 +463,7 @@ func main() {
     data := "hello world"
   	key := "abcdefgh"
     encrypted := cryptor.DesEcbEncrypt([]byte(data), []byte(key))
-		decrypted := cryptor.DesEcbDecrypt(encrypted, []byte(key))
+    decrypted := cryptor.DesEcbDecrypt(encrypted, []byte(key))
   
     fmt.Println(string(decrypted)) //hello world
 }
@@ -525,7 +526,8 @@ func main() {
     data := "hello world"
   	key := "abcdefgh"
     encrypted := cryptor.DesCbcEncrypt([]byte(data), []byte(key))
-		decrypted := cryptor.DesCbcDecrypt(encrypted, []byte(key))
+    decrypted := cryptor.DesCbcDecrypt(encrypted, []byte(key))
+    
     fmt.Println(string(decrypted)) //hello world
 }
 ```
@@ -618,7 +620,7 @@ func main() {
     data := "hello world"
   	key := "abcdefgh"
     encrypted := cryptor.DesCfbEncrypt([]byte(data), []byte(key))
-		decrypted := cryptor.DesCfbDecrypt(encrypted, []byte(key))
+    decrypted := cryptor.DesCfbDecrypt(encrypted, []byte(key))
     fmt.Println(string(decrypted)) //hello world
 }
 ```
@@ -679,7 +681,7 @@ func main() {
     data := "hello world"
   	key := "abcdefgh"
     encrypted := cryptor.DesOfbEncrypt([]byte(data), []byte(key))
-		decrypted := cryptor.DesOfbDecrypt(encrypted, []byte(key))
+    decrypted := cryptor.DesOfbDecrypt(encrypted, []byte(key))
     fmt.Println(string(decrypted)) //hello world
 }
 ```
@@ -995,8 +997,8 @@ func main() {
       fmt.Println(err)
   	}
   	data := []byte("hello world")
-		encrypted := cryptor.RsaEncrypt(data, "rsa_public.pem")
-		decrypted := cryptor.RsaDecrypt(encrypted, "rsa_private.pem")
+    encrypted := cryptor.RsaEncrypt(data, "rsa_public.pem")
+    decrypted := cryptor.RsaDecrypt(encrypted, "rsa_private.pem")
   	fmt.Println(string(decrypted)) //hello world
 }
 ```
@@ -1029,8 +1031,8 @@ func main() {
       fmt.Println(err)
   	}
   	data := []byte("hello world")
-		encrypted := cryptor.RsaEncrypt(data, "rsa_public.pem")
-		decrypted := cryptor.RsaDecrypt(encrypted, "rsa_private.pem")
+    encrypted := cryptor.RsaEncrypt(data, "rsa_public.pem")
+    decrypted := cryptor.RsaDecrypt(encrypted, "rsa_private.pem")
   	fmt.Println(string(decrypted)) //hello world
 }
 ```
