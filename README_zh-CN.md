@@ -131,6 +131,8 @@ func AesOfbEncrypt(data, key []byte) []byte //AES OFB模式加密
 func AesOfbDecrypt(data, key []byte) []byte //AES OFB模式解密
 func Base64StdEncode(s string) string //base64编码
 func Base64StdDecode(s string) string //base64解码
+func DesEcbEncrypt(data, key []byte) []byte //DES ECB模式加密
+func DesEcbDecrypt(encrypted, key []byte) []byte //DES ECB模式解密
 func DesCbcEncrypt(data, key []byte) []byte //DES CBC模式加密
 func DesCbcDecrypt(encrypted, key []byte) []byte //DES CBC模式解密
 func DesCtrCrypt(data, key []byte) []byte //DES CTR模式加密/解密

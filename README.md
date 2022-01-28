@@ -131,6 +131,8 @@ func AesOfbEncrypt(data, key []byte) []byte //AES OFB encrypt
 func AesOfbDecrypt(data, key []byte) []byte //AES OFB decrypt
 func Base64StdEncode(s string) string //base64 encode
 func Base64StdDecode(s string) string //base64 decode
+func DesEcbEncrypt(data, key []byte) []byte //DES ECB encrypt
+func DesEcbDecrypt(encrypted, key []byte) []byte //DES ECB decrypt
 func DesCbcEncrypt(data, key []byte) []byte //DES CBC encrypt
 func DesCbcDecrypt(encrypted, key []byte) []byte //DES CBC decrypt
 func DesCtrCrypt(data, key []byte) []byte //DES CTR encrypt/decrypt
