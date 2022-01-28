@@ -147,7 +147,7 @@ func Md5File(filename string) (string, error) //获取文件md5值
 func Sha1(data string) string //获取sha1值
 func Sha256(data string) string //获取sha256值
 func Sha512(data string) string //获取sha512值
-func GenerateRsaKey(keySize int, priKeyFile, pubKeyFile string) //生成RSA私钥文件
+func GenerateRsaKey(keySize int, priKeyFile, pubKeyFile string) error //生成RSA私钥文件
 func RsaEncrypt(data []byte, pubKeyFileName string) []byte //RSA加密
 func RsaDecrypt(data []byte, privateKeyFileName string) []byte //RSA解密
 

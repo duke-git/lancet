@@ -147,7 +147,7 @@ func Md5File(filename string) (string, error) //return the md5 value of file
 func Sha1(data string) string //get sha1 value
 func Sha256(data string) string //getsha256 value
 func Sha512(data string) string //get sha512 value
-func GenerateRsaKey(keySize int, priKeyFile, pubKeyFile string) //generate RSA pem file
+func GenerateRsaKey(keySize int, priKeyFile, pubKeyFile string) error //generate RSA pem file
 func RsaEncrypt(data []byte, pubKeyFileName string) []byte //RSA encrypt
 func RsaDecrypt(data []byte, privateKeyFileName string) []byte //RSA decrypt
 
