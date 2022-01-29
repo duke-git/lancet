@@ -78,8 +78,8 @@ import (
 
 func main() {
     now := time.Now()
-	after2Days := datetime.AddDay(now, 2)
-	before2Days := datetime.AddDay(now, -2)
+    after2Days := datetime.AddDay(now, 2)
+    before2Days := datetime.AddDay(now, -2)
 
     fmt.Println(after2Days, before2Days)
 }
@@ -107,8 +107,8 @@ import (
 
 func main() {
     now := time.Now()
-	after2Hours := datetime.AddHour(now, 2)
-	before2Hours := datetime.AddHour(now, -2)
+    after2Hours := datetime.AddHour(now, 2)
+    before2Hours := datetime.AddHour(now, -2)
 
     fmt.Println(after2Hours, after2Hours)
 }
@@ -135,8 +135,8 @@ import (
 
 func main() {
     now := time.Now()
-	after2Minute := datetime.AddMinute(now, 2)
-	before2Minute := datetime.AddMinute(now, -2)
+    after2Minute := datetime.AddMinute(now, 2)
+    before2Minute := datetime.AddMinute(now, -2)
 
     fmt.Println(after2Minute, before2Minute)
 }
@@ -163,7 +163,7 @@ import (
 
 func main() {
     now := time.Now()
-	currentDate := datetime.GetNowDate()
+    currentDate := datetime.GetNowDate()
     fmt.Println(currentDate) // 2022-01-28
 }
 ```
@@ -190,7 +190,7 @@ import (
 
 func main() {
     now := time.Now()
-	currentTime := datetime.GetNowTime()
+    currentTime := datetime.GetNowTime()
     fmt.Println(currentDate) // 15:57:33
 }
 ```
@@ -217,7 +217,7 @@ import (
 
 func main() {
     now := time.Now()
-	current := datetime.GetNowDateTime()
+    current := datetime.GetNowDateTime()
     fmt.Println(current) // 2022-01-28 15:59:33
 }
 ```
@@ -244,7 +244,7 @@ import (
 
 func main() {
     now := time.Now()
-	zeroTime := datetime.GetZeroHourTimestamp()
+    zeroTime := datetime.GetZeroHourTimestamp()
     fmt.Println(zeroTime) // 1643299200
 }
 ```
@@ -271,7 +271,7 @@ import (
 
 func main() {
     now := time.Now()
-	nightTime := datetime.GetNightTimestamp()
+    nightTime := datetime.GetNightTimestamp()
     fmt.Println(nightTime) // 1643385599
 }
 ```
@@ -297,7 +297,7 @@ import (
 
 func main() {
     now := time.Now()
-	timeStr := datetime.FormatTimeToStr(now, "yyyy/mm/dd hh:mm:ss")
+    timeStr := datetime.FormatTimeToStr(now, "yyyy/mm/dd hh:mm:ss")
     fmt.Println(timeStr) //2022/01/28 16:07:44
 }
 ```
@@ -322,7 +322,7 @@ import (
 )
 
 func main() {
-	time := datetime.FormatStrToTime("2006-01-02 15:04:05", "yyyy/mm/dd hh:mm:ss")
+    time := datetime.FormatStrToTime("2006-01-02 15:04:05", "yyyy/mm/dd hh:mm:ss")
     fmt.Println(time)
 }
 ```
