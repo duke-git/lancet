@@ -54,7 +54,7 @@ import (
 )
 
 func main() {
-    arr := []string{"a", "b"}
+	arr := []string{"a", "b"}
 	f := function.After(len(arr), func(i int) int {
 		fmt.Println("last print")
 		return i
@@ -102,7 +102,7 @@ import (
 )
 
 func main() {
-    assert := internal.NewAssert(t, "TestBefore")
+	assert := internal.NewAssert(t, "TestBefore")
 
 	arr := []string{"a", "b", "c", "d", "e"}
 	f := function.Before(3, func(i int) int {
@@ -148,15 +148,15 @@ import (
 )
 
 func main() {
-    add := func(a, b int) int {
+	add := func(a, b int) int {
 		return a + b
 	}
 	var addCurry function.Fn = func(values ...interface{}) interface{} {
 		return add(values[0].(int), values[1].(int))
 	}
 	add1 := addCurry.Curry(1)
-    result := add1(2)
-    fmt.Println(result) //3
+	result := add1(2)
+	fmt.Println(result) //3
 }
 ```
 
@@ -182,17 +182,17 @@ import (
 )
 
 func main() {
-    add1 := func(v ...interface{}) interface{} {
+	add1 := func(v ...interface{}) interface{} {
 		return v[0].(int) + 1
 	}
-    add2 := func(v ...interface{}) interface{} {
+	add2 := func(v ...interface{}) interface{} {
 		return v[0].(int) + 2
 	}
 
-    add3 := function.Compose(add1, add2)
+	add3 := function.Compose(add1, add2)
 	result := add3(1)
 
-    fmt.Println(result) //4
+	fmt.Println(result) //4
 }
 ```
 
@@ -218,7 +218,7 @@ import (
 )
 
 func main() {
-    count := 0
+	count := 0
 	add := func() {
 		count++
 	}
@@ -234,7 +234,7 @@ func main() {
 
 	function.debouncedAdd()
 	time.Sleep(100 * time.Millisecond)
-    fmt.Println(count) //2
+	fmt.Println(count) //2
 }
 ```
 
@@ -260,7 +260,7 @@ import (
 )
 
 func main() {
-    var print = func(s string) {
+	var print = func(s string) {
 		fmt.Println(count) //test delay
 	}
 	function.Delay(2*time.Second, print, "test delay")
@@ -342,14 +342,14 @@ func main() {
 	w.Stop()
 
 	eapsedTime := w.GetElapsedTime().Milliseconds()
-    fmt.Println(eapsedTime)
+	fmt.Println(eapsedTime)
 
 	w.Reset()
 
-    fmt.Println(w.excuting) //false
+	fmt.Println(w.excuting) //false
 
-    fmt.Println(w.startTime) //0
-    fmt.Println(w.stopTime) //0
+	fmt.Println(w.startTime) //0
+	fmt.Println(w.stopTime) //0
 }
 
 func longRunningTask() {
