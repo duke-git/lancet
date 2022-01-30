@@ -282,7 +282,7 @@ func (f Fn) Curry(i interface{}) func(...interface{}) interface{}  //make a curr
 func Compose(fnList ...func(...interface{}) interface{}) func(...interface{}) interface{}  //compose the functions from right to left
 func Debounced(fn func(), duration time.Duration) func() //creates a debounced function that delays invoking fn until after wait duration have elapsed since the last time the debounced function was invoked.
 func Delay(delay time.Duration, fn interface{}, args ...interface{})  //invoke function after delayed time
-func Schedule(d time.Duration, fn interface{}, args ...interface{}) chan bool //invoke function every duration time, util close the returned bool chan
+func Schedule(d time.Duration, fn interface{}, args ...interface{}) chan bool //invoke function every duration time, until close the returned bool chan
 func (w *Watcher) Start() //start the watch timer.
 func (w *Watcher) Stop() //stop the watch timer
 func (w *Watcher) Reset() {} //reset the watch timer.
