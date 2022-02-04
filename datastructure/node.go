@@ -15,7 +15,7 @@ func NewLinkNode[T any](value T) *LinkNode[T] {
 // StackNode is a node in stack, which have a Value and Pre points to previous node in the stack.
 type StackNode[T any] struct {
 	Value T
-	Pre   *StackNode[T]
+	Next  *StackNode[T]
 }
 
 // NewStackNode return a StackNode pointer

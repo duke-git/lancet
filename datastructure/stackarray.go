@@ -2,7 +2,7 @@ package datastructure
 
 import "errors"
 
-// StackArray is a linear table, implemented with slice
+// StackArray implements stack with slice
 type StackArray[T any] struct {
 	data   []T
 	length int
