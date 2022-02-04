@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-// SinglyLink is a linkedlist of node, which have a value and Pre points to previous node, Next points to a next node of the link.
+// SinglyLink is a linked list. Whose node has a Value generics and Next pointer points to a next node of the link.
 type SinglyLink[T any] struct {
 	Head   *LinkNode[T]
 	length int
