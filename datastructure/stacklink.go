@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-// StackLink is a linear table, implemented with slice
+// StackArray implements stack with link list
 type StackLink[T any] struct {
 	top    *StackNode[T]
 	length int
