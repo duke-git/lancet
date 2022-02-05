@@ -46,7 +46,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"lancet-demo/retry"
+	"github.com/duke-git/lancet/retry"
 	"time"
 )
 
