@@ -1,7 +1,7 @@
-# Lancet
-<p style="font-size: 18px"> 
-    Lancet is a comprehensive, efficient, and reusable util function library of go. Inspired by the java apache common package and lodash.js.
-</p>
+<div align=center>
+<img src="./logo.png" width="200" height="200"/>
+
+<br/>
 
 ![Go version](https://img.shields.io/badge/go-%3E%3D1.16<recommend>-9cf)
 [![Release](https://img.shields.io/badge/release-1.2.3-green.svg)](https://github.com/duke-git/lancet/releases)
@@ -11,14 +11,20 @@
 [![codecov](https://codecov.io/gh/duke-git/lancet/branch/main/graph/badge.svg?token=FC48T1F078)](https://codecov.io/gh/duke-git/lancet)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/duke-git/lancet/blob/main/LICENSE)
 
+</div>
+
+<div STYLE="page-break-after: always;"></div>
+
+<p style="font-size: 20px"> 
+    Lancet is a comprehensive, efficient, and reusable util function library of go. Inspired by the java apache common package and lodash.js.
+</p>
 
 English | [简体中文](./README_zh-CN.md)
-
 
 ## Feature
 
 - 👏 Comprehensive, efficient and reusable.
-- 💪 160+ common go util functions, support string, slice, datetime, net, crypt...
+- 💪 170+ common go util functions, support string, slice, datetime, net, crypt...
 - 💅 Only depend on the go standard library.
 - 🌍 Unit test for every exported function.
 

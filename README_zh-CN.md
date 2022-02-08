@@ -1,7 +1,7 @@
-# Lancet
-<p style="font-size: 18px">
-    lancet（柳叶刀）是一个全面、高效、可复用的go语言工具函数库。 lancet受到了java apache common包和lodash.js的启发。
-</p>
+<div align=center>
+<img src="./logo.png" width="200" height="200"/>
+
+<br/>
 
 ![Go version](https://img.shields.io/badge/go-%3E%3D1.16<recommend>-9cf)
 [![Release](https://img.shields.io/badge/release-1.2.3-green.svg)](https://github.com/duke-git/lancet/releases)
@@ -11,6 +11,12 @@
 [![codecov](https://codecov.io/gh/duke-git/lancet/branch/main/graph/badge.svg?token=FC48T1F078)](https://codecov.io/gh/duke-git/lancet)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/duke-git/lancet/blob/main/LICENSE)
 
+</div>
+
+<div STYLE="page-break-after: always;"></div>
+<p style="font-size: 18px">
+    lancet（柳叶刀）是一个全面、高效、可复用的go语言工具函数库。 lancet受到了java apache common包和lodash.js的启发。
+</p>
 
 简体中文 | [English](./README.md)
 
