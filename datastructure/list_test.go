@@ -36,6 +36,14 @@ func TestIndexOf(t *testing.T) {
 	assert.Equal(-1, i)
 }
 
+func TestContain(t *testing.T) {
+	assert := internal.NewAssert(t, "TestContain")
+
+	list := NewList([]int{1, 2, 3})
+	assert.Equal(true, list.Contain(1))
+	assert.Equal(false, list.Contain(0))
+}
+
 func TestPush(t *testing.T) {
 	assert := internal.NewAssert(t, "TestPush")
 
@@ -239,4 +247,26 @@ func TestUnique(t *testing.T) {
 	list.Unique()
 
 	assert.Equal(true, expected.EqutalTo(list))
+}
+
+func TestUnion(t *testing.T) {
+	assert := internal.NewAssert(t, "TestUnion")
+
+	list1 := NewList([]int{1, 2, 3, 4})
+	list2 := NewList([]int{4, 5, 6})
+	expected := NewList([]int{1, 2, 3, 4, 5, 6})
+
+	list3 := list1.Union(list2)
+	assert.Equal(true, expected.EqutalTo(list3))
+}
+
+func TestIntersection(t *testing.T) {
+	assert := internal.NewAssert(t, "TestIntersection")
+
+	list1 := NewList([]int{1, 2, 3, 4})
+	list2 := NewList([]int{4, 5, 6})
+	expected := NewList([]int{4})
+
+	list3 := list1.Intersection(list2)
+	assert.Equal(true, expected.EqutalTo(list3))
 }

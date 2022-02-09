@@ -44,6 +44,17 @@ func (l *List[T]) IndexOf(value T) int {
 	return index
 }
 
+// Contain checks if the value in the list or not
+func (l *List[T]) Contain(value T) bool {
+	data := l.data
+	for _, v := range data {
+		if reflect.DeepEqual(v, value) {
+			return true
+		}
+	}
+	return false
+}
+
 // Push append value to the list data
 func (l *List[T]) Push(value T) {
 	l.data = append(l.data, value)
@@ -141,14 +152,14 @@ func (l *List[T]) IsEmpty() bool {
 	return len(l.data) == 0
 }
 
-// Clone return a copy of list
+// Clear the data of list
 func (l *List[T]) Clear() {
-	l.data = make([]T, 0)
+	l.data = make([]T, 0, 0)
 }
 
 // Clone return a copy of list
 func (l *List[T]) Clone() *List[T] {
-	cl := &List[T]{data: make([]T, len(l.data))}
+	cl := NewList(make([]T, len(l.data)))
 	copy(cl.data, l.data)
 
 	return cl
@@ -157,7 +168,8 @@ func (l *List[T]) Clone() *List[T] {
 // Merge two list, return new list, don't change original list
 func (l *List[T]) Merge(other *List[T]) *List[T] {
 	l1, l2 := len(l.data), len(other.data)
-	ml := &List[T]{data: make([]T, l1+l2, l1+l2)}
+	ml := NewList(make([]T, l1+l2, l1+l2))
+
 	data := append([]T{}, append(l.data, other.data...)...)
 	ml.data = data
 
@@ -206,4 +218,28 @@ func (l *List[T]) Unique() {
 	}
 
 	l.data = uniqueData
+}
+
+// Union creates a new list contain all element in list l and other, remove duplicate element.
+func (l *List[T]) Union(other *List[T]) *List[T] {
+	res := NewList([]T{})
+
+	res.data = append(res.data, l.data...)
+	res.data = append(res.data, other.data...)
+	res.Unique()
+
+	return res
+}
+
+// Intersection creates a new list whose element both be contained in list l and other
+func (l *List[T]) Intersection(other *List[T]) *List[T] {
+	res := NewList(make([]T, 0, 0))
+
+	for _, v := range l.data {
+		if other.Contain(v) {
+			res.data = append(res.data, v)
+		}
+	}
+
+	return res
 }
