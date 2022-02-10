@@ -3,11 +3,13 @@ package datastructure
 import (
 	"errors"
 	"fmt"
+
+	"github.com/duke-git/lancet/datastructure"
 )
 
 // SinglyLink is a linked list. Whose node has a Value generics and Next pointer points to a next node of the link.
 type SinglyLink[T any] struct {
-	Head   *LinkNode[T]
+	Head   *datastructure.LinkNode[T]
 	length int
 }
 
@@ -18,7 +20,7 @@ func NewSinglyLink[T any]() *SinglyLink[T] {
 
 // InsertAtHead insert value into singly linklist at head index
 func (link *SinglyLink[T]) InsertAtHead(value T) {
-	newNode := NewLinkNode(value)
+	newNode := datastructure.NewLinkNode(value)
 	newNode.Next = link.Head
 	link.Head = newNode
 	link.length++
@@ -36,7 +38,7 @@ func (link *SinglyLink[T]) InsertAtTail(value T) {
 		current = current.Next
 	}
 
-	newNode := NewLinkNode(value)
+	newNode := datastructure.NewLinkNode(value)
 	newNode.Next = nil
 	current.Next = newNode
 
@@ -65,7 +67,7 @@ func (link *SinglyLink[T]) InsertAt(index int, value T) error {
 
 	for current != nil {
 		if i == index-1 {
-			newNode := NewLinkNode(value)
+			newNode := datastructure.NewLinkNode(value)
 			newNode.Next = current.Next
 			current.Next = newNode
 			link.length++
@@ -144,7 +146,7 @@ func (link *SinglyLink[T]) DeleteAt(index int) error {
 
 // Reverse the linked list
 func (link *SinglyLink[T]) Reverse() {
-	var pre, next *LinkNode[T]
+	var pre, next *datastructure.LinkNode[T]
 
 	current := link.Head
 
@@ -159,7 +161,7 @@ func (link *SinglyLink[T]) Reverse() {
 }
 
 // GetMiddleNode return node at middle index of linked list
-func (link *SinglyLink[T]) GetMiddleNode() *LinkNode[T] {
+func (link *SinglyLink[T]) GetMiddleNode() *datastructure.LinkNode[T] {
 	if link.Head == nil {
 		return nil
 	}

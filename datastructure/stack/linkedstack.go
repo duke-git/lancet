@@ -3,11 +3,13 @@ package datastructure
 import (
 	"errors"
 	"fmt"
+
+	"github.com/duke-git/lancet/datastructure"
 )
 
 // LinkedStack implements stack with link list
 type LinkedStack[T any] struct {
-	top    *StackNode[T]
+	top    *datastructure.StackNode[T]
 	length int
 }
 
@@ -40,7 +42,7 @@ func (s *LinkedStack[T]) IsEmpty() bool {
 
 // Push element into stack
 func (s *LinkedStack[T]) Push(value T) {
-	newNode := NewStackNode(value)
+	newNode := datastructure.NewStackNode(value)
 	top := s.top
 	if top == nil {
 		s.top = newNode

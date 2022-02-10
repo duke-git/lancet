@@ -3,11 +3,13 @@ package datastructure
 import (
 	"errors"
 	"fmt"
+
+	"github.com/duke-git/lancet/datastructure"
 )
 
 // DoublyLink is a linked list. Whose node has a generic Value, Pre pointer points to a previous node of the link, Next pointer points to a next node of the link.
 type DoublyLink[T any] struct {
-	Head   *LinkNode[T]
+	Head   *datastructure.LinkNode[T]
 	length int
 }
 
@@ -18,7 +20,7 @@ func NewDoublyLink[T any]() *DoublyLink[T] {
 
 // InsertAtHead insert value into doubly linklist at head index
 func (link *DoublyLink[T]) InsertAtHead(value T) {
-	newNode := NewLinkNode(value)
+	newNode := datastructure.NewLinkNode(value)
 	size := link.Size()
 
 	if size == 0 {
@@ -48,7 +50,7 @@ func (link *DoublyLink[T]) InsertAtTail(value T) {
 		current = current.Next
 	}
 
-	newNode := NewLinkNode(value)
+	newNode := datastructure.NewLinkNode(value)
 	newNode.Next = nil
 	newNode.Pre = current
 	current.Next = newNode
@@ -78,7 +80,7 @@ func (link *DoublyLink[T]) InsertAt(index int, value T) error {
 
 	for current != nil {
 		if i == index-1 {
-			newNode := NewLinkNode(value)
+			newNode := datastructure.NewLinkNode(value)
 			newNode.Next = current.Next
 			newNode.Pre = current
 
@@ -161,7 +163,7 @@ func (link *DoublyLink[T]) DeleteAt(index int) error {
 // Reverse the linked list
 func (link *DoublyLink[T]) Reverse() {
 	current := link.Head
-	var temp *LinkNode[T]
+	var temp *datastructure.LinkNode[T]
 
 	for current != nil {
 		temp = current.Pre
@@ -176,7 +178,7 @@ func (link *DoublyLink[T]) Reverse() {
 }
 
 // GetMiddleNode return node at middle index of linked list
-func (link *DoublyLink[T]) GetMiddleNode() *LinkNode[T] {
+func (link *DoublyLink[T]) GetMiddleNode() *datastructure.LinkNode[T] {
 	if link.Head == nil {
 		return nil
 	}
