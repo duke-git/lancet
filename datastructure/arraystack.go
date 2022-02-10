@@ -18,8 +18,8 @@ func (s *ArrayStack[T]) Data() []T {
 	return s.data
 }
 
-// Length return length of stack data
-func (s *ArrayStack[T]) Length() int {
+// Size return length of stack data
+func (s *ArrayStack[T]) Size() int {
 	return s.length
 }
 

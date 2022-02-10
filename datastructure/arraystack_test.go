@@ -16,7 +16,7 @@ func TestArrayStack_Push(t *testing.T) {
 
 	expected := []int{3, 2, 1}
 	values := stack.Data()
-	length := stack.Length()
+	length := stack.Size()
 
 	assert.Equal(expected, values)
 	assert.Equal(3, length)
@@ -65,13 +65,13 @@ func TestArrayStack_Empty(t *testing.T) {
 
 	stack := NewArrayStack[int]()
 	assert.Equal(true, stack.IsEmpty())
-	assert.Equal(0, stack.Length())
+	assert.Equal(0, stack.Size())
 
 	stack.Push(1)
 	assert.Equal(false, stack.IsEmpty())
-	assert.Equal(1, stack.Length())
+	assert.Equal(1, stack.Size())
 
 	stack.EmptyStack()
 	assert.Equal(true, stack.IsEmpty())
-	assert.Equal(0, stack.Length())
+	assert.Equal(0, stack.Size())
 }
