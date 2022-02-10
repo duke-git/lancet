@@ -198,6 +198,17 @@ func (link *SinglyLink[T]) Values() []T {
 	return res
 }
 
+// IsEmpty checks if link is empty or not
+func (link *SinglyLink[T]) IsEmpty() bool {
+	return link.length == 0
+}
+
+// IsEmpty checks if link is empty or not
+func (link *SinglyLink[T]) Clear() {
+	link.Head = nil
+	link.length = 0
+}
+
 // Print all nodes info of a linked list
 func (link *SinglyLink[T]) Print() {
 	current := link.Head

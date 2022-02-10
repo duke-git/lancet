@@ -60,8 +60,8 @@ func TestArrayStack_Peak(t *testing.T) {
 	assert.Equal(expected, stack.Data())
 }
 
-func TestArrayStack_Empty(t *testing.T) {
-	assert := internal.NewAssert(t, "TestArrayStack_Empty")
+func TestArrayStack_Clear(t *testing.T) {
+	assert := internal.NewAssert(t, "TestArrayStack_Clear")
 
 	stack := NewArrayStack[int]()
 	assert.Equal(true, stack.IsEmpty())
@@ -71,7 +71,7 @@ func TestArrayStack_Empty(t *testing.T) {
 	assert.Equal(false, stack.IsEmpty())
 	assert.Equal(1, stack.Size())
 
-	stack.EmptyStack()
+	stack.Clear()
 	assert.Equal(true, stack.IsEmpty())
 	assert.Equal(0, stack.Size())
 }

@@ -73,8 +73,8 @@ func (s *LinkedStack[T]) Peak() (*T, error) {
 	return &s.top.Value, nil
 }
 
-// EmptyStack clear the stack data
-func (s *LinkedStack[T]) EmptyStack() {
+// Clear clear the stack data
+func (s *LinkedStack[T]) Clear() {
 	s.top = nil
 	s.length = 0
 }

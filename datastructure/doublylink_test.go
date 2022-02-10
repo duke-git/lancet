@@ -163,3 +163,20 @@ func TestDoublyLink_GetMiddleNode(t *testing.T) {
 	middle2 := link.GetMiddleNode()
 	assert.Equal(4, middle2.Value)
 }
+
+func TestDoublyLink_Clear(t *testing.T) {
+	assert := internal.NewAssert(t, "TestDoublyLink_Clear")
+
+	link := NewDoublyLink[int]()
+
+	assert.Equal(true, link.IsEmpty())
+	assert.Equal(0, link.Size())
+
+	link.InsertAtTail(1)
+	assert.Equal(false, link.IsEmpty())
+	assert.Equal(1, link.Size())
+
+	link.Clear()
+	assert.Equal(true, link.IsEmpty())
+	assert.Equal(0, link.Size())
+}

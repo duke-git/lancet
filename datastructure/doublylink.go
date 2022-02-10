@@ -226,3 +226,14 @@ func (link *DoublyLink[T]) Print() {
 	info += " ]"
 	fmt.Println(info)
 }
+
+// IsEmpty checks if link is empty or not
+func (link *DoublyLink[T]) IsEmpty() bool {
+	return link.length == 0
+}
+
+// IsEmpty checks if link is empty or not
+func (link *DoublyLink[T]) Clear() {
+	link.Head = nil
+	link.length = 0
+}

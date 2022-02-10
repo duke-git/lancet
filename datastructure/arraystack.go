@@ -55,8 +55,8 @@ func (s *ArrayStack[T]) Peak() (*T, error) {
 	return &s.data[0], nil
 }
 
-// EmptyStack clear the stack data
-func (s *ArrayStack[T]) EmptyStack() {
+// Clear the stack data
+func (s *ArrayStack[T]) Clear() {
 	s.data = []T{}
 	s.length = 0
 }
