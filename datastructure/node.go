@@ -12,7 +12,7 @@ func NewLinkNode[T any](value T) *LinkNode[T] {
 	return &LinkNode[T]{value, nil, nil}
 }
 
-// StackNode is a node in stack, which have a Value and Pre points to previous node in the stack.
+// StackNode is a node in stack, which have a Value and Next pointer points to next node in the stack.
 type StackNode[T any] struct {
 	Value T
 	Next  *StackNode[T]
@@ -21,4 +21,15 @@ type StackNode[T any] struct {
 // NewStackNode return a StackNode pointer
 func NewStackNode[T any](value T) *StackNode[T] {
 	return &StackNode[T]{value, nil}
+}
+
+// QueueNode is a node in a queue, which have a Value and Next pointer points to next node in the queue.
+type QueueNode[T any] struct {
+	Value T
+	Next  *StackNode[T]
+}
+
+// NewQueueNode return a QueueNode pointer
+func NewQueueNode[T any](value T) *QueueNode[T] {
+	return &QueueNode[T]{value, nil}
 }
