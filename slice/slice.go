@@ -433,11 +433,11 @@ func IntSlice(slice interface{}) []int {
 	return out
 }
 
-// DeleteByIndex delete the element of slice from start index to end index - 1.
-func DeleteByIndex[T any](slice []T, start int, end ...int) []T {
+// DeleteAt delete the element of slice from start index to end index - 1.
+func DeleteAt[T any](slice []T, start int, end ...int) []T {
 	size := len(slice)
 
-	if start < 0 || start > size-1 {
+	if start < 0 || start >= size {
 		return slice
 	}
 
@@ -482,8 +482,8 @@ func Drop[T any](slice []T, n int) []T {
 	return slice[n:size]
 }
 
-// InsertByIndex insert the value or other slice into slice at index.
-func InsertByIndex[T any](slice []T, index int, value interface{}) []T {
+// InsertAt insert the value or other slice into slice at index.
+func InsertAt[T any](slice []T, index int, value interface{}) []T {
 	size := len(slice)
 
 	if index < 0 || index > size {
@@ -505,8 +505,8 @@ func InsertByIndex[T any](slice []T, index int, value interface{}) []T {
 	return slice
 }
 
-// UpdateByIndex update the slice element at index.
-func UpdateByIndex[T any](slice []T, index int, value T) []T {
+// UpdateAt update the slice element at index.
+func UpdateAt[T any](slice []T, index int, value T) []T {
 	size := len(slice)
 
 	if index < 0 || index >= size {

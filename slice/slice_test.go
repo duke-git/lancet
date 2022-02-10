@@ -291,21 +291,21 @@ func TestInterfaceSlice(t *testing.T) {
 	assert.Equal(expect, InterfaceSlice(strs))
 }
 
-func TestDeleteByIndex(t *testing.T) {
-	assert := internal.NewAssert(t, "TestDeleteByIndex")
+func TestDeleteAt(t *testing.T) {
+	assert := internal.NewAssert(t, "TestDeleteAt")
 
-	assert.Equal([]string{"a", "b", "c"}, DeleteByIndex([]string{"a", "b", "c"}, -1))
-	assert.Equal([]string{"a", "b", "c"}, DeleteByIndex([]string{"a", "b", "c"}, 3))
-	assert.Equal([]string{"b", "c"}, DeleteByIndex([]string{"a", "b", "c"}, 0))
-	assert.Equal([]string{"a", "c"}, DeleteByIndex([]string{"a", "b", "c"}, 1))
-	assert.Equal([]string{"a", "b"}, DeleteByIndex([]string{"a", "b", "c"}, 2))
+	assert.Equal([]string{"a", "b", "c"}, DeleteAt([]string{"a", "b", "c"}, -1))
+	assert.Equal([]string{"a", "b", "c"}, DeleteAt([]string{"a", "b", "c"}, 3))
+	assert.Equal([]string{"b", "c"}, DeleteAt([]string{"a", "b", "c"}, 0))
+	assert.Equal([]string{"a", "c"}, DeleteAt([]string{"a", "b", "c"}, 1))
+	assert.Equal([]string{"a", "b"}, DeleteAt([]string{"a", "b", "c"}, 2))
 
-	assert.Equal([]string{"b", "c"}, DeleteByIndex([]string{"a", "b", "c"}, 0, 1))
-	assert.Equal([]string{"c"}, DeleteByIndex([]string{"a", "b", "c"}, 0, 2))
-	assert.Equal([]string{}, DeleteByIndex([]string{"a", "b", "c"}, 0, 3))
-	assert.Equal([]string{}, DeleteByIndex([]string{"a", "b", "c"}, 0, 4))
-	assert.Equal([]string{"a"}, DeleteByIndex([]string{"a", "b", "c"}, 1, 3))
-	assert.Equal([]string{"a"}, DeleteByIndex([]string{"a", "b", "c"}, 1, 4))
+	assert.Equal([]string{"b", "c"}, DeleteAt([]string{"a", "b", "c"}, 0, 1))
+	assert.Equal([]string{"c"}, DeleteAt([]string{"a", "b", "c"}, 0, 2))
+	assert.Equal([]string{}, DeleteAt([]string{"a", "b", "c"}, 0, 3))
+	assert.Equal([]string{}, DeleteAt([]string{"a", "b", "c"}, 0, 4))
+	assert.Equal([]string{"a"}, DeleteAt([]string{"a", "b", "c"}, 1, 3))
+	assert.Equal([]string{"a"}, DeleteAt([]string{"a", "b", "c"}, 1, 4))
 }
 
 func TestDrop(t *testing.T) {
@@ -325,26 +325,28 @@ func TestDrop(t *testing.T) {
 	assert.Equal([]int{}, Drop([]int{1, 2, 3, 4, 5}, -6))
 }
 
-func TestInsertByIndex(t *testing.T) {
-	assert := internal.NewAssert(t, "TestInsertByIndex")
+func TestInsertAt(t *testing.T) {
+	assert := internal.NewAssert(t, "TestInsertAt")
 
 	strs := []string{"a", "b", "c"}
-	assert.Equal([]string{"a", "b", "c"}, InsertByIndex(strs, -1, "1"))
-	assert.Equal([]string{"a", "b", "c"}, InsertByIndex(strs, 4, "1"))
-	assert.Equal([]string{"1", "a", "b", "c"}, InsertByIndex(strs, 0, "1"))
-	assert.Equal([]string{"a", "b", "c", "1"}, InsertByIndex(strs, 3, "1"))
-	assert.Equal([]string{"1", "2", "3", "a", "b", "c"}, InsertByIndex(strs, 0, []string{"1", "2", "3"}))
-	assert.Equal([]string{"a", "b", "c", "1", "2", "3"}, InsertByIndex(strs, 3, []string{"1", "2", "3"}))
+	assert.Equal([]string{"a", "b", "c"}, InsertAt(strs, -1, "1"))
+	assert.Equal([]string{"a", "b", "c"}, InsertAt(strs, 4, "1"))
+	assert.Equal([]string{"1", "a", "b", "c"}, InsertAt(strs, 0, "1"))
+	assert.Equal([]string{"a", "1", "b", "c"}, InsertAt(strs, 1, "1"))
+	assert.Equal([]string{"a", "b", "1", "c"}, InsertAt(strs, 2, "1"))
+	assert.Equal([]string{"a", "b", "c", "1"}, InsertAt(strs, 3, "1"))
+	assert.Equal([]string{"1", "2", "3", "a", "b", "c"}, InsertAt(strs, 0, []string{"1", "2", "3"}))
+	assert.Equal([]string{"a", "b", "c", "1", "2", "3"}, InsertAt(strs, 3, []string{"1", "2", "3"}))
 	t.Log(strs)
 }
 
-func TestUpdateByIndex(t *testing.T) {
-	assert := internal.NewAssert(t, "TestUpdateByIndex")
+func TestUpdateAt(t *testing.T) {
+	assert := internal.NewAssert(t, "TestUpdateAt")
 
-	assert.Equal([]string{"a", "b", "c"}, UpdateByIndex([]string{"a", "b", "c"}, -1, "1"))
-	assert.Equal([]string{"1", "b", "c"}, UpdateByIndex([]string{"a", "b", "c"}, 0, "1"))
-	assert.Equal([]string{"a", "b", "2"}, UpdateByIndex([]string{"a", "b", "c"}, 2, "2"))
-	assert.Equal([]string{"a", "b", "c"}, UpdateByIndex([]string{"a", "b", "c"}, 3, "2"))
+	assert.Equal([]string{"a", "b", "c"}, UpdateAt([]string{"a", "b", "c"}, -1, "1"))
+	assert.Equal([]string{"1", "b", "c"}, UpdateAt([]string{"a", "b", "c"}, 0, "1"))
+	assert.Equal([]string{"a", "b", "2"}, UpdateAt([]string{"a", "b", "c"}, 2, "2"))
+	assert.Equal([]string{"a", "b", "c"}, UpdateAt([]string{"a", "b", "c"}, 3, "2"))
 }
 
 func TestUnique(t *testing.T) {

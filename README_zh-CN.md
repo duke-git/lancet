@@ -440,7 +440,7 @@ func Concat[T any](slice []T, values ...[]T) []T //连接values到slice中
 func Difference[T comparable](slice1, slice2 []T) []T //返回切片，其元素在slice1中，不在slice2中
 func DifferenceBy[T any](slice []T, comparedSlice []T, iteratee func(index int, t T) T) []T //将slice 和comparedSlice中每个元素调用iterateeFn后作比较，如果不相等返回slice中的元素
 func DifferenceWith[T any](slice []T, comparedSlice []T, comparator func(value, otherValue T) bool) []T //将slice 和comparedSlice中每个元素调用comparator后作比较，如果为false，返回slice中的元素
-func DeleteByIndex[T any](slice []T, start int, end ...int) []T //删除切片中start到end位置的值(不包含end)
+func DeleteAt[T any](slice []T, start int, end ...int) []T //删除切片中start到end位置的值(不包含end)
 func Drop[T any](slice []T, n int) []T //创建一个新切片，当n大于0时删除原切片前n个元素，当n小于0时删除原切片后n个元素
 func Every[T any](slice []T, predicate func(index int, t T) bool) bool//slice中所有元素都符合函数条件时返回true, 否则返回false
 func None[T any](slice []T, predicate func(index int, t T) bool) bool //slice中所有元素都不符合函数条件时返回true, 否则返回false
@@ -452,7 +452,7 @@ func ForEach [T any] (slice []T, iteratee func(index int, t T)) //遍历切片�
 func IntSlice(slice interface{}) ([]int, error) //转成int切片
 func InterfaceSlice(slice interface{}) []interface{} //转成interface{}切片
 func Intersection[T comparable](slices ...[]T) []T //slice交集，去重
-func InsertByIndex[T any](slice []T, index int, value interface{}) []T //在切片中index位置插入value
+func InsertAt[T any](slice []T, index int, value interface{}) []T //在切片中index位置插入value
 func Map [T any, U any] (slice []T, iteratee func(index int, t T) U) []U //遍历切片，返回遍历结果
 func Reverse[T any](slice []T) //反转切片
 func Reduce[T any](slice []T, iteratee func(index int, t1, t2 T) T, initial T) T //切片reduce操作
@@ -462,7 +462,7 @@ func SortByField(slice interface{}, field string, sortType ...string) error //�
 func StringSlice(slice interface{}) []string //转为string切片
 func Unique[T comparable](slice []T) []T //去重切片
 func Union[T comparable](slices ...[]T) []T //slice并集, 去重
-func UpdateByIndex[T any](slice []T, index int, value T) []T //在切片中index位置更新value
+func UpdateAt[T any](slice []T, index int, value T) []T //在切片中index位置更新value
 func Without[T comparable](slice []T, values ...T) []T //slice去除values
 func GroupBy[T any](slice []T, groupFn func(index int, t T) bool) ([]T, []T) //根据函数groupFn的逻辑分slice为两组slice
 func Count[T any](slice []T, predicate func(index int, t T) bool) int //遍历slice的元素，返回所有匹配元素的数量
