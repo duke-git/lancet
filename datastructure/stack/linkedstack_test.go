@@ -18,10 +18,10 @@ func TestLinkedStack_Push(t *testing.T) {
 
 	expected := []int{3, 2, 1}
 	values := stack.Data()
-	length := stack.Length()
+	size := stack.Size()
 
 	assert.Equal(expected, values)
-	assert.Equal(3, length)
+	assert.Equal(3, size)
 }
 
 func TestLinkedStack_Pop(t *testing.T) {
@@ -68,13 +68,13 @@ func TestLinkedStack_Empty(t *testing.T) {
 
 	stack := NewLinkedStack[int]()
 	assert.Equal(true, stack.IsEmpty())
-	assert.Equal(0, stack.Length())
+	assert.Equal(0, stack.Size())
 
 	stack.Push(1)
 	assert.Equal(false, stack.IsEmpty())
-	assert.Equal(1, stack.Length())
+	assert.Equal(1, stack.Size())
 
 	stack.Clear()
 	assert.Equal(true, stack.IsEmpty())
-	assert.Equal(0, stack.Length())
+	assert.Equal(0, stack.Size())
 }

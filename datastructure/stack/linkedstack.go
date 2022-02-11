@@ -30,8 +30,8 @@ func (s *LinkedStack[T]) Data() []T {
 	return res
 }
 
-// Length return length of stack data
-func (s *LinkedStack[T]) Length() int {
+// Size return length of stack data
+func (s *LinkedStack[T]) Size() int {
 	return s.length
 }
 
