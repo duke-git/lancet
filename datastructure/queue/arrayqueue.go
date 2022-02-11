@@ -52,7 +52,7 @@ func (q *ArrayQueue[T]) EnQueue(value T) {
 	q.length++
 }
 
-// DeQueue get the head element of queue, if queue is empty, return nil and error
+// DeQueue remove head element of queue and return it, if queue is empty, return nil and error
 func (q *ArrayQueue[T]) DeQueue() (*T, error) {
 	if q.IsEmpty() {
 		return nil, errors.New("queue is empty")
