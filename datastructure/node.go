@@ -26,7 +26,7 @@ func NewStackNode[T any](value T) *StackNode[T] {
 // QueueNode is a node in a queue, which have a Value and Next pointer points to next node in the queue.
 type QueueNode[T any] struct {
 	Value T
-	Next  *StackNode[T]
+	Next  *QueueNode[T]
 }
 
 // NewQueueNode return a QueueNode pointer
