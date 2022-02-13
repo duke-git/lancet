@@ -121,7 +121,7 @@ func (l *List[T]) DeleteAt(index int) {
 	l.data = data
 }
 
-// InsertAt insert value into list at index, index shoud between 0 and list size -1
+// UpdateAt update value of list at index, index shoud between 0 and list size -1
 func (l *List[T]) UpdateAt(index int, value T) {
 	data := l.data
 	size := len(data)
@@ -132,8 +132,8 @@ func (l *List[T]) UpdateAt(index int, value T) {
 	l.data = append(data[:index], append([]T{value}, data[index+1:]...)...)
 }
 
-// EqutalTo compare list to other list, use reflect.DeepEqual
-func (l *List[T]) EqutalTo(other *List[T]) bool {
+// Equtal compare list to other list, use reflect.DeepEqual
+func (l *List[T]) Equtal(other *List[T]) bool {
 	if len(l.data) != len(other.data) {
 		return false
 	}

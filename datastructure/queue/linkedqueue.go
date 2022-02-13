@@ -92,8 +92,8 @@ func (q *LinkedQueue[T]) Clear() {
 }
 
 // Print all nodes info of queue link
-func (s *LinkedQueue[T]) Print() {
-	current := s.head
+func (q *LinkedQueue[T]) Print() {
+	current := q.head
 	info := "[ "
 	for current != nil {
 		info += fmt.Sprintf("%+v, ", current)

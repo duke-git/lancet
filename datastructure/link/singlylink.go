@@ -205,7 +205,7 @@ func (link *SinglyLink[T]) IsEmpty() bool {
 	return link.length == 0
 }
 
-// IsEmpty checks if link is empty or not
+// Clear checks if link is empty or not
 func (link *SinglyLink[T]) Clear() {
 	link.Head = nil
 	link.length = 0
