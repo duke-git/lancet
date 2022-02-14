@@ -160,7 +160,7 @@ func DifferenceWith[T any](slice []T, comparedSlice []T, comparator func(value, 
 // Every return true if all of the values in the slice pass the predicate function.
 func Every[T any](slice []T, predicate func(index int, t T) bool) bool {
 	if predicate == nil {
-		panic("fn is missing")
+		panic("predicate func is missing")
 	}
 
 	var currentLength int
@@ -176,7 +176,7 @@ func Every[T any](slice []T, predicate func(index int, t T) bool) bool {
 // None return true if all the values in the slice mismatch the criteria
 func None[T any](slice []T, predicate func(index int, t T) bool) bool {
 	if predicate == nil {
-		panic("fn is missing")
+		panic("predicate func is missing")
 	}
 
 	var currentLength int
@@ -192,7 +192,7 @@ func None[T any](slice []T, predicate func(index int, t T) bool) bool {
 // Some return true if any of the values in the list pass the predicate function.
 func Some[T any](slice []T, predicate func(index int, t T) bool) bool {
 	if predicate == nil {
-		panic("fn is missing")
+		panic("predicate func is missing")
 	}
 
 	for i, v := range slice {
@@ -206,7 +206,7 @@ func Some[T any](slice []T, predicate func(index int, t T) bool) bool {
 // Filter iterates over elements of slice, returning an slice of all elements pass the predicate function
 func Filter[T any](slice []T, predicate func(index int, t T) bool) []T {
 	if predicate == nil {
-		panic("fn is missing")
+		panic("predicate func is missing")
 	}
 
 	res := make([]T, 0, 0)
@@ -221,7 +221,7 @@ func Filter[T any](slice []T, predicate func(index int, t T) bool) []T {
 // Count iterates over elements of slice, returns a count of all matched elements
 func Count[T any](slice []T, predicate func(index int, t T) bool) int {
 	if predicate == nil {
-		panic("fn is missing")
+		panic("predicate func is missing")
 	}
 
 	if len(slice) == 0 {
@@ -241,7 +241,7 @@ func Count[T any](slice []T, predicate func(index int, t T) bool) int {
 // GroupBy iterate over elements of the slice, each element will be group by criteria, returns two slices
 func GroupBy[T any](slice []T, groupFn func(index int, t T) bool) ([]T, []T) {
 	if groupFn == nil {
-		panic("fn is missing")
+		panic("groupFn func is missing")
 	}
 
 	if len(slice) == 0 {
@@ -267,7 +267,7 @@ func GroupBy[T any](slice []T, groupFn func(index int, t T) bool) ([]T, []T) {
 // If return T is nil then no items matched the predicate func
 func Find[T any](slice []T, predicate func(index int, t T) bool) (*T, bool) {
 	if predicate == nil {
-		panic("fn is missing")
+		panic("predicate func is missing")
 	}
 
 	if len(slice) == 0 {
@@ -293,7 +293,7 @@ func Find[T any](slice []T, predicate func(index int, t T) bool) (*T, bool) {
 // If return T is nil then no items matched the predicate func
 func FindLast[T any](slice []T, predicate func(index int, t T) bool) (*T, bool) {
 	if predicate == nil {
-		panic("fn is missing")
+		panic("predicate func is missing")
 	}
 
 	if len(slice) == 0 {
@@ -342,7 +342,7 @@ func flattenRecursive(value reflect.Value, result reflect.Value) reflect.Value {
 // ForEach iterates over elements of slice and invokes function for each element
 func ForEach[T any](slice []T, iteratee func(index int, t T)) {
 	if iteratee == nil {
-		panic("fn is missing")
+		panic("iteratee func is missing")
 	}
 
 	for i, v := range slice {
@@ -353,7 +353,7 @@ func ForEach[T any](slice []T, iteratee func(index int, t T)) {
 // Map creates an slice of values by running each element of slice thru iteratee function.
 func Map[T any, U any](slice []T, iteratee func(index int, t T) U) []U {
 	if iteratee == nil {
-		panic("fn is missing")
+		panic("iteratee func is missing")
 	}
 
 	res := make([]U, len(slice), cap(slice))
@@ -367,7 +367,7 @@ func Map[T any, U any](slice []T, iteratee func(index int, t T) U) []U {
 // Reduce creates an slice of values by running each element of slice thru iteratee function.
 func Reduce[T any](slice []T, iteratee func(index int, t1, t2 T) T, initial T) T {
 	if iteratee == nil {
-		panic("fn is missing")
+		panic("iteratee func is missing")
 	}
 
 	if len(slice) == 0 {
