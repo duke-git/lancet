@@ -7,7 +7,7 @@ Package netutil contains functions to get net information and send http request.
 
 [https://github.com/duke-git/lancet/blob/main/netutil/net.go](https://github.com/duke-git/lancet/blob/main/netutil/net.go)
 
-[https://github.com/duke-git/lancet/blob/main/netutil/request.go](https://github.com/duke-git/lancet/blob/main/netutil/request.go)
+[https://github.com/duke-git/lancet/blob/main/netutil/http.go](https://github.com/duke-git/lancet/blob/main/netutil/http.go)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -23,6 +23,8 @@ import (
 ## Index
 - [ConvertMapToQueryString](#ConvertMapToQueryString)
 - [GetInternalIp](#GetInternalIp)
+- [GetIps](#GetIps)
+- [GetMacAddrs](#GetMacAddrs)
 - [GetPublicIpInfo](#GetPublicIpInfo)
 - [IsPublicIP](#IsPublicIP)
 - [HttpGet](#HttpGet)
@@ -94,6 +96,60 @@ func main() {
 	ip := net.ParseIP(internalIp)
 
 	fmt.Println(ip) //192.168.1.9
+}
+```
+
+
+
+### <span id="GetIps">GetIps</span>
+<p>Get all ipv4 list.</p>
+
+<b>Signature:</b>
+
+```go
+func GetIps() []string
+```
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+	"net"
+    "github.com/duke-git/lancet/netutil"
+)
+
+func main() {
+	ips := netutil.GetIps()
+	fmt.Println(ips) //[192.168.1.9]
+}
+```
+
+
+
+### <span id="GetMacAddrs">GetMacAddrs</span>
+<p>Get all mac addresses list.</p>
+
+<b>Signature:</b>
+
+```go
+func GetMacAddrs() []string {
+```
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+	"net"
+    "github.com/duke-git/lancet/netutil"
+)
+
+func main() {
+	addrs := netutil.GetMacAddrs()
+	fmt.Println(addrs)
 }
 ```
 

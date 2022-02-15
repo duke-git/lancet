@@ -7,7 +7,7 @@ netutil网络包支持获取ip地址，发送http请求。
 
 [https://github.com/duke-git/lancet/blob/main/netutil/net.go](https://github.com/duke-git/lancet/blob/main/netutil/net.go)
 
-[https://github.com/duke-git/lancet/blob/main/netutil/request.go](https://github.com/duke-git/lancet/blob/main/netutil/request.go)
+[https://github.com/duke-git/lancet/blob/main/netutil/http.go](https://github.com/duke-git/lancet/blob/main/netutil/http.go)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -23,6 +23,8 @@ import (
 ## 目录
 - [ConvertMapToQueryString](#ConvertMapToQueryString)
 - [GetInternalIp](#GetInternalIp)
+- [GetIps](#GetIps)
+- [GetMacAddrs](#GetMacAddrs)
 - [GetPublicIpInfo](#GetPublicIpInfo)
 - [IsPublicIP](#IsPublicIP)
 - [HttpGet](#HttpGet)
@@ -94,6 +96,59 @@ func main() {
 	ip := net.ParseIP(internalIp)
 
 	fmt.Println(ip) //192.168.1.9
+}
+```
+
+
+### <span id="GetIps">GetIps</span>
+<p>获取ipv4地址列表</p>
+
+<b>函数签名:</b>
+
+```go
+func GetIps() []string
+```
+<b>例子:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+	"net"
+    "github.com/duke-git/lancet/netutil"
+)
+
+func main() {
+	ips := netutil.GetIps()
+	fmt.Println(ips) //[192.168.1.9]
+}
+```
+
+
+
+### <span id="GetMacAddrs">GetMacAddrs</span>
+<p>获取mac地址列</p>
+
+<b>函数签名:</b>
+
+```go
+func GetMacAddrs() []string {
+```
+<b>例子:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+	"net"
+    "github.com/duke-git/lancet/netutil"
+)
+
+func main() {
+	addrs := netutil.GetMacAddrs()
+	fmt.Println(addrs)
 }
 ```
 
