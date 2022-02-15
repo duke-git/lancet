@@ -64,16 +64,6 @@ func TestGetNowDateTime(t *testing.T) {
 	assert.Equal(expected, GetNowDateTime())
 }
 
-//todo
-//func TestGetZeroHourTimestamp(t *testing.T) {
-//	ts := GetZeroHourTimestamp()
-//	expected := time.Now().UTC().Unix() - 8*3600
-//	if ts != expected {
-//		utils.LogFailedTestInfo(t, "GetZeroHourTimestamp", "", expected, ts)
-//		t.FailNow()
-//	}
-//}
-
 func TestFormatTimeToStr(t *testing.T) {
 	assert := internal.NewAssert(t, "TestFormatTimeToStr")
 
@@ -120,4 +110,124 @@ func TestFormatStrToTime(t *testing.T) {
 		expected, _ := time.Parse(formats[i], datetimeStr[i])
 		assert.Equal(expected, actual)
 	}
+}
+
+func TestBeginOfMinute(t *testing.T) {
+	assert := internal.NewAssert(t, "TestBeginOfMinute")
+
+	expected := time.Date(2022, 2, 15, 15, 48, 0, 0, time.Local)
+	td := time.Date(2022, 2, 15, 15, 48, 40, 112, time.Local)
+	actual := BeginOfMinute(td)
+
+	assert.Equal(expected, actual)
+}
+
+func TestEndOfMinute(t *testing.T) {
+	assert := internal.NewAssert(t, "TestEndOfMinute")
+
+	expected := time.Date(2022, 2, 15, 15, 48, 59, 999999999, time.Local)
+	td := time.Date(2022, 2, 15, 15, 48, 40, 112, time.Local)
+	actual := EndOfMinute(td)
+
+	assert.Equal(expected, actual)
+}
+
+func TestBeginOfHour(t *testing.T) {
+	assert := internal.NewAssert(t, "TestBeginOfHour")
+
+	expected := time.Date(2022, 2, 15, 15, 0, 0, 0, time.Local)
+	td := time.Date(2022, 2, 15, 15, 48, 40, 112, time.Local)
+	actual := BeginOfHour(td)
+
+	assert.Equal(expected, actual)
+}
+
+func TestEndOfHour(t *testing.T) {
+	assert := internal.NewAssert(t, "TestEndOfHour")
+
+	expected := time.Date(2022, 2, 15, 15, 59, 59, 999999999, time.Local)
+	td := time.Date(2022, 2, 15, 15, 48, 40, 112, time.Local)
+	actual := EndOfHour(td)
+
+	assert.Equal(expected, actual)
+}
+
+func TestBeginOfDay(t *testing.T) {
+	assert := internal.NewAssert(t, "TestBeginOfDay")
+
+	expected := time.Date(2022, 2, 15, 0, 0, 0, 0, time.Local)
+	td := time.Date(2022, 2, 15, 15, 48, 40, 112, time.Local)
+	actual := BeginOfDay(td)
+
+	assert.Equal(expected, actual)
+}
+
+func TestEndOfDay(t *testing.T) {
+	assert := internal.NewAssert(t, "TestEndOfDay")
+
+	expected := time.Date(2022, 2, 15, 23, 59, 59, 999999999, time.Local)
+	td := time.Date(2022, 2, 15, 15, 48, 40, 112, time.Local)
+	actual := EndOfDay(td)
+
+	assert.Equal(expected, actual)
+}
+
+func TestBeginOfWeek(t *testing.T) {
+	assert := internal.NewAssert(t, "TestBeginOfWeek")
+
+	expected := time.Date(2022, 2, 13, 0, 0, 0, 0, time.Local)
+	td := time.Date(2022, 2, 15, 15, 48, 40, 112, time.Local)
+	actual := BeginOfWeek(td)
+
+	assert.Equal(expected, actual)
+}
+
+func TestEndOfWeek(t *testing.T) {
+	assert := internal.NewAssert(t, "TestEndOfWeek")
+
+	expected := time.Date(2022, 2, 19, 23, 59, 59, 999999999, time.Local)
+	td := time.Date(2022, 2, 15, 15, 48, 40, 112, time.Local)
+	actual := EndOfWeek(td)
+
+	assert.Equal(expected, actual)
+}
+
+func TestBeginOfMonth(t *testing.T) {
+	assert := internal.NewAssert(t, "TestBeginOfMonth")
+
+	expected := time.Date(2022, 2, 1, 0, 0, 0, 0, time.Local)
+	td := time.Date(2022, 2, 15, 15, 48, 40, 112, time.Local)
+	actual := BeginOfMonth(td)
+
+	assert.Equal(expected, actual)
+}
+
+func TestEndOfMonth(t *testing.T) {
+	assert := internal.NewAssert(t, "TestEndOfMonth")
+
+	expected := time.Date(2022, 2, 28, 23, 59, 59, 999999999, time.Local)
+	td := time.Date(2022, 2, 15, 15, 48, 40, 112, time.Local)
+	actual := EndOfMonth(td)
+
+	assert.Equal(expected, actual)
+}
+
+func TestBeginOfYear(t *testing.T) {
+	assert := internal.NewAssert(t, "TestBeginOfYear")
+
+	expected := time.Date(2022, 1, 1, 0, 0, 0, 0, time.Local)
+	td := time.Date(2022, 2, 15, 15, 48, 40, 112, time.Local)
+	actual := BeginOfYear(td)
+
+	assert.Equal(expected, actual)
+}
+
+func TestEndOfYear(t *testing.T) {
+	assert := internal.NewAssert(t, "TestEndOfYear")
+
+	expected := time.Date(2022, 12, 31, 23, 59, 59, 999999999, time.Local)
+	td := time.Date(2022, 2, 15, 15, 48, 40, 112, time.Local)
+	actual := EndOfYear(td)
+
+	assert.Equal(expected, actual)
 }
