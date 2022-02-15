@@ -142,6 +142,331 @@ func main() {
 }
 ```
 
+### <span id="BeginOfMinute">BeginOfMinute</span>
+<p>返回指定时间的分钟开始时间</p>
+
+<b>函数签名:</b>
+
+```go
+func BeginOfMinute(t time.Time) time.Time
+```
+<b>例子:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "time"
+    "github.com/duke-git/lancet/datetime"
+)
+
+func main() {
+    td := time.Date(2022, 2, 15, 15, 48, 40, 112, time.Local)
+    bm := datetime.BeginOfMinute(td)
+    fmt.Println(bm) //2022-02-15 15:48:00 +0800 CST
+}
+```
+
+### <span id="BeginOfHour">BeginOfHour</span>
+<p>返回指定时间的小时开始时间</p>
+
+<b>函数签名:</b>
+
+```go
+func BeginOfHour(t time.Time) time.Time
+```
+<b>例子:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "time"
+    "github.com/duke-git/lancet/datetime"
+)
+
+func main() {
+    td := time.Date(2022, 2, 15, 15, 48, 40, 112, time.Local)
+    bm := datetime.BeginOfHour(td)
+    fmt.Println(bm) //2022-02-15 15:00:00 +0800 CST
+}
+```
+
+### <span id="BeginOfDay">BeginOfDay</span>
+<p>返回指定时间的当天开始时间</p>
+
+<b>函数签名:</b>
+
+```go
+func BeginOfDay(t time.Time) time.Time
+```
+<b>例子:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "time"
+    "github.com/duke-git/lancet/datetime"
+)
+
+func main() {
+    td := time.Date(2022, 2, 15, 15, 48, 40, 112, time.Local)
+    bm := datetime.BeginOfDay(td)
+    fmt.Println(bm) //2022-02-15 00:00:00 +0800 CST
+}
+```
+
+
+
+### <span id="BeginOfWeek">BeginOfWeek</span>
+<p>返回指定时间的星期开始时间</p>
+
+<b>函数签名:</b>
+
+```go
+func BeginOfWeek(t time.Time) time.Time
+```
+<b>例子:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "time"
+    "github.com/duke-git/lancet/datetime"
+)
+
+func main() {
+    td := time.Date(2022, 2, 15, 15, 48, 40, 112, time.Local)
+    bm := datetime.BeginOfWeek(td)
+    fmt.Println(bm) //2022-02-13 00:00:00 +0800 CST
+}
+```
+
+
+
+### <span id="BeginOfMonth">BeginOfWeek</span>
+<p>返回指定时间的当月开始时间</p>
+
+<b>函数签名:</b>
+
+```go
+func BeginOfMonth(t time.Time) time.Time
+```
+<b>例子:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "time"
+    "github.com/duke-git/lancet/datetime"
+)
+
+func main() {
+    td := time.Date(2022, 2, 15, 15, 48, 40, 112, time.Local)
+    bm := datetime.BeginOfMonth(td)
+    fmt.Println(bm) //2022-02-01 00:00:00 +0800 CST
+}
+```
+
+
+### <span id="BeginOfYear">BeginOfYear</span>
+<p>返回指定时间的当年开始时间</p>
+
+<b>函数签名:</b>
+
+```go
+func BeginOfYear(t time.Time) time.Time
+```
+<b>例子:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "time"
+    "github.com/duke-git/lancet/datetime"
+)
+
+func main() {
+    td := time.Date(2022, 2, 15, 15, 48, 40, 112, time.Local)
+    bm := datetime.BeginOfYear(td)
+    fmt.Println(bm) //2022-01-01 00:00:00 +0800 CST
+}
+```
+
+
+
+### <span id="EndOfMinute">EndOfMinute</span>
+<p>返回指定时间的分钟结束时间</p>
+
+<b>函数签名:</b>
+
+```go
+func EndOfMinute(t time.Time) time.Time
+```
+<b>例子:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "time"
+    "github.com/duke-git/lancet/datetime"
+)
+
+func main() {
+    td := time.Date(2022, 2, 15, 15, 48, 40, 112, time.Local)
+    bm := datetime.EndOfMinute(td)
+    fmt.Println(bm) //2022-02-15 15:48:59.999999999 +0800 CST
+}
+```
+
+### <span id="EndOfHour">EndOfHour</span>
+<p>返回指定时间的小时结束时间</p>
+
+<b>函数签名:</b>
+
+```go
+func EndOfHour(t time.Time) time.Time
+```
+<b>例子:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "time"
+    "github.com/duke-git/lancet/datetime"
+)
+
+func main() {
+    td := time.Date(2022, 2, 15, 15, 48, 40, 112, time.Local)
+    bm := datetime.EndOfHour(td)
+    fmt.Println(bm) //2022-02-15 15:59:59.999999999 +0800 CST
+}
+```
+
+### <span id="EndOfDay">EndOfDay</span>
+<p>返回指定时间的当天结束时间.</p>
+
+<b>函数签名:</b>
+
+```go
+func EndOfDay(t time.Time) time.Time
+```
+<b>例子:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "time"
+    "github.com/duke-git/lancet/datetime"
+)
+
+func main() {
+    td := time.Date(2022, 2, 15, 15, 48, 40, 112, time.Local)
+    bm := datetime.EndOfDay(td)
+    fmt.Println(bm) //2022-02-15 23:59:59.999999999 +0800 CST
+}
+```
+
+
+
+### <span id="EndOfWeek">EndOfWeek</span>
+<p>返回指定时间的星期结束时间</p>
+
+<b>函数签名:</b>
+
+```go
+func EndOfWeek(t time.Time) time.Time
+```
+<b>例子:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "time"
+    "github.com/duke-git/lancet/datetime"
+)
+
+func main() {
+    td := time.Date(2022, 2, 15, 15, 48, 40, 112, time.Local)
+    bm := datetime.EndOfWeek(td)
+    fmt.Println(bm) //2022-02-19 23:59:59.999999999 +0800 CST
+}
+```
+
+
+
+### <span id="EndOfMonth">EndOfMonth</span>
+<p>返回指定时间的月份结束时间</p>
+
+<b>函数签名:</b>
+
+```go
+func EndOfMonth(t time.Time) time.Time
+```
+<b>例子:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "time"
+    "github.com/duke-git/lancet/datetime"
+)
+
+func main() {
+    td := time.Date(2022, 2, 15, 15, 48, 40, 112, time.Local)
+    bm := datetime.EndOfMonth(td)
+    fmt.Println(bm) //2022-02-28 23:59:59.999999999 +0800 CST
+}
+```
+
+
+### <span id="EndOfYear">EndOfYear</span>
+<p>返回指定时间的年份结束时间</p>
+
+<b>函数签名:</b>
+
+```go
+func EndOfYear(t time.Time) time.Time
+```
+<b>例子:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "time"
+    "github.com/duke-git/lancet/datetime"
+)
+
+func main() {
+    td := time.Date(2022, 2, 15, 15, 48, 40, 112, time.Local)
+    bm := datetime.EndOfYear(td)
+    fmt.Println(bm) //2022-12-31 23:59:59.999999999 +0800 CST
+}
+```
+
+
 ### <span id="GetNowDate">GetNowDate</span>
 <p>获取当天日期，返回格式：yyyy-mm-dd</p>
 

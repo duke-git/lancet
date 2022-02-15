@@ -22,6 +22,19 @@ import (
 - [AddDay](#AddDay)
 - [AddHour](#AddHour)
 - [AddMinute](#AddMinute)
+- [BeginOfMinute](#BeginOfMinute)
+- [BeginOfHour](#BeginOfHour)
+- [BeginOfDay](#BeginOfDay)
+- [BeginOfWeek](#BeginOfWeek)
+- [BeginOfMonth](#BeginOfMonth)
+- [BeginOfYear](#BeginOfYear)
+
+- [EndOfMinute](#EndOfMinute)
+- [EndOfHour](#EndOfHour)
+- [EndOfDay](#EndOfDay)
+- [EndOfWeek](#BeginOfWeek)
+- [EndOfMonth](#BeginOfMonth)
+- [EndOfYear](#BeginOfYear)
 - [GetNowDate](#GetNowDate)
 - [GetNowTime](#GetNowTime)
 - [GetNowDateTime](#GetNowDateTime)
@@ -141,6 +154,331 @@ func main() {
     fmt.Println(after2Minute, before2Minute)
 }
 ```
+
+### <span id="BeginOfMinute">BeginOfMinute</span>
+<p>Return beginning minute time of day.</p>
+
+<b>Signature:</b>
+
+```go
+func BeginOfMinute(t time.Time) time.Time
+```
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "time"
+    "github.com/duke-git/lancet/datetime"
+)
+
+func main() {
+    td := time.Date(2022, 2, 15, 15, 48, 40, 112, time.Local)
+    bm := datetime.BeginOfMinute(td)
+    fmt.Println(bm) //2022-02-15 15:48:00 +0800 CST
+}
+```
+
+### <span id="BeginOfHour">BeginOfHour</span>
+<p>Return zero time of day.</p>
+
+<b>Signature:</b>
+
+```go
+func BeginOfHour(t time.Time) time.Time
+```
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "time"
+    "github.com/duke-git/lancet/datetime"
+)
+
+func main() {
+    td := time.Date(2022, 2, 15, 15, 48, 40, 112, time.Local)
+    bm := datetime.BeginOfHour(td)
+    fmt.Println(bm) //2022-02-15 15:00:00 +0800 CST
+}
+```
+
+### <span id="BeginOfDay">BeginOfDay</span>
+<p>Return begin time of day.</p>
+
+<b>Signature:</b>
+
+```go
+func BeginOfDay(t time.Time) time.Time
+```
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "time"
+    "github.com/duke-git/lancet/datetime"
+)
+
+func main() {
+    td := time.Date(2022, 2, 15, 15, 48, 40, 112, time.Local)
+    bm := datetime.BeginOfDay(td)
+    fmt.Println(bm) //2022-02-15 00:00:00 +0800 CST
+}
+```
+
+
+
+### <span id="BeginOfWeek">BeginOfWeek</span>
+<p>Return beginning time of week, week begin from Sunday.</p>
+
+<b>Signature:</b>
+
+```go
+func BeginOfWeek(t time.Time) time.Time
+```
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "time"
+    "github.com/duke-git/lancet/datetime"
+)
+
+func main() {
+    td := time.Date(2022, 2, 15, 15, 48, 40, 112, time.Local)
+    bm := datetime.BeginOfWeek(td)
+    fmt.Println(bm) //2022-02-13 00:00:00 +0800 CST
+}
+```
+
+
+
+### <span id="BeginOfMonth">BeginOfWeek</span>
+<p>Return beginning time of month</p>
+
+<b>Signature:</b>
+
+```go
+func BeginOfMonth(t time.Time) time.Time
+```
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "time"
+    "github.com/duke-git/lancet/datetime"
+)
+
+func main() {
+    td := time.Date(2022, 2, 15, 15, 48, 40, 112, time.Local)
+    bm := datetime.BeginOfMonth(td)
+    fmt.Println(bm) //2022-02-01 00:00:00 +0800 CST
+}
+```
+
+
+### <span id="BeginOfYear">BeginOfYear</span>
+<p>Return beginning time of year.</p>
+
+<b>Signature:</b>
+
+```go
+func BeginOfYear(t time.Time) time.Time
+```
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "time"
+    "github.com/duke-git/lancet/datetime"
+)
+
+func main() {
+    td := time.Date(2022, 2, 15, 15, 48, 40, 112, time.Local)
+    bm := datetime.BeginOfYear(td)
+    fmt.Println(bm) //2022-01-01 00:00:00 +0800 CST
+}
+```
+
+
+
+### <span id="EndOfMinute">EndOfMinute</span>
+<p>Return end time minute of day.</p>
+
+<b>Signature:</b>
+
+```go
+func EndOfMinute(t time.Time) time.Time
+```
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "time"
+    "github.com/duke-git/lancet/datetime"
+)
+
+func main() {
+    td := time.Date(2022, 2, 15, 15, 48, 40, 112, time.Local)
+    bm := datetime.EndOfMinute(td)
+    fmt.Println(bm) //2022-02-15 15:48:59.999999999 +0800 CST
+}
+```
+
+### <span id="EndOfHour">EndOfHour</span>
+<p>Return end time hour of day.</p>
+
+<b>Signature:</b>
+
+```go
+func EndOfHour(t time.Time) time.Time
+```
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "time"
+    "github.com/duke-git/lancet/datetime"
+)
+
+func main() {
+    td := time.Date(2022, 2, 15, 15, 48, 40, 112, time.Local)
+    bm := datetime.EndOfHour(td)
+    fmt.Println(bm) //2022-02-15 15:59:59.999999999 +0800 CST
+}
+```
+
+### <span id="EndOfDay">EndOfDay</span>
+<p>Return end time hour of day.</p>
+
+<b>Signature:</b>
+
+```go
+func EndOfDay(t time.Time) time.Time
+```
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "time"
+    "github.com/duke-git/lancet/datetime"
+)
+
+func main() {
+    td := time.Date(2022, 2, 15, 15, 48, 40, 112, time.Local)
+    bm := datetime.EndOfDay(td)
+    fmt.Println(bm) //2022-02-15 23:59:59.999999999 +0800 CST
+}
+```
+
+
+
+### <span id="EndOfWeek">EndOfWeek</span>
+<p>Return end time of week, week end with Saturday.</p>
+
+<b>Signature:</b>
+
+```go
+func EndOfWeek(t time.Time) time.Time
+```
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "time"
+    "github.com/duke-git/lancet/datetime"
+)
+
+func main() {
+    td := time.Date(2022, 2, 15, 15, 48, 40, 112, time.Local)
+    bm := datetime.EndOfWeek(td)
+    fmt.Println(bm) //2022-02-19 23:59:59.999999999 +0800 CST
+}
+```
+
+
+
+### <span id="EndOfMonth">EndOfMonth</span>
+<p>Return end time of month</p>
+
+<b>Signature:</b>
+
+```go
+func EndOfMonth(t time.Time) time.Time
+```
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "time"
+    "github.com/duke-git/lancet/datetime"
+)
+
+func main() {
+    td := time.Date(2022, 2, 15, 15, 48, 40, 112, time.Local)
+    bm := datetime.EndOfMonth(td)
+    fmt.Println(bm) //2022-02-28 23:59:59.999999999 +0800 CST
+}
+```
+
+
+### <span id="EndOfYear">EndOfYear</span>
+<p>Return beginning time of year.</p>
+
+<b>Signature:</b>
+
+```go
+func EndOfYear(t time.Time) time.Time
+```
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "time"
+    "github.com/duke-git/lancet/datetime"
+)
+
+func main() {
+    td := time.Date(2022, 2, 15, 15, 48, 40, 112, time.Local)
+    bm := datetime.EndOfYear(td)
+    fmt.Println(bm) //2022-12-31 23:59:59.999999999 +0800 CST
+}
+```
+
 
 ### <span id="GetNowDate">GetNowDate</span>
 <p>Get current date string, format is yyyy-mm-dd.</p>
