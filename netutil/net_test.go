@@ -42,3 +42,13 @@ func TestIsPublicIP(t *testing.T) {
 		assert.Equal(expected[i], actual)
 	}
 }
+
+func TestGetIps(t *testing.T) {
+	ips := GetIps()
+	t.Log(ips)
+}
+
+func TestGetMacAddrs(t *testing.T) {
+	macAddrs := GetMacAddrs()
+	t.Log(macAddrs)
+}

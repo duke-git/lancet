@@ -47,6 +47,46 @@ func GetPublicIpInfo() (*PublicIpInfo, error) {
 	return &ip, nil
 }
 
+// GetIps return all ipv4 of system
+func GetIps() []string {
+	var ips []string
+
+	addrs, err := net.InterfaceAddrs()
+	if err != nil {
+		return ips
+	}
+
+	for _, addr := range addrs {
+		ipNet, isValid := addr.(*net.IPNet)
+		if isValid && !ipNet.IP.IsLoopback() {
+			if ipNet.IP.To4() != nil {
+				ips = append(ips, ipNet.IP.String())
+			}
+		}
+	}
+	return ips
+}
+
+// GetMacAddrs get mac address
+func GetMacAddrs() []string {
+	var macAddrs []string
+
+	nets, err := net.Interfaces()
+	if err != nil {
+		return macAddrs
+	}
+
+	for _, net := range nets {
+		macAddr := net.HardwareAddr.String()
+		if len(macAddr) == 0 {
+			continue
+		}
+		macAddrs = append(macAddrs, macAddr)
+	}
+
+	return macAddrs
+}
+
 // PublicIpInfo public ip info: country, region, isp, city, lat, lon, ip
 type PublicIpInfo struct {
 	Status      string  `json:"status"`
