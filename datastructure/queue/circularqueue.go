@@ -75,7 +75,6 @@ func (q *CircularQueue[T]) EnQueue(value T) error {
 	}
 
 	q.data[q.rear] = value
-	// q.data = append(q.data, value)
 	q.rear = (q.rear + 1) % q.size
 
 	return nil

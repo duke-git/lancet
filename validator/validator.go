@@ -234,11 +234,6 @@ func IsStrongPassword(password string, length int) bool {
 	}
 
 	return num && lower && upper && special
-
-	// go doesn't support regexp (?=re)
-	//pattern := `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[@#$%^&+=])(?=\S+$).$`
-	//reg := regexp.MustCompile(pattern)
-	//return reg.MatchString(password)
 }
 
 // IsWeakPassword check if the string is weak password

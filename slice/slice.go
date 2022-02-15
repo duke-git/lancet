@@ -30,18 +30,8 @@ func ContainSubSlice[T any](slice, subslice []T) bool {
 			return false
 		}
 	}
-	return true
 
-	// unique := make(map[T]bool)
-	// for _, v := range slice {
-	// 	unique[v] = true
-	// }
-	// for _, v := range subslice {
-	// 	if !unique[v] {
-	// 		return false
-	// 	}
-	// }
-	// return true
+	return true
 }
 
 // Chunk creates an slice of elements split into groups the length of size.
