@@ -22,12 +22,24 @@ import (
 - [AddDay](#AddDay)
 - [AddHour](#AddHour)
 - [AddMinute](#AddMinute)
+- [BeginOfMinute](#BeginOfMinute)
+- [BeginOfHour](#BeginOfHour)
+- [BeginOfDay](#BeginOfDay)
+- [BeginOfWeek](#BeginOfWeek)
+- [BeginOfMonth](#BeginOfMonth)
+- [BeginOfYear](#BeginOfYear)
+
+- [EndOfMinute](#EndOfMinute)
+- [EndOfHour](#EndOfHour)
+- [EndOfDay](#EndOfDay)
+- [EndOfWeek](#EndOfWeek)
+- [EndOfMonth](#EndOfMonth)
+- [EndOfYear](#EndOfYear)
 - [GetNowDate](#GetNowDate)
 - [GetNowTime](#GetNowTime)
 - [GetNowDateTime](#GetNowDateTime)
 - [GetZeroHourTimestamp](#GetZeroHourTimestamp)
 - [GetNightTimestamp](#GetNightTimestamp)
-
 - [FormatTimeToStr](#FormatTimeToStr)
 - [FormatStrToTime](#FormatStrToTime)
 
@@ -250,7 +262,7 @@ func main() {
 
 
 
-### <span id="BeginOfMonth">BeginOfWeek</span>
+### <span id="BeginOfMonth">BeginOfMonth</span>
 <p>返回指定时间的当月开始时间</p>
 
 <b>函数签名:</b>

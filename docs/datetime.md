@@ -32,9 +32,9 @@ import (
 - [EndOfMinute](#EndOfMinute)
 - [EndOfHour](#EndOfHour)
 - [EndOfDay](#EndOfDay)
-- [EndOfWeek](#BeginOfWeek)
-- [EndOfMonth](#BeginOfMonth)
-- [EndOfYear](#BeginOfYear)
+- [EndOfWeek](#EndOfWeek)
+- [EndOfMonth](#EndOfMonth)
+- [EndOfYear](#EndOfYear)
 - [GetNowDate](#GetNowDate)
 - [GetNowTime](#GetNowTime)
 - [GetNowDateTime](#GetNowDateTime)
@@ -263,7 +263,7 @@ func main() {
 
 
 
-### <span id="BeginOfMonth">BeginOfWeek</span>
+### <span id="BeginOfMonth">BeginOfMonth</span>
 <p>Return beginning time of month</p>
 
 <b>Signature:</b>
