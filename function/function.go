@@ -13,6 +13,7 @@ import (
 func After(n int, fn interface{}) func(args ...interface{}) []reflect.Value {
 	// Catch programming error while constructing the closure
 	mustBeFunction(fn)
+	
 	return func(args ...interface{}) []reflect.Value {
 		n--
 		if n < 1 {
@@ -66,12 +67,18 @@ func Compose(fnList ...func(...interface{}) interface{}) func(...interface{}) in
 
 // Delay make the function execution after delayed time
 func Delay(delay time.Duration, fn interface{}, args ...interface{}) {
+	// Catch programming error while constructing the closure
+	mustBeFunction(fn)
+
 	time.Sleep(delay)
 	invokeFunc(fn, args...)
 }
 
 // Debounced creates a debounced function that delays invoking fn until after wait duration have elapsed since the last time the debounced function was invoked.
 func Debounced(fn func(), duration time.Duration) func() {
+	// Catch programming error while constructing the closure
+	mustBeFunction(fn)
+
 	timer := time.NewTimer(duration)
 	timer.Stop()
 
@@ -91,6 +98,7 @@ func Debounced(fn func(), duration time.Duration) func() {
 func Schedule(d time.Duration, fn interface{}, args ...interface{}) chan bool {
 	// Catch programming error while constructing the closure
 	mustBeFunction(fn)
+
 	quit := make(chan bool)
 	go func() {
 		for {
