@@ -28,7 +28,7 @@ import (
 - [Count](#Count)
 - [Difference](#Difference)
 - [DifferenceBy](#DifferenceBy)
-- [DeleteByIndex](#DeleteByIndex)
+- [DeleteAt](#DeleteAt)
 - [Drop](#Drop)
 - [Every](#Every)
 - [Filter](#Filter)
@@ -41,9 +41,9 @@ import (
 - [IntSlice](#IntSlice)
 - [InterfaceSlice](#InterfaceSlice)
 - [Intersection](#Intersection)
-- [InsertByIndex](#InsertByIndex)
+- [InsertAt](#InsertAt)
 - [Map](#Map)
-- [ReverseSlice](#ReverseSlice)
+- [Reverse](#Reverse)
 - [Reduce](#Reduce)
 - [Shuffle](#Shuffle)
 - [SortByField](#SortByField)
@@ -51,7 +51,7 @@ import (
 - [StringSlice](#StringSlice)
 - [Unique](#Unique)
 - [Union](#Union)
-- [UpdateByIndex](#UpdateByIndex)
+- [UpdateAt](#UpdateAt)
 - [Without](#Without)
 
 <div STYLE="page-break-after: always;"></div>
@@ -64,7 +64,7 @@ import (
 <b>函数签名:</b>
 
 ```go
-func Contain(iterableType interface{}, value interface{}) bool
+func Contain[T any](slice []T, value T) bool
 ```
 <b>例子:</b>
 
@@ -87,7 +87,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func ContainSubSlice(slice interface{}, subslice interface{}) bool
+func ContainSubSlice[T any](slice, subslice []T) bool
 ```
 <b>例子:</b>
 
@@ -112,7 +112,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func Chunk(slice []interface{}, size int) [][]interface{}
+func Chunk[T any](slice []T, size int) [][]T
 ```
 <b>例子:</b>
 
@@ -137,7 +137,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func Compact(slice interface{}) interface{}
+func Compact[T any](slice []T) []T
 ```
 <b>例子:</b>
 
@@ -160,7 +160,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func Concat(slice interface{}, values ...interface{}) interface{}
+func Concat[T any](slice []T, values ...[]T) []T
 ```
 <b>例子:</b>
 
@@ -182,12 +182,12 @@ func main() {
 
 
 ### <span id="Count">Count</span>
-<p>遍历切片，对每个元素执行函数function. 返回符合函数返回值为true的元素的个数，函数签名必须是func(index int, value interface{}) bool</p>
+<p>遍历切片，对每个元素执行函数function. 返回符合函数返回值为true的元素的个数</p>
 
 <b>函数签名:</b>
 
 ```go
-func Count(slice, function interface{}) int
+func Count[T any](slice []T, predicate func(index int, t T) bool) int
 ```
 <b>例子:</b>
 
@@ -217,7 +217,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func Difference(slice1, slice2 interface{}) interface{}
+func Difference[T comparable](slice, comparedSlice []T) []T
 ```
 <b>例子:</b>
 
@@ -245,7 +245,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func DifferenceBy(slice interface{}, comparedSlice interface{}, iterateeFn interface{}) interface{}
+func DifferenceBy[T any](slice []T, comparedSlice []T, iteratee func(index int, t T) T) []T
 ```
 <b>例子:</b>
 
@@ -270,13 +270,13 @@ func main() {
 
 
 
-### <span id="DeleteByIndex">DeleteByIndex</span>
+### <span id="DeleteAt">DeleteAt</span>
 <p>删除切片中从开始索引到结束索引-1的元素</p>
 
 <b>函数签名:</b>
 
 ```go
-func DeleteByIndex(slice interface{}, start int, end ...int) (interface{}, error)
+func DeleteAt[T any](slice []T, start int, end ...int)
 ```
 <b>例子:</b>
 
@@ -287,10 +287,10 @@ import (
 )
 
 func main() {
-	res1 := slice.DeleteByIndex([]string{"a", "b", "c", "d", "e"}, 3)
+	res1 := slice.DeleteAt([]string{"a", "b", "c", "d", "e"}, 3)
 	fmt.Println(res1) //[]string{"a", "b", "c", "e"}
 
-	res2 := slice.DeleteByIndex([]string{"a", "b", "c", "d", "e"}, 0, 2)
+	res2 := slice.DeleteAt([]string{"a", "b", "c", "d", "e"}, 0, 2)
 	fmt.Println(res2) //[]string{"c", "d", "e"}
 
 }
@@ -305,7 +305,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func Drop(slice interface{}, n int) interface{}
+func Drop[T any](slice []T, n int) []T
 ```
 <b>例子:</b>
 
@@ -336,7 +336,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func Every(slice, function interface{}) bool
+func Every[T any](slice []T, predicate func(index int, t T) bool) bool
 ```
 <b>例子:</b>
 
@@ -366,7 +366,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func Filter(slice, function interface{}) interface{}
+func Filter[T any](slice []T, predicate func(index int, t T) bool) []T
 ```
 <b>例子:</b>
 
@@ -390,12 +390,12 @@ func main() {
 
 
 ### <span id="Find">Find</span>
-<p>遍历slice的元素，返回第一个通过function真值测试的元素。函数签名应该是 func(index int, value interface{}) bool</p>
+<p>遍历slice的元素，返回第一个通过function真值测试的元素</p>
 
 <b>函数签名:</b>
 
 ```go
-func Find(slice, function interface{}) (interface{}, bool)
+func Find[T any](slice []T, predicate func(index int, t T) bool) (*T, bool)
 ```
 <b>例子:</b>
 
@@ -421,12 +421,12 @@ func main() {
 
 
 ### <span id="FindLast">FindLast</span>
-<p>从头到尾遍历 slice 的元素，返回最后一个通过函数真值测试的元素。 函数签名应该是 func(index int, value interface{}) bool。</p>
+<p>从头到尾遍历 slice 的元素，返回最后一个通过函数真值测试的元素。</p>
 
 <b>函数签名:</b>
 
 ```go
-func FindLast(slice, function interface{}) (interface{}, bool)
+func FindLast[T any](slice []T, predicate func(index int, t T) bool) (*T, bool)
 ```
 <b>例子:</b>
 
@@ -478,12 +478,12 @@ func main() {
 
 
 ### <span id="ForEach">ForEach</span>
-<p>遍历slice的元素并为每个元素调用函数，函数签名应该是func(index int, value interface{})</p>
+<p>遍历slice的元素并为每个元素调用函数</p>
 
 <b>函数签名:</b>
 
 ```go
-func ForEach(slice, function interface{})
+func ForEach[T any](slice []T, iteratee func(index int, t T))
 ```
 <b>例子:</b>
 
@@ -507,12 +507,12 @@ func main() {
 
 
 ### <span id="GroupBy">GroupBy</span>
-<p>迭代切片的元素，每个元素将按条件分组，返回两个切片。 函数签名应该是func(index int, value interface{}) bool</p>
+<p>迭代切片的元素，每个元素将按条件分组，返回两个切片</p>
 
 <b>函数签名:</b>
 
 ```go
-func GroupBy(slice, function interface{}) (interface{}, interface{})
+func GroupBy[T any](slice []T, groupFn func(index int, t T) bool) ([]T, []T)
 ```
 <b>例子:</b>
 
@@ -595,7 +595,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func Intersection(slices ...interface{}) interface{}
+func Intersection[T any](slices ...[]T) []T
 ```
 <b>例子:</b>
 
@@ -617,13 +617,13 @@ func main() {
 
 
 
-### <span id="InsertByIndex">InsertByIndex</span>
+### <span id="InsertAt">InsertAt</span>
 <p>将元素插入到索引处的切片中</p>
 
 <b>函数签名:</b>
 
 ```go
-func InsertByIndex(slice interface{}, index int, value interface{}) (interface{}, error)
+func InsertAt[T any](slice []T, index int, value interface{}) []T
 ```
 <b>例子:</b>
 
@@ -636,10 +636,10 @@ import (
 func main() {
 	s := []string{"a", "b", "c"}
 	
-	res1, _ := slice.InsertByIndex(s, 0, "1")
+	res1, _ := slice.InsertAt(s, 0, "1")
 	fmt.Println(res1) //[]string{"1", "a", "b", "c"}
 
-	res2, _ := slice.InsertByIndex(s, 3, []string{"1", "2", "3"})
+	res2, _ := slice.InsertAt(s, 3, []string{"1", "2", "3"})
 	fmt.Println(res2) //[]string{"a", "b", "c", "1", "2", "3"}
 }
 ```
@@ -648,12 +648,12 @@ func main() {
 
 
 ### <span id="Map">Map</span>
-<p>通过运行函数slice中的每个元素来创建一个值切片，函数签名应该是func(index int, value interface{}) interface{}。</p>
+<p>通过运行函数slice中的每个元素来创建一个新切片</p>
 
 <b>函数签名:</b>
 
 ```go
-func Map(slice, function interface{}) interface{}
+func Map[T any, U any](slice []T, iteratee func(index int, t T) U) []U
 ```
 <b>例子:</b>
 
@@ -676,13 +676,13 @@ func main() {
 
 
 
-### <span id="ReverseSlice">ReverseSlice</span>
+### <span id="Reverse">Reverse</span>
 <p>反转切片中的元素顺序</p>
 
 <b>函数签名:</b>
 
 ```go
-func ReverseSlice(slice interface{})
+func Reverse[T any](slice []T)
 ```
 <b>例子:</b>
 
@@ -694,7 +694,7 @@ import (
 
 func main() {
 	nums := []int{1, 2, 3, 4}
-	slice.ReverseSlice(nums)
+	slice.Reverse(nums)
 	fmt.Println(res) //[]int{4, 3, 2, 1}
 }
 ```
@@ -702,12 +702,12 @@ func main() {
 
 
 ### <span id="Reduce">Reduce</span>
-<p>将slice中的元素运行函数，返回运行结果。函数签名应该是func(index int, value1, value2 interface{}) interface{}。</p>
+<p>将slice中的元素依次运行函数，返回运行结果</p>
 
 <b>函数签名:</b>
 
 ```go
-func Reduce(slice, function, zero interface{}) interface{}
+func Reduce[T any](slice []T, iteratee func(index int, t1, t2 T) T, initial T) T
 ```
 <b>例子:</b>
 
@@ -736,7 +736,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func Shuffle(slice interface{}) interface{}
+func Shuffle[T any](slice []T) []T
 ```
 <b>例子:</b>
 
@@ -799,12 +799,12 @@ func main() {
 
 
 ### <span id="Some">Some</span>
-<p>如果列表中的任何值通过谓词函数，则返回true，函数签名应该是func(index int, value interface{}) bool .</p>
+<p>如果列表中的任何值通过谓词函数，则返回true</p>
 
 <b>函数签名:</b>
 
 ```go
-func Some(slice, function interface{}) bool
+func Some[T any](slice []T, predicate func(index int, t T) bool) bool
 ```
 <b>例子:</b>
 
@@ -859,7 +859,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func Unique(slice interface{}) interface{}
+func Unique[T any](slice []T) []T
 ```
 <b>例子:</b>
 
@@ -883,7 +883,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func Union(slices ...interface{}) interface{}
+func Union[T any](slices ...[]T) []T
 ```
 <b>例子:</b>
 
@@ -904,13 +904,13 @@ func main() {
 
 
 
-### <span id="UpdateByIndex">UpdateByIndex</span>
+### <span id="UpdateAt">UpdateAt</span>
 <p>更新索引处的切片元素。 如果 param index < 0 或 index >= len(slice)，将返回错误</p>
 
 <b>函数签名:</b>
 
 ```go
-func UpdateByIndex(slice interface{}, index int, value interface{}) (interface{}, error)
+func UpdateAt[T any](slice []T, index int, value T) []T
 ```
 <b>例子:</b>
 
@@ -923,7 +923,7 @@ import (
 func main() {
 	s := []string{"a", "b", "c"}
 	
-	res1, _ := slice.UpdateByIndex(s, 0, "1")
+	res1, _ := slice.UpdateAt(s, 0, "1")
 	fmt.Println(res1) //[]string{"1", "b", "c"}
 }
 ```
@@ -937,7 +937,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func Without(slice interface{}, values ...interface{}) interface{}
+func Without[T any](slice []T, values ...T) []T
 ```
 <b>例子:</b>
 
