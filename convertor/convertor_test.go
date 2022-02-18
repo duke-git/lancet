@@ -24,8 +24,8 @@ func TestToChar(t *testing.T) {
 func TestToBool(t *testing.T) {
 	assert := internal.NewAssert(t, "TestToBool")
 
-	cases := []string{"true", "True", "false", "False", "0", "1", "123"}
-	expected := []bool{true, true, false, false, false, true, false}
+	cases := []string{"1", "true", "True", "false", "False", "0", "123", "0.0", "abc"}
+	expected := []bool{true, true, true, false, false, false, false, false, false}
 
 	for i := 0; i < len(cases); i++ {
 		actual, _ := ToBool(cases[i])

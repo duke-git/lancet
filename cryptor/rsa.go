@@ -14,11 +14,11 @@ import (
 
 // GenerateRsaKey make  a rsa private key, and return key file name
 // Generated key file is `rsa_private.pem` and `rsa_public.pem` in current path
-func GenerateRsaKey(keySize int, priKeyFile, pubKeyFile string) {
+func GenerateRsaKey(keySize int, priKeyFile, pubKeyFile string) error {
 	// private key
 	privateKey, err := rsa.GenerateKey(rand.Reader, keySize)
 	if err != nil {
-		panic(err)
+		return err
 	}
 
 	derText := x509.MarshalPKCS1PrivateKey(privateKey)
@@ -41,7 +41,7 @@ func GenerateRsaKey(keySize int, priKeyFile, pubKeyFile string) {
 
 	derpText, err := x509.MarshalPKIXPublicKey(&publicKey)
 	if err != nil {
-		panic(err)
+		return err
 	}
 
 	block = pem.Block{
@@ -52,10 +52,12 @@ func GenerateRsaKey(keySize int, priKeyFile, pubKeyFile string) {
 	//file,err = os.Create("rsa_public.pem")
 	file, err = os.Create(pubKeyFile)
 	if err != nil {
-		panic(err)
+		return err
 	}
 	pem.Encode(file, &block)
 	file.Close()
+
+	return nil
 }
 
 // RsaEncrypt encrypt data with ras algorithm

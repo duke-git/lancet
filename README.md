@@ -1,24 +1,30 @@
-# Lancet
-<p style="font-size: 18px"> 
-    Lancet is a comprehensive, efficient, and reusable util function library of go. Inspired by the java apache common package and lodash.js.
-</p>
+<div align=center>
+<img src="./logo.png" width="200" height="200"/>
+
+<br/>
 
 ![Go version](https://img.shields.io/badge/go-%3E%3D1.16<recommend>-9cf)
-[![Release](https://img.shields.io/badge/release-1.2.2-green.svg)](https://github.com/duke-git/lancet/releases)
+[![Release](https://img.shields.io/badge/release-1.2.4-green.svg)](https://github.com/duke-git/lancet/releases)
 [![GoDoc](https://godoc.org/github.com//duke-git/lancet?status.svg)](https://pkg.go.dev/github.com/duke-git/lancet)
 [![Go Report Card](https://goreportcard.com/badge/github.com/duke-git/lancet)](https://goreportcard.com/report/github.com/duke-git/lancet)
 [![test](https://github.com/duke-git/lancet/actions/workflows/codecov.yml/badge.svg?branch=main&event=push)](https://github.com/duke-git/lancet/actions/workflows/codecov.yml)
 [![codecov](https://codecov.io/gh/duke-git/lancet/branch/main/graph/badge.svg?token=FC48T1F078)](https://codecov.io/gh/duke-git/lancet)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/duke-git/lancet/blob/main/LICENSE)
 
+</div>
+
+<div STYLE="page-break-after: always;"></div>
+
+<p style="font-size: 20px"> 
+    Lancet is a comprehensive, efficient, and reusable util function library of go. Inspired by the java apache common package and lodash.js.
+</p>
 
 English | [简体中文](./README_zh-CN.md)
-
 
 ## Feature
 
 - 👏 Comprehensive, efficient and reusable.
-- 💪 160+ common go util functions, support string, slice, datetime, net, crypt...
+- 💪 180+ go util functions, support string, slice, datetime, net, crypt...
 - 💅 Only depend on the go standard library.
 - 🌍 Unit test for every exported function.
 
@@ -56,547 +62,296 @@ func main() {
 ```
 
 ## API Documentation
-### 1. convertor contains some functions for data convertion
-
-- Support conversion between commonly used data types.
-- Usage: import "github.com/duke-git/lancet/convertor"
+### Convertor package contains some functions for data convertion.
 
 ```go
-package main
-
-import (
-    "fmt"
-    "github.com/duke-git/lancet/convertor"
-)
-
-func main() {
-    s := "12.3"
-    f, err := convertor.ToFloat(s)
-    if err != nil {
-        fmt.Errorf("error is %s", err.Error())
-    }
-    fmt.Println(f) // 12.3
-}
+import "github.com/duke-git/lancet/convertor"
 ```
-
-- Function list:
+#### Function list:
+- [ColorHexToRGB](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#ColorHexToRGB)
+- [ColorRGBToHex](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#ColorRGBToHex)
+- [ToBool](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#ToBool)
+- [ToBytes](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#ToBytes)
+- [ToChar](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#ToChar)
+- [ToInt](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#ToInt)
+- [ToJson](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#ToJson)
+- [ToString](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#ToString)
+- [StructToMap](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#StructToMap)
+  
+### Cryptor package is for data encryption and decryption.
 
 ```go
-func ColorHexToRGB(colorHex string) (red, green, blue int) //convert color hex to color rgb
-func ColorRGBToHex(red, green, blue int) string //convert color rgb to color hex
-func ToBool(s string) (bool, error)  //convert string to a boolean
-func ToBytes(data interface{}) ([]byte, error) //convert interface to bytes
-func ToChar(s string) []string //convert string to char slice
-func ToFloat(value interface{}) (float64, error) //convert value to float64, if input is not a float return 0.0 and error
-func ToInt(value interface{}) (int64, error) //convert value to int64, if input is not a numeric format return 0 and error
-func ToJson(value interface{}) (string, error) //convert value to a valid json string
-func ToString(value interface{}) string //convert value to string
-func StructToMap(value interface{}) (map[string]interface{}, error) //convert struct to map, only convert exported field, tag `json` should be set
+import "github.com/duke-git/lancet/cryptor"
 ```
 
-### 2. cryptor is for data encryption and decryption
+#### Function list:
+- [AesEcbEncrypt](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#AesEcbEncrypt)
+- [AesEcbDecrypt](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#AesEcbDecrypt)
+- [AesCbcEncrypt](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#AesCbcEncrypt)
+- [AesCbcDecrypt](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#AesCbcDecrypt)
+- [AesCtrCrypt](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#AesCtrCrypt)
+- [AesCfbEncrypt](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#AesCfbEncrypt)
+- [AesCfbDecrypt](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#AesCfbDecrypt)
+- [AesOfbEncrypt](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#AesOfbEncrypt)
+- [AesOfbDecrypt](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#AesOfbDecrypt)
+- [Base64StdEncode](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#Base64StdEncode)
+- [Base64StdDecode](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#Base64StdDecode)
+- [DesEcbEncrypt](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#DesEcbEncrypt)
+- [DesEcbDecrypt](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#DesEcbDecrypt)
+- [DesCbcEncrypt](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#DesCbcEncrypt)
+- [DesCbcDecrypt](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#DesCbcDecrypt)
+- [DesCtrCrypt](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#DesCtrCrypt)
+- [DesCfbEncrypt](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#DesCfbEncrypt)
+- [DesCfbDecrypt](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#DesCfbDecrypt)
+- [DesOfbEncrypt](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#DesOfbEncrypt)
+- [DesOfbDecrypt](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#DesOfbDecrypt)
+- [HmacMd5](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#HmacMd5)
+- [HmacSha1](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#HmacSha1)
+- [HmacSha256](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#HmacSha256)
+- [HmacSha512](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#HmacSha512)
+- [Md5String](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#Md5String)
+- [Md5File](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#Md5File)
+- [Sha1](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#Sha1)
+- [Sha256](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#Sha256)
+- [Sha512](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#Sha512)
+- [GenerateRsaKey](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#GenerateRsaKey)
+- [RsaEncrypt](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#RsaEncrypt)
+- [RsaDecrypt](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#RsaDecrypt)
 
-- Support md5, hmac, aes, des, ras.
-- Usage: import "github.com/duke-git/lancet/cryptor"
+### Datetime package supports date and time format and compare.
+
 
 ```go
-package main
-
-import (
-    "fmt"
-    "github.com/duke-git/lancet/cryptor"
-)
-
-func main() {
-    data := "hello"
-    key := "abcdefghijklmnop"
-
-    encrypted := cryptor.AesCbcEncrypt([]byte(data), []byte(key))
-    decrypted := cryptor.AesCbcDecrypt(encrypted, []byte(key))
-    fmt.Println(string(decrypted)) // hello
-}
+import "github.com/duke-git/lancet/datetime"
 ```
+#### Function list:
+- [AddDay](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#AddDay)
+- [AddHour](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#AddHour)
+- [AddMinute](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#AddMinute)
+- [BeginOfMinute](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#BeginOfMinute)
+- [BeginOfHour](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#BeginOfHour)
+- [BeginOfDay](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#BeginOfDay)
+- [BeginOfWeek](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#BeginOfWeek)
+- [BeginOfMonth](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#BeginOfMonth)
+- [BeginOfYear](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#BeginOfYear)
+- [EndOfMinute](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#EndOfMinute)
+- [EndOfHour](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#EndOfHour)
+- [EndOfDay](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#EndOfDay)
+- [EndOfWeek](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#EndOfWeek)
+- [EndOfMonth](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#EndOfMonth)
+- [EndOfYear](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#EndOfYear)
+- [GetNowDate](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#GetNowDate)
+- [GetNowTime](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#GetNowTime)
+- [GetNowDateTime](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#GetNowDateTime)
+- [GetZeroHourTimestamp](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#GetZeroHourTimestamp)
+- [GetNightTimestamp](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#GetNightTimestamp)
+- [FormatTimeToStr](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#FormatTimeToStr)
+- [FormatStrToTime](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#FormatStrToTime)
 
-- Function list:
+### Fileutil package implements some basic functions for file operations.
 
 ```go
-func AesEcbEncrypt(data, key []byte) []byte //AES ECB encrypt
-func AesEcbDecrypt(encrypted, key []byte) []byte //AES ECB decrypt
-func AesCbcEncrypt(data, key []byte) []byte //AES CBC encrypt
-func AesCbcDecrypt(encrypted, key []byte) []byte //AES CBC decrypt
-func AesCtrCrypt(data, key []byte) []byte //AES CTR encrypt / decrypt
-func AesCfbEncrypt(data, key []byte) []byte //AES CFB encrypt
-func AesCfbDecrypt(encrypted, key []byte) []byte //AES CFB decrypt
-func AesOfbEncrypt(data, key []byte) []byte //AES OFB encrypt
-func AesOfbDecrypt(data, key []byte) []byte //AES OFB decrypt
-func Base64StdEncode(s string) string //base64 encode
-func Base64StdDecode(s string) string //base64 decode
-func DesCbcEncrypt(data, key []byte) []byte //DES CBC encrypt
-func DesCbcDecrypt(encrypted, key []byte) []byte //DES CBC decrypt
-func DesCtrCrypt(data, key []byte) []byte //DES CTR encrypt/decrypt
-func DesCfbEncrypt(data, key []byte) []byte //DES CFB encrypt
-func DesCfbDecrypt(encrypted, key []byte) []byte //DES CFB decrypt
-func DesOfbEncrypt(data, key []byte) []byte //DES OFB encrypt
-func DesOfbDecrypt(data, key []byte) []byte //DES OFB decrypt
-func HmacMd5(data, key string) string //get hmac md5 value
-func HmacSha1(data, key string) string //get hmac sha1 value
-func HmacSha256(data, key string) string //get hmac sha256 value
-func HmacSha512(data, key string) string //get hmac sha512 value
-func Md5String(s string) string //return the md5 value of string
-func Md5File(filename string) (string, error) //return the md5 value of file
-func Sha1(data string) string //get sha1 value
-func Sha256(data string) string //getsha256 value
-func Sha512(data string) string //get sha512 value
-func GenerateRsaKey(keySize int, priKeyFile, pubKeyFile string) //generate RSA pem file
-func RsaEncrypt(data []byte, pubKeyFileName string) []byte //RSA encrypt
-func RsaDecrypt(data []byte, privateKeyFileName string) []byte //RSA decrypt
-
+import "github.com/duke-git/lancet/fileutil"
 ```
 
-### 3. datetime parse and format datetime
+#### Function list：
 
-- Parse and format datetime
-- Usage: import "github.com/duke-git/lancet/datetime"
+- [ClearFile](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#ClearFile)
+- [CreateFile](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#CreateFile)
+- [CopyFile](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#CopyFile)
+- [FileMode](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#FileMode)
+- [MiMeType](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#MiMeType)
+- [IsExist](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#IsExist)
+- [IsLink](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#IsLink)
+- [IsDir](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#IsDir)
+- [ListFileNames](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#ListFileNames)
+- [RemoveFile](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#RemoveFile)
+- [ReadFileToString](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#ReadFileToString)
+- [ReadFileByLine](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#ReadFileByLine)
+- [Zip](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#Zip)
+- [UnZip](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#UnZip)
+
+### Formatter contains some functions for data formatting.
 
 ```go
-package main
-
-import (
-    "fmt"
-    "github.com/duke-git/lancet/datetime"
-)
-
-func main() {
-    now := time.Now()
-    s := datetime.FormatTimeToStr(now, "yyyy-mm-dd hh:mm:ss")
-    fmt.Println(s) // 2021-11-24 11:16:55
-}
+import "github.com/duke-git/lancet/formatter"
 ```
+#### Function list:
+- [Comma](https://github.com/duke-git/lancet/blob/main/docs/formatter.md#Comma)
 
-- Function list:
+### Function package can control the flow of function execution and support part of functional programming
 
 ```go
-func AddDay(t time.Time, day int64) time.Time //add or sub days to time
-func AddHour(t time.Time, hour int64) time.Time //add or sub hours to time
-func AddMinute(t time.Time, minute int64) time.Time //add or sub minutes to time
-func GetNowDate() string  //get current date, format is yyyy-mm-dd
-func GetNowTime() string //get current time, format is hh:mm:ss
-func GetNowDateTime() string //get current date and time, format is yyyy-mm-dd hh:mm:ss
-func GetZeroHourTimestamp() int64 //return timestamp of zero hour (timestamp of 00:00)
-func GetNightTimestamp() int64 //return timestamp of zero hour (timestamp of 23:59)
-func FormatTimeToStr(t time.Time, format string) string //convert time to string
-func FormatStrToTime(str, format string) time.Time //convert string to time
+import "github.com/duke-git/lancet/function"
 ```
 
-### 4. fileutil basic functions for file operations
+#### Function list:
+- [After](https://github.com/duke-git/lancet/blob/main/docs/function.md#After)
+- [Before](https://github.com/duke-git/lancet/blob/main/docs/function.md#Before)
+- [Curry](https://github.com/duke-git/lancet/blob/main/docs/function.md#Curry)
+- [Compose](https://github.com/duke-git/lancet/blob/main/docs/function.md#Compose)
+- [Debounced](https://github.com/duke-git/lancet/blob/main/docs/function.md#Debounced)
+- [Delay](https://github.com/duke-git/lancet/blob/main/docs/function.md#Delay)
+- [Delay](https://github.com/duke-git/lancet/blob/main/docs/function.md#Delay)
+- [Watcher](https://github.com/duke-git/lancet/blob/main/docs/function.md#Watcher)
 
-- Basic functions for file operations.
-- Usage: import "github.com/duke-git/lancet/fileutil"
+### Netutil package contains functions to get net information and send http request.
 
 ```go
-package main
-
-import (
-    "fmt"
-    "github.com/duke-git/lancet/fileutil"
-)
-
-func main() {
-    fmt.Println(fileutil.IsDir("./")) // true
-}
+import "github.com/duke-git/lancet/netutil"
 ```
 
-- Function list：
+#### Function list:
+- [ConvertMapToQueryString](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#ConvertMapToQueryString)
+- [GetInternalIp](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#GetInternalIp)
+- [GetIps](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#GetIps)
+- [GetMacAddrs](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#GetMacAddrs)
+- [GetPublicIpInfo](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#GetPublicIpInfo)
+- [IsPublicIP](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#IsPublicIP)
+- [HttpGet](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#HttpGet)
+- [HttpDelete](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#HttpDelete)
+- [HttpPost](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#HttpPost)
+- [HttpPut](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#HttpPut)
+- [HttpPatch](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#HttpPatch)
+- [ParseHttpResponse](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#ParseHttpResponse)
+
+### Random package implements some basic functions to generate random int and string.
 
 ```go
-func ClearFile(path string) error //write empty string to path file
-func CreateFile(path string) bool // create a file in path
-func CopyFile(srcFilePath string, dstFilePath string) error //copy src file to dst file
-func FileMode(path string) (fs.FileMode, error) //return file's mode and permission
-func MiMeType(file interface{}) string //return file mime type, file should be string or *os.File
-func IsExist(path string) bool  //checks if a file or directory exists
-func IsLink(path string) bool //checks if a file is symbol link or not
-func IsDir(path string) bool //checks if the path is directy or not
-func ListFileNames(path string) ([]string, error) //return all file names in the path
-func RemoveFile(path string) error //remove the path file
-func ReadFileToString(path string) (string, error) //return string of file content
-func ReadFileByLine(path string)([]string, error) //read file content by line
-func Zip(fpath string, destPath string) error //create zip file, fpath could be a single file or a directory
-func UnZip(zipFile string, destPath string) error //unzip the file and save it to destPath
+import "github.com/duke-git/lancet/random"
 ```
 
-### 5. formatter is for data format
+#### Function list:
+- [RandBytes](https://github.com/duke-git/lancet/blob/main/docs/random.md#RandBytes)
+- [RandInt](https://github.com/duke-git/lancet/blob/main/docs/random.md#RandInt)
+- [RandString](https://github.com/duke-git/lancet/blob/main/docs/random.md#RandString)
 
-- Contain some formatting function
-- Usage: import "github.com/duke-git/lancet/formatter"
+### Retry package is for executing a function repeatedly until it was successful or canceled by the context.
 
 ```go
-package main
-
-import (
-    "fmt"
-    "github.com/duke-git/lancet/formatter"
-)
-
-func main() {
-     fmt.Println(formatter.Comma("12345", ""))   // "12,345"
-     fmt.Println(formatter.Comma(12345.67, "¥")) // "¥12,345.67"
-}
+import "github.com/duke-git/lancet/retry"
 ```
 
-- Function list:
+#### Function list:
+- [Context](https://github.com/duke-git/lancet/blob/main/docs/retry.md#Context)
+- [Retry](https://github.com/duke-git/lancet/blob/main/docs/retry.md#Retry)
+- [RetryFunc](https://github.com/duke-git/lancet/blob/main/docs/retry.md#RetryFunc)
+- [RetryDuration](https://github.com/duke-git/lancet/blob/main/docs/retry.md#RetryDuration)
+- [RetryTimes](https://github.com/duke-git/lancet/blob/main/docs/retry.md#RetryTimes)
+
+### Slice contains some functions to manipulate slice.
 
 ```go
-func Comma(v interface{}, symbol string) string  //add comma to number by every 3 numbers from right. ahead by symbol char
+import "github.com/duke-git/lancet/slice"
 ```
 
-### 6. function can control the function execution and support functional programming
+#### Function list:
+- [Contain](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Contain)
+- [ContainSubSlice](https://github.com/duke-git/lancet/blob/main/docs/slice.md#ContainSubSlice)
+- [Chunk](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Chunk)
+- [Compact](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Compact)
+- [Concat](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Concat)
+- [Count](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Count)
+- [Difference](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Difference)
+- [DifferenceBy](https://github.com/duke-git/lancet/blob/main/docs/slice.md#DifferenceBy)
+- [DeleteByIndex](https://github.com/duke-git/lancet/blob/main/docs/slice.md#DeleteByIndex)
+- [Drop](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Drop)
+- [Every](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Every)
+- [Filter](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Filter)
+- [Find](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Find)
+- [FindLast](https://github.com/duke-git/lancet/blob/main/docs/slice.md#FindLast)
+- [FlattenDeep](#FlattenDeep)
+- [ForEach](https://github.com/duke-git/lancet/blob/main/docs/slice.md#ForEach)
+- [GroupBy](https://github.com/duke-git/lancet/blob/main/docs/slice.md#GroupBy)
+- [IntSlice](https://github.com/duke-git/lancet/blob/main/docs/slice.md#IntSlice)
+- [InterfaceSlice](https://github.com/duke-git/lancet/blob/main/docs/slice.md#InterfaceSlice)
+- [Intersection](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Intersection)
+- [InsertByIndex](https://github.com/duke-git/lancet/blob/main/docs/slice.md#InsertByIndex)
+- [Map](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Map)
+- [ReverseSlice](https://github.com/duke-git/lancet/blob/main/docs/slice.md#ReverseSlice)
+- [Reduce](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Reduce)
+- [Shuffle](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Shuffle)
+- [SortByField](https://github.com/duke-git/lancet/blob/main/docs/slice.md#SortByField)
+- [Some](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Some)
+- [StringSlice](https://github.com/duke-git/lancet/blob/main/docs/slice.md#StringSlice)
+- [Unique](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Unique)
+- [Union](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Union)
+- [UpdateByIndex](https://github.com/duke-git/lancet/blob/main/docs/slice.md#UpdateByIndex)
+- [Without](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Without)
 
-- Control function execution and support functional programming.
-- Usage: import "github.com/duke-git/lancet/function"
+### Strutil package contains some functions to manipulate string.
+```go
+import "github.com/duke-git/lancet/strutil"
+```
+
+#### Function list:
+
+- [After](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#After)
+- [AfterLast](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#AfterLast)
+- [Before](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#Before)
+- [BeforeLast](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#BeforeLast)
+- [CamelCase](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#CamelCase)
+- [Capitalize](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#Capitalize)
+- [IsString](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#IsString)
+- [KebabCase](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#KebabCase)
+- [LowerFirst](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#LowerFirst)
+- [UpperFirst](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#UpperFirst)
+- [PadEnd](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#PadEnd)
+- [PadStart](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#PadStart)
+- [ReverseStr](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#ReverseStr)
+- [SnakeCase](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#SnakeCase)
+- [Wrap](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#Wrap)
+- [Unwrap](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#Unwrap)
+  
+### System package contain some functions about os, runtime, shell command.
 
 ```go
-package main
-
-import (
-    "fmt"
-    "github.com/duke-git/lancet/function"
-)
-
-func main() {
-    var print = func(s string) {
-		fmt.Println(s)
-	}
-	function.Delay(2*time.Second, print, "hello world")
-}
+import "github.com/duke-git/lancet/system"
 ```
+#### Function list:
+- [IsWindows](https://github.com/duke-git/lancet/blob/main/docs/system.md#IsWindows)
+- [IsLinux](https://github.com/duke-git/lancet/blob/main/docs/system.md#IsLinux)
+- [IsMac](https://github.com/duke-git/lancet/blob/main/docs/system.md#IsMac)
+- [GetOsEnv](https://github.com/duke-git/lancet/blob/main/docs/system.md#GetOsEnv)
+- [SetOsEnv](https://github.com/duke-git/lancet/blob/main/docs/system.md#SetOsEnv)
+- [RemoveOsEnv](https://github.com/duke-git/lancet/blob/main/docs/system.md#RemoveOsEnv)
+- [CompareOsEnv](https://github.com/duke-git/lancet/blob/main/docs/system.md#CompareOsEnv)
+- [ExecCommand](https://github.com/duke-git/lancet/blob/main/docs/system.md#ExecCommand)
 
-- Function list:
+### Validator package contains some functions for data validation.
 
 ```go
-func After(n int, fn interface{}) func(args ...interface{}) []reflect.Value  //creates a function that invokes func once it's called n or more times
-func Before(n int, fn interface{}) func(args ...interface{}) []reflect.Value  //creates a function that invokes func once it's called less than n times
-func (f Fn) Curry(i interface{}) func(...interface{}) interface{}  //make a curryed function
-func Compose(fnList ...func(...interface{}) interface{}) func(...interface{}) interface{}  //compose the functions from right to left
-func Debounced(fn func(), duration time.Duration) func() //creates a debounced function that delays invoking fn until after wait duration have elapsed since the last time the debounced function was invoked.
-func Delay(delay time.Duration, fn interface{}, args ...interface{})  //invoke function after delayed time
-func Schedule(d time.Duration, fn interface{}, args ...interface{}) chan bool //invoke function every duration time, util close the returned bool chan
-func (w *Watcher) Start() //start the watch timer.
-func (w *Watcher) Stop() //stop the watch timer
-func (w *Watcher) Reset() {} //reset the watch timer.
-func (w *Watcher) GetElapsedTime() time.Duration //return time duration from watcher start to end.
+import "github.com/duke-git/lancet/validator"
 ```
 
-### 7. netutil is for net process
+#### Function list:
 
-- Ip and http request method.
-- Usage: import "github.com/duke-git/lancet/netutil".
-- The Http function params order：url, header, query string, body, httpclient.
-
-```go
-package main
-
-import (
-    "fmt"
-    "io/ioutil"
-    "log"
-    "github.com/duke-git/lancet/netutil"
-)
-
-func main() {
-    url := "https://gutendex.com/books?"
-    header := make(map[string]string)
-    header["Content-Type"] = "application/json"
-    queryParams := make(map[string]interface{})
-    queryParams["ids"] = "1"
-
-    resp, err := netutil.HttpGet(url, header, queryParams)
-    if err != nil {
-       log.Fatal(err)
-    }
-
-    body, _ := ioutil.ReadAll(resp.Body)
-    fmt.Println("response: ", resp.StatusCode, string(body))
-}
-```
-
-- Function list:
-
-```go
-func GetInternalIp() string //get internal ip
-func GetPublicIpInfo() (*PublicIpInfo, error) //get public ip info: country, region, isp, city, lat, lon, ip
-func IsPublicIP(IP net.IP) bool //判断ip是否为公共ip
-func HttpGet(url string, params ...interface{}) (*http.Response, error) //http get request
-func HttpPost(url string, params ...interface{}) (*http.Response, error) //http post request
-func HttpPut(url string, params ...interface{}) (*http.Response, error) //http put request
-func HttpDelete(url string, params ...interface{}) (*http.Response, error) //http delete request
-func HttpPatch(url string, params ...interface{}) (*http.Response, error) //http patch request
-func ConvertMapToQueryString(param map[string]interface{}) string //convert map to url query string
-func ParseHttpResponse(resp *http.Response, obj interface{}) error //decode http response to specified interface
-```
-
-### 8. random is for rand string and int generation
-
-- Generate random string and int.
-- Usage: import "github.com/duke-git/lancet/random".
-
-```go
-package main
-
-import (
-    "fmt"
-    "io/ioutil"
-    "log"
-    "github.com/duke-git/lancet/random"
-)
-
-func main() {
-    randStr := random.RandString(6)
-    fmt.Println(randStr)
-}
-```
-
-- Function list:
-
-```go
-func RandBytes(length int) []byte //generate random []byte
-func RandInt(min, max int) int //generate random int
-func RandString(length int) string //generate random string
-```
-
-### 9. retry is for executing a function repeatedly until it was successful or canceled by the context.
-
-- Executes a function repeatedly until it was successful or canceled by the context.
-- Default retry times is 5, default retry duration is 3 second.
-- Usage: import "github.com/duke-git/lancet/retry".
-
-```go
-package main
-
-import (
-    "fmt"
-    "io/ioutil"
-    "log"
-    "github.com/duke-git/lancet/retry"
-)
-
-func main() {
-    var number int
-	increaseNumber := func() error {
-		number++
-		if number == 3 {
-			return nil
-		}
-		return errors.New("error occurs")
-	}
-
-	err := retry.Retry(increaseNumber, retry.RetryDuration(time.Microsecond*50))
-
-    fmt.Println(number) //3
-}
-```
-
-- Function list:
-
-```go
-type RetryFunc func() error //function that retry executes
-func RetryTimes(n uint) //set times of retry
-func RetryDuration(d time.Duration) //generate random string
-func Context(ctx context.Context) //set retry context config
-func Retry(retryFunc RetryFunc, opts ...Option) error //executes the retryFunc repeatedly until it was successful or canceled by the context
-```
-
-### 10. slice is for process slice
-
-- Contain function for process slice.
-- Usage: import "github.com/duke-git/lancet/slice"
-- Due to the unstable support of generic, most of the slice processing function parameter and return value is interface {}. After go generic is stable, the related functions will be refactored.
-
-```go
-package main
-
-import (
-    "fmt"
-    "io/ioutil"
-    "log"
-    "github.com/duke-git/lancet/slice"
-)
-
-func main() {
-    nums := []int{1, 4, 3, 4, 6, 7, 3}
-    uniqueNums, _ := slice.IntSlice(slice.Unique(nums))
-    fmt.Println(uniqueNums) //[1 4 3 6 7]
-}
-```
-
-- Function list:
-
-```go
-func Contain[T comparable](slice []T, value T) bool //check if the value is in the slice or not
-func ContainSubSlice[T comparable](slice, subslice []T) bool //check if the slice contain subslice or not
-func Chunk[T any](slice []T, size int) [][]T //creates an slice of elements split into groups the length of size.
-func Compact[T any](slice []T) []T //creates an slice with all falsey values removed. The values false, nil, 0, and "" are falsey
-func Concat[T any](slice []T, values ...[]T) []T //creates a new slice concatenating slice with any additional slices and/or values
-func Difference[T comparable](slice1, slice2 []T) []T //creates an slice of whose element not included in the other given slice
-func DifferenceBy[T any](slice []T, comparedSlice []T, iteratee func(index int, t T) T) []T //it accepts iteratee which is invoked for each element of slice and values to generate the criterion by which they're compared.
-func DifferenceWith[T any](slice []T, comparedSlice []T, comparator func(value, otherValue T) bool) []T //accepts comparator which is invoked to compare elements of slice to values. The order and references of result values are determined by the first slice.
-func DeleteAt[T any](slice []T, start int, end ...int) []T //delete the element of slice from start index to end index - 1
-func Drop[T any](slice []T, n int) []T //creates a slice with `n` elements dropped from the beginning when n > 0, or `n` elements dropped from the ending when n < 0
-func Every[T any](slice []T, predicate func(index int, t T) bool) bool  //return true if all of the values in the slice pass the predicate function
-func None[T any](slice []T, predicate func(index int, t T) bool) bool // return true if all the values in the slice mismatch the criteria
-func Filter [T any] (slice []T, predicate func(index int, t T) bool) []T //iterates over elements of slice, returning an slice of all elements pass the predicate function
-func Find[T any](slice []T, predicate func(index int, t T) bool) (*T, bool) //iterates over elements of slice, returning the first one that passes a truth test on iteratee function. If return T is nil then no items matched the predicate func
-func FindLast[T any](slice []T, predicate func(index int, t T) bool) (*T, bool) //iterates over elements of slice from end to begin, returning the first one that passes a truth test on predicate function. if return T is nil then no items matched the predicate func
-func FlattenDeep(slice interface{}) interface{} //flattens slice recursive
-func ForEach [T any] (slice []T, iteratee func(index int, t T)) //iterates over elements of slice and invokes function for each element
-func IntSlice(slice interface{}) ([]int, error) //convert value to int slice
-func InterfaceSlice(slice interface{}) []interface{} //convert value to interface{} slice
-func Intersection[T comparable](slices ...[]T) []T //creates a slice of unique values that included by all slices.
-func InsertAt[T any](slice []T, index int, value interface{}) []T //insert the value or other slice into slice at index.
-func Map [T any, U any] (slice []T, iteratee func(index int, t T) U) []U //creates an slice of values by running each element of slice thru iteratee function.
-func Reverse[T any](slice []T)//revere slice
-func Reduce[T any](slice []T, iteratee func(index int, t1, t2 T) T, initial T) T //creates an slice of values by running each element of slice thru iteratee function
-func Shuffle[T any](slice []T) []T  //creates an slice of shuffled values
-func SortByField(slice interface{}, field string, sortType ...string) error //sort struct slice by field
-func Some[T any](slice []T, predicate func(index int, t T) bool) bool //return true if any of the values in the list pass the predicate function
-func StringSlice(slice interface{}) []string //convert value to string slice
-func Unique[T comparable](slice []T) []T //remove duplicate elements in slice
-func Union[T comparable](slices ...[]T) []T //Union creates a slice of unique values, in order, from all given slices. using == for equality comparisons.
-func UpdateAt[T any](slice []T, index int, value T) []T //update the slice element at index.
-func Without[T comparable](slice []T, values ...T) []T //creates a slice excluding all given values
-func GroupBy[T any](slice []T, groupFn func(index int, t T) bool) ([]T, []T) //iterate over elements of the slice, each element will be group by criteria, returns two slices
-func Count[T any](slice []T, predicate func(index int, t T) bool) int // iterates over elements of slice, returns a count of all matched elements
-```
-
-### 11. strutil is for processing string
-
-- Contain functions to precess string
-- Usage: import "github.com/duke-git/lancet/strutil"
-
-```go
-package main
-
-import (
-    "fmt"
-    "io/ioutil"
-    "log"
-    "github.com/duke-git/lancet/strutil"
-)
-
-func main() {
-    str := "Foo-Bar"
-    camelCaseStr := strutil.CamelCase(str)
-    fmt.Println(camelCaseStr) //fooBar
-}
-```
-
-- Function list:
-
-```go
-func After(s, char string) string //create substring in source string after position when char first appear
-func AfterLast(s, char string) string //create substring in source string after position when char last appear
-func Before(s, char string) string //create substring in source string before position when char first appear
-func BeforeLast(s, char string) string //create substring in source string before position when char last appear
-func CamelCase(s string) string //covert string to camelCase string. "foo bar" -> "fooBar"
-func Capitalize(s string) string //convert the first character of a string to upper case, "fOO" -> "Foo"
-func IsString(v interface{}) bool //check if the value data type is string or not
-func KebabCase(s string) string //covert string to kebab-case, "foo_Bar" -> "foo-bar"
-func LowerFirst(s string) string //convert the first character of string to lower case
-func UpperFirst(s string) string //converts the first character of string to upper case
-func PadEnd(source string, size int, padStr string) string //pads string on the right side if it's shorter than size
-func PadStart(source string, size int, padStr string) string//pads string on the left side if it's shorter than size
-func ReverseStr(s string) string //return string whose char order is reversed to the given string
-func SnakeCase(s string) string //covert string to snake_case "fooBar" -> "foo_bar"
-func Wrap(str string, wrapWith string) string //wrap a string with another string.
-func Unwrap(str string, wrapToken string) string //unwrap a given string from anther string. will change str value
-```
-### 12. system contain some functions about os, runtime, shell command.
-
-- Generate random string and int.
-- Usage: import "github.com/duke-git/lancet/system".
-
-```go
-package main
-
-import (
-    "fmt"
-    "io/ioutil"
-    "log"
-    "github.com/duke-git/lancet/system"
-)
-
-func main() {
-    envFoo := system.GetOsEnv("foo")
-    fmt.Println(envFoo)
-}
-```
-
-- Function list:
-
-```go
-func IsWindows() bool //check if current os is windows
-func IsLinux() bool //check if current os is linux
-func IsMac() bool //check if current os is macos
-func GetOsEnv(key string) string //gets the value of the environment variable named by the key.
-func SetOsEnv(key, value string) error //sets the value of the environment variable named by the key.
-func RemoveOsEnv(key string) error //remove a single environment variable.
-func CompareOsEnv(key, comparedEnv string) bool //gets env named by the key and compare it with comparedEnv
-func ExecCommand(command string) (stdout, stderr string, err error) //use shell /bin/bash -c to execute command
-```
-
-### 13. validator is for data validation
-
-- Contain function for data validation.
-- Usage: import "github.com/duke-git/lancet/validator".
-
-```go
-package main
-
-import (
-    "fmt"
-    "io/ioutil"
-    "log"
-    "github.com/duke-git/lancet/validator"
-)
-
-func main() {
-    str := "Foo-Bar"
-    isAlpha := validator.IsAlpha(str)
-    fmt.Println(isAlpha) //false
-}
-```
-
-- Function list:
-
-```go
-func ContainChinese(s string) bool //check if the string contain mandarin chinese
-func IsAlpha(s string) bool //checks if the string contains only letters (a-zA-Z)
-func IsBase64(base64 string) bool //check if the string is base64 string
-func IsAllUpper(str string) bool //check if the string is all upper case letters A-Z
-func IsAllLower(str string) bool //check if the string is all lower case letters a-z
-func ContainUpper(str string) bool //check if the string contain at least one upper case letter A-Z
-func ContainLower(str string) bool //check if the string contain at least one lower case letter a-z
-func ContainLetter(str string) bool //check if the string contain at least one letter
-func IsJSON(str string) bool //checks if the string is valid JSON
-func IsChineseMobile(mobileNum string) bool //check if the string is chinese mobile number
-func IsChineseIdNum(id string) bool //check if the string is chinese id number
-func IsChinesePhone(phone string) bool //check if the string is chinese phone number
-func IsCreditCard(creditCart string) bool //check if the string is credit card
-func IsDns(dns string) bool //check if the string is dns
-func IsEmail(email string) bool //check if the string is a email address
-func IsEmptyString(s string) bool //check if the string is empty
-func IsFloatStr(s string) bool //check if the string can convert to a float
-func IsNumberStr(s string) bool //check if the string can convert to a number
-func IsRegexMatch(s, regex string) bool //check if the string match the regexp
-func IsIntStr(s string) bool //check if the string can convert to a integer
-func IsIp(ipstr string) bool //check if the string is a ip address
-func IsIpV4(ipstr string) bool //check if the string is a ipv4 address
-func IsIpV6(ipstr string) bool //check if the string is a ipv6 address
-func IsStrongPassword(password string, length int) bool //check if the string is strong password (alpha(lower+upper) + number + special chars(!@#$%^&*()?><))
-func IsUrl(str string) bool //check if the string is url
-func IsWeakPassword(password string) bool //check if the string is weak password（only letter or only number or letter + number）
-```
-
+- [ContainChinese](https://github.com/duke-git/lancet/blob/main/docs/validator.md#ContainChinese)
+- [ContainLetter](https://github.com/duke-git/lancet/blob/main/docs/validator.md#ContainLetter)
+- [ContainLower](https://github.com/duke-git/lancet/blob/main/docs/validator.md#ContainLower)
+- [ContainUpper](https://github.com/duke-git/lancet/blob/main/docs/validator.md#ContainUpper)
+- [IsAlpha](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsAlpha)
+- [IsAllUpper](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsAllUpper)
+- [IsAllLower](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsAllLower)
+- [IsBase64](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsBase64)
+- [IsChineseMobile](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsChineseMobile)
+- [IsChineseIdNum](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsChineseIdNum)
+- [IsChinesePhone](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsChinesePhone)
+- [IsCreditCard](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsCreditCard)
+- [IsDns](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsDns)
+- [IsEmail](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsEmail)
+- [IsEmptyString](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsEmptyString)
+- [IsFloatStr](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsFloatStr)
+- [IsNumberStr](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsNumberStr)
+- [IsJSON](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsJSON)
+- [IsRegexMatch](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsRegexMatch)
+- [IsIntStr](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsIntStr)
+- [IsIp](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsIp)
+- [IsIpV4](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsIpV4)
+- [IsIpV6](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsIpV6)
+- [IsStrongPassword](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsStrongPassword)
+- [IsUrl](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsUrl)
+- [IsWeakPassword](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsWeakPassword)
 ### 14. error helpers
 
 - Contain functions to handle errors

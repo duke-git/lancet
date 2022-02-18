@@ -110,3 +110,73 @@ func FormatStrToTime(str, format string) (time.Time, error) {
 
 	return time.Parse(v, str)
 }
+
+// BeginOfMinute return beginning minute time of day
+func BeginOfMinute(t time.Time) time.Time {
+	y, m, d := t.Date()
+	return time.Date(y, m, d, t.Hour(), t.Minute(), 0, 0, t.Location())
+}
+
+// EndOfMinute return end minute time of day
+func EndOfMinute(t time.Time) time.Time {
+	y, m, d := t.Date()
+	return time.Date(y, m, d, t.Hour(), t.Minute(), 59, int(time.Second-time.Nanosecond), t.Location())
+}
+
+// BeginOfHour return beginning hour time of day
+func BeginOfHour(t time.Time) time.Time {
+	y, m, d := t.Date()
+	return time.Date(y, m, d, t.Hour(), 0, 0, 0, t.Location())
+}
+
+// EndOfHour return end hour time of day
+func EndOfHour(t time.Time) time.Time {
+	y, m, d := t.Date()
+	return time.Date(y, m, d, t.Hour(), 59, 59, int(time.Second-time.Nanosecond), t.Location())
+}
+
+// BeginOfDay return beginning hour time of day
+func BeginOfDay(t time.Time) time.Time {
+	y, m, d := t.Date()
+	return time.Date(y, m, d, 0, 0, 0, 0, t.Location())
+}
+
+// EndOfDay return end time of day
+func EndOfDay(t time.Time) time.Time {
+	y, m, d := t.Date()
+	return time.Date(y, m, d, 23, 59, 59, int(time.Second-time.Nanosecond), t.Location())
+}
+
+// BeginOfWeek return beginning week, week begin from Sunday
+func BeginOfWeek(t time.Time) time.Time {
+	y, m, d := t.AddDate(0, 0, 0-int(BeginOfDay(t).Weekday())).Date()
+	return time.Date(y, m, d, 0, 0, 0, 0, t.Location())
+}
+
+// EndOfWeek return end week time, week end with Saturday
+func EndOfWeek(t time.Time) time.Time {
+	y, m, d := BeginOfWeek(t).AddDate(0, 0, 7).Add(-time.Nanosecond).Date()
+	return time.Date(y, m, d, 23, 59, 59, int(time.Second-time.Nanosecond), t.Location())
+}
+
+// BeginOfMonth return beginning of month
+func BeginOfMonth(t time.Time) time.Time {
+	y, m, _ := t.Date()
+	return time.Date(y, m, 1, 0, 0, 0, 0, t.Location())
+}
+
+// EndOfMonth return end of month
+func EndOfMonth(t time.Time) time.Time {
+	return BeginOfMonth(t).AddDate(0, 1, 0).Add(-time.Nanosecond)
+}
+
+// BeginOfYear return beginning of year
+func BeginOfYear(t time.Time) time.Time {
+	y, _, _ := t.Date()
+	return time.Date(y, time.January, 1, 0, 0, 0, 0, t.Location())
+}
+
+// EndOfYear return end of year
+func EndOfYear(t time.Time) time.Time {
+	return BeginOfYear(t).AddDate(1, 0, 0).Add(-time.Nanosecond)
+}
