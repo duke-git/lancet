@@ -26,7 +26,6 @@ import (
 - [Compose](#Compose)
 - [Debounced](#Debounced)
 - [Delay](#Delay)
-- [Delay](#Delay)
 - [Watcher](#Watcher)
 
 <div STYLE="page-break-after: always;"></div>
