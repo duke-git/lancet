@@ -23,6 +23,7 @@ import (
 - [RandBytes](#RandBytes)
 - [RandInt](#RandInt)
 - [RandString](#RandString)
+- [UUIdV4](#UUIdV4)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -101,6 +102,36 @@ import (
 func main() {
 	randStr := random.RandString(6)
 	fmt.Println(randStr)
+}
+```
+
+
+
+
+### <span id="UUIdV4">UUIdV4</span>
+<p>Generate a random UUID of version 4 according to RFC 4122.</p>
+
+<b>Signature:</b>
+
+```go
+func UUIdV4() (string, error)
+```
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/random"
+)
+
+func main() {
+	uuid, err := random.UUIdV4()
+    if err != nil {
+        return
+    }
+	fmt.Println(uuid)
 }
 ```
 
