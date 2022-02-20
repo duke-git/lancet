@@ -47,3 +47,16 @@ func TestRandBytes(t *testing.T) {
 
 	assert.Equal([]byte{}, RandBytes(0))
 }
+
+func TestUUIdV4(t *testing.T) {
+	assert := internal.NewAssert(t, "TestUUIdV4")
+
+	uuid, err := UUIdV4()
+	if err != nil {
+		t.Log(err)
+		t.Fail()
+	}
+
+	isUUiDV4 := regexp.MustCompile(`^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$`)
+	assert.Equal(true, isUUiDV4.MatchString(uuid))
+}
