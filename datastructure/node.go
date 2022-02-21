@@ -33,3 +33,15 @@ type QueueNode[T any] struct {
 func NewQueueNode[T any](value T) *QueueNode[T] {
 	return &QueueNode[T]{value, nil}
 }
+
+// TreeNode is node of tree
+type TreeNode[T any] struct {
+	Data  T
+	Left  *TreeNode[T]
+	Right *TreeNode[T]
+}
+
+// NewTreeNode return a TreeNode pointer
+func NewTreeNode[T any](data T) *TreeNode[T] {
+	return &TreeNode[T]{data, nil, nil}
+}
