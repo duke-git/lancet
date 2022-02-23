@@ -8,6 +8,66 @@ import (
 	"github.com/duke-git/lancet/lancetconstraints"
 )
 
+func preOrderTraverse[T any](node *datastructure.TreeNode[T]) []T {
+	data := []T{}
+	if node != nil {
+		data = append(data, node.Data)
+		data = append(data, preOrderTraverse(node.Left)...)
+		data = append(data, preOrderTraverse(node.Right)...)
+	}
+	return data
+}
+
+func postOrderTraverse[T any](node *datastructure.TreeNode[T]) []T {
+	data := []T{}
+	if node != nil {
+		data = append(data, preOrderTraverse(node.Left)...)
+		data = append(data, preOrderTraverse(node.Right)...)
+		data = append(data, node.Data)
+	}
+	return data
+}
+
+func inOrderTraverse[T any](node *datastructure.TreeNode[T]) []T {
+	data := []T{}
+	if node != nil {
+		data = append(data, inOrderTraverse(node.Left)...)
+		data = append(data, node.Data)
+		data = append(data, inOrderTraverse(node.Right)...)
+	}
+	return data
+}
+
+func preOrderPrint[T any](node *datastructure.TreeNode[T]) {
+	if node == nil {
+		return
+	}
+
+	fmt.Printf("%v, ", node.Data)
+	preOrderPrint(node.Left)
+	preOrderPrint(node.Right)
+}
+
+func postOrderPrint[T any](node *datastructure.TreeNode[T]) {
+	if node == nil {
+		return
+	}
+
+	preOrderPrint(node.Left)
+	preOrderPrint(node.Right)
+	fmt.Printf("%v, ", node.Data)
+}
+
+func inOrderPrint[T any](node *datastructure.TreeNode[T]) {
+	if node == nil {
+		return
+	}
+
+	inOrderPrint(node.Left)
+	fmt.Printf("%v, ", node.Data)
+	inOrderPrint(node.Right)
+}
+
 func insertTreeNode[T any](rootNode, newNode *datastructure.TreeNode[T], comparator lancetconstraints.Comparator) {
 	if comparator.Compare(newNode.Data, rootNode.Data) == -1 {
 		if rootNode.Left == nil {

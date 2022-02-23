@@ -10,7 +10,7 @@ import (
 // BSTree is a binary search tree data structure in which each node has at most two children,
 // which are referred to as the left child and the right child.
 // In BSTree: leftNode < rootNode < rightNode
-// type T should implments Compare function of lancetconstraints.Comparator interface
+// type T should implements Compare function in lancetconstraints.Comparator interface.
 type BSTree[T any] struct {
 	root *datastructure.TreeNode[T]
 }
@@ -41,6 +41,21 @@ func (t *BSTree[T]) NodeLevel(node *datastructure.TreeNode[T]) int {
 	right := float64(t.NodeLevel(node.Right))
 
 	return int(math.Max(left, right)) + 1
+}
+
+// PreOrderTraverse traverse tree node in pre order
+func (t *BSTree[T]) PreOrderTraverse() []T {
+	return preOrderTraverse(t.root)
+}
+
+// PostOrderTraverse traverse tree node in post order
+func (t *BSTree[T]) PostOrderTraverse() []T {
+	return postOrderTraverse(t.root)
+}
+
+// InOrderTraverse traverse tree node in mid order
+func (t *BSTree[T]) InOrderTraverse() []T {
+	return inOrderTraverse(t.root)
 }
 
 // Print the bstree structure
