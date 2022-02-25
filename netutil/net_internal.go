@@ -160,6 +160,7 @@ func setBodyByte(req *http.Request, body interface{}) error {
 		switch b := body.(type) {
 		case []byte:
 			req.Body = ioutil.NopCloser(bytes.NewReader(b))
+			req.ContentLength = int64(len(b))
 		default:
 			return errors.New("body type should be []byte")
 		}
