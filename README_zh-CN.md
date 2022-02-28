@@ -193,7 +193,6 @@ import "github.com/duke-git/lancet/function"
 - [Compose](https://github.com/duke-git/lancet/blob/main/docs/function_zh-CN.md#Compose)
 - [Debounced](https://github.com/duke-git/lancet/blob/main/docs/function_zh-CN.md#Debounced)
 - [Delay](https://github.com/duke-git/lancet/blob/main/docs/function_zh-CN.md#Delay)
-- [Delay](https://github.com/duke-git/lancet/blob/main/docs/function_zh-CN.md#Delay)
 - [Watcher](https://github.com/duke-git/lancet/blob/main/docs/function_zh-CN.md#Watcher)
 
 
@@ -227,7 +226,7 @@ import "github.com/duke-git/lancet/random"
 - [RandBytes](https://github.com/duke-git/lancet/blob/main/docs/random_zh-CN.md#RandBytes)
 - [RandInt](https://github.com/duke-git/lancet/blob/main/docs/random_zh-CN.md#RandInt)
 - [RandString](https://github.com/duke-git/lancet/blob/main/docs/random_zh-CN.md#RandString)
-
+- [UUIdV4](https://github.com/duke-git/lancet/blob/main/docs/random.md#UUIdV4)
 ### retry重试执行函数直到函数运行成功或被context cancel。
 
 ```go

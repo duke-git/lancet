@@ -192,7 +192,6 @@ import "github.com/duke-git/lancet/function"
 - [Compose](https://github.com/duke-git/lancet/blob/main/docs/function.md#Compose)
 - [Debounced](https://github.com/duke-git/lancet/blob/main/docs/function.md#Debounced)
 - [Delay](https://github.com/duke-git/lancet/blob/main/docs/function.md#Delay)
-- [Delay](https://github.com/duke-git/lancet/blob/main/docs/function.md#Delay)
 - [Watcher](https://github.com/duke-git/lancet/blob/main/docs/function.md#Watcher)
 
 ### Netutil package contains functions to get net information and send http request.
@@ -225,6 +224,7 @@ import "github.com/duke-git/lancet/random"
 - [RandBytes](https://github.com/duke-git/lancet/blob/main/docs/random.md#RandBytes)
 - [RandInt](https://github.com/duke-git/lancet/blob/main/docs/random.md#RandInt)
 - [RandString](https://github.com/duke-git/lancet/blob/main/docs/random.md#RandString)
+- [UUIdV4](https://github.com/duke-git/lancet/blob/main/docs/random.md#UUIdV4)
 
 ### Retry package is for executing a function repeatedly until it was successful or canceled by the context.
 
