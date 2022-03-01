@@ -157,16 +157,13 @@ func setQueryParam(req *http.Request, reqUrl string, queryParam interface{}) err
 
 func setBodyByte(req *http.Request, body interface{}) error {
 	if body != nil {
-		var bodyByte []byte
-		if body != nil {
-			switch v := body.(type) {
-			case []byte:
-				bodyByte = v
-			default:
-				return errors.New("body type should be []byte")
-			}
+		switch b := body.(type) {
+		case []byte:
+			req.Body = ioutil.NopCloser(bytes.NewReader(b))
+			req.ContentLength = int64(len(b))
+		default:
+			return errors.New("body type should be []byte")
 		}
-		req.Body = ioutil.NopCloser(bytes.NewReader(bodyByte))
 	}
 	return nil
 }

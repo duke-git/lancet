@@ -13,7 +13,7 @@ import (
 func After(n int, fn interface{}) func(args ...interface{}) []reflect.Value {
 	// Catch programming error while constructing the closure
 	mustBeFunction(fn)
-	
+
 	return func(args ...interface{}) []reflect.Value {
 		n--
 		if n < 1 {
