@@ -377,3 +377,14 @@ func main() {
 ```go
 Unwrap[T any](val T, err error) //if err is nil then it returns a valid value otherwise it panics
 ```
+  
+
+## How to Contribute
+
+I really appreciate any code commits which make lancet lib powerful. Please follow the rules below to create your pull request.
+
+1. Fork the repository.
+2. Create your feature branch.
+3. Commit your changes.
+4. Push to the branch
+5. Create new pull request.

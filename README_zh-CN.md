@@ -383,3 +383,13 @@ func main() {
 ```go
 Unwrap[T any](val T, err error) //如果err是nil，返回有效的val值。否则， panics
 ```
+
+## 如何贡献代码
+
+非常感激任何的代码提交以使lancet的功能越来越强大。创建pull request时请遵守以下规则。
+
+1. Fork lancet仓库。
+2. 创建自己的特性分支。
+3. 提交变更。
+4. Push分支。
+5. 创建新的pull request。
