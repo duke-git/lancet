@@ -63,6 +63,11 @@ func (t *BSTree[T]) InOrderTraverse() []T {
 	return inOrderTraverse(t.root)
 }
 
+// Depth returns the calculated depth of a binary saerch tree
+func (t *BSTree[T]) Depth() int {
+	return calculateDepth(t.root, 0)
+}
+
 // Print the bstree structure
 func (t *BSTree[T]) Print() {
 	maxLevel := t.NodeLevel(t.root)

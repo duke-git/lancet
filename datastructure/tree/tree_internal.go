@@ -84,6 +84,7 @@ func insertTreeNode[T any](rootNode, newNode *datastructure.TreeNode[T], compara
 	}
 }
 
+// todo, delete root node failed
 func deleteTreeNode[T any](node *datastructure.TreeNode[T], data T, comparator lancetconstraints.Comparator) *datastructure.TreeNode[T] {
 	if node == nil {
 		return nil
@@ -188,4 +189,15 @@ func isAllNil[T any](nodes []*datastructure.TreeNode[T]) bool {
 		}
 	}
 	return true
+}
+
+func calculateDepth[T any](node *datastructure.TreeNode[T], depth int) int {
+	if node == nil {
+		return depth
+	}
+	return max(calculateDepth(node.Left, depth+1), calculateDepth(node.Right, depth+1))
+}
+
+func max(a, b int) int {
+	return int(math.Max(float64(a), float64(b)))
 }
