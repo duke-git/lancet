@@ -22,7 +22,7 @@ func NewBSTree[T any](rootData T) *BSTree[T] {
 }
 
 // Insert data into BSTree
-func (t *BSTree[T]) Insert(data T, comparator lancetconstraints.Comparator) {
+func (t *BSTree[T]) InsertNode(data T, comparator lancetconstraints.Comparator) {
 	root := t.root
 	newNode := datastructure.NewTreeNode(data)
 	if root == nil {

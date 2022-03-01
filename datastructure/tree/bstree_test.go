@@ -20,14 +20,14 @@ func (c *intComparator) Compare(v1, v2 any) int {
 	return 0
 }
 
-func TestBSTree_Insert(t *testing.T) {
+func TestBSTree_InsertNode(t *testing.T) {
 	bstree := NewBSTree(6)
 
 	comparator := &intComparator{}
-	bstree.Insert(7, comparator)
-	bstree.Insert(5, comparator)
-	bstree.Insert(2, comparator)
-	bstree.Insert(4, comparator)
+	bstree.InsertNode(7, comparator)
+	bstree.InsertNode(5, comparator)
+	bstree.InsertNode(2, comparator)
+	bstree.InsertNode(4, comparator)
 
 	bstree.Print()
 }
@@ -38,10 +38,10 @@ func TestBSTree_PreOrderTraverse(t *testing.T) {
 	bstree := NewBSTree(6)
 
 	comparator := &intComparator{}
-	bstree.Insert(7, comparator)
-	bstree.Insert(5, comparator)
-	bstree.Insert(2, comparator)
-	bstree.Insert(4, comparator)
+	bstree.InsertNode(7, comparator)
+	bstree.InsertNode(5, comparator)
+	bstree.InsertNode(2, comparator)
+	bstree.InsertNode(4, comparator)
 
 	acturl := bstree.PreOrderTraverse()
 	t.Log(acturl)
@@ -54,10 +54,10 @@ func TestBSTree_PostOrderTraverse(t *testing.T) {
 	bstree := NewBSTree(6)
 
 	comparator := &intComparator{}
-	bstree.Insert(7, comparator)
-	bstree.Insert(5, comparator)
-	bstree.Insert(2, comparator)
-	bstree.Insert(4, comparator)
+	bstree.InsertNode(7, comparator)
+	bstree.InsertNode(5, comparator)
+	bstree.InsertNode(2, comparator)
+	bstree.InsertNode(4, comparator)
 
 	acturl := bstree.PostOrderTraverse()
 	t.Log(acturl)
@@ -70,10 +70,10 @@ func TestBSTree_InOrderTraverse(t *testing.T) {
 	bstree := NewBSTree(6)
 
 	comparator := &intComparator{}
-	bstree.Insert(7, comparator)
-	bstree.Insert(5, comparator)
-	bstree.Insert(2, comparator)
-	bstree.Insert(4, comparator)
+	bstree.InsertNode(7, comparator)
+	bstree.InsertNode(5, comparator)
+	bstree.InsertNode(2, comparator)
+	bstree.InsertNode(4, comparator)
 
 	acturl := bstree.InOrderTraverse()
 	t.Log(acturl)
