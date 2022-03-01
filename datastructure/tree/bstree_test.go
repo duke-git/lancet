@@ -80,6 +80,24 @@ func TestBSTree_InOrderTraverse(t *testing.T) {
 	assert.Equal([]int{2, 4, 5, 6, 7}, acturl)
 }
 
+func TestBSTree_LevelOrderTraverse(t *testing.T) {
+	assert := internal.NewAssert(t, "TestBSTree_LevelOrderTraverse")
+
+	bstree := NewBSTree(6)
+
+	comparator := &intComparator{}
+	bstree.InsertNode(7, comparator)
+	bstree.InsertNode(5, comparator)
+	bstree.InsertNode(2, comparator)
+	bstree.InsertNode(4, comparator)
+
+	bstree.Print()
+
+	acturl := bstree.LevelOrderTraverse()
+	t.Log(acturl)
+	assert.Equal([]int{6, 5, 7, 2, 4}, acturl)
+}
+
 func TestBSTree_DeletetNode(t *testing.T) {
 	assert := internal.NewAssert(t, "TestBSTree_DeletetNode")
 

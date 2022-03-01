@@ -68,6 +68,24 @@ func inOrderPrint[T any](node *datastructure.TreeNode[T]) {
 	inOrderPrint(node.Right)
 }
 
+func levelOrderTraverse[T any](root *datastructure.TreeNode[T], traversal *[]T) {
+	var q []*datastructure.TreeNode[T] // queue
+	var n *datastructure.TreeNode[T]   // temp node
+
+	q = append(q, root)
+
+	for len(q) != 0 {
+		n, q = q[0], q[1:]
+		*traversal = append(*traversal, n.Data)
+		if n.Left != nil {
+			q = append(q, n.Left)
+		}
+		if n.Right != nil {
+			q = append(q, n.Right)
+		}
+	}
+}
+
 func insertTreeNode[T any](rootNode, newNode *datastructure.TreeNode[T], comparator lancetconstraints.Comparator) {
 	if comparator.Compare(newNode.Data, rootNode.Data) == -1 {
 		if rootNode.Left == nil {
@@ -199,5 +217,8 @@ func calculateDepth[T any](node *datastructure.TreeNode[T], depth int) int {
 }
 
 func max(a, b int) int {
-	return int(math.Max(float64(a), float64(b)))
+	if a > b {
+		return a
+	}
+	return b
 }

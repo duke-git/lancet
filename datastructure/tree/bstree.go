@@ -63,6 +63,13 @@ func (t *BSTree[T]) InOrderTraverse() []T {
 	return inOrderTraverse(t.root)
 }
 
+// LevelOrderTraverse traverse tree node in level order
+func (t *BSTree[T]) LevelOrderTraverse() []T {
+	traversal := make([]T, 0)
+	levelOrderTraverse(t.root, &traversal)
+	return traversal
+}
+
 // Depth returns the calculated depth of a binary saerch tree
 func (t *BSTree[T]) Depth() int {
 	return calculateDepth(t.root, 0)
