@@ -357,3 +357,14 @@ import "github.com/duke-git/lancet/validator"
 - [IsStrongPassword](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsStrongPassword)
 - [IsUrl](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsUrl)
 - [IsWeakPassword](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsWeakPassword)
+
+
+## 如何贡献代码
+
+非常感激任何的代码提交以使lancet的功能越来越强大。创建pull request时请遵守以下规则。
+
+1. Fork lancet仓库。
+2. 创建自己的特性分支。
+3. 提交变更。
+4. Push分支。
+5. 创建新的pull request。

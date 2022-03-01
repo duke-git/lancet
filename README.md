@@ -353,3 +353,14 @@ import "github.com/duke-git/lancet/validator"
 - [IsStrongPassword](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsStrongPassword)
 - [IsUrl](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsUrl)
 - [IsWeakPassword](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsWeakPassword)
+  
+
+## How to Contribute
+
+I really appreciate any code commits which make lancet lib powerful. Please follow the rules below to create your pull request.
+
+1. Fork the repository.
+2. Create your feature branch.
+3. Commit your changes.
+4. Push to the branch
+5. Create new pull request.
