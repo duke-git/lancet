@@ -84,6 +84,38 @@ func insertTreeNode[T any](rootNode, newNode *datastructure.TreeNode[T], compara
 	}
 }
 
+func deleteTreeNode[T any](node *datastructure.TreeNode[T], data T, comparator lancetconstraints.Comparator) *datastructure.TreeNode[T] {
+	if node == nil {
+		return nil
+	}
+	if comparator.Compare(data, node.Data) == -1 {
+		node.Left = deleteTreeNode(node.Left, data, comparator)
+	} else if comparator.Compare(data, node.Data) == 1 {
+		node.Right = deleteTreeNode(node.Right, data, comparator)
+	} else {
+		if node.Left == nil {
+			node = node.Right
+		} else if node.Right == nil {
+			node = node.Left
+		} else {
+			l := node.Right
+			d := inOrderSuccessor(l)
+			d.Left = node.Left
+			return node.Right
+		}
+	}
+
+	return node
+}
+
+func inOrderSuccessor[T any](root *datastructure.TreeNode[T]) *datastructure.TreeNode[T] {
+	cur := root
+	for cur.Left != nil {
+		cur = cur.Left
+	}
+	return cur
+}
+
 func printTreeNodes[T any](nodes []*datastructure.TreeNode[T], level, maxLevel int) {
 	if len(nodes) == 0 || isAllNil(nodes) {
 		return

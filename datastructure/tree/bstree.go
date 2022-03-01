@@ -21,7 +21,7 @@ func NewBSTree[T any](rootData T) *BSTree[T] {
 	return &BSTree[T]{root}
 }
 
-// Insert data into BSTree
+// InsertNode insert data into BSTree
 func (t *BSTree[T]) InsertNode(data T, comparator lancetconstraints.Comparator) {
 	root := t.root
 	newNode := datastructure.NewTreeNode(data)
@@ -30,6 +30,11 @@ func (t *BSTree[T]) InsertNode(data T, comparator lancetconstraints.Comparator) 
 	} else {
 		insertTreeNode(root, newNode, comparator)
 	}
+}
+
+// DeletetNode delete data into BSTree
+func (t *BSTree[T]) DeletetNode(data T, comparator lancetconstraints.Comparator) {
+	deleteTreeNode(t.root, data, comparator)
 }
 
 // NodeLevel get node level in BSTree
