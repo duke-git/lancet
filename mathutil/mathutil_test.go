@@ -59,3 +59,14 @@ func TestRoundToString(t *testing.T) {
 	assert.Equal(RoundToString(0.125, 2), "0.13")
 	assert.Equal(RoundToString(0.125, 3), "0.125")
 }
+
+func TestTruncRound(t *testing.T) {
+	assert := internal.NewAssert(t, "TestTruncRound")
+
+	assert.Equal(TruncRound(0, 0), float64(0))
+	assert.Equal(TruncRound(0, 1), float64(0))
+	assert.Equal(TruncRound(0.124, 2), float64(0.12))
+	assert.Equal(TruncRound(0.125, 2), float64(0.12))
+	assert.Equal(TruncRound(0.125, 3), float64(0.125))
+	assert.Equal(TruncRound(33.33333, 2), float64(33.33))
+}
