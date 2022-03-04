@@ -22,6 +22,8 @@ import (
 ## 目录
 - [Exponent](#Exponent)
 - [Fibonacci](#Fibonacci)
+- [Factorial](#Factorial)
+
 - [Percent](#Percent)
 - [RoundToFloat](#RoundToFloat)
 - [RoundToString](#RoundToString)

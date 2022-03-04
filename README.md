@@ -204,6 +204,7 @@ import "github.com/duke-git/lancet/mathutil"
 #### Function list:
 - [Exponent](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#Exponent)
 - [Fibonacci](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#Fibonacci)
+- [Factorial](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#Factorial)
 - [Percent](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#Percent)
 - [RoundToFloat](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#RoundToFloat)
 - [RoundToString](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#RoundToString)
