@@ -194,6 +194,22 @@ import "github.com/duke-git/lancet/function"
 - [Delay](https://github.com/duke-git/lancet/blob/main/docs/function.md#Delay)
 - [Watcher](https://github.com/duke-git/lancet/blob/main/docs/function.md#Watcher)
 
+
+### Mathutil package implements some functions for math calculation.
+
+```go
+import "github.com/duke-git/lancet/mathutil"
+```
+
+#### Function list:
+- [Exponent](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#Exponent)
+- [Fibonacci](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#Fibonacci)
+- [Percent](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#Percent)
+- [RoundToFloat](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#RoundToFloat)
+- [RoundToString](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#RoundToString)
+- [TruncRound](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#TruncRound)
+
+
 ### Netutil package contains functions to get net information and send http request.
 
 ```go

@@ -195,6 +195,19 @@ import "github.com/duke-git/lancet/function"
 - [Delay](https://github.com/duke-git/lancet/blob/main/docs/function_zh-CN.md#Delay)
 - [Watcher](https://github.com/duke-git/lancet/blob/main/docs/function_zh-CN.md#Watcher)
 
+### mathutil包实现了一些数学计算的函数。
+
+```go
+import "github.com/duke-git/lancet/mathutil"
+```
+
+#### Function list:
+- [Exponent](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#Exponent)
+- [Fibonacci](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#Fibonacci)
+- [Percent](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#Percent)
+- [RoundToFloat](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#RoundToFloat)
+- [RoundToString](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#RoundToString)
+- [TruncRound](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#TruncRound)
 
 ### netutil网络包支持获取ip地址，发送http请求。
 
