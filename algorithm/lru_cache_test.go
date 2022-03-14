@@ -16,4 +16,21 @@ func TestLRUCache(t *testing.T) {
 
 	_, ok := cache.Get(0)
 	asssert.Equal(false, ok)
+
+	v, ok := cache.Get(1)
+	asssert.Equal(true, ok)
+	asssert.Equal(1, v)
+
+	v, ok = cache.Get(2)
+	asssert.Equal(true, ok)
+	asssert.Equal(2, v)
+
+	cache.Put(3, 3)
+	v, ok = cache.Get(1)
+	asssert.Equal(false, ok)
+	asssert.NotEqual(1, v)
+
+	v, ok = cache.Get(3)
+	asssert.Equal(true, ok)
+	asssert.Equal(3, v)
 }

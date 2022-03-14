@@ -17,7 +17,7 @@ func newLruNode[K comparable, V any](key K, value V) *lruNode[K, V] {
 	}
 }
 
-// LRUCache lru cache
+// LRUCache lru cache (thread unsafe)
 type LRUCache[K comparable, V any] struct {
 	cache    map[K]*lruNode[K, V]
 	head     *lruNode[K, V]
@@ -29,7 +29,7 @@ type LRUCache[K comparable, V any] struct {
 // NewLRUCache return a LRUCache pointer
 func NewLRUCache[K comparable, V any](capacity int) *LRUCache[K, V] {
 	return &LRUCache[K, V]{
-		cache:    make(map[K]*lruNode[K, V]),
+		cache:    make(map[K]*lruNode[K, V], capacity),
 		head:     nil,
 		tail:     nil,
 		capacity: capacity,
@@ -42,58 +42,61 @@ func (l *LRUCache[K, V]) Get(key K) (V, bool) {
 	var value V
 
 	node, ok := l.cache[key]
-	if node == nil || !ok {
-		return value, false
+	if ok {
+		l.moveToHead(node)
+		return node.value, true
 	}
 
-	l.moveToHead(node)
-
-	return node.value, true
+	return value, false
 }
 
 // Put value of key into lru cache
 func (l *LRUCache[K, V]) Put(key K, value V) {
 	node, ok := l.cache[key]
-	if node == nil || !ok {
+	if !ok {
 		newNode := newLruNode(key, value)
 		l.cache[key] = newNode
 		l.addNode(newNode)
 
-		l.length++
-		if l.length > l.capacity {
-			tail := l.popTail()
-			delete(l.cache, tail.key)
-			l.length--
+		if len(l.cache) > l.capacity {
+			oldKey := l.deleteNode(l.head)
+			delete(l.cache, oldKey)
 		}
+	} else {
+		node.value = value
+		l.moveToHead(node)
 	}
-
-	node.value = value
-	l.moveToHead(node)
+	l.length = len(l.cache)
 }
 
 func (l *LRUCache[K, V]) addNode(node *lruNode[K, V]) {
-	node.pre = l.head
-	node.next = l.head.next
-
-	l.head.next.pre = node
-	l.head.next = node
+	if l.tail != nil {
+		l.tail.next = node
+		node.pre = l.tail
+		node.next = nil
+	}
+	l.tail = node
+	if l.head == nil {
+		l.head = node
+	}
 }
 
-func (l *LRUCache[K, V]) deleteNode(node *lruNode[K, V]) {
-	pre := node.pre
-	next := node.next
-
-	pre.next = next
-	next.pre = pre
+func (l *LRUCache[K, V]) deleteNode(node *lruNode[K, V]) K {
+	if node == l.tail {
+		l.tail = l.tail.pre
+	} else if node == l.head {
+		l.head = l.head.next
+	} else {
+		node.pre.next = node.next
+		node.next.pre = node.pre
+	}
+	return node.key
 }
 
 func (l *LRUCache[K, V]) moveToHead(node *lruNode[K, V]) {
+	if l.tail == node {
+		return
+	}
 	l.deleteNode(node)
 	l.addNode(node)
-}
-
-func (l *LRUCache[K, V]) popTail() *lruNode[K, V] {
-	node := l.tail.pre
-	l.deleteNode(node)
-	return node
 }
