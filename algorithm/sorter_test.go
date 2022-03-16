@@ -14,10 +14,10 @@ type people struct {
 }
 
 // PeopleAageComparator sort people slice by age field
-type peopleAageComparator struct{}
+type peopleAgeComparator struct{}
 
 // Compare implements github.com/duke-git/lancet/lancetconstraints/constraints.go/Comparator
-func (pc *peopleAageComparator) Compare(v1 interface{}, v2 interface{}) int {
+func (pc *peopleAgeComparator) Compare(v1 interface{}, v2 interface{}) int {
 	p1, _ := v1.(people)
 	p2, _ := v2.(people)
 
@@ -65,7 +65,7 @@ var intSlice = []int{2, 1, 5, 3, 6, 4}
 func TestBubbleSortForStructSlice(t *testing.T) {
 	asssert := internal.NewAssert(t, "TestBubbleSortForStructSlice")
 
-	comparator := &peopleAageComparator{}
+	comparator := &peopleAgeComparator{}
 	sortedPeopleByAge := BubbleSort(peoples, comparator)
 	t.Log(sortedPeopleByAge)
 
@@ -88,7 +88,7 @@ func TestBubbleSortForIntSlice(t *testing.T) {
 func TestInsertionSort(t *testing.T) {
 	asssert := internal.NewAssert(t, "TestInsertionSort")
 
-	comparator := &peopleAageComparator{}
+	comparator := &peopleAgeComparator{}
 	sortedPeopleByAge := SelectionSort(peoples, comparator)
 	t.Log(sortedPeopleByAge)
 
@@ -101,7 +101,7 @@ func TestInsertionSort(t *testing.T) {
 func TestSelectionSort(t *testing.T) {
 	asssert := internal.NewAssert(t, "TestSelectionSort")
 
-	comparator := &peopleAageComparator{}
+	comparator := &peopleAgeComparator{}
 	sortedPeopleByAge := SelectionSort(peoples, comparator)
 	t.Log(sortedPeopleByAge)
 
@@ -114,7 +114,7 @@ func TestSelectionSort(t *testing.T) {
 func TestShellSort(t *testing.T) {
 	asssert := internal.NewAssert(t, "TestShellSort")
 
-	comparator := &peopleAageComparator{}
+	comparator := &peopleAgeComparator{}
 	sortedPeopleByAge := ShellSort(peoples, comparator)
 	t.Log(sortedPeopleByAge)
 
@@ -127,7 +127,7 @@ func TestShellSort(t *testing.T) {
 func TestQuickSort(t *testing.T) {
 	asssert := internal.NewAssert(t, "TestQuickSort")
 
-	comparator := &peopleAageComparator{}
+	comparator := &peopleAgeComparator{}
 	sortedPeopleByAge := QuickSort(peoples, 0, len(peoples)-1, comparator)
 	t.Log(sortedPeopleByAge)
 
@@ -140,7 +140,7 @@ func TestQuickSort(t *testing.T) {
 func TestHeapSort(t *testing.T) {
 	asssert := internal.NewAssert(t, "TestHeapSort")
 
-	comparator := &peopleAageComparator{}
+	comparator := &peopleAgeComparator{}
 	sortedPeopleByAge := HeapSort(peoples, comparator)
 	t.Log(sortedPeopleByAge)
 
@@ -153,7 +153,7 @@ func TestHeapSort(t *testing.T) {
 func TestMergeSort(t *testing.T) {
 	asssert := internal.NewAssert(t, "TestMergeSort")
 
-	comparator := &peopleAageComparator{}
+	comparator := &peopleAgeComparator{}
 	sortedPeopleByAge := MergeSort(peoples, 0, len(peoples)-1, comparator)
 	t.Log(sortedPeopleByAge)
 
@@ -166,7 +166,7 @@ func TestMergeSort(t *testing.T) {
 func TestCountSort(t *testing.T) {
 	asssert := internal.NewAssert(t, "TestCountSort")
 
-	comparator := &peopleAageComparator{}
+	comparator := &peopleAgeComparator{}
 	sortedPeopleByAge := CountSort(peoples, comparator)
 	t.Log(sortedPeopleByAge)
 

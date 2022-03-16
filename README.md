@@ -62,6 +62,26 @@ func main() {
 ```
 
 ## API Documentation
+
+### Algorithm package implements some basic algorithm. eg. sort, search.
+
+```go
+import "github.com/duke-git/lancet/algorithm"
+```
+#### Function list:
+- [BubbleSort](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#BubbleSort)
+- [CountSort](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#CountSort)
+- [InsertionSort](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#InsertionSort)
+- [MergeSort](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#MergeSort)
+- [QuickSort](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#QuickSort)
+- [SelectionSort](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#SelectionSort)
+- [ShellSort](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#ShellSort)
+- [BinarySearch](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#BinarySearch)
+- [BinaryIterativeSearch](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#BinaryIterativeSearch)
+- [LinearSearch](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#LinearSearch)
+- [LRUCache](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#LRUCache)
+
+
 ### Convertor package contains some functions for data convertion.
 
 ```go

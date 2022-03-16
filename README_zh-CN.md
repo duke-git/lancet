@@ -62,6 +62,25 @@ func main() {
 ```
 
 ## API文档
+
+### algorithm算法包实现一些基本算法。eg. sort, search.
+
+```go
+import "github.com/duke-git/lancet/algorithm"
+```
+#### Function list:
+- [BubbleSort](https://github.com/duke-git/lancet/blob/main/docs/algorithm_zh-CN.md#BubbleSort)
+- [CountSort](https://github.com/duke-git/lancet/blob/main/docs/algorithm_zh-CN.md#CountSort)
+- [InsertionSort](https://github.com/duke-git/lancet/blob/main/docs/algorithm_zh-CN.md#InsertionSort)
+- [MergeSort](https://github.com/duke-git/lancet/blob/main/docs/algorithm_zh-CN.md#MergeSort)
+- [QuickSort](https://github.com/duke-git/lancet/blob/main/docs/algorithm_zh-CN.md#QuickSort)
+- [SelectionSort](https://github.com/duke-git/lancet/blob/main/docs/algorithm_zh-CN.md#SelectionSort)
+- [ShellSort](https://github.com/duke-git/lancet/blob/main/docs/algorithm_zh-CN.md#ShellSort)
+- [BinarySearch](https://github.com/duke-git/lancet/blob/main/docs/algorithm_zh-CN.md#BinarySearch)
+- [BinaryIterativeSearch](https://github.com/duke-git/lancet/blob/main/docs/algorithm_zh-CN.md#BinaryIterativeSearch)
+- [LinearSearch](https://github.com/duke-git/lancet/blob/main/docs/algorithm_zh-CN.md#LinearSearch)
+- [LRUCache](https://github.com/duke-git/lancet/blob/main/docs/algorithm_zh-CN.md#LRUCache)
+
 ### convertor转换器包支持一些常见的数据类型转换。
 
 ```go
