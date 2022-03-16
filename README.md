@@ -29,7 +29,7 @@ English | [简体中文](./README_zh-CN.md)
 - 🌍 Unit test for every exported function.
 
 ## Installation
-<b style="color:red;">note:</b> 
+### Note:
 
 1. <b>For users who use go1.18 and above, it is recommended to install lancet v2.x.x. Cause v2.x.x rewrite all functions with generics of go1.18. Default installation will be latest version of v2.x.x </b>
 ```go
@@ -38,7 +38,7 @@ go get github.com/duke-git/lancet // Default installation will be latest version
 
 2. <b>For users who use version below go1.18, you should install v1.x.x. now latest v1 is v1.2.6. </b>
 ```go
-go get github.com/duke-git/lancet@1.2.6 // below go1.18, install latest version of v1.x.x
+go get github.com/duke-git/lancet@v1.2.6 // below go1.18, install latest version of v1.x.x
 ```
 
 ## Usage

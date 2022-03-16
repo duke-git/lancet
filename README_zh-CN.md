@@ -29,17 +29,16 @@
 - 🌍 所有导出函数单元测试覆盖率100%
 
 ## 安装
-
-<b style="color:red;">note:</b> 
+### Note: 
 1. <b>对于使用go1.18及以上的用户，建议安装lancet v2.x.x。 因为v2.x.x用go1.18的泛型重写了所有函数。 默认安装将是最新版本的v2.x.x</b>
 
 ```go
-go get github.com/duke-git/lancet //默认安装最新版本的v2.x.x
+go get github.com/duke-git/lancet //默认安装v2最新版本v2.x.x
 ```
 
-2. <b>使用go1.18以下版本的用户，必须安装v1.x.x。 目前最新的v1版本是v1.2.6。 </b>
+2. <b>使用go1.18以下版本的用户，必须安装v1.x.x。目前最新的v1版本是v1.2.6。</b>
 ```go
-go get github.com/duke-git/lancet@1.2.6 // 使用go1.18以下版本, 必须按照v1最新版本
+go get github.com/duke-git/lancet@v1.2.6 // 使用go1.18以下版本, 必须安装v1.x.x版本
 ```
 
 ## 用法
