@@ -28,6 +28,7 @@ import (
 - [Count](#Count)
 - [Difference](#Difference)
 - [DifferenceBy](#DifferenceBy)
+- [DifferenceWith](#DifferenceWith)
 - [DeleteAt](#DeleteAt)
 - [Drop](#Drop)
 - [Every](#Every)
@@ -268,6 +269,34 @@ func main() {
 ```
 
 
+
+### <span id="DifferenceWith">DifferenceWith</span>
+<p>DifferenceWith 接受比较器，该比较器被调用以将切片的元素与值进行比较。 结果值的顺序和引用由第一个切片确定</p>
+
+<b>函数签名:</b>
+
+```go
+func DifferenceWith[T any](slice []T, comparedSlice []T, comparator func(value, otherValue T) bool) []T
+```
+<b>例子:</b>
+
+```go
+import (
+	"fmt"
+	"github.com/duke-git/lancet/slice"
+)
+
+func main() {
+	s1 := []int{1, 2, 3, 4, 5}
+	s2 := []int{4, 5, 6, 7, 8}
+	isDouble := func(v1, v2 int) bool {
+		return v2 == 2*v1
+	}
+
+	res := slice.DifferenceWith(s1, s2, isDouble)
+	fmt.Println(res) //[]int{1, 5}
+}
+```
 
 
 ### <span id="DeleteAt">DeleteAt</span>

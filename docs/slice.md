@@ -28,6 +28,7 @@ import (
 - [Count](#Count)
 - [Difference](#Difference)
 - [DifferenceBy](#DifferenceBy)
+- [DifferenceWith](#DifferenceWith)
 - [DeleteAt](#DeleteAt)
 - [Drop](#Drop)
 - [Every](#Every)
@@ -268,7 +269,33 @@ func main() {
 ```
 
 
+### <span id="DifferenceWith">DifferenceWith</span>
+<p>DifferenceWith accepts comparator which is invoked to compare elements of slice to values. The order and references of result values are determined by the first slice.</p>
 
+<b>Signature:</b>
+
+```go
+func DifferenceWith[T any](slice []T, comparedSlice []T, comparator func(value, otherValue T) bool) []T
+```
+<b>Example:</b>
+
+```go
+import (
+	"fmt"
+	"github.com/duke-git/lancet/slice"
+)
+
+func main() {
+	s1 := []int{1, 2, 3, 4, 5}
+	s2 := []int{4, 5, 6, 7, 8}
+	isDouble := func(v1, v2 int) bool {
+		return v2 == 2*v1
+	}
+
+	res := slice.DifferenceWith(s1, s2, isDouble)
+	fmt.Println(res) //[]int{1, 5}
+}
+```
 
 ### <span id="DeleteAt">DeleteAt</span>
 <p>Delete the element of slice from start index to end index - 1.</p>
