@@ -5,10 +5,10 @@ cryptor加密包支持数据加密和解密，获取md5，hash值。支持base64
 
 ## 源码:
 
-- [https://github.com/duke-git/lancet/blob/main/cryptor/aes.go](https://github.com/duke-git/lancet/blob/main/cryptor/aes.go)
-- [https://github.com/duke-git/lancet/blob/main/cryptor/des.go](https://github.com/duke-git/lancet/blob/main/cryptor/des.go)
-- [https://github.com/duke-git/lancet/blob/main/cryptor/basic.go](https://github.com/duke-git/lancet/blob/main/cryptor/basic.go)
-- [https://github.com/duke-git/lancet/blob/main/cryptor/rsa.go](https://github.com/duke-git/lancet/blob/main/cryptor/rsa.go)
+- [https://github.com/duke-git/lancet/blob/v1/cryptor/aes.go](https://github.com/duke-git/lancet/blob/v1/cryptor/aes.go)
+- [https://github.com/duke-git/lancet/blob/v1/cryptor/des.go](https://github.com/duke-git/lancet/blob/v1/cryptor/des.go)
+- [https://github.com/duke-git/lancet/blob/v1/cryptor/basic.go](https://github.com/duke-git/lancet/blob/v1/cryptor/basic.go)
+- [https://github.com/duke-git/lancet/blob/v1/cryptor/rsa.go](https://github.com/duke-git/lancet/blob/v1/cryptor/rsa.go)
 
 <div STYLE="page-break-after: always;"></div>
 

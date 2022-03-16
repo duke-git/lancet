@@ -5,7 +5,7 @@ Package retry is for executing a function repeatedly until it was successful or 
 
 ## Source:
 
-[https://github.com/duke-git/lancet/blob/main/retry/retry.go](https://github.com/duke-git/lancet/blob/main/retry/retry.go)
+[https://github.com/duke-git/lancet/blob/v1/retry/retry.go](https://github.com/duke-git/lancet/blob/v1/retry/retry.go)
 
 
 <div STYLE="page-break-after: always;"></div>

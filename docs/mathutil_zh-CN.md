@@ -5,7 +5,7 @@ mathutil包实现了一些数学计算的函数.
 
 ## 源码:
 
-[https://github.com/duke-git/lancet/blob/main/mathutil/mathutil.go](https://github.com/duke-git/lancet/blob/main/mathutil/mathutil.go)
+[https://github.com/duke-git/lancet/blob/v1/mathutil/mathutil.go](https://github.com/duke-git/lancet/blob/v1/mathutil/mathutil.go)
 
 
 <div STYLE="page-break-after: always;"></div>

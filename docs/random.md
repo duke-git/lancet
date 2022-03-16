@@ -5,7 +5,7 @@ Package random implements some basic functions to generate random int and string
 
 ## Source:
 
-[https://github.com/duke-git/lancet/blob/main/random/random.go](https://github.com/duke-git/lancet/blob/main/random/random.go)
+[https://github.com/duke-git/lancet/blob/v1/random/random.go](https://github.com/duke-git/lancet/blob/v1/random/random.go)
 
 
 <div STYLE="page-break-after: always;"></div>

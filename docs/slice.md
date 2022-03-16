@@ -5,7 +5,7 @@ Package slice implements some functions to manipulate slice.
 
 ## Source:
 
-[https://github.com/duke-git/lancet/blob/main/slice/slice.go](https://github.com/duke-git/lancet/blob/main/slice/slice.go)
+[https://github.com/duke-git/lancet/blob/v1/slice/slice.go](https://github.com/duke-git/lancet/blob/v1/slice/slice.go)
 
 
 <div STYLE="page-break-after: always;"></div>

@@ -5,7 +5,7 @@ validator验证器包，包含常用字符串格式验证函数。
 
 ## 源码:
 
-[https://github.com/duke-git/lancet/blob/main/validator/validator.go](https://github.com/duke-git/lancet/blob/main/validator/validator.go)
+[https://github.com/duke-git/lancet/blob/v1/validator/validator.go](https://github.com/duke-git/lancet/blob/v1/validator/validator.go)
 
 
 <div STYLE="page-break-after: always;"></div>

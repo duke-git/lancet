@@ -5,7 +5,7 @@ Package convertor contains some functions for data type convertion.
 
 ## Source:
 
-[https://github.com/duke-git/lancet/blob/main/convertor/convertor.go](https://github.com/duke-git/lancet/blob/main/convertor/convertor.go)
+[https://github.com/duke-git/lancet/blob/v1/convertor/convertor.go](https://github.com/duke-git/lancet/blob/v1/convertor/convertor.go)
 
 <div STYLE="page-break-after: always;"></div>
 
