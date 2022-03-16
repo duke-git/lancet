@@ -4,7 +4,7 @@
 <br/>
 
 ![Go version](https://img.shields.io/badge/go-%3E%3D1.16<recommend>-9cf)
-[![Release](https://img.shields.io/badge/release-1.2.6-green.svg)](https://github.com/duke-git/lancet/releases)
+[![Release](https://img.shields.io/badge/release-2.0.0-green.svg)](https://github.com/duke-git/lancet/releases)
 [![GoDoc](https://godoc.org/github.com//duke-git/lancet?status.svg)](https://pkg.go.dev/github.com/duke-git/lancet)
 [![Go Report Card](https://goreportcard.com/badge/github.com/duke-git/lancet)](https://goreportcard.com/report/github.com/duke-git/lancet)
 [![test](https://github.com/duke-git/lancet/actions/workflows/codecov.yml/badge.svg?branch=main&event=push)](https://github.com/duke-git/lancet/actions/workflows/codecov.yml)
@@ -24,14 +24,22 @@
 ## 特性
 
 - 👏 全面、高效、可复用
-- 💪 180+常用go工具函数，支持string、slice、datetime、net、crypt...
+- 💪 250+常用go工具函数，支持string、slice、datetime、net、crypt...
 - 💅 只依赖go标准库
 - 🌍 所有导出函数单元测试覆盖率100%
 
 ## 安装
 
+<b style="color:red;">note:</b> 
+1. <b>对于使用go1.18及以上的用户，建议安装lancet v2.x.x。 因为v2.x.x用go1.18的泛型重写了所有函数。 默认安装将是最新版本的v2.x.x</b>
+
 ```go
-go get github.com/duke-git/lancet
+go get github.com/duke-git/lancet //默认安装最新版本的v2.x.x
+```
+
+2. <b>使用go1.18以下版本的用户，必须安装v1.x.x。 目前最新的v1版本是v1.2.6。 </b>
+```go
+go get github.com/duke-git/lancet@1.2.6 // 使用go1.18以下版本, 必须按照v1最新版本
 ```
 
 ## 用法
@@ -393,8 +401,7 @@ import "github.com/duke-git/lancet/validator"
 - [IsWeakPassword](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsWeakPassword)
 
 validator.md#IsWeakPassword)
-### 14. xerror
-xerror包实现一些错误处理函数
+### xerror包实现一些错误处理函数
 
 ```go
 import "github.com/duke-git/lancet/xerror"

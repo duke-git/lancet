@@ -4,7 +4,7 @@
 <br/>
 
 ![Go version](https://img.shields.io/badge/go-%3E%3D1.16<recommend>-9cf)
-[![Release](https://img.shields.io/badge/release-1.2.6-green.svg)](https://github.com/duke-git/lancet/releases)
+[![Release](https://img.shields.io/badge/release-2.0.0-green.svg)](https://github.com/duke-git/lancet/releases)
 [![GoDoc](https://godoc.org/github.com//duke-git/lancet?status.svg)](https://pkg.go.dev/github.com/duke-git/lancet)
 [![Go Report Card](https://goreportcard.com/badge/github.com/duke-git/lancet)](https://goreportcard.com/report/github.com/duke-git/lancet)
 [![test](https://github.com/duke-git/lancet/actions/workflows/codecov.yml/badge.svg?branch=main&event=push)](https://github.com/duke-git/lancet/actions/workflows/codecov.yml)
@@ -24,14 +24,21 @@ English | [简体中文](./README_zh-CN.md)
 ## Feature
 
 - 👏 Comprehensive, efficient and reusable.
-- 💪 180+ go util functions, support string, slice, datetime, net, crypt...
+- 💪 250+ go util functions, support string, slice, datetime, net, crypt...
 - 💅 Only depend on the go standard library.
 - 🌍 Unit test for every exported function.
 
 ## Installation
+<b style="color:red;">note:</b> 
 
+1. <b>For users who use go1.18 and above, it is recommended to install lancet v2.x.x. Cause v2.x.x rewrite all functions with generics of go1.18. Default installation will be latest version of v2.x.x </b>
 ```go
-go get github.com/duke-git/lancet
+go get github.com/duke-git/lancet // Default installation will be latest version of v2.x.x
+```
+
+2. <b>For users who use version below go1.18, you should install v1.x.x. now latest v1 is v1.2.6. </b>
+```go
+go get github.com/duke-git/lancet@1.2.6 // below go1.18, install latest version of v1.x.x
 ```
 
 ## Usage
@@ -390,8 +397,7 @@ import "github.com/duke-git/lancet/validator"
 - [IsStrongPassword](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsStrongPassword)
 - [IsUrl](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsUrl)
 - [IsWeakPassword](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsWeakPassword)
-### 14. xerror
-xerror package implements helpers for errors.
+### xerror package implements helpers for errors.
 
 ```go
 import "github.com/duke-git/lancet/xerror"
