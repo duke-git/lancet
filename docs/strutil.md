@@ -237,7 +237,7 @@ func main() {
 <b>Signature:</b>
 
 ```go
-func IsString(v interface{}) bool
+func IsString(v any) bool
 ```
 <b>Example:</b>
 

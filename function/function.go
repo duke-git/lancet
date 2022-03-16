@@ -10,11 +10,11 @@ import (
 )
 
 // After creates a function that invokes func once it's called n or more times
-func After(n int, fn interface{}) func(args ...interface{}) []reflect.Value {
+func After(n int, fn any) func(args ...any) []reflect.Value {
 	// Catch programming error while constructing the closure
 	mustBeFunction(fn)
 
-	return func(args ...interface{}) []reflect.Value {
+	return func(args ...any) []reflect.Value {
 		n--
 		if n < 1 {
 			return unsafeInvokeFunc(fn, args...)
@@ -24,11 +24,11 @@ func After(n int, fn interface{}) func(args ...interface{}) []reflect.Value {
 }
 
 // Before creates a function that invokes func once it's called less than n times
-func Before(n int, fn interface{}) func(args ...interface{}) []reflect.Value {
+func Before(n int, fn any) func(args ...any) []reflect.Value {
 	// Catch programming error while constructing the closure
 	mustBeFunction(fn)
 	var res []reflect.Value
-	return func(args ...interface{}) []reflect.Value {
+	return func(args ...any) []reflect.Value {
 		if n > 0 {
 			res = unsafeInvokeFunc(fn, args...)
 		}
@@ -40,20 +40,20 @@ func Before(n int, fn interface{}) func(args ...interface{}) []reflect.Value {
 	}
 }
 
-// Fn is for curry function which is func(...interface{}) interface{}
-type Fn func(...interface{}) interface{}
+// Fn is for curry function which is func(...any) any
+type Fn func(...any) any
 
 // Curry make a curry function
-func (f Fn) Curry(i interface{}) func(...interface{}) interface{} {
-	return func(values ...interface{}) interface{} {
-		v := append([]interface{}{i}, values...)
+func (f Fn) Curry(i any) func(...any) any {
+	return func(values ...any) any {
+		v := append([]any{i}, values...)
 		return f(v...)
 	}
 }
 
 // Compose compose the functions from right to left
-func Compose(fnList ...func(...interface{}) interface{}) func(...interface{}) interface{} {
-	return func(s ...interface{}) interface{} {
+func Compose(fnList ...func(...any) any) func(...any) any {
+	return func(s ...any) any {
 		f := fnList[0]
 		restFn := fnList[1:]
 
@@ -66,7 +66,7 @@ func Compose(fnList ...func(...interface{}) interface{}) func(...interface{}) in
 }
 
 // Delay make the function execution after delayed time
-func Delay(delay time.Duration, fn interface{}, args ...interface{}) {
+func Delay(delay time.Duration, fn any, args ...any) {
 	// Catch programming error while constructing the closure
 	mustBeFunction(fn)
 
@@ -95,7 +95,7 @@ func Debounced(fn func(), duration time.Duration) func() {
 }
 
 // Schedule invoke function every duration time, util close the returned bool chan
-func Schedule(d time.Duration, fn interface{}, args ...interface{}) chan bool {
+func Schedule(d time.Duration, fn any, args ...any) chan bool {
 	// Catch programming error while constructing the closure
 	mustBeFunction(fn)
 

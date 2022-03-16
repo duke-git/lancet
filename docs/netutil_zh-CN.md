@@ -45,7 +45,7 @@ import (
 <b>函数签名:</b>
 
 ```go
-func ConvertMapToQueryString(param map[string]interface{}) string
+func ConvertMapToQueryString(param map[string]any) string
 ```
 <b>例子:</b>
 
@@ -58,7 +58,7 @@ import (
 )
 
 func main() {
-	var m = map[string]interface{}{
+	var m = map[string]any{
 		"c": 3,
 		"a": 1,
 		"b": 2,
@@ -235,10 +235,10 @@ func main() {
 
 ```go
 // params[0] http请求header，类型必须是http.Header或者map[string]string
-// params[1] http查询字符串，类型必须是url.Values或者map[string]interface{}
+// params[1] http查询字符串，类型必须是url.Values或者map[string]any
 // params[2] post请求体，类型必须是[]byte
 // params[3] http client，类型必须是http.Client
-func HttpGet(url string, params ...interface{}) (*http.Response, error)
+func HttpGet(url string, params ...any) (*http.Response, error)
 ```
 <b>例子:</b>
 
@@ -277,10 +277,10 @@ func main() {
 
 ```go
 // params[0] http请求header，类型必须是http.Header或者map[string]string
-// params[1] http查询字符串，类型必须是url.Values或者map[string]interface{}
+// params[1] http查询字符串，类型必须是url.Values或者map[string]any
 // params[2] post请求体，类型必须是[]byte
 // params[3] http client，类型必须是http.Client
-func HttpPost(url string, params ...interface{}) (*http.Response, error)
+func HttpPost(url string, params ...any) (*http.Response, error)
 ```
 <b>例子:</b>
 
@@ -326,10 +326,10 @@ func main() {
 
 ```go
 // params[0] http请求header，类型必须是http.Header或者map[string]string
-// params[1] http查询字符串，类型必须是url.Values或者map[string]interface{}
+// params[1] http查询字符串，类型必须是url.Values或者map[string]any
 // params[2] post请求体，类型必须是[]byte
 // params[3] http client，类型必须是http.Client
-func HttpPut(url string, params ...interface{}) (*http.Response, error)
+func HttpPut(url string, params ...any) (*http.Response, error)
 ```
 <b>Example:</b>
 
@@ -376,10 +376,10 @@ func main() {
 
 ```go
 // params[0] http请求header，类型必须是http.Header或者map[string]string
-// params[1] http查询字符串，类型必须是url.Values或者map[string]interface{}
+// params[1] http查询字符串，类型必须是url.Values或者map[string]any
 // params[2] post请求体，类型必须是[]byte
 // params[3] http client，类型必须是http.Client
-func HttpDelete(url string, params ...interface{}) (*http.Response, error)
+func HttpDelete(url string, params ...any) (*http.Response, error)
 ```
 <b>例子:</b>
 
@@ -415,10 +415,10 @@ func main() {
 
 ```go
 // params[0] http请求header，类型必须是http.Header或者map[string]string
-// params[1] http查询字符串，类型必须是url.Values或者map[string]interface{}
+// params[1] http查询字符串，类型必须是url.Values或者map[string]any
 // params[2] post请求体，类型必须是[]byte
 // params[3] http client，类型必须是http.Client
-func HttpPatch(url string, params ...interface{}) (*http.Response, error)
+func HttpPatch(url string, params ...any) (*http.Response, error)
 ```
 <b>例子:</b>
 
@@ -464,7 +464,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func ParseHttpResponse(resp *http.Response, obj interface{}) error
+func ParseHttpResponse(resp *http.Response, obj any) error
 ```
 <b>例子:</b>
 

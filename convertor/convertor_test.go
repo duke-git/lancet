@@ -36,7 +36,7 @@ func TestToBool(t *testing.T) {
 func TestToBytes(t *testing.T) {
 	assert := internal.NewAssert(t, "TestToBytes")
 
-	cases := []interface{}{
+	cases := []any{
 		0,
 		false,
 		"1",
@@ -55,7 +55,7 @@ func TestToBytes(t *testing.T) {
 func TestToInt(t *testing.T) {
 	assert := internal.NewAssert(t, "TestToInt")
 
-	cases := []interface{}{"123", "-123", 123,
+	cases := []any{"123", "-123", 123,
 		uint(123), uint8(123), uint16(123), uint32(123), uint64(123),
 		float32(12.3), float64(12.3),
 		"abc", false, "111111111111111111111111111111111111111"}
@@ -71,7 +71,7 @@ func TestToInt(t *testing.T) {
 func TestToFloat(t *testing.T) {
 	assert := internal.NewAssert(t, "TestToFloat")
 
-	cases := []interface{}{
+	cases := []any{
 		"", "-1", "-.11", "1.23e3", ".123e10", "abc",
 		int(0), int8(1), int16(-1), int32(123), int64(123),
 		uint(123), uint8(123), uint16(123), uint32(123), uint64(123),
@@ -99,7 +99,7 @@ func TestToString(t *testing.T) {
 	}
 	aStruct := TestStruct{Name: "TestStruct"}
 
-	cases := []interface{}{
+	cases := []any{
 		"", nil,
 		int(0), int8(1), int16(-1), int32(123), int64(123),
 		uint(123), uint8(123), uint16(123), uint32(123), uint64(123),
@@ -147,7 +147,7 @@ func TestStructToMap(t *testing.T) {
 		100,
 	}
 	pm, _ := StructToMap(p)
-	var expected = map[string]interface{}{"name": "test"}
+	var expected = map[string]any{"name": "test"}
 	assert.Equal(expected, pm)
 }
 

@@ -138,7 +138,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func ToBytes(data interface{}) ([]byte, error)
+func ToBytes(data any) ([]byte, error)
 ```
 <b>列子:</b>
 
@@ -201,7 +201,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func ToFloat(value interface{}) (float64, error)
+func ToFloat(value any) (float64, error)
 ```
 <b>列子:</b>
 
@@ -234,7 +234,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func ToInt(value interface{}) (int64, error)
+func ToInt(value any) (int64, error)
 ```
 <b>例子:</b>
 
@@ -267,7 +267,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func ToJson(value interface{}) (string, error)
+func ToJson(value any) (string, error)
 ```
 <b>列子:</b>
 
@@ -295,7 +295,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func ToString(value interface{}) string
+func ToString(value any) string
 ```
 <b>例子:</b>
 
@@ -323,7 +323,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func StructToMap(value interface{}) (map[string]interface{}, error)
+func StructToMap(value any) (map[string]any, error)
 ```
 <b>列子:</b>
 

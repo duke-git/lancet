@@ -263,7 +263,7 @@ func FileMode(path string) (fs.FileMode, error) {
 
 // MiMeType return file mime type
 // param `file` should be string(file path) or *os.File
-func MiMeType(file interface{}) string {
+func MiMeType(file any) string {
 	var mediatype string
 
 	readBuffer := func(f *os.File) ([]byte, error) {

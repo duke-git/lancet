@@ -14,7 +14,7 @@ func commaString(s string) string {
 	return commaString(s[:len(s)-3]) + "," + commaString(s[len(s)-3:])
 }
 
-func numString(value interface{}) string {
+func numString(value any) string {
 	switch reflect.TypeOf(value).Kind() {
 	case reflect.Int, reflect.Int64, reflect.Float32, reflect.Float64:
 		return fmt.Sprintf("%v", value)

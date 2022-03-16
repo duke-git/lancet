@@ -46,7 +46,7 @@ import (
 <b>Signature:</b>
 
 ```go
-func ConvertMapToQueryString(param map[string]interface{}) string
+func ConvertMapToQueryString(param map[string]any) string
 ```
 <b>Example:</b>
 
@@ -59,7 +59,7 @@ import (
 )
 
 func main() {
-	var m = map[string]interface{}{
+	var m = map[string]any{
 		"c": 3,
 		"a": 1,
 		"b": 2,
@@ -237,10 +237,10 @@ func main() {
 
 ```go
 // params[0] is header which type should be http.Header or map[string]string,
-// params[1] is query param which type should be url.Values or map[string]interface{},
+// params[1] is query param which type should be url.Values or map[string]any,
 // params[2] is post body which type should be []byte.
 // params[3] is http client which type should be http.Client.
-func HttpGet(url string, params ...interface{}) (*http.Response, error)
+func HttpGet(url string, params ...any) (*http.Response, error)
 ```
 <b>Example:</b>
 
@@ -279,10 +279,10 @@ func main() {
 
 ```go
 // params[0] is header which type should be http.Header or map[string]string,
-// params[1] is query param which type should be url.Values or map[string]interface{},
+// params[1] is query param which type should be url.Values or map[string]any,
 // params[2] is post body which type should be []byte.
 // params[3] is http client which type should be http.Client.
-func HttpPost(url string, params ...interface{}) (*http.Response, error)
+func HttpPost(url string, params ...any) (*http.Response, error)
 ```
 <b>Example:</b>
 
@@ -328,10 +328,10 @@ func main() {
 
 ```go
 // params[0] is header which type should be http.Header or map[string]string,
-// params[1] is query param which type should be url.Values or map[string]interface{},
+// params[1] is query param which type should be url.Values or map[string]any,
 // params[2] is post body which type should be []byte.
 // params[3] is http client which type should be http.Client.
-func HttpPut(url string, params ...interface{}) (*http.Response, error)
+func HttpPut(url string, params ...any) (*http.Response, error)
 ```
 <b>Example:</b>
 
@@ -378,10 +378,10 @@ func main() {
 
 ```go
 // params[0] is header which type should be http.Header or map[string]string,
-// params[1] is query param which type should be url.Values or map[string]interface{},
+// params[1] is query param which type should be url.Values or map[string]any,
 // params[2] is post body which type should be []byte.
 // params[3] is http client which type should be http.Client.
-func HttpDelete(url string, params ...interface{}) (*http.Response, error)
+func HttpDelete(url string, params ...any) (*http.Response, error)
 ```
 <b>Example:</b>
 
@@ -417,10 +417,10 @@ func main() {
 
 ```go
 // params[0] is header which type should be http.Header or map[string]string,
-// params[1] is query param which type should be url.Values or map[string]interface{},
+// params[1] is query param which type should be url.Values or map[string]any,
 // params[2] is post body which type should be []byte.
 // params[3] is http client which type should be http.Client.
-func HttpPatch(url string, params ...interface{}) (*http.Response, error)
+func HttpPatch(url string, params ...any) (*http.Response, error)
 ```
 <b>Example:</b>
 
@@ -466,7 +466,7 @@ func main() {
 <b>Signature:</b>
 
 ```go
-func ParseHttpResponse(resp *http.Response, obj interface{}) error
+func ParseHttpResponse(resp *http.Response, obj any) error
 ```
 <b>Example:</b>
 

@@ -126,7 +126,7 @@ import (
 func main() {
 	arr := []string{"a", "b", "c", "d", "e"}
 	res := slice.Chunk(InterfaceSlice(arr), 3)
-	fmt.Println(res) //[][]interface{}{{"a", "b", "c"}, {"d", "e"}}
+	fmt.Println(res) //[][]any{{"a", "b", "c"}, {"d", "e"}}
 }
 ```
 
@@ -360,7 +360,7 @@ func main() {
 
 
 ### <span id="Every">Every</span>
-<p>如果切片中的所有值都通过谓词函数，则返回true。 函数签名应该是func(index int, value interface{}) bool</p>
+<p>如果切片中的所有值都通过谓词函数，则返回true。 函数签名应该是func(index int, value any) bool</p>
 
 <b>函数签名:</b>
 
@@ -390,7 +390,7 @@ func main() {
 
 
 ### <span id="Filter">Filter</span>
-<p>返回与函数匹配的所有元素。 函数签名应该是 func(index int, value interface{}) bool</p>
+<p>返回与函数匹配的所有元素。 函数签名应该是 func(index int, value any) bool</p>
 
 <b>函数签名:</b>
 
@@ -485,7 +485,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func FlattenDeep(slice interface{}) interface{}
+func FlattenDeep(slice any) any
 ```
 <b>例子:</b>
 
@@ -572,7 +572,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func IntSlice(slice interface{}) []int
+func IntSlice(slice any) []int
 ```
 <b>例子:</b>
 
@@ -583,7 +583,7 @@ import (
 )
 
 func main() {
-	var nums = []interface{}{1, 2, 3}
+	var nums = []any{1, 2, 3}
 	res := slice.IntSlice(nums)
 	fmt.Println(res) //[]int{1, 2, 3}
 }
@@ -598,7 +598,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func InterfaceSlice(slice interface{}) []interface{}
+func InterfaceSlice(slice any) []any
 ```
 <b>例子:</b>
 
@@ -611,7 +611,7 @@ import (
 func main() {
 	var nums = []int{}{1, 2, 3}
 	res := slice.InterfaceSlice(nums)
-	fmt.Println(res) //[]interface{}{1, 2, 3}
+	fmt.Println(res) //[]any{1, 2, 3}
 }
 ```
 
@@ -652,7 +652,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func InsertAt[T any](slice []T, index int, value interface{}) []T
+func InsertAt[T any](slice []T, index int, value any) []T
 ```
 <b>例子:</b>
 
@@ -790,7 +790,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func SortByField(slice interface{}, field string, sortType ...string) error
+func SortByField(slice any, field string, sortType ...string) error
 ```
 <b>例子:</b>
 
@@ -862,7 +862,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func StringSlice(slice interface{}) []string
+func StringSlice(slice any) []string
 ```
 <b>例子:</b>
 
@@ -873,7 +873,7 @@ import (
 )
 
 func main() {
-	var s = []interface{}{"a", "b", "c"}
+	var s = []any{"a", "b", "c"}
 	res := slice.StringSlice(s)
 	fmt.Println(res) //[]string{"a", "b", "c"}
 }

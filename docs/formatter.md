@@ -34,7 +34,7 @@ Param should be number or numberic string.</p>
 <b>Signature:</b>
 
 ```go
-func Comma(v interface{}, symbol string) string
+func Comma(v any, symbol string) string
 ```
 <b>Example:</b>
 

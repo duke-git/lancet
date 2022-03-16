@@ -30,14 +30,14 @@ func NewAssert(t *testing.T, caseName string) *Assert {
 }
 
 // Equal check if expected is equal with actual
-func (a *Assert) Equal(expected, actual interface{}) {
+func (a *Assert) Equal(expected, actual any) {
 	if compare(expected, actual) != compareEqual {
 		makeTestFailed(a.T, a.CaseName, expected, actual)
 	}
 }
 
 // NotEqual check if expected is not equal with actual
-func (a *Assert) NotEqual(expected, actual interface{}) {
+func (a *Assert) NotEqual(expected, actual any) {
 	if compare(expected, actual) == compareEqual {
 		expectedInfo := fmt.Sprintf("not %v", expected)
 		makeTestFailed(a.T, a.CaseName, expectedInfo, actual)
@@ -45,7 +45,7 @@ func (a *Assert) NotEqual(expected, actual interface{}) {
 }
 
 // Greater check if expected is greate than actual
-func (a *Assert) Greater(expected, actual interface{}) {
+func (a *Assert) Greater(expected, actual any) {
 	if compare(expected, actual) != compareGreater {
 		expectedInfo := fmt.Sprintf("> %v", expected)
 		makeTestFailed(a.T, a.CaseName, expectedInfo, actual)
@@ -53,7 +53,7 @@ func (a *Assert) Greater(expected, actual interface{}) {
 }
 
 // GreaterOrEqual check if expected is greate than or equal with actual
-func (a *Assert) GreaterOrEqual(expected, actual interface{}) {
+func (a *Assert) GreaterOrEqual(expected, actual any) {
 	isGreatOrEqual := compare(expected, actual) == compareGreater || compare(expected, actual) == compareEqual
 	if !isGreatOrEqual {
 		expectedInfo := fmt.Sprintf(">= %v", expected)
@@ -62,7 +62,7 @@ func (a *Assert) GreaterOrEqual(expected, actual interface{}) {
 }
 
 // Less check if expected is less than actual
-func (a *Assert) Less(expected, actual interface{}) {
+func (a *Assert) Less(expected, actual any) {
 	if compare(expected, actual) != compareLess {
 		expectedInfo := fmt.Sprintf("< %v", expected)
 		makeTestFailed(a.T, a.CaseName, expectedInfo, actual)
@@ -70,7 +70,7 @@ func (a *Assert) Less(expected, actual interface{}) {
 }
 
 // LessOrEqual check if expected is less than or equal with actual
-func (a *Assert) LessOrEqual(expected, actual interface{}) {
+func (a *Assert) LessOrEqual(expected, actual any) {
 	isLessOrEqual := compare(expected, actual) == compareLess || compare(expected, actual) == compareEqual
 	if !isLessOrEqual {
 		expectedInfo := fmt.Sprintf("<= %v", expected)
@@ -79,14 +79,14 @@ func (a *Assert) LessOrEqual(expected, actual interface{}) {
 }
 
 // IsNil check if value is nil
-func (a *Assert) IsNil(value interface{}) {
+func (a *Assert) IsNil(value any) {
 	if value != nil {
 		makeTestFailed(a.T, a.CaseName, nil, value)
 	}
 }
 
 // IsNotNil check if value is not nil
-func (a *Assert) IsNotNil(value interface{}) {
+func (a *Assert) IsNotNil(value any) {
 	if value == nil {
 		makeTestFailed(a.T, a.CaseName, "not nil", value)
 	}
@@ -94,7 +94,7 @@ func (a *Assert) IsNotNil(value interface{}) {
 
 // compare x and y return :
 // x > y -> 1, x < y -> -1, x == y -> 0, x != y -> -2
-func compare(x, y interface{}) int {
+func compare(x, y any) int {
 	vx := reflect.ValueOf(x)
 	vy := reflect.ValueOf(y)
 
@@ -163,7 +163,7 @@ func compare(x, y interface{}) int {
 }
 
 // logFailedInfo make test failed and log error info
-func makeTestFailed(t *testing.T, caseName string, expected, actual interface{}) {
+func makeTestFailed(t *testing.T, caseName string, expected, actual any) {
 	_, file, line, _ := runtime.Caller(2)
 	errInfo := fmt.Sprintf("Case %v failed. file: %v, line: %v, expected: %v, actual: %v.", caseName, file, line, expected, actual)
 	t.Error(errInfo)

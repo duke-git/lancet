@@ -33,7 +33,7 @@ import (
 <b>函数签名:</b>
 
 ```go
-func Comma(v interface{}, symbol string) string
+func Comma(v any, symbol string) string
 ```
 <b>例子:</b>
 

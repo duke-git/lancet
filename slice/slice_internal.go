@@ -6,7 +6,7 @@ import (
 )
 
 // sliceValue return the reflect value of a slice
-func sliceValue(slice interface{}) reflect.Value {
+func sliceValue(slice any) reflect.Value {
 	v := reflect.ValueOf(slice)
 	if v.Kind() != reflect.Slice {
 		panic(fmt.Sprintf("Invalid slice type, value of type %T", slice))
@@ -15,7 +15,7 @@ func sliceValue(slice interface{}) reflect.Value {
 }
 
 // functionValue return the reflect value of a function
-func functionValue(function interface{}) reflect.Value {
+func functionValue(function any) reflect.Value {
 	v := reflect.ValueOf(function)
 	if v.Kind() != reflect.Func {
 		panic(fmt.Sprintf("Invalid function type, value of type %T", function))

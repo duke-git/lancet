@@ -10,7 +10,7 @@ import (
 	"strings"
 )
 
-func doHttpRequest(method, reqUrl string, params ...interface{}) (*http.Response, error) {
+func doHttpRequest(method, reqUrl string, params ...any) (*http.Response, error) {
 	if len(reqUrl) == 0 {
 		return nil, errors.New("url should be specified")
 	}
@@ -60,7 +60,7 @@ func doHttpRequest(method, reqUrl string, params ...interface{}) (*http.Response
 	return resp, e
 }
 
-func setHeaderAndQueryParam(req *http.Request, reqUrl string, header, queryParam interface{}) error {
+func setHeaderAndQueryParam(req *http.Request, reqUrl string, header, queryParam any) error {
 	err := setHeader(req, header)
 	if err != nil {
 		return err
@@ -72,7 +72,7 @@ func setHeaderAndQueryParam(req *http.Request, reqUrl string, header, queryParam
 	return nil
 }
 
-func setHeaderAndQueryAndBody(req *http.Request, reqUrl string, header, queryParam, body interface{}) error {
+func setHeaderAndQueryAndBody(req *http.Request, reqUrl string, header, queryParam, body any) error {
 	err := setHeader(req, header)
 	if err != nil {
 		return err
@@ -88,7 +88,7 @@ func setHeaderAndQueryAndBody(req *http.Request, reqUrl string, header, queryPar
 	return nil
 }
 
-func setHeader(req *http.Request, header interface{}) error {
+func setHeader(req *http.Request, header any) error {
 	if header != nil {
 		switch v := header.(type) {
 		case map[string]string:
@@ -122,11 +122,11 @@ func setUrl(req *http.Request, reqUrl string) error {
 	return nil
 }
 
-func setQueryParam(req *http.Request, reqUrl string, queryParam interface{}) error {
+func setQueryParam(req *http.Request, reqUrl string, queryParam any) error {
 	var values url.Values
 	if queryParam != nil {
 		switch v := queryParam.(type) {
-		case map[string]interface{}:
+		case map[string]any:
 			values = url.Values{}
 			for k := range v {
 				values.Set(k, fmt.Sprintf("%v", v[k]))
@@ -134,7 +134,7 @@ func setQueryParam(req *http.Request, reqUrl string, queryParam interface{}) err
 		case url.Values:
 			values = v
 		default:
-			return errors.New("query params type should be url.Values or map[string]interface{}")
+			return errors.New("query params type should be url.Values or map[string]any")
 		}
 	}
 
@@ -155,7 +155,7 @@ func setQueryParam(req *http.Request, reqUrl string, queryParam interface{}) err
 	return nil
 }
 
-func setBodyByte(req *http.Request, body interface{}) error {
+func setBodyByte(req *http.Request, body any) error {
 	if body != nil {
 		switch b := body.(type) {
 		case []byte:
@@ -168,7 +168,7 @@ func setBodyByte(req *http.Request, body interface{}) error {
 	return nil
 }
 
-func getClient(client interface{}) (*http.Client, error) {
+func getClient(client any) (*http.Client, error) {
 	c := http.Client{}
 	if client != nil {
 		switch v := client.(type) {

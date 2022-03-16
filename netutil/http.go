@@ -6,7 +6,7 @@
 // HttpGet, HttpPost, HttpDelete, HttpPut, HttpPatch, function param `url` is required.
 // HttpGet, HttpPost, HttpDelete, HttpPut, HttpPatch, function param `params` is variable, the order is:
 // params[0] is header which type should be http.Header or map[string]string,
-// params[1] is query param which type should be url.Values or map[string]interface{},
+// params[1] is query param which type should be url.Values or map[string]any,
 // params[2] is post body which type should be []byte.
 // params[3] is http client which type should be http.Client.
 package netutil
@@ -21,32 +21,32 @@ import (
 )
 
 //HttpGet send get http request
-func HttpGet(url string, params ...interface{}) (*http.Response, error) {
+func HttpGet(url string, params ...any) (*http.Response, error) {
 	return doHttpRequest(http.MethodGet, url, params...)
 }
 
 //HttpPost send post http request
-func HttpPost(url string, params ...interface{}) (*http.Response, error) {
+func HttpPost(url string, params ...any) (*http.Response, error) {
 	return doHttpRequest(http.MethodPost, url, params...)
 }
 
 //HttpPut send put http request
-func HttpPut(url string, params ...interface{}) (*http.Response, error) {
+func HttpPut(url string, params ...any) (*http.Response, error) {
 	return doHttpRequest(http.MethodPut, url, params...)
 }
 
 //HttpDelete send delete http request
-func HttpDelete(url string, params ...interface{}) (*http.Response, error) {
+func HttpDelete(url string, params ...any) (*http.Response, error) {
 	return doHttpRequest(http.MethodDelete, url, params...)
 }
 
 // HttpPatch send patch http request
-func HttpPatch(url string, params ...interface{}) (*http.Response, error) {
+func HttpPatch(url string, params ...any) (*http.Response, error) {
 	return doHttpRequest(http.MethodPatch, url, params...)
 }
 
 // ParseHttpResponse decode http response to specified interface
-func ParseHttpResponse(resp *http.Response, obj interface{}) error {
+func ParseHttpResponse(resp *http.Response, obj any) error {
 	if resp == nil {
 		return errors.New("InvalidResp")
 	}
@@ -55,7 +55,7 @@ func ParseHttpResponse(resp *http.Response, obj interface{}) error {
 }
 
 // ConvertMapToQueryString convert map to sorted url query string
-func ConvertMapToQueryString(param map[string]interface{}) string {
+func ConvertMapToQueryString(param map[string]any) string {
 	if param == nil {
 		return ""
 	}

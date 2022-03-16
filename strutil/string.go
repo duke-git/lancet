@@ -1,4 +1,3 @@
-// Copyright 2021 dudaodong@gmail.com. All rights reserved.
 // Use of this source code is governed by MIT license
 
 // Package strutil implements some functions to manipulate string.
@@ -197,7 +196,7 @@ func AfterLast(s, char string) string {
 }
 
 // IsString check if the value data type is string or not.
-func IsString(v interface{}) bool {
+func IsString(v any) bool {
 	if v == nil {
 		return false
 	}

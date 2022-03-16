@@ -238,7 +238,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func IsString(v interface{}) bool
+func IsString(v any) bool
 ```
 <b>例子:</b>
 

@@ -17,7 +17,7 @@ type people struct {
 type peopleAgeComparator struct{}
 
 // Compare implements github.com/duke-git/lancet/lancetconstraints/constraints.go/Comparator
-func (pc *peopleAgeComparator) Compare(v1 interface{}, v2 interface{}) int {
+func (pc *peopleAgeComparator) Compare(v1 any, v2 any) int {
 	p1, _ := v1.(people)
 	p2, _ := v2.(people)
 
@@ -47,7 +47,7 @@ var peoples = []people{
 
 type intComparator struct{}
 
-func (c *intComparator) Compare(v1 interface{}, v2 interface{}) int {
+func (c *intComparator) Compare(v1 any, v2 any) int {
 	val1, _ := v1.(int)
 	val2, _ := v2.(int)
 

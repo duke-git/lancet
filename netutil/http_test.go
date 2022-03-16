@@ -104,7 +104,7 @@ func TestHttpDelete(t *testing.T) {
 func TestConvertMapToQueryString(t *testing.T) {
 	assert := internal.NewAssert(t, "TestConvertMapToQueryString")
 
-	var m = map[string]interface{}{
+	var m = map[string]any{
 		"c": 3,
 		"a": 1,
 		"b": 2,

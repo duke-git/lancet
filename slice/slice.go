@@ -306,7 +306,7 @@ func FindLast[T any](slice []T, predicate func(index int, t T) bool) (*T, bool) 
 }
 
 // FlattenDeep flattens slice recursive
-func FlattenDeep(slice interface{}) interface{} {
+func FlattenDeep(slice any) any {
 	sv := sliceValue(slice)
 	st := sliceElemType(sv.Type())
 	tmp := reflect.MakeSlice(reflect.SliceOf(st), 0, 0)
@@ -377,13 +377,13 @@ func Reduce[T any](slice []T, iteratee func(index int, t1, t2 T) T, initial T) T
 }
 
 // InterfaceSlice convert param to slice of interface.
-func InterfaceSlice(slice interface{}) []interface{} {
+func InterfaceSlice(slice any) []any {
 	sv := sliceValue(slice)
 	if sv.IsNil() {
 		return nil
 	}
 
-	res := make([]interface{}, sv.Len())
+	res := make([]any, sv.Len())
 	for i := 0; i < sv.Len(); i++ {
 		res[i] = sv.Index(i).Interface()
 	}
@@ -392,7 +392,7 @@ func InterfaceSlice(slice interface{}) []interface{} {
 }
 
 // StringSlice convert param to slice of string.
-func StringSlice(slice interface{}) []string {
+func StringSlice(slice any) []string {
 	v := sliceValue(slice)
 
 	out := make([]string, v.Len())
@@ -408,7 +408,7 @@ func StringSlice(slice interface{}) []string {
 }
 
 // IntSlice convert param to slice of int.
-func IntSlice(slice interface{}) []int {
+func IntSlice(slice any) []int {
 	sv := sliceValue(slice)
 
 	out := make([]int, sv.Len())
@@ -473,7 +473,7 @@ func Drop[T any](slice []T, n int) []T {
 }
 
 // InsertAt insert the value or other slice into slice at index.
-func InsertAt[T any](slice []T, index int, value interface{}) []T {
+func InsertAt[T any](slice []T, index int, value any) []T {
 	size := len(slice)
 
 	if index < 0 || index > size {
@@ -608,7 +608,7 @@ func Shuffle[T any](slice []T) []T {
 // SortByField return sorted slice by field
 // Slice element should be struct, field type should be int, uint, string, or bool
 // default sortType is ascending (asc), if descending order, set sortType to desc
-func SortByField(slice interface{}, field string, sortType ...string) error {
+func SortByField(slice any, field string, sortType ...string) error {
 	sv := sliceValue(slice)
 	t := sv.Type().Elem()
 

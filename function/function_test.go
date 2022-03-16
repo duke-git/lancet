@@ -16,7 +16,7 @@ func TestAfter(t *testing.T) {
 		fmt.Println("print done")
 		return i
 	})
-	type cb func(args ...interface{}) []reflect.Value
+	type cb func(args ...any) []reflect.Value
 	print := func(i int, s string, fn cb) {
 		fmt.Printf("print: arr[%d] is %s \n", i, s)
 		v := fn(i)
@@ -42,7 +42,7 @@ func TestBefore(t *testing.T) {
 	})
 
 	var res []int64
-	type cb func(args ...interface{}) []reflect.Value
+	type cb func(args ...any) []reflect.Value
 	appendStr := func(i int, s string, fn cb) {
 		v := fn(i)
 		res = append(res, v[0].Int())
@@ -62,7 +62,7 @@ func TestCurry(t *testing.T) {
 	add := func(a, b int) int {
 		return a + b
 	}
-	var addCurry Fn = func(values ...interface{}) interface{} {
+	var addCurry Fn = func(values ...any) any {
 		return add(values[0].(int), values[1].(int))
 	}
 	add1 := addCurry.Curry(1)
@@ -72,10 +72,10 @@ func TestCurry(t *testing.T) {
 func TestCompose(t *testing.T) {
 	assert := internal.NewAssert(t, "TestCompose")
 
-	toUpper := func(a ...interface{}) interface{} {
+	toUpper := func(a ...any) any {
 		return strings.ToUpper(a[0].(string))
 	}
-	toLower := func(a ...interface{}) interface{} {
+	toLower := func(a ...any) any {
 		return strings.ToLower(a[0].(string))
 	}
 

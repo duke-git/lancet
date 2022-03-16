@@ -21,7 +21,7 @@ func ToBool(s string) (bool, error) {
 }
 
 // ToBytes convert interface to bytes
-func ToBytes(data interface{}) ([]byte, error) {
+func ToBytes(data any) ([]byte, error) {
 	var buf bytes.Buffer
 	enc := gob.NewEncoder(&buf)
 	err := enc.Encode(data)
@@ -44,7 +44,7 @@ func ToChar(s string) []string {
 }
 
 // ToString convert value to string
-func ToString(value interface{}) string {
+func ToString(value any) string {
 	res := ""
 	if value == nil {
 		return res
@@ -76,7 +76,7 @@ func ToString(value interface{}) string {
 }
 
 // ToJson convert value to a valid json string
-func ToJson(value interface{}) (string, error) {
+func ToJson(value any) (string, error) {
 	res, err := json.Marshal(value)
 	if err != nil {
 		return "", err
@@ -86,7 +86,7 @@ func ToJson(value interface{}) (string, error) {
 }
 
 // ToFloat convert value to a float64, if input is not a float return 0.0 and error
-func ToFloat(value interface{}) (float64, error) {
+func ToFloat(value any) (float64, error) {
 	v := reflect.ValueOf(value)
 
 	res := 0.0
@@ -113,7 +113,7 @@ func ToFloat(value interface{}) (float64, error) {
 }
 
 // ToInt convert value to a int64, if input is not a numeric format return 0 and error
-func ToInt(value interface{}) (int64, error) {
+func ToInt(value any) (int64, error) {
 	v := reflect.ValueOf(value)
 
 	var res int64
@@ -141,7 +141,7 @@ func ToInt(value interface{}) (int64, error) {
 
 // StructToMap convert struct to map, only convert exported struct field
 // map key is specified same as struct field tag `json` value
-func StructToMap(value interface{}) (map[string]interface{}, error) {
+func StructToMap(value any) (map[string]any, error) {
 	v := reflect.ValueOf(value)
 	t := reflect.TypeOf(value)
 
@@ -152,7 +152,7 @@ func StructToMap(value interface{}) (map[string]interface{}, error) {
 		return nil, fmt.Errorf("data type %T not support, shuld be struct or pointer to struct", value)
 	}
 
-	res := make(map[string]interface{})
+	res := make(map[string]any)
 
 	fieldNum := t.NumField()
 	pattern := `^[A-Z]`

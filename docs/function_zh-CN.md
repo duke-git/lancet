@@ -40,7 +40,7 @@ import (
 <b>函数签名:</b>
 
 ```go
-func After(n int, fn interface{}) func(args ...interface{}) []reflect.Value
+func After(n int, fn any) func(args ...any) []reflect.Value
 ```
 <b>例子:</b>
 
@@ -59,7 +59,7 @@ func main() {
 		return i
 	})
 
-	type cb func(args ...interface{}) []reflect.Value
+	type cb func(args ...any) []reflect.Value
 	print := func(i int, s string, fn cb) {
 		fmt.Printf("arr[%d] is %s \n", i, s)
 		fn(i)
@@ -87,7 +87,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func Before(n int, fn interface{}) func(args ...interface{}) []reflect.Value
+func Before(n int, fn any) func(args ...any) []reflect.Value
 ```
 <b>例子:</b>
 
@@ -109,7 +109,7 @@ func main() {
 	})
 
 	var res []int64
-	type cb func(args ...interface{}) []reflect.Value
+	type cb func(args ...any) []reflect.Value
 	appendStr := func(i int, s string, fn cb) {
 		v := fn(i)
 		res = append(res, v[0].Int())
@@ -133,8 +133,8 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-type Fn func(...interface{}) interface{}
-func (f Fn) Curry(i interface{}) func(...interface{}) interface{}
+type Fn func(...any) any
+func (f Fn) Curry(i any) func(...any) any
 ```
 <b>例子:</b>
 
@@ -150,7 +150,7 @@ func main() {
 	add := func(a, b int) int {
 		return a + b
 	}
-	var addCurry function.Fn = func(values ...interface{}) interface{} {
+	var addCurry function.Fn = func(values ...any) any {
 		return add(values[0].(int), values[1].(int))
 	}
 	add1 := addCurry.Curry(1)
@@ -168,7 +168,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func Compose(fnList ...func(...interface{}) interface{}) func(...interface{}) interface{}
+func Compose(fnList ...func(...any) any) func(...any) any
 ```
 <b>例子:</b>
 
@@ -181,10 +181,10 @@ import (
 )
 
 func main() {
-	add1 := func(v ...interface{}) interface{} {
+	add1 := func(v ...any) any {
 		return v[0].(int) + 1
 	}
-	add2 := func(v ...interface{}) interface{} {
+	add2 := func(v ...any) any {
 		return v[0].(int) + 2
 	}
 
@@ -246,7 +246,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func Delay(delay time.Duration, fn interface{}, args ...interface{})
+func Delay(delay time.Duration, fn any, args ...any)
 ```
 <b>例子:</b>
 
@@ -275,7 +275,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func Schedule(d time.Duration, fn interface{}, args ...interface{}) chan bool
+func Schedule(d time.Duration, fn any, args ...any) chan bool
 ```
 <b>例子:</b>
 

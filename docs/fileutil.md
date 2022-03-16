@@ -155,7 +155,7 @@ func main() {
 <b>Signature:</b>
 
 ```go
-func MiMeType(file interface{}) string
+func MiMeType(file any) string
 ```
 <b>Example:</b>
 

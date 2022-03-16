@@ -155,7 +155,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func MiMeType(file interface{}) string
+func MiMeType(file any) string
 ```
 <b>例子:</b>
 

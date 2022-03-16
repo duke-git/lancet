@@ -126,7 +126,7 @@ import (
 func main() {
 	arr := []string{"a", "b", "c", "d", "e"}
 	res := slice.Chunk(InterfaceSlice(arr), 3)
-	fmt.Println(res) //[][]interface{}{{"a", "b", "c"}, {"d", "e"}}
+	fmt.Println(res) //[][]any{{"a", "b", "c"}, {"d", "e"}}
 }
 ```
 
@@ -483,7 +483,7 @@ func main() {
 <b>Signature:</b>
 
 ```go
-func FlattenDeep(slice interface{}) interface{}
+func FlattenDeep(slice any) any
 ```
 <b>Example:</b>
 
@@ -570,7 +570,7 @@ func main() {
 <b>Signature:</b>
 
 ```go
-func IntSlice(slice interface{}) []int
+func IntSlice(slice any) []int
 ```
 <b>Example:</b>
 
@@ -581,7 +581,7 @@ import (
 )
 
 func main() {
-	var nums = []interface{}{1, 2, 3}
+	var nums = []any{1, 2, 3}
 	res := slice.IntSlice(nums)
 	fmt.Println(res) //[]int{1, 2, 3}
 }
@@ -596,7 +596,7 @@ func main() {
 <b>Signature:</b>
 
 ```go
-func InterfaceSlice(slice interface{}) []interface{}
+func InterfaceSlice(slice any) []any
 ```
 <b>Example:</b>
 
@@ -609,7 +609,7 @@ import (
 func main() {
 	var nums = []int{}{1, 2, 3}
 	res := slice.InterfaceSlice(nums)
-	fmt.Println(res) //[]interface{}{1, 2, 3}
+	fmt.Println(res) //[]any{1, 2, 3}
 }
 ```
 
@@ -650,7 +650,7 @@ func main() {
 <b>Signature:</b>
 
 ```go
-func InsertAt[T any](slice []T, index int, value interface{}) []T
+func InsertAt[T any](slice []T, index int, value any) []T
 ```
 <b>Example:</b>
 
@@ -788,7 +788,7 @@ func main() {
 <b>Signature:</b>
 
 ```go
-func SortByField(slice interface{}, field string, sortType ...string) error
+func SortByField(slice any, field string, sortType ...string) error
 ```
 <b>Example:</b>
 
@@ -860,7 +860,7 @@ func main() {
 <b>Signature:</b>
 
 ```go
-func StringSlice(slice interface{}) []string
+func StringSlice(slice any) []string
 ```
 <b>Example:</b>
 
@@ -871,7 +871,7 @@ import (
 )
 
 func main() {
-	var s = []interface{}{"a", "b", "c"}
+	var s = []any{"a", "b", "c"}
 	res := slice.StringSlice(s)
 	fmt.Println(res) //[]string{"a", "b", "c"}
 }

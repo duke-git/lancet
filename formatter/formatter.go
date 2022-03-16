@@ -7,7 +7,7 @@ package formatter
 import "strings"
 
 // Comma add comma to number by every 3 numbers from right. ahead by symbol char
-func Comma(v interface{}, symbol string) string {
+func Comma(v any, symbol string) string {
 	s := numString(v)
 	dotIndex := strings.Index(s, ".")
 	if dotIndex != -1 {

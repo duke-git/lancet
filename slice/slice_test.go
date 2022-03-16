@@ -268,7 +268,7 @@ func TestReduce(t *testing.T) {
 }
 
 func TestIntSlice(t *testing.T) {
-	var nums []interface{}
+	var nums []any
 	nums = append(nums, 1, 2, 3)
 
 	assert := internal.NewAssert(t, "TestIntSlice")
@@ -276,7 +276,7 @@ func TestIntSlice(t *testing.T) {
 }
 
 func TestStringSlice(t *testing.T) {
-	var strs []interface{}
+	var strs []any
 	strs = append(strs, "a", "b", "c")
 
 	assert := internal.NewAssert(t, "TestStringSlice")
@@ -285,7 +285,7 @@ func TestStringSlice(t *testing.T) {
 
 func TestInterfaceSlice(t *testing.T) {
 	strs := []string{"a", "b", "c"}
-	expect := []interface{}{"a", "b", "c"}
+	expect := []any{"a", "b", "c"}
 
 	assert := internal.NewAssert(t, "TestInterfaceSlice")
 	assert.Equal(expect, InterfaceSlice(strs))
@@ -380,7 +380,7 @@ func TestIntersection(t *testing.T) {
 		{1, 2, 3},
 		{},
 	}
-	res := []interface{}{
+	res := []any{
 		Intersection(s1, s2, s3),
 		Intersection(s1, s2),
 		Intersection(s1),
