@@ -5,7 +5,7 @@ system包含os, runtime, shell command相关函数。
 
 ## 源码:
 
-[https://github.com/duke-git/lancet/blob/main/system/os.go](https://github.com/duke-git/lancet/blob/main/system/os.go)
+- [https://github.com/duke-git/lancet/blob/main/system/os.go](https://github.com/duke-git/lancet/blob/main/system/os.go)
 
 
 <div STYLE="page-break-after: always;"></div>

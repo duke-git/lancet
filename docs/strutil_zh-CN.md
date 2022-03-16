@@ -5,7 +5,7 @@ strutil包含处理字符串的相关函数。
 
 ## 源码:
 
-[https://github.com/duke-git/lancet/blob/main/strutil/string.go](https://github.com/duke-git/lancet/blob/main/strutil/string.go)
+- [https://github.com/duke-git/lancet/blob/main/strutil/string.go](https://github.com/duke-git/lancet/blob/main/strutil/string.go)
 
 
 <div STYLE="page-break-after: always;"></div>

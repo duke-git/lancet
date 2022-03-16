@@ -5,7 +5,7 @@ Package system contains some functions about os, runtime, shell command.
 
 ## Source:
 
-[https://github.com/duke-git/lancet/blob/main/system/os.go](https://github.com/duke-git/lancet/blob/main/system/os.go)
+- [https://github.com/duke-git/lancet/blob/main/system/os.go](https://github.com/duke-git/lancet/blob/main/system/os.go)
 
 
 <div STYLE="page-break-after: always;"></div>

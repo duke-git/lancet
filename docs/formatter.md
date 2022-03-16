@@ -5,7 +5,7 @@ formatter contains some functions for data formatting.
 
 ## Source:
 
-[https://github.com/duke-git/lancet/blob/main/formatter/formatter.go](https://github.com/duke-git/lancet/blob/main/formatter/formatter.go)
+- [https://github.com/duke-git/lancet/blob/main/formatter/formatter.go](https://github.com/duke-git/lancet/blob/main/formatter/formatter.go)
 
 <div STYLE="page-break-after: always;"></div>
 

@@ -5,7 +5,7 @@ slice包包含操作切片的方法集合。
 
 ## 源码:
 
-[https://github.com/duke-git/lancet/blob/main/slice/slice.go](https://github.com/duke-git/lancet/blob/main/slice/slice.go)
+- [https://github.com/duke-git/lancet/blob/main/slice/slice.go](https://github.com/duke-git/lancet/blob/main/slice/slice.go)
 
 
 <div STYLE="page-break-after: always;"></div>

@@ -5,7 +5,7 @@ formatter格式化器包含一些数据格式化处理方法。
 
 ## 源码:
 
-[https://github.com/duke-git/lancet/blob/main/formatter/formatter.go](https://github.com/duke-git/lancet/blob/main/formatter/formatter.go)
+- [https://github.com/duke-git/lancet/blob/main/formatter/formatter.go](https://github.com/duke-git/lancet/blob/main/formatter/formatter.go)
 
 <div STYLE="page-break-after: always;"></div>
 

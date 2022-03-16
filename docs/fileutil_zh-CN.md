@@ -5,7 +5,7 @@ fileutil包支持文件基本操作。
 
 ## 源码:
 
-[https://github.com/duke-git/lancet/blob/main/fileutil/file.go](https://github.com/duke-git/lancet/blob/main/fileutil/file.go)
+- [https://github.com/duke-git/lancet/blob/main/fileutil/file.go](https://github.com/duke-git/lancet/blob/main/fileutil/file.go)
 
 <div STYLE="page-break-after: always;"></div>
 

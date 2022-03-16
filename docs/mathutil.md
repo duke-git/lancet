@@ -5,7 +5,7 @@ Package mathutil implements some functions for math calculation.
 
 ## Source:
 
-[https://github.com/duke-git/lancet/blob/main/mathutil/mathutil.go](https://github.com/duke-git/lancet/blob/main/mathutil/mathutil.go)
+- [https://github.com/duke-git/lancet/blob/main/mathutil/mathutil.go](https://github.com/duke-git/lancet/blob/main/mathutil/mathutil.go)
 
 
 <div STYLE="page-break-after: always;"></div>

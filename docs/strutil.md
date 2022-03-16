@@ -5,7 +5,7 @@ Package strutil contains some functions to manipulate string.
 
 ## Source:
 
-[https://github.com/duke-git/lancet/blob/main/strutil/string.go](https://github.com/duke-git/lancet/blob/main/strutil/string.go)
+- [https://github.com/duke-git/lancet/blob/main/strutil/string.go](https://github.com/duke-git/lancet/blob/main/strutil/string.go)
 
 
 <div STYLE="page-break-after: always;"></div>

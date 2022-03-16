@@ -5,7 +5,7 @@ random随机数生成器包，可以生成随机[]bytes, int, string。
 
 ## 源码:
 
-[https://github.com/duke-git/lancet/blob/main/random/random.go](https://github.com/duke-git/lancet/blob/main/random/random.go)
+- [https://github.com/duke-git/lancet/blob/main/random/random.go](https://github.com/duke-git/lancet/blob/main/random/random.go)
 
 
 <div STYLE="page-break-after: always;"></div>

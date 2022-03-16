@@ -5,7 +5,7 @@ convertor转换器包支持一些常见的数据类型转换
 
 ## 源码:
 
-[https://github.com/duke-git/lancet/blob/main/convertor/convertor.go](https://github.com/duke-git/lancet/blob/main/convertor/convertor.go)
+- [https://github.com/duke-git/lancet/blob/main/convertor/convertor.go](https://github.com/duke-git/lancet/blob/main/convertor/convertor.go)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -57,7 +57,7 @@ import (
 
 func main() {
     colorHex := "#003366"
-    r, g, b := ColorHexToRGB(colorHex)
+    r, g, b := convertor.ColorHexToRGB(colorHex)
     fmt.Println(r, g, b) //0,51,102
 }
 ```
@@ -87,7 +87,7 @@ func main() {
     r := 0
     g := 51
     b := 102
-    colorHex := ColorRGBToHex(r, g, b)
+    colorHex := convertor.ColorRGBToHex(r, g, b)
 
     fmt.Println(colorHex) //#003366
 }

@@ -5,7 +5,7 @@ Package validator contains some functions for data validation.
 
 ## Source:
 
-[https://github.com/duke-git/lancet/blob/main/validator/validator.go](https://github.com/duke-git/lancet/blob/main/validator/validator.go)
+- [https://github.com/duke-git/lancet/blob/main/validator/validator.go](https://github.com/duke-git/lancet/blob/main/validator/validator.go)
 
 
 <div STYLE="page-break-after: always;"></div>
