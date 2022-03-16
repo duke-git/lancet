@@ -390,31 +390,14 @@ import "github.com/duke-git/lancet/validator"
 - [IsStrongPassword](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsStrongPassword)
 - [IsUrl](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsUrl)
 - [IsWeakPassword](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsWeakPassword)
-### 14. error helpers
-
-- Contain functions to handle errors
-- Usage: import "github.com/duke-git/lancet/xerror"
+### 14. xerror
+xerror package implements helpers for errors.
 
 ```go
-package main
-
-import (
-    "fmt"
-    "io/ioutil"
-    "log"
-    "github.com/duke-git/lancet/errors"
-)
-
-func main() {
-	x := Unwrap(strconv.Atoi("42")) // Unwrap if err is nil then it returns a valid value otherwise it panics
-}
+import "github.com/duke-git/lancet/xerror"
 ```
-
-- Function list:
-
-```go
-Unwrap[T any](val T, err error) //if err is nil then it returns a valid value otherwise it panics
-```
+#### Function list:
+- [Unwrap](https://github.com/duke-git/lancet/blob/main/docs/xerror.md#Unwrap)
   
 
 ## How to Contribute

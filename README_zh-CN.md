@@ -392,31 +392,15 @@ import "github.com/duke-git/lancet/validator"
 - [IsUrl](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsUrl)
 - [IsWeakPassword](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsWeakPassword)
 
-### error helpers
-
-- 错误处理函数
-- Usage: import "github.com/duke-git/lancet/xerror"
-
-```go
-package main
-
-import (
-    "fmt"
-    "io/ioutil"
-    "log"
-    "github.com/duke-git/lancet/errors"
-)
-
-func main() {
-	x := Unwrap(strconv.Atoi("42")) 
-}
-```
-
-- Function list:
+validator.md#IsWeakPassword)
+### 14. xerror
+xerror包实现一些错误处理函数
 
 ```go
-Unwrap[T any](val T, err error) //如果err是nil，返回有效的val值。否则， panics
+import "github.com/duke-git/lancet/xerror"
 ```
+#### 函数列表:
+- [Unwrap](https://github.com/duke-git/lancet/blob/main/docs/xerror_zh-CN.md#Unwrap)
 
 ## 如何贡献代码
 
