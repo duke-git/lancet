@@ -12,7 +12,7 @@ Package convertor contains some functions for data type convertion.
 ## Usage:
 ```go
 import (
-    "github.com/duke-git/lancet/convertor"
+    "github.com/duke-git/lancet/v2/convertor"
 )
 ```
 
@@ -50,7 +50,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/convertor"
+    "github.com/duke-git/lancet/v2/convertor"
 )
 
 func main() {
@@ -78,7 +78,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/convertor"
+    "github.com/duke-git/lancet/v2/convertor"
 )
 
 func main() {
@@ -109,7 +109,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/convertor"
+    "github.com/duke-git/lancet/v2/convertor"
 )
 
 func main() {
@@ -145,7 +145,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/convertor"
+    "github.com/duke-git/lancet/v2/convertor"
 )
 
 func main() {
@@ -175,7 +175,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/convertor"
+    "github.com/duke-git/lancet/v2/convertor"
 )
 
 func main() {
@@ -208,7 +208,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/convertor"
+    "github.com/duke-git/lancet/v2/convertor"
 )
 
 func main() {
@@ -241,7 +241,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/convertor"
+    "github.com/duke-git/lancet/v2/convertor"
 )
 
 func main() {
@@ -274,7 +274,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/convertor"
+    "github.com/duke-git/lancet/v2/convertor"
 )
 
 func main() {
@@ -302,7 +302,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/convertor"
+    "github.com/duke-git/lancet/v2/convertor"
 )
 
 func main() {
@@ -330,7 +330,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/convertor"
+    "github.com/duke-git/lancet/v2/convertor"
 )
 
 func main() {

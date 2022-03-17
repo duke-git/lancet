@@ -13,7 +13,7 @@ convertor转换器包支持一些常见的数据类型转换
 
 ```go
 import (
-    "github.com/duke-git/lancet/convertor"
+    "github.com/duke-git/lancet/v2/convertor"
 )
 ```
 
@@ -52,7 +52,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/convertor"
+    "github.com/duke-git/lancet/v2/convertor"
 )
 
 func main() {
@@ -80,7 +80,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/convertor"
+    "github.com/duke-git/lancet/v2/convertor"
 )
 
 func main() {
@@ -111,7 +111,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/convertor"
+    "github.com/duke-git/lancet/v2/convertor"
 )
 
 func main() {
@@ -147,7 +147,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/convertor"
+    "github.com/duke-git/lancet/v2/convertor"
 )
 
 func main() {
@@ -177,7 +177,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/convertor"
+    "github.com/duke-git/lancet/v2/convertor"
 )
 
 func main() {
@@ -210,7 +210,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/convertor"
+    "github.com/duke-git/lancet/v2/convertor"
 )
 
 func main() {
@@ -243,7 +243,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/convertor"
+    "github.com/duke-git/lancet/v2/convertor"
 )
 
 func main() {
@@ -276,7 +276,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/convertor"
+    "github.com/duke-git/lancet/v2/convertor"
 )
 
 func main() {
@@ -304,7 +304,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/convertor"
+    "github.com/duke-git/lancet/v2/convertor"
 )
 
 func main() {
@@ -332,7 +332,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/convertor"
+    "github.com/duke-git/lancet/v2/convertor"
 )
 
 func main() {

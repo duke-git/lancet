@@ -15,7 +15,7 @@ cryptor加密包支持数据加密和解密，获取md5，hash值。支持base64
 ## 用法:
 ```go
 import (
-    "github.com/duke-git/lancet/cryptor"
+    "github.com/duke-git/lancet/v2/cryptor"
 )
 ```
 
@@ -80,7 +80,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/cryptor"
+    "github.com/duke-git/lancet/v2/cryptor"
 )
 
 func main() {
@@ -110,7 +110,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/cryptor"
+    "github.com/duke-git/lancet/v2/cryptor"
 )
 
 func main() {
@@ -140,7 +140,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/cryptor"
+    "github.com/duke-git/lancet/v2/cryptor"
 )
 
 func main() {
@@ -171,7 +171,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/cryptor"
+    "github.com/duke-git/lancet/v2/cryptor"
 )
 
 func main() {
@@ -203,7 +203,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/cryptor"
+    "github.com/duke-git/lancet/v2/cryptor"
 )
 
 func main() {
@@ -235,7 +235,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/cryptor"
+    "github.com/duke-git/lancet/v2/cryptor"
 )
 
 func main() {
@@ -265,7 +265,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/cryptor"
+    "github.com/duke-git/lancet/v2/cryptor"
 )
 
 func main() {
@@ -296,7 +296,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/cryptor"
+    "github.com/duke-git/lancet/v2/cryptor"
 )
 
 func main() {
@@ -326,7 +326,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/cryptor"
+    "github.com/duke-git/lancet/v2/cryptor"
 )
 
 func main() {
@@ -356,7 +356,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/cryptor"
+    "github.com/duke-git/lancet/v2/cryptor"
 )
 
 func main() {
@@ -384,7 +384,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/cryptor"
+    "github.com/duke-git/lancet/v2/cryptor"
 )
 
 func main() {
@@ -412,7 +412,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/cryptor"
+    "github.com/duke-git/lancet/v2/cryptor"
 )
 
 func main() {
@@ -443,7 +443,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/cryptor"
+    "github.com/duke-git/lancet/v2/cryptor"
 )
 
 func main() {
@@ -475,7 +475,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/cryptor"
+    "github.com/duke-git/lancet/v2/cryptor"
 )
 
 func main() {
@@ -506,7 +506,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/cryptor"
+    "github.com/duke-git/lancet/v2/cryptor"
 )
 
 func main() {
@@ -538,7 +538,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/cryptor"
+    "github.com/duke-git/lancet/v2/cryptor"
 )
 
 func main() {
@@ -570,7 +570,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/cryptor"
+    "github.com/duke-git/lancet/v2/cryptor"
 )
 
 func main() {
@@ -600,7 +600,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/cryptor"
+    "github.com/duke-git/lancet/v2/cryptor"
 )
 
 func main() {
@@ -631,7 +631,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/cryptor"
+    "github.com/duke-git/lancet/v2/cryptor"
 )
 
 func main() {
@@ -661,7 +661,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/cryptor"
+    "github.com/duke-git/lancet/v2/cryptor"
 )
 
 func main() {
@@ -692,7 +692,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/cryptor"
+    "github.com/duke-git/lancet/v2/cryptor"
 )
 
 func main() {
@@ -720,7 +720,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/cryptor"
+    "github.com/duke-git/lancet/v2/cryptor"
 )
 
 func main() {
@@ -748,7 +748,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/cryptor"
+    "github.com/duke-git/lancet/v2/cryptor"
 )
 
 func main() {
@@ -776,7 +776,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/cryptor"
+    "github.com/duke-git/lancet/v2/cryptor"
 )
 
 func main() {
@@ -805,7 +805,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/cryptor"
+    "github.com/duke-git/lancet/v2/cryptor"
 )
 
 func main() {
@@ -833,7 +833,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/cryptor"
+    "github.com/duke-git/lancet/v2/cryptor"
 )
 
 func main() {
@@ -861,7 +861,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/cryptor"
+    "github.com/duke-git/lancet/v2/cryptor"
 )
 
 func main() {
@@ -889,7 +889,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/cryptor"
+    "github.com/duke-git/lancet/v2/cryptor"
 )
 
 func main() {
@@ -917,7 +917,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/cryptor"
+    "github.com/duke-git/lancet/v2/cryptor"
 )
 
 func main() {
@@ -945,7 +945,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/cryptor"
+    "github.com/duke-git/lancet/v2/cryptor"
 )
 
 func main() {
@@ -975,7 +975,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/cryptor"
+    "github.com/duke-git/lancet/v2/cryptor"
 )
 
 func main() {
@@ -1009,7 +1009,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/cryptor"
+    "github.com/duke-git/lancet/v2/cryptor"
 )
 
 func main() {

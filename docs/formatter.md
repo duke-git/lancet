@@ -12,7 +12,7 @@ formatter contains some functions for data formatting.
 ## Usage:
 ```go
 import (
-    "github.com/duke-git/lancet/formatter"
+    "github.com/duke-git/lancet/v2/formatter"
 )
 ```
 
@@ -43,7 +43,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/formatter"
+    "github.com/duke-git/lancet/v2/formatter"
 )
 
 func main() {

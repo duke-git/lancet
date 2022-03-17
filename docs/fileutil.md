@@ -12,7 +12,7 @@ Package fileutil implements some basic functions for file operations.
 ## Usage:
 ```go
 import (
-    "github.com/duke-git/lancet/fileutil"
+    "github.com/duke-git/lancet/v2/fileutil"
 )
 ```
 
@@ -56,7 +56,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/fileutil"
+    "github.com/duke-git/lancet/v2/fileutil"
 )
 
 func main() {
@@ -82,7 +82,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/fileutil"
+    "github.com/duke-git/lancet/v2/fileutil"
 )
 
 func main() {
@@ -107,7 +107,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/fileutil"
+    "github.com/duke-git/lancet/v2/fileutil"
 )
 
 func main() {
@@ -135,7 +135,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/fileutil"
+    "github.com/duke-git/lancet/v2/fileutil"
 )
 
 func main() {
@@ -165,7 +165,7 @@ package main
 import (
     "fmt"
     "os"
-    "github.com/duke-git/lancet/fileutil"
+    "github.com/duke-git/lancet/v2/fileutil"
 )
 
 func main() {
@@ -196,7 +196,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/fileutil"
+    "github.com/duke-git/lancet/v2/fileutil"
 )
 
 func main() {
@@ -223,7 +223,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/fileutil"
+    "github.com/duke-git/lancet/v2/fileutil"
 )
 
 func main() {
@@ -249,7 +249,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/fileutil"
+    "github.com/duke-git/lancet/v2/fileutil"
 )
 
 func main() {
@@ -278,7 +278,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/fileutil"
+    "github.com/duke-git/lancet/v2/fileutil"
 )
 
 func main() {
@@ -304,7 +304,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/fileutil"
+    "github.com/duke-git/lancet/v2/fileutil"
 )
 
 func main() {
@@ -332,7 +332,7 @@ package main
 import (
     "fmt"
     "os"
-    "github.com/duke-git/lancet/fileutil"
+    "github.com/duke-git/lancet/v2/fileutil"
 )
 
 func main() {
@@ -365,7 +365,7 @@ package main
 import (
     "fmt"
     "os"
-    "github.com/duke-git/lancet/fileutil"
+    "github.com/duke-git/lancet/v2/fileutil"
 )
 
 func main() {
@@ -398,7 +398,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/fileutil"
+    "github.com/duke-git/lancet/v2/fileutil"
 )
 
 func main() {
@@ -427,7 +427,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/fileutil"
+    "github.com/duke-git/lancet/v2/fileutil"
 )
 
 func main() {

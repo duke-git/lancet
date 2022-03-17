@@ -13,7 +13,7 @@ netutil网络包支持获取ip地址，发送http请求。
 ## 用法:
 ```go
 import (
-    "github.com/duke-git/lancet/netutil"
+    "github.com/duke-git/lancet/v2/netutil"
 )
 ```
 
@@ -54,7 +54,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/netutil"
+    "github.com/duke-git/lancet/v2/netutil"
 )
 
 func main() {
@@ -87,7 +87,7 @@ package main
 import (
     "fmt"
 	"net"
-    "github.com/duke-git/lancet/netutil"
+    "github.com/duke-git/lancet/v2/netutil"
 )
 
 func main() {
@@ -115,7 +115,7 @@ package main
 import (
     "fmt"
 	"net"
-    "github.com/duke-git/lancet/netutil"
+    "github.com/duke-git/lancet/v2/netutil"
 )
 
 func main() {
@@ -142,7 +142,7 @@ package main
 import (
     "fmt"
 	"net"
-    "github.com/duke-git/lancet/netutil"
+    "github.com/duke-git/lancet/v2/netutil"
 )
 
 func main() {
@@ -182,7 +182,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/netutil"
+    "github.com/duke-git/lancet/v2/netutil"
 )
 
 func main() {
@@ -213,7 +213,7 @@ package main
 import (
     "fmt"
 	"net"
-    "github.com/duke-git/lancet/netutil"
+    "github.com/duke-git/lancet/v2/netutil"
 )
 
 func main() {
@@ -249,7 +249,7 @@ import (
     "fmt"
 	"io/ioutil"
 	"log"
-    "github.com/duke-git/lancet/netutil"
+    "github.com/duke-git/lancet/v2/netutil"
 )
 
 func main() {
@@ -292,7 +292,7 @@ import (
     "fmt"
 	"io/ioutil"
 	"log"
-    "github.com/duke-git/lancet/netutil"
+    "github.com/duke-git/lancet/v2/netutil"
 )
 
 func main() {
@@ -341,7 +341,7 @@ import (
     "fmt"
 	"io/ioutil"
 	"log"
-    "github.com/duke-git/lancet/netutil"
+    "github.com/duke-git/lancet/v2/netutil"
 )
 
 func main() {
@@ -391,7 +391,7 @@ import (
     "fmt"
 	"io/ioutil"
 	"log"
-    "github.com/duke-git/lancet/netutil"
+    "github.com/duke-git/lancet/v2/netutil"
 )
 
 func main() {
@@ -430,7 +430,7 @@ import (
     "fmt"
 	"io/ioutil"
 	"log"
-    "github.com/duke-git/lancet/netutil"
+    "github.com/duke-git/lancet/v2/netutil"
 )
 
 func main() {
@@ -476,7 +476,7 @@ import (
     "fmt"
 	"io/ioutil"
 	"log"
-    "github.com/duke-git/lancet/netutil"
+    "github.com/duke-git/lancet/v2/netutil"
 )
 
 func main() {

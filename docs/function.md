@@ -13,7 +13,7 @@ Package function can control the flow of function execution and support part of 
 ## Usage:
 ```go
 import (
-    "github.com/duke-git/lancet/function"
+    "github.com/duke-git/lancet/v2/function"
 )
 ```
 
@@ -49,7 +49,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/function"
+    "github.com/duke-git/lancet/v2/function"
 )
 
 func main() {
@@ -96,8 +96,8 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/function"
-    "github.com/duke-git/lancet/internal"
+    "github.com/duke-git/lancet/v2/function"
+    "github.com/duke-git/lancet/v2/internal"
 )
 
 func main() {
@@ -143,7 +143,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/function"
+    "github.com/duke-git/lancet/v2/function"
 )
 
 func main() {
@@ -177,7 +177,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/function"
+    "github.com/duke-git/lancet/v2/function"
 )
 
 func main() {
@@ -213,7 +213,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/function"
+    "github.com/duke-git/lancet/v2/function"
 )
 
 func main() {
@@ -255,7 +255,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/function"
+    "github.com/duke-git/lancet/v2/function"
 )
 
 func main() {
@@ -284,7 +284,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/function"
+    "github.com/duke-git/lancet/v2/function"
 )
 
 func main() {
@@ -327,7 +327,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/function"
+    "github.com/duke-git/lancet/v2/function"
 )
 
 func main() {

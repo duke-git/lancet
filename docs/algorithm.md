@@ -14,7 +14,7 @@ Package algorithm implements some basic algorithm. eg. sort, search.
 ## Usage
 ```go
 import (
-    "github.com/duke-git/lancet/algorithm"
+    "github.com/duke-git/lancet/v2/algorithm"
 )
 ```
 
@@ -55,7 +55,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/algorithm"
+    "github.com/duke-git/lancet/v2/algorithm"
 )
 
 func main() {
@@ -100,7 +100,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/algorithm"
+    "github.com/duke-git/lancet/v2/algorithm"
 )
 
 func main() {
@@ -165,7 +165,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/algorithm"
+    "github.com/duke-git/lancet/v2/algorithm"
 )
 
 func main() {
@@ -210,7 +210,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/algorithm"
+    "github.com/duke-git/lancet/v2/algorithm"
 )
 
 func main() {
@@ -255,7 +255,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/algorithm"
+    "github.com/duke-git/lancet/v2/algorithm"
 )
 
 func main() {
@@ -300,7 +300,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/algorithm"
+    "github.com/duke-git/lancet/v2/algorithm"
 )
 
 func main() {
@@ -345,7 +345,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/algorithm"
+    "github.com/duke-git/lancet/v2/algorithm"
 )
 
 func main() {
@@ -389,7 +389,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/algorithm"
+    "github.com/duke-git/lancet/v2/algorithm"
 )
 
 func main() {
@@ -434,7 +434,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/algorithm"
+    "github.com/duke-git/lancet/v2/algorithm"
 )
 
 func main() {
@@ -480,7 +480,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/algorithm"
+    "github.com/duke-git/lancet/v2/algorithm"
 )
 
 func main() {
@@ -527,7 +527,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/algorithm"
+    "github.com/duke-git/lancet/v2/algorithm"
 )
 
 func main() {
@@ -576,7 +576,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/algorithm"
+    "github.com/duke-git/lancet/v2/algorithm"
 )
 
 func main() {

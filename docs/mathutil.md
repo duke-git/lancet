@@ -13,7 +13,7 @@ Package mathutil implements some functions for math calculation.
 ## Example:
 ```go
 import (
-    "github.com/duke-git/lancet/mathutil"
+    "github.com/duke-git/lancet/v2/mathutil"
 )
 ```
 
@@ -48,7 +48,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/mathutil"
+    "github.com/duke-git/lancet/v2/mathutil"
 )
 
 func main() {
@@ -75,7 +75,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/mathutil"
+    "github.com/duke-git/lancet/v2/mathutil"
 )
 
 func main() {
@@ -104,7 +104,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/mathutil"
+    "github.com/duke-git/lancet/v2/mathutil"
 )
 
 func main() {
@@ -132,7 +132,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/mathutil"
+    "github.com/duke-git/lancet/v2/mathutil"
 )
 
 func main() {
@@ -158,7 +158,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/mathutil"
+    "github.com/duke-git/lancet/v2/mathutil"
 )
 
 func main() {
@@ -188,7 +188,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/mathutil"
+    "github.com/duke-git/lancet/v2/mathutil"
 )
 
 func main() {
@@ -217,7 +217,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/mathutil"
+    "github.com/duke-git/lancet/v2/mathutil"
 )
 
 func main() {

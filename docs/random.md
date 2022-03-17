@@ -13,7 +13,7 @@ Package random implements some basic functions to generate random int and string
 ## Usage:
 ```go
 import (
-    "github.com/duke-git/lancet/random"
+    "github.com/duke-git/lancet/v2/random"
 )
 ```
 
@@ -45,7 +45,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/random"
+    "github.com/duke-git/lancet/v2/random"
 )
 
 func main() {
@@ -70,7 +70,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/random"
+    "github.com/duke-git/lancet/v2/random"
 )
 
 func main() {
@@ -96,7 +96,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/random"
+    "github.com/duke-git/lancet/v2/random"
 )
 
 func main() {
@@ -123,7 +123,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/random"
+    "github.com/duke-git/lancet/v2/random"
 )
 
 func main() {

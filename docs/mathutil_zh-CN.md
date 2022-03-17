@@ -13,7 +13,7 @@ mathutil包实现了一些数学计算的函数.
 ## 用法:
 ```go
 import (
-    "github.com/duke-git/lancet/mathutil"
+    "github.com/duke-git/lancet/v2/mathutil"
 )
 ```
 
@@ -49,7 +49,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/mathutil"
+    "github.com/duke-git/lancet/v2/mathutil"
 )
 
 func main() {
@@ -76,7 +76,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/mathutil"
+    "github.com/duke-git/lancet/v2/mathutil"
 )
 
 func main() {
@@ -105,7 +105,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/mathutil"
+    "github.com/duke-git/lancet/v2/mathutil"
 )
 
 func main() {
@@ -133,7 +133,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/mathutil"
+    "github.com/duke-git/lancet/v2/mathutil"
 )
 
 func main() {
@@ -159,7 +159,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/mathutil"
+    "github.com/duke-git/lancet/v2/mathutil"
 )
 
 func main() {
@@ -189,7 +189,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/mathutil"
+    "github.com/duke-git/lancet/v2/mathutil"
 )
 
 func main() {
@@ -218,7 +218,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/mathutil"
+    "github.com/duke-git/lancet/v2/mathutil"
 )
 
 func main() {

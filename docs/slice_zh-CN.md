@@ -13,7 +13,7 @@ slice包包含操作切片的方法集合。
 ## 用法:
 ```go
 import (
-    "github.com/duke-git/lancet/slice"
+    "github.com/duke-git/lancet/v2/slice"
 )
 ```
 
@@ -72,7 +72,7 @@ func Contain[T any](slice []T, value T) bool
 ```go
 import (
 	"fmt"
-	"github.com/duke-git/lancet/slice"
+	"github.com/duke-git/lancet/v2/slice"
 )
 
 func main() {
@@ -95,7 +95,7 @@ func ContainSubSlice[T any](slice, subslice []T) bool
 ```go
 import (
 	"fmt"
-	"github.com/duke-git/lancet/slice"
+	"github.com/duke-git/lancet/v2/slice"
 )
 
 func main() {
@@ -120,7 +120,7 @@ func Chunk[T any](slice []T, size int) [][]T
 ```go
 import (
 	"fmt"
-	"github.com/duke-git/lancet/slice"
+	"github.com/duke-git/lancet/v2/slice"
 )
 
 func main() {
@@ -145,7 +145,7 @@ func Compact[T any](slice []T) []T
 ```go
 import (
 	"fmt"
-	"github.com/duke-git/lancet/slice"
+	"github.com/duke-git/lancet/v2/slice"
 )
 
 func main() {
@@ -168,7 +168,7 @@ func Concat[T any](slice []T, values ...[]T) []T
 ```go
 import (
 	"fmt"
-	"github.com/duke-git/lancet/slice"
+	"github.com/duke-git/lancet/v2/slice"
 )
 
 func main() {
@@ -195,7 +195,7 @@ func Count[T any](slice []T, predicate func(index int, t T) bool) int
 ```go
 import (
 	"fmt"
-	"github.com/duke-git/lancet/slice"
+	"github.com/duke-git/lancet/v2/slice"
 )
 
 func main() {
@@ -225,7 +225,7 @@ func Difference[T comparable](slice, comparedSlice []T) []T
 ```go
 import (
 	"fmt"
-	"github.com/duke-git/lancet/slice"
+	"github.com/duke-git/lancet/v2/slice"
 )
 
 func main() {
@@ -253,7 +253,7 @@ func DifferenceBy[T any](slice []T, comparedSlice []T, iteratee func(index int, 
 ```go
 import (
 	"fmt"
-	"github.com/duke-git/lancet/slice"
+	"github.com/duke-git/lancet/v2/slice"
 )
 
 func main() {
@@ -283,7 +283,7 @@ func DifferenceWith[T any](slice []T, comparedSlice []T, comparator func(value, 
 ```go
 import (
 	"fmt"
-	"github.com/duke-git/lancet/slice"
+	"github.com/duke-git/lancet/v2/slice"
 )
 
 func main() {
@@ -312,7 +312,7 @@ func DeleteAt[T any](slice []T, start int, end ...int)
 ```go
 import (
 	"fmt"
-	"github.com/duke-git/lancet/slice"
+	"github.com/duke-git/lancet/v2/slice"
 )
 
 func main() {
@@ -341,7 +341,7 @@ func Drop[T any](slice []T, n int) []T
 ```go
 import (
 	"fmt"
-	"github.com/duke-git/lancet/slice"
+	"github.com/duke-git/lancet/v2/slice"
 )
 
 func main() {
@@ -372,7 +372,7 @@ func Every[T any](slice []T, predicate func(index int, t T) bool) bool
 ```go
 import (
 	"fmt"
-	"github.com/duke-git/lancet/slice"
+	"github.com/duke-git/lancet/v2/slice"
 )
 
 func main() {
@@ -402,7 +402,7 @@ func Filter[T any](slice []T, predicate func(index int, t T) bool) []T
 ```go
 import (
 	"fmt"
-	"github.com/duke-git/lancet/slice"
+	"github.com/duke-git/lancet/v2/slice"
 )
 
 func main() {
@@ -431,7 +431,7 @@ func Find[T any](slice []T, predicate func(index int, t T) bool) (*T, bool)
 ```go
 import (
 	"fmt"
-	"github.com/duke-git/lancet/slice"
+	"github.com/duke-git/lancet/v2/slice"
 )
 
 func main() {
@@ -462,7 +462,7 @@ func FindLast[T any](slice []T, predicate func(index int, t T) bool) (*T, bool)
 ```go
 import (
 	"fmt"
-	"github.com/duke-git/lancet/slice"
+	"github.com/duke-git/lancet/v2/slice"
 )
 
 func main() {
@@ -492,7 +492,7 @@ func FlattenDeep(slice any) any
 ```go
 import (
 	"fmt"
-	"github.com/duke-git/lancet/slice"
+	"github.com/duke-git/lancet/v2/slice"
 )
 
 func main() {
@@ -519,7 +519,7 @@ func ForEach[T any](slice []T, iteratee func(index int, t T))
 ```go
 import (
 	"fmt"
-	"github.com/duke-git/lancet/slice"
+	"github.com/duke-git/lancet/v2/slice"
 )
 
 func main() {
@@ -548,7 +548,7 @@ func GroupBy[T any](slice []T, groupFn func(index int, t T) bool) ([]T, []T)
 ```go
 import (
 	"fmt"
-	"github.com/duke-git/lancet/slice"
+	"github.com/duke-git/lancet/v2/slice"
 )
 
 func main() {
@@ -579,7 +579,7 @@ func IntSlice(slice any) []int
 ```go
 import (
 	"fmt"
-	"github.com/duke-git/lancet/slice"
+	"github.com/duke-git/lancet/v2/slice"
 )
 
 func main() {
@@ -605,7 +605,7 @@ func InterfaceSlice(slice any) []any
 ```go
 import (
 	"fmt"
-	"github.com/duke-git/lancet/slice"
+	"github.com/duke-git/lancet/v2/slice"
 )
 
 func main() {
@@ -631,7 +631,7 @@ func Intersection[T any](slices ...[]T) []T
 ```go
 import (
 	"fmt"
-	"github.com/duke-git/lancet/slice"
+	"github.com/duke-git/lancet/v2/slice"
 )
 
 func main() {
@@ -659,7 +659,7 @@ func InsertAt[T any](slice []T, index int, value any) []T
 ```go
 import (
 	"fmt"
-	"github.com/duke-git/lancet/slice"
+	"github.com/duke-git/lancet/v2/slice"
 )
 
 func main() {
@@ -689,7 +689,7 @@ func Map[T any, U any](slice []T, iteratee func(index int, t T) U) []U
 ```go
 import (
 	"fmt"
-	"github.com/duke-git/lancet/slice"
+	"github.com/duke-git/lancet/v2/slice"
 )
 
 func main() {
@@ -718,7 +718,7 @@ func Reverse[T any](slice []T)
 ```go
 import (
 	"fmt"
-	"github.com/duke-git/lancet/slice"
+	"github.com/duke-git/lancet/v2/slice"
 )
 
 func main() {
@@ -743,7 +743,7 @@ func Reduce[T any](slice []T, iteratee func(index int, t1, t2 T) T, initial T) T
 ```go
 import (
 	"fmt"
-	"github.com/duke-git/lancet/slice"
+	"github.com/duke-git/lancet/v2/slice"
 )
 
 func main() {
@@ -772,7 +772,7 @@ func Shuffle[T any](slice []T) []T
 ```go
 import (
 	"fmt"
-	"github.com/duke-git/lancet/slice"
+	"github.com/duke-git/lancet/v2/slice"
 )
 
 func main() {
@@ -797,7 +797,7 @@ func SortByField(slice any, field string, sortType ...string) error
 ```go
 import (
 	"fmt"
-	"github.com/duke-git/lancet/slice"
+	"github.com/duke-git/lancet/v2/slice"
 )
 
 func main() {
@@ -840,7 +840,7 @@ func Some[T any](slice []T, predicate func(index int, t T) bool) bool
 ```go
 import (
 	"fmt"
-	"github.com/duke-git/lancet/slice"
+	"github.com/duke-git/lancet/v2/slice"
 )
 
 func main() {
@@ -869,7 +869,7 @@ func StringSlice(slice any) []string
 ```go
 import (
 	"fmt"
-	"github.com/duke-git/lancet/slice"
+	"github.com/duke-git/lancet/v2/slice"
 )
 
 func main() {
@@ -895,7 +895,7 @@ func Unique[T any](slice []T) []T
 ```go
 import (
 	"fmt"
-	"github.com/duke-git/lancet/slice"
+	"github.com/duke-git/lancet/v2/slice"
 )
 
 func main() {
@@ -919,7 +919,7 @@ func Union[T any](slices ...[]T) []T
 ```go
 import (
 	"fmt"
-	"github.com/duke-git/lancet/slice"
+	"github.com/duke-git/lancet/v2/slice"
 )
 
 func main() {
@@ -946,7 +946,7 @@ func UpdateAt[T any](slice []T, index int, value T) []T
 ```go
 import (
 	"fmt"
-	"github.com/duke-git/lancet/slice"
+	"github.com/duke-git/lancet/v2/slice"
 )
 
 func main() {
@@ -973,7 +973,7 @@ func Without[T any](slice []T, values ...T) []T
 ```go
 import (
 	"fmt"
-	"github.com/duke-git/lancet/slice"
+	"github.com/duke-git/lancet/v2/slice"
 )
 
 func main() {

@@ -13,7 +13,7 @@ retry重试执行函数直到函数运行成功或被context cancel。
 ## 用法:
 ```go
 import (
-    "github.com/duke-git/lancet/retry"
+    "github.com/duke-git/lancet/v2/retry"
 )
 ```
 
@@ -94,7 +94,7 @@ import (
     "fmt"
     "errors"
     "log"
-    "github.com/duke-git/lancet/retry"
+    "github.com/duke-git/lancet/v2/retry"
 )
 
 func main() {
@@ -136,7 +136,7 @@ import (
     "fmt"
     "errors"
     "log"
-    "github.com/duke-git/lancet/retry"
+    "github.com/duke-git/lancet/v2/retry"
 )
 
 func main() {
@@ -175,7 +175,7 @@ import (
     "fmt"
     "errors"
     "log"
-    "github.com/duke-git/lancet/retry"
+    "github.com/duke-git/lancet/v2/retry"
 )
 
 func main() {
@@ -215,7 +215,7 @@ import (
     "fmt"
     "errors"
     "log"
-    "github.com/duke-git/lancet/retry"
+    "github.com/duke-git/lancet/v2/retry"
 )
 
 func main() {

@@ -13,7 +13,7 @@ Package retry is for executing a function repeatedly until it was successful or 
 ## Usage:
 ```go
 import (
-    "github.com/duke-git/lancet/retry"
+    "github.com/duke-git/lancet/v2/retry"
 )
 ```
 
@@ -46,7 +46,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"github.com/duke-git/lancet/retry"
+	"github.com/duke-git/lancet/v2/retry"
 	"time"
 )
 
@@ -92,7 +92,7 @@ import (
     "fmt"
     "errors"
     "log"
-    "github.com/duke-git/lancet/retry"
+    "github.com/duke-git/lancet/v2/retry"
 )
 
 func main() {
@@ -134,7 +134,7 @@ import (
     "fmt"
     "errors"
     "log"
-    "github.com/duke-git/lancet/retry"
+    "github.com/duke-git/lancet/v2/retry"
 )
 
 func main() {
@@ -173,7 +173,7 @@ import (
     "fmt"
     "errors"
     "log"
-    "github.com/duke-git/lancet/retry"
+    "github.com/duke-git/lancet/v2/retry"
 )
 
 func main() {
@@ -213,7 +213,7 @@ import (
     "fmt"
     "errors"
     "log"
-    "github.com/duke-git/lancet/retry"
+    "github.com/duke-git/lancet/v2/retry"
 )
 
 func main() {

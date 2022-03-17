@@ -12,7 +12,7 @@ formatter格式化器包含一些数据格式化处理方法。
 ## 用法:
 ```go
 import (
-    "github.com/duke-git/lancet/formatter"
+    "github.com/duke-git/lancet/v2/formatter"
 )
 ```
 
@@ -42,7 +42,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/formatter"
+    "github.com/duke-git/lancet/v2/formatter"
 )
 
 func main() {

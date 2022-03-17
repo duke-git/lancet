@@ -12,7 +12,7 @@ datetime日期时间处理包，格式化日期，比较日期。
 ## 用法:
 ```go
 import (
-    "github.com/duke-git/lancet/datetime"
+    "github.com/duke-git/lancet/v2/datetime"
 )
 ```
 
@@ -85,7 +85,7 @@ package main
 import (
     "fmt"
     "time"
-    "github.com/duke-git/lancet/datetime"
+    "github.com/duke-git/lancet/v2/datetime"
 )
 
 func main() {
@@ -114,7 +114,7 @@ package main
 import (
     "fmt"
     "time"
-    "github.com/duke-git/lancet/datetime"
+    "github.com/duke-git/lancet/v2/datetime"
 )
 
 func main() {
@@ -142,7 +142,7 @@ package main
 import (
     "fmt"
     "time"
-    "github.com/duke-git/lancet/datetime"
+    "github.com/duke-git/lancet/v2/datetime"
 )
 
 func main() {
@@ -170,7 +170,7 @@ package main
 import (
     "fmt"
     "time"
-    "github.com/duke-git/lancet/datetime"
+    "github.com/duke-git/lancet/v2/datetime"
 )
 
 func main() {
@@ -196,7 +196,7 @@ package main
 import (
     "fmt"
     "time"
-    "github.com/duke-git/lancet/datetime"
+    "github.com/duke-git/lancet/v2/datetime"
 )
 
 func main() {
@@ -222,7 +222,7 @@ package main
 import (
     "fmt"
     "time"
-    "github.com/duke-git/lancet/datetime"
+    "github.com/duke-git/lancet/v2/datetime"
 )
 
 func main() {
@@ -250,7 +250,7 @@ package main
 import (
     "fmt"
     "time"
-    "github.com/duke-git/lancet/datetime"
+    "github.com/duke-git/lancet/v2/datetime"
 )
 
 func main() {
@@ -278,7 +278,7 @@ package main
 import (
     "fmt"
     "time"
-    "github.com/duke-git/lancet/datetime"
+    "github.com/duke-git/lancet/v2/datetime"
 )
 
 func main() {
@@ -305,7 +305,7 @@ package main
 import (
     "fmt"
     "time"
-    "github.com/duke-git/lancet/datetime"
+    "github.com/duke-git/lancet/v2/datetime"
 )
 
 func main() {
@@ -333,7 +333,7 @@ package main
 import (
     "fmt"
     "time"
-    "github.com/duke-git/lancet/datetime"
+    "github.com/duke-git/lancet/v2/datetime"
 )
 
 func main() {
@@ -359,7 +359,7 @@ package main
 import (
     "fmt"
     "time"
-    "github.com/duke-git/lancet/datetime"
+    "github.com/duke-git/lancet/v2/datetime"
 )
 
 func main() {
@@ -385,7 +385,7 @@ package main
 import (
     "fmt"
     "time"
-    "github.com/duke-git/lancet/datetime"
+    "github.com/duke-git/lancet/v2/datetime"
 )
 
 func main() {
@@ -413,7 +413,7 @@ package main
 import (
     "fmt"
     "time"
-    "github.com/duke-git/lancet/datetime"
+    "github.com/duke-git/lancet/v2/datetime"
 )
 
 func main() {
@@ -441,7 +441,7 @@ package main
 import (
     "fmt"
     "time"
-    "github.com/duke-git/lancet/datetime"
+    "github.com/duke-git/lancet/v2/datetime"
 )
 
 func main() {
@@ -468,7 +468,7 @@ package main
 import (
     "fmt"
     "time"
-    "github.com/duke-git/lancet/datetime"
+    "github.com/duke-git/lancet/v2/datetime"
 )
 
 func main() {
@@ -495,7 +495,7 @@ package main
 import (
     "fmt"
     "time"
-    "github.com/duke-git/lancet/datetime"
+    "github.com/duke-git/lancet/v2/datetime"
 )
 
 func main() {
@@ -522,7 +522,7 @@ package main
 import (
     "fmt"
     "time"
-    "github.com/duke-git/lancet/datetime"
+    "github.com/duke-git/lancet/v2/datetime"
 )
 
 func main() {
@@ -549,7 +549,7 @@ package main
 import (
     "fmt"
     "time"
-    "github.com/duke-git/lancet/datetime"
+    "github.com/duke-git/lancet/v2/datetime"
 )
 
 func main() {
@@ -576,7 +576,7 @@ package main
 import (
     "fmt"
     "time"
-    "github.com/duke-git/lancet/datetime"
+    "github.com/duke-git/lancet/v2/datetime"
 )
 
 func main() {
@@ -603,7 +603,7 @@ package main
 import (
     "fmt"
     "time"
-    "github.com/duke-git/lancet/datetime"
+    "github.com/duke-git/lancet/v2/datetime"
 )
 
 func main() {
@@ -629,7 +629,7 @@ package main
 import (
     "fmt"
     "time"
-    "github.com/duke-git/lancet/datetime"
+    "github.com/duke-git/lancet/v2/datetime"
 )
 
 func main() {
@@ -655,7 +655,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/datetime"
+    "github.com/duke-git/lancet/v2/datetime"
 )
 
 func main() {

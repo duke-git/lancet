@@ -12,7 +12,7 @@ xerror错误处理逻辑封装
 ## 用法:
 ```go
 import (
-    "github.com/duke-git/lancet/xerror"
+    "github.com/duke-git/lancet/v2/xerror"
 )
 ```
 
@@ -42,7 +42,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/xerror"
+    "github.com/duke-git/lancet/v2/xerror"
 )
 
 func main() {

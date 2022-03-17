@@ -13,7 +13,7 @@ random随机数生成器包，可以生成随机[]bytes, int, string。
 ## 用法:
 ```go
 import (
-    "github.com/duke-git/lancet/random"
+    "github.com/duke-git/lancet/v2/random"
 )
 ```
 
@@ -46,7 +46,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/random"
+    "github.com/duke-git/lancet/v2/random"
 )
 
 func main() {
@@ -71,7 +71,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/random"
+    "github.com/duke-git/lancet/v2/random"
 )
 
 func main() {
@@ -97,7 +97,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/random"
+    "github.com/duke-git/lancet/v2/random"
 )
 
 func main() {
@@ -123,7 +123,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/random"
+    "github.com/duke-git/lancet/v2/random"
 )
 
 func main() {
