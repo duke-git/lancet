@@ -78,6 +78,7 @@ import "github.com/duke-git/lancet/algorithm"
 #### Function list:
 - [BubbleSort](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#BubbleSort)
 - [CountSort](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#CountSort)
+- [HeapSort](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#HeapSort)
 - [InsertionSort](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#InsertionSort)
 - [MergeSort](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#MergeSort)
 - [QuickSort](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#QuickSort)
