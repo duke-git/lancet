@@ -1,3 +1,7 @@
+// Copyright 2021 dudaodong@gmail.com. All rights reserved.
+// Use of this source code is governed by MIT license
+
+// Package datastructure implements some data structure. eg. list, linklist, stack, queue, tree, graph.
 package datastructure
 
 // LinkNode is a linkedlist node, which have a Value and Pre points to previous node, Next points to a next node of the link.
