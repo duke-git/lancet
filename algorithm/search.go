@@ -4,7 +4,7 @@
 // Package algorithm contain some basic algorithm functions. eg. sort, search, list, linklist, stack, queue, tree, graph. TODO
 package algorithm
 
-import "github.com/duke-git/lancet/lancetconstraints"
+import "github.com/duke-git/lancet/v2/lancetconstraints"
 
 // Search algorithms see https://github.com/TheAlgorithms/Go/tree/master/search
 

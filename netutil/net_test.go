@@ -4,7 +4,7 @@ import (
 	"net"
 	"testing"
 
-	"github.com/duke-git/lancet/internal"
+	"github.com/duke-git/lancet/v2/internal"
 )
 
 func TestGetInternalIp(t *testing.T) {

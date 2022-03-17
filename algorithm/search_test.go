@@ -3,7 +3,7 @@ package algorithm
 import (
 	"testing"
 
-	"github.com/duke-git/lancet/internal"
+	"github.com/duke-git/lancet/v2/internal"
 )
 
 var sortedNumbers = []int{1, 2, 3, 4, 5, 6, 7, 8}

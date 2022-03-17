@@ -4,7 +4,7 @@
 // Package algorithm contain some basic algorithm functions. eg. sort, search
 package algorithm
 
-import "github.com/duke-git/lancet/lancetconstraints"
+import "github.com/duke-git/lancet/v2/lancetconstraints"
 
 // BubbleSort use bubble to sort slice.
 func BubbleSort[T any](slice []T, comparator lancetconstraints.Comparator) []T {

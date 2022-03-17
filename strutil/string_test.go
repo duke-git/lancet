@@ -3,7 +3,7 @@ package strutil
 import (
 	"testing"
 
-	"github.com/duke-git/lancet/internal"
+	"github.com/duke-git/lancet/v2/internal"
 )
 
 func TestCamelCase(t *testing.T) {

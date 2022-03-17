@@ -1,9 +1,10 @@
 package xerror
 
 import (
-	"github.com/duke-git/lancet/internal"
 	"strconv"
 	"testing"
+
+	"github.com/duke-git/lancet/v2/internal"
 )
 
 func TestUnwrap(t *testing.T) {

@@ -5,7 +5,7 @@ import (
 	"regexp"
 	"testing"
 
-	"github.com/duke-git/lancet/internal"
+	"github.com/duke-git/lancet/v2/internal"
 )
 
 func TestRandString(t *testing.T) {

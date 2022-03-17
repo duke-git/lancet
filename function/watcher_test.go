@@ -3,7 +3,7 @@ package function
 import (
 	"testing"
 
-	"github.com/duke-git/lancet/internal"
+	"github.com/duke-git/lancet/v2/internal"
 )
 
 func TestWatcher(t *testing.T) {
