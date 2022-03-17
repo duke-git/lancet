@@ -76,10 +76,10 @@ func TestCopyFile(t *testing.T) {
 func TestListFileNames(t *testing.T) {
 	assert := internal.NewAssert(t, "TestListFileNames")
 
-	filesInPath, err := ListFileNames("../datetime/")
+	filesInPath, err := ListFileNames("./")
 	assert.IsNil(err)
 
-	expected := []string{"datetime.go", "datetime_test.go"}
+	expected := []string{"file.go", "file_test.go"}
 	assert.Equal(expected, filesInPath)
 }
 
