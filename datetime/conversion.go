@@ -30,7 +30,7 @@ func NewFormat(t string) (*theTime, error) {
 	return &theTime{unix: tt.Unix()}, nil
 }
 
-// NewISO8601 NewFormat return unix timestamp of specified iso8601 time string
+// NewISO8601 return unix timestamp of specified iso8601 time string
 func NewISO8601(iso8601 string) (*theTime, error) {
 	t, err := time.ParseInLocation(time.RFC3339, iso8601, time.UTC)
 	if err != nil {
@@ -39,7 +39,7 @@ func NewISO8601(iso8601 string) (*theTime, error) {
 	return &theTime{unix: t.Unix()}, nil
 }
 
-// ToUnix return unix timestamp 
+// ToUnix return unix timestamp
 func (t *theTime) ToUnix() int64 {
 	return t.unix
 }
