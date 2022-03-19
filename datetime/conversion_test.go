@@ -20,25 +20,21 @@ func TestToUnix(t *testing.T) {
 func TestToFormat(t *testing.T) {
 	assert := internal.NewAssert(t, "TestToFormat")
 
-	tm1, err := NewFormat("2022/03/18 17:04:05")
-	assert.IsNotNil(err)
-
-	tm1, err = NewFormat("2022-03-18 17:04:05")
+	tm1, err := NewFormat("2022-03-18 17:04:05")
 	assert.IsNil(err)
 
-	// res := tm1.ToFormat()
-	t1, err1 := time.Parse("2006-01-02 15:04:05", tm1.ToFormat())
+	loc, _ := time.LoadLocation("Asia/Shanghai")
+	t1, err1 := time.ParseInLocation("2006-01-02 15:04:05", tm1.ToFormat(), loc)
 	if err1 != nil {
 		t.FailNow()
 	}
 
-	t2, err2 := time.Parse("2006-01-02 15:04:05", "2022-03-18 17:04:05")
+	t2, err2 := time.ParseInLocation("2006-01-02 15:04:05", "2022-03-18 17:04:05", loc)
 	if err2 != nil {
 		t.FailNow()
 	}
 
 	assert.Equal(t2, t1)
-	// assert.Equal("2022-03-18 17:04:05", res)
 }
 
 func TestToFormatForTpl(t *testing.T) {
