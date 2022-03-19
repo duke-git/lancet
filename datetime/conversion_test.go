@@ -2,6 +2,7 @@ package datetime
 
 import (
 	"testing"
+	"time"
 
 	"github.com/duke-git/lancet/v2/internal"
 )
@@ -25,8 +26,19 @@ func TestToFormat(t *testing.T) {
 	tm1, err = NewFormat("2022-03-18 17:04:05")
 	assert.IsNil(err)
 
-	res := tm1.ToFormat()
-	assert.Equal("2022-03-18 17:04:05", res)
+	// res := tm1.ToFormat()
+	t1, err1 := time.Parse("2006-01-02 15:04:05", tm1.ToFormat())
+	if err1 != nil {
+		t.FailNow()
+	}
+
+	t2, err2 := time.Parse("2006-01-02 15:04:05", "2022-03-18 17:04:05")
+	if err2 != nil {
+		t.FailNow()
+	}
+
+	assert.Equal(t2, t1)
+	// assert.Equal("2022-03-18 17:04:05", res)
 }
 
 func TestToFormatForTpl(t *testing.T) {
