@@ -46,15 +46,15 @@ func (t *theTime) ToUnix() int64 {
 
 // ToFormat return the time string 'yyyy-mm-dd hh:mm:ss' of unix time
 func (t *theTime) ToFormat() string {
-	return time.Unix(t.unix, 0).Format("2006-01-02 15:04:05")
+	return time.Unix(t.unix, 0).Local().Format("2006-01-02 15:04:05")
 }
 
 // ToFormatForTpl return the time string which format is specified tpl
 func (t *theTime) ToFormatForTpl(tpl string) string {
-	return time.Unix(t.unix, 0).Format(tpl)
+	return time.Unix(t.unix, 0).Local().Format(tpl)
 }
 
 // ToFormatForTpl return iso8601 time string
 func (t *theTime) ToIso8601() string {
-	return time.Unix(t.unix, 0).Format(time.RFC3339)
+	return time.Unix(t.unix, 0).Local().Format(time.RFC3339)
 }
