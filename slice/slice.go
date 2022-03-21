@@ -253,6 +253,25 @@ func GroupBy[T any](slice []T, groupFn func(index int, t T) bool) ([]T, []T) {
 	return groupA, groupB
 }
 
+// GroupWith return a map composed of keys generated from the results of running each element of slice thru iteratee.
+func GroupWith[T any, U comparable](slice []T, iteratee func(T) U) map[U][]T {
+	if iteratee == nil {
+		panic("iteratee func is missing")
+	}
+
+	res := make(map[U][]T)
+
+	for _, v := range slice {
+		key := iteratee(v)
+		if _, ok := res[key]; !ok {
+			res[key] = []T{}
+		}
+		res[key] = append(res[key], v)
+	}
+
+	return res
+}
+
 // Find iterates over elements of slice, returning the first one that passes a truth test on predicate function.
 // If return T is nil then no items matched the predicate func
 func Find[T any](slice []T, predicate func(index int, t T) bool) (*T, bool) {

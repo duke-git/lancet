@@ -1,6 +1,7 @@
 package slice
 
 import (
+	"math"
 	"testing"
 
 	"github.com/duke-git/lancet/v2/internal"
@@ -140,6 +141,20 @@ func TestGroupBy(t *testing.T) {
 	assert := internal.NewAssert(t, "TestGroupBy")
 	assert.Equal(expectedEven, even)
 	assert.Equal(expectedOdd, odd)
+}
+
+func TestGroupWith(t *testing.T) {
+	nums := []float64{6.1, 4.2, 6.3}
+	floor := func(num float64) float64 {
+		return math.Floor(num)
+	}
+	expected := map[float64][]float64{
+		4: {4.2},
+		6: {6.1, 6.3},
+	}
+	actual := GroupWith(nums, floor)
+	assert := internal.NewAssert(t, "TestGroupWith")
+	assert.Equal(expected, actual)
 }
 
 func TestCount(t *testing.T) {
