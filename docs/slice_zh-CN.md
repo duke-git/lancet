@@ -39,6 +39,7 @@ import (
 - [ForEach](#ForEach)
   
 - [GroupBy](#GroupBy)
+- [GroupWith](#GroupWith)
 - [IntSlice](#IntSlice)
 - [InterfaceSlice](#InterfaceSlice)
 - [Intersection](#Intersection)
@@ -564,6 +565,32 @@ func main() {
 ```
 
 
+
+### <span id="GroupWith">GroupWith</span>
+<p>创建一个map，key是iteratee遍历slice中的每个元素返回的结果。 分组值的顺序是由他们出现在slice中的顺序确定的。每个键对应的值负责生成key的元素组成的数组。iteratee调用1个参数： (value)</p>
+
+<b>函数签名:</b>
+
+```go
+func GroupWith[T any, U comparable](slice []T, iteratee func(T) U) map[U][]T 
+```
+<b>例子:</b>
+
+```go
+import (
+	"fmt"
+	"github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+	nums := []float64{6.1, 4.2, 6.3}
+	floor := func(num float64) float64 {
+		return math.Floor(num)
+	}
+	res := slice.GroupWith(nums, floor)
+	fmt.Println(res) //map[float64][]float64{ 4: {4.2}, 6: {6.1, 6.3},}
+}
+```
 
 
 ### <span id="IntSlice">IntSlice</span>

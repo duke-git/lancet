@@ -37,8 +37,9 @@ import (
 - [FindLast](#FindLast)
 - [FlattenDeep](#FlattenDeep)
 - [ForEach](#ForEach)
-  
+
 - [GroupBy](#GroupBy)
+- [GroupWith](#GroupWith)
 - [IntSlice](#IntSlice)
 - [InterfaceSlice](#InterfaceSlice)
 - [Intersection](#Intersection)
@@ -561,6 +562,34 @@ func main() {
 }
 ```
 
+
+
+
+### <span id="GroupWith">GroupWith</span>
+<p>Return a map composed of keys generated from the results of running each element of slice thru iteratee.</p>
+
+<b>Signature:</b>
+
+```go
+func GroupWith[T any, U comparable](slice []T, iteratee func(T) U) map[U][]T 
+```
+<b>Example:</b>
+
+```go
+import (
+	"fmt"
+	"github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+	nums := []float64{6.1, 4.2, 6.3}
+	floor := func(num float64) float64 {
+		return math.Floor(num)
+	}
+	res := slice.GroupWith(nums, floor)
+	fmt.Println(res) //map[float64][]float64{ 4: {4.2}, 6: {6.1, 6.3},}
+}
+```
 
 
 
