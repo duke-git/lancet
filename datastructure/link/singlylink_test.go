@@ -44,21 +44,29 @@ func TestSinglyLink_InsertAt(t *testing.T) {
 	err := link.InsertAt(1, 1)
 	assert.IsNotNil(err)
 
-	link.InsertAt(0, 1)
-	link.InsertAt(1, 2)
-	link.InsertAt(2, 4)
-	link.InsertAt(2, 3)
-
+	err = link.InsertAt(0, 1)
 	if err != nil {
 		t.FailNow()
 	}
+	err = link.InsertAt(1, 2)
+	if err != nil {
+		t.FailNow()
+	}
+	err = link.InsertAt(2, 4)
+	if err != nil {
+		t.FailNow()
+	}
+	err = link.InsertAt(2, 3)
+	if err != nil {
+		t.FailNow()
+	}
+
 	link.Print()
 
 	expected := []int{1, 2, 3, 4}
 	values := link.Values()
 
 	assert.Equal(expected, values)
-
 }
 
 func TestSinglyLink_DeleteAtHead(t *testing.T) {
