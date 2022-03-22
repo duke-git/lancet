@@ -20,10 +20,13 @@ import (
 <div STYLE="page-break-after: always;"></div>
 
 ## 目录
+- [Average](#Average)
 - [Exponent](#Exponent)
 - [Fibonacci](#Fibonacci)
 - [Factorial](#Factorial)
-
+- [Max](#Max)
+- [Min](#Min)
+  
 - [Percent](#Percent)
 - [RoundToFloat](#RoundToFloat)
 - [RoundToString](#RoundToString)
@@ -32,6 +35,33 @@ import (
 <div STYLE="page-break-after: always;"></div>
 
 ## Documentation
+
+
+### <span id="Average">Average</span>
+<p>计算平均数. 可能需要对结果调用RoundToFloat方法四舍五入</p>
+
+<b>函数签名:</b>
+
+```go
+func Average[T lancetconstraints.Number](numbers ...T) T
+```
+<b>例子:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/mathutil"
+)
+
+func main() {
+	fmt.Println(mathutil.Average(0, 0)) //0
+	fmt.Println(mathutil.Average(1, 1)) //1
+	avg := mathutil.Average(1.2, 1.4) //1.2999999998
+	roundAvg := mmathutil.RoundToFloat(avg, 1) // 1.3
+}
+```
 
 
 ### <span id="Exponent">Exponent</span>
@@ -113,6 +143,59 @@ func main() {
 	fmt.Println(mathutil.Factorial(1)) //1
 	fmt.Println(mathutil.Factorial(2)) //2
 	fmt.Println(mathutil.Factorial(3)) //6
+}
+```
+
+
+### <span id="Max">Max</span>
+<p>返回参数中的最大数</p>
+
+<b>函数签名:</b>
+
+```go
+func Max[T lancetconstraints.Number](numbers ...T) T
+```
+<b>例子:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/mathutil"
+)
+
+func main() {
+	fmt.Println(mathutil.Max(0, 0)) //0
+	fmt.Println(mathutil.Max(1, 2, 3)) //3
+	fmt.Println(mathutil.Max(1.2, 1.4, 1.1, 1.4)) //1.4
+}
+```
+
+
+
+### <span id="Min">Min</span>
+<p>返回参数中的最小数</p>
+
+<b>函数签名:</b>
+
+```go
+func Min[T lancetconstraints.Number](numbers ...T) T
+```
+<b>例子:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/mathutil"
+)
+
+func main() {
+	fmt.Println(mathutil.Min(0, 0)) //0
+	fmt.Println(mathutil.Min(1, 2, 3)) //1
+	fmt.Println(mathutil.Min(1.2, 1.4, 1.1, 1.4)) //1.1
 }
 ```
 

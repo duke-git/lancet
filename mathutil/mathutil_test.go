@@ -80,3 +80,19 @@ func TestAverage(t *testing.T) {
 	t.Log(avg)
 	assert.Equal(1.3, RoundToFloat(avg, 1))
 }
+
+func TestMax(t *testing.T) {
+	assert := internal.NewAssert(t, "TestMax")
+
+	assert.Equal(Max(0, 0), 0)
+	assert.Equal(Max(1, 2, 3), 3)
+	assert.Equal(Max(1.2, 1.4, 1.1, 1.4), 1.4)
+}
+
+func TestMin(t *testing.T) {
+	assert := internal.NewAssert(t, "TestMin")
+
+	assert.Equal(Min(0, 0), 0)
+	assert.Equal(Min(1, 2, 3), 1)
+	assert.Equal(Min(1.2, 1.4, 1.1, 1.4), 1.1)
+}
