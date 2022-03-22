@@ -28,14 +28,14 @@ func TestLinkedStack_Pop(t *testing.T) {
 	assert := internal.NewAssert(t, "TestLinkedStack_Pop")
 
 	stack := NewLinkedStack[int]()
-	topItem, err := stack.Pop()
+	_, err := stack.Pop()
 	assert.IsNotNil(err)
 
 	stack.Push(1)
 	stack.Push(2)
 	stack.Push(3)
 
-	topItem, err = stack.Pop()
+	topItem, err := stack.Pop()
 	assert.IsNil(err)
 	assert.Equal(3, *topItem)
 
@@ -48,14 +48,14 @@ func TestLinkedStack_Peak(t *testing.T) {
 	assert := internal.NewAssert(t, "TestLinkedStack_Peak")
 
 	stack := NewLinkedStack[int]()
-	topItem, err := stack.Peak()
+	_, err := stack.Peak()
 	assert.IsNotNil(err)
 
 	stack.Push(1)
 	stack.Push(2)
 	stack.Push(3)
 
-	topItem, err = stack.Peak()
+	topItem, err := stack.Peak()
 	assert.IsNil(err)
 	assert.Equal(3, *topItem)
 

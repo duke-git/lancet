@@ -44,14 +44,11 @@ func TestDoublyLink_InsertAt(t *testing.T) {
 	err := link.InsertAt(1, 1)
 	assert.IsNotNil(err)
 
-	err = link.InsertAt(0, 1)
-	err = link.InsertAt(1, 2)
-	err = link.InsertAt(2, 4)
-	err = link.InsertAt(2, 3)
+	link.InsertAt(0, 1)
+	link.InsertAt(1, 2)
+	link.InsertAt(2, 4)
+	link.InsertAt(2, 3)
 
-	if err != nil {
-		t.FailNow()
-	}
 	link.Print()
 
 	expected := []int{1, 2, 3, 4}

@@ -40,14 +40,14 @@ func TestLinkedQueue_Front(t *testing.T) {
 	assert := internal.NewAssert(t, "TestLinkedQueue_Front")
 
 	queue := NewLinkedQueue[int]()
-	val, err := queue.Front()
+	_, err := queue.Front()
 	assert.IsNotNil(err)
 
 	queue.EnQueue(1)
 	queue.EnQueue(2)
 	queue.EnQueue(3)
 
-	val, err = queue.Front()
+	val, err := queue.Front()
 	assert.Equal(1, *val)
 	assert.IsNil(err)
 }
@@ -56,14 +56,14 @@ func TestLinkedQueue_Back(t *testing.T) {
 	assert := internal.NewAssert(t, "TestLinkedQueue_Back")
 
 	queue := NewLinkedQueue[int]()
-	val, err := queue.Back()
+	_, err := queue.Back()
 	assert.IsNotNil(err)
 
 	queue.EnQueue(1)
 	queue.EnQueue(2)
 	queue.EnQueue(3)
 
-	val, err = queue.Back()
+	val, err := queue.Back()
 	assert.Equal(3, *val)
 	assert.IsNil(err)
 }

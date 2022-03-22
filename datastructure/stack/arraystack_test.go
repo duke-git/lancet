@@ -26,14 +26,14 @@ func TestArrayStack_Pop(t *testing.T) {
 	assert := internal.NewAssert(t, "TestArrayStack_Pop")
 
 	stack := NewArrayStack[int]()
-	topItem, err := stack.Pop()
+	_, err := stack.Pop()
 	assert.IsNotNil(err)
 
 	stack.Push(1)
 	stack.Push(2)
 	stack.Push(3)
 
-	topItem, err = stack.Pop()
+	topItem, err := stack.Pop()
 	assert.IsNil(err)
 	assert.Equal(3, *topItem)
 
@@ -45,14 +45,14 @@ func TestArrayStack_Peak(t *testing.T) {
 	assert := internal.NewAssert(t, "TestArrayStack_Peak")
 
 	stack := NewArrayStack[int]()
-	topItem, err := stack.Peak()
+	_, err := stack.Peak()
 	assert.IsNotNil(err)
 
 	stack.Push(1)
 	stack.Push(2)
 	stack.Push(3)
 
-	topItem, err = stack.Peak()
+	topItem, err := stack.Peak()
 	assert.IsNil(err)
 	assert.Equal(3, *topItem)
 

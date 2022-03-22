@@ -99,7 +99,7 @@ func TestPopFirst(t *testing.T) {
 	assert.Equal([]int{2, 3}, list.Data())
 
 	list2 := NewList([]int{})
-	v, ok = list2.PopFirst()
+	_, ok = list2.PopFirst()
 	assert.Equal(false, ok)
 	assert.Equal([]int{}, list2.Data())
 }
@@ -114,7 +114,7 @@ func TestPopLast(t *testing.T) {
 	assert.Equal([]int{1, 2}, list.Data())
 
 	list2 := NewList([]int{})
-	v, ok = list2.PopLast()
+	_, ok = list2.PopLast()
 	assert.Equal(false, ok)
 	assert.Equal([]int{}, list2.Data())
 }
