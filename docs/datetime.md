@@ -6,6 +6,7 @@ Package datetime supports date and time format and compare.
 ## Source:
 
 - [https://github.com/duke-git/lancet/blob/main/datetime/datetime.go](https://github.com/duke-git/lancet/blob/main/datetime/datetime.go)
+- [https://github.com/duke-git/lancet/blob/main/datetime/conversion.go](https://github.com/duke-git/lancet/blob/main/datetime/conversion.go)
 
 <div STYLE="page-break-after: always;"></div>
 

@@ -175,6 +175,14 @@ import "github.com/duke-git/lancet/v2/datetime"
 - [GetNightTimestamp](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#GetNightTimestamp)
 - [FormatTimeToStr](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#FormatTimeToStr)
 - [FormatStrToTime](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#FormatStrToTime)
+- [NewUnix](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#NewUnix)
+- [NewUnixNow](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#NewUnixNow)
+- [NewFormat](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#NewFormat)
+- [NewISO8601](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#NewISO8601)
+- [ToUnix](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#ToUnix)
+- [ToFormat](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#ToFormat)
+- [ToFormatForTpl](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#ToFormatForTpl)
+- [ToIso8601](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#ToIso8601)
 
 ### Fileutil package implements some basic functions for file operations.
 
@@ -230,9 +238,12 @@ import "github.com/duke-git/lancet/v2/mathutil"
 ```
 
 #### Function list:
+- [Average](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#Average)
 - [Exponent](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#Exponent)
 - [Fibonacci](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#Fibonacci)
 - [Factorial](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#Factorial)
+- [Max](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#Max)
+- [Min](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#Min)
 - [Percent](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#Percent)
 - [RoundToFloat](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#RoundToFloat)
 - [RoundToString](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#RoundToString)
@@ -309,6 +320,7 @@ import "github.com/duke-git/lancet/v2/slice"
 - [FlattenDeep](#FlattenDeep)
 - [ForEach](https://github.com/duke-git/lancet/blob/main/docs/slice.md#ForEach)
 - [GroupBy](https://github.com/duke-git/lancet/blob/main/docs/slice.md#GroupBy)
+- [GroupWith](https://github.com/duke-git/lancet/blob/main/docs/slice.md#GroupWith)
 - [IntSlice](https://github.com/duke-git/lancet/blob/main/docs/slice.md#IntSlice)
 - [InterfaceSlice](https://github.com/duke-git/lancet/blob/main/docs/slice.md#InterfaceSlice)
 - [Intersection](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Intersection)
