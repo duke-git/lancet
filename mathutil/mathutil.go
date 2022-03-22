@@ -9,6 +9,8 @@ import (
 	"math"
 	"strconv"
 	"strings"
+
+	"github.com/duke-git/lancet/v2/lancetconstraints"
 )
 
 // Exponent calculate x^n
@@ -89,4 +91,41 @@ func TruncRound(x float64, n int) float64 {
 	}
 	res, _ := strconv.ParseFloat(newFloat, 64)
 	return res
+}
+
+// Max return max value of params
+func Max[T lancetconstraints.Number](numbers ...T) T {
+	max := numbers[0]
+
+	for _, v := range numbers {
+		if max < v {
+			max = v
+		}
+	}
+
+	return max
+}
+
+// Min return min value of params
+func Min[T lancetconstraints.Number](numbers ...T) T {
+	min := numbers[0]
+
+	for _, v := range numbers {
+		if min > v {
+			min = v
+		}
+	}
+
+	return min
+}
+
+// Average return average value of params
+func Average[T lancetconstraints.Number](numbers ...T) T {
+	var sum T
+	n := T(len(numbers))
+
+	for _, v := range numbers {
+		sum += v
+	}
+	return sum / n
 }
