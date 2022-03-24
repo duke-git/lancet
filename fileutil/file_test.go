@@ -79,7 +79,7 @@ func TestListFileNames(t *testing.T) {
 	filesInPath, err := ListFileNames("../datetime/")
 	assert.IsNil(err)
 
-	expected := []string{"datetime.go", "datetime_test.go"}
+	expected := []string{"conversion.go", "conversion_test.go", "datetime.go", "datetime_test.go"}
 	assert.Equal(expected, filesInPath)
 }
 
