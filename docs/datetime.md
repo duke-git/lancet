@@ -43,6 +43,14 @@ import (
 - [FormatTimeToStr](#FormatTimeToStr)
 
 - [FormatStrToTime](#FormatStrToTime)
+- [NewUnixNow](#NewUnixNow)
+- [NewUnix](#NewUnix)
+- [NewFormat](#NewFormat)
+- [NewISO8601](#NewISO8601)
+- [ToUnix](#ToUnix)
+- [ToFormat](#ToFormat)
+- [ToFormatForTpl](#ToFormatForTpl)
+- [ToIso8601](#ToIso8601)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -667,3 +675,221 @@ func main() {
 
 
 
+### <span id="NewUnixNow">NewUnixNow</span>
+<p>Return unix timestamp of current time</p>
+
+<b>Signature:</b>
+
+```go
+type theTime struct {
+	unix int64
+}
+func NewUnixNow() *theTime
+```
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/datetime"
+)
+
+func main() {
+    tm := datetime.NewUnixNow()
+    fmt.Println(tm) //&{1647597438}
+}
+```
+
+
+### <span id="NewUnix">NewUnix</span>
+<p>Return unix timestamp of specified int64 value.</p>
+
+<b>Signature:</b>
+
+```go
+type theTime struct {
+	unix int64
+}
+func NewUnix(unix int64) *theTime
+```
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/datetime"
+)
+
+func main() {
+    tm := datetime.NewUnix(1647597438)
+    fmt.Println(tm) //&{1647597438}
+}
+```
+
+
+
+### <span id="NewFormat">NewFormat</span>
+<p>Return unix timestamp of specified time string, t should be "yyyy-mm-dd hh:mm:ss".</p>
+
+<b>Signature:</b>
+
+```go
+type theTime struct {
+	unix int64
+}
+func NewFormat(t string) (*theTime, error)
+```
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/datetime"
+)
+
+func main() {
+    tm, err := datetime.NewFormat("2022-03-18 17:04:05")
+    fmt.Println(tm) //&{1647594245}
+}
+```
+
+
+
+
+### <span id="NewISO8601">NewISO8601</span>
+<p>Return unix timestamp of specified iso8601 time string.</p>
+
+<b>Signature:</b>
+
+```go
+type theTime struct {
+	unix int64
+}
+func NewISO8601(iso8601 string) (*theTime, error)
+```
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/datetime"
+)
+
+func main() {
+    tm, err := datetime.NewISO8601("2006-01-02T15:04:05.999Z")
+    fmt.Println(tm) //&{1136214245}
+}
+```
+
+
+
+### <span id="ToUnix">ToUnix</span>
+<p>Return unix timestamp.</p>
+
+<b>Signature:</b>
+
+```go
+func (t *theTime) ToUnix() int64
+```
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/datetime"
+)
+
+func main() {
+    tm := datetime.NewUnixNow()
+    fmt.Println(tm.ToUnix()) //1647597438
+}
+```
+
+
+
+### <span id="ToFormat">ToFormat</span>
+<p>Return time string 'yyyy-mm-dd hh:mm:ss'.</p>
+
+<b>Signature:</b>
+
+```go
+func (t *theTime) ToFormat() string
+```
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/datetime"
+)
+
+func main() {
+    tm, _ := datetime.NewFormat("2022-03-18 17:04:05")
+    fmt.Println(tm.ToFormat()) //"2022-03-18 17:04:05"
+}
+```
+
+
+
+### <span id="ToFormatForTpl">ToFormatForTpl</span>
+<p>Return the time string which format is specified tpl.</p>
+
+<b>Signature:</b>
+
+```go
+func (t *theTime) ToFormatForTpl(tpl string) string
+```
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/datetime"
+)
+
+func main() {
+    tm, _ := datetime.NewFormat("2022-03-18 17:04:05")
+    ts := tm.ToFormatForTpl("2006/01/02 15:04:05")
+    fmt.Println(ts) //"2022/03/18 17:04:05"
+}
+```
+
+
+### <span id="ToIso8601">ToIso8601</span>
+<p>Return iso8601 time string.</p>
+
+<b>Signature:</b>
+
+```go
+func (t *theTime) ToIso8601() string
+```
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/datetime"
+)
+
+func main() {
+    tm, _ := datetime.NewISO8601("2006-01-02T15:04:05.999Z")
+    ts := tm.ToIso8601()
+    fmt.Println(ts) //"2006-01-02T23:04:05+08:00"
+}
+```
