@@ -147,6 +147,14 @@ import "github.com/duke-git/lancet/datetime"
 - [GetNightTimestamp](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#GetNightTimestamp)
 - [FormatTimeToStr](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#FormatTimeToStr)
 - [FormatStrToTime](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#FormatStrToTime)
+- [NewUnix](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#NewUnix)
+- [NewUnixNow](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#NewUnixNow)
+- [NewFormat](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#NewFormat)
+- [NewISO8601](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#NewISO8601)
+- [ToUnix](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#ToUnix)
+- [ToFormat](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#ToFormat)
+- [ToFormatForTpl](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#ToFormatForTpl)
+- [ToIso8601](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#ToIso8601)
 
 ### Fileutil package implements some basic functions for file operations.
 
