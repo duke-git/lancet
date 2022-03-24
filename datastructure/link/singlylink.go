@@ -3,6 +3,7 @@ package datastructure
 import (
 	"errors"
 	"fmt"
+	"reflect"
 
 	"github.com/duke-git/lancet/v2/datastructure"
 )
@@ -142,6 +143,27 @@ func (link *SinglyLink[T]) DeleteAt(index int) error {
 	}
 
 	return errors.New("delete error")
+}
+
+// DeleteValue delete value in singly linklist
+func (link *SinglyLink[T]) DeleteValue(value T) {
+	if link.Head == nil {
+		return
+	}
+	dummyHead := datastructure.NewLinkNode(value)
+	dummyHead.Next = link.Head
+	current := dummyHead
+
+	for current.Next != nil {
+		if reflect.DeepEqual(current.Next.Value, value) {
+			current.Next = current.Next.Next
+			link.length--
+		} else {
+			current = current.Next
+		}
+	}
+
+	link.Head = dummyHead.Next
 }
 
 // Reverse the linked list

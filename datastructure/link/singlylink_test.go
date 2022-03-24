@@ -111,6 +111,24 @@ func TestSinglyLink_DeleteAtTail(t *testing.T) {
 	assert.Equal(expected, values)
 }
 
+func TestSinglyLink_DeleteValue(t *testing.T) {
+	assert := internal.NewAssert(t, "TestSinglyLink_DeleteValue")
+
+	link := NewSinglyLink[int]()
+
+	link.InsertAtTail(1)
+	link.InsertAtTail(2)
+	link.InsertAtTail(2)
+	link.InsertAtTail(3)
+	link.InsertAtTail(4)
+
+	link.DeleteValue(2)
+	assert.Equal([]int{1, 3, 4}, link.Values())
+
+	link.DeleteValue(1)
+	assert.Equal([]int{3, 4}, link.Values())
+}
+
 func TestSinglyLink_DeleteAt(t *testing.T) {
 	assert := internal.NewAssert(t, "TestSinglyLink_DeleteAt")
 
