@@ -6,9 +6,10 @@ package convertor
 
 import (
 	"bytes"
-	"encoding/gob"
+	"encoding/binary"
 	"encoding/json"
 	"fmt"
+	"math"
 	"reflect"
 	"regexp"
 	"strconv"
@@ -21,14 +22,44 @@ func ToBool(s string) (bool, error) {
 }
 
 // ToBytes convert interface to bytes
-func ToBytes(data any) ([]byte, error) {
-	var buf bytes.Buffer
-	enc := gob.NewEncoder(&buf)
-	err := enc.Encode(data)
-	if err != nil {
-		return nil, err
+func ToBytes(value any) ([]byte, error) {
+	v := reflect.ValueOf(value)
+
+	switch value.(type) {
+	case int, int8, int16, int32, int64:
+		number := v.Int()
+		buf := bytes.NewBuffer([]byte{})
+		buf.Reset()
+		err := binary.Write(buf, binary.BigEndian, number)
+		return buf.Bytes(), err
+	case uint, uint8, uint16, uint32, uint64:
+		number := v.Uint()
+		buf := bytes.NewBuffer([]byte{})
+		buf.Reset()
+		err := binary.Write(buf, binary.BigEndian, number)
+		return buf.Bytes(), err
+	case float32:
+		number := float32(v.Float())
+		bits := math.Float32bits(number)
+		bytes := make([]byte, 4)
+		binary.BigEndian.PutUint32(bytes, bits)
+		return bytes, nil
+	case float64:
+		number := v.Float()
+		bits := math.Float64bits(number)
+		bytes := make([]byte, 8)
+		binary.BigEndian.PutUint64(bytes, bits)
+		return bytes, nil
+	case bool:
+		return strconv.AppendBool([]byte{}, v.Bool()), nil
+	case string:
+		return []byte(v.String()), nil
+	case []byte:
+		return v.Bytes(), nil
+	default:
+		newValue, err := json.Marshal(value)
+		return newValue, err
 	}
-	return buf.Bytes(), nil
 }
 
 // ToChar convert string to char slice
