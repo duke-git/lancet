@@ -92,7 +92,7 @@ func TestInsertionSort(t *testing.T) {
 	sortedPeopleByAge := InsertionSort(peoples, comparator)
 	t.Log(sortedPeopleByAge)
 
-	expected := "[{e 28} {c 17} {a 20} {b 10} {d 8}]"
+	expected := "[{e 28} {a 20} {c 17} {b 10} {d 8}]"
 	actual := fmt.Sprintf("%v", sortedPeopleByAge)
 
 	asssert.Equal(expected, actual)
