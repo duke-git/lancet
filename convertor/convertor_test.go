@@ -42,14 +42,21 @@ func TestToBytes(t *testing.T) {
 		"1",
 	}
 	expected := [][]byte{
-		{3, 4, 0, 0},
-		{3, 2, 0, 0},
-		{4, 12, 0, 1, 49},
+		{0, 0, 0, 0, 0, 0, 0, 0},
+		{102, 97, 108, 115, 101},
+		{49},
 	}
 	for i := 0; i < len(cases); i++ {
 		actual, _ := ToBytes(cases[i])
 		assert.Equal(expected[i], actual)
 	}
+
+	bytesData, err := ToBytes("abc")
+	if err != nil {
+		t.Error(err)
+		t.Fail()
+	}
+	assert.Equal("abc", ToString(bytesData))
 }
 
 func TestToInt(t *testing.T) {
