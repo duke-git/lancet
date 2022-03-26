@@ -37,7 +37,7 @@ func InsertionSort[T any](slice []T, comparator lancetconstraints.Comparator) []
 			preIndex--
 		}
 
-		slice[preIndex+1] = preItem
+		slice[preIndex+1] = currentItem
 	}
 
 	return slice
