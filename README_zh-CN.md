@@ -35,9 +35,9 @@
 go get github.com/duke-git/lancet/v2 //安装v2最新版本v2.x.x
 ```
 
-2. <b>使用go1.18以下版本的用户，必须安装v1.x.x。目前最新的v1版本是v1.2.6。</b>
+2. <b>使用go1.18以下版本的用户，必须安装v1.x.x。目前最新的v1版本是v1.2.7。</b>
 ```go
-go get github.com/duke-git/lancet@v1.2.6 // 使用go1.18以下版本, 必须安装v1.x.x版本
+go get github.com/duke-git/lancet@v1.2.7 // 使用go1.18以下版本, 必须安装v1.x.x版本
 ```
 
 ## 用法
