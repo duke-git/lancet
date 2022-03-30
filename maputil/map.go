@@ -38,3 +38,10 @@ func Merge[K comparable, V any](maps ...map[K]V) map[K]V {
 
 	return res
 }
+
+// ForEach executes iteratee funcation for every key and value pair in map
+func ForEach[K comparable, V any](m map[K]V, iteratee func(key K, value V)) {
+	for k, v := range m {
+		iteratee(k, v)
+	}
+}
