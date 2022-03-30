@@ -81,3 +81,25 @@ func TestForEach(t *testing.T) {
 
 	assert.Equal(10, sum)
 }
+
+func TestFilter(t *testing.T) {
+	assert := internal.NewAssert(t, "TestFilter")
+
+	m := map[string]int{
+		"a": 1,
+		"b": 2,
+		"c": 3,
+		"d": 4,
+		"e": 5,
+	}
+	isEven := func(_ string, value int) bool {
+		return value%2 == 0
+	}
+
+	acturl := Filter(m, isEven)
+
+	assert.Equal(map[string]int{
+		"b": 2,
+		"d": 4,
+	}, acturl)
+}

@@ -45,3 +45,15 @@ func ForEach[K comparable, V any](m map[K]V, iteratee func(key K, value V)) {
 		iteratee(k, v)
 	}
 }
+
+// Filter iterates over map, return a new map contains all key and value pairs pass the predicate function
+func Filter[K comparable, V any](m map[K]V, predicate func(key K, value V) bool) map[K]V {
+	res := make(map[K]V)
+
+	for k, v := range m {
+		if predicate(k, v) {
+			res[k] = v
+		}
+	}
+	return res
+}
