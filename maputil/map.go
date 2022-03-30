@@ -25,3 +25,16 @@ func Values[K comparable, V any](m map[K]V) []V {
 
 	return values
 }
+
+// Merge maps, next key will overwrite previous key
+func Merge[K comparable, V any](maps ...map[K]V) map[K]V {
+	res := make(map[K]V, 0)
+
+	for _, m := range maps {
+		for k, v := range m {
+			res[k] = v
+		}
+	}
+
+	return res
+}

@@ -40,3 +40,25 @@ func TestValues(t *testing.T) {
 
 	assert.Equal([]string{"a", "a", "b", "c", "d"}, values)
 }
+
+func TestMerge(t *testing.T) {
+	assert := internal.NewAssert(t, "TestMerge")
+
+	m1 := map[int]string{
+		1: "a",
+		2: "b",
+	}
+	m2 := map[int]string{
+		1: "1",
+		3: "2",
+	}
+
+	expected := map[int]string{
+		1: "1",
+		2: "b",
+		3: "2",
+	}
+	acturl := Merge(m1, m2)
+
+	assert.Equal(expected, acturl)
+}
