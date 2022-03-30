@@ -14,3 +14,14 @@ func Keys[K comparable, V any](m map[K]V) []K {
 
 	return keys
 }
+
+// Values returns a slice of the map's values
+func Values[K comparable, V any](m map[K]V) []V {
+	values := make([]V, len(m))
+
+	for _, v := range m {
+		values = append(values, v)
+	}
+
+	return values
+}
