@@ -571,7 +571,6 @@ func Union[T any](slices ...[]T) []T {
 
 // Intersection creates a slice of unique values that included by all slices.
 func Intersection[T any](slices ...[]T) []T {
-	var res []T
 	if len(slices) == 0 {
 		return []T{}
 	}
@@ -579,28 +578,51 @@ func Intersection[T any](slices ...[]T) []T {
 		return Unique(slices[0])
 	}
 
-	//return elements both in slice1 and slice2
-	reduceFunc := func(slice1, slice2 []T) []T {
+	var res []T
+
+	reducer := func(s1, s2 []T) []T {
 		s := make([]T, 0, 0)
-		for _, v := range slice1 {
-			if Contain(slice2, v) {
+		for _, v := range s1 {
+			if Contain(s2, v) {
 				s = append(s, v)
 			}
 		}
 		return s
 	}
 
-	res = reduceFunc(slices[0], slices[1])
+	res = reducer(slices[0], slices[1])
 
-	if len(slices) == 2 {
-		return Unique(res)
+	reduceSlice := make([][]T, 2, 2)
+	for i := 2; i < len(slices); i++ {
+		reduceSlice[0] = res
+		reduceSlice[1] = slices[i]
+		res = reducer(reduceSlice[0], reduceSlice[1])
 	}
 
-	tmp := make([][]T, 2, 2)
-	for i := 2; i < len(slices); i++ {
-		tmp[0] = res
-		tmp[1] = slices[i]
-		res = reduceFunc(tmp[0], tmp[1])
+	return Unique(res)
+}
+
+// ReverseIntersect reverse operation of Intersection function
+func ReverseIntersect[T any](slices ...[]T) []T {
+	if len(slices) == 0 {
+		return []T{}
+	}
+	if len(slices) == 1 {
+		return Unique(slices[0])
+	}
+
+	res := make([]T, 0)
+
+	intersectSlice := Intersection(slices...)
+
+	for i := 0; i < len(slices); i++ {
+		slice := slices[i]
+		for _, v := range slice {
+			if !Contain(intersectSlice, v) {
+				res = append(res, v)
+			}
+		}
+
 	}
 
 	return Unique(res)
