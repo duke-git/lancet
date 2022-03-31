@@ -60,7 +60,7 @@ func Filter[K comparable, V any](m map[K]V, predicate func(key K, value V) bool)
 	return res
 }
 
-// Intersect iterates over maps, return a new map of key and value pairs in all give maps
+// Intersect iterates over maps, return a new map of key and value pairs in all given maps
 func Intersect[K comparable, V any](maps ...map[K]V) map[K]V {
 	if len(maps) == 0 {
 		return map[K]V{}
@@ -90,5 +90,18 @@ func Intersect[K comparable, V any](maps ...map[K]V) map[K]V {
 		res = reducer(reduceMaps[0], reduceMaps[1])
 	}
 
+	return res
+}
+
+
+// Minus creates an map of whose key in mapA but not in mapB
+func Minus[K comparable, V any](mapA, mapB map[K]V) map[K]V {
+	res := make(map[K]V)
+
+	for k, v := range mapA {
+		if _, ok := mapB[k]; !ok {
+			res[k] = v
+		}
+	}
 	return res
 }

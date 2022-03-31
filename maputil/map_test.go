@@ -130,3 +130,21 @@ func TestIntersect(t *testing.T) {
 	assert.Equal(map[string]int{"a": 1, "b": 2}, Intersect(m1, m2))
 	assert.Equal(map[string]int{"a": 1}, Intersect(m1, m2, m3))
 }
+
+func TestMinus(t *testing.T) {
+	assert := internal.NewAssert(t, "TestMinus")
+
+	m1 := map[string]int{
+		"a": 1,
+		"b": 2,
+		"c": 3,
+	}
+
+	m2 := map[string]int{
+		"a": 11,
+		"b": 22,
+		"d": 33,
+	}
+
+	assert.Equal(map[string]int{"c": 3}, Minus(m1, m2))
+}
