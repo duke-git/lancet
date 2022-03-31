@@ -103,3 +103,30 @@ func TestFilter(t *testing.T) {
 		"d": 4,
 	}, acturl)
 }
+
+func TestIntersect(t *testing.T) {
+	assert := internal.NewAssert(t, "TestIntersect")
+
+	m1 := map[string]int{
+		"a": 1,
+		"b": 2,
+		"c": 3,
+	}
+
+	m2 := map[string]int{
+		"a": 1,
+		"b": 2,
+		"c": 6,
+		"d": 7,
+	}
+
+	m3 := map[string]int{
+		"a": 1,
+		"b": 9,
+		"e": 9,
+	}
+
+	assert.Equal(map[string]int{"a": 1, "b": 2, "c": 3}, Intersect(m1))
+	assert.Equal(map[string]int{"a": 1, "b": 2}, Intersect(m1, m2))
+	assert.Equal(map[string]int{"a": 1}, Intersect(m1, m2, m3))
+}

@@ -4,6 +4,8 @@
 // Package maputil includes some functions to manipulate map.
 package maputil
 
+import "reflect"
+
 // Keys returns a slice of the map's keys
 func Keys[K comparable, V any](m map[K]V) []K {
 	keys := make([]K, 0, len(m))
@@ -55,5 +57,38 @@ func Filter[K comparable, V any](m map[K]V, predicate func(key K, value V) bool)
 			res[k] = v
 		}
 	}
+	return res
+}
+
+// Intersect iterates over maps, return a new map of key and value pairs in all give maps
+func Intersect[K comparable, V any](maps ...map[K]V) map[K]V {
+	if len(maps) == 0 {
+		return map[K]V{}
+	}
+	if len(maps) == 1 {
+		return maps[0]
+	}
+
+	res := make(map[K]V)
+
+	reducer := func(m1, m2 map[K]V) map[K]V {
+		m := make(map[K]V)
+		for k, v1 := range m1 {
+			if v2, ok := m2[k]; ok && reflect.DeepEqual(v1, v2) {
+				m[k] = v1
+			}
+		}
+		return m
+	}
+
+	reduceMaps := make([]map[K]V, 2, 2)
+	res = reducer(maps[0], maps[1])
+
+	for i := 2; i < len(maps); i++ {
+		reduceMaps[0] = res
+		reduceMaps[1] = maps[i]
+		res = reducer(reduceMaps[0], reduceMaps[1])
+	}
+
 	return res
 }
