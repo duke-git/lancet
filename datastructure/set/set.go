@@ -103,3 +103,16 @@ func (s Set[T]) Intersection(other Set[T]) Set[T] {
 
 	return set
 }
+
+// Minus creates an set of whose element in origin set but not in compared set
+func (s Set[T]) Minus(comparedSet Set[T]) Set[T] {
+	set := NewSet[T]()
+
+	s.Iterate(func(value T) {
+		if !comparedSet.Contain(value) {
+			set.Add(value)
+		}
+	})
+
+	return set
+}

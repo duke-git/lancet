@@ -127,3 +127,14 @@ func TestSet_Intersection(t *testing.T) {
 
 	assert.Equal(expected, intersectionSet)
 }
+
+func TestSet_Minus(t *testing.T) {
+	assert := internal.NewAssert(t, "TestSet_Intersection")
+
+	set1 := NewSet(1, 2, 3)
+	set2 := NewSet(2, 3, 4, 5)
+	set3 := NewSet(2, 3)
+
+	assert.Equal(NewSet(1), set1.Minus(set2))
+	assert.Equal(NewSet(4, 5), set2.Minus(set3))
+}
