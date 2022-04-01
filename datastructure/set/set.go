@@ -104,6 +104,24 @@ func (s Set[T]) Intersection(other Set[T]) Set[T] {
 	return set
 }
 
+// SymmetricDifference creates a new set whose element both be contained in set s and other
+func (s Set[T]) SymmetricDifference(other Set[T]) Set[T] {
+	set := NewSet[T]()
+	s.Iterate(func(value T) {
+		if !other.Contain(value) {
+			set.Add(value)
+		}
+	})
+
+	other.Iterate(func(value T) {
+		if !s.Contain(value) {
+			set.Add(value)
+		}
+	})
+
+	return set
+}
+
 // Minus creates an set of whose element in origin set but not in compared set
 func (s Set[T]) Minus(comparedSet Set[T]) Set[T] {
 	set := NewSet[T]()

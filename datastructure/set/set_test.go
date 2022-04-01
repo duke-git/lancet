@@ -128,6 +128,15 @@ func TestSet_Intersection(t *testing.T) {
 	assert.Equal(expected, intersectionSet)
 }
 
+func TestSet_SymmetricDifference(t *testing.T) {
+	assert := internal.NewAssert(t, "TestSet_SymmetricDifference")
+
+	set1 := NewSet(1, 2, 3)
+	set2 := NewSet(2, 3, 4, 5)
+
+	assert.Equal(NewSet(1, 4, 5), set1.SymmetricDifference(set2))
+}
+
 func TestSet_Minus(t *testing.T) {
 	assert := internal.NewAssert(t, "TestSet_Minus")
 
