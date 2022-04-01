@@ -129,7 +129,7 @@ func TestSet_Intersection(t *testing.T) {
 }
 
 func TestSet_Minus(t *testing.T) {
-	assert := internal.NewAssert(t, "TestSet_Intersection")
+	assert := internal.NewAssert(t, "TestSet_Minus")
 
 	set1 := NewSet(1, 2, 3)
 	set2 := NewSet(2, 3, 4, 5)
