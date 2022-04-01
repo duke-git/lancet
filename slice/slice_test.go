@@ -409,16 +409,16 @@ func TestIntersection(t *testing.T) {
 	}
 }
 
-func TestReverseIntersect(t *testing.T) {
-	assert := internal.NewAssert(t, "TestIntersection")
+func TestSymmetricDifference(t *testing.T) {
+	assert := internal.NewAssert(t, "TestSymmetricDifference")
 
 	s1 := []int{1, 2, 3}
 	s2 := []int{1, 2, 4}
 	s3 := []int{1, 2, 3, 5}
 
-	assert.Equal([]int{1, 2, 3}, ReverseIntersect(s1))
-	assert.Equal([]int{3, 4}, ReverseIntersect(s1, s2))
-	assert.Equal([]int{3, 4, 5}, ReverseIntersect(s1, s2, s3))
+	assert.Equal([]int{1, 2, 3}, SymmetricDifference(s1))
+	assert.Equal([]int{3, 4}, SymmetricDifference(s1, s2))
+	assert.Equal([]int{3, 4, 5}, SymmetricDifference(s1, s2, s3))
 }
 
 func TestReverse(t *testing.T) {

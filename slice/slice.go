@@ -602,8 +602,8 @@ func Intersection[T any](slices ...[]T) []T {
 	return Unique(res)
 }
 
-// ReverseIntersect reverse operation of Intersection function
-func ReverseIntersect[T any](slices ...[]T) []T {
+// SymmetricDifference oppoiste operation of intersection function
+func SymmetricDifference[T any](slices ...[]T) []T {
 	if len(slices) == 0 {
 		return []T{}
 	}
