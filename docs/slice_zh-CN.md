@@ -51,6 +51,7 @@ import (
 - [SortByField](#SortByField)
 - [Some](#Some)
 - [StringSlice](#StringSlice)
+- [SymmetricDifference](#SymmetricDifference)
 - [Unique](#Unique)
 - [Union](#Union)
 - [UpdateAt](#UpdateAt)
@@ -907,6 +908,34 @@ func main() {
 ```
 
 
+
+
+### <span id="SymmetricDifference">SymmetricDifference</span>
+<p>返回一个切片，其中的元素存在于参数切片中，但不同时存储在于参数切片中（交集取反）</p>
+
+<b>函数签名:</b>
+
+```go
+func SymmetricDifference[T any](slices ...[]T) []T
+```
+<b>例子:</b>
+
+```go
+import (
+	"fmt"
+	"github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+	s1 := []int{1, 2, 3}
+	s2 := []int{1, 2, 4}
+	s3 := []int{1, 2, 3, 5}
+
+	fmt.Println(slice.SymmetricDifference(s1)) //[]int{1, 2, 3}
+	fmt.Println(slice.SymmetricDifference(s1, s2)) //[]int{3, 4}
+	fmt.Println(slice.SymmetricDifference(s1, s2, s3)) //[]int{3, 4, 5}
+}
+```
 
 
 ### <span id="Unique">Unique</span>

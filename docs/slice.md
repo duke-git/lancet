@@ -51,6 +51,7 @@ import (
 - [SortByField](#SortByField)
 - [Some](#Some)
 - [StringSlice](#StringSlice)
+- [SymmetricDifference](#SymmetricDifference)
 - [Unique](#Unique)
 - [Union](#Union)
 - [UpdateAt](#UpdateAt)
@@ -906,6 +907,35 @@ func main() {
 }
 ```
 
+
+
+
+### <span id="SymmetricDifference">SymmetricDifference</span>
+<p>Create a slice whose element is in given slices, but not in both slices.</p>
+
+<b>Signature:</b>
+
+```go
+func SymmetricDifference[T any](slices ...[]T) []T
+```
+<b>Example:</b>
+
+```go
+import (
+	"fmt"
+	"github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+	s1 := []int{1, 2, 3}
+	s2 := []int{1, 2, 4}
+	s3 := []int{1, 2, 3, 5}
+
+	fmt.Println(slice.SymmetricDifference(s1)) //[]int{1, 2, 3}
+	fmt.Println(slice.SymmetricDifference(s1, s2)) //[]int{3, 4}
+	fmt.Println(slice.SymmetricDifference(s1, s2, s3)) //[]int{3, 4, 5}
+}
+```
 
 
 
