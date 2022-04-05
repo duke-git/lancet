@@ -229,6 +229,22 @@ import "github.com/duke-git/lancet/v2/function"
 - [Delay](https://github.com/duke-git/lancet/blob/main/docs/function_zh-CN.md#Delay)
 - [Watcher](https://github.com/duke-git/lancet/blob/main/docs/function_zh-CN.md#Watcher)
 
+
+### maputil包包括一些操作map的函数.
+
+```go
+import "github.com/duke-git/lancet/v2/maputil"
+```
+
+#### 函数列表:
+- [ForEach](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#ForEach)
+- [Filter](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#Filter)
+- [Intersect](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#Intersect)
+- [Keys](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#Keys)
+- [Merge](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#Merge)
+- [Minus](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#Minus)
+- [Values](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#Values)
+
 ### mathutil包实现了一些数学计算的函数。
 
 ```go
@@ -329,6 +345,7 @@ import "github.com/duke-git/lancet/v2/slice"
 - [SortByField](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#SortByField)
 - [Some](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Some)
 - [StringSlice](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#StringSlice)
+- [SymmetricDifference](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#SymmetricDifference)
 - [Unique](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Unique)
 - [Union](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Union)
 - [UpdateAt](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#UpdateAt)

@@ -230,6 +230,22 @@ import "github.com/duke-git/lancet/v2/function"
 - [Watcher](https://github.com/duke-git/lancet/blob/main/docs/function.md#Watcher)
 
 
+### Maputil package includes some functions to manipulate map.
+
+```go
+import "github.com/duke-git/lancet/v2/maputil"
+```
+
+#### Function list:
+- [ForEach](https://github.com/duke-git/lancet/blob/main/docs/maputil.md#ForEach)
+- [Filter](https://github.com/duke-git/lancet/blob/main/docs/maputil.md#Filter)
+- [Intersect](https://github.com/duke-git/lancet/blob/main/docs/maputil.md#Intersect)
+- [Keys](https://github.com/duke-git/lancet/blob/main/docs/maputil.md#Keys)
+- [Merge](https://github.com/duke-git/lancet/blob/main/docs/maputil.md#Merge)
+- [Minus](https://github.com/duke-git/lancet/blob/main/docs/maputil.md#Minus)
+- [Values](https://github.com/duke-git/lancet/blob/main/docs/maputil.md#Values)
+
+
 ### Mathutil package implements some functions for math calculation.
 
 ```go
@@ -331,6 +347,7 @@ import "github.com/duke-git/lancet/v2/slice"
 - [SortByField](https://github.com/duke-git/lancet/blob/main/docs/slice.md#SortByField)
 - [Some](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Some)
 - [StringSlice](https://github.com/duke-git/lancet/blob/main/docs/slice.md#StringSlice)
+- [SymmetricDifference](https://github.com/duke-git/lancet/blob/main/docs/slice.md#SymmetricDifference)
 - [Unique](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Unique)
 - [Union](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Union)
 - [UpdateAt](https://github.com/duke-git/lancet/blob/main/docs/slice.md#UpdateAt)
