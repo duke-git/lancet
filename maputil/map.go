@@ -69,7 +69,7 @@ func Intersect[K comparable, V any](maps ...map[K]V) map[K]V {
 		return maps[0]
 	}
 
-	res := make(map[K]V)
+	var res map[K]V
 
 	reducer := func(m1, m2 map[K]V) map[K]V {
 		m := make(map[K]V)
@@ -92,7 +92,6 @@ func Intersect[K comparable, V any](maps ...map[K]V) map[K]V {
 
 	return res
 }
-
 
 // Minus creates an map of whose key in mapA but not in mapB
 func Minus[K comparable, V any](mapA, mapB map[K]V) map[K]V {
