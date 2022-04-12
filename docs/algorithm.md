@@ -21,18 +21,23 @@ import (
 <div STYLE="page-break-after: always;"></div>
 
 ## Index
-- [BubbleSort](#BubbleSort)
-- [CountSort](#CountSort)
-- [HeapSort](#HeapSort)
-- [InsertionSort](#InsertionSort)
-- [MergeSort](#MergeSort)
-- [QuickSort](#QuickSort)
-- [SelectionSort](#SelectionSort)
-- [ShellSort](#ShellSort)
-- [BinarySearch](#BinarySearch)
-- [BinaryIterativeSearch](#BinaryIterativeSearch)
-- [LinearSearch](#LinearSearch)
-- [LRUCache](#LRUCache)
+- [Algorithm](#algorithm)
+  - [Source](#source)
+  - [Usage](#usage)
+  - [Index](#index)
+  - [Documentation](#documentation)
+    - [<span id="BubbleSort">BubbleSort</span>](#bubblesort)
+    - [<span id="InsertionSort">InsertionSort</span>](#insertionsort)
+    - [<span id="SelectionSort">SelectionSort</span>](#selectionsort)
+    - [<span id="ShellSort">ShellSort</span>](#shellsort)
+    - [<span id="QuickSort">QuickSort</span>](#quicksort)
+    - [<span id="HeapSort">HeapSort</span>](#heapsort)
+    - [<span id="MergeSort">MergeSort</span>](#mergesort)
+    - [<span id="CountSort">CountSort</span>](#countsort)
+    - [<span id="BinarySearch">BinarySearch</span>](#binarysearch)
+    - [<span id="BinaryIterativeSearch">BinaryIterativeSearch</span>](#binaryiterativesearch)
+    - [<span id="LinearSearch">LinearSearch</span>](#linearsearch)
+    - [<span id="LRUCache">LRUCache</span>](#lrucache)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -46,7 +51,7 @@ import (
 <b>Signature:</b>
 
 ```go
-func BubbleSort[T any](slice []T, comparator lancetconstraints.Comparator) []T
+func BubbleSort[T any](slice []T, comparator lancetconstraints.Comparator)
 ```
 <b>Example:</b>
 
@@ -76,9 +81,9 @@ func main() {
 
     intSlice := []int{2, 1, 5, 3, 6, 4}
     comparator := &intComparator{}
-    sortedSlice := algorithm.BubbleSort(intSlice, comparator)
+    algorithm.BubbleSort(intSlice, comparator)
 
-    fmt.Println(sortedSlice) //[]int{1, 2, 3, 4, 5, 6}
+    fmt.Println(intSlice) //[]int{1, 2, 3, 4, 5, 6}
 }
 ```
 
@@ -91,7 +96,7 @@ func main() {
 <b>Signature:</b>
 
 ```go
-func InsertionSort[T any](slice []T, comparator lancetconstraints.Comparator) []T
+func InsertionSort[T any](slice []T, comparator lancetconstraints.Comparator)
 ```
 <b>Example:</b>
 
@@ -141,9 +146,9 @@ func main() {
         {Name: "e", Age: 28},
     }
     comparator := &peopleAgeComparator{}
-    sortedPeople := algorithm.InsertionSort(peoples, comparator)
+    algorithm.InsertionSort(peoples, comparator)
 
-    fmt.Println(sortedSlice) //[{d 8} {b 10} {c 17} {a 20} {e 28}]
+    fmt.Println(peoples) //[{d 8} {b 10} {c 17} {a 20} {e 28}]
 }
 ```
 
@@ -156,7 +161,7 @@ func main() {
 <b>Signature:</b>
 
 ```go
-func SelectionSort[T any](slice []T, comparator lancetconstraints.Comparator) []T
+func SelectionSort[T any](slice []T, comparator lancetconstraints.Comparator)
 ```
 <b>Example:</b>
 
@@ -186,9 +191,9 @@ func main() {
 
     intSlice := []int{2, 1, 5, 3, 6, 4}
     comparator := &intComparator{}
-    sortedSlice := algorithm.SelectionSort(intSlice, comparator)
+    algorithm.SelectionSort(intSlice, comparator)
 
-    fmt.Println(sortedSlice) //[]int{1, 2, 3, 4, 5, 6}
+    fmt.Println(intSlice) //[]int{1, 2, 3, 4, 5, 6}
 }
 ```
 
@@ -201,7 +206,7 @@ func main() {
 <b>Signature:</b>
 
 ```go
-func ShellSort[T any](slice []T, comparator lancetconstraints.Comparator) []T
+func ShellSort[T any](slice []T, comparator lancetconstraints.Comparator)
 ```
 <b>Example:</b>
 
@@ -231,9 +236,9 @@ func main() {
 
     intSlice := []int{2, 1, 5, 3, 6, 4}
     comparator := &intComparator{}
-    sortedSlice := algorithm.ShellSort(intSlice, comparator)
+    algorithm.ShellSort(intSlice, comparator)
 
-    fmt.Println(sortedSlice) //[]int{1, 2, 3, 4, 5, 6}
+    fmt.Println(intSlice) //[]int{1, 2, 3, 4, 5, 6}
 }
 ```
 
@@ -246,7 +251,7 @@ func main() {
 <b>Signature:</b>
 
 ```go
-func QuickSort[T any](slice []T, lowIndex, highIndex int, comparator lancetconstraints.Comparator) []T
+func QuickSort[T any](slice []T, lowIndex, highIndex int, comparator lancetconstraints.Comparator)
 ```
 <b>Example:</b>
 
@@ -276,9 +281,9 @@ func main() {
 
     intSlice := []int{2, 1, 5, 3, 6, 4}
     comparator := &intComparator{}
-    sortedSlice := algorithm.QuickSort(intSlice, 0, len(intSlice)-1, comparator)
+    algorithm.QuickSort(intSlice, 0, len(intSlice)-1, comparator)
 
-    fmt.Println(sortedSlice) //[]int{1, 2, 3, 4, 5, 6}
+    fmt.Println(intSlice) //[]int{1, 2, 3, 4, 5, 6}
 }
 ```
 
@@ -291,7 +296,7 @@ func main() {
 <b>Signature:</b>
 
 ```go
-func HeapSort[T any](slice []T, comparator lancetconstraints.Comparator) []T
+func HeapSort[T any](slice []T, comparator lancetconstraints.Comparator)
 ```
 <b>Example:</b>
 
@@ -321,9 +326,9 @@ func main() {
 
     intSlice := []int{2, 1, 5, 3, 6, 4}
     comparator := &intComparator{}
-    sortedSlice := algorithm.HeapSort(intSlice, comparator)
+    algorithm.HeapSort(intSlice, comparator)
 
-    fmt.Println(sortedSlice) //[]int{1, 2, 3, 4, 5, 6}
+    fmt.Println(intSlice) //[]int{1, 2, 3, 4, 5, 6}
 }
 ```
 
@@ -336,7 +341,7 @@ func main() {
 <b>Signature:</b>
 
 ```go
-func MergeSort[T any](slice []T, lowIndex, highIndex int, comparator lancetconstraints.Comparator) []T
+func MergeSort[T any](slice []T, comparator lancetconstraints.Comparator)
 ```
 <b>Example:</b>
 
@@ -366,9 +371,9 @@ func main() {
 
     intSlice := []int{2, 1, 5, 3, 6, 4}
     comparator := &intComparator{}
-    sortedSlice := algorithm.MergeSort(intSlice, 0, len(intSlice)-1, comparator)
+    algorithm.MergeSort(intSlice, comparator)
 
-    fmt.Println(sortedSlice) //[]int{1, 2, 3, 4, 5, 6}
+    fmt.Println(intSlice) //[]int{1, 2, 3, 4, 5, 6}
 }
 ```
 
