@@ -6,7 +6,8 @@
 // HttpGet, HttpPost, HttpDelete, HttpPut, HttpPatch, function param `url` is required.
 // HttpGet, HttpPost, HttpDelete, HttpPut, HttpPatch, function param `params` is variable, the order is:
 // params[0] is header which type should be http.Header or map[string]string,
-// params[1] is query param which type should be url.Values or map[string]interface{},
+// params[1] is query param which type should be url.Values or map[string]interface{}, when content-type header is
+// multipart/form-data or application/x-www-form-urlencoded must pass url.Values params
 // params[2] is post body which type should be []byte.
 // params[3] is http client which type should be http.Client.
 package netutil
