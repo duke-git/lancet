@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"io/ioutil"
 	"log"
+	"net/url"
 	"testing"
 
 	"github.com/duke-git/lancet/v2/internal"
@@ -38,6 +39,29 @@ func TestHttpPost(t *testing.T) {
 	bodyParams, _ := json.Marshal(todo)
 
 	resp, err := HttpPost(url, header, nil, bodyParams)
+	if err != nil {
+		log.Fatal(err)
+		t.FailNow()
+	}
+	body, _ := ioutil.ReadAll(resp.Body)
+	t.Log("response: ", resp.StatusCode, string(body))
+}
+
+func TestHttpPostFormData(t *testing.T) {
+	apiUrl := "https://jsonplaceholder.typicode.com/todos"
+	header := map[string]string{
+		// "Content-Type": "application/x-www-form-urlencoded",
+		"Content-Type": "multipart/form-data",
+	}
+	type Todo struct {
+		UserId int    `json:"userId"`
+		Title  string `json:"title"`
+	}
+	postData := url.Values{}
+	postData.Add("userId", "1")
+	postData.Add("title", "TestAddToDo")
+
+	resp, err := HttpPost(apiUrl, header, postData, nil)
 	if err != nil {
 		log.Fatal(err)
 		t.FailNow()
