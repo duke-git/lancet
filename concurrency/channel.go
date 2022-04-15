@@ -14,14 +14,14 @@ func NewChannel() *Channel {
 	return &Channel{}
 }
 
-// Generate a data of type any chan
-func (c *Channel) Generate(done <-chan any, datas ...any) <-chan any {
+// Generate a data of type any chan, put param `values` into the chan
+func (c *Channel) Generate(done <-chan any, values ...any) <-chan any {
 	dataStream := make(chan any)
 
 	go func() {
 		defer close(dataStream)
 
-		for _, v := range datas {
+		for _, v := range values {
 			select {
 			case <-done:
 				return
@@ -30,5 +30,25 @@ func (c *Channel) Generate(done <-chan any, datas ...any) <-chan any {
 		}
 	}()
 
+	return dataStream
+}
+
+// Repeat return a data of type any chan, put param `values` into the chan repeatly,
+// until close the `done` chan
+func (c *Channel) Repeat(done <-chan any, values ...any) <-chan any {
+	dataStream := make(chan any)
+
+	go func() {
+		defer close(dataStream)
+		for {
+			for _, v := range values {
+				select {
+				case <-done:
+					return
+				case dataStream <- v:
+				}
+			}
+		}
+	}()
 	return dataStream
 }
