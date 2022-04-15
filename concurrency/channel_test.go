@@ -42,6 +42,28 @@ func TestRepeat(t *testing.T) {
 	assert.Equal(1, <-intStream)
 }
 
+func TestRepeatFn(t *testing.T) {
+	assert := internal.NewAssert(t, "TestRepeatFn")
+
+	done := make(chan any)
+	defer close(done)
+
+	fn := func() any {
+		s := "a"
+		return s
+	}
+	c := NewChannel()
+	dataStream := c.Take(done, c.RepeatFn(done, fn), 3)
+
+	// for v := range dataStream {
+	// 	t.Log(v) //a, a, a
+	// }
+
+	assert.Equal("a", <-dataStream)
+	assert.Equal("a", <-dataStream)
+	assert.Equal("a", <-dataStream)
+}
+
 func TestTake(t *testing.T) {
 	assert := internal.NewAssert(t, "TestRepeat")
 

@@ -53,6 +53,24 @@ func (c *Channel) Repeat(done <-chan any, values ...any) <-chan any {
 	return dataStream
 }
 
+// RepeatFn return a chan, excutes fn repeatly, and put the result into retruned chan
+// until close the `done` channel
+func (c *Channel) RepeatFn(done <-chan any, fn func() any) <-chan any {
+	dataStream := make(chan any)
+
+	go func() {
+		defer close(dataStream)
+		for {
+			select {
+			case <-done:
+				return
+			case dataStream <- fn():
+			}
+		}
+	}()
+	return dataStream
+}
+
 // Take return a chan whose values are tahken from another chan
 func (c *Channel) Take(done <-chan any, valueStream <-chan any, number int) <-chan any {
 	takeStream := make(chan any)
