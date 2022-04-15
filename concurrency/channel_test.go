@@ -16,7 +16,7 @@ func TestGenerate(t *testing.T) {
 	intStream := c.Generate(done, 1, 2, 3)
 
 	// for v := range intStream {
-	// 	t.Log(v)
+	// 	t.Log(v) //1, 2, 3
 	// }
 	assert.Equal(1, <-intStream)
 	assert.Equal(2, <-intStream)
@@ -24,18 +24,46 @@ func TestGenerate(t *testing.T) {
 }
 
 func TestRepeat(t *testing.T) {
-	// assert := internal.NewAssert(t, "TestRepeat")
+	assert := internal.NewAssert(t, "TestRepeat")
 
 	done := make(chan any)
 	defer close(done)
 
 	c := NewChannel()
-	intStream := c.Repeat(done, 1, 2)
+	intStream := c.Take(done, c.Repeat(done, 1, 2), 5)
 
-	for v := range intStream {
-		t.Log(v)
-	}
-	// assert.Equal(1, <-intStream)
-	// assert.Equal(2, <-intStream)
-	// assert.Equal(3, <-intStream)
+	// for v := range intStream {
+	// 	t.Log(v) //1, 2, 1, 2, 1
+	// }
+	assert.Equal(1, <-intStream)
+	assert.Equal(2, <-intStream)
+	assert.Equal(1, <-intStream)
+	assert.Equal(2, <-intStream)
+	assert.Equal(1, <-intStream)
+}
+
+func TestTake(t *testing.T) {
+	assert := internal.NewAssert(t, "TestRepeat")
+
+	done := make(chan any)
+	defer close(done)
+
+	numbers := make(chan any, 5)
+	numbers <- 1
+	numbers <- 2
+	numbers <- 3
+	numbers <- 4
+	numbers <- 5
+	defer close(numbers)
+
+	c := NewChannel()
+	intStream := c.Take(done, numbers, 3)
+
+	// for v := range intStream {
+	// 	t.Log(v) //1, 2, 3
+	// }
+
+	assert.Equal(1, <-intStream)
+	assert.Equal(2, <-intStream)
+	assert.Equal(3, <-intStream)
 }

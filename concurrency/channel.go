@@ -52,3 +52,22 @@ func (c *Channel) Repeat(done <-chan any, values ...any) <-chan any {
 	}()
 	return dataStream
 }
+
+// Take return a chan whose values are tahken from another chan
+func (c *Channel) Take(done <-chan any, valueStream <-chan any, number int) <-chan any {
+	takeStream := make(chan any)
+
+	go func() {
+		defer close(takeStream)
+
+		for i := 0; i < number; i++ {
+			select {
+			case <-done:
+				return
+			case takeStream <- <-valueStream:
+			}
+		}
+	}()
+
+	return takeStream
+}
