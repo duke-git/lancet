@@ -4,8 +4,8 @@
 // Package concurrency contain some functions to support concurrent programming. eg, goroutine, channel, async.
 package concurrency
 
-// Channel is a logic object which implemented by go chan
-// all methods of channel are in the book tiled《Concurrency in Go》
+// Channel is a logic object which can generate or manipulate go channel
+// all methods of Channel are in the book tilted《Concurrency in Go》
 type Channel struct {
 }
 
