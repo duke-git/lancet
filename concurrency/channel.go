@@ -157,3 +157,27 @@ func (c *Channel) Or(channels ...<-chan any) <-chan any {
 
 	return orDone
 }
+
+// OrDone
+func (c *Channel) OrDone(ctx context.Context, channel <-chan any) <-chan any {
+	resStream := make(chan any)
+
+	go func() {
+		defer close(resStream)
+
+		select {
+		case <-ctx.Done():
+			return
+		case v, ok := <-channel:
+			if !ok {
+				return
+			}
+			select {
+			case resStream <- v:
+			case <-ctx.Done():
+			}
+		}
+	}()
+
+	return resStream
+}

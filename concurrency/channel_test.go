@@ -131,3 +131,21 @@ func TestOr(t *testing.T) {
 
 	assert.Equal(1, 1)
 }
+
+func TestOrDone(t *testing.T) {
+	assert := internal.NewAssert(t, "TestOrDone")
+
+	ctx, cancel := context.WithCancel(context.Background())
+	defer cancel()
+
+	c := NewChannel()
+	intStream := c.Take(ctx, c.Repeat(ctx, 1), 3)
+
+	var res any
+	for val := range c.OrDone(ctx, intStream) {
+		t.Logf("%v", val)
+		res = val
+	}
+
+	assert.Equal(1, res)
+}
