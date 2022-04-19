@@ -124,3 +124,36 @@ func (c *Channel) FanIn(ctx context.Context, channels ...<-chan any) <-chan any 
 
 	return multiplexedStream
 }
+
+// Or merge one or more done channels into one done channel, which is closed when any done channel is closed
+func (c *Channel) Or(channels ...<-chan any) <-chan any {
+	switch len(channels) {
+	case 0:
+		return nil
+	case 1:
+		return channels[0]
+	}
+
+	orDone := make(chan any)
+
+	go func() {
+		defer close(orDone)
+
+		switch len(channels) {
+		case 2:
+			select {
+			case <-channels[0]:
+			case <-channels[1]:
+			}
+		default:
+			select {
+			case <-channels[0]:
+			case <-channels[1]:
+			case <-channels[2]:
+			case <-c.Or(append(channels[3:], orDone)...):
+			}
+		}
+	}()
+
+	return orDone
+}

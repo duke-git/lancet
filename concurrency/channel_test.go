@@ -3,6 +3,7 @@ package concurrency
 import (
 	"context"
 	"testing"
+	"time"
 
 	"github.com/duke-git/lancet/v2/internal"
 )
@@ -105,6 +106,28 @@ func TestFanIn(t *testing.T) {
 	for val := range mergedChannel {
 		t.Logf("\t%d\n", val)
 	}
+
+	assert.Equal(1, 1)
+}
+
+func TestOr(t *testing.T) {
+	assert := internal.NewAssert(t, "TestOr")
+
+	sig := func(after time.Duration) <-chan any {
+		c := make(chan interface{})
+		go func() {
+			defer close(c)
+			time.Sleep(after)
+		}()
+		return c
+	}
+
+	start := time.Now()
+
+	c := NewChannel()
+	<-c.Or(sig(2*time.Hour), sig(5*time.Minute), sig(1*time.Second), sig(1*time.Hour), sig(1*time.Minute))
+
+	t.Logf("done after %v", time.Since(start))
 
 	assert.Equal(1, 1)
 }
