@@ -66,7 +66,7 @@ func TestRepeatFn(t *testing.T) {
 }
 
 func TestTake(t *testing.T) {
-	assert := internal.NewAssert(t, "TestRepeat")
+	assert := internal.NewAssert(t, "TestTake")
 
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
@@ -82,11 +82,29 @@ func TestTake(t *testing.T) {
 	c := NewChannel()
 	intStream := c.Take(ctx, numbers, 3)
 
-	// for v := range intStream {
-	// 	t.Log(v) //1, 2, 3
-	// }
-
 	assert.Equal(1, <-intStream)
 	assert.Equal(2, <-intStream)
 	assert.Equal(3, <-intStream)
+}
+
+func TestFanIn(t *testing.T) {
+	assert := internal.NewAssert(t, "TestFanIn")
+
+	ctx, cancel := context.WithCancel(context.Background())
+	defer cancel()
+
+	c := NewChannel()
+	channels := make([]<-chan any, 3)
+
+	for i := 0; i < 3; i++ {
+		channels[i] = c.Take(ctx, c.Repeat(ctx, i), 3)
+	}
+
+	mergedChannel := c.FanIn(ctx, channels...)
+
+	for val := range mergedChannel {
+		t.Logf("\t%d\n", val)
+	}
+
+	assert.Equal(1, 1)
 }

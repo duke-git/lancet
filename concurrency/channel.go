@@ -4,7 +4,10 @@
 // Package concurrency contain some functions to support concurrent programming. eg, goroutine, channel, async.
 package concurrency
 
-import "context"
+import (
+	"context"
+	"sync"
+)
 
 // Channel is a logic object which can generate or manipulate go channel
 // all methods of Channel are in the book tilted《Concurrency in Go》
@@ -90,4 +93,34 @@ func (c *Channel) Take(ctx context.Context, valueStream <-chan any, number int) 
 	}()
 
 	return takeStream
+}
+
+// FanIn merge multiple channels into one channel
+func (c *Channel) FanIn(ctx context.Context, channels ...<-chan any) <-chan any {
+	var wg sync.WaitGroup
+	multiplexedStream := make(chan any)
+
+	multiplex := func(c <-chan any) {
+		defer wg.Done()
+
+		for i := range c {
+			select {
+			case <-ctx.Done():
+				return
+			case multiplexedStream <- i:
+			}
+		}
+	}
+
+	wg.Add(len(channels))
+	for _, c := range channels {
+		go multiplex(c)
+	}
+
+	go func() {
+		wg.Wait()
+		close(multiplexedStream)
+	}()
+
+	return multiplexedStream
 }
