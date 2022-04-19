@@ -4,6 +4,8 @@
 // Package concurrency contain some functions to support concurrent programming. eg, goroutine, channel, async.
 package concurrency
 
+import "context"
+
 // Channel is a logic object which can generate or manipulate go channel
 // all methods of Channel are in the book tilted《Concurrency in Go》
 type Channel struct {
@@ -15,7 +17,7 @@ func NewChannel() *Channel {
 }
 
 // Generate a data of type any chan, put param `values` into the chan
-func (c *Channel) Generate(done <-chan any, values ...any) <-chan any {
+func (c *Channel) Generate(ctx context.Context, values ...any) <-chan any {
 	dataStream := make(chan any)
 
 	go func() {
@@ -23,7 +25,7 @@ func (c *Channel) Generate(done <-chan any, values ...any) <-chan any {
 
 		for _, v := range values {
 			select {
-			case <-done:
+			case <-ctx.Done():
 				return
 			case dataStream <- v:
 			}
@@ -35,7 +37,7 @@ func (c *Channel) Generate(done <-chan any, values ...any) <-chan any {
 
 // Repeat return a data of type any chan, put param `values` into the chan repeatly,
 // until close the `done` chan
-func (c *Channel) Repeat(done <-chan any, values ...any) <-chan any {
+func (c *Channel) Repeat(ctx context.Context, values ...any) <-chan any {
 	dataStream := make(chan any)
 
 	go func() {
@@ -43,7 +45,7 @@ func (c *Channel) Repeat(done <-chan any, values ...any) <-chan any {
 		for {
 			for _, v := range values {
 				select {
-				case <-done:
+				case <-ctx.Done():
 					return
 				case dataStream <- v:
 				}
@@ -55,14 +57,14 @@ func (c *Channel) Repeat(done <-chan any, values ...any) <-chan any {
 
 // RepeatFn return a chan, excutes fn repeatly, and put the result into retruned chan
 // until close the `done` channel
-func (c *Channel) RepeatFn(done <-chan any, fn func() any) <-chan any {
+func (c *Channel) RepeatFn(ctx context.Context, fn func() any) <-chan any {
 	dataStream := make(chan any)
 
 	go func() {
 		defer close(dataStream)
 		for {
 			select {
-			case <-done:
+			case <-ctx.Done():
 				return
 			case dataStream <- fn():
 			}
@@ -72,7 +74,7 @@ func (c *Channel) RepeatFn(done <-chan any, fn func() any) <-chan any {
 }
 
 // Take return a chan whose values are tahken from another chan
-func (c *Channel) Take(done <-chan any, valueStream <-chan any, number int) <-chan any {
+func (c *Channel) Take(ctx context.Context, valueStream <-chan any, number int) <-chan any {
 	takeStream := make(chan any)
 
 	go func() {
@@ -80,7 +82,7 @@ func (c *Channel) Take(done <-chan any, valueStream <-chan any, number int) <-ch
 
 		for i := 0; i < number; i++ {
 			select {
-			case <-done:
+			case <-ctx.Done():
 				return
 			case takeStream <- <-valueStream:
 			}
