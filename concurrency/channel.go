@@ -97,32 +97,29 @@ func (c *Channel) Take(ctx context.Context, valueStream <-chan any, number int) 
 
 // FanIn merge multiple channels into one channel
 func (c *Channel) FanIn(ctx context.Context, channels ...<-chan any) <-chan any {
-	var wg sync.WaitGroup
-	multiplexedStream := make(chan any)
-
-	multiplex := func(c <-chan any) {
-		defer wg.Done()
-
-		for i := range c {
-			select {
-			case <-ctx.Done():
-				return
-			case multiplexedStream <- i:
-			}
-		}
-	}
-
-	wg.Add(len(channels))
-	for _, c := range channels {
-		go multiplex(c)
-	}
+	out := make(chan any)
 
 	go func() {
+		var wg sync.WaitGroup
+		wg.Add(len(channels))
+
+		for _, c := range channels {
+			go func(c <-chan any) {
+				defer wg.Done()
+				for v := range c {
+					select {
+					case <-ctx.Done():
+						return
+					case out <- v:
+					}
+				}
+			}(c)
+		}
 		wg.Wait()
-		close(multiplexedStream)
+		close(out)
 	}()
 
-	return multiplexedStream
+	return out
 }
 
 // Tee split one chanel into two channels
