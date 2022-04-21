@@ -222,24 +222,26 @@ func (c *Channel) Or(channels ...<-chan any) <-chan any {
 
 // OrDone
 func (c *Channel) OrDone(ctx context.Context, channel <-chan any) <-chan any {
-	resStream := make(chan any)
+	valStream := make(chan any)
 
 	go func() {
-		defer close(resStream)
-
-		select {
-		case <-ctx.Done():
-			return
-		case v, ok := <-channel:
-			if !ok {
-				return
-			}
+		defer close(valStream)
+		for {
 			select {
-			case resStream <- v:
 			case <-ctx.Done():
+				return
+			case v, ok := <-channel:
+				if !ok {
+					return
+				}
+				select {
+				case valStream <- v:
+				case <-ctx.Done():
+				}
 			}
 		}
+
 	}()
 
-	return resStream
+	return valStream
 }
