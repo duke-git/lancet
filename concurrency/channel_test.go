@@ -165,3 +165,32 @@ func TestTee(t *testing.T) {
 		assert.Equal(1, <-out2)
 	}
 }
+
+func TestBridge(t *testing.T) {
+	assert := internal.NewAssert(t, "TestBridge")
+
+	ctx, cancel := context.WithCancel(context.Background())
+	defer cancel()
+
+	c := NewChannel()
+	genVals := func() <-chan <-chan any {
+		chanStream := make(chan (<-chan any))
+		go func() {
+			defer close(chanStream)
+			for i := 0; i < 10; i++ {
+				stream := make(chan any, 1)
+				stream <- i
+				close(stream)
+				chanStream <- stream
+			}
+		}()
+		return chanStream
+	}
+
+	index := 0
+	for val := range c.Bridge(ctx, genVals()) {
+		// t.Logf("%v ", val) //0 1 2 3 4 5 6 7 8 9
+		assert.Equal(index, val)
+		index++
+	}
+}

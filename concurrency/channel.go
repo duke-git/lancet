@@ -151,6 +151,37 @@ func (c *Channel) Tee(ctx context.Context, in <-chan any) (<-chan any, <-chan an
 	return out1, out2
 }
 
+// Bridge link mutiply channels into one channel
+func (c *Channel) Bridge(ctx context.Context, chanStream <-chan <-chan any) <-chan any {
+	valStream := make(chan any)
+
+	go func() {
+		defer close(valStream)
+
+		for {
+			var stream <-chan any
+			select {
+			case maybeStream, ok := <-chanStream:
+				if ok == false {
+					return
+				}
+				stream = maybeStream
+			case <-ctx.Done():
+				return
+			}
+
+			for val := range c.OrDone(ctx, stream) {
+				select {
+				case valStream <- val:
+				case <-ctx.Done():
+				}
+			}
+		}
+	}()
+
+	return valStream
+}
+
 // Or merge one or more done channels into one done channel, which is closed when any done channel is closed
 func (c *Channel) Or(channels ...<-chan any) <-chan any {
 	switch len(channels) {
