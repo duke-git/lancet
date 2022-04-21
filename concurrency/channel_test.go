@@ -125,7 +125,13 @@ func TestOr(t *testing.T) {
 	start := time.Now()
 
 	c := NewChannel()
-	<-c.Or(sig(2*time.Hour), sig(5*time.Minute), sig(1*time.Second), sig(1*time.Hour), sig(1*time.Minute))
+	<-c.Or(
+		sig(1*time.Second),
+		sig(2*time.Second),
+		sig(3*time.Second),
+		sig(4*time.Second),
+		sig(5*time.Second),
+	)
 
 	t.Logf("done after %v", time.Since(start))
 

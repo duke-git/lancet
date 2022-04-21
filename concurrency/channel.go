@@ -203,12 +203,17 @@ func (c *Channel) Or(channels ...<-chan any) <-chan any {
 			case <-channels[1]:
 			}
 		default:
+			m := len(channels) / 2
 			select {
-			case <-channels[0]:
-			case <-channels[1]:
-			case <-channels[2]:
-			case <-c.Or(append(channels[3:], orDone)...):
+			case <-c.Or(channels[:m]...):
+			case <-c.Or(channels[m:]...):
 			}
+			// select {
+			// case <-channels[0]:
+			// case <-channels[1]:
+			// case <-channels[2]:
+			// case <-c.Or(append(channels[3:], orDone)...):
+			// }
 		}
 	}()
 
