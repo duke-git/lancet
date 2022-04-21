@@ -149,3 +149,19 @@ func TestOrDone(t *testing.T) {
 
 	assert.Equal(1, res)
 }
+
+func TestTee(t *testing.T) {
+	assert := internal.NewAssert(t, "TestTee")
+
+	ctx, cancel := context.WithCancel(context.Background())
+	defer cancel()
+
+	c := NewChannel()
+	inStream := c.Take(ctx, c.Repeat(ctx, 1, 2), 4)
+
+	out1, out2 := c.Tee(ctx, inStream)
+	for val := range out1 {
+		assert.Equal(1, val)
+		assert.Equal(1, <-out2)
+	}
+}
