@@ -38,8 +38,7 @@ func (c *Channel) Generate(ctx context.Context, values ...any) <-chan any {
 	return dataStream
 }
 
-// Repeat return a data of type any chan, put param `values` into the chan repeatly,
-// until close the `done` chan
+// Repeat return a data of type any chan, put param `values` into the chan repeatly until cancel the context.
 func (c *Channel) Repeat(ctx context.Context, values ...any) <-chan any {
 	dataStream := make(chan any)
 
@@ -148,7 +147,7 @@ func (c *Channel) Tee(ctx context.Context, in <-chan any) (<-chan any, <-chan an
 	return out1, out2
 }
 
-// Bridge link mutiply channels into one channel
+// Bridge link multiply channels into one channel
 func (c *Channel) Bridge(ctx context.Context, chanStream <-chan <-chan any) <-chan any {
 	valStream := make(chan any)
 
@@ -179,7 +178,7 @@ func (c *Channel) Bridge(ctx context.Context, chanStream <-chan <-chan any) <-ch
 	return valStream
 }
 
-// Or merge one or more done channels into one done channel, which is closed when any done channel is closed
+// Or read one or more channels into one channel, will close when any readin channel is closed
 func (c *Channel) Or(channels ...<-chan any) <-chan any {
 	switch len(channels) {
 	case 0:
