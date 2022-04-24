@@ -23,7 +23,7 @@
 ## 特性
 
 - 👏 全面、高效、可复用
-- 💪 250+常用go工具函数，支持string、slice、datetime、net、crypt...
+- 💪 300+常用go工具函数，支持string、slice、datetime、net、crypt...
 - 💅 只依赖go标准库
 - 🌍 所有导出函数单元测试覆盖率100%
 
@@ -88,6 +88,24 @@ import "github.com/duke-git/lancet/v2/algorithm"
 - [LinearSearch](https://github.com/duke-git/lancet/blob/main/docs/algorithm_zh-CN.md#LinearSearch)
 - [LRUCache](https://github.com/duke-git/lancet/blob/main/docs/algorithm_zh-CN.md#LRUCache)
 
+
+### 并发包包含一些支持并发编程的功能。例如：goroutine, channel, async等。
+
+```go
+import "github.com/duke-git/lancet/v2/concurrency"
+```
+#### Function list:
+- [NewChannel](https://github.com/duke-git/lancet/blob/main/docs/concurrency_zh-CN.md#NewChannel)
+- [Bridge](https://github.com/duke-git/lancet/blob/main/docs/concurrency_zh-CN.md#Bridge)
+- [FanIn](https://github.com/duke-git/lancet/blob/main/docs/concurrency_zh-CN.md#FanIn)
+- [Generate](https://github.com/duke-git/lancet/blob/main/docs/concurrency_zh-CN.md#Generate)
+- [Or](https://github.com/duke-git/lancet/blob/main/docs/concurrency_zh-CN.md#Or)
+- [OrDone](https://github.com/duke-git/lancet/blob/main/docs/concurrency_zh-CN.md#OrDone)
+- [Repeat](https://github.com/duke-git/lancet/blob/main/docs/concurrency_zh-CN.md#Repeat)
+- [RepeatFn](https://github.com/duke-git/lancet/blob/main/docs/concurrency_zh-CN.md#RepeatFn)
+- [Take](https://github.com/duke-git/lancet/blob/main/docs/concurrency_zh-CN.md#Take)
+- [Tee](https://github.com/duke-git/lancet/blob/main/docs/concurrency_zh-CN.md#Tee)
+  
 ### convertor转换器包支持一些常见的数据类型转换。
 
 ```go

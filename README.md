@@ -23,7 +23,7 @@ English | [简体中文](./README_zh-CN.md)
 ## Feature
 
 - 👏 Comprehensive, efficient and reusable.
-- 💪 250+ go util functions, support string, slice, datetime, net, crypt...
+- 💪 300+ go util functions, support string, slice, datetime, net, crypt...
 - 💅 Only depend on the go standard library.
 - 🌍 Unit test for every exported function.
 
@@ -88,6 +88,24 @@ import "github.com/duke-git/lancet/v2/algorithm"
 - [LinearSearch](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#LinearSearch)
 - [LRUCache](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#LRUCache)
 
+
+
+### Concurrency package contain some functions to support concurrent programming. eg, goroutine, channel, async.
+
+```go
+import "github.com/duke-git/lancet/v2/concurrency"
+```
+#### Function list:
+- [NewChannel](https://github.com/duke-git/lancet/blob/main/docs/concurrency.md#NewChannel)
+- [Bridge](https://github.com/duke-git/lancet/blob/main/docs/concurrency.md#Bridge)
+- [FanIn](https://github.com/duke-git/lancet/blob/main/docs/concurrency.md#FanIn)
+- [Generate](https://github.com/duke-git/lancet/blob/main/docs/concurrency.md#Generate)
+- [Or](https://github.com/duke-git/lancet/blob/main/docs/concurrency.md#Or)
+- [OrDone](https://github.com/duke-git/lancet/blob/main/docs/concurrency.md#OrDone)
+- [Repeat](https://github.com/duke-git/lancet/blob/main/docs/concurrency.md#Repeat)
+- [RepeatFn](https://github.com/duke-git/lancet/blob/main/docs/concurrency.md#RepeatFn)
+- [Take](https://github.com/duke-git/lancet/blob/main/docs/concurrency.md#Take)
+- [Tee](https://github.com/duke-git/lancet/blob/main/docs/concurrency.md#Tee)
 
 ### Convertor package contains some functions for data convertion.
 
