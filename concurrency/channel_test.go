@@ -163,12 +163,16 @@ func TestTee(t *testing.T) {
 	defer cancel()
 
 	c := NewChannel()
-	inStream := c.Take(ctx, c.Repeat(ctx, 1, 2), 4)
+	inStream := c.Take(ctx, c.Repeat(ctx, 1), 4)
 
 	out1, out2 := c.Tee(ctx, inStream)
 	for val := range out1 {
-		assert.Equal(1, val)
-		assert.Equal(1, <-out2)
+		val1 := val
+		val2 := <-out2
+		// t.Log("val1 is", val1)
+		// t.Log("val2 is", val2)
+		assert.Equal(1, val1)
+		assert.Equal(1, val2)
 	}
 }
 
