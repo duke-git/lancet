@@ -1,15 +1,15 @@
 # Concurrency
-Package concurrency contain some functions to support concurrent programming. eg, goroutine, channel, async.
+并发包包含一些支持并发编程的功能。例如：goroutine, channel, async等。
 
 <div STYLE="page-break-after: always;"></div>
 
-## Source:
+## 源码:
 
 - [https://github.com/duke-git/lancet/blob/main/concurrency/channel.go](https://github.com/duke-git/lancet/blob/main/concurrency/channel.go)
 
 <div STYLE="page-break-after: always;"></div>
 
-## Usage:
+## 用法:
 ```go
 import (
     "github.com/duke-git/lancet/v2/concurrency"
@@ -18,7 +18,7 @@ import (
 
 <div STYLE="page-break-after: always;"></div>
 
-## Index
+## 目录
 ### Channel
 - [NewChannel](#NewChannel)
 - [Bridge](#Bridge)
@@ -33,20 +33,20 @@ import (
 
 <div STYLE="page-break-after: always;"></div>
 
-## Documentation
+## 文档
 
 
-## Channel
+### Channel
 ### <span id="NewChannel">NewChannel</span>
-<p>return a Channel pointer instance.</p>
+<p>返回一个 Channel 指针实例</p>
 
-<b>Signature:</b>
+<b>函数签名:</b>
 
 ```go
 type Channel struct {}
 func NewChannel() *Channel
 ```
-<b>Example:</b>
+<b>例子:</b>
 
 ```go
 package main
@@ -65,14 +65,14 @@ func main() {
 
 ### <span id="Bridge">Bridge</span>
 
-<p>Link multiple channels into one channel until cancel the context.</p>
+<p>将多个通道链接到一个通道，直到取消上下文。</p>
 
-<b>Signature:</b>
+<b>函数签名:</b>
 
 ```go
 func (c *Channel) Bridge(ctx context.Context, chanStream <-chan <-chan any) <-chan any
 ```
-<b>Example:</b>
+<b>例子:</b>
 
 ```go
 package main
@@ -114,14 +114,14 @@ func main() {
 
 ### <span id="FanIn">FanIn</span>
 
-<p>merge multiple channels into one channel until cancel the context.</p>
+<p>将多个通道合并为一个通道，直到取消上下文</p>
 
-<b>Signature:</b>
+<b>函数签名:</b>
 
 ```go
 func (c *Channel) FanIn(ctx context.Context, channels ...<-chan any) <-chan any
 ```
-<b>Example:</b>
+<b>例子:</b>
 
 ```go
 package main
@@ -154,14 +154,14 @@ func main() {
 
 ### <span id="Repeat">Repeat</span>
 
-<p>Return a chan, put param `values` into the chan repeatly until cancel the context.</p>
+<p>返回一个chan，将参数`values`重复放入chan，直到取消上下文。</p>
 
-<b>Signature:</b>
+<b>函数签名:</b>
 
 ```go
 func (c *Channel) Repeat(ctx context.Context, values ...any) <-chan any
 ```
-<b>Example:</b>
+<b>例子:</b>
 
 ```go
 package main
@@ -190,14 +190,14 @@ func main() {
 
 ### <span id="RepeatFn">RepeatFn</span>
 
-<p>Return a chan, excutes fn repeatly, and put the result into retruned chan until cancel context.</p>
+<p>返回一个chan，重复执行函数fn，并将结果放入返回的chan，直到取消上下文。</p>
 
-<b>Signature:</b>
+<b>函数签名:</b>
 
 ```go
 func (c *Channel) RepeatFn(ctx context.Context, fn func() any) <-chan any
 ```
-<b>Example:</b>
+<b>例子:</b>
 
 ```go
 package main
@@ -229,14 +229,14 @@ func main() {
 
 ### <span id="Or">Or</span>
 
-<p>Read one or more channels into one channel, will close when any readin channel is closed.</p>
+<p>将一个或多个通道读取到一个通道中，当任何读取通道关闭时将结束读取。</p>
 
-<b>Signature:</b>
+<b>函数签名:</b>
 
 ```go
 func (c *Channel) Or(channels ...<-chan any) <-chan any
 ```
-<b>Example:</b>
+<b>例子:</b>
 
 ```go
 package main
@@ -277,14 +277,14 @@ func main() {
 
 ### <span id="OrDone">OrDone</span>
 
-<p>Read a channel into another channel, will close until cancel context.</p>
+<p>将一个通道读入另一个通道，直到取消上下文。</p>
 
-<b>Signature:</b>
+<b>函数签名:</b>
 
 ```go
 func (c *Channel) OrDone(ctx context.Context, channel <-chan any) <-chan any
 ```
-<b>Example:</b>
+<b>例子:</b>
 
 ```go
 package main
@@ -313,14 +313,14 @@ func main() {
 
 ### <span id="Take">Take</span>
 
-<p>Return a chan whose values are tahken from another chan until cancel context.</p>
+<p>返回一个chan，其值从另一个chan获取，直到取消上下文。</p>
 
-<b>Signature:</b>
+<b>函数签名:</b>
 
 ```go
 func (c *Channel) Take(ctx context.Context, valueStream <-chan any, number int) <-chan any
 ```
-<b>Example:</b>
+<b>例子:</b>
 
 ```go
 package main
@@ -356,14 +356,14 @@ func main() {
 
 ### <span id="Tee">Tee</span>
 
-<p>Split one chanel into two channels until cancel context.</p>
+<p>将一个通道分成两个通道，直到取消上下文。</p>
 
-<b>Signature:</b>
+<b>函数签名:</b>
 
 ```go
 func (c *Channel) Tee(ctx context.Context, in <-chan any) (<-chan any, <-chan any)
 ```
-<b>Example:</b>
+<b>例子:</b>
 
 ```go
 package main
