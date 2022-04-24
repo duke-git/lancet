@@ -216,7 +216,7 @@ func (c *Channel) Or(channels ...<-chan any) <-chan any {
 	return orDone
 }
 
-// OrDone
+// OrDone read a channel into another channel, will close until cancel context.
 func (c *Channel) OrDone(ctx context.Context, channel <-chan any) <-chan any {
 	valStream := make(chan any)
 
