@@ -2,8 +2,7 @@ package datastructure
 
 import "github.com/duke-git/lancet/v2/lancetconstraints"
 
-// PriorityQueue is a implemented by binary heap tree
-// which are referred to as the left child and the right child.
+// PriorityQueue is a priority queue implemented by binary heap tree
 // type T should implements Compare function in lancetconstraints.Comparator interface.
 type PriorityQueue[T any] struct {
 	items      []T
