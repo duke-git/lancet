@@ -55,11 +55,50 @@ func (q *PriorityQueue[T]) Enqueue(val T) error {
 	return nil
 }
 
+// Dequeue delete and return max value in queue
+func (q *PriorityQueue[T]) Dequeue() (T, bool) {
+	var val T
+	if q.IsEmpty() {
+		return val, false
+	}
+
+	max := q.items[1]
+
+	q.swap(1, q.size)
+	q.size--
+	q.sink(1)
+
+	//set zero value for rest values of the queue
+	q.items[q.size+1] = val
+
+	return max, true
+}
+
 // swim when child's key is larger than parent's key, exchange them.
 func (q *PriorityQueue[T]) swim(index int) {
 	for index > 1 && q.comparator.Compare(index/2, index) < 0 {
 		q.swap(index, index/2)
 		index = index / 2
+	}
+}
+
+// sink when parent's key smaller than child's key, exchange parent's key with larger child's key.
+func (q *PriorityQueue[T]) sink(index int) {
+
+	for 2*index <= q.size {
+		j := 2 * index
+
+		// get larger child node index
+		if j < q.size && q.comparator.Compare(j, j+1) < 0 {
+			j++
+		}
+		// if parent larger than child, stop
+		if !(q.comparator.Compare(index, j) < 0) {
+			break
+		}
+
+		q.swap(index, j)
+		index = j
 	}
 }
 
