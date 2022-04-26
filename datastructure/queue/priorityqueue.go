@@ -11,6 +11,7 @@ type PriorityQueue[T any] struct {
 }
 
 // NewPriorityQueue return a pointer of PriorityQueue
+// param `comparator` is used to compare valuse in the heap
 func NewPriorityQueue[T any](capacity int, comparator lancetconstraints.Comparator) *NewPriorityQueue[T] {
 	return &NewPriorityQueue[T]{
 		items:      make([]T, capacity+1),
