@@ -34,6 +34,16 @@ func (q *PriorityQueue[T]) IsFull() bool {
 	return q.size == len(q.items)-1
 }
 
+// Data return data slice in the queue
+func (q *PriorityQueue[T]) Data() []T {
+	data := make([]T, q.size)
+	for i := 1; i < q.size+1; i++ {
+		data[i-1] = q.items[i]
+	}
+
+	return data
+}
+
 // Enqueue insert value into queue
 func (q *PriorityQueue[T]) Enqueue(val T) error {
 	if q.IsFull() {
