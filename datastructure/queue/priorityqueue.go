@@ -76,7 +76,7 @@ func (q *PriorityQueue[T]) Dequeue() (T, bool) {
 
 // swim when child's key is larger than parent's key, exchange them.
 func (q *PriorityQueue[T]) swim(index int) {
-	for index > 1 && q.comparator.Compare(index/2, index) < 0 {
+	for index > 1 && q.comparator.Compare(q.items[index/2], q.items[index]) < 0 {
 		q.swap(index, index/2)
 		index = index / 2
 	}
@@ -89,11 +89,11 @@ func (q *PriorityQueue[T]) sink(index int) {
 		j := 2 * index
 
 		// get larger child node index
-		if j < q.size && q.comparator.Compare(j, j+1) < 0 {
+		if j < q.size && q.comparator.Compare(q.items[j], q.items[j+1]) < 0 {
 			j++
 		}
 		// if parent larger than child, stop
-		if !(q.comparator.Compare(index, j) < 0) {
+		if !(q.comparator.Compare(q.items[index], q.items[j]) < 0) {
 			break
 		}
 

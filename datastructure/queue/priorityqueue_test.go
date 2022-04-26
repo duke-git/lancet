@@ -37,5 +37,24 @@ func TestPriorityQueue_Enqueue(t *testing.T) {
 	queueData := pq.Data()
 	assert.Equal([]int{10, 9, 6, 7, 8, 2, 5, 1, 4, 3}, queueData)
 
-	// assert.IsNotNil(err)
+}
+
+func TestPriorityQueue_Dequeue(t *testing.T) {
+	assert := internal.NewAssert(t, "TestPriorityQueue_Dequeue")
+
+	comparator := &intComparator{}
+	pq := NewPriorityQueue[int](10, comparator)
+
+	_, ok := pq.Dequeue()
+	assert.Equal(false, ok)
+
+	for i := 1; i < 11; i++ {
+		pq.Enqueue(i)
+	}
+
+	val, ok := pq.Dequeue()
+	assert.Equal(true, ok)
+	assert.Equal(10, val)
+
+	assert.Equal([]int{9, 8, 6, 7, 3, 2, 5, 1, 4}, pq.Data())
 }
