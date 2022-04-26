@@ -19,3 +19,13 @@ func NewPriorityQueue[T any](capacity int, comparator lancetconstraints.Comparat
 		comparator: comparator,
 	}
 }
+
+// IsEmpty checks if the queue is empty or not
+func (q *PriorityQueue[T]) IsEmpty() bool {
+	return q.size == 0
+}
+
+// IsFull checks if the queue capacity is full or not
+func (q *PriorityQueue[T]) IsFull() bool {
+	return q.size == len(q.items)
+}
