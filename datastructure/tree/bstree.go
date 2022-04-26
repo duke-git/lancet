@@ -12,29 +12,31 @@ import (
 // In BSTree: leftNode < rootNode < rightNode
 // type T should implements Compare function in lancetconstraints.Comparator interface.
 type BSTree[T any] struct {
-	root *datastructure.TreeNode[T]
+	root       *datastructure.TreeNode[T]
+	comparator lancetconstraints.Comparator
 }
 
 // NewBSTree create a BSTree pointer
-func NewBSTree[T any](rootData T) *BSTree[T] {
+// param `comparator` is used to compare values in the tree
+func NewBSTree[T any](rootData T, comparator lancetconstraints.Comparator) *BSTree[T] {
 	root := datastructure.NewTreeNode(rootData)
-	return &BSTree[T]{root}
+	return &BSTree[T]{root, comparator}
 }
 
 // InsertNode insert data into BSTree
-func (t *BSTree[T]) InsertNode(data T, comparator lancetconstraints.Comparator) {
+func (t *BSTree[T]) InsertNode(data T) {
 	root := t.root
 	newNode := datastructure.NewTreeNode(data)
 	if root == nil {
 		t.root = newNode
 	} else {
-		insertTreeNode(root, newNode, comparator)
+		insertTreeNode(root, newNode, t.comparator)
 	}
 }
 
 // DeletetNode delete data into BSTree
-func (t *BSTree[T]) DeletetNode(data T, comparator lancetconstraints.Comparator) {
-	deleteTreeNode(t.root, data, comparator)
+func (t *BSTree[T]) DeletetNode(data T) {
+	deleteTreeNode(t.root, data, t.comparator)
 }
 
 // NodeLevel get node level in BSTree
