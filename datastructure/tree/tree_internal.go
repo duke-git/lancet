@@ -11,7 +11,7 @@ import (
 func preOrderTraverse[T any](node *datastructure.TreeNode[T]) []T {
 	data := []T{}
 	if node != nil {
-		data = append(data, node.Data)
+		data = append(data, node.Value)
 		data = append(data, preOrderTraverse(node.Left)...)
 		data = append(data, preOrderTraverse(node.Right)...)
 	}
@@ -23,7 +23,7 @@ func postOrderTraverse[T any](node *datastructure.TreeNode[T]) []T {
 	if node != nil {
 		data = append(data, preOrderTraverse(node.Left)...)
 		data = append(data, preOrderTraverse(node.Right)...)
-		data = append(data, node.Data)
+		data = append(data, node.Value)
 	}
 	return data
 }
@@ -32,7 +32,7 @@ func inOrderTraverse[T any](node *datastructure.TreeNode[T]) []T {
 	data := []T{}
 	if node != nil {
 		data = append(data, inOrderTraverse(node.Left)...)
-		data = append(data, node.Data)
+		data = append(data, node.Value)
 		data = append(data, inOrderTraverse(node.Right)...)
 	}
 	return data
@@ -43,7 +43,7 @@ func preOrderPrint[T any](node *datastructure.TreeNode[T]) {
 		return
 	}
 
-	fmt.Printf("%v, ", node.Data)
+	fmt.Printf("%v, ", node.Value)
 	preOrderPrint(node.Left)
 	preOrderPrint(node.Right)
 }
@@ -55,7 +55,7 @@ func postOrderPrint[T any](node *datastructure.TreeNode[T]) {
 
 	preOrderPrint(node.Left)
 	preOrderPrint(node.Right)
-	fmt.Printf("%v, ", node.Data)
+	fmt.Printf("%v, ", node.Value)
 }
 
 func inOrderPrint[T any](node *datastructure.TreeNode[T]) {
@@ -64,7 +64,7 @@ func inOrderPrint[T any](node *datastructure.TreeNode[T]) {
 	}
 
 	inOrderPrint(node.Left)
-	fmt.Printf("%v, ", node.Data)
+	fmt.Printf("%v, ", node.Value)
 	inOrderPrint(node.Right)
 }
 
@@ -76,7 +76,7 @@ func levelOrderTraverse[T any](root *datastructure.TreeNode[T], traversal *[]T) 
 
 	for len(q) != 0 {
 		n, q = q[0], q[1:]
-		*traversal = append(*traversal, n.Data)
+		*traversal = append(*traversal, n.Value)
 		if n.Left != nil {
 			q = append(q, n.Left)
 		}
@@ -87,7 +87,7 @@ func levelOrderTraverse[T any](root *datastructure.TreeNode[T], traversal *[]T) 
 }
 
 func insertTreeNode[T any](rootNode, newNode *datastructure.TreeNode[T], comparator lancetconstraints.Comparator) {
-	if comparator.Compare(newNode.Data, rootNode.Data) == -1 {
+	if comparator.Compare(newNode.Value, rootNode.Value) == -1 {
 		if rootNode.Left == nil {
 			rootNode.Left = newNode
 		} else {
@@ -107,9 +107,9 @@ func deleteTreeNode[T any](node *datastructure.TreeNode[T], data T, comparator l
 	if node == nil {
 		return nil
 	}
-	if comparator.Compare(data, node.Data) == -1 {
+	if comparator.Compare(data, node.Value) == -1 {
 		node.Left = deleteTreeNode(node.Left, data, comparator)
-	} else if comparator.Compare(data, node.Data) == 1 {
+	} else if comparator.Compare(data, node.Value) == 1 {
 		node.Right = deleteTreeNode(node.Right, data, comparator)
 	} else {
 		if node.Left == nil {
@@ -150,7 +150,7 @@ func printTreeNodes[T any](nodes []*datastructure.TreeNode[T], level, maxLevel i
 	newNodes := []*datastructure.TreeNode[T]{}
 	for _, node := range nodes {
 		if node != nil {
-			fmt.Printf("%v", node.Data)
+			fmt.Printf("%v", node.Value)
 			newNodes = append(newNodes, node.Left)
 			newNodes = append(newNodes, node.Right)
 		} else {
@@ -214,6 +214,20 @@ func calculateDepth[T any](node *datastructure.TreeNode[T], depth int) int {
 		return depth
 	}
 	return max(calculateDepth(node.Left, depth+1), calculateDepth(node.Right, depth+1))
+}
+
+func hasSubTree[T any](superTreeRoot, subTreeRoot *datastructure.TreeNode[T], comparator lancetconstraints.Comparator) bool {
+	if subTreeRoot == nil {
+		return true
+	}
+	if superTreeRoot == nil {
+		return false
+	}
+	if comparator.Compare(superTreeRoot.Value, subTreeRoot.Value) != 0 {
+		return false
+	}
+
+	return hasSubTree(superTreeRoot.Left, subTreeRoot.Left, comparator) && hasSubTree(superTreeRoot.Right, subTreeRoot.Right, comparator)
 }
 
 func max(a, b int) int {

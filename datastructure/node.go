@@ -40,12 +40,12 @@ func NewQueueNode[T any](value T) *QueueNode[T] {
 
 // TreeNode is node of tree
 type TreeNode[T any] struct {
-	Data  T
+	Value T
 	Left  *TreeNode[T]
 	Right *TreeNode[T]
 }
 
 // NewTreeNode return a TreeNode pointer
-func NewTreeNode[T any](data T) *TreeNode[T] {
-	return &TreeNode[T]{data, nil, nil}
+func NewTreeNode[T any](val T) *TreeNode[T] {
+	return &TreeNode[T]{val, nil, nil}
 }

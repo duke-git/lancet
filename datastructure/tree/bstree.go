@@ -77,6 +77,31 @@ func (t *BSTree[T]) Depth() int {
 	return calculateDepth(t.root, 0)
 }
 
+// IsSubTree checks if the tree `t`` has `subTree` or not
+func (t *BSTree[T]) IsSubTree(subTree *BSTree[T]) bool {
+	return isSubTree(t.root, subTree.root, t.comparator)
+}
+
+func isSubTree[T any](superTreeRoot, subTreeRoot *datastructure.TreeNode[T],
+	comparator lancetconstraints.Comparator) bool {
+	res := false
+
+	if superTreeRoot != nil && subTreeRoot != nil {
+		if comparator.Compare(superTreeRoot.Value, subTreeRoot.Value) == 0 {
+			res = hasSubTree(superTreeRoot, subTreeRoot, comparator)
+		}
+
+		if !res {
+			res = isSubTree(superTreeRoot.Left, subTreeRoot, comparator)
+		}
+
+		if !res {
+			res = isSubTree(superTreeRoot.Right, subTreeRoot, comparator)
+		}
+	}
+	return res
+}
+
 // Print the bstree structure
 func (t *BSTree[T]) Print() {
 	maxLevel := t.NodeLevel(t.root)
