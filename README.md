@@ -69,7 +69,7 @@ func main() {
 
 ## API Documentation
 
-### Algorithm package implements some basic algorithm. eg. sort, search.
+### 1. Algorithm package implements some basic algorithm. eg. sort, search.
 
 ```go
 import "github.com/duke-git/lancet/v2/algorithm"
@@ -90,7 +90,7 @@ import "github.com/duke-git/lancet/v2/algorithm"
 
 
 
-### Concurrency package contain some functions to support concurrent programming. eg, goroutine, channel, async.
+### 2. Concurrency package contain some functions to support concurrent programming. eg, goroutine, channel, async.
 
 ```go
 import "github.com/duke-git/lancet/v2/concurrency"
@@ -107,7 +107,7 @@ import "github.com/duke-git/lancet/v2/concurrency"
 - [Take](https://github.com/duke-git/lancet/blob/main/docs/concurrency.md#Take)
 - [Tee](https://github.com/duke-git/lancet/blob/main/docs/concurrency.md#Tee)
 
-### Convertor package contains some functions for data convertion.
+### 3. Convertor package contains some functions for data convertion.
 
 ```go
 import "github.com/duke-git/lancet/v2/convertor"
@@ -123,7 +123,7 @@ import "github.com/duke-git/lancet/v2/convertor"
 - [ToString](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#ToString)
 - [StructToMap](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#StructToMap)
   
-### Cryptor package is for data encryption and decryption.
+### 4. Cryptor package is for data encryption and decryption.
 
 ```go
 import "github.com/duke-git/lancet/v2/cryptor"
@@ -163,7 +163,7 @@ import "github.com/duke-git/lancet/v2/cryptor"
 - [RsaEncrypt](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#RsaEncrypt)
 - [RsaDecrypt](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#RsaDecrypt)
 
-### Datetime package supports date and time format and compare.
+### 5. Datetime package supports date and time format and compare.
 
 
 ```go
@@ -201,7 +201,7 @@ import "github.com/duke-git/lancet/v2/datetime"
 - [ToFormatForTpl](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#ToFormatForTpl)
 - [ToIso8601](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#ToIso8601)
 
-### Fileutil package implements some basic functions for file operations.
+### 6. Fileutil package implements some basic functions for file operations.
 
 ```go
 import "github.com/duke-git/lancet/v2/fileutil"
@@ -224,7 +224,7 @@ import "github.com/duke-git/lancet/v2/fileutil"
 - [Zip](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#Zip)
 - [UnZip](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#UnZip)
 
-### Formatter contains some functions for data formatting.
+### 7. Formatter contains some functions for data formatting.
 
 ```go
 import "github.com/duke-git/lancet/v2/formatter"
@@ -248,7 +248,7 @@ import "github.com/duke-git/lancet/v2/function"
 - [Watcher](https://github.com/duke-git/lancet/blob/main/docs/function.md#Watcher)
 
 
-### Maputil package includes some functions to manipulate map.
+### 8. Maputil package includes some functions to manipulate map.
 
 ```go
 import "github.com/duke-git/lancet/v2/maputil"
@@ -264,7 +264,7 @@ import "github.com/duke-git/lancet/v2/maputil"
 - [Values](https://github.com/duke-git/lancet/blob/main/docs/maputil.md#Values)
 
 
-### Mathutil package implements some functions for math calculation.
+### 9. Mathutil package implements some functions for math calculation.
 
 ```go
 import "github.com/duke-git/lancet/v2/mathutil"
@@ -283,7 +283,7 @@ import "github.com/duke-git/lancet/v2/mathutil"
 - [TruncRound](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#TruncRound)
 
 
-### Netutil package contains functions to get net information and send http request.
+### 10. Netutil package contains functions to get net information and send http request.
 
 ```go
 import "github.com/duke-git/lancet/v2/netutil"
@@ -303,7 +303,7 @@ import "github.com/duke-git/lancet/v2/netutil"
 - [HttpPatch](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#HttpPatch)
 - [ParseHttpResponse](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#ParseHttpResponse)
 
-### Random package implements some basic functions to generate random int and string.
+### 11. Random package implements some basic functions to generate random int and string.
 
 ```go
 import "github.com/duke-git/lancet/v2/random"
@@ -315,7 +315,7 @@ import "github.com/duke-git/lancet/v2/random"
 - [RandString](https://github.com/duke-git/lancet/blob/main/docs/random.md#RandString)
 - [UUIdV4](https://github.com/duke-git/lancet/blob/main/docs/random.md#UUIdV4)
 
-### Retry package is for executing a function repeatedly until it was successful or canceled by the context.
+### 12. Retry package is for executing a function repeatedly until it was successful or canceled by the context.
 
 ```go
 import "github.com/duke-git/lancet/v2/retry"
@@ -371,7 +371,7 @@ import "github.com/duke-git/lancet/v2/slice"
 - [UpdateAt](https://github.com/duke-git/lancet/blob/main/docs/slice.md#UpdateAt)
 - [Without](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Without)
 
-### Strutil package contains some functions to manipulate string.
+### 13. Strutil package contains some functions to manipulate string.
 ```go
 import "github.com/duke-git/lancet/v2/strutil"
 ```
@@ -395,7 +395,7 @@ import "github.com/duke-git/lancet/v2/strutil"
 - [Wrap](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#Wrap)
 - [Unwrap](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#Unwrap)
   
-### System package contain some functions about os, runtime, shell command.
+### 14. System package contain some functions about os, runtime, shell command.
 
 ```go
 import "github.com/duke-git/lancet/v2/system"
@@ -410,7 +410,7 @@ import "github.com/duke-git/lancet/v2/system"
 - [CompareOsEnv](https://github.com/duke-git/lancet/blob/main/docs/system.md#CompareOsEnv)
 - [ExecCommand](https://github.com/duke-git/lancet/blob/main/docs/system.md#ExecCommand)
 
-### Validator package contains some functions for data validation.
+### 15. Validator package contains some functions for data validation.
 
 ```go
 import "github.com/duke-git/lancet/v2/validator"
@@ -444,7 +444,7 @@ import "github.com/duke-git/lancet/v2/validator"
 - [IsStrongPassword](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsStrongPassword)
 - [IsUrl](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsUrl)
 - [IsWeakPassword](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsWeakPassword)
-### xerror package implements helpers for errors.
+### 16. xerror package implements helpers for errors.
 
 ```go
 import "github.com/duke-git/lancet/v2/xerror"
