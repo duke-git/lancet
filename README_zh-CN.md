@@ -89,7 +89,7 @@ import "github.com/duke-git/lancet/v2/algorithm"
 - [LRUCache](https://github.com/duke-git/lancet/blob/main/docs/algorithm_zh-CN.md#LRUCache)
 
 
-### 并发包包含一些支持并发编程的功能。例如：goroutine, channel, async等。
+### 2. 并发包包含一些支持并发编程的功能。例如：goroutine, channel, async等。
 
 ```go
 import "github.com/duke-git/lancet/v2/concurrency"
@@ -106,7 +106,7 @@ import "github.com/duke-git/lancet/v2/concurrency"
 - [Take](https://github.com/duke-git/lancet/blob/main/docs/concurrency_zh-CN.md#Take)
 - [Tee](https://github.com/duke-git/lancet/blob/main/docs/concurrency_zh-CN.md#Tee)
   
-### 2. convertor转换器包支持一些常见的数据类型转换。
+### 3. convertor转换器包支持一些常见的数据类型转换。
 
 ```go
 import "github.com/duke-git/lancet/v2/convertor"
@@ -122,7 +122,7 @@ import "github.com/duke-git/lancet/v2/convertor"
 - [ToString](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#ToString)
 - [StructToMap](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#StructToMap)
   
-### 3. cryptor加密包支持数据加密和解密，获取md5，hash值。支持base64, md5, hmac, aes, des, rsa。
+### 4. cryptor加密包支持数据加密和解密，获取md5，hash值。支持base64, md5, hmac, aes, des, rsa。
 
 ```go
 import "github.com/duke-git/lancet/v2/cryptor"
@@ -162,7 +162,7 @@ import "github.com/duke-git/lancet/v2/cryptor"
 - [RsaEncrypt](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#RsaEncrypt)
 - [RsaDecrypt](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#RsaDecrypt)
 
-### 4. datetime日期时间处理包，格式化日期，比较日期。
+### 5. datetime日期时间处理包，格式化日期，比较日期。
 
 
 ```go
@@ -200,7 +200,7 @@ import "github.com/duke-git/lancet/v2/datetime"
 - [ToFormatForTpl](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#ToFormatForTpl)
 - [ToIso8601](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#ToIso8601)
 
-### 5. fileutil包支持文件基本操作。
+### 6. fileutil包支持文件基本操作。
 
 ```go
 import "github.com/duke-git/lancet/v2/fileutil"
@@ -223,7 +223,7 @@ import "github.com/duke-git/lancet/v2/fileutil"
 - [Zip](https://github.com/duke-git/lancet/blob/main/docs/fileutil_zh-CN.md#Zip)
 - [UnZip](https://github.com/duke-git/lancet/blob/main/docs/fileutil_zh-CN.md#UnZip)
 
-### 6. formatter格式化器包含一些数据格式化处理方法。
+### 7. formatter格式化器包含一些数据格式化处理方法。
 
 ```go
 import "github.com/duke-git/lancet/v2/formatter"
@@ -232,7 +232,7 @@ import "github.com/duke-git/lancet/v2/formatter"
 - [Comma](https://github.com/duke-git/lancet/blob/main/docs/formatter_zh-CN.md#Comma)
 
 
-### 7. function函数包控制函数执行流程，包含部分函数式编程。
+### 8. function函数包控制函数执行流程，包含部分函数式编程。
 
 ```go
 import "github.com/duke-git/lancet/v2/function"
@@ -248,7 +248,7 @@ import "github.com/duke-git/lancet/v2/function"
 - [Watcher](https://github.com/duke-git/lancet/blob/main/docs/function_zh-CN.md#Watcher)
 
 
-### 8. maputil包包括一些操作map的函数.
+### 9. maputil包包括一些操作map的函数.
 
 ```go
 import "github.com/duke-git/lancet/v2/maputil"
@@ -263,7 +263,7 @@ import "github.com/duke-git/lancet/v2/maputil"
 - [Minus](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#Minus)
 - [Values](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#Values)
 
-### mathutil包实现了一些数学计算的函数。
+### 10. mathutil包实现了一些数学计算的函数。
 
 ```go
 import "github.com/duke-git/lancet/v2/mathutil"
@@ -281,7 +281,7 @@ import "github.com/duke-git/lancet/v2/mathutil"
 - [RoundToString](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#RoundToString)
 - [TruncRound](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#TruncRound)
 
-### 9. netutil网络包支持获取ip地址，发送http请求。
+### 11. netutil网络包支持获取ip地址，发送http请求。
 
 ```go
 import "github.com/duke-git/lancet/v2/netutil"
@@ -301,7 +301,7 @@ import "github.com/duke-git/lancet/v2/netutil"
 - [HttpPatch](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#HttpPatch)
 - [ParseHttpResponse](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#ParseHttpResponse)
 
-### 10. random随机数生成器包，可以生成随机[]bytes, int, string。
+### 12. random随机数生成器包，可以生成随机[]bytes, int, string。
 
 ```go
 import "github.com/duke-git/lancet/v2/random"
@@ -312,7 +312,7 @@ import "github.com/duke-git/lancet/v2/random"
 - [RandInt](https://github.com/duke-git/lancet/blob/main/docs/random_zh-CN.md#RandInt)
 - [RandString](https://github.com/duke-git/lancet/blob/main/docs/random_zh-CN.md#RandString)
 - [UUIdV4](https://github.com/duke-git/lancet/blob/main/docs/random.md#UUIdV4)
-### 11. retry重试执行函数直到函数运行成功或被context cancel。
+### 13. retry重试执行函数直到函数运行成功或被context cancel。
 
 ```go
 import "github.com/duke-git/lancet/v2/retry"
@@ -326,7 +326,7 @@ import "github.com/duke-git/lancet/v2/retry"
 - [RetryTimes](https://github.com/duke-git/lancet/blob/main/docs/retry_zh-CN.md#RetryTimes)
 
 
-### 12. slice包包含操作切片的方法集合。
+### 14. slice包包含操作切片的方法集合。
 
 ```go
 import "github.com/duke-git/lancet/v2/slice"
@@ -370,7 +370,7 @@ import "github.com/duke-git/lancet/v2/slice"
 - [Without](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Without)
 
 
-### 13. strutil包含处理字符串的相关函数。
+### 15. strutil包含处理字符串的相关函数。
 
 ```go
 import "github.com/duke-git/lancet/v2/strutil"
@@ -396,7 +396,7 @@ import "github.com/duke-git/lancet/v2/strutil"
 - [Unwrap](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#Unwrap)
   
 
-### 14. system包含os, runtime, shell command相关函数。
+### 16. system包含os, runtime, shell command相关函数。
 
 ```go
 import "github.com/duke-git/lancet/v2/system"
@@ -412,7 +412,7 @@ import "github.com/duke-git/lancet/v2/system"
 - [CompareOsEnv](https://github.com/duke-git/lancet/blob/main/docs/system_zh-CN.md#CompareOsEnv)
 - [ExecCommand](https://github.com/duke-git/lancet/blob/main/docs/system_zh-CN.md#ExecCommand)
 
-### 15. validator验证器包，包含常用字符串格式验证函数。
+### 17. validator验证器包，包含常用字符串格式验证函数。
 
 ```go
 import "github.com/duke-git/lancet/v2/validator"
@@ -447,7 +447,7 @@ import "github.com/duke-git/lancet/v2/validator"
 - [IsWeakPassword](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsWeakPassword)
 
 validator.md#IsWeakPassword)
-### 16. xerror包实现一些错误处理函数
+### 18. xerror包实现一些错误处理函数
 
 ```go
 import "github.com/duke-git/lancet/v2/xerror"
