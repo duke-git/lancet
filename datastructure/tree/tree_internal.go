@@ -216,7 +216,7 @@ func calculateDepth[T any](node *datastructure.TreeNode[T], depth int) int {
 	return max(calculateDepth(node.Left, depth+1), calculateDepth(node.Right, depth+1))
 }
 
-func hasSubTree[T any](superTreeRoot, subTreeRoot *datastructure.TreeNode[T], comparator lancetconstraints.Comparator) bool {
+func isSubTree[T any](superTreeRoot, subTreeRoot *datastructure.TreeNode[T], comparator lancetconstraints.Comparator) bool {
 	if subTreeRoot == nil {
 		return true
 	}
@@ -227,7 +227,7 @@ func hasSubTree[T any](superTreeRoot, subTreeRoot *datastructure.TreeNode[T], co
 		return false
 	}
 
-	return hasSubTree(superTreeRoot.Left, subTreeRoot.Left, comparator) && hasSubTree(superTreeRoot.Right, subTreeRoot.Right, comparator)
+	return isSubTree(superTreeRoot.Left, subTreeRoot.Left, comparator) && hasSubTree(superTreeRoot.Right, subTreeRoot.Right, comparator)
 }
 
 func max(a, b int) int {

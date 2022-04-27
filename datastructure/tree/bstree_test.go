@@ -133,3 +133,25 @@ func TestBSTree_Depth(t *testing.T) {
 
 	assert.Equal(bstree.Depth(), 4)
 }
+
+
+func TestBSTree_IsSubTree(t *testing.T) {
+	assert := internal.NewAssert(t, "TestBSTree_IsSubTree")
+
+	superTree := NewBSTree(6, &intComparator{})
+	superTree.InsertNode(7)
+	superTree.InsertNode(5)
+	superTree.InsertNode(2)
+	superTree.InsertNode(4)
+
+	superTree.Print()
+
+	subTree1 := NewBSTree(3, &intComparator{})
+	subTree1.InsertNode(5)
+	subTree1.InsertNode(2)
+	subTree1.InsertNode(4)
+
+	assert.Equal(true, superTree)
+	subTree1.Print()
+
+}
