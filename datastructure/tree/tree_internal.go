@@ -226,8 +226,8 @@ func isSubTree[T any](superTreeRoot, subTreeRoot *datastructure.TreeNode[T], com
 	if comparator.Compare(superTreeRoot.Value, subTreeRoot.Value) != 0 {
 		return false
 	}
-
-	return isSubTree(superTreeRoot.Left, subTreeRoot.Left, comparator) && hasSubTree(superTreeRoot.Right, subTreeRoot.Right, comparator)
+	res := isSubTree(superTreeRoot.Left, subTreeRoot.Left, comparator) && isSubTree(superTreeRoot.Right, subTreeRoot.Right, comparator)
+	return res
 }
 
 func max(a, b int) int {
