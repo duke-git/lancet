@@ -24,7 +24,7 @@ English | [简体中文](./README_zh-CN.md)
 ## Feature
 
 - 👏 Comprehensive, efficient and reusable.
-- 💪 180+ go util functions, support string, slice, datetime, net, crypt...
+- 💪 200+ go util functions, support string, slice, datetime, net, crypt...
 - 💅 Only depend on the go standard library.
 - 🌍 Unit test for every exported function.
 
@@ -62,7 +62,7 @@ func main() {
 ```
 
 ## API Documentation
-### Convertor package contains some functions for data convertion.
+### 1. Convertor package contains some functions for data convertion.
 
 ```go
 import "github.com/duke-git/lancet/convertor"
@@ -78,7 +78,7 @@ import "github.com/duke-git/lancet/convertor"
 - [ToString](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#ToString)
 - [StructToMap](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#StructToMap)
   
-### Cryptor package is for data encryption and decryption.
+### 2. Cryptor package is for data encryption and decryption.
 
 ```go
 import "github.com/duke-git/lancet/cryptor"
@@ -118,7 +118,7 @@ import "github.com/duke-git/lancet/cryptor"
 - [RsaEncrypt](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#RsaEncrypt)
 - [RsaDecrypt](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#RsaDecrypt)
 
-### Datetime package supports date and time format and compare.
+### 3. Datetime package supports date and time format and compare.
 
 
 ```go
@@ -156,7 +156,7 @@ import "github.com/duke-git/lancet/datetime"
 - [ToFormatForTpl](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#ToFormatForTpl)
 - [ToIso8601](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#ToIso8601)
 
-### Fileutil package implements some basic functions for file operations.
+### 4. Fileutil package implements some basic functions for file operations.
 
 ```go
 import "github.com/duke-git/lancet/fileutil"
@@ -179,7 +179,7 @@ import "github.com/duke-git/lancet/fileutil"
 - [Zip](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#Zip)
 - [UnZip](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#UnZip)
 
-### Formatter contains some functions for data formatting.
+### 5. Formatter contains some functions for data formatting.
 
 ```go
 import "github.com/duke-git/lancet/formatter"
@@ -203,7 +203,7 @@ import "github.com/duke-git/lancet/function"
 - [Watcher](https://github.com/duke-git/lancet/blob/main/docs/function.md#Watcher)
 
 
-### Mathutil package implements some functions for math calculation.
+### 6. Mathutil package implements some functions for math calculation.
 
 ```go
 import "github.com/duke-git/lancet/mathutil"
@@ -219,7 +219,7 @@ import "github.com/duke-git/lancet/mathutil"
 - [TruncRound](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#TruncRound)
 
 
-### Netutil package contains functions to get net information and send http request.
+### 7. Netutil package contains functions to get net information and send http request.
 
 ```go
 import "github.com/duke-git/lancet/netutil"
@@ -239,7 +239,7 @@ import "github.com/duke-git/lancet/netutil"
 - [HttpPatch](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#HttpPatch)
 - [ParseHttpResponse](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#ParseHttpResponse)
 
-### Random package implements some basic functions to generate random int and string.
+### 8. Random package implements some basic functions to generate random int and string.
 
 ```go
 import "github.com/duke-git/lancet/random"
@@ -251,7 +251,7 @@ import "github.com/duke-git/lancet/random"
 - [RandString](https://github.com/duke-git/lancet/blob/main/docs/random.md#RandString)
 - [UUIdV4](https://github.com/duke-git/lancet/blob/main/docs/random.md#UUIdV4)
 
-### Retry package is for executing a function repeatedly until it was successful or canceled by the context.
+### 9. Retry package is for executing a function repeatedly until it was successful or canceled by the context.
 
 ```go
 import "github.com/duke-git/lancet/retry"
@@ -264,7 +264,7 @@ import "github.com/duke-git/lancet/retry"
 - [RetryDuration](https://github.com/duke-git/lancet/blob/main/docs/retry.md#RetryDuration)
 - [RetryTimes](https://github.com/duke-git/lancet/blob/main/docs/retry.md#RetryTimes)
 
-### Slice contains some functions to manipulate slice.
+### 10. Slice contains some functions to manipulate slice.
 
 ```go
 import "github.com/duke-git/lancet/slice"
@@ -304,7 +304,7 @@ import "github.com/duke-git/lancet/slice"
 - [UpdateByIndex](https://github.com/duke-git/lancet/blob/main/docs/slice.md#UpdateByIndex)
 - [Without](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Without)
 
-### Strutil package contains some functions to manipulate string.
+### 11. Strutil package contains some functions to manipulate string.
 
 ```go
 import "github.com/duke-git/lancet/strutil"
@@ -329,7 +329,7 @@ import "github.com/duke-git/lancet/strutil"
 - [Wrap](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#Wrap)
 - [Unwrap](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#Unwrap)
   
-### System package contain some functions about os, runtime, shell command.
+### 12. System package contain some functions about os, runtime, shell command.
 
 ```go
 import "github.com/duke-git/lancet/system"
@@ -345,7 +345,7 @@ import "github.com/duke-git/lancet/system"
 - [CompareOsEnv](https://github.com/duke-git/lancet/blob/main/docs/system.md#CompareOsEnv)
 - [ExecCommand](https://github.com/duke-git/lancet/blob/main/docs/system.md#ExecCommand)
 
-### Validator package contains some functions for data validation.
+### 13. Validator package contains some functions for data validation.
 
 ```go
 import "github.com/duke-git/lancet/validator"

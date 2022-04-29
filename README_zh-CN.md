@@ -62,7 +62,7 @@ func main() {
 ```
 
 ## API文档
-### convertor转换器包支持一些常见的数据类型转换。
+### 1. convertor转换器包支持一些常见的数据类型转换。
 
 ```go
 import "github.com/duke-git/lancet/convertor"
@@ -78,7 +78,7 @@ import "github.com/duke-git/lancet/convertor"
 - [ToString](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#ToString)
 - [StructToMap](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#StructToMap)
   
-### cryptor加密包支持数据加密和解密，获取md5，hash值。支持base64, md5, hmac, aes, des, rsa。
+### 2. cryptor加密包支持数据加密和解密，获取md5，hash值。支持base64, md5, hmac, aes, des, rsa。
 
 ```go
 import "github.com/duke-git/lancet/cryptor"
@@ -118,7 +118,7 @@ import "github.com/duke-git/lancet/cryptor"
 - [RsaEncrypt](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#RsaEncrypt)
 - [RsaDecrypt](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#RsaDecrypt)
 
-### datetime日期时间处理包，格式化日期，比较日期。
+### 3. datetime日期时间处理包，格式化日期，比较日期。
 
 
 ```go
@@ -155,7 +155,7 @@ import "github.com/duke-git/lancet/datetime"
 - [ToFormat](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#ToFormat)
 - [ToFormatForTpl](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#ToFormatForTpl)
 - [ToIso8601](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#ToIso8601)
-### fileutil包支持文件基本操作。
+### 4. fileutil包支持文件基本操作。
 
 ```go
 import "github.com/duke-git/lancet/fileutil"
@@ -178,7 +178,7 @@ import "github.com/duke-git/lancet/fileutil"
 - [Zip](https://github.com/duke-git/lancet/blob/main/docs/fileutil_zh-CN.md#Zip)
 - [UnZip](https://github.com/duke-git/lancet/blob/main/docs/fileutil_zh-CN.md#UnZip)
 
-### formatter格式化器包含一些数据格式化处理方法。
+### 5. formatter格式化器包含一些数据格式化处理方法。
 
 ```go
 import "github.com/duke-git/lancet/formatter"
@@ -202,7 +202,7 @@ import "github.com/duke-git/lancet/function"
 - [Delay](https://github.com/duke-git/lancet/blob/main/docs/function_zh-CN.md#Delay)
 - [Watcher](https://github.com/duke-git/lancet/blob/main/docs/function_zh-CN.md#Watcher)
 
-### mathutil包实现了一些数学计算的函数。
+### 6. mathutil包实现了一些数学计算的函数。
 
 ```go
 import "github.com/duke-git/lancet/mathutil"
@@ -217,7 +217,7 @@ import "github.com/duke-git/lancet/mathutil"
 - [RoundToString](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#RoundToString)
 - [TruncRound](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#TruncRound)
 
-### netutil网络包支持获取ip地址，发送http请求。
+### 7. netutil网络包支持获取ip地址，发送http请求。
 
 ```go
 import "github.com/duke-git/lancet/netutil"
@@ -237,7 +237,7 @@ import "github.com/duke-git/lancet/netutil"
 - [HttpPatch](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#HttpPatch)
 - [ParseHttpResponse](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#ParseHttpResponse)
 
-### random随机数生成器包，可以生成随机[]bytes, int, string。
+### 8. random随机数生成器包，可以生成随机[]bytes, int, string。
 
 ```go
 import "github.com/duke-git/lancet/random"
@@ -248,7 +248,7 @@ import "github.com/duke-git/lancet/random"
 - [RandInt](https://github.com/duke-git/lancet/blob/main/docs/random_zh-CN.md#RandInt)
 - [RandString](https://github.com/duke-git/lancet/blob/main/docs/random_zh-CN.md#RandString)
 - [UUIdV4](https://github.com/duke-git/lancet/blob/main/docs/random.md#UUIdV4)
-### retry重试执行函数直到函数运行成功或被context cancel。
+### 9. retry重试执行函数直到函数运行成功或被context cancel。
 
 ```go
 import "github.com/duke-git/lancet/retry"
@@ -262,7 +262,7 @@ import "github.com/duke-git/lancet/retry"
 - [RetryTimes](https://github.com/duke-git/lancet/blob/main/docs/retry_zh-CN.md#RetryTimes)
 
 
-### slice包包含操作切片的方法集合。
+### 10. slice包包含操作切片的方法集合。
 
 ```go
 import "github.com/duke-git/lancet/slice"
@@ -303,7 +303,7 @@ import "github.com/duke-git/lancet/slice"
 - [Without](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Without)
 
 
-### strutil包含处理字符串的相关函数。
+### 12. strutil包含处理字符串的相关函数。
 
 ```go
 import "github.com/duke-git/lancet/strutil"
@@ -329,7 +329,7 @@ import "github.com/duke-git/lancet/strutil"
 - [Unwrap](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#Unwrap)
   
 
-### system包含os, runtime, shell command相关函数。
+### 13. system包含os, runtime, shell command相关函数。
 
 ```go
 import "github.com/duke-git/lancet/system"
@@ -345,7 +345,7 @@ import "github.com/duke-git/lancet/system"
 - [CompareOsEnv](https://github.com/duke-git/lancet/blob/main/docs/system_zh-CN.md#CompareOsEnv)
 - [ExecCommand](https://github.com/duke-git/lancet/blob/main/docs/system_zh-CN.md#ExecCommand)
 
-### validator验证器包，包含常用字符串格式验证函数。
+### 14. validator验证器包，包含常用字符串格式验证函数。
 
 ```go
 import "github.com/duke-git/lancet/validator"
