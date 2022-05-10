@@ -177,3 +177,15 @@ func TestUnwrap(t *testing.T) {
 	assert.Equal("***", Unwrap("***", "**"))
 	assert.Equal("**", Unwrap("**", "**"))
 }
+
+func TestSplitEx(t *testing.T) {
+	assert := internal.NewAssert(t, "TestSplitEx")
+
+	assert.Equal([]string{}, SplitEx(" a b c ", "", true))
+
+	assert.Equal([]string{"", "a", "b", "c", ""}, SplitEx(" a b c ", " ", false))
+	assert.Equal([]string{"a", "b", "c"}, SplitEx(" a b c ", " ", true))
+
+	assert.Equal([]string{" a", "b", "c", ""}, SplitEx(" a = b = c = ", " = ", false))
+	assert.Equal([]string{" a", "b", "c"}, SplitEx(" a = b = c = ", " = ", true))
+}
