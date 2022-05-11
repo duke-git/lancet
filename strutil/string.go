@@ -247,3 +247,52 @@ func Unwrap(str string, wrapToken string) string {
 
 	return str
 }
+
+// SplitEx split a given string whether the result contains empty string
+func SplitEx(s, sep string, removeEmptyString bool) []string {
+	if sep == "" {
+		return []string{}
+	}
+
+	n := strings.Count(s, sep) + 1
+	a := make([]string, n)
+	n--
+	i := 0
+	sepSave := 0
+	ignore := false
+
+	for i < n {
+		m := strings.Index(s, sep)
+		if m < 0 {
+			break
+		}
+		ignore = false
+		if removeEmptyString {
+			if s[:m+sepSave] == "" {
+				ignore = true
+			}
+		}
+		if !ignore {
+			a[i] = s[:m+sepSave]
+			s = s[m+len(sep):]
+			i++
+		} else {
+			s = s[m+len(sep):]
+		}
+	}
+
+	var ret []string
+	if removeEmptyString {
+		if s != "" {
+			a[i] = s
+			ret = a[:i+1]
+		} else {
+			ret = a[:i]
+		}
+	} else {
+		a[i] = s
+		ret = a[:i+1]
+	}
+
+	return ret
+}
