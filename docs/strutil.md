@@ -34,6 +34,7 @@ import (
 - [PadStart](#PadStart)
 - [ReverseStr](#ReverseStr)
 - [SnakeCase](#SnakeCase)
+- [SplitEx](#SplitEx)
 - [Wrap](#Wrap)
   
 - [Unwrap](#Unwrap)
@@ -487,6 +488,43 @@ func main() {
 
 	s5 := strutil.SnakeCase("aBbc-s$@a&%_B.B^C")
 	fmt.Println(s5) //a_bbc_s_a_b_b_c
+}
+```
+
+
+
+
+### <span id="SplitEx">SplitEx</span>
+<p>Split a given string whether the result contains empty string.</p>
+
+<b>Signature:</b>
+
+```go
+func SplitEx(s, sep string, removeEmptyString bool) []string
+```
+<b>Example:</b>
+
+```go
+import (
+	"fmt"
+	"github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+	arr1 := strutil.SplitEx(" a b c ", "", true)
+	fmt.Println(arr1) //[]string{}
+
+	arr2 := strutil.SplitEx(" a b c ", " ", false)
+	fmt.Println(arr2) //[]string{"", "a", "b", "c", ""}
+
+	arr3 := strutil.SplitEx(" a b c ", " ", true)
+	fmt.Println(arr3) //[]string{"a", "b", "c"}
+
+	arr4 := strutil.SplitEx(" a = b = c = ", " = ", false)
+	fmt.Println(arr4) //[]string{" a", "b", "c", ""}
+
+	arr5 := strutil.SplitEx(" a = b = c = ", " = ", true)
+	fmt.Println(arr5) //[]string{" a", "b", "c"}
 }
 ```
 
