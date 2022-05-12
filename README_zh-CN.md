@@ -392,6 +392,7 @@ import "github.com/duke-git/lancet/v2/strutil"
 - [PadStart](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#PadStart)
 - [ReverseStr](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#ReverseStr)
 - [SnakeCase](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#SnakeCase)
+- [SplitEx](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#SplitEx)
 - [Wrap](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#Wrap)
 - [Unwrap](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#Unwrap)
   
