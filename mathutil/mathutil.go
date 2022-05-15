@@ -140,6 +140,27 @@ func Min[T lancetconstraints.Number](numbers ...T) T {
 	return min
 }
 
+// MinBy search the minimum value of a slice using the given comparator function.
+func MinBy[T any](slice []T, comparator func(T, T) bool) T {
+	var min T
+
+	if len(slice) == 0 {
+		return min
+	}
+
+	min = slice[0]
+
+	for i := 1; i < len(slice); i++ {
+		val := slice[i]
+
+		if comparator(val, min) {
+			min = val
+		}
+	}
+
+	return min
+}
+
 // Average return average value of params
 func Average[T lancetconstraints.Number](numbers ...T) T {
 	var sum T
