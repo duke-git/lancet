@@ -89,6 +89,25 @@ func TestMax(t *testing.T) {
 	assert.Equal(Max(1.2, 1.4, 1.1, 1.4), 1.4)
 }
 
+func TestMaxBy(t *testing.T) {
+	assert := internal.NewAssert(t, "MaxBy")
+
+	res1 := MaxBy([]string{"a", "ab", "abc"}, func(v1, v2 string) bool {
+		return len(v1) > len(v2)
+	})
+	assert.Equal("abc", res1)
+
+	res2 := MaxBy([]string{"abd", "abc", "ab"}, func(v1, v2 string) bool {
+		return len(v1) > len(v2)
+	})
+	assert.Equal("abd", res2)
+
+	res3 := MaxBy([]string{}, func(v1, v2 string) bool {
+		return len(v1) > len(v2)
+	})
+	assert.Equal("", res3)
+}
+
 func TestMin(t *testing.T) {
 	assert := internal.NewAssert(t, "TestMin")
 
