@@ -106,6 +106,27 @@ func Max[T lancetconstraints.Number](numbers ...T) T {
 	return max
 }
 
+// MaxBy search the maximum value of a slice using the given comparator function.
+func MaxBy[T any](slice []T, comparator func(T, T) bool) T {
+	var max T
+
+	if len(slice) == 0 {
+		return max
+	}
+
+	max = slice[0]
+
+	for i := 1; i < len(slice); i++ {
+		val := slice[i]
+
+		if comparator(val, max) {
+			max = val
+		}
+	}
+
+	return max
+}
+
 // Min return min value of params
 func Min[T lancetconstraints.Number](numbers ...T) T {
 	min := numbers[0]
