@@ -733,3 +733,27 @@ func Without[T any](slice []T, values ...T) []T {
 
 	return out
 }
+
+// IndexOf returns the index at which the first occurrence of a value is found in a slice or return -1
+// if the value cannot be found.
+func IndexOf[T any](slice []T, value T) int {
+	for i, v := range slice {
+		if reflect.DeepEqual(v, value) {
+			return i
+		}
+	}
+
+	return -1
+}
+
+// LastIndexOf returns the index at which the last occurrence of a value is found in a slice or return -1
+// if the value cannot be found.
+func LastIndexOf[T any](slice []T, value T) int {
+	for i := len(slice) - 1; i > 0; i-- {
+		if reflect.DeepEqual(value, slice[i]) {
+			return i
+		}
+	}
+
+	return -1
+}
