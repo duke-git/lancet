@@ -544,5 +544,5 @@ func TestLastIndexOf(t *testing.T) {
 
 	arr := []string{"a", "a", "b", "c"}
 	assert.Equal(1, LastIndexOf(arr, "a"))
-	assert.Equal(-1, IndexOf(arr, "d"))
+	assert.Equal(-1, LastIndexOf(arr, "d"))
 }
