@@ -530,3 +530,11 @@ func TestShuffle(t *testing.T) {
 
 	assert.Equal(5, len(res))
 }
+
+func TestIndexOf(t *testing.T) {
+	assert := internal.NewAssert(t, "TestIndexOf")
+
+	arr := []string{"a", "a", "b", "c"}
+	assert.Equal(0, IndexOf(arr, "a"))
+	assert.Equal(-1, IndexOf(arr, "d"))
+}
