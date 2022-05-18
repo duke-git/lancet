@@ -25,7 +25,9 @@ import (
 - [Fibonacci](#Fibonacci)
 - [Factorial](#Factorial)
 - [Max](#Max)
+- [MaxBy](#MaxBy)
 - [Min](#Min)
+- [MinBy](#MaxBy)
 
 - [Percent](#Percent)
 - [RoundToFloat](#RoundToFloat)
@@ -177,6 +179,45 @@ func main() {
 
 
 
+
+### <span id="MaxBy">MaxBy</span>
+<p>Return the maximum value of a slice using the given comparator function.</p>
+
+<b>Signature:</b>
+
+```go
+func MaxBy[T any](slice []T, comparator func(T, T) bool) T 
+```
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/mathutil"
+)
+
+func main() {
+	res1 := mathutil.MaxBy([]string{"a", "ab", "abc"}, func(v1, v2 string) bool {
+		return len(v1) > len(v2)
+	})
+	fmt.Println(res1) //abc
+
+	res2 := mathutil.MaxBy([]string{"abd", "abc", "ab"}, func(v1, v2 string) bool {
+		return len(v1) > len(v2)
+	})
+	fmt.Println(res2) //abd
+
+	res3 := mathutil.MaxBy([]string{}, func(v1, v2 string) bool {
+		return len(v1) > len(v2)
+	})
+	fmt.Println(res3) //“”
+}
+```
+
+
+
 ### <span id="Min">Min</span>
 <p>Return min value of numbers.</p>
 
@@ -201,6 +242,45 @@ func main() {
 	fmt.Println(mathutil.Min(1.2, 1.4, 1.1, 1.4)) //1.1
 }
 ```
+
+
+
+### <span id="MinBy">MinBy</span>
+<p>Return the minimum value of a slice using the given comparator function.</p>
+
+<b>Signature:</b>
+
+```go
+func MinBy[T any](slice []T, comparator func(T, T) bool) T 
+```
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/mathutil"
+)
+
+func main() {
+	res1 := mathutil.MinBy([]string{"a", "ab", "abc"}, func(v1, v2 string) bool {
+		return len(v1) < len(v2)
+	})
+	fmt.Println(res1) //a
+
+	res2 := mathutil.MinBy([]string{"ab", "ac", "abc"}, func(v1, v2 string) bool {
+		return len(v1) < len(v2)
+	})
+	fmt.Println(res2) //ab
+
+	res3 := mathutil.MinBy([]string{}, func(v1, v2 string) bool {
+		return len(v1) < len(v2)
+	})
+	fmt.Println(res3) //“”
+}
+```
+
 
 
 

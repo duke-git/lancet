@@ -25,7 +25,9 @@ import (
 - [Fibonacci](#Fibonacci)
 - [Factorial](#Factorial)
 - [Max](#Max)
+- [MaxBy](#MaxBy)
 - [Min](#Min)
+- [MinBy](#MaxBy)
   
 - [Percent](#Percent)
 - [RoundToFloat](#RoundToFloat)
@@ -174,6 +176,45 @@ func main() {
 
 
 
+### <span id="MaxBy">MaxBy</span>
+<p>使用给定的比较器函数返回切片的最大值</p>
+
+<b>函数签名:</b>
+
+```go
+func MaxBy[T any](slice []T, comparator func(T, T) bool) T 
+```
+<b>例子:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/mathutil"
+)
+
+func main() {
+	res1 := mathutil.MaxBy([]string{"a", "ab", "abc"}, func(v1, v2 string) bool {
+		return len(v1) > len(v2)
+	})
+	fmt.Println(res1) //abc
+
+	res2 := mathutil.MaxBy([]string{"abd", "abc", "ab"}, func(v1, v2 string) bool {
+		return len(v1) > len(v2)
+	})
+	fmt.Println(res2) //abd
+
+	res3 := mathutil.MaxBy([]string{}, func(v1, v2 string) bool {
+		return len(v1) > len(v2)
+	})
+	fmt.Println(res3) //“”
+}
+```
+
+
+
+
 ### <span id="Min">Min</span>
 <p>返回参数中的最小数</p>
 
@@ -198,6 +239,45 @@ func main() {
 	fmt.Println(mathutil.Min(1.2, 1.4, 1.1, 1.4)) //1.1
 }
 ```
+
+
+
+### <span id="MinBy">MinBy</span>
+<p>使用给定的比较器函数返回切片的最小值</p>
+
+<b>函数签名:</b>
+
+```go
+func MinBy[T any](slice []T, comparator func(T, T) bool) T 
+```
+<b>例子:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/mathutil"
+)
+
+func main() {
+	res1 := mathutil.MinBy([]string{"a", "ab", "abc"}, func(v1, v2 string) bool {
+		return len(v1) < len(v2)
+	})
+	fmt.Println(res1) //a
+
+	res2 := mathutil.MinBy([]string{"ab", "ac", "abc"}, func(v1, v2 string) bool {
+		return len(v1) < len(v2)
+	})
+	fmt.Println(res2) //ab
+
+	res3 := mathutil.MinBy([]string{}, func(v1, v2 string) bool {
+		return len(v1) < len(v2)
+	})
+	fmt.Println(res3) //“”
+}
+```
+
 
 
 
