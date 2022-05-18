@@ -44,6 +44,8 @@ import (
 - [InterfaceSlice](#InterfaceSlice)
 - [Intersection](#Intersection)
 - [InsertAt](#InsertAt)
+- [IndexOf](#IndexOf)
+- [LastIndexOf](#LastIndexOf)
 - [Map](#Map)
 - [Reverse](#Reverse)
 - [Reduce](#Reduce)
@@ -698,6 +700,63 @@ func main() {
 
 	res2, _ := slice.InsertAt(s, 3, []string{"1", "2", "3"})
 	fmt.Println(res2) //[]string{"a", "b", "c", "1", "2", "3"}
+}
+```
+
+
+
+
+### <span id="IndexOf">IndexOf</span>
+<p>Returns the index at which the first occurrence of a value is found in a slice or return -1 if the value cannot be found.</p>
+
+<b>Signature:</b>
+
+```go
+func IndexOf[T any](slice []T, value T) int
+```
+<b>Example:</b>
+
+```go
+import (
+	"fmt"
+	"github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+	arr := []string{"a", "a", "b", "c"}
+	res1 := slice.IndexOf(arr, "a")
+	fmt.Println(res1) //0
+
+	res2 := slice.IndexOf(arr, "d")
+	fmt.Println(res2) //-1
+}
+```
+
+
+
+### <span id="LastIndexOf">LastIndexOf</span>
+<p>Returns the index at which the last occurrence of a value is found in a slice or return -1 if the value cannot be found.</p>
+
+<b>Signature:</b>
+
+```go
+func LastIndexOf[T any](slice []T, value T) int
+```
+<b>Example:</b>
+
+```go
+import (
+	"fmt"
+	"github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+	arr := []string{"a", "a", "b", "c"}
+	res1 := slice.LastIndexOf(arr, "a")
+	fmt.Println(res1) //1
+
+	res2 := slice.LastIndexOf(arr, "d")
+	fmt.Println(res2) //-1
 }
 ```
 
