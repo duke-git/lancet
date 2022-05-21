@@ -250,7 +250,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func DifferenceBy[T any](slice []T, comparedSlice []T, iteratee func(index int, t T) T) []T
+func DifferenceBy[T any](slice []T, comparedSlice []T, iteratee func(index int, item T) T) []T
 ```
 <b>例子:</b>
 
@@ -369,7 +369,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func Every[T any](slice []T, predicate func(index int, t T) bool) bool
+func Every[T any](slice []T, predicate func(index int, item T) bool) bool
 ```
 <b>例子:</b>
 
@@ -394,12 +394,12 @@ func main() {
 
 
 ### <span id="Filter">Filter</span>
-<p>返回与函数匹配的所有元素。 函数签名应该是 func(index int, value any) bool</p>
+<p>返回切片中通过predicate函数真值测试的所有元素</p>
 
 <b>函数签名:</b>
 
 ```go
-func Filter[T any](slice []T, predicate func(index int, t T) bool) []T
+func Filter[T any](slice []T, predicate func(index int, item T) bool) []T
 ```
 <b>例子:</b>
 
@@ -423,12 +423,12 @@ func main() {
 
 
 ### <span id="Find">Find</span>
-<p>遍历slice的元素，返回第一个通过function真值测试的元素</p>
+<p>遍历切片的元素，返回第一个通过predicate函数真值测试的元素</p>
 
 <b>函数签名:</b>
 
 ```go
-func Find[T any](slice []T, predicate func(index int, t T) bool) (*T, bool)
+func Find[T any](slice []T, predicate func(index int, item T) bool) (*T, bool)
 ```
 <b>例子:</b>
 
@@ -454,12 +454,12 @@ func main() {
 
 
 ### <span id="FindLast">FindLast</span>
-<p>从头到尾遍历 slice 的元素，返回最后一个通过函数真值测试的元素。</p>
+<p>从头到尾遍历slice的元素，返回最后一个通过predicate函数真值测试的元素。</p>
 
 <b>函数签名:</b>
 
 ```go
-func FindLast[T any](slice []T, predicate func(index int, t T) bool) (*T, bool)
+func FindLast[T any](slice []T, predicate func(index int, item T) bool) (*T, bool)
 ```
 <b>例子:</b>
 
@@ -511,12 +511,12 @@ func main() {
 
 
 ### <span id="ForEach">ForEach</span>
-<p>遍历slice的元素并为每个元素调用函数</p>
+<p>遍历切片的元素并为每个元素调用iteratee函数</p>
 
 <b>函数签名:</b>
 
 ```go
-func ForEach[T any](slice []T, iteratee func(index int, t T))
+func ForEach[T any](slice []T, iteratee func(index int, item T))
 ```
 <b>例子:</b>
 
@@ -545,7 +545,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func GroupBy[T any](slice []T, groupFn func(index int, t T) bool) ([]T, []T)
+func GroupBy[T any](slice []T, groupFn func(index int, item T) bool) ([]T, []T)
 ```
 <b>例子:</b>
 
@@ -768,7 +768,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func Map[T any, U any](slice []T, iteratee func(index int, t T) U) []U
+func Map[T any, U any](slice []T, iteratee func(index int, item T) U) []U
 ```
 <b>例子:</b>
 
@@ -817,12 +817,12 @@ func main() {
 
 
 ### <span id="Reduce">Reduce</span>
-<p>将slice中的元素依次运行函数，返回运行结果</p>
+<p>将切片中的元素依次运行iteratee函数，返回运行结果</p>
 
 <b>函数签名:</b>
 
 ```go
-func Reduce[T any](slice []T, iteratee func(index int, t1, t2 T) T, initial T) T
+func Reduce[T any](slice []T, iteratee func(index int, item1, item2 T) T, initial T) T
 ```
 <b>例子:</b>
 
@@ -919,7 +919,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func Some[T any](slice []T, predicate func(index int, t T) bool) bool
+func Some[T any](slice []T, predicate func(index int, item T) bool) bool
 ```
 <b>例子:</b>
 
@@ -1021,7 +1021,7 @@ func main() {
 
 
 ### <span id="Union">Unique</span>
-<p>从所有给定的切片按顺序创建一个唯一值切片。 使用 == 进行相等比较。</p>
+<p>从所有给定的切片按顺序创建一个唯一值切片，使用==进行相等比较</p>
 
 <b>函数签名:</b>
 
@@ -1048,7 +1048,7 @@ func main() {
 
 
 ### <span id="UpdateAt">UpdateAt</span>
-<p>更新索引处的切片元素。 如果 param index < 0 或 index >= len(slice)，将返回错误</p>
+<p>更新索引处的切片元素。 如果index < 0或 index >= len(slice)，将返回错误</p>
 
 <b>函数签名:</b>
 
