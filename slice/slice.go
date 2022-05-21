@@ -108,7 +108,7 @@ func Difference[T comparable](slice, comparedSlice []T) []T {
 // DifferenceBy it accepts iteratee which is invoked for each element of slice
 // and values to generate the criterion by which they're compared.
 // like lodash.js differenceBy: https://lodash.com/docs/4.17.15#differenceBy,
-func DifferenceBy[T any](slice []T, comparedSlice []T, iteratee func(index int, t T) T) []T {
+func DifferenceBy[T any](slice []T, comparedSlice []T, iteratee func(index int, item T) T) []T {
 	orginSliceAfterMap := Map(slice, iteratee)
 	comparedSliceAfterMap := Map(comparedSlice, iteratee)
 
@@ -148,7 +148,7 @@ func DifferenceWith[T any](slice []T, comparedSlice []T, comparator func(value, 
 }
 
 // Every return true if all of the values in the slice pass the predicate function.
-func Every[T any](slice []T, predicate func(index int, t T) bool) bool {
+func Every[T any](slice []T, predicate func(index int, item T) bool) bool {
 	if predicate == nil {
 		panic("predicate func is missing")
 	}
@@ -164,7 +164,7 @@ func Every[T any](slice []T, predicate func(index int, t T) bool) bool {
 }
 
 // None return true if all the values in the slice mismatch the criteria
-func None[T any](slice []T, predicate func(index int, t T) bool) bool {
+func None[T any](slice []T, predicate func(index int, item T) bool) bool {
 	if predicate == nil {
 		panic("predicate func is missing")
 	}
@@ -180,7 +180,7 @@ func None[T any](slice []T, predicate func(index int, t T) bool) bool {
 }
 
 // Some return true if any of the values in the list pass the predicate function.
-func Some[T any](slice []T, predicate func(index int, t T) bool) bool {
+func Some[T any](slice []T, predicate func(index int, item T) bool) bool {
 	if predicate == nil {
 		panic("predicate func is missing")
 	}
@@ -194,7 +194,7 @@ func Some[T any](slice []T, predicate func(index int, t T) bool) bool {
 }
 
 // Filter iterates over elements of slice, returning an slice of all elements pass the predicate function
-func Filter[T any](slice []T, predicate func(index int, t T) bool) []T {
+func Filter[T any](slice []T, predicate func(index int, item T) bool) []T {
 	if predicate == nil {
 		panic("predicate func is missing")
 	}
@@ -209,7 +209,7 @@ func Filter[T any](slice []T, predicate func(index int, t T) bool) []T {
 }
 
 // Count iterates over elements of slice, returns a count of all matched elements
-func Count[T any](slice []T, predicate func(index int, t T) bool) int {
+func Count[T any](slice []T, predicate func(index int, item T) bool) int {
 	if predicate == nil {
 		panic("predicate func is missing")
 	}
@@ -229,7 +229,7 @@ func Count[T any](slice []T, predicate func(index int, t T) bool) int {
 }
 
 // GroupBy iterate over elements of the slice, each element will be group by criteria, returns two slices
-func GroupBy[T any](slice []T, groupFn func(index int, t T) bool) ([]T, []T) {
+func GroupBy[T any](slice []T, groupFn func(index int, item T) bool) ([]T, []T) {
 	if groupFn == nil {
 		panic("groupFn func is missing")
 	}
@@ -274,7 +274,7 @@ func GroupWith[T any, U comparable](slice []T, iteratee func(T) U) map[U][]T {
 
 // Find iterates over elements of slice, returning the first one that passes a truth test on predicate function.
 // If return T is nil then no items matched the predicate func
-func Find[T any](slice []T, predicate func(index int, t T) bool) (*T, bool) {
+func Find[T any](slice []T, predicate func(index int, item T) bool) (*T, bool) {
 	if predicate == nil {
 		panic("predicate func is missing")
 	}
@@ -300,7 +300,7 @@ func Find[T any](slice []T, predicate func(index int, t T) bool) (*T, bool) {
 
 // FindLast iterates over elements of slice from end to begin, returning the first one that passes a truth test on predicate function.
 // If return T is nil then no items matched the predicate func
-func FindLast[T any](slice []T, predicate func(index int, t T) bool) (*T, bool) {
+func FindLast[T any](slice []T, predicate func(index int, item T) bool) (*T, bool) {
 	if predicate == nil {
 		panic("predicate func is missing")
 	}
@@ -349,7 +349,7 @@ func flattenRecursive(value reflect.Value, result reflect.Value) reflect.Value {
 }
 
 // ForEach iterates over elements of slice and invokes function for each element
-func ForEach[T any](slice []T, iteratee func(index int, t T)) {
+func ForEach[T any](slice []T, iteratee func(index int, item T)) {
 	if iteratee == nil {
 		panic("iteratee func is missing")
 	}
@@ -360,7 +360,7 @@ func ForEach[T any](slice []T, iteratee func(index int, t T)) {
 }
 
 // Map creates an slice of values by running each element of slice thru iteratee function.
-func Map[T any, U any](slice []T, iteratee func(index int, t T) U) []U {
+func Map[T any, U any](slice []T, iteratee func(index int, item T) U) []U {
 	if iteratee == nil {
 		panic("iteratee func is missing")
 	}
@@ -374,7 +374,7 @@ func Map[T any, U any](slice []T, iteratee func(index int, t T) U) []U {
 }
 
 // Reduce creates an slice of values by running each element of slice thru iteratee function.
-func Reduce[T any](slice []T, iteratee func(index int, t1, t2 T) T, initial T) T {
+func Reduce[T any](slice []T, iteratee func(index int, item1, item2 T) T, initial T) T {
 	if iteratee == nil {
 		panic("iteratee func is missing")
 	}
