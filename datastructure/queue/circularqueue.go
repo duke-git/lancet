@@ -21,7 +21,7 @@ func NewCircularQueue[T any](size int) *CircularQueue[T] {
 	return &CircularQueue[T]{data: data, front: 0, rear: 0, size: size}
 }
 
-// Data return queue data
+// Data return slice of queue data
 func (q *CircularQueue[T]) Data() []T {
 	data := []T{}
 

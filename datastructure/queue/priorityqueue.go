@@ -34,7 +34,7 @@ func (q *PriorityQueue[T]) IsFull() bool {
 	return q.size == len(q.items)-1
 }
 
-// Data return data slice in the queue
+// Data return a slice of queue data
 func (q *PriorityQueue[T]) Data() []T {
 	data := make([]T, q.size)
 	for i := 1; i < q.size+1; i++ {
