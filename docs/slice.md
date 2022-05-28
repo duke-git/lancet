@@ -250,7 +250,7 @@ func main() {
 <b>Signature:</b>
 
 ```go
-func DifferenceBy[T any](slice []T, comparedSlice []T, iteratee func(index int, t T) T) []T
+func DifferenceBy[T any](slice []T, comparedSlice []T, iteratee func(index int, item T) T) []T
 ```
 <b>Example:</b>
 
@@ -367,7 +367,7 @@ func main() {
 <b>Signature:</b>
 
 ```go
-func Every[T any](slice []T, predicate func(index int, t T) bool) bool
+func Every[T any](slice []T, predicate func(index int, item T) bool) bool
 ```
 <b>Example:</b>
 
@@ -397,7 +397,7 @@ func main() {
 <b>Signature:</b>
 
 ```go
-func Filter[T any](slice []T, predicate func(index int, t T) bool) []T
+func Filter[T any](slice []T, predicate func(index int, item T) bool) []T
 ```
 <b>Example:</b>
 
@@ -426,7 +426,7 @@ func main() {
 <b>Signature:</b>
 
 ```go
-func Find[T any](slice []T, predicate func(index int, t T) bool) (*T, bool)
+func Find[T any](slice []T, predicate func(index int, item T) bool) (*T, bool)
 ```
 <b>Example:</b>
 
@@ -457,7 +457,7 @@ func main() {
 <b>Signature:</b>
 
 ```go
-func FindLast[T any](slice []T, predicate func(index int, t T) bool) (*T, bool)
+func FindLast[T any](slice []T, predicate func(index int, item T) bool) (*T, bool)
 ```
 <b>Example:</b>
 
@@ -514,7 +514,7 @@ func main() {
 <b>Signature:</b>
 
 ```go
-func ForEach[T any](slice []T, iteratee func(index int, t T))
+func ForEach[T any](slice []T, iteratee func(index int, item T))
 ```
 <b>Example:</b>
 
@@ -543,7 +543,7 @@ func main() {
 <b>Signature:</b>
 
 ```go
-func GroupBy[T any](slice []T, groupFn func(index int, t T) bool) ([]T, []T)
+func GroupBy[T any](slice []T, groupFn func(index int, item T) bool) ([]T, []T)
 ```
 <b>Example:</b>
 
@@ -769,7 +769,7 @@ func main() {
 <b>Signature:</b>
 
 ```go
-func Map[T any, U any](slice []T, iteratee func(index int, t T) U) []U
+func Map[T any, U any](slice []T, iteratee func(index int, item T) U) []U
 ```
 <b>Example:</b>
 
@@ -823,7 +823,7 @@ func main() {
 <b>Signature:</b>
 
 ```go
-func Reduce[T any](slice []T, iteratee func(index int, t1, t2 T) T, initial T) T
+func Reduce[T any](slice []T, iteratee func(index int, item1, item2 T) T, initial T) T
 ```
 <b>Example:</b>
 
@@ -920,7 +920,7 @@ func main() {
 <b>Signature:</b>
 
 ```go
-func Some[T any](slice []T, predicate func(index int, t T) bool) bool
+func Some[T any](slice []T, predicate func(index int, item T) bool) bool
 ```
 <b>Example:</b>
 
