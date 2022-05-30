@@ -132,8 +132,8 @@ func (l *List[T]) UpdateAt(index int, value T) {
 	l.data = append(data[:index], append([]T{value}, data[index+1:]...)...)
 }
 
-// Equtal compare list to other list, use reflect.DeepEqual
-func (l *List[T]) Equtal(other *List[T]) bool {
+// Equal compare list to other list, use reflect.DeepEqual
+func (l *List[T]) Equal(other *List[T]) bool {
 	if len(l.data) != len(other.data) {
 		return false
 	}

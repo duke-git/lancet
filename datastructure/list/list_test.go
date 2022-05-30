@@ -155,15 +155,15 @@ func TestUpdateAt(t *testing.T) {
 	assert.Equal([]int{5, 2, 3, 1}, list.Data())
 }
 
-func TestEqutal(t *testing.T) {
-	assert := internal.NewAssert(t, "TestEqutal")
+func TestEqual(t *testing.T) {
+	assert := internal.NewAssert(t, "TestEqual")
 
 	list1 := NewList([]int{1, 2, 3, 4})
 	list2 := NewList([]int{1, 2, 3, 4})
 	list3 := NewList([]int{1, 2, 3})
 
-	assert.Equal(true, list1.Equtal(list2))
-	assert.Equal(false, list1.Equtal(list3))
+	assert.Equal(true, list1.Equal(list2))
+	assert.Equal(false, list1.Equal(list3))
 }
 
 func TestIsEmpty(t *testing.T) {
@@ -192,7 +192,7 @@ func TestClone(t *testing.T) {
 	list1 := NewList([]int{1, 2, 3, 4})
 	list2 := list1.Clone()
 
-	assert.Equal(true, list1.Equtal(list2))
+	assert.Equal(true, list1.Equal(list2))
 }
 
 func TestMerge(t *testing.T) {
@@ -203,7 +203,7 @@ func TestMerge(t *testing.T) {
 	expected := NewList([]int{1, 2, 3, 4, 4, 5, 6})
 
 	list3 := list1.Merge(list2)
-	assert.Equal(true, expected.Equtal(list3))
+	assert.Equal(true, expected.Equal(list3))
 }
 
 func TestSize(t *testing.T) {
@@ -224,7 +224,7 @@ func TestSwap(t *testing.T) {
 
 	list.Swap(0, 3)
 
-	assert.Equal(true, expected.Equtal(list))
+	assert.Equal(true, expected.Equal(list))
 }
 
 func TestReverse(t *testing.T) {
@@ -235,7 +235,7 @@ func TestReverse(t *testing.T) {
 
 	list.Reverse()
 
-	assert.Equal(true, expected.Equtal(list))
+	assert.Equal(true, expected.Equal(list))
 }
 
 func TestUnique(t *testing.T) {
@@ -246,7 +246,7 @@ func TestUnique(t *testing.T) {
 
 	list.Unique()
 
-	assert.Equal(true, expected.Equtal(list))
+	assert.Equal(true, expected.Equal(list))
 }
 
 func TestUnion(t *testing.T) {
@@ -257,7 +257,7 @@ func TestUnion(t *testing.T) {
 	expected := NewList([]int{1, 2, 3, 4, 5, 6})
 
 	list3 := list1.Union(list2)
-	assert.Equal(true, expected.Equtal(list3))
+	assert.Equal(true, expected.Equal(list3))
 }
 
 func TestIntersection(t *testing.T) {
@@ -268,5 +268,5 @@ func TestIntersection(t *testing.T) {
 	expected := NewList([]int{4})
 
 	list3 := list1.Intersection(list2)
-	assert.Equal(true, expected.Equtal(list3))
+	assert.Equal(true, expected.Equal(list3))
 }
