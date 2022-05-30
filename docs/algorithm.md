@@ -21,23 +21,20 @@ import (
 <div STYLE="page-break-after: always;"></div>
 
 ## Index
-- [Algorithm](#algorithm)
-  - [Source](#source)
-  - [Usage](#usage)
-  - [Index](#index)
-  - [Documentation](#documentation)
-    - [<span id="BubbleSort">BubbleSort</span>](#bubblesort)
-    - [<span id="InsertionSort">InsertionSort</span>](#insertionsort)
-    - [<span id="SelectionSort">SelectionSort</span>](#selectionsort)
-    - [<span id="ShellSort">ShellSort</span>](#shellsort)
-    - [<span id="QuickSort">QuickSort</span>](#quicksort)
-    - [<span id="HeapSort">HeapSort</span>](#heapsort)
-    - [<span id="MergeSort">MergeSort</span>](#mergesort)
-    - [<span id="CountSort">CountSort</span>](#countsort)
-    - [<span id="BinarySearch">BinarySearch</span>](#binarysearch)
-    - [<span id="BinaryIterativeSearch">BinaryIterativeSearch</span>](#binaryiterativesearch)
-    - [<span id="LinearSearch">LinearSearch</span>](#linearsearch)
-    - [<span id="LRUCache">LRUCache</span>](#lrucache)
+- [BubbleSort](#BubbleSort)
+- [InsertionSort](#InsertionSort)
+- [SelectionSort](#SelectionSort)
+- [ShellSort](#ShellSort)
+- [QuickSort](#QuickSort)
+- [HeapSort](#HeapSort)
+- [MergeSort](#MergeSort)
+- [CountSort](#CountSort)
+- [BinarySearch](#BinarySearch)
+- [BinaryIterativeSearch](#BinaryIterativeSearch)
+
+- [LinearSearch](#LinearSearch)
+- [LRUCache](#LRUCache)
+
 
 <div STYLE="page-break-after: always;"></div>
 
