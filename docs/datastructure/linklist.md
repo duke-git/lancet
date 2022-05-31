@@ -110,8 +110,8 @@ func main() {
     lk := link.NewSinglyLink[int]()
 
     lk.InsertAtTail(1)
-	lk.InsertAtTail(2)
-	lk.InsertAtTail(3)
+    lk.InsertAtTail(2)
+    lk.InsertAtTail(3)
 
     fmt.Println(lk.Values()) //[]int{1, 2, 3}
 }
@@ -142,9 +142,9 @@ func main() {
     lk := link.NewSinglyLink[int]()
 
     lk.InsertAt(0, 1)
-	lk.InsertAt(1, 2)
-	lk.InsertAt(2, 3)
-	lk.InsertAt(2, 4)
+    lk.InsertAt(1, 2)
+    lk.InsertAt(2, 3)
+    lk.InsertAt(2, 4)
 
     fmt.Println(lk.Values()) //[]int{1, 2, 4, 3}
 }
@@ -175,8 +175,8 @@ func main() {
     lk := link.NewSinglyLink[int]()
 
     lk.InsertAtHead(1)
-	lk.InsertAtHead(2)
-	lk.InsertAtHead(3)
+    lk.InsertAtHead(2)
+    lk.InsertAtHead(3)
 
     fmt.Println(lk.Values()) //[]int{3, 2, 1}
 }
@@ -207,8 +207,8 @@ func main() {
     lk := link.NewSinglyLink[int]()
 
     lk.InsertAtTail(1)
-	lk.InsertAtTail(2)
-	lk.InsertAtTail(3)
+    lk.InsertAtTail(2)
+    lk.InsertAtTail(3)
 
     fmt.Println(lk.Values()) //[]int{1, 2, 3}
 }
@@ -238,9 +238,9 @@ func main() {
     lk := link.NewSinglyLink[int]()
 
     lk.InsertAtTail(1)
-	lk.InsertAtTail(2)
-	lk.InsertAtTail(3)
-	lk.InsertAtTail(4)
+    lk.InsertAtTail(2)
+    lk.InsertAtTail(3)
+    lk.InsertAtTail(4)
 
     err := lk.DeleteAt(3)
 
@@ -273,9 +273,9 @@ func main() {
     lk := link.NewSinglyLink[int]()
 
     lk.InsertAtTail(1)
-	lk.InsertAtTail(2)
-	lk.InsertAtTail(3)
-	lk.InsertAtTail(4)
+    lk.InsertAtTail(2)
+    lk.InsertAtTail(3)
+    lk.InsertAtTail(4)
 
     err := lk.DeleteAtHead()
     
@@ -309,8 +309,8 @@ func main() {
     lk := link.NewSinglyLink[int]()
 
     lk.InsertAtTail(1)
-	lk.InsertAtTail(2)
-	lk.InsertAtTail(3)
+    lk.InsertAtTail(2)
+    lk.InsertAtTail(3)
 
     err := lk.DeleteAtTail()
     
@@ -343,9 +343,9 @@ func main() {
     lk := link.NewSinglyLink[int]()
 
     lk.InsertAtTail(1)
-	lk.InsertAtTail(2)
-	lk.InsertAtTail(2)
-	lk.InsertAtTail(3)
+    lk.InsertAtTail(2)
+    lk.InsertAtTail(2)
+    lk.InsertAtTail(3)
 
     lk.DeleteValue(2)
     fmt.Println(lk.Values()) //[]int{1, 3}
@@ -377,8 +377,8 @@ func main() {
     lk := link.NewSinglyLink[int]()
 
     lk.InsertAtTail(1)
-	lk.InsertAtTail(2)
-	lk.InsertAtTail(3)
+    lk.InsertAtTail(2)
+    lk.InsertAtTail(3)
 
     lk.Reverse()
     fmt.Println(lk.Values()) //[]int{3, 2, 1}
@@ -409,8 +409,8 @@ func main() {
     lk := link.NewSinglyLink[int]()
 
     lk.InsertAtTail(1)
-	lk.InsertAtTail(2)
-	lk.InsertAtTail(3)
+    lk.InsertAtTail(2)
+    lk.InsertAtTail(3)
 
     midNode := lk.GetMiddleNode()
     fmt.Println(midNode.Value) //2
@@ -441,8 +441,8 @@ func main() {
     lk := link.NewSinglyLink[int]()
 
     lk.InsertAtTail(1)
-	lk.InsertAtTail(2)
-	lk.InsertAtTail(3)
+    lk.InsertAtTail(2)
+    lk.InsertAtTail(3)
 
     fmt.Println(lk.Size()) //3
 }
@@ -473,8 +473,8 @@ func main() {
     fmt.Println(lk.IsEmpty()) //true
 
     lk.InsertAtTail(1)
-	lk.InsertAtTail(2)
-	lk.InsertAtTail(3)
+    lk.InsertAtTail(2)
+    lk.InsertAtTail(3)
 
     fmt.Println(lk.IsEmpty()) //false
 }
@@ -504,8 +504,8 @@ func main() {
     lk := link.NewSinglyLink[int]()
 
     lk.InsertAtTail(1)
-	lk.InsertAtTail(2)
-	lk.InsertAtTail(3)
+    lk.InsertAtTail(2)
+    lk.InsertAtTail(3)
 
     lk.Clear()
 
@@ -537,8 +537,8 @@ func main() {
     lk := link.NewSinglyLink[int]()
 
     lk.InsertAtTail(1)
-	lk.InsertAtTail(2)
-	lk.InsertAtTail(3)
+    lk.InsertAtTail(2)
+    lk.InsertAtTail(3)
     
     lk.Print() //[ &{Value:1 Pre:<nil> Next:0xc0000a4048}, &{Value:2 Pre:<nil> Next:0xc0000a4060}, &{Value:3 Pre:<nil> Next:<nil>} ]
 }
