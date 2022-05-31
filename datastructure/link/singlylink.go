@@ -227,7 +227,7 @@ func (link *SinglyLink[T]) IsEmpty() bool {
 	return link.length == 0
 }
 
-// Clear checks if link is empty or not
+// Clear all the node in singly linklist
 func (link *SinglyLink[T]) Clear() {
 	link.Head = nil
 	link.length = 0
