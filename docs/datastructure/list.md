@@ -13,7 +13,7 @@ List is a linear table, implemented with slice.
 ## Usage
 ```go
 import (
-    "github.com/duke-git/lancet/v2/datastructure"
+    list "github.com/duke-git/lancet/v2/datastructure/list"
 )
 ```
 
