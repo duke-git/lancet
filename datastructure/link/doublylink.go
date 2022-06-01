@@ -234,7 +234,7 @@ func (link *DoublyLink[T]) IsEmpty() bool {
 	return link.length == 0
 }
 
-// Clear checks if link is empty or not
+// Clear all nodes in doubly linklist
 func (link *DoublyLink[T]) Clear() {
 	link.Head = nil
 	link.length = 0
