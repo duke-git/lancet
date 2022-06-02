@@ -47,7 +47,7 @@ func (s *ArrayStack[T]) Pop() (*T, error) {
 	return &topItem, nil
 }
 
-// Peak return the top element of stack then return it
+// Peak return the top element of stack
 func (s *ArrayStack[T]) Peak() (*T, error) {
 	if s.IsEmpty() {
 		return nil, errors.New("stack is empty")
