@@ -41,8 +41,8 @@ func (q *LinkedQueue[T]) IsEmpty() bool {
 	return q.length == 0
 }
 
-// EnQueue add element into queue
-func (q *LinkedQueue[T]) EnQueue(value T) {
+// Enqueue put element into queue
+func (q *LinkedQueue[T]) Enqueue(value T) {
 	newNode := datastructure.NewQueueNode(value)
 
 	if q.IsEmpty() {
@@ -55,8 +55,8 @@ func (q *LinkedQueue[T]) EnQueue(value T) {
 	q.length++
 }
 
-// DeQueue delete head element of queue then return it, if queue is empty, return nil and error
-func (q *LinkedQueue[T]) DeQueue() (*T, error) {
+// Dequeue delete head element of queue then return it, if queue is empty, return nil and error
+func (q *LinkedQueue[T]) Dequeue() (*T, error) {
 	if q.IsEmpty() {
 		return nil, errors.New("queue is empty")
 	}

@@ -6,13 +6,13 @@ import (
 	"github.com/duke-git/lancet/v2/internal"
 )
 
-func TestLinkedQueue_EnQueue(t *testing.T) {
-	assert := internal.NewAssert(t, "TestLinkedQueue_EnQueue")
+func TestLinkedQueue_Enqueue(t *testing.T) {
+	assert := internal.NewAssert(t, "TestLinkedQueue_Enqueue")
 
 	queue := NewLinkedQueue[int]()
-	queue.EnQueue(1)
-	queue.EnQueue(2)
-	queue.EnQueue(3)
+	queue.Enqueue(1)
+	queue.Enqueue(2)
+	queue.Enqueue(3)
 
 	queue.Print()
 
@@ -20,15 +20,15 @@ func TestLinkedQueue_EnQueue(t *testing.T) {
 	assert.Equal(3, queue.Size())
 }
 
-func TestLinkedQueue_DeQueue(t *testing.T) {
+func TestLinkedQueue_Dequeue(t *testing.T) {
 	assert := internal.NewAssert(t, "TestLinkedQueue_DeQueue")
 
 	queue := NewLinkedQueue[int]()
-	queue.EnQueue(1)
-	queue.EnQueue(2)
-	queue.EnQueue(3)
+	queue.Enqueue(1)
+	queue.Enqueue(2)
+	queue.Enqueue(3)
 
-	val, _ := queue.DeQueue()
+	val, _ := queue.Dequeue()
 
 	queue.Print()
 
@@ -43,9 +43,9 @@ func TestLinkedQueue_Front(t *testing.T) {
 	_, err := queue.Front()
 	assert.IsNotNil(err)
 
-	queue.EnQueue(1)
-	queue.EnQueue(2)
-	queue.EnQueue(3)
+	queue.Enqueue(1)
+	queue.Enqueue(2)
+	queue.Enqueue(3)
 
 	val, err := queue.Front()
 	assert.Equal(1, *val)
@@ -59,9 +59,9 @@ func TestLinkedQueue_Back(t *testing.T) {
 	_, err := queue.Back()
 	assert.IsNotNil(err)
 
-	queue.EnQueue(1)
-	queue.EnQueue(2)
-	queue.EnQueue(3)
+	queue.Enqueue(1)
+	queue.Enqueue(2)
+	queue.Enqueue(3)
 
 	val, err := queue.Back()
 	assert.Equal(3, *val)
@@ -74,9 +74,9 @@ func TestLinkedQueue_Clear(t *testing.T) {
 	queue := NewLinkedQueue[int]()
 	assert.Equal(true, queue.IsEmpty())
 
-	queue.EnQueue(1)
-	queue.EnQueue(2)
-	queue.EnQueue(3)
+	queue.Enqueue(1)
+	queue.Enqueue(2)
+	queue.Enqueue(3)
 	assert.Equal(false, queue.IsEmpty())
 
 	queue.Clear()

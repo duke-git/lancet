@@ -68,8 +68,8 @@ func (q *CircularQueue[T]) Back() T {
 	return q.data[q.size-1]
 }
 
-// EnQueue put element into queue
-func (q *CircularQueue[T]) EnQueue(value T) error {
+// Enqueue put element into queue
+func (q *CircularQueue[T]) Enqueue(value T) error {
 	if q.IsFull() {
 		return errors.New("queue is full!")
 	}
@@ -80,8 +80,8 @@ func (q *CircularQueue[T]) EnQueue(value T) error {
 	return nil
 }
 
-// DeQueue remove head element of queue and return it, if queue is empty, return nil and error
-func (q *CircularQueue[T]) DeQueue() (*T, error) {
+// Dequeue remove head element of queue and return it, if queue is empty, return nil and error
+func (q *CircularQueue[T]) Dequeue() (*T, error) {
 	if q.IsEmpty() {
 		return nil, errors.New("queue is empty")
 	}
