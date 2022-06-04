@@ -104,8 +104,8 @@ import (
 func main() {
     sk := stack.NewArrayStack[int]()
     sk.Push(1)
-	sk.Push(2)
-	sk.Push(3)
+    sk.Push(2)
+    sk.Push(3)
 
     fmt.Println(sk.Data()) //[]int{3, 2, 1}
 }
@@ -135,8 +135,8 @@ import (
 func main() {
     sk := stack.NewArrayStack[int]()
     sk.Push(1)
-	sk.Push(2)
-	sk.Push(3)
+    sk.Push(2)
+    sk.Push(3)
 
     val, err := sk.Pop()
     fmt.Println(err) //nil
@@ -170,8 +170,8 @@ import (
 func main() {
     sk := stack.NewArrayStack[int]()
     sk.Push(1)
-	sk.Push(2)
-	sk.Push(3)
+    sk.Push(2)
+    sk.Push(3)
 
     val, err := sk.Peak()
     fmt.Println(err) //nil
@@ -205,8 +205,8 @@ import (
 func main() {
     sk := stack.NewArrayStack[int]()
     sk.Push(1)
-	sk.Push(2)
-	sk.Push(3)
+    sk.Push(2)
+    sk.Push(3)
 
     fmt.Println(sk.Data()) //[]int{3, 2, 1}
 }
@@ -236,8 +236,8 @@ import (
 func main() {
     sk := stack.NewArrayStack[int]()
     sk.Push(1)
-	sk.Push(2)
-	sk.Push(3)
+    sk.Push(2)
+    sk.Push(3)
 
     fmt.Println(sk.Size()) //3
 }
@@ -269,8 +269,8 @@ func main() {
     fmt.Println(sk.IsEmpty()) //true
 
     sk.Push(1)
-	sk.Push(2)
-	sk.Push(3)
+    sk.Push(2)
+    sk.Push(3)
 
     fmt.Println(sk.IsEmpty()) //false
 }
@@ -301,8 +301,8 @@ func main() {
     sk := stack.NewArrayStack[int]()
 
     sk.Push(1)
-	sk.Push(2)
-	sk.Push(3)
+    sk.Push(2)
+    sk.Push(3)
 
     sk.Clear()
 
@@ -371,8 +371,8 @@ import (
 func main() {
     sk := stack.NewLinkedStack[int]()
     sk.Push(1)
-	sk.Push(2)
-	sk.Push(3)
+    sk.Push(2)
+    sk.Push(3)
 
     fmt.Println(sk.Data()) //[]int{3, 2, 1}
 }
@@ -402,8 +402,8 @@ import (
 func main() {
     sk := stack.NewLinkedStack[int]()
     sk.Push(1)
-	sk.Push(2)
-	sk.Push(3)
+    sk.Push(2)
+    sk.Push(3)
 
     val, err := sk.Pop()
     fmt.Println(err) //nil
@@ -437,8 +437,8 @@ import (
 func main() {
     sk := stack.NewLinkedStack[int]()
     sk.Push(1)
-	sk.Push(2)
-	sk.Push(3)
+    sk.Push(2)
+    sk.Push(3)
 
     val, err := sk.Peak()
     fmt.Println(err) //nil
@@ -472,8 +472,8 @@ import (
 func main() {
     sk := stack.NewLinkedStack[int]()
     sk.Push(1)
-	sk.Push(2)
-	sk.Push(3)
+    sk.Push(2)
+    sk.Push(3)
 
     fmt.Println(sk.Data()) //[]int{3, 2, 1}
 }
@@ -503,8 +503,8 @@ import (
 func main() {
     sk := stack.NewLinkedStack[int]()
     sk.Push(1)
-	sk.Push(2)
-	sk.Push(3)
+    sk.Push(2)
+    sk.Push(3)
 
     fmt.Println(sk.Size()) //3
 }
@@ -536,8 +536,8 @@ func main() {
     fmt.Println(sk.IsEmpty()) //true
 
     sk.Push(1)
-	sk.Push(2)
-	sk.Push(3)
+    sk.Push(2)
+    sk.Push(3)
 
     fmt.Println(sk.IsEmpty()) //false
 }
@@ -568,8 +568,8 @@ func main() {
     sk := stack.NewLinkedStack[int]()
 
     sk.Push(1)
-	sk.Push(2)
-	sk.Push(3)
+    sk.Push(2)
+    sk.Push(3)
 
     sk.Clear()
 
@@ -602,8 +602,8 @@ func main() {
     sk := stack.NewLinkedStack[int]()
 
     sk.Push(1)
-	sk.Push(2)
-	sk.Push(3)
+    sk.Push(2)
+    sk.Push(3)
 
 
     sk.Print() //[ &{Value:3 Next:0xc000010260}, &{Value:2 Next:0xc000010250}, &{Value:1 Next:<nil>},  ]
