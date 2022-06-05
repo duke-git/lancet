@@ -43,6 +43,11 @@ func (q *ArrayQueue[T]) IsEmpty() bool {
 	return q.size == 0
 }
 
+// IsFull checks if queue is full or not
+func (q *ArrayQueue[T]) IsFull() bool {
+	return q.size == q.capacity
+}
+
 // Front return front value of queue
 func (q *ArrayQueue[T]) Front() T {
 	return q.items[0]

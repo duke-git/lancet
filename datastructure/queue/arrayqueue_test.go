@@ -100,3 +100,14 @@ func TestArrayQueue_Clear(t *testing.T) {
 	assert.Equal(true, queue.IsEmpty())
 	assert.Equal(0, queue.Size())
 }
+
+func TestArrayQueue_IsFull(t *testing.T) {
+	assert := internal.NewAssert(t, "TestArrayQueue_IsFull")
+
+	queue := NewArrayQueue[int](3)
+	queue.Enqueue(1)
+	queue.Enqueue(2)
+	queue.Enqueue(3)
+
+	assert.Equal(true, queue.IsFull())
+}
