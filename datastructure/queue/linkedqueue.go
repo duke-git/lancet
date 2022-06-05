@@ -3,6 +3,7 @@ package datastructure
 import (
 	"errors"
 	"fmt"
+	"reflect"
 
 	"github.com/duke-git/lancet/v2/datastructure"
 )
@@ -40,6 +41,7 @@ func (q *LinkedQueue[T]) Size() int {
 func (q *LinkedQueue[T]) IsEmpty() bool {
 	return q.length == 0
 }
+
 
 // Enqueue put element into queue
 func (q *LinkedQueue[T]) Enqueue(value T) {
@@ -101,4 +103,16 @@ func (q *LinkedQueue[T]) Print() {
 	}
 	info += " ]"
 	fmt.Println(info)
+}
+
+// Contain checks if the value is in queue or not
+func (q *LinkedQueue[T]) Contain(value T) bool {
+	current := q.head
+	for current != nil {
+		if reflect.DeepEqual(current.Value, value) {
+			return true
+		}
+		current = current.Next
+	}
+	return false
 }

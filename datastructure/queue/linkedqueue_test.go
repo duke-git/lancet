@@ -82,3 +82,16 @@ func TestLinkedQueue_Clear(t *testing.T) {
 	queue.Clear()
 	assert.Equal(true, queue.IsEmpty())
 }
+
+func TestLinkedQueue_Contain(t *testing.T) {
+	assert := internal.NewAssert(t, "TestLinkedQueue_Contain")
+
+	queue := NewLinkedQueue[int]()
+
+	queue.Enqueue(1)
+	queue.Enqueue(2)
+	queue.Enqueue(3)
+
+	assert.Equal(true, queue.Contain(1))
+	assert.Equal(false, queue.Contain(4))
+}
