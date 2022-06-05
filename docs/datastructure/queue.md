@@ -32,6 +32,7 @@ import (
 - [Back](#ArrayQueue_Back)
 - [Front](#ArrayQueue_Size)
 - [IsEmpty](#ArrayQueue_IsEmpty)
+- [IsFull](#ArrayQueue_IsFull)
 - [Clear](#ArrayQueue_Clear)
 - [Contain](#ArrayQueue_Contain)
 
@@ -304,6 +305,38 @@ func main() {
 }
 ```
 
+
+
+
+### <span id="ArrayQueue_IsFull">IsFull</span>
+<p>Check if queue is full or not</p>
+
+<b>Signature:</b>
+
+```go
+func (q *ArrayQueue[T]) IsFull() bool
+```
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    queue "github.com/duke-git/lancet/v2/datastructure/queue"
+)
+
+func main() {
+    q := queue.NewArrayQueue[int](3)
+    fmt.Println(q.IsFull()) // false
+
+    q.Enqueue(1)
+    q.Enqueue(2)
+    q.Enqueue(3)
+
+    fmt.Println(q.IsFull()) // true
+}
+```
 
 
 
