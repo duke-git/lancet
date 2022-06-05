@@ -17,7 +17,7 @@ func TestCircularQueue_Enqueue(t *testing.T) {
 	queue.Enqueue(5)
 
 	queue.Print()
-	// assert.Equal([]int{1, 2, 3, 4, 5}, queue.Data())
+	assert.Equal([]int{1, 2, 3, 4, 5}, queue.Data())
 	assert.Equal(5, queue.Length())
 
 	err := queue.Enqueue(6)

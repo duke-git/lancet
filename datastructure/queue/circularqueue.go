@@ -7,18 +7,18 @@ import (
 )
 
 // CircularQueue implements circular queue with slice,
-// last index of CircularQueue don't contain value, so acturl capacity is size - 1
+// last index of CircularQueue don't contain value, so acturl capacity is capacity - 1
 type CircularQueue[T any] struct {
 	data  []T
 	front int
 	rear  int
-	size  int
+	capacity  int
 }
 
 // NewCircularQueue return a empty CircularQueue pointer
-func NewCircularQueue[T any](size int) *CircularQueue[T] {
-	data := make([]T, size)
-	return &CircularQueue[T]{data: data, front: 0, rear: 0, size: size}
+func NewCircularQueue[T any](capacity int) *CircularQueue[T] {
+	data := make([]T, capacity)
+	return &CircularQueue[T]{data: data, front: 0, rear: 0, capacity: capacity}
 }
 
 // Data return slice of queue data
@@ -39,10 +39,10 @@ func (q *CircularQueue[T]) Data() []T {
 
 // Length return current data length of queue
 func (q *CircularQueue[T]) Length() int {
-	if q.size == 0 {
+	if q.capacity == 0 {
 		return 0
 	}
-	return (q.rear - q.front + q.size) % q.size
+	return (q.rear - q.front + q.capacity) % q.capacity
 }
 
 // IsEmpty checks if queue is empty or not
@@ -52,7 +52,7 @@ func (q *CircularQueue[T]) IsEmpty() bool {
 
 // IsFull checks if queue is full or not
 func (q *CircularQueue[T]) IsFull() bool {
-	return (q.rear+1)%q.size == q.front
+	return (q.rear+1)%q.capacity == q.front
 }
 
 // Front return front value of queue
@@ -65,7 +65,7 @@ func (q *CircularQueue[T]) Back() T {
 	if q.rear-1 >= 0 {
 		return q.data[q.rear-1]
 	}
-	return q.data[q.size-1]
+	return q.data[q.capacity-1]
 }
 
 // Enqueue put element into queue
@@ -75,7 +75,7 @@ func (q *CircularQueue[T]) Enqueue(value T) error {
 	}
 
 	q.data[q.rear] = value
-	q.rear = (q.rear + 1) % q.size
+	q.rear = (q.rear + 1) % q.capacity
 
 	return nil
 }
@@ -89,7 +89,7 @@ func (q *CircularQueue[T]) Dequeue() (*T, error) {
 	headItem := q.data[q.front]
 	var t T
 	q.data[q.front] = t
-	q.front = (q.front + 1) % q.size
+	q.front = (q.front + 1) % q.capacity
 
 	return &headItem, nil
 }
@@ -99,7 +99,7 @@ func (q *CircularQueue[T]) Clear() {
 	q.data = []T{}
 	q.front = 0
 	q.rear = 0
-	q.size = 0
+	q.capacity = 0
 }
 
 // Contain checks if the value is in queue or not
