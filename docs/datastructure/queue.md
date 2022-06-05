@@ -25,6 +25,7 @@ import (
 
 ### 1. ArrayQueue
 - [NewArrayQueue](#NewArrayQueue)
+- [Data](#ArrayQueue_Data)
 - [Enqueue](#ArrayQueue_Enqueue)
 - [Dequeue](#ArrayQueue_Dequeue)
 - [Front](#ArrayQueue_Front)
@@ -36,8 +37,17 @@ import (
 
 
 
-### 2. LinkedStack
-
+### 2. LinkedQueue
+- [NewLinkedQueue](#NewLinkedQueue)
+- [Data](#LinkedQueue_Data)
+- [Enqueue](#LinkedQueue_Enqueue)
+- [Dequeue](#LinkedQueue_Dequeue)
+- [Front](#LinkedQueue_Front)
+- [Back](#LinkedQueue_Back)
+- [Front](#LinkedQueue_Size)
+- [IsEmpty](#LinkedQueue_IsEmpty)
+- [Clear](#LinkedQueue_Clear)
+- [Contain](#LinkedQueue_Contain)
 
 
 <div STYLE="page-break-after: always;"></div>
