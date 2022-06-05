@@ -29,6 +29,11 @@ func (q *PriorityQueue[T]) IsEmpty() bool {
 	return q.size == 0
 }
 
+// Size get number of items in the queue
+func (q *PriorityQueue[T]) Size() int {
+	return q.size
+}
+
 // IsFull checks if the queue capacity is full or not
 func (q *PriorityQueue[T]) IsFull() bool {
 	return q.size == len(q.items)-1

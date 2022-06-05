@@ -52,9 +52,13 @@ func TestPriorityQueue_Dequeue(t *testing.T) {
 		pq.Enqueue(i)
 	}
 
+	assert.Equal(10, pq.Size())
+
 	val, ok := pq.Dequeue()
 	assert.Equal(true, ok)
 	assert.Equal(10, val)
 
 	assert.Equal([]int{9, 8, 6, 7, 3, 2, 5, 1, 4}, pq.Data())
+
+	assert.Equal(9, pq.Size())
 }
