@@ -37,8 +37,8 @@ func (q *CircularQueue[T]) Data() []T {
 	return data
 }
 
-// Length return current data length of queue
-func (q *CircularQueue[T]) Length() int {
+// Size return number of elements in circular queue
+func (q *CircularQueue[T]) Size() int {
 	if q.capacity == 0 {
 		return 0
 	}
