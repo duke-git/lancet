@@ -30,7 +30,7 @@ import (
 - [Dequeue](#ArrayQueue_Dequeue)
 - [Front](#ArrayQueue_Front)
 - [Back](#ArrayQueue_Back)
-- [Front](#ArrayQueue_Size)
+- [Size](#ArrayQueue_Size)
 - [IsEmpty](#ArrayQueue_IsEmpty)
 - [IsFull](#ArrayQueue_IsFull)
 - [Clear](#ArrayQueue_Clear)
@@ -45,7 +45,7 @@ import (
 - [Dequeue](#LinkedQueue_Dequeue)
 - [Front](#LinkedQueue_Front)
 - [Back](#LinkedQueue_Back)
-- [Front](#LinkedQueue_Size)
+- [Size](#LinkedQueue_Size)
 - [IsEmpty](#LinkedQueue_IsEmpty)
 - [Clear](#LinkedQueue_Clear)
 - [Contain](#LinkedQueue_Contain)
@@ -58,7 +58,7 @@ import (
 - [Dequeue](#CircularQueue_Dequeue)
 - [Front](#CircularQueue_Front)
 - [Back](#CircularQueue_Back)
-- [Front](#CircularQueue_Size)
+- [Size](#CircularQueue_Size)
 - [IsEmpty](#CircularQueue_IsEmpty)
 - [IsFull](#CircularQueue_IsFull)
 - [Clear](#CircularQueue_Clear)
@@ -73,6 +73,7 @@ import (
 - [Dequeue](#PriorityQueue_Dequeue)
 - [IsEmpty](#PriorityQueue_IsEmpty)
 - [IsFull](#PriorityQueue_IsFull)
+- [Size](#PriorityQueue_Size)
 
 
 <div STYLE="page-break-after: always;"></div>
@@ -1335,4 +1336,52 @@ func main() {
     fmt.Println(q.IsFull()) // true
 }
 ```
+
+
+
+
+### <span id="PriorityQueue_Size">Size</span>
+<p>Get nubmers of elements in queue</p>
+
+<b>Signature:</b>
+
+```go
+func (q *PriorityQueue[T]) Size() int
+```
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    queue "github.com/duke-git/lancet/v2/datastructure/queue"
+)
+
+type intComparator struct{}
+
+func (c *intComparator) Compare(v1, v2 any) int {
+	val1, _ := v1.(int)
+	val2, _ := v2.(int)
+
+	if val1 < val2 {
+		return -1
+	} else if val1 > val2 {
+		return 1
+	}
+	return 0
+}
+
+func main() {
+    comparator := &intComparator{}
+    q := queue.NewPriorityQueue[int](10, comparator)
+    fmt.Println(q.IsFull()) // false
+
+    for i := 1; i < 5; i++ {
+		q.Enqueue(i)
+	}
+    fmt.Println(q.Size()) // 4
+}
+```
+
 
