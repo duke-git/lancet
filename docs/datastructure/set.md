@@ -293,8 +293,8 @@ import (
 
 func main() {
     set1 := set.NewSet(1, 2, 3)
-	set2 := set.NewSet(1, 2, 3)
-	set3 := set.NewSet(1, 2, 3, 4)
+    set2 := set.NewSet(1, 2, 3)
+    set3 := set.NewSet(1, 2, 3, 4)
 
     fmt.Println(set1.Equal(set2)) //true
     fmt.Println(set1.Equal(set3)) //false
@@ -323,10 +323,10 @@ import (
 
 func main() {
     set1 := set.NewSet(1, 2, 3)
-	arr := []int{}
-	set.Iterate(func(value int) {
-		arr = append(arr, value)
-	})
+    arr := []int{}
+    set.Iterate(func(value int) {
+        arr = append(arr, value)
+    })
 
     fmt.Println(arr) //1,2,3
 }
@@ -383,8 +383,8 @@ import (
 
 func main() {
     set1 := set.NewSet(1, 2, 3)
-	set2 := set.NewSet(2, 3, 4, 5)
-	set3 := set1.Union(set2)
+    set2 := set.NewSet(2, 3, 4, 5)
+    set3 := set1.Union(set2)
 
     fmt.Println(set3.Values()) //1,2,3,4,5
 }
@@ -412,8 +412,8 @@ import (
 
 func main() {
     set1 := set.NewSet(1, 2, 3)
-	set2 := set.NewSet(2, 3, 4, 5)
-	set3 := set1.Intersection(set2)
+    set2 := set.NewSet(2, 3, 4, 5)
+    set3 := set1.Intersection(set2)
 
     fmt.Println(set3.Values()) //2,3
 }
