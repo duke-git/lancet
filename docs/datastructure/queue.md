@@ -15,7 +15,7 @@ A queue is a kind of linear table. It only allows delete operations at the front
 ## Usage
 ```go
 import (
-    stack "github.com/duke-git/lancet/v2/datastructure/stack"
+    queue "github.com/duke-git/lancet/v2/datastructure/queue"
 )
 ```
 
@@ -208,7 +208,7 @@ func main() {
 
 
 ### <span id="ArrayQueue_Front">Front</span>
-<p>Just get head element of queue</p>
+<p>Just get the head element of queue</p>
 
 <b>Signature:</b>
 
@@ -240,7 +240,7 @@ func main() {
 
 
 ### <span id="ArrayQueue_Back">Back</span>
-<p>Just get tail element of queue</p>
+<p>Just get the tail element of queue</p>
 
 <b>Signature:</b>
 
@@ -397,7 +397,7 @@ func main() {
 
 
 ### <span id="ArrayQueue_Contain">Contain</span>
-<p>checks if the value is in queue or not</p>
+<p>Check if the value is in queue or not</p>
 
 <b>Signature:</b>
 
@@ -431,7 +431,7 @@ func main() {
 Common queue implemented by link.
 
 ### <span id="NewLinkedQueue">NewLinkedQueue</span>
-<p>Return a LinkedQueue pointer with </p>
+<p>Return a LinkedQueue pointer </p>
 
 <b>Signature:</b>
 
@@ -557,7 +557,7 @@ func main() {
 
 
 ### <span id="LinkedQueue_Front">Front</span>
-<p>Just get head element of queue</p>
+<p>Just get the head element of queue</p>
 
 <b>Signature:</b>
 
@@ -589,7 +589,7 @@ func main() {
 
 
 ### <span id="LinkedQueue_Back">Back</span>
-<p>Just get tail element of queue</p>
+<p>Just get the tail element of queue</p>
 
 <b>Signature:</b>
 
@@ -714,7 +714,7 @@ func main() {
 
 
 ### <span id="LinkedQueue_Contain">Contain</span>
-<p>checks if the value is in queue or not</p>
+<p>Check if the value is in queue or not</p>
 
 <b>Signature:</b>
 
@@ -1062,7 +1062,7 @@ func main() {
 
 
 ### <span id="CircularQueue_Contain">Contain</span>
-<p>checks if the value is in queue or not</p>
+<p>Check if the value is in queue or not</p>
 
 <b>Signature:</b>
 
