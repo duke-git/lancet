@@ -23,7 +23,7 @@ func (s Set[T]) Contain(value T) bool {
 	return ok
 }
 
-// Contain checks if set contains other set
+// ContainAll checks if set contains other set
 func (s Set[T]) ContainAll(other Set[T]) bool {
 	for k := range other {
 		_, ok := s[k]
