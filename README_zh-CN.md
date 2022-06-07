@@ -4,7 +4,7 @@
 <br/>
 
 ![Go version](https://img.shields.io/badge/go-%3E%3D1.16<recommend>-9cf)
-[![Release](https://img.shields.io/badge/release-2.0.7-green.svg)](https://github.com/duke-git/lancet/releases)
+[![Release](https://img.shields.io/badge/release-2.0.8-green.svg)](https://github.com/duke-git/lancet/releases)
 [![GoDoc](https://godoc.org/github.com/duke-git/lancet/v2?status.svg)](https://pkg.go.dev/github.com/duke-git/lancet/v2)
 [![Go Report Card](https://goreportcard.com/badge/github.com/duke-git/lancet/v2)](https://goreportcard.com/report/github.com/duke-git/lancet/v2)
 [![test](https://github.com/duke-git/lancet/actions/workflows/codecov.yml/badge.svg?branch=main&event=push)](https://github.com/duke-git/lancet/actions/workflows/codecov.yml)
@@ -200,7 +200,28 @@ import "github.com/duke-git/lancet/v2/datetime"
 - [ToFormatForTpl](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#ToFormatForTpl)
 - [ToIso8601](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#ToIso8601)
 
-### 6. fileutil包支持文件基本操作。
+
+### 6. datastructure包含一些普通的数据结构实现。例如：list, linklist, stack, queue, set, tree, graph.
+
+
+```go
+import list "github.com/duke-git/lancet/v2/datastructure/list"
+import link "github.com/duke-git/lancet/v2/datastructure/link"
+import stack "github.com/duke-git/lancet/v2/datastructure/stack"
+import queue "github.com/duke-git/lancet/v2/datastructure/queue"
+import set "github.com/duke-git/lancet/v2/datastructure/set"
+import tree "github.com/duke-git/lancet/v2/datastructure/tree"
+```
+#### Function list:
+- [List](https://github.com/duke-git/lancet/blob/main/docs/datastructure/list_zh-CN.md)
+- [Linklist](https://github.com/duke-git/lancet/blob/main/docs/datastructure/linklist_zh-CN.md)
+- [Stack](https://github.com/duke-git/lancet/blob/main/docs/datastructure/stack_zh-CN.md)
+- [Queue](https://github.com/duke-git/lancet/blob/main/docs/datastructure/queue_zh-CN.md)
+- [Set](https://github.com/duke-git/lancet/blob/main/docs/datastructure/set_zh-CN.md)
+- [Tree](https://github.com/duke-git/lancet/blob/main/docs/datastructure/tree_zh-CN.md)
+
+
+### 7. fileutil包支持文件基本操作。
 
 ```go
 import "github.com/duke-git/lancet/v2/fileutil"
@@ -223,7 +244,7 @@ import "github.com/duke-git/lancet/v2/fileutil"
 - [Zip](https://github.com/duke-git/lancet/blob/main/docs/fileutil_zh-CN.md#Zip)
 - [UnZip](https://github.com/duke-git/lancet/blob/main/docs/fileutil_zh-CN.md#UnZip)
 
-### 7. formatter格式化器包含一些数据格式化处理方法。
+### 8. formatter格式化器包含一些数据格式化处理方法。
 
 ```go
 import "github.com/duke-git/lancet/v2/formatter"
@@ -232,7 +253,7 @@ import "github.com/duke-git/lancet/v2/formatter"
 - [Comma](https://github.com/duke-git/lancet/blob/main/docs/formatter_zh-CN.md#Comma)
 
 
-### 8. function函数包控制函数执行流程，包含部分函数式编程。
+### 9. function函数包控制函数执行流程，包含部分函数式编程。
 
 ```go
 import "github.com/duke-git/lancet/v2/function"
@@ -248,7 +269,7 @@ import "github.com/duke-git/lancet/v2/function"
 - [Watcher](https://github.com/duke-git/lancet/blob/main/docs/function_zh-CN.md#Watcher)
 
 
-### 9. maputil包包括一些操作map的函数.
+### 10. maputil包包括一些操作map的函数.
 
 ```go
 import "github.com/duke-git/lancet/v2/maputil"
@@ -263,7 +284,7 @@ import "github.com/duke-git/lancet/v2/maputil"
 - [Minus](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#Minus)
 - [Values](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#Values)
 
-### 10. mathutil包实现了一些数学计算的函数。
+### 11. mathutil包实现了一些数学计算的函数。
 
 ```go
 import "github.com/duke-git/lancet/v2/mathutil"
@@ -283,7 +304,7 @@ import "github.com/duke-git/lancet/v2/mathutil"
 - [RoundToString](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#RoundToString)
 - [TruncRound](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#TruncRound)
 
-### 11. netutil网络包支持获取ip地址，发送http请求。
+### 12. netutil网络包支持获取ip地址，发送http请求。
 
 ```go
 import "github.com/duke-git/lancet/v2/netutil"
@@ -303,7 +324,7 @@ import "github.com/duke-git/lancet/v2/netutil"
 - [HttpPatch](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#HttpPatch)
 - [ParseHttpResponse](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#ParseHttpResponse)
 
-### 12. random随机数生成器包，可以生成随机[]bytes, int, string。
+### 13. random随机数生成器包，可以生成随机[]bytes, int, string。
 
 ```go
 import "github.com/duke-git/lancet/v2/random"
@@ -314,7 +335,7 @@ import "github.com/duke-git/lancet/v2/random"
 - [RandInt](https://github.com/duke-git/lancet/blob/main/docs/random_zh-CN.md#RandInt)
 - [RandString](https://github.com/duke-git/lancet/blob/main/docs/random_zh-CN.md#RandString)
 - [UUIdV4](https://github.com/duke-git/lancet/blob/main/docs/random.md#UUIdV4)
-### 13. retry重试执行函数直到函数运行成功或被context cancel。
+### 14. retry重试执行函数直到函数运行成功或被context cancel。
 
 ```go
 import "github.com/duke-git/lancet/v2/retry"
@@ -328,7 +349,7 @@ import "github.com/duke-git/lancet/v2/retry"
 - [RetryTimes](https://github.com/duke-git/lancet/blob/main/docs/retry_zh-CN.md#RetryTimes)
 
 
-### 14. slice包包含操作切片的方法集合。
+### 15. slice包包含操作切片的方法集合。
 
 ```go
 import "github.com/duke-git/lancet/v2/slice"
@@ -374,7 +395,7 @@ import "github.com/duke-git/lancet/v2/slice"
 - [Without](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Without)
 
 
-### 15. strutil包含处理字符串的相关函数。
+### 16. strutil包含处理字符串的相关函数。
 
 ```go
 import "github.com/duke-git/lancet/v2/strutil"
@@ -401,7 +422,7 @@ import "github.com/duke-git/lancet/v2/strutil"
 - [Unwrap](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#Unwrap)
   
 
-### 16. system包含os, runtime, shell command相关函数。
+### 17. system包含os, runtime, shell command相关函数。
 
 ```go
 import "github.com/duke-git/lancet/v2/system"
@@ -417,7 +438,7 @@ import "github.com/duke-git/lancet/v2/system"
 - [CompareOsEnv](https://github.com/duke-git/lancet/blob/main/docs/system_zh-CN.md#CompareOsEnv)
 - [ExecCommand](https://github.com/duke-git/lancet/blob/main/docs/system_zh-CN.md#ExecCommand)
 
-### 17. validator验证器包，包含常用字符串格式验证函数。
+### 18. validator验证器包，包含常用字符串格式验证函数。
 
 ```go
 import "github.com/duke-git/lancet/v2/validator"
@@ -452,7 +473,7 @@ import "github.com/duke-git/lancet/v2/validator"
 - [IsWeakPassword](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsWeakPassword)
 
 validator.md#IsWeakPassword)
-### 18. xerror包实现一些错误处理函数
+### 19. xerror包实现一些错误处理函数
 
 ```go
 import "github.com/duke-git/lancet/v2/xerror"
