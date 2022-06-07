@@ -1,16 +1,16 @@
 # Tree
-Tree is a collection of tree nodes. Each tree node has a value, a left pointer point to left node and a right pointer point to right node.
+树是树节点的集合。 每个树节点都有一个值，一个指向左节点的左指针和一个指向右节点的右指针。
 
 <div STYLE="page-break-after: always;"></div>
 
-## Source
+## 源码
 
 - [https://github.com/duke-git/lancet/blob/main/datastructure/tree/bstree.go](https://github.com/duke-git/lancet/blob/main/datastructure/tree/bstree.go)
 
 
 <div STYLE="page-break-after: always;"></div>
 
-## Usage
+## 用法
 ```go
 import (
     tree "github.com/duke-git/lancet/v2/datastructure/tree"
@@ -19,7 +19,7 @@ import (
 
 <div STYLE="page-break-after: always;"></div>
 
-## Index
+## 目录
 
 ### 1. BSTree
 
@@ -39,15 +39,15 @@ import (
 
 <div STYLE="page-break-after: always;"></div>
 
-## Documentation
+## 文档
 
 ## 1. BSTree
-BSTree is a binary search tree data structure in which each node has at two children, which are referred to as the left child and the right child. In BSTree: leftNode < rootNode < rightNode. Type T should implements Compare function in lancetconstraints.Comparator interface.
+BSTree是一种二叉搜索树数据结构，其中每个节点有两个孩子，分别称为左孩子和右孩子。 在 BSTree 中：leftNode < rootNode < rightNode。 T类型应该实现lancetconstraints.Comparator。
 
 ### <span id="NewBSTree">NewBSTree</span>
-<p>Make a BSTree pointer instance</p>
+<p>返回BSTree指针实例</p>
 
-<b>Signature:</b>
+<b>函数签名:</b>
 
 ```go
 func NewBSTree[T any](rootData T, comparator lancetconstraints.Comparator) *BSTree[T]
@@ -63,7 +63,7 @@ type TreeNode[T any] struct {
 	Right *TreeNode[T]
 }
 ```
-<b>Example:</b>
+<b>例子:</b>
 
 ```go
 package main
@@ -97,14 +97,14 @@ func main() {
 
 
 ### <span id="BSTree_Insert">Insert</span>
-<p>Insert value into binary search tree</p>
+<p>将值插入二叉搜索树</p>
 
-<b>Signature:</b>
+<b>函数签名:</b>
 
 ```go
 func (t *BSTree[T]) Insert(data T)
 ```
-<b>Example:</b>
+<b>例子:</b>
 
 ```go
 package main
@@ -143,14 +143,14 @@ func main() {
 
 
 ### <span id="BSTree_Delete">Delete</span>
-<p>Delete value of binary search tree</p>
+<p>删除插入二叉搜索树中指定的值</p>
 
-<b>Signature:</b>
+<b>函数签名:</b>
 
 ```go
 func (t *BSTree[T]) Delete(data T)
 ```
-<b>Example:</b>
+<b>例子:</b>
 
 ```go
 package main
@@ -191,14 +191,14 @@ func main() {
 
 
 ### <span id="BSTree_PreOrderTraverse">PreOrderTraverse</span>
-<p>Traverse tree nodes in pre order</p>
+<p>按前序遍历树节点</p>
 
-<b>Signature:</b>
+<b>函数签名:</b>
 
 ```go
 func (t *BSTree[T]) PreOrderTraverse() []T
 ```
-<b>Example:</b>
+<b>例子:</b>
 
 ```go
 package main
@@ -237,14 +237,14 @@ func main() {
 
 
 ### <span id="BSTree_InOrderTraverse">InOrderTraverse</span>
-<p>Traverse tree nodes in middle order</p>
+<p>按中序遍历树节点</p>
 
-<b>Signature:</b>
+<b>函数签名:</b>
 
 ```go
 func (t *BSTree[T]) InOrderTraverse() []T
 ```
-<b>Example:</b>
+<b>例子:</b>
 
 ```go
 package main
@@ -283,14 +283,14 @@ func main() {
 
 
 ### <span id="BSTree_PostOrderTraverse">PostOrderTraverse</span>
-<p>Traverse tree nodes in post order</p>
+<p>按后序遍历树节点</p>
 
-<b>Signature:</b>
+<b>函数签名:</b>
 
 ```go
 func (t *BSTree[T]) PostOrderTraverse() []T
 ```
-<b>Example:</b>
+<b>例子:</b>
 
 ```go
 package main
@@ -329,14 +329,14 @@ func main() {
 
 
 ### <span id="BSTree_LevelOrderTraverse">LevelOrderTraverse</span>
-<p>Traverse tree nodes in node level order</p>
+<p>按节点层次遍历树节点</p>
 
-<b>Signature:</b>
+<b>函数签名:</b>
 
 ```go
 func (t *BSTree[T]) LevelOrderTraverse() []T
 ```
-<b>Example:</b>
+<b>例子:</b>
 
 ```go
 package main
@@ -375,14 +375,14 @@ func main() {
 
 
 ### <span id="BSTree_Depth">Depth</span>
-<p>Get the depth of a binary saerch tree</p>
+<p>获取树的深度</p>
 
-<b>Signature:</b>
+<b>函数签名:</b>
 
 ```go
 func (t *BSTree[T]) Depth() int
 ```
-<b>Example:</b>
+<b>例子:</b>
 
 ```go
 package main
@@ -421,14 +421,14 @@ func main() {
 
 
 ### <span id="BSTree_HasSubTree">HasSubTree</span>
-<p>Check if the given tree is sub tree of origin tree or not</p>
+<p>判断给定树是否是子树</p>
 
-<b>Signature:</b>
+<b>函数签名:</b>
 
 ```go
 func (t *BSTree[T]) HasSubTree(subTree *BSTree[T]) bool
 ```
-<b>Example:</b>
+<b>例子:</b>
 
 ```go
 package main
@@ -473,14 +473,14 @@ func main() {
 
 
 ### <span id="BSTree_Print">Print</span>
-<p>Print the structure of binary saerch tree</p>
+<p>打印树结构</p>
 
-<b>Signature:</b>
+<b>函数签名:</b>
 
 ```go
 func (t *BSTree[T]) Print()
 ```
-<b>Example:</b>
+<b>例子:</b>
 
 ```go
 package main
