@@ -9,10 +9,10 @@ import (
 // CircularQueue implements circular queue with slice,
 // last index of CircularQueue don't contain value, so acturl capacity is capacity - 1
 type CircularQueue[T any] struct {
-	data  []T
-	front int
-	rear  int
-	capacity  int
+	data     []T
+	front    int
+	rear     int
+	capacity int
 }
 
 // NewCircularQueue return a empty CircularQueue pointer

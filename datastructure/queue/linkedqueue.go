@@ -42,7 +42,6 @@ func (q *LinkedQueue[T]) IsEmpty() bool {
 	return q.length == 0
 }
 
-
 // Enqueue put element into queue
 func (q *LinkedQueue[T]) Enqueue(value T) {
 	newNode := datastructure.NewQueueNode(value)
