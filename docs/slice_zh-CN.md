@@ -32,6 +32,8 @@ import (
 - [DeleteAt](#DeleteAt)
 - [Drop](#Drop)
 - [Every](#Every)
+- [Equal](#Equal)
+- [EqualWithFunc](#EqualWithFunc)
 - [Filter](#Filter)
 - [Find](#Find)
 - [FindLast](#FindLast)
@@ -390,6 +392,69 @@ func main() {
 }
 ```
 
+
+
+
+### <span id="Equal">Equal</span>
+<p>检查两个切片是否相等，相等条件：切片长度相同，元素顺序和值都相同</p>
+
+<b>函数签名:</b>
+
+```go
+func Equal[T comparable](slice1, slice2 []T) bool
+```
+<b>例子:</b>
+
+```go
+import (
+	"fmt"
+	"github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+	slice1 := []int{1, 2, 3}
+	slice2 := []int{1, 2, 3}
+	slice3 := []int{3, 2, 1}
+
+	res1 := slice.Equal(slice1, slice2)
+	res2 := slice.Equal(slice1, slice3)
+
+	fmt.Println(res1) //true
+	fmt.Println(res2) //false
+}
+```
+
+
+
+### <span id="EqualWithFunc">EqualWithFunc</span>
+<p>检查两个切片是否相等，相等条件：对两个切片的元素调用比较函数comparator，返回true</p>
+
+<b>函数签名:</b>
+
+```go
+func EqualWithFunc[T, U any](slice1 []T, slice2 []U, comparator func(T, U) bool) bool
+```
+<b>例子:</b>
+
+```go
+import (
+	"fmt"
+	"github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+	slice1 := []int{1, 2, 3}
+	slice2 := []int{2, 4, 6}
+
+	isDouble := func(a, b int) bool {
+		return b == a*2
+	}
+
+	res := slice.EqualWithFunc(slice1, slice2, isDouble)
+
+	fmt.Println(res) //true
+}
+```
 
 
 
