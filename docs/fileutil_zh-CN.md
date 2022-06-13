@@ -21,6 +21,7 @@ import (
 ## 目录
 - [ClearFile](#ClearFile)
 - [CreateFile](#CreateFile)
+- [CreateDir](#CreateDir)
 - [CopyFile](#CopyFile)
 - [FileMode](#FileMode)
 - [MiMeType](#MiMeType)
@@ -90,6 +91,32 @@ func main() {
     fmt.Println(isCreatedSucceed)
 }
 ```
+
+
+### <span id="CreateDir">CreateDir</span>
+<p>使用绝对路径创建嵌套目录，例如/a/, /a/b/</p>
+
+<b>函数签名:</b>
+
+```go
+func CreateDir(absPath string) error
+```
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/fileutil"
+)
+
+func main() {
+    err := fileutil.CreateDir("/a/")
+    fmt.Println(err)
+}
+```
+
 
 
 ### <span id="CopyFile">CopyFile</span>

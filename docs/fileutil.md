@@ -21,18 +21,20 @@ import (
 ## Index
 - [ClearFile](#ClearFile)
 - [CreateFile](#CreateFile)
+- [CreateDir](#CreateDir)
 - [CopyFile](#CopyFile)
 - [FileMode](#FileMode)
 - [MiMeType](#MiMeType)
 - [IsExist](#IsExist)
 - [IsLink](#IsLink)
 - [IsDir](#IsDir)
+
 - [ListFileNames](#ListFileNames)
 - [RemoveFile](#RemoveFile)
 - [ReadFileToString](#ReadFileToString)
 - [ReadFileByLine](#ReadFileByLine)
 - [Zip](#Zip)
-
+- [UnZip](#UnZip)
 - [UnZip](#UnZip)
 
 <div STYLE="page-break-after: always;"></div>
@@ -88,6 +90,32 @@ import (
 func main() {
     isCreatedSucceed := fileutil.CreateFile("./test.txt")
     fmt.Println(isCreatedSucceed)
+}
+```
+
+
+
+### <span id="CreateDir">CreateDir</span>
+<p>Create directory in absolute path. param `absPath` like /a/, /a/b/.</p>
+
+<b>Signature:</b>
+
+```go
+func CreateDir(absPath string) error
+```
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/fileutil"
+)
+
+func main() {
+    err := fileutil.CreateDir("/a/")
+    fmt.Println(err)
 }
 ```
 
