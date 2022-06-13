@@ -68,6 +68,17 @@ func TestConcat(t *testing.T) {
 	// assert.Equal([]int{1, 2, 3, 4, 5}, Concat([]int{1, 2, 3}, []int{4}, 5))
 }
 
+func TestEqual(t *testing.T) {
+	assert := internal.NewAssert(t, "TestEqual")
+
+	slice1 := []int{1, 2, 3}
+	slice2 := []int{1, 2, 3}
+	slice3 := []int{3, 2, 1}
+
+	assert.Equal(true, Equal(slice1, slice2))
+	assert.Equal(false, Equal(slice1, slice3))
+}
+
 func TestEvery(t *testing.T) {
 	nums := []int{1, 2, 3, 5}
 	isEven := func(i, num int) bool {
