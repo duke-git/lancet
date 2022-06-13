@@ -162,6 +162,22 @@ func Equal[T comparable](slice1, slice2 []T) bool {
 	return true
 }
 
+// EqualWithFunc checks if two slices are equal with comparator func
+func EqualWithFunc[T, U any](slice1 []T, slice2 []U, comparator func(T, U) bool) bool {
+	if len(slice1) != len(slice2) {
+		return false
+	}
+
+	for i, v1 := range slice1 {
+		v2 := slice2[i]
+		if !comparator(v1, v2) {
+			return false
+		}
+	}
+
+	return true
+}
+
 // Every return true if all of the values in the slice pass the predicate function.
 func Every[T any](slice []T, predicate func(index int, item T) bool) bool {
 	if predicate == nil {

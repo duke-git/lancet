@@ -79,6 +79,19 @@ func TestEqual(t *testing.T) {
 	assert.Equal(false, Equal(slice1, slice3))
 }
 
+func TestEqualWithFunc(t *testing.T) {
+	assert := internal.NewAssert(t, "TestEqualWithFunc")
+
+	slice1 := []int{1, 2, 3}
+	slice2 := []int{2, 4, 6}
+
+	isDouble := func(a, b int) bool {
+		return b == a*2
+	}
+
+	assert.Equal(true, EqualWithFunc(slice1, slice2, isDouble))
+}
+
 func TestEvery(t *testing.T) {
 	nums := []int{1, 2, 3, 5}
 	isEven := func(i, num int) bool {
