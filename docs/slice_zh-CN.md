@@ -33,7 +33,7 @@ import (
 - [Drop](#Drop)
 - [Every](#Every)
 - [Equal](#Equal)
-- [EqualWithFunc](#EqualWithFunc)
+- [EqualWith](#EqualWith)
 - [Filter](#Filter)
 - [Find](#Find)
 - [FindLast](#FindLast)
@@ -426,13 +426,13 @@ func main() {
 
 
 
-### <span id="EqualWithFunc">EqualWithFunc</span>
+### <span id="EqualWith">EqualWith</span>
 <p>检查两个切片是否相等，相等条件：对两个切片的元素调用比较函数comparator，返回true</p>
 
 <b>函数签名:</b>
 
 ```go
-func EqualWithFunc[T, U any](slice1 []T, slice2 []U, comparator func(T, U) bool) bool
+func EqualWith[T, U any](slice1 []T, slice2 []U, comparator func(T, U) bool) bool
 ```
 <b>例子:</b>
 
@@ -450,7 +450,7 @@ func main() {
 		return b == a*2
 	}
 
-	res := slice.EqualWithFunc(slice1, slice2, isDouble)
+	res := slice.EqualWith(slice1, slice2, isDouble)
 
 	fmt.Println(res) //true
 }

@@ -32,7 +32,7 @@ import (
 - [DeleteAt](#DeleteAt)
 - [Drop](#Drop)
 - [Equal](#Equal)
-- [EqualWithFunc](#EqualWithFunc)
+- [EqualWith](#EqualWith)
 - [Every](#Every)
 - [Filter](#Filter)
 - [Find](#Find)
@@ -393,13 +393,13 @@ func main() {
 
 
 
-### <span id="EqualWithFunc">EqualWithFunc</span>
+### <span id="EqualWith">EqualWith</span>
 <p>Check if two slices are equal with comparator func.</p>
 
 <b>Signature:</b>
 
 ```go
-func EqualWithFunc[T, U any](slice1 []T, slice2 []U, comparator func(T, U) bool) bool
+func EqualWith[T, U any](slice1 []T, slice2 []U, comparator func(T, U) bool) bool
 ```
 <b>Example:</b>
 
@@ -417,7 +417,7 @@ func main() {
 		return b == a*2
 	}
 
-	res := slice.EqualWithFunc(slice1, slice2, isDouble)
+	res := slice.EqualWith(slice1, slice2, isDouble)
 
 	fmt.Println(res) //true
 }
