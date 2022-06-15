@@ -79,8 +79,8 @@ func TestEqual(t *testing.T) {
 	assert.Equal(false, Equal(slice1, slice3))
 }
 
-func TestEqualWithFunc(t *testing.T) {
-	assert := internal.NewAssert(t, "TestEqualWithFunc")
+func TestEqualWith(t *testing.T) {
+	assert := internal.NewAssert(t, "TestEqualWith")
 
 	slice1 := []int{1, 2, 3}
 	slice2 := []int{2, 4, 6}
@@ -89,7 +89,7 @@ func TestEqualWithFunc(t *testing.T) {
 		return b == a*2
 	}
 
-	assert.Equal(true, EqualWithFunc(slice1, slice2, isDouble))
+	assert.Equal(true, EqualWith(slice1, slice2, isDouble))
 }
 
 func TestEvery(t *testing.T) {

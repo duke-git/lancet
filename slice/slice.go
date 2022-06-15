@@ -162,8 +162,8 @@ func Equal[T comparable](slice1, slice2 []T) bool {
 	return true
 }
 
-// EqualWithFunc checks if two slices are equal with comparator func
-func EqualWithFunc[T, U any](slice1 []T, slice2 []U, comparator func(T, U) bool) bool {
+// EqualWith checks if two slices are equal with comparator func
+func EqualWith[T, U any](slice1 []T, slice2 []U, comparator func(T, U) bool) bool {
 	if len(slice1) != len(slice2) {
 		return false
 	}
