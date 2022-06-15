@@ -233,6 +233,7 @@ import "github.com/duke-git/lancet/v2/fileutil"
 
 - [ClearFile](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#ClearFile)
 - [CreateFile](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#CreateFile)
+- [CreateDir](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#CreateDir)
 - [CopyFile](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#CopyFile)
 - [FileMode](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#FileMode)
 - [MiMeType](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#MiMeType)
@@ -370,6 +371,8 @@ import "github.com/duke-git/lancet/v2/slice"
 - [DifferenceWith](https://github.com/duke-git/lancet/blob/main/docs/slice.md#DifferenceWith)
 - [DeleteAt](https://github.com/duke-git/lancet/blob/main/docs/slice.md#DeleteAt)
 - [Drop](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Drop)
+- [Equal](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Equal)
+- [EqualWith](https://github.com/duke-git/lancet/blob/main/docs/slice.md#EqualWith)
 - [Every](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Every)
 - [Filter](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Filter)
 - [Find](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Find)
