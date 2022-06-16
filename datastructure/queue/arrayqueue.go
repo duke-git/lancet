@@ -33,7 +33,7 @@ func (q *ArrayQueue[T]) Data() []T {
 	return items
 }
 
-// Size return length of queue data
+// Size return number of elements in queue
 func (q *ArrayQueue[T]) Size() int {
 	return q.size
 }
