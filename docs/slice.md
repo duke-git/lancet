@@ -30,6 +30,8 @@ import (
 - [DifferenceBy](#DifferenceBy)
 - [DeleteByIndex](#DeleteByIndex)
 - [Drop](#Drop)
+- [Equal](#Equal)
+- [EqualWith](#EqualWith)
 - [Every](#Every)
 - [Filter](#Filter)
 - [Find](#Find)
@@ -330,6 +332,68 @@ func main() {
 }
 ```
 
+
+
+### <span id="Equal">Equal</span>
+<p>Check if two slices are equal: the same length and all elements' order and value are equal.</p>
+
+<b>Signature:</b>
+
+```go
+func Equal(slice1, slice2 interface{}) bool
+```
+<b>Example:</b>
+
+```go
+import (
+	"fmt"
+	"github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+	slice1 := []int{1, 2, 3}
+	slice2 := []int{1, 2, 3}
+	slice3 := []int{3, 2, 1}
+
+	res1 := slice.Equal(slice1, slice2)
+	res2 := slice.Equal(slice1, slice3)
+
+	fmt.Println(res1) //true
+	fmt.Println(res2) //false
+}
+```
+
+
+
+### <span id="EqualWith">EqualWith</span>
+<p>Check if two slices are equal with comparator funcation.comparator signature: func(a interface{}, b interface{}) bool</p>
+
+<b>Signature:</b>
+
+```go
+func EqualWith(slice1, slice2 interface{}, comparator interface{}) bool
+```
+<b>Example:</b>
+
+```go
+import (
+	"fmt"
+	"github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+	slice1 := []int{1, 2, 3}
+	slice2 := []int{2, 4, 6}
+
+	isDouble := func(a, b int) bool {
+		return b == a*2
+	}
+
+	res := slice.EqualWith(slice1, slice2, isDouble)
+
+	fmt.Println(res) //true
+}
+```
 
 
 
