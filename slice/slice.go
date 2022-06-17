@@ -203,6 +203,28 @@ func DifferenceBy(slice interface{}, comparedSlice interface{}, iterateeFn inter
 	return res.Interface()
 }
 
+// Equal checks if two slices are equal: the same length and all elements' order and value are equal
+func Equal(slice1, slice2 interface{}) bool {
+	sv1 := sliceValue(slice1)
+	sv2 := sliceValue(slice2)
+
+	if sv1.Type().Elem() != sv2.Type().Elem() {
+		return false
+	}
+
+	if sv1.Len() != sv2.Len() {
+		return false
+	}
+
+	for i := 0; i < sv1.Len(); i++ {
+		if sv1.Index(i).Interface() != sv2.Index(i).Interface() {
+			return false
+		}
+	}
+
+	return true
+}
+
 // Every return true if all of the values in the slice pass the predicate function.
 // The function signature should be func(index int, value interface{}) bool .
 func Every(slice, function interface{}) bool {
