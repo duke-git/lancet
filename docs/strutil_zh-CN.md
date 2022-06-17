@@ -37,6 +37,7 @@ import (
 - [Wrap](#Wrap)
   
 - [Unwrap](#Unwrap)
+- [SplitEx](#SplitEx)
   
 
 <div STYLE="page-break-after: always;"></div>
@@ -567,6 +568,39 @@ func main() {
 
 
 
+### <span id="SplitEx">SplitEx</span>
+<p>分割字符串为切片，removeEmptyString参数指定是否去除空字符串</p>
+
+<b>函数签名:</b>
+
+```go
+func SplitEx(s, sep string, removeEmptyString bool) []string
+```
+<b>例子:</b>
+
+```go
+import (
+	"fmt"
+	"github.com/duke-git/lancet/strutil"
+)
+
+func main() {
+	arr1 := strutil.SplitEx(" a b c ", "", true)
+	fmt.Println(arr1) //[]string{}
+
+	arr2 := strutil.SplitEx(" a b c ", " ", false)
+	fmt.Println(arr2) //[]string{"", "a", "b", "c", ""}
+
+	arr3 := strutil.SplitEx(" a b c ", " ", true)
+	fmt.Println(arr3) //[]string{"a", "b", "c"}
+
+	arr4 := strutil.SplitEx(" a = b = c = ", " = ", false)
+	fmt.Println(arr4) //[]string{" a", "b", "c", ""}
+
+	arr5 := strutil.SplitEx(" a = b = c = ", " = ", true)
+	fmt.Println(arr5) //[]string{" a", "b", "c"}
+}
+```
 
 
 
