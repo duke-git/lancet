@@ -225,6 +225,26 @@ func Equal(slice1, slice2 interface{}) bool {
 	return true
 }
 
+// EqualWith checks if two slices are equal with comparator func
+func EqualWith(slice1, slice2 interface{}, comparator interface{}) bool {
+	sv1 := sliceValue(slice1)
+	sv2 := sliceValue(slice2)
+
+	fn := functionValue(comparator)
+	// elemType1 := sv1.Type().Elem()
+	// elemType2 := sv2.Type().Elem()
+	// todo:  check fn signature: func(a elemType1.Kind(), b elemType2.Kind()) bool
+
+	for i := 0; i < sv1.Len(); i++ {
+		flag := fn.Call([]reflect.Value{sv1.Index(i), sv2.Index(i)})[0]
+		if !flag.Bool() {
+			return false
+		}
+	}
+
+	return true
+}
+
 // Every return true if all of the values in the slice pass the predicate function.
 // The function signature should be func(index int, value interface{}) bool .
 func Every(slice, function interface{}) bool {
