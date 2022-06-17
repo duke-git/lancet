@@ -33,6 +33,27 @@ func TestCreateFile(t *testing.T) {
 	os.Remove(f)
 }
 
+func TestCreateDir(t *testing.T) {
+	assert := internal.NewAssert(t, "TestCreateDir")
+
+	pwd, err := os.Getwd()
+	if err != nil {
+		t.Error(err)
+		t.FailNow()
+	}
+
+	dirPath := pwd + "/a/"
+	err = CreateDir(dirPath)
+	if err != nil {
+		t.Error(err)
+		t.FailNow()
+	}
+
+	assert.Equal(true, IsExist(dirPath))
+	os.Remove(dirPath)
+	assert.Equal(false, IsExist(dirPath))
+}
+
 func TestIsDir(t *testing.T) {
 	assert := internal.NewAssert(t, "TestIsDir")
 

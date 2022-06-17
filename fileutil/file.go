@@ -13,6 +13,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"os"
+	"path"
 	"path/filepath"
 	"strings"
 )
@@ -38,6 +39,11 @@ func CreateFile(path string) bool {
 
 	defer file.Close()
 	return true
+}
+
+// CreateDir create directory in absolute path. param `absPath` like /a/, /a/b/
+func CreateDir(absPath string) error {
+	return os.MkdirAll(path.Dir(absPath), os.ModePerm)
 }
 
 // IsDir checks if the path is directory or not
