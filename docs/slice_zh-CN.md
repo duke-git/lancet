@@ -44,6 +44,8 @@ import (
 - [InterfaceSlice](#InterfaceSlice)
 - [Intersection](#Intersection)
 - [InsertByIndex](#InsertByIndex)
+- [IndexOf](#IndexOf)
+- [LastIndexOf](#LastIndexOf)
 - [Map](#Map)
 - [ReverseSlice](#ReverseSlice)
 - [Reduce](#Reduce)
@@ -344,7 +346,7 @@ func Equal(slice1, slice2 interface{}) bool
 ```go
 import (
 	"fmt"
-	"github.com/duke-git/lancet/v2/slice"
+	"github.com/duke-git/lancet/slice"
 )
 
 func main() {
@@ -375,7 +377,7 @@ func EqualWith(slice1, slice2 interface{}, comparator interface{}) bool
 ```go
 import (
 	"fmt"
-	"github.com/duke-git/lancet/v2/slice"
+	"github.com/duke-git/lancet/slice"
 )
 
 func main() {
@@ -678,6 +680,61 @@ func main() {
 }
 ```
 
+
+
+### <span id="IndexOf">IndexOf</span>
+<p>返回在切片中找到值的第一个匹配项的索引，如果找不到值，则返回-1</p>
+
+<b>函数签名:</b>
+
+```go
+func IndexOf(slice, value interface{}) int
+```
+<b>例子:</b>
+
+```go
+import (
+	"fmt"
+	"github.com/duke-git/lancet/slice"
+)
+
+func main() {
+	arr := []string{"a", "a", "b", "c"}
+	res1 := slice.IndexOf(arr, "a")
+	fmt.Println(res1) //0
+
+	res2 := slice.IndexOf(arr, "d")
+	fmt.Println(res2) //-1
+}
+```
+
+
+
+### <span id="LastIndexOf">LastIndexOf</span>
+<p>返回在切片中找到最后一个值的索引，如果找不到该值，则返回-1</p>
+
+<b>函数签名:</b>
+
+```go
+func LastIndexOf(slice, value interface{}) int
+```
+<b>例子:</b>
+
+```go
+import (
+	"fmt"
+	"github.com/duke-git/lancet/slice"
+)
+
+func main() {
+	arr := []string{"a", "a", "b", "c"}
+	res1 := slice.LastIndexOf(arr, "a")
+	fmt.Println(res1) //1
+
+	res2 := slice.LastIndexOf(arr, "d")
+	fmt.Println(res2) //-1
+}
+```
 
 
 

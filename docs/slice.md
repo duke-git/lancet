@@ -44,6 +44,8 @@ import (
 - [InterfaceSlice](#InterfaceSlice)
 - [Intersection](#Intersection)
 - [InsertByIndex](#InsertByIndex)
+- [IndexOf](#IndexOf)
+- [LastIndexOf](#LastIndexOf)
 - [Map](#Map)
 - [ReverseSlice](#ReverseSlice)
 - [Reduce](#Reduce)
@@ -347,7 +349,7 @@ func Equal(slice1, slice2 interface{}) bool
 ```go
 import (
 	"fmt"
-	"github.com/duke-git/lancet/v2/slice"
+	"github.com/duke-git/lancet/slice"
 )
 
 func main() {
@@ -378,7 +380,7 @@ func EqualWith(slice1, slice2 interface{}, comparator interface{}) bool
 ```go
 import (
 	"fmt"
-	"github.com/duke-git/lancet/v2/slice"
+	"github.com/duke-git/lancet/slice"
 )
 
 func main() {
@@ -542,8 +544,6 @@ func main() {
 
 
 
-
-
 ### <span id="ForEach">ForEach</span>
 <p>Iterates over elements of slice and invokes function for each element, function signature should be func(index int, value interface{}).</p>
 
@@ -682,6 +682,60 @@ func main() {
 ```
 
 
+
+### <span id="IndexOf">IndexOf</span>
+<p>Returns the index at which the first occurrence of a value is found in a slice or return -1 if the value cannot be found.</p>
+
+<b>Signature:</b>
+
+```go
+func IndexOf(slice, value interface{}) int
+```
+<b>Example:</b>
+
+```go
+import (
+	"fmt"
+	"github.com/duke-git/lancet/slice"
+)
+
+func main() {
+	arr := []string{"a", "a", "b", "c"}
+	res1 := slice.IndexOf(arr, "a")
+	fmt.Println(res1) //0
+
+	res2 := slice.IndexOf(arr, "d")
+	fmt.Println(res2) //-1
+}
+```
+
+
+
+### <span id="LastIndexOf">LastIndexOf</span>
+<p>Returns the index at which the last occurrence of a value is found in a slice or return -1 if the value cannot be found.</p>
+
+<b>Signature:</b>
+
+```go
+func LastIndexOf(slice, value interface{}) int
+```
+<b>Example:</b>
+
+```go
+import (
+	"fmt"
+	"github.com/duke-git/lancet/slice"
+)
+
+func main() {
+	arr := []string{"a", "a", "b", "c"}
+	res1 := slice.LastIndexOf(arr, "a")
+	fmt.Println(res1) //1
+
+	res2 := slice.LastIndexOf(arr, "d")
+	fmt.Println(res2) //-1
+}
+```
 
 
 ### <span id="InsertByIndex">InsertByIndex</span>
