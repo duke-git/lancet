@@ -567,3 +567,19 @@ func TestShuffle(t *testing.T) {
 	assert.Equal(true, Contain(res, 4))
 	assert.Equal(true, Contain(res, 5))
 }
+
+func TestIndexOf(t *testing.T) {
+	assert := internal.NewAssert(t, "TestIndexOf")
+
+	arr := []string{"a", "a", "b", "c"}
+	assert.Equal(0, IndexOf(arr, "a"))
+	assert.Equal(-1, IndexOf(arr, "d"))
+}
+
+func TestLastIndexOf(t *testing.T) {
+	assert := internal.NewAssert(t, "TestLastIndexOf")
+
+	arr := []string{"a", "a", "b", "c"}
+	assert.Equal(1, LastIndexOf(arr, "a"))
+	assert.Equal(-1, LastIndexOf(arr, "d"))
+}
