@@ -902,3 +902,31 @@ func Without(slice interface{}, values ...interface{}) interface{} {
 
 	return res.Interface()
 }
+
+// IndexOf returns the index at which the first occurrence of a value is found in a slice or return -1
+// if the value cannot be found.
+func IndexOf(slice, value interface{}) int {
+	sv := sliceValue(slice)
+
+	for i := 0; i < sv.Len(); i++ {
+		if reflect.DeepEqual(sv.Index(i).Interface(), value) {
+			return i
+		}
+	}
+
+	return -1
+}
+
+// LastIndexOf returns the index at which the last occurrence of a value is found in a slice or return -1
+// if the value cannot be found.
+func LastIndexOf(slice, value interface{}) int {
+	sv := sliceValue(slice)
+
+	for i := sv.Len() - 1; i > 0; i-- {
+		if reflect.DeepEqual(sv.Index(i).Interface(), value) {
+			return i
+		}
+	}
+
+	return -1
+}
