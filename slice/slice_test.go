@@ -395,6 +395,15 @@ func TestUnique(t *testing.T) {
 	assert.Equal([]string{"a", "b", "c"}, Unique([]string{"a", "a", "b", "c"}))
 }
 
+func TestUniqueBy(t *testing.T) {
+	assert := internal.NewAssert(t, "TestUniqueBy")
+
+	actual := UniqueBy([]int{1, 2, 3, 4, 5, 6}, func(val int) int {
+		return val % 4
+	})
+	assert.Equal([]int{1, 2, 3, 0}, actual)
+}
+
 func TestUnion(t *testing.T) {
 	assert := internal.NewAssert(t, "TestUnion")
 

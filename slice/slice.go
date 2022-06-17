@@ -582,6 +582,21 @@ func Unique[T any](slice []T) []T {
 	return res
 }
 
+// UniqueBy call iteratee func with every item of slice, then remove duplicated.
+func UniqueBy[T any](slice []T, iteratee func(item T) T) []T {
+	if len(slice) == 0 {
+		return []T{}
+	}
+
+	var res []T
+	for _, v := range slice {
+		val := iteratee(v)
+		res = append(res, val)
+	}
+
+	return Unique(res)
+}
+
 // Union creates a slice of unique values, in order, from all given slices. using == for equality comparisons.
 func Union[T any](slices ...[]T) []T {
 	if len(slices) == 0 {
