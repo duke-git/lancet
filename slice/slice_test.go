@@ -61,11 +61,8 @@ func TestCompact(t *testing.T) {
 func TestConcat(t *testing.T) {
 	assert := internal.NewAssert(t, "Concat")
 
-	// assert.Equal([]int{0}, Concat([]int{}, 0))
-	// assert.Equal([]int{1, 2, 3, 4, 5}, Concat([]int{1, 2, 3}, 4, 5))
 	assert.Equal([]int{1, 2, 3, 4, 5}, Concat([]int{1, 2, 3}, []int{4, 5}))
 	assert.Equal([]int{1, 2, 3, 4, 5}, Concat([]int{1, 2, 3}, []int{4}, []int{5}))
-	// assert.Equal([]int{1, 2, 3, 4, 5}, Concat([]int{1, 2, 3}, []int{4}, 5))
 }
 
 func TestEqual(t *testing.T) {
@@ -77,6 +74,13 @@ func TestEqual(t *testing.T) {
 
 	assert.Equal(true, Equal(slice1, slice2))
 	assert.Equal(false, Equal(slice1, slice3))
+}
+
+// go test -fuzz=Fuzz -fuzztime=10s .
+func FuzzEqual(f *testing.F) {
+	f.Fuzz(func(t *testing.T, a, b []byte) {
+		Equal(a, b)
+	})
 }
 
 func TestEqualWith(t *testing.T) {
