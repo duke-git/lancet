@@ -726,6 +726,31 @@ func Unique(slice interface{}) interface{} {
 
 }
 
+// UniqueBy call iteratee func with every item of slice, then remove duplicated.
+// The iteratee function signature should be func(value interface{}) interface{}.
+func UniqueBy(slice, iteratee interface{}) interface{} {
+	sv := sliceValue(slice)
+	fn := functionValue(iteratee)
+
+	// elemType := sv.Type().Elem()
+	// if !checkCallbackFuncSignature2(fn, elemType, elemType) {
+	// 	panic("iteratee function signature should be of type func(" + elemType.String() + ")" + elemType.String())
+	// }
+
+	if sv.Len() == 0 {
+		return slice
+	}
+
+	res := reflect.MakeSlice(sv.Type(), sv.Len(), sv.Len())
+
+	for i := 0; i < sv.Len(); i++ {
+		val := fn.Call([]reflect.Value{sv.Index(i)})[0]
+		res.Index(i).Set(val)
+	}
+
+	return Unique(res.Interface())
+}
+
 // Union creates a slice of unique values, in order, from all given slices. using == for equality comparisons.
 func Union(slices ...interface{}) interface{} {
 	if len(slices) == 0 {
