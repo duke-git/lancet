@@ -54,6 +54,7 @@ import (
 - [Some](#Some)
 - [StringSlice](#StringSlice)
 - [Unique](#Unique)
+- [UniqueBy](#UniqueBy)
 - [Union](#Union)
 - [UpdateByIndex](#UpdateByIndex)
 - [Without](#Without)
