@@ -57,6 +57,7 @@ import (
 - [StringSlice](#StringSlice)
 - [SymmetricDifference](#SymmetricDifference)
 - [Unique](#Unique)
+- [UniqueBy](#UniqueBy)
 - [Union](#Union)
 - [UpdateAt](#UpdateAt)
 - [Without](#Without)
@@ -1085,7 +1086,33 @@ func main() {
 
 
 
-### <span id="Union">Unique</span>
+### <span id="UniqueBy">UniqueBy</span>
+<p>对切片的每个元素调用iteratee函数，然后删除重复元素</p>
+
+<b>函数签名:</b>
+
+```go
+func UniqueBy[T any](slice []T, iteratee func(item T) T) []T
+```
+<b>例子:</b>
+
+```go
+import (
+	"fmt"
+	"github.com/duke-git/lancet/slice"
+)
+
+func main() {
+	res := slice.UniqueBy([]int{1, 2, 3, 4, 5, 6}, func(val int) int {
+		return val % 4
+	})
+	fmt.Println(res) //[]int{1, 2, 3, 0}
+}
+```
+
+
+
+### <span id="Union">Union</span>
 <p>从所有给定的切片按顺序创建一个唯一值切片，使用==进行相等比较</p>
 
 <b>函数签名:</b>

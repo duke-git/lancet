@@ -57,6 +57,7 @@ import (
 - [StringSlice](#StringSlice)
 - [SymmetricDifference](#SymmetricDifference)
 - [Unique](#Unique)
+- [UniqueBy](#UniqueBy)
 - [Union](#Union)
 - [UpdateAt](#UpdateAt)
 - [Without](#Without)
@@ -1086,7 +1087,33 @@ func main() {
 
 
 
-### <span id="Union">Unique</span>
+### <span id="UniqueBy">UniqueBy</span>
+<p>Call iteratee func with every item of slice, then remove duplicated.</p>
+
+<b>Signature:</b>
+
+```go
+func UniqueBy[T any](slice []T, iteratee func(item T) T) []T
+```
+<b>Example:</b>
+
+```go
+import (
+	"fmt"
+	"github.com/duke-git/lancet/slice"
+)
+
+func main() {
+	res := slice.UniqueBy([]int{1, 2, 3, 4, 5, 6}, func(val int) int {
+		return val % 4
+	})
+	fmt.Println(res) //[]int{1, 2, 3, 0}
+}
+```
+
+
+
+### <span id="Union">Union</span>
 <p>Creates a slice of unique values, in order, from all given slices. using == for equality comparisons.</p>
 
 <b>Signature:</b>
