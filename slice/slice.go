@@ -167,15 +167,15 @@ func Difference(slice1, slice2 interface{}) interface{} {
 // DifferenceBy it accepts iteratee which is invoked for each element of slice
 // and values to generate the criterion by which they're compared.
 // like lodash.js differenceBy: https://lodash.com/docs/4.17.15#differenceBy,
-// the iterateeFn function signature should be func(index int, value interface{}) interface{}.
-func DifferenceBy(slice interface{}, comparedSlice interface{}, iterateeFn interface{}) interface{} {
+// the iteratee function signature should be func(index int, value interface{}) interface{}.
+func DifferenceBy(slice interface{}, comparedSlice interface{}, iteratee interface{}) interface{} {
 	sv := sliceValue(slice)
 	smv := sliceValue(comparedSlice)
-	fn := functionValue(iterateeFn)
+	fn := functionValue(iteratee)
 
 	elemType := sv.Type().Elem()
 	if checkSliceCallbackFuncSignature(fn, elemType, nil) {
-		panic("function param should be of type func(" + elemType.String() + ")" + elemType.String())
+		panic("iteratee function signature should be func(" + elemType.String() + ")" + elemType.String())
 	}
 
 	slice1 := reflect.MakeSlice(sv.Type(), sv.Len(), sv.Len())
@@ -246,14 +246,14 @@ func EqualWith(slice1, slice2 interface{}, comparator interface{}) bool {
 }
 
 // Every return true if all of the values in the slice pass the predicate function.
-// The function signature should be func(index int, value interface{}) bool .
+// The iteratee function signature should be func(index int, value interface{}) bool .
 func Every(slice, function interface{}) bool {
 	sv := sliceValue(slice)
 	fn := functionValue(function)
 
 	elemType := sv.Type().Elem()
 	if checkSliceCallbackFuncSignature(fn, elemType, reflect.ValueOf(true).Type()) {
-		panic("function param should be of type func(int, " + elemType.String() + ")" + reflect.ValueOf(true).Type().String())
+		panic("iteratee function signature should be func(int, " + elemType.String() + ")" + reflect.ValueOf(true).Type().String())
 	}
 
 	var currentLength int
@@ -268,14 +268,14 @@ func Every(slice, function interface{}) bool {
 }
 
 // None return true if all the values in the slice mismatch the criteria
-// The function signature should be func(index int, value interface{}) bool .
-func None(slice, function interface{}) bool {
+// The iteratee function signature should be func(index int, value interface{}) bool .
+func None(slice, iteratee interface{}) bool {
 	sv := sliceValue(slice)
-	fn := functionValue(function)
+	fn := functionValue(iteratee)
 
 	elemType := sv.Type().Elem()
 	if checkSliceCallbackFuncSignature(fn, elemType, reflect.ValueOf(true).Type()) {
-		panic("function param should be of type func(int, " + elemType.String() + ")" + reflect.ValueOf(true).Type().String())
+		panic("iteratee function signature should be func(int, " + elemType.String() + ")" + reflect.ValueOf(true).Type().String())
 	}
 
 	var currentLength int
@@ -290,14 +290,14 @@ func None(slice, function interface{}) bool {
 }
 
 // Some return true if any of the values in the list pass the predicate function.
-// The function signature should be func(index int, value interface{}) bool .
-func Some(slice, function interface{}) bool {
+// The iteratee function signature should be func(index int, value interface{}) bool .
+func Some(slice, iteratee interface{}) bool {
 	sv := sliceValue(slice)
-	fn := functionValue(function)
+	fn := functionValue(iteratee)
 
 	elemType := sv.Type().Elem()
 	if checkSliceCallbackFuncSignature(fn, elemType, reflect.ValueOf(true).Type()) {
-		panic("function param should be of type func(int, " + elemType.String() + ")" + reflect.ValueOf(true).Type().String())
+		panic("iteratee function signature should be func(int, " + elemType.String() + ")" + reflect.ValueOf(true).Type().String())
 	}
 
 	has := false
@@ -312,14 +312,14 @@ func Some(slice, function interface{}) bool {
 }
 
 // Filter iterates over elements of slice, returning an slice of all elements `signature` returns truthy for.
-// The function signature should be func(index int, value interface{}) bool .
-func Filter(slice, function interface{}) interface{} {
+// The iteratee function signature should be func(index int, value interface{}) bool .
+func Filter(slice, iteratee interface{}) interface{} {
 	sv := sliceValue(slice)
-	fn := functionValue(function)
+	fn := functionValue(iteratee)
 
 	elemType := sv.Type().Elem()
 	if checkSliceCallbackFuncSignature(fn, elemType, reflect.ValueOf(true).Type()) {
-		panic("function param should be of type func(int, " + elemType.String() + ")" + reflect.ValueOf(true).Type().String())
+		panic("iteratee function signature should be func(int, " + elemType.String() + ")" + reflect.ValueOf(true).Type().String())
 	}
 
 	res := reflect.MakeSlice(sv.Type(), 0, 0)
@@ -334,14 +334,14 @@ func Filter(slice, function interface{}) interface{} {
 }
 
 // Count iterates over elements of slice, returns a count of all matched elements
-// The function signature should be func(index int, value interface{}) bool .
-func Count(slice, function interface{}) int {
+// The iteratee function signature should be func(index int, value interface{}) bool .
+func Count(slice, iteratee interface{}) int {
 	sv := sliceValue(slice)
-	fn := functionValue(function)
+	fn := functionValue(iteratee)
 
 	elemType := sv.Type().Elem()
 	if checkSliceCallbackFuncSignature(fn, elemType, reflect.ValueOf(true).Type()) {
-		panic("function param should be of type func(int, " + elemType.String() + ")" + reflect.ValueOf(true).Type().String())
+		panic("iteratee function signature should be func(int, " + elemType.String() + ")" + reflect.ValueOf(true).Type().String())
 	}
 
 	var counter int
@@ -356,14 +356,14 @@ func Count(slice, function interface{}) int {
 }
 
 // GroupBy iterate over elements of the slice, each element will be group by criteria, returns two slices
-// The function signature should be func(index int, value interface{}) bool .
-func GroupBy(slice, function interface{}) (interface{}, interface{}) {
+// The iteratee function signature should be func(index int, value interface{}) bool .
+func GroupBy(slice, iteratee interface{}) (interface{}, interface{}) {
 	sv := sliceValue(slice)
-	fn := functionValue(function)
+	fn := functionValue(iteratee)
 
 	elemType := sv.Type().Elem()
 	if checkSliceCallbackFuncSignature(fn, elemType, reflect.ValueOf(true).Type()) {
-		panic("function param should be of type func(int, " + elemType.String() + ")" + reflect.ValueOf(true).Type().String())
+		panic("iteratee function signature should be func(int, " + elemType.String() + ")" + reflect.ValueOf(true).Type().String())
 	}
 
 	groupB := reflect.MakeSlice(sv.Type(), 0, 0)
@@ -382,14 +382,14 @@ func GroupBy(slice, function interface{}) (interface{}, interface{}) {
 }
 
 // Find iterates over elements of slice, returning the first one that passes a truth test on function.
-// The function signature should be func(index int, value interface{}) bool .
-func Find(slice, function interface{}) (interface{}, bool) {
+// The predicate function signature should be func(index int, value interface{}) bool .
+func Find(slice, predicate interface{}) (interface{}, bool) {
 	sv := sliceValue(slice)
-	fn := functionValue(function)
+	fn := functionValue(predicate)
 
 	elemType := sv.Type().Elem()
 	if checkSliceCallbackFuncSignature(fn, elemType, reflect.ValueOf(true).Type()) {
-		panic("function param should be of type func(int, " + elemType.String() + ")" + reflect.ValueOf(true).Type().String())
+		panic("predicate function signature should be func(int, " + elemType.String() + ")" + reflect.ValueOf(true).Type().String())
 	}
 
 	index := -1
@@ -411,13 +411,13 @@ func Find(slice, function interface{}) (interface{}, bool) {
 
 // FindLast iterates over elements of slice from end to begin, returning the first one that passes a truth test on function.
 // The function signature should be func(index int, value interface{}) bool .
-func FindLast(slice, function interface{}) (interface{}, bool) {
+func FindLast(slice, predicate interface{}) (interface{}, bool) {
 	sv := sliceValue(slice)
-	fn := functionValue(function)
+	fn := functionValue(predicate)
 
 	elemType := sv.Type().Elem()
 	if checkSliceCallbackFuncSignature(fn, elemType, reflect.ValueOf(true).Type()) {
-		panic("function param should be of type func(int, " + elemType.String() + ")" + reflect.ValueOf(true).Type().String())
+		panic("predicate function signature should be func(int, " + elemType.String() + ")" + reflect.ValueOf(true).Type().String())
 	}
 
 	index := -1
@@ -462,14 +462,14 @@ func flattenRecursive(value reflect.Value, result reflect.Value) reflect.Value {
 }
 
 // ForEach iterates over elements of slice and invokes function for each element
-// The function signature should be func(index int, value interface{}).
-func ForEach(slice, function interface{}) {
+// The iteratee function signature should be func(index int, value interface{}).
+func ForEach(slice, iteratee interface{}) {
 	sv := sliceValue(slice)
-	fn := functionValue(function)
+	fn := functionValue(iteratee)
 
 	elemType := sv.Type().Elem()
 	if checkSliceCallbackFuncSignature(fn, elemType, nil) {
-		panic("function param should be of type func(int, " + elemType.String() + ")" + elemType.String())
+		panic("iteratee function signature should be func(int, " + elemType.String() + ")" + elemType.String())
 	}
 
 	for i := 0; i < sv.Len(); i++ {
@@ -478,14 +478,14 @@ func ForEach(slice, function interface{}) {
 }
 
 // Map creates an slice of values by running each element of `slice` thru `function`.
-// The function signature should be func(index int, value interface{}) interface{}.
-func Map(slice, function interface{}) interface{} {
+// The iteratee function signature should be func(index int, value interface{}) interface{}.
+func Map(slice, iteratee interface{}) interface{} {
 	sv := sliceValue(slice)
-	fn := functionValue(function)
+	fn := functionValue(iteratee)
 
 	elemType := sv.Type().Elem()
 	if checkSliceCallbackFuncSignature(fn, elemType, nil) {
-		panic("function param should be of type func(int, " + elemType.String() + ")" + elemType.String())
+		panic("iteratee function signature should be func(int, " + elemType.String() + ")" + elemType.String())
 	}
 
 	res := reflect.MakeSlice(sv.Type(), sv.Len(), sv.Len())
