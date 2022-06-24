@@ -3,7 +3,7 @@
 
 <br/>
 
-![Go version](https://img.shields.io/badge/go-%3E%3D1.16<recommend>-9cf)
+![Go version](https://img.shields.io/badge/go-v1.16-9cf)
 [![Release](https://img.shields.io/badge/release-1.3.0-green.svg)](https://github.com/duke-git/lancet/releases)
 [![GoDoc](https://godoc.org/github.com//duke-git/lancet?status.svg)](https://pkg.go.dev/github.com/duke-git/lancet)
 [![Go Report Card](https://goreportcard.com/badge/github.com/duke-git/lancet)](https://goreportcard.com/report/github.com/duke-git/lancet)
