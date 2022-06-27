@@ -39,7 +39,7 @@ func (h *MaxHeap[T]) heapifyUp(i int) {
 
 // Pop return the largest value, and remove it from the heap
 // if heap is empty, return zero value and fasle
-func (h *MaxHeap[T]) Pop(value T) (T, bool) {
+func (h *MaxHeap[T]) Pop() (T, bool) {
 	var val T
 	if h.Size() == 0 {
 		return val, false
