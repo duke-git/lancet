@@ -5,6 +5,8 @@
 package datastructure
 
 import (
+	"fmt"
+
 	"github.com/duke-git/lancet/v2/lancetconstraints"
 )
 
@@ -101,6 +103,67 @@ func (h *MaxHeap[T]) Data() []T {
 	return h.data
 }
 
+// PrintStructure print the structure of the heap
+func (h *MaxHeap[T]) PrintStructure() {
+	level := 1
+	data := h.data
+	length := len(h.data)
+	index := 0
+
+	list := [][]string{}
+	temp := []string{}
+	for index < length {
+		start := powerTwo(level-1) - 1
+		end := start + powerTwo(level-1) - 1
+
+		temp = append(temp, fmt.Sprintf("%v", data[index]))
+		index++
+
+		if index > end || index >= length {
+			list = append(list, temp)
+			temp = []string{}
+
+			if index < length {
+				level++
+			}
+		}
+	}
+
+	lastNum := powerTwo(level - 1)
+	lastLen := lastNum + (lastNum - 1)
+
+	heapTree := make([][]string, level, level)
+	for i := 0; i < level; i++ {
+		heapTree[i] = make([]string, lastLen, lastLen)
+		for j := 0; j < lastLen; j++ {
+			heapTree[i][j] = ""
+		}
+	}
+
+	for k := 0; k < len(list); k++ {
+		vals := list[k]
+		tempLevel := level - k
+		st := powerTwo(tempLevel-1) - 1
+		for _, v := range vals {
+			heapTree[k][st] = v
+			gap := powerTwo(tempLevel)
+			st = st + gap
+		}
+	}
+
+	for m := 0; m < level; m++ {
+		for n := 0; n < lastLen; n++ {
+			val := heapTree[m][n]
+			if val == "" {
+				fmt.Printf(" ")
+			} else {
+				fmt.Printf(val)
+			}
+		}
+		fmt.Println()
+	}
+}
+
 // parentIndex get parent index of the given index
 func parentIndex(i int) int {
 	return (i - 1) / 2
@@ -119,4 +182,8 @@ func rightChildIndex(i int) int {
 // swap two elements in the heap
 func (h *MaxHeap[T]) swap(i, j int) {
 	h.data[i], h.data[j] = h.data[j], h.data[i]
+}
+
+func powerTwo(n int) int {
+	return 1 << n
 }

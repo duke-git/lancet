@@ -34,6 +34,8 @@ func TestMaxHeap_Push(t *testing.T) {
 	assert.Equal(expected, heap.data)
 
 	assert.Equal(12, heap.Size())
+
+	heap.PrintStructure()
 }
 
 func TestMaxHeap_Pop(t *testing.T) {
