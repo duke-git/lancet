@@ -22,14 +22,11 @@ import (
 ## Index
 
 - [MaxHeap](#MaxHeap)
-- [Values](#Values)
-- [Add](#Add)
-- [Delete](#Delete)
-- [Contain](#Contain)
-- [ContainAll](#ContainAll)
-- [Clone](#Clone)
+- [Push](#Push)
+- [Pop](#Pop)
+- [Peek](#Peek)
+- [Data](#Data)
 - [Size](#Size)
-- [Equal](#Equal)
 
 
 <div STYLE="page-break-after: always;"></div>
