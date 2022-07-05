@@ -170,6 +170,11 @@ func ToInt(value any) (int64, error) {
 	}
 }
 
+// ToPointer returns a pointer to this value
+func ToPointer[T any](value T) *T {
+	return &value
+}
+
 // StructToMap convert struct to map, only convert exported struct field
 // map key is specified same as struct field tag `json` value
 func StructToMap(value any) (map[string]any, error) {

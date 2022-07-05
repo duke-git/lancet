@@ -583,3 +583,21 @@ func TestLastIndexOf(t *testing.T) {
 	assert.Equal(1, LastIndexOf(arr, "a"))
 	assert.Equal(-1, LastIndexOf(arr, "d"))
 }
+
+func TestToSlice(t *testing.T) {
+	assert := internal.NewAssert(t, "TestToSlice")
+
+	str1 := "a"
+	str2 := "b"
+	assert.Equal([]string{"a"}, ToSlice(str1))
+	assert.Equal([]string{"a", "b"}, ToSlice(str1, str2))
+}
+
+func TestToSlicePointer(t *testing.T) {
+	assert := internal.NewAssert(t, "TestToSlicePointer")
+
+	str1 := "a"
+	str2 := "b"
+	assert.Equal([]*string{&str1}, ToSlicePointer(str1))
+	assert.Equal([]*string{&str1, &str2}, ToSlicePointer(str1, str2))
+}
