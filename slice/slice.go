@@ -803,3 +803,21 @@ func LastIndexOf[T any](slice []T, value T) int {
 
 	return -1
 }
+
+// ToSlicePointer returns a pointer to the slices of a variable parameter transformation
+func ToSlicePointer[T any](value ...T) []*T {
+	out := make([]*T, len(value))
+	for i := range value {
+		out[i] = &value[i]
+	}
+	return out
+}
+
+// ToSlice returns a slices of a variable parameter transformation
+func ToSlice[T any](value ...T) []T {
+	out := make([]T, len(value))
+	for i := range value {
+		out[i] = value[i]
+	}
+	return out
+}
