@@ -213,6 +213,7 @@ import stack "github.com/duke-git/lancet/v2/datastructure/stack"
 import queue "github.com/duke-git/lancet/v2/datastructure/queue"
 import set "github.com/duke-git/lancet/v2/datastructure/set"
 import tree "github.com/duke-git/lancet/v2/datastructure/tree"
+import heap "github.com/duke-git/lancet/v2/datastructure/heap"
 ```
 #### Function list:
 - [List](https://github.com/duke-git/lancet/blob/main/docs/datastructure/list_zh-CN.md)
@@ -221,6 +222,7 @@ import tree "github.com/duke-git/lancet/v2/datastructure/tree"
 - [Queue](https://github.com/duke-git/lancet/blob/main/docs/datastructure/queue_zh-CN.md)
 - [Set](https://github.com/duke-git/lancet/blob/main/docs/datastructure/set_zh-CN.md)
 - [Tree](https://github.com/duke-git/lancet/blob/main/docs/datastructure/tree_zh-CN.md)
+- [Heap](https://github.com/duke-git/lancet/blob/main/docs/datastructure/heap.md)
 
 
 ### 7. fileutil包支持文件基本操作。
