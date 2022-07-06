@@ -1106,7 +1106,7 @@ import (
 func main() {
 	str1 := "a"
 	str2 := "b"
-	res := slice.ToSlice(str1, str2)
+	res := slice.ToSlicePointer(str1, str2)
 	fmt.Println(res) // res -> []*string{&str1, &str2}
 }
 ```
