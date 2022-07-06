@@ -395,6 +395,8 @@ import "github.com/duke-git/lancet/v2/slice"
 - [Some](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Some)
 - [StringSlice](https://github.com/duke-git/lancet/blob/main/docs/slice.md#StringSlice)
 - [SymmetricDifference](https://github.com/duke-git/lancet/blob/main/docs/slice.md#SymmetricDifference)
+- [ToSlice](https://github.com/duke-git/lancet/blob/main/docs/slice.md#ToSlice)
+- [ToSlicePointer](https://github.com/duke-git/lancet/blob/main/docs/slice.md#ToSlicePointer)
 - [Unique](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Unique)
 - [UniqueBy](https://github.com/duke-git/lancet/blob/main/docs/slice.md#UniqueBy)
 - [Union](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Union)

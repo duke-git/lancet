@@ -56,6 +56,8 @@ import (
 - [Some](#Some)
 - [StringSlice](#StringSlice)
 - [SymmetricDifference](#SymmetricDifference)
+- [ToSlice](#ToSlice)
+- [ToSlicePointer](#ToSlicePointer)
 - [Unique](#Unique)
 - [UniqueBy](#UniqueBy)
 - [Union](#Union)
@@ -1060,6 +1062,56 @@ func main() {
 	fmt.Println(slice.SymmetricDifference(s1, s2, s3)) //[]int{3, 4, 5}
 }
 ```
+
+
+### <span id="ToSlice">ToSlice</span>
+<p>将可变参数转为切片</p>
+
+<b>函数签名:</b>
+
+```go
+func ToSlice[T any](value ...T) []T
+```
+<b>例子:</b>
+
+```go
+import (
+	"fmt"
+	"github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+	res := slice.ToSlice("a", "b")
+	fmt.Println(res) //{"a", "b"}
+}
+```
+
+
+
+### <span id="ToSlicePointer">ToSlice</span>
+<p>将可变参数转为指针切片</p>
+
+<b>函数签名:</b>
+
+```go
+func ToSlicePointer[T any](value ...T) []*T
+```
+<b>例子:</b>
+
+```go
+import (
+	"fmt"
+	"github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+	str1 := "a"
+	str2 := "b"
+	res := slice.ToSlice(str1, str2)
+	fmt.Println(res) // res -> []*string{&str1, &str2}
+}
+```
+
 
 
 ### <span id="Unique">Unique</span>

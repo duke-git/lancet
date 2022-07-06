@@ -1063,6 +1063,55 @@ func main() {
 
 
 
+### <span id="ToSlice">ToSlice</span>
+<p>Returns a slices of a variable parameter transformation</p>
+
+<b>Signature:</b>
+
+```go
+func ToSlice[T any](value ...T) []T
+```
+<b>Example:</b>
+
+```go
+import (
+	"fmt"
+	"github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+	res := slice.ToSlice("a", "b")
+	fmt.Println(res) //{"a", "b"}
+}
+```
+
+
+
+### <span id="ToSlicePointer">ToSlice</span>
+<p>Returns a pointer to the slices of a variable parameter transformation</p>
+
+<b>Signature:</b>
+
+```go
+func ToSlicePointer[T any](value ...T) []*T
+```
+<b>Example:</b>
+
+```go
+import (
+	"fmt"
+	"github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+	str1 := "a"
+	str2 := "b"
+	res := slice.ToSlice(str1, str2)
+	fmt.Println(res) // res -> []*string{&str1, &str2}
+}
+```
+
+
 ### <span id="Unique">Unique</span>
 <p>Remove duplicate elements in slice.</p>
 
