@@ -15,7 +15,7 @@ import (
 // Contain check if the value is in the slice or not
 func Contain[T comparable](slice []T, value T) bool {
 	for _, v := range slice {
-		if reflect.DeepEqual(v, value) {
+		if v == value {
 			return true
 		}
 	}
@@ -558,7 +558,7 @@ func UpdateAt[T any](slice []T, index int, value T) []T {
 }
 
 // Unique remove duplicate elements in slice.
-func Unique[T any](slice []T) []T {
+func Unique[T comparable](slice []T) []T {
 	if len(slice) == 0 {
 		return []T{}
 	}
@@ -569,7 +569,7 @@ func Unique[T any](slice []T) []T {
 		v := slice[i]
 		skip := true
 		for j := range res {
-			if reflect.DeepEqual(v, res[j]) {
+			if v == res[j] {
 				skip = false
 				break
 			}
@@ -583,7 +583,7 @@ func Unique[T any](slice []T) []T {
 }
 
 // UniqueBy call iteratee func with every item of slice, then remove duplicated.
-func UniqueBy[T any](slice []T, iteratee func(item T) T) []T {
+func UniqueBy[T comparable](slice []T, iteratee func(item T) T) []T {
 	if len(slice) == 0 {
 		return []T{}
 	}
@@ -598,7 +598,7 @@ func UniqueBy[T any](slice []T, iteratee func(item T) T) []T {
 }
 
 // Union creates a slice of unique values, in order, from all given slices. using == for equality comparisons.
-func Union[T any](slices ...[]T) []T {
+func Union[T comparable](slices ...[]T) []T {
 	if len(slices) == 0 {
 		return []T{}
 	}
@@ -782,9 +782,9 @@ func Without[T comparable](slice []T, values ...T) []T {
 
 // IndexOf returns the index at which the first occurrence of a value is found in a slice or return -1
 // if the value cannot be found.
-func IndexOf[T any](slice []T, value T) int {
+func IndexOf[T comparable](slice []T, value T) int {
 	for i, v := range slice {
-		if reflect.DeepEqual(v, value) {
+		if v == value {
 			return i
 		}
 	}
@@ -794,9 +794,9 @@ func IndexOf[T any](slice []T, value T) int {
 
 // LastIndexOf returns the index at which the last occurrence of a value is found in a slice or return -1
 // if the value cannot be found.
-func LastIndexOf[T any](slice []T, value T) int {
+func LastIndexOf[T comparable](slice []T, value T) int {
 	for i := len(slice) - 1; i > 0; i-- {
-		if reflect.DeepEqual(value, slice[i]) {
+		if value == slice[i] {
 			return i
 		}
 	}
