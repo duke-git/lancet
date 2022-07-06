@@ -117,8 +117,10 @@ import "github.com/duke-git/lancet/v2/convertor"
 - [ToBool](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#ToBool)
 - [ToBytes](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#ToBytes)
 - [ToChar](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#ToChar)
+- [ToFloat](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#ToFloat)
 - [ToInt](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#ToInt)
 - [ToJson](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#ToJson)
+- [ToPointer](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#ToPointer)
 - [ToString](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#ToString)
 - [StructToMap](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#StructToMap)
   

@@ -118,8 +118,10 @@ import "github.com/duke-git/lancet/v2/convertor"
 - [ToBool](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#ToBool)
 - [ToBytes](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#ToBytes)
 - [ToChar](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#ToChar)
+- [ToFloat](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#ToFloat)
 - [ToInt](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#ToInt)
 - [ToJson](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#ToJson)
+- [ToPointer](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#ToPointer)
 - [ToString](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#ToString)
 - [StructToMap](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#StructToMap)
   
