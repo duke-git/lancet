@@ -26,8 +26,11 @@ import (
 - [ToBool](#ToBool)
 - [ToBytes](#ToBytes)
 - [ToChar](#ToChar)
+
+- [ToFloat](#ToFloat)
 - [ToInt](#ToInt)
 - [ToJson](#ToJson)
+- [ToPointer](#ToPointer)
 - [ToString](#ToString)
 - [StructToMap](#StructToMap)
 
@@ -283,6 +286,33 @@ func main() {
     var aMap = map[string]int{"a": 1, "b": 2, "c": 3}
     jsonStr, _ := convertor.ToJson(aMap)
     fmt.Printf("%q", jsonStr) //"{\"a\":1,\"b\":2,\"c\":3}"
+}
+```
+
+
+
+### <span id="ToPointer">ToPointer</span>
+
+<p>返回传入值的指针</p>
+
+<b>函数签名:</b>
+
+```go
+func ToPointer[T any](value T) *T
+```
+<b>例子:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/convertor"
+)
+
+func main() {
+    result := convertor.ToPointer(123)
+    fmt.Println(*result) //123
 }
 ```
 

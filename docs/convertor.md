@@ -24,8 +24,11 @@ import (
 - [ToBool](#ToBool)
 - [ToBytes](#ToBytes)
 - [ToChar](#ToChar)
+
+- [ToFloat](#ToFloat)
 - [ToInt](#ToInt)
 - [ToJson](#ToJson)
+- [ToPointer](#ToPointer)
 - [ToString](#ToString)
 - [StructToMap](#StructToMap)
 
@@ -286,14 +289,14 @@ func main() {
 
 
 
-### <span id="ToString">ToString</span>
+### <span id="ToJson">ToJson</span>
 
-<p>Convert interface to string. </p>
+<p>Convert interface to json string. If param can't be converted, will return "" and error. </p>
 
 <b>Signature:</b>
 
 ```go
-func ToString(value any) string
+func ToJson(value any) (string, error)
 ```
 <b>Example:</b>
 
@@ -306,9 +309,36 @@ import (
 )
 
 func main() {
-    fmt.Printf("%q", convertor.ToString(1)) //"1"
-    fmt.Printf("%q", convertor.ToString(1.1)) //"1.1"
-    fmt.Printf("%q", convertor.ToString([]int{1, 2, 3})) //"[1,2,3]"
+    var aMap = map[string]int{"a": 1, "b": 2, "c": 3}
+    jsonStr, _ := convertor.ToJson(aMap)
+    fmt.Printf("%q", jsonStr) //"{\"a\":1,\"b\":2,\"c\":3}"
+}
+```
+
+
+
+### <span id="ToPointer">ToPointer</span>
+
+<p>Returns a pointer to passed value. </p>
+
+<b>Signature:</b>
+
+```go
+func ToPointer[T any](value T) *T
+```
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/convertor"
+)
+
+func main() {
+    result := convertor.ToPointer(123)
+    fmt.Println(*result) //123
 }
 ```
 
