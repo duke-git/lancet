@@ -181,7 +181,7 @@ func TestColorRGBToHex(t *testing.T) {
 
 func TestToPointer(t *testing.T) {
 	assert := internal.NewAssert(t, "TestToPointer")
-	result := ToPointer[int](123)
+	result := ToPointer(123)
 
 	assert.Equal(*result, 123)
 }
