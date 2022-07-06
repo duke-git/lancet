@@ -13,7 +13,7 @@ import (
 )
 
 // Contain check if the value is in the slice or not
-func Contain[T any](slice []T, value T) bool {
+func Contain[T comparable](slice []T, value T) bool {
 	for _, v := range slice {
 		if reflect.DeepEqual(v, value) {
 			return true
@@ -24,7 +24,7 @@ func Contain[T any](slice []T, value T) bool {
 }
 
 // ContainSubSlice check if the slice contain subslice or not
-func ContainSubSlice[T any](slice, subslice []T) bool {
+func ContainSubSlice[T comparable](slice, subslice []T) bool {
 	for _, v := range subslice {
 		if !Contain(slice, v) {
 			return false
@@ -108,7 +108,7 @@ func Difference[T comparable](slice, comparedSlice []T) []T {
 // DifferenceBy it accepts iteratee which is invoked for each element of slice
 // and values to generate the criterion by which they're compared.
 // like lodash.js differenceBy: https://lodash.com/docs/4.17.15#differenceBy,
-func DifferenceBy[T any](slice []T, comparedSlice []T, iteratee func(index int, item T) T) []T {
+func DifferenceBy[T comparable](slice []T, comparedSlice []T, iteratee func(index int, item T) T) []T {
 	orginSliceAfterMap := Map(slice, iteratee)
 	comparedSliceAfterMap := Map(comparedSlice, iteratee)
 
@@ -616,7 +616,7 @@ func Union[T any](slices ...[]T) []T {
 }
 
 // Intersection creates a slice of unique values that included by all slices.
-func Intersection[T any](slices ...[]T) []T {
+func Intersection[T comparable](slices ...[]T) []T {
 	if len(slices) == 0 {
 		return []T{}
 	}
@@ -649,7 +649,7 @@ func Intersection[T any](slices ...[]T) []T {
 }
 
 // SymmetricDifference oppoiste operation of intersection function
-func SymmetricDifference[T any](slices ...[]T) []T {
+func SymmetricDifference[T comparable](slices ...[]T) []T {
 	if len(slices) == 0 {
 		return []T{}
 	}
@@ -765,7 +765,7 @@ func SortByField(slice any, field string, sortType ...string) error {
 }
 
 // Without creates a slice excluding all given values
-func Without[T any](slice []T, values ...T) []T {
+func Without[T comparable](slice []T, values ...T) []T {
 	if len(values) == 0 || len(slice) == 0 {
 		return slice
 	}
