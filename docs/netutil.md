@@ -237,7 +237,7 @@ func main() {
 
 ```go
 // params[0] is header which type should be http.Header or map[string]string,
-// params[1] is query param which type should be url.Values or map[string]any,
+// params[1] is query param which type should be url.Values or map[string]string,
 // params[2] is post body which type should be []byte.
 // params[3] is http client which type should be http.Client.
 func HttpGet(url string, params ...any) (*http.Response, error)
@@ -279,7 +279,7 @@ func main() {
 
 ```go
 // params[0] is header which type should be http.Header or map[string]string,
-// params[1] is query param which type should be url.Values or map[string]any,
+// params[1] is query param which type should be url.Values or map[string]string,
 // params[2] is post body which type should be []byte.
 // params[3] is http client which type should be http.Client.
 func HttpPost(url string, params ...any) (*http.Response, error)
@@ -328,7 +328,7 @@ func main() {
 
 ```go
 // params[0] is header which type should be http.Header or map[string]string,
-// params[1] is query param which type should be url.Values or map[string]any,
+// params[1] is query param which type should be url.Values or map[string]string,
 // params[2] is post body which type should be []byte.
 // params[3] is http client which type should be http.Client.
 func HttpPut(url string, params ...any) (*http.Response, error)
@@ -378,7 +378,7 @@ func main() {
 
 ```go
 // params[0] is header which type should be http.Header or map[string]string,
-// params[1] is query param which type should be url.Values or map[string]any,
+// params[1] is query param which type should be url.Values or map[string]string,
 // params[2] is post body which type should be []byte.
 // params[3] is http client which type should be http.Client.
 func HttpDelete(url string, params ...any) (*http.Response, error)
@@ -417,7 +417,7 @@ func main() {
 
 ```go
 // params[0] is header which type should be http.Header or map[string]string,
-// params[1] is query param which type should be url.Values or map[string]any,
+// params[1] is query param which type should be url.Values or map[string]string,
 // params[2] is post body which type should be []byte.
 // params[3] is http client which type should be http.Client.
 func HttpPatch(url string, params ...any) (*http.Response, error)

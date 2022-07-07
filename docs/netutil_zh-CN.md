@@ -235,7 +235,7 @@ func main() {
 
 ```go
 // params[0] http请求header，类型必须是http.Header或者map[string]string
-// params[1] http查询字符串，类型必须是url.Values或者map[string]any
+// params[1] http查询字符串，类型必须是url.Values或者map[string]string
 // params[2] post请求体，类型必须是[]byte
 // params[3] http client，类型必须是http.Client
 func HttpGet(url string, params ...any) (*http.Response, error)
@@ -277,7 +277,7 @@ func main() {
 
 ```go
 // params[0] http请求header，类型必须是http.Header或者map[string]string
-// params[1] http查询字符串，类型必须是url.Values或者map[string]any
+// params[1] http查询字符串，类型必须是url.Values或者map[string]string
 // params[2] post请求体，类型必须是[]byte
 // params[3] http client，类型必须是http.Client
 func HttpPost(url string, params ...any) (*http.Response, error)
@@ -326,7 +326,7 @@ func main() {
 
 ```go
 // params[0] http请求header，类型必须是http.Header或者map[string]string
-// params[1] http查询字符串，类型必须是url.Values或者map[string]any
+// params[1] http查询字符串，类型必须是url.Values或者map[string]string
 // params[2] post请求体，类型必须是[]byte
 // params[3] http client，类型必须是http.Client
 func HttpPut(url string, params ...any) (*http.Response, error)
@@ -376,7 +376,7 @@ func main() {
 
 ```go
 // params[0] http请求header，类型必须是http.Header或者map[string]string
-// params[1] http查询字符串，类型必须是url.Values或者map[string]any
+// params[1] http查询字符串，类型必须是url.Values或者map[string]string
 // params[2] post请求体，类型必须是[]byte
 // params[3] http client，类型必须是http.Client
 func HttpDelete(url string, params ...any) (*http.Response, error)
@@ -415,7 +415,7 @@ func main() {
 
 ```go
 // params[0] http请求header，类型必须是http.Header或者map[string]string
-// params[1] http查询字符串，类型必须是url.Values或者map[string]any
+// params[1] http查询字符串，类型必须是url.Values或者map[string]string
 // params[2] post请求体，类型必须是[]byte
 // params[3] http client，类型必须是http.Client
 func HttpPatch(url string, params ...any) (*http.Response, error)
