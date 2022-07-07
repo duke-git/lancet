@@ -3,7 +3,6 @@ package netutil
 import (
 	"bytes"
 	"errors"
-	"fmt"
 	"io/ioutil"
 	"net/http"
 	"net/url"
@@ -81,9 +80,18 @@ func setHeaderAndQueryAndBody(req *http.Request, reqUrl string, header, queryPar
 	if err != nil {
 		return err
 	}
-	if req.Header.Get("Content-Type") == "multipart/form-data" || req.Header.Get("Content-Type") == "application/x-www-form-urlencoded" {
-		formData := queryParam.(url.Values)
-		err = setBodyByte(req, []byte(formData.Encode()))
+	if strings.Contains(req.Header.Get("Content-Type"), "multipart/form-data") || req.Header.Get("Content-Type") == "application/x-www-form-urlencoded" {
+		if formData, ok := queryParam.(url.Values); ok {
+			err = setBodyByte(req, []byte(formData.Encode()))
+		}
+		if formData, ok := queryParam.(map[string]string); ok {
+			postData := url.Values{}
+			for k, v := range formData {
+				postData.Set(k, v)
+			}
+			err = setBodyByte(req, []byte(postData.Encode()))
+		}
+
 	} else {
 		err = setBodyByte(req, body)
 	}
@@ -132,15 +140,15 @@ func setQueryParam(req *http.Request, reqUrl string, queryParam any) error {
 	var values url.Values
 	if queryParam != nil {
 		switch v := queryParam.(type) {
-		case map[string]any:
+		case map[string]string:
 			values = url.Values{}
 			for k := range v {
-				values.Set(k, fmt.Sprintf("%v", v[k]))
+				values.Set(k, v[k])
 			}
 		case url.Values:
 			values = v
 		default:
-			return errors.New("query params type should be url.Values or map[string]any")
+			return errors.New("query string params type should be url.Values or map[string]string")
 		}
 	}
 
