@@ -72,7 +72,7 @@ import (
 <b>Signature:</b>
 
 ```go
-func Contain[T any](slice []T, value T) bool
+func Contain[T comparable](slice []T, value T) bool
 ```
 <b>Example:</b>
 
@@ -95,7 +95,7 @@ func main() {
 <b>Signature:</b>
 
 ```go
-func ContainSubSlice[T any](slice, subslice []T) bool
+func ContainSubSlice[T comparable](slice, subslice []T) bool
 ```
 <b>Example:</b>
 
@@ -253,7 +253,7 @@ func main() {
 <b>Signature:</b>
 
 ```go
-func DifferenceBy[T any](slice []T, comparedSlice []T, iteratee func(index int, item T) T) []T
+func DifferenceBy[T comparable](slice []T, comparedSlice []T, iteratee func(index int, item T) T) []T
 ```
 <b>Example:</b>
 
@@ -719,7 +719,7 @@ func main() {
 <b>Signature:</b>
 
 ```go
-func Intersection[T any](slices ...[]T) []T
+func Intersection[T comparable](slices ...[]T) []T
 ```
 <b>Example:</b>
 
@@ -777,7 +777,7 @@ func main() {
 <b>Signature:</b>
 
 ```go
-func IndexOf[T any](slice []T, value T) int
+func IndexOf[T comparable](slice []T, value T) int
 ```
 <b>Example:</b>
 
@@ -805,7 +805,7 @@ func main() {
 <b>Signature:</b>
 
 ```go
-func LastIndexOf[T any](slice []T, value T) int
+func LastIndexOf[T comparable](slice []T, value T) int
 ```
 <b>Example:</b>
 
@@ -1040,7 +1040,7 @@ func main() {
 <b>Signature:</b>
 
 ```go
-func SymmetricDifference[T any](slices ...[]T) []T
+func SymmetricDifference[T comparable](slices ...[]T) []T
 ```
 <b>Example:</b>
 
@@ -1118,7 +1118,7 @@ func main() {
 <b>Signature:</b>
 
 ```go
-func Unique[T any](slice []T) []T
+func Unique[T comparable](slice []T) []T
 ```
 <b>Example:</b>
 
@@ -1142,7 +1142,7 @@ func main() {
 <b>Signature:</b>
 
 ```go
-func UniqueBy[T any](slice []T, iteratee func(item T) T) []T
+func UniqueBy[T comparable](slice []T, iteratee func(item T) T) []T
 ```
 <b>Example:</b>
 
@@ -1168,7 +1168,7 @@ func main() {
 <b>Signature:</b>
 
 ```go
-func Union[T any](slices ...[]T) []T
+func Union[T comparable](slices ...[]T) []T
 ```
 <b>Example:</b>
 
@@ -1222,7 +1222,7 @@ func main() {
 <b>Signature:</b>
 
 ```go
-func Without[T any](slice []T, values ...T) []T
+func Without[T comparable](slice []T, values ...T) []T
 ```
 <b>Example:</b>
 
