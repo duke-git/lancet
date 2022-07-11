@@ -175,6 +175,17 @@ func ToPointer[T any](value T) *T {
 	return &value
 }
 
+// ToMap convert a slice or an array of structs to a map
+func ToMap[T any, K comparable, V any](array []T, iteratee func(T) (K, V)) map[K]V {
+	res := make(map[K]V, len(array))
+	for _, item := range array {
+		k, v := iteratee(item)
+		res[k] = v
+	}
+
+	return res
+}
+
 // StructToMap convert struct to map, only convert exported struct field
 // map key is specified same as struct field tag `json` value
 func StructToMap(value any) (map[string]any, error) {

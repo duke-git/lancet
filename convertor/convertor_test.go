@@ -142,6 +142,25 @@ func TestToJson(t *testing.T) {
 	assert.Equal("{\"Name\":\"TestStruct\"}", structJsonStr)
 }
 
+func TestToMap(t *testing.T) {
+	assert := internal.NewAssert(t, "TestStructToMap")
+
+	type Message struct {
+		name string
+		code int
+	}
+	messages := []Message{
+		{name: "Hello", code: 100},
+		{name: "Hi", code: 101},
+	}
+	result := ToMap(messages, func(msg Message) (int, string) {
+		return msg.code, msg.name
+	})
+	expected := map[int]string{100: "Hello", 101: "Hi"}
+
+	assert.Equal(expected, result)
+}
+
 func TestStructToMap(t *testing.T) {
 	assert := internal.NewAssert(t, "TestStructToMap")
 
