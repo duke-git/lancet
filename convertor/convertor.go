@@ -74,6 +74,20 @@ func ToChar(s string) []string {
 	return c
 }
 
+// ToChannel convert a array of elements to a read-only channels
+func ToChannel[T any](array []T) <-chan T {
+	ch := make(chan T)
+
+	go func() {
+		for _, item := range array {
+			ch <- item
+		}
+		close(ch)
+	}()
+
+	return ch
+}
+
 // ToString convert value to string
 func ToString(value any) string {
 	res := ""
