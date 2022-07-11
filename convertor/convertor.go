@@ -189,7 +189,7 @@ func ToPointer[T any](value T) *T {
 	return &value
 }
 
-// ToMap convert a slice or an array of structs to a map
+// ToMap convert a slice or an array of structs to a map based on iteratee function
 func ToMap[T any, K comparable, V any](array []T, iteratee func(T) (K, V)) map[K]V {
 	res := make(map[K]V, len(array))
 	for _, item := range array {
@@ -228,6 +228,17 @@ func StructToMap(value any) (map[string]any, error) {
 	}
 
 	return res, nil
+}
+
+// MapToSlice convert a map to a slice based on iteratee function
+func MapToSlice[T any, K comparable, V any](aMap map[K]V, iteratee func(K, V) T) []T {
+	res := make([]T, 0, len(aMap))
+
+	for k, v := range aMap {
+		res = append(res, iteratee(k, v))
+	}
+
+	return res
 }
 
 // ColorHexToRGB convert hex color to rgb color

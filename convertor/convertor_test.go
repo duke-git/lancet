@@ -2,6 +2,7 @@ package convertor
 
 import (
 	"fmt"
+	"strconv"
 	"testing"
 
 	"github.com/duke-git/lancet/v2/internal"
@@ -160,7 +161,7 @@ func TestToJson(t *testing.T) {
 }
 
 func TestToMap(t *testing.T) {
-	assert := internal.NewAssert(t, "TestStructToMap")
+	assert := internal.NewAssert(t, "TestToMap")
 
 	type Message struct {
 		name string
@@ -190,8 +191,20 @@ func TestStructToMap(t *testing.T) {
 		100,
 	}
 	pm, _ := StructToMap(p)
-	var expected = map[string]any{"name": "test"}
+
+	expected := map[string]any{"name": "test"}
 	assert.Equal(expected, pm)
+}
+
+func TestMapToSlice(t *testing.T) {
+	assert := internal.NewAssert(t, "TestMapToSlice")
+
+	aMap := map[string]int{"a": 1, "b": 2, "c": 3}
+	result := MapToSlice(aMap, func(key string, value int) string {
+		return key + ":" + strconv.Itoa(value)
+	})
+
+	assert.Equal([]string{"a:1", "b:2", "c:3"}, result)
 }
 
 func TestColorHexToRGB(t *testing.T) {
