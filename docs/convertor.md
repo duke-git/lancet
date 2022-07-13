@@ -24,13 +24,16 @@ import (
 - [ToBool](#ToBool)
 - [ToBytes](#ToBytes)
 - [ToChar](#ToChar)
+- [ToChannel](#ToChannel)
 
 - [ToFloat](#ToFloat)
 - [ToInt](#ToInt)
 - [ToJson](#ToJson)
+- [ToMap](#ToMap)
 - [ToPointer](#ToPointer)
 - [ToString](#ToString)
 - [StructToMap](#StructToMap)
+- [MapToSlice](#MapToSlice)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -194,6 +197,43 @@ func main() {
 ```
 
 
+### <span id="ToChannel">ToChannel</span>
+
+<p>Convert a collection of elements to a read-only channels.</p>
+
+<b>Signature:</b>
+
+```go
+func ToChannel[T any](array []T) <-chan T
+```
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/convertor"
+)
+
+func main() {
+    ch := convertor.ToChannel([]int{1, 2, 3})
+
+	val1, _ := <-ch
+	fmt.Println(val1) //1
+
+	val2, _ := <-ch
+	fmt.Println(val2) //2
+
+	val3, _ := <-ch
+	fmt.Println(val3) //3
+
+	_, ok := <-ch
+    fmt.Println(ok) //false
+}
+```
+
+
 
 ### <span id="ToFloat">ToFloat</span>
 
@@ -289,14 +329,14 @@ func main() {
 
 
 
-### <span id="ToJson">ToJson</span>
+### <span id="ToMap">ToMap</span>
 
-<p>Convert interface to json string. If param can't be converted, will return "" and error. </p>
+<p>Convert a slice or an array of structs to a map based on iteratee function. </p>
 
 <b>Signature:</b>
 
 ```go
-func ToJson(value any) (string, error)
+func ToMap[T any, K comparable, V any](array []T, iteratee func(T) (K, V)) map[K]V
 ```
 <b>Example:</b>
 
@@ -309,9 +349,19 @@ import (
 )
 
 func main() {
-    var aMap = map[string]int{"a": 1, "b": 2, "c": 3}
-    jsonStr, _ := convertor.ToJson(aMap)
-    fmt.Printf("%q", jsonStr) //"{\"a\":1,\"b\":2,\"c\":3}"
+    type Message struct {
+		name string
+		code int
+	}
+	messages := []Message{
+		{name: "Hello", code: 100},
+		{name: "Hi", code: 101},
+	}
+	result := convertor.ToMap(messages, func(msg Message) (int, string) {
+		return msg.code, msg.name
+	})
+
+    fmt.Println(result) //{100: "Hello", 101: "Hi"}
 }
 ```
 
@@ -375,5 +425,36 @@ func main() {
     pm, _ := convertor.StructToMap(p)
 
     fmt.Printf("type: %T, value: %s", pm, pm) //type: map[string]interface {}, value: map[name:test]
+}
+```
+
+
+
+### <span id="MapToSlice">MapToSlice</span>
+
+<p>Convert a map to a slice based on iteratee function.</p>
+
+<b>Signature:</b>
+
+```go
+func MapToSlice[T any, K comparable, V any](aMap map[K]V, iteratee func(K, V) T) []T
+```
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/convertor"
+)
+
+func main() {
+    aMap := map[string]int{"a": 1, "b": 2, "c": 3}
+	result := MapToSlice(aMap, func(key string, value int) string {
+		return key + ":" + strconv.Itoa(value)
+	})
+
+    fmt.Println(result) //[]string{"a:1", "b:2", "c:3"}
 }
 ```
