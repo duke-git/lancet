@@ -26,7 +26,9 @@ import (
 - [GetIps](#GetIps)
 - [GetMacAddrs](#GetMacAddrs)
 - [GetPublicIpInfo](#GetPublicIpInfo)
+- [GetRequestPublicIp](#GetRequestPublicIp)
 - [IsPublicIP](#IsPublicIP)
+- [IsInternalIP](#IsInternalIP)
 - [HttpGet](#HttpGet)
 - [HttpDelete](#HttpDelete)
 - [HttpPost](#HttpPost)
@@ -199,8 +201,51 @@ func main() {
 
 
 
+### <span id="GetRequestPublicIp">GetRequestPublicIp</span>
+<p>Get http request public ip.</p>
+
+<b>Signature:</b>
+
+```go
+func GetRequestPublicIp(req *http.Request) string
+```
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/netutil"
+)
+
+func main() {
+	ip := "36.112.24.10"
+
+	request1 := http.Request{
+		Method: "GET",
+		Header: http.Header{
+			"X-Forwarded-For": {ip},
+		},
+	}
+	publicIp1 := netutil.GetRequestPublicIp(&request1)
+	fmt.Println(publicIp1) //36.112.24.10
+
+	request2 := http.Request{
+		Method: "GET",
+		Header: http.Header{
+			"X-Real-Ip": {ip},
+		},
+	}
+	publicIp2 := netutil.GetRequestPublicIp(&request2)
+	fmt.Println(publicIp2) //36.112.24.10
+}
+```
+
+
+
 ### <span id="IsPublicIP">IsPublicIP</span>
-<p>Checks if a ip is public or not.</p>
+<p>Checks if an ip is public or not.</p>
 
 <b>Signature:</b>
 
@@ -227,6 +272,36 @@ func main() {
 }
 ```
 
+
+
+
+### <span id="IsInternalIP">IsInternalIP</span>
+<p>Checks if an ip is intranet or not.</p>
+
+<b>Signature:</b>
+
+```go
+func IsInternalIP(IP net.IP) bool
+```
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+	"net"
+    "github.com/duke-git/lancet/v2/netutil"
+)
+
+func main() {
+	ip1 := net.ParseIP("127.0.0.1")
+	ip2 := net.ParseIP("36.112.24.10")
+
+	fmt.Println(netutil.IsInternalIP(ip1)) //true
+	fmt.Println(netutil.IsInternalIP(ip2)) //false
+}
+```
 
 
 
