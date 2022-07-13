@@ -25,6 +25,7 @@ func TestCreateFile(t *testing.T) {
 	f := "./text.txt"
 	if CreateFile(f) {
 		file, err := os.Open(f)
+		defer file.Close()
 		assert.IsNil(err)
 		assert.Equal(f, file.Name())
 	} else {
@@ -111,6 +112,7 @@ func TestReadFileToString(t *testing.T) {
 	CreateFile(path)
 
 	f, _ := os.OpenFile(path, os.O_WRONLY|os.O_TRUNC, 0777)
+	defer f.Close()
 	f.WriteString("hello world")
 
 	content, _ := ReadFileToString(path)
@@ -218,6 +220,7 @@ func TestMiMeType(t *testing.T) {
 	assert := internal.NewAssert(t, "TestMiMeType")
 
 	f, _ := os.Open("./file.go")
+	defer f.Close()
 	assert.Equal("text/plain; charset=utf-8", MiMeType(f))
 	assert.Equal("text/plain; charset=utf-8", MiMeType("./file.go"))
 }
