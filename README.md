@@ -118,12 +118,15 @@ import "github.com/duke-git/lancet/v2/convertor"
 - [ToBool](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#ToBool)
 - [ToBytes](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#ToBytes)
 - [ToChar](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#ToChar)
+- [ToChannel](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#ToChannel)
 - [ToFloat](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#ToFloat)
 - [ToInt](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#ToInt)
 - [ToJson](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#ToJson)
+- [ToMap](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#ToMap)
 - [ToPointer](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#ToPointer)
 - [ToString](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#ToString)
 - [StructToMap](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#StructToMap)
+- [MapToSlice](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#MapToSlice)
   
 ### 4. Cryptor package is for data encryption and decryption.
 
@@ -324,7 +327,9 @@ import "github.com/duke-git/lancet/v2/netutil"
 - [GetIps](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#GetIps)
 - [GetMacAddrs](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#GetMacAddrs)
 - [GetPublicIpInfo](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#GetPublicIpInfo)
+- [GetRequestPublicIp](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#GetRequestPublicIp)
 - [IsPublicIP](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#IsPublicIP)
+- [IsInternalIP](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#IsInternalIP)
 - [HttpGet](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#HttpGet)
 - [HttpDelete](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#HttpDelete)
 - [HttpPost](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#HttpPost)
