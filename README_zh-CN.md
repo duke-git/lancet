@@ -4,7 +4,7 @@
 <br/>
 
 ![Go version](https://img.shields.io/badge/go-%3E%3Dv1.18-9cf)
-[![Release](https://img.shields.io/badge/release-2.1.1-green.svg)](https://github.com/duke-git/lancet/releases)
+[![Release](https://img.shields.io/badge/release-2.1.2-green.svg)](https://github.com/duke-git/lancet/releases)
 [![GoDoc](https://godoc.org/github.com/duke-git/lancet/v2?status.svg)](https://pkg.go.dev/github.com/duke-git/lancet/v2)
 [![Go Report Card](https://goreportcard.com/badge/github.com/duke-git/lancet/v2)](https://goreportcard.com/report/github.com/duke-git/lancet/v2)
 [![test](https://github.com/duke-git/lancet/actions/workflows/codecov.yml/badge.svg?branch=main&event=push)](https://github.com/duke-git/lancet/actions/workflows/codecov.yml)
@@ -125,7 +125,7 @@ import "github.com/duke-git/lancet/v2/convertor"
 - [ToPointer](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#ToPointer)
 - [ToString](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#ToString)
 - [StructToMap](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#StructToMap)
-  
+- [MapToSlice](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#MapToSlice)
 ### 4. cryptor加密包支持数据加密和解密，获取md5，hash值。支持base64, md5, hmac, aes, des, rsa。
 
 ```go
@@ -323,7 +323,9 @@ import "github.com/duke-git/lancet/v2/netutil"
 - [GetIps](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#GetIps)
 - [GetMacAddrs](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#GetMacAddrs)
 - [GetPublicIpInfo](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#GetPublicIpInfo)
+- [GetRequestPublicIp](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#GetRequestPublicIp)
 - [IsPublicIP](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#IsPublicIP)
+- [IsInternalIP](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#IsInternalIP)
 - [HttpGet](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#HttpGet)
 - [HttpDelete](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#HttpDelete)
 - [HttpPost](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#HttpPost)
