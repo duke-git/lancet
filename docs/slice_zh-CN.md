@@ -37,6 +37,7 @@ import (
 - [Filter](#Filter)
 - [Find](#Find)
 - [FindLast](#FindLast)
+- [Flatten](#Flatten)
 - [FlattenDeep](#FlattenDeep)
 - [ForEach](#ForEach)
   
@@ -546,6 +547,30 @@ func main() {
 	res, ok := slice.FindLast(nums, even)
 	fmt.Println(res) //4
 	fmt.Println(ok) //true
+}
+```
+
+
+### <span id="Flatten">Flatten</span>
+<p>将切片压平一层</p>
+
+<b>函数签名:</b>
+
+```go
+func Flatten(slice any) any
+```
+<b>例子:</b>
+
+```go
+import (
+	"fmt"
+	"github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+	arr := [][][]string{{{"a", "b"}}, {{"c", "d"}}}
+	res := slice.Flatten(arr)
+	fmt.Println(res) //{{"a", "b"}, {"c", "d"}}
 }
 ```
 

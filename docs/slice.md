@@ -37,6 +37,7 @@ import (
 - [Filter](#Filter)
 - [Find](#Find)
 - [FindLast](#FindLast)
+- [Flatten](#Flatten)
 - [FlattenDeep](#FlattenDeep)
 - [ForEach](#ForEach)
 
@@ -546,6 +547,31 @@ func main() {
 
 
 
+### <span id="Flatten">Flatten</span>
+<p>Flatten slice with one level.</p>
+
+<b>Signature:</b>
+
+```go
+func Flatten(slice any) any
+```
+<b>Example:</b>
+
+```go
+import (
+	"fmt"
+	"github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+	arr := [][][]string{{{"a", "b"}}, {{"c", "d"}}}
+	res := slice.Flatten(arr)
+	fmt.Println(res) //{{"a", "b"}, {"c", "d"}}
+}
+```
+
+
+
 ### <span id="FlattenDeep">FlattenDeep</span>
 <p>flattens slice recursive.</p>
 
@@ -565,7 +591,7 @@ import (
 func main() {
 	arr := [][][]string{{{"a", "b"}}, {{"c", "d"}}}
 	res := slice.FlattenDeep(arr)
-	fmt.Println(res) //[]string{"a", "b", "c", "d"}
+	fmt.Println(res) //{"a", "b", "c", "d"}
 }
 ```
 
