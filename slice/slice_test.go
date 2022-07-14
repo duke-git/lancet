@@ -236,6 +236,14 @@ func TestFindFoundNothing(t *testing.T) {
 	assert.Equal(false, ok)
 }
 
+func TestFlatten(t *testing.T) {
+	input := [][][]string{{{"a", "b"}}, {{"c", "d"}}}
+	expected := [][]string{{"a", "b"}, {"c", "d"}}
+
+	assert := internal.NewAssert(t, "TestFlattenDeep")
+	assert.Equal(expected, Flatten(input))
+}
+
 func TestFlattenDeep(t *testing.T) {
 	input := [][][]string{{{"a", "b"}}, {{"c", "d"}}}
 	expected := []string{"a", "b", "c", "d"}

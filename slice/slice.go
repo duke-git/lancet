@@ -355,6 +355,33 @@ func FindLast[T any](slice []T, predicate func(index int, item T) bool) (*T, boo
 	return &slice[index], true
 }
 
+// Flatten flattens slice with one level
+func Flatten(slice any) any {
+	sv := sliceValue(slice)
+
+	var res reflect.Value
+	if sv.Type().Elem().Kind() == reflect.Interface {
+		res = reflect.MakeSlice(reflect.TypeOf([]interface{}{}), 0, sv.Len())
+	} else if sv.Type().Elem().Kind() == reflect.Slice {
+		res = reflect.MakeSlice(sv.Type().Elem(), 0, sv.Len())
+	} else {
+		return res
+	}
+
+	for i := 0; i < sv.Len(); i++ {
+		item := reflect.ValueOf(sv.Index(i).Interface())
+		if item.Kind() == reflect.Slice {
+			for j := 0; j < item.Len(); j++ {
+				res = reflect.Append(res, item.Index(j))
+			}
+		} else {
+			res = reflect.Append(res, item)
+		}
+	}
+
+	return res.Interface()
+}
+
 // FlattenDeep flattens slice recursive
 func FlattenDeep(slice any) any {
 	sv := sliceValue(slice)
