@@ -5,6 +5,7 @@ import (
 	"io/ioutil"
 	"net"
 	"net/http"
+	"net/url"
 	"strings"
 )
 
@@ -156,4 +157,16 @@ func IsInternalIP(IP net.IP) bool {
 			(ip4[0] == 192 && ip4[1] == 168)
 	}
 	return false
+}
+
+// EncodeUrl encode url
+func EncodeUrl(urlStr string) (string, error) {
+	URL, err := url.Parse(urlStr)
+	if err != nil {
+		return "", err
+	}
+
+	URL.RawQuery = URL.Query().Encode()
+
+	return URL.String(), nil
 }

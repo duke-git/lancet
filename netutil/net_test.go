@@ -96,3 +96,16 @@ func TestGetMacAddrs(t *testing.T) {
 	macAddrs := GetMacAddrs()
 	t.Log(macAddrs)
 }
+
+func TestEncodeUrl(t *testing.T) {
+	assert := internal.NewAssert(t, "TestIsInternalIP")
+
+	urlAddr := "http://www.lancet.com?a=1&b=[2]"
+	encodedUrl, err := EncodeUrl(urlAddr)
+	if err != nil {
+		t.Log(err)
+	}
+
+	expected := "http://www.lancet.com?a=1&b=%5B2%5D"
+	assert.Equal(expected, encodedUrl)
+}
