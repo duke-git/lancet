@@ -56,6 +56,8 @@ import (
 - [Some](#Some)
 - [StringSlice](#StringSlice)
 - [SymmetricDifference](#SymmetricDifference)
+- [ToSlice](#ToSlice)
+- [ToSlicePointer](#ToSlicePointer)
 - [Unique](#Unique)
 - [UniqueBy](#UniqueBy)
 - [Union](#Union)
@@ -1087,7 +1089,7 @@ func main() {
 
 
 
-### <span id="ToSlicePointer">ToSlice</span>
+### <span id="ToSlicePointer">ToSlicePointer</span>
 <p>Returns a pointer to the slices of a variable parameter transformation</p>
 
 <b>Signature:</b>

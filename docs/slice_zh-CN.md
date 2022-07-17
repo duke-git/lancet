@@ -1088,7 +1088,7 @@ func main() {
 
 
 
-### <span id="ToSlicePointer">ToSlice</span>
+### <span id="ToSlicePointer">ToSlicePointer</span>
 <p>将可变参数转为指针切片</p>
 
 <b>函数签名:</b>
