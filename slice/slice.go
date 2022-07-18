@@ -653,14 +653,20 @@ func Intersection[T comparable](slices ...[]T) []T {
 
 	var res []T
 
-	reducer := func(s1, s2 []T) []T {
-		s := make([]T, 0, 0)
-		for _, v := range s1 {
-			if Contain(s2, v) {
-				s = append(s, v)
+	reducer := func(sliceA, sliceB []T) []T {
+		hashMap := make(map[T]int)
+		for _, val := range sliceA {
+			hashMap[val] = 1
+		}
+
+		out := make([]T, 0)
+		for _, val := range sliceB {
+			if v, ok := hashMap[val]; v == 1 && ok {
+				out = append(out, val)
+				hashMap[val]++
 			}
 		}
-		return s
+		return out
 	}
 
 	res = reducer(slices[0], slices[1])
@@ -672,7 +678,7 @@ func Intersection[T comparable](slices ...[]T) []T {
 		res = reducer(reduceSlice[0], reduceSlice[1])
 	}
 
-	return Unique(res)
+	return res
 }
 
 // SymmetricDifference oppoiste operation of intersection function
