@@ -21,6 +21,7 @@ import (
 
 ## 目录
 - [ConvertMapToQueryString](#ConvertMapToQueryString)
+- [EncodeUrl](#EncodeUrl)
 - [GetInternalIp](#GetInternalIp)
 - [GetIps](#GetIps)
 - [GetMacAddrs](#GetMacAddrs)
@@ -70,6 +71,37 @@ func main() {
 	fmt.Println(qs) //a=1&b=2&c=3
 }
 ```
+
+
+
+### <span id="EncodeUrl">EncodeUrl</span>
+<p>编码url query string的值</p>
+
+<b>函数签名:</b>
+
+```go
+func EncodeUrl(urlStr string) (string, error)
+```
+<b>例子:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/netutil"
+)
+
+func main() {
+	urlAddr := "http://www.lancet.com?a=1&b=[2]"
+	encodedUrl, err := netutil.EncodeUrl(urlAddr)
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(encodedUrl) //http://www.lancet.com?a=1&b=%5B2%5D
+}
+```
+
 
 
 

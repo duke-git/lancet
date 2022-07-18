@@ -22,6 +22,8 @@ import (
 
 ## Index
 - [ConvertMapToQueryString](#ConvertMapToQueryString)
+- [EncodeUrl](#EncodeUrl)
+  
 - [GetInternalIp](#GetInternalIp)
 - [GetIps](#GetIps)
 - [GetMacAddrs](#GetMacAddrs)
@@ -33,7 +35,6 @@ import (
 - [HttpDelete](#HttpDelete)
 - [HttpPost](#HttpPost)
 - [HttpPut](#HttpPut)
-
 - [HttpPatch](#HttpPatch)
 - [ParseHttpResponse](#ParseHttpResponse)
 
@@ -69,6 +70,36 @@ func main() {
 	qs := netutil.ConvertMapToQueryString(m)
 
 	fmt.Println(qs) //a=1&b=2&c=3
+}
+```
+
+
+
+### <span id="EncodeUrl">EncodeUrl</span>
+<p>Encode url query string values.</p>
+
+<b>Signature:</b>
+
+```go
+func EncodeUrl(urlStr string) (string, error)
+```
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/netutil"
+)
+
+func main() {
+	urlAddr := "http://www.lancet.com?a=1&b=[2]"
+	encodedUrl, err := netutil.EncodeUrl(urlAddr)
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(encodedUrl) //http://www.lancet.com?a=1&b=%5B2%5D
 }
 ```
 
