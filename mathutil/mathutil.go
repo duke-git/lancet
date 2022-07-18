@@ -57,9 +57,9 @@ func Percent(val, total float64, n int) float64 {
 		return float64(0)
 	}
 	tmp := val / total * 100
-	res := RoundToFloat(tmp, n)
+	result := RoundToFloat(tmp, n)
 
-	return res
+	return result
 }
 
 // RoundToString round up to n decimal places
@@ -67,8 +67,8 @@ func RoundToString(x float64, n int) string {
 	tmp := math.Pow(10.0, float64(n))
 	x *= tmp
 	x = math.Round(x)
-	res := strconv.FormatFloat(x/tmp, 'f', n, 64)
-	return res
+	result := strconv.FormatFloat(x/tmp, 'f', n, 64)
+	return result
 }
 
 // RoundToFloat round up to n decimal places
@@ -89,8 +89,8 @@ func TruncRound(x float64, n int) float64 {
 	} else {
 		newFloat = temp[0] + "." + temp[1][:n]
 	}
-	res, _ := strconv.ParseFloat(newFloat, 64)
-	return res
+	result, _ := strconv.ParseFloat(newFloat, 64)
+	return result
 }
 
 // Max return max value of params

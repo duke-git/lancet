@@ -84,20 +84,20 @@ func (t *BSTree[T]) HasSubTree(subTree *BSTree[T]) bool {
 
 func hasSubTree[T any](superTreeRoot, subTreeRoot *datastructure.TreeNode[T],
 	comparator lancetconstraints.Comparator) bool {
-	res := false
+	result := false
 
 	if superTreeRoot != nil && subTreeRoot != nil {
 		if comparator.Compare(superTreeRoot.Value, subTreeRoot.Value) == 0 {
-			res = isSubTree(superTreeRoot, subTreeRoot, comparator)
+			result = isSubTree(superTreeRoot, subTreeRoot, comparator)
 		}
-		if !res {
-			res = hasSubTree(superTreeRoot.Left, subTreeRoot, comparator)
+		if !result {
+			result = hasSubTree(superTreeRoot.Left, subTreeRoot, comparator)
 		}
-		if !res {
-			res = hasSubTree(superTreeRoot.Right, subTreeRoot, comparator)
+		if !result {
+			result = hasSubTree(superTreeRoot.Right, subTreeRoot, comparator)
 		}
 	}
-	return res
+	return result
 }
 
 // Print the bstree structure

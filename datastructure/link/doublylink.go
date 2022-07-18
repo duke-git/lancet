@@ -208,13 +208,13 @@ func (link *DoublyLink[T]) Size() int {
 
 // Values return slice of all doubly linklist node value
 func (link *DoublyLink[T]) Values() []T {
-	res := []T{}
+	result := []T{}
 	current := link.Head
 	for current != nil {
-		res = append(res, current.Value)
+		result = append(result, current.Value)
 		current = current.Next
 	}
-	return res
+	return result
 }
 
 // Print all nodes info of a linked list

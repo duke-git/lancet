@@ -27,16 +27,16 @@ func After(n int, fn any) func(args ...any) []reflect.Value {
 func Before(n int, fn any) func(args ...any) []reflect.Value {
 	// Catch programming error while constructing the closure
 	mustBeFunction(fn)
-	var res []reflect.Value
+	var result []reflect.Value
 	return func(args ...any) []reflect.Value {
 		if n > 0 {
-			res = unsafeInvokeFunc(fn, args...)
+			result = unsafeInvokeFunc(fn, args...)
 		}
 		if n <= 0 {
 			fn = nil
 		}
 		n--
-		return res
+		return result
 	}
 }
 

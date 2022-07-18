@@ -116,7 +116,7 @@ func ReadFileByLine(path string) ([]string, error) {
 	}
 	defer f.Close()
 
-	res := make([]string, 0)
+	result := make([]string, 0)
 	buf := bufio.NewReader(f)
 
 	for {
@@ -128,10 +128,10 @@ func ReadFileByLine(path string) ([]string, error) {
 		if err != nil {
 			continue
 		}
-		res = append(res, l)
+		result = append(result, l)
 	}
 
-	return res, nil
+	return result, nil
 }
 
 // ListFileNames return all file names in the path
@@ -150,14 +150,14 @@ func ListFileNames(path string) ([]string, error) {
 		return []string{}, nil
 	}
 
-	res := []string{}
+	result := []string{}
 	for i := 0; i < sz; i++ {
 		if !fs[i].IsDir() {
-			res = append(res, fs[i].Name())
+			result = append(result, fs[i].Name())
 		}
 	}
 
-	return res, nil
+	return result, nil
 }
 
 // Zip create zip file, fpath could be a single file or a directory

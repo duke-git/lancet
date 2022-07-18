@@ -213,13 +213,13 @@ func (link *SinglyLink[T]) Size() int {
 
 // Values return slice of all singly linklist node value
 func (link *SinglyLink[T]) Values() []T {
-	res := []T{}
+	result := []T{}
 	current := link.Head
 	for current != nil {
-		res = append(res, current.Value)
+		result = append(result, current.Value)
 		current = current.Next
 	}
-	return res
+	return result
 }
 
 // IsEmpty checks if link is empty or not

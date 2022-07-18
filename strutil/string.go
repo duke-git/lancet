@@ -16,7 +16,7 @@ func CamelCase(s string) string {
 		return ""
 	}
 
-	res := ""
+	result := ""
 	blankSpace := " "
 	regex, _ := regexp.Compile("[-_&]+")
 	ss := regex.ReplaceAllString(s, blankSpace)
@@ -26,13 +26,13 @@ func CamelCase(s string) string {
 			if vv[i] >= 65 && vv[i] <= 96 {
 				vv[0] += 32
 			}
-			res += string(vv)
+			result += string(vv)
 		} else {
-			res += Capitalize(v)
+			result += Capitalize(v)
 		}
 	}
 
-	return res
+	return result
 }
 
 // Capitalize converts the first character of a string to upper case and the remaining to lower case.
@@ -126,15 +126,15 @@ func KebabCase(s string) string {
 	match := regex.ReplaceAllString(s, blankSpace)
 	rs := strings.Split(match, blankSpace)
 
-	var res []string
+	var result []string
 	for _, v := range rs {
 		splitWords := splitWordsToLower(v)
 		if len(splitWords) > 0 {
-			res = append(res, splitWords...)
+			result = append(result, splitWords...)
 		}
 	}
 
-	return strings.Join(res, "-")
+	return strings.Join(result, "-")
 }
 
 // SnakeCase covert string to snake_case
@@ -148,15 +148,15 @@ func SnakeCase(s string) string {
 	match := regex.ReplaceAllString(s, blankSpace)
 	rs := strings.Split(match, blankSpace)
 
-	var res []string
+	var result []string
 	for _, v := range rs {
 		splitWords := splitWordsToLower(v)
 		if len(splitWords) > 0 {
-			res = append(res, splitWords...)
+			result = append(result, splitWords...)
 		}
 	}
 
-	return strings.Join(res, "_")
+	return strings.Join(result, "_")
 }
 
 // Before create substring in source string before position when char first appear

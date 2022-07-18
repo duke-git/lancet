@@ -222,24 +222,24 @@ func (l *List[T]) Unique() {
 
 // Union creates a new list contain all element in list l and other, remove duplicate element.
 func (l *List[T]) Union(other *List[T]) *List[T] {
-	res := NewList([]T{})
+	result := NewList([]T{})
 
-	res.data = append(res.data, l.data...)
-	res.data = append(res.data, other.data...)
-	res.Unique()
+	result.data = append(result.data, l.data...)
+	result.data = append(result.data, other.data...)
+	result.Unique()
 
-	return res
+	return result
 }
 
 // Intersection creates a new list whose element both be contained in list l and other
 func (l *List[T]) Intersection(other *List[T]) *List[T] {
-	res := NewList(make([]T, 0, 0))
+	result := NewList(make([]T, 0, 0))
 
 	for _, v := range l.data {
 		if other.Contain(v) {
-			res.data = append(res.data, v)
+			result.data = append(result.data, v)
 		}
 	}
 
-	return res
+	return result
 }

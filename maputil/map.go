@@ -30,15 +30,15 @@ func Values[K comparable, V any](m map[K]V) []V {
 
 // Merge maps, next key will overwrite previous key
 func Merge[K comparable, V any](maps ...map[K]V) map[K]V {
-	res := make(map[K]V, 0)
+	result := make(map[K]V, 0)
 
 	for _, m := range maps {
 		for k, v := range m {
-			res[k] = v
+			result[k] = v
 		}
 	}
 
-	return res
+	return result
 }
 
 // ForEach executes iteratee funcation for every key and value pair in map
@@ -50,14 +50,14 @@ func ForEach[K comparable, V any](m map[K]V, iteratee func(key K, value V)) {
 
 // Filter iterates over map, return a new map contains all key and value pairs pass the predicate function
 func Filter[K comparable, V any](m map[K]V, predicate func(key K, value V) bool) map[K]V {
-	res := make(map[K]V)
+	result := make(map[K]V)
 
 	for k, v := range m {
 		if predicate(k, v) {
-			res[k] = v
+			result[k] = v
 		}
 	}
-	return res
+	return result
 }
 
 // Intersect iterates over maps, return a new map of key and value pairs in all given maps
@@ -69,7 +69,7 @@ func Intersect[K comparable, V any](maps ...map[K]V) map[K]V {
 		return maps[0]
 	}
 
-	var res map[K]V
+	var result map[K]V
 
 	reducer := func(m1, m2 map[K]V) map[K]V {
 		m := make(map[K]V)
@@ -82,25 +82,25 @@ func Intersect[K comparable, V any](maps ...map[K]V) map[K]V {
 	}
 
 	reduceMaps := make([]map[K]V, 2, 2)
-	res = reducer(maps[0], maps[1])
+	result = reducer(maps[0], maps[1])
 
 	for i := 2; i < len(maps); i++ {
-		reduceMaps[0] = res
+		reduceMaps[0] = result
 		reduceMaps[1] = maps[i]
-		res = reducer(reduceMaps[0], reduceMaps[1])
+		result = reducer(reduceMaps[0], reduceMaps[1])
 	}
 
-	return res
+	return result
 }
 
 // Minus creates an map of whose key in mapA but not in mapB
 func Minus[K comparable, V any](mapA, mapB map[K]V) map[K]V {
-	res := make(map[K]V)
+	result := make(map[K]V)
 
 	for k, v := range mapA {
 		if _, ok := mapB[k]; !ok {
-			res[k] = v
+			result[k] = v
 		}
 	}
-	return res
+	return result
 }

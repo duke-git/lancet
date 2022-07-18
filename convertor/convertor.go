@@ -90,70 +90,70 @@ func ToChannel[T any](array []T) <-chan T {
 
 // ToString convert value to string
 func ToString(value any) string {
-	res := ""
+	result := ""
 	if value == nil {
-		return res
+		return result
 	}
 
 	v := reflect.ValueOf(value)
 
 	switch value.(type) {
 	case float32, float64:
-		res = strconv.FormatFloat(v.Float(), 'f', -1, 64)
-		return res
+		result = strconv.FormatFloat(v.Float(), 'f', -1, 64)
+		return result
 	case int, int8, int16, int32, int64:
-		res = strconv.FormatInt(v.Int(), 10)
-		return res
+		result = strconv.FormatInt(v.Int(), 10)
+		return result
 	case uint, uint8, uint16, uint32, uint64:
-		res = strconv.FormatUint(v.Uint(), 10)
-		return res
+		result = strconv.FormatUint(v.Uint(), 10)
+		return result
 	case string:
-		res = v.String()
-		return res
+		result = v.String()
+		return result
 	case []byte:
-		res = string(v.Bytes())
-		return res
+		result = string(v.Bytes())
+		return result
 	default:
 		newValue, _ := json.Marshal(value)
-		res = string(newValue)
-		return res
+		result = string(newValue)
+		return result
 	}
 }
 
 // ToJson convert value to a valid json string
 func ToJson(value any) (string, error) {
-	res, err := json.Marshal(value)
+	result, err := json.Marshal(value)
 	if err != nil {
 		return "", err
 	}
 
-	return string(res), nil
+	return string(result), nil
 }
 
 // ToFloat convert value to a float64, if input is not a float return 0.0 and error
 func ToFloat(value any) (float64, error) {
 	v := reflect.ValueOf(value)
 
-	res := 0.0
+	result := 0.0
 	err := fmt.Errorf("ToInt: unvalid interface type %T", value)
 	switch value.(type) {
 	case int, int8, int16, int32, int64:
-		res = float64(v.Int())
-		return res, nil
+		result = float64(v.Int())
+		return result, nil
 	case uint, uint8, uint16, uint32, uint64:
-		res = float64(v.Uint())
-		return res, nil
+		result = float64(v.Uint())
+		return result, nil
 	case float32, float64:
-		res = v.Float()
-		return res, nil
+		result = v.Float()
+		return result, nil
 	case string:
-		res, err = strconv.ParseFloat(v.String(), 64)
+		result, err = strconv.ParseFloat(v.String(), 64)
 		if err != nil {
-			res = 0.0
+			result = 0.0
 		}
-		return res, err
+		return result, err
 	default:
-		return res, err
+		return result, err
 	}
 }
 
@@ -161,26 +161,26 @@ func ToFloat(value any) (float64, error) {
 func ToInt(value any) (int64, error) {
 	v := reflect.ValueOf(value)
 
-	var res int64
+	var result int64
 	err := fmt.Errorf("ToInt: invalid interface type %T", value)
 	switch value.(type) {
 	case int, int8, int16, int32, int64:
-		res = v.Int()
-		return res, nil
+		result = v.Int()
+		return result, nil
 	case uint, uint8, uint16, uint32, uint64:
-		res = int64(v.Uint())
-		return res, nil
+		result = int64(v.Uint())
+		return result, nil
 	case float32, float64:
-		res = int64(v.Float())
-		return res, nil
+		result = int64(v.Float())
+		return result, nil
 	case string:
-		res, err = strconv.ParseInt(v.String(), 0, 64)
+		result, err = strconv.ParseInt(v.String(), 0, 64)
 		if err != nil {
-			res = 0
+			result = 0
 		}
-		return res, err
+		return result, err
 	default:
-		return res, err
+		return result, err
 	}
 }
 
@@ -191,13 +191,13 @@ func ToPointer[T any](value T) *T {
 
 // ToMap convert a slice or an array of structs to a map based on iteratee function
 func ToMap[T any, K comparable, V any](array []T, iteratee func(T) (K, V)) map[K]V {
-	res := make(map[K]V, len(array))
+	result := make(map[K]V, len(array))
 	for _, item := range array {
 		k, v := iteratee(item)
-		res[k] = v
+		result[k] = v
 	}
 
-	return res
+	return result
 }
 
 // StructToMap convert struct to map, only convert exported struct field
@@ -213,7 +213,7 @@ func StructToMap(value any) (map[string]any, error) {
 		return nil, fmt.Errorf("data type %T not support, shuld be struct or pointer to struct", value)
 	}
 
-	res := make(map[string]any)
+	result := make(map[string]any)
 
 	fieldNum := t.NumField()
 	pattern := `^[A-Z]`
@@ -222,23 +222,23 @@ func StructToMap(value any) (map[string]any, error) {
 		name := t.Field(i).Name
 		tag := t.Field(i).Tag.Get("json")
 		if regex.MatchString(name) && tag != "" {
-			//res[name] = v.Field(i).Interface()
-			res[tag] = v.Field(i).Interface()
+			//result[name] = v.Field(i).Interface()
+			result[tag] = v.Field(i).Interface()
 		}
 	}
 
-	return res, nil
+	return result, nil
 }
 
 // MapToSlice convert a map to a slice based on iteratee function
 func MapToSlice[T any, K comparable, V any](aMap map[K]V, iteratee func(K, V) T) []T {
-	res := make([]T, 0, len(aMap))
+	result := make([]T, 0, len(aMap))
 
 	for k, v := range aMap {
-		res = append(res, iteratee(k, v))
+		result = append(result, iteratee(k, v))
 	}
 
-	return res
+	return result
 }
 
 // ColorHexToRGB convert hex color to rgb color
