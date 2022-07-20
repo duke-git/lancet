@@ -292,6 +292,7 @@ import "github.com/duke-git/lancet/v2/maputil"
 - [Merge](https://github.com/duke-git/lancet/blob/main/docs/maputil.md#Merge)
 - [Minus](https://github.com/duke-git/lancet/blob/main/docs/maputil.md#Minus)
 - [Values](https://github.com/duke-git/lancet/blob/main/docs/maputil.md#Values)
+- [IsDisjoint](https://github.com/duke-git/lancet/blob/main/docs/maputil.md#IsDisjoint)
 
 
 ### 11. Mathutil package implements some functions for math calculation.

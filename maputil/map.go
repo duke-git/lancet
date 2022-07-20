@@ -108,3 +108,13 @@ func Minus[K comparable, V any](mapA, mapB map[K]V) map[K]V {
 	}
 	return result
 }
+
+// IsDisjoint two map are disjoint if they have no keys in common
+func IsDisjoint[K comparable, V any](mapA, mapB map[K]V) bool {
+	for k := range mapA {
+		if _, ok := mapB[k]; ok {
+			return false
+		}
+	}
+	return true
+}
