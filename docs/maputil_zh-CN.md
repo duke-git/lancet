@@ -27,6 +27,7 @@ import (
 - [Merge](#Merge)
 - [Minus](#Minus)
 - [Values](#Values)
+- [IsDisjoint](#IsDisjoint)
 
 <div STYLE="page-break-after: always;"></div>
 
