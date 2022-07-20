@@ -27,6 +27,7 @@ import (
 - [Merge](#Merge)
 - [Minus](#Minus)
 - [Values](#Values)
+- [Values](#Values)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -303,13 +304,13 @@ func main() {
 }
 ```
 
-### <span id="Values">Values</span>
-<p>Returns a boolean</p>
+### <span id="IsDisjoint">IsDisjoint</span>
+<p>Checks two  are disjoint if they have no keys in common</p>
 
 <b>Signature:</b>
 
 ```go
-IsDisjoint[K comparable, V any](mapA, mapB map[K]V) bool
+func IsDisjoint[K comparable, V any](mapA, mapB map[K]V) bool
 ```
 <b>Example:</b>
 
@@ -337,18 +338,15 @@ func main() {
 		4: "c",
 		5: "d",
 	}
-	
+
 	m3 := map[int]string{
 		6: "a",
 	}
 
 	ok := maputil.IsDisjoint(m2, m1)
-
 	fmt.Println(ok) // false
 
-
 	ok = maputil.IsDisjoint(m2, m3)
-
 	fmt.Println(ok) // true
 }
 ```

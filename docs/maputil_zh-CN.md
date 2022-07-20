@@ -231,7 +231,6 @@ func main() {
 
 
 
-
 ### <span id="Minus">Minus</span>
 <p>返回一个map，其中的key存在于mapA，不存在于mapB.</p>
 
@@ -300,5 +299,53 @@ func main() {
 	sort.Strings(values)
 
 	fmt.Println(values) // []string{"a", "a", "b", "c", "d"}
+}
+```
+
+
+### <span id="IsDisjoint">IsDisjoint</span>
+<p>验证两个map是否具有不同的key</p>
+
+<b>函数签名:</b>
+
+```go
+func IsDisjoint[K comparable, V any](mapA, mapB map[K]V) bool
+```
+<b>例子:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/maputil"
+)
+
+func main() {
+	m1 := map[int]string{
+		1: "a",
+		2: "a",
+		3: "b",
+		4: "c",
+		5: "d",
+	}
+
+	m2 := map[int]string{
+		1: "a",
+		2: "a",
+		3: "b",
+		4: "c",
+		5: "d",
+	}
+
+	m3 := map[int]string{
+		6: "a",
+	}
+
+	ok := maputil.IsDisjoint(m2, m1)
+	fmt.Println(ok) // false
+
+	ok = maputil.IsDisjoint(m2, m3)
+	fmt.Println(ok) // true
 }
 ```
