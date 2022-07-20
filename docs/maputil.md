@@ -302,3 +302,53 @@ func main() {
 	fmt.Println(values) // []string{"a", "a", "b", "c", "d"}
 }
 ```
+
+### <span id="Values">Values</span>
+<p>Returns a boolean</p>
+
+<b>Signature:</b>
+
+```go
+IsDisjoint[K comparable, V any](mapA, mapB map[K]V) bool
+```
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/maputil"
+)
+
+func main() {
+	m1 := map[int]string{
+		1: "a",
+		2: "a",
+		3: "b",
+		4: "c",
+		5: "d",
+	}
+
+	m2 := map[int]string{
+		1: "a",
+		2: "a",
+		3: "b",
+		4: "c",
+		5: "d",
+	}
+	
+	m3 := map[int]string{
+		6: "a",
+	}
+
+	ok := maputil.IsDisjoint(m2, m1)
+
+	fmt.Println(ok) // false
+
+
+	ok = maputil.IsDisjoint(m2, m3)
+
+	fmt.Println(ok) // true
+}
+```
