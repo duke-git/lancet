@@ -148,3 +148,25 @@ func TestMinus(t *testing.T) {
 
 	assert.Equal(map[string]int{"c": 3}, Minus(m1, m2))
 }
+
+func TestIsDisjoint(t *testing.T) {
+	assert := internal.NewAssert(t, "TestMinus")
+
+	m1 := map[string]int{
+		"a": 1,
+		"b": 2,
+		"c": 3,
+	}
+
+	m2 := map[string]int{
+		"d": 22,
+	}
+
+	assert.Equal(true, IsDisjoint(m1, m2))
+
+	m3 := map[string]int{
+		"a": 22,
+	}
+
+	assert.Equal(false, IsDisjoint(m1, m3))
+}
