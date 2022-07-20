@@ -101,8 +101,6 @@ import (
 )
 
 func main() {
-    assert := internal.NewAssert(t, "TestBefore")
-
 	arr := []string{"a", "b", "c", "d", "e"}
 	f := function.Before(3, func(i int) int {
 		return i
@@ -120,7 +118,7 @@ func main() {
 	}
 
 	expected := []int64{0, 1, 2, 2, 2}
-	assert.Equal(expected, res)
+	fmt.Println(res) // 0, 1, 2, 2, 2
 }
 ```
 

@@ -101,8 +101,6 @@ import (
 )
 
 func main() {
-	assert := internal.NewAssert(t, "TestBefore")
-
 	arr := []string{"a", "b", "c", "d", "e"}
 	f := function.Before(3, func(i int) int {
 		return i
@@ -119,8 +117,7 @@ func main() {
 		appendStr(i, arr[i], f)
 	}
 
-	expected := []int64{0, 1, 2, 2, 2}
-	assert.Equal(expected, res)
+	fmt.Println(res) // 0, 1, 2, 2, 2
 }
 ```
 
@@ -297,7 +294,7 @@ func main() {
 	time.Sleep(5 * time.Second)
 	close(stop)
 
-    fmt.Println(res) //[* * * * *]
+	fmt.Println(res) //[* * * * *]
 }
 ```
 
