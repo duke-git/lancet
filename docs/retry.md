@@ -97,8 +97,8 @@ import (
 
 func main() {
     var number int
-    var increaseNumber retry.RetryFunc
-	increaseNumber = func() error {
+
+	increaseNumber := func() error {
 		number++
 		if number == 3 {
 			return nil
@@ -139,6 +139,7 @@ import (
 
 func main() {
     var number int
+
 	increaseNumber := func() error {
 		number++
 		if number == 3 {
