@@ -38,7 +38,7 @@ func AesEcbEncrypt(data, key []byte) []byte {
 func AesEcbDecrypt(encrypted, key []byte) []byte {
 	cipher, _ := aes.NewCipher(generateAesKey(key))
 	decrypted := make([]byte, len(encrypted))
-	//
+
 	for bs, be := 0, cipher.BlockSize(); bs < len(encrypted); bs, be = bs+cipher.BlockSize(), be+cipher.BlockSize() {
 		cipher.Decrypt(decrypted[bs:be], encrypted[bs:be])
 	}
@@ -54,14 +54,18 @@ func AesEcbDecrypt(encrypted, key []byte) []byte {
 // AesCbcEncrypt encrypt data with key use AES CBC algorithm
 // len(key) should be 16, 24 or 32
 func AesCbcEncrypt(data, key []byte) []byte {
-	// len(key) should be 16, 24 or 32
 	block, _ := aes.NewCipher(key)
-	blockSize := block.BlockSize()
-	data = pkcs7Padding(data, blockSize)
-	blockMode := cipher.NewCBCEncrypter(block, key[:blockSize])
+	data = pkcs7Padding(data, block.BlockSize())
 
-	encrypted := make([]byte, len(data))
-	blockMode.CryptBlocks(encrypted, data)
+	encrypted := make([]byte, aes.BlockSize+len(data))
+	iv := encrypted[:aes.BlockSize]
+	if _, err := io.ReadFull(rand.Reader, iv); err != nil {
+		panic(err)
+	}
+
+	mode := cipher.NewCBCEncrypter(block, iv)
+	mode.CryptBlocks(encrypted[aes.BlockSize:], data)
+
 	return encrypted
 }
 
@@ -69,12 +73,14 @@ func AesCbcEncrypt(data, key []byte) []byte {
 // len(key) should be 16, 24 or 32
 func AesCbcDecrypt(encrypted, key []byte) []byte {
 	block, _ := aes.NewCipher(key)
-	blockSize := block.BlockSize()
-	blockMode := cipher.NewCBCDecrypter(block, key[:blockSize])
 
-	decrypted := make([]byte, len(encrypted))
-	blockMode.CryptBlocks(decrypted, encrypted)
-	decrypted = pkcs7UnPadding(decrypted)
+	iv := encrypted[:aes.BlockSize]
+	encrypted = encrypted[aes.BlockSize:]
+
+	mode := cipher.NewCBCDecrypter(block, iv)
+	mode.CryptBlocks(encrypted, encrypted)
+
+	decrypted := pkcs7UnPadding(encrypted)
 	return decrypted
 }
 
