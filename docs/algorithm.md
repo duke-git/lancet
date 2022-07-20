@@ -584,8 +584,8 @@ import (
 func main() {
     cache := algorithm.NewLRUCache[int, int](2)
 
-	cache.Put(1, 1)
-	cache.Put(2, 2)
+    cache.Put(1, 1)
+    cache.Put(2, 2)
 
     _, ok := cache.Get(0) // ok -> false
 

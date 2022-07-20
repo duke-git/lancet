@@ -712,7 +712,7 @@ func main() {
 
 ```go
 type theTime struct {
-	unix int64
+    unix int64
 }
 func NewUnix(unix int64) *theTime
 ```
@@ -741,7 +741,7 @@ func main() {
 
 ```go
 type theTime struct {
-	unix int64
+    unix int64
 }
 func NewFormat(t string) (*theTime, error)
 ```
@@ -771,7 +771,7 @@ func main() {
 
 ```go
 type theTime struct {
-	unix int64
+    unix int64
 }
 func NewISO8601(iso8601 string) (*theTime, error)
 ```

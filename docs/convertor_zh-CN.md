@@ -222,16 +222,16 @@ import (
 func main() {
     ch := convertor.ToChannel([]int{1, 2, 3})
 
-	val1, _ := <-ch
-	fmt.Println(val1) //1
+    val1, _ := <-ch
+    fmt.Println(val1) //1
 
-	val2, _ := <-ch
-	fmt.Println(val2) //2
+    val2, _ := <-ch
+    fmt.Println(val2) //2
 
-	val3, _ := <-ch
-	fmt.Println(val3) //3
+    val3, _ := <-ch
+    fmt.Println(val3) //3
 
-	_, ok := <-ch
+    _, ok := <-ch
     fmt.Println(ok) //false
 }
 ```
@@ -353,16 +353,16 @@ import (
 
 func main() {
     type Message struct {
-		name string
-		code int
-	}
-	messages := []Message{
-		{name: "Hello", code: 100},
-		{name: "Hi", code: 101},
-	}
-	result := convertor.ToMap(messages, func(msg Message) (int, string) {
-		return msg.code, msg.name
-	})
+        name string
+        code int
+    }
+    messages := []Message{
+        {name: "Hello", code: 100},
+        {name: "Hi", code: 101},
+    }
+    result := convertor.ToMap(messages, func(msg Message) (int, string) {
+        return msg.code, msg.name
+    })
 
     fmt.Println(result) //{100: "Hello", 101: "Hi"}
 }
@@ -482,9 +482,9 @@ import (
 
 func main() {
     aMap := map[string]int{"a": 1, "b": 2, "c": 3}
-	result := MapToSlice(aMap, func(key string, value int) string {
-		return key + ":" + strconv.Itoa(value)
-	})
+    result := MapToSlice(aMap, func(key string, value int) string {
+        return key + ":" + strconv.Itoa(value)
+    })
 
     fmt.Println(result) //[]string{"a:1", "b:2", "c:3"}
 }

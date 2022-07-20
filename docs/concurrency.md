@@ -84,7 +84,7 @@ import (
 )
 
 func main() {
-    ctx, cancel := context.WithCancel(context.Background())
+	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
 	c := concurrency.NewChannel()
@@ -133,7 +133,7 @@ import (
 )
 
 func main() {
-    ctx, cancel := context.WithCancel(context.Background())
+	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
 	c := concurrency.NewChannel()
@@ -173,14 +173,14 @@ import (
 )
 
 func main() {
-    ctx, cancel := context.WithCancel(context.Background())
+	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
 	c := concurrency.NewChannel()
 	intStream := c.Take(ctx, c.Repeat(ctx, 1, 2), 5)
 
 	for v := range intStream {
-     	fmt.Println(v) //1, 2, 1, 2, 1
+	fmt.Println(v) //1, 2, 1, 2, 1
 	}
 }
 ```
@@ -209,7 +209,7 @@ import (
 )
 
 func main() {
-    ctx, cancel := context.WithCancel(context.Background())
+	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
 	fn := func() any {
@@ -220,7 +220,7 @@ func main() {
 	dataStream := c.Take(ctx, c.RepeatFn(ctx, fn), 3)
 
 	for v := range dataStream {
-	    fmt.Println(v) //a, a, a
+		fmt.Println(v) //a, a, a
 	}
 }
 ```
@@ -248,7 +248,7 @@ import (
 )
 
 func main() {
-    sig := func(after time.Duration) <-chan any {
+	sig := func(after time.Duration) <-chan any {
 		c := make(chan interface{})
 		go func() {
 			defer close(c)
@@ -296,7 +296,7 @@ import (
 )
 
 func main() {
-    ctx, cancel := context.WithCancel(context.Background())
+	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
 	c := concurrency.NewChannel()
@@ -332,7 +332,7 @@ import (
 )
 
 func main() {
-    ctx, cancel := context.WithCancel(context.Background())
+	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
 	numbers := make(chan any, 5)
@@ -347,7 +347,7 @@ func main() {
 	intStream := c.Take(ctx, numbers, 3)
 
 	for val := range intStream {
-        fmt.Println(val) //1, 2, 3
+		fmt.Println(val) //1, 2, 3
 	}
 }
 ```
@@ -375,7 +375,7 @@ import (
 )
 
 func main() {
-    ctx, cancel := context.WithCancel(context.Background())
+	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
 	c := concurrency.NewChannel()
@@ -383,8 +383,8 @@ func main() {
 
 	out1, out2 := c.Tee(ctx, inStream)
 	for val := range out1 {
-        fmt.Println(val) //1
-        fmt.Println(<-out2) //1
+		fmt.Println(val) //1
+		fmt.Println(<-out2) //1
 	}
 }
 ```

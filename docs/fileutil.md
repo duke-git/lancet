@@ -140,9 +140,9 @@ import (
 
 func main() {
     err := fileutil.CopyFile("./test.txt", "./test_copy.txt")
-	if err != nil {
-		fmt.Println(err)
-	}
+    if err != nil {
+        fmt.Println(err)
+    }
 }
 ```
 
@@ -168,9 +168,9 @@ import (
 
 func main() {
     mode, err := fileutil.FileMode("./test.txt")
-	if err != nil {
-		fmt.Println(err)
-	}
+    if err != nil {
+        fmt.Println(err)
+    }
     fmt.Println(mode)
 }
 ```
@@ -338,8 +338,8 @@ import (
 func main() {
     err := fileutil.RemoveFile("./test.txt")
     if err != nil {
-		fmt.Println(err)
-	}
+        fmt.Println(err)
+    }
 }
 ```
 
@@ -365,12 +365,12 @@ import (
 
 func main() {
     path := "./test.txt"
-	fileutil.CreateFile(path)
+    fileutil.CreateFile(path)
 
-	f, _ := os.OpenFile(path, os.O_WRONLY|os.O_TRUNC, 0777)
-	f.WriteString("hello world")
+    f, _ := os.OpenFile(path, os.O_WRONLY|os.O_TRUNC, 0777)
+    f.WriteString("hello world")
 
-	content, _ := fileutil.ReadFileToString(path)
+    content, _ := fileutil.ReadFileToString(path)
     fmt.Println(content) //hello world
 }
 ```
@@ -398,13 +398,13 @@ import (
 
 func main() {
     path := "./text.txt"
-	fileutil.CreateFile(path)
+    fileutil.CreateFile(path)
 
-	f, _ := os.OpenFile(path, os.O_WRONLY|os.O_TRUNC, 0777)
-	defer f.Close()
-	f.WriteString("hello\nworld")
+    f, _ := os.OpenFile(path, os.O_WRONLY|os.O_TRUNC, 0777)
+    defer f.Close()
+    f.WriteString("hello\nworld")
 
-	contents, _ := fileutil.ReadFileByLine(path)
+    contents, _ := fileutil.ReadFileByLine(path)
     fmt.Println(contents) //[]string{"hello", "world"}
 }
 ```
@@ -430,7 +430,7 @@ import (
 )
 
 func main() {
-	err := fileutil.Zip("./test.txt", "./test.zip")
+    err := fileutil.Zip("./test.txt", "./test.zip")
     if err != nil {
         fmt.Println(err)
     }
@@ -459,7 +459,7 @@ import (
 )
 
 func main() {
-	err := fileutil.Zip("./test.zip", "./unzip/test.txt")
+    err := fileutil.Zip("./test.zip", "./unzip/test.txt")
     if err != nil {
         fmt.Println(err)
     }

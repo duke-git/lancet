@@ -85,7 +85,7 @@ import (
 
 func main() {
     data := "hello world"
-  	key := "abcdefghijklmnop"
+    key := "abcdefghijklmnop"
     encrypted := cryptor.AesEcbEncrypt([]byte(data), []byte(key))
 
     fmt.Println(string(encrypted))
@@ -115,9 +115,9 @@ import (
 
 func main() {
     data := "hello world"
-  	key := "abcdefghijklmnop"
+    key := "abcdefghijklmnop"
     encrypted := cryptor.AesEcbEncrypt([]byte(data), []byte(key))
-	decrypted := cryptor.AesEcbDecrypt(encrypted, []byte(key))
+    decrypted := cryptor.AesEcbDecrypt(encrypted, []byte(key))
     fmt.Println(string(decrypted)) //hello world
 }
 ```
@@ -145,7 +145,7 @@ import (
 
 func main() {
     data := "hello world"
-  	key := "abcdefghijklmnop"
+    key := "abcdefghijklmnop"
     encrypted := cryptor.AesCbcEncrypt([]byte(data), []byte(key))
 
     fmt.Println(string(encrypted))
@@ -176,9 +176,9 @@ import (
 
 func main() {
     data := "hello world"
-  	key := "abcdefghijklmnop"
+    key := "abcdefghijklmnop"
     encrypted := cryptor.AesCbcEncrypt([]byte(data), []byte(key))
-	decrypted := cryptor.AesCbcDecrypt(encrypted, []byte(key))
+    decrypted := cryptor.AesCbcDecrypt(encrypted, []byte(key))
     fmt.Println(string(decrypted)) //hello world
 }
 ```
@@ -207,7 +207,7 @@ import (
 
 func main() {
     data := "hello world"
-  	key := "abcdefghijklmnop"
+    key := "abcdefghijklmnop"
     encrypted := cryptor.AesCtrCrypt([]byte(data), []byte(key))
     decrypted := cryptor.AesCtrCrypt(encrypted, []byte(key))
 
@@ -239,7 +239,7 @@ import (
 
 func main() {
     data := "hello world"
-  	key := "abcdefghijklmnop"
+    key := "abcdefghijklmnop"
     encrypted := cryptor.AesCfbEncrypt([]byte(data), []byte(key))
     fmt.Println(string(encrypted))
 }
@@ -271,7 +271,7 @@ func main() {
     data := "hello world"
     key := "abcdefghijklmnop"
     encrypted := cryptor.AesCfbEncrypt([]byte(data), []byte(key))
-	decrypted := cryptor.AesCfbDecrypt(encrypted, []byte(key))
+    decrypted := cryptor.AesCfbDecrypt(encrypted, []byte(key))
     fmt.Println(string(decrypted)) //hello world
 }
 ```
@@ -300,7 +300,7 @@ import (
 
 func main() {
     data := "hello world"
-  	key := "abcdefghijklmnop"
+    key := "abcdefghijklmnop"
     encrypted := cryptor.AesOfbEncrypt([]byte(data), []byte(key))
     fmt.Println(string(encrypted))
 }
@@ -330,9 +330,9 @@ import (
 
 func main() {
     data := "hello world"
-  	key := "abcdefghijklmnop"
+    key := "abcdefghijklmnop"
     encrypted := cryptor.AesOfbEncrypt([]byte(data), []byte(key))
-	decrypted := cryptor.AesOfbDecrypt(encrypted, []byte(key))
+    decrypted := cryptor.AesOfbDecrypt(encrypted, []byte(key))
     
     fmt.Println(string(decrypted)) //hello world
 }
@@ -360,7 +360,7 @@ import (
 )
 
 func main() {
-  	base64Str := cryptor.Base64StdEncode("hello world")
+    base64Str := cryptor.Base64StdEncode("hello world")
     fmt.Println(base64Str) //aGVsbG8gd29ybGQ=
 }
 ```
@@ -417,7 +417,7 @@ import (
 
 func main() {
     data := "hello world"
-  	key := "abcdefgh"
+    key := "abcdefgh"
     encrypted := cryptor.DesEcbEncrypt([]byte(data), []byte(key))
 
     fmt.Println(string(encrypted))
@@ -448,9 +448,9 @@ import (
 
 func main() {
     data := "hello world"
-  	key := "abcdefgh"
+    key := "abcdefgh"
     encrypted := cryptor.DesEcbEncrypt([]byte(data), []byt(key)
-	decrypted := cryptor.DesEcbDecrypt(encrypted, []byte(key))
+    decrypted := cryptor.DesEcbDecrypt(encrypted, []byte(key))
   
     fmt.Println(string(decrypted)) //hello world
 }
@@ -480,7 +480,7 @@ import (
 
 func main() {
     data := "hello world"
-  	key := "abcdefgh"
+    key := "abcdefgh"
     encrypted := cryptor.DesCbcEncrypt([]byte(data), []byt(key)
 
     fmt.Println(string(encrypted))
@@ -511,7 +511,7 @@ import (
 
 func main() {
     data := "hello world"
-  	key := "abcdefgh"
+    key := "abcdefgh"
     encrypted := cryptor.DesCbcEncrypt([]byte(data), []byt(key)
 	decrypted := cryptor.DesCbcDecrypt(encrypted, []byte(key))
     
@@ -543,7 +543,7 @@ import (
 
 func main() {
     data := "hello world"
-  	key := "abcdefgh"
+    key := "abcdefgh"
     encrypted := cryptor.DesCtrCrypt([]byte(data), []byte(key))
     decrypted := cryptor.DesCtrCrypt(encrypted, []byte(key))
 
@@ -575,7 +575,7 @@ import (
 
 func main() {
     data := "hello world"
-  	key := "abcdefgh"
+    key := "abcdefgh"
     encrypted := cryptor.DesCfbEncrypt([]byte(data), []byt(key)
     fmt.Println(string(encrypted))
 }
@@ -605,9 +605,9 @@ import (
 
 func main() {
     data := "hello world"
-  	key := "abcdefgh"
+    key := "abcdefgh"
     encrypted := cryptor.DesCfbEncrypt([]byte(data), []byt(key)
-	decrypted := cryptor.DesCfbDecrypt(encrypted, []byte(key))
+    decrypted := cryptor.DesCfbDecrypt(encrypted, []byte(key))
     fmt.Println(string(decrypted)) //hello world
 }
 ```
@@ -636,7 +636,7 @@ import (
 
 func main() {
     data := "hello world"
-  	key := "abcdefgh"
+    key := "abcdefgh"
     encrypted := cryptor.DesOfbEncrypt([]byte(data), []byte(key))
     fmt.Println(string(encrypted))
 }
@@ -666,9 +666,9 @@ import (
 
 func main() {
     data := "hello world"
-  	key := "abcdefgh"
+    key := "abcdefgh"
     encrypted := cryptor.DesOfbEncrypt([]byte(data), []byte(key))
-	decrypted := cryptor.DesOfbDecrypt(encrypted, []byte(key))
+    decrypted := cryptor.DesOfbDecrypt(encrypted, []byte(key))
     
     fmt.Println(string(decrypted)) //hello world
 }
@@ -725,8 +725,8 @@ import (
 )
 
 func main() {
-  	s := cryptor.HmacSha1("hello world", "12345"))
-  	fmt.Println(s) //3826f812255d8683f051ee97346d1359234d5dbd
+    s := cryptor.HmacSha1("hello world", "12345"))
+    fmt.Println(s) //3826f812255d8683f051ee97346d1359234d5dbd
 }
 ```
 
@@ -753,8 +753,8 @@ import (
 )
 
 func main() {
-  	s := cryptor.HmacSha256("hello world", "12345"))
-  	fmt.Println(s) //9dce2609f2d67d41f74c7f9efc8ccd44370d41ad2de52982627588dfe7289ab8
+    s := cryptor.HmacSha256("hello world", "12345"))
+    fmt.Println(s) //9dce2609f2d67d41f74c7f9efc8ccd44370d41ad2de52982627588dfe7289ab8
 }
 ```
 
@@ -781,8 +781,8 @@ import (
 )
 
 func main() {
-  	s := cryptor.HmacSha512("hello world", "12345"))
-  	fmt.Println(s) 
+    s := cryptor.HmacSha512("hello world", "12345"))
+    fmt.Println(s) 
  //5b1563ac4e9b49c9ada8ccb232588fc4f0c30fd12f756b3a0b95af4985c236ca60925253bae10ce2c6bf9af1c1679b51e5395ff3d2826c0a2c7c0d72225d4175
 }
 ```
@@ -810,8 +810,8 @@ import (
 )
 
 func main() {
-  	s := cryptor.Md5String("hello"))
-  	fmt.Println(s) //5d41402abc4b2a76b9719d911017c592
+    s := cryptor.Md5String("hello"))
+    fmt.Println(s) //5d41402abc4b2a76b9719d911017c592
 }
 ```
 
@@ -838,8 +838,8 @@ import (
 )
 
 func main() {
-  	s := cryptor.Md5File("./main.go"))
-  	fmt.Println(s)
+    s := cryptor.Md5File("./main.go"))
+    fmt.Println(s)
 }
 ```
 
@@ -866,8 +866,8 @@ import (
 )
 
 func main() {
-  	s := cryptor.Sha1("hello world"))
-  	fmt.Println(s) //2aae6c35c94fcfb415dbe95f408b9ce91ee846ed
+    s := cryptor.Sha1("hello world"))
+    fmt.Println(s) //2aae6c35c94fcfb415dbe95f408b9ce91ee846ed
 }
 ```
 
@@ -894,8 +894,8 @@ import (
 )
 
 func main() {
-  	s := cryptor.Sha256("hello world"))
-  	fmt.Println(s) //b94d27b9934d3e08a52e52d7da7dabfac484efe37a5380ee9088f7ace2efcde9
+    s := cryptor.Sha256("hello world"))
+    fmt.Println(s) //b94d27b9934d3e08a52e52d7da7dabfac484efe37a5380ee9088f7ace2efcde9
 }
 ```
 
@@ -922,7 +922,7 @@ import (
 )
 
 func main() {
-  	s := cryptor.Sha512("hello world"))
+    s := cryptor.Sha512("hello world"))
     fmt.Println(s) //309ecc489c12d6eb4cc40f50c902f2b4d0ed77ee511a7c7a9bcd3ca86d4cd86f989dd35bc5ff499670da34255b45b0cfd830e81f605dcf7dc5542e93ae9cd76f
 }
 ```
@@ -950,10 +950,10 @@ import (
 )
 
 func main() {
-  	err := cryptor.GenerateRsaKey(4096, "rsa_private.pem", "rsa_public.pem")
+    err := cryptor.GenerateRsaKey(4096, "rsa_private.pem", "rsa_public.pem")
     if err != nil {
         fmt.Println(err)
-  	}
+    }
 }
 ```
 
@@ -980,14 +980,14 @@ import (
 )
 
 func main() {
-  	err := cryptor.GenerateRsaKey(4096, "rsa_private.pem", "rsa_public.pem")
+    err := cryptor.GenerateRsaKey(4096, "rsa_private.pem", "rsa_public.pem")
     if err != nil {
         fmt.Println(err)
     }
   	
     data := []byte("hello world")
-	encrypted := cryptor.RsaEncrypt(data, "rsa_public.pem")
-	decrypted := cryptor.RsaDecrypt(encrypted, "rsa_private.pem")
+    encrypted := cryptor.RsaEncrypt(data, "rsa_public.pem")
+    decrypted := cryptor.RsaDecrypt(encrypted, "rsa_private.pem")
   	
     fmt.Println(string(decrypted)) //hello world
 }
@@ -1016,14 +1016,14 @@ import (
 )
 
 func main() {
-  	err := cryptor.GenerateRsaKey(4096, "rsa_private.pem", "rsa_public.pem")
+    err := cryptor.GenerateRsaKey(4096, "rsa_private.pem", "rsa_public.pem")
     if err != nil {
         fmt.Println(err)
-  	}
+    }
   	
     data := []byte("hello world")
-	encrypted := cryptor.RsaEncrypt(data, "rsa_public.pem")
-	decrypted := cryptor.RsaDecrypt(encrypted, "rsa_private.pem")
+    encrypted := cryptor.RsaEncrypt(data, "rsa_public.pem")
+    decrypted := cryptor.RsaDecrypt(encrypted, "rsa_private.pem")
   	
     fmt.Println(string(decrypted)) //hello world
 }
