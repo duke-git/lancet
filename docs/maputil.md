@@ -5,7 +5,7 @@ Package maputil includes some functions to manipulate map.
 
 ## Source:
 
-- [https://github.com/duke-git/lancet/blob/main/maputil/maputil.go](https://github.com/duke-git/lancet/blob/main/maputil/maputil.go)
+- [https://github.com/duke-git/lancet/blob/main/maputil/map.go](https://github.com/duke-git/lancet/blob/main/maputil/map.go)
 
 
 <div STYLE="page-break-after: always;"></div>
