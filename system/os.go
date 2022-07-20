@@ -70,3 +70,9 @@ func ExecCommand(command string) (stdout, stderr string, err error) {
 
 	return
 }
+
+// GetOsBits get this system bits 32bit or 64bit
+// return bit int (32/64)
+func GetOsBits() int {
+	return 32 << (^uint(0) >> 63)
+}
