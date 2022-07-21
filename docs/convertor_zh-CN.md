@@ -273,7 +273,7 @@ func main() {
 
 ### <span id="ToInt">ToInt</span>
 
-<p>将interface转成intt64类型，如果参数无法转换，会返回0和error</p>
+<p>将interface转成int64类型，如果参数无法转换，会返回0和error</p>
 
 <b>函数签名:</b>
 
