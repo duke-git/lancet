@@ -4,7 +4,7 @@
 <br/>
 
 ![Go version](https://img.shields.io/badge/go-%3E%3Dv1.18-9cf)
-[![Release](https://img.shields.io/badge/release-2.1.2-green.svg)](https://github.com/duke-git/lancet/releases)
+[![Release](https://img.shields.io/badge/release-2.1.3-green.svg)](https://github.com/duke-git/lancet/releases)
 [![GoDoc](https://godoc.org/github.com/duke-git/lancet/v2?status.svg)](https://pkg.go.dev/github.com/duke-git/lancet/v2)
 [![Go Report Card](https://goreportcard.com/badge/github.com/duke-git/lancet/v2)](https://goreportcard.com/report/github.com/duke-git/lancet/v2)
 [![test](https://github.com/duke-git/lancet/actions/workflows/codecov.yml/badge.svg?branch=main&event=push)](https://github.com/duke-git/lancet/actions/workflows/codecov.yml)
@@ -324,6 +324,7 @@ import "github.com/duke-git/lancet/v2/netutil"
 
 #### Function list:
 - [ConvertMapToQueryString](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#ConvertMapToQueryString)
+- [EncodeUrl](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#EncodeUrl)
 - [GetInternalIp](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#GetInternalIp)
 - [GetIps](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#GetIps)
 - [GetMacAddrs](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#GetMacAddrs)
@@ -387,7 +388,8 @@ import "github.com/duke-git/lancet/v2/slice"
 - [Filter](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Filter)
 - [Find](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Find)
 - [FindLast](https://github.com/duke-git/lancet/blob/main/docs/slice.md#FindLast)
-- [FlattenDeep](#FlattenDeep)
+- [Flatten](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Flatten)
+- [FlattenDeep](https://github.com/duke-git/lancet/blob/main/docs/slice.md#FlattenDeep)
 - [ForEach](https://github.com/duke-git/lancet/blob/main/docs/slice.md#ForEach)
 - [GroupBy](https://github.com/duke-git/lancet/blob/main/docs/slice.md#GroupBy)
 - [GroupWith](https://github.com/duke-git/lancet/blob/main/docs/slice.md#GroupWith)
@@ -452,6 +454,7 @@ import "github.com/duke-git/lancet/v2/system"
 - [RemoveOsEnv](https://github.com/duke-git/lancet/blob/main/docs/system.md#RemoveOsEnv)
 - [CompareOsEnv](https://github.com/duke-git/lancet/blob/main/docs/system.md#CompareOsEnv)
 - [ExecCommand](https://github.com/duke-git/lancet/blob/main/docs/system.md#ExecCommand)
+- [GetOsBits](https://github.com/duke-git/lancet/blob/main/docs/system.md#GetOsBits)
 
 ### 18. Validator package contains some functions for data validation.
 
