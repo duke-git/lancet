@@ -28,6 +28,7 @@ import (
 - [RemoveOsEnv](#RemoveOsEnv)
 - [CompareOsEnv](#CompareOsEnv)
 - [ExecCommand](#ExecCommand)
+- [GetOsBits](#GetOsBits)
   
 
 <div STYLE="page-break-after: always;"></div>
@@ -210,7 +211,7 @@ func main() {
 
 
 ### <span id="ExecCommand">CompareOsEnv</span>
-<p>use shell /bin/bash -c(linux) or cmd (windows) to execute command.</p>
+<p>Use shell /bin/bash -c(linux) or cmd (windows) to execute command.</p>
 
 <b>Signature:</b>
 
@@ -236,7 +237,27 @@ func main() {
 
 
 
+### <span id="GetOsBits">GetOsBits</span>
+<p>Get current os bits, 32bit or 64bit. return 32 or 64</p>
 
+<b>Signature:</b>
+
+```go
+func GetOsBits() int
+```
+<b>Example:</b>
+
+```go
+import (
+	"fmt"
+	"github.com/duke-git/lancet/v2/system"
+)
+
+func main() {
+	osBit := system.GetOsBits()
+	fmt.Println(osBit) 
+}
+```
 
 
 

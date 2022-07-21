@@ -26,8 +26,10 @@ import (
 - [GetOsEnv](#GetOsEnv)
 - [SetOsEnv](#SetOsEnv)
 - [RemoveOsEnv](#RemoveOsEnv)
+
 - [CompareOsEnv](#CompareOsEnv)
 - [ExecCommand](#ExecCommand)
+- [GetOsBits](#GetOsBits)
   
 
 <div STYLE="page-break-after: always;"></div>
@@ -233,6 +235,30 @@ func main() {
 }
 ```
 
+
+
+
+### <span id="GetOsBits">GetOsBits</span>
+<p>获取当前操作系统位数，返回32或64</p>
+
+<b>函数签名:</b>
+
+```go
+func GetOsBits() int
+```
+<b>例子:</b>
+
+```go
+import (
+	"fmt"
+	"github.com/duke-git/lancet/v2/system"
+)
+
+func main() {
+	osBit := system.GetOsBits()
+	fmt.Println(osBit) 
+}
+```
 
 
 
