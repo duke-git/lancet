@@ -27,6 +27,8 @@ import (
 - [ValueOf](#ValueOf)
 - [IndexOf](#IndexOf)
 - [LastIndexOf](#LastIndexOf)
+- [IndexOfFunc](#IndexOfFunc)
+- [LastIndexOfFunc](#LastIndexOfFunc)
 - [Push](#Push)
 - [PopFirst](#PopFirst)
 - [PopLast](#PopLast)
@@ -216,6 +218,58 @@ func main() {
 
     fmt.Println(li.LastIndexOf(1)) // 3
     fmt.Println(li.LastIndexOf(0)) //-1
+}
+```
+
+### <span id="IndexOfFunc">IndexOfFunc</span>
+<p> IndexOfFunc returns the first index satisfying f(v). if not found return -1</p>
+
+<b>Signature:</b>
+
+```go
+func (l *List[T]) IndexOfFunc(f func(T) bool) int 
+```
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    list "github.com/duke-git/lancet/v2/datastructure/list"
+)
+
+func main() {
+    li := list.NewList([]int{1, 2, 3})
+
+    fmt.Println(li.IndexOfFunc(func(a int) bool { return a == 1 })) //0
+    fmt.Println(li.IndexOfFunc(func(a int) bool { return a == 0 })) //-1
+}
+```
+
+### <span id="LastIndexOfFunc">LastIndexOfFunc</span>
+<p>LastIndexOfFunc returns the index of the last occurrence of the value in this list satisfying f(data[i]). if not found return -1</p>
+
+<b>Signature:</b>
+
+```go
+func (l *List[T]) LastIndexOfFunc(f func(T) bool) int
+```
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    list "github.com/duke-git/lancet/v2/datastructure/list"
+)
+
+func main() {
+    li := list.NewList([]int{1, 2, 3, 1})
+
+    fmt.Println(li.LastIndexOfFunc(func(a int) bool { return a == 1 })) // 3
+    fmt.Println(li.LastIndexOfFunc(func(a int) bool { return a == 0 })) //-1
 }
 ```
 

@@ -36,6 +36,17 @@ func TestIndexOf(t *testing.T) {
 	assert.Equal(-1, i)
 }
 
+func TestIndexOfFunc(t *testing.T) {
+	assert := internal.NewAssert(t, "TestIndexOf")
+
+	list := NewList([]int{1, 2, 3})
+	i := list.IndexOfFunc(func(a int) bool { return a == 1 })
+	assert.Equal(0, i)
+
+	i = list.IndexOfFunc(func(a int) bool { return a == 4 })
+	assert.Equal(-1, i)
+}
+
 func TestLastIndexOf(t *testing.T) {
 	assert := internal.NewAssert(t, "TestIndexOf")
 
@@ -50,6 +61,23 @@ func TestLastIndexOf(t *testing.T) {
 	assert.Equal(6, i)
 
 	i = list.LastIndexOf(1)
+	assert.Equal(0, i)
+}
+
+func TestLastIndexOfFunc(t *testing.T) {
+	assert := internal.NewAssert(t, "TestIndexOf")
+
+	list := NewList([]int{1, 2, 3, 3, 3, 3, 4, 5, 6, 9})
+	i := list.LastIndexOfFunc(func(a int) bool { return a == 3 })
+	assert.Equal(5, i)
+
+	i = list.LastIndexOfFunc(func(a int) bool { return a == 10 })
+	assert.Equal(-1, i)
+
+	i = list.LastIndexOfFunc(func(a int) bool { return a == 4 })
+	assert.Equal(6, i)
+
+	i = list.LastIndexOfFunc(func(a int) bool { return a == 1 })
 	assert.Equal(0, i)
 }
 
