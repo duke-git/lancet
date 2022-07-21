@@ -31,12 +31,26 @@ func (l *List[T]) ValueOf(index int) (*T, bool) {
 	return &l.data[index], true
 }
 
-// IndexOf reture the index of value. if not found return -1
+// IndexOf returns the index of value. if not found return -1
 func (l *List[T]) IndexOf(value T) int {
 	index := -1
 	data := l.data
 	for i, v := range data {
 		if reflect.DeepEqual(v, value) {
+			index = i
+			break
+		}
+	}
+	return index
+}
+
+// LastIndexOf returns the index of the last occurrence of the value in this list.
+// if not found return -1
+func (l *List[T]) LastIndexOf(value T) int {
+	index := -1
+	data := l.data
+	for i := len(data) - 1; i >= 0; i-- {
+		if reflect.DeepEqual(data[i], value) {
 			index = i
 			break
 		}
