@@ -26,6 +26,7 @@ import (
 - [Data](#Data)
 - [ValueOf](#ValueOf)
 - [IndexOf](#IndexOf)
+- [LastIndexOf](#LastIndexOf)
 - [Push](#Push)
 - [PopFirst](#PopFirst)
 - [PopLast](#PopLast)
@@ -167,7 +168,7 @@ func main() {
 
 
 ### <span id="IndexOf">IndexOf</span>
-<p>Reture the index of value in the list. if not found return -1</p>
+<p>Returns the index of value in the list. if not found return -1</p>
 
 <b>Signature:</b>
 
@@ -189,6 +190,32 @@ func main() {
 
     fmt.Println(li.IndexOf(1)) //0
     fmt.Println(li.IndexOf(0)) //-1
+}
+```
+
+### <span id="LastIndexOf">LastIndexOf</span>
+<p> Returns the index of the last occurrence of the value in this list if not found return -1</p>
+
+<b>Signature:</b>
+
+```go
+func (l *List[T]) LastIndexOf(value T) int
+```
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    list "github.com/duke-git/lancet/v2/datastructure/list"
+)
+
+func main() {
+    li := list.NewList([]int{1, 2, 3, 1})
+
+    fmt.Println(li.LastIndexOf(1)) // 3
+    fmt.Println(li.LastIndexOf(0)) //-1
 }
 ```
 
