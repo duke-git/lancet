@@ -14,13 +14,13 @@ import (
 
 // Contain check if the value is in the slice or not
 func Contain[T comparable](slice []T, value T) bool {
+	set := make(map[T]struct{}, len(slice))
 	for _, v := range slice {
-		if v == value {
-			return true
-		}
+		set[v] = struct{}{}
 	}
 
-	return false
+	_, ok := set[value]
+	return ok
 }
 
 // ContainSubSlice check if the slice contain subslice or not
