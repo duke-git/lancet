@@ -6,6 +6,7 @@ import (
 	"testing"
 
 	"github.com/duke-git/lancet/v2/internal"
+	"github.com/duke-git/lancet/v2/slice"
 )
 
 func TestToChar(t *testing.T) {
@@ -204,7 +205,10 @@ func TestMapToSlice(t *testing.T) {
 		return key + ":" + strconv.Itoa(value)
 	})
 
-	assert.Equal([]string{"a:1", "b:2", "c:3"}, result)
+	assert.Equal(3, len(result))
+	assert.Equal(true, slice.Contain(result, "a:1"))
+	assert.Equal(true, slice.Contain(result, "b:2"))
+	assert.Equal(true, slice.Contain(result, "c:3"))
 }
 
 func TestColorHexToRGB(t *testing.T) {
