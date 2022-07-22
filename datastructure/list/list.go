@@ -58,6 +58,34 @@ func (l *List[T]) LastIndexOf(value T) int {
 	return index
 }
 
+// IndexOfFunc returns the first index satisfying f(v)
+// if not found return -1
+func (l *List[T]) IndexOfFunc(f func(T) bool) int {
+	index := -1
+	data := l.data
+	for i, v := range data {
+		if f(v) {
+			index = i
+			break
+		}
+	}
+	return index
+}
+
+// LastIndexOfFunc returns the index of the last occurrence of the value in this list satisfying f(data[i])
+// if not found return -1
+func (l *List[T]) LastIndexOfFunc(f func(T) bool) int {
+	index := -1
+	data := l.data
+	for i := len(data) - 1; i >= 0; i-- {
+		if f(data[i]) {
+			index = i
+			break
+		}
+	}
+	return index
+}
+
 // Contain checks if the value in the list or not
 func (l *List[T]) Contain(value T) bool {
 	data := l.data
