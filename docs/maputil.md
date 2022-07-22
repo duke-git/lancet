@@ -305,7 +305,7 @@ func main() {
 ```
 
 ### <span id="IsDisjoint">IsDisjoint</span>
-<p>Checks two  are disjoint if they have no keys in common</p>
+<p>Checks two maps are disjoint if they have no keys in common</p>
 
 <b>Signature:</b>
 
