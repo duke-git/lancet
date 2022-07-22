@@ -315,3 +315,19 @@ func TestIntersection(t *testing.T) {
 	list3 := list1.Intersection(list2)
 	assert.Equal(true, expected.Equal(list3))
 }
+
+func TestSubSlice(t *testing.T) {
+	assert := internal.NewAssert(t, "TestSubSlice")
+
+	list := NewList([]int{1, 2, 3, 4, 5, 8})
+	subList := list.SubList(2, 5)
+
+	assert.Equal([]int{3, 4, 5}, subList.Data())
+}
+
+func BenchmarkSubSlice(b *testing.B) {
+	list := NewList([]int{1, 2, 3, 4, 5, 8})
+	for n := 0; n < b.N; n++ {
+		list.SubList(2, 5)
+	}
+}
