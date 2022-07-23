@@ -163,6 +163,31 @@ func (l *List[T]) DeleteAt(index int) {
 	l.data = data
 }
 
+// DeleteIf delete all satisfying f(data[i]), returns count of removed elements
+func (l *List[T]) DeleteIf(f func(T) bool) int {
+	data := l.data
+	size := len(data)
+
+	var c int
+	for index := 0; index < len(data); index++ {
+		if !f(data[index]) {
+			continue
+		}
+		if index == size-1 {
+			data = append(data[:index])
+		} else {
+			data = append(data[:index], data[index+1:]...)
+			index--
+		}
+		c++
+	}
+
+	if c > 0 {
+		l.data = data
+	}
+	return c
+}
+
 // UpdateAt update value of list at index, index shoud between 0 and list size -1
 func (l *List[T]) UpdateAt(index int, value T) {
 	data := l.data
