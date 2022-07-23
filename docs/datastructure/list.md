@@ -47,6 +47,7 @@ import (
 - [Union](#Union)
 - [Intersection](#Intersection)
 - [SubList](#SubList)
+- [DeleteIf](#DeleteIf)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -819,5 +820,34 @@ func main() {
     l := list.NewList([]int{1, 2, 3, 4, 5, 6})
    
     fmt.Println(l.SubList(2, 5)) // []int{3, 4, 5}
+}
+```
+
+
+
+
+### <span id="DeleteIf">DeleteIf</span>
+<p>DeleteIf delete all satisfying f(data[i]), returns count of removed elements</p>
+
+<b>Signature:</b>
+
+```go
+func (l *List[T]) DeleteIf(f func(T) bool) int
+```
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    list "github.com/duke-git/lancet/v2/datastructure/list"
+)
+
+func main() {
+	l := list.NewList([]int{1, 1, 1, 1, 2, 3, 1, 1, 4, 1, 1, 1, 1, 1, 1})
+
+	fmt.Println(l.DeleteIf(func(a int) bool { return a == 1 })) // 12 
+	fmt.Println(l.Data()) // []int{2, 3, 4}
 }
 ```

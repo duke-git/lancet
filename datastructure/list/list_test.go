@@ -331,3 +331,17 @@ func BenchmarkSubSlice(b *testing.B) {
 		list.SubList(2, 5)
 	}
 }
+
+func TestDeleteIf(t *testing.T) {
+	assert := internal.NewAssert(t, "TestDeleteIf")
+
+	list := NewList([]int{1, 1, 1, 1, 2, 3, 1, 1, 4, 1, 1, 1, 1, 1, 1})
+
+	count := list.DeleteIf(func(a int) bool { return a == 1 })
+	assert.Equal([]int{2, 3, 4}, list.Data())
+	assert.Equal(12, count)
+
+	count = list.DeleteIf(func(a int) bool { return a == 5 })
+	assert.Equal([]int{2, 3, 4}, list.Data())
+	assert.Equal(0, count)
+}
