@@ -46,6 +46,7 @@ import (
 - [Unique](#Unique)
 - [Union](#Union)
 - [Intersection](#Intersection)
+- [SubList](#SubList)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -790,5 +791,33 @@ func main() {
     li3 := li1.Intersection(li2)
 
     fmt.Println(li3.Data()) //4
+}
+```
+
+
+
+
+### <span id="SubList">SubList</span>
+<p>SubList returns a sub list of the original list between the specified fromIndex, inclusive, and toIndex, exclusive.</p>
+
+<b>Signature:</b>
+
+```go
+func (l *List[T]) SubList(fromIndex, toIndex int) *List[T] 
+```
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    list "github.com/duke-git/lancet/v2/datastructure/list"
+)
+
+func main() {
+    l := list.NewList([]int{1, 2, 3, 4, 5, 6})
+   
+    fmt.Println(l.SubList(2, 5)) // []int{3, 4, 5}
 }
 ```

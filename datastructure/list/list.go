@@ -285,3 +285,11 @@ func (l *List[T]) Intersection(other *List[T]) *List[T] {
 
 	return result
 }
+
+// SubList returns a sub list of the original list between the specified fromIndex, inclusive, and toIndex, exclusive.
+func (l *List[T]) SubList(fromIndex, toIndex int) *List[T] {
+	data := l.data[fromIndex:toIndex]
+	subList := make([]T, len(data))
+	copy(subList, data)
+	return NewList(subList)
+}
