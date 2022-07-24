@@ -261,6 +261,18 @@ func TestSize(t *testing.T) {
 	assert.Equal(0, empty.Size())
 }
 
+func TestCap(t *testing.T) {
+	assert := internal.NewAssert(t, "TestCap")
+
+	data := make([]int, 0, 100)
+	list := NewList(data)
+	assert.Equal(100, list.Cap())
+
+	data = make([]int, 0)
+	list = NewList(data)
+	assert.Equal(0, list.Cap())
+}
+
 func TestSwap(t *testing.T) {
 	assert := internal.NewAssert(t, "TestSwap")
 
