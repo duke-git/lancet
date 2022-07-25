@@ -851,3 +851,11 @@ func ToSlice[T any](value ...T) []T {
 	}
 	return out
 }
+
+// AppendIfAbsent only absent append the value
+func AppendIfAbsent[T comparable](slices []T, value T) []T {
+	if !Contain(slices, value) {
+		slices = append(slices, value)
+	}
+	return slices
+}
