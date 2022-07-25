@@ -41,6 +41,7 @@ import (
 - [Clone](#Clone)
 - [Merge](#Merge)
 - [Size](#Size)
+- [Cap](#Cap)
 - [Swap](#Swap)
 - [Reverse](#Reverse)
 - [Unique](#Unique)
@@ -645,6 +646,36 @@ func main() {
     li := list.NewList([]int{1, 2, 3, 4})
 
     fmt.Println(li.Size()) //4
+}
+```
+
+
+
+
+### <span id="Cap">Cap</span>
+<p>Cap return cap of the inner data</p>
+
+<b>Signature:</b>
+
+```go
+func (l *List[T]) Cap() int
+```
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    list "github.com/duke-git/lancet/v2/datastructure/list"
+)
+
+func main() {
+	data := make([]int, 0, 100)
+	
+    li := list.NewList(data)
+
+    fmt.Println(li.Cap()) // 100
 }
 ```
 
