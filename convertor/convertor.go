@@ -229,3 +229,17 @@ func ColorRGBToHex(red, green, blue int) string {
 
 	return "#" + r + g + b
 }
+
+// ToChannel convert a array of elements to a read-only channels
+func ToChannel(array []interface{}) <-chan interface{} {
+	ch := make(chan interface{})
+
+	go func() {
+		for _, item := range array {
+			ch <- item
+		}
+		close(ch)
+	}()
+
+	return ch
+}

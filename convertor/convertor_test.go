@@ -178,3 +178,20 @@ func TestColorRGBToHex(t *testing.T) {
 	assert := internal.NewAssert(t, "TestColorRGBToHex")
 	assert.Equal(expected, colorHex)
 }
+
+func TestToChannel(t *testing.T) {
+	assert := internal.NewAssert(t, "TestToChannel")
+
+	ch := ToChannel([]interface{}{1, 2, 3})
+	val1, _ := <-ch
+	assert.Equal(1, val1)
+
+	val2, _ := <-ch
+	assert.Equal(2, val2)
+
+	val3, _ := <-ch
+	assert.Equal(3, val3)
+
+	_, ok := <-ch
+	assert.Equal(false, ok)
+}
