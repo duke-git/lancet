@@ -617,7 +617,7 @@ func TestToSlicePointer(t *testing.T) {
 	assert.Equal([]*interface{}{&str1, &str2}, ToSlicePointer(str1, str2))
 }
 
-func TestToAppendIfAbsent(t *testing.T) {
+func TestAppendIfAbsent(t *testing.T) {
 	assert := internal.NewAssert(t, "TestToAppendIfAbsent")
 
 	str1 := []string{"a", "b"}
