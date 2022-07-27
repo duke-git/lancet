@@ -55,12 +55,16 @@ func DesEcbDecrypt(encrypted, key []byte) []byte {
 // len(key) should be 8
 func DesCbcEncrypt(data, key []byte) []byte {
 	block, _ := des.NewCipher(key)
-	blockSize := block.BlockSize()
-	data = pkcs7Padding(data, blockSize)
-	blockMode := cipher.NewCBCEncrypter(block, key[:blockSize])
+	data = pkcs7Padding(data, block.BlockSize())
 
-	encrypted := make([]byte, len(data))
-	blockMode.CryptBlocks(encrypted, data)
+	encrypted := make([]byte, des.BlockSize+len(data))
+	iv := encrypted[:des.BlockSize]
+	if _, err := io.ReadFull(rand.Reader, iv); err != nil {
+		panic(err)
+	}
+
+	mode := cipher.NewCBCEncrypter(block, iv)
+	mode.CryptBlocks(encrypted[des.BlockSize:], data)
 
 	return encrypted
 }
@@ -69,13 +73,14 @@ func DesCbcEncrypt(data, key []byte) []byte {
 // len(key) should be 8
 func DesCbcDecrypt(encrypted, key []byte) []byte {
 	block, _ := des.NewCipher(key)
-	blockSize := block.BlockSize()
-	blockMode := cipher.NewCBCDecrypter(block, key[:blockSize])
 
-	decrypted := make([]byte, len(encrypted))
-	blockMode.CryptBlocks(decrypted, encrypted)
-	decrypted = pkcs7UnPadding(decrypted)
+	iv := encrypted[:des.BlockSize]
+	encrypted = encrypted[des.BlockSize:]
 
+	mode := cipher.NewCBCDecrypter(block, iv)
+	mode.CryptBlocks(encrypted, encrypted)
+
+	decrypted := pkcs7UnPadding(encrypted)
 	return decrypted
 }
 
