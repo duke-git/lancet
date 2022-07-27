@@ -82,9 +82,18 @@ func setHeaderAndQueryAndBody(req *http.Request, reqUrl string, header, queryPar
 	if err != nil {
 		return err
 	}
-	if req.Header.Get("Content-Type") == "multipart/form-data" || req.Header.Get("Content-Type") == "application/x-www-form-urlencoded" {
-		formData := queryParam.(url.Values)
-		err = setBodyByte(req, []byte(formData.Encode()))
+	if strings.Contains(req.Header.Get("Content-Type"), "multipart/form-data") || req.Header.Get("Content-Type") == "application/x-www-form-urlencoded" {
+		if formData, ok := queryParam.(url.Values); ok {
+			err = setBodyByte(req, []byte(formData.Encode()))
+		}
+		if formData, ok := queryParam.(map[string]string); ok {
+			postData := url.Values{}
+			for k, v := range formData {
+				postData.Set(k, v)
+			}
+			err = setBodyByte(req, []byte(postData.Encode()))
+		}
+
 	} else {
 		err = setBodyByte(req, body)
 	}
