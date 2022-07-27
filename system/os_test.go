@@ -60,3 +60,13 @@ func TestExecCommand(t *testing.T) {
 		assert.IsNotNil(err)
 	}
 }
+
+func TestGetOsBits(t *testing.T) {
+	osBits := GetOsBits()
+	switch osBits {
+	case 32, 64:
+		t.Logf("os is %d", osBits)
+	default:
+		t.Error("os is not 32 or 64 bits")
+	}
+}
