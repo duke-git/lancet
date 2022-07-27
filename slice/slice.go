@@ -641,7 +641,6 @@ func InsertByIndex(slice interface{}, index int, value interface{}) (interface{}
 		return slice, errors.New("InvalidSliceIndex")
 	}
 
-	// value is slice
 	vv := reflect.ValueOf(value)
 	if vv.Kind() == reflect.Slice {
 		if reflect.TypeOf(slice).Elem() != reflect.TypeOf(value).Elem() {
@@ -651,7 +650,6 @@ func InsertByIndex(slice interface{}, index int, value interface{}) (interface{}
 		return v.Interface(), nil
 	}
 
-	// value is not slice
 	if reflect.TypeOf(slice).Elem() != reflect.TypeOf(value) {
 		return slice, errors.New("InvalidValueType")
 	}
@@ -709,21 +707,8 @@ func Unique(slice interface{}) interface{} {
 	for i := 0; i < len(temp); i++ {
 		res.Index(i).Set(reflect.ValueOf(temp[i]))
 	}
+
 	return res.Interface()
-
-	// if use map filter, the result slice element order is random, not same as origin slice
-	//mp := make(map[interface{}]bool)
-	//for i := 0; i < sv.Len(); i++ {
-	//	v := sv.Index(i).Interface()
-	//	mp[v] = true
-	//}
-	//
-	//var res []interface{}
-	//for k := range mp {
-	//	res = append(res, mp[k])
-	//}
-	//return res
-
 }
 
 // UniqueBy call iteratee func with every item of slice, then remove duplicated.
@@ -731,11 +716,6 @@ func Unique(slice interface{}) interface{} {
 func UniqueBy(slice, iteratee interface{}) interface{} {
 	sv := sliceValue(slice)
 	fn := functionValue(iteratee)
-
-	// elemType := sv.Type().Elem()
-	// if !checkCallbackFuncSignature2(fn, elemType, elemType) {
-	// 	panic("iteratee function signature should be of type func(" + elemType.String() + ")" + elemType.String())
-	// }
 
 	if sv.Len() == 0 {
 		return slice
@@ -954,4 +934,37 @@ func LastIndexOf(slice, value interface{}) int {
 	}
 
 	return -1
+}
+
+// ToSlicePointer returns a pointer to the slices of a variable parameter transformation
+func ToSlicePointer(value ...interface{}) []*interface{} {
+	out := make([]*interface{}, len(value))
+	for i := range value {
+		out[i] = &value[i]
+	}
+
+	return out
+}
+
+// ToSlice returns a slices of a variable parameter transformation
+func ToSlice(value ...interface{}) interface{} {
+	rv := reflect.ValueOf(value)
+	out := reflect.MakeSlice(rv.Type(), len(value), len(value))
+	for i := range value {
+		out.Index(i).Set(reflect.ValueOf(value[i]))
+	}
+	return out.Interface()
+}
+
+// AppendIfAbsent only absent append the value
+func AppendIfAbsent(slice interface{}, value interface{}) interface{} {
+	sv := sliceValue(slice)
+	out := reflect.MakeSlice(sv.Type(), sv.Len(), sv.Len())
+	for i := 0; i < sv.Len(); i++ {
+		out.Index(i).Set(sv.Index(i))
+	}
+	if !Contain(slice, value) {
+		out = reflect.Append(out, reflect.ValueOf(value))
+	}
+	return out.Interface()
 }
