@@ -22,16 +22,19 @@ import (
 
 ## 目录
 - [ConvertMapToQueryString](#ConvertMapToQueryString)
+- [EncodeUrl](#EncodeUrl)
 - [GetInternalIp](#GetInternalIp)
 - [GetIps](#GetIps)
 - [GetMacAddrs](#GetMacAddrs)
 - [GetPublicIpInfo](#GetPublicIpInfo)
+- [GetRequestPublicIp](#GetRequestPublicIp)
+
 - [IsPublicIP](#IsPublicIP)
+- [IsInternalIP](#IsInternalIP)
 - [HttpGet](#HttpGet)
 - [HttpDelete](#HttpDelete)
 - [HttpPost](#HttpPost)
 - [HttpPut](#HttpPut)
-
 - [HttpPatch](#HttpPatch)
 - [ParseHttpResponse](#ParseHttpResponse)
 
@@ -67,6 +70,36 @@ func main() {
 	qs := netutil.ConvertMapToQueryString(m)
 
 	fmt.Println(qs) //a=1&b=2&c=3
+}
+```
+
+
+
+### <span id="EncodeUrl">EncodeUrl</span>
+<p>编码url query string的值</p>
+
+<b>函数签名:</b>
+
+```go
+func EncodeUrl(urlStr string) (string, error)
+```
+<b>例子:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/netutil"
+)
+
+func main() {
+	urlAddr := "http://www.lancet.com?a=1&b=[2]"
+	encodedUrl, err := netutil.EncodeUrl(urlAddr)
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(encodedUrl) //http://www.lancet.com?a=1&b=%5B2%5D
 }
 ```
 
@@ -198,6 +231,49 @@ func main() {
 
 
 
+### <span id="GetRequestPublicIp">GetRequestPublicIp</span>
+<p>获取http请求ip</p>
+
+<b>函数签名:</b>
+
+```go
+func GetRequestPublicIp(req *http.Request) string
+```
+<b>例子:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/netutil"
+)
+
+func main() {
+	ip := "36.112.24.10"
+
+	request1 := http.Request{
+		Method: "GET",
+		Header: http.Header{
+			"X-Forwarded-For": {ip},
+		},
+	}
+	publicIp1 := netutil.GetRequestPublicIp(&request1)
+	fmt.Println(publicIp1) //36.112.24.10
+
+	request2 := http.Request{
+		Method: "GET",
+		Header: http.Header{
+			"X-Real-Ip": {ip},
+		},
+	}
+	publicIp2 := netutil.GetRequestPublicIp(&request2)
+	fmt.Println(publicIp2) //36.112.24.10
+}
+```
+
+
+
 ### <span id="IsPublicIP">IsPublicIP</span>
 <p>判断ip是否是公共ip</p>
 
@@ -226,6 +302,35 @@ func main() {
 }
 ```
 
+
+
+### <span id="IsInternalIP">IsInternalIP</span>
+<p>判断ip是否是局域网ip.</p>
+
+<b>函数签名:</b>
+
+```go
+func IsInternalIP(IP net.IP) bool
+```
+<b>例子:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+	"net"
+    "github.com/duke-git/lancet/netutil"
+)
+
+func main() {
+	ip1 := net.ParseIP("127.0.0.1")
+	ip2 := net.ParseIP("36.112.24.10")
+
+	fmt.Println(netutil.IsInternalIP(ip1)) //true
+	fmt.Println(netutil.IsInternalIP(ip2)) //false
+}
+```
 
 
 
