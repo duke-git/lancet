@@ -24,6 +24,7 @@ import (
 - [ToBool](#ToBool)
 - [ToBytes](#ToBytes)
 - [ToChar](#ToChar)
+- [ToChannel](#ToChannel)
 - [ToInt](#ToInt)
 - [ToJson](#ToJson)
 - [ToString](#ToString)
@@ -187,6 +188,43 @@ func main() {
 
     chars = convertor.ToChar("1 2#3")
     fmt.Println(chars) //[]string{"1", " ", "2", "#", "3"}
+}
+```
+
+
+### <span id="ToChannel">ToChannel</span>
+
+<p>Convert a collection of elements to a read-only channels.</p>
+
+<b>Signature:</b>
+
+```go
+func ToChannel(array []interface{}) <-chan interface{}
+```
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/convertor"
+)
+
+func main() {
+    ch := convertor.ToChannel([]int{1, 2, 3})
+
+    val1, _ := <-ch
+    fmt.Println(val1) //1
+
+    val2, _ := <-ch
+    fmt.Println(val2) //2
+
+    val3, _ := <-ch
+    fmt.Println(val3) //3
+
+    _, ok := <-ch
+    fmt.Println(ok) //false
 }
 ```
 

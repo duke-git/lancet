@@ -26,6 +26,7 @@ import (
 - [ToBool](#ToBool)
 - [ToBytes](#ToBytes)
 - [ToChar](#ToChar)
+- [ToChannel](#ToChannel)
 - [ToInt](#ToInt)
 - [ToJson](#ToJson)
 - [ToString](#ToString)
@@ -189,6 +190,44 @@ func main() {
 
     chars = convertor.ToChar("1 2#3")
     fmt.Println(chars) //[]string{"1", " ", "2", "#", "3"}
+}
+```
+
+
+
+### <span id="ToChannel">ToChannel</span>
+
+<p>将切片转为只读channel</p>
+
+<b>函数签名:</b>
+
+```go
+func ToChannel(array []interface{}) <-chan interface{}
+```
+<b>例子:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/convertor"
+)
+
+func main() {
+    ch := convertor.ToChannel([]int{1, 2, 3})
+
+    val1, _ := <-ch
+    fmt.Println(val1) //1
+
+    val2, _ := <-ch
+    fmt.Println(val2) //2
+
+    val3, _ := <-ch
+    fmt.Println(val3) //3
+
+    _, ok := <-ch
+    fmt.Println(ok) //false
 }
 ```
 
