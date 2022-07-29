@@ -20,6 +20,7 @@ import (
 <div STYLE="page-break-after: always;"></div>
 
 ## Index
+- [AppendIfAbsent](#AppendIfAbsent)
 - [Contain](#Contain)
 - [ContainSubSlice](#ContainSubSlice)
 - [Chunk](#Chunk)
@@ -53,6 +54,8 @@ import (
 - [SortByField](#SortByField)
 - [Some](#Some)
 - [StringSlice](#StringSlice)
+- [ToSlice](#ToSlice)
+- [ToSlicePointer](#ToSlicePointer)
 - [Unique](#Unique)
 - [UniqueBy](#UniqueBy)
 - [Union](#Union)
@@ -65,6 +68,35 @@ import (
 
 ## Note:
 1. param which type is interface{} in below functions should be slice.
+
+
+
+### <span id="AppendIfAbsent">AppendIfAbsent</span>
+<p>If slice doesn't contain the value, append it to the slice.</p>
+
+<b>Signature:</b>
+
+```go
+func AppendIfAbsent[T comparable](slice []T, value T) []T
+```
+<b>Example:</b>
+
+```go
+import (
+	"fmt"
+	"github.com/duke-git/lancet/slice"
+)
+
+func main() {
+	strs := []string{"a", "b"}
+	res1 := slice.AppendIfAbsent(strs, "a")
+	fmt.Println(res1) //[]string{"a", "b"}
+
+	res2 := slice.AppendIfAbsent(strs, "cannot")
+	fmt.Println(res2"}
+}
+```
+
 
 ### <span id="Contain">Contain</span>
 <p>Check if the value is in the slice or not. iterableType param can be string, map or slice.</p>
@@ -972,6 +1004,55 @@ func main() {
 }
 ```
 
+
+
+### <span id="ToSlice">ToSlice</span>
+<p>Returns a slices of a variable parameter transformation</p>
+
+<b>Signature:</b>
+
+```go
+func ToSlice[T any](value ...T) []T
+```
+<b>Example:</b>
+
+```go
+import (
+	"fmt"
+	"github.com/duke-git/lancet/slice"
+)
+
+func main() {
+	res := slice.ToSlice("a", "b")
+	fmt.Println(res) //{"a", "b"}
+}
+```
+
+
+
+### <span id="ToSlicePointer">ToSlicePointer</span>
+<p>Returns a pointer to the slices of a variable parameter transformation</p>
+
+<b>Signature:</b>
+
+```go
+func ToSlicePointer[T any](value ...T) []*T
+```
+<b>Example:</b>
+
+```go
+import (
+	"fmt"
+	"github.com/duke-git/lancet/slice"
+)
+
+func main() {
+	str1 := "a"
+	str2 := "b"
+	res := slice.ToSlicePointer(str1, str2)
+	fmt.Println(res) // res -> []*string{&str1, &str2}
+}
+```
 
 
 

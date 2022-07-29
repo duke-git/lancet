@@ -20,6 +20,7 @@ import (
 <div STYLE="page-break-after: always;"></div>
 
 ## 目录
+- [AppendIfAbsent](#AppendIfAbsent)
 - [Contain](#Contain)
 - [ContainSubSlice](#ContainSubSlice)
 - [Chunk](#Chunk)
@@ -53,6 +54,8 @@ import (
 - [SortByField](#SortByField)
 - [Some](#Some)
 - [StringSlice](#StringSlice)
+- [ToSlice](#ToSlice)
+- [ToSlicePointer](#ToSlicePointer)
 - [Unique](#Unique)
 - [UniqueBy](#UniqueBy)
 - [Union](#Union)
@@ -62,6 +65,34 @@ import (
 <div STYLE="page-break-after: always;"></div>
 
 ## 文档
+
+### <span id="AppendIfAbsent">AppendIfAbsent</span>
+<p>当前切片中不包含值时，将该值追加到切片中</p>
+
+<b>函数签名:</b>
+
+```go
+func AppendIfAbsent[T comparable](slice []T, value T) []T
+```
+<b>例子:</b>
+
+```go
+import (
+	"fmt"
+	"github.com/duke-git/lancet/slice"
+)
+
+func main() {
+	strs := []string{"a", "b"}
+	res1 := slice.AppendIfAbsent(strs, "a")
+	fmt.Println(res1) //[]string{"a", "b"}
+
+	res2 := slice.AppendIfAbsent(strs, "cannot")
+	fmt.Println(res2"}
+}
+```
+
+
 
 ### <span id="Contain">Contain</span>
 <p>判断slice是否包含value</p>
@@ -972,6 +1003,55 @@ func main() {
 }
 ```
 
+
+
+### <span id="ToSlice">ToSlice</span>
+<p>将可变参数转为切片</p>
+
+<b>函数签名:</b>
+
+```go
+func ToSlice[T any](value ...T) []T
+```
+<b>例子:</b>
+
+```go
+import (
+	"fmt"
+	"github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+	res := slice.ToSlice("a", "b")
+	fmt.Println(res) //{"a", "b"}
+}
+```
+
+
+
+### <span id="ToSlicePointer">ToSlicePointer</span>
+<p>将可变参数转为指针切片</p>
+
+<b>函数签名:</b>
+
+```go
+func ToSlicePointer[T any](value ...T) []*T
+```
+<b>例子:</b>
+
+```go
+import (
+	"fmt"
+	"github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+	str1 := "a"
+	str2 := "b"
+	res := slice.ToSlicePointer(str1, str2)
+	fmt.Println(res) // res -> []*string{&str1, &str2}
+}
+```
 
 
 
