@@ -72,7 +72,7 @@ import (
 <b>函数签名:</b>
 
 ```go
-func AppendIfAbsent[T comparable](slice []T, value T) []T
+func AppendIfAbsent(slice interface{}, value interface{}) interface{}
 ```
 <b>例子:</b>
 
@@ -1011,7 +1011,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func ToSlice[T any](value ...T) []T
+func ToSlice(value ...interface{}) interface{}
 ```
 <b>例子:</b>
 
@@ -1035,7 +1035,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func ToSlicePointer[T any](value ...T) []*T
+func ToSlicePointer(value ...interface{}) []*interface{}
 ```
 <b>例子:</b>
 

@@ -77,7 +77,7 @@ import (
 <b>Signature:</b>
 
 ```go
-func AppendIfAbsent[T comparable](slice []T, value T) []T
+func AppendIfAbsent(slice interface{}, value interface{}) interface{}
 ```
 <b>Example:</b>
 
@@ -1012,7 +1012,7 @@ func main() {
 <b>Signature:</b>
 
 ```go
-func ToSlice[T any](value ...T) []T
+func ToSlice(value ...interface{}) interface{}
 ```
 <b>Example:</b>
 
@@ -1036,7 +1036,7 @@ func main() {
 <b>Signature:</b>
 
 ```go
-func ToSlicePointer[T any](value ...T) []*T
+func ToSlicePointer(value ...interface{}) []*interface{}
 ```
 <b>Example:</b>
 
