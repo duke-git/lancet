@@ -4,7 +4,7 @@
 <br/>
 
 ![Go version](https://img.shields.io/badge/go-v1.16-9cf)
-[![Release](https://img.shields.io/badge/release-1.3.0-green.svg)](https://github.com/duke-git/lancet/releases)
+[![Release](https://img.shields.io/badge/release-1.3.1-green.svg)](https://github.com/duke-git/lancet/releases)
 [![GoDoc](https://godoc.org/github.com//duke-git/lancet?status.svg)](https://pkg.go.dev/github.com/duke-git/lancet)
 [![Go Report Card](https://goreportcard.com/badge/github.com/duke-git/lancet)](https://goreportcard.com/report/github.com/duke-git/lancet)
 [![test](https://github.com/duke-git/lancet/actions/workflows/codecov.yml/badge.svg?branch=main&event=push)](https://github.com/duke-git/lancet/actions/workflows/codecov.yml)
@@ -73,6 +73,7 @@ import "github.com/duke-git/lancet/convertor"
 - [ToBool](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#ToBool)
 - [ToBytes](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#ToBytes)
 - [ToChar](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#ToChar)
+- [ToChannel](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#ToChannel)
 - [ToInt](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#ToInt)
 - [ToJson](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#ToJson)
 - [ToString](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#ToString)
@@ -228,11 +229,14 @@ import "github.com/duke-git/lancet/netutil"
 
 #### Function list:
 - [ConvertMapToQueryString](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#ConvertMapToQueryString)
+- [EncodeUrl](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#EncodeUrl)
 - [GetInternalIp](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#GetInternalIp)
 - [GetIps](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#GetIps)
 - [GetMacAddrs](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#GetMacAddrs)
 - [GetPublicIpInfo](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#GetPublicIpInfo)
+- [GetRequestPublicIp](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#GetRequestPublicIp)
 - [IsPublicIP](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#IsPublicIP)
+- [IsInternalIP](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#IsInternalIP)
 - [HttpGet](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#HttpGet)
 - [HttpDelete](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#HttpDelete)
 - [HttpPost](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#HttpPost)
@@ -272,6 +276,7 @@ import "github.com/duke-git/lancet/slice"
 ```
 
 #### Function list:
+- [AppendIfAbsent](https://github.com/duke-git/lancet/blob/main/docs/slice.md#AppendIfAbsent)
 - [Contain](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Contain)
 - [ContainSubSlice](https://github.com/duke-git/lancet/blob/main/docs/slice.md#ContainSubSlice)
 - [Chunk](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Chunk)
@@ -304,6 +309,8 @@ import "github.com/duke-git/lancet/slice"
 - [SortByField](https://github.com/duke-git/lancet/blob/main/docs/slice.md#SortByField)
 - [Some](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Some)
 - [StringSlice](https://github.com/duke-git/lancet/blob/main/docs/slice.md#StringSlice)
+- [ToSlice](https://github.com/duke-git/lancet/blob/main/docs/slice.md#ToSlice)
+- [ToSlicePointer](https://github.com/duke-git/lancet/blob/main/docs/slice.md#ToSlice)
 - [Unique](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Unique)
 - [UniqueBy](https://github.com/duke-git/lancet/blob/main/docs/slice.md#UniqueBy)
 - [Union](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Union)
@@ -351,6 +358,7 @@ import "github.com/duke-git/lancet/system"
 - [RemoveOsEnv](https://github.com/duke-git/lancet/blob/main/docs/system.md#RemoveOsEnv)
 - [CompareOsEnv](https://github.com/duke-git/lancet/blob/main/docs/system.md#CompareOsEnv)
 - [ExecCommand](https://github.com/duke-git/lancet/blob/main/docs/system.md#ExecCommand)
+- [GetOsBits](https://github.com/duke-git/lancet/blob/main/docs/system.md#GetOsBits)
 
 ### 13. Validator package contains some functions for data validation.
 
