@@ -37,7 +37,7 @@ go get github.com/duke-git/lancet/v2 // will install latest version of v2.x.x
 
 2. <b>For users who use version below go1.18, you should install v1.x.x. now latest v1 is v1.3.1. </b>
 ```go
-go get github.com/duke-git/lancet@v1.3.0 // below go1.18, install latest version of v1.x.x
+go get github.com/duke-git/lancet@v1.3.1 // below go1.18, install latest version of v1.x.x
 ```
 
 ## Usage
