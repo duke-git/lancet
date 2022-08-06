@@ -489,7 +489,6 @@ import "github.com/duke-git/lancet/v2/validator"
 - [IsUrl](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsUrl)
 - [IsWeakPassword](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsWeakPassword)
 
-validator.md#IsWeakPassword)
 ### 19. xerror包实现一些错误处理函数
 
 ```go
