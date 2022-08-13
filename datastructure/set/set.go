@@ -1,7 +1,7 @@
 package datastructure
 
 // Set is a data container, like slice, but element of set is not duplicate
-type Set[T comparable] map[T]bool
+type Set[T comparable] map[T]struct{}
 
 // NewSet return a instance of set
 func NewSet[T comparable](values ...T) Set[T] {
@@ -13,7 +13,7 @@ func NewSet[T comparable](values ...T) Set[T] {
 // Add value to set
 func (s Set[T]) Add(values ...T) {
 	for _, v := range values {
-		s[v] = true
+		s[v] = struct{}{}
 	}
 }
 
