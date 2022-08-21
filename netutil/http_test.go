@@ -18,7 +18,6 @@ func TestHttpGet(t *testing.T) {
 	resp, err := HttpGet(url, header)
 	if err != nil {
 		log.Fatal(err)
-		t.FailNow()
 	}
 
 	body, _ := ioutil.ReadAll(resp.Body)
@@ -40,7 +39,6 @@ func TestHttpPost(t *testing.T) {
 	resp, err := HttpPost(url, header, nil, bodyParams)
 	if err != nil {
 		log.Fatal(err)
-		t.FailNow()
 	}
 	body, _ := ioutil.ReadAll(resp.Body)
 	t.Log("response: ", resp.StatusCode, string(body))
@@ -67,7 +65,6 @@ func TestHttpPostFormData(t *testing.T) {
 	resp, err := HttpPost(apiUrl, header, postData, nil)
 	if err != nil {
 		log.Fatal(err)
-		t.FailNow()
 	}
 	body, _ := ioutil.ReadAll(resp.Body)
 	t.Log("response: ", resp.StatusCode, string(body))
@@ -89,7 +86,6 @@ func TestHttpPut(t *testing.T) {
 	resp, err := HttpPut(url, header, nil, bodyParams)
 	if err != nil {
 		log.Fatal(err)
-		t.FailNow()
 	}
 	body, _ := ioutil.ReadAll(resp.Body)
 	t.Log("response: ", resp.StatusCode, string(body))
@@ -111,7 +107,6 @@ func TestHttpPatch(t *testing.T) {
 	resp, err := HttpPatch(url, header, nil, bodyParams)
 	if err != nil {
 		log.Fatal(err)
-		t.FailNow()
 	}
 	body, _ := ioutil.ReadAll(resp.Body)
 	t.Log("response: ", resp.StatusCode, string(body))
@@ -122,7 +117,6 @@ func TestHttpDelete(t *testing.T) {
 	resp, err := HttpDelete(url)
 	if err != nil {
 		log.Fatal(err)
-		t.FailNow()
 	}
 	body, _ := ioutil.ReadAll(resp.Body)
 	t.Log("response: ", resp.StatusCode, string(body))
@@ -148,7 +142,6 @@ func TestParseResponse(t *testing.T) {
 	resp, err := HttpGet(url, header)
 	if err != nil {
 		log.Fatal(err)
-		t.FailNow()
 	}
 
 	type Todo struct {
@@ -162,7 +155,6 @@ func TestParseResponse(t *testing.T) {
 	err = ParseHttpResponse(resp, toDoResp)
 	if err != nil {
 		log.Fatal(err)
-		t.FailNow()
 	}
 	t.Log("response: ", toDoResp)
 }

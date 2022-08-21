@@ -248,6 +248,11 @@ func (l *List[T]) Size() int {
 	return len(l.data)
 }
 
+// Cap return cap of the inner data
+func (l *List[T]) Cap() int {
+	return cap(l.data)
+}
+
 // Swap the value of index i and j in list
 func (l *List[T]) Swap(i, j int) {
 	size := len(l.data)

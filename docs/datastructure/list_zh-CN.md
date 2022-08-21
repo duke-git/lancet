@@ -26,11 +26,15 @@ import (
 - [Data](#Data)
 - [ValueOf](#ValueOf)
 - [IndexOf](#IndexOf)
+- [LastIndexOf](#LastIndexOf)
+- [IndexOfFunc](#IndexOfFunc)
+- [LastIndexOfFunc](#LastIndexOfFunc)
 - [Push](#Push)
 - [PopFirst](#PopFirst)
 - [PopLast](#PopLast)
 - [DeleteAt](#DeleteAt)
 - [InsertAt](#InsertAt)
+
 - [UpdateAt](#UpdateAt)
 - [Equal](#Equal)
 - [IsEmpty](#IsEmpty)
@@ -38,11 +42,14 @@ import (
 - [Clone](#Clone)
 - [Merge](#Merge)
 - [Size](#Size)
+- [Cap](#Cap)
 - [Swap](#Swap)
 - [Reverse](#Reverse)
 - [Unique](#Unique)
 - [Union](#Union)
 - [Intersection](#Intersection)
+- [SubList](#SubList)
+- [DeleteIf](#DeleteIf)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -188,6 +195,85 @@ func main() {
 
     fmt.Println(li.IndexOf(1)) //0
     fmt.Println(li.IndexOf(0)) //-1
+}
+```
+
+
+### <span id="LastIndexOf">LastIndexOf</span>
+<p>返回列表中最后一次出现的值的索引。如果未找到，则返回-1</p>
+
+<b>函数签名:</b>
+
+```go
+func (l *List[T]) LastIndexOf(value T) int
+```
+<b>例子:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    list "github.com/duke-git/lancet/v2/datastructure/list"
+)
+
+func main() {
+    li := list.NewList([]int{1, 2, 3, 1})
+
+    fmt.Println(li.LastIndexOf(1)) // 3
+    fmt.Println(li.LastIndexOf(0)) //-1
+}
+```
+
+### <span id="IndexOfFunc">IndexOfFunc</span>
+<p>返回第一个符合函数条件的元素的索引。如果未找到，则返回-1</p>
+
+<b>函数签名:</b>
+
+```go
+func (l *List[T]) IndexOfFunc(f func(T) bool) int 
+```
+<b>例子:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    list "github.com/duke-git/lancet/v2/datastructure/list"
+)
+
+func main() {
+    li := list.NewList([]int{1, 2, 3})
+
+    fmt.Println(li.IndexOfFunc(func(a int) bool { return a == 1 })) //0
+    fmt.Println(li.IndexOfFunc(func(a int) bool { return a == 0 })) //-1
+}
+```
+
+### <span id="LastIndexOfFunc">LastIndexOfFunc</span>
+<p>返回最后一个符合函数条件的元素的索引。如果未找到，则返回-1</p>
+
+<b>函数签名:</b>
+
+```go
+func (l *List[T]) LastIndexOfFunc(f func(T) bool) int
+```
+<b>例子:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    list "github.com/duke-git/lancet/v2/datastructure/list"
+)
+
+func main() {
+    li := list.NewList([]int{1, 2, 3, 1})
+
+    fmt.Println(li.LastIndexOfFunc(func(a int) bool { return a == 1 })) // 3
+    fmt.Println(li.LastIndexOfFunc(func(a int) bool { return a == 0 })) //-1
 }
 ```
 
@@ -566,6 +652,34 @@ func main() {
 
 
 
+### <span id="Cap">Cap</span>
+<p>返回列表数据容量</p>
+
+<b>函数签名:</b>
+
+```go
+func (l *List[T]) Cap() int
+```
+<b>例子:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    list "github.com/duke-git/lancet/v2/datastructure/list"
+)
+
+func main() {
+	data := make([]int, 0, 100)
+	
+    li := list.NewList(data)
+
+    fmt.Println(li.Cap()) // 100
+}
+```
+
+
 
 ### <span id="Swap">Swap</span>
 <p>交换列表中两个索引位置的值</p>
@@ -708,5 +822,61 @@ func main() {
     li3 := li1.Intersection(li2)
 
     fmt.Println(li3.Data()) //4
+}
+```
+
+
+
+### <span id="SubList">SubList</span>
+<p>SubList returns a sub list of the original list between the specified fromIndex, inclusive, and toIndex, exclusive.</p>
+
+<b>函数签名:</b>
+
+```go
+func (l *List[T]) SubList(fromIndex, toIndex int) *List[T] 
+```
+<b>例子:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    list "github.com/duke-git/lancet/v2/datastructure/list"
+)
+
+func main() {
+    l := list.NewList([]int{1, 2, 3, 4, 5, 6})
+   
+    fmt.Println(l.SubList(2, 5)) // []int{3, 4, 5}
+}
+```
+
+
+
+
+### <span id="DeleteIf">DeleteIf</span>
+<p>删除列表中所有符合函数（调用函数返回true)的元素，返回删除元素的数量</p>
+
+<b>函数签名:</b>
+
+```go
+func (l *List[T]) DeleteIf(f func(T) bool) int
+```
+<b>例子:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    list "github.com/duke-git/lancet/v2/datastructure/list"
+)
+
+func main() {
+	l := list.NewList([]int{1, 1, 1, 1, 2, 3, 1, 1, 4, 1, 1, 1, 1, 1, 1})
+
+	fmt.Println(l.DeleteIf(func(a int) bool { return a == 1 })) // 12 
+	fmt.Println(l.Data()) // []int{2, 3, 4}
 }
 ```

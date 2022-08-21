@@ -4,7 +4,7 @@
 <br/>
 
 ![Go version](https://img.shields.io/badge/go-%3E%3Dv1.18-9cf)
-[![Release](https://img.shields.io/badge/release-2.1.3-green.svg)](https://github.com/duke-git/lancet/releases)
+[![Release](https://img.shields.io/badge/release-2.1.4-green.svg)](https://github.com/duke-git/lancet/releases)
 [![GoDoc](https://godoc.org/github.com/duke-git/lancet/v2?status.svg)](https://pkg.go.dev/github.com/duke-git/lancet/v2)
 [![Go Report Card](https://goreportcard.com/badge/github.com/duke-git/lancet/v2)](https://goreportcard.com/report/github.com/duke-git/lancet/v2)
 [![test](https://github.com/duke-git/lancet/actions/workflows/codecov.yml/badge.svg?branch=main&event=push)](https://github.com/duke-git/lancet/actions/workflows/codecov.yml)
@@ -35,9 +35,9 @@
 go get github.com/duke-git/lancet/v2 //安装v2最新版本v2.x.x
 ```
 
-2. <b>使用go1.18以下版本的用户，必须安装v1.x.x。目前最新的v1版本是v1.3.0。</b>
+2. <b>使用go1.18以下版本的用户，必须安装v1.x.x。目前最新的v1版本是v1.3.1。</b>
 ```go
-go get github.com/duke-git/lancet@v1.3.0 // 使用go1.18以下版本, 必须安装v1.x.x版本
+go get github.com/duke-git/lancet@v1.3.1 // 使用go1.18以下版本, 必须安装v1.x.x版本
 ```
 
 ## 用法
@@ -367,6 +367,7 @@ import "github.com/duke-git/lancet/v2/slice"
 ```
 
 #### 函数列表:
+- [AppendIfAbsent](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#AppendIfAbsent)
 - [Contain](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Contain)
 - [ContainSubSlice](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#ContainSubSlice)
 - [Chunk](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Chunk)
@@ -488,7 +489,6 @@ import "github.com/duke-git/lancet/v2/validator"
 - [IsUrl](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsUrl)
 - [IsWeakPassword](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsWeakPassword)
 
-validator.md#IsWeakPassword)
 ### 19. xerror包实现一些错误处理函数
 
 ```go
