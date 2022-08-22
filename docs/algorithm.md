@@ -248,7 +248,7 @@ func main() {
 <b>Signature:</b>
 
 ```go
-func QuickSort[T any](slice []T, lowIndex, highIndex int, comparator lancetconstraints.Comparator)
+func QuickSort[T any](slice []T comparator lancetconstraints.Comparator)
 ```
 <b>Example:</b>
 
@@ -278,7 +278,7 @@ func main() {
 
     intSlice := []int{2, 1, 5, 3, 6, 4}
     comparator := &intComparator{}
-    algorithm.QuickSort(intSlice, 0, len(intSlice)-1, comparator)
+    algorithm.QuickSort(intSlice, comparator)
 
     fmt.Println(intSlice) //[]int{1, 2, 3, 4, 5, 6}
 }

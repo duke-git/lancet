@@ -65,11 +65,15 @@ func ShellSort[T any](slice []T, comparator lancetconstraints.Comparator) {
 }
 
 // QuickSort quick sorting for slice, lowIndex is 0 and highIndex is len(slice)-1
-func QuickSort[T any](slice []T, lowIndex, highIndex int, comparator lancetconstraints.Comparator) {
+func QuickSort[T any](slice []T, comparator lancetconstraints.Comparator) {
+	quickSort(slice, 0, len(slice)-1, comparator)
+}
+
+func quickSort[T any](slice []T, lowIndex, highIndex int, comparator lancetconstraints.Comparator) {
 	if lowIndex < highIndex {
 		p := partition(slice, lowIndex, highIndex, comparator)
-		QuickSort(slice, lowIndex, p-1, comparator)
-		QuickSort(slice, p+1, highIndex, comparator)
+		quickSort(slice, lowIndex, p-1, comparator)
+		quickSort(slice, p+1, highIndex, comparator)
 	}
 }
 

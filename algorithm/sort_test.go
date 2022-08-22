@@ -141,7 +141,7 @@ func TestQuickSort(t *testing.T) {
 		{Name: "e", Age: 28},
 	}
 	comparator := &peopleAgeComparator{}
-	QuickSort(peoples, 0, len(peoples)-1, comparator)
+	QuickSort(peoples, comparator)
 
 	expected := "[{d 8} {b 10} {c 17} {a 20} {e 28}]"
 	actual := fmt.Sprintf("%v", peoples)
