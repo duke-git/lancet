@@ -30,14 +30,6 @@ func (pc *peopleAgeComparator) Compare(v1 any, v2 any) int {
 	return 0
 }
 
-// var peoples = []people{
-// 	{Name: "a", Age: 20},
-// 	{Name: "b", Age: 10},
-// 	{Name: "c", Age: 17},
-// 	{Name: "d", Age: 8},
-// 	{Name: "e", Age: 28},
-// }
-
 type intComparator struct{}
 
 func (c *intComparator) Compare(v1 any, v2 any) int {
@@ -52,8 +44,6 @@ func (c *intComparator) Compare(v1 any, v2 any) int {
 	}
 	return 0
 }
-
-// var intSlice = []int{2, 1, 5, 3, 6, 4}
 
 func TestBubbleSortForStructSlice(t *testing.T) {
 	asssert := internal.NewAssert(t, "TestBubbleSortForStructSlice")
