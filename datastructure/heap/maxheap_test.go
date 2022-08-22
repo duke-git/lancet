@@ -20,6 +20,20 @@ func (c *intComparator) Compare(v1, v2 any) int {
 	return 0
 }
 
+func TestMaxHeap_BuildMaxHeap(t *testing.T) {
+	assert := internal.NewAssert(t, "TestMaxHeap_BuildMaxHeap")
+
+	values := []int{6, 5, 2, 4, 7, 10, 12, 1, 3, 8, 9, 11}
+	heap := BuildMaxHeap(values, &intComparator{})
+
+	expected := []int{12, 9, 11, 4, 8, 10, 7, 1, 3, 5, 6, 2}
+	assert.Equal(expected, heap.data)
+
+	assert.Equal(12, heap.Size())
+
+	heap.PrintStructure()
+}
+
 func TestMaxHeap_Push(t *testing.T) {
 	assert := internal.NewAssert(t, "TestMaxHeap_Push")
 
