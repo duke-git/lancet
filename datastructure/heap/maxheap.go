@@ -28,7 +28,7 @@ func NewMaxHeap[T any](comparator lancetconstraints.Comparator) *MaxHeap[T] {
 // BuildMaxHeap builds a MaxHeap instance with data and given comparator.
 func BuildMaxHeap[T any](data []T, comparator lancetconstraints.Comparator) *MaxHeap[T] {
 	heap := &MaxHeap[T]{
-		data:       make([]T, 0),
+		data:       make([]T, 0, len(data)),
 		comparator: comparator,
 	}
 
