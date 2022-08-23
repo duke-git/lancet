@@ -78,7 +78,7 @@ func (hm *HashMap) putValue(hash uint64, key, value any) any {
 	return value
 }
 
-// Delete key value in hashmap
+// Delete item by given key in hashmap
 func (hm *HashMap) Delete(key any) {
 	hash := hm.hash(key)
 	node := hm.table[hash]
