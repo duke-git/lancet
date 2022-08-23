@@ -78,6 +78,28 @@ func (hm *HashMap) putValue(hash uint64, key, value any) any {
 	return value
 }
 
+// Delete key value in hashmap
+// func (hm *HashMap) Delete(key any) {
+// 	hm.deleteValue(hm.hash(key))
+// }
+
+func (hm *HashMap) Delete(key any) {
+	hash := hm.hash(key)
+	node := hm.table[hash]
+	if node == nil {
+		return
+	}
+
+	hm.table = append(hm.table[:hash], hm.table[hash+1:]...)
+	hm.size--
+}
+
+// Contains checks if given key is in hashmap or not
+func (hm *HashMap) Contains(key any) bool {
+	node := hm.table[hm.hash(key)]
+	return node != nil
+}
+
 func (hm *HashMap) resize() {
 	hm.capacity <<= 1
 
