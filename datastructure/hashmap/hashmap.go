@@ -41,7 +41,7 @@ func NewHashMapWithCapacity(size, capacity uint64) *HashMap {
 	}
 }
 
-// Get return the value of given key in hash map
+// Get return the value of given key in hashmap
 func (hm *HashMap) Get(key any) any {
 	hashValue := hm.hash(key)
 	node := hm.table[hashValue]
@@ -50,6 +50,47 @@ func (hm *HashMap) Get(key any) any {
 	}
 
 	return nil
+}
+
+// Put new key value in hashmap
+func (hm *HashMap) Put(key any, value any) any {
+	return hm.putValue(hm.hash(key), key, value)
+}
+
+func (hm *HashMap) putValue(hash uint64, key, value any) any {
+	if hm.capacity == 0 {
+		hm.capacity = defaultMapCapacity
+		hm.table = make([]*mapNode, defaultMapCapacity)
+	}
+
+	node := hm.table[hash]
+	if node == nil {
+		hm.table[hash] = newMapNode(key, value)
+	} else if node.key == key {
+		hm.table[hash] = newMapNodeWithNext(key, value, node)
+		return value
+	} else {
+		hm.resize()
+		return hm.putValue(hash, value, value)
+	}
+	hm.size++
+
+	return value
+}
+
+func (hm *HashMap) resize() {
+	hm.capacity <<= 1
+
+	tempTable := hm.table
+
+	for i := 0; i < len(tempTable); i++ {
+		node := tempTable[i]
+		if node == nil {
+			continue
+		}
+
+		hm.table[hm.hash(node.key)] = node
+	}
 }
 
 func (hm *HashMap) hash(key any) uint64 {
@@ -61,9 +102,17 @@ func (hm *HashMap) hash(key any) uint64 {
 	return (hm.capacity - 1) & (hashValue ^ (hashValue >> 16))
 }
 
-func newMapNode(key any, value any) *mapNode {
+func newMapNode(key, value any) *mapNode {
 	return &mapNode{
 		key:   key,
 		value: value,
+	}
+}
+
+func newMapNodeWithNext(key, value any, next *mapNode) *mapNode {
+	return &mapNode{
+		key:   key,
+		value: value,
+		next:  next,
 	}
 }
