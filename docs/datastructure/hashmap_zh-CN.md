@@ -1,0 +1,209 @@
+# HashMap
+
+HashMap 数据结构实现
+
+<div STYLE="page-break-after: always;"></div>
+
+## 源码
+
+- [https://github.com/duke-git/lancet/blob/main/datastructure/hashmap/hashmap.go](https://github.com/duke-git/lancet/blob/main/datastructure/hashmap/hashmap.go)
+
+<div STYLE="page-break-after: always;"></div>
+
+## 用法
+
+```go
+import (
+    hashmap "github.com/duke-git/lancet/v2/datastructure/hashmap"
+)
+```
+
+<div STYLE="page-break-after: always;"></div>
+
+## 目录
+
+- [HashMap](#hashmap)
+  - [源码](#源码)
+  - [用法](#用法)
+  - [目录](#目录)
+  - [API 文档](#api-文档)
+    - [<span id="NewHashMap">NewHashMap</span>](#newhashmap)
+    - [<span id="NewHashMapWithCapacity">NewHashMapWithCapacity</span>](#newhashmapwithcapacity)
+    - [<span id="Get">Get</span>](#get)
+    - [<span id="Put">Put</span>](#put)
+    - [<span id="Delete">Delete</span>](#delete)
+    - [<span id="Contains">Contains</span>](#contains)
+
+<div STYLE="page-break-after: always;"></div>
+
+## API 文档
+
+### <span id="NewHashMap">NewHashMap</span>
+
+<p>新建默认容量（1 << 10）的HashMap指针实例</p>
+
+<b>函数签名:</b>
+
+```go
+func NewHashMap() *HashMap
+```
+
+<b>例子:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    hashmap "github.com/duke-git/lancet/v2/datastructure/hashmap"
+)
+
+func main() {
+    hm := heap.NewHashMap()
+    fmt.Println(hm)
+}
+```
+
+### <span id="NewHashMapWithCapacity">NewHashMapWithCapacity</span>
+
+<p>新建指定容量和长度的HashMap指针实例.</p>
+
+<b>函数签名:</b>
+
+```go
+func NewHashMapWithCapacity(size, capacity uint64) *HashMap
+```
+
+<b>例子:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    hashmap "github.com/duke-git/lancet/v2/datastructure/hashmap"
+)
+
+func main() {
+    hm := heap.NewHashMapWithCapacity(uint64(100), uint64(1000))
+    fmt.Println(hm)
+}
+```
+
+### <span id="Get">Get</span>
+
+<p>在hashmap中根据key获取值</p>
+
+<b>函数签名:</b>
+
+```go
+func (hm *HashMap) Get(key any) any
+```
+
+<b>例子:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    hashmap "github.com/duke-git/lancet/v2/datastructure/hashmap"
+)
+
+func main() {
+	hm := heap.NewHashMap()
+	val := hm.Get("a")
+
+    fmt.Println(val) //nil
+}
+```
+
+### <span id="Put">Put</span>
+
+<p>将key-value放入hashmap中</p>
+
+<b>函数签名:</b>
+
+```go
+func (hm *HashMap) Put(key any, value any) any
+```
+
+<b>例子:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    hashmap "github.com/duke-git/lancet/v2/datastructure/hashmap"
+)
+
+func main() {
+	hm := heap.NewHashMap()
+	hm.Put("a", 1)
+
+	val := hm.Get("a")
+    fmt.Println(val) //1
+}
+```
+
+### <span id="Delete">Delete</span>
+
+<p>将指定的key从hashmap中删除</p>
+
+<b>函数签名:</b>
+
+```go
+func (hm *HashMap) Delete(key any)
+```
+
+<b>例子:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    hashmap "github.com/duke-git/lancet/v2/datastructure/hashmap"
+)
+
+func main() {
+	hm := heap.NewHashMap()
+	hm.Put("a", 1)
+	val := hm.Get("a")
+    fmt.Println(val) //1
+
+	hm.Delete("a")
+	val = hm.Get("a")
+    fmt.Println(val) //nil
+}
+```
+
+### <span id="Contains">Contains</span>
+
+<p>判断hashmap中是否包含指定的key</p>
+
+<b>函数签名:</b>
+
+```go
+func (hm *HashMap) Contains(key any) bool
+```
+
+<b>例子:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    hashmap "github.com/duke-git/lancet/v2/datastructure/hashmap"
+)
+
+func main() {
+	hm := heap.NewHashMap()
+	hm.Put("a", 1)
+
+    fmt.Println(hm.Contains("a")) //true
+    fmt.Println(hm.Contains("b")) //false
+}
+```
