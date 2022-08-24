@@ -53,11 +53,11 @@ func (hm *HashMap) Get(key any) any {
 }
 
 // Put new key value in hashmap
-func (hm *HashMap) Put(key any, value any) any {
-	return hm.putValue(hm.hash(key), key, value)
+func (hm *HashMap) Put(key any, value any) {
+	hm.putValue(hm.hash(key), key, value)
 }
 
-func (hm *HashMap) putValue(hash uint64, key, value any) any {
+func (hm *HashMap) putValue(hash uint64, key, value any) {
 	if hm.capacity == 0 {
 		hm.capacity = defaultMapCapacity
 		hm.table = make([]*mapNode, defaultMapCapacity)
@@ -68,14 +68,11 @@ func (hm *HashMap) putValue(hash uint64, key, value any) any {
 		hm.table[hash] = newMapNode(key, value)
 	} else if node.key == key {
 		hm.table[hash] = newMapNodeWithNext(key, value, node)
-		return value
 	} else {
 		hm.resize()
-		return hm.putValue(hash, value, value)
+		hm.putValue(hash, value, value)
 	}
 	hm.size++
-
-	return value
 }
 
 // Delete item by given key in hashmap
