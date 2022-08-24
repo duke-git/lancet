@@ -32,7 +32,7 @@ import (
 - [UpperFirst](#UpperFirst)
 - [PadEnd](#PadEnd)
 - [PadStart](#PadStart)
-- [ReverseStr](#ReverseStr)
+- [Reverse](#Reverse)
 - [SnakeCase](#SnakeCase)
 - [SplitEx](#SplitEx)
 - [Wrap](#Wrap)
@@ -431,13 +431,13 @@ func main() {
 
 
 
-### <span id="ReverseStr">ReverseStr</span>
+### <span id="Reverse">Reverse</span>
 <p>返回字符顺序与给定字符串相反的字符串</p>
 
 <b>函数签名:</b>
 
 ```go
-func ReverseStr(s string) string
+func Reverse(s string) string
 ```
 <b>例子:</b>
 

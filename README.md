@@ -50,7 +50,7 @@ import "github.com/duke-git/lancet/v2/strutil"
 
 ## Example
 
-Here takes the string function ReverseStr (reverse order string) as an example, and the strutil package needs to be imported.
+Here takes the string function Reverse (reverse order string) as an example, and the strutil package needs to be imported.
 
 ```go
 package main
@@ -62,7 +62,7 @@ import (
 
 func main() {
     s := "hello"
-    rs := strutil.ReverseStr(s)
+    rs := strutil.Reverse(s)
     fmt.Println(rs) //olleh
 }
 ```
@@ -435,7 +435,7 @@ import "github.com/duke-git/lancet/v2/strutil"
 - [UpperFirst](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#UpperFirst)
 - [PadEnd](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#PadEnd)
 - [PadStart](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#PadStart)
-- [ReverseStr](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#ReverseStr)
+- [Reverse](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#Reverse)
 - [SnakeCase](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#SnakeCase)
 - [SplitEx](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#SplitEx)
 - [Wrap](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#Wrap)

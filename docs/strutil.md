@@ -32,7 +32,7 @@ import (
 - [UpperFirst](#UpperFirst)
 - [PadEnd](#PadEnd)
 - [PadStart](#PadStart)
-- [ReverseStr](#ReverseStr)
+- [Reverse](#Reverse)
 - [SnakeCase](#SnakeCase)
 - [SplitEx](#SplitEx)
 - [Wrap](#Wrap)
@@ -430,13 +430,13 @@ func main() {
 
 
 
-### <span id="ReverseStr">ReverseStr</span>
+### <span id="Reverse">Reverse</span>
 <p>Return string whose char order is reversed to the given string.</p>
 
 <b>Signature:</b>
 
 ```go
-func ReverseStr(s string) string
+func Reverse(s string) string
 ```
 <b>Example:</b>
 

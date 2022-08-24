@@ -50,7 +50,7 @@ import "github.com/duke-git/lancet/v2/strutil"
 
 ## 例子
 
-此处以字符串工具函数ReverseStr（逆序字符串）为例，需要导入strutil包:
+此处以字符串工具函数Reverse（逆序字符串）为例，需要导入strutil包:
 
 ```go
 package main
@@ -62,7 +62,7 @@ import (
 
 func main() {
     s := "hello"
-    rs := strutil.ReverseStr(s)
+    rs := strutil.Reverse(s)
     fmt.Println(rs) //olleh
 }
 ```
@@ -431,7 +431,7 @@ import "github.com/duke-git/lancet/v2/strutil"
 - [UpperFirst](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#UpperFirst)
 - [PadEnd](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#PadEnd)
 - [PadStart](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#PadStart)
-- [ReverseStr](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#ReverseStr)
+- [Reverse](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#Reverse)
 - [SnakeCase](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#SnakeCase)
 - [SplitEx](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#SplitEx)
 - [Wrap](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#Wrap)
