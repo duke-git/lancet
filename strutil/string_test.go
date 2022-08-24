@@ -143,11 +143,11 @@ func TestIsString(t *testing.T) {
 	assert.Equal(false, IsString([]string{}))
 }
 
-func TestReverseStr(t *testing.T) {
-	assert := internal.NewAssert(t, "TestReverseStr")
+func TestReverse(t *testing.T) {
+	assert := internal.NewAssert(t, "TestReverse")
 
-	assert.Equal("cba", ReverseStr("abc"))
-	assert.Equal("54321", ReverseStr("12345"))
+	assert.Equal("cba", Reverse("abc"))
+	assert.Equal("54321", Reverse("12345"))
 }
 
 func TestWrap(t *testing.T) {
