@@ -19,6 +19,18 @@ func TestHashMap_PutAndGet(t *testing.T) {
 	assert.Equal(4, hm.Get("abc"))
 }
 
+func TestHashMap_Resize(t *testing.T) {
+	assert := internal.NewAssert(t, "TestHashMap_Resize")
+
+	hm := NewHashMapWithCapacity(3, 3)
+
+	for i := 0; i < 20; i++ {
+		hm.Put(i, 10)
+	}
+
+	assert.Equal(10, hm.Get(5))
+}
+
 func TestHashMap_Delete(t *testing.T) {
 	assert := internal.NewAssert(t, "TestHashMap_Delete")
 

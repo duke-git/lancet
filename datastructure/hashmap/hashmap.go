@@ -98,6 +98,8 @@ func (hm *HashMap) resize() {
 
 	tempTable := hm.table
 
+	hm.table = make([]*mapNode, hm.capacity)
+
 	for i := 0; i < len(tempTable); i++ {
 		node := tempTable[i]
 		if node == nil {
