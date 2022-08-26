@@ -36,6 +36,8 @@ import (
 - [ToString](#ToString)
 - [StructToMap](#StructToMap)
 - [MapToSlice](#MapToSlice)
+- [EncodeByte](#EncodeByte)
+- [DecodeByte](#DecodeByte)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -487,5 +489,61 @@ func main() {
     })
 
     fmt.Println(result) //[]string{"a:1", "b:2", "c:3"}
+}
+```
+
+
+
+### <span id="EncodeByte">EncodeByte</span>
+
+<p>将data编码成字节切片</p>
+
+<b>函数签名:</b>
+
+```go
+func EncodeByte(data any) ([]byte, error)
+```
+<b>例子:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/convertor"
+)
+
+func main() {
+    byteData, _ := convertor.EncodeByte("abc")
+    fmt.Println(byteData) //[]byte{6, 12, 0, 3, 97, 98, 99}
+}
+```
+
+
+
+### <span id="DecodeByte">DecodeByte</span>
+
+<p>解码字节切片到目标对象，目标对象需要传入一个指针实例子</p>
+
+<b>函数签名:</b>
+
+```go
+func DecodeByte(data []byte, target any) error
+```
+<b>例子:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/convertor"
+)
+
+func main() {
+    var result string
+	byteData := []byte{6, 12, 0, 3, 97, 98, 99}
+	convertor.DecodeByte(byteData, &result)
+    fmt.Println(result) //"abc"
 }
 ```
