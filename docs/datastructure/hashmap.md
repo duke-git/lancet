@@ -20,6 +20,7 @@ import (
 
 <div STYLE="page-break-after: always;"></div>
 
+
 ## Index
 
 - [NewHashMap](#NewHashMap)
@@ -106,8 +107,8 @@ import (
 )
 
 func main() {
-	hm := heap.NewHashMap()
-	val := hm.Get("a")
+    hm := heap.NewHashMap()
+    val := hm.Get("a")
 
     fmt.Println(val) //nil
 }
@@ -134,10 +135,10 @@ import (
 )
 
 func main() {
-	hm := heap.NewHashMap()
-	hm.Put("a", 1)
+    hm := heap.NewHashMap()
+    hm.Put("a", 1)
 
-	val := hm.Get("a")
+    val := hm.Get("a")
     fmt.Println(val) //1
 }
 ```
@@ -165,13 +166,13 @@ import (
 )
 
 func main() {
-	hm := heap.NewHashMap()
-	hm.Put("a", 1)
-	val := hm.Get("a")
+    hm := heap.NewHashMap()
+    hm.Put("a", 1)
+    val := hm.Get("a")
     fmt.Println(val) //1
 
-	hm.Delete("a")
-	val = hm.Get("a")
+    hm.Delete("a")
+    val = hm.Get("a")
     fmt.Println(val) //nil
 }
 ```
@@ -199,8 +200,8 @@ import (
 )
 
 func main() {
-	hm := heap.NewHashMap()
-	hm.Put("a", 1)
+    hm := heap.NewHashMap()
+    hm.Put("a", 1)
 
     fmt.Println(hm.Contains("a")) //true
     fmt.Println(hm.Contains("b")) //false

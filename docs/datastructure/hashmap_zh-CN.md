@@ -22,17 +22,13 @@ import (
 
 ## 目录
 
-- [HashMap](#hashmap)
-  - [源码](#源码)
-  - [用法](#用法)
-  - [目录](#目录)
-  - [API 文档](#api-文档)
-    - [<span id="NewHashMap">NewHashMap</span>](#newhashmap)
-    - [<span id="NewHashMapWithCapacity">NewHashMapWithCapacity</span>](#newhashmapwithcapacity)
-    - [<span id="Get">Get</span>](#get)
-    - [<span id="Put">Put</span>](#put)
-    - [<span id="Delete">Delete</span>](#delete)
-    - [<span id="Contains">Contains</span>](#contains)
+- [NewHashMap](#NewHashMap)
+- [NewHashMapWithCapacity](#NewHashMapWithCapacity)
+
+- [Get](#Get)
+- [Put](#Put)
+- [Delete](#Delete)
+- [Contains](#Contains)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -111,8 +107,8 @@ import (
 )
 
 func main() {
-	hm := heap.NewHashMap()
-	val := hm.Get("a")
+    hm := heap.NewHashMap()
+    val := hm.Get("a")
 
     fmt.Println(val) //nil
 }
@@ -139,10 +135,10 @@ import (
 )
 
 func main() {
-	hm := heap.NewHashMap()
-	hm.Put("a", 1)
+    hm := heap.NewHashMap()
+    hm.Put("a", 1)
 
-	val := hm.Get("a")
+    val := hm.Get("a")
     fmt.Println(val) //1
 }
 ```
@@ -168,13 +164,13 @@ import (
 )
 
 func main() {
-	hm := heap.NewHashMap()
-	hm.Put("a", 1)
-	val := hm.Get("a")
+    hm := heap.NewHashMap()
+    hm.Put("a", 1)
+    val := hm.Get("a")
     fmt.Println(val) //1
 
-	hm.Delete("a")
-	val = hm.Get("a")
+    hm.Delete("a")
+    val = hm.Get("a")
     fmt.Println(val) //nil
 }
 ```
@@ -200,8 +196,8 @@ import (
 )
 
 func main() {
-	hm := heap.NewHashMap()
-	hm.Put("a", 1)
+    hm := heap.NewHashMap()
+    hm.Put("a", 1)
 
     fmt.Println(hm.Contains("a")) //true
     fmt.Println(hm.Contains("b")) //false
