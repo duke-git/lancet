@@ -7,6 +7,7 @@ package convertor
 import (
 	"bytes"
 	"encoding/binary"
+	"encoding/gob"
 	"encoding/json"
 	"fmt"
 	"math"
@@ -269,4 +270,15 @@ func ColorRGBToHex(red, green, blue int) string {
 	}
 
 	return "#" + r + g + b
+}
+
+// EncodeByte encode data to byte
+func EncodeByte(data any) ([]byte, error) {
+	buffer := bytes.NewBuffer(nil)
+	encoder := gob.NewEncoder(buffer)
+	err := encoder.Encode(data)
+	if err != nil {
+		return nil, err
+	}
+	return buffer.Bytes(), nil
 }
