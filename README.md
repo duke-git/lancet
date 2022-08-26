@@ -219,6 +219,7 @@ import queue "github.com/duke-git/lancet/v2/datastructure/queue"
 import set "github.com/duke-git/lancet/v2/datastructure/set"
 import tree "github.com/duke-git/lancet/v2/datastructure/tree"
 import heap "github.com/duke-git/lancet/v2/datastructure/heap"
+import hashmap "github.com/duke-git/lancet/v2/datastructure/hashmap"
 ```
 #### Function list:
 - [List](https://github.com/duke-git/lancet/blob/main/docs/datastructure/list.md)
@@ -228,6 +229,7 @@ import heap "github.com/duke-git/lancet/v2/datastructure/heap"
 - [Set](https://github.com/duke-git/lancet/blob/main/docs/datastructure/set.md)
 - [Tree](https://github.com/duke-git/lancet/blob/main/docs/datastructure/tree.md)
 - [Heap](https://github.com/duke-git/lancet/blob/main/docs/datastructure/heap.md)
+- [HashMap](https://github.com/duke-git/lancet/blob/main/docs/datastructure/hashmap.md)
 
 
 ### 7. Fileutil package implements some basic functions for file operations.
