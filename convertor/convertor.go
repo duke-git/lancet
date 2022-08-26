@@ -282,3 +282,10 @@ func EncodeByte(data any) ([]byte, error) {
 	}
 	return buffer.Bytes(), nil
 }
+
+// DecodeByte decode byte data to target object
+func DecodeByte(data []byte, target any) error {
+	buffer := bytes.NewBuffer(data)
+	decoder := gob.NewDecoder(buffer)
+	return decoder.Decode(target)
+}
