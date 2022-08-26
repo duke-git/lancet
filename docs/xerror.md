@@ -46,7 +46,7 @@ import (
 )
 
 func main() {
-    _, err := strconv.Atoi("4o2")
+	_, err := strconv.Atoi("4o2")
 	defer func() {
 		v := recover()
 		fmt.Println(err.Error()) // err.Error() == v.(*strconv.NumError).Error()
