@@ -1,8 +1,9 @@
-package common
+package condition
 
 import (
-	"github.com/duke-git/lancet/v2/internal"
 	"testing"
+
+	"github.com/duke-git/lancet/v2/internal"
 )
 
 func TestTernaryOperator(t *testing.T) {
