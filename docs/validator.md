@@ -47,6 +47,7 @@ import (
 - [IsStrongPassword](#IsStrongPassword)
 - [IsUrl](#IsUrl)
 - [IsWeakPassword](#IsWeakPassword)
+- [IsZeroValue](#IsZeroValue)
   
 
 <div STYLE="page-break-after: always;"></div>
@@ -765,7 +766,7 @@ func main() {
 
 
 ### <span id="IsWeakPassword">IsWeakPassword</span>
-<p>Check if the string is weak password（only letter or only number or letter + number）
+<p>Checks if the string is weak password（only letter or only number or letter + number）
 .</p>
 
 <b>Signature:</b>
@@ -789,6 +790,36 @@ func main() {
 }
 ```
 
+
+
+
+### <span id="IsZeroValue">IsZeroValue</span>
+<p>Checks if passed value is a zero value.</p>
+
+<b>Signature:</b>
+
+```go
+func IsZeroValue(value any) bool
+```
+<b>Example:</b>
+
+```go
+import (
+	"fmt"
+	"github.com/duke-git/lancet/v2/validator"
+)
+
+func main() {
+	fmt.Println(validator.IsZeroValue(nil)) //true
+	fmt.Println(validator.IsZeroValue(0)) //true
+	fmt.Println(validator.IsZeroValue("")) //true
+	fmt.Println(validator.IsZeroValue([]int)) //true
+	fmt.Println(validator.IsZeroValue(interface{})) //true
+
+	fmt.Println(validator.IsZeroValue("0")) //false
+	fmt.Println(validator.IsZeroValue("nil")) //false
+}
+```
 
 
 
