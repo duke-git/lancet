@@ -160,7 +160,7 @@ func IsEmail(email string) bool {
 	return isEmailRegexMatcher.MatchString(email)
 }
 
-var isChineseMobileRegexMatcher *regexp.Regexp = regexp.MustCompile(`^((13[0-9])|(14[5,7])|(15[0-3,5-9])|(17[0,3,5-8])|(18[0-9])|166|198|199|(147))\\d{8}$`)
+var isChineseMobileRegexMatcher *regexp.Regexp = regexp.MustCompile("^((13[0-9])|(14[5,7])|(15[0-3,5-9])|(17[0,3,5-8])|(18[0-9])|166|198|199|(147))\\d{8}$")
 
 // IsChineseMobile check if the string is chinese mobile number.
 func IsChineseMobile(mobileNum string) bool {
