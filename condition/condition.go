@@ -33,6 +33,40 @@ func reflectValue(vp any) bool {
 	}
 }
 
+// And returns true if both a and b are truthy.
+func And[T, U any](a T, b U) bool {
+	return Bool(a) && Bool(b)
+}
+
+// Or returns false iff neither a nor b is truthy.
+func Or[T, U any](a T, b U) bool {
+	return Bool(a) || Bool(b)
+}
+
+// Xor returns true iff a or b but not both is truthy.
+func Xor[T, U any](a T, b U) bool {
+	valA := Bool(a)
+	valB := Bool(b)
+	return (valA || valB) && valA != valB
+}
+
+// Nor returns true iff neither a nor b is truthy.
+func Nor[T, U any](a T, b U) bool {
+	return !(Bool(a) || Bool(b))
+}
+
+// Xnor returns true iff both a and b or neither a nor b are truthy.
+func Xnor[T, U any](a T, b U) bool {
+	valA := Bool(a)
+	valB := Bool(b)
+	return (valA && valB) || (!valA && !valB)
+}
+
+// Nand returns false iff both a and b are truthy.
+func Nand[T, U any](a T, b U) bool {
+	return !Bool(a) || !Bool(b)
+}
+
 // TernaryOperator if true return trueValue else return falseValue
 func TernaryOperator[T any](isTrue bool, trueValue T, falseValue T) T {
 	if isTrue {

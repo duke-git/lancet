@@ -62,6 +62,54 @@ func TestBool(t *testing.T) {
 	assert.Equal(true, Bool(&ts))
 }
 
+func TestAnd(t *testing.T) {
+	assert := internal.NewAssert(t, "TestAnd")
+	assert.Equal(false, And(0, 1))
+	assert.Equal(false, And(0, ""))
+	assert.Equal(false, And(0, "0"))
+	assert.Equal(true, And(1, "0"))
+}
+
+func TestOr(t *testing.T) {
+	assert := internal.NewAssert(t, "TestOr")
+	assert.Equal(false, Or(0, ""))
+	assert.Equal(true, Or(0, 1))
+	assert.Equal(true, Or(0, "0"))
+	assert.Equal(true, Or(1, "0"))
+}
+
+func TestXor(t *testing.T) {
+	assert := internal.NewAssert(t, "TestOr")
+	assert.Equal(false, Xor(0, 0))
+	assert.Equal(true, Xor(0, 1))
+	assert.Equal(true, Xor(1, 0))
+	assert.Equal(false, Xor(1, 1))
+}
+
+func TestNor(t *testing.T) {
+	assert := internal.NewAssert(t, "TestNor")
+	assert.Equal(true, Nor(0, 0))
+	assert.Equal(false, Nor(0, 1))
+	assert.Equal(false, Nor(1, 0))
+	assert.Equal(false, Nor(1, 1))
+}
+
+func TestXnor(t *testing.T) {
+	assert := internal.NewAssert(t, "TestXnor")
+	assert.Equal(true, Xnor(0, 0))
+	assert.Equal(false, Xnor(0, 1))
+	assert.Equal(false, Xnor(1, 0))
+	assert.Equal(true, Xnor(1, 1))
+}
+
+func TestNand(t *testing.T) {
+	assert := internal.NewAssert(t, "TestNand")
+	assert.Equal(true, Nand(0, 0))
+	assert.Equal(true, Nand(0, 1))
+	assert.Equal(true, Nand(1, 0))
+	assert.Equal(false, Nand(1, 1))
+}
+
 func TestTernaryOperator(t *testing.T) {
 	assert := internal.NewAssert(t, "TernaryOperator")
 	trueValue := "1"
