@@ -7,6 +7,7 @@ package convertor
 import (
 	"bytes"
 	"encoding/binary"
+	"encoding/gob"
 	"encoding/json"
 	"fmt"
 	"math"
@@ -242,4 +243,22 @@ func ToChannel(array []interface{}) <-chan interface{} {
 	}()
 
 	return ch
+}
+
+// EncodeByte encode data to byte
+func EncodeByte(data interface{}) ([]byte, error) {
+	buffer := bytes.NewBuffer(nil)
+	encoder := gob.NewEncoder(buffer)
+	err := encoder.Encode(data)
+	if err != nil {
+		return nil, err
+	}
+	return buffer.Bytes(), nil
+}
+
+// DecodeByte decode byte data to target object
+func DecodeByte(data []byte, target interface{}) error {
+	buffer := bytes.NewBuffer(data)
+	decoder := gob.NewDecoder(buffer)
+	return decoder.Decode(target)
 }

@@ -21,16 +21,25 @@ import (
 
 ## 目录
 
-- [ColorHexToRGB](#ColorHexToRGB)
-- [ColorRGBToHex](#ColorRGBToHex)
-- [ToBool](#ToBool)
-- [ToBytes](#ToBytes)
-- [ToChar](#ToChar)
-- [ToChannel](#ToChannel)
-- [ToInt](#ToInt)
-- [ToJson](#ToJson)
-- [ToString](#ToString)
-- [StructToMap](#StructToMap)
+- [Convertor](#convertor)
+  - [源码:](#源码)
+  - [用法:](#用法)
+  - [目录](#目录)
+  - [文档](#文档)
+    - [<span id="ColorHexToRGB">ColorHexToRGB</span>](#colorhextorgb)
+    - [<span id="ColorRGBToHex">ColorRGBToHex</span>](#colorrgbtohex)
+    - [<span id="ToBool">ToBool</span>](#tobool)
+    - [<span id="ToBytes">ToBytes</span>](#tobytes)
+    - [<span id="ToChar">ToChar</span>](#tochar)
+    - [<span id="ToChannel">ToChannel</span>](#tochannel)
+    - [<span id="ToFloat">ToFloat</span>](#tofloat)
+    - [<span id="ToInt">ToInt</span>](#toint)
+    - [<span id="ToJson">ToJson</span>](#tojson)
+    - [<span id="ToString">ToString</span>](#tostring)
+    - [<span id="StructToMap">StructToMap</span>](#structtomap)
+    - [<span id="EncodeByte">EncodeByte</span>](#encodebyte)
+    - [<span id="DecodeByte">DecodeByte</span>](#decodebyte)
+  
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -386,5 +395,60 @@ func main() {
     pm, _ := convertor.StructToMap(p)
 
     fmt.Printf("type: %T, value: %s", pm, pm) //type: map[string]interface {}, value: map[name:test]
+}
+```
+
+
+### <span id="EncodeByte">EncodeByte</span>
+
+<p>将data编码成字节切片</p>
+
+<b>函数签名:</b>
+
+```go
+func EncodeByte(data any) ([]byte, error)
+```
+<b>例子:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/convertor"
+)
+
+func main() {
+    byteData, _ := convertor.EncodeByte("abc")
+    fmt.Println(byteData) //[]byte{6, 12, 0, 3, 97, 98, 99}
+}
+```
+
+
+
+### <span id="DecodeByte">DecodeByte</span>
+
+<p>解码字节切片到目标对象，目标对象需要传入一个指针实例子</p>
+
+<b>函数签名:</b>
+
+```go
+func DecodeByte(data []byte, target any) error
+```
+<b>例子:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/convertor"
+)
+
+func main() {
+    var result string
+	byteData := []byte{6, 12, 0, 3, 97, 98, 99}
+	convertor.DecodeByte(byteData, &result)
+    fmt.Println(result) //"abc"
 }
 ```

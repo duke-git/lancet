@@ -29,6 +29,8 @@ import (
 - [ToJson](#ToJson)
 - [ToString](#ToString)
 - [StructToMap](#StructToMap)
+- [EncodeByte](#EncodeByte)
+- [DecodeByte](#DecodeByte)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -383,5 +385,60 @@ func main() {
     pm, _ := convertor.StructToMap(p)
 
     fmt.Printf("type: %T, value: %s", pm, pm) //type: map[string]interface {}, value: map[name:test]
+}
+```
+
+
+### <span id="EncodeByte">EncodeByte</span>
+
+<p>Encode data to byte slice.</p>
+
+<b>Signature:</b>
+
+```go
+func EncodeByte(data any) ([]byte, error)
+```
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/convertor"
+)
+
+func main() {
+    byteData, _ := convertor.EncodeByte("abc")
+    fmt.Println(byteData) //[]byte{6, 12, 0, 3, 97, 98, 99}
+}
+```
+
+
+
+### <span id="DecodeByte">DecodeByte</span>
+
+<p>Decode byte data to target object. target should be a pointer instance.</p>
+
+<b>Signature:</b>
+
+```go
+func DecodeByte(data []byte, target any) error
+```
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/convertor"
+)
+
+func main() {
+    var result string
+	byteData := []byte{6, 12, 0, 3, 97, 98, 99}
+	convertor.DecodeByte(byteData, &result)
+    fmt.Println(result) //"abc"
 }
 ```

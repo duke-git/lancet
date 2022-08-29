@@ -195,3 +195,21 @@ func TestToChannel(t *testing.T) {
 	_, ok := <-ch
 	assert.Equal(false, ok)
 }
+
+func TestEncodeByte(t *testing.T) {
+	assert := internal.NewAssert(t, "TestEncodeByte")
+
+	byteData, _ := EncodeByte("abc")
+	expected := []byte{6, 12, 0, 3, 97, 98, 99}
+
+	assert.Equal(expected, byteData)
+}
+
+func TestDecodeByte(t *testing.T) {
+	assert := internal.NewAssert(t, "TestDecodeByte")
+
+	var obj string
+	byteData := []byte{6, 12, 0, 3, 97, 98, 99}
+	DecodeByte(byteData, &obj)
+	assert.Equal("abc", obj)
+}
