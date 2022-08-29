@@ -237,7 +237,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func TernaryOperator[T any](isTrue bool, trueValue T, falseValue T) T
+func TernaryOperator[T, U any](isTrue T, ifValue U, elseValue U) U
 ```
 <b>例子:</b>
 

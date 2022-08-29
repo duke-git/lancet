@@ -233,12 +233,12 @@ func main() {
 
 
 ### <span id="TernaryOperator">TernaryOperator</span>
-<p>Checks the value of param `isTrue`, if true return trueValue else return falseValue</p>
+<p>Checks the value of param `isTrue`, if true return ifValue else return elseValue</p>
 
 <b>Signature:</b>
 
 ```go
-func TernaryOperator[T any](isTrue bool, trueValue T, falseValue T) T
+func TernaryOperator[T, U any](isTrue T, ifValue U, elseValue U) U
 ```
 <b>Example:</b>
 

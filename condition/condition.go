@@ -67,11 +67,11 @@ func Nand[T, U any](a T, b U) bool {
 	return !Bool(a) || !Bool(b)
 }
 
-// TernaryOperator if true return trueValue else return falseValue
-func TernaryOperator[T any](isTrue bool, trueValue T, falseValue T) T {
-	if isTrue {
-		return trueValue
+// TernaryOperator checks the value of param `isTrue`, if true return ifValue else return elseValue
+func TernaryOperator[T, U any](isTrue T, ifValue U, elseValue U) U {
+	if Bool(isTrue) {
+		return ifValue
 	} else {
-		return falseValue
+		return elseValue
 	}
 }
