@@ -47,6 +47,7 @@ import (
 - [IsStrongPassword](#IsStrongPassword)
 - [IsUrl](#IsUrl)
 - [IsWeakPassword](#IsWeakPassword)
+- [IsZeroValue](#IsZeroValue)
   
 
 <div STYLE="page-break-after: always;"></div>
@@ -791,6 +792,33 @@ func main() {
 
 
 
+### <span id="IsZeroValue">IsZeroValue</span>
+<p>判断传入的参数值是否为零值</p>
+
+<b>函数签名:</b>
+
+```go
+func IsZeroValue(value any) bool
+```
+<b>例子:</b>
+
+```go
+import (
+	"fmt"
+	"github.com/duke-git/lancet/validator"
+)
+
+func main() {
+	fmt.Println(validator.IsZeroValue(nil)) //true
+	fmt.Println(validator.IsZeroValue(0)) //true
+	fmt.Println(validator.IsZeroValue("")) //true
+	fmt.Println(validator.IsZeroValue([]int)) //true
+	fmt.Println(validator.IsZeroValue(interface{})) //true
+	
+	fmt.Println(validator.IsZeroValue("0")) //false
+	fmt.Println(validator.IsZeroValue("nil")) //false
+}
+```
 
 
 
