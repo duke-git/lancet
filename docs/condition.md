@@ -24,7 +24,6 @@ import (
 - [And](#And)
 - [Or](#Or)
 - [Xor](#Generate)
-- [OrDone](#OrDone)
 - [Nor](#Nor)
 - [Nand](#Nand)
 - [TernaryOperator](#TernaryOperator)
@@ -225,7 +224,7 @@ import (
 func main() {
 	fmt.Println(condition.Nand(0, 0)) // true
 	fmt.Println(condition.Nand(0, 1)) // true
-	fmt.Println(condition.NNandor(1, 0)) // true
+	fmt.Println(condition.Nand(1, 0)) // true
 	fmt.Println(condition.Nand(1, 1)) // false
 }
 ```
