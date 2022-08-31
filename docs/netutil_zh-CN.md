@@ -30,11 +30,18 @@ import (
 
 - [IsPublicIP](#IsPublicIP)
 - [IsInternalIP](#IsInternalIP)
-- [HttpGet](#HttpGet)
-- [HttpDelete](#HttpDelete)
-- [HttpPost](#HttpPost)
-- [HttpPut](#HttpPut)
-- [HttpPatch](#HttpPatch)
+- [HttpRequest](#HttpRequest)
+- [HttpClient](#HttpClient)
+- [SendRequest](#SendRequest)
+- [DecodeResponse](#DecodeResponse)
+- [StructToUrlValues](#StructToUrlValues)
+
+- [HttpGet<sup>Deprecated</sup>](#HttpGet)
+- [HttpDelete<sup>Deprecated</sup>](#HttpDelete)
+- [HttpPost<sup>Deprecated</sup>](#HttpPost)
+- [HttpPut<sup>Deprecated</sup>](#HttpPut)
+- [HttpPatch<sup>Deprecated</sup>](#HttpPatch)
+
 - [ParseHttpResponse](#ParseHttpResponse)
 
 <div STYLE="page-break-after: always;"></div>
@@ -334,8 +341,232 @@ func main() {
 ```
 
 
+### <span id="HttpRequest">HttpRequest</span>
+<p>HttpRequest用于抽象HTTP请求实体的结构</p>
 
-### <span id="HttpGet">HttpGet</span>
+<b>函数签名:</b>
+
+```go
+type HttpRequest struct {
+	RawURL      string
+	Method      string
+	Headers     http.Header
+	QueryParams url.Values
+	FormData    url.Values
+	Body        []byte
+}
+```
+<b>例子:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+	"net"
+    "github.com/duke-git/lancet/v2/netutil"
+)
+
+func main() {
+	header := http.Header{}
+	header.Add("Content-Type", "multipart/form-data")
+
+	postData := url.Values{}
+	postData.Add("userId", "1")
+	postData.Add("title", "testItem")
+
+	request := &netutil.HttpRequest{
+		RawURL:   "https://jsonplaceholder.typicode.com/todos",
+		Method:   "POST",
+		Headers:  header,
+		FormData: postData,
+	}
+}
+```
+
+
+### <span id="HttpClient">HttpClient</span>
+<p>HttpClient是用于发送HTTP请求的结构体。它可以用一些配置参数或无配置实例化.</p>
+
+<b>函数签名:</b>
+
+```go
+type HttpClient struct {
+	*http.Client
+	TLS     *tls.Config
+	Request *http.Request
+	Config  HttpClientConfig
+}
+
+type HttpClientConfig struct {
+	SSLEnabled       bool
+	TLSConfig        *tls.Config
+	Compressed       bool
+	HandshakeTimeout time.Duration
+	ResponseTimeout  time.Duration
+	Verbose          bool
+}
+
+func NewHttpClient() *HttpClient
+
+func NewHttpClientWithConfig(config *HttpClientConfig) *HttpClient
+
+```
+<b>例子:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+	"net"
+	"time"
+    "github.com/duke-git/lancet/v2/netutil"
+)
+
+func main() {
+	httpClientCfg := netutil.HttpClientConfig{
+		SSLEnabled: true,
+		HandshakeTimeout:10 * time.Second
+	}
+	httpClient := netutil.NewHttpClientWithConfig(&httpClientCfg)
+}
+```
+
+
+
+### <span id="SendRequest">SendRequest</span>
+<p>HttpClient发送http请求</p>
+
+<b>函数签名:</b>
+
+```go
+func (client *HttpClient) SendRequest(request *HttpRequest) (*http.Response, error)
+```
+<b>例子:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+	"net"
+	"time"
+    "github.com/duke-git/lancet/v2/netutil"
+)
+
+func main() {
+	request := &netutil.HttpRequest{
+		RawURL: "https://jsonplaceholder.typicode.com/todos/1",
+		Method: "GET",
+	}
+
+	httpClient := netutil.NewHttpClient()
+	resp, err := httpClient.SendRequest(request)
+	if err != nil || resp.StatusCode != 200 {
+		log.Fatal(err)
+	}
+
+	type Todo struct {
+		UserId    int    `json:"userId"`
+		Id        int    `json:"id"`
+		Title     string `json:"title"`
+		Completed bool   `json:"completed"`
+	}
+
+	var todo Todo
+	httpClient.DecodeResponse(resp, &todo)
+
+	fmt.Println(todo.Id) //1
+}
+```
+
+
+
+### <span id="DecodeResponse">DecodeResponse</span>
+<p>解析http响应体到目标结构体</p>
+
+<b>函数签名:</b>
+
+```go
+func (client *HttpClient) DecodeResponse(resp *http.Response, target any) error
+```
+<b>例子:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+	"net"
+	"time"
+    "github.com/duke-git/lancet/v2/netutil"
+)
+
+func main() {
+	request := &netutil.HttpRequest{
+		RawURL: "https://jsonplaceholder.typicode.com/todos/1",
+		Method: "GET",
+	}
+
+	httpClient := netutil.NewHttpClient()
+	resp, err := httpClient.SendRequest(request)
+	if err != nil || resp.StatusCode != 200 {
+		log.Fatal(err)
+	}
+
+	type Todo struct {
+		UserId    int    `json:"userId"`
+		Id        int    `json:"id"`
+		Title     string `json:"title"`
+		Completed bool   `json:"completed"`
+	}
+
+	var todo Todo
+	httpClient.DecodeResponse(resp, &todo)
+
+	fmt.Println(todo.Id) //1
+}
+```
+
+
+### <span id="StructToUrlValues">StructToUrlValues</span>
+<p>将结构体转为url values, 仅转化结构体导出字段并且包含`json` tag.</p>
+
+<b>函数签名:</b>
+
+```go
+func StructToUrlValues(targetStruct any) url.Values
+```
+<b>例子:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/netutil"
+)
+
+func main() {
+	type TodoQuery struct {
+		Id     int `json:"id"`
+		UserId int `json:"userId"`
+	}
+	todoQuery := TodoQuery{
+		Id:     1,
+		UserId: 2,
+	}
+	todoValues := netutil.StructToUrlValues(todoQuery)
+
+	fmt.Println(todoValues.Get("id")) //1
+	fmt.Println(todoValues.Get("userId")) //2
+}
+```
+
+
+
+### <span id="HttpGet">HttpGet (Deprecated: use SendRequest for replacement)</span>
 <p>发送http get请求</p>
 
 <b>函数签名:</b>
@@ -377,7 +608,7 @@ func main() {
 
 
 
-### <span id="HttpPost">HttpPost</span>
+### <span id="HttpPost">HttpPost (Deprecated: use SendRequest for replacement)</span>
 <p>发送http post请求</p>
 
 <b>函数签名:</b>
@@ -426,7 +657,7 @@ func main() {
 
 
 
-### <span id="HttpPut">HttpPut</span>
+### <span id="HttpPut">HttpPut (Deprecated: use SendRequest for replacement)</span>
 <p>发送http put请求</p>
 
 <b>函数签名:</b>
@@ -438,7 +669,7 @@ func main() {
 // params[3] http client，类型必须是http.Client
 func HttpPut(url string, params ...any) (*http.Response, error)
 ```
-<b>Example:</b>
+<b>例子:</b>
 
 ```go
 package main
@@ -476,7 +707,7 @@ func main() {
 
 
 
-### <span id="HttpDelete">HttpDelete</span>
+### <span id="HttpDelete">HttpDelete (Deprecated: use SendRequest for replacement)</span>
 <p>发送http delete请求</p>
 
 <b>函数签名:</b>
@@ -515,7 +746,7 @@ func main() {
 
 
 
-### <span id="HttpPatch">HttpPatch</span>
+### <span id="HttpPatch">HttpPatch (Deprecated: use SendRequest for replacement)</span>
 <p>发送http patch请求</p>
 
 <b>函数签名:</b>
