@@ -6,6 +6,9 @@ netutil网络包支持获取ip地址，发送http请求。
 ## 源码:
 
 - [https://github.com/duke-git/lancet/blob/main/netutil/net.go](https://github.com/duke-git/lancet/blob/main/netutil/net.go)
+  
+- [https://github.com/duke-git/lancet/blob/main/netutil/http_client.go](https://github.com/duke-git/lancet/blob/main/netutil/http_client.go)
+
 - [https://github.com/duke-git/lancet/blob/main/netutil/http.go](https://github.com/duke-git/lancet/blob/main/netutil/http.go)
 
 <div STYLE="page-break-after: always;"></div>
