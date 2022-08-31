@@ -348,11 +348,17 @@ import "github.com/duke-git/lancet/v2/netutil"
 - [GetRequestPublicIp](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#GetRequestPublicIp)
 - [IsPublicIP](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#IsPublicIP)
 - [IsInternalIP](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#IsInternalIP)
-- [HttpGet](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#HttpGet)
-- [HttpDelete](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#HttpDelete)
-- [HttpPost](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#HttpPost)
-- [HttpPut](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#HttpPut)
-- [HttpPatch](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#HttpPatch)
+- [HttpRequest](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#HttpRequest)
+- [HttpClient](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#HttpClient)
+- [SendRequest](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#SendRequest)
+- [DecodeResponse](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#DecodeResponse)
+- [StructToUrlValues](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#StructToUrlValues)
+
+- [HttpGet<sup>Deprecated</sup>](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#HttpGet)
+- [HttpDelete<sup>Deprecated</sup>](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#HttpDelete)
+- [HttpPost<sup>Deprecated</sup>](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#HttpPost)
+- [HttpPut<sup>Deprecated</sup>](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#HttpPut)
+- [HttpPatch<sup>Deprecated</sup>](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#HttpPatch)
 - [ParseHttpResponse](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#ParseHttpResponse)
 
 ### 14. random随机数生成器包，可以生成随机[]bytes, int, string。

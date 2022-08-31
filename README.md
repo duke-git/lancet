@@ -351,11 +351,17 @@ import "github.com/duke-git/lancet/v2/netutil"
 - [GetRequestPublicIp](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#GetRequestPublicIp)
 - [IsPublicIP](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#IsPublicIP)
 - [IsInternalIP](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#IsInternalIP)
-- [HttpGet](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#HttpGet)
-- [HttpDelete](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#HttpDelete)
-- [HttpPost](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#HttpPost)
-- [HttpPut](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#HttpPut)
-- [HttpPatch](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#HttpPatch)
+- [HttpRequest](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#HttpRequest)
+- [HttpClient](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#HttpClient)
+- [SendRequest](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#SendRequest)
+- [DecodeResponse](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#DecodeResponse)
+- [StructToUrlValues](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#StructToUrlValues)
+
+- [HttpGet<sup>Deprecated</sup>](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#HttpGet)
+- [HttpDelete<sup>Deprecated</sup>](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#HttpDelete)
+- [HttpPost<sup>Deprecated</sup>](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#HttpPost)
+- [HttpPut<sup>Deprecated</sup>](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#HttpPut)
+- [HttpPatch<sup>Deprecated</sup>](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#HttpPatch)
 - [ParseHttpResponse](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#ParseHttpResponse)
 
 ### 14. Random package implements some basic functions to generate random int and string.
