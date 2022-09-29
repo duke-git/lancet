@@ -1,5 +1,5 @@
 <div align=center>
-<img src="./logo.png" width="200" height="200"/>
+<a href="https://uvdream.github.io/lancet-docs/"><img src="./logo.png" width="200" height="200"/><a/>
 
 <br/>
 
@@ -68,7 +68,7 @@ func main() {
 ```
 
 ## API文档
-
+## [lancet API doc](https://uvdream.github.io/lancet-docs/) 感谢[@UvDream](https://github.com/UvDream)整理
 ### 1. algorithm算法包实现一些基本算法。eg. sort, search.
 
 ```go
