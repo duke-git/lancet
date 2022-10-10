@@ -93,27 +93,45 @@ func (hm *HashMap) Contains(key any) bool {
 	return node != nil
 }
 
-// Iterate executes iteratee funcation for every key and value pair of hashmap
+// Iterate executes iteratee funcation for every key and value pair of hashmap (random order)
 func (hm *HashMap) Iterate(iteratee func(key, value any)) {
 	if hm.size > 0 {
-		for _, item := range hm.table {
-			iteratee(item.key, item.value)
+		for i := 0; i < len(hm.table); i++ {
+			item := hm.table[i]
+			if item != nil {
+				iteratee(item.key, item.value)
+			}
 		}
 	}
 }
 
-// Keys returns a slice of the hashmap's keys
-// func (hm *HashMap) Keys() []any {
-// 	keys := make([]any, int(hm.size))
+// Keys returns a slice of the hashmap's keys (random order)
+func (hm *HashMap) Keys() []any {
+	keys := make([]any, int(hm.size))
+	index := 0
+	if hm.size > 0 {
+		hm.Iterate(func(key, value any) {
+			keys[index] = key
+			index++
+		})
+	}
 
-// 	var i int
-// 	for k := range m {
-// 		keys[i] = k
-// 		i++
-// 	}
+	return keys
+}
 
-// 	return keys
-// }
+// Values returns a slice of the hashmap's keys (random order)
+func (hm *HashMap) Values() []any {
+	values := make([]any, int(hm.size))
+	index := 0
+	if hm.size > 0 {
+		hm.Iterate(func(key, value any) {
+			values[index] = value
+			index++
+		})
+	}
+
+	return values
+}
 
 func (hm *HashMap) resize() {
 	hm.capacity <<= 1
