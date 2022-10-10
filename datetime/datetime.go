@@ -4,24 +4,24 @@
 // Package datetime implements some functions to format date and time.
 // Note:
 // 1. `format` param in FormatTimeToStr function should be as flow:
-//"yyyy-mm-dd hh:mm:ss"
-//"yyyy-mm-dd hh:mm"
-//"yyyy-mm-dd hh"
-//"yyyy-mm-dd"
-//"yyyy-mm"
-//"mm-dd"
-//"dd-mm-yy hh:mm:ss"
-//"yyyy/mm/dd hh:mm:ss"
-//"yyyy/mm/dd hh:mm"
-//"yyyy/mm/dd hh"
-//"yyyy/mm/dd"
-//"yyyy/mm"
-//"mm/dd"
-//"dd/mm/yy hh:mm:ss"
-//"yyyy"
-//"mm"
-//"hh:mm:ss"
-//"mm:ss"
+// "yyyy-mm-dd hh:mm:ss"
+// "yyyy-mm-dd hh:mm"
+// "yyyy-mm-dd hh"
+// "yyyy-mm-dd"
+// "yyyy-mm"
+// "mm-dd"
+// "dd-mm-yy hh:mm:ss"
+// "yyyy/mm/dd hh:mm:ss"
+// "yyyy/mm/dd hh:mm"
+// "yyyy/mm/dd hh"
+// "yyyy/mm/dd"
+// "yyyy/mm"
+// "mm/dd"
+// "dd/mm/yy hh:mm:ss"
+// "yyyy"
+// "mm"
+// "hh:mm:ss"
+// "mm:ss"
 package datetime
 
 import (
@@ -147,16 +147,32 @@ func EndOfDay(t time.Time) time.Time {
 	return time.Date(y, m, d, 23, 59, 59, int(time.Second-time.Nanosecond), t.Location())
 }
 
-// BeginOfWeek return beginning week, week begin from Sunday
-func BeginOfWeek(t time.Time) time.Time {
-	y, m, d := t.AddDate(0, 0, 0-int(BeginOfDay(t).Weekday())).Date()
-	return time.Date(y, m, d, 0, 0, 0, 0, t.Location())
+// BeginOfWeek return beginning week, default week begin from Sunday
+func BeginOfWeek(t time.Time, beginFrom ...time.Weekday) time.Time {
+	var beginFromWeekday = time.Sunday
+	if len(beginFrom) > 0 {
+		beginFromWeekday = beginFrom[0]
+	}
+	y, m, d := t.AddDate(0, 0, int(beginFromWeekday-t.Weekday())).Date()
+	beginOfWeek := time.Date(y, m, d, 0, 0, 0, 0, t.Location())
+	if beginOfWeek.After(t) {
+		return beginOfWeek.AddDate(0, 0, -7)
+	}
+	return beginOfWeek
 }
 
-// EndOfWeek return end week time, week end with Saturday
-func EndOfWeek(t time.Time) time.Time {
-	y, m, d := BeginOfWeek(t).AddDate(0, 0, 7).Add(-time.Nanosecond).Date()
-	return time.Date(y, m, d, 23, 59, 59, int(time.Second-time.Nanosecond), t.Location())
+// EndOfWeek return end week time, default week end with Saturday
+func EndOfWeek(t time.Time, endWith ...time.Weekday) time.Time {
+	var endWithWeekday = time.Saturday
+	if len(endWith) > 0 {
+		endWithWeekday = endWith[0]
+	}
+	y, m, d := t.AddDate(0, 0, int(endWithWeekday-t.Weekday())).Date()
+	var endWithWeek = time.Date(y, m, d, 23, 59, 59, int(time.Second-time.Nanosecond), t.Location())
+	if endWithWeek.Before(t) {
+		endWithWeek = endWithWeek.AddDate(0, 0, 7)
+	}
+	return endWithWeek
 }
 
 // BeginOfMonth return beginning of month
