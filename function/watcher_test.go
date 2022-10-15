@@ -1,6 +1,7 @@
 package function
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/duke-git/lancet/v2/internal"
@@ -34,4 +35,5 @@ func longRunningTask() {
 	for i := 0; i < 10000000; i++ {
 		slice = append(slice, int64(i))
 	}
+	fmt.Println(slice)
 }
