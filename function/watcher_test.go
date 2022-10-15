@@ -1,7 +1,6 @@
 package function
 
 import (
-	"fmt"
 	"testing"
 
 	"github.com/duke-git/lancet/v2/internal"
@@ -30,10 +29,10 @@ func TestWatcher(t *testing.T) {
 	assert.Equal(int64(0), w.stopTime)
 }
 
-func longRunningTask() {
-	var slice []int64
+func longRunningTask() []int64 {
+	var data []int64
 	for i := 0; i < 10000000; i++ {
-		slice = append(slice, int64(i))
+		data = append(data, int64(i))
 	}
-	fmt.Println(slice)
+	return data
 }

@@ -69,7 +69,7 @@ func Chunk[T any](slice []T, size int) [][]T {
 
 // Compact creates an slice with all falsey values removed. The values false, nil, 0, and "" are falsey
 func Compact[T any](slice []T) []T {
-	result := make([]T, 0, 0)
+	result := make([]T, 0)
 	for _, v := range slice {
 		if !reflect.DeepEqual(v, nil) &&
 			!reflect.DeepEqual(v, false) &&
@@ -112,7 +112,7 @@ func DifferenceBy[T comparable](slice []T, comparedSlice []T, iteratee func(inde
 	orginSliceAfterMap := Map(slice, iteratee)
 	comparedSliceAfterMap := Map(comparedSlice, iteratee)
 
-	result := make([]T, 0, 0)
+	result := make([]T, 0)
 	for i, v := range orginSliceAfterMap {
 		if !Contain(comparedSliceAfterMap, v) {
 			result = append(result, slice[i])
@@ -124,7 +124,7 @@ func DifferenceBy[T comparable](slice []T, comparedSlice []T, iteratee func(inde
 
 //DifferenceWith accepts comparator which is invoked to compare elements of slice to values. The order and references of result values are determined by the first slice. The comparator is invoked with two arguments: (arrVal, othVal).
 func DifferenceWith[T any](slice []T, comparedSlice []T, comparator func(value, otherValue T) bool) []T {
-	result := make([]T, 0, 0)
+	result := make([]T, 0)
 
 	getIndex := func(arr []T, item T, comparison func(v1, v2 T) bool) int {
 		index := -1
@@ -230,7 +230,7 @@ func Filter[T any](slice []T, predicate func(index int, item T) bool) []T {
 		panic("predicate func is missing")
 	}
 
-	result := make([]T, 0, 0)
+	result := make([]T, 0)
 	for i, v := range slice {
 		if predicate(i, v) {
 			result = append(result, v)
@@ -443,7 +443,7 @@ func Reduce[T any](slice []T, iteratee func(index int, item1, item2 T) T, initia
 
 	result := iteratee(0, initial, slice[0])
 
-	tmp := make([]T, 2, 2)
+	tmp := make([]T, 2)
 	for i := 1; i < len(slice); i++ {
 		tmp[0] = result
 		tmp[1] = slice[i]
@@ -542,7 +542,7 @@ func DeleteAt[T any](slice []T, start int, end ...int) []T {
 	}
 
 	if start == size-1 {
-		slice = append(slice[:start])
+		slice = slice[:start]
 	} else {
 		slice = append(slice[:start], slice[start+1:]...)
 	}
@@ -652,9 +652,7 @@ func Union[T comparable](slices ...[]T) []T {
 	var allElements []T
 
 	for _, slice := range slices {
-		for _, v := range slice {
-			allElements = append(allElements, v)
-		}
+		allElements = append(allElements, slice...)
 	}
 
 	return Unique(allElements)
@@ -689,7 +687,7 @@ func Intersection[T comparable](slices ...[]T) []T {
 
 	result = reducer(slices[0], slices[1])
 
-	reduceSlice := make([][]T, 2, 2)
+	reduceSlice := make([][]T, 2)
 	for i := 2; i < len(slices); i++ {
 		reduceSlice[0] = result
 		reduceSlice[1] = slices[i]
@@ -866,9 +864,7 @@ func ToSlicePointer[T any](value ...T) []*T {
 // ToSlice returns a slices of a variable parameter transformation
 func ToSlice[T any](value ...T) []T {
 	out := make([]T, len(value))
-	for i := range value {
-		out[i] = value[i]
-	}
+	copy(out, value)
 	return out
 }
 
