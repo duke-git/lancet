@@ -453,6 +453,26 @@ func Reduce[T any](slice []T, iteratee func(index int, item1, item2 T) T, initia
 	return result
 }
 
+// Replace returns a copy of the slice with the first n non-overlapping instances of old replaced by new
+func Replace[T comparable](slice []T, old T, new T, n int) []T {
+	result := make([]T, len(slice))
+	copy(result, slice)
+
+	for i := range result {
+		if result[i] == old && n != 0 {
+			result[i] = new
+			n--
+		}
+	}
+
+	return result
+}
+
+// ReplaceAll returns a copy of the slice with all non-overlapping instances of old replaced by new.
+func ReplaceAll[T comparable](slice []T, old T, new T) []T {
+	return Replace(slice, old, new, -1)
+}
+
 // InterfaceSlice convert param to slice of interface.
 func InterfaceSlice(slice any) []any {
 	sv := sliceValue(slice)
