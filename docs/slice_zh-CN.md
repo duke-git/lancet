@@ -53,6 +53,8 @@ import (
 - [Map](#Map)
 - [Reverse](#Reverse)
 - [Reduce](#Reduce)
+- [Replace](#Replace)
+- [ReplaceAll](#ReplaceAll)
 - [Shuffle](#Shuffle)
 - [SortByField](#SortByField)
 - [Some](#Some)
@@ -964,6 +966,61 @@ func main() {
 }
 ```
 
+
+
+### <span id="Replace">Replace</span>
+<p>返回切片的副本，其中前n个不重叠的old替换为new</p>
+
+<b>函数签名:</b>
+
+```go
+func Replace[T comparable](slice []T, old T, new T, n int) []T
+```
+<b>例子:</b>
+
+```go
+import (
+	"fmt"
+	"github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+	strs := []string{"a", "b", "a", "c", "d", "a"}
+
+	fmt.Println(slice.Replace(strs, "a", "x", 0)) //{"a", "b", "a", "c", "d", "a"}
+
+	fmt.Println(slice.Replace(strs, "a", "x", 1)) //{"x", "b", "a", "c", "d", "a"}
+
+	fmt.Println(slice.Replace(strs, "a", "x", -1)) //{"x", "b", "x", "c", "d", "x"}
+}
+```
+
+
+
+### <span id="ReplaceAll">ReplaceAll</span>
+<p>返回切片的副本，将其中old全部替换为new</p>
+
+<b>函数签名:</b>
+
+```go
+func ReplaceAll[T comparable](slice []T, old T, new T) []T
+```
+<b>例子:</b>
+
+```go
+import (
+	"fmt"
+	"github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+	strs := []string{"a", "b", "a", "c", "d", "a"}
+
+	fmt.Println(slice.ReplaceAll(strs, "a", "x")) //{"x", "b", "x", "c", "d", "x"}
+
+	fmt.Println(slice.Replace(strs, "e", "x")) //{"a", "b", "a", "c", "d", "a"}
+}
+```
 
 
 
