@@ -617,3 +617,30 @@ func TestAppendIfAbsent(t *testing.T) {
 	assert.Equal([]string{"a", "b"}, AppendIfAbsent(str1, "a"))
 	assert.Equal([]string{"a", "b", "c"}, AppendIfAbsent(str1, "c"))
 }
+
+func TestReplace(t *testing.T) {
+	assert := internal.NewAssert(t, "TestReplace")
+
+	strs := []string{"a", "b", "a", "c", "d", "a"}
+
+	assert.Equal([]string{"a", "b", "a", "c", "d", "a"}, Replace(strs, "a", "x", 0))
+	assert.Equal([]string{"x", "b", "a", "c", "d", "a"}, Replace(strs, "a", "x", 1))
+	assert.Equal([]string{"x", "b", "x", "c", "d", "a"}, Replace(strs, "a", "x", 2))
+	assert.Equal([]string{"x", "b", "x", "c", "d", "x"}, Replace(strs, "a", "x", 3))
+	assert.Equal([]string{"x", "b", "x", "c", "d", "x"}, Replace(strs, "a", "x", 4))
+
+	assert.Equal([]string{"x", "b", "x", "c", "d", "x"}, Replace(strs, "a", "x", -1))
+	assert.Equal([]string{"x", "b", "x", "c", "d", "x"}, Replace(strs, "a", "x", -2))
+
+	assert.Equal([]string{"a", "b", "a", "c", "d", "a"}, Replace(strs, "x", "y", 1))
+	assert.Equal([]string{"a", "b", "a", "c", "d", "a"}, Replace(strs, "x", "y", -1))
+}
+
+func TestReplaceAll(t *testing.T) {
+	assert := internal.NewAssert(t, "TestReplaceAll")
+
+	strs := []string{"a", "b", "a", "c", "d", "a"}
+
+	assert.Equal([]string{"x", "b", "x", "c", "d", "x"}, ReplaceAll(strs, "a", "x"))
+	assert.Equal([]string{"a", "b", "a", "c", "d", "a"}, ReplaceAll(strs, "e", "x"))
+}
