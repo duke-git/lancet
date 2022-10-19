@@ -87,6 +87,9 @@ func TestMax(t *testing.T) {
 	assert.Equal(Max(0, 0), 0)
 	assert.Equal(Max(1, 2, 3), 3)
 	assert.Equal(Max(1.2, 1.4, 1.1, 1.4), 1.4)
+
+	type Integer int
+	assert.Equal(Max(Integer(1), Integer(0)), Integer(1))
 }
 
 func TestMaxBy(t *testing.T) {
