@@ -4,7 +4,7 @@
 <br/>
 
 ![Go version](https://img.shields.io/badge/go-%3E%3Dv1.18-9cf)
-[![Release](https://img.shields.io/badge/release-2.1.7-green.svg)](https://github.com/duke-git/lancet/releases)
+[![Release](https://img.shields.io/badge/release-2.1.8-green.svg)](https://github.com/duke-git/lancet/releases)
 [![GoDoc](https://godoc.org/github.com/duke-git/lancet/v2?status.svg)](https://pkg.go.dev/github.com/duke-git/lancet/v2)
 [![Go Report Card](https://goreportcard.com/badge/github.com/duke-git/lancet/v2)](https://goreportcard.com/report/github.com/duke-git/lancet/v2)
 [![test](https://github.com/duke-git/lancet/actions/workflows/codecov.yml/badge.svg?branch=main&event=push)](https://github.com/duke-git/lancet/actions/workflows/codecov.yml)
@@ -293,6 +293,7 @@ import "github.com/duke-git/lancet/v2/function"
 - [Compose](https://github.com/duke-git/lancet/blob/main/docs/function_zh-CN.md#Compose)
 - [Debounced](https://github.com/duke-git/lancet/blob/main/docs/function_zh-CN.md#Debounced)
 - [Delay](https://github.com/duke-git/lancet/blob/main/docs/function_zh-CN.md#Delay)
+- [Pipeline](https://github.com/duke-git/lancet/blob/main/docs/function_zh-CN.md#Pipeline)
 - [Watcher](https://github.com/duke-git/lancet/blob/main/docs/function_zh-CN.md#Watcher)
 
 
@@ -423,6 +424,8 @@ import "github.com/duke-git/lancet/v2/slice"
 - [Map](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Map)
 - [Reverse](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Reverse)
 - [Reduce](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Reduce)
+- [Replace](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Replace)
+- [ReplaceAll](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#ReplaceAll)
 - [Shuffle](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Shuffle)
 - [SortByField](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#SortByField)
 - [Some](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Some)
