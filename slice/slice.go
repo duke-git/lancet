@@ -36,7 +36,7 @@ func ContainSubSlice[T comparable](slice, subslice []T) bool {
 
 // Chunk creates an slice of elements split into groups the length of size.
 func Chunk[T any](slice []T, size int) [][]T {
-	var result [][]T
+	result := [][]T{}
 
 	if len(slice) == 0 || size <= 0 {
 		return result
@@ -95,7 +95,8 @@ func Concat[T any](slice []T, values ...[]T) []T {
 
 // Difference creates an slice of whose element in slice but not in comparedSlice
 func Difference[T comparable](slice, comparedSlice []T) []T {
-	var result []T
+	result := []T{}
+
 	for _, v := range slice {
 		if !Contain(comparedSlice, v) {
 			result = append(result, v)
@@ -562,12 +563,8 @@ func UpdateAt[T any](slice []T, index int, value T) []T {
 
 // Unique remove duplicate elements in slice.
 func Unique[T comparable](slice []T) []T {
-	if len(slice) == 0 {
-		return []T{}
-	}
+	result := []T{}
 
-	// here no use map filter. if use it, the result slice element order is random, not same as origin slice
-	var result []T
 	for i := 0; i < len(slice); i++ {
 		v := slice[i]
 		skip := true
@@ -587,11 +584,8 @@ func Unique[T comparable](slice []T) []T {
 
 // UniqueBy call iteratee func with every item of slice, then remove duplicated.
 func UniqueBy[T comparable](slice []T, iteratee func(item T) T) []T {
-	if len(slice) == 0 {
-		return []T{}
-	}
+	result := []T{}
 
-	var result []T
 	for _, v := range slice {
 		val := iteratee(v)
 		result = append(result, val)
@@ -602,18 +596,19 @@ func UniqueBy[T comparable](slice []T, iteratee func(item T) T) []T {
 
 // Union creates a slice of unique values, in order, from all given slices. using == for equality comparisons.
 func Union[T comparable](slices ...[]T) []T {
-	if len(slices) == 0 {
-		return []T{}
-	}
-
-	// append all slices, then unique it
-	var allElements []T
+	result := []T{}
+	contain := map[T]struct{}{}
 
 	for _, slice := range slices {
-		allElements = append(allElements, slice...)
+		for _, item := range slice {
+			if _, ok := contain[item]; !ok {
+				contain[item] = struct{}{}
+				result = append(result, item)
+			}
+		}
 	}
 
-	return Unique(allElements)
+	return result
 }
 
 // Intersection creates a slice of unique values that included by all slices.
@@ -624,8 +619,6 @@ func Intersection[T comparable](slices ...[]T) []T {
 	if len(slices) == 1 {
 		return Unique(slices[0])
 	}
-
-	var result []T
 
 	reducer := func(sliceA, sliceB []T) []T {
 		hashMap := make(map[T]int)
@@ -643,7 +636,7 @@ func Intersection[T comparable](slices ...[]T) []T {
 		return out
 	}
 
-	result = reducer(slices[0], slices[1])
+	result := reducer(slices[0], slices[1])
 
 	reduceSlice := make([][]T, 2)
 	for i := 2; i < len(slices); i++ {
@@ -776,14 +769,14 @@ func Without[T comparable](slice []T, values ...T) []T {
 		return slice
 	}
 
-	out := make([]T, 0, len(slice))
+	result := make([]T, 0, len(slice))
 	for _, v := range slice {
 		if !Contain(values, v) {
-			out = append(out, v)
+			result = append(result, v)
 		}
 	}
 
-	return out
+	return result
 }
 
 // IndexOf returns the index at which the first occurrence of a value is found in a slice or return -1
@@ -812,18 +805,20 @@ func LastIndexOf[T comparable](slice []T, value T) int {
 
 // ToSlicePointer returns a pointer to the slices of a variable parameter transformation
 func ToSlicePointer[T any](value ...T) []*T {
-	out := make([]*T, len(value))
+	result := make([]*T, len(value))
 	for i := range value {
-		out[i] = &value[i]
+		result[i] = &value[i]
 	}
-	return out
+
+	return result
 }
 
 // ToSlice returns a slices of a variable parameter transformation
 func ToSlice[T any](value ...T) []T {
-	out := make([]T, len(value))
-	copy(out, value)
-	return out
+	result := make([]T, len(value))
+	copy(result, value)
+
+	return result
 }
 
 // AppendIfAbsent only absent append the value
