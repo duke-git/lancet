@@ -644,3 +644,13 @@ func TestReplaceAll(t *testing.T) {
 	assert.Equal([]string{"x", "b", "x", "c", "d", "x"}, ReplaceAll(strs, "a", "x"))
 	assert.Equal([]string{"a", "b", "a", "c", "d", "a"}, ReplaceAll(strs, "e", "x"))
 }
+
+func TestKeyBy(t *testing.T) {
+	assert := internal.NewAssert(t, "TestKeyBy")
+
+	result := KeyBy([]string{"a", "ab", "abc"}, func(str string) int {
+		return len(str)
+	})
+
+	assert.Equal(result, map[int]string{1: "a", 2: "ab", 3: "abc"})
+}

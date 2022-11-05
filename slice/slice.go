@@ -833,3 +833,15 @@ func AppendIfAbsent[T comparable](slice []T, value T) []T {
 	}
 	return slice
 }
+
+// KeyBy converts a slice to a map based on a callback function
+func KeyBy[T any, U comparable](slice []T, iteratee func(T) U) map[U]T {
+	result := make(map[U]T, len(slice))
+
+	for _, v := range slice {
+		k := iteratee(v)
+		result[k] = v
+	}
+
+	return result
+}
