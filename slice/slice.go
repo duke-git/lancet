@@ -180,11 +180,8 @@ func EqualWith[T, U any](slice1 []T, slice2 []U, comparator func(T, U) bool) boo
 
 // Every return true if all of the values in the slice pass the predicate function.
 func Every[T any](slice []T, predicate func(index int, item T) bool) bool {
-	if predicate == nil {
-		panic("predicate func is missing")
-	}
-
 	var currentLength int
+
 	for i, v := range slice {
 		if predicate(i, v) {
 			currentLength++
@@ -196,9 +193,6 @@ func Every[T any](slice []T, predicate func(index int, item T) bool) bool {
 
 // None return true if all the values in the slice mismatch the criteria
 func None[T any](slice []T, predicate func(index int, item T) bool) bool {
-	if predicate == nil {
-		panic("predicate func is missing")
-	}
 
 	var currentLength int
 	for i, v := range slice {
@@ -212,39 +206,30 @@ func None[T any](slice []T, predicate func(index int, item T) bool) bool {
 
 // Some return true if any of the values in the list pass the predicate function.
 func Some[T any](slice []T, predicate func(index int, item T) bool) bool {
-	if predicate == nil {
-		panic("predicate func is missing")
-	}
 
 	for i, v := range slice {
 		if predicate(i, v) {
 			return true
 		}
 	}
+
 	return false
 }
 
 // Filter iterates over elements of slice, returning an slice of all elements pass the predicate function
 func Filter[T any](slice []T, predicate func(index int, item T) bool) []T {
-	if predicate == nil {
-		panic("predicate func is missing")
-	}
-
 	result := make([]T, 0)
 	for i, v := range slice {
 		if predicate(i, v) {
 			result = append(result, v)
 		}
 	}
+
 	return result
 }
 
 // Count iterates over elements of slice, returns a count of all matched elements
 func Count[T any](slice []T, predicate func(index int, item T) bool) int {
-	if predicate == nil {
-		panic("predicate func is missing")
-	}
-
 	if len(slice) == 0 {
 		return 0
 	}
@@ -261,10 +246,6 @@ func Count[T any](slice []T, predicate func(index int, item T) bool) int {
 
 // GroupBy iterate over elements of the slice, each element will be group by criteria, returns two slices
 func GroupBy[T any](slice []T, groupFn func(index int, item T) bool) ([]T, []T) {
-	if groupFn == nil {
-		panic("groupFn func is missing")
-	}
-
 	if len(slice) == 0 {
 		return make([]T, 0), make([]T, 0)
 	}
@@ -286,10 +267,6 @@ func GroupBy[T any](slice []T, groupFn func(index int, item T) bool) ([]T, []T) 
 
 // GroupWith return a map composed of keys generated from the resultults of running each element of slice thru iteratee.
 func GroupWith[T any, U comparable](slice []T, iteratee func(T) U) map[U][]T {
-	if iteratee == nil {
-		panic("iteratee func is missing")
-	}
-
 	result := make(map[U][]T)
 
 	for _, v := range slice {
@@ -306,10 +283,6 @@ func GroupWith[T any, U comparable](slice []T, iteratee func(T) U) map[U][]T {
 // Find iterates over elements of slice, returning the first one that passes a truth test on predicate function.
 // If return T is nil then no items matched the predicate func
 func Find[T any](slice []T, predicate func(index int, item T) bool) (*T, bool) {
-	if predicate == nil {
-		panic("predicate func is missing")
-	}
-
 	if len(slice) == 0 {
 		return nil, false
 	}
@@ -332,10 +305,6 @@ func Find[T any](slice []T, predicate func(index int, item T) bool) (*T, bool) {
 // FindLast iterates over elements of slice from end to begin, returning the first one that passes a truth test on predicate function.
 // If return T is nil then no items matched the predicate func
 func FindLast[T any](slice []T, predicate func(index int, item T) bool) (*T, bool) {
-	if predicate == nil {
-		panic("predicate func is missing")
-	}
-
 	if len(slice) == 0 {
 		return nil, false
 	}
@@ -408,10 +377,6 @@ func flattenRecursive(value reflect.Value, result reflect.Value) reflect.Value {
 
 // ForEach iterates over elements of slice and invokes function for each element
 func ForEach[T any](slice []T, iteratee func(index int, item T)) {
-	if iteratee == nil {
-		panic("iteratee func is missing")
-	}
-
 	for i, v := range slice {
 		iteratee(i, v)
 	}
@@ -419,10 +384,6 @@ func ForEach[T any](slice []T, iteratee func(index int, item T)) {
 
 // Map creates an slice of values by running each element of slice thru iteratee function.
 func Map[T any, U any](slice []T, iteratee func(index int, item T) U) []U {
-	if iteratee == nil {
-		panic("iteratee func is missing")
-	}
-
 	result := make([]U, len(slice), cap(slice))
 	for i, v := range slice {
 		result[i] = iteratee(i, v)
@@ -433,9 +394,6 @@ func Map[T any, U any](slice []T, iteratee func(index int, item T) U) []U {
 
 // Reduce creates an slice of values by running each element of slice thru iteratee function.
 func Reduce[T any](slice []T, iteratee func(index int, item1, item2 T) T, initial T) T {
-	if iteratee == nil {
-		panic("iteratee func is missing")
-	}
 
 	if len(slice) == 0 {
 		return initial
