@@ -123,7 +123,7 @@ func DifferenceBy[T comparable](slice []T, comparedSlice []T, iteratee func(inde
 }
 
 //DifferenceWith accepts comparator which is invoked to compare elements of slice to values. The order and references of result values are determined by the first slice. The comparator is invoked with two arguments: (arrVal, othVal).
-func DifferenceWith[T any](slice []T, comparedSlice []T, comparator func(value, otherValue T) bool) []T {
+func DifferenceWith[T any](slice []T, comparedSlice []T, comparator func(value1, value2 T) bool) []T {
 	result := make([]T, 0)
 
 	getIndex := func(arr []T, item T, comparison func(v1, v2 T) bool) int {
@@ -266,7 +266,7 @@ func GroupBy[T any](slice []T, groupFn func(index int, item T) bool) ([]T, []T) 
 }
 
 // GroupWith return a map composed of keys generated from the resultults of running each element of slice thru iteratee.
-func GroupWith[T any, U comparable](slice []T, iteratee func(T) U) map[U][]T {
+func GroupWith[T any, U comparable](slice []T, iteratee func(item T) U) map[U][]T {
 	result := make(map[U][]T)
 
 	for _, v := range slice {
@@ -835,7 +835,7 @@ func AppendIfAbsent[T comparable](slice []T, value T) []T {
 }
 
 // KeyBy converts a slice to a map based on a callback function
-func KeyBy[T any, U comparable](slice []T, iteratee func(T) U) map[U]T {
+func KeyBy[T any, U comparable](slice []T, iteratee func(item T) U) map[U]T {
 	result := make(map[U]T, len(slice))
 
 	for _, v := range slice {
