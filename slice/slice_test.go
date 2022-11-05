@@ -428,6 +428,17 @@ func TestUnion(t *testing.T) {
 	assert.Equal([]int{1, 3, 4, 6}, Union(s1))
 }
 
+func TestUnionBy(t *testing.T) {
+	assert := internal.NewAssert(t, "TestUnionBy")
+
+	testFunc := func(i int) int {
+		return i / 2
+	}
+
+	result := UnionBy(testFunc, []int{0, 1, 2, 3, 4, 5}, []int{0, 2, 10})
+	assert.Equal(result, []int{0, 2, 4, 10})
+}
+
 func TestIntersection(t *testing.T) {
 	s1 := []int{1, 2, 2, 3}
 	s2 := []int{1, 2, 3, 4}

@@ -594,7 +594,7 @@ func UniqueBy[T comparable](slice []T, iteratee func(item T) T) []T {
 	return Unique(result)
 }
 
-// Union creates a slice of unique values, in order, from all given slices. using == for equality comparisons.
+// Union creates a slice of unique values, in order, from all given slices.
 func Union[T comparable](slices ...[]T) []T {
 	result := []T{}
 	contain := map[T]struct{}{}
@@ -603,6 +603,24 @@ func Union[T comparable](slices ...[]T) []T {
 		for _, item := range slice {
 			if _, ok := contain[item]; !ok {
 				contain[item] = struct{}{}
+				result = append(result, item)
+			}
+		}
+	}
+
+	return result
+}
+
+// UnionBy is like Union, what's more it accepts iteratee which is invoked for each element of each slice
+func UnionBy[T any, V comparable](predicate func(item T) V, slices ...[]T) []T {
+	result := []T{}
+	contain := map[V]struct{}{}
+
+	for _, slice := range slices {
+		for _, item := range slice {
+			val := predicate(item)
+			if _, ok := contain[val]; !ok {
+				contain[val] = struct{}{}
 				result = append(result, item)
 			}
 		}
