@@ -12,18 +12,12 @@ import (
 	"time"
 )
 
-// RandString generate random string
-// see https://stackoverflow.com/questions/22892120/how-to-generate-a-random-string-of-a-fixed-length-in-go
-func RandString(length int) string {
-	const letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-
-	b := make([]byte, length)
-	r := rand.New(rand.NewSource(time.Now().UnixNano()))
-	for i := range b {
-		b[i] = letters[r.Int63()%int64(len(letters))]
-	}
-	return string(b)
-}
+const (
+	NUMERAL       = "0123456789"
+	LOWER_LETTERS = "abcdefghijklmnopqrstuvwxyz"
+	UPPER_LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	LETTERS       = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+)
 
 // RandInt generate random int between min and max, maybe min,  not be max
 func RandInt(min, max int) int {
@@ -48,6 +42,41 @@ func RandBytes(length int) []byte {
 		return nil
 	}
 	return b
+}
+
+// RandString generate random string
+func RandString(length int) string {
+	return random(LETTERS, length)
+}
+
+// RandUpper generate a random upper case string
+func RandUpper(length int) string {
+	return random(UPPER_LETTERS, length)
+}
+
+// RandLower generate a random lower case string
+func RandLower(length int) string {
+	return random(LOWER_LETTERS, length)
+}
+
+// RandNumeral generate a random numeral string
+func RandNumeral(length int) string {
+	return random(NUMERAL, length)
+}
+
+// RandNumeralOrLetter generate a random numeral or letter string
+func RandNumeralOrLetter(length int) string {
+	return random(NUMERAL+LETTERS, length)
+}
+
+// random generate a random string based on given string range
+func random(s string, length int) string {
+	b := make([]byte, length)
+	r := rand.New(rand.NewSource(time.Now().UnixNano()))
+	for i := range b {
+		b[i] = s[r.Int63()%int64(len(s))]
+	}
+	return string(b)
 }
 
 // UUIdV4 generate a random UUID of version 4 according to RFC 4122

@@ -19,6 +19,51 @@ func TestRandString(t *testing.T) {
 	assert.Equal(true, reg.MatchString(randStr))
 }
 
+func TestRandUpper(t *testing.T) {
+	pattern := `^[A-Z]+$`
+	reg := regexp.MustCompile(pattern)
+
+	randStr := RandUpper(6)
+
+	assert := internal.NewAssert(t, "TestRandUpper")
+	assert.Equal(6, len(randStr))
+	assert.Equal(true, reg.MatchString(randStr))
+}
+
+func TestRandLower(t *testing.T) {
+	pattern := `^[a-z]+$`
+	reg := regexp.MustCompile(pattern)
+
+	randStr := RandLower(6)
+
+	assert := internal.NewAssert(t, "TestRandLower")
+	assert.Equal(6, len(randStr))
+	assert.Equal(true, reg.MatchString(randStr))
+}
+
+func TestRandNumeral(t *testing.T) {
+	pattern := `^[0-9]+$`
+	reg := regexp.MustCompile(pattern)
+
+	randStr := RandNumeral(12)
+
+	assert := internal.NewAssert(t, "TestRandNumeral")
+	assert.Equal(12, len(randStr))
+	assert.Equal(true, reg.MatchString(randStr))
+}
+
+func TestRandNumeralOrLetter(t *testing.T) {
+	pattern := `^[0-9a-zA-Z]+$`
+	reg := regexp.MustCompile(pattern)
+
+	randStr := RandNumeralOrLetter(10)
+	t.Log(randStr)
+
+	assert := internal.NewAssert(t, "TestRandNumeralOrLetter")
+	assert.Equal(10, len(randStr))
+	assert.Equal(true, reg.MatchString(randStr))
+}
+
 func TestRandInt(t *testing.T) {
 	assert := internal.NewAssert(t, "TestRandInt")
 
