@@ -8,6 +8,7 @@ import (
 	"archive/zip"
 	"bufio"
 	"errors"
+	"fmt"
 	"io"
 	"io/fs"
 	"io/ioutil"
@@ -213,6 +214,8 @@ func Zip(fpath string, destPath string) error {
 
 // UnZip unzip the file and save it to destPath
 func UnZip(zipFile string, destPath string) error {
+	destPath = filepath.Clean(destPath) + string(os.PathSeparator)
+
 	zipReader, err := zip.OpenReader(zipFile)
 	if err != nil {
 		return err
@@ -221,6 +224,12 @@ func UnZip(zipFile string, destPath string) error {
 
 	for _, f := range zipReader.File {
 		path := filepath.Join(destPath, f.Name)
+
+		//issue#62: fix ZipSlip bug
+		if !strings.HasPrefix(path, destPath) {
+			return fmt.Errorf("%s: illegal file path", path)
+		}
+
 		if f.FileInfo().IsDir() {
 			os.MkdirAll(path, os.ModePerm)
 		} else {
