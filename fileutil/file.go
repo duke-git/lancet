@@ -214,7 +214,6 @@ func Zip(fpath string, destPath string) error {
 
 // UnZip unzip the file and save it to destPath
 func UnZip(zipFile string, destPath string) error {
-	destPath = filepath.Clean(destPath) + string(os.PathSeparator)
 
 	zipReader, err := zip.OpenReader(zipFile)
 	if err != nil {
@@ -226,8 +225,9 @@ func UnZip(zipFile string, destPath string) error {
 		path := filepath.Join(destPath, f.Name)
 
 		//issue#62: fix ZipSlip bug
-		if !strings.HasPrefix(path, destPath) {
-			return fmt.Errorf("%s: illegal file path", path)
+		path, err := safeFilepathJoin(destPath, f.Name)
+		if err != nil {
+			return err
 		}
 
 		if f.FileInfo().IsDir() {
@@ -256,6 +256,17 @@ func UnZip(zipFile string, destPath string) error {
 		}
 	}
 	return nil
+}
+
+func safeFilepathJoin(path1, path2 string) (string, error) {
+	relPath, err := filepath.Rel(".", path2)
+	if err != nil || strings.HasPrefix(relPath, "..") {
+		return "", fmt.Errorf("(zipslip) filepath is unsafe %q: %v", path2, err)
+	}
+	if path1 == "" {
+		path1 = "."
+	}
+	return filepath.Join(path1, filepath.Join("/", relPath)), nil
 }
 
 // IsLink checks if a file is symbol link or not
