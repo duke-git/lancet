@@ -8,6 +8,7 @@ import (
 	"archive/zip"
 	"bufio"
 	"errors"
+	"fmt"
 	"io"
 	"io/fs"
 	"io/ioutil"
@@ -220,7 +221,11 @@ func UnZip(zipFile string, destPath string) error {
 	defer zipReader.Close()
 
 	for _, f := range zipReader.File {
-		path := filepath.Join(destPath, f.Name)
+		//issue#62: fix ZipSlip bug
+		path, err := safeFilepathJoin(destPath, f.Name)
+		if err != nil {
+			return err
+		}
 		if f.FileInfo().IsDir() {
 			os.MkdirAll(path, os.ModePerm)
 		} else {
@@ -247,6 +252,17 @@ func UnZip(zipFile string, destPath string) error {
 		}
 	}
 	return nil
+}
+
+func safeFilepathJoin(path1, path2 string) (string, error) {
+	relPath, err := filepath.Rel(".", path2)
+	if err != nil || strings.HasPrefix(relPath, "..") {
+		return "", fmt.Errorf("(zipslip) filepath is unsafe %q: %v", path2, err)
+	}
+	if path1 == "" {
+		path1 = "."
+	}
+	return filepath.Join(path1, filepath.Join("/", relPath)), nil
 }
 
 // IsLink checks if a file is symbol link or not
