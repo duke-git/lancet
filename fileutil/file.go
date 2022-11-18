@@ -222,8 +222,6 @@ func UnZip(zipFile string, destPath string) error {
 	defer zipReader.Close()
 
 	for _, f := range zipReader.File {
-		path := filepath.Join(destPath, f.Name)
-
 		//issue#62: fix ZipSlip bug
 		path, err := safeFilepathJoin(destPath, f.Name)
 		if err != nil {
