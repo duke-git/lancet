@@ -42,29 +42,18 @@ func Chunk[T any](slice []T, size int) [][]T {
 		return result
 	}
 
-	length := len(slice)
-	if size == 1 || size >= length {
-		for _, v := range slice {
-			var tmp []T
-			tmp = append(tmp, v)
-			result = append(result, tmp)
+	for _, item := range slice {
+		l := len(result)
+		if l == 0 || len(result[l-1]) == size {
+			result = append(result, []T{})
+			l++
 		}
-		return result
-	}
 
-	// divide slice equally
-	divideNum := length/size + 1
-	for i := 0; i < divideNum; i++ {
-		if i == divideNum-1 {
-			if len(slice[i*size:]) > 0 {
-				result = append(result, slice[i*size:])
-			}
-		} else {
-			result = append(result, slice[i*size:(i+1)*size])
-		}
+		result[l-1] = append(result[l-1], item)
 	}
 
 	return result
+
 }
 
 // Compact creates an slice with all falsey values removed. The values false, nil, 0, and "" are falsey

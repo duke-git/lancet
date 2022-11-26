@@ -31,6 +31,10 @@ func TestChunk(t *testing.T) {
 
 	arr := []string{"a", "b", "c", "d", "e"}
 
+	assert.Equal([][]string{}, Chunk(arr, -1))
+
+	assert.Equal([][]string{}, Chunk(arr, 0))
+
 	r1 := [][]string{{"a"}, {"b"}, {"c"}, {"d"}, {"e"}}
 	assert.Equal(r1, Chunk(arr, 1))
 
@@ -43,8 +47,11 @@ func TestChunk(t *testing.T) {
 	r4 := [][]string{{"a", "b", "c", "d"}, {"e"}}
 	assert.Equal(r4, Chunk(arr, 4))
 
-	r5 := [][]string{{"a"}, {"b"}, {"c"}, {"d"}, {"e"}}
+	r5 := [][]string{{"a", "b", "c", "d", "e"}}
 	assert.Equal(r5, Chunk(arr, 5))
+
+	r6 := [][]string{{"a", "b", "c", "d", "e"}}
+	assert.Equal(r6, Chunk(arr, 6))
 }
 
 func TestCompact(t *testing.T) {
