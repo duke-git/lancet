@@ -28,7 +28,6 @@ import (
 - [MaxBy](#MaxBy)
 - [Min](#Min)
 - [MinBy](#MaxBy)
-  
 - [Percent](#Percent)
 - [RoundToFloat](#RoundToFloat)
 - [RoundToString](#RoundToString)

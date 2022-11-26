@@ -42,7 +42,6 @@ import (
 - [GetNightTimestamp](#GetNightTimestamp)
 - [FormatTimeToStr](#FormatTimeToStr)
 - [FormatStrToTime](#FormatStrToTime)
-
 - [NewUnixNow](#NewUnixNow)
 - [NewUnix](#NewUnix)
 - [NewFormat](#NewFormat)

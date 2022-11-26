@@ -27,7 +27,6 @@ import (
 - [ToBytes](#ToBytes)
 - [ToChar](#ToChar)
 - [ToChannel](#ToChannel)
-
 - [ToFloat](#ToFloat)
 - [ToInt](#ToInt)
 - [ToJson](#ToJson)

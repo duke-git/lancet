@@ -21,6 +21,7 @@ import (
 <div STYLE="page-break-after: always;"></div>
 
 ## Index
+
 - [BubbleSort](#BubbleSort)
 - [InsertionSort](#InsertionSort)
 - [SelectionSort](#SelectionSort)
@@ -31,7 +32,6 @@ import (
 - [CountSort](#CountSort)
 - [BinarySearch](#BinarySearch)
 - [BinaryIterativeSearch](#BinaryIterativeSearch)
-
 - [LinearSearch](#LinearSearch)
 - [LRUCache](#LRUCache)
 

@@ -30,7 +30,6 @@ import (
 - [GetMacAddrs](#GetMacAddrs)
 - [GetPublicIpInfo](#GetPublicIpInfo)
 - [GetRequestPublicIp](#GetRequestPublicIp)
-
 - [IsPublicIP](#IsPublicIP)
 - [IsInternalIP](#IsInternalIP)
 - [HttpRequest](#HttpRequest)
@@ -38,13 +37,11 @@ import (
 - [SendRequest](#SendRequest)
 - [DecodeResponse](#DecodeResponse)
 - [StructToUrlValues](#StructToUrlValues)
-
 - [HttpGet<sup>Deprecated</sup>](#HttpGet)
 - [HttpDelete<sup>Deprecated</sup>](#HttpDelete)
 - [HttpPost<sup>Deprecated</sup>](#HttpPost)
 - [HttpPut<sup>Deprecated</sup>](#HttpPut)
 - [HttpPatch<sup>Deprecated</sup>](#HttpPatch)
-
 - [ParseHttpResponse](#ParseHttpResponse)
 
 <div STYLE="page-break-after: always;"></div>

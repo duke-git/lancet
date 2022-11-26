@@ -29,7 +29,6 @@ import (
 - [QuickSort](#QuickSort)
 - [HeapSort](#HeapSort)
 - [MergeSort](#MergeSort)
-
 - [CountSort](#CountSort)
 - [BinarySearch](#BinarySearch)
 - [BinaryIterativeSearch](#BinaryIterativeSearch)

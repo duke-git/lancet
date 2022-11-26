@@ -20,7 +20,9 @@ import (
 
 <div STYLE="page-break-after: always;"></div>
 
+
 ## 目录
+
 
 -   [AppendIfAbsent](#AppendIfAbsent)
 -   [Contain](#Contain)
@@ -46,7 +48,6 @@ import (
 -   [GroupBy](#GroupBy)
 -   [GroupWith](#GroupWith)
 -   [IntSlice](#IntSlice)
-
 -   [InterfaceSlice](#InterfaceSlice)
 -   [Intersection](#Intersection)
 -   [InsertAt](#InsertAt)
@@ -71,6 +72,7 @@ import (
 -   [UpdateAt](#UpdateAt)
 -   [Without](#Without)
 -   [KeyBy](#KeyBy)
+
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -172,8 +174,8 @@ import (
 
 func main() {
 	arr := []string{"a", "b", "c", "d", "e"}
-	res := slice.Chunk(InterfaceSlice(arr), 3)
-	fmt.Println(res) //[][]any{{"a", "b", "c"}, {"d", "e"}}
+	res := slice.Chunk(arr, 3)
+	fmt.Println(res) //[][]string{{"a", "b", "c"}, {"d", "e"}}
 }
 ```
 

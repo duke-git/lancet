@@ -33,7 +33,6 @@ import (
 - [AesOfbDecrypt](#AesOfbDecrypt)
 - [Base64StdEncode](#Base64StdEncode)
 - [Base64StdDecode](#Base64StdDecode)
-
 - [DesEcbEncrypt](#DesEcbEncrypt)
 - [DesEcbDecrypt](#DesEcbDecrypt)
 - [DesCbcEncrypt](#DesCbcEncrypt)
@@ -43,7 +42,6 @@ import (
 - [DesCfbDecrypt](#DesCfbDecrypt)
 - [DesOfbEncrypt](#DesOfbEncrypt)
 - [DesOfbDecrypt](#DesOfbDecrypt)
-
 - [HmacMd5](#HmacMd5)
 - [HmacSha1](#HmacSha1)
 - [HmacSha256](#HmacSha256)

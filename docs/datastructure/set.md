@@ -34,7 +34,6 @@ import (
 - [IsEmpty](#IsEmpty)
 - [Union](#Union)
 - [Intersection](#Intersection)
-
 - [SymmetricDifference](#SymmetricDifference)
 - [Minus](#Minus)
 

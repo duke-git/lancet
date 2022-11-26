@@ -172,8 +172,8 @@ import (
 
 func main() {
 	arr := []string{"a", "b", "c", "d", "e"}
-	res := slice.Chunk(InterfaceSlice(arr), 3)
-	fmt.Println(res) //[][]any{{"a", "b", "c"}, {"d", "e"}}
+	res := slice.Chunk((arr), 3)
+	fmt.Println(res) //[][]string{{"a", "b", "c"}, {"d", "e"}}
 }
 ```
 
