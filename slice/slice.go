@@ -618,6 +618,17 @@ func UnionBy[T any, V comparable](predicate func(item T) V, slices ...[]T) []T {
 	return result
 }
 
+// Merge all given slices into one slice
+func Merge[T any](slices ...[]T) []T {
+	result := make([]T, 0)
+
+	for _, item := range slices {
+		result = append(result, item...)
+	}
+
+	return result
+}
+
 // Intersection creates a slice of unique values that included by all slices.
 func Intersection[T comparable](slices ...[]T) []T {
 	if len(slices) == 0 {

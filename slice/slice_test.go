@@ -446,6 +446,18 @@ func TestUnionBy(t *testing.T) {
 	assert.Equal(result, []int{0, 2, 4, 10})
 }
 
+func TestMerge(t *testing.T) {
+	assert := internal.NewAssert(t, "TestMerge")
+
+	s1 := []int{1, 2, 3, 4}
+	s2 := []int{2, 3, 4, 5}
+	s3 := []int{4, 5, 6}
+
+	assert.Equal([]int{1, 2, 3, 4, 2, 3, 4, 5, 4, 5, 6}, Merge(s1, s2, s3))
+	assert.Equal([]int{1, 2, 3, 4, 2, 3, 4, 5}, Merge(s1, s2))
+	assert.Equal([]int{2, 3, 4, 5, 4, 5, 6}, Merge(s2, s3))
+}
+
 func TestIntersection(t *testing.T) {
 	s1 := []int{1, 2, 2, 3}
 	s2 := []int{1, 2, 3, 4}
