@@ -684,3 +684,11 @@ func TestKeyBy(t *testing.T) {
 
 	assert.Equal(result, map[int]string{1: "a", 2: "ab", 3: "abc"})
 }
+
+func TestRepeat(t *testing.T) {
+	assert := internal.NewAssert(t, "TestRepeat")
+
+	result := Repeat("a", 6)
+
+	assert.Equal(result, []string{"a", "a", "a", "a", "a", "a"})
+}

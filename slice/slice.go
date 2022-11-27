@@ -417,6 +417,15 @@ func ReplaceAll[T comparable](slice []T, old T, new T) []T {
 	return Replace(slice, old, new, -1)
 }
 
+// Repeat creates a slice with length n whose elements are param `item`.
+func Repeat[T any](item T, n int) []T {
+	result := make([]T, n)
+	for i := range result {
+		result[i] = item
+	}
+	return result
+}
+
 // InterfaceSlice convert param to slice of interface.
 func InterfaceSlice(slice any) []any {
 	sv := sliceValue(slice)
