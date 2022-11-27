@@ -19,7 +19,7 @@
     Lancet is a comprehensive, efficient, and reusable util function library of go. Inspired by the java apache common package and lodash.js.
 </p>
 
-English | [简体中文](./README_zh-CN.md)
+English | [简体中文](./README_zh-CN.md) | [Website](https://uvdream.github.io/lancet-docs/en/)
 
 ## Feature
 
