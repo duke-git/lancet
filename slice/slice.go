@@ -170,33 +170,29 @@ func EqualWith[T, U any](slice1 []T, slice2 []U, comparator func(T, U) bool) boo
 
 // Every return true if all of the values in the slice pass the predicate function.
 func Every[T any](slice []T, predicate func(index int, item T) bool) bool {
-	var currentLength int
-
 	for i, v := range slice {
-		if predicate(i, v) {
-			currentLength++
+		if !predicate(i, v) {
+			return false
 		}
 	}
 
-	return currentLength == len(slice)
+	return true
 }
 
 // None return true if all the values in the slice mismatch the criteria
 func None[T any](slice []T, predicate func(index int, item T) bool) bool {
-
-	var currentLength int
+	l := 0
 	for i, v := range slice {
 		if !predicate(i, v) {
-			currentLength++
+			l++
 		}
 	}
 
-	return currentLength == len(slice)
+	return l == len(slice)
 }
 
 // Some return true if any of the values in the list pass the predicate function.
 func Some[T any](slice []T, predicate func(index int, item T) bool) bool {
-
 	for i, v := range slice {
 		if predicate(i, v) {
 			return true
