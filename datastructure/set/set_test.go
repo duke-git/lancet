@@ -28,6 +28,27 @@ func TestSet_AddIfNotExist(t *testing.T) {
 	assert.Equal(NewSet(1, 2, 3, 4), set)
 }
 
+func TestSet_AddIfNotExistBy(t *testing.T) {
+	assert := internal.NewAssert(t, "TestSet_AddIfNotExistBy")
+
+	set := NewSet[int]()
+	set.Add(1, 2)
+
+	ok := set.AddIfNotExistBy(3, func(val int) bool {
+		return val%2 != 0
+	})
+
+	notOk := set.AddIfNotExistBy(4, func(val int) bool {
+		return val%2 != 0
+	})
+
+	assert.Equal(true, ok)
+	assert.Equal(false, notOk)
+
+	assert.Equal(true, set.Contain(3))
+	assert.Equal(false, set.Contain(4))
+}
+
 func TestSet_Contain(t *testing.T) {
 	assert := internal.NewAssert(t, "TestSet_Contain")
 

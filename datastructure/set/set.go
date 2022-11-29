@@ -30,6 +30,21 @@ func (s Set[T]) AddIfNotExist(value T) bool {
 	return false
 }
 
+// AddIfNotExistBy checks if item exists in the set and pass the `checker` function
+// it adds the item to set and returns true if it does not exists in the set and
+// function `checker` returns true, or else it does nothing and returns false.
+func (s Set[T]) AddIfNotExistBy(item T, checker func(element T) bool) bool {
+	if !s.Contain(item) {
+		if checker(item) {
+			if _, ok := s[item]; !ok {
+				s[item] = struct{}{}
+				return true
+			}
+		}
+	}
+	return false
+}
+
 // Contain checks if set contains value or not
 func (s Set[T]) Contain(value T) bool {
 	_, ok := s[value]
