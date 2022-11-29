@@ -1,7 +1,13 @@
-// Copyright 2021 dudaodong@gmail.com. All rights resulterved.
+// Copyright 2022 dudaodong@gmail.com. All rights resulterved.
 // Use of this source code is governed by MIT license
 
-// Package iterator implements some feature of C++ STL iterators
+// Package iterator provides a way to iterate over values stored in containers.
+// note:
+// 1. Full feature iterator is complicated, this pacakge is just a experiment to explore how iterators could work in Go.
+// 2. The functionality of this package is very simple and limited, may not meet the actual dev needs.
+// 3. It is currently under development, unstable, and will not be completed for some time in the future.
+// So, based on above factors, you may not use it in production. but, anyone is welcome to improve it.
+// Hope that Go can support iterator in future. see https://github.com/golang/go/discussions/54245 and https://github.com/golang/go/discussions/56413
 package iterator
 
 // Map creates a new iterator which applies a function to all items of input iterator.
