@@ -17,6 +17,19 @@ func (s Set[T]) Add(values ...T) {
 	}
 }
 
+// AddIfNotExist checks if item exists in the set,
+// it adds the item to set and returns true if it does not exist in the set,
+// or else it does nothing and returns false.
+func (s Set[T]) AddIfNotExist(value T) bool {
+	if !s.Contain(value) {
+		if _, ok := s[value]; !ok {
+			s[value] = struct{}{}
+			return true
+		}
+	}
+	return false
+}
+
 // Contain checks if set contains value or not
 func (s Set[T]) Contain(value T) bool {
 	_, ok := s[value]

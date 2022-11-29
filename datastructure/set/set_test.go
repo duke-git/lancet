@@ -17,6 +17,17 @@ func TestSet_Add(t *testing.T) {
 	assert.Equal(true, set.Equal(expected))
 }
 
+func TestSet_AddIfNotExist(t *testing.T) {
+	assert := internal.NewAssert(t, "TestSet_AddIfNotExist")
+
+	set := NewSet[int]()
+	set.Add(1, 2, 3)
+
+	assert.Equal(false, set.AddIfNotExist(1))
+	assert.Equal(true, set.AddIfNotExist(4))
+	assert.Equal(NewSet(1, 2, 3, 4), set)
+}
+
 func TestSet_Contain(t *testing.T) {
 	assert := internal.NewAssert(t, "TestSet_Contain")
 
