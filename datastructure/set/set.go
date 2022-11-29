@@ -4,15 +4,15 @@ package datastructure
 type Set[T comparable] map[T]struct{}
 
 // NewSet return a instance of set
-func NewSet[T comparable](values ...T) Set[T] {
+func NewSet[T comparable](items ...T) Set[T] {
 	set := make(Set[T])
-	set.Add(values...)
+	set.Add(items...)
 	return set
 }
 
-// Add value to set
-func (s Set[T]) Add(values ...T) {
-	for _, v := range values {
+// Add items to set
+func (s Set[T]) Add(items ...T) {
+	for _, v := range items {
 		s[v] = struct{}{}
 	}
 }
@@ -54,9 +54,9 @@ func (s Set[T]) Clone() Set[T] {
 	return set
 }
 
-// Delete value of set
-func (s Set[T]) Delete(values ...T) {
-	for _, v := range values {
+// Delete item of set
+func (s Set[T]) Delete(items ...T) {
+	for _, v := range items {
 		delete(s, v)
 	}
 }
@@ -89,13 +89,13 @@ func (s Set[T]) Size() int {
 
 // Values return all values of set
 func (s Set[T]) Values() []T {
-	values := make([]T, 0, 0)
+	result := make([]T, 0, len(s))
 
 	s.Iterate(func(value T) {
-		values = append(values, value)
+		result = append(result, value)
 	})
 
-	return values
+	return result
 }
 
 // Union creates a new set contain all element of set s and other
