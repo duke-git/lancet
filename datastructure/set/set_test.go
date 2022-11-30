@@ -6,6 +6,19 @@ import (
 	"github.com/duke-git/lancet/v2/internal"
 )
 
+func TestSet_NewSetFromSlice(t *testing.T) {
+	assert := internal.NewAssert(t, "TestSet_NewSetFromSlice")
+
+	s1 := NewSetFromSlice([]int{1, 2, 2, 3})
+	assert.Equal(3, s1.Size())
+	assert.Equal(true, s1.Contain(1))
+	assert.Equal(true, s1.Contain(2))
+	assert.Equal(true, s1.Contain(3))
+
+	s2 := NewSetFromSlice([]int{})
+	assert.Equal(0, s2.Size())
+}
+
 func TestSet_Add(t *testing.T) {
 	assert := internal.NewAssert(t, "TestSet_Add")
 

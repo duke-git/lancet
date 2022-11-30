@@ -10,6 +10,15 @@ func NewSet[T comparable](items ...T) Set[T] {
 	return set
 }
 
+// NewSetFromSlice create a set from slice
+func NewSetFromSlice[T comparable](items []T) Set[T] {
+	set := make(Set[T])
+	for _, item := range items {
+		set.Add(item)
+	}
+	return set
+}
+
 // Add items to set
 func (s Set[T]) Add(items ...T) {
 	for _, v := range items {
