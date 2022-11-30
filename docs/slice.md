@@ -43,7 +43,6 @@ import (
 -   [Flatten](#Flatten)
 -   [FlattenDeep](#FlattenDeep)
 -   [ForEach](#ForEach)
-
 -   [GroupBy](#GroupBy)
 -   [GroupWith](#GroupWith)
 -   [IntSlice](#IntSlice)
@@ -53,10 +52,12 @@ import (
 -   [IndexOf](#IndexOf)
 -   [LastIndexOf](#LastIndexOf)
 -   [Map](#Map)
+-   [Merge](#Merge)
 -   [Reverse](#Reverse)
 -   [Reduce](#Reduce)
 -   [Replace](#Replace)
 -   [ReplaceAll](#ReplaceAll)
+-   [Repeat](#Repeat)
 -   [Shuffle](#Shuffle)
 -   [SortByField](#SortByField)
 -   [Some](#Some)
@@ -909,6 +910,36 @@ func main() {
 }
 ```
 
+
+### <span id="Merge">Merge</span>
+
+<p>Merge all given slices into one slice.</p>
+
+<b>Signature:</b>
+
+```go
+func Merge[T any](slices ...[]T) []T
+```
+
+<b>Example:</b>
+
+```go
+import (
+	"fmt"
+	"github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+	s1 := []int{1, 2, 3}
+	s2 := []int{2, 4}
+	res := slice.Merge(s1, s2)
+
+	fmt.Println(res) //[]int{1, 2, 3, 2, 4}
+}
+```
+
+
+
 ### <span id="Reverse">Reverse</span>
 
 <p>Reverse the elements order in slice.</p>
@@ -1017,6 +1048,31 @@ func main() {
 	fmt.Println(slice.Replace(strs, "e", "x")) //{"a", "b", "a", "c", "d", "a"}
 }
 ```
+
+
+### <span id="Repeat">Repeat</span>
+
+<p>Creates a slice with length n whose elements are passed param item.</p>
+
+<b>Signature:</b>
+
+```go
+func Repeat[T any](item T, n int) []T
+```
+
+<b>Example:</b>
+
+```go
+import (
+	"fmt"
+	"github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+	fmt.Println(slice.Repeat("a", 3)) //[]string{"a", "a", "a"}
+}
+```
+
 
 ### <span id="Shuffle">Shuffle</span>
 

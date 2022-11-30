@@ -54,10 +54,12 @@ import (
 -   [IndexOf](#IndexOf)
 -   [LastIndexOf](#LastIndexOf)
 -   [Map](#Map)
+-   [Merge](#Merge)
 -   [Reverse](#Reverse)
 -   [Reduce](#Reduce)
 -   [Replace](#Replace)
 -   [ReplaceAll](#ReplaceAll)
+-   [Repeat](#Repeat)
 -   [Shuffle](#Shuffle)
 -   [SortByField](#SortByField)
 -   [Some](#Some)
@@ -885,7 +887,7 @@ func main() {
 
 ### <span id="Map">Map</span>
 
-<p>通过运行函数slice中的每个元素来创建一个新切片</p>
+<p>对slice中的每个元素执行map函数以创建一个新切片</p>
 
 <b>函数签名:</b>
 
@@ -910,6 +912,34 @@ func main() {
 	fmt.Println(res) //[]int{2, 4, 6, 8}
 }
 ```
+
+### <span id="Merge">Merge</span>
+
+<p>合并多个切片（不会消除重复元素).</p>
+
+<b>函数签名:</b>
+
+```go
+func Merge[T any](slices ...[]T) []T
+```
+
+<b>例子:</b>
+
+```go
+import (
+	"fmt"
+	"github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+	s1 := []int{1, 2, 3}
+	s2 := []int{2, 4}
+	res := slice.Merge(s1, s2)
+
+	fmt.Println(res) //[]int{1, 2, 3, 2, 4}
+}
+```
+
 
 ### <span id="Reverse">Reverse</span>
 
@@ -1019,6 +1049,30 @@ func main() {
 	fmt.Println(slice.Replace(strs, "e", "x")) //{"a", "b", "a", "c", "d", "a"}
 }
 ```
+
+### <span id="Repeat">Repeat</span>
+
+<p>创建一个切片，包含n个传入的item</p>
+
+<b>函数签名:</b>
+
+```go
+func Repeat[T any](item T, n int) []T
+```
+
+<b>例子:</b>
+
+```go
+import (
+	"fmt"
+	"github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+	fmt.Println(slice.Repeat("a", 3)) //[]string{"a", "a", "a"}
+}
+```
+
 
 ### <span id="Shuffle">Shuffle</span>
 
