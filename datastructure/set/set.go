@@ -20,10 +20,10 @@ func (s Set[T]) Add(items ...T) {
 // AddIfNotExist checks if item exists in the set,
 // it adds the item to set and returns true if it does not exist in the set,
 // or else it does nothing and returns false.
-func (s Set[T]) AddIfNotExist(value T) bool {
-	if !s.Contain(value) {
-		if _, ok := s[value]; !ok {
-			s[value] = struct{}{}
+func (s Set[T]) AddIfNotExist(item T) bool {
+	if !s.Contain(item) {
+		if _, ok := s[item]; !ok {
+			s[item] = struct{}{}
 			return true
 		}
 	}
@@ -45,9 +45,9 @@ func (s Set[T]) AddIfNotExistBy(item T, checker func(element T) bool) bool {
 	return false
 }
 
-// Contain checks if set contains value or not
-func (s Set[T]) Contain(value T) bool {
-	_, ok := s[value]
+// Contain checks if set contains item or not
+func (s Set[T]) Contain(item T) bool {
+	_, ok := s[item]
 	return ok
 }
 
@@ -86,7 +86,7 @@ func (s Set[T]) Equal(other Set[T]) bool {
 }
 
 // Iterate call function by every element of set
-func (s Set[T]) Iterate(fn func(value T)) {
+func (s Set[T]) Iterate(fn func(item T)) {
 	for v := range s {
 		fn(v)
 	}
