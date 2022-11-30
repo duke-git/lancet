@@ -24,6 +24,8 @@ import (
 - [NewSet](#NewSet)
 - [Values](#Values)
 - [Add](#Add)
+- [AddIfNotExist](#AddIfNotExist)
+- [AddIfNotExistBy](#AddIfNotExistBy)
 - [Delete](#Delete)
 - [Contain](#Contain)
 - [ContainAll](#ContainAll)
@@ -50,7 +52,7 @@ import (
 
 ```go
 type Set[T comparable] map[T]bool
-func NewSet[T comparable](values ...T) Set[T]
+func NewSet[T comparable](items ...T) Set[T]
 ```
 <b>Example:</b>
 
@@ -99,12 +101,12 @@ func main() {
 
 
 ### <span id="Add">Add</span>
-<p>Add value to set</p>
+<p>Add items to set</p>
 
 <b>Signature:</b>
 
 ```go
-func (s Set[T]) Add(values ...T)
+func (s Set[T]) Add(items ...T)
 ```
 <b>Example:</b>
 
@@ -125,14 +127,83 @@ func main() {
 ```
 
 
-
-### <span id="Delete">Delete</span>
-<p>Delete value in set</p>
+### <span id="AddIfNotExist">AddIfNotExist</span>
+<p>AddIfNotExist checks if item exists in the set, it adds the item to set and returns true if it does not exist in the set, or else it does nothing and returns false.</p>
 
 <b>Signature:</b>
 
 ```go
-func (s Set[T]) Delete(values ...T)
+func (s Set[T]) AddIfNotExist(item T) bool
+```
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    set "github.com/duke-git/lancet/v2/datastructure/set"
+)
+
+func main() {
+    st := set.NewSet[int]()
+    st.Add(1, 2, 3)
+
+    r1 := st.AddIfNotExist(1)
+	r2 := st.AddIfNotExist(4)
+
+    fmt.Println(r1) // false
+    fmt.Println(r2) // true
+    fmt.Println(st.Values()) // 1,2,3,4
+}
+```
+
+
+### <span id="AddIfNotExistBy">AddIfNotExistBy</span>
+<p>AddIfNotExistBy checks if item exists in the set and pass the `checker` function it adds the item to set and returns true if it does not exists in the set and function `checker` returns true, or else it does nothing and returns false.</p>
+
+<b>Signature:</b>
+
+```go
+func (s Set[T]) AddIfNotExistBy(item T, checker func(element T) bool) bool
+```
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    set "github.com/duke-git/lancet/v2/datastructure/set"
+)
+
+func main() {
+    st := set.NewSet[int]()
+    st.Add(1, 2)
+
+	ok := st.AddIfNotExistBy(3, func(val int) bool {
+		return val%2 != 0
+	})
+    fmt.Println(ok) // true
+
+
+	notOk := st.AddIfNotExistBy(4, func(val int) bool {
+		return val%2 != 0
+	})
+    fmt.Println(notOk) // false
+    
+    fmt.Println(st.Values()) // 1, 2, 3
+}
+```
+
+
+### <span id="Delete">Delete</span>
+<p>Delete item in set</p>
+
+<b>Signature:</b>
+
+```go
+func (s Set[T]) Delete(items ...T)
 ```
 <b>Example:</b>
 
@@ -156,12 +227,12 @@ func main() {
 
 
 ### <span id="Contain">Contain</span>
-<p>Check if value is in set or not</p>
+<p>Check if item is in set or not</p>
 
 <b>Signature:</b>
 
 ```go
-func (s Set[T]) Contain(value T) bool
+func (s Set[T]) Contain(item T) bool
 ```
 <b>Example:</b>
 
@@ -308,7 +379,7 @@ func main() {
 <b>Signature:</b>
 
 ```go
-func (s Set[T]) Iterate(fn func(value T))
+func (s Set[T]) Iterate(fn func(item T))
 ```
 <b>Example:</b>
 
@@ -323,8 +394,8 @@ import (
 func main() {
     set1 := set.NewSet(1, 2, 3)
     arr := []int{}
-    set.Iterate(func(value int) {
-        arr = append(arr, value)
+    set.Iterate(func(item int) {
+        arr = append(arr, item)
     })
 
     fmt.Println(arr) //1,2,3

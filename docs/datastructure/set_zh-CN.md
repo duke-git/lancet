@@ -24,6 +24,8 @@ import (
 - [NewSet](#NewSet)
 - [Values](#Values)
 - [Add](#Add)
+- [AddIfNotExist](#AddIfNotExist)
+- [AddIfNotExistBy](#AddIfNotExistBy)
 - [Delete](#Delete)
 - [Contain](#Contain)
 - [ContainAll](#ContainAll)
@@ -50,7 +52,7 @@ import (
 
 ```go
 type Set[T comparable] map[T]bool
-func NewSet[T comparable](values ...T) Set[T]
+func NewSet[T comparable](items ...T) Set[T]
 ```
 <b>例子:</b>
 
@@ -104,7 +106,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func (s Set[T]) Add(values ...T)
+func (s Set[T]) Add(items ...T)
 ```
 <b>例子:</b>
 
@@ -125,6 +127,76 @@ func main() {
 ```
 
 
+### <span id="AddIfNotExist">AddIfNotExist</span>
+<p>如果集合中不存在元素，则添加该元素返回true, 如果集合中存在元素, 不做任何操作，返回false</p>
+
+<b>函数签名:</b>
+
+```go
+func (s Set[T]) AddIfNotExist(item T) bool
+```
+<b>例子:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    set "github.com/duke-git/lancet/v2/datastructure/set"
+)
+
+func main() {
+    st := set.NewSet[int]()
+    st.Add(1, 2, 3)
+
+    r1 := st.AddIfNotExist(1)
+	r2 := st.AddIfNotExist(4)
+
+    fmt.Println(r1) // false
+    fmt.Println(r2) // true
+    fmt.Println(st.Values()) // 1,2,3,4
+}
+```
+
+
+### <span id="AddIfNotExistBy">AddIfNotExistBy</span>
+<p>根据checker函数判断元素是否在集合中，如果集合中不存在元素且checker返回true，则添加该元素返回true, 否则不做任何操作，返回false</p>
+
+<b>函数签名:</b>
+
+```go
+func (s Set[T]) AddIfNotExistBy(item T, checker func(element T) bool) bool
+```
+<b>例子:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    set "github.com/duke-git/lancet/v2/datastructure/set"
+)
+
+func main() {
+    st := set.NewSet[int]()
+    st.Add(1, 2)
+
+	ok := st.AddIfNotExistBy(3, func(val int) bool {
+		return val%2 != 0
+	})
+    fmt.Println(ok) // true
+
+
+	notOk := st.AddIfNotExistBy(4, func(val int) bool {
+		return val%2 != 0
+	})
+    fmt.Println(notOk) // false
+    
+    fmt.Println(st.Values()) // 1, 2, 3
+}
+```
+
+
 
 ### <span id="Delete">Delete</span>
 <p>删除集合中元素</p>
@@ -132,7 +204,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func (s Set[T]) Delete(values ...T)
+func (s Set[T]) Delete(items ...T)
 ```
 <b>例子:</b>
 
@@ -161,7 +233,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func (s Set[T]) Contain(value T) bool
+func (s Set[T]) Contain(item T) bool
 ```
 <b>例子:</b>
 
@@ -308,7 +380,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func (s Set[T]) Iterate(fn func(value T))
+func (s Set[T]) Iterate(fn func(item T))
 ```
 <b>例子:</b>
 
@@ -323,8 +395,8 @@ import (
 func main() {
     set1 := set.NewSet(1, 2, 3)
     arr := []int{}
-    set.Iterate(func(value int) {
-        arr = append(arr, value)
+    set.Iterate(func(item int) {
+        arr = append(arr, item)
     })
 
     fmt.Println(arr) //1,2,3
@@ -417,9 +489,6 @@ func main() {
     fmt.Println(set3.Values()) //2,3
 }
 ```
-
-
-
 
 
 ### <span id="SymmetricDifference">SymmetricDifference</span>
