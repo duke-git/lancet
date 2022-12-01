@@ -61,7 +61,6 @@ func Compact[T comparable](slice []T) []T {
 	var zero T
 
 	result := []T{}
-
 	for _, item := range slice {
 		if item != zero {
 			result = append(result, item)
