@@ -12,15 +12,15 @@ import (
 	"sort"
 )
 
-// Contain check if the value is in the slice or not
-func Contain[T comparable](slice []T, value T) bool {
-	set := make(map[T]struct{}, len(slice))
-	for _, v := range slice {
-		set[v] = struct{}{}
+// Contain check if the target value is in the slice or not
+func Contain[T comparable](slice []T, target T) bool {
+	for _, item := range slice {
+		if item == target {
+			return true
+		}
 	}
 
-	_, ok := set[value]
-	return ok
+	return false
 }
 
 // ContainSubSlice check if the slice contain subslice or not
@@ -57,14 +57,14 @@ func Chunk[T any](slice []T, size int) [][]T {
 }
 
 // Compact creates an slice with all falsey values removed. The values false, nil, 0, and "" are falsey
-func Compact[T any](slice []T) []T {
-	result := make([]T, 0)
-	for _, v := range slice {
-		if !reflect.DeepEqual(v, nil) &&
-			!reflect.DeepEqual(v, false) &&
-			!reflect.DeepEqual(v, "") &&
-			!reflect.DeepEqual(v, 0) {
-			result = append(result, v)
+func Compact[T comparable](slice []T) []T {
+	var zero T
+
+	result := []T{}
+
+	for _, item := range slice {
+		if item != zero {
+			result = append(result, item)
 		}
 	}
 

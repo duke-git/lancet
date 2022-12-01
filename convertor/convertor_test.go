@@ -137,9 +137,10 @@ func TestToString(t *testing.T) {
 		"", "",
 		"0", "1", "-1",
 		"123", "123", "123", "123", "123", "123", "123",
-		"12.3", "12.300000190734863",
+		"12.3", "12.3",
 		"true", "false",
-		"[1,2,3]", "{\"a\":1,\"b\":2,\"c\":3}", "{\"Name\":\"TestStruct\"}", "hello"}
+		"[1,2,3]", "{\"a\":1,\"b\":2,\"c\":3}", "{\"Name\":\"TestStruct\"}", "hello",
+	}
 
 	for i := 0; i < len(cases); i++ {
 		actual := ToString(cases[i])
