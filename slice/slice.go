@@ -10,6 +10,8 @@ import (
 	"math/rand"
 	"reflect"
 	"sort"
+
+	"github.com/duke-git/lancet/v2/lancetconstraints"
 )
 
 // Contain check if the target value is in the slice or not
@@ -713,8 +715,18 @@ func Shuffle[T any](slice []T) []T {
 	return result
 }
 
+// Sort sorts a slice of any ordered type(number or string), use quick sort algrithm.
+// default sort order is ascending (asc), if want descending order, set param `sortOrder` to `desc`
+func Sort[T lancetconstraints.Ordered](slice []T, sortOrder ...string) {
+	if len(sortOrder) > 0 && sortOrder[0] == "desc" {
+		quickSort(slice, 0, len(slice)-1, "desc")
+	} else {
+		quickSort(slice, 0, len(slice)-1, "asc")
+	}
+}
+
 // SortByField return sorted slice by field
-// Slice element should be struct, field type should be int, uint, string, or bool
+// slice element should be struct, field type should be int, uint, string, or bool
 // default sortType is ascending (asc), if descending order, set sortType to desc
 func SortByField(slice any, field string, sortType ...string) error {
 	sv := sliceValue(slice)

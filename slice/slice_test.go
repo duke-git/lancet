@@ -538,6 +538,26 @@ func TestDifferenceBy(t *testing.T) {
 	assert.Equal([]int{1, 2}, DifferenceBy(s1, s2, addOne))
 }
 
+func TestSort(t *testing.T) {
+	assert := internal.NewAssert(t, "TestSort")
+
+	numbers := []int{1, 4, 3, 2, 5}
+
+	Sort(numbers)
+	assert.Equal([]int{1, 2, 3, 4, 5}, numbers)
+
+	Sort(numbers, "desc")
+	assert.Equal([]int{5, 4, 3, 2, 1}, numbers)
+
+	strings := []string{"a", "d", "c", "b", "e"}
+
+	Sort(strings)
+	assert.Equal([]string{"a", "b", "c", "d", "e"}, strings)
+
+	Sort(strings, "desc")
+	assert.Equal([]string{"e", "d", "c", "b", "a"}, strings)
+}
+
 func TestSortByFielDesc(t *testing.T) {
 	assert := internal.NewAssert(t, "TestSortByFielDesc")
 
