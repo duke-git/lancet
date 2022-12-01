@@ -394,6 +394,32 @@ func main() {
 ```
 
 
+### <span id="ToString">ToString</span>
+
+<p>ToString convert value to string, for number, string, []byte, will convert to string. For other type (slice, map, array, struct) will call json.Marshal</p>
+
+<b>Signature:</b>
+
+```go
+func ToString(value any) string
+```
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/convertor"
+)
+
+func main() {
+    fmt.Printf("%q", convertor.ToString(1)) //"1"
+    fmt.Printf("%q", convertor.ToString(1.1)) //"1.1"
+    fmt.Printf("%q", convertor.ToString([]int{1, 2, 3})) //"[1,2,3]"
+}
+```
+
 
 ### <span id="StructToMap">StructToMap</span>
 

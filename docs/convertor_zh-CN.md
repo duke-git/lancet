@@ -400,7 +400,7 @@ func main() {
 
 ### <span id="ToString">ToString</span>
 
-<p>将interface转成字符串</p>
+<p>将值转换为字符串，对于数字、字符串、[]byte，将转换为字符串。 对于其他类型（切片、映射、数组、结构）将调用 json.Marshal</p>
 
 <b>函数签名:</b>
 

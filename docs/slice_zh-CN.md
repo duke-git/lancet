@@ -188,7 +188,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func Compact[T any](slice []T) []T
+func Compact[T comparable](slice []T) []T
 ```
 
 <b>例子:</b>
