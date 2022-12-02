@@ -734,6 +734,7 @@ func SortBy[T any](slice []T, less func(a, b T) bool) {
 // SortByField return sorted slice by field
 // slice element should be struct, field type should be int, uint, string, or bool
 // default sortType is ascending (asc), if descending order, set sortType to desc
+// This function is deprecated, use Sort and SortBy for replacement
 func SortByField(slice any, field string, sortType ...string) error {
 	sv := sliceValue(slice)
 	t := sv.Type().Elem()
