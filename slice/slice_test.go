@@ -558,6 +558,36 @@ func TestSort(t *testing.T) {
 	assert.Equal([]string{"e", "d", "c", "b", "a"}, strings)
 }
 
+func TestSortBy(t *testing.T) {
+	assert := internal.NewAssert(t, "TestSortBy")
+
+	numbers := []int{1, 4, 3, 2, 5}
+
+	SortBy(numbers, func(a, b int) bool {
+		return a < b
+	})
+	assert.Equal([]int{1, 2, 3, 4, 5}, numbers)
+
+	type User struct {
+		Name string
+		Age  uint
+	}
+
+	users := []User{
+		{Name: "a", Age: 21},
+		{Name: "b", Age: 15},
+		{Name: "c", Age: 100}}
+
+	SortBy(users, func(a, b User) bool {
+		return a.Age < b.Age
+	})
+
+	t.Logf("sort users by age: %v", users)
+
+	// output
+	// [{b 15} {a 21} {c 100}]
+}
+
 func TestSortByFielDesc(t *testing.T) {
 	assert := internal.NewAssert(t, "TestSortByFielDesc")
 

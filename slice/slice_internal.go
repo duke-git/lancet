@@ -29,14 +29,14 @@ func sliceElemType(reflectType reflect.Type) reflect.Type {
 
 func quickSort[T lancetconstraints.Ordered](slice []T, lowIndex, highIndex int, order string) {
 	if lowIndex < highIndex {
-		p := partition(slice, lowIndex, highIndex, order)
+		p := partitionOrderedSlice(slice, lowIndex, highIndex, order)
 		quickSort(slice, lowIndex, p-1, order)
 		quickSort(slice, p+1, highIndex, order)
 	}
 }
 
-// partition split slice into two parts for quick sort
-func partition[T lancetconstraints.Ordered](slice []T, lowIndex, highIndex int, order string) int {
+// partitionOrderedSlice split ordered slice into two parts for quick sort
+func partitionOrderedSlice[T lancetconstraints.Ordered](slice []T, lowIndex, highIndex int, order string) int {
 	p := slice[highIndex]
 	i := lowIndex
 
@@ -51,6 +51,32 @@ func partition[T lancetconstraints.Ordered](slice []T, lowIndex, highIndex int, 
 				swap(slice, i, j)
 				i++
 			}
+		}
+	}
+
+	swap(slice, i, highIndex)
+
+	return i
+}
+
+func quickSortBy[T any](slice []T, lowIndex, highIndex int, less func(a, b T) bool) {
+	if lowIndex < highIndex {
+		p := partitionAnySlice(slice, lowIndex, highIndex, less)
+		quickSortBy(slice, lowIndex, p-1, less)
+		quickSortBy(slice, p+1, highIndex, less)
+	}
+}
+
+// partitionAnySlice split any slice into two parts for quick sort
+func partitionAnySlice[T any](slice []T, lowIndex, highIndex int, less func(a, b T) bool) int {
+	p := slice[highIndex]
+	i := lowIndex
+
+	for j := lowIndex; j < highIndex; j++ {
+
+		if less(slice[j], p) {
+			swap(slice, i, j)
+			i++
 		}
 	}
 

@@ -725,6 +725,12 @@ func Sort[T lancetconstraints.Ordered](slice []T, sortOrder ...string) {
 	}
 }
 
+// SortBy sorts the slice in ascending order as determined by the less function.
+// This sort is not guaranteed to be stable
+func SortBy[T any](slice []T, less func(a, b T) bool) {
+	quickSortBy(slice, 0, len(slice)-1, less)
+}
+
 // SortByField return sorted slice by field
 // slice element should be struct, field type should be int, uint, string, or bool
 // default sortType is ascending (asc), if descending order, set sortType to desc
