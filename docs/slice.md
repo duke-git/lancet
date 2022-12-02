@@ -59,7 +59,9 @@ import (
 -   [ReplaceAll](#ReplaceAll)
 -   [Repeat](#Repeat)
 -   [Shuffle](#Shuffle)
--   [SortByField](#SortByField)
+-   [Sort](#Sort)
+-   [SortBy](#SortBy)
+-   [SortByField<sup>Deprecated</sup>](#SortByField)
 -   [Some](#Some)
 -   [StringSlice](#StringSlice)
 -   [SymmetricDifference](#SymmetricDifference)
@@ -1099,7 +1101,94 @@ func main() {
 }
 ```
 
-### <span id="SortByField">SortByField</span>
+### <span id="Sort">Sort</span>
+
+<p>Sorts a slice of any ordered type(number or string), use quick sort algrithm. Default sort order is ascending (asc), if want descending order, set param `sortOrder` to `desc`. Ordered type: number(all ints uints floats) or string.
+</p>
+
+<b>Signature:</b>
+
+```go
+func Sort[T lancetconstraints.Ordered](slice []T, sortOrder ...string)
+```
+
+<b>Example:</b>
+
+```go
+import (
+	"fmt"
+	"github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+	numbers := []int{1, 4, 3, 2, 5}
+	
+	slice.Sort(numbers)
+	fmt.Println(numbers) //{1,2,3,4,5}
+
+	slice.Sort(numbers, "desc")
+	fmt.Println(numbers) //{5,4,3,2,1}
+
+	strings := []string{"a", "d", "c", "b", "e"}
+
+	slice.Sort(strings)
+	fmt.Println(strings) //{"a", "b", "c", "d", "e"}
+
+	slice.Sort(strings, "desc")
+	fmt.Println(strings) //{"e", "d", "c", "b", "a"}
+}
+```
+
+
+### <span id="SortBy">SortBy</span>
+
+<p>Sorts the slice in ascending order as determined by the less function. This sort is not guaranteed to be stable.<p>
+
+<b>Signature:</b>
+
+```go
+func SortBy[T any](slice []T, less func(a, b T) bool)
+```
+
+<b>Example:</b>
+
+```go
+import (
+	"fmt"
+	"github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+	numbers := []int{1, 4, 3, 2, 5}
+
+	slice.SortBy(numbers, func(a, b int) bool {
+		return a < b
+	})
+	fmt.Println(numbers) //{1, 2, 3, 4, 5}
+
+	type User struct {
+		Name string
+		Age  uint
+	}
+
+	users := []User{
+		{Name: "a", Age: 21},
+		{Name: "b", Age: 15},
+		{Name: "c", Age: 100}}
+
+	slice.SortBy(users, func(a, b User) bool {
+		return a.Age < b.Age
+	})
+
+	fmt.Printf("sort users by age: %v", users) 
+
+	// output
+	// [{b 15} {a 21} {c 100}]
+}
+```
+
+
+### <span id="SortByField">SortByField (Deprecated: use Sort and SortBy for replacement)</span>
 
 <p>Sort struct slice by field. Slice element should be struct, field type should be int, uint, string, or bool. Default sort type is ascending (asc), if descending order, set sortType to desc</p>
 

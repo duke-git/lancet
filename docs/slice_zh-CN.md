@@ -61,7 +61,9 @@ import (
 -   [ReplaceAll](#ReplaceAll)
 -   [Repeat](#Repeat)
 -   [Shuffle](#Shuffle)
--   [SortByField](#SortByField)
+-   [Sort](#Sort)
+-   [SortBy](#SortBy)
+-   [SortByField<sup>Deprecated</sup>](#SortByField)
 -   [Some](#Some)
 -   [StringSlice](#StringSlice)
 -   [SymmetricDifference](#SymmetricDifference)
@@ -1099,7 +1101,93 @@ func main() {
 }
 ```
 
-### <span id="SortByField">SortByField</span>
+### <span id="Sort">Sort</span>
+
+<p>对任何有序类型（数字或字符串）的切片进行排序，使用快速排序算法。 默认排序顺序为升序 (asc)，如果需要降序，请将参数 `sortOrder` 设置为 `desc`。 Ordered类型：数字（所有整数浮点数）或字符串。</p>
+
+<b>函数签名:</b>
+
+```go
+func Sort[T lancetconstraints.Ordered](slice []T, sortOrder ...string)
+```
+
+<b>例子:</b>
+
+```go
+import (
+	"fmt"
+	"github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+	numbers := []int{1, 4, 3, 2, 5}
+	
+	slice.Sort(numbers)
+	fmt.Println(numbers) //{1,2,3,4,5}
+
+	slice.Sort(numbers, "desc")
+	fmt.Println(numbers) //{5,4,3,2,1}
+
+	strings := []string{"a", "d", "c", "b", "e"}
+
+	slice.Sort(strings)
+	fmt.Println(strings) //{"a", "b", "c", "d", "e"}
+
+	slice.Sort(strings, "desc")
+	fmt.Println(strings) //{"e", "d", "c", "b", "a"}
+}
+```
+
+
+### <span id="SortBy">SortBy</span>
+
+<p>按照less函数确定的升序规则对切片进行排序。排序不保证稳定性</p>
+
+<b>函数签名:</b>
+
+```go
+func SortBy[T any](slice []T, less func(a, b T) bool)
+```
+
+<b>例子:</b>
+
+```go
+import (
+	"fmt"
+	"github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+	numbers := []int{1, 4, 3, 2, 5}
+
+	slice.SortBy(numbers, func(a, b int) bool {
+		return a < b
+	})
+	fmt.Println(numbers) //{1, 2, 3, 4, 5}
+
+	type User struct {
+		Name string
+		Age  uint
+	}
+
+	users := []User{
+		{Name: "a", Age: 21},
+		{Name: "b", Age: 15},
+		{Name: "c", Age: 100}}
+
+	slice.SortBy(users, func(a, b User) bool {
+		return a.Age < b.Age
+	})
+
+	fmt.Printf("sort users by age: %v", users) 
+
+	// output
+	// [{b 15} {a 21} {c 100}]
+}
+```
+
+
+### <span id="SortByField">SortByField (已弃用: 请使用 Sort或SortBy 代替该方法)</span>
 
 <p>按字段对结构切片进行排序。slice元素应为struct，字段类型应为int、uint、string或bool。 默认排序类型是升序（asc），如果是降序，设置 sortType 为 desc</p>
 
