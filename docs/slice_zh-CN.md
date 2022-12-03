@@ -90,7 +90,7 @@ import (
 <b>函数签名:</b>
 
 ```go
-func AppendIfAbsent[T comparable](slice []T, value T) []T
+func AppendIfAbsent[T comparable](slice []T, item T) []T
 ```
 
 <b>例子:</b>
@@ -118,7 +118,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func Contain[T comparable](slice []T, value T) bool
+func Contain[T comparable](slice []T, target T) bool
 ```
 
 <b>例子:</b>
@@ -142,7 +142,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func ContainSubSlice[T comparable](slice, subslice []T) bool
+func ContainSubSlice[T comparable](slice, subSlice []T) bool
 ```
 
 <b>例子:</b>
@@ -210,12 +210,12 @@ func main() {
 
 ### <span id="Concat">Concat</span>
 
-<p>连接values到slice中，values类型可以是切片或多个值</p>
+<p>合并多个slices到slice中</p>
 
 <b>函数签名:</b>
 
 ```go
-func Concat[T any](slice []T, values ...[]T) []T
+func Concat[T any](slice []T, slices ...[]T) []T
 ```
 
 <b>例子:</b>
@@ -865,7 +865,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func IndexOf[T comparable](slice []T, value T) int
+func IndexOf[T comparable](slice []T, item T) int
 ```
 
 <b>例子:</b>
@@ -893,7 +893,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func LastIndexOf[T comparable](slice []T, value T) int
+func LastIndexOf[T comparable](slice []T, item T) int
 ```
 
 <b>例子:</b>
@@ -1347,7 +1347,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func ToSlice[T any](value ...T) []T
+func ToSlice[T any](items ...T) []T
 ```
 
 <b>例子:</b>
@@ -1371,7 +1371,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func ToSlicePointer[T any](value ...T) []*T
+func ToSlicePointer[T any](items ...T) []*T
 ```
 
 <b>例子:</b>
@@ -1527,7 +1527,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func Without[T comparable](slice []T, values ...T) []T
+func Without[T comparable](slice []T, items ...T) []T
 ```
 
 <b>例子:</b>

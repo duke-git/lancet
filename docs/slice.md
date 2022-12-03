@@ -82,12 +82,12 @@ import (
 
 ### <span id="AppendIfAbsent">AppendIfAbsent</span>
 
-<p>If slice doesn't contain the value, append it to the slice.</p>
+<p>If slice doesn't contain the item, append it to the slice.</p>
 
 <b>Signature:</b>
 
 ```go
-func AppendIfAbsent[T comparable](slice []T, value T) []T
+func AppendIfAbsent[T comparable](slice []T, item T) []T
 ```
 
 <b>Example:</b>
@@ -110,12 +110,12 @@ func main() {
 
 ### <span id="Contain">Contain</span>
 
-<p>Check if the value is in the slice or not.</p>
+<p>Check if the target value is in the slice or not.</p>
 
 <b>Signature:</b>
 
 ```go
-func Contain[T comparable](slice []T, value T) bool
+func Contain[T comparable](slice []T, target T) bool
 ```
 
 <b>Example:</b>
@@ -139,7 +139,7 @@ func main() {
 <b>Signature:</b>
 
 ```go
-func ContainSubSlice[T comparable](slice, subslice []T) bool
+func ContainSubSlice[T comparable](slice, subSlice []T) bool
 ```
 
 <b>Example:</b>
@@ -207,12 +207,12 @@ func main() {
 
 ### <span id="Concat">Concat</span>
 
-<p>Creates a new slice concatenating slice with any additional slices and/or values.</p>
+<p>Creates a new slice concatenating slice with any additional slices.</p>
 
 <b>Signature:</b>
 
 ```go
-func Concat[T any](slice []T, values ...[]T) []T
+func Concat[T any](slice []T, slices ...[]T) []T
 ```
 
 <b>Example:</b>
@@ -746,6 +746,7 @@ func main() {
 		return math.Floor(num)
 	}
 	res := slice.GroupWith(nums, floor)
+	
 	fmt.Println(res) //map[float64][]float64{ 4: {4.2}, 6: {6.1, 6.3},}
 }
 ```
@@ -858,12 +859,12 @@ func main() {
 
 ### <span id="IndexOf">IndexOf</span>
 
-<p>Returns the index at which the first occurrence of a value is found in a slice or return -1 if the value cannot be found.</p>
+<p>Returns the index at which the first occurrence of a item is found in a slice or return -1 if the item cannot be found.</p>
 
 <b>Signature:</b>
 
 ```go
-func IndexOf[T comparable](slice []T, value T) int
+func IndexOf[T comparable](slice []T, item T) int
 ```
 
 <b>Example:</b>
@@ -886,12 +887,12 @@ func main() {
 
 ### <span id="LastIndexOf">LastIndexOf</span>
 
-<p>Returns the index at which the last occurrence of a value is found in a slice or return -1 if the value cannot be found.</p>
+<p>Returns the index at which the last occurrence of a item is found in a slice or return -1 if the item cannot be found.</p>
 
 <b>Signature:</b>
 
 ```go
-func LastIndexOf[T comparable](slice []T, value T) int
+func LastIndexOf[T comparable](slice []T, item T) int
 ```
 
 <b>Example:</b>
@@ -1344,12 +1345,12 @@ func main() {
 
 ### <span id="ToSlice">ToSlice</span>
 
-<p>Returns a slices of a variable parameter transformation</p>
+<p>Creates a slice of give items.</p>
 
 <b>Signature:</b>
 
 ```go
-func ToSlice[T any](value ...T) []T
+func ToSlice[T any](items ...T) []T
 ```
 
 <b>Example:</b>
@@ -1373,7 +1374,7 @@ func main() {
 <b>Signature:</b>
 
 ```go
-func ToSlicePointer[T any](value ...T) []*T
+func ToSlicePointer[T any](items ...T) []*T
 ```
 
 <b>Example:</b>
@@ -1524,12 +1525,12 @@ func main() {
 
 ### <span id="Without">Without</span>
 
-<p>Creates a slice excluding all given values. </p>
+<p>Creates a slice excluding all given items. </p>
 
 <b>Signature:</b>
 
 ```go
-func Without[T comparable](slice []T, values ...T) []T
+func Without[T comparable](slice []T, items ...T) []T
 ```
 
 <b>Example:</b>
