@@ -114,7 +114,7 @@ func DifferenceBy[T comparable](slice []T, comparedSlice []T, iteratee func(inde
 }
 
 //DifferenceWith accepts comparator which is invoked to compare elements of slice to values. The order and references of result values are determined by the first slice. The comparator is invoked with two arguments: (arrVal, othVal).
-func DifferenceWith[T any](slice []T, comparedSlice []T, comparator func(value1, value2 T) bool) []T {
+func DifferenceWith[T any](slice []T, comparedSlice []T, comparator func(item1, item2 T) bool) []T {
 	result := make([]T, 0)
 
 	getIndex := func(arr []T, item T, comparison func(v1, v2 T) bool) int {
@@ -601,7 +601,7 @@ func UniqueBy[T comparable](slice []T, iteratee func(item T) T) []T {
 	return Unique(result)
 }
 
-// Union creates a slice of unique values, in order, from all given slices.
+// Union creates a slice of unique elements, in order, from all given slices.
 func Union[T comparable](slices ...[]T) []T {
 	result := []T{}
 	contain := map[T]struct{}{}
@@ -647,7 +647,7 @@ func Merge[T any](slices ...[]T) []T {
 	return result
 }
 
-// Intersection creates a slice of unique values that included by all slices.
+// Intersection creates a slice of unique elements that included by all slices.
 func Intersection[T comparable](slices ...[]T) []T {
 	if len(slices) == 0 {
 		return []T{}
@@ -816,15 +816,15 @@ func SortByField(slice any, field string, sortType ...string) error {
 	return nil
 }
 
-// Without creates a slice excluding all given values
-func Without[T comparable](slice []T, values ...T) []T {
-	if len(values) == 0 || len(slice) == 0 {
+// Without creates a slice excluding all given items
+func Without[T comparable](slice []T, items ...T) []T {
+	if len(items) == 0 || len(slice) == 0 {
 		return slice
 	}
 
 	result := make([]T, 0, len(slice))
 	for _, v := range slice {
-		if !Contain(values, v) {
+		if !Contain(items, v) {
 			result = append(result, v)
 		}
 	}
@@ -832,11 +832,10 @@ func Without[T comparable](slice []T, values ...T) []T {
 	return result
 }
 
-// IndexOf returns the index at which the first occurrence of a value is found in a slice or return -1
-// if the value cannot be found.
-func IndexOf[T comparable](slice []T, value T) int {
+// IndexOf returns the index at which the first occurrence of a item is found in a slice or return -1 if the item cannot be found.
+func IndexOf[T comparable](slice []T, item T) int {
 	for i, v := range slice {
-		if v == value {
+		if v == item {
 			return i
 		}
 	}
