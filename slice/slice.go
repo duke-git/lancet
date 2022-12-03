@@ -25,9 +25,9 @@ func Contain[T comparable](slice []T, target T) bool {
 	return false
 }
 
-// ContainSubSlice check if the slice contain subslice or not
-func ContainSubSlice[T comparable](slice, subslice []T) bool {
-	for _, v := range subslice {
+// ContainSubSlice check if the slice contain a given subslice or not
+func ContainSubSlice[T comparable](slice, subSlice []T) bool {
+	for _, v := range subSlice {
 		if !Contain(slice, v) {
 			return false
 		}
@@ -36,7 +36,7 @@ func ContainSubSlice[T comparable](slice, subslice []T) bool {
 	return true
 }
 
-// Chunk creates an slice of elements split into groups the length of size.
+// Chunk creates a slice of elements split into groups the length of size
 func Chunk[T any](slice []T, size int) [][]T {
 	result := [][]T{}
 
@@ -63,20 +63,20 @@ func Compact[T comparable](slice []T) []T {
 	var zero T
 
 	result := []T{}
-	for _, item := range slice {
-		if item != zero {
-			result = append(result, item)
+	for _, v := range slice {
+		if v != zero {
+			result = append(result, v)
 		}
 	}
 
 	return result
 }
 
-// Concat creates a new slice concatenating slice with any additional slices and/or values.
-func Concat[T any](slice []T, values ...[]T) []T {
+// Concat creates a new slice concatenating slice with any additional slices.
+func Concat[T any](slice []T, slices ...[]T) []T {
 	result := append([]T{}, slice...)
 
-	for _, v := range values {
+	for _, v := range slices {
 		result = append(result, v...)
 	}
 
@@ -159,9 +159,8 @@ func EqualWith[T, U any](slice1 []T, slice2 []U, comparator func(T, U) bool) boo
 		return false
 	}
 
-	for i, v1 := range slice1 {
-		v2 := slice2[i]
-		if !comparator(v1, v2) {
+	for i, v := range slice1 {
+		if !comparator(v, slice2[i]) {
 			return false
 		}
 	}
@@ -206,6 +205,7 @@ func Some[T any](slice []T, predicate func(index int, item T) bool) bool {
 // Filter iterates over elements of slice, returning an slice of all elements pass the predicate function
 func Filter[T any](slice []T, predicate func(index int, item T) bool) []T {
 	result := make([]T, 0)
+
 	for i, v := range slice {
 		if predicate(i, v) {
 			result = append(result, v)
@@ -217,11 +217,8 @@ func Filter[T any](slice []T, predicate func(index int, item T) bool) []T {
 
 // Count iterates over elements of slice, returns a count of all matched elements
 func Count[T any](slice []T, predicate func(index int, item T) bool) int {
-	if len(slice) == 0 {
-		return 0
-	}
+	count := 0
 
-	var count int
 	for i, v := range slice {
 		if predicate(i, v) {
 			count++
@@ -270,11 +267,8 @@ func GroupWith[T any, U comparable](slice []T, iteratee func(item T) U) map[U][]
 // Find iterates over elements of slice, returning the first one that passes a truth test on predicate function.
 // If return T is nil then no items matched the predicate func
 func Find[T any](slice []T, predicate func(index int, item T) bool) (*T, bool) {
-	if len(slice) == 0 {
-		return nil, false
-	}
-
 	index := -1
+
 	for i, v := range slice {
 		if predicate(i, v) {
 			index = i
@@ -292,11 +286,8 @@ func Find[T any](slice []T, predicate func(index int, item T) bool) (*T, bool) {
 // FindLast iterates over elements of slice from end to begin, returning the first one that passes a truth test on predicate function.
 // If return T is nil then no items matched the predicate func
 func FindLast[T any](slice []T, predicate func(index int, item T) bool) (*T, bool) {
-	if len(slice) == 0 {
-		return nil, false
-	}
-
 	index := -1
+
 	for i := len(slice) - 1; i >= 0; i-- {
 		if predicate(i, slice[i]) {
 			index = i
@@ -342,8 +333,11 @@ func Flatten(slice any) any {
 func FlattenDeep(slice any) any {
 	sv := sliceValue(slice)
 	st := sliceElemType(sv.Type())
+
 	tmp := reflect.MakeSlice(reflect.SliceOf(st), 0, 0)
+
 	result := flattenRecursive(sv, tmp)
+
 	return result.Interface()
 }
 
@@ -372,6 +366,7 @@ func ForEach[T any](slice []T, iteratee func(index int, item T)) {
 // Map creates an slice of values by running each element of slice thru iteratee function.
 func Map[T any, U any](slice []T, iteratee func(index int, item T) U) []U {
 	result := make([]U, len(slice), cap(slice))
+
 	for i, v := range slice {
 		result[i] = iteratee(i, v)
 	}
@@ -381,7 +376,6 @@ func Map[T any, U any](slice []T, iteratee func(index int, item T) U) []U {
 
 // Reduce creates an slice of values by running each element of slice thru iteratee function.
 func Reduce[T any](slice []T, iteratee func(index int, item1, item2 T) T, initial T) T {
-
 	if len(slice) == 0 {
 		return initial
 	}
@@ -421,9 +415,11 @@ func ReplaceAll[T comparable](slice []T, old T, new T) []T {
 // Repeat creates a slice with length n whose elements are param `item`.
 func Repeat[T any](item T, n int) []T {
 	result := make([]T, n)
+
 	for i := range result {
 		result[i] = item
 	}
+
 	return result
 }
 
@@ -446,32 +442,32 @@ func InterfaceSlice(slice any) []any {
 func StringSlice(slice any) []string {
 	v := sliceValue(slice)
 
-	out := make([]string, v.Len())
+	result := make([]string, v.Len())
 	for i := 0; i < v.Len(); i++ {
 		v, ok := v.Index(i).Interface().(string)
 		if !ok {
 			panic("invalid element type")
 		}
-		out[i] = v
+		result[i] = v
 	}
 
-	return out
+	return result
 }
 
 // IntSlice convert param to slice of int.
 func IntSlice(slice any) []int {
 	sv := sliceValue(slice)
 
-	out := make([]int, sv.Len())
+	result := make([]int, sv.Len())
 	for i := 0; i < sv.Len(); i++ {
 		v, ok := sv.Index(i).Interface().(int)
 		if !ok {
 			panic("invalid element type")
 		}
-		out[i] = v
+		result[i] = v
 	}
 
-	return out
+	return result
 }
 
 // DeleteAt delete the element of slice from start index to end index - 1.
@@ -628,8 +624,8 @@ func UnionBy[T any, V comparable](predicate func(item T) V, slices ...[]T) []T {
 func Merge[T any](slices ...[]T) []T {
 	result := make([]T, 0)
 
-	for _, item := range slices {
-		result = append(result, item...)
+	for _, v := range slices {
+		result = append(result, v...)
 	}
 
 	return result
@@ -646,8 +642,8 @@ func Intersection[T comparable](slices ...[]T) []T {
 
 	reducer := func(sliceA, sliceB []T) []T {
 		hashMap := make(map[T]int)
-		for _, val := range sliceA {
-			hashMap[val] = 1
+		for _, v := range sliceA {
+			hashMap[v] = 1
 		}
 
 		out := make([]T, 0)
@@ -832,11 +828,10 @@ func IndexOf[T comparable](slice []T, value T) int {
 	return -1
 }
 
-// LastIndexOf returns the index at which the last occurrence of a value is found in a slice or return -1
-// if the value cannot be found.
-func LastIndexOf[T comparable](slice []T, value T) int {
+// LastIndexOf returns the index at which the last occurrence of the item is found in a slice or return -1 if the then cannot be found.
+func LastIndexOf[T comparable](slice []T, item T) int {
 	for i := len(slice) - 1; i > 0; i-- {
-		if value == slice[i] {
+		if item == slice[i] {
 			return i
 		}
 	}
@@ -845,27 +840,27 @@ func LastIndexOf[T comparable](slice []T, value T) int {
 }
 
 // ToSlicePointer returns a pointer to the slices of a variable parameter transformation
-func ToSlicePointer[T any](value ...T) []*T {
-	result := make([]*T, len(value))
-	for i := range value {
-		result[i] = &value[i]
+func ToSlicePointer[T any](items ...T) []*T {
+	result := make([]*T, len(items))
+	for i := range items {
+		result[i] = &items[i]
 	}
 
 	return result
 }
 
 // ToSlice returns a slices of a variable parameter transformation
-func ToSlice[T any](value ...T) []T {
-	result := make([]T, len(value))
-	copy(result, value)
+func ToSlice[T any](items ...T) []T {
+	result := make([]T, len(items))
+	copy(result, items)
 
 	return result
 }
 
-// AppendIfAbsent only absent append the value
-func AppendIfAbsent[T comparable](slice []T, value T) []T {
-	if !Contain(slice, value) {
-		slice = append(slice, value)
+// AppendIfAbsent only absent append the item
+func AppendIfAbsent[T comparable](slice []T, item T) []T {
+	if !Contain(slice, item) {
+		slice = append(slice, item)
 	}
 	return slice
 }
