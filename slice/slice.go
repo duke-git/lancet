@@ -215,8 +215,21 @@ func Filter[T any](slice []T, predicate func(index int, item T) bool) []T {
 	return result
 }
 
-// Count iterates over elements of slice, returns a count of all matched elements
-func Count[T any](slice []T, predicate func(index int, item T) bool) int {
+// Count returns the number of occurrences of the given item in the slice
+func Count[T comparable](slice []T, item T) int {
+	count := 0
+
+	for _, v := range slice {
+		if item == v {
+			count++
+		}
+	}
+
+	return count
+}
+
+// CountBy iterates over elements of slice with predicate function, returns the number of all matched elements
+func CountBy[T any](slice []T, predicate func(index int, item T) bool) int {
 	count := 0
 
 	for i, v := range slice {

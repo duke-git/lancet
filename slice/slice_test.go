@@ -193,13 +193,22 @@ func TestGroupWith(t *testing.T) {
 }
 
 func TestCount(t *testing.T) {
+	numbers := []int{1, 2, 3, 3, 5, 6}
+
+	assert := internal.NewAssert(t, "TestCountBy")
+
+	assert.Equal(1, Count(numbers, 1))
+	assert.Equal(2, Count(numbers, 3))
+}
+
+func TestCountBy(t *testing.T) {
 	nums := []int{1, 2, 3, 4, 5, 6}
 	evenFunc := func(i, num int) bool {
 		return (num % 2) == 0
 	}
 
-	assert := internal.NewAssert(t, "TestCount")
-	assert.Equal(3, Count(nums, evenFunc))
+	assert := internal.NewAssert(t, "TestCountBy")
+	assert.Equal(3, CountBy(nums, evenFunc))
 }
 
 func TestFind(t *testing.T) {
