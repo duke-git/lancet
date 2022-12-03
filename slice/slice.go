@@ -437,6 +437,7 @@ func Repeat[T any](item T, n int) []T {
 }
 
 // InterfaceSlice convert param to slice of interface.
+// This function is deprecated, use generics feature of go1.18+ for replacement
 func InterfaceSlice(slice any) []any {
 	sv := sliceValue(slice)
 	if sv.IsNil() {
@@ -452,6 +453,7 @@ func InterfaceSlice(slice any) []any {
 }
 
 // StringSlice convert param to slice of string.
+// This function is deprecated, use generics feature of go1.18+ for replacement
 func StringSlice(slice any) []string {
 	v := sliceValue(slice)
 
@@ -468,6 +470,7 @@ func StringSlice(slice any) []string {
 }
 
 // IntSlice convert param to slice of int.
+// This function is deprecated, use generics feature of go1.18+ for replacement
 func IntSlice(slice any) []int {
 	sv := sliceValue(slice)
 
