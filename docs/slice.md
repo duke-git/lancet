@@ -29,6 +29,7 @@ import (
 -   [Compact](#Compact)
 -   [Concat](#Concat)
 -   [Count](#Count)
+-   [CountBy](#CountBy)
 -   [Difference](#Difference)
 -   [DifferenceBy](#DifferenceBy)
 -   [DifferenceWith](#DifferenceWith)
@@ -45,8 +46,8 @@ import (
 -   [ForEach](#ForEach)
 -   [GroupBy](#GroupBy)
 -   [GroupWith](#GroupWith)
--   [IntSlice](#IntSlice)
--   [InterfaceSlice](#InterfaceSlice)
+-   [IntSlice<sup>deprecated</sup>](#IntSlice)
+-   [InterfaceSlice<sup>deprecated</sup>](#InterfaceSlice)
 -   [Intersection](#Intersection)
 -   [InsertAt](#InsertAt)
 -   [IndexOf](#IndexOf)
@@ -61,9 +62,9 @@ import (
 -   [Shuffle](#Shuffle)
 -   [Sort](#Sort)
 -   [SortBy](#SortBy)
--   [SortByField<sup>Deprecated</sup>](#SortByField)
+-   [SortByField<sup>deprecated</sup>](#SortByField)
 -   [Some](#Some)
--   [StringSlice](#StringSlice)
+-   [StringSlice<sup>deprecated</sup>](#StringSlice)
 -   [SymmetricDifference](#SymmetricDifference)
 -   [ToSlice](#ToSlice)
 -   [ToSlicePointer](#ToSlicePointer)
@@ -233,12 +234,38 @@ func main() {
 
 ### <span id="Count">Count</span>
 
-<p>Count iterates over elements of slice, returns a count of all matched elements.</p>
+<p>Returns the number of occurrences of the given item in the slice.</p>
 
 <b>Signature:</b>
 
 ```go
-func Count[T any](slice []T, predicate func(index int, t T) bool) int
+func Count[T comparable](slice []T, item T) int
+```
+
+<b>Example:</b>
+
+```go
+import (
+	"fmt"
+	"github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+	nums := []int{1, 2, 3, 3, 4, 5}
+
+	fmt.Println(slice.Count(nums, 1)) //1
+	fmt.Println(slice.Count(nums, 3)) //2
+}
+```
+
+### <span id="CountBy">CountBy</span>
+
+<p>Iterates over elements of slice with predicate function, returns the number of all matched elements.</p>
+
+<b>Signature:</b>
+
+```go
+func CountBy[T any](slice []T, predicate func(index int, item T) bool) int
 ```
 
 <b>Example:</b>
@@ -251,14 +278,15 @@ import (
 
 func main() {
 	nums := []int{1, 2, 3, 4, 5, 6}
-	evenFunc := func(i, num int) bool {
+	evenFunc := func(_, num int) bool {
 		return (num % 2) == 0
 	}
 
-	res := slice.Count(nums, evenFunc)
+	res := slice.CountBy(nums, evenFunc)
 	fmt.Println(res) //3
 }
 ```
+
 
 ### <span id="Difference">Difference</span>
 
@@ -722,7 +750,7 @@ func main() {
 }
 ```
 
-### <span id="IntSlice">IntSlice</span>
+### <span id="IntSlice">IntSlice (Deprecated: use generic feature of go1.18+ for replacement)</span>
 
 <p>Convert interface slice to int slice.</p>
 
@@ -747,7 +775,7 @@ func main() {
 }
 ```
 
-### <span id="InterfaceSlice">InterfaceSlice</span>
+### <span id="InterfaceSlice">InterfaceSlice (Deprecated: use generic feature of go1.18+ for replacement)</span>
 
 <p>Convert value to interface slice.</p>
 
@@ -1260,7 +1288,7 @@ func main() {
 }
 ```
 
-### <span id="StringSlice">StringSlice</span>
+### <span id="StringSlice">StringSlice (Deprecated: use generic feature of go1.18+ for replacement)</span>
 
 <p>Convert interface slice to string slice.</p>
 

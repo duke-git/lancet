@@ -31,6 +31,7 @@ import (
 -   [Compact](#Compact)
 -   [Concat](#Concat)
 -   [Count](#Count)
+-   [CountBy](#CountBy)
 -   [Difference](#Difference)
 -   [DifferenceBy](#DifferenceBy)
 -   [DifferenceWith](#DifferenceWith)
@@ -47,8 +48,8 @@ import (
 -   [ForEach](#ForEach)
 -   [GroupBy](#GroupBy)
 -   [GroupWith](#GroupWith)
--   [IntSlice](#IntSlice)
--   [InterfaceSlice](#InterfaceSlice)
+-   [IntSlice<sup>deprecated</sup>](#IntSlice)
+-   [InterfaceSlice<sup>deprecated</sup>](#InterfaceSlice)
 -   [Intersection](#Intersection)
 -   [InsertAt](#InsertAt)
 -   [IndexOf](#IndexOf)
@@ -63,9 +64,9 @@ import (
 -   [Shuffle](#Shuffle)
 -   [Sort](#Sort)
 -   [SortBy](#SortBy)
--   [SortByField<sup>Deprecated</sup>](#SortByField)
+-   [SortByField<sup>deprecated</sup>](#SortByField)
 -   [Some](#Some)
--   [StringSlice](#StringSlice)
+-   [StringSlice<sup>deprecated</sup>](#StringSlice)
 -   [SymmetricDifference](#SymmetricDifference)
 -   [ToSlice](#ToSlice)
 -   [ToSlicePointer](#ToSlicePointer)
@@ -236,12 +237,38 @@ func main() {
 
 ### <span id="Count">Count</span>
 
-<p>遍历切片，对每个元素执行函数function. 返回符合函数返回值为true的元素的个数</p>
+<p>返回切片中指定元素的个数</p>
 
 <b>函数签名:</b>
 
 ```go
-func Count[T any](slice []T, predicate func(index int, t T) bool) int
+func Count[T comparable](slice []T, item T) int
+```
+
+<b>例子:</b>
+
+```go
+import (
+	"fmt"
+	"github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+	nums := []int{1, 2, 3, 3, 4, 5}
+
+	fmt.Println(slice.Count(nums, 1)) //1
+	fmt.Println(slice.Count(nums, 3)) //2
+}
+```
+
+### <span id="CountBy">CountBy</span>
+
+<p>遍历切片，对每个元素执行函数predicate. 返回符合函数返回值为true的元素的个数.</p>
+
+<b>函数签名:</b>
+
+```go
+func CountBy[T any](slice []T, predicate func(index int, item T) bool) int
 ```
 
 <b>例子:</b>
@@ -254,11 +281,11 @@ import (
 
 func main() {
 	nums := []int{1, 2, 3, 4, 5, 6}
-	evenFunc := func(i, num int) bool {
+	evenFunc := func(_, num int) bool {
 		return (num % 2) == 0
 	}
 
-	res := slice.Count(nums, evenFunc)
+	res := slice.CountBy(nums, evenFunc)
 	fmt.Println(res) //3
 }
 ```
@@ -725,7 +752,7 @@ func main() {
 }
 ```
 
-### <span id="IntSlice">IntSlice</span>
+### <span id="IntSlice">IntSlice (已弃用: 使用go1.18+泛型代替)</span>
 
 <p>将接口切片转换为int切片</p>
 
@@ -750,7 +777,7 @@ func main() {
 }
 ```
 
-### <span id="InterfaceSlice">InterfaceSlice</span>
+### <span id="InterfaceSlice">InterfaceSlice(已弃用: 使用go1.18+泛型代替)</span>
 
 <p>将值转换为接口切片</p>
 
@@ -1259,7 +1286,7 @@ func main() {
 }
 ```
 
-### <span id="StringSlice">StringSlice</span>
+### <span id="StringSlice">StringSlice(已弃用: 使用go1.18+泛型代替)</span>
 
 <p>将接口切片转换为字符串切片</p>
 
