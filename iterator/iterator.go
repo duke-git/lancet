@@ -3,7 +3,7 @@
 
 // Package iterator provides a way to iterate over values stored in containers.
 // note:
-// 1. Full feature iterator is complicated, this pacakge is just a experiment to explore how iterators could work in Go.
+// 1. Full feature iterator is complicated, this package is just a experiment to explore how iterators could work in Go.
 // 2. The functionality of this package is very simple and limited, may not meet the actual dev needs.
 // 3. It is currently under development, unstable, and will not be completed for some time in the future.
 // So, based on above factors, you may not use it in production. but, anyone is welcome to improve it.

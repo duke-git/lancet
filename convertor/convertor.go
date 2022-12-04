@@ -130,7 +130,7 @@ func ToString(value any) string {
 		newValue, _ := json.Marshal(value)
 		return string(newValue)
 
-		// todo: maybe we should't supprt other type convertion
+		// todo: maybe we should't supprt other type conversion
 		// v := reflect.ValueOf(value)
 		// log.Panicf("Unsupported data type: %s ", v.String())
 		// return ""
