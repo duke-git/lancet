@@ -15,6 +15,8 @@ import (
 	"regexp"
 	"strconv"
 	"strings"
+
+	"github.com/shopspring/decimal"
 )
 
 // ToBool convert string to a boolean
@@ -57,6 +59,8 @@ func ToBytes(value any) ([]byte, error) {
 		return []byte(v.String()), nil
 	case []byte:
 		return v.Bytes(), nil
+	case decimal.Decimal:
+		return value.(decimal.Decimal).MarshalJSON()
 	default:
 		newValue, err := json.Marshal(value)
 		return newValue, err
@@ -126,6 +130,8 @@ func ToString(value any) string {
 		return value.(string)
 	case []byte:
 		return string(value.([]byte))
+	case decimal.Decimal:
+		return value.(decimal.Decimal).String()
 	default:
 		newValue, _ := json.Marshal(value)
 		return string(newValue)
@@ -169,6 +175,8 @@ func ToFloat(value any) (float64, error) {
 			result = 0.0
 		}
 		return result, err
+	case decimal.Decimal:
+		return value.(decimal.Decimal).InexactFloat64(), nil
 	default:
 		return result, err
 	}
@@ -196,6 +204,8 @@ func ToInt(value any) (int64, error) {
 			result = 0
 		}
 		return result, err
+	case decimal.Decimal:
+		return value.(decimal.Decimal).IntPart(), nil
 	default:
 		return result, err
 	}
@@ -239,7 +249,7 @@ func StructToMap(value any) (map[string]any, error) {
 		name := t.Field(i).Name
 		tag := t.Field(i).Tag.Get("json")
 		if regex.MatchString(name) && tag != "" {
-			//result[name] = v.Field(i).Interface()
+			// result[name] = v.Field(i).Interface()
 			result[tag] = v.Field(i).Interface()
 		}
 	}
@@ -304,4 +314,34 @@ func DecodeByte(data []byte, target any) error {
 	buffer := bytes.NewBuffer(data)
 	decoder := gob.NewDecoder(buffer)
 	return decoder.Decode(target)
+}
+
+// ToDecimal Converts any value to the decimal type and returns 0 if the conversion fails
+func ToDecimal(value any) decimal.Decimal {
+	v := reflect.ValueOf(value)
+	var result decimal.Decimal
+	switch value.(type) {
+	case int, int8, int16, int32, int64:
+		result = decimal.NewFromInt(v.Int())
+		return result
+	case uint, uint8, uint16, uint32, uint64:
+		result = decimal.NewFromInt(int64(v.Uint()))
+		return result
+	case float32:
+		result = decimal.NewFromFloat32(value.(float32))
+		return result
+	case float64:
+		result = decimal.NewFromFloat(v.Float())
+		return result
+	case string:
+		result, err := decimal.NewFromString(v.String())
+		if err != nil {
+			return decimal.Decimal{}
+		}
+		return result
+	case decimal.Decimal:
+		return value.(decimal.Decimal)
+	default:
+		return result
+	}
 }

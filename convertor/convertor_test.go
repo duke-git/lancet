@@ -2,6 +2,7 @@ package convertor
 
 import (
 	"fmt"
+	"github.com/shopspring/decimal"
 	"strconv"
 	"testing"
 
@@ -59,11 +60,13 @@ func TestToBytes(t *testing.T) {
 		0,
 		false,
 		"1",
+		decimal.NewFromFloat(2.1),
 	}
 	expected := [][]byte{
 		{0, 0, 0, 0, 0, 0, 0, 0},
 		{102, 97, 108, 115, 101},
 		{49},
+		{34, 50, 46, 49, 34},
 	}
 	for i := 0; i < len(cases); i++ {
 		actual, _ := ToBytes(cases[i])
@@ -84,9 +87,9 @@ func TestToInt(t *testing.T) {
 	cases := []any{"123", "-123", 123,
 		uint(123), uint8(123), uint16(123), uint32(123), uint64(123),
 		float32(12.3), float64(12.3),
-		"abc", false, "111111111111111111111111111111111111111"}
+		"abc", false, "111111111111111111111111111111111111111", decimal.NewFromFloat(2.1)}
 
-	expected := []int64{123, -123, 123, 123, 123, 123, 123, 123, 12, 12, 0, 0, 0}
+	expected := []int64{123, -123, 123, 123, 123, 123, 123, 123, 12, 12, 0, 0, 0, 2}
 
 	for i := 0; i < len(cases); i++ {
 		actual, _ := ToInt(cases[i])
@@ -101,10 +104,10 @@ func TestToFloat(t *testing.T) {
 		"", "-1", "-.11", "1.23e3", ".123e10", "abc",
 		int(0), int8(1), int16(-1), int32(123), int64(123),
 		uint(123), uint8(123), uint16(123), uint32(123), uint64(123),
-		float64(12.3), float32(12.3),
+		float64(12.3), float32(12.3), decimal.NewFromFloat(2.1),
 	}
 	expected := []float64{0, -1, -0.11, 1230, 0.123e10, 0,
-		0, 1, -1, 123, 123, 123, 123, 123, 123, 123, 12.3, 12.300000190734863}
+		0, 1, -1, 123, 123, 123, 123, 123, 123, 123, 12.3, 12.300000190734863, 2.1}
 
 	for i := 0; i < len(cases); i++ {
 		actual, _ := ToFloat(cases[i])
@@ -131,7 +134,7 @@ func TestToString(t *testing.T) {
 		uint(123), uint8(123), uint16(123), uint32(123), uint64(123),
 		float64(12.3), float32(12.3),
 		true, false,
-		[]int{1, 2, 3}, aMap, aStruct, []byte{104, 101, 108, 108, 111}}
+		[]int{1, 2, 3}, aMap, aStruct, []byte{104, 101, 108, 108, 111}, decimal.NewFromFloat(2.1)}
 
 	expected := []string{
 		"", "",
@@ -139,7 +142,7 @@ func TestToString(t *testing.T) {
 		"123", "123", "123", "123", "123", "123", "123",
 		"12.3", "12.3",
 		"true", "false",
-		"[1,2,3]", "{\"a\":1,\"b\":2,\"c\":3}", "{\"Name\":\"TestStruct\"}", "hello",
+		"[1,2,3]", "{\"a\":1,\"b\":2,\"c\":3}", "{\"Name\":\"TestStruct\"}", "hello", "2.1",
 	}
 
 	for i := 0; i < len(cases); i++ {
@@ -256,4 +259,33 @@ func TestDecodeByte(t *testing.T) {
 	byteData := []byte{6, 12, 0, 3, 97, 98, 99}
 	DecodeByte(byteData, &obj)
 	assert.Equal("abc", obj)
+}
+
+func TestToDecimal(t *testing.T) {
+	assert := internal.NewAssert(t, "TestToDecimal")
+
+	empty := decimal.Decimal{}
+
+	cases := []any{
+		"", nil,
+		int(0), int8(1), int16(-1), int32(123), int64(123),
+		uint(123), uint8(123), uint16(123), uint32(123), uint64(123),
+		float64(12.3), float32(12.3),
+		true, false,
+		[]int{1, 2, 3}, "32.1", decimal.NewFromFloat(12.3)}
+
+	expected := []decimal.Decimal{
+		empty, empty,
+		decimal.NewFromInt(0), decimal.NewFromInt(1), decimal.NewFromInt(-1),
+		decimal.NewFromInt(123), decimal.NewFromInt(123), decimal.NewFromInt(123),
+		decimal.NewFromInt(123), decimal.NewFromInt(123), decimal.NewFromInt(123),
+		decimal.NewFromInt(123), decimal.NewFromFloat(12.3), decimal.NewFromFloat(12.3),
+		empty, empty,
+		empty, decimal.NewFromFloat(32.1), decimal.NewFromFloat(12.3),
+	}
+
+	for i := 0; i < len(cases); i++ {
+		actual := ToDecimal(cases[i])
+		assert.Equal(expected[i], actual)
+	}
 }
