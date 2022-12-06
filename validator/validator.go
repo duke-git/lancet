@@ -15,11 +15,24 @@ import (
 	"unicode"
 )
 
-var isAlphaRegexMatcher *regexp.Regexp = regexp.MustCompile(`^[a-zA-Z]+$`)
+var (
+	alphaMatcher         *regexp.Regexp = regexp.MustCompile(`^[a-zA-Z]+$`)
+	letterRegexMatcher   *regexp.Regexp = regexp.MustCompile(`[a-zA-Z]`)
+	intStrMatcher        *regexp.Regexp = regexp.MustCompile(`^[\+-]?\d+$`)
+	urlMatcher           *regexp.Regexp = regexp.MustCompile(`^((ftp|http|https?):\/\/)?(\S+(:\S*)?@)?((([1-9]\d?|1\d\d|2[01]\d|22[0-3])(\.(1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.([0-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(([a-zA-Z0-9]+([-\.][a-zA-Z0-9]+)*)|((www\.)?))?(([a-z\x{00a1}-\x{ffff}0-9]+-?-?)*[a-z\x{00a1}-\x{ffff}0-9]+)(?:\.([a-z\x{00a1}-\x{ffff}]{2,}))?))(:(\d{1,5}))?((\/|\?|#)[^\s]*)?$`)
+	dnsMatcher           *regexp.Regexp = regexp.MustCompile(`^[a-zA-Z]([a-zA-Z0-9\-]+[\.]?)*[a-zA-Z0-9]$`)
+	emailMatcher         *regexp.Regexp = regexp.MustCompile(`\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*`)
+	chineseMobileMatcher *regexp.Regexp = regexp.MustCompile(`^1(?:3\d|4[4-9]|5[0-35-9]|6[67]|7[013-8]|8\d|9\d)\d{8}$`)
+	chineseIdMatcher     *regexp.Regexp = regexp.MustCompile(`^[1-9]\d{5}(18|19|20|21|22)\d{2}((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$`)
+	chineseMatcher       *regexp.Regexp = regexp.MustCompile("[\u4e00-\u9fa5]")
+	chinesePhoneMatcher  *regexp.Regexp = regexp.MustCompile(`\d{3}-\d{8}|\d{4}-\d{7}`)
+	creditCardMatcher    *regexp.Regexp = regexp.MustCompile(`^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|(222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)[0-9]{12}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\\d{3})\\d{11}|6[27][0-9]{14})$`)
+	base64Matcher        *regexp.Regexp = regexp.MustCompile(`^(?:[A-Za-z0-9+\\/]{4})*(?:[A-Za-z0-9+\\/]{2}==|[A-Za-z0-9+\\/]{3}=|[A-Za-z0-9+\\/]{4})$`)
+)
 
 // IsAlpha checks if the string contains only letters (a-zA-Z)
 func IsAlpha(str string) bool {
-	return isAlphaRegexMatcher.MatchString(str)
+	return alphaMatcher.MatchString(str)
 }
 
 // IsAllUpper check if the string is all upper case letters A-Z
@@ -62,11 +75,9 @@ func ContainLower(str string) bool {
 	return false
 }
 
-var containLetterRegexMatcher *regexp.Regexp = regexp.MustCompile(`[a-zA-Z]`)
-
 // ContainLetter check if the string contain at least one letter
 func ContainLetter(str string) bool {
-	return containLetterRegexMatcher.MatchString(str)
+	return letterRegexMatcher.MatchString(str)
 }
 
 // IsJSON checks if the string is valid JSON
@@ -86,11 +97,9 @@ func IsFloatStr(str string) bool {
 	return e == nil
 }
 
-var isIntStrRegexMatcher *regexp.Regexp = regexp.MustCompile(`^[\+-]?\d+$`)
-
 // IsIntStr check if the string can convert to a integer.
 func IsIntStr(str string) bool {
-	return isIntStrRegexMatcher.MatchString(str)
+	return intStrMatcher.MatchString(str)
 }
 
 // IsIp check if the string is a ip address.
@@ -125,8 +134,6 @@ func IsPort(str string) bool {
 	return false
 }
 
-var isUrlRegexMatcher *regexp.Regexp = regexp.MustCompile(`^((ftp|http|https?):\/\/)?(\S+(:\S*)?@)?((([1-9]\d?|1\d\d|2[01]\d|22[0-3])(\.(1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.([0-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(([a-zA-Z0-9]+([-\.][a-zA-Z0-9]+)*)|((www\.)?))?(([a-z\x{00a1}-\x{ffff}0-9]+-?-?)*[a-z\x{00a1}-\x{ffff}0-9]+)(?:\.([a-z\x{00a1}-\x{ffff}]{2,}))?))(:(\d{1,5}))?((\/|\?|#)[^\s]*)?$`)
-
 // IsUrl check if the string is url.
 func IsUrl(str string) bool {
 	if str == "" || len(str) >= 2083 || len(str) <= 3 || strings.HasPrefix(str, ".") {
@@ -143,64 +150,48 @@ func IsUrl(str string) bool {
 		return false
 	}
 
-	return isUrlRegexMatcher.MatchString(str)
+	return urlMatcher.MatchString(str)
 }
-
-var isDnsRegexMatcher *regexp.Regexp = regexp.MustCompile(`^[a-zA-Z]([a-zA-Z0-9\-]+[\.]?)*[a-zA-Z0-9]$`)
 
 // IsDns check if the string is dns.
 func IsDns(dns string) bool {
-	return isDnsRegexMatcher.MatchString(dns)
+	return dnsMatcher.MatchString(dns)
 }
-
-var isEmailRegexMatcher *regexp.Regexp = regexp.MustCompile(`\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*`)
 
 // IsEmail check if the string is a email address.
 func IsEmail(email string) bool {
-	return isEmailRegexMatcher.MatchString(email)
+	return emailMatcher.MatchString(email)
 }
-
-var isChineseMobileRegexMatcher *regexp.Regexp = regexp.MustCompile("^((13[0-9])|(14[5,7])|(15[0-3,5-9])|(17[0,3,5-8])|(18[0-9])|166|198|199|(147))\\d{8}$")
 
 // IsChineseMobile check if the string is chinese mobile number.
 func IsChineseMobile(mobileNum string) bool {
-	return isChineseMobileRegexMatcher.MatchString(mobileNum)
+	return chineseMobileMatcher.MatchString(mobileNum)
 }
-
-var isChineseIdNumRegexMatcher *regexp.Regexp = regexp.MustCompile(`^[1-9]\d{5}(18|19|20|21|22)\d{2}((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$`)
 
 // IsChineseIdNum check if the string is chinese id number.
 func IsChineseIdNum(id string) bool {
-	return isChineseIdNumRegexMatcher.MatchString(id)
+	return chineseIdMatcher.MatchString(id)
 }
-
-var containChineseRegexMatcher *regexp.Regexp = regexp.MustCompile("[\u4e00-\u9fa5]")
 
 // ContainChinese check if the string contain mandarin chinese.
 func ContainChinese(s string) bool {
-	return containChineseRegexMatcher.MatchString(s)
+	return chineseMatcher.MatchString(s)
 }
-
-var isChinesePhoneRegexMatcher *regexp.Regexp = regexp.MustCompile(`\d{3}-\d{8}|\d{4}-\d{7}`)
 
 // IsChinesePhone check if the string is chinese phone number.
 // Valid chinese phone is xxx-xxxxxxxx or xxxx-xxxxxxx
 func IsChinesePhone(phone string) bool {
-	return isChinesePhoneRegexMatcher.MatchString(phone)
+	return chinesePhoneMatcher.MatchString(phone)
 }
-
-var isCreditCardRegexMatcher *regexp.Regexp = regexp.MustCompile(`^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|(222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)[0-9]{12}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\\d{3})\\d{11}|6[27][0-9]{14})$`)
 
 // IsCreditCard check if the string is credit card.
 func IsCreditCard(creditCart string) bool {
-	return isCreditCardRegexMatcher.MatchString(creditCart)
+	return creditCardMatcher.MatchString(creditCart)
 }
-
-var isBase64RegexMatcher *regexp.Regexp = regexp.MustCompile(`^(?:[A-Za-z0-9+\\/]{4})*(?:[A-Za-z0-9+\\/]{2}==|[A-Za-z0-9+\\/]{3}=|[A-Za-z0-9+\\/]{4})$`)
 
 // IsBase64 check if the string is base64 string.
 func IsBase64(base64 string) bool {
-	return isBase64RegexMatcher.MatchString(base64)
+	return base64Matcher.MatchString(base64)
 }
 
 // IsEmptyString check if the string is empty.
