@@ -15,7 +15,6 @@ import (
 // DesEcbEncrypt encrypt data with key use DES ECB algorithm
 // len(key) should be 8
 func DesEcbEncrypt(data, key []byte) []byte {
-	cipher, _ := des.NewCipher(generateDesKey(key))
 	length := (len(data) + des.BlockSize) / des.BlockSize
 	plain := make([]byte, length*des.BlockSize)
 	copy(plain, data)
@@ -26,6 +25,8 @@ func DesEcbEncrypt(data, key []byte) []byte {
 	}
 
 	encrypted := make([]byte, len(plain))
+	cipher, _ := des.NewCipher(generateDesKey(key))
+
 	for bs, be := 0, cipher.BlockSize(); bs <= len(data); bs, be = bs+cipher.BlockSize(), be+cipher.BlockSize() {
 		cipher.Encrypt(encrypted[bs:be], plain[bs:be])
 	}
@@ -59,6 +60,7 @@ func DesCbcEncrypt(data, key []byte) []byte {
 
 	encrypted := make([]byte, des.BlockSize+len(data))
 	iv := encrypted[:des.BlockSize]
+
 	if _, err := io.ReadFull(rand.Reader, iv); err != nil {
 		panic(err)
 	}

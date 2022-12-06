@@ -17,15 +17,19 @@ import (
 // AesEcbEncrypt encrypt data with key use AES ECB algorithm
 // len(key) should be 16, 24 or 32
 func AesEcbEncrypt(data, key []byte) []byte {
-	cipher, _ := aes.NewCipher(generateAesKey(key))
 	length := (len(data) + aes.BlockSize) / aes.BlockSize
 	plain := make([]byte, length*aes.BlockSize)
+
 	copy(plain, data)
+
 	pad := byte(len(plain) - len(data))
 	for i := len(data); i < len(plain); i++ {
 		plain[i] = pad
 	}
+
 	encrypted := make([]byte, len(plain))
+	cipher, _ := aes.NewCipher(generateAesKey(key))
+
 	for bs, be := 0, cipher.BlockSize(); bs <= len(data); bs, be = bs+cipher.BlockSize(), be+cipher.BlockSize() {
 		cipher.Encrypt(encrypted[bs:be], plain[bs:be])
 	}
@@ -108,27 +112,32 @@ func AesCfbEncrypt(data, key []byte) []byte {
 
 	encrypted := make([]byte, aes.BlockSize+len(data))
 	iv := encrypted[:aes.BlockSize]
+
 	if _, err := io.ReadFull(rand.Reader, iv); err != nil {
 		panic(err)
 	}
 
 	stream := cipher.NewCFBEncrypter(block, iv)
 	stream.XORKeyStream(encrypted[aes.BlockSize:], data)
+
 	return encrypted
 }
 
 // AesCfbDecrypt decrypt data with key use AES CFB algorithm
 // len(encrypted) should be great than 16, len(key) should be 16, 24 or 32
 func AesCfbDecrypt(encrypted, key []byte) []byte {
-	block, _ := aes.NewCipher(key)
 	if len(encrypted) < aes.BlockSize {
 		panic("encrypted data is too short")
 	}
-	iv := encrypted[:aes.BlockSize]
+
 	encrypted = encrypted[aes.BlockSize:]
 
+	block, _ := aes.NewCipher(key)
+	iv := encrypted[:aes.BlockSize]
 	stream := cipher.NewCFBDecrypter(block, iv)
+
 	stream.XORKeyStream(encrypted, encrypted)
+
 	return encrypted
 }
 
@@ -139,6 +148,7 @@ func AesOfbEncrypt(data, key []byte) []byte {
 	if err != nil {
 		panic(err)
 	}
+
 	data = pkcs7Padding(data, aes.BlockSize)
 	encrypted := make([]byte, aes.BlockSize+len(data))
 	iv := encrypted[:aes.BlockSize]
@@ -148,6 +158,7 @@ func AesOfbEncrypt(data, key []byte) []byte {
 
 	stream := cipher.NewOFB(block, iv)
 	stream.XORKeyStream(encrypted[aes.BlockSize:], data)
+
 	return encrypted
 }
 
@@ -170,5 +181,6 @@ func AesOfbDecrypt(data, key []byte) []byte {
 	mode.XORKeyStream(decrypted, data)
 
 	decrypted = pkcs7UnPadding(decrypted)
+
 	return decrypted
 }
