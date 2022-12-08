@@ -14,6 +14,13 @@ import (
 	"github.com/duke-git/lancet/v2/lancetconstraints"
 )
 
+// Create a static variable to store the hash table.
+// This variable has the same lifetime as the entire program and can be shared by functions that are called more than once.
+var (
+	memoryHashMap     = make(map[string]map[any]int)
+	memoryHashCounter = make(map[string]int)
+)
+
 // Contain check if the target value is in the slice or not
 func Contain[T comparable](slice []T, target T) bool {
 	for _, item := range slice {
@@ -832,14 +839,44 @@ func Without[T comparable](slice []T, items ...T) []T {
 	return result
 }
 
-// IndexOf returns the index at which the first occurrence of a item is found in a slice or return -1 if the item cannot be found.
-func IndexOf[T comparable](slice []T, item T) int {
-	for i, v := range slice {
-		if v == item {
-			return i
+// IndexOf returns the index at which the first occurrence of an item is found in a slice or return -1 if the item cannot be found.
+func IndexOf[T comparable](arr []T, val T) int {
+	limit := 10
+	// gets the hash value of the array as the key of the hash table.
+	key := fmt.Sprintf("%p", arr)
+	// determines whether the hash table is empty. If so, the hash table is created.
+	if memoryHashMap[key] == nil {
+		memoryHashMap[key] = make(map[any]int)
+		// iterate through the array, adding the value and index of each element to the hash table.
+		for i := len(arr) - 1; i >= 0; i-- {
+			memoryHashMap[key][arr[i]] = i
 		}
 	}
+	// update the hash table counter.
+	memoryHashCounter[key]++
 
+	// use the hash table to find the specified value. If found, the index is returned.
+	if index, ok := memoryHashMap[key][val]; ok {
+		// calculate the memory usage of the hash table.
+		size := len(memoryHashMap)
+		// If the memory usage of the hash table exceeds the memory limit, the hash table with the lowest counter is cleared.
+		if size > limit {
+			var minKey string
+			var minVal int
+			for k, v := range memoryHashCounter {
+				if k == key {
+					continue
+				}
+				if minVal == 0 || v < minVal {
+					minKey = k
+					minVal = v
+				}
+			}
+			delete(memoryHashMap, minKey)
+			delete(memoryHashCounter, minKey)
+		}
+		return index
+	}
 	return -1
 }
 
