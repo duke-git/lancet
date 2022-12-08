@@ -130,10 +130,10 @@ func AesCfbDecrypt(encrypted, key []byte) []byte {
 		panic("encrypted data is too short")
 	}
 
-	encrypted = encrypted[aes.BlockSize:]
-
 	block, _ := aes.NewCipher(key)
 	iv := encrypted[:aes.BlockSize]
+	encrypted = encrypted[aes.BlockSize:]
+
 	stream := cipher.NewCFBDecrypter(block, iv)
 
 	stream.XORKeyStream(encrypted, encrypted)
