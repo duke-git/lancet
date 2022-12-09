@@ -11,10 +11,10 @@ func TestOsDetection(t *testing.T) {
 	assert := internal.NewAssert(t, "TestOsJudgment")
 
 	osType, _, _ := ExecCommand("echo $OSTYPE")
-	if strings.Index(osType, "linux") != -1 {
+	if strings.Contains(osType, "linux") {
 		assert.Equal(true, IsLinux())
 	}
-	if strings.Index(osType, "darwin") != -1 {
+	if strings.Contains(osType, "darwin") {
 		assert.Equal(true, IsMac())
 	}
 }
@@ -44,21 +44,27 @@ func TestOsEnvOperation(t *testing.T) {
 func TestExecCommand(t *testing.T) {
 	assert := internal.NewAssert(t, "TestExecCommand")
 
-	out, errout, err := ExecCommand("ls")
-	t.Log("std out: ", out)
-	t.Log("std err: ", errout)
+	// linux or mac
+	stdout, stderr, err := ExecCommand("ls")
+	t.Log("std out: ", stdout)
+	t.Log("std err: ", stderr)
+	assert.Equal("", stderr)
 	assert.IsNil(err)
 
-	out, errout, err = ExecCommand("abc")
-	t.Log("std out: ", out)
-	t.Log("std err: ", errout)
-	if err != nil {
-		t.Logf("error: %v\n", err)
-	}
+	// windows
+	stdout, stderr, err = ExecCommand("dir")
+	t.Log("std out: ", stdout)
+	t.Log("std err: ", stderr)
+	assert.IsNil(err)
 
-	if !IsWindows() {
-		assert.IsNotNil(err)
-	}
+	// error command
+	stdout, stderr, err = ExecCommand("abc")
+	t.Log("std out: ", stdout)
+	t.Log("std err: ", stderr)
+	// if err != nil {
+	// 	t.Log(err.Error())
+	// }
+	assert.IsNotNil(err)
 }
 
 func TestGetOsBits(t *testing.T) {
