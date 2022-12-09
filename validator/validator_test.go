@@ -4,8 +4,10 @@ import (
 	"fmt"
 	"testing"
 	"time"
+	"unicode/utf8"
 
 	"github.com/duke-git/lancet/v2/internal"
+	"golang.org/x/text/encoding/simplifiedchinese"
 )
 
 func TestIsAllUpper(t *testing.T) {
@@ -387,4 +389,14 @@ func TestIsZeroValue(t *testing.T) {
 	for _, value := range nonZeroValues {
 		assert.Equal(false, IsZeroValue(value))
 	}
+}
+
+func TestIsGBK(t *testing.T) {
+	assert := internal.NewAssert(t, "TestIsGBK")
+
+	str := "你好"
+	gbkData, _ := simplifiedchinese.GBK.NewEncoder().Bytes([]byte(str))
+
+	assert.Equal(true, IsGBK(gbkData))
+	assert.Equal(false, utf8.Valid(gbkData))
 }
