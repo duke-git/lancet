@@ -212,7 +212,7 @@ func main() {
 
 
 ### <span id="ExecCommand">ExecCommand</span>
-<p>使用shell /bin/bash -c(linux) 或 cmd (windows) 执行shell命令</p>
+<p>执行shell命令，返回命令的stdout和stderr字符串，如果出现错误，则返回错误。参数`command`是一个完整的命令字符串，如ls-a（linux），dir（windows），ping 127.0.0.1。在linux中，使用/bin/bash-c执行命令，在windows中，使用powershell.exe执行命令。</p>
 
 <b>Signature:</b>
 
@@ -228,10 +228,24 @@ import (
 )
 
 func main() {
-	out, errout, err := system.ExecCommand("ls")
-	fmt.Println(out)
-	fmt.Println(errout)
-	fmt.Println(err)
+	// linux or mac
+	stdout, stderr, err := system.ExecCommand("ls")
+	fmt.Println("std out: ", stdout)
+	fmt.Println("std err: ", stderr)
+	assert.Equal("", stderr)
+
+	// windows
+	stdout, stderr, err = system.ExecCommand("dir")
+	fmt.Println("std out: ", stdout)
+	fmt.Println("std err: ", stderr)
+
+	// error command
+	stdout, stderr, err = system.ExecCommand("abc")
+	fmt.Println("std out: ", stdout)
+	fmt.Println("std err: ", stderr)
+	if err != nil {
+		fmt.Println(err.Error())
+	}
 }
 ```
 

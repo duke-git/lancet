@@ -211,7 +211,7 @@ func main() {
 
 
 ### <span id="ExecCommand">CompareOsEnv</span>
-<p>Use shell /bin/bash -c(linux) or cmd (windows) to execute command.</p>
+<p>Execute shell command, return the stdout and stderr string of command, and error if error occur. param `command` is a complete command string, like, ls -a (linux), dir(windows), ping 127.0.0.1. In linux, use /bin/bash -c to execute command, In windows, use powershell.exe to execute command.</p>
 
 <b>Signature:</b>
 
@@ -227,10 +227,24 @@ import (
 )
 
 func main() {
-	out, errout, err := system.ExecCommand("ls")
-	fmt.Println(out)
-	fmt.Println(errout)
-	fmt.Println(err)
+	// linux or mac
+	stdout, stderr, err := system.ExecCommand("ls")
+	fmt.Println("std out: ", stdout)
+	fmt.Println("std err: ", stderr)
+	assert.Equal("", stderr)
+
+	// windows
+	stdout, stderr, err = system.ExecCommand("dir")
+	fmt.Println("std out: ", stdout)
+	fmt.Println("std err: ", stderr)
+
+	// error command
+	stdout, stderr, err = system.ExecCommand("abc")
+	fmt.Println("std out: ", stdout)
+	fmt.Println("std err: ", stderr)
+	if err != nil {
+		fmt.Println(err.Error())
+	}
 }
 ```
 

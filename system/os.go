@@ -55,9 +55,9 @@ func CompareOsEnv(key, comparedEnv string) bool {
 }
 
 // ExecCommand execute command, return the stdout and stderr string of command, and error if error occur
-// param `command` is a complete command strinig, like, ls -a (linux), dir(windows), ping 127.0.0.1
-// for linux,  use /bin/bash -c to execute command
-// for windows, use powershell.exe to execute command
+// param `command` is a complete command string, like, ls -a (linux), dir(windows), ping 127.0.0.1
+// in linux,  use /bin/bash -c to execute command
+// in windows, use powershell.exe to execute command
 func ExecCommand(command string) (stdout, stderr string, err error) {
 	var out bytes.Buffer
 	var errOut bytes.Buffer
