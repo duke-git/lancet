@@ -1,6 +1,7 @@
 package slice
 
 import (
+	"fmt"
 	"math"
 	"testing"
 
@@ -669,8 +670,39 @@ func TestIndexOf(t *testing.T) {
 	assert := internal.NewAssert(t, "TestIndexOf")
 
 	arr := []string{"a", "a", "b", "c"}
+	key := fmt.Sprintf("%p", arr)
 	assert.Equal(0, IndexOf(arr, "a"))
 	assert.Equal(-1, IndexOf(arr, "d"))
+	assert.Equal(2, memoryHashCounter[key])
+
+	arr1 := []int{1, 2, 3, 4, 5}
+	key1 := fmt.Sprintf("%p", arr1)
+	assert.Equal(3, IndexOf(arr1, 4))
+	assert.Equal(-1, IndexOf(arr1, 6))
+	assert.Equal(2, memoryHashCounter[key1])
+
+	arr2 := []float64{1.1, 2.2, 3.3, 4.4, 5.5}
+	key2 := fmt.Sprintf("%p", arr2)
+	assert.Equal(2, IndexOf(arr2, 3.3))
+	assert.Equal(3, IndexOf(arr2, 4.4))
+	assert.Equal(-1, IndexOf(arr2, 6.6))
+	assert.Equal(3, memoryHashCounter[key2])
+
+	for i := 0; i < 6; i++ {
+		a := []string{"a", "b", "c"}
+		IndexOf(a, "a")
+		IndexOf(a, "b")
+	}
+	minArr := []string{"c", "b", "a"}
+	minKey := fmt.Sprintf("%p", minArr)
+	assert.Equal(0, IndexOf(minArr, "c"))
+
+	arr3 := []string{"q", "w", "e"}
+	key3 := fmt.Sprintf("%p", arr3)
+	assert.Equal(1, IndexOf(arr3, "w"))
+	assert.Equal(-1, IndexOf(arr3, "r"))
+	assert.Equal(2, memoryHashCounter[key3])
+	assert.Equal(0, memoryHashCounter[minKey])
 }
 
 func TestLastIndexOf(t *testing.T) {
