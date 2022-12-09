@@ -47,6 +47,7 @@ import (
 - [IsUrl](#IsUrl)
 - [IsWeakPassword](#IsWeakPassword)
 - [IsZeroValue](#IsZeroValue)
+- [IsGBK](#IsGBK)
   
 
 <div STYLE="page-break-after: always;"></div>
@@ -821,7 +822,34 @@ func main() {
 ```
 
 
+### <span id="IsGBK">IsGBK</span>
+<p>Checks if data encoding is gbk(Chinese character internal code extension specification). this function is implemented by whether double bytes fall within the encoding range of gbk,while each byte of utf-8 encoding format falls within the encoding range of gbk.Therefore, utf8.valid() should be called first to check whether it is not utf-8 encoding and then call IsGBK() to check gbk encoding. like the example.</p>
 
+<b>Signature:</b>
+
+```go
+func IsGBK(data []byte) bool
+```
+<b>Example:</b>
+
+```go
+import (
+	"fmt"
+	"github.com/duke-git/lancet/v2/validator"
+)
+
+func main() {
+	data := []byte("你好")
+	
+	// check utf8 first
+	if utf8.Valid(data) {
+		fmt.Println("data encoding is utf-8")
+	}else if(validator.IsGBK(data)) {
+		fmt.Println("data encoding is GBK")
+	}
+	fmt.Println("data encoding is unknown")
+}
+```
 
 
 

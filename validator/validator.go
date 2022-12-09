@@ -275,7 +275,7 @@ func IsZeroValue(value any) bool {
 	return reflect.DeepEqual(rv.Interface(), reflect.Zero(rv.Type()).Interface())
 }
 
-// IsGBK check if data encoinge is gbk
+// IsGBK check if data encoding is gbk
 // Note: this function is implemented by whether double bytes fall within the encoding range of gbk,
 // while each byte of utf-8 encoding format falls within the encoding range of gbk.
 // Therefore, utf8.valid() should be called first to check whether it is not utf-8 encoding,
