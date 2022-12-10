@@ -132,12 +132,12 @@ func main() {
 
 
 ### <span id="SinglyLink_InsertAt">InsertAt</span>
-<p>Insert value into singly linklist at index, index shoud be great or equal 0 and less or equal number of link nodes</p>
+<p>Insert value into singly linklist at index, param `index` should between [0, len(SinglyLink)], if index do not meet the conditions, do nothing</p>
 
 <b>Signature:</b>
 
 ```go
-func (link *SinglyLink[T]) InsertAt(index int, value T) error
+func (link *SinglyLink[T]) InsertAt(index int, value T)
 ```
 <b>Example:</b>
 
@@ -152,6 +152,8 @@ import (
 func main() {
     lk := link.NewSinglyLink[int]()
 
+    lk.InsertAt(1, 1) //do nothing
+    
     lk.InsertAt(0, 1)
     lk.InsertAt(1, 2)
     lk.InsertAt(2, 3)
@@ -228,12 +230,12 @@ func main() {
 
 
 ### <span id="SinglyLink_DeleteAt">DeleteAt</span>
-<p>Delete value at specific index, index shoud be great or equal 0 and less or less than number of link nodes - 1</p>
+<p>Delete value at specific index, param `index` should be [0, len(SinglyLink)-1]</p>
 
 <b>Signature:</b>
 
 ```go
-func (link *SinglyLink[T]) DeleteAt(index int) error
+func (link *SinglyLink[T]) DeleteAt(index int)
 ```
 <b>Example:</b>
 
@@ -253,9 +255,8 @@ func main() {
     lk.InsertAtTail(3)
     lk.InsertAtTail(4)
 
-    err := lk.DeleteAt(3)
+    lk.DeleteAt(3)
 
-    fmt.Println(err) //nil
     fmt.Println(lk.Values()) //[]int{1, 2, 3}
 }
 ```
@@ -268,7 +269,7 @@ func main() {
 <b>Signature:</b>
 
 ```go
-func (link *SinglyLink[T]) DeleteAtHead() error
+func (link *SinglyLink[T]) DeleteAtHead()
 ```
 <b>Example:</b>
 
@@ -288,9 +289,8 @@ func main() {
     lk.InsertAtTail(3)
     lk.InsertAtTail(4)
 
-    err := lk.DeleteAtHead()
+    lk.DeleteAtHead()
     
-    fmt.Println(err) //nil
     fmt.Println(lk.Values()) //[]int{2, 3, 4}
 }
 ```
@@ -304,7 +304,7 @@ func main() {
 <b>Signature:</b>
 
 ```go
-func (link *SinglyLink[T]) DeleteAtTail() error
+func (link *SinglyLink[T]) DeleteAtTail()
 ```
 <b>Example:</b>
 
@@ -323,9 +323,8 @@ func main() {
     lk.InsertAtTail(2)
     lk.InsertAtTail(3)
 
-    err := lk.DeleteAtTail()
+    lk.DeleteAtTail()
     
-    fmt.Println(err) //nil
     fmt.Println(lk.Values()) //[]int{1, 2}
 }
 ```
@@ -628,12 +627,12 @@ func main() {
 
 
 ### <span id="DoublyLink_InsertAt">InsertAt</span>
-<p>Insert value into doubly linklist at index, index shoud be great or equal 0 and less or equal number of link nodes</p>
+<p>Insert value into doubly linklist at index, param `index` should between [0, len(DoublyLink)], if index do not meet the conditions, do nothing</p>
 
 <b>Signature:</b>
 
 ```go
-func (link *DoublyLink[T]) InsertAt(index int, value T) error
+func (link *DoublyLink[T]) InsertAt(index int, value T)
 ```
 <b>Example:</b>
 
@@ -647,6 +646,8 @@ import (
 
 func main() {
     lk := link.NewDoublyLink[int]()
+
+    lk.InsertAt(1, 1) //do nothing
 
     lk.InsertAt(0, 1)
     lk.InsertAt(1, 2)
@@ -724,12 +725,12 @@ func main() {
 
 
 ### <span id="DoublyLink_DeleteAt">DeleteAt</span>
-<p>Delete value at specific index, index shoud be great or equal 0 and less or less than number of link nodes - 1</p>
+<p>Delete value at specific index, param `index` should be [0, len(DoublyLink)-1]</p>
 
 <b>Signature:</b>
 
 ```go
-func (link *DoublyLink[T]) DeleteAt(index int) error
+func (link *DoublyLink[T]) DeleteAt(index int)
 ```
 <b>Example:</b>
 
@@ -749,9 +750,8 @@ func main() {
     lk.InsertAtTail(3)
     lk.InsertAtTail(4)
 
-    err := lk.DeleteAt(3)
+    lk.DeleteAt(3)
 
-    fmt.Println(err) //nil
     fmt.Println(lk.Values()) //[]int{1, 2, 3}
 }
 ```
@@ -764,7 +764,7 @@ func main() {
 <b>Signature:</b>
 
 ```go
-func (link *DoublyLink[T]) DeleteAtHead() error
+func (link *DoublyLink[T]) DeleteAtHead()
 ```
 <b>Example:</b>
 
@@ -784,9 +784,8 @@ func main() {
     lk.InsertAtTail(3)
     lk.InsertAtTail(4)
 
-    err := lk.DeleteAtHead()
+    lk.DeleteAtHead()
     
-    fmt.Println(err) //nil
     fmt.Println(lk.Values()) //[]int{2, 3, 4}
 }
 ```

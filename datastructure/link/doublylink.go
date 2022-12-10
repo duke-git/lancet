@@ -1,13 +1,12 @@
 package datastructure
 
 import (
-	"errors"
 	"fmt"
 
 	"github.com/duke-git/lancet/v2/datastructure"
 )
 
-// DoublyLink is a linked list. Whose node has a generic Value, Pre pointer points to a previous node of the link, Next pointer points to a next node of the link.
+// DoublyLink is a linked list. Whose node has a generic Value, Pre pointer points to a previous node of the dl, Next pointer points to a next node of the dl.
 type DoublyLink[T any] struct {
 	Head   *datastructure.LinkNode[T]
 	length int
@@ -19,30 +18,30 @@ func NewDoublyLink[T any]() *DoublyLink[T] {
 }
 
 // InsertAtHead insert value into doubly linklist at head index
-func (link *DoublyLink[T]) InsertAtHead(value T) {
+func (dl *DoublyLink[T]) InsertAtHead(value T) {
 	newNode := datastructure.NewLinkNode(value)
-	size := link.Size()
+	size := dl.Size()
 
 	if size == 0 {
-		link.Head = newNode
-		link.length++
+		dl.Head = newNode
+		dl.length++
 		return
 	}
 
-	newNode.Next = link.Head
+	newNode.Next = dl.Head
 	newNode.Pre = nil
 
-	link.Head.Pre = newNode
-	link.Head = newNode
+	dl.Head.Pre = newNode
+	dl.Head = newNode
 
-	link.length++
+	dl.length++
 }
 
 // InsertAtTail insert value into doubly linklist at tail index
-func (link *DoublyLink[T]) InsertAtTail(value T) {
-	current := link.Head
+func (dl *DoublyLink[T]) InsertAtTail(value T) {
+	current := dl.Head
 	if current == nil {
-		link.InsertAtHead(value)
+		dl.InsertAtHead(value)
 		return
 	}
 
@@ -55,28 +54,29 @@ func (link *DoublyLink[T]) InsertAtTail(value T) {
 	newNode.Pre = current
 	current.Next = newNode
 
-	link.length++
+	dl.length++
 }
 
 // InsertAt insert value into doubly linklist at index
-func (link *DoublyLink[T]) InsertAt(index int, value T) error {
-	size := link.length
+// param `index` should between [0, length], if index do not meet the conditions, do nothing
+func (dl *DoublyLink[T]) InsertAt(index int, value T) {
+	size := dl.length
 	if index < 0 || index > size {
-		return errors.New("param index should between 0 and the length of doubly link.")
+		return
 	}
 
 	if index == 0 {
-		link.InsertAtHead(value)
-		return nil
+		dl.InsertAtHead(value)
+		return
 	}
 
 	if index == size {
-		link.InsertAtTail(value)
-		return nil
+		dl.InsertAtTail(value)
+		return
 	}
 
 	i := 0
-	current := link.Head
+	current := dl.Head
 
 	for current != nil {
 		if i == index-1 {
@@ -85,38 +85,36 @@ func (link *DoublyLink[T]) InsertAt(index int, value T) error {
 			newNode.Pre = current
 
 			current.Next = newNode
-			link.length++
+			dl.length++
 
-			return nil
+			return
 		}
 		i++
 		current = current.Next
 	}
-
-	return errors.New("doubly link list no exist")
 }
 
 // DeleteAtHead delete value in doubly linklist at head index
-func (link *DoublyLink[T]) DeleteAtHead() error {
-	if link.Head == nil {
-		return errors.New("doubly link list no exist")
+func (dl *DoublyLink[T]) DeleteAtHead() {
+	if dl.Head == nil {
+		return
 	}
-	current := link.Head
-	link.Head = current.Next
-	link.Head.Pre = nil
-	link.length--
 
-	return nil
+	current := dl.Head
+	dl.Head = current.Next
+	dl.Head.Pre = nil
+	dl.length--
 }
 
-// DeleteAtTail delete value in doubly linklist at tail index
-func (link *DoublyLink[T]) DeleteAtTail() error {
-	if link.Head == nil {
-		return errors.New("doubly link list no exist")
+// DeleteAtTail delete value in doubly linklist at tail
+func (dl *DoublyLink[T]) DeleteAtTail() {
+	if dl.Head == nil {
+		return
 	}
-	current := link.Head
+
+	current := dl.Head
 	if current.Next == nil {
-		return link.DeleteAtHead()
+		dl.DeleteAtHead()
 	}
 
 	for current.Next.Next != nil {
@@ -124,45 +122,44 @@ func (link *DoublyLink[T]) DeleteAtTail() error {
 	}
 
 	current.Next = nil
-	link.length--
-	return nil
+	dl.length--
 }
 
 // DeleteAt delete value in doubly linklist at index
-func (link *DoublyLink[T]) DeleteAt(index int) error {
-	if link.Head == nil {
-		return errors.New("doubly link list no exist")
+// param `index` should be [0, len(DoublyLink)-1]
+func (dl *DoublyLink[T]) DeleteAt(index int) {
+	if dl.Head == nil {
+		return
 	}
-	current := link.Head
+
+	current := dl.Head
 	if current.Next == nil || index == 0 {
-		return link.DeleteAtHead()
+		dl.DeleteAtHead()
 	}
 
-	if index == link.length-1 {
-		return link.DeleteAtTail()
+	if index == dl.length-1 {
+		dl.DeleteAtTail()
 	}
 
-	if index < 0 || index > link.length-1 {
-		return errors.New("param index should between 0 and link size -1.")
+	if index < 0 || index > dl.length-1 {
+		return
 	}
 
 	i := 0
 	for current != nil {
 		if i == index-1 {
 			current.Next = current.Next.Next
-			link.length--
-			return nil
+			dl.length--
+			return
 		}
 		i++
 		current = current.Next
 	}
-
-	return errors.New("delete error")
 }
 
 // Reverse the linked list
-func (link *DoublyLink[T]) Reverse() {
-	current := link.Head
+func (dl *DoublyLink[T]) Reverse() {
+	current := dl.Head
 	var temp *datastructure.LinkNode[T]
 
 	for current != nil {
@@ -173,20 +170,20 @@ func (link *DoublyLink[T]) Reverse() {
 	}
 
 	if temp != nil {
-		link.Head = temp.Pre
+		dl.Head = temp.Pre
 	}
 }
 
 // GetMiddleNode return node at middle index of linked list
-func (link *DoublyLink[T]) GetMiddleNode() *datastructure.LinkNode[T] {
-	if link.Head == nil {
+func (dl *DoublyLink[T]) GetMiddleNode() *datastructure.LinkNode[T] {
+	if dl.Head == nil {
 		return nil
 	}
-	if link.Head.Next == nil {
-		return link.Head
+	if dl.Head.Next == nil {
+		return dl.Head
 	}
-	fast := link.Head
-	slow := link.Head
+	fast := dl.Head
+	slow := dl.Head
 
 	for fast != nil {
 		fast = fast.Next
@@ -202,14 +199,14 @@ func (link *DoublyLink[T]) GetMiddleNode() *datastructure.LinkNode[T] {
 }
 
 // Size return the count of doubly linked list
-func (link *DoublyLink[T]) Size() int {
-	return link.length
+func (dl *DoublyLink[T]) Size() int {
+	return dl.length
 }
 
 // Values return slice of all doubly linklist node value
-func (link *DoublyLink[T]) Values() []T {
+func (dl *DoublyLink[T]) Values() []T {
 	result := []T{}
-	current := link.Head
+	current := dl.Head
 	for current != nil {
 		result = append(result, current.Value)
 		current = current.Next
@@ -218,8 +215,8 @@ func (link *DoublyLink[T]) Values() []T {
 }
 
 // Print all nodes info of a linked list
-func (link *DoublyLink[T]) Print() {
-	current := link.Head
+func (dl *DoublyLink[T]) Print() {
+	current := dl.Head
 	info := "[ "
 	for current != nil {
 		info += fmt.Sprintf("%+v, ", current)
@@ -229,13 +226,13 @@ func (link *DoublyLink[T]) Print() {
 	fmt.Println(info)
 }
 
-// IsEmpty checks if link is empty or not
-func (link *DoublyLink[T]) IsEmpty() bool {
-	return link.length == 0
+// IsEmpty checks if dl is empty or not
+func (dl *DoublyLink[T]) IsEmpty() bool {
+	return dl.length == 0
 }
 
 // Clear all nodes in doubly linklist
-func (link *DoublyLink[T]) Clear() {
-	link.Head = nil
-	link.length = 0
+func (dl *DoublyLink[T]) Clear() {
+	dl.Head = nil
+	dl.length = 0
 }

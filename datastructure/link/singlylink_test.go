@@ -41,25 +41,12 @@ func TestSinglyLink_InsertAt(t *testing.T) {
 
 	link := NewSinglyLink[int]()
 
-	err := link.InsertAt(1, 1)
-	assert.IsNotNil(err)
+	link.InsertAt(1, 1) //do nothing
 
-	err = link.InsertAt(0, 1)
-	if err != nil {
-		t.FailNow()
-	}
-	err = link.InsertAt(1, 2)
-	if err != nil {
-		t.FailNow()
-	}
-	err = link.InsertAt(2, 4)
-	if err != nil {
-		t.FailNow()
-	}
-	err = link.InsertAt(2, 3)
-	if err != nil {
-		t.FailNow()
-	}
+	link.InsertAt(0, 1)
+	link.InsertAt(1, 2)
+	link.InsertAt(2, 4)
+	link.InsertAt(2, 3)
 
 	link.Print()
 
@@ -73,8 +60,8 @@ func TestSinglyLink_DeleteAtHead(t *testing.T) {
 	assert := internal.NewAssert(t, "TestSinglyLink_DeleteAtHead")
 
 	link := NewSinglyLink[int]()
-	err := link.DeleteAtHead()
-	assert.IsNotNil(err)
+
+	link.DeleteAtHead()
 
 	link.InsertAtTail(1)
 	link.InsertAtTail(2)
@@ -94,8 +81,6 @@ func TestSinglyLink_DeleteAtTail(t *testing.T) {
 	assert := internal.NewAssert(t, "TestSinglyLink_DeleteAtTail")
 
 	link := NewSinglyLink[int]()
-	err := link.DeleteAtTail()
-	assert.IsNotNil(err)
 
 	link.InsertAtTail(1)
 	link.InsertAtTail(2)
@@ -103,7 +88,6 @@ func TestSinglyLink_DeleteAtTail(t *testing.T) {
 	link.InsertAtTail(4)
 
 	link.DeleteAtTail()
-	link.Print()
 
 	expected := []int{1, 2, 3}
 	values := link.Values()
@@ -133,8 +117,6 @@ func TestSinglyLink_DeleteAt(t *testing.T) {
 	assert := internal.NewAssert(t, "TestSinglyLink_DeleteAt")
 
 	link := NewSinglyLink[int]()
-	err := link.DeleteAt(0)
-	assert.IsNotNil(err)
 
 	link.InsertAtTail(1)
 	link.InsertAtTail(2)
@@ -142,11 +124,7 @@ func TestSinglyLink_DeleteAt(t *testing.T) {
 	link.InsertAtTail(4)
 	link.InsertAtTail(5)
 
-	err = link.DeleteAt(5)
-	assert.IsNotNil(err)
-
-	err = link.DeleteAt(0)
-	assert.IsNil(err)
+	link.DeleteAt(0)
 	assert.Equal([]int{2, 3, 4, 5}, link.Values())
 
 	link.DeleteAt(3)

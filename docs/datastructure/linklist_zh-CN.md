@@ -132,12 +132,12 @@ func main() {
 
 
 ### <span id="SinglyLink_InsertAt">InsertAt</span>
-<p>将值插入到索引处的链表中，索引应大于或等于 0 且小于或等于链表节点数</p>
+<p>将值插入到索引处的链表中，索引应大于或等于0且小于或等于链表节点数</p>
 
 <b>函数签名:</b>
 
 ```go
-func (link *SinglyLink[T]) InsertAt(index int, value T) error
+func (link *SinglyLink[T]) InsertAt(index int, value T)
 ```
 <b>例子:</b>
 
@@ -151,6 +151,8 @@ import (
 
 func main() {
     lk := link.NewSinglyLink[int]()
+
+    lk.InsertAt(1, 1) //do nothing
 
     lk.InsertAt(0, 1)
     lk.InsertAt(1, 2)
@@ -228,12 +230,12 @@ func main() {
 
 
 ### <span id="SinglyLink_DeleteAt">DeleteAt</span>
-<p>删除特定索引处的值，索引应大于或等于0且小于或等于链接节点数 - 1</p>
+<p>删除特定索引处的值，索引应大于或等于0且小于或等于链接节点数-1</p>
 
 <b>函数签名:</b>
 
 ```go
-func (link *SinglyLink[T]) DeleteAt(index int) error
+func (link *SinglyLink[T]) DeleteAt(index int)
 ```
 <b>例子:</b>
 
@@ -253,9 +255,8 @@ func main() {
     lk.InsertAtTail(3)
     lk.InsertAtTail(4)
 
-    err := lk.DeleteAt(3)
+    lk.DeleteAt(3)
 
-    fmt.Println(err) //nil
     fmt.Println(lk.Values()) //[]int{1, 2, 3}
 }
 ```
@@ -268,7 +269,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func (link *SinglyLink[T]) DeleteAtHead() error
+func (link *SinglyLink[T]) DeleteAtHead()
 ```
 <b>例子:</b>
 
@@ -288,9 +289,8 @@ func main() {
     lk.InsertAtTail(3)
     lk.InsertAtTail(4)
 
-    err := lk.DeleteAtHead()
+    lk.DeleteAtHead()
     
-    fmt.Println(err) //nil
     fmt.Println(lk.Values()) //[]int{2, 3, 4}
 }
 ```
@@ -304,7 +304,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func (link *SinglyLink[T]) DeleteAtTail() error
+func (link *SinglyLink[T]) DeleteAtTail()
 ```
 <b>例子:</b>
 
@@ -323,9 +323,8 @@ func main() {
     lk.InsertAtTail(2)
     lk.InsertAtTail(3)
 
-    err := lk.DeleteAtTail()
+    lk.DeleteAtTail()
     
-    fmt.Println(err) //nil
     fmt.Println(lk.Values()) //[]int{1, 2}
 }
 ```
@@ -628,12 +627,12 @@ func main() {
 
 
 ### <span id="DoublyLink_InsertAt">InsertAt</span>
-<p>将值插入到索引处的链表中，索引应大于或等于 0 且小于或等于链表节点数</p>
+<p>将值插入到索引处的链表中，索引应大于或等于0且小于或等于链表节点数</p>
 
 <b>函数签名:</b>
 
 ```go
-func (link *DoublyLink[T]) InsertAt(index int, value T) error
+func (link *DoublyLink[T]) InsertAt(index int, value T)
 ```
 <b>例子:</b>
 
@@ -647,6 +646,8 @@ import (
 
 func main() {
     lk := link.NewDoublyLink[int]()
+
+    lk.InsertAt(1, 1) //do nothing
 
     lk.InsertAt(0, 1)
     lk.InsertAt(1, 2)
@@ -724,12 +725,12 @@ func main() {
 
 
 ### <span id="DoublyLink_DeleteAt">DeleteAt</span>
-<p>删除特定索引处的值，索引应大于或等于0且小于或等于链接节点数 - 1</p>
+<p>删除特定索引处的值，索引应大于或等于0且小于或等于链接节点数-1</p>
 
 <b>函数签名:</b>
 
 ```go
-func (link *DoublyLink[T]) DeleteAt(index int) error
+func (link *DoublyLink[T]) DeleteAt(index int)
 ```
 <b>例子:</b>
 
@@ -749,9 +750,8 @@ func main() {
     lk.InsertAtTail(3)
     lk.InsertAtTail(4)
 
-    err := lk.DeleteAt(3)
+    lk.DeleteAt(3)
 
-    fmt.Println(err) //nil
     fmt.Println(lk.Values()) //[]int{1, 2, 3}
 }
 ```
@@ -764,7 +764,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func (link *DoublyLink[T]) DeleteAtHead() error
+func (link *DoublyLink[T]) DeleteAtHead()
 ```
 <b>例子:</b>
 
@@ -784,9 +784,8 @@ func main() {
     lk.InsertAtTail(3)
     lk.InsertAtTail(4)
 
-    err := lk.DeleteAtHead()
+    lk.DeleteAtHead()
     
-    fmt.Println(err) //nil
     fmt.Println(lk.Values()) //[]int{2, 3, 4}
 }
 ```
@@ -800,7 +799,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func (link *DoublyLink[T]) DeleteAtTail() error
+func (link *DoublyLink[T]) DeleteAtTail()
 ```
 <b>例子:</b>
 
@@ -819,9 +818,8 @@ func main() {
     lk.InsertAtTail(2)
     lk.InsertAtTail(3)
 
-    err := lk.DeleteAtTail()
+    lk.DeleteAtTail()
     
-    fmt.Println(err) //nil
     fmt.Println(lk.Values()) //[]int{1, 2}
 }
 ```
