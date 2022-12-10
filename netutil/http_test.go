@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"io/ioutil"
 	"log"
+	"net/url"
 	"testing"
 
 	"github.com/duke-git/lancet/v2/internal"
@@ -54,13 +55,13 @@ func TestHttpPostFormData(t *testing.T) {
 		UserId int    `json:"userId"`
 		Title  string `json:"title"`
 	}
-	// postData := url.Values{}
-	// postData.Add("userId", "1")
-	// postData.Add("title", "TestAddToDo")
+	postData := url.Values{}
+	postData.Add("userId", "1")
+	postData.Add("title", "TestToDo")
 
-	postData := make(map[string]string)
-	postData["userId"] = "1"
-	postData["title"] = "title"
+	// postData := make(map[string]string)
+	// postData["userId"] = "1"
+	// postData["title"] = "title"
 
 	resp, err := HttpPost(apiUrl, header, postData, nil)
 	if err != nil {

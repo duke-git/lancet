@@ -38,35 +38,35 @@ func inOrderTraverse[T any](node *datastructure.TreeNode[T]) []T {
 	return data
 }
 
-func preOrderPrint[T any](node *datastructure.TreeNode[T]) {
-	if node == nil {
-		return
-	}
+// func preOrderPrint[T any](node *datastructure.TreeNode[T]) {
+// 	if node == nil {
+// 		return
+// 	}
 
-	fmt.Printf("%v, ", node.Value)
-	preOrderPrint(node.Left)
-	preOrderPrint(node.Right)
-}
+// 	fmt.Printf("%v, ", node.Value)
+// 	preOrderPrint(node.Left)
+// 	preOrderPrint(node.Right)
+// }
 
-func postOrderPrint[T any](node *datastructure.TreeNode[T]) {
-	if node == nil {
-		return
-	}
+// func postOrderPrint[T any](node *datastructure.TreeNode[T]) {
+// 	if node == nil {
+// 		return
+// 	}
 
-	preOrderPrint(node.Left)
-	preOrderPrint(node.Right)
-	fmt.Printf("%v, ", node.Value)
-}
+// 	postOrderPrint(node.Left)
+// 	postOrderPrint(node.Right)
+// 	fmt.Printf("%v, ", node.Value)
+// }
 
-func inOrderPrint[T any](node *datastructure.TreeNode[T]) {
-	if node == nil {
-		return
-	}
+// func inOrderPrint[T any](node *datastructure.TreeNode[T]) {
+// 	if node == nil {
+// 		return
+// 	}
 
-	inOrderPrint(node.Left)
-	fmt.Printf("%v, ", node.Value)
-	inOrderPrint(node.Right)
-}
+// 	inOrderPrint(node.Left)
+// 	fmt.Printf("%v, ", node.Value)
+// 	inOrderPrint(node.Right)
+// }
 
 func levelOrderTraverse[T any](root *datastructure.TreeNode[T], traversal *[]T) {
 	var q []*datastructure.TreeNode[T] // queue

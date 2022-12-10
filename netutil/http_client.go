@@ -108,7 +108,11 @@ func (client *HttpClient) SendRequest(request *HttpRequest) (*http.Response, err
 
 	client.setTLS(rawUrl)
 	client.setHeader(req, request.Headers)
-	client.setQueryParam(req, rawUrl, request.QueryParams)
+
+	err = client.setQueryParam(req, rawUrl, request.QueryParams)
+	if err != nil {
+		return nil, err
+	}
 
 	if request.FormData != nil {
 		client.setFormData(req, request.FormData)

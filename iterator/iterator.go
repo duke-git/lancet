@@ -157,10 +157,7 @@ type rangeIterator[T lancetconstraints.Number] struct {
 }
 
 func (iter *rangeIterator[T]) HasNext() bool {
-	if iter.start >= iter.end {
-		return false
-	}
-	return true
+	return iter.start < iter.end
 }
 
 func (iter *rangeIterator[T]) Next() (T, bool) {

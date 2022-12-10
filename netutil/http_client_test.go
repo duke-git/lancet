@@ -32,7 +32,10 @@ func TestHttpClient_Get(t *testing.T) {
 	}
 
 	var todo Todo
-	httpClient.DecodeResponse(resp, &todo)
+	err = httpClient.DecodeResponse(resp, &todo)
+	if err != nil {
+		t.Log(err)
+	}
 
 	assert.Equal(1, todo.Id)
 }

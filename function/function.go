@@ -84,10 +84,8 @@ func Debounced(fn func(), duration time.Duration) func() {
 
 	go func() {
 		for {
-			select {
-			case <-timer.C:
-				go fn()
-			}
+			<-timer.C
+			go fn()
 		}
 	}()
 

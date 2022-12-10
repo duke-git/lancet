@@ -11,7 +11,6 @@ import (
 	"fmt"
 	"io"
 	"io/fs"
-	"io/ioutil"
 	"net/http"
 	"os"
 	"path"
@@ -78,11 +77,14 @@ func CopyFile(srcFilePath string, dstFilePath string) error {
 	var tmp = make([]byte, 1024*4)
 	for {
 		n, err := srcFile.Read(tmp)
-		distFile.Write(tmp[:n])
 		if err != nil {
 			if err == io.EOF {
 				return nil
 			}
+			return err
+		}
+		_, err = distFile.Write(tmp[:n])
+		if err != nil {
 			return err
 		}
 	}
@@ -102,7 +104,7 @@ func ClearFile(path string) error {
 
 //ReadFileToString return string of file content
 func ReadFileToString(path string) (string, error) {
-	bytes, err := ioutil.ReadFile(path)
+	bytes, err := os.ReadFile(path)
 	if err != nil {
 		return "", err
 	}
@@ -141,7 +143,7 @@ func ListFileNames(path string) ([]string, error) {
 		return []string{}, nil
 	}
 
-	fs, err := ioutil.ReadDir(path)
+	fs, err := os.ReadDir(path)
 	if err != nil {
 		return []string{}, err
 	}
@@ -172,7 +174,7 @@ func Zip(fpath string, destPath string) error {
 	archive := zip.NewWriter(zipFile)
 	defer archive.Close()
 
-	filepath.Walk(fpath, func(path string, info os.FileInfo, err error) error {
+	err = filepath.Walk(fpath, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
 			return err
 		}
@@ -209,6 +211,10 @@ func Zip(fpath string, destPath string) error {
 		return nil
 	})
 
+	if err != nil {
+		return err
+	}
+
 	return nil
 }
 
@@ -229,9 +235,13 @@ func UnZip(zipFile string, destPath string) error {
 		}
 
 		if f.FileInfo().IsDir() {
-			os.MkdirAll(path, os.ModePerm)
+			err = os.MkdirAll(path, os.ModePerm)
+			if err != nil {
+				return err
+			}
 		} else {
-			if err = os.MkdirAll(filepath.Dir(path), os.ModePerm); err != nil {
+			err = os.MkdirAll(filepath.Dir(path), os.ModePerm)
+			if err != nil {
 				return err
 			}
 

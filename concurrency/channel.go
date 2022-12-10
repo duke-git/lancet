@@ -158,7 +158,7 @@ func (c *Channel) Bridge(ctx context.Context, chanStream <-chan <-chan any) <-ch
 			var stream <-chan any
 			select {
 			case maybeStream, ok := <-chanStream:
-				if ok == false {
+				if !ok {
 					return
 				}
 				stream = maybeStream

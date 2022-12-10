@@ -33,7 +33,11 @@ func GenerateRsaKey(keySize int, priKeyFile, pubKeyFile string) error {
 	if err != nil {
 		panic(err)
 	}
-	pem.Encode(file, &block)
+	err = pem.Encode(file, &block)
+	if err != nil {
+		return err
+	}
+
 	file.Close()
 
 	// public key
@@ -49,12 +53,16 @@ func GenerateRsaKey(keySize int, priKeyFile, pubKeyFile string) error {
 		Bytes: derpText,
 	}
 
-	//file,err = os.Create("rsa_public.pem")
 	file, err = os.Create(pubKeyFile)
 	if err != nil {
 		return err
 	}
-	pem.Encode(file, &block)
+
+	err = pem.Encode(file, &block)
+	if err != nil {
+		return err
+	}
+
 	file.Close()
 
 	return nil
@@ -72,7 +80,11 @@ func RsaEncrypt(data []byte, pubKeyFileName string) []byte {
 	}
 	defer file.Close()
 	buf := make([]byte, fileInfo.Size())
-	file.Read(buf)
+
+	_, err = file.Read(buf)
+	if err != nil {
+		panic(err)
+	}
 
 	block, _ := pem.Decode(buf)
 
@@ -101,7 +113,12 @@ func RsaDecrypt(data []byte, privateKeyFileName string) []byte {
 	}
 	buf := make([]byte, fileInfo.Size())
 	defer file.Close()
+
 	file.Read(buf)
+	_, err = file.Read(buf)
+	if err != nil {
+		panic(err)
+	}
 
 	block, _ := pem.Decode(buf)
 

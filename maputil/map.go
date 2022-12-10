@@ -85,7 +85,7 @@ func Intersect[K comparable, V any](maps ...map[K]V) map[K]V {
 		return m
 	}
 
-	reduceMaps := make([]map[K]V, 2, 2)
+	reduceMaps := make([]map[K]V, 2)
 	result = reducer(maps[0], maps[1])
 
 	for i := 2; i < len(maps); i++ {

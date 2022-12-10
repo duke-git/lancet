@@ -25,9 +25,10 @@ func TestCreateFile(t *testing.T) {
 	f := "./text.txt"
 	if CreateFile(f) {
 		file, err := os.Open(f)
-		defer file.Close()
 		assert.IsNil(err)
 		assert.Equal(f, file.Name())
+
+		defer file.Close()
 	} else {
 		t.FailNow()
 	}
@@ -113,7 +114,11 @@ func TestReadFileToString(t *testing.T) {
 
 	f, _ := os.OpenFile(path, os.O_WRONLY|os.O_TRUNC, 0777)
 	defer f.Close()
-	f.WriteString("hello world")
+
+	_, err := f.WriteString("hello world")
+	if err != nil {
+		t.Log(err)
+	}
 
 	content, _ := ReadFileToString(path)
 	assert.Equal("hello world", content)
@@ -130,9 +135,12 @@ func TestClearFile(t *testing.T) {
 	f, _ := os.OpenFile(path, os.O_WRONLY|os.O_TRUNC, 0777)
 	defer f.Close()
 
-	f.WriteString("hello world")
+	_, err := f.WriteString("hello world")
+	if err != nil {
+		t.Log(err)
+	}
 
-	err := ClearFile(path)
+	err = ClearFile(path)
 	assert.IsNil(err)
 
 	content, _ := ReadFileToString(path)
@@ -148,8 +156,13 @@ func TestReadFileByLine(t *testing.T) {
 	CreateFile(path)
 
 	f, _ := os.OpenFile(path, os.O_WRONLY|os.O_TRUNC, 0777)
+
 	defer f.Close()
-	f.WriteString("hello\nworld")
+
+	_, err := f.WriteString("hello\nworld")
+	if err != nil {
+		t.Log(err)
+	}
 
 	expected := []string{"hello", "world"}
 	actual, _ := ReadFileByLine(path)

@@ -146,9 +146,9 @@ func (h *MaxHeap[T]) PrintStructure() {
 	lastNum := powerTwo(level - 1)
 	lastLen := lastNum + (lastNum - 1)
 
-	heapTree := make([][]string, level, level)
+	heapTree := make([][]string, level)
 	for i := 0; i < level; i++ {
-		heapTree[i] = make([]string, lastLen, lastLen)
+		heapTree[i] = make([]string, lastLen)
 		for j := 0; j < lastLen; j++ {
 			heapTree[i][j] = ""
 		}
@@ -169,9 +169,9 @@ func (h *MaxHeap[T]) PrintStructure() {
 		for n := 0; n < lastLen; n++ {
 			val := heapTree[m][n]
 			if val == "" {
-				fmt.Printf(" ")
+				fmt.Print(" ")
 			} else {
-				fmt.Printf(val)
+				fmt.Print(val)
 			}
 		}
 		fmt.Println()

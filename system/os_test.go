@@ -25,7 +25,9 @@ func TestOsEnvOperation(t *testing.T) {
 	envNotExist := GetOsEnv("foo")
 	assert.Equal("", envNotExist)
 
-	SetOsEnv("foo", "foo_value")
+	err := SetOsEnv("foo", "foo_value")
+	assert.IsNil(err)
+
 	envExist := GetOsEnv("foo")
 	assert.Equal("foo_value", envExist)
 
@@ -34,7 +36,7 @@ func TestOsEnvOperation(t *testing.T) {
 	assert.Equal(false, CompareOsEnv("abc", "abc"))
 	assert.Equal(false, CompareOsEnv("abc", "abc"))
 
-	err := RemoveOsEnv("foo")
+	err = RemoveOsEnv("foo")
 	if err != nil {
 		t.Fail()
 	}

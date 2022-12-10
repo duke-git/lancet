@@ -27,14 +27,9 @@ func TestToChannel(t *testing.T) {
 	assert := internal.NewAssert(t, "TestToChannel")
 
 	ch := ToChannel([]int{1, 2, 3})
-	val1, _ := <-ch
-	assert.Equal(1, val1)
-
-	val2, _ := <-ch
-	assert.Equal(2, val2)
-
-	val3, _ := <-ch
-	assert.Equal(3, val3)
+	assert.Equal(1, <-ch)
+	assert.Equal(2, <-ch)
+	assert.Equal(3, <-ch)
 
 	_, ok := <-ch
 	assert.Equal(false, ok)
@@ -254,6 +249,7 @@ func TestDecodeByte(t *testing.T) {
 
 	var obj string
 	byteData := []byte{6, 12, 0, 3, 97, 98, 99}
-	DecodeByte(byteData, &obj)
+	err := DecodeByte(byteData, &obj)
+	assert.IsNil(err)
 	assert.Equal("abc", obj)
 }

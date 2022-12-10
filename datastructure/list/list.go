@@ -156,7 +156,7 @@ func (l *List[T]) DeleteAt(index int) {
 		return
 	}
 	if index == size-1 {
-		data = append(data[:index])
+		data = data[:index]
 	} else {
 		data = append(data[:index], data[index+1:]...)
 	}
@@ -174,7 +174,7 @@ func (l *List[T]) DeleteIf(f func(T) bool) int {
 			continue
 		}
 		if index == size-1 {
-			data = append(data[:index])
+			data = data[:index]
 		} else {
 			data = append(data[:index], data[index+1:]...)
 			index--
@@ -221,7 +221,7 @@ func (l *List[T]) IsEmpty() bool {
 
 // Clear the data of list
 func (l *List[T]) Clear() {
-	l.data = make([]T, 0, 0)
+	l.data = make([]T, 0)
 }
 
 // Clone return a copy of list
@@ -235,7 +235,7 @@ func (l *List[T]) Clone() *List[T] {
 // Merge two list, return new list, don't change original list
 func (l *List[T]) Merge(other *List[T]) *List[T] {
 	l1, l2 := len(l.data), len(other.data)
-	ml := NewList(make([]T, l1+l2, l1+l2))
+	ml := NewList(make([]T, l1+l2))
 
 	data := append([]T{}, append(l.data, other.data...)...)
 	ml.data = data
@@ -274,7 +274,7 @@ func (l *List[T]) Unique() {
 	data := l.data
 	size := len(data)
 
-	uniqueData := make([]T, 0, 0)
+	uniqueData := make([]T, 0)
 	for i := 0; i < size; i++ {
 		value := data[i]
 		skip := true
@@ -305,7 +305,7 @@ func (l *List[T]) Union(other *List[T]) *List[T] {
 
 // Intersection creates a new list whose element both be contained in list l and other
 func (l *List[T]) Intersection(other *List[T]) *List[T] {
-	result := NewList(make([]T, 0, 0))
+	result := NewList(make([]T, 0))
 
 	for _, v := range l.data {
 		if other.Contain(v) {
