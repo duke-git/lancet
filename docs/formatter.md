@@ -28,13 +28,12 @@ import (
 
 
 ### <span id="Comma">Comma</span>
-<p>Add comma to number by every 3 numbers from right. ahead by symbol char.
-Param should be number or numberic string.</p>
+<p>Add comma to a number value by every 3 numbers from right to left. ahead by symbol char. if value is a invalid number string like "aa", return empty string.</p>
 
 <b>Signature:</b>
 
 ```go
-func Comma(v any, symbol string) string
+func Comma[T constraints.Float | constraints.Integer | string](value T, symbol string) string
 ```
 <b>Example:</b>
 
