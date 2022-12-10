@@ -3,7 +3,7 @@ package netutil
 import (
 	"bytes"
 	"errors"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"strings"
@@ -173,7 +173,7 @@ func setBodyByte(req *http.Request, body any) error {
 	if body != nil {
 		switch b := body.(type) {
 		case []byte:
-			req.Body = ioutil.NopCloser(bytes.NewReader(b))
+			req.Body = io.NopCloser(bytes.NewReader(b))
 			req.ContentLength = int64(len(b))
 		default:
 			return errors.New("body type should be []byte")

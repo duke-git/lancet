@@ -77,8 +77,6 @@ func (sl *SinglyLink[T]) InsertAt(index int, value T) {
 		i++
 		current = current.Next
 	}
-
-	return
 }
 
 // DeleteAtHead delete value in singly linklist at head index

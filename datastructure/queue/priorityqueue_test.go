@@ -23,19 +23,24 @@ func TestPriorityQueue_Enqueue(t *testing.T) {
 	assert := internal.NewAssert(t, "TestPriorityQueue_Enqueue")
 
 	comparator := &intComparator{}
-	pq := NewPriorityQueue[int](10, comparator)
+	pq := NewPriorityQueue[int](3, comparator)
 
 	assert.Equal(true, pq.IsEmpty())
 	assert.Equal(false, pq.IsFull())
 
-	for i := 1; i < 11; i++ {
-		pq.Enqueue(i)
-	}
+	err := pq.Enqueue(1)
+	assert.IsNil(err)
+
+	err = pq.Enqueue(2)
+	assert.IsNil(err)
+
+	err = pq.Enqueue(3)
+	assert.IsNil(err)
 
 	assert.Equal(true, pq.IsFull())
 
 	queueData := pq.Data()
-	assert.Equal([]int{10, 9, 6, 7, 8, 2, 5, 1, 4, 3}, queueData)
+	assert.Equal([]int{3, 1, 2}, queueData)
 
 }
 
@@ -43,22 +48,23 @@ func TestPriorityQueue_Dequeue(t *testing.T) {
 	assert := internal.NewAssert(t, "TestPriorityQueue_Dequeue")
 
 	comparator := &intComparator{}
-	pq := NewPriorityQueue[int](10, comparator)
+	pq := NewPriorityQueue[int](3, comparator)
 
 	_, ok := pq.Dequeue()
 	assert.Equal(false, ok)
 
-	for i := 1; i < 11; i++ {
-		pq.Enqueue(i)
-	}
+	err := pq.Enqueue(1)
+	assert.IsNil(err)
 
-	assert.Equal(10, pq.Size())
+	err = pq.Enqueue(2)
+	assert.IsNil(err)
+
+	err = pq.Enqueue(3)
+	assert.IsNil(err)
+
+	assert.Equal(3, pq.Size())
 
 	val, ok := pq.Dequeue()
 	assert.Equal(true, ok)
-	assert.Equal(10, val)
-
-	assert.Equal([]int{9, 8, 6, 7, 3, 2, 5, 1, 4}, pq.Data())
-
-	assert.Equal(9, pq.Size())
+	assert.Equal(3, val)
 }
