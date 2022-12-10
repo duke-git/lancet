@@ -2,7 +2,7 @@ package netutil
 
 import (
 	"encoding/json"
-	"io/ioutil"
+	"io"
 	"log"
 	"net/url"
 	"testing"
@@ -21,7 +21,7 @@ func TestHttpGet(t *testing.T) {
 		log.Fatal(err)
 	}
 
-	body, _ := ioutil.ReadAll(resp.Body)
+	body, _ := io.ReadAll(resp.Body)
 	t.Log("response: ", resp.StatusCode, string(body))
 }
 
@@ -41,7 +41,7 @@ func TestHttpPost(t *testing.T) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	body, _ := ioutil.ReadAll(resp.Body)
+	body, _ := io.ReadAll(resp.Body)
 	t.Log("response: ", resp.StatusCode, string(body))
 }
 
@@ -64,7 +64,7 @@ func TestHttpPostFormData(t *testing.T) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	body, _ := ioutil.ReadAll(resp.Body)
+	body, _ := io.ReadAll(resp.Body)
 	t.Log("response: ", resp.StatusCode, string(body))
 }
 
@@ -85,7 +85,7 @@ func TestHttpPut(t *testing.T) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	body, _ := ioutil.ReadAll(resp.Body)
+	body, _ := io.ReadAll(resp.Body)
 	t.Log("response: ", resp.StatusCode, string(body))
 }
 
@@ -106,7 +106,7 @@ func TestHttpPatch(t *testing.T) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	body, _ := ioutil.ReadAll(resp.Body)
+	body, _ := io.ReadAll(resp.Body)
 	t.Log("response: ", resp.StatusCode, string(body))
 }
 
@@ -116,7 +116,7 @@ func TestHttpDelete(t *testing.T) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	body, _ := ioutil.ReadAll(resp.Body)
+	body, _ := io.ReadAll(resp.Body)
 	t.Log("response: ", resp.StatusCode, string(body))
 }
 
