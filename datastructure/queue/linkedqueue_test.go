@@ -14,8 +14,6 @@ func TestLinkedQueue_Enqueue(t *testing.T) {
 	queue.Enqueue(2)
 	queue.Enqueue(3)
 
-	queue.Print()
-
 	assert.Equal([]int{1, 2, 3}, queue.Data())
 	assert.Equal(3, queue.Size())
 }

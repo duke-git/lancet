@@ -145,7 +145,6 @@ func TestSinglyLink_Reverse(t *testing.T) {
 	link.InsertAtTail(4)
 
 	link.Reverse()
-	link.Print()
 	assert.Equal([]int{4, 3, 2, 1}, link.Values())
 }
 

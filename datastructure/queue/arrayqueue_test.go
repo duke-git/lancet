@@ -18,8 +18,6 @@ func TestArrayQueue_Enqueue(t *testing.T) {
 	data := queue.Data()
 	size := queue.Size()
 
-	queue.Print()
-
 	assert.Equal(expected, data)
 	assert.Equal(3, size)
 }
@@ -35,7 +33,6 @@ func TestArrayQueue_Dequeue(t *testing.T) {
 	val, ok := queue.Dequeue()
 	assert.Equal(true, ok)
 
-	queue.Print()
 	assert.Equal(1, val)
 	assert.Equal([]int{2, 3}, queue.Data())
 }
@@ -50,8 +47,6 @@ func TestArrayQueue_Front(t *testing.T) {
 
 	val := queue.Front()
 
-	queue.Print()
-
 	assert.Equal(1, val)
 	assert.Equal([]int{1, 2, 3}, queue.Data())
 }
@@ -65,8 +60,6 @@ func TestArrayQueue_Back(t *testing.T) {
 	queue.Enqueue(3)
 
 	val := queue.Back()
-
-	queue.Print()
 
 	assert.Equal(3, val)
 	assert.Equal([]int{1, 2, 3}, queue.Data())

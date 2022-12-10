@@ -14,8 +14,6 @@ func TestLinkedStack_Push(t *testing.T) {
 	stack.Push(2)
 	stack.Push(3)
 
-	stack.Print()
-
 	expected := []int{3, 2, 1}
 	values := stack.Data()
 	size := stack.Size()

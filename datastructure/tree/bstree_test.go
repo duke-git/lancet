@@ -27,8 +27,6 @@ func TestBSTree_Insert(t *testing.T) {
 	bstree.Insert(5)
 	bstree.Insert(2)
 	bstree.Insert(4)
-
-	bstree.Print()
 }
 
 func TestBSTree_PreOrderTraverse(t *testing.T) {
@@ -86,8 +84,6 @@ func TestBSTree_LevelOrderTraverse(t *testing.T) {
 	bstree.Insert(2)
 	bstree.Insert(4)
 
-	bstree.Print()
-
 	acturl := bstree.LevelOrderTraverse()
 	t.Log(acturl)
 	assert.Equal([]int{6, 5, 7, 2, 4}, acturl)
@@ -103,10 +99,8 @@ func TestBSTree_Delete(t *testing.T) {
 	bstree.Insert(2)
 	bstree.Insert(4)
 
-	bstree.Print()
-
 	bstree.Delete(4)
-	bstree.Print()
+
 	acturl1 := bstree.InOrderTraverse()
 	t.Log(acturl1)
 	assert.Equal([]int{2, 5, 6, 7}, acturl1)
@@ -129,8 +123,6 @@ func TestBSTree_Depth(t *testing.T) {
 	bstree.Insert(2)
 	bstree.Insert(4)
 
-	bstree.Print()
-
 	assert.Equal(bstree.Depth(), 4)
 }
 
@@ -149,8 +141,6 @@ func TestBSTree_IsSubTree(t *testing.T) {
 	subTree := NewBSTree(5, &intComparator{})
 	subTree.Insert(4)
 	subTree.Insert(6)
-
-	subTree.Print()
 
 	assert.Equal(true, superTree.HasSubTree(subTree))
 	assert.Equal(false, subTree.HasSubTree(superTree))
