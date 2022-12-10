@@ -6,7 +6,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"reflect"
@@ -181,7 +181,7 @@ func (client *HttpClient) setQueryParam(req *http.Request, reqUrl string, queryP
 
 func (client *HttpClient) setFormData(req *http.Request, values url.Values) {
 	formData := []byte(values.Encode())
-	req.Body = ioutil.NopCloser(bytes.NewReader(formData))
+	req.Body = io.NopCloser(bytes.NewReader(formData))
 	req.ContentLength = int64(len(formData))
 }
 

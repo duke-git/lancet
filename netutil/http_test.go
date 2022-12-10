@@ -51,10 +51,7 @@ func TestHttpPostFormData(t *testing.T) {
 		// "Content-Type": "application/x-www-form-urlencoded",
 		"Content-Type": "multipart/form-data",
 	}
-	type Todo struct {
-		UserId int    `json:"userId"`
-		Title  string `json:"title"`
-	}
+
 	postData := url.Values{}
 	postData.Add("userId", "1")
 	postData.Add("title", "TestToDo")

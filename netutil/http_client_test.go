@@ -1,7 +1,7 @@
 package netutil
 
 import (
-	"io/ioutil"
+	"io"
 	"log"
 	"net/http"
 	"net/url"
@@ -61,7 +61,7 @@ func TestHttpClent_Post(t *testing.T) {
 		log.Fatal(err)
 	}
 
-	body, _ := ioutil.ReadAll(resp.Body)
+	body, _ := io.ReadAll(resp.Body)
 	t.Log("response: ", resp.StatusCode, string(body))
 }
 
@@ -93,6 +93,6 @@ func TestStructToUrlValues(t *testing.T) {
 		log.Fatal(err)
 	}
 
-	body, _ := ioutil.ReadAll(resp.Body)
+	body, _ := io.ReadAll(resp.Body)
 	t.Log("response: ", string(body))
 }

@@ -10,17 +10,18 @@ func TestCircularQueue_Enqueue(t *testing.T) {
 	assert := internal.NewAssert(t, "TestCircularQueue_Enqueue")
 
 	queue := NewCircularQueue[int](6)
-	queue.Enqueue(1)
-	queue.Enqueue(2)
-	queue.Enqueue(3)
-	queue.Enqueue(4)
-	queue.Enqueue(5)
+	err := queue.Enqueue(1)
+	err = queue.Enqueue(2)
+	err = queue.Enqueue(3)
+	err = queue.Enqueue(4)
+	err = queue.Enqueue(5)
 
-	queue.Print()
+	assert.IsNil(err)
+
 	assert.Equal([]int{1, 2, 3, 4, 5}, queue.Data())
 	assert.Equal(5, queue.Size())
 
-	err := queue.Enqueue(6)
+	err = queue.Enqueue(6)
 	assert.IsNotNil(err)
 }
 
@@ -43,7 +44,6 @@ func TestCircularQueue_Dequeue(t *testing.T) {
 	assert.Equal(false, queue.IsFull())
 
 	val, _ = queue.Dequeue()
-	queue.Print()
 	assert.Equal(2, *val)
 
 	queue.Enqueue(6)
@@ -55,22 +55,23 @@ func TestCircularQueue_Front(t *testing.T) {
 	assert := internal.NewAssert(t, "TestCircularQueue_Front")
 
 	queue := NewCircularQueue[int](6)
-	queue.Enqueue(1)
-	queue.Enqueue(2)
-	queue.Enqueue(3)
-	queue.Enqueue(4)
-	queue.Enqueue(5)
+	err := queue.Enqueue(1)
+	err = queue.Enqueue(2)
+	err = queue.Enqueue(3)
+	err = queue.Enqueue(4)
+	err = queue.Enqueue(5)
 
 	queue.Print()
 
-	queue.Dequeue()
-	queue.Dequeue()
-	queue.Enqueue(6)
-	queue.Enqueue(7)
+	_, err = queue.Dequeue()
+	_, err = queue.Dequeue()
+	err = queue.Enqueue(6)
+	err = queue.Enqueue(7)
 
 	queue.Print()
 
 	val := queue.Front()
+	assert.IsNil(err)
 	assert.Equal(3, val)
 	assert.Equal(5, queue.Size())
 }

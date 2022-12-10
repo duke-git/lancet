@@ -179,10 +179,14 @@ func TestZipAndUnZip(t *testing.T) {
 
 	file, _ := os.OpenFile(srcFile, os.O_WRONLY|os.O_TRUNC, 0777)
 	defer file.Close()
-	file.WriteString("hello\nworld")
+
+	_, err := file.WriteString("hello\nworld")
+	if err != nil {
+		t.Fail()
+	}
 
 	zipFile := "./text.zip"
-	err := Zip(srcFile, zipFile)
+	err = Zip(srcFile, zipFile)
 	assert.IsNil(err)
 
 	unZipPath := "./unzip"

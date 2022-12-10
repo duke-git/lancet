@@ -114,7 +114,6 @@ func RsaDecrypt(data []byte, privateKeyFileName string) []byte {
 	buf := make([]byte, fileInfo.Size())
 	defer file.Close()
 
-	file.Read(buf)
 	_, err = file.Read(buf)
 	if err != nil {
 		panic(err)
