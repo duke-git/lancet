@@ -57,15 +57,14 @@ func TestExecCommand(t *testing.T) {
 	stdout, stderr, err = ExecCommand("dir")
 	t.Log("std out: ", stdout)
 	t.Log("std err: ", stderr)
-	assert.IsNil(err)
+	if IsWindows() {
+		assert.IsNil(err)
+	}
 
 	// error command
 	stdout, stderr, err = ExecCommand("abc")
 	t.Log("std out: ", stdout)
 	t.Log("std err: ", stderr)
-	// if err != nil {
-	// 	t.Log(err.Error())
-	// }
 	assert.IsNotNil(err)
 }
 
