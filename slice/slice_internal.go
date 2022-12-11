@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"reflect"
 
-	"github.com/duke-git/lancet/v2/lancetconstraints"
+	"golang.org/x/exp/constraints"
 )
 
 // sliceValue return the reflect value of a slice
@@ -27,7 +27,7 @@ func sliceElemType(reflectType reflect.Type) reflect.Type {
 	}
 }
 
-func quickSort[T lancetconstraints.Ordered](slice []T, lowIndex, highIndex int, order string) {
+func quickSort[T constraints.Ordered](slice []T, lowIndex, highIndex int, order string) {
 	if lowIndex < highIndex {
 		p := partitionOrderedSlice(slice, lowIndex, highIndex, order)
 		quickSort(slice, lowIndex, p-1, order)
@@ -36,7 +36,7 @@ func quickSort[T lancetconstraints.Ordered](slice []T, lowIndex, highIndex int, 
 }
 
 // partitionOrderedSlice split ordered slice into two parts for quick sort
-func partitionOrderedSlice[T lancetconstraints.Ordered](slice []T, lowIndex, highIndex int, order string) int {
+func partitionOrderedSlice[T constraints.Ordered](slice []T, lowIndex, highIndex int, order string) int {
 	p := slice[highIndex]
 	i := lowIndex
 

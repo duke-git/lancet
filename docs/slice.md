@@ -1138,7 +1138,7 @@ func main() {
 <b>Signature:</b>
 
 ```go
-func Sort[T lancetconstraints.Ordered](slice []T, sortOrder ...string)
+func Sort[T constraints.Ordered](slice []T, sortOrder ...string)
 ```
 
 <b>Example:</b>

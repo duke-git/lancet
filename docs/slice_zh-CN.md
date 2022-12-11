@@ -1135,7 +1135,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func Sort[T lancetconstraints.Ordered](slice []T, sortOrder ...string)
+func Sort[T constraints.Ordered](slice []T, sortOrder ...string)
 ```
 
 <b>例子:</b>

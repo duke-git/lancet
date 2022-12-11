@@ -10,7 +10,9 @@
 // Hope that Go can support iterator in future. see https://github.com/golang/go/discussions/54245 and https://github.com/golang/go/discussions/56413
 package iterator
 
-import "github.com/duke-git/lancet/v2/lancetconstraints"
+import (
+	"golang.org/x/exp/constraints"
+)
 
 // Iterator supports iterating over a sequence of values of type `E`.
 type Iterator[T any] interface {
@@ -142,7 +144,7 @@ func (iter *sliceIterator[T]) Set(value T) {
 
 // FromRange creates a iterator which returns the numeric range between start inclusive and end
 // exclusive by the step size. start should be less than end, step shoud be positive.
-func FromRange[T lancetconstraints.Number](start, end, step T) Iterator[T] {
+func FromRange[T constraints.Integer | constraints.Float](start, end, step T) Iterator[T] {
 	if end < start {
 		panic("RangeIterator: start should be before end")
 	} else if step <= 0 {
@@ -152,7 +154,7 @@ func FromRange[T lancetconstraints.Number](start, end, step T) Iterator[T] {
 	return &rangeIterator[T]{start: start, end: end, step: step}
 }
 
-type rangeIterator[T lancetconstraints.Number] struct {
+type rangeIterator[T constraints.Integer | constraints.Float] struct {
 	start, end, step T
 }
 

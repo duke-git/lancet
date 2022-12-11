@@ -11,7 +11,7 @@ import (
 	"reflect"
 	"sort"
 
-	"github.com/duke-git/lancet/v2/lancetconstraints"
+	"golang.org/x/exp/constraints"
 )
 
 // Create a static variable to store the hash table.
@@ -120,7 +120,7 @@ func DifferenceBy[T comparable](slice []T, comparedSlice []T, iteratee func(inde
 	return result
 }
 
-//DifferenceWith accepts comparator which is invoked to compare elements of slice to values. The order and references of result values are determined by the first slice. The comparator is invoked with two arguments: (arrVal, othVal).
+// DifferenceWith accepts comparator which is invoked to compare elements of slice to values. The order and references of result values are determined by the first slice. The comparator is invoked with two arguments: (arrVal, othVal).
 func DifferenceWith[T any](slice []T, comparedSlice []T, comparator func(item1, item2 T) bool) []T {
 	result := make([]T, 0)
 
@@ -736,7 +736,7 @@ func Shuffle[T any](slice []T) []T {
 
 // Sort sorts a slice of any ordered type(number or string), use quick sort algrithm.
 // default sort order is ascending (asc), if want descending order, set param `sortOrder` to `desc`
-func Sort[T lancetconstraints.Ordered](slice []T, sortOrder ...string) {
+func Sort[T constraints.Ordered](slice []T, sortOrder ...string) {
 	if len(sortOrder) > 0 && sortOrder[0] == "desc" {
 		quickSort(slice, 0, len(slice)-1, "desc")
 	} else {

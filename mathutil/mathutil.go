@@ -10,7 +10,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/duke-git/lancet/v2/lancetconstraints"
+	"golang.org/x/exp/constraints"
 )
 
 // Exponent calculate x^n
@@ -94,7 +94,7 @@ func TruncRound(x float64, n int) float64 {
 }
 
 // Max return max value of params
-func Max[T lancetconstraints.Number](numbers ...T) T {
+func Max[T constraints.Integer | constraints.Float](numbers ...T) T {
 	max := numbers[0]
 
 	for _, v := range numbers {
@@ -128,7 +128,7 @@ func MaxBy[T any](slice []T, comparator func(T, T) bool) T {
 }
 
 // Min return min value of params
-func Min[T lancetconstraints.Number](numbers ...T) T {
+func Min[T constraints.Integer | constraints.Float](numbers ...T) T {
 	min := numbers[0]
 
 	for _, v := range numbers {
@@ -161,8 +161,8 @@ func MinBy[T any](slice []T, comparator func(T, T) bool) T {
 	return min
 }
 
-// Average return average value of params
-func Average[T lancetconstraints.Number](numbers ...T) T {
+// Average return average value of numbers
+func Average[T constraints.Integer | constraints.Float](numbers ...T) T {
 	var sum T
 	n := T(len(numbers))
 

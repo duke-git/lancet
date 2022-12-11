@@ -44,7 +44,7 @@ import (
 <b>函数签名:</b>
 
 ```go
-func Average[T lancetconstraints.Number](numbers ...T) T
+func Average[T constraints.Integer | constraints.Float](numbers ...T) T
 ```
 <b>例子:</b>
 
@@ -154,7 +154,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func Max[T lancetconstraints.Number](numbers ...T) T
+func Max[T constraints.Integer | constraints.Float](numbers ...T) T
 ```
 <b>例子:</b>
 
@@ -220,7 +220,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func Min[T lancetconstraints.Number](numbers ...T) T
+func Min[T constraints.Integer | constraints.Float](numbers ...T) T
 ```
 <b>例子:</b>
 

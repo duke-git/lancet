@@ -45,7 +45,7 @@ import (
 <b>Signature:</b>
 
 ```go
-func Average[T lancetconstraints.Number](numbers ...T) T
+func Average[T constraints.Integer | constraints.Float](numbers ...T) T
 ```
 <b>Example:</b>
 
@@ -157,7 +157,7 @@ func main() {
 <b>Signature:</b>
 
 ```go
-func Max[T lancetconstraints.Number](numbers ...T) T
+func Max[T constraints.Integer | constraints.Float](numbers ...T) T
 ```
 <b>Example:</b>
 
@@ -223,7 +223,7 @@ func main() {
 <b>Signature:</b>
 
 ```go
-func Min[T lancetconstraints.Number](numbers ...T) T
+func Min[T constraints.Integer | constraints.Float](numbers ...T) T
 ```
 <b>Example:</b>
 
