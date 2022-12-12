@@ -22,9 +22,11 @@ func TestCapitalize(t *testing.T) {
 
 	assert.Equal("Foo", Capitalize("foo"))
 	assert.Equal("Foo", Capitalize("Foo"))
-	assert.Equal("Foo", Capitalize("Foo"))
+	assert.Equal("_foo", Capitalize("_foo"))
 
-	assert.NotEqual("foo", Capitalize("Foo"))
+	assert.Equal("Foo bar", Capitalize("foo Bar"))
+	assert.Equal("Foo-bar", Capitalize("foo-bar"))
+
 }
 
 func TestKebabCase(t *testing.T) {
