@@ -48,24 +48,44 @@ func TestCapitalize(t *testing.T) {
 func TestKebabCase(t *testing.T) {
 	assert := internal.NewAssert(t, "TestKebabCase")
 
-	assert.Equal("foo-bar", KebabCase("Foo Bar-"))
-	assert.Equal("foo-bar", KebabCase("foo_Bar"))
-	assert.Equal("foo-bar", KebabCase("fooBar"))
-	assert.Equal("f-o-o-b-a-r", KebabCase("__FOO_BAR__"))
+	cases := map[string]string{
+		"Foo Bar-":                 "foo-bar",
+		"foo_Bar":                  "foo-bar",
+		"fooBar":                   "foo-bar",
+		"FOOBAR":                   "f-o-o-b-a-r",
+		"FOO_BAR":                  "f-o-o-b-a-r",
+		"__FOO_BAR__":              "f-o-o-b-a-r",
+		"$foo@Bar":                 "foo-bar",
+		"   $#$Foo   22    bar   ": "foo-22-bar",
+	}
 
-	assert.NotEqual("foo_bar", KebabCase("fooBar"))
+	for k, v := range cases {
+		assert.Equal(v, KebabCase(k))
+	}
+
+	assert.Equal("", KebabCase(""))
+
+	// assert.Equal("foo-1-1bar", KebabCase("Foo-#1😄$_%^&*(1bar"))
 }
 
 func TestSnakeCase(t *testing.T) {
 	assert := internal.NewAssert(t, "TestSnakeCase")
 
-	assert.Equal("foo_bar", SnakeCase("Foo Bar-"))
-	assert.Equal("foo_bar", SnakeCase("foo_Bar"))
-	assert.Equal("foo_bar", SnakeCase("fooBar"))
-	assert.Equal("f_o_o_b_a_r", SnakeCase("__FOO_BAR__"))
-	assert.Equal("a_bbc_s_a_b_b_c", SnakeCase("aBbc-s$@a&%_B.B^C"))
+	cases := map[string]string{
+		"Foo Bar-":                 "foo_bar",
+		"foo_Bar":                  "foo_bar",
+		"fooBar":                   "foo_bar",
+		"__FOO_BAR__":              "f_o_o_b_a_r",
+		"$foo@Bar":                 "foo_bar",
+		"   $#$Foo   22    bar   ": "foo_22_bar",
+		"aBbc-s$@a&%_B.B^C":        "a_bbc_s_a_b_b_c",
+	}
 
-	assert.NotEqual("foo-bar", SnakeCase("foo_Bar"))
+	for k, v := range cases {
+		assert.Equal(v, SnakeCase(k))
+	}
+
+	assert.Equal("", SnakeCase(""))
 }
 
 func TestUpperFirst(t *testing.T) {

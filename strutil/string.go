@@ -12,8 +12,6 @@ import (
 
 // CamelCase covert string to camelCase string.
 func CamelCase(s string) string {
-	s = strings.ReplaceAll(s, " ", "")
-
 	var runes [][]rune
 	lastCharType := 0
 	charType := 0
@@ -39,8 +37,6 @@ func CamelCase(s string) string {
 		lastCharType = charType
 	}
 
-	result := ""
-
 	for i := 0; i < len(runes)-1; i++ {
 		if unicode.IsUpper(runes[i][0]) && unicode.IsLower(runes[i+1][0]) {
 			runes[i+1] = append([]rune{runes[i][len(runes[i])-1]}, runes[i+1]...)
@@ -58,6 +54,8 @@ func CamelCase(s string) string {
 			filterRunes = append(filterRunes, r)
 		}
 	}
+
+	result := ""
 
 	// capitalize
 	for i, r := range filterRunes {
@@ -160,14 +158,10 @@ func PadStart(source string, size int, padStr string) string {
 
 // KebabCase covert string to kebab-case
 func KebabCase(s string) string {
-	if len(s) == 0 {
-		return ""
-	}
-
-	regex := regexp.MustCompile(`[\W|_]+`)
-	blankSpace := " "
-	match := regex.ReplaceAllString(s, blankSpace)
-	rs := strings.Split(match, blankSpace)
+	re := regexp.MustCompile(`[\W|_]+`)
+	space := " "
+	match := re.ReplaceAllString(s, space)
+	rs := strings.Split(match, space)
 
 	var result []string
 	for _, v := range rs {
@@ -175,6 +169,9 @@ func KebabCase(s string) string {
 		if len(splitWords) > 0 {
 			result = append(result, splitWords...)
 		}
+		// if v != "" {
+		// 	result = append(result, strings.ToLower(v))
+		// }
 	}
 
 	return strings.Join(result, "-")
@@ -182,14 +179,10 @@ func KebabCase(s string) string {
 
 // SnakeCase covert string to snake_case
 func SnakeCase(s string) string {
-	if len(s) == 0 {
-		return ""
-	}
-
-	regex := regexp.MustCompile(`[\W|_]+`)
-	blankSpace := " "
-	match := regex.ReplaceAllString(s, blankSpace)
-	rs := strings.Split(match, blankSpace)
+	re := regexp.MustCompile(`[\W|_]+`)
+	space := " "
+	match := re.ReplaceAllString(s, space)
+	rs := strings.Split(match, space)
 
 	var result []string
 	for _, v := range rs {
