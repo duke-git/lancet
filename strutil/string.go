@@ -12,23 +12,70 @@ import (
 
 // CamelCase covert string to camelCase string.
 func CamelCase(s string) string {
-	if len(s) == 0 {
-		return ""
+	s = strings.ReplaceAll(s, " ", "")
+
+	var runes [][]rune
+	lastCharType := 0
+	charType := 0
+
+	// split into fields based on type of unicode character
+	for _, r := range s {
+		switch true {
+		case unicode.IsLower(r):
+			charType = 1
+		case unicode.IsUpper(r):
+			charType = 2
+		case unicode.IsDigit(r):
+			charType = 3
+		default:
+			charType = 4
+		}
+
+		if charType == lastCharType {
+			runes[len(runes)-1] = append(runes[len(runes)-1], r)
+		} else {
+			runes = append(runes, []rune{r})
+		}
+		lastCharType = charType
 	}
 
 	result := ""
-	blankSpace := " "
-	regex, _ := regexp.Compile("[-_&]+")
-	ss := regex.ReplaceAllString(s, blankSpace)
-	for i, v := range strings.Split(ss, blankSpace) {
-		vv := []rune(v)
+
+	for i := 0; i < len(runes)-1; i++ {
+		if unicode.IsUpper(runes[i][0]) && unicode.IsLower(runes[i+1][0]) {
+			runes[i+1] = append([]rune{runes[i][len(runes[i])-1]}, runes[i+1]...)
+			runes[i] = runes[i][:len(runes[i])-1]
+		}
+	}
+
+	// filter all non letters and none digit
+	var filterRunes [][]rune
+	for _, r := range runes {
+		if len(r) == 0 {
+			continue
+		}
+		if unicode.IsLetter(r[0]) || unicode.IsDigit(r[0]) {
+			filterRunes = append(filterRunes, r)
+		}
+	}
+
+	// capitalize
+	for i, r := range filterRunes {
 		if i == 0 {
-			if vv[i] >= 65 && vv[i] <= 96 {
-				vv[0] += 32
+			for j := range r {
+				r[j] = unicode.ToLower(r[j])
 			}
-			result += string(vv)
 		} else {
-			result += Capitalize(v)
+			for j := range r {
+				if j == 0 {
+					r[0] = unicode.ToUpper(r[0])
+				} else {
+					r[j] = unicode.ToLower(r[j])
+				}
+			}
+		}
+		if len(r) > 0 {
+			result = result + string(r)
 		}
 	}
 
@@ -37,20 +84,16 @@ func CamelCase(s string) string {
 
 // Capitalize converts the first character of a string to upper case and the remaining to lower case.
 func Capitalize(s string) string {
-	if len(s) == 0 {
-		return ""
-	}
-
-	out := make([]rune, len(s))
+	result := make([]rune, len(s))
 	for i, v := range s {
 		if i == 0 {
-			out[i] = unicode.ToUpper(v)
+			result[i] = unicode.ToUpper(v)
 		} else {
-			out[i] = unicode.ToLower(v)
+			result[i] = unicode.ToLower(v)
 		}
 	}
 
-	return string(out)
+	return string(result)
 }
 
 // UpperFirst converts the first character of string to upper case.
