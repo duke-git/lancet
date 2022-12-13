@@ -28,12 +28,21 @@ func TestCamelCase(t *testing.T) {
 func TestCapitalize(t *testing.T) {
 	assert := internal.NewAssert(t, "TestCapitalize")
 
-	assert.Equal("Foo", Capitalize("foo"))
-	assert.Equal("Foo", Capitalize("Foo"))
-	assert.Equal("_foo", Capitalize("_foo"))
+	cases := map[string]string{
+		"Foo":     "Foo",
+		"_foo":    "_foo",
+		"foobar":  "Foobar",
+		"fooBar":  "Foobar",
+		"foo Bar": "Foo bar",
+		"foo-bar": "Foo-bar",
+		"$foo%":   "$foo%",
+	}
 
-	assert.Equal("Foo bar", Capitalize("foo Bar"))
-	assert.Equal("Foo-bar", Capitalize("foo-bar"))
+	for k, v := range cases {
+		assert.Equal(v, Capitalize(k))
+	}
+
+	assert.Equal("", Capitalize(""))
 }
 
 func TestKebabCase(t *testing.T) {
