@@ -157,24 +157,19 @@ func PadStart(source string, size int, padStr string) string {
 }
 
 // KebabCase covert string to kebab-case
+// non letters and numbers will be ignored
+// eg. "Foo-#1😄$_%^&*(1bar" => "foo-1-1-bar"
 func KebabCase(s string) string {
-	re := regexp.MustCompile(`[\W|_]+`)
-	space := " "
-	match := re.ReplaceAllString(s, space)
-	rs := strings.Split(match, space)
+	strs := splitIntoStrings(s, false)
+	return strings.Join(strs, "-")
+}
 
-	var result []string
-	for _, v := range rs {
-		splitWords := splitWordsToLower(v)
-		if len(splitWords) > 0 {
-			result = append(result, splitWords...)
-		}
-		// if v != "" {
-		// 	result = append(result, strings.ToLower(v))
-		// }
-	}
-
-	return strings.Join(result, "-")
+// UpperKebabCase covert string to upper KEBAB-CASE
+// non letters and numbers will be ignored
+// eg. "Foo-#1😄$_%^&*(1bar" => "FOO-1-1-BAR"
+func UpperKebabCase(s string) string {
+	strs := splitIntoStrings(s, true)
+	return strings.Join(strs, "-")
 }
 
 // SnakeCase covert string to snake_case
