@@ -10,73 +10,21 @@ import (
 )
 
 // CamelCase covert string to camelCase string.
+// non letters and numbers will be ignored
+// eg. "Foo-#1😄$_%^&*(1bar" => "foo11Bar"
 func CamelCase(s string) string {
-	var runes [][]rune
-	lastCharType := 0
-	charType := 0
+	var builder strings.Builder
 
-	// split into fields based on type of unicode character
-	for _, r := range s {
-		switch true {
-		case unicode.IsLower(r):
-			charType = 1
-		case unicode.IsUpper(r):
-			charType = 2
-		case unicode.IsDigit(r):
-			charType = 3
-		default:
-			charType = 4
-		}
-
-		if charType == lastCharType {
-			runes[len(runes)-1] = append(runes[len(runes)-1], r)
-		} else {
-			runes = append(runes, []rune{r})
-		}
-		lastCharType = charType
-	}
-
-	for i := 0; i < len(runes)-1; i++ {
-		if unicode.IsUpper(runes[i][0]) && unicode.IsLower(runes[i+1][0]) {
-			runes[i+1] = append([]rune{runes[i][len(runes[i])-1]}, runes[i+1]...)
-			runes[i] = runes[i][:len(runes[i])-1]
-		}
-	}
-
-	// filter all non letters and none digit
-	var filterRunes [][]rune
-	for _, r := range runes {
-		if len(r) == 0 {
-			continue
-		}
-		if unicode.IsLetter(r[0]) || unicode.IsDigit(r[0]) {
-			filterRunes = append(filterRunes, r)
-		}
-	}
-
-	result := ""
-
-	// capitalize
-	for i, r := range filterRunes {
+	strs := splitIntoStrings(s, false)
+	for i, str := range strs {
 		if i == 0 {
-			for j := range r {
-				r[j] = unicode.ToLower(r[j])
-			}
+			builder.WriteString(strings.ToLower(str))
 		} else {
-			for j := range r {
-				if j == 0 {
-					r[0] = unicode.ToUpper(r[0])
-				} else {
-					r[j] = unicode.ToLower(r[j])
-				}
-			}
-		}
-		if len(r) > 0 {
-			result = result + string(r)
+			builder.WriteString(Capitalize(str))
 		}
 	}
 
-	return result
+	return builder.String()
 }
 
 // Capitalize converts the first character of a string to upper case and the remaining to lower case.
