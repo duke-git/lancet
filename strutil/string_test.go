@@ -94,20 +94,46 @@ func TestSnakeCase(t *testing.T) {
 	assert := internal.NewAssert(t, "TestSnakeCase")
 
 	cases := map[string]string{
+		"":                         "",
+		"foo-bar":                  "foo_bar",
+		"--Foo---Bar-":             "foo_bar",
 		"Foo Bar-":                 "foo_bar",
 		"foo_Bar":                  "foo_bar",
 		"fooBar":                   "foo_bar",
-		"__FOO_BAR__":              "f_o_o_b_a_r",
+		"FOOBAR":                   "foobar",
+		"FOO_BAR":                  "foo_bar",
+		"__FOO_BAR__":              "foo_bar",
 		"$foo@Bar":                 "foo_bar",
 		"   $#$Foo   22    bar   ": "foo_22_bar",
-		"aBbc-s$@a&%_B.B^C":        "a_bbc_s_a_b_b_c",
+		"Foo-#1😄$_%^&*(1bar":       "foo_1_1_bar",
 	}
 
 	for k, v := range cases {
 		assert.Equal(v, SnakeCase(k))
 	}
+}
 
-	assert.Equal("", SnakeCase(""))
+func TestUpperSnakeCase(t *testing.T) {
+	assert := internal.NewAssert(t, "TestUpperSnakeCase")
+
+	cases := map[string]string{
+		"":                         "",
+		"foo-bar":                  "FOO_BAR",
+		"--Foo---Bar-":             "FOO_BAR",
+		"Foo Bar-":                 "FOO_BAR",
+		"foo_Bar":                  "FOO_BAR",
+		"fooBar":                   "FOO_BAR",
+		"FOOBAR":                   "FOOBAR",
+		"FOO_BAR":                  "FOO_BAR",
+		"__FOO_BAR__":              "FOO_BAR",
+		"$foo@Bar":                 "FOO_BAR",
+		"   $#$Foo   22    bar   ": "FOO_22_BAR",
+		"Foo-#1😄$_%^&*(1bar":       "FOO_1_1_BAR",
+	}
+
+	for k, v := range cases {
+		assert.Equal(v, UpperSnakeCase(k))
+	}
 }
 
 func TestUpperFirst(t *testing.T) {

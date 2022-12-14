@@ -4,7 +4,6 @@
 package strutil
 
 import (
-	"regexp"
 	"strings"
 	"unicode"
 	"unicode/utf8"
@@ -160,33 +159,31 @@ func PadStart(source string, size int, padStr string) string {
 // non letters and numbers will be ignored
 // eg. "Foo-#1😄$_%^&*(1bar" => "foo-1-1-bar"
 func KebabCase(s string) string {
-	strs := splitIntoStrings(s, false)
-	return strings.Join(strs, "-")
+	result := splitIntoStrings(s, false)
+	return strings.Join(result, "-")
 }
 
 // UpperKebabCase covert string to upper KEBAB-CASE
 // non letters and numbers will be ignored
 // eg. "Foo-#1😄$_%^&*(1bar" => "FOO-1-1-BAR"
 func UpperKebabCase(s string) string {
-	strs := splitIntoStrings(s, true)
-	return strings.Join(strs, "-")
+	result := splitIntoStrings(s, true)
+	return strings.Join(result, "-")
 }
 
 // SnakeCase covert string to snake_case
+// non letters and numbers will be ignored
+// eg. "Foo-#1😄$_%^&*(1bar" => "foo_1_1_bar"
 func SnakeCase(s string) string {
-	re := regexp.MustCompile(`[\W|_]+`)
-	space := " "
-	match := re.ReplaceAllString(s, space)
-	rs := strings.Split(match, space)
+	result := splitIntoStrings(s, false)
+	return strings.Join(result, "_")
+}
 
-	var result []string
-	for _, v := range rs {
-		splitWords := splitWordsToLower(v)
-		if len(splitWords) > 0 {
-			result = append(result, splitWords...)
-		}
-	}
-
+// UpperSnakeCase covert string to upper SNAKE_CASE
+// non letters and numbers will be ignored
+// eg. "Foo-#1😄$_%^&*(1bar" => "FOO_1_1_BAR"
+func UpperSnakeCase(s string) string {
+	result := splitIntoStrings(s, true)
 	return strings.Join(result, "_")
 }
 
