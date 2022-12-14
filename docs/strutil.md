@@ -28,12 +28,14 @@ import (
 - [Capitalize](#Capitalize)
 - [IsString](#IsString)
 - [KebabCase](#KebabCase)
+- [UpperKebabCase](#UpperKebabCase)
 - [LowerFirst](#LowerFirst)
 - [UpperFirst](#UpperFirst)
 - [PadEnd](#PadEnd)
 - [PadStart](#PadStart)
 - [Reverse](#Reverse)
 - [SnakeCase](#SnakeCase)
+- [UpperSnakeCase](#UpperSnakeCase)
 - [SplitEx](#SplitEx)
 - [Wrap](#Wrap)
 - [Unwrap](#Unwrap)
@@ -165,10 +167,8 @@ func main() {
 ```
 
 
-
-
 ### <span id="CamelCase">CamelCase</span>
-<p>Covert string to camelCase string.</p>
+<p>Coverts string to camelCase string, non letters and numbers will be ignored.</p>
 
 <b>Signature:</b>
 
@@ -195,6 +195,73 @@ func main() {
 
 	s4 := strutil.CamelCase("foo bar")
 	fmt.Println(s4) //fooBar
+
+	s4 := strutil.CamelCase("Foo-#1😄$_%^&*(1bar")
+	fmt.Println(s4) //foo11Bar
+```
+
+
+### <span id="KebabCase">KebabCase</span>
+<p>KebabCase covert string to kebab-case, non letters and numbers will be ignored.</p>
+
+<b>Signature:</b>
+
+```go
+func KebabCase(s string) string
+```
+<b>Example:</b>
+
+```go
+import (
+	"fmt"
+	"github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+	s1 := strutil.KebabCase("Foo Bar-")
+	fmt.Println(s1) //foo-bar
+
+	s2 := strutil.KebabCase("foo_Bar")
+	fmt.Println(s2) //foo-bar
+
+	s3 := strutil.KebabCase("fooBar")
+	fmt.Println(s3) //foo-bar
+
+	s4 := strutil.KebabCase("__FOO_BAR__")
+	fmt.Println(s4) //foo-bar
+}
+```
+
+
+
+### <span id="UpperKebabCase">UpperKebabCase</span>
+<p>UpperKebabCase covert string to upper KEBAB-CASE, non letters and numbers will be ignored.</p>
+
+<b>Signature:</b>
+
+```go
+func KebabCase(s string) string
+```
+<b>Example:</b>
+
+```go
+import (
+	"fmt"
+	"github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+	s1 := strutil.UpperKebabCase("Foo Bar-")
+	fmt.Println(s1) //FOO-BAR
+
+	s2 := strutil.UpperKebabCase("foo_Bar")
+	fmt.Println(s2) //FOO-BAR
+
+	s3 := strutil.UpperKebabCase("fooBar")
+	fmt.Println(s3) //FOO-BAR
+
+	s4 := strutil.UpperKebabCase("__FOO_BAR__")
+	fmt.Println(s4) //FOO-BAR
 }
 ```
 
@@ -457,7 +524,7 @@ func main() {
 
 
 ### <span id="SnakeCase">SnakeCase</span>
-<p>Covert string to snake_case.</p>
+<p>Coverts string to snake_case, non letters and numbers will be ignored.</p>
 
 <b>Signature:</b>
 
@@ -483,14 +550,47 @@ func main() {
 	fmt.Println(s3) //foo_bar
 
 	s4 := strutil.SnakeCase("__FOO_BAR__")
-	fmt.Println(s4) //f_o_o_b_a_r
+	fmt.Println(s4) //foo_bar
 
-	s5 := strutil.SnakeCase("aBbc-s$@a&%_B.B^C")
-	fmt.Println(s5) //a_bbc_s_a_b_b_c
+	s5 := strutil.SnakeCase("Foo-#1😄$_%^&*(1bar")
+	fmt.Println(s5) //foo_1_1_bar
 }
 ```
 
 
+### <span id="UpperSnakeCase">UpperSnakeCase</span>
+<p>Coverts string to upper KEBAB-CASE, non letters and numbers will be ignored.</p>
+
+<b>Signature:</b>
+
+```go
+func SnakeCase(s string) string
+```
+<b>Example:</b>
+
+```go
+import (
+	"fmt"
+	"github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+	s1 := strutil.UpperSnakeCase("Foo Bar-")
+	fmt.Println(s1) //FOO_BAR
+
+	s2 := strutil.UpperSnakeCase("foo_Bar")
+	fmt.Println(s2) //FOO_BAR
+
+	s3 := strutil.UpperSnakeCase("fooBar")
+	fmt.Println(s3) //FOO_BAR
+
+	s4 := strutil.UpperSnakeCase("__FOO_BAR__")
+	fmt.Println(s4) //FOO_BAR
+
+	s5 := strutil.UpperSnakeCase("Foo-#1😄$_%^&*(1bar")
+	fmt.Println(s5) //FOO_1_1_BAR
+}
+```
 
 
 ### <span id="SplitEx">SplitEx</span>
