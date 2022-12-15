@@ -5,53 +5,41 @@
 package strutil
 
 import (
-	"regexp"
 	"strings"
 	"unicode"
 	"unicode/utf8"
 )
 
 // CamelCase covert string to camelCase string.
+// non letters and numbers will be ignored
+// eg. "Foo-#1😄$_%^&*(1bar" => "foo11Bar"
 func CamelCase(s string) string {
-	if len(s) == 0 {
-		return ""
-	}
+	var builder strings.Builder
 
-	res := ""
-	blankSpace := " "
-	regex, _ := regexp.Compile("[-_&]+")
-	ss := regex.ReplaceAllString(s, blankSpace)
-	for i, v := range strings.Split(ss, blankSpace) {
-		vv := []rune(v)
+	strs := splitIntoStrings(s, false)
+	for i, str := range strs {
 		if i == 0 {
-			if vv[i] >= 65 && vv[i] <= 96 {
-				vv[0] += 32
-			}
-			res += string(vv)
+			builder.WriteString(strings.ToLower(str))
 		} else {
-			res += Capitalize(v)
+			builder.WriteString(Capitalize(str))
 		}
 	}
 
-	return res
+	return builder.String()
 }
 
 // Capitalize converts the first character of a string to upper case and the remaining to lower case.
 func Capitalize(s string) string {
-	if len(s) == 0 {
-		return ""
-	}
-
-	out := make([]rune, len(s))
+	result := make([]rune, len(s))
 	for i, v := range s {
 		if i == 0 {
-			out[i] = unicode.ToUpper(v)
+			result[i] = unicode.ToUpper(v)
 		} else {
-			out[i] = unicode.ToLower(v)
+			result[i] = unicode.ToLower(v)
 		}
 	}
 
-	return string(out)
+	return string(result)
 }
 
 // UpperFirst converts the first character of string to upper case.
@@ -117,47 +105,35 @@ func PadStart(source string, size int, padStr string) string {
 }
 
 // KebabCase covert string to kebab-case
+// non letters and numbers will be ignored
+// eg. "Foo-#1😄$_%^&*(1bar" => "foo-1-1-bar"
 func KebabCase(s string) string {
-	if len(s) == 0 {
-		return ""
-	}
+	result := splitIntoStrings(s, false)
+	return strings.Join(result, "-")
+}
 
-	regex := regexp.MustCompile(`[\W|_]+`)
-	blankSpace := " "
-	match := regex.ReplaceAllString(s, blankSpace)
-	rs := strings.Split(match, blankSpace)
-
-	var res []string
-	for _, v := range rs {
-		splitWords := splitWordsToLower(v)
-		if len(splitWords) > 0 {
-			res = append(res, splitWords...)
-		}
-	}
-
-	return strings.Join(res, "-")
+// UpperKebabCase covert string to upper KEBAB-CASE
+// non letters and numbers will be ignored
+// eg. "Foo-#1😄$_%^&*(1bar" => "FOO-1-1-BAR"
+func UpperKebabCase(s string) string {
+	result := splitIntoStrings(s, true)
+	return strings.Join(result, "-")
 }
 
 // SnakeCase covert string to snake_case
+// non letters and numbers will be ignored
+// eg. "Foo-#1😄$_%^&*(1bar" => "foo_1_1_bar"
 func SnakeCase(s string) string {
-	if len(s) == 0 {
-		return ""
-	}
+	result := splitIntoStrings(s, false)
+	return strings.Join(result, "_")
+}
 
-	regex := regexp.MustCompile(`[\W|_]+`)
-	blankSpace := " "
-	match := regex.ReplaceAllString(s, blankSpace)
-	rs := strings.Split(match, blankSpace)
-
-	var res []string
-	for _, v := range rs {
-		splitWords := splitWordsToLower(v)
-		if len(splitWords) > 0 {
-			res = append(res, splitWords...)
-		}
-	}
-
-	return strings.Join(res, "_")
+// UpperSnakeCase covert string to upper SNAKE_CASE
+// non letters and numbers will be ignored
+// eg. "Foo-#1😄$_%^&*(1bar" => "FOO_1_1_BAR"
+func UpperSnakeCase(s string) string {
+	result := splitIntoStrings(s, true)
+	return strings.Join(result, "_")
 }
 
 // Before create substring in source string before position when char first appear
