@@ -139,23 +139,33 @@ func TestUpperSnakeCase(t *testing.T) {
 func TestUpperFirst(t *testing.T) {
 	assert := internal.NewAssert(t, "TestLowerFirst")
 
-	assert.Equal("Foo", UpperFirst("foo"))
-	assert.Equal("BAR", UpperFirst("bAR"))
-	assert.Equal("FOo", UpperFirst("FOo"))
-	assert.Equal("FOo大", UpperFirst("fOo大"))
+	cases := map[string]string{
+		"":     "",
+		"foo":  "Foo",
+		"bAR":  "BAR",
+		"FOo":  "FOo",
+		"fOo大": "FOo大",
+	}
 
-	assert.NotEqual("Bar", UpperFirst("BAR"))
+	for k, v := range cases {
+		assert.Equal(v, UpperFirst(k))
+	}
 }
 
 func TestLowerFirst(t *testing.T) {
 	assert := internal.NewAssert(t, "TestLowerFirst")
 
-	assert.Equal("foo", LowerFirst("foo"))
-	assert.Equal("bAR", LowerFirst("BAR"))
-	assert.Equal("fOo", LowerFirst("FOo"))
-	assert.Equal("fOo大", LowerFirst("FOo大"))
+	cases := map[string]string{
+		"":     "",
+		"foo":  "foo",
+		"bAR":  "bAR",
+		"FOo":  "fOo",
+		"fOo大": "fOo大",
+	}
 
-	assert.NotEqual("Bar", LowerFirst("BAR"))
+	for k, v := range cases {
+		assert.Equal(v, LowerFirst(k))
+	}
 }
 
 func TestPadEnd(t *testing.T) {
