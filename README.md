@@ -350,12 +350,14 @@ import "github.com/duke-git/lancet/strutil"
 -   [Capitalize](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#Capitalize)
 -   [IsString](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#IsString)
 -   [KebabCase](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#KebabCase)
+-   [UpperKebabCase](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#UpperKebabCase)
 -   [LowerFirst](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#LowerFirst)
 -   [UpperFirst](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#UpperFirst)
 -   [PadEnd](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#PadEnd)
 -   [PadStart](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#PadStart)
 -   [Reverse](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#Reverse)
 -   [SnakeCase](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#SnakeCase)
+-   [UpperSnakeCase](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#UpperSnakeCase)
 -   [SplitEx](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#SplitEx)
 -   [Wrap](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#Wrap)
 -   [Unwrap](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#Unwrap)
@@ -413,6 +415,7 @@ import "github.com/duke-git/lancet/validator"
 -   [IsUrl](https://github.com/duke-git/lancet/blob/v1/docs/validator.md#IsUrl)
 -   [IsWeakPassword](https://github.com/duke-git/lancet/blob/v1/docs/validator.md#IsWeakPassword)
 -   [IsZeroValue](https://github.com/duke-git/lancet/blob/v1/docs/validator.md#IsZeroValue)
+-   [IsGBK](https://github.com/duke-git/lancet/blob/v1/docs/validator.md#IsGBK)
 
 ## How to Contribute
 

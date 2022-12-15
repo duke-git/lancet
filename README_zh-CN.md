@@ -349,12 +349,14 @@ import "github.com/duke-git/lancet/strutil"
 -   [Capitalize](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#Capitalize)
 -   [IsString](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#IsString)
 -   [KebabCase](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#KebabCase)
+-   [UpperKebabCase](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#UpperKebabCase)
 -   [LowerFirst](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#LowerFirst)
 -   [UpperFirst](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#UpperFirst)
 -   [PadEnd](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#PadEnd)
 -   [PadStart](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#PadStart)
 -   [Reverse](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#Reverse)
 -   [SnakeCase](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#SnakeCase)
+-   [UpperSnakeCase](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#UpperSnakeCase)
 -   [SplitEx](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#SplitEx)
 -   [Wrap](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#Wrap)
 -   [Unwrap](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#Unwrap)
@@ -412,6 +414,7 @@ import "github.com/duke-git/lancet/validator"
 -   [IsUrl](https://github.com/duke-git/lancet/blob/v1/docs/validator_zh-CN.md#IsUrl)
 -   [IsWeakPassword](https://github.com/duke-git/lancet/blob/v1/docs/validator_zh-CN.md#IsWeakPassword)
 -   [IsZeroValue](https://github.com/duke-git/lancet/blob/v1/docs/validator_zh-CN.md#IsZeroValue)
+-   [IsGBK](https://github.com/duke-git/lancet/blob/v1/docs/validator_zh-CN.md#IsGBK)
 
 ## 如何贡献代码
 

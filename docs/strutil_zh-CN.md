@@ -33,7 +33,7 @@ import (
 - [UpperFirst](#UpperFirst)
 - [PadEnd](#PadEnd)
 - [PadStart](#PadStart)
-- [ReverseStr](#ReverseStr)
+- [Reverse](#Reverse)
 - [SnakeCase](#SnakeCase)
 - [UpperSnakeCase](#UpperSnakeCase)
 - [Wrap](#Wrap)
