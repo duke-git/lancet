@@ -39,7 +39,6 @@ import (
 - [FindLast](#FindLast)
 - [FlattenDeep](#FlattenDeep)
 - [ForEach](#ForEach)
-  
 - [GroupBy](#GroupBy)
 - [IntSlice](#IntSlice)
 - [InterfaceSlice](#InterfaceSlice)

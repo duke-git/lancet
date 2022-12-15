@@ -28,7 +28,6 @@ import (
 - [IsExist](#IsExist)
 - [IsLink](#IsLink)
 - [IsDir](#IsDir)
-
 - [ListFileNames](#ListFileNames)
 - [RemoveFile](#RemoveFile)
 - [ReadFileToString](#ReadFileToString)

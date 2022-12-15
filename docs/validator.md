@@ -34,7 +34,6 @@ import (
 - [IsCreditCard](#IsCreditCard)
 - [IsDns](#IsDns)
 - [IsEmail](#IsEmail)
-  
 - [IsEmptyString](#IsEmptyString)
 - [IsFloatStr](#IsFloatStr)
 - [IsNumberStr](#IsNumberStr)

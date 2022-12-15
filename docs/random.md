@@ -26,7 +26,6 @@ import (
 -   [RandInt](#RandInt)
 -   [RandString](#RandString)
 -   [RandUpper](#RandUpper)
-
 -   [RandLower](#RandLower)
 -   [RandNumeral](#RandNumeral)
 -   [RandNumeralOrLetter](#RandNumeralOrLetter)

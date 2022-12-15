@@ -37,7 +37,6 @@ import (
 - [SendRequest](#SendRequest)
 - [DecodeResponse](#DecodeResponse)
 - [StructToUrlValues](#StructToUrlValues)
-
 - [HttpGet<sup>Deprecated</sup>](#HttpGet)
 - [HttpDelete<sup>Deprecated</sup>](#HttpDelete)
 - [HttpPost<sup>Deprecated</sup>](#HttpPost)

@@ -21,7 +21,6 @@ import (
 ## Index
 - [ClearFile](#ClearFile)
 - [CreateFile](#CreateFile)
-  
 - [CreateDir](#CreateDir)
 - [CopyFile](#CopyFile)
 - [FileMode](#FileMode)

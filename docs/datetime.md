@@ -28,7 +28,6 @@ import (
 - [BeginOfWeek](#BeginOfWeek)
 - [BeginOfMonth](#BeginOfMonth)
 - [BeginOfYear](#BeginOfYear)
-
 - [EndOfMinute](#EndOfMinute)
 - [EndOfHour](#EndOfHour)
 - [EndOfDay](#EndOfDay)

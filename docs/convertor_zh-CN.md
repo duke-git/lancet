@@ -21,25 +21,19 @@ import (
 
 ## 目录
 
-- [Convertor](#convertor)
-  - [源码:](#源码)
-  - [用法:](#用法)
-  - [目录](#目录)
-  - [文档](#文档)
-    - [<span id="ColorHexToRGB">ColorHexToRGB</span>](#colorhextorgb)
-    - [<span id="ColorRGBToHex">ColorRGBToHex</span>](#colorrgbtohex)
-    - [<span id="ToBool">ToBool</span>](#tobool)
-    - [<span id="ToBytes">ToBytes</span>](#tobytes)
-    - [<span id="ToChar">ToChar</span>](#tochar)
-    - [<span id="ToChannel">ToChannel</span>](#tochannel)
-    - [<span id="ToFloat">ToFloat</span>](#tofloat)
-    - [<span id="ToInt">ToInt</span>](#toint)
-    - [<span id="ToJson">ToJson</span>](#tojson)
-    - [<span id="ToString">ToString</span>](#tostring)
-    - [<span id="StructToMap">StructToMap</span>](#structtomap)
-    - [<span id="EncodeByte">EncodeByte</span>](#encodebyte)
-    - [<span id="DecodeByte">DecodeByte</span>](#decodebyte)
-  
+- [ColorHexToRGB](#ColorHexToRGB)
+- [ColorRGBToHex](#ColorRGBToHex)
+- [ToBool](#ToBool)
+- [ToBytes](#ToBytes)
+- [ToChar](#ToChar)
+- [ToChannel](#ToChannel)
+- [ToFloat](#ToFloat)
+- [ToInt](#ToInt)
+- [ToJson](#ToJson)
+- [ToString](#ToString)
+- [StructToMap](#StructToMap)
+- [EncodeByte](#EncodeByte)
+- [DecodeByte](#DecodeByte)
 
 <div STYLE="page-break-after: always;"></div>
 

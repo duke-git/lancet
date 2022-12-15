@@ -47,7 +47,6 @@ import (
 - [HmacSha1](#HmacSha1)
 - [HmacSha256](#HmacSha256)
 - [HmacSha512](#HmacSha512)
-
 - [Md5String](#Md5String)
 - [Md5File](#Md5File)
 - [Sha1](#Sha1)

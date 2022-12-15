@@ -19,12 +19,14 @@ import (
 <div STYLE="page-break-after: always;"></div>
 
 ## Index
+
 - [ColorHexToRGB](#ColorHexToRGB)
 - [ColorRGBToHex](#ColorRGBToHex)
 - [ToBool](#ToBool)
 - [ToBytes](#ToBytes)
 - [ToChar](#ToChar)
 - [ToChannel](#ToChannel)
+- [ToFloat](#ToFloat)
 - [ToInt](#ToInt)
 - [ToJson](#ToJson)
 - [ToString](#ToString)
