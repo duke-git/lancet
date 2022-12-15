@@ -4,7 +4,7 @@
 <br/>
 
 ![Go version](https://img.shields.io/badge/go-%3E%3Dv1.18-9cf)
-[![Release](https://img.shields.io/badge/release-2.1.11-green.svg)](https://github.com/duke-git/lancet/releases)
+[![Release](https://img.shields.io/badge/release-2.1.12-green.svg)](https://github.com/duke-git/lancet/releases)
 [![GoDoc](https://godoc.org/github.com/duke-git/lancet/v2?status.svg)](https://pkg.go.dev/github.com/duke-git/lancet/v2)
 [![Go Report Card](https://goreportcard.com/badge/github.com/duke-git/lancet/v2)](https://goreportcard.com/report/github.com/duke-git/lancet/v2)
 [![test](https://github.com/duke-git/lancet/actions/workflows/codecov.yml/badge.svg?branch=main&event=push)](https://github.com/duke-git/lancet/actions/workflows/codecov.yml)
@@ -38,10 +38,10 @@ English | [简体中文](./README_zh-CN.md)
 go get github.com/duke-git/lancet/v2 // will install latest version of v2.x.x
 ```
 
-2. <b>For users who use version below go1.18, you should install v1.x.x. now latest v1 is v1.3.4. </b>
+2. <b>For users who use version below go1.18, you should install v1.x.x. now latest v1 is v1.3.5. </b>
 
 ```go
-go get github.com/duke-git/lancet@v1.3.3 // below go1.18, install latest version of v1.x.x
+go get github.com/duke-git/lancet@v1.3.5 // below go1.18, install latest version of v1.x.x
 ```
 
 ## Usage
