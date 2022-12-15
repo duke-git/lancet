@@ -201,6 +201,7 @@ func main() {
 
 	s4 := strutil.CamelCase("Foo-#1😄$_%^&*(1bar")
 	fmt.Println(s4) //foo11Bar
+}
 ```
 
 
