@@ -47,7 +47,7 @@ import (
 - [IsUrl](#IsUrl)
 - [IsWeakPassword](#IsWeakPassword)
 - [IsZeroValue](#IsZeroValue)
-  
+- [IsGBK](#IsGBK)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -821,6 +821,33 @@ func main() {
 
 
 
+### <span id="IsGBK">IsGBK</span>
+<p>检查数据编码是否为gbk（汉字内部代码扩展规范）。该函数的实现取决于双字节是否在gbk的编码范围内，而utf-8编码格式的每个字节都在gbk编码范围内。因此，应该首先调用utf8.valid检查它是否是utf-8编码，然后调用IsGBK检查gbk编码。如示例所示。</p>
 
+<b>函数签名:</b>
+
+```go
+func IsGBK(data []byte) bool
+```
+<b>例子:</b>
+
+```go
+import (
+	"fmt"
+	"github.com/duke-git/lancet/validator"
+)
+
+func main() {
+	data := []byte("你好")
+	
+	// 先检查utf8编码
+	if utf8.Valid(data) {
+		fmt.Println("data encoding is utf-8")
+	}else if(validator.IsGBK(data)) {
+		fmt.Println("data encoding is GBK")
+	}
+	fmt.Println("data encoding is unknown")
+}
+```
 
 

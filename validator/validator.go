@@ -288,3 +288,40 @@ func IsZeroValue(value interface{}) bool {
 
 	return reflect.DeepEqual(rv.Interface(), reflect.Zero(rv.Type()).Interface())
 }
+
+// IsGBK check if data encoding is gbk
+// Note: this function is implemented by whether double bytes fall within the encoding range of gbk,
+// while each byte of utf-8 encoding format falls within the encoding range of gbk.
+// Therefore, utf8.valid() should be called first to check whether it is not utf-8 encoding,
+// and then call IsGBK() to check gbk encoding. like below
+/**
+	data := []byte("你好")
+	if utf8.Valid(data) {
+		fmt.Println("data encoding is utf-8")
+	}else if(IsGBK(data)) {
+		fmt.Println("data encoding is GBK")
+	}
+	fmt.Println("data encoding is unknown")
+**/
+func IsGBK(data []byte) bool {
+	i := 0
+	for i < len(data) {
+		if data[i] <= 0xff {
+			i++
+			continue
+		} else {
+			if data[i] >= 0x81 &&
+				data[i] <= 0xfe &&
+				data[i+1] >= 0x40 &&
+				data[i+1] <= 0xfe &&
+				data[i+1] != 0xf7 {
+				i += 2
+				continue
+			} else {
+				return false
+			}
+		}
+	}
+
+	return true
+}
