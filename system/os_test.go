@@ -11,10 +11,10 @@ func TestOsDetection(t *testing.T) {
 	assert := internal.NewAssert(t, "TestOsJudgment")
 
 	osType, _, _ := ExecCommand("echo $OSTYPE")
-	if strings.Index(osType, "linux") != -1 {
+	if strings.Contains(osType, "linux") {
 		assert.Equal(true, IsLinux())
 	}
-	if strings.Index(osType, "darwin") != -1 {
+	if strings.Contains(osType, "darwin") {
 		assert.Equal(true, IsMac())
 	}
 }
