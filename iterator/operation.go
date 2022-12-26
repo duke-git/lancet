@@ -59,3 +59,45 @@ func (fr *filterIterator[T]) Next() (T, bool) {
 func (fr *filterIterator[T]) HasNext() bool {
 	return fr.iter.HasNext()
 }
+
+// Join creates an iterator that join all elements of iters[0], then all elements of iters[1] and so on.
+func Join[T any](iters ...Iterator[T]) Iterator[T] {
+	return &joinIterator[T]{
+		iters: iters,
+	}
+}
+
+type joinIterator[T any] struct {
+	iters []Iterator[T]
+}
+
+func (iter *joinIterator[T]) Next() (T, bool) {
+	for len(iter.iters) > 0 {
+		item, ok := iter.iters[0].Next()
+		if ok {
+			return item, true
+		}
+		iter.iters = iter.iters[1:]
+	}
+	var zero T
+	return zero, false
+}
+
+func (iter *joinIterator[T]) HasNext() bool {
+	if len(iter.iters) == 0 {
+		return false
+	}
+	if len(iter.iters) == 1 {
+		return iter.iters[0].HasNext()
+	}
+
+	result := iter.iters[0].HasNext()
+
+	for i := 1; i < len(iter.iters); i++ {
+		it := iter.iters[i]
+		hasNext := it.HasNext()
+		result = result || hasNext
+	}
+
+	return result
+}

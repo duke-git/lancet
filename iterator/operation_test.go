@@ -37,3 +37,18 @@ func TestFilterIterator(t *testing.T) {
 	result := ToSlice(iter)
 	assert.Equal([]int{1, 2}, result)
 }
+
+func TestJoinIterator(t *testing.T) {
+	assert := internal.NewAssert(t, "TestJoinIterator")
+
+	iter1 := FromSlice([]int{1, 2})
+	iter2 := FromSlice([]int{3, 4})
+
+	iter := Join(iter1, iter2)
+
+	item, ok := iter.Next()
+	assert.Equal(1, item)
+	assert.Equal(true, ok)
+
+	assert.Equal([]int{2, 3, 4}, ToSlice(iter))
+}
