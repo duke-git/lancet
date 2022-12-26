@@ -52,3 +52,11 @@ func TestJoinIterator(t *testing.T) {
 
 	assert.Equal([]int{2, 3, 4}, ToSlice(iter))
 }
+
+func TestReduce(t *testing.T) {
+	assert := internal.NewAssert(t, "TestReduce")
+
+	iter := FromSlice([]int{1, 2, 3, 4})
+	sum := Reduce(iter, 0, func(a, b int) int { return a + b })
+	assert.Equal(10, sum)
+}

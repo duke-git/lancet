@@ -101,3 +101,14 @@ func (iter *joinIterator[T]) HasNext() bool {
 
 	return result
 }
+
+// Reduce reduces iter to a single value using the reduction function reducer
+func Reduce[T any, U any](iter Iterator[T], initial U, reducer func(U, T) U) U {
+	acc := initial
+
+	for item, ok := iter.Next(); ok; item, ok = iter.Next() {
+		acc = reducer(acc, item)
+	}
+
+	return acc
+}
