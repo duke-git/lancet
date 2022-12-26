@@ -48,3 +48,28 @@ func TestSliceIterator(t *testing.T) {
 	})
 
 }
+
+func TestRangeIterator(t *testing.T) {
+	assert := internal.NewAssert(t, "TestRangeIterator")
+
+	t.Run("range iterator: ", func(t *testing.T) {
+		iter := FromRange(1, 4, 1)
+
+		item, ok := iter.Next()
+		assert.Equal(1, item)
+		assert.Equal(true, ok)
+
+		item, ok = iter.Next()
+		assert.Equal(2, item)
+		assert.Equal(true, ok)
+
+		item, ok = iter.Next()
+		assert.Equal(3, item)
+		assert.Equal(true, ok)
+
+		_, ok = iter.Next()
+		assert.Equal(false, ok)
+		assert.Equal(false, iter.HasNext())
+	})
+
+}
