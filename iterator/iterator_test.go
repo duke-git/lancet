@@ -5,6 +5,7 @@
 package iterator
 
 import (
+	"context"
 	"testing"
 
 	"github.com/duke-git/lancet/v2/internal"
@@ -47,6 +48,15 @@ func TestSliceIterator(t *testing.T) {
 		assert.Equal(false, ok)
 	})
 
+	t.Run("slice iterator ToSlice: ", func(t *testing.T) {
+		iter := FromSlice([]int{1, 2, 3, 4})
+		item, _ := iter.Next()
+		assert.Equal(1, item)
+
+		data := ToSlice(iter)
+		assert.Equal([]int{2, 3, 4}, data)
+	})
+
 }
 
 func TestRangeIterator(t *testing.T) {
@@ -72,4 +82,22 @@ func TestRangeIterator(t *testing.T) {
 		assert.Equal(false, iter.HasNext())
 	})
 
+}
+
+func TestChannelIterator(t *testing.T) {
+	assert := internal.NewAssert(t, "TestRangeIterator")
+
+	iter := FromSlice([]int{1, 2, 3, 4})
+
+	ctx, cancel := context.WithCancel(context.Background())
+	iter = FromChannel(ToChannel(ctx, iter, 0))
+	item, ok := iter.Next()
+	assert.Equal(1, item)
+	assert.Equal(true, ok)
+	assert.Equal(true, iter.HasNext())
+
+	cancel()
+
+	_, ok = iter.Next()
+	assert.Equal(false, ok)
 }

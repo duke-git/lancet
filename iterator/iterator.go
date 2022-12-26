@@ -11,6 +11,8 @@
 package iterator
 
 import (
+	"context"
+
 	"golang.org/x/exp/constraints"
 )
 
@@ -102,21 +104,15 @@ func (iter *sliceIterator[T]) HasNext() bool {
 
 func (iter *sliceIterator[T]) Next() (T, bool) {
 	iter.index++
+
 	ok := iter.index >= 0 && iter.index < len(iter.slice)
+
 	var item T
 	if ok {
 		item = iter.slice[iter.index]
 	}
-	return item, ok
 
-	// if len(iter.slice) == 0 {
-	// 	var zero T
-	// 	return zero, false
-	// }
-	// iter.index++
-	// item := iter.slice[0]
-	// iter.slice = iter.slice[1:]
-	// return item, true
+	return item, ok
 }
 
 // Prev implements PrevIterator.
@@ -170,4 +166,42 @@ func (iter *rangeIterator[T]) Next() (T, bool) {
 	num := iter.start
 	iter.start += iter.step
 	return num, true
+}
+
+// FromRange creates a iterator which returns the numeric range between start inclusive and end
+// exclusive by the step size. start should be less than end, step shoud be positive.
+func FromChannel[T any](channel <-chan T) Iterator[T] {
+	return &channelIterator[T]{channel: channel}
+}
+
+type channelIterator[T any] struct {
+	channel <-chan T
+}
+
+func (iter *channelIterator[T]) Next() (T, bool) {
+	item, ok := <-iter.channel
+	return item, ok
+}
+
+func (iter *channelIterator[T]) HasNext() bool {
+	return len(iter.channel) == 0
+}
+
+// ToChannel create a new goroutine to pull items from the channel iterator to the returned channel.
+func ToChannel[T any](ctx context.Context, iter Iterator[T], buffer int) <-chan T {
+	result := make(chan T, buffer)
+
+	go func() {
+		defer close(result)
+
+		for item, ok := iter.Next(); ok; item, ok = iter.Next() {
+			select {
+			case result <- item:
+			case <-ctx.Done():
+				return
+			}
+		}
+	}()
+
+	return result
 }
