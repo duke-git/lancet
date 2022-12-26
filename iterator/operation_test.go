@@ -60,3 +60,14 @@ func TestReduce(t *testing.T) {
 	sum := Reduce(iter, 0, func(a, b int) int { return a + b })
 	assert.Equal(10, sum)
 }
+
+func TestTakeIterator(t *testing.T) {
+	assert := internal.NewAssert(t, "TestTakeIterator")
+
+	iter := FromSlice([]int{1, 2, 3, 4, 5})
+
+	iter = Take(iter, 3)
+
+	result := ToSlice(iter)
+	assert.Equal([]int{1, 2, 3}, result)
+}

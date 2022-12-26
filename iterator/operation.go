@@ -112,3 +112,28 @@ func Reduce[T any, U any](iter Iterator[T], initial U, reducer func(U, T) U) U {
 
 	return acc
 }
+
+func Take[T any](it Iterator[T], num int) Iterator[T] {
+	return &takeIterator[T]{it: it, num: num}
+}
+
+type takeIterator[T any] struct {
+	it  Iterator[T]
+	num int
+}
+
+func (iter *takeIterator[T]) Next() (T, bool) {
+	if iter.num <= 0 {
+		var zero T
+		return zero, false
+	}
+	item, ok := iter.it.Next()
+	if ok {
+		iter.num--
+	}
+	return item, ok
+}
+
+func (iter *takeIterator[T]) HasNext() bool {
+	return iter.num > 0
+}
