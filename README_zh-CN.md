@@ -74,7 +74,7 @@ func main() {
 
 ## [lancet API doc](https://uvdream.github.io/lancet-docs/) 感谢[@UvDream](https://github.com/UvDream)整理
 
-### 1. algorithm 算法包实现一些基本算法。eg. sort, search.
+### 1. algorithm包实现一些基本查找和排序算法。
 
 ```go
 import "github.com/duke-git/lancet/v2/algorithm"
@@ -95,7 +95,7 @@ import "github.com/duke-git/lancet/v2/algorithm"
 -   [LinearSearch](https://github.com/duke-git/lancet/blob/main/docs/algorithm_zh-CN.md#LinearSearch)
 -   [LRUCache](https://github.com/duke-git/lancet/blob/main/docs/algorithm_zh-CN.md#LRUCache)
 
-### 2. concurrency 并发包包含一些支持并发编程的功能。例如：goroutine, channel, async 等。
+### 2. concurrency包含一些支持并发编程的功能。例如：goroutine, channel, async 等。
 
 ```go
 import "github.com/duke-git/lancet/v2/concurrency"
@@ -114,7 +114,7 @@ import "github.com/duke-git/lancet/v2/concurrency"
 -   [Take](https://github.com/duke-git/lancet/blob/main/docs/concurrency_zh-CN.md#Take)
 -   [Tee](https://github.com/duke-git/lancet/blob/main/docs/concurrency_zh-CN.md#Tee)
 
-### 3. condition 条件包含一些用于条件判断的函数。eg. And, Or, TernaryOperator...
+### 3. condition包含一些用于条件判断的函数。
 
 ```go
 import "github.com/duke-git/lancet/v2/condition"
@@ -155,7 +155,7 @@ import "github.com/duke-git/lancet/v2/convertor"
 -   [EncodeByte](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#EncodeByte)
 -   [DecodeByte](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#DecodeByte)
 
-### 5. cryptor 加密包支持数据加密和解密，获取 md5，hash 值。支持 base64, md5, hmac, aes, des, rsa。
+### 5. cryptor 加密包支持数据加密和解密，获取md5，hash 值。支持base64, md5, hmac, aes, des, rsa。
 
 ```go
 import "github.com/duke-git/lancet/v2/cryptor"
@@ -259,7 +259,7 @@ import hashmap "github.com/duke-git/lancet/v2/datastructure/hashmap"
 -   [Heap](https://github.com/duke-git/lancet/blob/main/docs/datastructure/heap.md)
 -   [HashMap](https://github.com/duke-git/lancet/blob/main/docs/datastructure/hashmap.md)
 
-### 8. fileutil 包支持文件基本操作。
+### 8. fileutil 包含文件基本操作。
 
 ```go
 import "github.com/duke-git/lancet/v2/fileutil"
@@ -310,7 +310,7 @@ import "github.com/duke-git/lancet/v2/function"
 -   [Pipeline](https://github.com/duke-git/lancet/blob/main/docs/function_zh-CN.md#Pipeline)
 -   [Watcher](https://github.com/duke-git/lancet/blob/main/docs/function_zh-CN.md#Watcher)
 
-### 11. maputil 包包括一些操作 map 的函数.
+### 11. maputil包括一些操作map的函数.
 
 ```go
 import "github.com/duke-git/lancet/v2/maputil"
@@ -327,7 +327,7 @@ import "github.com/duke-git/lancet/v2/maputil"
 -   [Values](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#Values)
 -   [IsDisjoint](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#IsDisjoint)
 
-### 12. mathutil 包实现了一些数学计算的函数。
+### 12. mathutil包实现了一些数学计算的函数。
 
 ```go
 import "github.com/duke-git/lancet/v2/mathutil"
@@ -348,7 +348,7 @@ import "github.com/duke-git/lancet/v2/mathutil"
 -   [RoundToString](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#RoundToString)
 -   [TruncRound](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#TruncRound)
 
-### 13. netutil 网络包支持获取 ip 地址，发送 http 请求。
+### 13. netutil网络包支持获取ip地址，发送http请求。
 
 ```go
 import "github.com/duke-git/lancet/v2/netutil"
@@ -377,7 +377,7 @@ import "github.com/duke-git/lancet/v2/netutil"
 -   [HttpPatch<sup>deprecated</sup>](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#HttpPatch)
 -   [ParseHttpResponse](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#ParseHttpResponse)
 
-### 14. random 随机数生成器包，可以生成随机[]bytes, int, string。
+### 14. random随机数生成器包，可以生成随机[]bytes, int, string。
 
 ```go
 import "github.com/duke-git/lancet/v2/random"
@@ -394,7 +394,7 @@ import "github.com/duke-git/lancet/v2/random"
 -   [RandNumeralOrLetter](https://github.com/duke-git/lancet/blob/main/docs/random_zh-CN.md#RandNumeralOrLetter)
 -   [UUIdV4](https://github.com/duke-git/lancet/blob/main/docs/random.md#UUIdV4)
 
-### 15. retry 重试执行函数直到函数运行成功或被 context cancel。
+### 15. retry重试执行函数直到函数运行成功或被context cancel。
 
 ```go
 import "github.com/duke-git/lancet/v2/retry"
@@ -408,7 +408,7 @@ import "github.com/duke-git/lancet/v2/retry"
 -   [RetryDuration](https://github.com/duke-git/lancet/blob/main/docs/retry_zh-CN.md#RetryDuration)
 -   [RetryTimes](https://github.com/duke-git/lancet/blob/main/docs/retry_zh-CN.md#RetryTimes)
 
-### 16. slice 包包含操作切片的方法集合。
+### 16. slice包含操作切片的方法集合。
 
 ```go
 import "github.com/duke-git/lancet/v2/slice"
@@ -468,7 +468,7 @@ import "github.com/duke-git/lancet/v2/slice"
 -   [Without](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Without)
 -   [KeyBy](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#KeyBy)
 
-### 17. strutil 包含处理字符串的相关函数。
+### 17. strutil包含处理字符串的相关函数。
 
 ```go
 import "github.com/duke-git/lancet/v2/strutil"
@@ -496,7 +496,7 @@ import "github.com/duke-git/lancet/v2/strutil"
 -   [Wrap](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#Wrap)
 -   [Unwrap](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#Unwrap)
 
-### 18. system 包含 os, runtime, shell command 相关函数。
+### 18. system包含os, runtime, shell command的相关函数。
 
 ```go
 import "github.com/duke-git/lancet/v2/system"
@@ -514,7 +514,7 @@ import "github.com/duke-git/lancet/v2/system"
 -   [ExecCommand](https://github.com/duke-git/lancet/blob/main/docs/system_zh-CN.md#ExecCommand)
 -   [GetOsBits](https://github.com/duke-git/lancet/blob/main/docs/system_zh-CN.md#GetOsBits)
 
-### 19. validator 验证器包，包含常用字符串格式验证函数。
+### 19. validator验证器包，包含常用字符串格式验证函数。
 
 ```go
 import "github.com/duke-git/lancet/v2/validator"
@@ -551,7 +551,7 @@ import "github.com/duke-git/lancet/v2/validator"
 -   [IsZeroValue](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsZeroValue)
 -   [IsGBK](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsGBK)
 
-### 20. xerror 包实现一些错误处理函数
+### 20. xerror包实现一些错误处理函数
 
 ```go
 import "github.com/duke-git/lancet/v2/xerror"
