@@ -466,33 +466,70 @@ import "github.com/duke-git/lancet/v2/slice"
 -   [Without](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Without)
 -   [KeyBy](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#KeyBy)
 
-### 17. strutil包含处理字符串的相关函数。
+### 17. strutil包含字符串处理的相关函数。
 
 ```go
 import "github.com/duke-git/lancet/v2/strutil"
 ```
 
 #### 函数列表:
-
--   [After](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#After)
--   [AfterLast](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#AfterLast)
--   [Before](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#Before)
--   [BeforeLast](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#BeforeLast)
--   [CamelCase](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#CamelCase)
--   [Capitalize](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#Capitalize)
--   [IsString](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#IsString)
--   [KebabCase](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#KebabCase)
--   [UpperKebabCase](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#UpperKebabCase)
--   [LowerFirst](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#LowerFirst)
--   [UpperFirst](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#UpperFirst)
--   [PadEnd](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#PadEnd)
--   [PadStart](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#PadStart)
--   [Reverse](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#Reverse)
--   [SnakeCase](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#SnakeCase)
--   [UpperSnakeCase](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#UpperSnakeCase)
--   [SplitEx](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#SplitEx)
--   [Wrap](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#Wrap)
--   [Unwrap](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#Unwrap)
+- **<big>After</big>** : 返回源字符串中指定字符串首次出现时的位置之后的子字符串。
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#After)] 
+[[play](https://go.dev/play/p/RbCOQqCDA7m)]
+- **<big>AfterLast</big>** : 返回源字符串中指定字符串最后一次出现时的位置之后的子字符串。
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#AfterLast)] 
+[[play](https://go.dev/play/p/1TegARrb8Yn)]
+- **<big>Before</big>** : 返回源字符串中指定字符串第一次出现时的位置之前的子字符串。
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#Before)] 
+[[play](https://go.dev/play/p/JAWTZDS4F5w)]
+- **<big>BeforeLast</big>** : 返回源字符串中指定字符串最后一次出现时的位置之前的子字符串。
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#BeforeLast)] 
+[[play](https://go.dev/play/p/pJfXXAoG_Te)]
+- **<big>CamelCase</big>** : 将字符串转换为CamelCase驼峰式字符串, 非字母和数字会被忽略。
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#CamelCase)]
+[[play](https://go.dev/play/p/9eXP3tn2tUy)]
+- **<big>Capitalize</big>** : 将字符串的第一个字符转换为大写。
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#Capitalize)]
+[[play](https://go.dev/play/p/2OAjgbmAqHZ)]
+- **<big>IsString</big>** : 判断传入参数的数据类型是否为字符串。
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#IsString)]
+[[play](https://go.dev/play/p/IOgq7oF9ERm)]
+- **<big>KebabCase</big>** : 将字符串转换为kebab-case形式字符串, 非字母和数字会被忽略。
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#KebabCase)]
+[[play](https://go.dev/play/p/dcZM9Oahw-Y)]
+- **<big>UpperKebabCase</big>** : 将字符串转换为大写KEBAB-CASE形式字符串, 非字母和数字会被忽略。
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#UpperKebabCase)]
+[[play](https://go.dev/play/p/zDyKNneyQXk)]
+- **<big>LowerFirst</big>** : 将字符串的第一个字符转换为小写形式。
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#LowerFirst)]
+[[play](https://go.dev/play/p/CbzAyZmtJwL)]
+- **<big>UpperFirst</big>** : 将字符串的第一个字符转换为大写形式。
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#UpperFirst)]
+[[play](https://go.dev/play/p/sBbBxRbs8MM)]
+- **<big>PadEnd</big>** : 如果字符串短于限制大小，则在右侧用给定字符填充字符串。 如果填充字符超出大小，它们将被截断。
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#PadEnd)]
+[[play](https://go.dev/play/p/9xP8rN0vz--)]
+- **<big>PadStart</big>** : 如果字符串短于限制大小，则在左侧用给定字符填充字符串。 如果填充字符超出大小，它们将被截断。
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#PadStart)]
+[[play](https://go.dev/play/p/xpTfzArDfvT)]
+- **<big>Reverse</big>** : 返回字符顺序与给定字符串相反的字符串。
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#Reverse)]
+[[play](https://go.dev/play/p/adfwalJiecD)]
+- **<big>SnakeCase</big>** : 将字符串转换为snake_case形式, 非字母和数字会被忽略。
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#SnakeCase)]
+[[play](https://go.dev/play/p/tgzQG11qBuN)]
+- **<big>UpperSnakeCase</big>** : 将字符串转换为大写SNAKE_CASE形式, 非字母和数字会被忽略。
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#UpperSnakeCase)]
+[[play](https://go.dev/play/p/4COPHpnLx38)]
+- **<big>SplitEx</big>** : 拆分给定的字符串可以控制结果切片是否包含空字符串。
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#SplitEx)]
+[[play](https://go.dev/play/p/Us-ySSbWh-3)]
+- **<big>Wrap</big>** : 用给定字符包裹传入的字符串
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#Wrap)]
+[[play](https://go.dev/play/p/KoZOlZDDt9y)]
+- **<big>Unwrap</big>** : 从另一个字符串中解开一个给定的字符串。 将更改源字符串。
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#Unwrap)]
+[[play](https://go.dev/play/p/Ec2q4BzCpG-)]
 
 ### 18. system包含os, runtime, shell command的相关函数。
 

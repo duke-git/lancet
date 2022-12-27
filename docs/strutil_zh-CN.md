@@ -238,7 +238,7 @@ func main() {
 
 
 ### <span id="IsString">IsString</span>
-<p>检查值的数据类型是否为字符串</p>
+<p>判断传入参数的数据类型是否为字符串</p>
 
 <b>函数签名:</b>
 
@@ -367,7 +367,7 @@ func main() {
 
 
 ### <span id="UpperFirst">UpperFirst</span>
-<p>将字符串的第一个字符转换为大写</p>
+<p>将字符串的第一个字符转换为大写形式</p>
 
 <b>函数签名:</b>
 
