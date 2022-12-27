@@ -1,6 +1,8 @@
 package strutil
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func ExampleAfter() {
 	result1 := After("foo", "")
@@ -191,6 +193,7 @@ func ExamplePadEnd() {
 	result4 := PadEnd("foo", 4, "bar")
 	result5 := PadEnd("foo", 5, "bar")
 	result6 := PadEnd("foo", 6, "bar")
+	result7 := PadEnd("foo", 7, "bar")
 
 	fmt.Println(result1)
 	fmt.Println(result2)
@@ -198,6 +201,7 @@ func ExamplePadEnd() {
 	fmt.Println(result4)
 	fmt.Println(result5)
 	fmt.Println(result6)
+	fmt.Println(result7)
 	// Output:
 	// foo
 	// foo
@@ -205,6 +209,7 @@ func ExamplePadEnd() {
 	// foob
 	// fooba
 	// foobar
+	// foobarb
 }
 
 func ExamplePadStart() {
@@ -214,6 +219,7 @@ func ExamplePadStart() {
 	result4 := PadStart("foo", 4, "bar")
 	result5 := PadStart("foo", 5, "bar")
 	result6 := PadStart("foo", 6, "bar")
+	result7 := PadStart("foo", 7, "bar")
 
 	fmt.Println(result1)
 	fmt.Println(result2)
@@ -221,6 +227,7 @@ func ExamplePadStart() {
 	fmt.Println(result4)
 	fmt.Println(result5)
 	fmt.Println(result6)
+	fmt.Println(result7)
 	// Output:
 	// foo
 	// foo
@@ -228,6 +235,7 @@ func ExamplePadStart() {
 	// bfoo
 	// bafoo
 	// barfoo
+	// barbfoo
 }
 
 func ExampleReverse() {

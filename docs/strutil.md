@@ -77,7 +77,7 @@ func main() {
 
 
 ### <span id="AfterLast">AfterLast</span>
-<p>Creates substring in source string after position when char last appear.</p>
+<p>Returns the substring after the last occurrence of a specified string in the source string.</p>
 
 <b>Signature:</b>
 
@@ -108,7 +108,7 @@ func main() {
 
 
 ### <span id="Before">Before</span>
-<p>Creates substring in source string before position when char first appear.</p>
+<p>Returns the substring of the source string up to the first occurrence of the specified string.</p>
 
 <b>Signature:</b>
 
@@ -139,7 +139,7 @@ func main() {
 
 
 ### <span id="BeforeLast">BeforeLast</span>
-<p>Creates substring in source string before position when char first appear.</p>
+<p>Returns the substring of the source string up to the last occurrence of the specified string.</p>
 
 <b>Signature:</b>
 
@@ -633,7 +633,7 @@ func main() {
 
 
 ### <span id="Wrap">Wrap</span>
-<p>Wrap a string with another string.</p>
+<p>Wrap a string with given string.</p>
 
 <b>Signature:</b>
 
@@ -670,7 +670,7 @@ func main() {
 
 
 ### <span id="Wrap">Wrap</span>
-<p>Unwrap a given string from anther string. will change str value.</p>
+<p>Unwrap a given string from anther string. will change source string.</p>
 
 <b>Signature:</b>
 

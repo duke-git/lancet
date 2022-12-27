@@ -78,7 +78,7 @@ func main() {
 
 
 ### <span id="AfterLast">AfterLast</span>
-<p>截取源字符串中char最后一次出现时的位置之后的子字符串</p>
+<p>返回源字符串中指定字符串最后一次出现时的位置之后的子字符串</p>
 
 <b>函数签名:</b>
 
@@ -109,7 +109,7 @@ func main() {
 
 
 ### <span id="Before">Before</span>
-<p>截取源字符串中char首次出现时的位置之前的子字符串</p>
+<p>返回源字符串中指定字符串第一次出现时的位置之前的子字符串</p>
 
 <b>函数签名:</b>
 
@@ -140,7 +140,7 @@ func main() {
 
 
 ### <span id="BeforeLast">BeforeLast</span>
-<p>截取源字符串中char最后一次出现时的位置之前的子字符串</p>
+<p>返回源字符串中指定字符串最后一次出现时的位置之前的子字符串</p>
 
 <b>函数签名:</b>
 

@@ -478,26 +478,62 @@ import "github.com/duke-git/lancet/v2/strutil"
 
 #### Function list:
 
--   **<big>After</big>** : returns the substring after the first occurrence of a specified string in the source string. 
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#After)] [[play](https://go.dev/play/p/RbCOQqCDA7m)]
--   **<big>AfterLast</big>** : [doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#AfterLast)
--   [Before](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#Before)
--   [BeforeLast](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#BeforeLast)
--   [CamelCase](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#CamelCase)
--   [Capitalize](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#Capitalize)
--   [IsString](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#IsString)
--   [KebabCase](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#KebabCase)
--   [UpperKebabCase](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#UpperKebabCase)
--   [LowerFirst](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#LowerFirst)
--   [UpperFirst](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#UpperFirst)
--   [PadEnd](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#PadEnd)
--   [PadStart](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#PadStart)
--   [Reverse](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#Reverse)
--   [SnakeCase](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#SnakeCase)
--   [UpperSnakeCase](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#UpperSnakeCase)
--   [SplitEx](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#SplitEx)
--   [Wrap](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#Wrap)
--   [Unwrap](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#Unwrap)
+- **<big>After</big>** : returns the substring after the first occurrence of a specified string in the source string. 
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#After)] 
+[[play](https://go.dev/play/p/RbCOQqCDA7m)]
+- **<big>AfterLast</big>** : returns the substring after the last occurrence of a specified string in the source string. [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#AfterLast)] 
+[[play](https://go.dev/play/p/1TegARrb8Yn)]
+- **<big>Before</big>** : returns the substring before the first occurrence of a specified string in the source string.
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#Before)] 
+[[play](https://go.dev/play/p/JAWTZDS4F5w)]
+- **<big>BeforeLast</big>** : returns the substring before the last occurrence of a specified string in the source string.
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#BeforeLast)] 
+[[play](https://go.dev/play/p/pJfXXAoG_Te)]
+- **<big>CamelCase</big>** : coverts source string to its camelCase string.
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#CamelCase)]
+[[play](https://go.dev/play/p/9eXP3tn2tUy)]
+- **<big>Capitalize</big>** : converts the first character of source string to upper case and the remaining to lower case.
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#Capitalize)]
+[[play](https://go.dev/play/p/2OAjgbmAqHZ)]
+- **<big>IsString</big>** : checks if the parameter value data type is string or not.
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#IsString)]
+[[play](https://go.dev/play/p/IOgq7oF9ERm)]
+- **<big>KebabCase</big>** : coverts string to kebab-case string.
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#KebabCase)]
+[[play](https://go.dev/play/p/dcZM9Oahw-Y)]
+- **<big>UpperKebabCase</big>** : coverts string to upper KEBAB-CASE string.
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#UpperKebabCase)]
+[[play](https://go.dev/play/p/zDyKNneyQXk)]
+- **<big>LowerFirst</big>** : converts the first character of string to lower case.
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#LowerFirst)]
+[[play](https://go.dev/play/p/CbzAyZmtJwL)]
+- **<big>UpperFirst</big>** : converts the first character of string to upper case.
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#UpperFirst)]
+[[play](https://go.dev/play/p/sBbBxRbs8MM)]
+- **<big>PadEnd</big>** : pads string with given characters on the right side if it's shorter than limit size. Padding characters are truncated if they exceed size.
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#PadEnd)]
+[[play](https://go.dev/play/p/9xP8rN0vz--)]
+- **<big>PadStart</big>** : pads string with given characters on the left side if it's shorter than limit size. Padding characters are truncated if they exceed size.
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#PadStart)]
+[[play](https://go.dev/play/p/xpTfzArDfvT)]
+- **<big>Reverse</big>** : returns string whose char order is reversed to the given string.
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#Reverse)]
+[[play](https://go.dev/play/p/adfwalJiecD)]
+- **<big>SnakeCase</big>** : coverts string to snake_case string.
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#SnakeCase)]
+[[play](https://go.dev/play/p/tgzQG11qBuN)]
+- **<big>UpperSnakeCase</big>** : coverts string to upper SNAKE_CASE string.
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#UpperSnakeCase)]
+[[play](https://go.dev/play/p/4COPHpnLx38)]
+- **<big>SplitEx</big>** : split a given string which can control the result slice contains empty string or not.
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#SplitEx)]
+[[play](https://go.dev/play/p/Us-ySSbWh-3)]
+- **<big>Wrap</big>** : wrap a string with given string.
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#Wrap)]
+[[play](https://go.dev/play/p/KoZOlZDDt9y)]
+- **<big>Unwrap</big>** : unwrap a given string from anther string. will change source string.
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#Unwrap)]
+[[play](https://go.dev/play/p/Ec2q4BzCpG-)]
 
 ### 19. System package contain some functions about os, runtime, shell command.
 
