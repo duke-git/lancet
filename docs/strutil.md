@@ -47,7 +47,7 @@ import (
 
 
 ### <span id="After">After</span>
-<p>Creates substring in source string after position when char first appear.</p>
+<p>Returns the substring after the first occurrence of a specified string in the source string.</p>
 
 <b>Signature:</b>
 

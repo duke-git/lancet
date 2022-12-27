@@ -70,9 +70,7 @@ func main() {
 }
 ```
 
-## API 文档
-
-## [lancet API doc](https://uvdream.github.io/lancet-docs/) 感谢[@UvDream](https://github.com/UvDream)整理
+## 文档
 
 ### 1. algorithm包实现一些基本查找和排序算法。
 

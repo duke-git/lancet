@@ -153,7 +153,8 @@ func BeforeLast(s, char string) string {
 	return s[0:i]
 }
 
-// After create substring in source string after position when char first appear
+// After returns the substring after the first occurrence of a specified string in the source string.
+// Play: https://go.dev/play/p/RbCOQqCDA7m
 func After(s, char string) string {
 	if s == "" || char == "" {
 		return s

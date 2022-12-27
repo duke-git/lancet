@@ -71,9 +71,8 @@ func main() {
 }
 ```
 
-## API Documentation
+## Documentation
 
-## [lancet API doc](https://uvdream.github.io/lancet-docs/) Thanks [@UvDream](https://github.com/UvDream) for contributing.
 
 ### 1. Algorithm package implements some basic algorithm. eg. sort, search.
 
@@ -479,8 +478,9 @@ import "github.com/duke-git/lancet/v2/strutil"
 
 #### Function list:
 
--   [After](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#After)
--   [AfterLast](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#AfterLast)
+-   **<big>After</big>** : returns the substring after the first occurrence of a specified string in the source string. 
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#After)] [[play](https://go.dev/play/p/RbCOQqCDA7m)]
+-   **<big>AfterLast</big>** : [doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#AfterLast)
 -   [Before](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#Before)
 -   [BeforeLast](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#BeforeLast)
 -   [CamelCase](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#CamelCase)

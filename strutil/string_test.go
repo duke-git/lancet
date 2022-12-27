@@ -196,6 +196,7 @@ func TestBefore(t *testing.T) {
 	assert := internal.NewAssert(t, "TestBefore")
 
 	assert.Equal("lancet", Before("lancet", ""))
+	assert.Equal("", Before("lancet", "lancet"))
 	assert.Equal("github.com", Before("github.com/test/lancet", "/"))
 	assert.Equal("github.com/", Before("github.com/test/lancet", "test"))
 }
@@ -214,6 +215,7 @@ func TestAfter(t *testing.T) {
 	assert := internal.NewAssert(t, "TestAfter")
 
 	assert.Equal("lancet", After("lancet", ""))
+	assert.Equal("", After("lancet", "lancet"))
 	assert.Equal("test/lancet", After("github.com/test/lancet", "/"))
 	assert.Equal("/lancet", After("github.com/test/lancet", "test"))
 }
@@ -282,6 +284,6 @@ func TestSplitEx(t *testing.T) {
 	assert.Equal([]string{"", "a", "b", "c", ""}, SplitEx(" a b c ", " ", false))
 	assert.Equal([]string{"a", "b", "c"}, SplitEx(" a b c ", " ", true))
 
-	assert.Equal([]string{" a", "b", "c", ""}, SplitEx(" a = b = c = ", " = ", false))
-	assert.Equal([]string{" a", "b", "c"}, SplitEx(" a = b = c = ", " = ", true))
+	assert.Equal([]string{"a", "b", "c", ""}, SplitEx("a = b = c = ", " = ", false))
+	assert.Equal([]string{"a", "b", "c"}, SplitEx("a = b = c = ", " = ", true))
 }
