@@ -66,6 +66,7 @@ func TestBubbleSortForStructSlice(t *testing.T) {
 
 func TestBubbleSortForIntSlice(t *testing.T) {
 	asssert := internal.NewAssert(t, "TestBubbleSortForIntSlice")
+
 	numbers := []int{2, 1, 5, 3, 6, 4}
 	comparator := &intComparator{}
 	BubbleSort(numbers, comparator)
