@@ -79,19 +79,41 @@ import "github.com/duke-git/lancet/v2/algorithm"
 ```
 
 #### Function list:
-
--   [BubbleSort](https://github.com/duke-git/lancet/blob/main/docs/algorithm_zh-CN.md#BubbleSort)
--   [CountSort](https://github.com/duke-git/lancet/blob/main/docs/algorithm_zh-CN.md#CountSort)
--   [HeapSort](https://github.com/duke-git/lancet/blob/main/docs/algorithm_zh-CN.md#HeapSort)
--   [InsertionSort](https://github.com/duke-git/lancet/blob/main/docs/algorithm_zh-CN.md#InsertionSort)
--   [MergeSort](https://github.com/duke-git/lancet/blob/main/docs/algorithm_zh-CN.md#MergeSort)
--   [QuickSort](https://github.com/duke-git/lancet/blob/main/docs/algorithm_zh-CN.md#QuickSort)
--   [SelectionSort](https://github.com/duke-git/lancet/blob/main/docs/algorithm_zh-CN.md#SelectionSort)
--   [ShellSort](https://github.com/duke-git/lancet/blob/main/docs/algorithm_zh-CN.md#ShellSort)
--   [BinarySearch](https://github.com/duke-git/lancet/blob/main/docs/algorithm_zh-CN.md#BinarySearch)
--   [BinaryIterativeSearch](https://github.com/duke-git/lancet/blob/main/docs/algorithm_zh-CN.md#BinaryIterativeSearch)
--   [LinearSearch](https://github.com/duke-git/lancet/blob/main/docs/algorithm_zh-CN.md#LinearSearch)
--   [LRUCache](https://github.com/duke-git/lancet/blob/main/docs/algorithm_zh-CN.md#LRUCache)
+- **<big>BubbleSort</big>** : 使用冒泡排序算法对切片进行排序。
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm_zh-CN.md#BubbleSort)] 
+[[play](https://go.dev/play/p/GNdv7Jg2Taj)]
+- **<big>CountSort</big>** : 使用计数排序算法对切片进行排序。不改变原数据。
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm_zh-CN.md#CountSort)] 
+[[play](https://go.dev/play/p/tB-Umgm0DrP)]
+- **<big>HeapSort</big>** : 使用堆排序算法对切片进行排序。 
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm_zh-CN.md#HeapSort)] 
+[[play](https://go.dev/play/p/u6Iwa1VZS_f)]
+- **<big>InsertionSort</big>** : 使用插入排序算法对切片进行排序。
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm_zh-CN.md#InsertionSort)] 
+[[play](https://go.dev/play/p/G5LJiWgJJW6)]
+- **<big>MergeSort</big>** : 使用合并排序算法对切片进行排序。 
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm_zh-CN.md#MergeSort)] 
+[[play](https://go.dev/play/p/ydinn9YzUJn)]
+- **<big>QuickSort</big>** : 使用快速排序算法对切片进行排序。 
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm_zh-CN.md#QuickSort)] 
+[[play](https://go.dev/play/p/7Y7c1Elk3ax)]
+- **<big>SelectionSort</big>** : 使用选择排序算法对切片进行排序。
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm_zh-CN.md#SelectionSort)] 
+[[play](https://go.dev/play/p/oXovbkekayS)]
+- **<big>ShellSort</big>** : 使用希尔排序算法对切片进行排序。 
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm_zh-CN.md#ShellSort)] 
+[[play](https://go.dev/play/p/3ibkszpJEu3)]
+- **<big>BinarySearch</big>** : 返回排序切片中目标值的索引，使用二分搜索（递归调用）。
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm_zh-CN.md#BinarySearch)]
+[[play](https://go.dev/play/p/t6MeGiUSN47)]
+- **<big>BinaryIterativeSearch</big>** :返回排序切片中目标值的索引，使用二分搜索（非递归）。 
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm_zh-CN.md#BinaryIterativeSearch)]
+[[play](https://go.dev/play/p/Anozfr8ZLH3)]
+- **<big>LinearSearch</big>** : 基于传入的相等函数返回切片中目标值的索引。（线性查找）
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm_zh-CN.md#LinearSearch)]
+- **<big>LRUCache</big>** : 应用lru算法实现内存缓存. 
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm_zh-CN.md#LRUCache)]
+[[play](https://go.dev/play/p/-EZjgOURufP)]
 
 ### 2. concurrency包含一些支持并发编程的功能。例如：goroutine, channel, async 等。
 

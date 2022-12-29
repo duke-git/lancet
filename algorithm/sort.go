@@ -1,7 +1,6 @@
 // Copyright 2021 dudaodong@gmail.com. All rights reserved.
 // Use of this source code is governed by MIT license
 
-// Package algorithm contain some basic algorithm functions. eg. sort, search
 package algorithm
 
 import "github.com/duke-git/lancet/v2/lancetconstraints"
@@ -35,7 +34,7 @@ func InsertionSort[T any](slice []T, comparator lancetconstraints.Comparator) {
 }
 
 // SelectionSort applys the selection sort algorithm to sort the collection, will change the original collection data.
-// Play:
+// Play: https://go.dev/play/p/oXovbkekayS
 func SelectionSort[T any](slice []T, comparator lancetconstraints.Comparator) {
 	for i := 0; i < len(slice); i++ {
 		min := i

@@ -81,19 +81,41 @@ import "github.com/duke-git/lancet/v2/algorithm"
 ```
 
 #### Function list:
-
--   [BubbleSort](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#BubbleSort)
--   [CountSort](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#CountSort)
--   [HeapSort](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#HeapSort)
--   [InsertionSort](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#InsertionSort)
--   [MergeSort](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#MergeSort)
--   [QuickSort](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#QuickSort)
--   [SelectionSort](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#SelectionSort)
--   [ShellSort](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#ShellSort)
--   [BinarySearch](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#BinarySearch)
--   [BinaryIterativeSearch](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#BinaryIterativeSearch)
--   [LinearSearch](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#LinearSearch)
--   [LRUCache](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#LRUCache)
+- **<big>BubbleSort</big>** : sorts slice with bubble sort algorithm, will change the original slice. 
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#BubbleSort)] 
+[[play](https://go.dev/play/p/GNdv7Jg2Taj)]
+- **<big>CountSort</big>** : sorts slice with bubble sort algorithm, don't change original slice. 
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#CountSort)] 
+[[play](https://go.dev/play/p/tB-Umgm0DrP)]
+- **<big>HeapSort</big>** : sorts slice with heap sort algorithm, will change the original slice. 
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#HeapSort)] 
+[[play](https://go.dev/play/p/u6Iwa1VZS_f)]
+- **<big>InsertionSort</big>** : sorts slice with insertion sort algorithm, will change the original slice. 
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#InsertionSort)] 
+[[play](https://go.dev/play/p/G5LJiWgJJW6)]
+- **<big>MergeSort</big>** : sorts slice with merge sort algorithm, will change the original slice. 
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#MergeSort)] 
+[[play](https://go.dev/play/p/ydinn9YzUJn)]
+- **<big>QuickSort</big>** : sorts slice with quick sort algorithm, will change the original slice. 
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#QuickSort)] 
+[[play](https://go.dev/play/p/7Y7c1Elk3ax)]
+- **<big>SelectionSort</big>** : sorts slice with selection sort algorithm, will change the original slice. 
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#SelectionSort)] 
+[[play](https://go.dev/play/p/oXovbkekayS)]
+- **<big>ShellSort</big>** : sorts slice with shell sort algorithm, will change the original slice. 
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#ShellSort)] 
+[[play](https://go.dev/play/p/3ibkszpJEu3)]
+- **<big>BinarySearch</big>** : returns the index of target within a sorted slice, use binary search (recursive call itself). 
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#BinarySearch)]
+[[play](https://go.dev/play/p/t6MeGiUSN47)]
+- **<big>BinaryIterativeSearch</big>** : returns the index of target within a sorted slice, use binary search (no recursive). 
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#BinaryIterativeSearch)]
+[[play](https://go.dev/play/p/Anozfr8ZLH3)]
+- **<big>LinearSearch</big>** : returns the index of target in slice base on equal function. 
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#LinearSearch)]
+- **<big>LRUCache</big>** : implements memory cache with lru algorithm. 
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#LRUCache)]
+[[play](https://go.dev/play/p/-EZjgOURufP)]
 
 ### 2. Concurrency package contain some functions to support concurrent programming. eg, goroutine, channel, async.
 

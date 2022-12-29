@@ -570,6 +570,8 @@ func main() {
 func NewLRUCache[K comparable, V any](capacity int) *LRUCache[K, V]
 func (l *LRUCache[K, V]) Get(key K) (V, bool)
 func (l *LRUCache[K, V]) Put(key K, value V)
+func (l *LRUCache[K, V]) Delete(key K) bool
+func (l *LRUCache[K, V]) Len() int
 ```
 <b>Example:</b>
 
@@ -586,10 +588,14 @@ func main() {
 
     cache.Put(1, 1)
     cache.Put(2, 2)
+    cache.Put(3, 3)
 
-    _, ok := cache.Get(0) // ok -> false
+    fmt.Println(cache.Len()) // 3
 
-    v, ok := cache.Get(1) // v->1, ok->true
+    v, ok := cache.Get(1)
+    fmt.Println(v, ok) // 1 true
 
+    ok = cache.Delete(1)
+    fmt.Println(ok) // true
 }
 ```
