@@ -287,3 +287,14 @@ func TestSplitEx(t *testing.T) {
 	assert.Equal([]string{"a", "b", "c", ""}, SplitEx("a = b = c = ", " = ", false))
 	assert.Equal([]string{"a", "b", "c"}, SplitEx("a = b = c = ", " = ", true))
 }
+
+func TestSubstring(t *testing.T) {
+	assert := internal.NewAssert(t, "TestSubstring")
+
+	assert.Equal("bcd", Substring("abcde", 1, 3))
+	assert.Equal("bcde", Substring("abcde", 1, 5))
+	assert.Equal("e", Substring("abcde", -1, 3))
+	assert.Equal("de", Substring("abcde", -2, 2))
+	assert.Equal("de", Substring("abcde", -2, 3))
+	assert.Equal("你好", Substring("你好，欢迎你", 0, 2))
+}

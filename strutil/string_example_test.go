@@ -337,3 +337,27 @@ func ExampleUnwrap() {
 	// foo*
 	// *foo*
 }
+
+func ExampleSubstring() {
+
+	result1 := Substring("abcde", 1, 3)
+	result2 := Substring("abcde", 1, 5)
+	result3 := Substring("abcde", -1, 3)
+	result4 := Substring("abcde", -2, 2)
+	result5 := Substring("abcde", -2, 3)
+	result6 := Substring("你好，欢迎你", 0, 2)
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+	fmt.Println(result4)
+	fmt.Println(result5)
+	fmt.Println(result6)
+	// Output:
+	// bcd
+	// bcde
+	// e
+	// de
+	// de
+	// 你好
+}
