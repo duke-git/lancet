@@ -37,6 +37,7 @@ import (
 - [SnakeCase](#SnakeCase)
 - [UpperSnakeCase](#UpperSnakeCase)
 - [SplitEx](#SplitEx)
+- [Substring](#Substring)
 - [Wrap](#Wrap)
 - [Unwrap](#Unwrap)
   
@@ -631,6 +632,42 @@ func main() {
 
 
 
+### <span id="Substring">Substring</span>
+<p>Returns a substring of the specified length starting at the specified offset position.</p>
+
+<b>Signature:</b>
+
+```go
+func Substring(s string, offset int, length uint) string
+```
+<b>Example:</b>
+
+```go
+import (
+	"fmt"
+	"github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+	result1 := strutil.Substring("abcde", 1, 3)
+	fmt.Println(result1) //bcd
+
+	result2 := strutil.Substring("abcde", 1, 5)
+	fmt.Println(result2) //bcde
+
+	result3 := strutil.Substring("abcde", -1, 3)
+	fmt.Println(result3) //e
+
+	result4 := strutil.Substring("abcde", -2, 2)
+	fmt.Println(result4) //de
+
+	result5 := strutil.Substring("abcde", -2, 3)
+	fmt.Println(result5) //de
+
+	result6 := strutil.Substring("你好，欢迎你", 0, 2)
+	fmt.Println(result6) //你好
+}
+```
 
 ### <span id="Wrap">Wrap</span>
 <p>Wrap a string with given string.</p>

@@ -550,6 +550,8 @@ import "github.com/duke-git/lancet/v2/strutil"
 - **<big>SplitEx</big>** : split a given string which can control the result slice contains empty string or not.
 [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#SplitEx)]
 [[play](https://go.dev/play/p/Us-ySSbWh-3)]
+- **<big>Substring</big>** : returns a substring of the specified length starting at the specified offset position.
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#Substring)]
 - **<big>Wrap</big>** : wrap a string with given string.
 [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#Wrap)]
 [[play](https://go.dev/play/p/KoZOlZDDt9y)]

@@ -546,6 +546,8 @@ import "github.com/duke-git/lancet/v2/strutil"
 - **<big>SplitEx</big>** : 拆分给定的字符串可以控制结果切片是否包含空字符串。
 [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#SplitEx)]
 [[play](https://go.dev/play/p/Us-ySSbWh-3)]
+- **<big>Substring</big>** : 根据指定的位置和长度截取子字符串。
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#Substring)]
 - **<big>Wrap</big>** : 用给定字符包裹传入的字符串
 [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#Wrap)]
 [[play](https://go.dev/play/p/KoZOlZDDt9y)]
