@@ -102,7 +102,7 @@ import (
 )
 
 func main() {
-	isOsMac := system.IsMac
+	isOsMac := system.IsMac()
 	fmt.Println(isOsMac)
 }
 ```

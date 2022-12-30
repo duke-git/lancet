@@ -26,7 +26,6 @@ import (
 - [GetOsEnv](#GetOsEnv)
 - [SetOsEnv](#SetOsEnv)
 - [RemoveOsEnv](#RemoveOsEnv)
-
 - [CompareOsEnv](#CompareOsEnv)
 - [ExecCommand](#ExecCommand)
 - [GetOsBits](#GetOsBits)
@@ -103,7 +102,7 @@ import (
 )
 
 func main() {
-	isOsMac := system.IsMac
+	isOsMac := system.IsMac()
 	fmt.Println(isOsMac)
 }
 ```
