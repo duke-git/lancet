@@ -566,16 +566,33 @@ import "github.com/duke-git/lancet/v2/system"
 ```
 
 #### Function list:
-
--   [IsWindows](https://github.com/duke-git/lancet/blob/main/docs/system.md#IsWindows)
--   [IsLinux](https://github.com/duke-git/lancet/blob/main/docs/system.md#IsLinux)
--   [IsMac](https://github.com/duke-git/lancet/blob/main/docs/system.md#IsMac)
--   [GetOsEnv](https://github.com/duke-git/lancet/blob/main/docs/system.md#GetOsEnv)
--   [SetOsEnv](https://github.com/duke-git/lancet/blob/main/docs/system.md#SetOsEnv)
--   [RemoveOsEnv](https://github.com/duke-git/lancet/blob/main/docs/system.md#RemoveOsEnv)
--   [CompareOsEnv](https://github.com/duke-git/lancet/blob/main/docs/system.md#CompareOsEnv)
--   [ExecCommand](https://github.com/duke-git/lancet/blob/main/docs/system.md#ExecCommand)
--   [GetOsBits](https://github.com/duke-git/lancet/blob/main/docs/system.md#GetOsBits)
+- **<big>IsWindows</big>** : check if current os is windows.
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/system.md#IsWindows)]
+[[play](https://go.dev/play/p/XzJULbzmf9m)]
+- **<big>IsLinux</big>** : check if current os is linux.
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/system.md#IsLinux)]
+[[play](https://go.dev/play/p/zIflQgZNuxD)]
+- **<big>IsMac</big>** : check if current os is macos.
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/system.md#IsMac)]
+[[play](https://go.dev/play/p/Mg4Hjtyq7Zc)]
+- **<big>GetOsEnv</big>** : get the value of the environment variable named by the key.
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/system.md#GetOsEnv)]
+[[play](https://go.dev/play/p/D88OYVCyjO-)]
+- **<big>SetOsEnv</big>** : set the value of the environment variable named by the key.
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/system.md#SetOsEnv)]
+[[play](https://go.dev/play/p/D88OYVCyjO-)]
+- **<big>RemoveOsEnv</big>** : remove a single environment variable.
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/system.md#RemoveOsEnv)]
+[[play](https://go.dev/play/p/fqyq4b3xUFQ)]
+- **<big>CompareOsEnv</big>** : get env named by the key and compare it with passed env.
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/system.md#CompareOsEnv)]
+[[play](https://go.dev/play/p/BciHrKYOHbp)]
+- **<big>ExecCommand</big>** : execute command, return the stdout and stderr string of command, and error if error occurs.
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/system.md#ExecCommand)]
+[[play](https://go.dev/play/p/n-2fLyZef-4)]
+- **<big>GetOsBits</big>** : return current os bits (32 or 64).
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/system.md#GetOsBits)]
+[[play](https://go.dev/play/p/ml-_XH3gJbW)]
 
 ### 19. Validator package contains some functions for data validation.
 

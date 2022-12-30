@@ -562,16 +562,33 @@ import "github.com/duke-git/lancet/v2/system"
 ```
 
 #### 函数列表:
-
--   [IsWindows](https://github.com/duke-git/lancet/blob/main/docs/system_zh-CN.md#IsWindows)
--   [IsLinux](https://github.com/duke-git/lancet/blob/main/docs/system_zh-CN.md#IsLinux)
--   [IsMac](https://github.com/duke-git/lancet/blob/main/docs/system_zh-CN.md#IsMac)
--   [GetOsEnv](https://github.com/duke-git/lancet/blob/main/docs/system_zh-CN.md#GetOsEnv)
--   [SetOsEnv](https://github.com/duke-git/lancet/blob/main/docs/system_zh-CN.md#SetOsEnv)
--   [RemoveOsEnv](https://github.com/duke-git/lancet/blob/main/docs/system_zh-CN.md#RemoveOsEnv)
--   [CompareOsEnv](https://github.com/duke-git/lancet/blob/main/docs/system_zh-CN.md#CompareOsEnv)
--   [ExecCommand](https://github.com/duke-git/lancet/blob/main/docs/system_zh-CN.md#ExecCommand)
--   [GetOsBits](https://github.com/duke-git/lancet/blob/main/docs/system_zh-CN.md#GetOsBits)
+- **<big>IsWindows</big>** : 检查当前操作系统是否是windows。
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/system_zh-CN#IsWindows)]
+[[play](https://go.dev/play/p/XzJULbzmf9m)]
+- **<big>IsLinux</big>** : 检查当前操作系统是否是linux。
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/system_zh-CN#IsLinux)]
+[[play](https://go.dev/play/p/zIflQgZNuxD)]
+- **<big>IsMac</big>** : 检查当前操作系统是否是macos。
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/system_zh-CN#IsMac)]
+[[play](https://go.dev/play/p/Mg4Hjtyq7Zc)]
+- **<big>GetOsEnv</big>** : 根据key获取对应的环境变量值
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/system_zh-CN#GetOsEnv)]
+[[play](https://go.dev/play/p/D88OYVCyjO-)]
+- **<big>SetOsEnv</big>** : 设置环境变量。
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/system_zh-CN#SetOsEnv)]
+[[play](https://go.dev/play/p/D88OYVCyjO-)]
+- **<big>RemoveOsEnv</big>** : 删除环境变量。
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/system_zh-CN#RemoveOsEnv)]
+[[play](https://go.dev/play/p/fqyq4b3xUFQ)]
+- **<big>CompareOsEnv</big>** : 换取环境变量并与传入值进行比较。
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/system_zh-CN#CompareOsEnv)]
+[[play](https://go.dev/play/p/BciHrKYOHbp)]
+- **<big>ExecCommand</big>** : 执行shell命令。
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/system_zh-CN#ExecCommand)]
+[[play](https://go.dev/play/p/n-2fLyZef-4)]
+- **<big>GetOsBits</big>** : 获取当前操作系统位数(32/64)。
+[[doc](https://github.com/duke-git/lancet/blob/main/docs/system_zh-CN#GetOsBits)]
+[[play](https://go.dev/play/p/ml-_XH3gJbW)]
 
 ### 19. validator验证器包，包含常用字符串格式验证函数。
 

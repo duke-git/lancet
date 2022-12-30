@@ -117,7 +117,7 @@ func byteToString(data []byte, charset string) string {
 	return result
 }
 
-// GetOsBits return this system bits (32 or 64)
+// GetOsBits return current os bits (32 or 64).
 // Play: https://go.dev/play/p/ml-_XH3gJbW
 func GetOsBits() int {
 	return 32 << (^uint(0) >> 63)
