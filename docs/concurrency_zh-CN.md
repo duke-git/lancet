@@ -38,13 +38,13 @@ import (
 
 ### Channel
 ### <span id="NewChannel">NewChannel</span>
-<p>返回一个 Channel 指针实例</p>
+<p>返回一个Channel指针实例</p>
 
 <b>函数签名:</b>
 
 ```go
-type Channel struct {}
-func NewChannel() *Channel
+type Channel[T any] struct
+func NewChannel[T any]() *Channel[T]
 ```
 <b>例子:</b>
 
@@ -57,7 +57,7 @@ import (
 )
 
 func main() {
-    c := concurrency.NewChannel()
+    c := concurrency.NewChannel[int]()
 }
 ```
 
@@ -65,12 +65,12 @@ func main() {
 
 ### <span id="Bridge">Bridge</span>
 
-<p>将多个通道链接到一个通道，直到取消上下文。</p>
+<p>将多个channel链接到一个channel，直到取消上下文。</p>
 
 <b>函数签名:</b>
 
 ```go
-func (c *Channel) Bridge(ctx context.Context, chanStream <-chan <-chan any) <-chan any
+func (c *Channel[T]) Bridge(ctx context.Context, chanStream <-chan <-chan T) <-chan T
 ```
 <b>例子:</b>
 
@@ -84,28 +84,33 @@ import (
 )
 
 func main() {
-    ctx, cancel := context.WithCancel(context.Background())
+	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
-	c := concurrency.NewChannel()
-	genVals := func() <-chan <-chan any {
-		chanStream := make(chan (<-chan any))
+	c := concurrency.NewChannel[int]()
+	genVals := func() <-chan <-chan int {
+		out := make(chan (<-chan int))
 		go func() {
-			defer close(chanStream)
-			for i := 0; i < 10; i++ {
-				stream := make(chan any, 1)
+			defer close(out)
+			for i := 1; i <= 5; i++ {
+				stream := make(chan int, 1)
 				stream <- i
 				close(stream)
-				chanStream <- stream
+				out <- stream
 			}
 		}()
-		return chanStream
+		return out
 	}
 
-	index := 0
-	for val := range c.Bridge(ctx, genVals()) {
-		fmt.Printf("%v ", val) //0 1 2 3 4 5 6 7 8 9
+	for v := range c.Bridge(ctx, genVals()) {
+		fmt.Println(v)
 	}
+	// Output:
+	// 1
+	// 2
+	// 3
+	// 4
+	// 5
 }
 ```
 
@@ -114,12 +119,12 @@ func main() {
 
 ### <span id="FanIn">FanIn</span>
 
-<p>将多个通道合并为一个通道，直到取消上下文</p>
+<p>将多个channel合并为一个channel，直到取消上下文。</p>
 
 <b>函数签名:</b>
 
 ```go
-func (c *Channel) FanIn(ctx context.Context, channels ...<-chan any) <-chan any
+func (c *Channel[T]) FanIn(ctx context.Context, channels ...<-chan T) <-chan T
 ```
 <b>例子:</b>
 
@@ -133,20 +138,20 @@ import (
 )
 
 func main() {
-    ctx, cancel := context.WithCancel(context.Background())
+	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
-	c := concurrency.NewChannel()
-	channels := make([]<-chan any, 3)
+	c := concurrency.NewChannel[int]()
+	channels := make([]<-chan int, 2)
 
-	for i := 0; i < 3; i++ {
-		channels[i] = c.Take(ctx, c.Repeat(ctx, i), 3)
+	for i := 0; i < 2; i++ {
+		channels[i] = c.Take(ctx, c.Repeat(ctx, i), 2)
 	}
 
-	mergedChannel := c.FanIn(ctx, channels...)
+	chs := c.FanIn(ctx, channels...)
 
-	for val := range mergedChannel {
-		fmt.Println("\t%d\n", val) //1,2,1,0,0,1,0,2,2 (order not for sure)
+	for v := range chs {
+		fmt.Println(v) //1 1 0 0 or 0 0 1 1
 	}
 }
 ```
@@ -154,12 +159,12 @@ func main() {
 
 ### <span id="Repeat">Repeat</span>
 
-<p>返回一个chan，将参数`values`重复放入chan，直到取消上下文。</p>
+<p>返回一个channel，将参数`values`重复放入channel，直到取消上下文。</p>
 
 <b>函数签名:</b>
 
 ```go
-func (c *Channel) Repeat(ctx context.Context, values ...any) <-chan any
+func (c *Channel[T]) Repeat(ctx context.Context, values ...T) <-chan T
 ```
 <b>例子:</b>
 
@@ -173,15 +178,20 @@ import (
 )
 
 func main() {
-    ctx, cancel := context.WithCancel(context.Background())
+	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
-	c := concurrency.NewChannel()
-	intStream := c.Take(ctx, c.Repeat(ctx, 1, 2), 5)
+	c := concurrency.NewChannel[int]()
+	intStream := c.Take(ctx, c.Repeat(ctx, 1, 2), 4)
 
 	for v := range intStream {
-		fmt.Println(v) //1, 2, 1, 2, 1
+		fmt.Println(v)
 	}
+	// Output:
+	// 1
+	// 2
+	// 1
+	// 2
 }
 ```
 
@@ -190,12 +200,12 @@ func main() {
 
 ### <span id="RepeatFn">RepeatFn</span>
 
-<p>返回一个chan，重复执行函数fn，并将结果放入返回的chan，直到取消上下文。</p>
+<p>返回一个channel，重复执行函数fn，并将结果放入返回的chan，直到取消上下文。</p>
 
 <b>函数签名:</b>
 
 ```go
-func (c *Channel) RepeatFn(ctx context.Context, fn func() any) <-chan any
+func (c *Channel[T]) RepeatFn(ctx context.Context, fn func() T) <-chan T
 ```
 <b>例子:</b>
 
@@ -209,19 +219,23 @@ import (
 )
 
 func main() {
-    ctx, cancel := context.WithCancel(context.Background())
+	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
-	fn := func() any {
-		s := "a"
-		return s
+	fn := func() string {
+		return "hello"
 	}
-	c := concurrency.NewChannel()
-	dataStream := c.Take(ctx, c.RepeatFn(ctx, fn), 3)
 
-	for v := range dataStream {
-		fmt.Println(v) //a, a, a
+	c := concurrency.NewChannel[string]()
+	intStream := c.Take(ctx, c.RepeatFn(ctx, fn), 3)
+
+	for v := range intStream {
+		fmt.Println(v)
 	}
+	// Output:
+	// hello
+	// hello
+	// hello
 }
 ```
 
@@ -229,12 +243,12 @@ func main() {
 
 ### <span id="Or">Or</span>
 
-<p>将一个或多个通道读取到一个通道中，当任何读取通道关闭时将结束读取。</p>
+<p>将一个或多个channel读取到一个channel中，当任何读取channel关闭时将结束读取。</p>
 
 <b>函数签名:</b>
 
 ```go
-func (c *Channel) Or(channels ...<-chan any) <-chan any
+func (c *Channel[T]) Or(channels ...<-chan T) <-chan T
 ```
 <b>例子:</b>
 
@@ -249,7 +263,7 @@ import (
 
 func main() {
 	sig := func(after time.Duration) <-chan any {
-		c := make(chan interface{})
+		c := make(chan any)
 		go func() {
 			defer close(c)
 			time.Sleep(after)
@@ -259,13 +273,11 @@ func main() {
 
 	start := time.Now()
 
-	c := concurrency.NewChannel()
+	c := concurrency.NewChannel[any]()
 	<-c.Or(
 		sig(1*time.Second),
 		sig(2*time.Second),
 		sig(3*time.Second),
-		sig(4*time.Second),
-		sig(5*time.Second),
 	)
 
 	fmt.Println("done after %v", time.Since(start)) //1.003s
@@ -277,12 +289,12 @@ func main() {
 
 ### <span id="OrDone">OrDone</span>
 
-<p>将一个通道读入另一个通道，直到取消上下文。</p>
+<p>将一个channel读入另一个channel，直到取消上下文。.</p>
 
 <b>函数签名:</b>
 
 ```go
-func (c *Channel) OrDone(ctx context.Context, channel <-chan any) <-chan any
+func (c *Channel[T]) OrDone(ctx context.Context, channel <-chan T) <-chan T
 ```
 <b>例子:</b>
 
@@ -299,12 +311,16 @@ func main() {
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
-	c := concurrency.NewChannel()
+	c := concurrency.NewChannel[int]()
 	intStream := c.Take(ctx, c.Repeat(ctx, 1), 3)
 
-	for val := range c.OrDone(ctx, intStream) {
-		fmt.Println(val)  //1
+	for v := range c.OrDone(ctx, intStream) {
+		fmt.Println(v)
 	}
+	// Output:
+	// 1
+	// 1
+	// 1
 }
 ```
 
@@ -313,12 +329,12 @@ func main() {
 
 ### <span id="Take">Take</span>
 
-<p>返回一个chan，其值从另一个chan获取，直到取消上下文。</p>
+<p>返回一个channel，其值从另一个channel获取，直到取消上下文。</p>
 
 <b>函数签名:</b>
 
 ```go
-func (c *Channel) Take(ctx context.Context, valueStream <-chan any, number int) <-chan any
+func (c *Channel[T]) Take(ctx context.Context, valueStream <-chan T, number int) <-chan T
 ```
 <b>例子:</b>
 
@@ -335,7 +351,7 @@ func main() {
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
-	numbers := make(chan any, 5)
+	numbers := make(chan int, 5)
 	numbers <- 1
 	numbers <- 2
 	numbers <- 3
@@ -343,12 +359,16 @@ func main() {
 	numbers <- 5
 	defer close(numbers)
 
-	c := concurrency.NewChannel()
+	c := concurrency.NewChannel[int]()
 	intStream := c.Take(ctx, numbers, 3)
 
-	for val := range intStream {
-		fmt.Println(val) //1, 2, 3
+	for v := range intStream {
+		fmt.Println(v)
 	}
+	// Output:
+	// 1
+	// 2
+	// 3
 }
 ```
 
@@ -356,12 +376,12 @@ func main() {
 
 ### <span id="Tee">Tee</span>
 
-<p>将一个通道分成两个通道，直到取消上下文。</p>
+<p>将一个channel分成两个channel，直到取消上下文。</p>
 
 <b>函数签名:</b>
 
 ```go
-func (c *Channel) Tee(ctx context.Context, in <-chan any) (<-chan any, <-chan any)
+func (c *Channel[T]) Tee(ctx context.Context, in <-chan T) (<-chan T, <-chan T)
 ```
 <b>例子:</b>
 
@@ -378,13 +398,19 @@ func main() {
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
-	c := concurrency.NewChannel()
-	inStream := c.Take(ctx, c.Repeat(ctx, 1, 2), 4)
+	c := concurrency.NewChannel[int]()
+	intStream := c.Take(ctx, c.Repeat(ctx, 1), 2)
 
-	out1, out2 := c.Tee(ctx, inStream)
-	for val := range out1 {
-		fmt.Println(val) //1
-		fmt.Println(<-out2) //1
+	ch1, ch2 := c.Tee(ctx, intStream)
+
+	for v := range ch1 {
+		fmt.Println(v)
+		fmt.Println(<-ch2)
 	}
+	// Output:
+	// 1
+	// 1
+	// 1
+	// 1
 }
 ```

@@ -14,12 +14,9 @@ func TestGenerate(t *testing.T) {
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
-	c := NewChannel()
+	c := NewChannel[int]()
 	intStream := c.Generate(ctx, 1, 2, 3)
 
-	// for v := range intStream {
-	// 	t.Log(v) //1, 2, 3
-	// }
 	assert.Equal(1, <-intStream)
 	assert.Equal(2, <-intStream)
 	assert.Equal(3, <-intStream)
@@ -31,12 +28,9 @@ func TestRepeat(t *testing.T) {
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
-	c := NewChannel()
+	c := NewChannel[int]()
 	intStream := c.Take(ctx, c.Repeat(ctx, 1, 2), 5)
 
-	// for v := range intStream {
-	// 	t.Log(v) //1, 2, 1, 2, 1
-	// }
 	assert.Equal(1, <-intStream)
 	assert.Equal(2, <-intStream)
 	assert.Equal(1, <-intStream)
@@ -50,16 +44,12 @@ func TestRepeatFn(t *testing.T) {
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
-	fn := func() any {
+	fn := func() string {
 		s := "a"
 		return s
 	}
-	c := NewChannel()
+	c := NewChannel[string]()
 	dataStream := c.Take(ctx, c.RepeatFn(ctx, fn), 3)
-
-	// for v := range dataStream {
-	// 	t.Log(v) //a, a, a
-	// }
 
 	assert.Equal("a", <-dataStream)
 	assert.Equal("a", <-dataStream)
@@ -72,7 +62,7 @@ func TestTake(t *testing.T) {
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
-	numbers := make(chan any, 5)
+	numbers := make(chan int, 5)
 	numbers <- 1
 	numbers <- 2
 	numbers <- 3
@@ -80,7 +70,7 @@ func TestTake(t *testing.T) {
 	numbers <- 5
 	defer close(numbers)
 
-	c := NewChannel()
+	c := NewChannel[int]()
 	intStream := c.Take(ctx, numbers, 3)
 
 	assert.Equal(1, <-intStream)
@@ -94,8 +84,8 @@ func TestFanIn(t *testing.T) {
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
-	c := NewChannel()
-	channels := make([]<-chan any, 3)
+	c := NewChannel[int]()
+	channels := make([]<-chan int, 3)
 
 	for i := 0; i < 3; i++ {
 		channels[i] = c.Take(ctx, c.Repeat(ctx, i), 3)
@@ -124,7 +114,7 @@ func TestOr(t *testing.T) {
 
 	start := time.Now()
 
-	c := NewChannel()
+	c := NewChannel[any]()
 	<-c.Or(
 		sig(1*time.Second),
 		sig(2*time.Second),
@@ -133,9 +123,7 @@ func TestOr(t *testing.T) {
 		sig(5*time.Second),
 	)
 
-	t.Logf("done after %v", time.Since(start))
-
-	assert.Equal(1, 1)
+	assert.Equal(true, time.Since(start).Seconds() < 2)
 }
 
 func TestOrDone(t *testing.T) {
@@ -144,16 +132,12 @@ func TestOrDone(t *testing.T) {
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
-	c := NewChannel()
+	c := NewChannel[int]()
 	intStream := c.Take(ctx, c.Repeat(ctx, 1), 3)
 
-	var res any
 	for val := range c.OrDone(ctx, intStream) {
-		t.Logf("%v", val)
-		res = val
+		assert.Equal(1, val)
 	}
-
-	assert.Equal(1, res)
 }
 
 func TestTee(t *testing.T) {
@@ -162,15 +146,13 @@ func TestTee(t *testing.T) {
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
-	c := NewChannel()
+	c := NewChannel[int]()
 	inStream := c.Take(ctx, c.Repeat(ctx, 1), 4)
 
 	out1, out2 := c.Tee(ctx, inStream)
 	for val := range out1 {
 		val1 := val
 		val2 := <-out2
-		// t.Log("val1 is", val1)
-		// t.Log("val2 is", val2)
 		assert.Equal(1, val1)
 		assert.Equal(1, val2)
 	}
@@ -182,13 +164,13 @@ func TestBridge(t *testing.T) {
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
-	c := NewChannel()
-	genVals := func() <-chan <-chan any {
-		chanStream := make(chan (<-chan any))
+	c := NewChannel[int]()
+	genVals := func() <-chan <-chan int {
+		chanStream := make(chan (<-chan int))
 		go func() {
 			defer close(chanStream)
 			for i := 0; i < 10; i++ {
-				stream := make(chan any, 1)
+				stream := make(chan int, 1)
 				stream <- i
 				close(stream)
 				chanStream <- stream
