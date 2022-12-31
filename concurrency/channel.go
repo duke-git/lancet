@@ -19,7 +19,7 @@ func NewChannel[T any]() *Channel[T] {
 	return &Channel[T]{}
 }
 
-// Generate a data of type any channel, put param values into the channel.
+// Generate creates channel, then put values into the channel.
 // Play:
 func (c *Channel[T]) Generate(ctx context.Context, values ...T) <-chan T {
 	dataStream := make(chan T)
@@ -39,7 +39,7 @@ func (c *Channel[T]) Generate(ctx context.Context, values ...T) <-chan T {
 	return dataStream
 }
 
-// Repeat return a data of type any channel, put param `values` into the channel repeatly until cancel the context.
+// Repeat create channel, put values into the channel repeatly until cancel the context.
 // Play:
 func (c *Channel[T]) Repeat(ctx context.Context, values ...T) <-chan T {
 	dataStream := make(chan T)
@@ -59,8 +59,8 @@ func (c *Channel[T]) Repeat(ctx context.Context, values ...T) <-chan T {
 	return dataStream
 }
 
-// RepeatFn return a channel, excutes fn repeatly, and put the result into retruned channel
-// until close the `done` channel.
+// RepeatFn create a channel, excutes fn repeatly, and put the result into the channel
+// until close context.
 // Play:
 func (c *Channel[T]) RepeatFn(ctx context.Context, fn func() T) <-chan T {
 	dataStream := make(chan T)
@@ -78,7 +78,7 @@ func (c *Channel[T]) RepeatFn(ctx context.Context, fn func() T) <-chan T {
 	return dataStream
 }
 
-// Take return a channel whose values are taken from another channel.
+// Take create a channel whose values are taken from another channel with limit number.
 // Play:
 func (c *Channel[T]) Take(ctx context.Context, valueStream <-chan T, number int) <-chan T {
 	takeStream := make(chan T)
@@ -126,7 +126,7 @@ func (c *Channel[T]) FanIn(ctx context.Context, channels ...<-chan T) <-chan T {
 	return out
 }
 
-// Tee split one chanel into two channels.
+// Tee split one chanel into two channels, until cancel the context.
 // Play:
 func (c *Channel[T]) Tee(ctx context.Context, in <-chan T) (<-chan T, <-chan T) {
 	out1 := make(chan T)

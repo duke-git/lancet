@@ -31,13 +31,13 @@
 
 ### Note:
 
-1. <b>使用go1.18及以上版本的用户，建议安装v2.x.x。 因为v2.x.x应用go1.18的泛型重写了大部分函数。</b>
+1. <b>使用 go1.18 及以上版本的用户，建议安装 v2.x.x。 因为 v2.x.x 应用 go1.18 的泛型重写了大部分函数。</b>
 
 ```go
 go get github.com/duke-git/lancet/v2 //安装v2最新版本v2.x.x
 ```
 
-2. <b>使用go1.18以下版本的用户，必须安装v1.x.x。目前最新的v1版本是v1.3.5。</b>
+2. <b>使用 go1.18 以下版本的用户，必须安装 v1.x.x。目前最新的 v1 版本是 v1.3.5。</b>
 
 ```go
 go get github.com/duke-git/lancet@v1.3.5 // 使用go1.18以下版本, 必须安装v1.x.x版本
@@ -72,50 +72,51 @@ func main() {
 
 ## 文档
 
-### 1. algorithm包实现一些基本查找和排序算法。
+### 1. algorithm 包实现一些基本查找和排序算法。
 
 ```go
 import "github.com/duke-git/lancet/v2/algorithm"
 ```
 
 #### Function list:
-- **<big>BubbleSort</big>** : 使用冒泡排序算法对切片进行排序。
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm_zh-CN.md#BubbleSort)] 
-[[play](https://go.dev/play/p/GNdv7Jg2Taj)]
-- **<big>CountSort</big>** : 使用计数排序算法对切片进行排序。不改变原数据。
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm_zh-CN.md#CountSort)] 
-[[play](https://go.dev/play/p/tB-Umgm0DrP)]
-- **<big>HeapSort</big>** : 使用堆排序算法对切片进行排序。 
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm_zh-CN.md#HeapSort)] 
-[[play](https://go.dev/play/p/u6Iwa1VZS_f)]
-- **<big>InsertionSort</big>** : 使用插入排序算法对切片进行排序。
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm_zh-CN.md#InsertionSort)] 
-[[play](https://go.dev/play/p/G5LJiWgJJW6)]
-- **<big>MergeSort</big>** : 使用合并排序算法对切片进行排序。 
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm_zh-CN.md#MergeSort)] 
-[[play](https://go.dev/play/p/ydinn9YzUJn)]
-- **<big>QuickSort</big>** : 使用快速排序算法对切片进行排序。 
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm_zh-CN.md#QuickSort)] 
-[[play](https://go.dev/play/p/7Y7c1Elk3ax)]
-- **<big>SelectionSort</big>** : 使用选择排序算法对切片进行排序。
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm_zh-CN.md#SelectionSort)] 
-[[play](https://go.dev/play/p/oXovbkekayS)]
-- **<big>ShellSort</big>** : 使用希尔排序算法对切片进行排序。 
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm_zh-CN.md#ShellSort)] 
-[[play](https://go.dev/play/p/3ibkszpJEu3)]
-- **<big>BinarySearch</big>** : 返回排序切片中目标值的索引，使用二分搜索（递归调用）。
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm_zh-CN.md#BinarySearch)]
-[[play](https://go.dev/play/p/t6MeGiUSN47)]
-- **<big>BinaryIterativeSearch</big>** :返回排序切片中目标值的索引，使用二分搜索（非递归）。 
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm_zh-CN.md#BinaryIterativeSearch)]
-[[play](https://go.dev/play/p/Anozfr8ZLH3)]
-- **<big>LinearSearch</big>** : 基于传入的相等函数返回切片中目标值的索引。（线性查找）
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm_zh-CN.md#LinearSearch)]
-- **<big>LRUCache</big>** : 应用lru算法实现内存缓存. 
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm_zh-CN.md#LRUCache)]
-[[play](https://go.dev/play/p/-EZjgOURufP)]
 
-### 2. concurrency包含一些支持并发编程的功能。例如：goroutine, channel, async 等。
+-   **<big>BubbleSort</big>** : 使用冒泡排序算法对切片进行排序。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm_zh-CN.md#BubbleSort)]
+    [[play](https://go.dev/play/p/GNdv7Jg2Taj)]
+-   **<big>CountSort</big>** : 使用计数排序算法对切片进行排序。不改变原数据。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm_zh-CN.md#CountSort)]
+    [[play](https://go.dev/play/p/tB-Umgm0DrP)]
+-   **<big>HeapSort</big>** : 使用堆排序算法对切片进行排序。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm_zh-CN.md#HeapSort)]
+    [[play](https://go.dev/play/p/u6Iwa1VZS_f)]
+-   **<big>InsertionSort</big>** : 使用插入排序算法对切片进行排序。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm_zh-CN.md#InsertionSort)]
+    [[play](https://go.dev/play/p/G5LJiWgJJW6)]
+-   **<big>MergeSort</big>** : 使用合并排序算法对切片进行排序。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm_zh-CN.md#MergeSort)]
+    [[play](https://go.dev/play/p/ydinn9YzUJn)]
+-   **<big>QuickSort</big>** : 使用快速排序算法对切片进行排序。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm_zh-CN.md#QuickSort)]
+    [[play](https://go.dev/play/p/7Y7c1Elk3ax)]
+-   **<big>SelectionSort</big>** : 使用选择排序算法对切片进行排序。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm_zh-CN.md#SelectionSort)]
+    [[play](https://go.dev/play/p/oXovbkekayS)]
+-   **<big>ShellSort</big>** : 使用希尔排序算法对切片进行排序。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm_zh-CN.md#ShellSort)]
+    [[play](https://go.dev/play/p/3ibkszpJEu3)]
+-   **<big>BinarySearch</big>** : 返回排序切片中目标值的索引，使用二分搜索（递归调用）。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm_zh-CN.md#BinarySearch)]
+    [[play](https://go.dev/play/p/t6MeGiUSN47)]
+-   **<big>BinaryIterativeSearch</big>** :返回排序切片中目标值的索引，使用二分搜索（非递归）。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm_zh-CN.md#BinaryIterativeSearch)]
+    [[play](https://go.dev/play/p/Anozfr8ZLH3)]
+-   **<big>LinearSearch</big>** : 基于传入的相等函数返回切片中目标值的索引。（线性查找）
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm_zh-CN.md#LinearSearch)]
+-   **<big>LRUCache</big>** : 应用 lru 算法实现内存缓存.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm_zh-CN.md#LRUCache)]
+    [[play](https://go.dev/play/p/-EZjgOURufP)]
+
+### 2. concurrency 包含一些支持并发编程的功能。例如：goroutine, channel, async 等。
 
 ```go
 import "github.com/duke-git/lancet/v2/concurrency"
@@ -123,18 +124,28 @@ import "github.com/duke-git/lancet/v2/concurrency"
 
 #### Function list:
 
--   [NewChannel](https://github.com/duke-git/lancet/blob/main/docs/concurrency_zh-CN.md#NewChannel)
--   [Bridge](https://github.com/duke-git/lancet/blob/main/docs/concurrency_zh-CN.md#Bridge)
--   [FanIn](https://github.com/duke-git/lancet/blob/main/docs/concurrency_zh-CN.md#FanIn)
--   [Generate](https://github.com/duke-git/lancet/blob/main/docs/concurrency_zh-CN.md#Generate)
--   [Or](https://github.com/duke-git/lancet/blob/main/docs/concurrency_zh-CN.md#Or)
--   [OrDone](https://github.com/duke-git/lancet/blob/main/docs/concurrency_zh-CN.md#OrDone)
--   [Repeat](https://github.com/duke-git/lancet/blob/main/docs/concurrency_zh-CN.md#Repeat)
--   [RepeatFn](https://github.com/duke-git/lancet/blob/main/docs/concurrency_zh-CN.md#RepeatFn)
--   [Take](https://github.com/duke-git/lancet/blob/main/docs/concurrency_zh-CN.md#Take)
--   [Tee](https://github.com/duke-git/lancet/blob/main/docs/concurrency_zh-CN.md#Tee)
+-   **<big>NewChannel</big>** : 返回一个 Channel 指针实例。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/concurrency_zh-CN.md#NewChannel)]
+-   **<big>Bridge</big>** : 将多个 channel 链接到一个 channel，直到取消上下文。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/Bridge.md#NewChannel)]
+-   **<big>FanIn</big>** : 将多个 channel 合并为一个 channel，直到取消上下文。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/concurrency_zh-CN.md#FanIn)]
+-   **<big>Generate</big>** : 根据传入的值，生成channel。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/concurrency_zh-CN.md#Generate)]
+-   **<big>Or</big>** : 将一个或多个channel读取到一个channel中，当任何读取channel关闭时将结束读取。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/concurrency_zh-CN.md#Or)]
+-   **<big>OrDone</big>** : 将一个channel读入另一个channel，直到取消上下文。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/concurrency_zh-CN.md#OrDone)]
+-   **<big>Repeat</big>** : 返回一个channel，将参数`values`重复放入channel，直到取消上下文。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/concurrency_zh-CN.md#Repeat)]
+-   **<big>RepeatFn</big>** : 返回一个channel，重复执行函数fn，并将结果放入返回的channel，直到取消上下文。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/concurrency_zh-CN.md#RepeatFn)]
+-   **<big>Take</big>** : 返回一个channel，其值从另一个channel获取，直到取消上下文。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/concurrency_zh-CN.md#Take)]
+-   **<big>Tee</big>** : 将一个channel分成两个channel，直到取消上下文。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/concurrency_zh-CN.md#Tee)]
 
-### 3. condition包含一些用于条件判断的函数。
+### 3. condition 包含一些用于条件判断的函数。
 
 ```go
 import "github.com/duke-git/lancet/v2/condition"
@@ -175,7 +186,7 @@ import "github.com/duke-git/lancet/v2/convertor"
 -   [EncodeByte](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#EncodeByte)
 -   [DecodeByte](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#DecodeByte)
 
-### 5. cryptor 加密包支持数据加密和解密，获取md5，hash 值。支持base64, md5, hmac, aes, des, rsa。
+### 5. cryptor 加密包支持数据加密和解密，获取 md5，hash 值。支持 base64, md5, hmac, aes, des, rsa。
 
 ```go
 import "github.com/duke-git/lancet/v2/cryptor"
@@ -330,7 +341,7 @@ import "github.com/duke-git/lancet/v2/function"
 -   [Pipeline](https://github.com/duke-git/lancet/blob/main/docs/function_zh-CN.md#Pipeline)
 -   [Watcher](https://github.com/duke-git/lancet/blob/main/docs/function_zh-CN.md#Watcher)
 
-### 11. maputil包括一些操作map的函数.
+### 11. maputil 包括一些操作 map 的函数.
 
 ```go
 import "github.com/duke-git/lancet/v2/maputil"
@@ -347,7 +358,7 @@ import "github.com/duke-git/lancet/v2/maputil"
 -   [Values](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#Values)
 -   [IsDisjoint](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#IsDisjoint)
 
-### 12. mathutil包实现了一些数学计算的函数。
+### 12. mathutil 包实现了一些数学计算的函数。
 
 ```go
 import "github.com/duke-git/lancet/v2/mathutil"
@@ -368,7 +379,7 @@ import "github.com/duke-git/lancet/v2/mathutil"
 -   [RoundToString](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#RoundToString)
 -   [TruncRound](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#TruncRound)
 
-### 13. netutil网络包支持获取ip地址，发送http请求。
+### 13. netutil 网络包支持获取 ip 地址，发送 http 请求。
 
 ```go
 import "github.com/duke-git/lancet/v2/netutil"
@@ -397,7 +408,7 @@ import "github.com/duke-git/lancet/v2/netutil"
 -   [HttpPatch<sup>deprecated</sup>](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#HttpPatch)
 -   [ParseHttpResponse](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#ParseHttpResponse)
 
-### 14. random随机数生成器包，可以生成随机[]bytes, int, string。
+### 14. random 随机数生成器包，可以生成随机[]bytes, int, string。
 
 ```go
 import "github.com/duke-git/lancet/v2/random"
@@ -414,7 +425,7 @@ import "github.com/duke-git/lancet/v2/random"
 -   [RandNumeralOrLetter](https://github.com/duke-git/lancet/blob/main/docs/random_zh-CN.md#RandNumeralOrLetter)
 -   [UUIdV4](https://github.com/duke-git/lancet/blob/main/docs/random.md#UUIdV4)
 
-### 15. retry重试执行函数直到函数运行成功或被context cancel。
+### 15. retry 重试执行函数直到函数运行成功或被 context cancel。
 
 ```go
 import "github.com/duke-git/lancet/v2/retry"
@@ -428,7 +439,7 @@ import "github.com/duke-git/lancet/v2/retry"
 -   [RetryDuration](https://github.com/duke-git/lancet/blob/main/docs/retry_zh-CN.md#RetryDuration)
 -   [RetryTimes](https://github.com/duke-git/lancet/blob/main/docs/retry_zh-CN.md#RetryTimes)
 
-### 16. slice包含操作切片的方法集合。
+### 16. slice 包含操作切片的方法集合。
 
 ```go
 import "github.com/duke-git/lancet/v2/slice"
@@ -488,109 +499,111 @@ import "github.com/duke-git/lancet/v2/slice"
 -   [Without](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Without)
 -   [KeyBy](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#KeyBy)
 
-### 17. strutil包含字符串处理的相关函数。
+### 17. strutil 包含字符串处理的相关函数。
 
 ```go
 import "github.com/duke-git/lancet/v2/strutil"
 ```
 
 #### 函数列表:
-- **<big>After</big>** : 返回源字符串中指定字符串首次出现时的位置之后的子字符串。
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#After)] 
-[[play](https://go.dev/play/p/RbCOQqCDA7m)]
-- **<big>AfterLast</big>** : 返回源字符串中指定字符串最后一次出现时的位置之后的子字符串。
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#AfterLast)] 
-[[play](https://go.dev/play/p/1TegARrb8Yn)]
-- **<big>Before</big>** : 返回源字符串中指定字符串第一次出现时的位置之前的子字符串。
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#Before)] 
-[[play](https://go.dev/play/p/JAWTZDS4F5w)]
-- **<big>BeforeLast</big>** : 返回源字符串中指定字符串最后一次出现时的位置之前的子字符串。
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#BeforeLast)] 
-[[play](https://go.dev/play/p/pJfXXAoG_Te)]
-- **<big>CamelCase</big>** : 将字符串转换为CamelCase驼峰式字符串, 非字母和数字会被忽略。
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#CamelCase)]
-[[play](https://go.dev/play/p/9eXP3tn2tUy)]
-- **<big>Capitalize</big>** : 将字符串的第一个字符转换为大写。
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#Capitalize)]
-[[play](https://go.dev/play/p/2OAjgbmAqHZ)]
-- **<big>IsString</big>** : 判断传入参数的数据类型是否为字符串。
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#IsString)]
-[[play](https://go.dev/play/p/IOgq7oF9ERm)]
-- **<big>KebabCase</big>** : 将字符串转换为kebab-case形式字符串, 非字母和数字会被忽略。
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#KebabCase)]
-[[play](https://go.dev/play/p/dcZM9Oahw-Y)]
-- **<big>UpperKebabCase</big>** : 将字符串转换为大写KEBAB-CASE形式字符串, 非字母和数字会被忽略。
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#UpperKebabCase)]
-[[play](https://go.dev/play/p/zDyKNneyQXk)]
-- **<big>LowerFirst</big>** : 将字符串的第一个字符转换为小写形式。
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#LowerFirst)]
-[[play](https://go.dev/play/p/CbzAyZmtJwL)]
-- **<big>UpperFirst</big>** : 将字符串的第一个字符转换为大写形式。
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#UpperFirst)]
-[[play](https://go.dev/play/p/sBbBxRbs8MM)]
-- **<big>PadEnd</big>** : 如果字符串短于限制大小，则在右侧用给定字符填充字符串。 如果填充字符超出大小，它们将被截断。
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#PadEnd)]
-[[play](https://go.dev/play/p/9xP8rN0vz--)]
-- **<big>PadStart</big>** : 如果字符串短于限制大小，则在左侧用给定字符填充字符串。 如果填充字符超出大小，它们将被截断。
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#PadStart)]
-[[play](https://go.dev/play/p/xpTfzArDfvT)]
-- **<big>Reverse</big>** : 返回字符顺序与给定字符串相反的字符串。
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#Reverse)]
-[[play](https://go.dev/play/p/adfwalJiecD)]
-- **<big>SnakeCase</big>** : 将字符串转换为snake_case形式, 非字母和数字会被忽略。
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#SnakeCase)]
-[[play](https://go.dev/play/p/tgzQG11qBuN)]
-- **<big>UpperSnakeCase</big>** : 将字符串转换为大写SNAKE_CASE形式, 非字母和数字会被忽略。
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#UpperSnakeCase)]
-[[play](https://go.dev/play/p/4COPHpnLx38)]
-- **<big>SplitEx</big>** : 拆分给定的字符串可以控制结果切片是否包含空字符串。
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#SplitEx)]
-[[play](https://go.dev/play/p/Us-ySSbWh-3)]
-- **<big>Substring</big>** : 根据指定的位置和长度截取子字符串。
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#Substring)]
-- **<big>Wrap</big>** : 用给定字符包裹传入的字符串
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#Wrap)]
-[[play](https://go.dev/play/p/KoZOlZDDt9y)]
-- **<big>Unwrap</big>** : 从另一个字符串中解开一个给定的字符串。 将更改源字符串。
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#Unwrap)]
-[[play](https://go.dev/play/p/Ec2q4BzCpG-)]
 
-### 18. system包含os, runtime, shell command的相关函数。
+-   **<big>After</big>** : 返回源字符串中指定字符串首次出现时的位置之后的子字符串。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#After)]
+    [[play](https://go.dev/play/p/RbCOQqCDA7m)]
+-   **<big>AfterLast</big>** : 返回源字符串中指定字符串最后一次出现时的位置之后的子字符串。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#AfterLast)]
+    [[play](https://go.dev/play/p/1TegARrb8Yn)]
+-   **<big>Before</big>** : 返回源字符串中指定字符串第一次出现时的位置之前的子字符串。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#Before)]
+    [[play](https://go.dev/play/p/JAWTZDS4F5w)]
+-   **<big>BeforeLast</big>** : 返回源字符串中指定字符串最后一次出现时的位置之前的子字符串。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#BeforeLast)]
+    [[play](https://go.dev/play/p/pJfXXAoG_Te)]
+-   **<big>CamelCase</big>** : 将字符串转换为 CamelCase 驼峰式字符串, 非字母和数字会被忽略。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#CamelCase)]
+    [[play](https://go.dev/play/p/9eXP3tn2tUy)]
+-   **<big>Capitalize</big>** : 将字符串的第一个字符转换为大写。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#Capitalize)]
+    [[play](https://go.dev/play/p/2OAjgbmAqHZ)]
+-   **<big>IsString</big>** : 判断传入参数的数据类型是否为字符串。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#IsString)]
+    [[play](https://go.dev/play/p/IOgq7oF9ERm)]
+-   **<big>KebabCase</big>** : 将字符串转换为 kebab-case 形式字符串, 非字母和数字会被忽略。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#KebabCase)]
+    [[play](https://go.dev/play/p/dcZM9Oahw-Y)]
+-   **<big>UpperKebabCase</big>** : 将字符串转换为大写 KEBAB-CASE 形式字符串, 非字母和数字会被忽略。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#UpperKebabCase)]
+    [[play](https://go.dev/play/p/zDyKNneyQXk)]
+-   **<big>LowerFirst</big>** : 将字符串的第一个字符转换为小写形式。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#LowerFirst)]
+    [[play](https://go.dev/play/p/CbzAyZmtJwL)]
+-   **<big>UpperFirst</big>** : 将字符串的第一个字符转换为大写形式。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#UpperFirst)]
+    [[play](https://go.dev/play/p/sBbBxRbs8MM)]
+-   **<big>PadEnd</big>** : 如果字符串短于限制大小，则在右侧用给定字符填充字符串。 如果填充字符超出大小，它们将被截断。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#PadEnd)]
+    [[play](https://go.dev/play/p/9xP8rN0vz--)]
+-   **<big>PadStart</big>** : 如果字符串短于限制大小，则在左侧用给定字符填充字符串。 如果填充字符超出大小，它们将被截断。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#PadStart)]
+    [[play](https://go.dev/play/p/xpTfzArDfvT)]
+-   **<big>Reverse</big>** : 返回字符顺序与给定字符串相反的字符串。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#Reverse)]
+    [[play](https://go.dev/play/p/adfwalJiecD)]
+-   **<big>SnakeCase</big>** : 将字符串转换为 snake_case 形式, 非字母和数字会被忽略。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#SnakeCase)]
+    [[play](https://go.dev/play/p/tgzQG11qBuN)]
+-   **<big>UpperSnakeCase</big>** : 将字符串转换为大写 SNAKE_CASE 形式, 非字母和数字会被忽略。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#UpperSnakeCase)]
+    [[play](https://go.dev/play/p/4COPHpnLx38)]
+-   **<big>SplitEx</big>** : 拆分给定的字符串可以控制结果切片是否包含空字符串。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#SplitEx)]
+    [[play](https://go.dev/play/p/Us-ySSbWh-3)]
+-   **<big>Substring</big>** : 根据指定的位置和长度截取子字符串。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#Substring)]
+-   **<big>Wrap</big>** : 用给定字符包裹传入的字符串
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#Wrap)]
+    [[play](https://go.dev/play/p/KoZOlZDDt9y)]
+-   **<big>Unwrap</big>** : 从另一个字符串中解开一个给定的字符串。 将更改源字符串。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#Unwrap)]
+    [[play](https://go.dev/play/p/Ec2q4BzCpG-)]
+
+### 18. system 包含 os, runtime, shell command 的相关函数。
 
 ```go
 import "github.com/duke-git/lancet/v2/system"
 ```
 
 #### 函数列表:
-- **<big>IsWindows</big>** : 检查当前操作系统是否是windows。
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/system_zh-CN#IsWindows)]
-[[play](https://go.dev/play/p/XzJULbzmf9m)]
-- **<big>IsLinux</big>** : 检查当前操作系统是否是linux。
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/system_zh-CN#IsLinux)]
-[[play](https://go.dev/play/p/zIflQgZNuxD)]
-- **<big>IsMac</big>** : 检查当前操作系统是否是macos。
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/system_zh-CN#IsMac)]
-[[play](https://go.dev/play/p/Mg4Hjtyq7Zc)]
-- **<big>GetOsEnv</big>** : 根据key获取对应的环境变量值
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/system_zh-CN#GetOsEnv)]
-[[play](https://go.dev/play/p/D88OYVCyjO-)]
-- **<big>SetOsEnv</big>** : 设置环境变量。
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/system_zh-CN#SetOsEnv)]
-[[play](https://go.dev/play/p/D88OYVCyjO-)]
-- **<big>RemoveOsEnv</big>** : 删除环境变量。
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/system_zh-CN#RemoveOsEnv)]
-[[play](https://go.dev/play/p/fqyq4b3xUFQ)]
-- **<big>CompareOsEnv</big>** : 换取环境变量并与传入值进行比较。
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/system_zh-CN#CompareOsEnv)]
-[[play](https://go.dev/play/p/BciHrKYOHbp)]
-- **<big>ExecCommand</big>** : 执行shell命令。
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/system_zh-CN#ExecCommand)]
-[[play](https://go.dev/play/p/n-2fLyZef-4)]
-- **<big>GetOsBits</big>** : 获取当前操作系统位数(32/64)。
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/system_zh-CN#GetOsBits)]
-[[play](https://go.dev/play/p/ml-_XH3gJbW)]
 
-### 19. validator验证器包，包含常用字符串格式验证函数。
+-   **<big>IsWindows</big>** : 检查当前操作系统是否是 windows。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/system_zh-CN#IsWindows)]
+    [[play](https://go.dev/play/p/XzJULbzmf9m)]
+-   **<big>IsLinux</big>** : 检查当前操作系统是否是 linux。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/system_zh-CN#IsLinux)]
+    [[play](https://go.dev/play/p/zIflQgZNuxD)]
+-   **<big>IsMac</big>** : 检查当前操作系统是否是 macos。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/system_zh-CN#IsMac)]
+    [[play](https://go.dev/play/p/Mg4Hjtyq7Zc)]
+-   **<big>GetOsEnv</big>** : 根据 key 获取对应的环境变量值
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/system_zh-CN#GetOsEnv)]
+    [[play](https://go.dev/play/p/D88OYVCyjO-)]
+-   **<big>SetOsEnv</big>** : 设置环境变量。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/system_zh-CN#SetOsEnv)]
+    [[play](https://go.dev/play/p/D88OYVCyjO-)]
+-   **<big>RemoveOsEnv</big>** : 删除环境变量。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/system_zh-CN#RemoveOsEnv)]
+    [[play](https://go.dev/play/p/fqyq4b3xUFQ)]
+-   **<big>CompareOsEnv</big>** : 换取环境变量并与传入值进行比较。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/system_zh-CN#CompareOsEnv)]
+    [[play](https://go.dev/play/p/BciHrKYOHbp)]
+-   **<big>ExecCommand</big>** : 执行 shell 命令。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/system_zh-CN#ExecCommand)]
+    [[play](https://go.dev/play/p/n-2fLyZef-4)]
+-   **<big>GetOsBits</big>** : 获取当前操作系统位数(32/64)。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/system_zh-CN#GetOsBits)]
+    [[play](https://go.dev/play/p/ml-_XH3gJbW)]
+
+### 19. validator 验证器包，包含常用字符串格式验证函数。
 
 ```go
 import "github.com/duke-git/lancet/v2/validator"
@@ -627,7 +640,7 @@ import "github.com/duke-git/lancet/v2/validator"
 -   [IsZeroValue](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsZeroValue)
 -   [IsGBK](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsGBK)
 
-### 20. xerror包实现一些错误处理函数
+### 20. xerror 包实现一些错误处理函数
 
 ```go
 import "github.com/duke-git/lancet/v2/xerror"

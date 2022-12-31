@@ -32,7 +32,7 @@ English | [简体中文](./README_zh-CN.md)
 
 ### Note:
 
-1. <b>For users who use go1.18 and above, it is recommended to install lancet v2.x.x. Cause in v2.x.x  all functions was rewriten with generics of go1.18.</b>
+1. <b>For users who use go1.18 and above, it is recommended to install lancet v2.x.x. Cause in v2.x.x all functions was rewriten with generics of go1.18.</b>
 
 ```go
 go get github.com/duke-git/lancet/v2 // will install latest version of v2.x.x
@@ -73,7 +73,6 @@ func main() {
 
 ## Documentation
 
-
 ### 1. Algorithm package implements some basic algorithm. eg. sort, search.
 
 ```go
@@ -81,41 +80,42 @@ import "github.com/duke-git/lancet/v2/algorithm"
 ```
 
 #### Function list:
-- **<big>BubbleSort</big>** : sorts slice with bubble sort algorithm, will change the original slice. 
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#BubbleSort)] 
-[[play](https://go.dev/play/p/GNdv7Jg2Taj)]
-- **<big>CountSort</big>** : sorts slice with bubble sort algorithm, don't change original slice. 
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#CountSort)] 
-[[play](https://go.dev/play/p/tB-Umgm0DrP)]
-- **<big>HeapSort</big>** : sorts slice with heap sort algorithm, will change the original slice. 
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#HeapSort)] 
-[[play](https://go.dev/play/p/u6Iwa1VZS_f)]
-- **<big>InsertionSort</big>** : sorts slice with insertion sort algorithm, will change the original slice. 
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#InsertionSort)] 
-[[play](https://go.dev/play/p/G5LJiWgJJW6)]
-- **<big>MergeSort</big>** : sorts slice with merge sort algorithm, will change the original slice. 
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#MergeSort)] 
-[[play](https://go.dev/play/p/ydinn9YzUJn)]
-- **<big>QuickSort</big>** : sorts slice with quick sort algorithm, will change the original slice. 
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#QuickSort)] 
-[[play](https://go.dev/play/p/7Y7c1Elk3ax)]
-- **<big>SelectionSort</big>** : sorts slice with selection sort algorithm, will change the original slice. 
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#SelectionSort)] 
-[[play](https://go.dev/play/p/oXovbkekayS)]
-- **<big>ShellSort</big>** : sorts slice with shell sort algorithm, will change the original slice. 
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#ShellSort)] 
-[[play](https://go.dev/play/p/3ibkszpJEu3)]
-- **<big>BinarySearch</big>** : returns the index of target within a sorted slice, use binary search (recursive call itself). 
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#BinarySearch)]
-[[play](https://go.dev/play/p/t6MeGiUSN47)]
-- **<big>BinaryIterativeSearch</big>** : returns the index of target within a sorted slice, use binary search (no recursive). 
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#BinaryIterativeSearch)]
-[[play](https://go.dev/play/p/Anozfr8ZLH3)]
-- **<big>LinearSearch</big>** : returns the index of target in slice base on equal function. 
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#LinearSearch)]
-- **<big>LRUCache</big>** : implements memory cache with lru algorithm. 
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#LRUCache)]
-[[play](https://go.dev/play/p/-EZjgOURufP)]
+
+-   **<big>BubbleSort</big>** : sorts slice with bubble sort algorithm, will change the original slice.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#BubbleSort)]
+    [[play](https://go.dev/play/p/GNdv7Jg2Taj)]
+-   **<big>CountSort</big>** : sorts slice with bubble sort algorithm, don't change original slice.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#CountSort)]
+    [[play](https://go.dev/play/p/tB-Umgm0DrP)]
+-   **<big>HeapSort</big>** : sorts slice with heap sort algorithm, will change the original slice.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#HeapSort)]
+    [[play](https://go.dev/play/p/u6Iwa1VZS_f)]
+-   **<big>InsertionSort</big>** : sorts slice with insertion sort algorithm, will change the original slice.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#InsertionSort)]
+    [[play](https://go.dev/play/p/G5LJiWgJJW6)]
+-   **<big>MergeSort</big>** : sorts slice with merge sort algorithm, will change the original slice.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#MergeSort)]
+    [[play](https://go.dev/play/p/ydinn9YzUJn)]
+-   **<big>QuickSort</big>** : sorts slice with quick sort algorithm, will change the original slice.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#QuickSort)]
+    [[play](https://go.dev/play/p/7Y7c1Elk3ax)]
+-   **<big>SelectionSort</big>** : sorts slice with selection sort algorithm, will change the original slice.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#SelectionSort)]
+    [[play](https://go.dev/play/p/oXovbkekayS)]
+-   **<big>ShellSort</big>** : sorts slice with shell sort algorithm, will change the original slice.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#ShellSort)]
+    [[play](https://go.dev/play/p/3ibkszpJEu3)]
+-   **<big>BinarySearch</big>** : returns the index of target within a sorted slice, use binary search (recursive call itself).
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#BinarySearch)]
+    [[play](https://go.dev/play/p/t6MeGiUSN47)]
+-   **<big>BinaryIterativeSearch</big>** : returns the index of target within a sorted slice, use binary search (no recursive).
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#BinaryIterativeSearch)]
+    [[play](https://go.dev/play/p/Anozfr8ZLH3)]
+-   **<big>LinearSearch</big>** : returns the index of target in slice base on equal function.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#LinearSearch)]
+-   **<big>LRUCache</big>** : implements memory cache with lru algorithm.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#LRUCache)]
+    [[play](https://go.dev/play/p/-EZjgOURufP)]
 
 ### 2. Concurrency package contain some functions to support concurrent programming. eg, goroutine, channel, async.
 
@@ -125,16 +125,26 @@ import "github.com/duke-git/lancet/v2/concurrency"
 
 #### Function list:
 
--   [NewChannel](https://github.com/duke-git/lancet/blob/main/docs/concurrency.md#NewChannel)
--   [Bridge](https://github.com/duke-git/lancet/blob/main/docs/concurrency.md#Bridge)
--   [FanIn](https://github.com/duke-git/lancet/blob/main/docs/concurrency.md#FanIn)
--   [Generate](https://github.com/duke-git/lancet/blob/main/docs/concurrency.md#Generate)
--   [Or](https://github.com/duke-git/lancet/blob/main/docs/concurrency.md#Or)
--   [OrDone](https://github.com/duke-git/lancet/blob/main/docs/concurrency.md#OrDone)
--   [Repeat](https://github.com/duke-git/lancet/blob/main/docs/concurrency.md#Repeat)
--   [RepeatFn](https://github.com/duke-git/lancet/blob/main/docs/concurrency.md#RepeatFn)
--   [Take](https://github.com/duke-git/lancet/blob/main/docs/concurrency.md#Take)
--   [Tee](https://github.com/duke-git/lancet/blob/main/docs/concurrency.md#Tee)
+-   **<big>NewChannel</big>** : create a Channel pointer instance.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/concurrency.md#NewChannel)]
+-   **<big>Bridge</big>** : link multiply channels into one channel.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/Bridge.md#NewChannel)]
+-   **<big>FanIn</big>** : merge multiple channels into one channel.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/concurrency.md#FanIn)]
+-   **<big>Generate</big>** : creates a channel, then put values into the channel.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/concurrency.md#Generate)]
+-   **<big>Or</big>** : read one or more channels into one channel, will close when any readin channel is closed.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/concurrency.md#Or)]
+-   **<big>OrDone</big>** : read a channel into another channel, will close until cancel context.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/concurrency.md#OrDone)]
+-   **<big>Repeat</big>** : create channel, put values into the channel repeatly until cancel the context.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/concurrency.md#Repeat)]
+-   **<big>RepeatFn</big>** : create a channel, excutes fn repeatly, and put the result into the channel, until close context.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/concurrency.md#RepeatFn)]
+-   **<big>Take</big>** : create a channel whose values are taken from another channel with limit number.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/concurrency.md#Take)]
+-   **<big>Tee</big>** : split one chanel into two channels, until cancel the context.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/concurrency.md#Tee)]
 
 ### 3. Condition package contains some functions for conditional judgment. eg. And, Or, TernaryOperator...
 
@@ -500,64 +510,64 @@ import "github.com/duke-git/lancet/v2/strutil"
 
 #### Function list:
 
-- **<big>After</big>** : returns the substring after the first occurrence of a specified string in the source string. 
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#After)] 
-[[play](https://go.dev/play/p/RbCOQqCDA7m)]
-- **<big>AfterLast</big>** : returns the substring after the last occurrence of a specified string in the source string. [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#AfterLast)] 
-[[play](https://go.dev/play/p/1TegARrb8Yn)]
-- **<big>Before</big>** : returns the substring before the first occurrence of a specified string in the source string.
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#Before)] 
-[[play](https://go.dev/play/p/JAWTZDS4F5w)]
-- **<big>BeforeLast</big>** : returns the substring before the last occurrence of a specified string in the source string.
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#BeforeLast)] 
-[[play](https://go.dev/play/p/pJfXXAoG_Te)]
-- **<big>CamelCase</big>** : coverts source string to its camelCase string.
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#CamelCase)]
-[[play](https://go.dev/play/p/9eXP3tn2tUy)]
-- **<big>Capitalize</big>** : converts the first character of source string to upper case and the remaining to lower case.
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#Capitalize)]
-[[play](https://go.dev/play/p/2OAjgbmAqHZ)]
-- **<big>IsString</big>** : checks if the parameter value data type is string or not.
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#IsString)]
-[[play](https://go.dev/play/p/IOgq7oF9ERm)]
-- **<big>KebabCase</big>** : coverts string to kebab-case string.
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#KebabCase)]
-[[play](https://go.dev/play/p/dcZM9Oahw-Y)]
-- **<big>UpperKebabCase</big>** : coverts string to upper KEBAB-CASE string.
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#UpperKebabCase)]
-[[play](https://go.dev/play/p/zDyKNneyQXk)]
-- **<big>LowerFirst</big>** : converts the first character of string to lower case.
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#LowerFirst)]
-[[play](https://go.dev/play/p/CbzAyZmtJwL)]
-- **<big>UpperFirst</big>** : converts the first character of string to upper case.
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#UpperFirst)]
-[[play](https://go.dev/play/p/sBbBxRbs8MM)]
-- **<big>PadEnd</big>** : pads string with given characters on the right side if it's shorter than limit size. Padding characters are truncated if they exceed size.
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#PadEnd)]
-[[play](https://go.dev/play/p/9xP8rN0vz--)]
-- **<big>PadStart</big>** : pads string with given characters on the left side if it's shorter than limit size. Padding characters are truncated if they exceed size.
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#PadStart)]
-[[play](https://go.dev/play/p/xpTfzArDfvT)]
-- **<big>Reverse</big>** : returns string whose char order is reversed to the given string.
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#Reverse)]
-[[play](https://go.dev/play/p/adfwalJiecD)]
-- **<big>SnakeCase</big>** : coverts string to snake_case string.
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#SnakeCase)]
-[[play](https://go.dev/play/p/tgzQG11qBuN)]
-- **<big>UpperSnakeCase</big>** : coverts string to upper SNAKE_CASE string.
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#UpperSnakeCase)]
-[[play](https://go.dev/play/p/4COPHpnLx38)]
-- **<big>SplitEx</big>** : split a given string which can control the result slice contains empty string or not.
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#SplitEx)]
-[[play](https://go.dev/play/p/Us-ySSbWh-3)]
-- **<big>Substring</big>** : returns a substring of the specified length starting at the specified offset position.
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#Substring)]
-- **<big>Wrap</big>** : wrap a string with given string.
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#Wrap)]
-[[play](https://go.dev/play/p/KoZOlZDDt9y)]
-- **<big>Unwrap</big>** : unwrap a given string from anther string. will change source string.
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#Unwrap)]
-[[play](https://go.dev/play/p/Ec2q4BzCpG-)]
+-   **<big>After</big>** : returns the substring after the first occurrence of a specified string in the source string.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#After)]
+    [[play](https://go.dev/play/p/RbCOQqCDA7m)]
+-   **<big>AfterLast</big>** : returns the substring after the last occurrence of a specified string in the source string. [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#AfterLast)]
+    [[play](https://go.dev/play/p/1TegARrb8Yn)]
+-   **<big>Before</big>** : returns the substring before the first occurrence of a specified string in the source string.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#Before)]
+    [[play](https://go.dev/play/p/JAWTZDS4F5w)]
+-   **<big>BeforeLast</big>** : returns the substring before the last occurrence of a specified string in the source string.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#BeforeLast)]
+    [[play](https://go.dev/play/p/pJfXXAoG_Te)]
+-   **<big>CamelCase</big>** : coverts source string to its camelCase string.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#CamelCase)]
+    [[play](https://go.dev/play/p/9eXP3tn2tUy)]
+-   **<big>Capitalize</big>** : converts the first character of source string to upper case and the remaining to lower case.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#Capitalize)]
+    [[play](https://go.dev/play/p/2OAjgbmAqHZ)]
+-   **<big>IsString</big>** : checks if the parameter value data type is string or not.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#IsString)]
+    [[play](https://go.dev/play/p/IOgq7oF9ERm)]
+-   **<big>KebabCase</big>** : coverts string to kebab-case string.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#KebabCase)]
+    [[play](https://go.dev/play/p/dcZM9Oahw-Y)]
+-   **<big>UpperKebabCase</big>** : coverts string to upper KEBAB-CASE string.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#UpperKebabCase)]
+    [[play](https://go.dev/play/p/zDyKNneyQXk)]
+-   **<big>LowerFirst</big>** : converts the first character of string to lower case.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#LowerFirst)]
+    [[play](https://go.dev/play/p/CbzAyZmtJwL)]
+-   **<big>UpperFirst</big>** : converts the first character of string to upper case.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#UpperFirst)]
+    [[play](https://go.dev/play/p/sBbBxRbs8MM)]
+-   **<big>PadEnd</big>** : pads string with given characters on the right side if it's shorter than limit size. Padding characters are truncated if they exceed size.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#PadEnd)]
+    [[play](https://go.dev/play/p/9xP8rN0vz--)]
+-   **<big>PadStart</big>** : pads string with given characters on the left side if it's shorter than limit size. Padding characters are truncated if they exceed size.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#PadStart)]
+    [[play](https://go.dev/play/p/xpTfzArDfvT)]
+-   **<big>Reverse</big>** : returns string whose char order is reversed to the given string.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#Reverse)]
+    [[play](https://go.dev/play/p/adfwalJiecD)]
+-   **<big>SnakeCase</big>** : coverts string to snake_case string.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#SnakeCase)]
+    [[play](https://go.dev/play/p/tgzQG11qBuN)]
+-   **<big>UpperSnakeCase</big>** : coverts string to upper SNAKE_CASE string.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#UpperSnakeCase)]
+    [[play](https://go.dev/play/p/4COPHpnLx38)]
+-   **<big>SplitEx</big>** : split a given string which can control the result slice contains empty string or not.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#SplitEx)]
+    [[play](https://go.dev/play/p/Us-ySSbWh-3)]
+-   **<big>Substring</big>** : returns a substring of the specified length starting at the specified offset position.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#Substring)]
+-   **<big>Wrap</big>** : wrap a string with given string.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#Wrap)]
+    [[play](https://go.dev/play/p/KoZOlZDDt9y)]
+-   **<big>Unwrap</big>** : unwrap a given string from anther string. will change source string.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#Unwrap)]
+    [[play](https://go.dev/play/p/Ec2q4BzCpG-)]
 
 ### 19. System package contain some functions about os, runtime, shell command.
 
@@ -566,33 +576,34 @@ import "github.com/duke-git/lancet/v2/system"
 ```
 
 #### Function list:
-- **<big>IsWindows</big>** : check if current os is windows.
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/system.md#IsWindows)]
-[[play](https://go.dev/play/p/XzJULbzmf9m)]
-- **<big>IsLinux</big>** : check if current os is linux.
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/system.md#IsLinux)]
-[[play](https://go.dev/play/p/zIflQgZNuxD)]
-- **<big>IsMac</big>** : check if current os is macos.
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/system.md#IsMac)]
-[[play](https://go.dev/play/p/Mg4Hjtyq7Zc)]
-- **<big>GetOsEnv</big>** : get the value of the environment variable named by the key.
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/system.md#GetOsEnv)]
-[[play](https://go.dev/play/p/D88OYVCyjO-)]
-- **<big>SetOsEnv</big>** : set the value of the environment variable named by the key.
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/system.md#SetOsEnv)]
-[[play](https://go.dev/play/p/D88OYVCyjO-)]
-- **<big>RemoveOsEnv</big>** : remove a single environment variable.
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/system.md#RemoveOsEnv)]
-[[play](https://go.dev/play/p/fqyq4b3xUFQ)]
-- **<big>CompareOsEnv</big>** : get env named by the key and compare it with passed env.
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/system.md#CompareOsEnv)]
-[[play](https://go.dev/play/p/BciHrKYOHbp)]
-- **<big>ExecCommand</big>** : execute command, return the stdout and stderr string of command, and error if error occurs.
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/system.md#ExecCommand)]
-[[play](https://go.dev/play/p/n-2fLyZef-4)]
-- **<big>GetOsBits</big>** : return current os bits (32 or 64).
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/system.md#GetOsBits)]
-[[play](https://go.dev/play/p/ml-_XH3gJbW)]
+
+-   **<big>IsWindows</big>** : check if current os is windows.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/system.md#IsWindows)]
+    [[play](https://go.dev/play/p/XzJULbzmf9m)]
+-   **<big>IsLinux</big>** : check if current os is linux.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/system.md#IsLinux)]
+    [[play](https://go.dev/play/p/zIflQgZNuxD)]
+-   **<big>IsMac</big>** : check if current os is macos.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/system.md#IsMac)]
+    [[play](https://go.dev/play/p/Mg4Hjtyq7Zc)]
+-   **<big>GetOsEnv</big>** : get the value of the environment variable named by the key.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/system.md#GetOsEnv)]
+    [[play](https://go.dev/play/p/D88OYVCyjO-)]
+-   **<big>SetOsEnv</big>** : set the value of the environment variable named by the key.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/system.md#SetOsEnv)]
+    [[play](https://go.dev/play/p/D88OYVCyjO-)]
+-   **<big>RemoveOsEnv</big>** : remove a single environment variable.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/system.md#RemoveOsEnv)]
+    [[play](https://go.dev/play/p/fqyq4b3xUFQ)]
+-   **<big>CompareOsEnv</big>** : get env named by the key and compare it with passed env.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/system.md#CompareOsEnv)]
+    [[play](https://go.dev/play/p/BciHrKYOHbp)]
+-   **<big>ExecCommand</big>** : execute command, return the stdout and stderr string of command, and error if error occurs.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/system.md#ExecCommand)]
+    [[play](https://go.dev/play/p/n-2fLyZef-4)]
+-   **<big>GetOsBits</big>** : return current os bits (32 or 64).
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/system.md#GetOsBits)]
+    [[play](https://go.dev/play/p/ml-_XH3gJbW)]
 
 ### 19. Validator package contains some functions for data validation.
 

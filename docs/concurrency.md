@@ -159,7 +159,7 @@ func main() {
 
 ### <span id="Repeat">Repeat</span>
 
-<p>Return a channel, put param `values` into the channel repeatly until cancel the context.</p>
+<p>Create channel, put values into the channel repeatly until cancel the context.</p>
 
 <b>Signature:</b>
 
@@ -197,10 +197,47 @@ func main() {
 
 
 
+### <span id="Generate">Generate</span>
+
+<p>Creates a channel, then put values into the channel.</p>
+
+<b>Signature:</b>
+
+```go
+func (c *Channel[T]) Generate(ctx context.Context, values ...T) <-chan T
+```
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "github.com/duke-git/lancet/v2/concurrency"
+)
+
+func main() {
+	ctx, cancel := context.WithCancel(context.Background())
+	defer cancel()
+
+	c := concurrency.NewChannel[int]()
+	intStream := c.Generate(ctx, 1, 2, 3)
+
+	fmt.Println(<-intStream)
+	fmt.Println(<-intStream)
+	fmt.Println(<-intStream)
+
+	// Output:
+	// 1
+	// 2
+	// 3
+}
+```
 
 ### <span id="RepeatFn">RepeatFn</span>
 
-<p>Return a channel, excutes fn repeatly, and put the result into retruned channel until cancel context.</p>
+<p>Create a channel, excutes fn repeatly, and put the result into the channel, until close context.</p>
 
 <b>Signature:</b>
 
@@ -329,7 +366,7 @@ func main() {
 
 ### <span id="Take">Take</span>
 
-<p>Return a channel whose values are tahken from another channel until cancel context.</p>
+<p>Create a channel whose values are taken from another channel with limit number.</p>
 
 <b>Signature:</b>
 
@@ -376,7 +413,7 @@ func main() {
 
 ### <span id="Tee">Tee</span>
 
-<p>Split one channel into two channels until cancel context.</p>
+<p>Split one chanel into two channels, until cancel the context.</p>
 
 <b>Signature:</b>
 

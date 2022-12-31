@@ -157,6 +157,44 @@ func main() {
 ```
 
 
+### <span id="Generate">Generate</span>
+
+<p>根据传入的值，生成channel.</p>
+
+<b>函数签名:</b>
+
+```go
+func (c *Channel[T]) Generate(ctx context.Context, values ...T) <-chan T
+```
+<b>例子:</b>
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "github.com/duke-git/lancet/v2/concurrency"
+)
+
+func main() {
+	ctx, cancel := context.WithCancel(context.Background())
+	defer cancel()
+
+	c := concurrency.NewChannel[int]()
+	intStream := c.Generate(ctx, 1, 2, 3)
+
+	fmt.Println(<-intStream)
+	fmt.Println(<-intStream)
+	fmt.Println(<-intStream)
+
+	// Output:
+	// 1
+	// 2
+	// 3
+}
+```
+
 ### <span id="Repeat">Repeat</span>
 
 <p>返回一个channel，将参数`values`重复放入channel，直到取消上下文。</p>
@@ -289,7 +327,7 @@ func main() {
 
 ### <span id="OrDone">OrDone</span>
 
-<p>将一个channel读入另一个channel，直到取消上下文。.</p>
+<p>将一个channel读入另一个channel，直到取消上下文。</p>
 
 <b>函数签名:</b>
 
