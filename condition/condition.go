@@ -40,13 +40,13 @@ func And[T, U any](a T, b U) bool {
 	return Bool(a) && Bool(b)
 }
 
-// Or returns false iff neither a nor b is truthy.
+// Or returns false if neither a nor b is truthy.
 // Play: https://go.dev/play/p/UlQTxHaeEkq
 func Or[T, U any](a T, b U) bool {
 	return Bool(a) || Bool(b)
 }
 
-// Xor returns true iff a or b but not both is truthy.
+// Xor returns true if a or b but not both is truthy.
 // Play: https://go.dev/play/p/gObZrW7ZbG8
 func Xor[T, U any](a T, b U) bool {
 	valA := Bool(a)
@@ -54,13 +54,13 @@ func Xor[T, U any](a T, b U) bool {
 	return (valA || valB) && valA != valB
 }
 
-// Nor returns true iff neither a nor b is truthy.
+// Nor returns true if neither a nor b is truthy.
 // Play: https://go.dev/play/p/g2j08F_zZky
 func Nor[T, U any](a T, b U) bool {
 	return !(Bool(a) || Bool(b))
 }
 
-// Xnor returns true iff both a and b or neither a nor b are truthy.
+// Xnor returns true if both a and b or neither a nor b are truthy.
 // Play: https://go.dev/play/p/OuDB9g51643
 func Xnor[T, U any](a T, b U) bool {
 	valA := Bool(a)

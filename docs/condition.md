@@ -25,6 +25,7 @@ import (
 - [Or](#Or)
 - [Xor](#Generate)
 - [Nor](#Nor)
+- [Xnor](#Xnor)
 - [Nand](#Nand)
 - [TernaryOperator](#TernaryOperator)
 
@@ -120,7 +121,7 @@ func main() {
 
 
 ### <span id="Or">Or</span>
-<p>Returns false iff neither a nor b is truthy.</p>
+<p>Returns false if neither a nor b is truthy.</p>
 
 <b>Signature:</b>
 
@@ -148,7 +149,7 @@ func main() {
 
 
 ### <span id="Xor">Xor</span>
-<p>Returns true iff a or b but not both is truthy.</p>
+<p>Returns true if a or b but not both is truthy.</p>
 
 <b>Signature:</b>
 
@@ -176,7 +177,7 @@ func main() {
 
 
 ### <span id="Nor">Nor</span>
-<p>Returns true iff neither a nor b is truthy.</p>
+<p>Returns true if neither a nor b is truthy.</p>
 
 <b>Signature:</b>
 
@@ -197,14 +198,40 @@ func main() {
 	fmt.Println(condition.Nor(0, 0)) // true
 	fmt.Println(condition.Nor(0, 1)) // false
 	fmt.Println(condition.Nor(1, 0)) // false
-	fmt.Println(condition.Nor(1, 1)) // true
+	fmt.Println(condition.Nor(1, 1)) // false
 }
 ```
 
 
+### <span id="Xnor">Xnor</span>
+<p>Returns true if both a and b or neither a nor b are truthy.</p>
+
+<b>Signature:</b>
+
+```go
+func Xnor[T, U any](a T, b U) bool
+```
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/condition"
+)
+
+func main() {
+	fmt.Println(condition.Xnor(0, 0)) // true
+	fmt.Println(condition.Xnor(0, 1)) // false
+	fmt.Println(condition.Xnor(1, 0)) // false
+	fmt.Println(condition.Xnor(1, 1)) // true
+}
+```
+
 
 ### <span id="Nand">Nand</span>
-<p>Returns false iff both a and b are truthy</p>
+<p>Returns false if both a and b are truthy</p>
 
 <b>Signature:</b>
 

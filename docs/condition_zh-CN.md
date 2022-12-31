@@ -25,6 +25,7 @@ import (
 - [Or](#Or)
 - [Xor](#Generate)
 - [Nor](#Nor)
+- [Xnor](#Xnor)
 - [Nand](#Nand)
 - [TernaryOperator](#TernaryOperator)
 
@@ -196,11 +197,37 @@ func main() {
 	fmt.Println(condition.Nor(0, 0)) // true
 	fmt.Println(condition.Nor(0, 1)) // false
 	fmt.Println(condition.Nor(1, 0)) // false
-	fmt.Println(condition.Nor(1, 1)) // true
+	fmt.Println(condition.Nor(1, 1)) // false
 }
 ```
 
 
+
+### <span id="Xnor">Xnor</span>
+<p>如果a和b都是真的或a和b均是假的，则返回true。</p>
+
+<b>函数签名:</b>
+
+```go
+func Xnor[T, U any](a T, b U) bool
+```
+<b>例子:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/condition"
+)
+
+func main() {
+	fmt.Println(condition.Xnor(0, 0)) // true
+	fmt.Println(condition.Xnor(0, 1)) // false
+	fmt.Println(condition.Xnor(1, 0)) // false
+	fmt.Println(condition.Xnor(1, 1)) // true
+}
+```
 
 ### <span id="Nand">Nand</span>
 <p>如果a和b都为真，返回false，否则返回true</p>

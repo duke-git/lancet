@@ -152,14 +152,31 @@ import "github.com/duke-git/lancet/v2/condition"
 ```
 
 #### Function list:
+-   **<big>Bool</big>** : 返回传入参数的bool值。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/condition_zh-CN.md#Bool)]
+    [[play](https://go.dev/play/p/ETzeDJRSvhm)]
+-   **<big>And</big>** : 逻辑且操作，当切仅当a和b都为true时返回true。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/condition_zh-CN.md#And)]
+    [[play](https://go.dev/play/p/W1SSUmt6pvr)]
+-   **<big>Or</big>** : 逻辑或操作，当切仅当a和b都为false时返回false。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/condition_zh-CN.md#Or)]
+    [[play](https://go.dev/play/p/UlQTxHaeEkq)]
+-   **<big>Xor</big>** : 逻辑异或操作，a和b相同返回false，a和b不相同返回true
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/condition_zh-CN.md#Xor)]
+    [[play](https://go.dev/play/p/gObZrW7ZbG8)]
+-   **<big>Nor</big>** : 异或的取反操作。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/condition_zh-CN.md#Nor)]
+    [[play](https://go.dev/play/p/g2j08F_zZky)
+-   **<big>Xnor</big>** : 如果a和b都是真的或a和b均是假的，则返回true。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/condition_zh-CN.md#Xnor)]
+    [[play](https://go.dev/play/p/OuDB9g51643)]
+-   **<big>Nand</big>** : 如果a和b都为真，返回false，否则返回true
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/condition_zh-CN.md#Nand)]
+    [[play](https://go.dev/play/p/vSRMLxLIbq8)]
+-   **<big>TernaryOperator</big>** : 三元运算符。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/condition_zh-CN.md#TernaryOperator)]
+    [[play](https://go.dev/play/p/ElllPZY0guT)]
 
--   [Bool](https://github.com/duke-git/lancet/blob/main/docs/condition_zh-CN.md#Bool)
--   [And](https://github.com/duke-git/lancet/blob/main/docs/condition_zh-CN.md#And)
--   [Or](https://github.com/duke-git/lancet/blob/main/docs/condition_zh-CN.md#Or)
--   [Xor](https://github.com/duke-git/lancet/blob/main/docs/condition_zh-CN.md#Xor)
--   [Nor](https://github.com/duke-git/lancet/blob/main/docs/condition_zh-CN.md#Nor)
--   [Nand](https://github.com/duke-git/lancet/blob/main/docs/condition_zh-CN.md#Nand)
--   [TernaryOperator](https://github.com/duke-git/lancet/blob/main/docs/condition_zh-CN.md#TernaryOperator)
 
 ### 4. convertor 转换器包支持一些常见的数据类型转换。
 

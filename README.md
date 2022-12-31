@@ -154,13 +154,31 @@ import "github.com/duke-git/lancet/v2/condition"
 
 #### Function list:
 
--   [Bool](https://github.com/duke-git/lancet/blob/main/docs/condition.md#Bool)
--   [And](https://github.com/duke-git/lancet/blob/main/docs/condition.md#And)
--   [Or](https://github.com/duke-git/lancet/blob/main/docs/condition.md#Or)
--   [Xor](https://github.com/duke-git/lancet/blob/main/docs/condition.md#Xor)
--   [Nor](https://github.com/duke-git/lancet/blob/main/docs/condition.md#Nor)
--   [Nand](https://github.com/duke-git/lancet/blob/main/docs/condition.md#Nand)
--   [TernaryOperator](https://github.com/duke-git/lancet/blob/main/docs/condition.md#TernaryOperator)
+-   **<big>Bool</big>** : returns the truthy value of anything.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/condition.md#Bool)]
+    [[play](https://go.dev/play/p/ETzeDJRSvhm)]
+-   **<big>And</big>** : returns true if both a and b are truthy.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/condition.md#And)]
+    [[play](https://go.dev/play/p/W1SSUmt6pvr)]
+-   **<big>Or</big>** : returns false if neither a nor b is truthy.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/condition.md#Or)]
+    [[play](https://go.dev/play/p/UlQTxHaeEkq)]
+-   **<big>Xor</big>** : returns true if a or b but not both is truthy.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/condition.md#Xor)]
+    [[play](https://go.dev/play/p/gObZrW7ZbG8)]
+-   **<big>Nor</big>** : returns true if neither a nor b is truthy.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/condition.md#Nor)]
+    [[play](https://go.dev/play/p/g2j08F_zZky)
+-   **<big>Xnor</big>** : returns true if both a and b or neither a nor b are truthy.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/condition.md#Xnor)]
+    [[play](https://go.dev/play/p/OuDB9g51643)]
+-   **<big>Nand</big>** : returns false if both a and b are truthy.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/condition.md#Nand)]
+    [[play](https://go.dev/play/p/vSRMLxLIbq8)]
+-   **<big>TernaryOperator</big>** : ternary operator.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/condition.md#TernaryOperator)]
+    [[play](https://go.dev/play/p/ElllPZY0guT)]
+
 
 ### 4. Convertor package contains some functions for data convertion.
 
