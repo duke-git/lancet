@@ -238,7 +238,7 @@ func main() {
 
 ### <span id="RepeatFn">RepeatFn</span>
 
-<p>返回一个channel，重复执行函数fn，并将结果放入返回的chan，直到取消上下文。</p>
+<p>返回一个channel，重复执行函数fn，并将结果放入返回的channel，直到取消上下文。</p>
 
 <b>函数签名:</b>
 
