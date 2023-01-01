@@ -187,23 +187,55 @@ import "github.com/duke-git/lancet/v2/convertor"
 ```
 
 #### Function list:
+-   **<big>ColorHexToRGB</big>** : convert color hex to color rgb.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#ColorHexToRGB)]
+    [[play](https://go.dev/play/p/o7_ft-JCJBV)]
+-   **<big>ColorRGBToHex</big>** : convert rgb color to hex color.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#ColorRGBToHex)]
+    [[play](https://go.dev/play/p/nzKS2Ro87J1)]
+-   **<big>ToBool</big>** : convert string to bool.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#ToBool)]
+    [[play](https://go.dev/play/p/ARht2WnGdIN)]
+-   **<big>ToBytes</big>** : convert value to byte slice.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#ToBytes)]
+    [[play](https://go.dev/play/p/fAMXYFDvOvr)]
+-   **<big>ToChar</big>** : convert string to char slice.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#ToChar)]
+    [[play](https://go.dev/play/p/JJ1SvbFkVdM)]
+-   **<big>ToChannel</big>** : convert a collection of elements to a read-only channel.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#ToChannel)]
+    [[play](https://go.dev/play/p/hOx_oYZbAnL)]
+-   **<big>ToFloat</big>** : convert value to float64, if param is a invalid floatable, will return 0.0 and error.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#ToFloat)]
+    [[play](https://go.dev/play/p/4YTmPCibqHJ)]
+-   **<big>ToInt</big>** : convert value to int64 value, if input is not numerical, return 0 and error.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#ToInt)]
+    [[play](https://go.dev/play/p/9_h9vIt-QZ_b)]
+-   **<big>ToJson</big>** : convert value to a json string.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#ToJson)]
+    [[play](https://go.dev/play/p/2rLIkMmXWvR)]
+-   **<big>ToMap</big>** : convert a slice of structs to a map based on iteratee function.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#ToMap)]
+    [[play](https://go.dev/play/p/tVFy7E-t24l)]
+-   **<big>ToPointer</big>** : return a pointer of passed value.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#ToPointer)]
+    [[play](https://go.dev/play/p/ASf_etHNlw1)]
+-   **<big>ToString</big>** : convert value to string.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#ToString)]
+    [[play](https://go.dev/play/p/nF1zOOslpQq)]
+-   **<big>StructToMap</big>** : convert struct to map, only convert exported struct field.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#StructToMap)]
+    [[play](https://go.dev/play/p/KYGYJqNUBOI)]
+-   **<big>MapToSlice</big>** : convert map to slice based on iteratee function.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#MapToSlice)]
+    [[play](https://go.dev/play/p/dmX4Ix5V6Wl)]
+-   **<big>EncodeByte</big>** : encode data to byte slice.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#EncodeByte)]
+    [[play](https://go.dev/play/p/DVmM1G5JfuP)]
+-   **<big>DecodeByte</big>** : decode byte slice data to target object.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#DecodeByte)]
+    [[play](https://go.dev/play/p/zI6xsmuQRbn)]
 
--   [ColorHexToRGB](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#ColorHexToRGB)
--   [ColorRGBToHex](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#ColorRGBToHex)
--   [ToBool](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#ToBool)
--   [ToBytes](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#ToBytes)
--   [ToChar](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#ToChar)
--   [ToChannel](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#ToChannel)
--   [ToFloat](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#ToFloat)
--   [ToInt](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#ToInt)
--   [ToJson](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#ToJson)
--   [ToMap](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#ToMap)
--   [ToPointer](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#ToPointer)
--   [ToString](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#ToString)
--   [StructToMap](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#StructToMap)
--   [MapToSlice](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#MapToSlice)
--   [EncodeByte](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#EncodeByte)
--   [DecodeByte](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#DecodeByte)
 
 ### 5. Cryptor package is for data encryption and decryption.
 

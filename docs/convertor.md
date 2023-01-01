@@ -102,7 +102,7 @@ func main() {
 
 ### <span id="ToBool">ToBool</span>
 
-<p>Convert string to a boolean value. Use strconv.ParseBool</p>
+<p>Convert string to bool. Use strconv.ParseBool.</p>
 
 <b>Signature:</b>
 
@@ -138,7 +138,7 @@ func main() {
 
 ### <span id="ToBytes">ToBytes</span>
 
-<p>Convert interface to byte slice.</p>
+<p>Convert value to byte slice.</p>
 
 <b>Signature:</b>
 
@@ -200,7 +200,7 @@ func main() {
 
 ### <span id="ToChannel">ToChannel</span>
 
-<p>Convert a collection of elements to a read-only channels.</p>
+<p>Convert a collection of elements to a read-only channel.</p>
 
 <b>Signature:</b>
 
@@ -238,7 +238,7 @@ func main() {
 
 ### <span id="ToFloat">ToFloat</span>
 
-<p>Convert interface to a float64 value. If param is a invalid floatable, will return 0 and error. </p>
+<p>Convert value to a float64 value. If param is a invalid floatable, will return 0.0 and error. </p>
 
 <b>Signature:</b>
 
@@ -271,7 +271,7 @@ func main() {
 
 ### <span id="ToInt">ToInt</span>
 
-<p>Convert interface to a int64 value. If param is a invalid intable, will return 0 and error. </p>
+<p>Convert value to a int64 value. If param is a invalid intable, will return 0 and error. </p>
 
 <b>Signature:</b>
 
@@ -332,7 +332,7 @@ func main() {
 
 ### <span id="ToMap">ToMap</span>
 
-<p>Convert a slice or an array of structs to a map based on iteratee function. </p>
+<p>Convert a slice of structs to a map based on iteratee function. </p>
 
 <b>Signature:</b>
 

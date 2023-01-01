@@ -185,23 +185,55 @@ import "github.com/duke-git/lancet/v2/convertor"
 ```
 
 #### 函数列表:
-
--   [ColorHexToRGB](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#ColorHexToRGB)
--   [ColorRGBToHex](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#ColorRGBToHex)
--   [ToBool](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#ToBool)
--   [ToBytes](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#ToBytes)
--   [ToChar](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#ToChar)
--   [ToChannel](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#ToChannel)
--   [ToFloat](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#ToFloat)
--   [ToInt](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#ToInt)
--   [ToJson](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#ToJson)
--   [ToMap](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#ToMap)
--   [ToPointer](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#ToPointer)
--   [ToString](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#ToString)
--   [StructToMap](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#StructToMap)
--   [MapToSlice](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#MapToSlice)
--   [EncodeByte](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#EncodeByte)
--   [DecodeByte](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#DecodeByte)
+-   **<big>ColorHexToRGB</big>** : 颜色值十六进制转rgb。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#ColorHexToRGB)]
+    [[play](https://go.dev/play/p/o7_ft-JCJBV)]
+-   **<big>ColorRGBToHex</big>** : 颜色值rgb转十六进制。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#ColorRGBToHex)]
+    [[play](https://go.dev/play/p/nzKS2Ro87J1)]
+-   **<big>ToBool</big>** : 字符串转布尔类型，使用strconv.ParseBool。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#ToBool)]
+    [[play](https://go.dev/play/p/ARht2WnGdIN)]
+-   **<big>ToBytes</big>** : interface转字节切片。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#ToBytes)]
+    [[play](https://go.dev/play/p/fAMXYFDvOvr)]
+-   **<big>ToChar</big>** : 字符串转字符切片。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#ToChar)]
+    [[play](https://go.dev/play/p/JJ1SvbFkVdM)]
+-   **<big>ToChannel</big>** : 将切片转为只读channel。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#ToChannel)]
+    [[play](https://go.dev/play/p/hOx_oYZbAnL)]
+-   **<big>ToFloat</big>** : 将interface转成float64类型，如果参数无法转换，会返回0.0和error。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#ToFloat)]
+    [[play](https://go.dev/play/p/4YTmPCibqHJ)]
+-   **<big>ToInt</big>** : 将interface转成int64类型，如果参数无法转换，会返回0和error。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#ToInt)]
+    [[play](https://go.dev/play/p/9_h9vIt-QZ_b)]
+-   **<big>ToJson</big>** : 将interface转成json字符串，如果参数无法转换，会返回""和error。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#ToJson)]
+    [[play](https://go.dev/play/p/2rLIkMmXWvR)]
+-   **<big>ToMap</big>** : 将切片转为map。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#ToMap)]
+    [[play](https://go.dev/play/p/tVFy7E-t24l)]
+-   **<big>ToPointer</big>** : 返回传入值的指针。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#ToPointer)]
+    [[play](https://go.dev/play/p/ASf_etHNlw1)]
+-   **<big>ToString</big>** : 将值转换为字符串，对于数字、字符串、[]byte，将转换为字符串。 对于其他类型（切片、映射、数组、结构）将调用 json.Marshal。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#ToString)]
+    [[play](https://go.dev/play/p/nF1zOOslpQq)]
+-   **<big>StructToMap</big>** : 将struct转成map，只会转换struct中可导出的字段。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#StructToMap)]
+    [[play](https://go.dev/play/p/KYGYJqNUBOI)]
+-   **<big>MapToSlice</big>** : map中key和value执行函数iteratee后，转为切片。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#MapToSlice)]
+    [[play](https://go.dev/play/p/dmX4Ix5V6Wl)]
+-   **<big>EncodeByte</big>** : 将传入的data编码成字节切片。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#EncodeByte)]
+    [[play](https://go.dev/play/p/DVmM1G5JfuP)]
+-   **<big>DecodeByte</big>** : 解码字节切片到目标对象，目标对象需要传入一个指针实例。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#DecodeByte)]
+    [[play](https://go.dev/play/p/zI6xsmuQRbn)]
+    
 
 ### 5. cryptor 加密包支持数据加密和解密，获取 md5，hash 值。支持 base64, md5, hmac, aes, des, rsa。
 
