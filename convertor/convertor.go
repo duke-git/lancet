@@ -17,12 +17,14 @@ import (
 	"strings"
 )
 
-// ToBool convert string to a boolean
+// ToBool convert string to boolean.
+// Play: https://go.dev/play/p/ARht2WnGdIN
 func ToBool(s string) (bool, error) {
 	return strconv.ParseBool(s)
 }
 
-// ToBytes convert interface to bytes
+// ToBytes convert value to byte slice.
+// Play: https://go.dev/play/p/fAMXYFDvOvr
 func ToBytes(value any) ([]byte, error) {
 	v := reflect.ValueOf(value)
 
@@ -63,7 +65,8 @@ func ToBytes(value any) ([]byte, error) {
 	}
 }
 
-// ToChar convert string to char slice
+// ToChar convert string to char slice.
+// Play: https://go.dev/play/p/JJ1SvbFkVdM
 func ToChar(s string) []string {
 	c := make([]string, 0)
 	if len(s) == 0 {
@@ -75,7 +78,8 @@ func ToChar(s string) []string {
 	return c
 }
 
-// ToChannel convert a array of elements to a read-only channels
+// ToChannel convert a slice of elements to a read-only channel.
+// Play: https://go.dev/play/p/hOx_oYZbAnL
 func ToChannel[T any](array []T) <-chan T {
 	ch := make(chan T)
 
@@ -91,7 +95,8 @@ func ToChannel[T any](array []T) <-chan T {
 
 // ToString convert value to string
 // for number, string, []byte, will convert to string
-// for other type (slice, map, array, struct) will call json.Marshal
+// for other type (slice, map, array, struct) will call json.Marshal.
+// Play: https://go.dev/play/p/nF1zOOslpQq
 func ToString(value any) string {
 	if value == nil {
 		return ""
@@ -140,7 +145,8 @@ func ToString(value any) string {
 	}
 }
 
-// ToJson convert value to a valid json string
+// ToJson convert value to a json string.
+// Play: https://go.dev/play/p/2rLIkMmXWvR
 func ToJson(value any) (string, error) {
 	result, err := json.Marshal(value)
 	if err != nil {
@@ -150,7 +156,8 @@ func ToJson(value any) (string, error) {
 	return string(result), nil
 }
 
-// ToFloat convert value to a float64, if input is not a float return 0.0 and error
+// ToFloat convert value to float64, if input is not a float return 0.0 and error.
+// Play: https://go.dev/play/p/4YTmPCibqHJ
 func ToFloat(value any) (float64, error) {
 	v := reflect.ValueOf(value)
 
@@ -177,12 +184,13 @@ func ToFloat(value any) (float64, error) {
 	}
 }
 
-// ToInt convert value to a int64, if input is not a numeric format return 0 and error
+// ToInt convert value to int64 value, if input is not numerical, return 0 and error.
+// Play: https://go.dev/play/p/9_h9vIt-QZ_b
 func ToInt(value any) (int64, error) {
 	v := reflect.ValueOf(value)
 
 	var result int64
-	err := fmt.Errorf("ToInt: invalid interface type %T", value)
+	err := fmt.Errorf("ToInt: invalid value type %T", value)
 	switch value.(type) {
 	case int, int8, int16, int32, int64:
 		result = v.Int()
@@ -204,12 +212,14 @@ func ToInt(value any) (int64, error) {
 	}
 }
 
-// ToPointer returns a pointer to this value
+// ToPointer returns a pointer to passed value.
+// Play: https://go.dev/play/p/ASf_etHNlw1
 func ToPointer[T any](value T) *T {
 	return &value
 }
 
-// ToMap convert a slice or an array of structs to a map based on iteratee function
+// ToMap convert a slice of structs to a map based on iteratee function.
+// Play: https://go.dev/play/p/tVFy7E-t24l
 func ToMap[T any, K comparable, V any](array []T, iteratee func(T) (K, V)) map[K]V {
 	result := make(map[K]V, len(array))
 	for _, item := range array {
@@ -221,7 +231,8 @@ func ToMap[T any, K comparable, V any](array []T, iteratee func(T) (K, V)) map[K
 }
 
 // StructToMap convert struct to map, only convert exported struct field
-// map key is specified same as struct field tag `json` value
+// map key is specified same as struct field tag `json` value.
+// Play: https://go.dev/play/p/KYGYJqNUBOI
 func StructToMap(value any) (map[string]any, error) {
 	v := reflect.ValueOf(value)
 	t := reflect.TypeOf(value)
@@ -250,7 +261,8 @@ func StructToMap(value any) (map[string]any, error) {
 	return result, nil
 }
 
-// MapToSlice convert a map to a slice based on iteratee function
+// MapToSlice convert map to slice based on iteratee function.
+// Play: https://go.dev/play/p/dmX4Ix5V6Wl
 func MapToSlice[T any, K comparable, V any](aMap map[K]V, iteratee func(K, V) T) []T {
 	result := make([]T, 0, len(aMap))
 
@@ -261,7 +273,8 @@ func MapToSlice[T any, K comparable, V any](aMap map[K]V, iteratee func(K, V) T)
 	return result
 }
 
-// ColorHexToRGB convert hex color to rgb color
+// ColorHexToRGB convert hex color to rgb color.
+// Play: https://go.dev/play/p/o7_ft-JCJBV
 func ColorHexToRGB(colorHex string) (red, green, blue int) {
 	colorHex = strings.TrimPrefix(colorHex, "#")
 	color64, err := strconv.ParseInt(colorHex, 16, 32)
@@ -272,7 +285,8 @@ func ColorHexToRGB(colorHex string) (red, green, blue int) {
 	return color >> 16, (color & 0x00FF00) >> 8, color & 0x0000FF
 }
 
-// ColorRGBToHex convert rgb color to hex color
+// ColorRGBToHex convert rgb color to hex color.
+// Play: https://go.dev/play/p/nzKS2Ro87J1
 func ColorRGBToHex(red, green, blue int) string {
 	r := strconv.FormatInt(int64(red), 16)
 	g := strconv.FormatInt(int64(green), 16)
@@ -291,7 +305,8 @@ func ColorRGBToHex(red, green, blue int) string {
 	return "#" + r + g + b
 }
 
-// EncodeByte encode data to byte
+// EncodeByte encode data to byte slice.
+// Play: https://go.dev/play/p/DVmM1G5JfuP
 func EncodeByte(data any) ([]byte, error) {
 	buffer := bytes.NewBuffer(nil)
 	encoder := gob.NewEncoder(buffer)
@@ -302,7 +317,8 @@ func EncodeByte(data any) ([]byte, error) {
 	return buffer.Bytes(), nil
 }
 
-// DecodeByte decode byte data to target object
+// DecodeByte decode byte slice data to target object.
+// Play: https://go.dev/play/p/zI6xsmuQRbn
 func DecodeByte(data []byte, target any) error {
 	buffer := bytes.NewBuffer(data)
 	decoder := gob.NewDecoder(buffer)
