@@ -400,14 +400,31 @@ import "github.com/duke-git/lancet/v2/maputil"
 
 #### Function list:
 
--   [ForEach](https://github.com/duke-git/lancet/blob/main/docs/maputil.md#ForEach)
--   [Filter](https://github.com/duke-git/lancet/blob/main/docs/maputil.md#Filter)
--   [Intersect](https://github.com/duke-git/lancet/blob/main/docs/maputil.md#Intersect)
--   [Keys](https://github.com/duke-git/lancet/blob/main/docs/maputil.md#Keys)
--   [Merge](https://github.com/duke-git/lancet/blob/main/docs/maputil.md#Merge)
--   [Minus](https://github.com/duke-git/lancet/blob/main/docs/maputil.md#Minus)
--   [Values](https://github.com/duke-git/lancet/blob/main/docs/maputil.md#Values)
--   [IsDisjoint](https://github.com/duke-git/lancet/blob/main/docs/maputil.md#IsDisjoint)
+-   **<big>ForEach</big>** : executes iteratee funcation for every key and value pair in map.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil.md#ForEach)]
+    [[play](https://go.dev/play/p/OaThj6iNVXK)]
+-   **<big>Filter</big>** : iterates over map, return a new map contains all key and value pairs pass the predicate function.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil.md#Filter)]
+    [[play](https://go.dev/play/p/fSvF3wxuNG7)]
+-   **<big>Intersect</big>** : iterates over maps, return a new map of key and value pairs in all given maps.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil.md#Intersect)]
+    [[play](https://go.dev/play/p/Zld0oj3sjcC)]
+-   **<big>Keys</big>** : returns a slice of the map's keys.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil.md#Keys)]
+    [[play](https://go.dev/play/p/xNB5bTb97Wd)]
+-   **<big>Merge</big>** : merge maps, next key will overwrite previous key.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil.md#Merge)]
+    [[play](https://go.dev/play/p/H95LENF1uB-)]
+-   **<big>Minus</big>** : creates a map of whose key in mapA but not in mapB.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil.md#Minus)]
+    [[play](https://go.dev/play/p/3u5U9K7YZ9m)]
+-   **<big>Values</big>** : returns a slice of the map's values.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil.md#Values)]
+    [[play](https://go.dev/play/p/CBKdUc5FTW6)]
+-   **<big>IsDisjoint</big>** : check two map are disjoint if they have no keys in common.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil.md#IsDisjoint)]
+    [[play](https://go.dev/play/p/N9qgYg_Ho6f)]
+
 
 ### 12. Mathutil package implements some functions for math calculation.
 

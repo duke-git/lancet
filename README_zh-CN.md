@@ -398,14 +398,31 @@ import "github.com/duke-git/lancet/v2/maputil"
 
 #### 函数列表:
 
--   [ForEach](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#ForEach)
--   [Filter](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#Filter)
--   [Intersect](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#Intersect)
--   [Keys](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#Keys)
--   [Merge](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#Merge)
--   [Minus](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#Minus)
--   [Values](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#Values)
--   [IsDisjoint](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#IsDisjoint)
+-   **<big>ForEach</big>** : 对map中的每对key和value执行iteratee函数。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#ForEach)]
+    [[play](https://go.dev/play/p/OaThj6iNVXK)]
+-   **<big>Filter</big>** : 迭代map中的每对key和value，返回map，其中的key和value符合predicate函数。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#Filter)]
+    [[play](https://go.dev/play/p/fSvF3wxuNG7)]
+-   **<big>Intersect</big>** : 多个map的交集操作。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#Intersect)]
+    [[play](https://go.dev/play/p/Zld0oj3sjcC)]
+-   **<big>Keys</big>** : 返回map中所有key组成的切片。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#Keys)]
+    [[play](https://go.dev/play/p/xNB5bTb97Wd)]
+-   **<big>Merge</big>** : 合并多个map, 相同的key会被之后的key覆盖。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#Merge)]
+    [[play](https://go.dev/play/p/H95LENF1uB-)]
+-   **<big>Minus</big>** : 返回一个map，其中的key存在于mapA，不存在于mapB。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#Minus)]
+    [[play](https://go.dev/play/p/3u5U9K7YZ9m)]
+-   **<big>Values</big>** : 返回map中所有values组成的切片
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#Values)]
+    [[play](https://go.dev/play/p/CBKdUc5FTW6)]
+-   **<big>IsDisjoint</big>** : 验证两个map是否具有不同的key。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#IsDisjoint)]
+    [[play](https://go.dev/play/p/N9qgYg_Ho6f)]
+    
 
 ### 12. mathutil 包实现了一些数学计算的函数。
 

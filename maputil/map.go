@@ -103,7 +103,7 @@ func Intersect[K comparable, V any](maps ...map[K]V) map[K]V {
 	return result
 }
 
-// Minus creates an map of whose key in mapA but not in mapB.
+// Minus creates a map of whose key in mapA but not in mapB.
 // Play: https://go.dev/play/p/3u5U9K7YZ9m
 func Minus[K comparable, V any](mapA, mapB map[K]V) map[K]V {
 	result := make(map[K]V)
