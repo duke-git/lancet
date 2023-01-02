@@ -13,7 +13,8 @@ import (
 	"golang.org/x/exp/constraints"
 )
 
-// Exponent calculate x^n
+// Exponent calculate x^n.
+// Play: https://go.dev/play/p/uF3HGNPk8wr
 func Exponent(x, n int64) int64 {
 	if n == 0 {
 		return 1
@@ -28,7 +29,8 @@ func Exponent(x, n int64) int64 {
 	return t * t
 }
 
-// Fibonacci calculate fibonacci number before n
+// Fibonacci calculate fibonacci number before n.
+// Play: https://go.dev/play/p/IscseUNMuUc
 func Fibonacci(first, second, n int) int {
 	if n <= 0 {
 		return 0
@@ -42,7 +44,8 @@ func Fibonacci(first, second, n int) int {
 	}
 }
 
-// Factorial calculate x!
+// Factorial calculate x!.
+// Play: https://go.dev/play/p/tt6LdOK67Nx
 func Factorial(x uint) uint {
 	var f uint = 1
 	for ; x > 1; x-- {
@@ -51,18 +54,19 @@ func Factorial(x uint) uint {
 	return f
 }
 
-// Percent calculate the percentage of val to total
+// Percent calculate the percentage of val to total.
 func Percent(val, total float64, n int) float64 {
 	if total == 0 {
 		return float64(0)
 	}
-	tmp := val / total * 100
+	tmp := val / total
 	result := RoundToFloat(tmp, n)
 
 	return result
 }
 
-// RoundToString round up to n decimal places
+// RoundToString round up to n decimal places.
+// Play: https://go.dev/play/p/kZwpBRAcllO
 func RoundToString(x float64, n int) string {
 	tmp := math.Pow(10.0, float64(n))
 	x *= tmp
@@ -71,7 +75,8 @@ func RoundToString(x float64, n int) string {
 	return result
 }
 
-// RoundToFloat round up to n decimal places
+// RoundToFloat round up to n decimal places.
+// Play: https://go.dev/play/p/ghyb528JRJL
 func RoundToFloat(x float64, n int) float64 {
 	tmp := math.Pow(10.0, float64(n))
 	x *= tmp
@@ -79,7 +84,8 @@ func RoundToFloat(x float64, n int) float64 {
 	return x / tmp
 }
 
-// TruncRound round off n decimal places
+// TruncRound round off n decimal places.
+// Play: https://go.dev/play/p/aumarSHIGzP
 func TruncRound(x float64, n int) float64 {
 	floatStr := fmt.Sprintf("%."+strconv.Itoa(n+1)+"f", x)
 	temp := strings.Split(floatStr, ".")
@@ -93,7 +99,8 @@ func TruncRound(x float64, n int) float64 {
 	return result
 }
 
-// Max return max value of params
+// Max return max value of numbers.
+// Play: https://go.dev/play/p/cN8DHI0rTkH
 func Max[T constraints.Integer | constraints.Float](numbers ...T) T {
 	max := numbers[0]
 
@@ -107,6 +114,7 @@ func Max[T constraints.Integer | constraints.Float](numbers ...T) T {
 }
 
 // MaxBy search the maximum value of a slice using the given comparator function.
+// Play: https://go.dev/play/p/pbe2MT-7DV2
 func MaxBy[T any](slice []T, comparator func(T, T) bool) T {
 	var max T
 
@@ -127,7 +135,8 @@ func MaxBy[T any](slice []T, comparator func(T, T) bool) T {
 	return max
 }
 
-// Min return min value of params
+// Min return min value of numbers.
+// Play: https://go.dev/play/p/21BER_mlGUj
 func Min[T constraints.Integer | constraints.Float](numbers ...T) T {
 	min := numbers[0]
 
@@ -141,6 +150,7 @@ func Min[T constraints.Integer | constraints.Float](numbers ...T) T {
 }
 
 // MinBy search the minimum value of a slice using the given comparator function.
+// Play: https://go.dev/play/p/XuJDKrDdglW
 func MinBy[T any](slice []T, comparator func(T, T) bool) T {
 	var min T
 
@@ -161,7 +171,8 @@ func MinBy[T any](slice []T, comparator func(T, T) bool) T {
 	return min
 }
 
-// Average return average value of numbers
+// Average return average value of numbers.
+// Play: https://go.dev/play/p/Vv7LBwER-pz
 func Average[T constraints.Integer | constraints.Float](numbers ...T) T {
 	var sum T
 	n := T(len(numbers))

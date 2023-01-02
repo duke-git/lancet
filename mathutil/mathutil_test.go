@@ -35,8 +35,8 @@ func TestFactorial(t *testing.T) {
 func TestPercent(t *testing.T) {
 	assert := internal.NewAssert(t, "TestPercent")
 
-	assert.Equal(float64(50), Percent(1, 2, 2))
-	assert.Equal(float64(33.33), Percent(0.1, 0.3, 2))
+	assert.Equal(0.5, Percent(1, 2, 2))
+	assert.Equal(0.33, Percent(0.1, 0.3, 2))
 }
 
 func TestRoundToFloat(t *testing.T) {
