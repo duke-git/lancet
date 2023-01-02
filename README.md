@@ -373,7 +373,10 @@ import "github.com/duke-git/lancet/v2/formatter"
 
 #### Function list:
 
--   [Comma](https://github.com/duke-git/lancet/blob/main/docs/formatter.md#Comma)
+-   **<big>Comma</big>** : add comma to a number value by every 3 numbers from right, ahead by symbol char.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/formatter.md#Comma)]
+    [[play](https://go.dev/play/p/eRD5k2vzUVX)]
+
 
 ### 10. Function package can control the flow of function execution and support part of functional programming
 

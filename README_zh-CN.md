@@ -371,7 +371,11 @@ import "github.com/duke-git/lancet/v2/formatter"
 
 #### 函数列表:
 
--   [Comma](https://github.com/duke-git/lancet/blob/main/docs/formatter_zh-CN.md#Comma)
+-   **<big>Comma</big>** : 用逗号每隔3位分割数字/字符串，支持前缀添加符号。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/formatter_zh-CN.md#Comma)]
+    [[play](https://go.dev/play/p/eRD5k2vzUVX)]
+
+
 
 ### 10. function 函数包控制函数执行流程，包含部分函数式编程。
 
