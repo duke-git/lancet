@@ -434,18 +434,42 @@ import "github.com/duke-git/lancet/v2/mathutil"
 
 #### Function list:
 
--   [Average](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#Average)
--   [Exponent](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#Exponent)
--   [Fibonacci](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#Fibonacci)
--   [Factorial](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#Factorial)
--   [Max](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#Max)
--   [MaxBy](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#MaxBy)
--   [Min](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#Min)
--   [MinBy](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#MinBy)
--   [Percent](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#Percent)
--   [RoundToFloat](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#RoundToFloat)
--   [RoundToString](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#RoundToString)
--   [TruncRound](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#TruncRound)
+-   **<big>Average</big>** :return average value of numbers.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#Average)]
+    [[play](https://go.dev/play/p/Vv7LBwER-pz)]
+-   **<big>Exponent</big>** : calculate x^n for int64.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#Exponent)]
+    [[play](https://go.dev/play/p/uF3HGNPk8wr)]
+-   **<big>Fibonacci</big>** :calculate fibonacci number before n for int.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#Fibonacci)]
+    [[play](https://go.dev/play/p/IscseUNMuUc)]
+-   **<big>Factorial</big>** : calculate x! for uint.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#Factorial)]
+    [[play](https://go.dev/play/p/tt6LdOK67Nx)]
+-   **<big>Max</big>** : return maximum value of numbers.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#Max)]
+    [[play](https://go.dev/play/p/cN8DHI0rTkH)]
+-   **<big>MaxBy</big>** : return the maximum value of a slice using the given comparator function.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#MaxBy)]
+    [[play](https://go.dev/play/p/pbe2MT-7DV2)]
+-   **<big>Min</big>** : return minimum value of numbers.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#Min)]
+    [[play](https://go.dev/play/p/21BER_mlGUj)]
+-   **<big>MinBy</big>** : return the minimum value of a slice using the given comparator function.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#MinBy)]
+    [[play](https://go.dev/play/p/N9qgYg_Ho6f)]
+-   **<big>Percent</big>** : calculate the percentage of value to total.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#Percent)]
+-   **<big>RoundToFloat</big>** : round up to n decimal places for float64.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#RoundToFloat)]
+    [[play](https://go.dev/play/p/ghyb528JRJL)]
+-   **<big>RoundToString</big>** : round up to n decimal places for float64, return string.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#RoundToString)]
+    [[play](https://go.dev/play/p/kZwpBRAcllO)]
+-   **<big>TruncRound</big>** : round off n decimal places for int64.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#TruncRound)]
+    [[play](https://go.dev/play/p/aumarSHIGzP)]
+
 
 ### 13. Netutil package contains functions to get net information and send http request.
 

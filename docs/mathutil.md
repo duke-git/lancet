@@ -218,7 +218,7 @@ func main() {
 
 
 ### <span id="Min">Min</span>
-<p>Return min value of numbers.</p>
+<p>Return the minimum value of numbers.</p>
 
 <b>Signature:</b>
 
@@ -302,8 +302,8 @@ import (
 )
 
 func main() {
-	fmt.Println(mathutil.Percent(1, 2, 2)) //1
-	fmt.Println(mathutil.Percent(0.1, 0.3, 2)) //33.33
+	fmt.Println(mathutil.Percent(1, 2, 2)) //0.5
+	fmt.Println(mathutil.Percent(0.1, 0.3, 2)) //0.33
 }
 ```
 

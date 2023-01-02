@@ -432,18 +432,42 @@ import "github.com/duke-git/lancet/v2/mathutil"
 
 #### Function list:
 
--   [Average](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#Average)
--   [Exponent](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#Exponent)
--   [Fibonacci](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#Fibonacci)
--   [Factorial](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#Factorial)
--   [Max](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#Max)
--   [MaxBy](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#MaxBy)
--   [Min](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#Min)
--   [MinBy](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#MinBy)
--   [Percent](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#Percent)
--   [RoundToFloat](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#RoundToFloat)
--   [RoundToString](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#RoundToString)
--   [TruncRound](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#TruncRound)
+-   **<big>Average</big>** :计算平均数，可能需要对结果调用RoundToFloat方法四舍五入。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#Average)]
+    [[play](https://go.dev/play/p/Vv7LBwER-pz)]
+-   **<big>Exponent</big>** : 指数计算（x的n次方）。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#Exponent)]
+    [[play](https://go.dev/play/p/uF3HGNPk8wr)]
+-   **<big>Fibonacci</big>** :计算斐波那契数列的第n个数。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#Fibonacci)]
+    [[play](https://go.dev/play/p/IscseUNMuUc)]
+-   **<big>Factorial</big>** : 计算阶乘。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#Factorial)]
+    [[play](https://go.dev/play/p/tt6LdOK67Nx)]
+-   **<big>Max</big>** : 返回参数中的最大数。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#Max)]
+    [[play](https://go.dev/play/p/cN8DHI0rTkH)]
+-   **<big>MaxBy</big>** : 使用给定的比较器函数返回切片的最大值。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#MaxBy)]
+    [[play](https://go.dev/play/p/pbe2MT-7DV2)]
+-   **<big>Min</big>** : 返回参数中的最小数。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#Min)]
+    [[play](https://go.dev/play/p/21BER_mlGUj)]
+-   **<big>MinBy</big>** : 使用给定的比较器函数返回切片的最小值。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#MinBy)]
+    [[play](https://go.dev/play/p/N9qgYg_Ho6f)]
+-   **<big>Percent</big>** : 计算百分比，可以指定保留n位小数。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#Percent)]
+-   **<big>RoundToFloat</big>** : 四舍五入，保留n位小数，返回float64。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#RoundToFloat)]
+    [[play](https://go.dev/play/p/ghyb528JRJL)]
+-   **<big>RoundToString</big>** : 四舍五入，保留n位小数，返回string。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#RoundToString)]
+    [[play](https://go.dev/play/p/kZwpBRAcllO)]
+-   **<big>TruncRound</big>** : 截短n位小数（不进行四舍五入）。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#TruncRound)]
+    [[play](https://go.dev/play/p/aumarSHIGzP)]
+
 
 ### 13. netutil 网络包支持获取 ip 地址，发送 http 请求。
 

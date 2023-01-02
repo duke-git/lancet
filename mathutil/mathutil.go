@@ -54,7 +54,7 @@ func Factorial(x uint) uint {
 	return f
 }
 
-// Percent calculate the percentage of val to total.
+// Percent calculate the percentage of value to total.
 func Percent(val, total float64, n int) float64 {
 	if total == 0 {
 		return float64(0)
@@ -113,7 +113,7 @@ func Max[T constraints.Integer | constraints.Float](numbers ...T) T {
 	return max
 }
 
-// MaxBy search the maximum value of a slice using the given comparator function.
+// MaxBy return the maximum value of a slice using the given comparator function.
 // Play: https://go.dev/play/p/pbe2MT-7DV2
 func MaxBy[T any](slice []T, comparator func(T, T) bool) T {
 	var max T
@@ -149,7 +149,7 @@ func Min[T constraints.Integer | constraints.Float](numbers ...T) T {
 	return min
 }
 
-// MinBy search the minimum value of a slice using the given comparator function.
+// MinBy return the minimum value of a slice using the given comparator function.
 // Play: https://go.dev/play/p/XuJDKrDdglW
 func MinBy[T any](slice []T, comparator func(T, T) bool) T {
 	var min T
