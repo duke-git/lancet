@@ -18,7 +18,8 @@ import (
 	"strings"
 )
 
-// IsExist checks if a file or directory exists
+// IsExist checks if a file or directory exists.
+// Play: https://go.dev/play/p/nKKXt8ZQbmh
 func IsExist(path string) bool {
 	_, err := os.Stat(path)
 	if err == nil {
@@ -30,7 +31,8 @@ func IsExist(path string) bool {
 	return false
 }
 
-// CreateFile create a file in path
+// CreateFile create a file in path.
+// Play: https://go.dev/play/p/lDt8PEsTNKI
 func CreateFile(path string) bool {
 	file, err := os.Create(path)
 	if err != nil {
@@ -41,12 +43,14 @@ func CreateFile(path string) bool {
 	return true
 }
 
-// CreateDir create directory in absolute path. param `absPath` like /a/, /a/b/
+// CreateDir create directory in absolute path. param `absPath` like /a/, /a/b/.
+// Play: https://go.dev/play/p/qUuCe1OGQnM
 func CreateDir(absPath string) error {
 	return os.MkdirAll(path.Dir(absPath), os.ModePerm)
 }
 
-// IsDir checks if the path is directory or not
+// IsDir checks if the path is directory or not.
+// Play: https://go.dev/play/p/WkVwEKqtOWk
 func IsDir(path string) bool {
 	file, err := os.Stat(path)
 	if err != nil {
@@ -55,12 +59,14 @@ func IsDir(path string) bool {
 	return file.IsDir()
 }
 
-// RemoveFile remove the path file
+// RemoveFile remove the path file.
+// Play: https://go.dev/play/p/P2y0XW8a1SH
 func RemoveFile(path string) error {
 	return os.Remove(path)
 }
 
-// CopyFile copy src file to dest file
+// CopyFile copy src file to dest file.
+// Play: https://go.dev/play/p/Jg9AMJMLrJi
 func CopyFile(srcFilePath string, dstFilePath string) error {
 	srcFile, err := os.Open(srcFilePath)
 	if err != nil {
@@ -90,7 +96,8 @@ func CopyFile(srcFilePath string, dstFilePath string) error {
 	}
 }
 
-//ClearFile write empty string to path file
+// ClearFile write empty string to path file.
+// Play: https://go.dev/play/p/NRZ0ZT-G94H
 func ClearFile(path string) error {
 	f, err := os.OpenFile(path, os.O_WRONLY|os.O_TRUNC, 0777)
 	if err != nil {
@@ -102,7 +109,8 @@ func ClearFile(path string) error {
 	return err
 }
 
-//ReadFileToString return string of file content
+// ReadFileToString return string of file content.
+// Play: https://go.dev/play/p/cmfwp_5SQTp
 func ReadFileToString(path string) (string, error) {
 	bytes, err := os.ReadFile(path)
 	if err != nil {
@@ -111,7 +119,8 @@ func ReadFileToString(path string) (string, error) {
 	return string(bytes), nil
 }
 
-// ReadFileByLine read file line by line
+// ReadFileByLine read file line by line.
+// Play: https://go.dev/play/p/svJP_7ZrBrD
 func ReadFileByLine(path string) ([]string, error) {
 	f, err := os.Open(path)
 	if err != nil {
@@ -137,7 +146,8 @@ func ReadFileByLine(path string) ([]string, error) {
 	return result, nil
 }
 
-// ListFileNames return all file names in the path
+// ListFileNames return all file names in the path.
+// Play: https://go.dev/play/p/Tjd7Y07rejl
 func ListFileNames(path string) ([]string, error) {
 	if !IsExist(path) {
 		return []string{}, nil
@@ -163,7 +173,8 @@ func ListFileNames(path string) ([]string, error) {
 	return result, nil
 }
 
-// Zip create zip file, fpath could be a single file or a directory
+// Zip create zip file, fpath could be a single file or a directory.
+// Play: https://go.dev/play/p/j-3sWBp8ik_P
 func Zip(fpath string, destPath string) error {
 	zipFile, err := os.Create(destPath)
 	if err != nil {
@@ -218,7 +229,8 @@ func Zip(fpath string, destPath string) error {
 	return nil
 }
 
-// UnZip unzip the file and save it to destPath
+// UnZip unzip the file and save it to destPath.
+// Play: https://go.dev/play/p/g0w34kS7B8m
 func UnZip(zipFile string, destPath string) error {
 
 	zipReader, err := zip.OpenReader(zipFile)
@@ -277,7 +289,8 @@ func safeFilepathJoin(path1, path2 string) (string, error) {
 	return filepath.Join(path1, filepath.Join("/", relPath)), nil
 }
 
-// IsLink checks if a file is symbol link or not
+// IsLink checks if a file is symbol link or not.
+// Play: https://go.dev/play/p/TL-b-Kzvf44
 func IsLink(path string) bool {
 	fi, err := os.Lstat(path)
 	if err != nil {
@@ -286,7 +299,8 @@ func IsLink(path string) bool {
 	return fi.Mode()&os.ModeSymlink != 0
 }
 
-// FileMode return file's mode and permission
+// FileMode return file's mode and permission.
+// Play: https://go.dev/play/p/2l2hI42fA3p
 func FileMode(path string) (fs.FileMode, error) {
 	fi, err := os.Lstat(path)
 	if err != nil {
@@ -296,7 +310,8 @@ func FileMode(path string) (fs.FileMode, error) {
 }
 
 // MiMeType return file mime type
-// param `file` should be string(file path) or *os.File
+// param `file` should be string(file path) or *os.File.
+// Play: https://go.dev/play/p/bd5sevSUZNu
 func MiMeType(file any) string {
 	var mediatype string
 
