@@ -536,14 +536,32 @@ import "github.com/duke-git/lancet/v2/random"
 
 #### 函数列表:
 
--   [RandBytes](https://github.com/duke-git/lancet/blob/main/docs/random_zh-CN.md#RandBytes)
--   [RandInt](https://github.com/duke-git/lancet/blob/main/docs/random_zh-CN.md#RandInt)
--   [RandString](https://github.com/duke-git/lancet/blob/main/docs/random_zh-CN.md#RandString)
--   [RandUpper](https://github.com/duke-git/lancet/blob/main/docs/random_zh-CN.md#RandUpper)
--   [RandLower](https://github.com/duke-git/lancet/blob/main/docs/random_zh-CN.md#RandLower)
--   [RandNumeral](https://github.com/duke-git/lancet/blob/main/docs/random_zh-CN.md#RandNumeral)
--   [RandNumeralOrLetter](https://github.com/duke-git/lancet/blob/main/docs/random_zh-CN.md#RandNumeralOrLetter)
--   [UUIdV4](https://github.com/duke-git/lancet/blob/main/docs/random.md#UUIdV4)
+-   **<big>RandBytes</big>** : 生成随机字节切片。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/random_zh-CN.md#RandBytes)]
+    [[play](https://go.dev/play/p/EkiLESeXf8d)]
+-   **<big>RandInt</big>** : 生成随机int, 范围[min, max)。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/random_zh-CN.md#RandInt)]
+    [[play](https://go.dev/play/p/pXyyAAI5YxD)]
+-   **<big>RandString</big>** : 生成给定长度的随机字符串，只包含字母(a-zA-Z)。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/random_zh-CN.md#RandString)]
+    [[play](https://go.dev/play/p/W2xvRUXA7Mi)]
+-   **<big>RandUpper</big>** : 生成给定长度的随机大写字母字符串(A-Z)。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/random_zh-CN.md#RandUpper)]
+    [[play](https://go.dev/play/p/29QfOh0DVuh)]
+-   **<big>RandLower</big>** : 生成给定长度的随机小写字母字符串(a-z)。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/random_zh-CN.md#RandLower)]
+    [[play](https://go.dev/play/p/XJtZ471cmtI)]
+-   **<big>RandNumeral</big>** : 生成给定长度的随机数字字符串(0-9)。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/random_zh-CN.md#RandNumeral)]
+    [[play](https://go.dev/play/p/g4JWVpHsJcf)]
+-   **<big>RandNumeralOrLetter</big>** : 生成给定长度的随机字符串（数字+字母)。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/random_zh-CN.md#RandNumeralOrLetter)]
+    [[play](https://go.dev/play/p/19CEQvpx2jD)]
+-   **<big>UUIdV4</big>** : 生成UUID v4字符串。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/random_zh-CN.md#UUIdV4)]
+    [[play](https://go.dev/play/p/_Z9SFmr28ft)]
+    
+
 
 ### 15. retry 重试执行函数直到函数运行成功或被 context cancel。
 

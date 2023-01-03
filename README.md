@@ -537,14 +537,32 @@ import "github.com/duke-git/lancet/v2/random"
 
 #### Function list:
 
--   [RandBytes](https://github.com/duke-git/lancet/blob/main/docs/random.md#RandBytes)
--   [RandInt](https://github.com/duke-git/lancet/blob/main/docs/random.md#RandInt)
--   [RandString](https://github.com/duke-git/lancet/blob/main/docs/random.md#RandString)
--   [RandUpper](https://github.com/duke-git/lancet/blob/main/docs/random.md#RandUpper)
--   [RandLower](https://github.com/duke-git/lancet/blob/main/docs/random.md#RandLower)
--   [RandNumeral](https://github.com/duke-git/lancet/blob/main/docs/random.md#RandNumeral)
--   [RandNumeralOrLetter](https://github.com/duke-git/lancet/blob/main/docs/random.md#RandNumeralOrLetter)
--   [UUIdV4](https://github.com/duke-git/lancet/blob/main/docs/random.md#UUIdV4)
+-   **<big>RandBytes</big>** : generate random byte slice.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/random.md#RandBytes)]
+    [[play](https://go.dev/play/p/EkiLESeXf8d)]
+-   **<big>RandInt</big>** : generate random int number between min and max.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/random.md#RandInt)]
+    [[play](https://go.dev/play/p/pXyyAAI5YxD)]
+-   **<big>RandString</big>** : generate random string of specified length.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/random.md#RandString)]
+    [[play](https://go.dev/play/p/W2xvRUXA7Mi)]
+-   **<big>RandUpper</big>** : generate a random upper case string.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/random.md#RandUpper)]
+    [[play](https://go.dev/play/p/29QfOh0DVuh)]
+-   **<big>RandLower</big>** : generate a random lower case string.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/random.md#RandLower)]
+    [[play](https://go.dev/play/p/XJtZ471cmtI)]
+-   **<big>RandNumeral</big>** : generate a random numeral string of specified length.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/random.md#RandNumeral)]
+    [[play](https://go.dev/play/p/g4JWVpHsJcf)]
+-   **<big>RandNumeralOrLetter</big>** : generate a random numeral or letter string.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/random.md#RandNumeralOrLetter)]
+    [[play](https://go.dev/play/p/19CEQvpx2jD)]
+-   **<big>UUIdV4</big>** : generate a random UUID of version 4 according to RFC 4122.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/random.md#UUIdV4)]
+    [[play](https://go.dev/play/p/_Z9SFmr28ft)]
+
+
 
 ### 15. Retry package is for executing a function repeatedly until it was successful or canceled by the context.
 
