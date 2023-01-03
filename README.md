@@ -179,7 +179,6 @@ import "github.com/duke-git/lancet/v2/condition"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/condition.md#TernaryOperator)]
     [[play](https://go.dev/play/p/ElllPZY0guT)]
 
-
 ### 4. Convertor package contains some functions for data convertion.
 
 ```go
@@ -187,6 +186,7 @@ import "github.com/duke-git/lancet/v2/convertor"
 ```
 
 #### Function list:
+
 -   **<big>ColorHexToRGB</big>** : convert color hex to color rgb.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#ColorHexToRGB)]
     [[play](https://go.dev/play/p/o7_ft-JCJBV)]
@@ -235,7 +235,6 @@ import "github.com/duke-git/lancet/v2/convertor"
 -   **<big>DecodeByte</big>** : decode byte slice data to target object.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#DecodeByte)]
     [[play](https://go.dev/play/p/zI6xsmuQRbn)]
-
 
 ### 5. Cryptor package is for data encryption and decryption.
 
@@ -349,21 +348,51 @@ import "github.com/duke-git/lancet/v2/fileutil"
 
 #### Function list：
 
--   [ClearFile](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#ClearFile)
--   [CreateFile](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#CreateFile)
--   [CreateDir](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#CreateDir)
--   [CopyFile](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#CopyFile)
--   [FileMode](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#FileMode)
--   [MiMeType](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#MiMeType)
--   [IsExist](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#IsExist)
--   [IsLink](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#IsLink)
--   [IsDir](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#IsDir)
--   [ListFileNames](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#ListFileNames)
--   [RemoveFile](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#RemoveFile)
--   [ReadFileToString](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#ReadFileToString)
--   [ReadFileByLine](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#ReadFileByLine)
--   [Zip](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#Zip)
--   [UnZip](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#UnZip)
+-   **<big>ClearFile</big>** : write empty string to target file.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#ClearFile)]
+    [[play](https://go.dev/play/p/NRZ0ZT-G94H)]
+-   **<big>CreateFile</big>** : create file in path.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#CreateFile)]
+    [[play](https://go.dev/play/p/lDt8PEsTNKI)]
+-   **<big>CreateDir</big>** : create directory in absolute path.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#CreateDir)]
+    [[play](https://go.dev/play/p/qUuCe1OGQnM)]
+-   **<big>CopyFile</big>** :copy src file to dest file.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#CopyFile)]
+    [[play](https://go.dev/play/p/Jg9AMJMLrJi)]
+-   **<big>FileMode</big>** : return file's mode and permission.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#FileMode)]
+    [[play](https://go.dev/play/p/2l2hI42fA3p)]
+-   **<big>MiMeType</big>** : return file mime type.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#MiMeType)]
+    [[play](https://go.dev/play/p/bd5sevSUZNu)]
+-   **<big>IsExist</big>** : checks if a file or directory exists.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#IsExist)]
+    [[play](https://go.dev/play/p/nKKXt8ZQbmh)]
+-   **<big>IsLink</big>** : checks if a file is symbol link or not.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#IsLink)]
+    [[play](https://go.dev/play/p/TL-b-Kzvf44)]
+-   **<big>IsDir</big>** : checks if the path is directory or not.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#IsDir)]
+    [[play](https://go.dev/play/p/WkVwEKqtOWk)]
+-   **<big>ListFileNames</big>** : return all file names in the path.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#ListFileNames)]
+    [[play](https://go.dev/play/p/Tjd7Y07rejl)]
+-   **<big>RemoveFile</big>** : remove file, param should be file path.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#RemoveFile)]
+    [[play](https://go.dev/play/p/P2y0XW8a1SH)]
+-   **<big>ReadFileToString</big>** : return string of file content.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#ReadFileToString)]
+    [[play](https://go.dev/play/p/cmfwp_5SQTp)]
+-   **<big>ReadFileByLine</big>** : read file line by line, return string slice of file content.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#ReadFileByLine)]
+    [[play](https://go.dev/play/p/svJP_7ZrBrD)]
+-   **<big>Zip</big>** : create zip file.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#Zip)]
+    [[play](https://go.dev/play/p/j-3sWBp8ik_P)]
+-   **<big>UnZip</big>** : unzip the zip file and save it to dest path.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#UnZip)]
+    [[play](https://go.dev/play/p/g0w34kS7B8m)]
 
 ### 9. Formatter contains some functions for data formatting.
 
@@ -376,7 +405,6 @@ import "github.com/duke-git/lancet/v2/formatter"
 -   **<big>Comma</big>** : add comma to a number value by every 3 numbers from right, ahead by symbol char.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/formatter.md#Comma)]
     [[play](https://go.dev/play/p/eRD5k2vzUVX)]
-
 
 ### 10. Function package can control the flow of function execution and support part of functional programming
 
@@ -428,7 +456,6 @@ import "github.com/duke-git/lancet/v2/maputil"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil.md#IsDisjoint)]
     [[play](https://go.dev/play/p/N9qgYg_Ho6f)]
 
-
 ### 12. Mathutil package implements some functions for math calculation.
 
 ```go
@@ -472,7 +499,6 @@ import "github.com/duke-git/lancet/v2/mathutil"
 -   **<big>TruncRound</big>** : round off n decimal places for int64.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#TruncRound)]
     [[play](https://go.dev/play/p/aumarSHIGzP)]
-
 
 ### 13. Netutil package contains functions to get net information and send http request.
 

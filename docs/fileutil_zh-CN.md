@@ -119,7 +119,7 @@ func main() {
 
 
 ### <span id="CopyFile">CopyFile</span>
-<p>拷贝文件，会覆盖原有的拷贝文件</p>
+<p>拷贝文件，会覆盖原有的文件</p>
 
 <b>函数签名:</b>
 
@@ -261,7 +261,7 @@ func main() {
 
 
 ### <span id="IsDir">IsDir</span>
-<p>判断目录是否存在</p>
+<p>判断参数是否是目录</p>
 
 <b>函数签名:</b>
 

@@ -130,19 +130,19 @@ import "github.com/duke-git/lancet/v2/concurrency"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/Bridge.md#NewChannel)]
 -   **<big>FanIn</big>** : 将多个 channel 合并为一个 channel，直到取消上下文。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/concurrency_zh-CN.md#FanIn)]
--   **<big>Generate</big>** : 根据传入的值，生成channel。
+-   **<big>Generate</big>** : 根据传入的值，生成 channel。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/concurrency_zh-CN.md#Generate)]
--   **<big>Or</big>** : 将一个或多个channel读取到一个channel中，当任何读取channel关闭时将结束读取。
+-   **<big>Or</big>** : 将一个或多个 channel 读取到一个 channel 中，当任何读取 channel 关闭时将结束读取。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/concurrency_zh-CN.md#Or)]
--   **<big>OrDone</big>** : 将一个channel读入另一个channel，直到取消上下文。
+-   **<big>OrDone</big>** : 将一个 channel 读入另一个 channel，直到取消上下文。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/concurrency_zh-CN.md#OrDone)]
--   **<big>Repeat</big>** : 返回一个channel，将参数`values`重复放入channel，直到取消上下文。
+-   **<big>Repeat</big>** : 返回一个 channel，将参数`values`重复放入 channel，直到取消上下文。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/concurrency_zh-CN.md#Repeat)]
--   **<big>RepeatFn</big>** : 返回一个channel，重复执行函数fn，并将结果放入返回的channel，直到取消上下文。
+-   **<big>RepeatFn</big>** : 返回一个 channel，重复执行函数 fn，并将结果放入返回的 channel，直到取消上下文。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/concurrency_zh-CN.md#RepeatFn)]
--   **<big>Take</big>** : 返回一个channel，其值从另一个channel获取，直到取消上下文。
+-   **<big>Take</big>** : 返回一个 channel，其值从另一个 channel 获取，直到取消上下文。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/concurrency_zh-CN.md#Take)]
--   **<big>Tee</big>** : 将一个channel分成两个channel，直到取消上下文。
+-   **<big>Tee</big>** : 将一个 channel 分成两个 channel，直到取消上下文。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/concurrency_zh-CN.md#Tee)]
 
 ### 3. condition 包含一些用于条件判断的函数。
@@ -152,31 +152,31 @@ import "github.com/duke-git/lancet/v2/condition"
 ```
 
 #### Function list:
--   **<big>Bool</big>** : 返回传入参数的bool值。
+
+-   **<big>Bool</big>** : 返回传入参数的 bool 值。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/condition_zh-CN.md#Bool)]
     [[play](https://go.dev/play/p/ETzeDJRSvhm)]
--   **<big>And</big>** : 逻辑且操作，当切仅当a和b都为true时返回true。
+-   **<big>And</big>** : 逻辑且操作，当切仅当 a 和 b 都为 true 时返回 true。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/condition_zh-CN.md#And)]
     [[play](https://go.dev/play/p/W1SSUmt6pvr)]
--   **<big>Or</big>** : 逻辑或操作，当切仅当a和b都为false时返回false。
+-   **<big>Or</big>** : 逻辑或操作，当切仅当 a 和 b 都为 false 时返回 false。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/condition_zh-CN.md#Or)]
     [[play](https://go.dev/play/p/UlQTxHaeEkq)]
--   **<big>Xor</big>** : 逻辑异或操作，a和b相同返回false，a和b不相同返回true
+-   **<big>Xor</big>** : 逻辑异或操作，a 和 b 相同返回 false，a 和 b 不相同返回 true
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/condition_zh-CN.md#Xor)]
     [[play](https://go.dev/play/p/gObZrW7ZbG8)]
 -   **<big>Nor</big>** : 异或的取反操作。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/condition_zh-CN.md#Nor)]
     [[play](https://go.dev/play/p/g2j08F_zZky)
--   **<big>Xnor</big>** : 如果a和b都是真的或a和b均是假的，则返回true。
+-   **<big>Xnor</big>** : 如果 a 和 b 都是真的或 a 和 b 均是假的，则返回 true。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/condition_zh-CN.md#Xnor)]
     [[play](https://go.dev/play/p/OuDB9g51643)]
--   **<big>Nand</big>** : 如果a和b都为真，返回false，否则返回true
+-   **<big>Nand</big>** : 如果 a 和 b 都为真，返回 false，否则返回 true
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/condition_zh-CN.md#Nand)]
     [[play](https://go.dev/play/p/vSRMLxLIbq8)]
 -   **<big>TernaryOperator</big>** : 三元运算符。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/condition_zh-CN.md#TernaryOperator)]
     [[play](https://go.dev/play/p/ElllPZY0guT)]
-
 
 ### 4. convertor 转换器包支持一些常见的数据类型转换。
 
@@ -185,34 +185,35 @@ import "github.com/duke-git/lancet/v2/convertor"
 ```
 
 #### 函数列表:
--   **<big>ColorHexToRGB</big>** : 颜色值十六进制转rgb。
+
+-   **<big>ColorHexToRGB</big>** : 颜色值十六进制转 rgb。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#ColorHexToRGB)]
     [[play](https://go.dev/play/p/o7_ft-JCJBV)]
--   **<big>ColorRGBToHex</big>** : 颜色值rgb转十六进制。
+-   **<big>ColorRGBToHex</big>** : 颜色值 rgb 转十六进制。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#ColorRGBToHex)]
     [[play](https://go.dev/play/p/nzKS2Ro87J1)]
--   **<big>ToBool</big>** : 字符串转布尔类型，使用strconv.ParseBool。
+-   **<big>ToBool</big>** : 字符串转布尔类型，使用 strconv.ParseBool。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#ToBool)]
     [[play](https://go.dev/play/p/ARht2WnGdIN)]
--   **<big>ToBytes</big>** : interface转字节切片。
+-   **<big>ToBytes</big>** : interface 转字节切片。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#ToBytes)]
     [[play](https://go.dev/play/p/fAMXYFDvOvr)]
 -   **<big>ToChar</big>** : 字符串转字符切片。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#ToChar)]
     [[play](https://go.dev/play/p/JJ1SvbFkVdM)]
--   **<big>ToChannel</big>** : 将切片转为只读channel。
+-   **<big>ToChannel</big>** : 将切片转为只读 channel。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#ToChannel)]
     [[play](https://go.dev/play/p/hOx_oYZbAnL)]
--   **<big>ToFloat</big>** : 将interface转成float64类型，如果参数无法转换，会返回0.0和error。
+-   **<big>ToFloat</big>** : 将 interface 转成 float64 类型，如果参数无法转换，会返回 0.0 和 error。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#ToFloat)]
     [[play](https://go.dev/play/p/4YTmPCibqHJ)]
--   **<big>ToInt</big>** : 将interface转成int64类型，如果参数无法转换，会返回0和error。
+-   **<big>ToInt</big>** : 将 interface 转成 int64 类型，如果参数无法转换，会返回 0 和 error。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#ToInt)]
     [[play](https://go.dev/play/p/9_h9vIt-QZ_b)]
--   **<big>ToJson</big>** : 将interface转成json字符串，如果参数无法转换，会返回""和error。
+-   **<big>ToJson</big>** : 将 interface 转成 json 字符串，如果参数无法转换，会返回""和 error。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#ToJson)]
     [[play](https://go.dev/play/p/2rLIkMmXWvR)]
--   **<big>ToMap</big>** : 将切片转为map。
+-   **<big>ToMap</big>** : 将切片转为 map。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#ToMap)]
     [[play](https://go.dev/play/p/tVFy7E-t24l)]
 -   **<big>ToPointer</big>** : 返回传入值的指针。
@@ -221,19 +222,18 @@ import "github.com/duke-git/lancet/v2/convertor"
 -   **<big>ToString</big>** : 将值转换为字符串，对于数字、字符串、[]byte，将转换为字符串。 对于其他类型（切片、映射、数组、结构）将调用 json.Marshal。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#ToString)]
     [[play](https://go.dev/play/p/nF1zOOslpQq)]
--   **<big>StructToMap</big>** : 将struct转成map，只会转换struct中可导出的字段。
+-   **<big>StructToMap</big>** : 将 struct 转成 map，只会转换 struct 中可导出的字段。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#StructToMap)]
     [[play](https://go.dev/play/p/KYGYJqNUBOI)]
--   **<big>MapToSlice</big>** : map中key和value执行函数iteratee后，转为切片。
+-   **<big>MapToSlice</big>** : map 中 key 和 value 执行函数 iteratee 后，转为切片。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#MapToSlice)]
     [[play](https://go.dev/play/p/dmX4Ix5V6Wl)]
--   **<big>EncodeByte</big>** : 将传入的data编码成字节切片。
+-   **<big>EncodeByte</big>** : 将传入的 data 编码成字节切片。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#EncodeByte)]
     [[play](https://go.dev/play/p/DVmM1G5JfuP)]
 -   **<big>DecodeByte</big>** : 解码字节切片到目标对象，目标对象需要传入一个指针实例。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#DecodeByte)]
     [[play](https://go.dev/play/p/zI6xsmuQRbn)]
-    
 
 ### 5. cryptor 加密包支持数据加密和解密，获取 md5，hash 值。支持 base64, md5, hmac, aes, des, rsa。
 
@@ -347,21 +347,51 @@ import "github.com/duke-git/lancet/v2/fileutil"
 
 #### 函数列表：
 
--   [ClearFile](https://github.com/duke-git/lancet/blob/main/docs/fileutil_zh-CN.md#ClearFile)
--   [CreateFile](https://github.com/duke-git/lancet/blob/main/docs/fileutil_zh-CN.md#CreateFile)
--   [CreateDir](https://github.com/duke-git/lancet/blob/main/docs/fileutil_zh-CN.md#CreateDir)
--   [CopyFile](https://github.com/duke-git/lancet/blob/main/docs/fileutil_zh-CN.md#CopyFile)
--   [FileMode](https://github.com/duke-git/lancet/blob/main/docs/fileutil_zh-CN.md#FileMode)
--   [MiMeType](https://github.com/duke-git/lancet/blob/main/docs/fileutil_zh-CN.md#MiMeType)
--   [IsExist](https://github.com/duke-git/lancet/blob/main/docs/fileutil_zh-CN.md#IsExist)
--   [IsLink](https://github.com/duke-git/lancet/blob/main/docs/fileutil_zh-CN.md#IsLink)
--   [IsDir](https://github.com/duke-git/lancet/blob/main/docs/fileutil_zh-CN.md#IsDir)
--   [ListFileNames](https://github.com/duke-git/lancet/blob/main/docs/fileutil_zh-CN.md#ListFileNames)
--   [RemoveFile](https://github.com/duke-git/lancet/blob/main/docs/fileutil_zh-CN.md#RemoveFile)
--   [ReadFileToString](https://github.com/duke-git/lancet/blob/main/docs/fileutil_zh-CN.md#ReadFileToString)
--   [ReadFileByLine](https://github.com/duke-git/lancet/blob/main/docs/fileutil_zh-CN.md#ReadFileByLine)
--   [Zip](https://github.com/duke-git/lancet/blob/main/docs/fileutil_zh-CN.md#Zip)
--   [UnZip](https://github.com/duke-git/lancet/blob/main/docs/fileutil_zh-CN.md#UnZip)
+-   **<big>ClearFile</big>** : 清空文件内容。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil_zh-CN.md#ClearFile)]
+    [[play](https://go.dev/play/p/NRZ0ZT-G94H)]
+-   **<big>CreateFile</big>** : 创建文件，创建成功返回 true, 否则返回 false。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil_zh-CN.md#CreateFile)]
+    [[play](https://go.dev/play/p/lDt8PEsTNKI)]
+-   **<big>CreateDir</big>** : 创建嵌套目录，例如/a/, /a/b/。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil_zh-CN.md#CreateDir)]
+    [[play](https://go.dev/play/p/qUuCe1OGQnM)]
+-   **<big>CopyFile</big>** :拷贝文件，会覆盖原有的文件。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil_zh-CN.md#CopyFile)]
+    [[play](https://go.dev/play/p/Jg9AMJMLrJi)]
+-   **<big>FileMode</big>** : 获取文件 mode 信息。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil_zh-CN.md#FileMode)]
+    [[play](https://go.dev/play/p/2l2hI42fA3p)]
+-   **<big>MiMeType</big>** : 获取文件 mime 类型, 参数的类型必须是 string 或者\*os.File。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil_zh-CN.md#MiMeType)]
+    [[play](https://go.dev/play/p/bd5sevSUZNu)]
+-   **<big>IsExist</big>** : 判断文件或目录是否存在。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil_zh-CN.md#IsExist)]
+    [[play](https://go.dev/play/p/nKKXt8ZQbmh)]
+-   **<big>IsLink</big>** : 判断文件是否是符号链接。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil_zh-CN.md#IsLink)]
+    [[play](https://go.dev/play/p/TL-b-Kzvf44)]
+-   **<big>IsDir</big>** : 判断参数是否是目录。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil_zh-CN.md#IsDir)]
+    [[play](https://go.dev/play/p/WkVwEKqtOWk)]
+-   **<big>ListFileNames</big>** : 返回目录下所有文件名。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil_zh-CN.md#ListFileNames)]
+    [[play](https://go.dev/play/p/Tjd7Y07rejl)]
+-   **<big>RemoveFile</big>** : 删除文件。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil_zh-CN.md#RemoveFile)]
+    [[play](https://go.dev/play/p/P2y0XW8a1SH)]
+-   **<big>ReadFileToString</big>** : 读取文件内容并返回字符串。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil_zh-CN.md#ReadFileToString)]
+    [[play](https://go.dev/play/p/cmfwp_5SQTp)]
+-   **<big>ReadFileByLine</big>** : 按行读取文件内容，返回字符串切片包含每一行。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil_zh-CN.md#ReadFileByLine)]
+    [[play](https://go.dev/play/p/svJP_7ZrBrD)]
+-   **<big>Zip</big>** : zip 压缩文件, 参数可以是文件或目录。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil_zh-CN.md#Zip)]
+    [[play](https://go.dev/play/p/j-3sWBp8ik_P)]
+-   **<big>UnZip</big>** : zip 解压缩文件并保存在目录中。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil_zh-CN.md#UnZip)]
+    [[play](https://go.dev/play/p/g0w34kS7B8m)]
 
 ### 9. formatter 格式化器包含一些数据格式化处理方法。
 
@@ -371,11 +401,9 @@ import "github.com/duke-git/lancet/v2/formatter"
 
 #### 函数列表:
 
--   **<big>Comma</big>** : 用逗号每隔3位分割数字/字符串，支持前缀添加符号。
+-   **<big>Comma</big>** : 用逗号每隔 3 位分割数字/字符串，支持前缀添加符号。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/formatter_zh-CN.md#Comma)]
     [[play](https://go.dev/play/p/eRD5k2vzUVX)]
-
-
 
 ### 10. function 函数包控制函数执行流程，包含部分函数式编程。
 
@@ -402,31 +430,30 @@ import "github.com/duke-git/lancet/v2/maputil"
 
 #### 函数列表:
 
--   **<big>ForEach</big>** : 对map中的每对key和value执行iteratee函数。
+-   **<big>ForEach</big>** : 对 map 中的每对 key 和 value 执行 iteratee 函数。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#ForEach)]
     [[play](https://go.dev/play/p/OaThj6iNVXK)]
--   **<big>Filter</big>** : 迭代map中的每对key和value，返回map，其中的key和value符合predicate函数。
+-   **<big>Filter</big>** : 迭代 map 中的每对 key 和 value，返回 map，其中的 key 和 value 符合 predicate 函数。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#Filter)]
     [[play](https://go.dev/play/p/fSvF3wxuNG7)]
--   **<big>Intersect</big>** : 多个map的交集操作。
+-   **<big>Intersect</big>** : 多个 map 的交集操作。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#Intersect)]
     [[play](https://go.dev/play/p/Zld0oj3sjcC)]
--   **<big>Keys</big>** : 返回map中所有key组成的切片。
+-   **<big>Keys</big>** : 返回 map 中所有 key 组成的切片。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#Keys)]
     [[play](https://go.dev/play/p/xNB5bTb97Wd)]
--   **<big>Merge</big>** : 合并多个map, 相同的key会被之后的key覆盖。
+-   **<big>Merge</big>** : 合并多个 map, 相同的 key 会被之后的 key 覆盖。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#Merge)]
     [[play](https://go.dev/play/p/H95LENF1uB-)]
--   **<big>Minus</big>** : 返回一个map，其中的key存在于mapA，不存在于mapB。
+-   **<big>Minus</big>** : 返回一个 map，其中的 key 存在于 mapA，不存在于 mapB。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#Minus)]
     [[play](https://go.dev/play/p/3u5U9K7YZ9m)]
--   **<big>Values</big>** : 返回map中所有values组成的切片
+-   **<big>Values</big>** : 返回 map 中所有 values 组成的切片
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#Values)]
     [[play](https://go.dev/play/p/CBKdUc5FTW6)]
--   **<big>IsDisjoint</big>** : 验证两个map是否具有不同的key。
+-   **<big>IsDisjoint</big>** : 验证两个 map 是否具有不同的 key。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#IsDisjoint)]
     [[play](https://go.dev/play/p/N9qgYg_Ho6f)]
-    
 
 ### 12. mathutil 包实现了一些数学计算的函数。
 
@@ -436,13 +463,13 @@ import "github.com/duke-git/lancet/v2/mathutil"
 
 #### Function list:
 
--   **<big>Average</big>** :计算平均数，可能需要对结果调用RoundToFloat方法四舍五入。
+-   **<big>Average</big>** :计算平均数，可能需要对结果调用 RoundToFloat 方法四舍五入。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#Average)]
     [[play](https://go.dev/play/p/Vv7LBwER-pz)]
--   **<big>Exponent</big>** : 指数计算（x的n次方）。
+-   **<big>Exponent</big>** : 指数计算（x 的 n 次方）。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#Exponent)]
     [[play](https://go.dev/play/p/uF3HGNPk8wr)]
--   **<big>Fibonacci</big>** :计算斐波那契数列的第n个数。
+-   **<big>Fibonacci</big>** :计算斐波那契数列的第 n 个数。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#Fibonacci)]
     [[play](https://go.dev/play/p/IscseUNMuUc)]
 -   **<big>Factorial</big>** : 计算阶乘。
@@ -460,18 +487,17 @@ import "github.com/duke-git/lancet/v2/mathutil"
 -   **<big>MinBy</big>** : 使用给定的比较器函数返回切片的最小值。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#MinBy)]
     [[play](https://go.dev/play/p/N9qgYg_Ho6f)]
--   **<big>Percent</big>** : 计算百分比，可以指定保留n位小数。
+-   **<big>Percent</big>** : 计算百分比，可以指定保留 n 位小数。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#Percent)]
--   **<big>RoundToFloat</big>** : 四舍五入，保留n位小数，返回float64。
+-   **<big>RoundToFloat</big>** : 四舍五入，保留 n 位小数，返回 float64。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#RoundToFloat)]
     [[play](https://go.dev/play/p/ghyb528JRJL)]
--   **<big>RoundToString</big>** : 四舍五入，保留n位小数，返回string。
+-   **<big>RoundToString</big>** : 四舍五入，保留 n 位小数，返回 string。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#RoundToString)]
     [[play](https://go.dev/play/p/kZwpBRAcllO)]
--   **<big>TruncRound</big>** : 截短n位小数（不进行四舍五入）。
+-   **<big>TruncRound</big>** : 截短 n 位小数（不进行四舍五入）。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#TruncRound)]
     [[play](https://go.dev/play/p/aumarSHIGzP)]
-
 
 ### 13. netutil 网络包支持获取 ip 地址，发送 http 请求。
 
