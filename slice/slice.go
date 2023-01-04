@@ -21,7 +21,8 @@ var (
 	memoryHashCounter = make(map[string]int)
 )
 
-// Contain check if the target value is in the slice or not
+// Contain check if the target value is in the slice or not.
+// Play: https://go.dev/play/p/_454yEHcNjf
 func Contain[T comparable](slice []T, target T) bool {
 	for _, item := range slice {
 		if item == target {
@@ -32,7 +33,8 @@ func Contain[T comparable](slice []T, target T) bool {
 	return false
 }
 
-// ContainSubSlice check if the slice contain a given subslice or not
+// ContainSubSlice check if the slice contain a given subslice or not.
+// Play: https://go.dev/play/p/bcuQ3UT6Sev
 func ContainSubSlice[T comparable](slice, subSlice []T) bool {
 	for _, v := range subSlice {
 		if !Contain(slice, v) {
@@ -43,7 +45,8 @@ func ContainSubSlice[T comparable](slice, subSlice []T) bool {
 	return true
 }
 
-// Chunk creates a slice of elements split into groups the length of size
+// Chunk creates a slice of elements split into groups the length of size.
+// Play: https://go.dev/play/p/b4Pou5j2L_C
 func Chunk[T any](slice []T, size int) [][]T {
 	result := [][]T{}
 
@@ -62,14 +65,15 @@ func Chunk[T any](slice []T, size int) [][]T {
 	}
 
 	return result
-
 }
 
-// Compact creates an slice with all falsey values removed. The values false, nil, 0, and "" are falsey
+// Compact creates an slice with all falsey values removed. The values false, nil, 0, and "" are falsey.
+// Play: https://go.dev/play/p/pO5AnxEr3TK
 func Compact[T comparable](slice []T) []T {
 	var zero T
 
 	result := []T{}
+
 	for _, v := range slice {
 		if v != zero {
 			result = append(result, v)
@@ -80,6 +84,7 @@ func Compact[T comparable](slice []T) []T {
 }
 
 // Concat creates a new slice concatenating slice with any additional slices.
+// Play:
 func Concat[T any](slice []T, slices ...[]T) []T {
 	result := append([]T{}, slice...)
 
@@ -90,7 +95,8 @@ func Concat[T any](slice []T, slices ...[]T) []T {
 	return result
 }
 
-// Difference creates an slice of whose element in slice but not in comparedSlice
+// Difference creates an slice of whose element in slice but not in comparedSlice.
+// Play: https://go.dev/play/p/VXvadzLzhDa
 func Difference[T comparable](slice, comparedSlice []T) []T {
 	result := []T{}
 
@@ -105,7 +111,8 @@ func Difference[T comparable](slice, comparedSlice []T) []T {
 
 // DifferenceBy it accepts iteratee which is invoked for each element of slice
 // and values to generate the criterion by which they're compared.
-// like lodash.js differenceBy: https://lodash.com/docs/4.17.15#differenceBy,
+// like lodash.js differenceBy: https://lodash.com/docs/4.17.15#differenceBy.
+// Play: https://go.dev/play/p/DiivgwM5OnC
 func DifferenceBy[T comparable](slice []T, comparedSlice []T, iteratee func(index int, item T) T) []T {
 	orginSliceAfterMap := Map(slice, iteratee)
 	comparedSliceAfterMap := Map(comparedSlice, iteratee)
@@ -120,7 +127,10 @@ func DifferenceBy[T comparable](slice []T, comparedSlice []T, iteratee func(inde
 	return result
 }
 
-// DifferenceWith accepts comparator which is invoked to compare elements of slice to values. The order and references of result values are determined by the first slice. The comparator is invoked with two arguments: (arrVal, othVal).
+// DifferenceWith accepts comparator which is invoked to compare elements of slice to values.
+// The order and references of result values are determined by the first slice.
+// The comparator is invoked with two arguments: (arrVal, othVal).
+// Play: https://go.dev/play/p/v2U2deugKuV
 func DifferenceWith[T any](slice []T, comparedSlice []T, comparator func(item1, item2 T) bool) []T {
 	result := make([]T, 0)
 
@@ -145,7 +155,8 @@ func DifferenceWith[T any](slice []T, comparedSlice []T, comparator func(item1, 
 	return result
 }
 
-// Equal checks if two slices are equal: the same length and all elements' order and value are equal
+// Equal checks if two slices are equal: the same length and all elements' order and value are equal.
+// Play: https://go.dev/play/p/WcRQJ37ifPa
 func Equal[T comparable](slice1, slice2 []T) bool {
 	if len(slice1) != len(slice2) {
 		return false
@@ -160,7 +171,8 @@ func Equal[T comparable](slice1, slice2 []T) bool {
 	return true
 }
 
-// EqualWith checks if two slices are equal with comparator func
+// EqualWith checks if two slices are equal with comparator func.
+// Play: https://go.dev/play/p/b9iygtgsHI1
 func EqualWith[T, U any](slice1 []T, slice2 []U, comparator func(T, U) bool) bool {
 	if len(slice1) != len(slice2) {
 		return false
@@ -176,6 +188,7 @@ func EqualWith[T, U any](slice1 []T, slice2 []U, comparator func(T, U) bool) boo
 }
 
 // Every return true if all of the values in the slice pass the predicate function.
+// Play: https://go.dev/play/p/R8U6Sl-j8cD
 func Every[T any](slice []T, predicate func(index int, item T) bool) bool {
 	for i, v := range slice {
 		if !predicate(i, v) {
@@ -186,7 +199,8 @@ func Every[T any](slice []T, predicate func(index int, item T) bool) bool {
 	return true
 }
 
-// None return true if all the values in the slice mismatch the criteria
+// None return true if all the values in the slice mismatch the criteria.
+// Play: https://go.dev/play/p/KimdalUlC-T
 func None[T any](slice []T, predicate func(index int, item T) bool) bool {
 	l := 0
 	for i, v := range slice {
@@ -199,6 +213,7 @@ func None[T any](slice []T, predicate func(index int, item T) bool) bool {
 }
 
 // Some return true if any of the values in the list pass the predicate function.
+// Play: https://go.dev/play/p/4pO9Xf9NDGS
 func Some[T any](slice []T, predicate func(index int, item T) bool) bool {
 	for i, v := range slice {
 		if predicate(i, v) {
@@ -209,7 +224,8 @@ func Some[T any](slice []T, predicate func(index int, item T) bool) bool {
 	return false
 }
 
-// Filter iterates over elements of slice, returning an slice of all elements pass the predicate function
+// Filter iterates over elements of slice, returning an slice of all elements pass the predicate function.
+// Play: https://go.dev/play/p/SdPna-7qK4T
 func Filter[T any](slice []T, predicate func(index int, item T) bool) []T {
 	result := make([]T, 0)
 
@@ -222,7 +238,8 @@ func Filter[T any](slice []T, predicate func(index int, item T) bool) []T {
 	return result
 }
 
-// Count returns the number of occurrences of the given item in the slice
+// Count returns the number of occurrences of the given item in the slice.
+// Play: https://go.dev/play/p/Mj4oiEnQvRJ
 func Count[T comparable](slice []T, item T) int {
 	count := 0
 
@@ -235,7 +252,8 @@ func Count[T comparable](slice []T, item T) int {
 	return count
 }
 
-// CountBy iterates over elements of slice with predicate function, returns the number of all matched elements
+// CountBy iterates over elements of slice with predicate function, returns the number of all matched elements.
+// Play: https://go.dev/play/p/tHOccTMDZCC
 func CountBy[T any](slice []T, predicate func(index int, item T) bool) int {
 	count := 0
 
@@ -248,7 +266,8 @@ func CountBy[T any](slice []T, predicate func(index int, item T) bool) int {
 	return count
 }
 
-// GroupBy iterate over elements of the slice, each element will be group by criteria, returns two slices
+// GroupBy iterate over elements of the slice, each element will be group by criteria, returns two slices.
+// Play: https://go.dev/play/p/QVkPxzPR0iA
 func GroupBy[T any](slice []T, groupFn func(index int, item T) bool) ([]T, []T) {
 	if len(slice) == 0 {
 		return make([]T, 0), make([]T, 0)
@@ -270,6 +289,7 @@ func GroupBy[T any](slice []T, groupFn func(index int, item T) bool) ([]T, []T) 
 }
 
 // GroupWith return a map composed of keys generated from the resultults of running each element of slice thru iteratee.
+// Play: https://go.dev/play/p/ApCvMNTLO8a
 func GroupWith[T any, U comparable](slice []T, iteratee func(item T) U) map[U][]T {
 	result := make(map[U][]T)
 
@@ -285,7 +305,8 @@ func GroupWith[T any, U comparable](slice []T, iteratee func(item T) U) map[U][]
 }
 
 // Find iterates over elements of slice, returning the first one that passes a truth test on predicate function.
-// If return T is nil then no items matched the predicate func
+// If return T is nil then no items matched the predicate func.
+// Play: https://go.dev/play/p/CBKeBoHVLgq
 func Find[T any](slice []T, predicate func(index int, item T) bool) (*T, bool) {
 	index := -1
 
@@ -303,8 +324,10 @@ func Find[T any](slice []T, predicate func(index int, item T) bool) (*T, bool) {
 	return &slice[index], true
 }
 
-// FindLast iterates over elements of slice from end to begin, returning the first one that passes a truth test on predicate function.
-// If return T is nil then no items matched the predicate func
+// FindLast iterates over elements of slice from end to begin,
+// return the first one that passes a truth test on predicate function.
+// If return T is nil then no items matched the predicate func.
+// Play: https://go.dev/play/p/FFDPV_j7URd
 func FindLast[T any](slice []T, predicate func(index int, item T) bool) (*T, bool) {
 	index := -1
 
@@ -322,7 +345,8 @@ func FindLast[T any](slice []T, predicate func(index int, item T) bool) (*T, boo
 	return &slice[index], true
 }
 
-// Flatten flattens slice with one level
+// Flatten flattens slice with one level.
+// Play: https://go.dev/play/p/hYa3cBEevtm
 func Flatten(slice any) any {
 	sv := sliceValue(slice)
 
@@ -349,7 +373,8 @@ func Flatten(slice any) any {
 	return result.Interface()
 }
 
-// FlattenDeep flattens slice recursive
+// FlattenDeep flattens slice recursive.
+// Play: https://go.dev/play/p/yjYNHPyCFaF
 func FlattenDeep(slice any) any {
 	sv := sliceValue(slice)
 	st := sliceElemType(sv.Type())
@@ -376,7 +401,8 @@ func flattenRecursive(value reflect.Value, result reflect.Value) reflect.Value {
 	return result
 }
 
-// ForEach iterates over elements of slice and invokes function for each element
+// ForEach iterates over elements of slice and invokes function for each element.
+// Play: https://go.dev/play/p/DrPaa4YsHRF
 func ForEach[T any](slice []T, iteratee func(index int, item T)) {
 	for i, v := range slice {
 		iteratee(i, v)
@@ -384,6 +410,7 @@ func ForEach[T any](slice []T, iteratee func(index int, item T)) {
 }
 
 // Map creates an slice of values by running each element of slice thru iteratee function.
+// Play: https://go.dev/play/p/biaTefqPquw
 func Map[T any, U any](slice []T, iteratee func(index int, item T) U) []U {
 	result := make([]U, len(slice), cap(slice))
 
@@ -395,6 +422,7 @@ func Map[T any, U any](slice []T, iteratee func(index int, item T) U) []U {
 }
 
 // Reduce creates an slice of values by running each element of slice thru iteratee function.
+// Play: https://go.dev/play/p/_RfXJJWIsIm
 func Reduce[T any](slice []T, iteratee func(index int, item1, item2 T) T, initial T) T {
 	if len(slice) == 0 {
 		return initial
@@ -412,7 +440,8 @@ func Reduce[T any](slice []T, iteratee func(index int, item1, item2 T) T, initia
 	return result
 }
 
-// Replace returns a copy of the slice with the first n non-overlapping instances of old replaced by new
+// Replace returns a copy of the slice with the first n non-overlapping instances of old replaced by new.
+// Play: https://go.dev/play/p/P5mZp7IhOFo
 func Replace[T comparable](slice []T, old T, new T, n int) []T {
 	result := make([]T, len(slice))
 	copy(result, slice)
@@ -428,11 +457,13 @@ func Replace[T comparable](slice []T, old T, new T, n int) []T {
 }
 
 // ReplaceAll returns a copy of the slice with all non-overlapping instances of old replaced by new.
+// Play: https://go.dev/play/p/CzqXMsuYUrx
 func ReplaceAll[T comparable](slice []T, old T, new T) []T {
 	return Replace(slice, old, new, -1)
 }
 
 // Repeat creates a slice with length n whose elements are param `item`.
+// Play: https://go.dev/play/p/1CbOmtgILUU
 func Repeat[T any](item T, n int) []T {
 	result := make([]T, n)
 
@@ -444,7 +475,8 @@ func Repeat[T any](item T, n int) []T {
 }
 
 // InterfaceSlice convert param to slice of interface.
-// This function is deprecated, use generics feature of go1.18+ for replacement
+// This function is deprecated, use generics feature of go1.18+ for replacement.
+// Play: https://go.dev/play/p/FdQXF0Vvqs-
 func InterfaceSlice(slice any) []any {
 	sv := sliceValue(slice)
 	if sv.IsNil() {
@@ -460,7 +492,8 @@ func InterfaceSlice(slice any) []any {
 }
 
 // StringSlice convert param to slice of string.
-// This function is deprecated, use generics feature of go1.18+ for replacement
+// This function is deprecated, use generics feature of go1.18+ for replacement.
+// Play: https://go.dev/play/p/W0TZDWCPFcI
 func StringSlice(slice any) []string {
 	v := sliceValue(slice)
 
@@ -477,7 +510,8 @@ func StringSlice(slice any) []string {
 }
 
 // IntSlice convert param to slice of int.
-// This function is deprecated, use generics feature of go1.18+ for replacement
+// This function is deprecated, use generics feature of go1.18+ for replacement.
+// Play: https://go.dev/play/p/UQDj-on9TGN
 func IntSlice(slice any) []int {
 	sv := sliceValue(slice)
 
@@ -494,6 +528,7 @@ func IntSlice(slice any) []int {
 }
 
 // DeleteAt delete the element of slice from start index to end index - 1.
+// Play: https://go.dev/play/p/pJ-d6MUWcvK
 func DeleteAt[T any](slice []T, start int, end ...int) []T {
 	size := len(slice)
 
@@ -523,7 +558,8 @@ func DeleteAt[T any](slice []T, start int, end ...int) []T {
 	return slice
 }
 
-// Drop creates a slice with `n` elements dropped from the beginning when n > 0, or `n` elements dropped from the ending when n < 0
+// Drop creates a slice with `n` elements dropped from the beginning when n > 0, or `n` elements dropped from the ending when n < 0.
+// Play: https://go.dev/play/p/pJ-d6MUWcvK
 func Drop[T any](slice []T, n int) []T {
 	size := len(slice)
 
@@ -543,6 +579,7 @@ func Drop[T any](slice []T, n int) []T {
 }
 
 // InsertAt insert the value or other slice into slice at index.
+// Play: https://go.dev/play/p/hMLNxPEGJVE
 func InsertAt[T any](slice []T, index int, value any) []T {
 	size := len(slice)
 
@@ -564,6 +601,7 @@ func InsertAt[T any](slice []T, index int, value any) []T {
 }
 
 // UpdateAt update the slice element at index.
+// Play: https://go.dev/play/p/f3mh2KloWVm
 func UpdateAt[T any](slice []T, index int, value T) []T {
 	size := len(slice)
 

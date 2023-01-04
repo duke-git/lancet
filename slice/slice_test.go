@@ -257,7 +257,7 @@ func TestFlatten(t *testing.T) {
 	input := [][][]string{{{"a", "b"}}, {{"c", "d"}}}
 	expected := [][]string{{"a", "b"}, {"c", "d"}}
 
-	assert := internal.NewAssert(t, "TestFlattenDeep")
+	assert := internal.NewAssert(t, "TestFlatten")
 	assert.Equal(expected, Flatten(input))
 }
 
