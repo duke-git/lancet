@@ -584,58 +584,166 @@ import "github.com/duke-git/lancet/v2/slice"
 ```
 
 #### 函数列表:
-
--   [AppendIfAbsent](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#AppendIfAbsent)
--   [Contain](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Contain)
--   [ContainSubSlice](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#ContainSubSlice)
--   [Chunk](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Chunk)
--   [Compact](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Compact)
--   [Concat](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Concat)
--   [Count](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Count)
--   [CountBy](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#CountBy)
--   [Difference](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Difference)
--   [DifferenceBy](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#DifferenceBy)
--   [DifferenceWith](https://github.com/duke-git/lancet/blob/main/docs/slice.md#DifferenceWith)
--   [DeleteAt](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#DeleteAt)
--   [Drop](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Drop)
--   [Every](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Every)
--   [Filter](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Filter)
--   [Find](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Find)
--   [FindLast](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#FindLast)
--   [Flatten](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Flatten)
--   [FlattenDeep](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#FlattenDeep)
--   [ForEach](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#ForEach)
--   [GroupBy](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#GroupBy)
--   [GroupWith](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#GroupWith)
--   [IntSlice<sup>deprecated</sup>](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#IntSlice)
--   [InterfaceSlice<sup>deprecated</sup>](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#InterfaceSlice)
--   [Intersection](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Intersection)
--   [InsertAt](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#InsertAt)
--   [IndexOf](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#IndexOf)
--   [LastIndexOf](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#LastIndexOf)
--   [Map](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Map)
--   [Merge](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Merge)
--   [Reverse](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Reverse)
--   [Reduce](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Reduce)
--   [Replace](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Replace)
--   [ReplaceAll](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#ReplaceAll)
--   [Repeat](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Repeat)
--   [Shuffle](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Shuffle)
--   [Sort](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Sort)
--   [SortBy](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#SortBy)
--   [SortByField<sup>deprecated</sup>](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#SortByField)
--   [Some](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Some)
--   [StringSlice<sup>deprecated</sup>](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#StringSlice)
--   [SymmetricDifference](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#SymmetricDifference)
--   [ToSlice](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#ToSlice)
--   [ToSlicePointer](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#ToSlicePointer)
--   [Unique](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Unique)
--   [UniqueBy](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#UniqueBy)
--   [Union](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Union)
--   [UniqueBy](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#UniqueBy)
--   [UpdateAt](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#UpdateAt)
--   [Without](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Without)
--   [KeyBy](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#KeyBy)
+-   **<big>AppendIfAbsent</big>** : 当前切片中不包含值时，将该值追加到切片中。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#AppendIfAbsent)]
+    [[play](https://go.dev/play/p/GNdv7Jg2Taj)]
+-   **<big>Contain</big>** : 判断slice是否包含value。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Contain)]
+    [[play](https://go.dev/play/p/_454yEHcNjf)]
+-   **<big>ContainSubSlice</big>** : 判断slice是否包含subslice。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#ContainSubSlice)]
+    [[play](https://go.dev/play/p/bcuQ3UT6Sev)]
+-   **<big>Chunk</big>** : 按照size参数均分slice。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Chunk)]
+    [[play](https://go.dev/play/p/b4Pou5j2L_C)]
+-   **<big>Compact</big>** : 去除slice中的假值（false values are false, nil, 0, ""）。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Compact)]
+    [[play](https://go.dev/play/p/pO5AnxEr3TK)]
+-   **<big>Concat</big>** : 合并多个slices到一个slice中。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Concat)]
+    [[play](https://go.dev/play/p/gPt-q7zr5mk)]
+-   **<big>Count</big>** : 返回切片中指定元素的个数。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Count)]
+    [[play](https://go.dev/play/p/Mj4oiEnQvRJ)]
+-   **<big>CountBy</big>** : 遍历切片，对每个元素执行函数predicate. 返回符合函数返回值为true的元素的个数。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#CountBy)]
+    [[play](https://go.dev/play/p/tHOccTMDZCC)]
+-   **<big>Difference</big>** : 创建一个切片，其元素不包含在另一个给定切片中。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Difference)]
+    [[play](https://go.dev/play/p/VXvadzLzhDa)]
+-   **<big>DifferenceBy</big>** : 将两个slice中的每个元素调用iteratee函数，并比较它们的返回值，如果不相等返回在slice中对应的值。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#DifferenceBy)]
+    [[play](https://go.dev/play/p/DiivgwM5OnC)]
+-   **<big>DifferenceWith</big>** : 接受比较器函数，该比较器被调用以将切片的元素与值进行比较。 结果值的顺序和引用由第一个切片确定。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#DifferenceWith)]
+    [[play](https://go.dev/play/p/v2U2deugKuV)]
+-   **<big>DeleteAt</big>** : 删除切片中指定开始索引到结束索引的元素。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#DeleteAt)]
+    [[play](https://go.dev/play/p/pJ-d6MUWcvK)]
+-   **<big>Drop</big>** : 创建一个切片，当n > 0时从开头删除n个元素，或者当n < 0时从结尾删除n个元素。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Drop)]
+    [[play](https://go.dev/play/p/pJ-d6MUWcvK)]
+-   **<big>Equal</big>** : 检查两个切片是否相等，相等条件：切片长度相同，元素顺序和值都相同。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Equal)]
+    [[play](https://go.dev/play/p/WcRQJ37ifPa)]
+-   **<big>EqualWith</big>** : 检查两个切片是否相等，相等条件：对两个切片的元素调用比较函数comparator，返回true。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#EqualWith)]
+    [[play](https://go.dev/play/p/b9iygtgsHI1)]
+-   **<big>Every</big>** : 如果切片中的所有值都通过谓词函数，则返回true。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Every)]
+    [[play](https://go.dev/play/p/R8U6Sl-j8cD)]
+-   **<big>Filter</big>** : 返回切片中通过predicate函数真值测试的所有元素。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Filter)]
+    [[play](https://go.dev/play/p/SdPna-7qK4T)]
+-   **<big>Find</big>** : 遍历切片的元素，返回第一个通过predicate函数真值测试的元素。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Find)]
+    [[play](https://go.dev/play/p/CBKeBoHVLgq)]
+-   **<big>FindLast</big>** : 从头到尾遍历slice的元素，返回最后一个通过predicate函数真值测试的元素。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#FindLast)]
+    [[play](https://go.dev/play/p/FFDPV_j7URd)]
+-   **<big>Flatten</big>** : 将多维切片展平一层。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Flatten)]
+    [[play](https://go.dev/play/p/hYa3cBEevtm)]
+-   **<big>FlattenDeep</big>** : 将多维切片递归展平到一层。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#FlattenDeep)]
+    [[play](https://go.dev/play/p/yjYNHPyCFaF)]
+-   **<big>ForEach</big>** : 遍历切片的元素并为每个元素调用iteratee函数。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#ForEach)]
+    [[play](https://go.dev/play/p/DrPaa4YsHRF)]
+-   **<big>GroupBy</big>** : 迭代切片的元素，每个元素将按条件分组，返回两个切片。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#GroupBy)]
+    [[play](https://go.dev/play/p/QVkPxzPR0iA)]
+-   **<big>GroupWith</big>** : 创建一个map，key是iteratee遍历slice中的每个元素返回的结果。值是切片元素。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#GroupWith)]
+    [[play](https://go.dev/play/p/ApCvMNTLO8a)]
+-   **<big>IntSlice<sup>deprecated</sup></big>** : 将接口切片转换为int切片。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#IntSlice)]
+    [[play](https://go.dev/play/p/FdQXF0Vvqs-)]
+-   **<big>InterfaceSlice<sup>deprecated</sup></big>** : 将值转换为interface切片。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#InterfaceSlice)]
+    [[play](https://go.dev/play/p/FdQXF0Vvqs-)]
+-   **<big>Intersection</big>** : 返回多个切片的交集。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Intersection)]
+    [[play](https://go.dev/play/p/anJXfB5wq_t)]
+-   **<big>InsertAt</big>** : 将元素插入到索引处的切片中。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#InsertAt)]
+    [[play](https://go.dev/play/p/hMLNxPEGJVE)]
+-   **<big>IndexOf</big>** : 返回在切片中找到值的第一个匹配项的索引，如果找不到值，则返回-1。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#IndexOf)]
+    [[play](https://go.dev/play/p/MRN1f0FpABb)]
+-   **<big>LastIndexOf</big>** : 返回在切片中找到最后一个值的索引，如果找不到该值，则返回-1。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#LastIndexOf)]
+    [[play](https://go.dev/play/p/DokM4cf1IKH)]
+-   **<big>Map</big>** : 对slice中的每个元素执行map函数以创建一个新切片。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Map)]
+    [[play](https://go.dev/play/p/biaTefqPquw)]
+-   **<big>Merge</big>** : 合并多个切片（不会消除重复元素)。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Merge)]
+    [[play](https://go.dev/play/p/lbjFp784r9N)]
+-   **<big>Reverse</big>** : 反转切片中的元素顺序。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Reverse)]
+    [[play](https://go.dev/play/p/8uI8f1lwNrQ)]
+-   **<big>Reduce</big>** : 将切片中的元素依次运行iteratee函数，返回运行结果。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Reduce)]
+    [[play](https://go.dev/play/p/_RfXJJWIsIm)]
+-   **<big>Replace</big>** : 返回切片的副本，其中前n个不重叠的old替换为new。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Replace)]
+    [[play](https://go.dev/play/p/P5mZp7IhOFo)]
+-   **<big>ReplaceAll</big>** : 返回切片的副本，将其中old全部替换为new。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#ReplaceAll)]
+    [[play](https://go.dev/play/p/CzqXMsuYUrx)]
+-   **<big>Repeat</big>** : 创建一个切片，包含n个传入的item。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Repeat)]
+    [[play](https://go.dev/play/p/1CbOmtgILUU)]
+-   **<big>Shuffle</big>** : 随机打乱切片中的元素顺序。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Shuffle)]
+    [[play](https://go.dev/play/p/YHvhnWGU3Ge)]
+-   **<big>Sort</big>** : 对任何有序类型（数字或字符串）的切片进行排序，使用快速排序算法。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Sort)]
+    [[play](https://go.dev/play/p/V9AVjzf_4Fk)]
+-   **<big>SortBy</big>** : 按照less函数确定的升序规则对切片进行排序。排序不保证稳定性。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#SortBy)]
+    [[play](https://go.dev/play/p/DAhLQSZEumm)]
+-   **<big>SortByField<sup>deprecated</sup></big>** : 按字段对结构切片进行排序。slice元素应为struct，字段类型应为int、uint、string或bool。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#SortByField)]
+    [[play](https://go.dev/play/p/fU1prOBP9p1)]
+-   **<big>Some</big>** : 如果列表中的任何值通过谓词函数，则返回true。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Some)]
+    [[play](https://go.dev/play/p/4pO9Xf9NDGS)]
+-   **<big>StringSlice<sup>deprecated</sup></big>** : 将接口切片转换为字符串切片。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#StringSlice)]
+    [[play](https://go.dev/play/p/W0TZDWCPFcI)]
+-   **<big>SymmetricDifference</big>** : 返回一个切片，其中的元素存在于参数切片中，但不同时存储在于参数切片中（交集取反）。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#h42nJX5xMln)]
+    [[play](https://go.dev/play/p/1CbOmtgILUU)]
+-   **<big>ToSlice</big>** : 将可变参数转为切片。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#ToSlice)]
+    [[play](https://go.dev/play/p/YzbzVq5kscN)]
+-   **<big>ToSlicePointer</big>** : 将可变参数转为指针切片。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#ToSlicePointer)]
+    [[play](https://go.dev/play/p/gx4tr6_VXSF)]
+-   **<big>Unique</big>** : 删除切片中的重复元素。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Unique)]
+    [[play](https://go.dev/play/p/AXw0R3ZTE6a)]
+-   **<big>UniqueBy</big>** : 对切片的每个元素调用iteratee函数，然后删除重复元素。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#UniqueBy)]
+    [[play](https://go.dev/play/p/UR323iZLDpv)]
+-   **<big>Union</big>** : 合并多个切片。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Union)]
+    [[play](https://go.dev/play/p/hfXV1iRIZOf)]
+-   **<big>UnionBy</big>** : 对切片的每个元素调用函数后，合并多个切片。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#UnionBy)]
+    [[play](https://go.dev/play/p/HGKHfxKQsFi)]
+-   **<big>UpdateAt</big>** : 更新索引处的切片元素。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#UpdateAt)]
+    [[play](https://go.dev/play/p/f3mh2KloWVm)]
+-   **<big>Without</big>** : 创建一个不包括所有给定值的切片。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Without)]
+    [[play](https://go.dev/play/p/bwhEXEypThg)]
+-   **<big>KeyBy</big>** :将切片每个元素调用函数后转为map。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#KeyBy)]
+    [[play](https://go.dev/play/p/uXod2LWD1Kg)]
+    
 
 ### 17. strutil 包含字符串处理的相关函数。
 

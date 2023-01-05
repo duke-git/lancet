@@ -85,7 +85,7 @@ func Compact[T comparable](slice []T) []T {
 }
 
 // Concat creates a new slice concatenating slice with any additional slices.
-// Play:
+// Play: https://go.dev/play/p/gPt-q7zr5mk
 func Concat[T any](slice []T, slices ...[]T) []T {
 	result := append([]T{}, slice...)
 
@@ -771,7 +771,7 @@ func Reverse[T any](slice []T) {
 	}
 }
 
-// Shuffle creates an slice of shuffled values.
+// Shuffle the slice.
 // Play: https://go.dev/play/p/YHvhnWGU3Ge
 func Shuffle[T any](slice []T) []T {
 	rand.Seed(time.Now().UnixNano())

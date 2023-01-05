@@ -586,59 +586,167 @@ import "github.com/duke-git/lancet/v2/slice"
 
 #### Function list:
 
--   [AppendIfAbsent](https://github.com/duke-git/lancet/blob/main/docs/slice.md#AppendIfAbsent)
--   [Contain](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Contain)
--   [ContainSubSlice](https://github.com/duke-git/lancet/blob/main/docs/slice.md#ContainSubSlice)
--   [Chunk](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Chunk)
--   [Compact](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Compact)
--   [Concat](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Concat)
--   [Count](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Count)
--   [CountBy](https://github.com/duke-git/lancet/blob/main/docs/slice.md#CountBy)
--   [Difference](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Difference)
--   [DifferenceBy](https://github.com/duke-git/lancet/blob/main/docs/slice.md#DifferenceBy)
--   [DifferenceWith](https://github.com/duke-git/lancet/blob/main/docs/slice.md#DifferenceWith)
--   [DeleteAt](https://github.com/duke-git/lancet/blob/main/docs/slice.md#DeleteAt)
--   [Drop](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Drop)
--   [Equal](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Equal)
--   [EqualWith](https://github.com/duke-git/lancet/blob/main/docs/slice.md#EqualWith)
--   [Every](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Every)
--   [Filter](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Filter)
--   [Find](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Find)
--   [FindLast](https://github.com/duke-git/lancet/blob/main/docs/slice.md#FindLast)
--   [Flatten](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Flatten)
--   [FlattenDeep](https://github.com/duke-git/lancet/blob/main/docs/slice.md#FlattenDeep)
--   [ForEach](https://github.com/duke-git/lancet/blob/main/docs/slice.md#ForEach)
--   [GroupBy](https://github.com/duke-git/lancet/blob/main/docs/slice.md#GroupBy)
--   [GroupWith](https://github.com/duke-git/lancet/blob/main/docs/slice.md#GroupWith)
--   [IntSlice<sup>deprecated</sup>](https://github.com/duke-git/lancet/blob/main/docs/slice.md#IntSlice)
--   [InterfaceSlice<sup>deprecated</sup>](https://github.com/duke-git/lancet/blob/main/docs/slice.md#InterfaceSlice)
--   [Intersection](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Intersection)
--   [InsertAt](https://github.com/duke-git/lancet/blob/main/docs/slice.md#InsertAt)
--   [IndexOf](https://github.com/duke-git/lancet/blob/main/docs/slice.md#IndexOf)
--   [LastIndexOf](https://github.com/duke-git/lancet/blob/main/docs/slice.md#LastIndexOf)
--   [Map](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Map)
--   [Merge](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Merge)
--   [Reverse](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Reverse)
--   [Reduce](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Reduce)
--   [Replace](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Replace)
--   [ReplaceAll](https://github.com/duke-git/lancet/blob/main/docs/slice.md#ReplaceAll)
--   [Repeat](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Repeat)
--   [Shuffle](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Shuffle)
--   [Sort](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Sort)
--   [SortBy](https://github.com/duke-git/lancet/blob/main/docs/slice.md#SortBy)
--   [SortByField<sup>deprecated</sup>](https://github.com/duke-git/lancet/blob/main/docs/slice.md#SortByField)
--   [Some](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Some)
--   [StringSlice<sup>deprecated</sup>](https://github.com/duke-git/lancet/blob/main/docs/slice.md#StringSlice)
--   [SymmetricDifference](https://github.com/duke-git/lancet/blob/main/docs/slice.md#SymmetricDifference)
--   [ToSlice](https://github.com/duke-git/lancet/blob/main/docs/slice.md#ToSlice)
--   [ToSlicePointer](https://github.com/duke-git/lancet/blob/main/docs/slice.md#ToSlicePointer)
--   [Unique](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Unique)
--   [UniqueBy](https://github.com/duke-git/lancet/blob/main/docs/slice.md#UniqueBy)
--   [Union](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Union)
--   [UnionBy](https://github.com/duke-git/lancet/blob/main/docs/slice.md#UnionBy)
--   [UpdateAt](https://github.com/duke-git/lancet/blob/main/docs/slice.md#UpdateAt)
--   [Without](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Without)
--   [KeyBy](https://github.com/duke-git/lancet/blob/main/docs/slice.md#KeyBy)
+-   **<big>AppendIfAbsent</big>** : if the item is absent,append it to the slice.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#AppendIfAbsent)]
+    [[play](https://go.dev/play/p/GNdv7Jg2Taj)]
+-   **<big>Contain</big>** : check if the value is in the slice or not.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Contain)]
+    [[play](https://go.dev/play/p/_454yEHcNjf)]
+-   **<big>ContainSubSlice</big>** : check if the slice contain a given subslice or not.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#ContainSubSlice)]
+    [[play](https://go.dev/play/p/bcuQ3UT6Sev)]
+-   **<big>Chunk</big>** : creates a slice of elements split into groups the length of size.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Chunk)]
+    [[play](https://go.dev/play/p/b4Pou5j2L_C)]
+-   **<big>Compact</big>** : creates an slice with all falsey values removed. The values false, nil, 0, and "" are falsey.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Compact)]
+    [[play](https://go.dev/play/p/pO5AnxEr3TK)]
+-   **<big>Concat</big>** : creates a new slice concatenating slice with any additional slices.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Concat)]
+    [[play](https://go.dev/play/p/gPt-q7zr5mk)]
+-   **<big>Count</big>** : returns the number of occurrences of the given item in the slice.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Count)]
+    [[play](https://go.dev/play/p/Mj4oiEnQvRJ)]
+-   **<big>CountBy</big>** : iterates over elements of slice with predicate function, returns the number of all matched elements.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#CountBy)]
+    [[play](https://go.dev/play/p/tHOccTMDZCC)]
+-   **<big>Difference</big>** : creates an slice of whose element in slice but not in compared slice.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Difference)]
+    [[play](https://go.dev/play/p/VXvadzLzhDa)]
+-   **<big>DifferenceBy</big>** : accepts iteratee which is invoked for each element of slice and values to generate the criterion by which they're compared.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#DifferenceBy)]
+    [[play](https://go.dev/play/p/DiivgwM5OnC)]
+-   **<big>DifferenceWith</big>** : accepts comparator which is invoked to compare elements of slice to values.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#DifferenceWith)]
+    [[play](https://go.dev/play/p/v2U2deugKuV)]
+-   **<big>DeleteAt</big>** : delete the element of slice from specific start index to end index - 1.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#DeleteAt)]
+    [[play](https://go.dev/play/p/pJ-d6MUWcvK)]
+-   **<big>Drop</big>** : creates a slice with `n` elements dropped from the beginning when n > 0, or `n` elements dropped from the ending when n < 0.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Drop)]
+    [[play](https://go.dev/play/p/pJ-d6MUWcvK)]
+-   **<big>Equal</big>** : checks if two slices are equal: the same length and all elements' order and value are equal.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Equal)]
+    [[play](https://go.dev/play/p/WcRQJ37ifPa)]
+-   **<big>EqualWith</big>** : checks if two slices are equal with comparator func.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#EqualWith)]
+    [[play](https://go.dev/play/p/b9iygtgsHI1)]
+-   **<big>Every</big>** : return true if all of the values in the slice pass the predicate function.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Every)]
+    [[play](https://go.dev/play/p/R8U6Sl-j8cD)]
+-   **<big>Filter</big>** : iterates over elements of slice, returning an slice of all elements pass the predicate function.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Filter)]
+    [[play](https://go.dev/play/p/SdPna-7qK4T)]
+-   **<big>Find</big>** : iterates over elements of slice, returning the first one that passes a truth test on predicate function.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Find)]
+    [[play](https://go.dev/play/p/CBKeBoHVLgq)]
+-   **<big>FindLast</big>** : return the last item that passes a truth test on predicate function.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#FindLast)]
+    [[play](https://go.dev/play/p/FFDPV_j7URd)]
+-   **<big>Flatten</big>** : flattens slice one level.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Flatten)]
+    [[play](https://go.dev/play/p/hYa3cBEevtm)]
+-   **<big>FlattenDeep</big>** : flattens slice recursive to one level.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#FlattenDeep)]
+    [[play](https://go.dev/play/p/yjYNHPyCFaF)]
+-   **<big>ForEach</big>** : iterates over elements of slice and invokes function for each element.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#ForEach)]
+    [[play](https://go.dev/play/p/DrPaa4YsHRF)]
+-   **<big>GroupBy</big>** : iterate over elements of the slice, each element will be group by criteria, returns two slices.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#GroupBy)]
+    [[play](https://go.dev/play/p/QVkPxzPR0iA)]
+-   **<big>GroupWith</big>** : return a map composed of keys generated from the resultults of running each element of slice thru iteratee.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#GroupWith)]
+    [[play](https://go.dev/play/p/ApCvMNTLO8a)]
+-   **<big>IntSlice<sup>deprecated</sup></big>** : convert param to int slice.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#IntSlice)]
+    [[play](https://go.dev/play/p/FdQXF0Vvqs-)]
+-   **<big>InterfaceSlice<sup>deprecated</sup></big>** : convert param to interface slice.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#InterfaceSlice)]
+    [[play](https://go.dev/play/p/FdQXF0Vvqs-)]
+-   **<big>Intersection</big>** : creates a slice of unique elements that included by all slices.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Intersection)]
+    [[play](https://go.dev/play/p/anJXfB5wq_t)]
+-   **<big>InsertAt</big>** : insert the value or other slice into slice at index.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#InsertAt)]
+    [[play](https://go.dev/play/p/hMLNxPEGJVE)]
+-   **<big>IndexOf</big>** : returns the index at which the first occurrence of an item is found in a slice.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#IndexOf)]
+    [[play](https://go.dev/play/p/MRN1f0FpABb)]
+-   **<big>LastIndexOf</big>** : returns the index at which the last occurrence of the item is found in a slice.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#LastIndexOf)]
+    [[play](https://go.dev/play/p/DokM4cf1IKH)]
+-   **<big>Map</big>** : creates an slice of values by running each element of slice thru iteratee function.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Map)]
+    [[play](https://go.dev/play/p/biaTefqPquw)]
+-   **<big>Merge</big>** : merge all given slices into one slice.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Merge)]
+    [[play](https://go.dev/play/p/lbjFp784r9N)]
+-   **<big>Reverse</big>** : return slice of element order is reversed to the given slice.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Reverse)]
+    [[play](https://go.dev/play/p/8uI8f1lwNrQ)]
+-   **<big>Reduce</big>** : creates an slice of values by running each element of slice thru iteratee function.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Reduce)]
+    [[play](https://go.dev/play/p/_RfXJJWIsIm)]
+-   **<big>Replace</big>** : returns a copy of the slice with the first n non-overlapping instances of old replaced by new.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Replace)]
+    [[play](https://go.dev/play/p/P5mZp7IhOFo)]
+-   **<big>ReplaceAll</big>** : returns a copy of the slice with all non-overlapping instances of old replaced by new.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#ReplaceAll)]
+    [[play](https://go.dev/play/p/CzqXMsuYUrx)]
+-   **<big>Repeat</big>** : creates a slice with length n whose elements are passed item.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Repeat)]
+    [[play](https://go.dev/play/p/1CbOmtgILUU)]
+-   **<big>Shuffle</big>** : shuffle the slice.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Shuffle)]
+    [[play](https://go.dev/play/p/YHvhnWGU3Ge)]
+-   **<big>Sort</big>** : sorts a slice of any ordered type(number or string).
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Sort)]
+    [[play](https://go.dev/play/p/V9AVjzf_4Fk)]
+-   **<big>SortBy</big>** : sorts the slice in ascending order as determined by the less function.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#SortBy)]
+    [[play](https://go.dev/play/p/DAhLQSZEumm)]
+-   **<big>SortByField<sup>deprecated</sup></big>** : return sorted slice by specific field.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#SortByField)]
+    [[play](https://go.dev/play/p/fU1prOBP9p1)]
+-   **<big>Some</big>** : return true if any of the values in the list pass the predicate function.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Some)]
+    [[play](https://go.dev/play/p/4pO9Xf9NDGS)]
+-   **<big>StringSlice<sup>deprecated</sup></big>** : convert param to slice of string.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#StringSlice)]
+    [[play](https://go.dev/play/p/W0TZDWCPFcI)]
+-   **<big>SymmetricDifference</big>** : the symmetric difference of two slice, also known as the disjunctive union.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#h42nJX5xMln)]
+    [[play](https://go.dev/play/p/1CbOmtgILUU)]
+-   **<big>ToSlice</big>** : returns a slices of a variable parameter transformation.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#ToSlice)]
+    [[play](https://go.dev/play/p/YzbzVq5kscN)]
+-   **<big>ToSlicePointer</big>** : returns a pointer to the slices of a variable parameter transformation.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#ToSlicePointer)]
+    [[play](https://go.dev/play/p/gx4tr6_VXSF)]
+-   **<big>Unique</big>** : remove duplicate elements in slice.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Unique)]
+    [[play](https://go.dev/play/p/AXw0R3ZTE6a)]
+-   **<big>UniqueBy</big>** : call iteratee func with every item of slice, then remove duplicated.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#UniqueBy)]
+    [[play](https://go.dev/play/p/UR323iZLDpv)]
+-   **<big>Union</big>** : creates a slice of unique elements, in order, from all given slices.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Union)]
+    [[play](https://go.dev/play/p/hfXV1iRIZOf)]
+-   **<big>UnionBy</big>** : accepts iteratee which is invoked for each element of each slice, then union slice.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#UnionBy)]
+    [[play](https://go.dev/play/p/HGKHfxKQsFi)]
+-   **<big>UpdateAt</big>** : update the slice element at index.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#UpdateAt)]
+    [[play](https://go.dev/play/p/f3mh2KloWVm)]
+-   **<big>Without</big>** : creates a slice excluding all given items.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Without)]
+    [[play](https://go.dev/play/p/bwhEXEypThg)]
+-   **<big>KeyBy</big>** : converts a slice to a map based on a callback function.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#KeyBy)]
+    [[play](https://go.dev/play/p/uXod2LWD1Kg)]
+
+
 
 ### 17. Strutil package contains some functions to manipulate string.
 

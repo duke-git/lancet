@@ -319,7 +319,7 @@ func main() {
 
 ### <span id="DifferenceBy">DifferenceBy</span>
 
-<p>在slice和comparedSlice中的每个元素调用iteratee函数，并比较它们的返回值，如果不想等返回在slice中对应的值</p>
+<p>将两个slice中的每个元素调用iteratee函数，并比较它们的返回值，如果不相等返回在slice中对应的值</p>
 
 <b>函数签名:</b>
 
@@ -349,7 +349,7 @@ func main() {
 
 ### <span id="DifferenceWith">DifferenceWith</span>
 
-<p>DifferenceWith 接受比较器，该比较器被调用以将切片的元素与值进行比较。 结果值的顺序和引用由第一个切片确定</p>
+<p>接受比较器函数，该比较器被调用以将切片的元素与值进行比较。 结果值的顺序和引用由第一个切片确定</p>
 
 <b>函数签名:</b>
 
@@ -379,7 +379,7 @@ func main() {
 
 ### <span id="DeleteAt">DeleteAt</span>
 
-<p>删除切片中从开始索引到结束索引-1的元素</p>
+<p>删除切片中指定开始索引到结束索引的元素</p>
 
 <b>函数签名:</b>
 
@@ -407,7 +407,7 @@ func main() {
 
 ### <span id="Drop">Drop</span>
 
-<p>创建一个切片，当 n > 0 时从开头删除 n 个元素，或者当 n < 0 时从结尾删除 n 个元素</p>
+<p>创建一个切片，当n > 0时从开头删除n个元素，或者当n < 0时从结尾删除n个元素</p>
 
 <b>函数签名:</b>
 
