@@ -1442,7 +1442,7 @@ func main() {
 
 ### <span id="Union">Union</span>
 
-<p>合并多个切片.</p>
+<p>合并多个切片</p>
 
 <b>函数签名:</b>
 

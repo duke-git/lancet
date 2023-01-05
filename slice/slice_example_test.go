@@ -664,7 +664,10 @@ func ExampleSortByField() {
 		{Name: "b", Age: 15},
 		{Name: "c", Age: 100}}
 
-	SortByField(users, "Age", "desc")
+	err := SortByField(users, "Age", "desc")
+	if err != nil {
+		return
+	}
 
 	fmt.Println(users)
 

@@ -44,7 +44,11 @@ func ExampleRemoveOsEnv() {
 }
 
 func ExampleCompareOsEnv() {
-	SetOsEnv("foo", "abc")
+	err := SetOsEnv("foo", "abc")
+	if err != nil {
+		return
+	}
+
 	result1 := CompareOsEnv("foo", "abc")
 
 	fmt.Println(result1)

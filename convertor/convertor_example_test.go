@@ -242,7 +242,10 @@ func ExampleEncodeByte() {
 func ExampleDecodeByte() {
 	var obj string
 	byteData := []byte{6, 12, 0, 3, 97, 98, 99}
-	DecodeByte(byteData, &obj)
+	err := DecodeByte(byteData, &obj)
+	if err != nil {
+		return
+	}
 
 	fmt.Println(obj)
 

@@ -43,7 +43,10 @@ func ExampleCreateDir() {
 
 	result1 := IsExist(dirPath)
 
-	CreateDir(dirPath)
+	err := CreateDir(dirPath)
+	if err != nil {
+		return
+	}
 
 	result2 := IsExist(dirPath)
 
@@ -75,8 +78,10 @@ func ExampleRemoveFile() {
 	CreateFile(srcFile)
 
 	copyFile := "./text_copy.txt"
-	CopyFile(srcFile, copyFile)
-
+	err := CopyFile(srcFile, copyFile)
+	if err != nil {
+		return
+	}
 	file, err := os.Open(copyFile)
 	if err != nil {
 		return
@@ -102,7 +107,10 @@ func ExampleReadFileToString() {
 	f, _ := os.OpenFile(fname, os.O_WRONLY|os.O_TRUNC, 0777)
 	defer f.Close()
 
-	f.WriteString("hello world")
+	_, err := f.WriteString("hello world")
+	if err != nil {
+		return
+	}
 
 	content, _ := ReadFileToString(fname)
 
@@ -121,12 +129,17 @@ func ExampleClearFile() {
 	f, _ := os.OpenFile(fname, os.O_WRONLY|os.O_TRUNC, 0777)
 	defer f.Close()
 
-	f.WriteString("hello world")
+	_, err := f.WriteString("hello world")
+	if err != nil {
+		return
+	}
 
 	content1, _ := ReadFileToString(fname)
 
-	ClearFile(fname)
-
+	err = ClearFile(fname)
+	if err != nil {
+		return
+	}
 	content2, _ := ReadFileToString(fname)
 
 	os.Remove(fname)
@@ -146,7 +159,10 @@ func ExampleReadFileByLine() {
 	f, _ := os.OpenFile(fname, os.O_WRONLY|os.O_TRUNC, 0777)
 	defer f.Close()
 
-	f.WriteString("hello\nworld")
+	_, err := f.WriteString("hello\nworld")
+	if err != nil {
+		return
+	}
 
 	content, _ := ReadFileByLine(fname)
 
@@ -171,7 +187,10 @@ func ExampleZip() {
 	CreateFile(srcFile)
 
 	zipFile := "./test.zip"
-	Zip(srcFile, zipFile)
+	err := Zip(srcFile, zipFile)
+	if err != nil {
+		return
+	}
 
 	result := IsExist(zipFile)
 
@@ -187,7 +206,11 @@ func ExampleZip() {
 func ExampleUnZip() {
 	fname := "./test.txt"
 	file, _ := os.Create(fname)
-	file.WriteString("hello world")
+
+	_, err := file.WriteString("hello\nworld")
+	if err != nil {
+		return
+	}
 
 	f, _ := os.Open(fname)
 	defer f.Close()
