@@ -3,6 +3,7 @@ package slice
 import (
 	"fmt"
 	"math"
+	"reflect"
 )
 
 func ExampleContain() {
@@ -525,4 +526,233 @@ func ExampleUpdateAt() {
 	// [a 1 c]
 	// [a b 1]
 	// [a b c]
+}
+
+func ExampleUnique() {
+	result := Unique([]string{"a", "a", "b"})
+	fmt.Println(result)
+
+	// Output:
+	// [a b]
+}
+
+func ExampleUniqueBy() {
+	nums := []int{1, 2, 3, 4, 5, 6}
+	result := UniqueBy(nums, func(val int) int {
+		return val % 3
+	})
+
+	fmt.Println(result)
+
+	// Output:
+	// [1 2 0]
+}
+
+func ExampleUnion() {
+	nums1 := []int{1, 3, 4, 6}
+	nums2 := []int{1, 2, 5, 6}
+
+	result := Union(nums1, nums2)
+
+	fmt.Println(result)
+
+	// Output:
+	// [1 3 4 6 2 5]
+}
+
+func ExampleUnionBy() {
+	nums := []int{1, 2, 3, 4}
+
+	divideTwo := func(n int) int {
+		return n / 2
+	}
+	result := UnionBy(divideTwo, nums)
+
+	fmt.Println(result)
+
+	// Output:
+	// [1 2 4]
+}
+
+func ExampleMerge() {
+	nums1 := []int{1, 2, 3}
+	nums2 := []int{3, 4}
+
+	result := Merge(nums1, nums2)
+
+	fmt.Println(result)
+
+	// Output:
+	// [1 2 3 3 4]
+}
+
+func ExampleIntersection() {
+	nums1 := []int{1, 2, 3}
+	nums2 := []int{2, 3, 4}
+
+	result := Intersection(nums1, nums2)
+
+	fmt.Println(result)
+
+	// Output:
+	// [2 3]
+}
+
+func ExampleSymmetricDifference() {
+	nums1 := []int{1, 2, 3}
+	nums2 := []int{1, 2, 4}
+
+	result := SymmetricDifference(nums1, nums2)
+
+	fmt.Println(result)
+
+	// Output:
+	// [3 4]
+}
+
+func ExampleReverse() {
+	strs := []string{"a", "b", "c", "d"}
+
+	Reverse(strs)
+
+	fmt.Println(strs)
+
+	// Output:
+	// [d c b a]
+}
+
+func ExampleSort() {
+	nums := []int{1, 4, 3, 2, 5}
+
+	Sort(nums)
+
+	fmt.Println(nums)
+
+	// Output:
+	// [1 2 3 4 5]
+}
+
+func ExampleSortBy() {
+	type User struct {
+		Name string
+		Age  uint
+	}
+
+	users := []User{
+		{Name: "a", Age: 21},
+		{Name: "b", Age: 15},
+		{Name: "c", Age: 100}}
+
+	SortBy(users, func(a, b User) bool {
+		return a.Age < b.Age
+	})
+
+	fmt.Println(users)
+
+	// Output:
+	// [{b 15} {a 21} {c 100}]
+}
+
+func ExampleSortByField() {
+	type User struct {
+		Name string
+		Age  uint
+	}
+
+	users := []User{
+		{Name: "a", Age: 21},
+		{Name: "b", Age: 15},
+		{Name: "c", Age: 100}}
+
+	SortByField(users, "Age", "desc")
+
+	fmt.Println(users)
+
+	// Output:
+	// [{c 100} {a 21} {b 15}]
+}
+
+func ExampleWithout() {
+	result := Without([]int{1, 2, 3, 4}, 1, 2)
+
+	fmt.Println(result)
+
+	// Output:
+	// [3 4]
+}
+
+func ExampleIndexOf() {
+	strs := []string{"a", "a", "b", "c"}
+
+	result1 := IndexOf(strs, "a")
+	result2 := IndexOf(strs, "d")
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+
+	// Output:
+	// 0
+	// -1
+}
+
+func ExampleLastIndexOf() {
+	strs := []string{"a", "a", "b", "c"}
+
+	result1 := LastIndexOf(strs, "a")
+	result2 := LastIndexOf(strs, "d")
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+
+	// Output:
+	// 1
+	// -1
+}
+
+func ExampleToSlice() {
+	result := ToSlice("a", "b", "c")
+
+	fmt.Println(result)
+
+	// Output:
+	// [a b c]
+}
+
+func ExampleToSlicePointer() {
+	str1 := "a"
+	str2 := "b"
+
+	result := ToSlicePointer(str1, str2)
+
+	expect := []*string{&str1, &str2}
+
+	isEqual := reflect.DeepEqual(result, expect)
+
+	fmt.Println(isEqual)
+
+	// Output:
+	// true
+}
+
+func ExampleAppendIfAbsent() {
+	result1 := AppendIfAbsent([]string{"a", "b"}, "b")
+	result2 := AppendIfAbsent([]string{"a", "b"}, "c")
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+
+	// Output:
+	// [a b]
+	// [a b c]
+}
+
+func ExampleKeyBy() {
+	result := KeyBy([]string{"a", "ab", "abc"}, func(str string) int {
+		return len(str)
+	})
+
+	fmt.Println(result)
+
+	// Output:
+	// map[1:a 2:ab 3:abc]
 }

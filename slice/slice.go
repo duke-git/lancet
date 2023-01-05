@@ -10,6 +10,7 @@ import (
 	"math/rand"
 	"reflect"
 	"sort"
+	"time"
 
 	"golang.org/x/exp/constraints"
 )
@@ -614,6 +615,7 @@ func UpdateAt[T any](slice []T, index int, value T) []T {
 }
 
 // Unique remove duplicate elements in slice.
+// Play: https://go.dev/play/p/AXw0R3ZTE6a
 func Unique[T comparable](slice []T) []T {
 	result := []T{}
 
@@ -635,6 +637,7 @@ func Unique[T comparable](slice []T) []T {
 }
 
 // UniqueBy call iteratee func with every item of slice, then remove duplicated.
+// Play: https://go.dev/play/p/UR323iZLDpv
 func UniqueBy[T comparable](slice []T, iteratee func(item T) T) []T {
 	result := []T{}
 
@@ -647,6 +650,7 @@ func UniqueBy[T comparable](slice []T, iteratee func(item T) T) []T {
 }
 
 // Union creates a slice of unique elements, in order, from all given slices.
+// Play: https://go.dev/play/p/hfXV1iRIZOf
 func Union[T comparable](slices ...[]T) []T {
 	result := []T{}
 	contain := map[T]struct{}{}
@@ -663,7 +667,8 @@ func Union[T comparable](slices ...[]T) []T {
 	return result
 }
 
-// UnionBy is like Union, what's more it accepts iteratee which is invoked for each element of each slice
+// UnionBy is like Union, what's more it accepts iteratee which is invoked for each element of each slice.
+// Play: https://go.dev/play/p/HGKHfxKQsFi
 func UnionBy[T any, V comparable](predicate func(item T) V, slices ...[]T) []T {
 	result := []T{}
 	contain := map[V]struct{}{}
@@ -681,7 +686,8 @@ func UnionBy[T any, V comparable](predicate func(item T) V, slices ...[]T) []T {
 	return result
 }
 
-// Merge all given slices into one slice
+// Merge all given slices into one slice.
+// Play: https://go.dev/play/p/lbjFp784r9N
 func Merge[T any](slices ...[]T) []T {
 	result := make([]T, 0)
 
@@ -693,6 +699,7 @@ func Merge[T any](slices ...[]T) []T {
 }
 
 // Intersection creates a slice of unique elements that included by all slices.
+// Play: https://go.dev/play/p/anJXfB5wq_t
 func Intersection[T comparable](slices ...[]T) []T {
 	if len(slices) == 0 {
 		return []T{}
@@ -729,7 +736,8 @@ func Intersection[T comparable](slices ...[]T) []T {
 	return result
 }
 
-// SymmetricDifference oppoiste operation of intersection function
+// SymmetricDifference oppoiste operation of intersection function.
+// Play: https://go.dev/play/p/h42nJX5xMln
 func SymmetricDifference[T comparable](slices ...[]T) []T {
 	if len(slices) == 0 {
 		return []T{}
@@ -755,25 +763,29 @@ func SymmetricDifference[T comparable](slices ...[]T) []T {
 	return Unique(result)
 }
 
-// Reverse return slice of element order is reversed to the given slice
+// Reverse return slice of element order is reversed to the given slice.
+// Play: https://go.dev/play/p/8uI8f1lwNrQ
 func Reverse[T any](slice []T) {
 	for i, j := 0, len(slice)-1; i < j; i, j = i+1, j-1 {
 		slice[i], slice[j] = slice[j], slice[i]
 	}
 }
 
-// Shuffle creates an slice of shuffled values
+// Shuffle creates an slice of shuffled values.
+// Play: https://go.dev/play/p/YHvhnWGU3Ge
 func Shuffle[T any](slice []T) []T {
-	result := make([]T, len(slice))
-	for i, v := range rand.Perm(len(slice)) {
-		result[i] = slice[v]
-	}
+	rand.Seed(time.Now().UnixNano())
 
-	return result
+	rand.Shuffle(len(slice), func(i, j int) {
+		slice[i], slice[j] = slice[j], slice[i]
+	})
+
+	return slice
 }
 
 // Sort sorts a slice of any ordered type(number or string), use quick sort algrithm.
-// default sort order is ascending (asc), if want descending order, set param `sortOrder` to `desc`
+// default sort order is ascending (asc), if want descending order, set param `sortOrder` to `desc`.
+// Play: https://go.dev/play/p/V9AVjzf_4Fk
 func Sort[T constraints.Ordered](slice []T, sortOrder ...string) {
 	if len(sortOrder) > 0 && sortOrder[0] == "desc" {
 		quickSort(slice, 0, len(slice)-1, "desc")
@@ -783,7 +795,8 @@ func Sort[T constraints.Ordered](slice []T, sortOrder ...string) {
 }
 
 // SortBy sorts the slice in ascending order as determined by the less function.
-// This sort is not guaranteed to be stable
+// This sort is not guaranteed to be stable.
+// Play: https://go.dev/play/p/DAhLQSZEumm
 func SortBy[T any](slice []T, less func(a, b T) bool) {
 	quickSortBy(slice, 0, len(slice)-1, less)
 }
@@ -791,7 +804,8 @@ func SortBy[T any](slice []T, less func(a, b T) bool) {
 // SortByField return sorted slice by field
 // slice element should be struct, field type should be int, uint, string, or bool
 // default sortType is ascending (asc), if descending order, set sortType to desc
-// This function is deprecated, use Sort and SortBy for replacement
+// This function is deprecated, use Sort and SortBy for replacement.
+// Play: https://go.dev/play/p/fU1prOBP9p1
 func SortByField(slice any, field string, sortType ...string) error {
 	sv := sliceValue(slice)
 	t := sv.Type().Elem()
@@ -861,7 +875,8 @@ func SortByField(slice any, field string, sortType ...string) error {
 	return nil
 }
 
-// Without creates a slice excluding all given items
+// Without creates a slice excluding all given items.
+// Play: https://go.dev/play/p/bwhEXEypThg
 func Without[T comparable](slice []T, items ...T) []T {
 	if len(items) == 0 || len(slice) == 0 {
 		return slice
@@ -878,6 +893,7 @@ func Without[T comparable](slice []T, items ...T) []T {
 }
 
 // IndexOf returns the index at which the first occurrence of an item is found in a slice or return -1 if the item cannot be found.
+// Play: https://go.dev/play/p/MRN1f0FpABb
 func IndexOf[T comparable](arr []T, val T) int {
 	limit := 10
 	// gets the hash value of the array as the key of the hash table.
@@ -919,6 +935,7 @@ func IndexOf[T comparable](arr []T, val T) int {
 }
 
 // LastIndexOf returns the index at which the last occurrence of the item is found in a slice or return -1 if the then cannot be found.
+// Play: https://go.dev/play/p/DokM4cf1IKH
 func LastIndexOf[T comparable](slice []T, item T) int {
 	for i := len(slice) - 1; i > 0; i-- {
 		if item == slice[i] {
@@ -929,7 +946,8 @@ func LastIndexOf[T comparable](slice []T, item T) int {
 	return -1
 }
 
-// ToSlicePointer returns a pointer to the slices of a variable parameter transformation
+// ToSlicePointer returns a pointer to the slices of a variable parameter transformation.
+// Play: https://go.dev/play/p/gx4tr6_VXSF
 func ToSlicePointer[T any](items ...T) []*T {
 	result := make([]*T, len(items))
 	for i := range items {
@@ -939,7 +957,8 @@ func ToSlicePointer[T any](items ...T) []*T {
 	return result
 }
 
-// ToSlice returns a slices of a variable parameter transformation
+// ToSlice returns a slices of a variable parameter transformation.
+// Play: https://go.dev/play/p/YzbzVq5kscN
 func ToSlice[T any](items ...T) []T {
 	result := make([]T, len(items))
 	copy(result, items)
@@ -947,7 +966,8 @@ func ToSlice[T any](items ...T) []T {
 	return result
 }
 
-// AppendIfAbsent only absent append the item
+// AppendIfAbsent only absent append the item.
+// Play: https://go.dev/play/p/KcC1QXQ-RkL
 func AppendIfAbsent[T comparable](slice []T, item T) []T {
 	if !Contain(slice, item) {
 		slice = append(slice, item)
@@ -955,7 +975,8 @@ func AppendIfAbsent[T comparable](slice []T, item T) []T {
 	return slice
 }
 
-// KeyBy converts a slice to a map based on a callback function
+// KeyBy converts a slice to a map based on a callback function.
+// Play: https://go.dev/play/p/uXod2LWD1Kg
 func KeyBy[T any, U comparable](slice []T, iteratee func(item T) U) map[U]T {
 	result := make(map[U]T, len(slice))
 
