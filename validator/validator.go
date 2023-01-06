@@ -30,12 +30,14 @@ var (
 	base64Matcher        *regexp.Regexp = regexp.MustCompile(`^(?:[A-Za-z0-9+\\/]{4})*(?:[A-Za-z0-9+\\/]{2}==|[A-Za-z0-9+\\/]{3}=|[A-Za-z0-9+\\/]{4})$`)
 )
 
-// IsAlpha checks if the string contains only letters (a-zA-Z)
+// IsAlpha checks if the string contains only letters (a-zA-Z).
+// Play: https://go.dev/play/p/7Q5sGOz2izQ
 func IsAlpha(str string) bool {
 	return alphaMatcher.MatchString(str)
 }
 
-// IsAllUpper check if the string is all upper case letters A-Z
+// IsAllUpper check if the string is all upper case letters A-Z.
+// Play: https://go.dev/play/p/ZHctgeK1n4Z
 func IsAllUpper(str string) bool {
 	for _, r := range str {
 		if !unicode.IsUpper(r) {
@@ -45,7 +47,8 @@ func IsAllUpper(str string) bool {
 	return str != ""
 }
 
-// IsAllLower check if the string is all lower case letters a-z
+// IsAllLower check if the string is all lower case letters a-z.
+// Play: https://go.dev/play/p/GjqCnOfV6cM
 func IsAllLower(str string) bool {
 	for _, r := range str {
 		if !unicode.IsLower(r) {
@@ -55,7 +58,8 @@ func IsAllLower(str string) bool {
 	return str != ""
 }
 
-// ContainUpper check if the string contain at least one upper case letter A-Z
+// ContainUpper check if the string contain at least one upper case letter A-Z.
+// Play: https://go.dev/play/p/CmWeBEk27-z
 func ContainUpper(str string) bool {
 	for _, r := range str {
 		if unicode.IsUpper(r) && unicode.IsLetter(r) {
@@ -65,7 +69,8 @@ func ContainUpper(str string) bool {
 	return false
 }
 
-// ContainLower check if the string contain at least one lower case letter A-Z
+// ContainLower check if the string contain at least one lower case letter A-Z.
+// Play: https://go.dev/play/p/Srqi1ItvnAA
 func ContainLower(str string) bool {
 	for _, r := range str {
 		if unicode.IsLower(r) && unicode.IsLetter(r) {
@@ -75,40 +80,47 @@ func ContainLower(str string) bool {
 	return false
 }
 
-// ContainLetter check if the string contain at least one letter
+// ContainLetter check if the string contain at least one letter.
+// Play: https://go.dev/play/p/lqFD04Yyewp
 func ContainLetter(str string) bool {
 	return letterRegexMatcher.MatchString(str)
 }
 
-// IsJSON checks if the string is valid JSON
+// IsJSON checks if the string is valid JSON.
+// Play: https://go.dev/play/p/sRS6c4K8jGk
 func IsJSON(str string) bool {
 	var js json.RawMessage
 	return json.Unmarshal([]byte(str), &js) == nil
 }
 
 // IsNumberStr check if the string can convert to a number.
+// Play: https://go.dev/play/p/LzaKocSV79u
 func IsNumberStr(s string) bool {
 	return IsIntStr(s) || IsFloatStr(s)
 }
 
 // IsFloatStr check if the string can convert to a float.
+// Play: https://go.dev/play/p/LOYwS_Oyl7U
 func IsFloatStr(str string) bool {
 	_, e := strconv.ParseFloat(str, 64)
 	return e == nil
 }
 
 // IsIntStr check if the string can convert to a integer.
+// Play: https://go.dev/play/p/jQRtFv-a0Rk
 func IsIntStr(str string) bool {
 	return intStrMatcher.MatchString(str)
 }
 
 // IsIp check if the string is a ip address.
+// Play: https://go.dev/play/p/FgcplDvmxoD
 func IsIp(ipstr string) bool {
 	ip := net.ParseIP(ipstr)
 	return ip != nil
 }
 
 // IsIpV4 check if the string is a ipv4 address.
+// Play: https://go.dev/play/p/zBGT99EjaIu
 func IsIpV4(ipstr string) bool {
 	ip := net.ParseIP(ipstr)
 	if ip == nil {
@@ -118,6 +130,7 @@ func IsIpV4(ipstr string) bool {
 }
 
 // IsIpV6 check if the string is a ipv6 address.
+// Play: https://go.dev/play/p/AHA0r0AzIdC
 func IsIpV6(ipstr string) bool {
 	ip := net.ParseIP(ipstr)
 	if ip == nil {
@@ -127,6 +140,7 @@ func IsIpV6(ipstr string) bool {
 }
 
 // IsPort check if the string is a valid net port.
+// Play:
 func IsPort(str string) bool {
 	if i, err := strconv.ParseInt(str, 10, 64); err == nil && i > 0 && i < 65536 {
 		return true
@@ -135,6 +149,7 @@ func IsPort(str string) bool {
 }
 
 // IsUrl check if the string is url.
+// Play: https://go.dev/play/p/pbJGa7F98Ka
 func IsUrl(str string) bool {
 	if str == "" || len(str) >= 2083 || len(str) <= 3 || strings.HasPrefix(str, ".") {
 		return false
@@ -154,59 +169,70 @@ func IsUrl(str string) bool {
 }
 
 // IsDns check if the string is dns.
+// Play: https://go.dev/play/p/jlYApVLLGTZ
 func IsDns(dns string) bool {
 	return dnsMatcher.MatchString(dns)
 }
 
 // IsEmail check if the string is a email address.
+// Play: https://go.dev/play/p/Os9VaFlT33G
 func IsEmail(email string) bool {
 	return emailMatcher.MatchString(email)
 }
 
 // IsChineseMobile check if the string is chinese mobile number.
+// Play: https://go.dev/play/p/GPYUlGTOqe3
 func IsChineseMobile(mobileNum string) bool {
 	return chineseMobileMatcher.MatchString(mobileNum)
 }
 
-// IsChineseIdNum check if the string is chinese id number.
+// IsChineseIdNum check if the string is chinese id card.
+// Play: https://go.dev/play/p/d8EWhl2UGDF
 func IsChineseIdNum(id string) bool {
 	return chineseIdMatcher.MatchString(id)
 }
 
-// ContainChinese check if the string contain mandarin chinese.
+// ContainChinese check if the string contain mandarin chinese..
+// Play: https://go.dev/play/p/7DpU0uElYeM
 func ContainChinese(s string) bool {
 	return chineseMatcher.MatchString(s)
 }
 
 // IsChinesePhone check if the string is chinese phone number.
-// Valid chinese phone is xxx-xxxxxxxx or xxxx-xxxxxxx
+// Valid chinese phone is xxx-xxxxxxxx or xxxx-xxxxxxx.
+// Play: https://go.dev/play/p/RUD_-7YZJ3I
 func IsChinesePhone(phone string) bool {
 	return chinesePhoneMatcher.MatchString(phone)
 }
 
 // IsCreditCard check if the string is credit card.
+// Play: https://go.dev/play/p/sNwwL6B0-v4
 func IsCreditCard(creditCart string) bool {
 	return creditCardMatcher.MatchString(creditCart)
 }
 
 // IsBase64 check if the string is base64 string.
+// Play: https://go.dev/play/p/sWHEySAt6hl
 func IsBase64(base64 string) bool {
 	return base64Matcher.MatchString(base64)
 }
 
 // IsEmptyString check if the string is empty.
+// Play: https://go.dev/play/p/dpzgUjFnBCX
 func IsEmptyString(str string) bool {
 	return len(str) == 0
 }
 
-// IsRegexMatch check if the string match the regexp
+// IsRegexMatch check if the string match the regexp.
+// Play: https://go.dev/play/p/z_XeZo_litG
 func IsRegexMatch(str, regex string) bool {
 	reg := regexp.MustCompile(regex)
 	return reg.MatchString(str)
 }
 
 // IsStrongPassword check if the string is strong password, if len(password) is less than the length param, return false
-// Strong password: alpha(lower+upper) + number + special chars(!@#$%^&*()?><)
+// Strong password: alpha(lower+upper) + number + special chars(!@#$%^&*()?><).
+// Play: https://go.dev/play/p/QHdVcSQ3uDg
 func IsStrongPassword(password string, length int) bool {
 	if len(password) < length {
 		return false
@@ -229,7 +255,8 @@ func IsStrongPassword(password string, length int) bool {
 }
 
 // IsWeakPassword check if the string is weak password
-// Weak password: only letter or only number or letter + number
+// Weak password: only letter or only number or letter + number.
+// Play: https://go.dev/play/p/wqakscZH5gH
 func IsWeakPassword(password string) bool {
 	var num, letter, special bool
 	for _, r := range password {
@@ -246,7 +273,8 @@ func IsWeakPassword(password string) bool {
 	return (num || letter) && !special
 }
 
-// IsZeroValue checks if value is a zero value
+// IsZeroValue checks if value is a zero value.
+// Play: https://go.dev/play/p/UMrwaDCi_t4
 func IsZeroValue(value any) bool {
 	if value == nil {
 		return true
@@ -289,6 +317,7 @@ func IsZeroValue(value any) bool {
 	}
 	fmt.Println("data encoding is unknown")
 **/
+// Play: https://go.dev/play/p/E2nt3unlmzP
 func IsGBK(data []byte) bool {
 	i := 0
 	for i < len(data) {
