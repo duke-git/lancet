@@ -5,11 +5,13 @@
 package function
 
 import (
+	"fmt"
 	"reflect"
 	"time"
 )
 
-// After creates a function that invokes func once it's called n or more times
+// After creates a function that invokes func once it's called n or more times.
+// Play: https://go.dev/play/p/8mQhkFmsgqs
 func After(n int, fn any) func(args ...any) []reflect.Value {
 	// Catch programming error while constructing the closure
 	mustBeFunction(fn)
@@ -23,7 +25,8 @@ func After(n int, fn any) func(args ...any) []reflect.Value {
 	}
 }
 
-// Before creates a function that invokes func once it's called less than n times
+// Before creates a function that invokes func once it's called less than n times.
+// Play: https://go.dev/play/p/0HqUDIFZ3IL
 func Before(n int, fn any) func(args ...any) []reflect.Value {
 	// Catch programming error while constructing the closure
 	mustBeFunction(fn)
@@ -40,41 +43,48 @@ func Before(n int, fn any) func(args ...any) []reflect.Value {
 	}
 }
 
-// Fn is for curry function which is func(...any) any
-type Fn func(...any) any
+// CurryFn is for make curry function
+type CurryFn[T any] func(...T) T
 
-// Curry make a curry function
-func (f Fn) Curry(i any) func(...any) any {
-	return func(values ...any) any {
-		v := append([]any{i}, values...)
-		return f(v...)
+// New make a curry function for specific value.
+// Play: Todo
+func (cf CurryFn[T]) New(val T) func(...T) T {
+	return func(vals ...T) T {
+		args := append([]T{val}, vals...)
+		return cf(args...)
 	}
 }
 
-// Compose compose the functions from right to left
-func Compose(fnList ...func(...any) any) func(...any) any {
-	return func(s ...any) any {
-		f := fnList[0]
-		restFn := fnList[1:]
+// Compose compose the functions from right to left.
+// Play: Todo
+func Compose[T any](fnList ...func(...T) T) func(...T) T {
+	return func(args ...T) T {
+		firstFn := fnList[0]
+		restFns := fnList[1:]
 
 		if len(fnList) == 1 {
-			return f(s...)
+			return firstFn(args...)
 		}
 
-		return f(Compose(restFn...)(s...))
+		fn := Compose(restFns...)
+		arg := fn(args...)
+
+		return firstFn(arg)
 	}
 }
 
-// Delay make the function execution after delayed time
+// Delay make the function execution after delayed time.
+// Play: https://go.dev/play/p/Ivtc2ZE-Tye
 func Delay(delay time.Duration, fn any, args ...any) {
 	// Catch programming error while constructing the closure
 	mustBeFunction(fn)
 
 	time.Sleep(delay)
-	invokeFunc(fn, args...)
+	unsafeInvokeFunc(fn, args...)
 }
 
-// Debounced creates a debounced function that delays invoking fn until after wait duration have elapsed since the last time the debounced function was invoked.
+// Debounced creates a debounced function that delays invoking fn until after wait duration have elapsed since the last time the debounced function was invoked..
+// Play: https://go.dev/play/p/absuEGB_GN7
 func Debounced(fn func(), duration time.Duration) func() {
 	// Catch programming error while constructing the closure
 	mustBeFunction(fn)
@@ -92,7 +102,8 @@ func Debounced(fn func(), duration time.Duration) func() {
 	return func() { timer.Reset(duration) }
 }
 
-// Schedule invoke function every duration time, util close the returned bool chan
+// Schedule invoke function every duration time, util close the returned bool channel.
+// Play: https://go.dev/play/p/hbON-Xeyn5N
 func Schedule(d time.Duration, fn any, args ...any) chan bool {
 	// Catch programming error while constructing the closure
 	mustBeFunction(fn)
@@ -114,6 +125,7 @@ func Schedule(d time.Duration, fn any, args ...any) chan bool {
 
 // Pipeline takes a list of functions and returns a function whose param will be passed into
 // the functions one by one.
+// Play: https://go.dev/play/p/mPdUVvj6HD6
 func Pipeline[T any](funcs ...func(T) T) func(T) T {
 	return func(arg T) (result T) {
 		result = arg
@@ -121,5 +133,29 @@ func Pipeline[T any](funcs ...func(T) T) func(T) T {
 			result = fn(result)
 		}
 		return
+	}
+}
+
+func unsafeInvokeFunc(fn any, args ...any) []reflect.Value {
+	fv := reflect.ValueOf(fn)
+	params := make([]reflect.Value, len(args))
+	for i, item := range args {
+		params[i] = reflect.ValueOf(item)
+	}
+	return fv.Call(params)
+}
+
+func functionValue(function any) reflect.Value {
+	v := reflect.ValueOf(function)
+	if v.Kind() != reflect.Func {
+		panic(fmt.Sprintf("Invalid function type, value of type %T", function))
+	}
+	return v
+}
+
+func mustBeFunction(function any) {
+	v := reflect.ValueOf(function)
+	if v.Kind() != reflect.Func {
+		panic(fmt.Sprintf("Invalid function type, value of type %T", function))
 	}
 }
