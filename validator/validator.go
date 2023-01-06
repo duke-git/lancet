@@ -69,7 +69,7 @@ func ContainUpper(str string) bool {
 	return false
 }
 
-// ContainLower check if the string contain at least one lower case letter A-Z.
+// ContainLower check if the string contain at least one lower case letter a-z.
 // Play: https://go.dev/play/p/Srqi1ItvnAA
 func ContainLower(str string) bool {
 	for _, r := range str {
@@ -192,7 +192,7 @@ func IsChineseIdNum(id string) bool {
 	return chineseIdMatcher.MatchString(id)
 }
 
-// ContainChinese check if the string contain mandarin chinese..
+// ContainChinese check if the string contain mandarin chinese.
 // Play: https://go.dev/play/p/7DpU0uElYeM
 func ContainChinese(s string) bool {
 	return chineseMatcher.MatchString(s)

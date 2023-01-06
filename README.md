@@ -562,8 +562,6 @@ import "github.com/duke-git/lancet/v2/random"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/random.md#UUIdV4)]
     [[play](https://go.dev/play/p/_Z9SFmr28ft)]
 
-
-
 ### 15. Retry package is for executing a function repeatedly until it was successful or canceled by the context.
 
 ```go
@@ -746,8 +744,6 @@ import "github.com/duke-git/lancet/v2/slice"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#KeyBy)]
     [[play](https://go.dev/play/p/uXod2LWD1Kg)]
 
-
-
 ### 17. Strutil package contains some functions to manipulate string.
 
 ```go
@@ -859,34 +855,90 @@ import "github.com/duke-git/lancet/v2/validator"
 
 #### Function list:
 
--   [ContainChinese](https://github.com/duke-git/lancet/blob/main/docs/validator.md#ContainChinese)
--   [ContainLetter](https://github.com/duke-git/lancet/blob/main/docs/validator.md#ContainLetter)
--   [ContainLower](https://github.com/duke-git/lancet/blob/main/docs/validator.md#ContainLower)
--   [ContainUpper](https://github.com/duke-git/lancet/blob/main/docs/validator.md#ContainUpper)
--   [IsAlpha](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsAlpha)
--   [IsAllUpper](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsAllUpper)
--   [IsAllLower](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsAllLower)
--   [IsBase64](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsBase64)
--   [IsChineseMobile](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsChineseMobile)
--   [IsChineseIdNum](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsChineseIdNum)
--   [IsChinesePhone](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsChinesePhone)
--   [IsCreditCard](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsCreditCard)
--   [IsDns](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsDns)
--   [IsEmail](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsEmail)
--   [IsEmptyString](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsEmptyString)
--   [IsFloatStr](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsFloatStr)
--   [IsNumberStr](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsNumberStr)
--   [IsJSON](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsJSON)
--   [IsRegexMatch](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsRegexMatch)
--   [IsIntStr](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsIntStr)
--   [IsIp](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsIp)
--   [IsIpV4](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsIpV4)
--   [IsIpV6](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsIpV6)
--   [IsStrongPassword](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsStrongPassword)
--   [IsUrl](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsUrl)
--   [IsWeakPassword](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsWeakPassword)
--   [IsZeroValue](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsZeroValue)
--   [IsGBK](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsGBK)
+-   **<big>ContainChinese</big>** : check if the string contain mandarin chinese.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator.md#ContainChinese)]
+    [[play](https://go.dev/play/p/7DpU0uElYeM)]
+-   **<big>ContainLetter</big>** : check if the string contain at least one letter.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator.md#ContainLetter)]
+    [[play](https://go.dev/play/p/lqFD04Yyewp)]
+-   **<big>ContainLower</big>** : check if the string contain at least one lower case letter a-z.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator.md#ContainLower)]
+    [[play](https://go.dev/play/p/Srqi1ItvnAA)]
+-   **<big>ContainUpper</big>** : check if the string contain at least one upper case letter A-Z.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator.md#ContainUpper)]
+    [[play](https://go.dev/play/p/CmWeBEk27-z)]
+-   **<big>IsAlpha</big>** : checks if the string contains only letters (a-zA-Z).
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsAlpha)]
+    [[play](https://go.dev/play/p/7Q5sGOz2izQ)]
+-   **<big>IsAllUpper</big>** : check if the string is all upper case letters A-Z.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsAllUpper)]
+    [[play](https://go.dev/play/p/ZHctgeK1n4Z)]
+-   **<big>IsAllLower</big>** : check if the string is all lower case letters a-z.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsAllLower)]
+    [[play](https://go.dev/play/p/GjqCnOfV6cM)]
+-   **<big>IsBase64</big>** : check if the string is base64 string.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsBase64)]
+    [[play](https://go.dev/play/p/sWHEySAt6hl)]
+-   **<big>IsChineseMobile</big>** : check if the string is chinese mobile number.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsChineseMobile)]
+    [[play](https://go.dev/play/p/GPYUlGTOqe3)]
+-   **<big>IsChineseIdNum</big>** : check if the string is chinese id card.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsChineseIdNum)]
+    [[play](https://go.dev/play/p/d8EWhl2UGDF)]
+-   **<big>IsChinesePhone</big>** : check if the string is chinese phone number.(xxx-xxxxxxxx or xxxx-xxxxxxx.)
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsChinesePhone)]
+    [[play](https://go.dev/play/p/RUD_-7YZJ3I)]
+-   **<big>IsCreditCard</big>** : check if the string is credit card.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsCreditCard)]
+    [[play](https://go.dev/play/p/sNwwL6B0-v4)]
+-   **<big>IsDns</big>** : check if the string is dns.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsDns)]
+    [[play](https://go.dev/play/p/jlYApVLLGTZ)]
+-   **<big>IsEmail</big>** : check if the string is a email address.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsEmail)]
+    [[play](https://go.dev/play/p/Os9VaFlT33G)]
+-   **<big>IsEmptyString</big>** : check if the string is empty.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsEmptyString)]
+    [[play](https://go.dev/play/p/dpzgUjFnBCX)]
+-   **<big>IsFloatStr</big>** : check if the string can convert to a float.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator.md#LOYwS_Oyl7U)]
+    [[play](https://go.dev/play/p/LOYwS_Oyl7U)]
+-   **<big>IsNumberStr</big>** : check if the string can convert to a number.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsNumberStr)]
+    [[play](https://go.dev/play/p/LzaKocSV79u)]
+-   **<big>IsJSON</big>** : check if the string is valid JSON.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsJSON)]
+    [[play](https://go.dev/play/p/sRS6c4K8jGk)]
+-   **<big>IsRegexMatch</big>** : check if the string match the regexp.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsRegexMatch)]
+    [[play](https://go.dev/play/p/z_XeZo_litG)]
+-   **<big>IsIntStr</big>** : check if the string can convert to a integer.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsIntStr)]
+    [[play](https://go.dev/play/p/jQRtFv-a0Rk)]
+-   **<big>IsIp</big>** : check if the string is ip.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsIp)]
+    [[play](https://go.dev/play/p/FgcplDvmxoD)]
+-   **<big>IsIpV4</big>** : check if the string is ipv4.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsIpV4)]
+    [[play](https://go.dev/play/p/zBGT99EjaIu)]
+-   **<big>IsIpV6</big>** : check if the string is ipv6.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsIpV6)]
+    [[play](https://go.dev/play/p/AHA0r0AzIdC)]
+-   **<big>IsStrongPassword</big>** : check if the string is strong password.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsStrongPassword)]
+    [[play](https://go.dev/play/p/QHdVcSQ3uDg)]
+-   **<big>IsUrl</big>** : check if the string is url.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsUrl)]
+    [[play](https://go.dev/play/p/pbJGa7F98Ka)]
+-   **<big>IsWeakPassword</big>** : check if the string is weak password.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsWeakPassword)]
+    [[play](https://go.dev/play/p/wqakscZH5gH)]
+-   **<big>IsZeroValue</big>** : check if value is a zero value.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsZeroValue)]
+    [[play](https://go.dev/play/p/UMrwaDCi_t4)]
+-   **<big>IsGBK</big>** : check if data encoding is gbk.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsGBK)]
+    [[play](https://go.dev/play/p/E2nt3unlmzP)]
 
 ### 20. xerror package implements helpers for errors.
 

@@ -459,8 +459,6 @@ func main() {
 
 
 
-
-
 ### <span id="IsEmptyString">IsEmptyString</span>
 <p>验证字符串是否是空字符串</p>
 
@@ -485,7 +483,6 @@ func main() {
 	fmt.Println(res2) //false
 }
 ```
-
 
 
 
@@ -574,8 +571,6 @@ func main() {
 ```
 
 
-
-
 ### <span id="IsRegexMatch">IsRegexMatch</span>
 <p>验证字符串是否可以匹配正则表达式</p>
 
@@ -598,7 +593,6 @@ func main() {
 	fmt.Println(validator.IsRegexMatch("", `^[a-zA-Z]+$`)) //false
 }
 ```
-
 
 
 

@@ -857,34 +857,91 @@ import "github.com/duke-git/lancet/v2/validator"
 
 #### 函数列表:
 
--   [ContainChinese](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#ContainChinese)
--   [ContainLetter](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#ContainLetter)
--   [ContainLower](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#ContainLower)
--   [ContainUpper](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#ContainUpper)
--   [IsAlpha](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsAlpha)
--   [IsAllUpper](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsAllUpper)
--   [IsAllLower](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsAllLower)
--   [IsBase64](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsBase64)
--   [IsChineseMobile](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsChineseMobile)
--   [IsChineseIdNum](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsChineseIdNum)
--   [IsChinesePhone](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsChinesePhone)
--   [IsCreditCard](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsCreditCard)
--   [IsDns](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsDns)
--   [IsEmail](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsEmail)
--   [IsEmptyString](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsEmptyString)
--   [IsFloatStr](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsFloatStr)
--   [IsNumberStr](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsNumberStr)
--   [IsJSON](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsJSON)
--   [IsRegexMatch](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsRegexMatch)
--   [IsIntStr](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsIntStr)
--   [IsIp](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsIp)
--   [IsIpV4](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsIpV4)
--   [IsIpV6](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsIpV6)
--   [IsStrongPassword](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsStrongPassword)
--   [IsUrl](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsUrl)
--   [IsWeakPassword](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsWeakPassword)
--   [IsZeroValue](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsZeroValue)
--   [IsGBK](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsGBK)
+-   **<big>ContainChinese</big>** : 验证字符串是否包含中文字符。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#ContainChinese)]
+    [[play](https://go.dev/play/p/7DpU0uElYeM)]
+-   **<big>ContainLetter</big>** : 验证字符串是否包含至少一个英文字母。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#ContainLetter)]
+    [[play](https://go.dev/play/p/lqFD04Yyewp)]
+-   **<big>ContainLower</big>** : 验证字符串是否包含至少一个英文小写字母。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#ContainLower)]
+    [[play](https://go.dev/play/p/Srqi1ItvnAA)]
+-   **<big>ContainUpper</big>** : 验证字符串是否包含至少一个英文大写字母。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#ContainUpper)]
+    [[play](https://go.dev/play/p/CmWeBEk27-z)]
+-   **<big>IsAlpha</big>** : 验证字符串是否只包含英文字母。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsAlpha)]
+    [[play](https://go.dev/play/p/7Q5sGOz2izQ)]
+-   **<big>IsAllUpper</big>** : 验证字符串是否全是大写英文字母。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsAllUpper)]
+    [[play](https://go.dev/play/p/ZHctgeK1n4Z)]
+-   **<big>IsAllLower</big>** : 验证字符串是否全是小写英文字母。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsAllLower)]
+    [[play](https://go.dev/play/p/GjqCnOfV6cM)]
+-   **<big>IsBase64</big>** : 验证字符串是否是base64编码。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsBase64)]
+    [[play](https://go.dev/play/p/sWHEySAt6hl)]
+-   **<big>IsChineseMobile</big>** : 验证字符串是否是中国手机号码。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsChineseMobile)]
+    [[play](https://go.dev/play/p/GPYUlGTOqe3)]
+-   **<big>IsChineseIdNum</big>** : 验证字符串是否是中国身份证号码。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsChineseIdNum)]
+    [[play](https://go.dev/play/p/d8EWhl2UGDF)]
+-   **<big>IsChinesePhone</big>** : 验证字符串是否是中国电话座机号码(xxx-xxxxxxxx or xxxx-xxxxxxx.)。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsChinesePhone)]
+    [[play](https://go.dev/play/p/RUD_-7YZJ3I)]
+-   **<big>IsCreditCard</big>** : 验证字符串是否是信用卡号码。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsCreditCard)]
+    [[play](https://go.dev/play/p/sNwwL6B0-v4)]
+-   **<big>IsDns</big>** : 验证字符串是否是有效dns。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsDns)]
+    [[play](https://go.dev/play/p/jlYApVLLGTZ)]
+-   **<big>IsEmail</big>** : 验证字符串是否是有效电子邮件地址。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsEmail)]
+    [[play](https://go.dev/play/p/Os9VaFlT33G)]
+-   **<big>IsEmptyString</big>** : 验证字符串是否是空字符串。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsEmptyString)]
+    [[play](https://go.dev/play/p/dpzgUjFnBCX)]
+-   **<big>IsFloatStr</big>** : 验证字符串是否是可以转换为浮点数。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#LOYwS_Oyl7U)]
+    [[play](https://go.dev/play/p/LOYwS_Oyl7U)]
+-   **<big>IsNumberStr</big>** : 验证字符串是否是可以转换为数字。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsNumberStr)]
+    [[play](https://go.dev/play/p/LzaKocSV79u)]
+-   **<big>IsJSON</big>** : 验证字符串是否是有效json。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsJSON)]
+    [[play](https://go.dev/play/p/sRS6c4K8jGk)]
+-   **<big>IsRegexMatch</big>** : 验证字符串是否可以匹配正则表达式。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsRegexMatch)]
+    [[play](https://go.dev/play/p/z_XeZo_litG)]
+-   **<big>IsIntStr</big>** : 验证字符串是否是可以转换为整数。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsIntStr)]
+    [[play](https://go.dev/play/p/jQRtFv-a0Rk)]
+-   **<big>IsIp</big>** : 验证字符串是否是ip地址。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsIp)]
+    [[play](https://go.dev/play/p/FgcplDvmxoD)]
+-   **<big>IsIpV4</big>** : 验证字符串是否是ipv4地址。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsIpV4)]
+    [[play](https://go.dev/play/p/zBGT99EjaIu)]
+-   **<big>IsIpV6</big>** : 验证字符串是否是ipv6地址。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsIpV6)]
+    [[play](https://go.dev/play/p/AHA0r0AzIdC)]
+-   **<big>IsStrongPassword</big>** : 验证字符串是否是强密码：（字母+数字+特殊字符)。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsStrongPassword)]
+    [[play](https://go.dev/play/p/QHdVcSQ3uDg)]
+-   **<big>IsUrl</big>** : 验证字符串是否是url。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsUrl)]
+    [[play](https://go.dev/play/p/pbJGa7F98Ka)]
+-   **<big>IsWeakPassword</big>** : 验证字符串是否是弱密码（只包含字母+数字）。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsWeakPassword)]
+    [[play](https://go.dev/play/p/wqakscZH5gH)]
+-   **<big>IsZeroValue</big>** : 判断传入的参数值是否为零值。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsZeroValue)]
+    [[play](https://go.dev/play/p/UMrwaDCi_t4)]
+-   **<big>IsGBK</big>** : 检查数据编码是否为gbk（汉字内部代码扩展规范）。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsGBK)]
+    [[play](https://go.dev/play/p/E2nt3unlmzP)]
+    
 
 ### 20. xerror 包实现一些错误处理函数
 
