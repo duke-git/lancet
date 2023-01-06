@@ -414,14 +414,32 @@ import "github.com/duke-git/lancet/v2/function"
 
 #### Function list:
 
--   [After](https://github.com/duke-git/lancet/blob/main/docs/function.md#After)
--   [Before](https://github.com/duke-git/lancet/blob/main/docs/function.md#Before)
--   [Curry](https://github.com/duke-git/lancet/blob/main/docs/function.md#Curry)
--   [Compose](https://github.com/duke-git/lancet/blob/main/docs/function.md#Compose)
--   [Debounced](https://github.com/duke-git/lancet/blob/main/docs/function.md#Debounced)
--   [Delay](https://github.com/duke-git/lancet/blob/main/docs/function.md#Delay)
--   [Pipeline](https://github.com/duke-git/lancet/blob/main/docs/function.md#Pipeline)
--   [Watcher](https://github.com/duke-git/lancet/blob/main/docs/function.md#Watcher)
+-   **<big>After</big>** : return a function that invokes passed funcation once the returned function is called more than n times.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/function.md#After)]
+    [[play](https://go.dev/play/p/eRD5k2vzUVX)]
+-   **<big>Before</big>** : return a function that invokes passed funcation once the returned function is called less than n times
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/function.md#Before)]
+    [[play](https://go.dev/play/p/0HqUDIFZ3IL)]
+-   **<big>CurryFn</big>** : make a curry function.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/function.md#CurryFn)]
+-   **<big>Compose</big>** : compose the functions from right to left.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/function.md#Compose)]
+-   **<big>Delay</big>** : call the function after delayed time.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/function.md#Delay)]
+    [[play](https://go.dev/play/p/Ivtc2ZE-Tye)]
+-   **<big>Debounced</big>** : creates a debounced function that delays invoking fn until after wait duration have elapsed since the last time the debounced function was invoked.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/function.md#Debounced)]
+    [[play](https://go.dev/play/p/absuEGB_GN7)]
+-   **<big>Schedule</big>** : invoke function every duration time, util close the returned bool channel.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/function.md#Schedule)]
+    [[play](https://go.dev/play/p/hbON-Xeyn5N)]
+-   **<big>Pipeline</big>** : takes a list of functions and returns a function whose param will be passed into the functions one by one.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/function.md#Pipeline)]
+    [[play](https://go.dev/play/p/mPdUVvj6HD6)]
+-   **<big>Watcher</big>** : Watcher is used for record code excution time. can start/stop/reset the watch timer. get the elapsed time of function execution.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/function.md#Watcher)]
+
+
 
 ### 11. Maputil package includes some functions to manipulate map.
 

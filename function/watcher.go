@@ -3,10 +3,16 @@ package function
 import "time"
 
 // Watcher is used for record code excution time
+// Play: Todo
 type Watcher struct {
 	startTime int64
 	stopTime  int64
 	excuting  bool
+}
+
+// Start the watch timer.
+func NewWatcher() *Watcher {
+	return &Watcher{}
 }
 
 // Start the watch timer.

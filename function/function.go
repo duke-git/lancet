@@ -83,7 +83,7 @@ func Delay(delay time.Duration, fn any, args ...any) {
 	unsafeInvokeFunc(fn, args...)
 }
 
-// Debounced creates a debounced function that delays invoking fn until after wait duration have elapsed since the last time the debounced function was invoked..
+// Debounced creates a debounced function that delays invoking fn until after wait duration have elapsed since the last time the debounced function was invoked.
 // Play: https://go.dev/play/p/absuEGB_GN7
 func Debounced(fn func(), duration time.Duration) func() {
 	// Catch programming error while constructing the closure

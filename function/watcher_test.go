@@ -9,7 +9,7 @@ import (
 func TestWatcher(t *testing.T) {
 	assert := internal.NewAssert(t, "TestWatcher")
 
-	w := &Watcher{}
+	w := NewWatcher()
 	w.Start()
 
 	longRunningTask()

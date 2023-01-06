@@ -413,14 +413,31 @@ import "github.com/duke-git/lancet/v2/function"
 
 #### 函数列表:
 
--   [After](https://github.com/duke-git/lancet/blob/main/docs/function_zh-CN.md#After)
--   [Before](https://github.com/duke-git/lancet/blob/main/docs/function_zh-CN.md#Before)
--   [Curry](https://github.com/duke-git/lancet/blob/main/docs/function_zh-CN.md#Curry)
--   [Compose](https://github.com/duke-git/lancet/blob/main/docs/function_zh-CN.md#Compose)
--   [Debounced](https://github.com/duke-git/lancet/blob/main/docs/function_zh-CN.md#Debounced)
--   [Delay](https://github.com/duke-git/lancet/blob/main/docs/function_zh-CN.md#Delay)
--   [Pipeline](https://github.com/duke-git/lancet/blob/main/docs/function_zh-CN.md#Pipeline)
--   [Watcher](https://github.com/duke-git/lancet/blob/main/docs/function_zh-CN.md#Watcher)
+-   **<big>After</big>** : 创建一个函数，当该函数被调用n或更多次之后将执行传入的函数。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/function_zh-CN.md#After)]
+    [[play](https://go.dev/play/p/eRD5k2vzUVX)]
+-   **<big>Before</big>** : 创建一个函数，当该函数被调用不超过n次时，将执行执行传入的函数。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/function_zh-CN.md#Before)]
+    [[play](https://go.dev/play/p/0HqUDIFZ3IL)]
+-   **<big>CurryFn</big>** : 创建柯里化函数。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/function_zh-CN.md#CurryFn)]
+-   **<big>Compose</big>** : 从右至左组合函数列表fnList，返回组合后的函数。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/function_zh-CN.md#Compose)]
+-   **<big>Delay</big>** : 延迟delay时间后调用函数。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/function_zh-CN.md#Delay)]
+    [[play](https://go.dev/play/p/Ivtc2ZE-Tye)]
+-   **<big>Debounced</big>** : 创建一个debounced函数，该函数延迟调用fn直到自上次调用debounced函数后等待持续时间过去。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/function_zh-CN.md#Debounced)]
+    [[play](https://go.dev/play/p/absuEGB_GN7)]
+-   **<big>Schedule</big>** : 每次持续时间调用函数，直到关闭返回的channel。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/function_zh-CN.md#Schedule)]
+    [[play](https://go.dev/play/p/hbON-Xeyn5N)]
+-   **<big>Pipeline</big>** : 从右至左执行函数列表。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/function_zh-CN.md#Pipeline)]
+    [[play](https://go.dev/play/p/mPdUVvj6HD6)]
+-   **<big>Watcher</big>** : Watcher用于记录代码执行时间。可以启动/停止/重置手表定时器。获取函数执行的时间。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/function_zh-CN.md#Watcher)]
+
 
 ### 11. maputil 包括一些操作 map 的函数.
 

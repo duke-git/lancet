@@ -22,7 +22,7 @@ import (
 ## 目录
 - [After](#After)
 - [Before](#Before)
-- [Curry](#Curry)
+- [CurryFn](#CurryFn)
 - [Compose](#Compose)
 - [Debounced](#Debounced)
 - [Delay](#Delay)
@@ -124,15 +124,15 @@ func main() {
 
 
 
-### <span id="Curry">Curry</span>
+### <span id="CurryFn">CurryFn</span>
 
-<p>创建一个柯里化的函数</p>
+<p>创建柯里化函数</p>
 
 <b>函数签名:</b>
 
 ```go
-type Fn func(...any) any
-func (f Fn) Curry(i any) func(...any) any
+type CurryFn[T any] func(...T) T
+func (cf CurryFn[T]) New(val T) func(...T) T
 ```
 <b>例子:</b>
 
@@ -148,11 +148,14 @@ func main() {
 	add := func(a, b int) int {
 		return a + b
 	}
-	var addCurry function.Fn = func(values ...any) any {
-		return add(values[0].(int), values[1].(int))
+
+	var addCurry CurryFn[int] = func(values ...int) int {
+		return add(values[0], values[1])
 	}
-	add1 := addCurry.Curry(1)
+	add1 := addCurry.New(1)
+
 	result := add1(2)
+
 	fmt.Println(result) //3
 }
 ```
@@ -161,12 +164,12 @@ func main() {
 
 ### <span id="Compose">Compose</span>
 
-<p>从右至左组合函数列表fnList， 返回组合后的函数</p>
+<p>从右至左组合函数列表fnList，返回组合后的函数</p>
 
 <b>函数签名:</b>
 
 ```go
-func Compose(fnList ...func(...any) any) func(...any) any
+func Compose[T any](fnList ...func(...T) T) func(...T) T
 ```
 <b>例子:</b>
 
@@ -179,17 +182,17 @@ import (
 )
 
 func main() {
-	add1 := func(v ...any) any {
-		return v[0].(int) + 1
+	toUpper := func(strs ...string) string {
+		return strings.ToUpper(strs[0])
 	}
-	add2 := func(v ...any) any {
-		return v[0].(int) + 2
+	toLower := func(strs ...string) string {
+		return strings.ToLower(strs[0])
 	}
+	transform := Compose(toUpper, toLower)
 
-	add3 := function.Compose(add1, add2)
-	result := add3(1)
+	result := transform("aBCde")
 
-	fmt.Println(result) //4
+	fmt.Println(result) //ABCDE
 }
 ```
 
@@ -197,7 +200,7 @@ func main() {
 
 ### <span id="Debounced">Debounced</span>
 
-<p>创建一个 debounced 函数，该函数延迟调用 fn 直到自上次调用 debounced 函数后等待持续时间过去。</p>
+<p>创建一个debounced函数，该函数延迟调用fn直到自上次调用debounced函数后等待持续时间过去。</p>
 
 <b>函数签名:</b>
 
@@ -333,7 +336,7 @@ func main() {
 
 	f := Pipeline(addOne, double, square)
 
-	fmt.Println(f(2)) //36
+	fmt.Println(fn(2)) //36
 }
 ```
 
@@ -341,7 +344,7 @@ func main() {
 
 ### <span id="Watcher">Watcher</span>
 
-<p>Watcher 用于记录代码执行时间。可以启动/停止/重置手表定时器。获取函数执行的时间。 </p>
+<p>Watcher用于记录代码执行时间。可以启动/停止/重置手表定时器。获取函数执行的时间。</p>
 
 <b>函数签名:</b>
 
@@ -351,6 +354,7 @@ type Watcher struct {
 	stopTime  int64
 	excuting  bool
 }
+func NewWatcher() *Watcher
 func (w *Watcher) Start() //start the watcher
 func (w *Watcher) Stop() //stop the watcher
 func (w *Watcher) Reset() //reset the watcher
@@ -367,7 +371,8 @@ import (
 )
 
 func main() {
-    w := &function.Watcher{}
+    w := function.NewWatcher()
+
 	w.Start()
 
 	longRunningTask()
@@ -377,14 +382,11 @@ func main() {
 	w.Stop()
 
 	eapsedTime := w.GetElapsedTime().Milliseconds()
+	
 	fmt.Println(eapsedTime)
 
 	w.Reset()
 
-	fmt.Println(w.excuting) //false
-
-	fmt.Println(w.startTime) //0
-	fmt.Println(w.stopTime) //0
 }
 
 func longRunningTask() {
