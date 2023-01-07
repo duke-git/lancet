@@ -20,7 +20,7 @@ func NewChannel[T any]() *Channel[T] {
 }
 
 // Generate creates channel, then put values into the channel.
-// Play:
+// Play: Todo
 func (c *Channel[T]) Generate(ctx context.Context, values ...T) <-chan T {
 	dataStream := make(chan T)
 
@@ -40,7 +40,7 @@ func (c *Channel[T]) Generate(ctx context.Context, values ...T) <-chan T {
 }
 
 // Repeat create channel, put values into the channel repeatly until cancel the context.
-// Play:
+// Play: Todo
 func (c *Channel[T]) Repeat(ctx context.Context, values ...T) <-chan T {
 	dataStream := make(chan T)
 
@@ -61,7 +61,7 @@ func (c *Channel[T]) Repeat(ctx context.Context, values ...T) <-chan T {
 
 // RepeatFn create a channel, excutes fn repeatly, and put the result into the channel
 // until close context.
-// Play:
+// Play: Todo
 func (c *Channel[T]) RepeatFn(ctx context.Context, fn func() T) <-chan T {
 	dataStream := make(chan T)
 
@@ -79,7 +79,7 @@ func (c *Channel[T]) RepeatFn(ctx context.Context, fn func() T) <-chan T {
 }
 
 // Take create a channel whose values are taken from another channel with limit number.
-// Play:
+// Play: Todo
 func (c *Channel[T]) Take(ctx context.Context, valueStream <-chan T, number int) <-chan T {
 	takeStream := make(chan T)
 
@@ -99,7 +99,7 @@ func (c *Channel[T]) Take(ctx context.Context, valueStream <-chan T, number int)
 }
 
 // FanIn merge multiple channels into one channel.
-// Play:
+// Play: Todo
 func (c *Channel[T]) FanIn(ctx context.Context, channels ...<-chan T) <-chan T {
 	out := make(chan T)
 
@@ -127,7 +127,7 @@ func (c *Channel[T]) FanIn(ctx context.Context, channels ...<-chan T) <-chan T {
 }
 
 // Tee split one chanel into two channels, until cancel the context.
-// Play:
+// Play: Todo
 func (c *Channel[T]) Tee(ctx context.Context, in <-chan T) (<-chan T, <-chan T) {
 	out1 := make(chan T)
 	out2 := make(chan T)
@@ -154,7 +154,7 @@ func (c *Channel[T]) Tee(ctx context.Context, in <-chan T) (<-chan T, <-chan T) 
 }
 
 // Bridge link multiply channels into one channel.
-// Play:
+// Play: Todo
 func (c *Channel[T]) Bridge(ctx context.Context, chanStream <-chan <-chan T) <-chan T {
 	valStream := make(chan T)
 
@@ -186,7 +186,7 @@ func (c *Channel[T]) Bridge(ctx context.Context, chanStream <-chan <-chan T) <-c
 }
 
 // Or read one or more channels into one channel, will close when any readin channel is closed.
-// Play:
+// Play: Todo
 func (c *Channel[T]) Or(channels ...<-chan T) <-chan T {
 	switch len(channels) {
 	case 0:
@@ -220,7 +220,7 @@ func (c *Channel[T]) Or(channels ...<-chan T) <-chan T {
 }
 
 // OrDone read a channel into another channel, will close until cancel context.
-// Play:
+// Play: Todo
 func (c *Channel[T]) OrDone(ctx context.Context, channel <-chan T) <-chan T {
 	valStream := make(chan T)
 

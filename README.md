@@ -162,7 +162,7 @@ import "github.com/duke-git/lancet/v2/condition"
     [[play](https://go.dev/play/p/W1SSUmt6pvr)]
 -   **<big>Or</big>** : returns false if neither a nor b is truthy.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/condition.md#Or)]
-    [[play](https://go.dev/play/p/UlQTxHaeEkq)]
+    [[play](https://go.dev/play/p/UlQTxHaeEkq)]]
 -   **<big>Xor</big>** : returns true if a or b but not both is truthy.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/condition.md#Xor)]
     [[play](https://go.dev/play/p/gObZrW7ZbG8)]

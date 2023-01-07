@@ -55,6 +55,7 @@ func Factorial(x uint) uint {
 }
 
 // Percent calculate the percentage of value to total.
+// Play: Todo
 func Percent(val, total float64, n int) float64 {
 	if total == 0 {
 		return float64(0)

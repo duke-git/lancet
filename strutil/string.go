@@ -283,6 +283,7 @@ func SplitEx(s, sep string, removeEmptyString bool) []string {
 }
 
 // Substring returns a substring of the specified length starting at the specified offset position.
+// Play: Todo
 func Substring(s string, offset int, length uint) string {
 	rs := []rune(s)
 	size := len(rs)
