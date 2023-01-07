@@ -19,25 +19,28 @@ import (
 	"os"
 )
 
-// Base64StdEncode encode string with base64 encoding
+// Base64StdEncode encode string with base64 encoding.
+// Play:
 func Base64StdEncode(s string) string {
 	return base64.StdEncoding.EncodeToString([]byte(s))
 }
 
-// Base64StdDecode decode a base64 encoded string
+// Base64StdDecode decode a base64 encoded string.
+// Play:
 func Base64StdDecode(s string) string {
 	b, _ := base64.StdEncoding.DecodeString(s)
 	return string(b)
 }
 
-// Md5String return the md5 value of string
+// Md5String return the md5 value of string.
+// Play:
 func Md5String(s string) string {
 	h := md5.New()
 	h.Write([]byte(s))
 	return hex.EncodeToString(h.Sum(nil))
 }
 
-// Md5File return the md5 value of file
+// Md5File return the md5 value of file.
 func Md5File(filename string) (string, error) {
 	if fileInfo, err := os.Stat(filename); err != nil {
 		return "", err
@@ -69,49 +72,56 @@ func Md5File(filename string) (string, error) {
 	return checksum, nil
 }
 
-// HmacMd5 return the hmac hash of string use md5
+// HmacMd5 return the hmac hash of string use md5.
+// Play:
 func HmacMd5(data, key string) string {
 	h := hmac.New(md5.New, []byte(key))
 	h.Write([]byte(data))
 	return hex.EncodeToString(h.Sum([]byte("")))
 }
 
-// HmacSha1 return the hmac hash of string use sha1
+// HmacSha1 return the hmac hash of string use sha1.
+// Play:
 func HmacSha1(data, key string) string {
 	h := hmac.New(sha1.New, []byte(key))
 	h.Write([]byte(data))
 	return hex.EncodeToString(h.Sum([]byte("")))
 }
 
-// HmacSha256 return the hmac hash of string use sha256
+// HmacSha256 return the hmac hash of string use sha256.
+// Play:
 func HmacSha256(data, key string) string {
 	h := hmac.New(sha256.New, []byte(key))
 	h.Write([]byte(data))
 	return hex.EncodeToString(h.Sum([]byte("")))
 }
 
-// HmacSha512 return the hmac hash of string use sha512
+// HmacSha512 return the hmac hash of string use sha512.
+// Play:
 func HmacSha512(data, key string) string {
 	h := hmac.New(sha512.New, []byte(key))
 	h.Write([]byte(data))
 	return hex.EncodeToString(h.Sum([]byte("")))
 }
 
-// Sha1 return the sha1 value (SHA-1 hash algorithm) of string
+// Sha1 return the sha1 value (SHA-1 hash algorithm) of string.
+// Play:
 func Sha1(data string) string {
 	sha1 := sha1.New()
 	sha1.Write([]byte(data))
 	return hex.EncodeToString(sha1.Sum([]byte("")))
 }
 
-// Sha256 return the sha256 value (SHA256 hash algorithm) of string
+// Sha256 return the sha256 value (SHA256 hash algorithm) of string.
+// Play:
 func Sha256(data string) string {
 	sha256 := sha256.New()
 	sha256.Write([]byte(data))
 	return hex.EncodeToString(sha256.Sum([]byte("")))
 }
 
-// Sha512 return the sha512 value (SHA512 hash algorithm) of string
+// Sha512 return the sha512 value (SHA512 hash algorithm) of string.
+// Play:
 func Sha512(data string) string {
 	sha512 := sha512.New()
 	sha512.Write([]byte(data))
