@@ -588,11 +588,23 @@ import "github.com/duke-git/lancet/v2/retry"
 
 #### Function list:
 
--   [Context](https://github.com/duke-git/lancet/blob/main/docs/retry.md#Context)
--   [Retry](https://github.com/duke-git/lancet/blob/main/docs/retry.md#Retry)
--   [RetryFunc](https://github.com/duke-git/lancet/blob/main/docs/retry.md#RetryFunc)
--   [RetryDuration](https://github.com/duke-git/lancet/blob/main/docs/retry.md#RetryDuration)
--   [RetryTimes](https://github.com/duke-git/lancet/blob/main/docs/retry.md#RetryTimes)
+-   **<big>Context</big>** : set retry context config option.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/retry.md#Context)]
+    [[play](https://go.dev/play/p/xnAOOXv9GkS)]
+-   **<big>Retry</big>** : executes the retryFunc repeatedly until it was successful or canceled by the context.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/retry.md#Retry)]
+    [[play](https://go.dev/play/p/nk2XRmagfVF)]
+-   **<big>RetryFunc</big>** : function that retry executes.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/retry.md#RetryFunc)]
+    [[play](https://go.dev/play/p/nk2XRmagfVF)]
+-   **<big>RetryDuration</big>** : set duration of retry
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/retry.md#RetryDuration)]
+    [[play](https://go.dev/play/p/nk2XRmagfVF)]
+-   **<big>RetryTimes</big>** : set times of retry.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/retry.md#RetryTimes)]
+    [[play](https://go.dev/play/p/ssfVeU2SwLO)]
+
+
 
 ### 16. Slice contains some functions to manipulate slice.
 

@@ -588,11 +588,23 @@ import "github.com/duke-git/lancet/v2/retry"
 
 #### 函数列表:
 
--   [Context](https://github.com/duke-git/lancet/blob/main/docs/retry_zh-CN.md#Context)
--   [Retry](https://github.com/duke-git/lancet/blob/main/docs/retry_zh-CN.md#Retry)
--   [RetryFunc](https://github.com/duke-git/lancet/blob/main/docs/retry_zh-CN.md#RetryFunc)
--   [RetryDuration](https://github.com/duke-git/lancet/blob/main/docs/retry_zh-CN.md#RetryDuration)
--   [RetryTimes](https://github.com/duke-git/lancet/blob/main/docs/retry_zh-CN.md#RetryTimes)
+-   **<big>Context</big>** : 设置重试context参数。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/retry_zh-CN.md#Context)]
+    [[play](https://go.dev/play/p/xnAOOXv9GkS)]
+-   **<big>Retry</big>** : 重试执行函数retryFunc，直到函数运行成功，或被context取消。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/retry_zh-CN.md#Retry)]
+    [[play](https://go.dev/play/p/nk2XRmagfVF)]
+-   **<big>RetryFunc</big>** : 重试执行的函数。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/retry_zh-CN.md#RetryFunc)]
+    [[play](https://go.dev/play/p/nk2XRmagfVF)]
+-   **<big>RetryDuration</big>** : 设置重试间隔时间，默认3秒。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/retry_zh-CN.md#RetryDuration)]
+    [[play](https://go.dev/play/p/nk2XRmagfVF)]
+-   **<big>RetryTimes</big>** : 设置重试次数，默认5。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/retry_zh-CN.md#RetryTimes)]
+    [[play](https://go.dev/play/p/ssfVeU2SwLO)]
+
+
 
 ### 16. slice 包含操作切片的方法集合。
 
