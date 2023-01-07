@@ -243,38 +243,103 @@ import "github.com/duke-git/lancet/v2/cryptor"
 
 #### 函数列表:
 
--   [AesEcbEncrypt](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#AesEcbEncrypt)
--   [AesEcbDecrypt](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#AesEcbDecrypt)
--   [AesCbcEncrypt](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#AesCbcEncrypt)
--   [AesCbcDecrypt](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#AesCbcDecrypt)
--   [AesCtrCrypt](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#AesCtrCrypt)
--   [AesCfbEncrypt](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#AesCfbEncrypt)
--   [AesCfbDecrypt](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#AesCfbDecrypt)
--   [AesOfbEncrypt](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#AesOfbEncrypt)
--   [AesOfbDecrypt](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#AesOfbDecrypt)
--   [Base64StdEncode](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#Base64StdEncode)
--   [Base64StdDecode](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#Base64StdDecode)
--   [DesEcbEncrypt](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#DesEcbEncrypt)
--   [DesEcbDecrypt](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#DesEcbDecrypt)
--   [DesCbcEncrypt](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#DesCbcEncrypt)
--   [DesCbcDecrypt](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#DesCbcDecrypt)
--   [DesCtrCrypt](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#DesCtrCrypt)
--   [DesCfbEncrypt](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#DesCfbEncrypt)
--   [DesCfbDecrypt](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#DesCfbDecrypt)
--   [DesOfbEncrypt](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#DesOfbEncrypt)
--   [DesOfbDecrypt](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#DesOfbDecrypt)
--   [HmacMd5](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#HmacMd5)
--   [HmacSha1](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#HmacSha1)
--   [HmacSha256](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#HmacSha256)
--   [HmacSha512](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#HmacSha512)
--   [Md5String](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#Md5String)
--   [Md5File](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#Md5File)
--   [Sha1](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#Sha1)
--   [Sha256](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#Sha256)
--   [Sha512](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#Sha512)
--   [GenerateRsaKey](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#GenerateRsaKey)
--   [RsaEncrypt](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#RsaEncrypt)
--   [RsaDecrypt](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#RsaDecrypt)
+-   **<big>AesEcbEncrypt</big>** : 使用AES ECB算法模式加密数据。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#AesEcbEncrypt)]
+    [[play](https://go.dev/play/p/zI6xsmuQRbn)]
+-   **<big>AesEcbDecrypt</big>** : 使用AES ECB算法模解密数据。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#AesEcbDecrypt)]
+    [[play](https://go.dev/play/p/zI6xsmuQRbn)]
+-   **<big>AesCbcEncrypt</big>** : 使用AES CBC算法模式加密数据。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#AesCbcEncrypt)]
+    [[play](https://go.dev/play/p/IOq_g8_lKZD)]
+-   **<big>AesCbcDecrypt</big>** : 使用AES CBC算法模式解密数据。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#AesCbcDecrypt)]
+    [[play](https://go.dev/play/p/IOq_g8_lKZD)]
+-   **<big>AesCtrCrypt</big>** : 使用AES CTR算法模式加密/解密数据。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#AesCtrCrypt)]
+    [[play](https://go.dev/play/p/SpaZO0-5Nsp)]
+-   **<big>AesCfbEncrypt</big>** : 使用AES CFB算法模式加密数据。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#AesCfbEncrypt)]
+    [[play](https://go.dev/play/p/tfkF10B13kH)]
+-   **<big>AesCfbDecrypt</big>** : 使用AES CFB算法模式解密数据。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#AesCfbDecrypt)]
+    [[play](https://go.dev/play/p/tfkF10B13kH)]
+-   **<big>AesOfbEncrypt</big>** : 使用AES OFB算法模式加密数据。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#AesOfbEncrypt)]
+    [[play](https://go.dev/play/p/VtHxtkUj-3F)]
+-   **<big>AesOfbDecrypt</big>** : 使用AES OFB算法模式解密数据。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#AesOfbDecrypt)]
+    [[play](https://go.dev/play/p/VtHxtkUj-3F)]
+-   **<big>Base64StdEncode</big>** : 将字符串base64编码。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#Base64StdEncode)]
+    [[play](https://go.dev/play/p/VOaUyQUreoK)]
+-   **<big>Base64StdDecode</big>** : 解码base64字符串。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#Base64StdDecode)]
+    [[play](https://go.dev/play/p/RWQylnJVgIe)]
+-   **<big>DesEcbEncrypt</big>** : 使用DES ECB算法模式加密数据。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#DesEcbEncrypt)]
+    [[play](https://go.dev/play/p/8qivmPeZy4P)]
+-   **<big>DesEcbDecrypt</big>** : 使用DES ECB算法模解密数据。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#DesEcbDecrypt)]
+    [[play](https://go.dev/play/p/8qivmPeZy4P)]
+-   **<big>DesCbcEncrypt</big>** : 使用DES CBC算法模式加密数据。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#DesCbcEncrypt)]
+    [[play](https://go.dev/play/p/4cC4QvWfe3_1)]
+-   **<big>DesCbcDecrypt</big>** : 使用DES CBC算法模式解密数据。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#DesCbcDecrypt)]
+    [[play](https://go.dev/play/p/4cC4QvWfe3_1)]
+-   **<big>DesCtrCrypt</big>** : 使用DES CTR算法模式加密/解密数据。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#DesCtrCrypt)]
+    [[play](https://go.dev/play/p/9-T6OjKpcdw)]
+-   **<big>DesCfbEncrypt</big>** : 使用DES CFB算法模式加密数据。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#DesCfbEncrypt)]
+    [[play](https://go.dev/play/p/y-eNxcFBlxL)]
+-   **<big>DesCfbDecrypt</big>** : 使用DES CFB算法模式解密数据。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#DesCfbDecrypt)]
+    [[play](https://go.dev/play/p/y-eNxcFBlxL)]
+-   **<big>DesOfbEncrypt</big>** : 使用DES OFB算法模式加密数据。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#DesOfbEncrypt)]
+    [[play](https://go.dev/play/p/74KmNadjN1J)]
+-   **<big>DesOfbDecrypt</big>** : 使用DES OFB算法模式解密数据。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#DesOfbDecrypt)]
+    [[play](https://go.dev/play/p/74KmNadjN1J)]
+-   **<big>HmacMd5</big>** : 返回字符串md5 hmac值。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#HmacMd5)]
+    [[play](https://go.dev/play/p/uef0q1fz53I)]
+-   **<big>HmacSha1</big>** : 返回字符串sha1 hmac值。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#HmacSha1)]
+    [[play](https://go.dev/play/p/1UI4oQ4WXKM)]
+-   **<big>HmacSha256</big>** : 返回字符串sha256 hmac值。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#HmacSha256)]
+    [[play](https://go.dev/play/p/HhpwXxFhhC0)]
+-   **<big>HmacSha512</big>** : 返回字符串sha256 hmac值。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#HmacSha512)]
+    [[play](https://go.dev/play/p/59Od6m4A0Ud)]
+-   **<big>Md5String</big>** : 返回字符串md5值。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#Md5String)]
+    [[play](https://go.dev/play/p/1bLcVetbTOI)]
+-   **<big>Md5File</big>** : 返回文件md5值。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#Md5File)]
+-   **<big>Sha1</big>** : 返回字符串sha1哈希值。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#Sha1)]
+    [[play](https://go.dev/play/p/_m_uoD1deMT)]
+-   **<big>Sha256</big>** :返回字符串sha256哈希值。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#Sha256)]
+    [[play](https://go.dev/play/p/tU9tfBMIAr1)]
+-   **<big>Sha512</big>** : 返回字符串sha512哈希值。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#Sha512)]
+    [[play](https://go.dev/play/p/3WsvLYZxsHa)]
+-   **<big>GenerateRsaKey</big>** : 在当前目录下创建rsa私钥文件和公钥文件。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#GenerateRsaKey)]
+    [[play](https://go.dev/play/p/zutRHrDqs0X)]
+-   **<big>RsaEncrypt</big>** : 用公钥文件ras加密数据。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#RsaEncrypt)]
+    [[play](https://go.dev/play/p/uef0q1fz53I)]
+-   **<big>RsaDecrypt</big>** : 用私钥文件rsa解密数据。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#RsaDecrypt)]
+    [[play](https://go.dev/play/p/uef0q1fz53I)]
+    
+
 
 ### 6. datetime 日期时间处理包，格式化日期，比较日期。
 

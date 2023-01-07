@@ -279,7 +279,7 @@ func DesCbcDecrypt(encrypted, key []byte) []byte {
 
 // DesCtrCrypt encrypt data with key use DES CTR algorithm
 // len(key) should be 8.
-// Play:
+// Play: https://go.dev/play/p/9-T6OjKpcdw
 func DesCtrCrypt(data, key []byte) []byte {
 	block, _ := des.NewCipher(key)
 
@@ -375,8 +375,7 @@ func DesOfbDecrypt(data, key []byte) []byte {
 	return decrypted
 }
 
-// GenerateRsaKey make  a rsa private key, and return key file name
-// Generated key file is `rsa_private.pem` and `rsa_public.pem` in current path.
+// GenerateRsaKey create rsa private and public pemo file.
 // Play: https://go.dev/play/p/zutRHrDqs0X
 func GenerateRsaKey(keySize int, priKeyFile, pubKeyFile string) error {
 	// private key

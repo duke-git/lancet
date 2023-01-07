@@ -244,38 +244,103 @@ import "github.com/duke-git/lancet/v2/cryptor"
 
 #### Function list:
 
--   [AesEcbEncrypt](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#AesEcbEncrypt)
--   [AesEcbDecrypt](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#AesEcbDecrypt)
--   [AesCbcEncrypt](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#AesCbcEncrypt)
--   [AesCbcDecrypt](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#AesCbcDecrypt)
--   [AesCtrCrypt](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#AesCtrCrypt)
--   [AesCfbEncrypt](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#AesCfbEncrypt)
--   [AesCfbDecrypt](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#AesCfbDecrypt)
--   [AesOfbEncrypt](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#AesOfbEncrypt)
--   [AesOfbDecrypt](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#AesOfbDecrypt)
--   [Base64StdEncode](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#Base64StdEncode)
--   [Base64StdDecode](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#Base64StdDecode)
--   [DesEcbEncrypt](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#DesEcbEncrypt)
--   [DesEcbDecrypt](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#DesEcbDecrypt)
--   [DesCbcEncrypt](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#DesCbcEncrypt)
--   [DesCbcDecrypt](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#DesCbcDecrypt)
--   [DesCtrCrypt](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#DesCtrCrypt)
--   [DesCfbEncrypt](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#DesCfbEncrypt)
--   [DesCfbDecrypt](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#DesCfbDecrypt)
--   [DesOfbEncrypt](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#DesOfbEncrypt)
--   [DesOfbDecrypt](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#DesOfbDecrypt)
--   [HmacMd5](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#HmacMd5)
--   [HmacSha1](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#HmacSha1)
--   [HmacSha256](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#HmacSha256)
--   [HmacSha512](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#HmacSha512)
--   [Md5String](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#Md5String)
--   [Md5File](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#Md5File)
--   [Sha1](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#Sha1)
--   [Sha256](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#Sha256)
--   [Sha512](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#Sha512)
--   [GenerateRsaKey](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#GenerateRsaKey)
--   [RsaEncrypt](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#RsaEncrypt)
--   [RsaDecrypt](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#RsaDecrypt)
+-   **<big>AesEcbEncrypt</big>** : encrypt byte slice data with key use AES ECB algorithm.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#AesEcbEncrypt)]
+    [[play](https://go.dev/play/p/zI6xsmuQRbn)]
+-   **<big>AesEcbDecrypt</big>** : decrypt byte slice data with key use AES ECB algorithm.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#AesEcbDecrypt)]
+    [[play](https://go.dev/play/p/zI6xsmuQRbn)]
+-   **<big>AesCbcEncrypt</big>** : encrypt byte slice data with key use AES CBC algorithm.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#AesCbcEncrypt)]
+    [[play](https://go.dev/play/p/IOq_g8_lKZD)]
+-   **<big>AesCbcDecrypt</big>** : decrypt byte slice data with key use AES CBC algorithm.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#AesCbcDecrypt)]
+    [[play](https://go.dev/play/p/IOq_g8_lKZD)]
+-   **<big>AesCtrCrypt</big>** : encrypt/ decrypt byte slice data with key use AES CRC algorithm.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#AesCtrCrypt)]
+    [[play](https://go.dev/play/p/SpaZO0-5Nsp)]
+-   **<big>AesCfbEncrypt</big>** : encrypt byte slice data with key use AES CFB algorithm.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#AesCfbEncrypt)]
+    [[play](https://go.dev/play/p/tfkF10B13kH)]
+-   **<big>AesCfbDecrypt</big>** : decrypt byte slice data with key use AES CFB algorithm.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#AesCfbDecrypt)]
+    [[play](https://go.dev/play/p/tfkF10B13kH)]
+-   **<big>AesOfbEncrypt</big>** : encrypt byte slice data with key use AES OFB algorithm.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#AesOfbEncrypt)]
+    [[play](https://go.dev/play/p/VtHxtkUj-3F)]
+-   **<big>AesOfbDecrypt</big>** : decrypt byte slice data with key use AES OFB algorithm.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#AesOfbDecrypt)]
+    [[play](https://go.dev/play/p/VtHxtkUj-3F)]
+-   **<big>Base64StdEncode</big>** : encode string with base64 encoding.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#Base64StdEncode)]
+    [[play](https://go.dev/play/p/VOaUyQUreoK)]
+-   **<big>Base64StdDecode</big>** : decode string with base64 encoding.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#Base64StdDecode)]
+    [[play](https://go.dev/play/p/RWQylnJVgIe)]
+-   **<big>DesEcbEncrypt</big>** : encrypt byte slice data with key use DES ECB algorithm.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#DesEcbEncrypt)]
+    [[play](https://go.dev/play/p/8qivmPeZy4P)]
+-   **<big>DesEcbDecrypt</big>** : decrypt byte slice data with key use DES ECB algorithm.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#DesEcbDecrypt)]
+    [[play](https://go.dev/play/p/8qivmPeZy4P)]
+-   **<big>DesCbcEncrypt</big>** : encrypt byte slice data with key use DES CBC algorithm.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#DesCbcEncrypt)]
+    [[play](https://go.dev/play/p/4cC4QvWfe3_1)]
+-   **<big>DesCbcDecrypt</big>** : decrypt byte slice data with key use DES CBC algorithm.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#DesCbcDecrypt)]
+    [[play](https://go.dev/play/p/4cC4QvWfe3_1)]
+-   **<big>DesCtrCrypt</big>** : encrypt/decrypt byte slice data with key use DES CRY algorithm.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#DesCtrCrypt)]
+    [[play](https://go.dev/play/p/9-T6OjKpcdw)]
+-   **<big>DesCfbEncrypt</big>** : encrypt byte slice data with key use DES CFB algorithm.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#DesCfbEncrypt)]
+    [[play](https://go.dev/play/p/y-eNxcFBlxL)]
+-   **<big>DesCfbDecrypt</big>** : decrypt byte slice data with key use DES CFB algorithm.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#DesCfbDecrypt)]
+    [[play](https://go.dev/play/p/y-eNxcFBlxL)]
+-   **<big>DesOfbEncrypt</big>** : encrypt byte slice data with key use DES OFB algorithm.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#DesOfbEncrypt)]
+    [[play](https://go.dev/play/p/74KmNadjN1J)]
+-   **<big>DesOfbDecrypt</big>** : decrypt byte slice data with key use DES OFB algorithm.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#DesOfbDecrypt)]
+    [[play](https://go.dev/play/p/74KmNadjN1J)]
+-   **<big>HmacMd5</big>** : return the md5 hmac hash of string.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#HmacMd5)]
+    [[play](https://go.dev/play/p/uef0q1fz53I)]
+-   **<big>HmacSha1</big>** : return the hmac hash of string use sha1.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#HmacSha1)]
+    [[play](https://go.dev/play/p/1UI4oQ4WXKM)]
+-   **<big>HmacSha256</big>** : return the hmac hash of string use sha256.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#HmacSha256)]
+    [[play](https://go.dev/play/p/HhpwXxFhhC0)]
+-   **<big>HmacSha512</big>** : return the hmac hash of string use sha512.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#HmacSha512)]
+    [[play](https://go.dev/play/p/59Od6m4A0Ud)]
+-   **<big>Md5String</big>** : return the md5 value of string.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#Md5String)]
+    [[play](https://go.dev/play/p/1bLcVetbTOI)]
+-   **<big>Md5File</big>** : return the md5 value of file.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#Md5File)]
+-   **<big>Sha1</big>** : return the sha1 value (SHA-1 hash algorithm) of string.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#Sha1)]
+    [[play](https://go.dev/play/p/_m_uoD1deMT)]
+-   **<big>Sha256</big>** : return the sha256 value (SHA-256 hash algorithm) of string.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#Sha256)]
+    [[play](https://go.dev/play/p/tU9tfBMIAr1)]
+-   **<big>Sha512</big>** : return the sha512 value (SHA-512 hash algorithm) of string.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#Sha512)]
+    [[play](https://go.dev/play/p/3WsvLYZxsHa)]
+-   **<big>GenerateRsaKey</big>** : create rsa private and public pemo file.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#GenerateRsaKey)]
+    [[play](https://go.dev/play/p/zutRHrDqs0X)]
+-   **<big>RsaEncrypt</big>** : encrypt data with ras algorithm.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#RsaEncrypt)]
+    [[play](https://go.dev/play/p/uef0q1fz53I)]
+-   **<big>RsaDecrypt</big>** : decrypt data with ras algorithm.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#RsaDecrypt)]
+    [[play](https://go.dev/play/p/uef0q1fz53I)]
+
+
 
 ### 6. Datetime package supports date and time format and compare.
 

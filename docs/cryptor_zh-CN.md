@@ -184,7 +184,7 @@ func main() {
 
 ### <span id="AesCtrCrypt">AesCtrCrypt</span>
 
-<p>使用AES CTR算法模式加密/解密数据. 参数`key`的长度是16, 24 or 32。</p>
+<p>使用AES CTR算法模式加密/解密数据，参数`key`的长度是16, 24 or 32。</p>
 
 <b>函数签名:</b>
 

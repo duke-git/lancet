@@ -20,20 +20,20 @@ import (
 )
 
 // Base64StdEncode encode string with base64 encoding.
-// Play:
+// Play: https://go.dev/play/p/VOaUyQUreoK
 func Base64StdEncode(s string) string {
 	return base64.StdEncoding.EncodeToString([]byte(s))
 }
 
 // Base64StdDecode decode a base64 encoded string.
-// Play:
+// Play: https://go.dev/play/p/RWQylnJVgIe
 func Base64StdDecode(s string) string {
 	b, _ := base64.StdEncoding.DecodeString(s)
 	return string(b)
 }
 
 // Md5String return the md5 value of string.
-// Play:
+// Play: https://go.dev/play/p/1bLcVetbTOI
 func Md5String(s string) string {
 	h := md5.New()
 	h.Write([]byte(s))
@@ -73,7 +73,7 @@ func Md5File(filename string) (string, error) {
 }
 
 // HmacMd5 return the hmac hash of string use md5.
-// Play:
+// Play: https://go.dev/play/p/uef0q1fz53I
 func HmacMd5(data, key string) string {
 	h := hmac.New(md5.New, []byte(key))
 	h.Write([]byte(data))
@@ -81,7 +81,7 @@ func HmacMd5(data, key string) string {
 }
 
 // HmacSha1 return the hmac hash of string use sha1.
-// Play:
+// Play: https://go.dev/play/p/1UI4oQ4WXKM
 func HmacSha1(data, key string) string {
 	h := hmac.New(sha1.New, []byte(key))
 	h.Write([]byte(data))
@@ -89,7 +89,7 @@ func HmacSha1(data, key string) string {
 }
 
 // HmacSha256 return the hmac hash of string use sha256.
-// Play:
+// Play: https://go.dev/play/p/HhpwXxFhhC0
 func HmacSha256(data, key string) string {
 	h := hmac.New(sha256.New, []byte(key))
 	h.Write([]byte(data))
@@ -97,7 +97,7 @@ func HmacSha256(data, key string) string {
 }
 
 // HmacSha512 return the hmac hash of string use sha512.
-// Play:
+// Play: https://go.dev/play/p/59Od6m4A0Ud
 func HmacSha512(data, key string) string {
 	h := hmac.New(sha512.New, []byte(key))
 	h.Write([]byte(data))
@@ -105,7 +105,7 @@ func HmacSha512(data, key string) string {
 }
 
 // Sha1 return the sha1 value (SHA-1 hash algorithm) of string.
-// Play:
+// Play: https://go.dev/play/p/_m_uoD1deMT
 func Sha1(data string) string {
 	sha1 := sha1.New()
 	sha1.Write([]byte(data))
@@ -113,7 +113,7 @@ func Sha1(data string) string {
 }
 
 // Sha256 return the sha256 value (SHA256 hash algorithm) of string.
-// Play:
+// Play: https://go.dev/play/p/tU9tfBMIAr1
 func Sha256(data string) string {
 	sha256 := sha256.New()
 	sha256.Write([]byte(data))
@@ -121,7 +121,7 @@ func Sha256(data string) string {
 }
 
 // Sha512 return the sha512 value (SHA512 hash algorithm) of string.
-// Play:
+// Play: https://go.dev/play/p/3WsvLYZxsHa
 func Sha512(data string) string {
 	sha512 := sha512.New()
 	sha512.Write([]byte(data))
