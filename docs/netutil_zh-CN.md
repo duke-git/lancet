@@ -531,7 +531,7 @@ func main() {
 
 
 ### <span id="StructToUrlValues">StructToUrlValues</span>
-<p>将结构体转为url values, 仅转化结构体导出字段并且包含`json` tag.</p>
+<p>将结构体转为url values, 仅转化结构体导出字段并且包含`json` tag</p>
 
 <b>函数签名:</b>
 
