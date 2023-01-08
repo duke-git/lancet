@@ -141,135 +141,135 @@ func ExampleFormatStrToTime() {
 }
 
 func ExampleBeginOfMinute() {
-	input := time.Date(2023, 1, 8, 18, 50, 10, 100, time.Local)
+	input := time.Date(2023, 1, 8, 18, 50, 10, 100, time.UTC)
 
 	result := BeginOfMinute(input)
 
 	fmt.Println(result)
 
 	// Output:
-	// 2023-01-08 18:50:00 +0800 CST
+	// 2023-01-08 18:50:00 +0000 UTC
 }
 
 func ExampleEndOfMinute() {
-	input := time.Date(2023, 1, 8, 18, 50, 10, 100, time.Local)
+	input := time.Date(2023, 1, 8, 18, 50, 10, 100, time.UTC)
 
 	result := EndOfMinute(input)
 
 	fmt.Println(result)
 
 	// Output:
-	// 2023-01-08 18:50:59.999999999 +0800 CST
+	// 2023-01-08 18:50:59.999999999 +0000 UTC
 }
 
 func ExampleBeginOfHour() {
-	input := time.Date(2023, 1, 8, 18, 50, 10, 100, time.Local)
+	input := time.Date(2023, 1, 8, 18, 50, 10, 100, time.UTC)
 
 	result := BeginOfHour(input)
 
 	fmt.Println(result)
 
 	// Output:
-	// 2023-01-08 18:00:00 +0800 CST
+	// 2023-01-08 18:00:00 +0000 UTC
 }
 
 func ExampleEndOfHour() {
-	input := time.Date(2023, 1, 8, 18, 50, 10, 100, time.Local)
+	input := time.Date(2023, 1, 8, 18, 50, 10, 100, time.UTC)
 
 	result := EndOfHour(input)
 
 	fmt.Println(result)
 
 	// Output:
-	// 2023-01-08 18:59:59.999999999 +0800 CST
+	// 2023-01-08 18:59:59.999999999 +0000 UTC
 }
 
 func ExampleBeginOfDay() {
-	input := time.Date(2023, 1, 8, 18, 50, 10, 100, time.Local)
+	input := time.Date(2023, 1, 8, 18, 50, 10, 100, time.UTC)
 
 	result := BeginOfDay(input)
 
 	fmt.Println(result)
 
 	// Output:
-	// 2023-01-08 00:00:00 +0800 CST
+	// 2023-01-08 00:00:00 +0000 UTC
 }
 
 func ExampleEndOfDay() {
-	input := time.Date(2023, 1, 8, 18, 50, 10, 100, time.Local)
+	input := time.Date(2023, 1, 8, 18, 50, 10, 100, time.UTC)
 
 	result := EndOfDay(input)
 
 	fmt.Println(result)
 
 	// Output:
-	// 2023-01-08 23:59:59.999999999 +0800 CST
+	// 2023-01-08 23:59:59.999999999 +0000 UTC
 }
 
 func ExampleBeginOfWeek() {
-	input := time.Date(2023, 1, 8, 18, 50, 10, 100, time.Local)
+	input := time.Date(2023, 1, 8, 18, 50, 10, 100, time.UTC)
 
 	result := BeginOfWeek(input)
 
 	fmt.Println(result)
 
 	// Output:
-	// 2023-01-08 00:00:00 +0800 CST
+	// 2023-01-08 00:00:00 +0000 UTC
 }
 
 func ExampleEndOfWeek() {
-	input := time.Date(2023, 1, 8, 18, 50, 10, 100, time.Local)
+	input := time.Date(2023, 1, 8, 18, 50, 10, 100, time.UTC)
 
 	result := EndOfWeek(input)
 
 	fmt.Println(result)
 
 	// Output:
-	// 2023-01-14 23:59:59.999999999 +0800 CST
+	// 2023-01-14 23:59:59.999999999 +0000 UTC
 }
 
 func ExampleBeginOfMonth() {
-	input := time.Date(2023, 1, 8, 18, 50, 10, 100, time.Local)
+	input := time.Date(2023, 1, 8, 18, 50, 10, 100, time.UTC)
 
 	result := BeginOfMonth(input)
 
 	fmt.Println(result)
 
 	// Output:
-	// 2023-01-01 00:00:00 +0800 CST
+	// 2023-01-01 00:00:00 +0000 UTC
 }
 
 func ExampleEndOfMonth() {
-	input := time.Date(2023, 1, 8, 18, 50, 10, 100, time.Local)
+	input := time.Date(2023, 1, 8, 18, 50, 10, 100, time.UTC)
 
 	result := EndOfMonth(input)
 
 	fmt.Println(result)
 
 	// Output:
-	// 2023-01-31 23:59:59.999999999 +0800 CST
+	// 2023-01-31 23:59:59.999999999 +0000 UTC
 }
 
 func ExampleBeginOfYear() {
-	input := time.Date(2023, 1, 8, 18, 50, 10, 100, time.Local)
+	input := time.Date(2023, 1, 8, 18, 50, 10, 100, time.UTC)
 
 	result := BeginOfYear(input)
 
 	fmt.Println(result)
 
 	// Output:
-	// 2023-01-01 00:00:00 +0800 CST
+	// 2023-01-01 00:00:00 +0000 UTC
 }
 
 func ExampleEndOfYear() {
-	input := time.Date(2023, 1, 8, 18, 50, 10, 100, time.Local)
+	input := time.Date(2023, 1, 8, 18, 50, 10, 100, time.UTC)
 
 	result := EndOfYear(input)
 
 	fmt.Println(result)
 
 	// Output:
-	// 2023-12-31 23:59:59.999999999 +0800 CST
+	// 2023-12-31 23:59:59.999999999 +0000 UTC
 }
 
 func ExampleNewUnix() {
