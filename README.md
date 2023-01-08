@@ -1144,7 +1144,10 @@ import "github.com/duke-git/lancet/v2/xerror"
 
 #### Function list:
 
--   [Unwrap](https://github.com/duke-git/lancet/blob/main/docs/xerror.md#Unwrap)
+-   **<big>Unwrap</big>** : check if err is nil then it returns a valid value. If err is not nil, Unwrap panics with err.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/xerror.md#Unwrap)]
+    [[play](https://go.dev/play/p/w84d7Mb3Afk)]
+
 
 ## How to Contribute
 

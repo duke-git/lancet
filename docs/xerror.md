@@ -46,12 +46,20 @@ import (
 )
 
 func main() {
+	result1 := xerror.Unwrap(strconv.Atoi("42"))
+	fmt.Println(result1)
+
 	_, err := strconv.Atoi("4o2")
 	defer func() {
 		v := recover()
-		fmt.Println(err.Error()) // err.Error() == v.(*strconv.NumError).Error()
+		result2 := reflect.DeepEqual(err.Error(), v.(*strconv.NumError).Error())
+		fmt.Println(result2)
 	}()
 
 	xerror.Unwrap(strconv.Atoi("4o2"))
+
+	// Output:
+	// 42
+	// true
 }
 ```

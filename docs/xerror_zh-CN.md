@@ -28,7 +28,7 @@ import (
 
 
 ### <span id="Unwrap">Unwrap</span>
-<p>如果err为nil则展开，则它返回一个有效值。 如果err不是nil则Unwrap使用err发生恐慌。</p>
+<p>检查error, 如果err为nil则展开，则它返回一个有效值，如果err不是nil则Unwrap使用err发生panic。</p>
 
 <b>函数签名:</b>
 
@@ -46,12 +46,20 @@ import (
 )
 
 func main() {
+	result1 := xerror.Unwrap(strconv.Atoi("42"))
+	fmt.Println(result1)
+
 	_, err := strconv.Atoi("4o2")
 	defer func() {
 		v := recover()
-		fmt.Println(err.Error()) // err.Error() == v.(*strconv.NumError).Error()
+		result2 := reflect.DeepEqual(err.Error(), v.(*strconv.NumError).Error())
+		fmt.Println(result2)
 	}()
 
 	xerror.Unwrap(strconv.Atoi("4o2"))
+
+	// Output:
+	// 42
+	// true
 }
 ```

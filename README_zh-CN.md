@@ -1155,6 +1155,11 @@ import "github.com/duke-git/lancet/v2/xerror"
 
 #### 函数列表:
 
+
+-   **<big>Unwrap</big>** : 检查error, 如果err为nil则展开，则它返回一个有效值，如果err不是nil则Unwrap使用err发生panic。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/xerror_zh-CN.md#Unwrap)]
+    [[play](https://go.dev/play/p/w84d7Mb3Afk)]
+
 -   [Unwrap](https://github.com/duke-git/lancet/blob/main/docs/xerror_zh-CN.md#Unwrap)
 
 ## 如何贡献代码
