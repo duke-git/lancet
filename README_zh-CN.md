@@ -349,36 +349,98 @@ import "github.com/duke-git/lancet/v2/datetime"
 
 #### 函数列表:
 
--   [AddDay](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#AddDay)
--   [AddHour](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#AddHour)
--   [AddMinute](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#AddMinute)
--   [BeginOfMinute](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#BeginOfMinute)
--   [BeginOfHour](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#BeginOfHour)
--   [BeginOfDay](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#BeginOfDay)
--   [BeginOfWeek](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#BeginOfWeek)
--   [BeginOfMonth](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#BeginOfMonth)
--   [BeginOfYear](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#BeginOfYear)
--   [EndOfMinute](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#EndOfMinute)
--   [EndOfHour](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#EndOfHour)
--   [EndOfDay](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#EndOfDay)
--   [EndOfWeek](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#EndOfWeek)
--   [EndOfMonth](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#EndOfMonth)
--   [EndOfYear](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#EndOfYear)
--   [GetNowDate](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#GetNowDate)
--   [GetNowTime](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#GetNowTime)
--   [GetNowDateTime](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#GetNowDateTime)
--   [GetZeroHourTimestamp](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#GetZeroHourTimestamp)
--   [GetNightTimestamp](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#GetNightTimestamp)
--   [FormatTimeToStr](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#FormatTimeToStr)
--   [FormatStrToTime](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#FormatStrToTime)
--   [NewUnix](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#NewUnix)
--   [NewUnixNow](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#NewUnixNow)
--   [NewFormat](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#NewFormat)
--   [NewISO8601](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#NewISO8601)
--   [ToUnix](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#ToUnix)
--   [ToFormat](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#ToFormat)
--   [ToFormatForTpl](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#ToFormatForTpl)
--   [ToIso8601](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#ToIso8601)
+-   **<big>AddDay</big>** : 将日期加/减天数。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#AddDay)]
+    [[play](https://go.dev/play/p/dIGbs_uTdFa)]
+-   **<big>AddHour</big>** : 将日期加/减小时数。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#AddHour)]
+    [[play](https://go.dev/play/p/rcMjd7OCsi5)]
+-   **<big>AddMinute</big>** : 将日期加/减分钟数。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#AddMinute)]
+    [[play](https://go.dev/play/p/nT1heB1KUUK)]
+-   **<big>BeginOfMinute</big>** : 返回指定时间的分钟开始时间。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#BeginOfMinute)]
+    [[play](https://go.dev/play/p/ieOLVJ9CiFT)]
+-   **<big>BeginOfHour</big>** : 返回指定时间的小时开始时间。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#BeginOfHour)]
+    [[play](https://go.dev/play/p/GhdGFnDWpYs)]
+-   **<big>BeginOfDay</big>** : 返回指定时间的当天开始时间。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#BeginOfDay)]
+    [[play](https://go.dev/play/p/94m_UT6cWs9)]
+-   **<big>BeginOfWeek</big>** : 返回指定时间的每周开始时间,默认开始时间星期日。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#BeginOfWeek)]
+    [[play](https://go.dev/play/p/ynjoJPz7VNV)]
+-   **<big>BeginOfMonth</big>** : 返回指定时间的当月开始时间。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#BeginOfMonth)]
+    [[play](https://go.dev/play/p/bWXVFsmmzwL)]
+-   **<big>BeginOfYear</big>** : 返回指定时间的当年开始时间。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#BeginOfYear)]
+    [[play](https://go.dev/play/p/i326DSwLnV8)]
+-   **<big>EndOfMinute</big>** : 返回指定时间的分钟结束时间。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#EndOfMinute)]
+    [[play](https://go.dev/play/p/yrL5wGzPj4z)]
+-   **<big>EndOfHour</big>** : 返回指定时间的小时结束时间。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#EndOfHour)]
+    [[play](https://go.dev/play/p/6ce3j_6cVqN)]
+-   **<big>EndOfDay</big>** : 返回指定时间的当天结束时间。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#EndOfDay)]
+    [[play](https://go.dev/play/p/eMBOvmq5Ih1)]
+-   **<big>EndOfWeek</big>** : 返回指定时间的星期结束时间,默认结束时间星期六。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#EndOfWeek)]
+    [[play](https://go.dev/play/p/i08qKXD9flf)]
+-   **<big>EndOfMonth</big>** : 返回指定时间的月份结束时间。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#EndOfMonth)]
+    [[play](https://go.dev/play/p/_GWh10B3Nqi)]
+-   **<big>EndOfYear</big>** : 返回指定时间的年份结束时间。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#EndOfYear)]
+    [[play](https://go.dev/play/p/G01cKlMCvNm)]
+-   **<big>GetNowDate</big>** : 获取当天日期，返回格式：yyyy-mm-dd。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#GetNowDate)]
+    [[play](https://go.dev/play/p/PvfkPpcpBBf)]
+-   **<big>GetNowTime</big>** : 获取当时时间，返回格式：hh:mm:ss。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#GetNowTime)]
+    [[play](https://go.dev/play/p/l7BNxCkTmJS)]
+-   **<big>GetNowDateTime</big>** : 获取当时日期和时间，返回格式：yyyy-mm-dd hh:mm:ss。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#GetNowDateTime)]
+    [[play](https://go.dev/play/p/pI4AqngD0al)]
+-   **<big>GetZeroHourTimestamp</big>** : 获取零时时间戳(timestamp of 00:00)。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#GetZeroHourTimestamp)]
+    [[play](https://go.dev/play/p/QmL2oIaGE3q)]
+-   **<big>GetNightTimestamp</big>** : 获取午夜时间戳(timestamp of 23:59)。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#GetNightTimestamp)]
+    [[play](https://go.dev/play/p/UolysR3MYP1)]
+-   **<big>FormatTimeToStr</big>** : 将日期格式化成字符串。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#FormatTimeToStr)]
+    [[play](https://go.dev/play/p/_Ia7M8H_OvE)]
+-   **<big>FormatStrToTime</big>** : 将字符串格式化成时间。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#FormatStrToTime)]
+    [[play](https://go.dev/play/p/1h9FwdU8ql4)]
+-   **<big>NewUnix</big>** : 创建一个unix时间戳。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#NewUnix)]
+    [[play](https://go.dev/play/p/psoSuh_kLRt)]
+-   **<big>NewUnixNow</big>** : 创建一个当前时间的unix时间戳。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#NewUnixNow)]
+    [[play](https://go.dev/play/p/U4PPx-9D0oz)]
+-   **<big>NewFormat</big>** : 创建一个yyyy-mm-dd hh:mm:ss格式时间字符串的unix时间戳。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#NewFormat)]
+    [[play](https://go.dev/play/p/VkW08ZOaXPZ)]
+-   **<big>NewISO8601</big>** : 创建一个iso8601格式时间字符串的unix时间戳。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#NewISO8601)]
+    [[play](https://go.dev/play/p/mkhOHQkdeA2)]
+-   **<big>ToUnix</big>** : 返回unix时间戳。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#ToUnix)]
+    [[play](https://go.dev/play/p/_LUiwAdocjy)]
+-   **<big>ToFormat</big>** : 返回格式'yyyy-mm-dd hh:mm:ss'的日期字符串。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#ToFormat)]
+    [[play](https://go.dev/play/p/VkW08ZOaXPZ)]
+-   **<big>ToFormatForTpl</big>** : 返回tpl格式指定的日期字符串。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#ToFormatForTpl)]
+    [[play](https://go.dev/play/p/nyXxXcQJ8L5)]
+-   **<big>ToIso8601</big>** : 返回iso8601日期字符串。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#ToIso8601)]
+    [[play](https://go.dev/play/p/mkhOHQkdeA2)]
+    
+
 
 ### 7. datastructure 包含一些普通的数据结构实现。例如：list, linklist, stack, queue, set, tree, graph.
 

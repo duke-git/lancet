@@ -52,8 +52,8 @@ func TestGetNowDate(t *testing.T) {
 	assert.Equal(expected, GetNowDate())
 }
 
-func TestGetNotTime(t *testing.T) {
-	assert := internal.NewAssert(t, "TestGetNotTime")
+func TestGetNowTime(t *testing.T) {
+	assert := internal.NewAssert(t, "TestGetNowTime")
 	expected := time.Now().Format("15:04:05")
 	assert.Equal(expected, GetNowTime())
 }
@@ -81,7 +81,6 @@ func TestFormatTimeToStr(t *testing.T) {
 	for i := 0; i < len(cases); i++ {
 		actual := FormatTimeToStr(datetime, cases[i])
 		assert.Equal(expected[i], actual)
-
 	}
 }
 

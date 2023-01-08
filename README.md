@@ -348,36 +348,99 @@ import "github.com/duke-git/lancet/v2/datetime"
 
 #### Function list:
 
--   [AddDay](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#AddDay)
--   [AddHour](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#AddHour)
--   [AddMinute](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#AddMinute)
--   [BeginOfMinute](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#BeginOfMinute)
--   [BeginOfHour](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#BeginOfHour)
--   [BeginOfDay](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#BeginOfDay)
--   [BeginOfWeek](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#BeginOfWeek)
--   [BeginOfMonth](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#BeginOfMonth)
--   [BeginOfYear](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#BeginOfYear)
--   [EndOfMinute](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#EndOfMinute)
--   [EndOfHour](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#EndOfHour)
--   [EndOfDay](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#EndOfDay)
--   [EndOfWeek](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#EndOfWeek)
--   [EndOfMonth](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#EndOfMonth)
--   [EndOfYear](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#EndOfYear)
--   [GetNowDate](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#GetNowDate)
--   [GetNowTime](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#GetNowTime)
--   [GetNowDateTime](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#GetNowDateTime)
--   [GetZeroHourTimestamp](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#GetZeroHourTimestamp)
--   [GetNightTimestamp](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#GetNightTimestamp)
--   [FormatTimeToStr](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#FormatTimeToStr)
--   [FormatStrToTime](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#FormatStrToTime)
--   [NewUnix](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#NewUnix)
--   [NewUnixNow](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#NewUnixNow)
--   [NewFormat](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#NewFormat)
--   [NewISO8601](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#NewISO8601)
--   [ToUnix](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#ToUnix)
--   [ToFormat](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#ToFormat)
--   [ToFormatForTpl](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#ToFormatForTpl)
--   [ToIso8601](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#ToIso8601)
+-   **<big>AddDay</big>** : add or sub day to the time.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#AddDay)]
+    [[play](https://go.dev/play/p/dIGbs_uTdFa)]
+-   **<big>AddHour</big>** : add or sub day to the time.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#AddHour)]
+    [[play](https://go.dev/play/p/rcMjd7OCsi5)]
+-   **<big>AddMinute</big>** : add or sub day to the time.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#AddMinute)]
+    [[play](https://go.dev/play/p/nT1heB1KUUK)]
+-   **<big>BeginOfMinute</big>** : return the date time at the begin of minute of specific date.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#BeginOfMinute)]
+    [[play](https://go.dev/play/p/ieOLVJ9CiFT)]
+-   **<big>BeginOfHour</big>** : return the date time at the begin of hour of specific date.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#BeginOfHour)]
+    [[play](https://go.dev/play/p/GhdGFnDWpYs)]
+-   **<big>BeginOfDay</big>** : return the date time at the begin of day of specific date.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#BeginOfDay)]
+    [[play](https://go.dev/play/p/94m_UT6cWs9)]
+-   **<big>BeginOfWeek</big>** : return the date time at the begin of week of specific date.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#BeginOfWeek)]
+    [[play](https://go.dev/play/p/ynjoJPz7VNV)]
+-   **<big>BeginOfMonth</big>** : return the date time at the begin of month of specific date.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#BeginOfMonth)]
+    [[play](https://go.dev/play/p/bWXVFsmmzwL)]
+-   **<big>BeginOfYear</big>** : return the date time at the begin of year of specific date.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#BeginOfYear)]
+    [[play](https://go.dev/play/p/i326DSwLnV8)]
+-   **<big>EndOfMinute</big>** : return the date time at the end of minute of specific date.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#EndOfMinute)]
+    [[play](https://go.dev/play/p/yrL5wGzPj4z)]
+-   **<big>EndOfHour</big>** : return the date time at the end of hour of specific date.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#EndOfHour)]
+    [[play](https://go.dev/play/p/6ce3j_6cVqN)]
+-   **<big>EndOfDay</big>** : return the date time at the end of day of specific date.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#EndOfDay)]
+    [[play](https://go.dev/play/p/eMBOvmq5Ih1)]
+-   **<big>EndOfWeek</big>** : return the date time at the end of week of specific date.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#EndOfWeek)]
+    [[play](https://go.dev/play/p/i08qKXD9flf)]
+-   **<big>EndOfMonth</big>** : return the date time at the end of month of specific date.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#EndOfMonth)]
+    [[play](https://go.dev/play/p/_GWh10B3Nqi)]
+-   **<big>EndOfYear</big>** : return the date time at the end of year of specific date.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#EndOfYear)]
+    [[play](https://go.dev/play/p/G01cKlMCvNm)]
+-   **<big>GetNowDate</big>** : return format yyyy-mm-dd of current date.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#GetNowDate)]
+    [[play](https://go.dev/play/p/PvfkPpcpBBf)]
+-   **<big>GetNowTime</big>** : return format hh-mm-ss of current time.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#GetNowTime)]
+    [[play](https://go.dev/play/p/l7BNxCkTmJS)]
+-   **<big>GetNowDateTime</big>** : return format yyyy-mm-dd hh-mm-ss of current datetime.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#GetNowDateTime)]
+    [[play](https://go.dev/play/p/pI4AqngD0al)]
+-   **<big>GetZeroHourTimestamp</big>** : return timestamp of zero hour (timestamp of 00:00).
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#GetZeroHourTimestamp)]
+    [[play](https://go.dev/play/p/QmL2oIaGE3q)]
+-   **<big>GetNightTimestamp</big>** : return timestamp of zero hour (timestamp of 23:59).
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#GetNightTimestamp)]
+    [[play](https://go.dev/play/p/UolysR3MYP1)]
+-   **<big>FormatTimeToStr</big>** : convert time to string.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#FormatTimeToStr)]
+    [[play](https://go.dev/play/p/_Ia7M8H_OvE)]
+-   **<big>FormatStrToTime</big>** : convert string to time.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#FormatStrToTime)]
+    [[play](https://go.dev/play/p/1h9FwdU8ql4)]
+-   **<big>NewUnix</big>** : return unix timestamp of specific time.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#NewUnix)]
+    [[play](https://go.dev/play/p/psoSuh_kLRt)]
+-   **<big>NewUnixNow</big>** : return unix timestamp of current time.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#NewUnixNow)]
+    [[play](https://go.dev/play/p/U4PPx-9D0oz)]
+-   **<big>NewFormat</big>** : return unix timestamp of specific time string, t should be "yyyy-mm-dd hh:mm:ss".
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#NewFormat)]
+    [[play](https://go.dev/play/p/VkW08ZOaXPZ)]
+-   **<big>NewISO8601</big>** : return unix timestamp of specific iso8601 time string.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#NewISO8601)]
+    [[play](https://go.dev/play/p/mkhOHQkdeA2)]
+-   **<big>ToUnix</big>** : return unix timestamp.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#ToUnix)]
+    [[play](https://go.dev/play/p/_LUiwAdocjy)]
+-   **<big>ToFormat</big>** : return the time string 'yyyy-mm-dd hh:mm:ss' of unix time.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#ToFormat)]
+    [[play](https://go.dev/play/p/VkW08ZOaXPZ)]
+-   **<big>ToFormatForTpl</big>** : return the time string which format is specific tpl.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#ToFormatForTpl)]
+    [[play](https://go.dev/play/p/nyXxXcQJ8L5)]
+-   **<big>ToIso8601</big>** : return iso8601 time string.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#ToIso8601)]
+    [[play](https://go.dev/play/p/mkhOHQkdeA2)]
+
+
+
 
 ### 7. Datastructure package constains some common data structure. eg. list, linklist, stack, queue, set, tree, graph.
 
@@ -666,7 +729,7 @@ import "github.com/duke-git/lancet/v2/random"
 -   **<big>RandInt</big>** : generate random int number between min and max.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/random.md#RandInt)]
     [[play](https://go.dev/play/p/pXyyAAI5YxD)]
--   **<big>RandString</big>** : generate random string of specified length.
+-   **<big>RandString</big>** : generate random string of specific length.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/random.md#RandString)]
     [[play](https://go.dev/play/p/W2xvRUXA7Mi)]
 -   **<big>RandUpper</big>** : generate a random upper case string.
@@ -675,7 +738,7 @@ import "github.com/duke-git/lancet/v2/random"
 -   **<big>RandLower</big>** : generate a random lower case string.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/random.md#RandLower)]
     [[play](https://go.dev/play/p/XJtZ471cmtI)]
--   **<big>RandNumeral</big>** : generate a random numeral string of specified length.
+-   **<big>RandNumeral</big>** : generate a random numeral string of specific length.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/random.md#RandNumeral)]
     [[play](https://go.dev/play/p/g4JWVpHsJcf)]
 -   **<big>RandNumeralOrLetter</big>** : generate a random numeral or letter string.
@@ -885,15 +948,15 @@ import "github.com/duke-git/lancet/v2/strutil"
 
 #### Function list:
 
--   **<big>After</big>** : returns the substring after the first occurrence of a specified string in the source string.
+-   **<big>After</big>** : returns the substring after the first occurrence of a specific string in the source string.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#After)]
     [[play](https://go.dev/play/p/RbCOQqCDA7m)]
--   **<big>AfterLast</big>** : returns the substring after the last occurrence of a specified string in the source string. [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#AfterLast)]
+-   **<big>AfterLast</big>** : returns the substring after the last occurrence of a specific string in the source string. [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#AfterLast)]
     [[play](https://go.dev/play/p/1TegARrb8Yn)]
--   **<big>Before</big>** : returns the substring before the first occurrence of a specified string in the source string.
+-   **<big>Before</big>** : returns the substring before the first occurrence of a specific string in the source string.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#Before)]
     [[play](https://go.dev/play/p/JAWTZDS4F5w)]
--   **<big>BeforeLast</big>** : returns the substring before the last occurrence of a specified string in the source string.
+-   **<big>BeforeLast</big>** : returns the substring before the last occurrence of a specific string in the source string.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#BeforeLast)]
     [[play](https://go.dev/play/p/pJfXXAoG_Te)]
 -   **<big>CamelCase</big>** : coverts source string to its camelCase string.
@@ -935,7 +998,7 @@ import "github.com/duke-git/lancet/v2/strutil"
 -   **<big>SplitEx</big>** : split a given string which can control the result slice contains empty string or not.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#SplitEx)]
     [[play](https://go.dev/play/p/Us-ySSbWh-3)]
--   **<big>Substring</big>** : returns a substring of the specified length starting at the specified offset position.
+-   **<big>Substring</big>** : returns a substring of the specific length starting at the specific offset position.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#Substring)]
 -   **<big>Wrap</big>** : wrap a string with given string.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#Wrap)]

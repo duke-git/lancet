@@ -377,7 +377,7 @@ func main() {
 ```
 
 ### <span id="EndOfDay">EndOfDay</span>
-<p>返回指定时间的当天结束时间.</p>
+<p>返回指定时间的当天结束时间</p>
 
 <b>函数签名:</b>
 
@@ -541,7 +541,7 @@ func main() {
 
 
 ### <span id="GetNowDateTime">GetNowDateTime</span>
-<p>获取当时日期和时间，返回格式：yyyy-mm-dd hh:mm:ss.</p>
+<p>获取当时日期和时间，返回格式：yyyy-mm-dd hh:mm:ss</p>
 
 <b>函数签名:</b>
 
@@ -568,7 +568,7 @@ func main() {
 
 
 ### <span id="GetZeroHourTimestamp">GetZeroHourTimestamp</span>
-<p>获取零时时间戳(timestamp of 00:00).</p>
+<p>获取零时时间戳(timestamp of 00:00)</p>
 
 <b>函数签名:</b>
 
@@ -595,7 +595,7 @@ func main() {
 
 
 ### <span id="GetNightTimestamp">GetNightTimestamp</span>
-<p>获取午夜时间戳(timestamp of 23:59).</p>
+<p>获取午夜时间戳(timestamp of 23:59)</p>
 
 <b>函数签名:</b>
 

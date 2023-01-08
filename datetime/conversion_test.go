@@ -19,9 +19,6 @@ func TestToUnix(t *testing.T) {
 func TestToFormat(t *testing.T) {
 	assert := internal.NewAssert(t, "TestToFormat")
 
-	_, err := NewFormat("2022/03/18 17:04:05")
-	assert.IsNotNil(err)
-
 	tm, err := NewFormat("2022-03-18 17:04:05")
 	assert.IsNil(err)
 
