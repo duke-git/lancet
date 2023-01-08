@@ -600,26 +600,63 @@ import "github.com/duke-git/lancet/v2/netutil"
 
 #### 函数列表:
 
--   [ConvertMapToQueryString](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#ConvertMapToQueryString)
--   [GetInternalIp](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#GetInternalIp)
--   [EncodeUrl](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#EncodeUrl)
--   [GetIps](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#GetIps)
--   [GetMacAddrs](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#GetMacAddrs)
--   [GetPublicIpInfo](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#GetPublicIpInfo)
--   [GetRequestPublicIp](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#GetRequestPublicIp)
--   [IsPublicIP](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#IsPublicIP)
--   [IsInternalIP](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#IsInternalIP)
--   [HttpRequest](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#HttpRequest)
--   [HttpClient](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#HttpClient)
--   [SendRequest](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#SendRequest)
--   [DecodeResponse](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#DecodeResponse)
--   [StructToUrlValues](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#StructToUrlValues)
--   [HttpGet<sup>deprecated</sup>](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#HttpGet)
--   [HttpDelete<sup>deprecated</sup>](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#HttpDelete)
--   [HttpPost<sup>deprecated</sup>](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#HttpPost)
--   [HttpPut<sup>deprecated</sup>](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#HttpPut)
--   [HttpPatch<sup>deprecated</sup>](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#HttpPatch)
--   [ParseHttpResponse](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#ParseHttpResponse)
+-   **<big>ConvertMapToQueryString</big>** : 将map转换成http查询字符串。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#ConvertMapToQueryString)]
+    [[play](https://go.dev/play/p/jnNt_qoSnRi)]
+-   **<big>EncodeUrl</big>** : 编码url query string的值(?a=1&b=[2] -> ?a=1&b=%5B2%5D)。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#EncodeUrl)]
+    [[play](https://go.dev/play/p/bsZ6BRC4uKI)]
+-   **<big>GetInternalIp</big>** : 获取内部ipv4。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#GetInternalIp)]
+    [[play](https://go.dev/play/p/5mbu-gFp7ei)]
+-   **<big>GetIps</big>** : 获取系统ipv4地址列表。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#GetIps)]
+    [[play](https://go.dev/play/p/NUFfcEmukx1)]
+-   **<big>GetMacAddrs</big>** : 获取系统mac地址列。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#GetMacAddrs)]
+    [[play](https://go.dev/play/p/Rq9UUBS_Xp1)]
+-   **<big>GetPublicIpInfo</big>** : 获取[公网ip信息](http://ip-api.com/json/).
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#GetPublicIpInfo)]
+    [[play](https://go.dev/play/p/YDxIfozsRHR)]
+-   **<big>GetRequestPublicIp</big>** : 获取http请求ip。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#GetRequestPublicIp)]
+    [[play](https://go.dev/play/p/kxU-YDc_eBo)]
+-   **<big>IsPublicIP</big>** : 判断ip是否是公共ip。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#IsPublicIP)]
+    [[play](https://go.dev/play/p/nmktSQpJZnn)]
+-   **<big>IsInternalIP</big>** : 判断ip是否是局域网ip。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#IsInternalIP)]
+    [[play](https://go.dev/play/p/sYGhXbgO4Cb)]
+-   **<big>HttpRequest</big>** : 用于抽象HTTP请求实体的结构。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#HttpRequest)]
+    [[play](https://go.dev/play/p/jUSgynekH7G)]
+-   **<big>HttpClient</big>** : 用于发送HTTP请求。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#HttpClient)]
+    [[play](https://go.dev/play/p/jUSgynekH7G)]
+-   **<big>SendRequest</big>** : 发送http请求。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#SendRequest)]
+    [[play](https://go.dev/play/p/jUSgynekH7G)]
+-   **<big>DecodeResponse</big>** : 解析http响应体到目标结构体。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#DecodeResponse)]
+    [[play](https://go.dev/play/p/jUSgynekH7G)]
+-   **<big>StructToUrlValues</big>** : 将结构体转为url values, 仅转化结构体导出字段并且包含`json` tag。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#StructToUrlValues)]
+    [[play](https://go.dev/play/p/pFqMkM40w9z)]
+-   **<big>HttpGet<sup>deprecated</sup></big>** : 发送http get请求（已弃用：SendRequest代替）。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#HttpGet)]
+-   **<big>HttpDelete<sup>deprecated</sup></big>** : 发送http delete请求（已弃用：SendRequest代替）。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#HttpDelete)]
+-   **<big>HttpPost<sup>deprecated</sup></big>** : 发送http post请求（已弃用：SendRequest代替）。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#HttpPost)]
+-   **<big>HttpPut<sup>deprecated</sup></big>** : 发送http put请求（已弃用：SendRequest代替）。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#HttpPut)]
+-   **<big>HttpPatch<sup>deprecated</sup></big>** : 发送http patch请求（已弃用：SendRequest代替）。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#HttpPatch)]
+-   **<big>ParseHttpResponse</big>** : 解析http响应体到目标结构体。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#ParseHttpResponse)]
+
+
+
 
 ### 14. random 随机数生成器包，可以生成随机[]bytes, int, string。
 

@@ -162,7 +162,7 @@ import "github.com/duke-git/lancet/v2/condition"
     [[play](https://go.dev/play/p/W1SSUmt6pvr)]
 -   **<big>Or</big>** : returns false if neither a nor b is truthy.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/condition.md#Or)]
-    [[play](https://go.dev/play/p/UlQTxHaeEkq)]]
+[[play](https://go.dev/play/p/UlQTxHaeEkq)]]
 -   **<big>Xor</big>** : returns true if a or b but not both is truthy.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/condition.md#Xor)]
     [[play](https://go.dev/play/p/gObZrW7ZbG8)]
@@ -340,8 +340,6 @@ import "github.com/duke-git/lancet/v2/cryptor"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#RsaDecrypt)]
     [[play](https://go.dev/play/p/uef0q1fz53I)]
 
-
-
 ### 6. Datetime package supports date and time format and compare.
 
 ```go
@@ -412,8 +410,6 @@ import hashmap "github.com/duke-git/lancet/v2/datastructure/hashmap"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/datastructure/heap.md)]
 -   **<big>Hashmap</big>** : hash map structure.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/datastructure/hashmap.md)]
-
-
 
 ### 8. Fileutil package implements some basic functions for file operations.
 
@@ -514,8 +510,6 @@ import "github.com/duke-git/lancet/v2/function"
 -   **<big>Watcher</big>** : Watcher is used for record code excution time. can start/stop/reset the watch timer. get the elapsed time of function execution.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/function.md#Watcher)]
 
-
-
 ### 11. Maputil package includes some functions to manipulate map.
 
 ```go
@@ -601,26 +595,62 @@ import "github.com/duke-git/lancet/v2/netutil"
 
 #### Function list:
 
--   [ConvertMapToQueryString](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#ConvertMapToQueryString)
--   [EncodeUrl](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#EncodeUrl)
--   [GetInternalIp](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#GetInternalIp)
--   [GetIps](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#GetIps)
--   [GetMacAddrs](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#GetMacAddrs)
--   [GetPublicIpInfo](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#GetPublicIpInfo)
--   [GetRequestPublicIp](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#GetRequestPublicIp)
--   [IsPublicIP](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#IsPublicIP)
--   [IsInternalIP](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#IsInternalIP)
--   [HttpRequest](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#HttpRequest)
--   [HttpClient](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#HttpClient)
--   [SendRequest](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#SendRequest)
--   [DecodeResponse](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#DecodeResponse)
--   [StructToUrlValues](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#StructToUrlValues)
--   [HttpGet<sup>deprecated</sup>](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#HttpGet)
--   [HttpDelete<sup>deprecated</sup>](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#HttpDelete)
--   [HttpPost<sup>deprecated</sup>](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#HttpPost)
--   [HttpPut<sup>deprecated</sup>](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#HttpPut)
--   [HttpPatch<sup>deprecated</sup>](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#HttpPatch)
--   [ParseHttpResponse](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#ParseHttpResponse)
+-   **<big>ConvertMapToQueryString</big>** : convert map to sorted url query string.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#ConvertMapToQueryString)]
+    [[play](https://go.dev/play/p/jnNt_qoSnRi)]
+-   **<big>EncodeUrl</big>** : encode url(?a=1&b=[2] -> ?a=1&b=%5B2%5D).
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#EncodeUrl)]
+    [[play](https://go.dev/play/p/bsZ6BRC4uKI)]
+-   **<big>GetInternalIp</big>** : return internal ipv4.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#GetInternalIp)]
+    [[play](https://go.dev/play/p/5mbu-gFp7ei)]
+-   **<big>GetIps</big>** : return all ipv4 of current system.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#GetIps)]
+    [[play](https://go.dev/play/p/NUFfcEmukx1)]
+-   **<big>GetMacAddrs</big>** : return mac address of current system.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#GetMacAddrs)]
+    [[play](https://go.dev/play/p/Rq9UUBS_Xp1)]
+-   **<big>GetPublicIpInfo</big>** : return [public ip information](http://ip-api.com/json/).
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#GetPublicIpInfo)]
+    [[play](https://go.dev/play/p/YDxIfozsRHR)]
+-   **<big>GetRequestPublicIp</big>** : return the http request public ip.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#GetRequestPublicIp)]
+    [[play](https://go.dev/play/p/kxU-YDc_eBo)]
+-   **<big>IsPublicIP</big>** : verify a ip is public or not.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#IsPublicIP)]
+    [[play](https://go.dev/play/p/nmktSQpJZnn)]
+-   **<big>IsInternalIP</big>** : verify an ip is intranet or not.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#IsInternalIP)]
+    [[play](https://go.dev/play/p/sYGhXbgO4Cb)]
+-   **<big>HttpRequest</big>** : a composed http request used for HttpClient send request.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#HttpRequest)]
+    [[play](https://go.dev/play/p/jUSgynekH7G)]
+-   **<big>HttpClient</big>** : a http client tool, used for sending http request
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#HttpClient)]
+    [[play](https://go.dev/play/p/jUSgynekH7G)]
+-   **<big>SendRequest</big>** : send http request.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#SendRequest)]
+    [[play](https://go.dev/play/p/jUSgynekH7G)]
+-   **<big>DecodeResponse</big>** : decode http response into target object.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#DecodeResponse)]
+    [[play](https://go.dev/play/p/jUSgynekH7G)]
+-   **<big>StructToUrlValues</big>** : convert struct to url valuse.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#StructToUrlValues)]
+    [[play](https://go.dev/play/p/pFqMkM40w9z)]
+-   **<big>HttpGet<sup>deprecated</sup></big>** : send get http request.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#HttpGet)]
+-   **<big>HttpDelete<sup>deprecated</sup></big>** : send delete http request.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#HttpDelete)]
+-   **<big>HttpPost<sup>deprecated</sup></big>** : send post http request.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#HttpPost)]
+-   **<big>HttpPut<sup>deprecated</sup></big>** : send put http request.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#HttpPut)]
+-   **<big>HttpPatch<sup>deprecated</sup></big>** : send patch http request.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#HttpPatch)]
+-   **<big>ParseHttpResponse</big>** : decode http response into target object.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#ParseHttpResponse)]
+
+
 
 ### 14. Random package implements some basic functions to generate random int and string.
 
@@ -678,8 +708,6 @@ import "github.com/duke-git/lancet/v2/retry"
 -   **<big>RetryTimes</big>** : set times of retry.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/retry.md#RetryTimes)]
     [[play](https://go.dev/play/p/ssfVeU2SwLO)]
-
-
 
 ### 16. Slice contains some functions to manipulate slice.
 

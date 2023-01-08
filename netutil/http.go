@@ -21,32 +21,32 @@ import (
 	"strings"
 )
 
-//HttpGet send get http request
+// HttpGet send get http request.
 func HttpGet(url string, params ...any) (*http.Response, error) {
 	return doHttpRequest(http.MethodGet, url, params...)
 }
 
-//HttpPost send post http request
+// HttpPost send post http request.
 func HttpPost(url string, params ...any) (*http.Response, error) {
 	return doHttpRequest(http.MethodPost, url, params...)
 }
 
-//HttpPut send put http request
+// HttpPut send put http request.
 func HttpPut(url string, params ...any) (*http.Response, error) {
 	return doHttpRequest(http.MethodPut, url, params...)
 }
 
-//HttpDelete send delete http request
+// HttpDelete send delete http request.
 func HttpDelete(url string, params ...any) (*http.Response, error) {
 	return doHttpRequest(http.MethodDelete, url, params...)
 }
 
-// HttpPatch send patch http request
+// HttpPatch send patch http request.
 func HttpPatch(url string, params ...any) (*http.Response, error) {
 	return doHttpRequest(http.MethodPatch, url, params...)
 }
 
-// ParseHttpResponse decode http response to specified interface
+// ParseHttpResponse decode http response to specified interface.
 func ParseHttpResponse(resp *http.Response, obj any) error {
 	if resp == nil {
 		return errors.New("InvalidResp")
@@ -55,7 +55,8 @@ func ParseHttpResponse(resp *http.Response, obj any) error {
 	return json.NewDecoder(resp.Body).Decode(obj)
 }
 
-// ConvertMapToQueryString convert map to sorted url query string
+// ConvertMapToQueryString convert map to sorted url query string.
+// Play: https://go.dev/play/p/jnNt_qoSnRi
 func ConvertMapToQueryString(param map[string]any) string {
 	if param == nil {
 		return ""

@@ -92,7 +92,8 @@ func NewHttpClientWithConfig(config *HttpClientConfig) *HttpClient {
 	return client
 }
 
-// SendRequest send http request
+// SendRequest send http request.
+// Play: https://go.dev/play/p/jUSgynekH7G
 func (client *HttpClient) SendRequest(request *HttpRequest) (*http.Response, error) {
 	err := validateRequest(request)
 	if err != nil {
@@ -128,7 +129,8 @@ func (client *HttpClient) SendRequest(request *HttpRequest) (*http.Response, err
 	return resp, nil
 }
 
-// DecodeResponse decode response into target object
+// DecodeResponse decode response into target object.
+// Play: https://go.dev/play/p/jUSgynekH7G
 func (client *HttpClient) DecodeResponse(resp *http.Response, target any) error {
 	if resp == nil {
 		return errors.New("invalid target param")
@@ -203,7 +205,8 @@ func validateRequest(req *HttpRequest) error {
 }
 
 // StructToUrlValues convert struct to url valuse,
-// only convert the field which is exported and has `json` tag
+// only convert the field which is exported and has `json` tag.
+// Play: https://go.dev/play/p/pFqMkM40w9z
 func StructToUrlValues(targetStruct any) url.Values {
 	rv := reflect.ValueOf(targetStruct)
 	rt := reflect.TypeOf(targetStruct)

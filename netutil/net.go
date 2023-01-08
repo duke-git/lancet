@@ -9,7 +9,8 @@ import (
 	"strings"
 )
 
-// GetInternalIp return internal ipv4
+// GetInternalIp return internal ipv4.
+// Play: https://go.dev/play/p/5mbu-gFp7ei
 func GetInternalIp() string {
 	addr, err := net.InterfaceAddrs()
 	if err != nil {
@@ -26,7 +27,8 @@ func GetInternalIp() string {
 	return ""
 }
 
-// GetRequestPublicIp return the requested public ip
+// GetRequestPublicIp return the requested public ip.
+// Play: https://go.dev/play/p/kxU-YDc_eBo
 func GetRequestPublicIp(req *http.Request) string {
 	var ip string
 	for _, ip = range strings.Split(req.Header.Get("X-Forwarded-For"), ",") {
@@ -47,7 +49,8 @@ func GetRequestPublicIp(req *http.Request) string {
 }
 
 // GetPublicIpInfo return public ip information
-// return the PublicIpInfo struct
+// return the PublicIpInfo struct.
+// Play: https://go.dev/play/p/YDxIfozsRHR
 func GetPublicIpInfo() (*PublicIpInfo, error) {
 	resp, err := http.Get("http://ip-api.com/json/")
 	if err != nil {
@@ -69,7 +72,8 @@ func GetPublicIpInfo() (*PublicIpInfo, error) {
 	return &ip, nil
 }
 
-// GetIps return all ipv4 of system
+// GetIps return all ipv4 of system.
+// Play: https://go.dev/play/p/NUFfcEmukx1
 func GetIps() []string {
 	var ips []string
 
@@ -89,7 +93,8 @@ func GetIps() []string {
 	return ips
 }
 
-// GetMacAddrs get mac address
+// GetMacAddrs get mac address.
+// Play: https://go.dev/play/p/Rq9UUBS_Xp1
 func GetMacAddrs() []string {
 	var macAddrs []string
 
@@ -125,7 +130,8 @@ type PublicIpInfo struct {
 	Ip          string  `json:"query"`
 }
 
-// IsPublicIP verify a ip is public or not
+// IsPublicIP verify a ip is public or not.
+// Play: https://go.dev/play/p/nmktSQpJZnn
 func IsPublicIP(IP net.IP) bool {
 	if IP.IsLoopback() || IP.IsLinkLocalMulticast() || IP.IsLinkLocalUnicast() {
 		return false
@@ -145,7 +151,8 @@ func IsPublicIP(IP net.IP) bool {
 	return false
 }
 
-// IsInternalIP verify an ip is intranet or not
+// IsInternalIP verify an ip is intranet or not.
+// Play: https://go.dev/play/p/sYGhXbgO4Cb
 func IsInternalIP(IP net.IP) bool {
 	if IP.IsLoopback() {
 		return true
@@ -159,7 +166,8 @@ func IsInternalIP(IP net.IP) bool {
 	return false
 }
 
-// EncodeUrl encode url
+// EncodeUrl encode url.
+// Play: https://go.dev/play/p/bsZ6BRC4uKI
 func EncodeUrl(urlStr string) (string, error) {
 	URL, err := url.Parse(urlStr)
 	if err != nil {
