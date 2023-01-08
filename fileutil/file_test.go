@@ -96,16 +96,6 @@ func TestCopyFile(t *testing.T) {
 	os.Remove(destFile)
 }
 
-func TestListFileNames(t *testing.T) {
-	assert := internal.NewAssert(t, "TestListFileNames")
-
-	filesInPath, err := ListFileNames("./")
-	assert.IsNil(err)
-
-	expected := []string{"file.go", "file_test.go"}
-	assert.Equal(expected, filesInPath)
-}
-
 func TestReadFileToString(t *testing.T) {
 	assert := internal.NewAssert(t, "TestReadFileToString")
 
@@ -240,4 +230,14 @@ func TestMiMeType(t *testing.T) {
 	defer f.Close()
 	assert.Equal("text/plain; charset=utf-8", MiMeType(f))
 	assert.Equal("text/plain; charset=utf-8", MiMeType("./file.go"))
+}
+
+func TestListFileNames(t *testing.T) {
+	assert := internal.NewAssert(t, "TestListFileNames")
+
+	filesInPath, err := ListFileNames("../formatter/")
+	assert.IsNil(err)
+
+	expected := []string{"formatter.go", "formatter_example_test.go", "formatter_test.go"}
+	assert.Equal(expected, filesInPath)
 }
