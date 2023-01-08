@@ -394,16 +394,26 @@ import heap "github.com/duke-git/lancet/v2/datastructure/heap"
 import hashmap "github.com/duke-git/lancet/v2/datastructure/hashmap"
 ```
 
-#### Function list:
+#### Structure list:
 
--   [List](https://github.com/duke-git/lancet/blob/main/docs/datastructure/list.md)
--   [Linklist](https://github.com/duke-git/lancet/blob/main/docs/datastructure/linklist.md)
--   [Stack](https://github.com/duke-git/lancet/blob/main/docs/datastructure/stack.md)
--   [Queue](https://github.com/duke-git/lancet/blob/main/docs/datastructure/queue.md)
--   [Set](https://github.com/duke-git/lancet/blob/main/docs/datastructure/set.md)
--   [Tree](https://github.com/duke-git/lancet/blob/main/docs/datastructure/tree.md)
--   [Heap](https://github.com/duke-git/lancet/blob/main/docs/datastructure/heap.md)
--   [HashMap](https://github.com/duke-git/lancet/blob/main/docs/datastructure/hashmap.md)
+-   **<big>List</big>** : a linear table, implemented with slice.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datastructure/list.md)]
+-   **<big>Link</big>** : link list structure, contains singly link and doubly link.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datastructure/link.md)]
+-   **<big>Stack</big>** : stack structure(fifo), contains array stack and link stack.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datastructure/stack.md)]
+-   **<big>Queue</big>** : queue structure(filo), contains array queue, circular queue, link queue and priority queue.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datastructure/queue.md)]
+-   **<big>Set</big>** : a data container, like slice, but element of set is not duplicate.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datastructure/set.md)]
+-   **<big>Tree</big>** : binary search tree structure.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datastructure/tree.md)]
+-   **<big>Heap</big>** : a binary max heap.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datastructure/heap.md)]
+-   **<big>Hashmap</big>** : hash map structure.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datastructure/hashmap.md)]
+
+
 
 ### 8. Fileutil package implements some basic functions for file operations.
 

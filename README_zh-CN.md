@@ -395,14 +395,25 @@ import hashmap "github.com/duke-git/lancet/v2/datastructure/hashmap"
 
 #### Function list:
 
--   [List](https://github.com/duke-git/lancet/blob/main/docs/datastructure/list_zh-CN.md)
--   [Linklist](https://github.com/duke-git/lancet/blob/main/docs/datastructure/linklist_zh-CN.md)
--   [Stack](https://github.com/duke-git/lancet/blob/main/docs/datastructure/stack_zh-CN.md)
--   [Queue](https://github.com/duke-git/lancet/blob/main/docs/datastructure/queue_zh-CN.md)
--   [Set](https://github.com/duke-git/lancet/blob/main/docs/datastructure/set_zh-CN.md)
--   [Tree](https://github.com/duke-git/lancet/blob/main/docs/datastructure/tree_zh-CN.md)
--   [Heap](https://github.com/duke-git/lancet/blob/main/docs/datastructure/heap.md)
--   [HashMap](https://github.com/duke-git/lancet/blob/main/docs/datastructure/hashmap.md)
+-   **<big>List</big>** : 线性表结构, 用切片实现。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datastructure/list_zh-CN.md)]
+-   **<big>Link</big>** : 链表解构, 包括单链表和双向链表。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datastructure/link_zh-CN.md)]
+-   **<big>Stack</big>** : 栈结构(fifo), 包括数组栈和链表栈。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datastructure/stack_zh-CN.md)]
+-   **<big>Queue</big>** : 队列结构(filo), 包括数组队列，链表队列，循环队列，优先级队列。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datastructure/queue_zh-CN.md)]
+-   **<big>Set</big>** : 集合（set）结构。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datastructure/set_zh-CN.md)]
+-   **<big>Tree</big>** : 二叉搜索树。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datastructure/tree_zh-CN.md)]
+-   **<big>Heap</big>** : 二叉max堆。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datastructure/heap_zh-CN.md)]
+-   **<big>Hashmap</big>** : 哈希映射。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datastructure/hashmap_zh-CN.md)]
+
+
+
 
 ### 8. fileutil 包含文件基本操作。
 
