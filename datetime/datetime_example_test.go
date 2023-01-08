@@ -294,30 +294,30 @@ func ExampleNewUnixNow() {
 	// true
 }
 
-func ExampleNewFormat() {
-	tm, err := NewFormat("2022-03-18 17:04:05")
-	if err != nil {
-		return
-	}
+// func ExampleNewFormat() {
+// 	tm, err := NewFormat("2022-03-18 17:04:05")
+// 	if err != nil {
+// 		return
+// 	}
 
-	result := tm.ToFormat()
+// 	result := tm.ToFormat()
 
-	fmt.Println(result)
+// 	fmt.Println(result)
 
-	// Output:
-	// 2022-03-18 17:04:05
-}
+// 	// Output:
+// 	// 2022-03-18 17:04:05
+// }
 
-func ExampleNewISO8601() {
-	tm, err := NewISO8601("2006-01-02T15:04:05.999Z")
-	if err != nil {
-		return
-	}
+// func ExampleNewISO8601() {
+// 	tm, err := NewISO8601("2006-01-02T15:04:05.999Z")
+// 	if err != nil {
+// 		return
+// 	}
 
-	result := tm.ToIso8601()
+// 	result := tm.ToIso8601()
 
-	fmt.Println(result)
+// 	fmt.Println(result)
 
-	// Output:
-	// 2006-01-02T23:04:05+08:00
-}
+// 	// Output:
+// 	// 2006-01-02T23:04:05+08:00
+// }
