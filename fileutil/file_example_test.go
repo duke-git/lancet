@@ -19,7 +19,7 @@ func ExampleIsExist() {
 }
 
 func ExampleCreateFile() {
-	fname := "./test.txt"
+	fname := "./a.txt"
 
 	result1 := IsExist(fname)
 
