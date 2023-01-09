@@ -145,14 +145,6 @@ func unsafeInvokeFunc(fn any, args ...any) []reflect.Value {
 	return fv.Call(params)
 }
 
-func functionValue(function any) reflect.Value {
-	v := reflect.ValueOf(function)
-	if v.Kind() != reflect.Func {
-		panic(fmt.Sprintf("Invalid function type, value of type %T", function))
-	}
-	return v
-}
-
 func mustBeFunction(function any) {
 	v := reflect.ValueOf(function)
 	if v.Kind() != reflect.Func {

@@ -108,21 +108,21 @@ func ExampleDebounced() {
 }
 
 func ExampleSchedule() {
-	var result []string
+	count := 0
 
-	appendFn := func(s string) {
-		result = append(result, s)
+	increase := func() {
+		count++
 	}
 
-	stop := Schedule(1*time.Second, appendFn, "*")
+	stop := Schedule(1*time.Second, increase)
 
 	time.Sleep(3 * time.Second)
 	close(stop)
 
-	fmt.Println(result)
+	fmt.Println(count)
 
 	// Output:
-	// [* * *]
+	// 3
 }
 
 func ExamplePipeline() {
