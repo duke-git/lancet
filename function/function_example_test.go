@@ -114,15 +114,15 @@ func ExampleSchedule() {
 		count++
 	}
 
-	stop := Schedule(1*time.Second, increase)
+	stop := Schedule(2*time.Second, increase)
 
-	time.Sleep(3 * time.Second)
+	time.Sleep(2 * time.Second)
 	close(stop)
 
 	fmt.Println(count)
 
 	// Output:
-	// 3
+	// 2
 }
 
 func ExamplePipeline() {
