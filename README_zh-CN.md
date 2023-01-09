@@ -112,6 +112,7 @@ import "github.com/duke-git/lancet/v2/algorithm"
     [[play](https://go.dev/play/p/Anozfr8ZLH3)]
 -   **<big>LinearSearch</big>** : 基于传入的相等函数返回切片中目标值的索引。（线性查找）
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm_zh-CN.md#LinearSearch)]
+    [[play](https://go.dev/play/p/IsS7rgn5s3x)]
 -   **<big>LRUCache</big>** : 应用 lru 算法实现内存缓存.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm_zh-CN.md#LRUCache)]
     [[play](https://go.dev/play/p/-EZjgOURufP)]
@@ -126,24 +127,34 @@ import "github.com/duke-git/lancet/v2/concurrency"
 
 -   **<big>NewChannel</big>** : 返回一个 Channel 指针实例。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/concurrency_zh-CN.md#NewChannel)]
+    [[play](https://go.dev/play/p/7aB4KyMMp9A)]
 -   **<big>Bridge</big>** : 将多个 channel 链接到一个 channel，直到取消上下文。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/Bridge.md#NewChannel)]
+    [[play](https://go.dev/play/p/qmWSy1NVF-Y)]
 -   **<big>FanIn</big>** : 将多个 channel 合并为一个 channel，直到取消上下文。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/concurrency_zh-CN.md#FanIn)]
+    [[play](https://go.dev/play/p/2VYFMexEvTm)]
 -   **<big>Generate</big>** : 根据传入的值，生成 channel。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/concurrency_zh-CN.md#Generate)]
+    [[play](https://go.dev/play/p/7aB4KyMMp9A)]
 -   **<big>Or</big>** : 将一个或多个 channel 读取到一个 channel 中，当任何读取 channel 关闭时将结束读取。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/concurrency_zh-CN.md#Or)]
+    [[play](https://go.dev/play/p/Wqz9rwioPww)]
 -   **<big>OrDone</big>** : 将一个 channel 读入另一个 channel，直到取消上下文。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/concurrency_zh-CN.md#OrDone)]
+    [[play](https://go.dev/play/p/lm_GoS6aDjo)]
 -   **<big>Repeat</big>** : 返回一个 channel，将参数`values`重复放入 channel，直到取消上下文。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/concurrency_zh-CN.md#Repeat)]
+    [[play](https://go.dev/play/p/k5N_ALVmYjE)]
 -   **<big>RepeatFn</big>** : 返回一个 channel，重复执行函数 fn，并将结果放入返回的 channel，直到取消上下文。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/concurrency_zh-CN.md#RepeatFn)]
+    [[play](https://go.dev/play/p/4J1zAWttP85)]
 -   **<big>Take</big>** : 返回一个 channel，其值从另一个 channel 获取，直到取消上下文。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/concurrency_zh-CN.md#Take)]
+    [[play](https://go.dev/play/p/9Utt-1pDr2J)]
 -   **<big>Tee</big>** : 将一个 channel 分成两个 channel，直到取消上下文。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/concurrency_zh-CN.md#Tee)]
+    [[play](https://go.dev/play/p/3TQPKnCirrP)]
 
 ### 3. condition 包含一些用于条件判断的函数。
 
@@ -559,8 +570,10 @@ import "github.com/duke-git/lancet/v2/function"
     [[play](https://go.dev/play/p/0HqUDIFZ3IL)]
 -   **<big>CurryFn</big>** : 创建柯里化函数。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/function_zh-CN.md#CurryFn)]
+    [[play](https://go.dev/play/p/5HopfDwANKX)]
 -   **<big>Compose</big>** : 从右至左组合函数列表fnList，返回组合后的函数。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/function_zh-CN.md#Compose)]
+    [[play](https://go.dev/play/p/KKfugD4PKYF)]
 -   **<big>Delay</big>** : 延迟delay时间后调用函数。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/function_zh-CN.md#Delay)]
     [[play](https://go.dev/play/p/Ivtc2ZE-Tye)]
@@ -575,6 +588,7 @@ import "github.com/duke-git/lancet/v2/function"
     [[play](https://go.dev/play/p/mPdUVvj6HD6)]
 -   **<big>Watcher</big>** : Watcher用于记录代码执行时间。可以启动/停止/重置手表定时器。获取函数执行的时间。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/function_zh-CN.md#Watcher)]
+    [[play](https://go.dev/play/p/l2yrOpCLd1I)]
 
 
 ### 11. maputil 包括一些操作 map 的函数.
@@ -644,6 +658,7 @@ import "github.com/duke-git/lancet/v2/mathutil"
     [[play](https://go.dev/play/p/N9qgYg_Ho6f)]
 -   **<big>Percent</big>** : 计算百分比，可以指定保留 n 位小数。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#Percent)]
+    [[play](https://go.dev/play/p/QQM9B13coSP)]
 -   **<big>RoundToFloat</big>** : 四舍五入，保留 n 位小数，返回 float64。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#RoundToFloat)]
     [[play](https://go.dev/play/p/ghyb528JRJL)]
@@ -1010,6 +1025,7 @@ import "github.com/duke-git/lancet/v2/strutil"
     [[play](https://go.dev/play/p/Us-ySSbWh-3)]
 -   **<big>Substring</big>** : 根据指定的位置和长度截取子字符串。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#Substring)]
+    [[play](https://go.dev/play/p/q3sM6ehnPDp)]
 -   **<big>Wrap</big>** : 用给定字符包裹传入的字符串
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#Wrap)]
     [[play](https://go.dev/play/p/KoZOlZDDt9y)]

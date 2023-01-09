@@ -113,6 +113,7 @@ import "github.com/duke-git/lancet/v2/algorithm"
     [[play](https://go.dev/play/p/Anozfr8ZLH3)]
 -   **<big>LinearSearch</big>** : returns the index of target in slice base on equal function.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#LinearSearch)]
+    [[play](https://go.dev/play/p/IsS7rgn5s3x)]
 -   **<big>LRUCache</big>** : implements memory cache with lru algorithm.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#LRUCache)]
     [[play](https://go.dev/play/p/-EZjgOURufP)]
@@ -127,24 +128,34 @@ import "github.com/duke-git/lancet/v2/concurrency"
 
 -   **<big>NewChannel</big>** : create a Channel pointer instance.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/concurrency.md#NewChannel)]
+    [[play](https://go.dev/play/p/7aB4KyMMp9A)]
 -   **<big>Bridge</big>** : link multiply channels into one channel.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/Bridge.md#NewChannel)]
+    [[play](https://go.dev/play/p/qmWSy1NVF-Y)]
 -   **<big>FanIn</big>** : merge multiple channels into one channel.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/concurrency.md#FanIn)]
+    [[play](https://go.dev/play/p/2VYFMexEvTm)]
 -   **<big>Generate</big>** : creates a channel, then put values into the channel.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/concurrency.md#Generate)]
+    [[play](https://go.dev/play/p/7aB4KyMMp9A)]
 -   **<big>Or</big>** : read one or more channels into one channel, will close when any readin channel is closed.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/concurrency.md#Or)]
+    [[play](https://go.dev/play/p/Wqz9rwioPww)]
 -   **<big>OrDone</big>** : read a channel into another channel, will close until cancel context.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/concurrency.md#OrDone)]
+    [[play](https://go.dev/play/p/lm_GoS6aDjo)]
 -   **<big>Repeat</big>** : create channel, put values into the channel repeatly until cancel the context.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/concurrency.md#Repeat)]
+    [[play](https://go.dev/play/p/k5N_ALVmYjE)]
 -   **<big>RepeatFn</big>** : create a channel, excutes fn repeatly, and put the result into the channel, until close context.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/concurrency.md#RepeatFn)]
+    [[play](https://go.dev/play/p/4J1zAWttP85)]
 -   **<big>Take</big>** : create a channel whose values are taken from another channel with limit number.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/concurrency.md#Take)]
+    [[play](https://go.dev/play/p/9Utt-1pDr2J)]
 -   **<big>Tee</big>** : split one chanel into two channels, until cancel the context.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/concurrency.md#Tee)]
+    [[play](https://go.dev/play/p/3TQPKnCirrP)]
 
 ### 3. Condition package contains some functions for conditional judgment. eg. And, Or, TernaryOperator...
 
@@ -556,8 +567,10 @@ import "github.com/duke-git/lancet/v2/function"
     [[play](https://go.dev/play/p/0HqUDIFZ3IL)]
 -   **<big>CurryFn</big>** : make a curry function.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/function.md#CurryFn)]
+    [[play](https://go.dev/play/p/5HopfDwANKX)]
 -   **<big>Compose</big>** : compose the functions from right to left.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/function.md#Compose)]
+    [[play](https://go.dev/play/p/KKfugD4PKYF)]
 -   **<big>Delay</big>** : call the function after delayed time.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/function.md#Delay)]
     [[play](https://go.dev/play/p/Ivtc2ZE-Tye)]
@@ -572,6 +585,8 @@ import "github.com/duke-git/lancet/v2/function"
     [[play](https://go.dev/play/p/mPdUVvj6HD6)]
 -   **<big>Watcher</big>** : Watcher is used for record code excution time. can start/stop/reset the watch timer. get the elapsed time of function execution.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/function.md#Watcher)]
+    [[play](https://go.dev/play/p/l2yrOpCLd1I)]
+
 
 ### 11. Maputil package includes some functions to manipulate map.
 
@@ -640,6 +655,7 @@ import "github.com/duke-git/lancet/v2/mathutil"
     [[play](https://go.dev/play/p/N9qgYg_Ho6f)]
 -   **<big>Percent</big>** : calculate the percentage of value to total.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#Percent)]
+    [[play](https://go.dev/play/p/QQM9B13coSP)]
 -   **<big>RoundToFloat</big>** : round up to n decimal places for float64.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#RoundToFloat)]
     [[play](https://go.dev/play/p/ghyb528JRJL)]
@@ -1000,6 +1016,7 @@ import "github.com/duke-git/lancet/v2/strutil"
     [[play](https://go.dev/play/p/Us-ySSbWh-3)]
 -   **<big>Substring</big>** : returns a substring of the specific length starting at the specific offset position.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#Substring)]
+    [[play](https://go.dev/play/p/q3sM6ehnPDp)]
 -   **<big>Wrap</big>** : wrap a string with given string.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#Wrap)]
     [[play](https://go.dev/play/p/KoZOlZDDt9y)]

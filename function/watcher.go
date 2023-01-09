@@ -3,7 +3,7 @@ package function
 import "time"
 
 // Watcher is used for record code excution time
-// Play: Todo
+// Play: https://go.dev/play/p/l2yrOpCLd1I
 type Watcher struct {
 	startTime int64
 	stopTime  int64

@@ -10,7 +10,7 @@ import "github.com/duke-git/lancet/v2/lancetconstraints"
 
 // LinearSearch return the index of target in slice base on equal function.
 // If not found return -1
-// Play: Todo
+// Play: https://go.dev/play/p/IsS7rgn5s3x
 func LinearSearch[T any](slice []T, target T, equal func(a, b T) bool) int {
 	for i, v := range slice {
 		if equal(v, target) {

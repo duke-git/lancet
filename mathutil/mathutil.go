@@ -55,7 +55,7 @@ func Factorial(x uint) uint {
 }
 
 // Percent calculate the percentage of value to total.
-// Play: Todo
+// Play: https://go.dev/play/p/QQM9B13coSP
 func Percent(val, total float64, n int) float64 {
 	if total == 0 {
 		return float64(0)

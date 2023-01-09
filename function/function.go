@@ -47,7 +47,7 @@ func Before(n int, fn any) func(args ...any) []reflect.Value {
 type CurryFn[T any] func(...T) T
 
 // New make a curry function for specific value.
-// Play: Todo
+// Play: https://go.dev/play/p/5HopfDwANKX
 func (cf CurryFn[T]) New(val T) func(...T) T {
 	return func(vals ...T) T {
 		args := append([]T{val}, vals...)
@@ -56,7 +56,7 @@ func (cf CurryFn[T]) New(val T) func(...T) T {
 }
 
 // Compose compose the functions from right to left.
-// Play: Todo
+// Play: https://go.dev/play/p/KKfugD4PKYF
 func Compose[T any](fnList ...func(...T) T) func(...T) T {
 	return func(args ...T) T {
 		firstFn := fnList[0]
