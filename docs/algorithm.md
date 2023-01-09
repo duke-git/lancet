@@ -60,22 +60,22 @@ import (
     "github.com/duke-git/lancet/v2/algorithm"
 )
 
-func main() {
-    type intComparator struct{}
+type intComparator struct{}
 
-    func (c *intComparator) Compare(v1 any, v2 any) int {
-        val1, _ := v1.(int)
-        val2, _ := v2.(int)
+func (c *intComparator) Compare(v1 any, v2 any) int {
+    val1, _ := v1.(int)
+    val2, _ := v2.(int)
 
-        //ascending order
-        if val1 < val2 {
-            return -1
-        } else if val1 > val2 {
-            return 1
-        }
-        return 0
+    //ascending order
+    if val1 < val2 {
+        return -1
+    } else if val1 > val2 {
+        return 1
     }
+    return 0
+}
 
+func main() {
     intSlice := []int{2, 1, 5, 3, 6, 4}
     comparator := &intComparator{}
     algorithm.BubbleSort(intSlice, comparator)
@@ -83,8 +83,6 @@ func main() {
     fmt.Println(intSlice) //[]int{1, 2, 3, 4, 5, 6}
 }
 ```
-
-
 
 
 ### <span id="InsertionSort">InsertionSort</span>
@@ -105,36 +103,36 @@ import (
     "github.com/duke-git/lancet/v2/algorithm"
 )
 
+type people struct {
+    Name string
+    Age  int
+}
+
+// PeopleAageComparator sort people slice by age field
+type peopleAgeComparator struct{}
+
+// Compare implements github.com/duke-git/lancet/lancetconstraints/constraints.go/Comparator
+func (pc *peopleAgeComparator) Compare(v1 any, v2 any) int {
+    p1, _ := v1.(people)
+    p2, _ := v2.(people)
+
+    //ascending order
+    if p1.Age < p2.Age {
+        return -1
+    } else if p1.Age > p2.Age {
+        return 1
+    }
+    return 0
+
+    //decending order
+    // if p1.Age > p2.Age {
+    // 	return -1
+    // } else if p1.Age < p2.Age {
+    // 	return 1
+    // }
+}
+
 func main() {
-    type people struct {
-        Name string
-        Age  int
-    }
-
-    // PeopleAageComparator sort people slice by age field
-    type peopleAgeComparator struct{}
-
-    // Compare implements github.com/duke-git/lancet/lancetconstraints/constraints.go/Comparator
-    func (pc *peopleAgeComparator) Compare(v1 any, v2 any) int {
-        p1, _ := v1.(people)
-        p2, _ := v2.(people)
-
-        //ascending order
-        if p1.Age < p2.Age {
-            return -1
-        } else if p1.Age > p2.Age {
-            return 1
-        }
-        return 0
-
-        //decending order
-        // if p1.Age > p2.Age {
-        // 	return -1
-        // } else if p1.Age < p2.Age {
-        // 	return 1
-        // }
-    }
-
     var peoples = []people{
         {Name: "a", Age: 20},
         {Name: "b", Age: 10},
@@ -148,7 +146,6 @@ func main() {
     fmt.Println(peoples) //[{d 8} {b 10} {c 17} {a 20} {e 28}]
 }
 ```
-
 
 
 
@@ -170,22 +167,22 @@ import (
     "github.com/duke-git/lancet/v2/algorithm"
 )
 
-func main() {
-    type intComparator struct{}
+type intComparator struct{}
 
-    func (c *intComparator) Compare(v1 any, v2 any) int {
-        val1, _ := v1.(int)
-        val2, _ := v2.(int)
+func (c *intComparator) Compare(v1 any, v2 any) int {
+    val1, _ := v1.(int)
+    val2, _ := v2.(int)
 
-        //ascending order
-        if val1 < val2 {
-            return -1
-        } else if val1 > val2 {
-            return 1
-        }
-        return 0
+    //ascending order
+    if val1 < val2 {
+        return -1
+    } else if val1 > val2 {
+        return 1
     }
+    return 0
+}
 
+func main() {
     intSlice := []int{2, 1, 5, 3, 6, 4}
     comparator := &intComparator{}
     algorithm.SelectionSort(intSlice, comparator)
@@ -193,8 +190,6 @@ func main() {
     fmt.Println(intSlice) //[]int{1, 2, 3, 4, 5, 6}
 }
 ```
-
-
 
 
 ### <span id="ShellSort">ShellSort</span>
@@ -215,22 +210,22 @@ import (
     "github.com/duke-git/lancet/v2/algorithm"
 )
 
-func main() {
-    type intComparator struct{}
+type intComparator struct{}
 
-    func (c *intComparator) Compare(v1 any, v2 any) int {
-        val1, _ := v1.(int)
-        val2, _ := v2.(int)
+func (c *intComparator) Compare(v1 any, v2 any) int {
+    val1, _ := v1.(int)
+    val2, _ := v2.(int)
 
-        //ascending order
-        if val1 < val2 {
-            return -1
-        } else if val1 > val2 {
-            return 1
-        }
-        return 0
+    //ascending order
+    if val1 < val2 {
+        return -1
+    } else if val1 > val2 {
+        return 1
     }
+    return 0
+}
 
+func main() {
     intSlice := []int{2, 1, 5, 3, 6, 4}
     comparator := &intComparator{}
     algorithm.ShellSort(intSlice, comparator)
@@ -238,8 +233,6 @@ func main() {
     fmt.Println(intSlice) //[]int{1, 2, 3, 4, 5, 6}
 }
 ```
-
-
 
 
 ### <span id="QuickSort">QuickSort</span>
@@ -260,22 +253,22 @@ import (
     "github.com/duke-git/lancet/v2/algorithm"
 )
 
-func main() {
-    type intComparator struct{}
+type intComparator struct{}
 
-    func (c *intComparator) Compare(v1 any, v2 any) int {
-        val1, _ := v1.(int)
-        val2, _ := v2.(int)
+func (c *intComparator) Compare(v1 any, v2 any) int {
+    val1, _ := v1.(int)
+    val2, _ := v2.(int)
 
-        //ascending order
-        if val1 < val2 {
-            return -1
-        } else if val1 > val2 {
-            return 1
-        }
-        return 0
+    //ascending order
+    if val1 < val2 {
+        return -1
+    } else if val1 > val2 {
+        return 1
     }
+    return 0
+}
 
+func main() {
     intSlice := []int{2, 1, 5, 3, 6, 4}
     comparator := &intComparator{}
     algorithm.QuickSort(intSlice, comparator)
@@ -283,8 +276,6 @@ func main() {
     fmt.Println(intSlice) //[]int{1, 2, 3, 4, 5, 6}
 }
 ```
-
-
 
 
 ### <span id="HeapSort">HeapSort</span>
@@ -305,22 +296,22 @@ import (
     "github.com/duke-git/lancet/v2/algorithm"
 )
 
-func main() {
-    type intComparator struct{}
+type intComparator struct{}
 
-    func (c *intComparator) Compare(v1 any, v2 any) int {
-        val1, _ := v1.(int)
-        val2, _ := v2.(int)
+func (c *intComparator) Compare(v1 any, v2 any) int {
+    val1, _ := v1.(int)
+    val2, _ := v2.(int)
 
-        //ascending order
-        if val1 < val2 {
-            return -1
-        } else if val1 > val2 {
-            return 1
-        }
-        return 0
+    //ascending order
+    if val1 < val2 {
+        return -1
+    } else if val1 > val2 {
+        return 1
     }
+    return 0
+}
 
+func main() {
     intSlice := []int{2, 1, 5, 3, 6, 4}
     comparator := &intComparator{}
     algorithm.HeapSort(intSlice, comparator)
@@ -328,8 +319,6 @@ func main() {
     fmt.Println(intSlice) //[]int{1, 2, 3, 4, 5, 6}
 }
 ```
-
-
 
 
 ### <span id="MergeSort">MergeSort</span>
@@ -350,22 +339,22 @@ import (
     "github.com/duke-git/lancet/v2/algorithm"
 )
 
-func main() {
-    type intComparator struct{}
+type intComparator struct{}
 
-    func (c *intComparator) Compare(v1 any, v2 any) int {
-        val1, _ := v1.(int)
-        val2, _ := v2.(int)
+func (c *intComparator) Compare(v1 any, v2 any) int {
+    val1, _ := v1.(int)
+    val2, _ := v2.(int)
 
-        //ascending order
-        if val1 < val2 {
-            return -1
-        } else if val1 > val2 {
-            return 1
-        }
-        return 0
+    //ascending order
+    if val1 < val2 {
+        return -1
+    } else if val1 > val2 {
+        return 1
     }
+    return 0
+}
 
+func main() {
     intSlice := []int{2, 1, 5, 3, 6, 4}
     comparator := &intComparator{}
     algorithm.MergeSort(intSlice, comparator)
@@ -373,7 +362,6 @@ func main() {
     fmt.Println(intSlice) //[]int{1, 2, 3, 4, 5, 6}
 }
 ```
-
 
 
 ### <span id="CountSort">CountSort</span>
@@ -394,22 +382,23 @@ import (
     "github.com/duke-git/lancet/v2/algorithm"
 )
 
-func main() {
-    type intComparator struct{}
 
-    func (c *intComparator) Compare(v1 any, v2 any) int {
-        val1, _ := v1.(int)
-        val2, _ := v2.(int)
+type intComparator struct{}
 
-        //ascending order
-        if val1 < val2 {
-            return -1
-        } else if val1 > val2 {
-            return 1
-        }
-        return 0
+func (c *intComparator) Compare(v1 any, v2 any) int {
+    val1, _ := v1.(int)
+    val2, _ := v2.(int)
+
+    //ascending order
+    if val1 < val2 {
+        return -1
+    } else if val1 > val2 {
+        return 1
     }
+    return 0
+}
 
+func main() {
     intSlice := []int{2, 1, 5, 3, 6, 4}
     comparator := &intComparator{}
     sortedSlice := algorithm.CountSort(intSlice, comparator)
@@ -417,8 +406,6 @@ func main() {
     fmt.Println(sortedSlice) //[]int{1, 2, 3, 4, 5, 6}
 }
 ```
-
-
 
 
 ### <span id="BinarySearch">BinarySearch</span>
@@ -439,22 +426,22 @@ import (
     "github.com/duke-git/lancet/v2/algorithm"
 )
 
-func main() {
-    type intComparator struct{}
+type intComparator struct{}
 
-    func (c *intComparator) Compare(v1 any, v2 any) int {
-        val1, _ := v1.(int)
-        val2, _ := v2.(int)
+func (c *intComparator) Compare(v1 any, v2 any) int {
+    val1, _ := v1.(int)
+    val2, _ := v2.(int)
 
-        //ascending order
-        if val1 < val2 {
-            return -1
-        } else if val1 > val2 {
-            return 1
-        }
-        return 0
+    //ascending order
+    if val1 < val2 {
+        return -1
+    } else if val1 > val2 {
+        return 1
     }
+    return 0
+}
 
+func main() {
     var sortedNumbers = []int{1, 2, 3, 4, 5, 6, 7, 8}
     comparator := &intComparator{}
     foundIndex := algorithm.BinarySearch(sortedNumbers, 5, 0, len(sortedNumbers)-1, comparator)
@@ -464,8 +451,6 @@ func main() {
     fmt.Println(notFoundIndex) //-1
 }
 ```
-
-
 
 ### <span id="BinaryIterativeSearch">BinaryIterativeSearch</span>
 <p>BinaryIterativeSearch search for target within a sorted slice, recursive call itself. If a target is found, the index of the target is returned. Else the function return -1.</p>
@@ -485,22 +470,22 @@ import (
     "github.com/duke-git/lancet/v2/algorithm"
 )
 
-func main() {
-    type intComparator struct{}
+type intComparator struct{}
 
-    func (c *intComparator) Compare(v1 any, v2 any) int {
-        val1, _ := v1.(int)
-        val2, _ := v2.(int)
+func (c *intComparator) Compare(v1 any, v2 any) int {
+    val1, _ := v1.(int)
+    val2, _ := v2.(int)
 
-        //ascending order
-        if val1 < val2 {
-            return -1
-        } else if val1 > val2 {
-            return 1
-        }
-        return 0
+    //ascending order
+    if val1 < val2 {
+        return -1
+    } else if val1 > val2 {
+        return 1
     }
+    return 0
+}
 
+func main() {
     var sortedNumbers = []int{1, 2, 3, 4, 5, 6, 7, 8}
     comparator := &intComparator{}
     foundIndex := algorithm.BinaryIterativeSearch(sortedNumbers, 5, 0, len(sortedNumbers)-1, comparator)
@@ -512,15 +497,13 @@ func main() {
 ```
 
 
-
-
 ### <span id="LinearSearch">LinearSearch</span>
-<p>LinearSearch Simple linear search algorithm that iterates over all elements of an slice. If a target is found, the index of the target is returned. Else the function return -1.</p>
+<p>return the index of target in slice base on equal function.If a target is found, the index of the target is returned. Else the function return -1.</p>
 
 <b>Signature:</b>
 
 ```go
-func LinearSearch[T any](slice []T, target T, comparator lancetconstraints.Comparator) int
+func LinearSearch[T any](slice []T, target T, equal func(a, b T) bool) int
 ```
 <b>Example:</b>
 
@@ -533,32 +516,23 @@ import (
 )
 
 func main() {
-    type intComparator struct{}
+    numbers := []int{3, 4, 5, 3, 2, 1}
 
-    func (c *intComparator) Compare(v1 any, v2 any) int {
-        val1, _ := v1.(int)
-        val2, _ := v2.(int)
+	equalFunc := func(a, b int) bool {
+		return a == b
+	}
 
-        //ascending order
-        if val1 < val2 {
-            return -1
-        } else if val1 > val2 {
-            return 1
-        }
-        return 0
-    }
+	result1 := algorithm.LinearSearch(numbers, 3, equalFunc)
+	result2 := algorithm.LinearSearch(numbers, 6, equalFunc)
 
-    intSlice := []int{2, 1, 5, 3, 6, 4}
-    comparator := &intComparator{}
-    foundIndex := algorithm.LinearSearch(intSlice, 5, comparator)
-    fmt.Println(foundIndex) //2
+	fmt.Println(result1)
+	fmt.Println(result2)
 
-    notFoundIndex := algorithm.LinearSearch(sortedNumbers, 0, comparator)
-    fmt.Println(notFoundIndex) //-1
+	// Output:
+	// 0
+	// -1
 }
 ```
-
-
 
 
 ### <span id="LRUCache">LRUCache</span>
