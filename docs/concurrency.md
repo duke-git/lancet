@@ -61,8 +61,6 @@ func main() {
 }
 ```
 
-
-
 ### <span id="Bridge">Bridge</span>
 
 <p>Link multiple channels into one channel until cancel the context.</p>
@@ -105,6 +103,7 @@ func main() {
 	for v := range c.Bridge(ctx, genVals()) {
 		fmt.Println(v)
 	}
+
 	// Output:
 	// 1
 	// 2
@@ -113,9 +112,6 @@ func main() {
 	// 5
 }
 ```
-
-
-
 
 ### <span id="FanIn">FanIn</span>
 
@@ -156,7 +152,6 @@ func main() {
 }
 ```
 
-
 ### <span id="Repeat">Repeat</span>
 
 <p>Create channel, put values into the channel repeatly until cancel the context.</p>
@@ -187,6 +182,7 @@ func main() {
 	for v := range intStream {
 		fmt.Println(v)
 	}
+
 	// Output:
 	// 1
 	// 2
@@ -194,8 +190,6 @@ func main() {
 	// 2
 }
 ```
-
-
 
 ### <span id="Generate">Generate</span>
 
@@ -269,14 +263,13 @@ func main() {
 	for v := range intStream {
 		fmt.Println(v)
 	}
+
 	// Output:
 	// hello
 	// hello
 	// hello
 }
 ```
-
-
 
 ### <span id="Or">Or</span>
 
@@ -321,9 +314,6 @@ func main() {
 }
 ```
 
-
-
-
 ### <span id="OrDone">OrDone</span>
 
 <p>Read a channel into another channel, will close until cancel context.</p>
@@ -354,15 +344,13 @@ func main() {
 	for v := range c.OrDone(ctx, intStream) {
 		fmt.Println(v)
 	}
+
 	// Output:
 	// 1
 	// 1
 	// 1
 }
 ```
-
-
-
 
 ### <span id="Take">Take</span>
 
@@ -402,14 +390,13 @@ func main() {
 	for v := range intStream {
 		fmt.Println(v)
 	}
+
 	// Output:
 	// 1
 	// 2
 	// 3
 }
 ```
-
-
 
 ### <span id="Tee">Tee</span>
 
@@ -444,6 +431,7 @@ func main() {
 		fmt.Println(v)
 		fmt.Println(<-ch2)
 	}
+	
 	// Output:
 	// 1
 	// 1

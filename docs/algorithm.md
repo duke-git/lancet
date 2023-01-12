@@ -40,8 +40,6 @@ import (
 
 ## Documentation
 
-
-
 ### <span id="BubbleSort">BubbleSort</span>
 <p>Sort slice with bubble sort algorithm. Param comparator should implements lancetconstraints.Comparator.</p>
 
@@ -76,14 +74,17 @@ func (c *intComparator) Compare(v1 any, v2 any) int {
 }
 
 func main() {
-    intSlice := []int{2, 1, 5, 3, 6, 4}
+    numbers := []int{2, 1, 5, 3, 6, 4}
     comparator := &intComparator{}
-    algorithm.BubbleSort(intSlice, comparator)
 
-    fmt.Println(intSlice) //[]int{1, 2, 3, 4, 5, 6}
+    algorithm.BubbleSort(numbers, comparator)
+
+    fmt.Println(numbers)
+
+    // Output:
+	// [1 2 3 4 5 6]
 }
 ```
-
 
 ### <span id="InsertionSort">InsertionSort</span>
 <p>Sort slice with insertion sort algorithm. Param comparator should implements lancetconstraints.Comparator.</p>
@@ -122,31 +123,29 @@ func (pc *peopleAgeComparator) Compare(v1 any, v2 any) int {
     } else if p1.Age > p2.Age {
         return 1
     }
-    return 0
 
-    //decending order
-    // if p1.Age > p2.Age {
-    // 	return -1
-    // } else if p1.Age < p2.Age {
-    // 	return 1
-    // }
+    return 0
 }
 
 func main() {
-    var peoples = []people{
+    peoples := []people{
         {Name: "a", Age: 20},
         {Name: "b", Age: 10},
         {Name: "c", Age: 17},
         {Name: "d", Age: 8},
         {Name: "e", Age: 28},
     }
+
     comparator := &peopleAgeComparator{}
+
     algorithm.InsertionSort(peoples, comparator)
 
-    fmt.Println(peoples) //[{d 8} {b 10} {c 17} {a 20} {e 28}]
+    fmt.Println(peoples)
+    
+    // Output:
+    //[{d 8} {b 10} {c 17} {a 20} {e 28}]
 }
 ```
-
 
 
 ### <span id="SelectionSort">SelectionSort</span>
@@ -183,14 +182,17 @@ func (c *intComparator) Compare(v1 any, v2 any) int {
 }
 
 func main() {
-    intSlice := []int{2, 1, 5, 3, 6, 4}
+    numbers := []int{2, 1, 5, 3, 6, 4}
     comparator := &intComparator{}
-    algorithm.SelectionSort(intSlice, comparator)
 
-    fmt.Println(intSlice) //[]int{1, 2, 3, 4, 5, 6}
+    algorithm.SelectionSort(numbers, comparator)
+
+    fmt.Println(numbers)
+
+    // Output:
+	// [1 2 3 4 5 6]
 }
 ```
-
 
 ### <span id="ShellSort">ShellSort</span>
 <p>Sort slice with shell sort algorithm. Param comparator should implements lancetconstraints.Comparator.</p>
@@ -226,14 +228,17 @@ func (c *intComparator) Compare(v1 any, v2 any) int {
 }
 
 func main() {
-    intSlice := []int{2, 1, 5, 3, 6, 4}
+    numbers := []int{2, 1, 5, 3, 6, 4}
     comparator := &intComparator{}
-    algorithm.ShellSort(intSlice, comparator)
 
-    fmt.Println(intSlice) //[]int{1, 2, 3, 4, 5, 6}
+    algorithm.ShellSort(numbers, comparator)
+
+    fmt.Println(numbers)
+
+    // Output:
+	// [1 2 3 4 5 6]
 }
 ```
-
 
 ### <span id="QuickSort">QuickSort</span>
 <p>Sort slice with quick sort algorithm. Param comparator should implements lancetconstraints.Comparator.</p>
@@ -269,14 +274,17 @@ func (c *intComparator) Compare(v1 any, v2 any) int {
 }
 
 func main() {
-    intSlice := []int{2, 1, 5, 3, 6, 4}
+    numbers := []int{2, 1, 5, 3, 6, 4}
     comparator := &intComparator{}
-    algorithm.QuickSort(intSlice, comparator)
 
-    fmt.Println(intSlice) //[]int{1, 2, 3, 4, 5, 6}
+    algorithm.QuickSort(numbers, comparator)
+
+    fmt.Println(numbers)
+
+    // Output:
+	// [1 2 3 4 5 6]
 }
 ```
-
 
 ### <span id="HeapSort">HeapSort</span>
 <p>Sort slice with heap sort algorithm. Param comparator should implements lancetconstraints.Comparator.</p>
@@ -312,14 +320,17 @@ func (c *intComparator) Compare(v1 any, v2 any) int {
 }
 
 func main() {
-    intSlice := []int{2, 1, 5, 3, 6, 4}
+    numbers := []int{2, 1, 5, 3, 6, 4}
     comparator := &intComparator{}
-    algorithm.HeapSort(intSlice, comparator)
 
-    fmt.Println(intSlice) //[]int{1, 2, 3, 4, 5, 6}
+    algorithm.HeapSort(numbers, comparator)
+
+    fmt.Println(numbers)
+
+    // Output:
+	// [1 2 3 4 5 6]
 }
 ```
-
 
 ### <span id="MergeSort">MergeSort</span>
 <p>Sort slice with merge sort algorithm. Param comparator should implements lancetconstraints.Comparator.</p>
@@ -355,14 +366,17 @@ func (c *intComparator) Compare(v1 any, v2 any) int {
 }
 
 func main() {
-    intSlice := []int{2, 1, 5, 3, 6, 4}
+    numbers := []int{2, 1, 5, 3, 6, 4}
     comparator := &intComparator{}
-    algorithm.MergeSort(intSlice, comparator)
 
-    fmt.Println(intSlice) //[]int{1, 2, 3, 4, 5, 6}
+    algorithm.MergeSort(numbers, comparator)
+
+    fmt.Println(numbers)
+
+    // Output:
+	// [1 2 3 4 5 6]
 }
 ```
-
 
 ### <span id="CountSort">CountSort</span>
 <p>Sort slice with count sort algorithm. Param comparator should implements lancetconstraints.Comparator.</p>
@@ -399,14 +413,17 @@ func (c *intComparator) Compare(v1 any, v2 any) int {
 }
 
 func main() {
-    intSlice := []int{2, 1, 5, 3, 6, 4}
+    numbers := []int{2, 1, 5, 3, 6, 4}
     comparator := &intComparator{}
-    sortedSlice := algorithm.CountSort(intSlice, comparator)
 
-    fmt.Println(sortedSlice) //[]int{1, 2, 3, 4, 5, 6}
+    sortedNums := algorithm.CountSort(numbers, comparator)
+
+    fmt.Println(sortedNums)
+
+    // Output:
+	// [1 2 3 4 5 6]
 }
 ```
-
 
 ### <span id="BinarySearch">BinarySearch</span>
 <p>BinarySearch search for target within a sorted slice, recursive call itself. If a target is found, the index of the target is returned. Else the function return -1.</p>
@@ -442,13 +459,18 @@ func (c *intComparator) Compare(v1 any, v2 any) int {
 }
 
 func main() {
-    var sortedNumbers = []int{1, 2, 3, 4, 5, 6, 7, 8}
-    comparator := &intComparator{}
-    foundIndex := algorithm.BinarySearch(sortedNumbers, 5, 0, len(sortedNumbers)-1, comparator)
-    fmt.Println(foundIndex) //4
+    numbers := []int{1, 2, 3, 4, 5, 6, 7, 8}
+	comparator := &intComparator{}
 
-    notFoundIndex := algorithm.BinarySearch(sortedNumbers, 9, 0, len(sortedNumbers)-1, comparator)
-    fmt.Println(notFoundIndex) //-1
+	result1 := algorithm.BinarySearch(numbers, 5, 0, len(numbers)-1, comparator)
+	result2 := algorithm.BinarySearch(numbers, 9, 0, len(numbers)-1, comparator)
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+
+	// Output:
+	// 4
+	// -1
 }
 ```
 
@@ -486,16 +508,20 @@ func (c *intComparator) Compare(v1 any, v2 any) int {
 }
 
 func main() {
-    var sortedNumbers = []int{1, 2, 3, 4, 5, 6, 7, 8}
-    comparator := &intComparator{}
-    foundIndex := algorithm.BinaryIterativeSearch(sortedNumbers, 5, 0, len(sortedNumbers)-1, comparator)
-    fmt.Println(foundIndex) //4
+    numbers := []int{1, 2, 3, 4, 5, 6, 7, 8}
+	comparator := &intComparator{}
 
-    notFoundIndex := algorithm.BinaryIterativeSearch(sortedNumbers, 9, 0, len(sortedNumbers)-1, comparator)
-    fmt.Println(notFoundIndex) //-1
+	result1 := algorithm.BinaryIterativeSearch(numbers, 5, 0, len(numbers)-1, comparator)
+	result2 := algorithm.BinaryIterativeSearch(numbers, 9, 0, len(numbers)-1, comparator)
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+
+	// Output:
+	// 4
+	// -1
 }
 ```
-
 
 ### <span id="LinearSearch">LinearSearch</span>
 <p>return the index of target in slice base on equal function.If a target is found, the index of the target is returned. Else the function return -1.</p>
@@ -534,7 +560,6 @@ func main() {
 }
 ```
 
-
 ### <span id="LRUCache">LRUCache</span>
 <p>LRUCache implements mem cache with lru.</p>
 
@@ -560,16 +585,28 @@ import (
 func main() {
     cache := algorithm.NewLRUCache[int, int](2)
 
-    cache.Put(1, 1)
-    cache.Put(2, 2)
-    cache.Put(3, 3)
+	cache.Put(1, 1)
+	cache.Put(2, 2)
 
-    fmt.Println(cache.Len()) // 3
+	result1, ok1 := cache.Get(1)
+	result2, ok2 := cache.Get(2)
+	result3, ok3 := cache.Get(3)
 
-    v, ok := cache.Get(1)
-    fmt.Println(v, ok) // 1 true
+	fmt.Println(result1, ok1)
+	fmt.Println(result2, ok2)
+	fmt.Println(result3, ok3)
 
-    ok = cache.Delete(1)
-    fmt.Println(ok) // true
+    fmt.Println(cache.Len())
+
+    ok := cache.Delete(2)
+	fmt.Println(ok)
+
+
+	// Output:
+	// 1 true
+	// 2 true
+	// 0 false
+	// 2
+    // true
 }
 ```

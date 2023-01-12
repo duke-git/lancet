@@ -69,7 +69,7 @@ import (
 ```go
 func AesEcbEncrypt(data, key []byte) []byte
 ```
-<b>列子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -80,26 +80,29 @@ import (
 )
 
 func main() {
-    data := "hello world"
-    key := "abcdefghijklmnop"
-    encrypted := cryptor.AesEcbEncrypt([]byte(data), []byte(key))
+    data := "hello"
+	key := "abcdefghijklmnop"
 
-    fmt.Println(string(encrypted))
+	encrypted := cryptor.AesEcbEncrypt([]byte(data), []byte(key))
+	decrypted := cryptor.AesEcbDecrypt(encrypted, []byte(key))
+
+	fmt.Println(string(decrypted))
+
+	// Output:
+	// hello
 }
 ```
 
-
-
 ### <span id="AesEcbDecrypt">AesEcbDecrypt</span>
 
-<p>使用AES ECB算法模式解密数据. 参数`key`的长度是16, 24 or 32。
+<p>使用AES ECB算法模式解密数据，参数`key`的长度是16, 24 or 32。</p>
 
 <b>函数签名:</b>
 
 ```go
 func AesEcbDecrypt(encrypted, key []byte) []byte
 ```
-<b>列子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -110,26 +113,29 @@ import (
 )
 
 func main() {
-    data := "hello world"
-    key := "abcdefghijklmnop"
-    encrypted := cryptor.AesEcbEncrypt([]byte(data), []byte(key))
-    decrypted := cryptor.AesEcbDecrypt(encrypted, []byte(key))
-    fmt.Println(string(decrypted)) //hello world
+    data := "hello"
+	key := "abcdefghijklmnop"
+
+	encrypted := cryptor.AesEcbEncrypt([]byte(data), []byte(key))
+	decrypted := cryptor.AesEcbDecrypt(encrypted, []byte(key))
+
+	fmt.Println(string(decrypted))
+
+	// Output:
+	// hello
 }
 ```
 
-
-
 ### <span id="AesCbcEncrypt">AesCbcEncrypt</span>
 
-<p>使用AES CBC算法模式加密数据. 参数`key`的长度是16, 24 or 32。</p>
+<p>使用AES CBC算法模式加密数据，参数`key`的长度是16, 24 or 32。</p>
 
 <b>函数签名:</b>
 
 ```go
 func AesCbcEncrypt(data, key []byte) []byte
 ```
-<b>列子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -140,19 +146,22 @@ import (
 )
 
 func main() {
-    data := "hello world"
-    key := "abcdefghijklmnop"
-    encrypted := cryptor.AesCbcEncrypt([]byte(data), []byte(key))
+    data := "hello"
+	key := "abcdefghijklmnop"
 
-    fmt.Println(string(encrypted))
+	encrypted := cryptor.AesCbcEncrypt([]byte(data), []byte(key))
+	decrypted := cryptor.AesCbcDecrypt(encrypted, []byte(key))
+
+	fmt.Println(string(decrypted))
+
+	// Output:
+	// hello
 }
 ```
 
-
-
 ### <span id="AesCbcDecrypt">AesCbcDecrypt</span>
 
-<p>使用AES CBC算法模式解密数据. 参数`key`的长度是16, 24 or 32。</p>
+<p>使用AES CBC算法模式解密数据，参数`key`的长度是16, 24 or 32。</p>
 
 <b>函数签名:</b>
 
@@ -160,7 +169,7 @@ func main() {
 func AesCbcDecrypt(encrypted, key []byte) []byte
 ```
 
-<b>列子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -171,16 +180,18 @@ import (
 )
 
 func main() {
-    data := "hello world"
-    key := "abcdefghijklmnop"
-    encrypted := cryptor.AesCbcEncrypt([]byte(data), []byte(key))
-    decrypted := cryptor.AesCbcDecrypt(encrypted, []byte(key))
-    
-    fmt.Println(string(decrypted)) //hello world
+    data := "hello"
+	key := "abcdefghijklmnop"
+
+	encrypted := cryptor.AesCbcEncrypt([]byte(data), []byte(key))
+	decrypted := cryptor.AesCbcDecrypt(encrypted, []byte(key))
+
+	fmt.Println(string(decrypted))
+
+	// Output:
+	// hello
 }
 ```
-
-
 
 ### <span id="AesCtrCrypt">AesCtrCrypt</span>
 
@@ -192,7 +203,7 @@ func main() {
 func AesCtrCrypt(data, key []byte) []byte
 ```
 
-<b>列子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -203,20 +214,22 @@ import (
 )
 
 func main() {
-    data := "hello world"
-    key := "abcdefghijklmnop"
-    encrypted := cryptor.AesCtrCrypt([]byte(data), []byte(key))
-    decrypted := cryptor.AesCtrCrypt(encrypted, []byte(key))
+    data := "hello"
+	key := "abcdefghijklmnop"
 
-    fmt.Println(string(decrypted)) //hello world
+	encrypted := cryptor.AesCtrCrypt([]byte(data), []byte(key))
+	decrypted := cryptor.AesCtrCrypt(encrypted, []byte(key))
+
+	fmt.Println(string(decrypted))
+
+	// Output:
+	// hello
 }
 ```
 
-
-
 ### <span id="AesCfbEncrypt">AesCfbEncrypt</span>
 
-<p>使用AES CFB算法模式加密数据. 参数`key`的长度是16, 24 or 32。</p>
+<p>使用AES CFB算法模式加密数据，参数`key`的长度是16, 24 or 32。</p>
 
 <b>函数签名:</b>
 
@@ -224,7 +237,7 @@ func main() {
 func AesCfbEncrypt(data, key []byte) []byte
 ```
 
-<b>列子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -235,18 +248,22 @@ import (
 )
 
 func main() {
-    data := "hello world"
-    key := "abcdefghijklmnop"
-    encrypted := cryptor.AesCfbEncrypt([]byte(data), []byte(key))
-    fmt.Println(string(encrypted))
+    data := "hello"
+	key := "abcdefghijklmnop"
+
+	encrypted := cryptor.AesCfbEncrypt([]byte(data), []byte(key))
+	decrypted := cryptor.AesCfbDecrypt(encrypted, []byte(key))
+
+	fmt.Println(string(decrypted))
+
+	// Output:
+	// hello
 }
 ```
 
-
-
 ### <span id="AesCfbDecrypt">AesCfbDecrypt</span>
 
-<p>使用AES CFB算法模式解密数据. 参数`key`的长度是16, 24 or 32。</p>
+<p>使用AES CFB算法模式解密数据，参数`key`的长度是16, 24 or 32。</p>
 
 <b>函数签名:</b>
 
@@ -254,7 +271,7 @@ func main() {
 func AesCfbDecrypt(encrypted, key []byte) []byte
 ```
 
-<b>列子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -265,19 +282,22 @@ import (
 )
 
 func main() {
-    data := "hello world"
-    key := "abcdefghijklmnop"
-    encrypted := cryptor.AesCfbEncrypt([]byte(data), []byte(key))
-    decrypted := cryptor.AesCfbDecrypt(encrypted, []byte(key))
-    fmt.Println(string(decrypted)) //hello world
+    data := "hello"
+	key := "abcdefghijklmnop"
+
+	encrypted := cryptor.AesCfbEncrypt([]byte(data), []byte(key))
+	decrypted := cryptor.AesCfbDecrypt(encrypted, []byte(key))
+
+	fmt.Println(string(decrypted))
+
+	// Output:
+	// hello
 }
 ```
 
-
-
 ### <span id="AesOfbEncrypt">AesOfbEncrypt</span>
 
-<p>使用AES OFB算法模式加密数据. 参数`key`的长度是16, 24 or 32</p>
+<p>使用AES OFB算法模式加密数据，参数`key`的长度是16, 24 or 32。</p>
 
 <b>函数签名:</b>
 
@@ -285,7 +305,7 @@ func main() {
 func AesOfbEncrypt(data, key []byte) []byte
 ```
 
-<b>列子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -296,18 +316,21 @@ import (
 )
 
 func main() {
-    data := "hello world"
-    key := "abcdefghijklmnop"
-    encrypted := cryptor.AesOfbEncrypt([]byte(data), []byte(key))
-    fmt.Println(string(encrypted))
+    data := "hello"
+	key := "abcdefghijklmnop"
+
+	encrypted := cryptor.AesOfbEncrypt([]byte(data), []byte(key))
+	decrypted := cryptor.AesCfbDecrypt(encrypted, []byte(key))
+
+	fmt.Println(string(decrypted))
+
+	// Output:
+	// hello
 }
 ```
-
-
-
 ### <span id="AesCfbDecrypt">AesOfbDecrypt</span>
 
-<p>使用AES OFB算法模式解密数据. 参数`key`的长度是16, 24 or 32</p>
+<p>使用AES OFB算法模式解密数据，参数`key`的长度是16, 24 or 32。</p>
 
 <b>函数签名:</b>
 
@@ -315,7 +338,7 @@ func main() {
 func AesOfbDecrypt(encrypted, key []byte) []byte
 ```
 
-<b>Example:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -326,26 +349,29 @@ import (
 )
 
 func main() {
-    data := "hello world"
-    key := "abcdefghijklmnop"
-    encrypted := cryptor.AesOfbEncrypt([]byte(data), []byte(key))
-    decrypted := cryptor.AesOfbDecrypt(encrypted, []byte(key))
-    fmt.Println(string(decrypted)) //hello world
+    data := "hello"
+	key := "abcdefghijklmnop"
+
+	encrypted := cryptor.AesOfbEncrypt([]byte(data), []byte(key))
+	decrypted := cryptor.AesCfbDecrypt(encrypted, []byte(key))
+
+	fmt.Println(string(decrypted))
+
+	// Output:
+	// hello
 }
 ```
 
-
-
 ### <span id="Base64StdEncode">Base64StdEncode</span>
 
-<p>将字符串base64编码</p>
+<p>将字符串base64编码。</p>
 
 <b>函数签名:</b>
 
 ```go
 func Base64StdEncode(s string) string
 ```
-<b>列子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -356,16 +382,16 @@ import (
 )
 
 func main() {
-    base64Str := cryptor.Base64StdEncode("hello world")
-    fmt.Println(base64Str) //aGVsbG8gd29ybGQ=
+    base64Str := cryptor.Base64StdEncode("hello")
+	fmt.Println(base64Str)
+
+	// Output:
+	// aGVsbG8=
 }
 ```
-
-
-
 ### <span id="Base64StdDecode">Base64StdDecode</span>
 
-<p>解码base64字符串</p>
+<p>解码base64字符串。</p>
 
 <b>函数签名:</b>
 
@@ -373,7 +399,7 @@ func main() {
 func Base64StdDecode(s string) string
 ```
 
-<b>列子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -384,16 +410,17 @@ import (
 )
 
 func main() {
-    str := cryptor.Base64StdDecode("aGVsbG8gd29ybGQ=")
-    fmt.Println(str) //hello world
+    str := cryptor.Base64StdDecode("aGVsbG8=")
+	fmt.Println(str)
+
+	// Output:
+	// hello
 }
 ```
 
-
-
 ### <span id="DesEcbEncrypt">DesEcbEncrypt</span>
 
-<p>使用DES ECB算法模式加密数据. 参数`key`的长度是8</p>
+<p>使用DES ECB算法模式加密数据，参数`key`的长度是8。</p>
 
 <b>函数签名:</b>
 
@@ -401,7 +428,7 @@ func main() {
 func DesEcbEncrypt(data, key []byte) []byte
 ```
 
-<b>列子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -412,19 +439,22 @@ import (
 )
 
 func main() {
-    data := "hello world"
-    key := "abcdefgh"
-    encrypted := cryptor.DesEcbEncrypt([]byte(data), []byte(key))
+    data := "hello"
+	key := "abcdefgh"
 
-    fmt.Println(string(encrypted))
+	encrypted := cryptor.DesEcbEncrypt([]byte(data), []byte(key))
+
+	decrypted := cryptor.DesEcbDecrypt(encrypted, []byte(key))
+
+	fmt.Println(string(decrypted))
+
+	// Output:
+	// hello
 }
 ```
-
-
-
 ### <span id="DesEcbDecrypt">DesEcbDecrypt</span>
 
-<p>使用DES ECB算法模式解密数据. 参数`key`的长度是8</p>
+<p>使用DES ECB算法模式解决密数据，参数`key`的长度是8。</p>
 
 <b>函数签名:</b>
 
@@ -432,7 +462,7 @@ func main() {
 func DesEcbDecrypt(encrypted, key []byte) []byte
 ```
 
-<b>列子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -443,20 +473,23 @@ import (
 )
 
 func main() {
-    data := "hello world"
-    key := "abcdefgh"
-    encrypted := cryptor.DesEcbEncrypt([]byte(data), []byte(key))
-    decrypted := cryptor.DesEcbDecrypt(encrypted, []byte(key))
-  
-    fmt.Println(string(decrypted)) //hello world
+    data := "hello"
+	key := "abcdefgh"
+
+	encrypted := cryptor.DesEcbEncrypt([]byte(data), []byte(key))
+
+	decrypted := cryptor.DesEcbDecrypt(encrypted, []byte(key))
+
+	fmt.Println(string(decrypted))
+
+	// Output:
+	// hello
 }
 ```
 
-
-
 ### <span id="DesCbcEncrypt">DesCbcEncrypt</span>
 
-<p>使用DES CBC算法模式加密数据. 参数`key`的长度是8</p>
+<p>使用DES CBC算法模式加密数据，参数`key`的长度是8。</p>
 
 <b>函数签名:</b>
 
@@ -464,7 +497,7 @@ func main() {
 func DesCbcEncrypt(data, key []byte) []byte
 ```
 
-<b>列子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -475,19 +508,22 @@ import (
 )
 
 func main() {
-    data := "hello world"
-    key := "abcdefgh"
-    encrypted := cryptor.DesCbcEncrypt([]byte(data), []byte(key))
+    data := "hello"
+	key := "abcdefgh"
 
-    fmt.Println(string(encrypted))
+	encrypted := cryptor.DesCbcEncrypt([]byte(data), []byte(key))
+	decrypted := cryptor.DesCbcDecrypt(encrypted, []byte(key))
+
+	fmt.Println(string(decrypted))
+
+	// Output:
+	// hello
 }
 ```
 
-
-
 ### <span id="DesCbcDecrypt">DesCbcDecrypt</span>
 
-<p>使用DES CBC算法模式解密数据. 参数`key`的长度是8</p>
+<p>使用DES CBC算法模式解密数据，参数`key`的长度是8。</p>
 
 <b>函数签名:</b>
 
@@ -495,7 +531,7 @@ func main() {
 func DesCbcDecrypt(encrypted, key []byte) []byte
 ```
 
-<b>列子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -506,20 +542,21 @@ import (
 )
 
 func main() {
-    data := "hello world"
-    key := "abcdefgh"
-    encrypted := cryptor.DesCbcEncrypt([]byte(data), []byte(key))
-    decrypted := cryptor.DesCbcDecrypt(encrypted, []byte(key))
-    
-    fmt.Println(string(decrypted)) //hello world
+    data := "hello"
+	key := "abcdefgh"
+
+	encrypted := cryptor.DesCbcEncrypt([]byte(data), []byte(key))
+	decrypted := cryptor.DesCbcDecrypt(encrypted, []byte(key))
+
+	fmt.Println(string(decrypted))
+
+	// Output:
+	// hello
 }
 ```
-
-
-
 ### <span id="DesCtrCrypt">DesCtrCrypt</span>
 
-<p>使用DES CTR算法模式加密/解密数据. 参数`key`的长度是8</p>
+<p>使用DES CTR算法模式加密/解密数据，参数`key`的长度是8</p>
 
 <b>函数签名:</b>
 
@@ -527,7 +564,7 @@ func main() {
 func DesCtrCrypt(data, key []byte) []byte
 ```
 
-<b>列子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -538,20 +575,22 @@ import (
 )
 
 func main() {
-    data := "hello world"
-    key := "abcdefgh"
-    encrypted := cryptor.DesCtrCrypt([]byte(data), []byte(key))
-    decrypted := cryptor.DesCtrCrypt(encrypted, []byte(key))
+    data := "hello"
+	key := "abcdefgh"
 
-    fmt.Println(string(decrypted)) //hello world
+	encrypted := cryptor.DesCtrCrypt([]byte(data), []byte(key))
+	decrypted := cryptor.DesCtrCrypt(encrypted, []byte(key))
+
+	fmt.Println(string(decrypted))
+
+	// Output:
+	// hello
 }
 ```
 
-
-
 ### <span id="DesCfbEncrypt">DesCfbEncrypt</span>
 
-<p>使用DES CFB算法模式加密数据. 参数`key`的长度是8</p>
+<p>使用DES CFB算法模式加密数据，参数`key`的长度是8。</p>
 
 <b>函数签名:</b>
 
@@ -559,7 +598,7 @@ func main() {
 func DesCfbEncrypt(data, key []byte) []byte
 ```
 
-<b>列子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -570,18 +609,21 @@ import (
 )
 
 func main() {
-    data := "hello world"
-    key := "abcdefgh"
-    encrypted := cryptor.DesCfbEncrypt([]byte(data), []byte(key))
-    fmt.Println(string(encrypted))
+    data := "hello"
+	key := "abcdefgh"
+
+	encrypted := cryptor.DesCfbEncrypt([]byte(data), []byte(key))
+	decrypted := cryptor.DesCfbDecrypt(encrypted, []byte(key))
+
+	fmt.Println(string(decrypted))
+
+	// Output:
+	// hello
 }
 ```
-
-
-
 ### <span id="DesCfbDecrypt">DesCfbDecrypt</span>
 
-<p>使用DES CFB算法模式解密数据. 参数`key`的长度是8</p>
+<p>使用DES CFB算法模式解决密数据，参数`key`的长度是8。</p>
 
 <b>函数签名:</b>
 
@@ -589,7 +631,7 @@ func main() {
 func DesCfbDecrypt(encrypted, key []byte) []byte
 ```
 
-<b>列子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -600,19 +642,21 @@ import (
 )
 
 func main() {
-    data := "hello world"
-    key := "abcdefgh"
-    encrypted := cryptor.DesCfbEncrypt([]byte(data), []byte(key))
-    decrypted := cryptor.DesCfbDecrypt(encrypted, []byte(key))
-    fmt.Println(string(decrypted)) //hello world
+    data := "hello"
+	key := "abcdefgh"
+
+	encrypted := cryptor.DesCfbEncrypt([]byte(data), []byte(key))
+	decrypted := cryptor.DesCfbDecrypt(encrypted, []byte(key))
+
+	fmt.Println(string(decrypted))
+
+	// Output:
+	// hello
 }
 ```
-
-
-
 ### <span id="DesOfbEncrypt">DesOfbEncrypt</span>
 
-<p>使用DES OFB算法模式加密数据. 参数`key`的长度是8</p>
+<p>使用DES OFB算法模式加密数据，参数`key`的长度是8。</p>
 
 <b>函数签名:</b>
 
@@ -620,7 +664,7 @@ func main() {
 func DesOfbEncrypt(data, key []byte) []byte
 ```
 
-<b>列子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -631,18 +675,21 @@ import (
 )
 
 func main() {
-    data := "hello world"
-    key := "abcdefgh"
-    encrypted := cryptor.DesOfbEncrypt([]byte(data), []byte(key))
-    fmt.Println(string(encrypted))
+    data := "hello"
+	key := "abcdefgh"
+
+	encrypted := cryptor.DesOfbEncrypt([]byte(data), []byte(key))
+	decrypted := cryptor.DesOfbDecrypt(encrypted, []byte(key))
+
+	fmt.Println(string(decrypted))
+
+	// Output:
+	// hello
 }
 ```
-
-
-
 ### <span id="DesOfbDecrypt">DesOfbDecrypt</span>
 
-<p>使用DES OFB算法模式解密数据. 参数`key`的长度是8</p>
+<p>使用DES OFB算法模式解密数据，参数`key`的长度是8。</p>
 
 <b>函数签名:</b>
 
@@ -650,7 +697,7 @@ func main() {
 func DesOfbDecrypt(encrypted, key []byte) []byte
 ```
 
-<b>列子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -661,19 +708,22 @@ import (
 )
 
 func main() {
-    data := "hello world"
-    key := "abcdefgh"
-    encrypted := cryptor.DesOfbEncrypt([]byte(data), []byte(key))
-    decrypted := cryptor.DesOfbDecrypt(encrypted, []byte(key))
-    fmt.Println(string(decrypted)) //hello world
+    data := "hello"
+	key := "abcdefgh"
+
+	encrypted := cryptor.DesOfbEncrypt([]byte(data), []byte(key))
+	decrypted := cryptor.DesOfbDecrypt(encrypted, []byte(key))
+
+	fmt.Println(string(decrypted))
+
+	// Output:
+	// hello
 }
 ```
 
-
-
 ### <span id="HmacMd5">HmacMd5</span>
 
-<p>获取字符串md5 hmac值</p>
+<p>获取字符串md5 hmac值。</p>
 
 <b>函数签名:</b>
 
@@ -681,7 +731,7 @@ func main() {
 func HmacMd5(data, key string) string
 ```
 
-<b>列子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -692,16 +742,19 @@ import (
 )
 
 func main() {
-    s := cryptor.HmacMd5("hello world", "12345"))
-    fmt.Println(s) //5f4c9faaff0a1ad3007d9ddc06abe36d
+  	str := "hello"
+	key := "12345"
+
+	hms := cryptor.HmacMd5(str, key)
+	fmt.Println(hms)
+
+	// Output:
+	// e834306eab892d872525d4918a7a639a
 }
 ```
-
-
-
 ### <span id="HmacSha1">HmacSha1</span>
 
-<p>获取字符串sha1 hmac值</p>
+<p>获取字符串sha1 hmac值。</p>
 
 <b>函数签名:</b>
 
@@ -709,7 +762,7 @@ func main() {
 func HmacSha1(data, key string) string
 ```
 
-<b>列子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -720,16 +773,19 @@ import (
 )
 
 func main() {
-    s := cryptor.HmacSha1("hello world", "12345"))
-    fmt.Println(s) //3826f812255d8683f051ee97346d1359234d5dbd
+    str := "hello"
+	key := "12345"
+
+	hms := cryptor.HmacSha1(str, key)
+	fmt.Println(hms)
+
+	// Output:
+	// 5c6a9db0cccb92e36ed0323fd09b7f936de9ace0
 }
 ```
-
-
-
 ### <span id="HmacSha256">HmacSha256</span>
 
-<p>获取字符串sha256 hmac值</p>
+<p>获取字符串sha256 hmac值。</p>
 
 <b>函数签名:</b>
 
@@ -737,7 +793,7 @@ func main() {
 func HmacSha256(data, key string) string
 ```
 
-<b>列子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -748,16 +804,20 @@ import (
 )
 
 func main() {
-    s := cryptor.HmacSha256("hello world", "12345"))
-    fmt.Println(s) //9dce2609f2d67d41f74c7f9efc8ccd44370d41ad2de52982627588dfe7289ab8
+    str := "hello"
+	key := "12345"
+
+	hms := cryptor.HmacSha256(str, key)
+	fmt.Println(hms)
+
+	// Output:
+	// 315bb93c4e989862ba09cb62e05d73a5f376cb36f0d786edab0c320d059fde75
 }
 ```
 
-
-
 ### <span id="HmacSha512">HmacSha512</span>
 
-<p>获取字符串sha512 hmac值</p>
+<p>获取字符串sha512 hmac值。</p>
 
 <b>函数签名:</b>
 
@@ -765,7 +825,7 @@ func main() {
 func HmacSha512(data, key string) string
 ```
 
-<b>列子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -776,17 +836,21 @@ import (
 )
 
 func main() {
-    s := cryptor.HmacSha512("hello world", "12345"))
-    fmt.Println(s) 
- //5b1563ac4e9b49c9ada8ccb232588fc4f0c30fd12f756b3a0b95af4985c236ca60925253bae10ce2c6bf9af1c1679b51e5395ff3d2826c0a2c7c0d72225d4175
+    str := "hello"
+	key := "12345"
+
+	hms := cryptor.HmacSha512(str, key)
+	fmt.Println(hms)
+
+	// Output:
+	// dd8f1290a9dd23d354e2526d9a2e9ce8cffffdd37cb320800d1c6c13d2efc363288376a196c5458daf53f8e1aa6b45a6d856303d5c0a2064bff9785861d48cfc
 }
 ```
 
 
-
 ### <span id="Md5String">Md5String</span>
 
-<p>获取字符串md5值</p>
+<p>获取字符串md5值。</p>
 
 <b>函数签名:</b>
 
@@ -794,7 +858,7 @@ func main() {
 func Md5String(s string) string
 ```
 
-<b>列子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -805,16 +869,19 @@ import (
 )
 
 func main() {
-    s := cryptor.Md5String("hello"))
-    fmt.Println(s) //5d41402abc4b2a76b9719d911017c592
+    str := "hello"
+
+	md5Str := cryptor.Md5String(str)
+	fmt.Println(md5Str)
+
+	// Output:
+	// 5d41402abc4b2a76b9719d911017c592
 }
 ```
 
-
-
 ### <span id="Md5File">Md5File</span>
 
-<p>获取文件md5值.</p>
+<p>获取文件md5值。</p>
 
 <b>函数签名:</b>
 
@@ -822,7 +889,7 @@ func main() {
 func Md5File(filepath string) (string, error)
 ```
 
-<b>列子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -838,11 +905,9 @@ func main() {
 }
 ```
 
-
-
 ### <span id="Sha1">Sha1</span>
 
-<p>获取字符串sha1值</p>
+<p>获取字符串sha1值。</p>
 
 <b>函数签名:</b>
 
@@ -850,7 +915,7 @@ func main() {
 func Sha1(data string) string
 ```
 
-<b>列子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -861,16 +926,19 @@ import (
 )
 
 func main() {
-    s := cryptor.Sha1("hello world"))
-    fmt.Println(s) //2aae6c35c94fcfb415dbe95f408b9ce91ee846ed
+    str := "hello"
+
+	result := cryptor.Sha1(str)
+	fmt.Println(result)
+
+	// Output:
+	// aaf4c61ddcc5e8a2dabede0f3b482cd9aea9434d
 }
 ```
 
-
-
 ### <span id="Sha256">Sha256</span>
 
-<p>获取字符串sha256值</p>
+<p>获取字符串sha256值。</p>
 
 <b>函数签名:</b>
 
@@ -878,7 +946,7 @@ func main() {
 func Sha256(data string) string
 ```
 
-<b>列子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -889,16 +957,19 @@ import (
 )
 
 func main() {
-    s := cryptor.Sha256("hello world"))
-    fmt.Println(s) //b94d27b9934d3e08a52e52d7da7dabfac484efe37a5380ee9088f7ace2efcde9
+    str := "hello"
+
+	result := cryptor.Sha256(str)
+	fmt.Println(result)
+
+	// Output:
+	// 2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824
 }
 ```
 
-
-
 ### <span id="Sha512">Sha512</span>
 
-<p>获取字符串sha512值</p>
+<p>获取字符串sha512值。</p>
 
 <b>函数签名:</b>
 
@@ -906,7 +977,7 @@ func main() {
 func Sha512(data string) string
 ```
 
-<b>列子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -917,16 +988,19 @@ import (
 )
 
 func main() {
-    s := cryptor.Sha512("hello world"))
-    fmt.Println(s) //309ecc489c12d6eb4cc40f50c902f2b4d0ed77ee511a7c7a9bcd3ca86d4cd86f989dd35bc5ff499670da34255b45b0cfd830e81f605dcf7dc5542e93ae9cd76f
+    str := "hello"
+
+	result := cryptor.Sha512(str)
+	fmt.Println(result)
+
+	// Output:
+	// 9b71d224bd62f3785d96d46ad3ea3d73319bfbc2890caadae2dff72519673ca72323c3d99ba5c11d7c7acc6e14b8c5da0c4663475c2e5c3adef46f73bcdec043
 }
 ```
 
-
-
 ### <span id="GenerateRsaKey">GenerateRsaKey</span>
 
-<p>在当前目录下创建rsa私钥文件和公钥文件</p>
+<p>在当前目录下创建rsa私钥文件和公钥文件。</p>
 
 <b>函数签名:</b>
 
@@ -934,7 +1008,7 @@ func main() {
 func GenerateRsaKey(keySize int, priKeyFile, pubKeyFile string) error
 ```
 
-<b>列子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -952,11 +1026,9 @@ func main() {
 }
 ```
 
-
-
 ### <span id="RsaEncrypt">RsaEncrypt</span>
 
-<p>用公钥文件ras加密数据</p>
+<p>用公钥文件ras加密数据。</p>
 
 <b>函数签名:</b>
 
@@ -964,7 +1036,7 @@ func main() {
 func RsaEncrypt(data []byte, pubKeyFileName string) []byte
 ```
 
-<b>列子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -977,20 +1049,24 @@ import (
 func main() {
     err := cryptor.GenerateRsaKey(4096, "rsa_private.pem", "rsa_public.pem")
     if err != nil {
-        fmt.Println(err)
+        return
     }
-    data := []byte("hello world")
+  	
+    data := []byte("hello")
     encrypted := cryptor.RsaEncrypt(data, "rsa_public.pem")
     decrypted := cryptor.RsaDecrypt(encrypted, "rsa_private.pem")
-  	fmt.Println(string(decrypted)) //hello world
+  	
+    fmt.Println(string(decrypted))
+
+    // Output:
+	// hello
 }
 ```
 
 
-
 ### <span id="RsaDecrypt">RsaDecrypt</span>
 
-<p>用私钥文件rsa解密数据</p>
+<p>用私钥文件rsa解密数据。</p>
 
 <b>函数签名:</b>
 
@@ -998,7 +1074,7 @@ func main() {
 func RsaDecrypt(data []byte, privateKeyFileName string) []byte
 ```
 
-<b>列子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -1011,14 +1087,16 @@ import (
 func main() {
     err := cryptor.GenerateRsaKey(4096, "rsa_private.pem", "rsa_public.pem")
     if err != nil {
-        fmt.Println(err)
+        return
     }
-    data := []byte("hello world")
+  	
+    data := []byte("hello")
     encrypted := cryptor.RsaEncrypt(data, "rsa_public.pem")
     decrypted := cryptor.RsaDecrypt(encrypted, "rsa_private.pem")
-  	fmt.Println(string(decrypted)) //hello world
+  	
+    fmt.Println(string(decrypted))
+
+    // Output:
+	// hello
 }
 ```
-
-
-

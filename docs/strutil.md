@@ -64,18 +64,26 @@ import (
 )
 
 func main() {
-	s1 := strutil.After("lancet", "")
-	fmt.Println(s1) //lancet
+	result1 := strutil.After("foo", "")
+	result2 := strutil.After("foo", "foo")
+	result3 := strutil.After("foo/bar", "foo")
+	result4 := strutil.After("foo/bar", "/")
+	result5 := strutil.After("foo/bar/baz", "/")
 
-	s2 := strutil.After("github.com/test/lancet", "/")
-	fmt.Println(s2) //test/lancet
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+	fmt.Println(result4)
+	fmt.Println(result5)
 
-	s3 := strutil.After("github.com/test/lancet", "test")
-	fmt.Println(s3) // /lancet
+	// Output:
+	// foo
+	//
+	// /bar
+	// bar
+	// bar/baz
 }
 ```
-
-
 
 ### <span id="AfterLast">AfterLast</span>
 <p>Returns the substring after the last occurrence of a specified string in the source string.</p>
@@ -94,19 +102,26 @@ import (
 )
 
 func main() {
-	s1 := strutil.AfterLast("lancet", "")
-	fmt.Println(s1) //lancet
+	result1 := strutil.AfterLast("foo", "")
+	result2 := strutil.AfterLast("foo", "foo")
+	result3 := strutil.AfterLast("foo/bar", "/")
+	result4 := strutil.AfterLast("foo/bar/baz", "/")
+	result5 := strutil.AfterLast("foo/bar/foo/baz", "foo")
 
-	s2 := strutil.AfterLast("github.com/test/lancet", "/")
-	fmt.Println(s2) //lancet
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+	fmt.Println(result4)
+	fmt.Println(result5)
 
-	s3 := strutil.AfterLast("github.com/test/test/lancet", "test")
-	fmt.Println(s3) // /test/lancet
+	// Output:
+	// foo
+	//
+	// bar
+	// baz
+	// /baz
 }
 ```
-
-
-
 
 ### <span id="Before">Before</span>
 <p>Returns the substring of the source string up to the first occurrence of the specified string.</p>
@@ -125,19 +140,23 @@ import (
 )
 
 func main() {
-	s1 := strutil.Before("lancet", "")
-	fmt.Println(s1) //lancet
+	result1 := strutil.Before("foo", "")
+	result2 := strutil.Before("foo", "foo")
+	result3 := strutil.Before("foo/bar", "/")
+	result4 := strutil.Before("foo/bar/baz", "/")
 
-	s2 := strutil.Before("github.com/test/lancet", "/")
-	fmt.Println(s2) //github.com
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+	fmt.Println(result4)
 
-	s3 := strutil.Before("github.com/test/lancet", "test")
-	fmt.Println(s3) // github.com/
+	// Output:
+	// foo
+	//
+	// foo
+	// foo
 }
 ```
-
-
-
 
 ### <span id="BeforeLast">BeforeLast</span>
 <p>Returns the substring of the source string up to the last occurrence of the specified string.</p>
@@ -156,17 +175,23 @@ import (
 )
 
 func main() {
-	s1 := strutil.BeforeLast("lancet", "")
-	fmt.Println(s1) //lancet
+	result1 := strutil.BeforeLast("foo", "")
+	result2 := strutil.BeforeLast("foo", "foo")
+	result3 := strutil.BeforeLast("foo/bar", "/")
+	result4 := strutil.BeforeLast("foo/bar/baz", "/")
 
-	s2 := strutil.BeforeLast("github.com/test/lancet", "/")
-	fmt.Println(s2) //github.com/test
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+	fmt.Println(result4)
 
-	s3 := strutil.BeforeLast("github.com/test/test/lancet", "test")
-	fmt.Println(s3) //github.com/test/
+	// Output:
+	// foo
+	//
+	// foo
+	// foo/bar
 }
 ```
-
 
 ### <span id="CamelCase">CamelCase</span>
 <p>Coverts string to camelCase string, non letters and numbers will be ignored.</p>
@@ -185,24 +210,21 @@ import (
 )
 
 func main() {
-	s1 := strutil.CamelCase("foo_bar")
-	fmt.Println(s1) //fooBar
+	strings := []string{"", "foobar", "&FOO:BAR$BAZ", "$foo%", "Foo-#1😄$_%^&*(1bar"}
 
-	s2 := strutil.CamelCase("Foo-Bar")
-	fmt.Println(s2) //fooBar
+	for _, v := range strings {
+		s := strutil.CamelCase(v)
+		fmt.Println(s)
+	}
 
-	s3 := strutil.CamelCase("Foo&bar")
-	fmt.Println(s3) //fooBar
-
-	s4 := strutil.CamelCase("foo bar")
-	fmt.Println(s4) //fooBar
-
-	s4 := strutil.CamelCase("Foo-#1😄$_%^&*(1bar")
-	fmt.Println(s4) //foo11Bar
-
+	// Output:
+	//
+	// foobar
+	// fooBarBaz
+	// foo
+	// foo11Bar
 }
 ```
-
 
 ### <span id="KebabCase">KebabCase</span>
 <p>KebabCase covert string to kebab-case, non letters and numbers will be ignored.</p>
@@ -221,21 +243,21 @@ import (
 )
 
 func main() {
-	s1 := strutil.KebabCase("Foo Bar-")
-	fmt.Println(s1) //foo-bar
+	strings := []string{"", "foo-bar", "Foo Bar-", "FOOBAR", "Foo-#1😄$_%^&*(1bar"}
 
-	s2 := strutil.KebabCase("foo_Bar")
-	fmt.Println(s2) //foo-bar
+	for _, v := range strings {
+		s := strutil.KebabCase(v)
+		fmt.Println(s)
+	}
 
-	s3 := strutil.KebabCase("fooBar")
-	fmt.Println(s3) //foo-bar
-
-	s4 := strutil.KebabCase("__FOO_BAR__")
-	fmt.Println(s4) //foo-bar
+	// Output:
+	//
+	// foo-bar
+	// foo-bar
+	// foobar
+	// foo-1-1-bar
 }
 ```
-
-
 
 ### <span id="UpperKebabCase">UpperKebabCase</span>
 <p>UpperKebabCase covert string to upper KEBAB-CASE, non letters and numbers will be ignored.</p>
@@ -243,7 +265,7 @@ func main() {
 <b>Signature:</b>
 
 ```go
-func KebabCase(s string) string
+func UpperKebabCase(s string) string
 ```
 <b>Example:</b>
 
@@ -254,22 +276,21 @@ import (
 )
 
 func main() {
-	s1 := strutil.UpperKebabCase("Foo Bar-")
-	fmt.Println(s1) //FOO-BAR
+	strings := []string{"", "foo-bar", "Foo Bar-", "FooBAR", "Foo-#1😄$_%^&*(1bar"}
 
-	s2 := strutil.UpperKebabCase("foo_Bar")
-	fmt.Println(s2) //FOO-BAR
+	for _, v := range strings {
+		s := strutil.UpperKebabCase(v)
+		fmt.Println(s)
+	}
 
-	s3 := strutil.UpperKebabCase("fooBar")
-	fmt.Println(s3) //FOO-BAR
-
-	s4 := strutil.UpperKebabCase("__FOO_BAR__")
-	fmt.Println(s4) //FOO-BAR
+	// Output:
+	//
+	// FOO-BAR
+	// FOO-BAR
+	// FOO-BAR
+	// FOO-1-1-BAR
 }
 ```
-
-
-
 
 ### <span id="Capitalize">Capitalize</span>
 <p>Convert the first character of a string to upper case.</p>
@@ -288,18 +309,21 @@ import (
 )
 
 func main() {
-	s1 := strutil.Capitalize("foo")
-	fmt.Println(s1) //foo
+	strings := []string{"", "Foo", "_foo", "fooBar", "foo-bar"}
 
-	s2 := strutil.Capitalize("Foo")
-	fmt.Println(s2) //foo
+	for _, v := range strings {
+		s := strutil.Capitalize(v)
+		fmt.Println(s)
+	}
 
-	s3 := strutil.Capitalize("FOo"
-	fmt.Println(s3) //fOo
+	// Output:
+	//
+	// Foo
+	// _foo
+	// Foobar
+	// Foo-bar
 }
 ```
-
-
 
 ### <span id="IsString">IsString</span>
 <p>Check if the value's data type is string.</p>
@@ -318,50 +342,26 @@ import (
 )
 
 func main() {
-	fmt.Println(strutil.IsString("lancet")) //true
-	fmt.Println(strutil.IsString("")) //true
+	result1 := strutil.IsString("")
+	result2 := strutil.IsString("a")
+	result3 := strutil.IsString(1)
+	result4 := strutil.IsString(true)
+	result5 := strutil.IsString([]string{"a"})
 
-	fmt.Println(strutil.IsString(1)) //false
-	fmt.Println(strutil.IsString("")) //false
-	fmt.Println(strutil.IsString([]string{})) //false
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+	fmt.Println(result4)
+	fmt.Println(result5)
+
+	// Output:
+	// true
+	// true
+	// false
+	// false
+	// false
 }
 ```
-
-
-
-### <span id="KebabCase">KebabCase</span>
-<p>Covert string to kebab-case.</p>
-
-<b>Signature:</b>
-
-```go
-func KebabCase(s string) string
-```
-<b>Example:</b>
-
-```go
-import (
-	"fmt"
-	"github.com/duke-git/lancet/v2/strutil"
-)
-
-func main() {
-	s1 := strutil.KebabCase("Foo Bar-")
-	fmt.Println(s1) //foo-bar
-
-	s2 := strutil.KebabCase("foo_Bar")
-	fmt.Println(s2) //foo-bar
-
-	s3 := strutil.KebabCase("fooBar")
-	fmt.Println(s3) //foo-bar
-
-	s4 := strutil.KebabCase("__FOO_BAR__")
-	fmt.Println(s4) //f-o-o-b-a-r
-}
-```
-
-
-
 
 ### <span id="LowerFirst">LowerFirst</span>
 <p>Convert the first character of string to lower case.</p>
@@ -380,22 +380,20 @@ import (
 )
 
 func main() {
-	s1 := strutil.LowerFirst("foo")
-	fmt.Println(s1) //foo
+	strings := []string{"", "bar", "BAr", "Bar大"}
 
-	s2 := strutil.LowerFirst("BAR")
-	fmt.Println(s2) //bAR
+	for _, v := range strings {
+		s := strutil.LowerFirst(v)
+		fmt.Println(s)
+	}
 
-	s3 := strutil.LowerFirst("FOo")
-	fmt.Println(s3) //fOo
-
-	s4 := strutil.LowerFirst("fOo大")
-	fmt.Println(s4) //fOo大
+	// Output:
+	//
+	// bar
+	// bAr
+	// bar大
 }
 ```
-
-
-
 
 ### <span id="UpperFirst">UpperFirst</span>
 <p>Convert the first character of string to upper case.</p>
@@ -414,22 +412,20 @@ import (
 )
 
 func main() {
-	s1 := strutil.UpperFirst("foo")
-	fmt.Println(s1) //Foo
+	strings := []string{"", "bar", "BAr", "bar大"}
 
-	s2 := strutil.UpperFirst("bAR")
-	fmt.Println(s2) //BAR
+	for _, v := range strings {
+		s := strutil.UpperFirst(v)
+		fmt.Println(s)
+	}
 
-	s3 := strutil.UpperFirst("FOo")
-	fmt.Println(s3) //FOo
-
-	s4 := strutil.UpperFirst("fOo大")
-	fmt.Println(s4) //FOo大
+	// Output:
+	//
+	// Bar
+	// BAr
+	// Bar大
 }
 ```
-
-
-
 
 ### <span id="PadEnd">PadEnd</span>
 <p>Pads string on the right side if it's shorter than size.</p>
@@ -448,22 +444,32 @@ import (
 )
 
 func main() {
-	s1 := strutil.PadEnd("a", 1, "b")
-	fmt.Println(s1) //a
+	result1 := strutil.PadEnd("foo", 1, "bar")
+	result2 := strutil.PadEnd("foo", 2, "bar")
+	result3 := strutil.PadEnd("foo", 3, "bar")
+	result4 := strutil.PadEnd("foo", 4, "bar")
+	result5 := strutil.PadEnd("foo", 5, "bar")
+	result6 := strutil.PadEnd("foo", 6, "bar")
+	result7 := strutil.PadEnd("foo", 7, "bar")
 
-	s2 := strutil.PadEnd("a", 2, "b")
-	fmt.Println(s2) //ab
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+	fmt.Println(result4)
+	fmt.Println(result5)
+	fmt.Println(result6)
+	fmt.Println(result7)
 
-	s3 := strutil.PadEnd("abcd", 6, "mno")
-	fmt.Println(s3) //abcdmn
-
-	s4 := strutil.PadEnd("abc", 6, "ab")
-	fmt.Println(s4) //abcaba
+	// Output:
+	// foo
+	// foo
+	// foo
+	// foob
+	// fooba
+	// foobar
+	// foobarb
 }
 ```
-
-
-
 
 ### <span id="PadStart">PadStart</span>
 <p>Pads string on the left side if it's shorter than size.</p>
@@ -482,22 +488,32 @@ import (
 )
 
 func main() {
-	s1 := strutil.PadStart("a", 1, "b")
-	fmt.Println(s1) //a
+	result1 := strutil.PadStart("foo", 1, "bar")
+	result2 := strutil.PadStart("foo", 2, "bar")
+	result3 := strutil.PadStart("foo", 3, "bar")
+	result4 := strutil.PadStart("foo", 4, "bar")
+	result5 := strutil.PadStart("foo", 5, "bar")
+	result6 := strutil.PadStart("foo", 6, "bar")
+	result7 := strutil.PadStart("foo", 7, "bar")
 
-	s2 := strutil.PadStart("a", 2, "b")
-	fmt.Println(s2) //ba
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+	fmt.Println(result4)
+	fmt.Println(result5)
+	fmt.Println(result6)
+	fmt.Println(result7)
 
-	s3 := strutil.PadStart("abcd", 6, "mno")
-	fmt.Println(s3) //mnabcd
-
-	s4 := strutil.PadStart("abc", 6, "ab")
-	fmt.Println(s4) //abaabc
+	// Output:
+	// foo
+	// foo
+	// foo
+	// bfoo
+	// bafoo
+	// barfoo
+	// barbfoo
 }
 ```
-
-
-
 
 ### <span id="Reverse">Reverse</span>
 <p>Return string whose char order is reversed to the given string.</p>
@@ -516,15 +532,17 @@ import (
 )
 
 func main() {
-	s1 := strutil.ReverseStr("abc")
-	fmt.Println(s1) //cba
+	s := "foo"
+	rs := strutil.Reverse(s)
 
-	s2 := strutil.ReverseStr("12345")
-	fmt.Println(s2) //54321
+	fmt.Println(s)
+	fmt.Println(rs)
+
+	// Output:
+	// foo
+	// oof
 }
 ```
-
-
 
 ### <span id="SnakeCase">SnakeCase</span>
 <p>Coverts string to snake_case, non letters and numbers will be ignored.</p>
@@ -543,23 +561,21 @@ import (
 )
 
 func main() {
-	s1 := strutil.SnakeCase("Foo Bar-")
-	fmt.Println(s1) //foo_bar
+	strings := []string{"", "foo-bar", "Foo Bar-", "FOOBAR", "Foo-#1😄$_%^&*(1bar"}
 
-	s2 := strutil.SnakeCase("foo_Bar")
-	fmt.Println(s2) //foo_bar
+	for _, v := range strings {
+		s := strutil.SnakeCase(v)
+		fmt.Println(s)
+	}
 
-	s3 := strutil.SnakeCase("fooBar")
-	fmt.Println(s3) //foo_bar
-
-	s4 := strutil.SnakeCase("__FOO_BAR__")
-	fmt.Println(s4) //foo_bar
-
-	s5 := strutil.SnakeCase("Foo-#1😄$_%^&*(1bar")
-	fmt.Println(s5) //foo_1_1_bar
+	// Output:
+	//
+	// foo_bar
+	// foo_bar
+	// foobar
+	// foo_1_1_bar
 }
 ```
-
 
 ### <span id="UpperSnakeCase">UpperSnakeCase</span>
 <p>Coverts string to upper KEBAB-CASE, non letters and numbers will be ignored.</p>
@@ -578,23 +594,21 @@ import (
 )
 
 func main() {
-	s1 := strutil.UpperSnakeCase("Foo Bar-")
-	fmt.Println(s1) //FOO_BAR
+	strings := []string{"", "foo-bar", "Foo Bar-", "FooBAR", "Foo-#1😄$_%^&*(1bar"}
 
-	s2 := strutil.UpperSnakeCase("foo_Bar")
-	fmt.Println(s2) //FOO_BAR
+	for _, v := range strings {
+		s := strutil.UpperSnakeCase(v)
+		fmt.Println(s)
+	}
 
-	s3 := strutil.UpperSnakeCase("fooBar")
-	fmt.Println(s3) //FOO_BAR
-
-	s4 := strutil.UpperSnakeCase("__FOO_BAR__")
-	fmt.Println(s4) //FOO_BAR
-
-	s5 := strutil.UpperSnakeCase("Foo-#1😄$_%^&*(1bar")
-	fmt.Println(s5) //FOO_1_1_BAR
+	// Output:
+	//
+	// FOO_BAR
+	// FOO_BAR
+	// FOO_BAR
+	// FOO_1_1_BAR
 }
 ```
-
 
 ### <span id="SplitEx">SplitEx</span>
 <p>Split a given string whether the result contains empty string.</p>
@@ -613,24 +627,27 @@ import (
 )
 
 func main() {
-	arr1 := strutil.SplitEx(" a b c ", "", true)
-	fmt.Println(arr1) //[]string{}
+	result1 := strutil.SplitEx(" a b c ", "", true)
 
-	arr2 := strutil.SplitEx(" a b c ", " ", false)
-	fmt.Println(arr2) //[]string{"", "a", "b", "c", ""}
+	result2 := strutil.SplitEx(" a b c ", " ", false)
+	result3 := strutil.SplitEx(" a b c ", " ", true)
 
-	arr3 := strutil.SplitEx(" a b c ", " ", true)
-	fmt.Println(arr3) //[]string{"a", "b", "c"}
+	result4 := strutil.SplitEx("a = b = c = ", " = ", false)
+	result5 := strutil.SplitEx("a = b = c = ", " = ", true)
 
-	arr4 := strutil.SplitEx(" a = b = c = ", " = ", false)
-	fmt.Println(arr4) //[]string{" a", "b", "c", ""}
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+	fmt.Println(result4)
+	fmt.Println(result5)
 
-	arr5 := strutil.SplitEx(" a = b = c = ", " = ", true)
-	fmt.Println(arr5) //[]string{" a", "b", "c"}
+	// Output:
+	// []
+	// [ a b c ]
+	// [a b c]
+	// [a b c ]
 }
 ```
-
-
 
 ### <span id="Substring">Substring</span>
 <p>Returns a substring of the specified length starting at the specified offset position.</p>
@@ -650,22 +667,26 @@ import (
 
 func main() {
 	result1 := strutil.Substring("abcde", 1, 3)
-	fmt.Println(result1) //bcd
-
 	result2 := strutil.Substring("abcde", 1, 5)
-	fmt.Println(result2) //bcde
-
 	result3 := strutil.Substring("abcde", -1, 3)
-	fmt.Println(result3) //e
-
 	result4 := strutil.Substring("abcde", -2, 2)
-	fmt.Println(result4) //de
-
 	result5 := strutil.Substring("abcde", -2, 3)
-	fmt.Println(result5) //de
-
 	result6 := strutil.Substring("你好，欢迎你", 0, 2)
-	fmt.Println(result6) //你好
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+	fmt.Println(result4)
+	fmt.Println(result5)
+	fmt.Println(result6)
+
+	// Output:
+	// bcd
+	// bcde
+	// e
+	// de
+	// de
+	// 你好
 }
 ```
 
@@ -686,24 +707,23 @@ import (
 )
 
 func main() {
-	s1 := strutil.Wrap("ab", "")
-	fmt.Println(s1) //ab
+	result1 := strutil.Wrap("foo", "")
+	result2 := strutil.Wrap("foo", "*")
+	result3 := strutil.Wrap("'foo'", "'")
+	result4 := strutil.Wrap("", "*")
 
-	s2 := strutil.Wrap("", "*")
-	fmt.Println(s2) //""
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+	fmt.Println(result4)
 
-	s3 := strutil.Wrap("ab", "*")
-	fmt.Println(s3) //*ab*
-
-	s4 := strutil.Wrap("ab", "\"")
-	fmt.Println(s4) //\"ab\"
-
-	s5 := strutil.Wrap("ab", "'")
-	fmt.Println(s5) //'ab'
+	// Output:
+	// foo
+	// *foo*
+	// ''foo''
+	//
 }
 ```
-
-
 
 
 ### <span id="Wrap">Wrap</span>
@@ -723,20 +743,24 @@ import (
 )
 
 func main() {
-	s1 := strutil.Unwrap("ab", "")
-	fmt.Println(s1) //ab
+	result1 := strutil.Unwrap("foo", "")
+	result2 := strutil.Unwrap("*foo*", "*")
+	result3 := strutil.Unwrap("*foo", "*")
+	result4 := strutil.Unwrap("foo*", "*")
+	result5 := strutil.Unwrap("**foo**", "*")
 
-	s2 := strutil.Unwrap("ab", "*")
-	fmt.Println(s2) //ab
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+	fmt.Println(result4)
+	fmt.Println(result5)
 
-	s3 := strutil.Unwrap("**ab**", "*")
-	fmt.Println(s3) //*ab*
-
-	s4 := strutil.Unwrap("*ab", "*")
-	fmt.Println(s4) //*ab
-
-	s5 := strutil.Unwrap("***", "**")
-	fmt.Println(s5) //***
+	// Output:
+	// foo
+	// foo
+	// *foo
+	// foo*
+	// *foo*
 }
 ```
 

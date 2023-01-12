@@ -61,8 +61,6 @@ func main() {
 }
 ```
 
-
-
 ### <span id="Bridge">Bridge</span>
 
 <p>将多个channel链接到一个channel，直到取消上下文。</p>
@@ -105,6 +103,7 @@ func main() {
 	for v := range c.Bridge(ctx, genVals()) {
 		fmt.Println(v)
 	}
+
 	// Output:
 	// 1
 	// 2
@@ -113,9 +112,6 @@ func main() {
 	// 5
 }
 ```
-
-
-
 
 ### <span id="FanIn">FanIn</span>
 
@@ -155,7 +151,6 @@ func main() {
 	}
 }
 ```
-
 
 ### <span id="Generate">Generate</span>
 
@@ -225,6 +220,7 @@ func main() {
 	for v := range intStream {
 		fmt.Println(v)
 	}
+
 	// Output:
 	// 1
 	// 2
@@ -232,9 +228,6 @@ func main() {
 	// 2
 }
 ```
-
-
-
 
 ### <span id="RepeatFn">RepeatFn</span>
 
@@ -276,8 +269,6 @@ func main() {
 	// hello
 }
 ```
-
-
 
 ### <span id="Or">Or</span>
 
@@ -322,9 +313,6 @@ func main() {
 }
 ```
 
-
-
-
 ### <span id="OrDone">OrDone</span>
 
 <p>将一个channel读入另一个channel，直到取消上下文。</p>
@@ -355,15 +343,13 @@ func main() {
 	for v := range c.OrDone(ctx, intStream) {
 		fmt.Println(v)
 	}
+
 	// Output:
 	// 1
 	// 1
 	// 1
 }
 ```
-
-
-
 
 ### <span id="Take">Take</span>
 
@@ -403,14 +389,13 @@ func main() {
 	for v := range intStream {
 		fmt.Println(v)
 	}
+
 	// Output:
 	// 1
 	// 2
 	// 3
 }
 ```
-
-
 
 ### <span id="Tee">Tee</span>
 
