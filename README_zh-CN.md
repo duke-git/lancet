@@ -1,5 +1,5 @@
 <div align=center>
-<a href="https://uvdream.github.io/lancet-docs/"><img src="./logo.png" width="200" height="200"/><a/>
+<img src="./logo.png" width="200" height="200"/>
 
 <br/>
 
@@ -1176,7 +1176,6 @@ import "github.com/duke-git/lancet/v2/xerror"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/xerror_zh-CN.md#Unwrap)]
     [[play](https://go.dev/play/p/w84d7Mb3Afk)]
 
--   [Unwrap](https://github.com/duke-git/lancet/blob/main/docs/xerror_zh-CN.md#Unwrap)
 
 ## 如何贡献代码
 

@@ -1,5 +1,5 @@
 <div align=center>
-<a href="https://uvdream.github.io/lancet-docs/en/"><img src="./logo.png" width="200" height="200"/></a>
+<img src="./logo.png" width="200" height="200"/>
 
 <br/>
 
