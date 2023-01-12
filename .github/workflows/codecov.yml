@@ -1,0 +1,24 @@
+name: test
+on:
+  push:
+    branches:
+      - main
+      # - v2
+  pull_request:
+    branches:
+      - main
+      # - v2
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-go@v2
+        with:
+          go-version: "1.18"
+      - name: Run coverage
+        run: go test -v ./... -coverprofile=coverage.txt -covermode=atomic
+      - name: Upload coverage to Codecov
+        run: bash <(curl -s https://codecov.io/bash)

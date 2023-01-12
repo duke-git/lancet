@@ -1,0 +1,10 @@
+.idea/*
+.vscode/*
+.DS_Store
+cryptor/*.txt
+fileutil/*.txt
+fileutil/*.zip
+fileutil/*.link
+fileutil/unzip/*
+slice/testdata/*
+cryptor/*.pem
