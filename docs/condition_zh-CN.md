@@ -56,48 +56,48 @@ import (
 )
 
 func main() {
-	// bool
-	result1 := condition.Bool(false)
-	result2 := condition.Bool(true)
-	fmt.Println(result1) // false
-	fmt.Println(result2) // true
+    // bool
+    result1 := condition.Bool(false)
+    result2 := condition.Bool(true)
+    fmt.Println(result1) // false
+    fmt.Println(result2) // true
 
-	// integer
-	result3 := condition.Bool(0) 
-	result4 := condition.Bool(1)
-	fmt.Println(result3) // false
-	fmt.Println(result4) // true
+    // integer
+    result3 := condition.Bool(0) 
+    result4 := condition.Bool(1)
+    fmt.Println(result3) // false
+    fmt.Println(result4) // true
 
-	// string
-	result5 := condition.Bool("")
-	result6 := condition.Bool(" ")
-	fmt.Println(result5) // false
-	fmt.Println(result6) // true
+    // string
+    result5 := condition.Bool("")
+    result6 := condition.Bool(" ")
+    fmt.Println(result5) // false
+    fmt.Println(result6) // true
 
-	// slice
-	nums := []int{}
-	result7 := condition.Bool(nums)
+    // slice
+    nums := []int{}
+    result7 := condition.Bool(nums)
 
-	nums = append(nums, 1, 2)
-	result8 := condition.Bool(nums)
-	fmt.Println(result7) // false
-	fmt.Println(result8) // true
+    nums = append(nums, 1, 2)
+    result8 := condition.Bool(nums)
+    fmt.Println(result7) // false
+    fmt.Println(result8) // true
 
-	// struct
-	result9 = condition.Bool(struct{}{})
-	fmt.Println(result8) // false
+    // struct
+    result9 = condition.Bool(struct{}{})
+    fmt.Println(result8) // false
 
 
-	// Output:
-	// false
-	// true
-	// false
-	// true
-	// false
-	// true
-	// false
-	// true
-	// false
+    // Output:
+    // false
+    // true
+    // false
+    // true
+    // false
+    // true
+    // false
+    // true
+    // false
 }
 ```
 
@@ -120,10 +120,10 @@ import (
 )
 
 func main() {
-	fmt.Println(condition.And(0, 1)) // false
-	fmt.Println(condition.And(0, "")) // false
-	fmt.Println(condition.And(0, "0")) // false
-	fmt.Println(condition.And(1, "0")) // true
+    fmt.Println(condition.And(0, 1)) // false
+    fmt.Println(condition.And(0, "")) // false
+    fmt.Println(condition.And(0, "0")) // false
+    fmt.Println(condition.And(1, "0")) // true
 }
 ```
 
@@ -146,10 +146,10 @@ import (
 )
 
 func main() {
-	fmt.Println(condition.Or(0, "")) // false
-	fmt.Println(condition.Or(0, 1)) // true
-	fmt.Println(condition.Or(0, "0")) // true
-	fmt.Println(condition.Or(1, "0")) // true
+    fmt.Println(condition.Or(0, "")) // false
+    fmt.Println(condition.Or(0, 1)) // true
+    fmt.Println(condition.Or(0, "0")) // true
+    fmt.Println(condition.Or(1, "0")) // true
 }
 ```
 
@@ -172,10 +172,10 @@ import (
 )
 
 func main() {
-	fmt.Println(condition.Xor(0, 0)) // false
-	fmt.Println(condition.Xor(0, 1)) // true
-	fmt.Println(condition.Xor(1, 0)) // true
-	fmt.Println(condition.Xor(1, 1)) // false
+    fmt.Println(condition.Xor(0, 0)) // false
+    fmt.Println(condition.Xor(0, 1)) // true
+    fmt.Println(condition.Xor(1, 0)) // true
+    fmt.Println(condition.Xor(1, 1)) // false
 }
 ```
 
@@ -198,10 +198,10 @@ import (
 )
 
 func main() {
-	fmt.Println(condition.Nor(0, 0)) // true
-	fmt.Println(condition.Nor(0, 1)) // false
-	fmt.Println(condition.Nor(1, 0)) // false
-	fmt.Println(condition.Nor(1, 1)) // false
+    fmt.Println(condition.Nor(0, 0)) // true
+    fmt.Println(condition.Nor(0, 1)) // false
+    fmt.Println(condition.Nor(1, 0)) // false
+    fmt.Println(condition.Nor(1, 1)) // false
 }
 ```
 
@@ -224,10 +224,10 @@ import (
 )
 
 func main() {
-	fmt.Println(condition.Xnor(0, 0)) // true
-	fmt.Println(condition.Xnor(0, 1)) // false
-	fmt.Println(condition.Xnor(1, 0)) // false
-	fmt.Println(condition.Xnor(1, 1)) // true
+    fmt.Println(condition.Xnor(0, 0)) // true
+    fmt.Println(condition.Xnor(0, 1)) // false
+    fmt.Println(condition.Xnor(1, 0)) // false
+    fmt.Println(condition.Xnor(1, 1)) // true
 }
 ```
 
@@ -250,10 +250,10 @@ import (
 )
 
 func main() {
-	fmt.Println(condition.Nand(0, 0)) // true
-	fmt.Println(condition.Nand(0, 1)) // true
-	fmt.Println(condition.Nand(1, 0)) // true
-	fmt.Println(condition.Nand(1, 1)) // false
+    fmt.Println(condition.Nand(0, 0)) // true
+    fmt.Println(condition.Nand(0, 1)) // true
+    fmt.Println(condition.Nand(1, 0)) // true
+    fmt.Println(condition.Nand(1, 1)) // false
 }
 ```
 
@@ -276,18 +276,18 @@ import (
 )
 
 func main() {
-	conditionTrue := 2 > 1
-	result1 := condition.TernaryOperator(conditionTrue, 0, 1)
+    conditionTrue := 2 > 1
+    result1 := condition.TernaryOperator(conditionTrue, 0, 1)
 
-	conditionFalse := 2 > 3
-	result2 := condition.TernaryOperator(conditionFalse, 0, 1)
-	
-	fmt.Println(result1)
-	fmt.Println(result2)
+    conditionFalse := 2 > 3
+    result2 := condition.TernaryOperator(conditionFalse, 0, 1)
+    
+    fmt.Println(result1)
+    fmt.Println(result2)
 
-	// Output:
-	// 0
-	// 1
+    // Output:
+    // 0
+    // 1
 }
 ```
 
