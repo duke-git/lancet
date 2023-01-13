@@ -529,17 +529,17 @@ func (c *intComparator) Compare(v1 any, v2 any) int {
 
 func main() {
     numbers := []int{1, 2, 3, 4, 5, 6, 7, 8}
-	comparator := &intComparator{}
+    comparator := &intComparator{}
 
-	result1 := algorithm.BinaryIterativeSearch(numbers, 5, 0, len(numbers)-1, comparator)
-	result2 := algorithm.BinaryIterativeSearch(numbers, 9, 0, len(numbers)-1, comparator)
+    result1 := algorithm.BinaryIterativeSearch(numbers, 5, 0, len(numbers)-1, comparator)
+    result2 := algorithm.BinaryIterativeSearch(numbers, 9, 0, len(numbers)-1, comparator)
 
-	fmt.Println(result1)
-	fmt.Println(result2)
+    fmt.Println(result1)
+    fmt.Println(result2)
 
-	// Output:
-	// 4
-	// -1
+    // Output:
+    // 4
+    // -1
 }
 ```
 
@@ -566,19 +566,19 @@ import (
 func main() {
     numbers := []int{3, 4, 5, 3, 2, 1}
 
-	equalFunc := func(a, b int) bool {
-		return a == b
-	}
+    equalFunc := func(a, b int) bool {
+        return a == b
+    }
 
-	result1 := algorithm.LinearSearch(numbers, 3, equalFunc)
-	result2 := algorithm.LinearSearch(numbers, 6, equalFunc)
+    result1 := algorithm.LinearSearch(numbers, 3, equalFunc)
+    result2 := algorithm.LinearSearch(numbers, 6, equalFunc)
 
-	fmt.Println(result1)
-	fmt.Println(result2)
+    fmt.Println(result1)
+    fmt.Println(result2)
 
-	// Output:
-	// 0
-	// -1
+    // Output:
+    // 0
+    // -1
 }
 ```
 
@@ -609,28 +609,28 @@ import (
 func main() {
     cache := algorithm.NewLRUCache[int, int](2)
 
-	cache.Put(1, 1)
-	cache.Put(2, 2)
+    cache.Put(1, 1)
+    cache.Put(2, 2)
 
-	result1, ok1 := cache.Get(1)
-	result2, ok2 := cache.Get(2)
-	result3, ok3 := cache.Get(3)
+    result1, ok1 := cache.Get(1)
+    result2, ok2 := cache.Get(2)
+    result3, ok3 := cache.Get(3)
 
-	fmt.Println(result1, ok1)
-	fmt.Println(result2, ok2)
-	fmt.Println(result3, ok3)
+    fmt.Println(result1, ok1)
+    fmt.Println(result2, ok2)
+    fmt.Println(result3, ok3)
 
     fmt.Println(cache.Len())
 
     ok := cache.Delete(2)
-	fmt.Println(ok)
+    fmt.Println(ok)
 
 
-	// Output:
-	// 1 true
-	// 2 true
-	// 0 false
-	// 2
+    // Output:
+    // 1 true
+    // 2 true
+    // 0 false
+    // 2
     // true
 }
 ```
