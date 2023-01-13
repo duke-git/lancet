@@ -85,31 +85,31 @@ func main() {
     ctx, cancel := context.WithCancel(context.Background())
     defer cancel()
 
-	c := concurrency.NewChannel[int]()
-	genVals := func() <-chan <-chan int {
-		out := make(chan (<-chan int))
-		go func() {
-			defer close(out)
+    c := concurrency.NewChannel[int]()
+    genVals := func() <-chan <-chan int {
+        out := make(chan (<-chan int))
+        go func() {
+            defer close(out)
 			for i := 1; i <= 5; i++ {
 				stream := make(chan int, 1)
 				stream <- i
 				close(stream)
 				out <- stream
 			}
-		}()
+        }()
 		return out
-	}
+    }
 
-	for v := range c.Bridge(ctx, genVals()) {
-		fmt.Println(v)
-	}
+    for v := range c.Bridge(ctx, genVals()) {
+        fmt.Println(v)
+    }
 
-	// Output:
-	// 1
-	// 2
-	// 3
-	// 4
-	// 5
+    // Output:
+    // 1
+    // 2
+    // 3
+    // 4
+    // 5
 }
 ```
 

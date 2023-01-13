@@ -60,12 +60,12 @@ import (
 
 func main() {
     colorHex := "#003366"
-	r, g, b := convertor.ColorHexToRGB(colorHex)
+    r, g, b := convertor.ColorHexToRGB(colorHex)
 
-	fmt.Println(r, g, b)
+    fmt.Println(r, g, b)
 
-	// Output:
-	// 0 51 102
+    // Output:
+    // 0 51 102
 }
 ```
 
@@ -90,14 +90,14 @@ import (
 
 func main() {
     r := 0
-	g := 51
-	b := 102
-	colorHex := ColorRGBToHex(r, g, b)
+    g := 51
+    b := 102
+    colorHex := ColorRGBToHex(r, g, b)
 
-	fmt.Println(colorHex)
+    fmt.Println(colorHex)
 
-	// Output:
-	// #003366
+    // Output:
+    // #003366
 }
 ```
 
@@ -123,21 +123,21 @@ import (
 func main() {
     cases := []string{"1", "true", "True", "false", "False", "0", "123", "0.0", "abc"}
 
-	for i := 0; i < len(cases); i++ {
-		result, _ := convertor.ToBool(cases[i])
-		fmt.Println(result)
-	}
+    for i := 0; i < len(cases); i++ {
+        result, _ := convertor.ToBool(cases[i])
+        fmt.Println(result)
+    }
 
-	// Output:
-	// true
-	// true
-	// true
-	// false
-	// false
-	// false
-	// false
-	// false
-	// false
+    // Output:
+    // true
+    // true
+    // true
+    // false
+    // false
+    // false
+    // false
+    // false
+    // false
 }
 ```
 
@@ -169,7 +169,7 @@ func main() {
     fmt.Println(bytesData)
 
     // Output:
-	// [97 98 99]
+    // [97 98 99]
 }
 ```
 
@@ -194,17 +194,17 @@ import (
 
 func main() {
     result1 := convertor.ToChar("")
-	result2 := convertor.ToChar("abc")
-	result3 := convertor.ToChar("1 2#3")
+    result2 := convertor.ToChar("abc")
+    result3 := convertor.ToChar("1 2#3")
 
-	fmt.Println(result1)
-	fmt.Println(result2)
-	fmt.Println(result3)
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
 
-	// Output:
-	// []
-	// [a b c]
-	// [1   2 # 3]
+    // Output:
+    // []
+    // [a b c]
+    // [1   2 # 3]
 }
 ```
 
@@ -229,18 +229,18 @@ import (
 
 func main() {
     ch := convertor.ToChannel([]int{1, 2, 3})
-	result1 := <-ch
-	result2 := <-ch
-	result3 := <-ch
+    result1 := <-ch
+    result2 := <-ch
+    result3 := <-ch
 
-	fmt.Println(result1)
-	fmt.Println(result2)
-	fmt.Println(result3)
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
 
-	// Output:
-	// 1
-	// 2
-	// 3
+    // Output:
+    // 1
+    // 2
+    // 3
 }
 ```
 
@@ -265,26 +265,26 @@ import (
 
 func main() {
     result1, _ := convertor.ToFloat("")
-	result2, err := convertor.ToFloat("abc")
-	result3, _ := convertor.ToFloat("-1")
-	result4, _ := convertor.ToFloat("-.11")
-	result5, _ := convertor.ToFloat("1.23e3")
-	result6, _ := convertor.ToFloat(true)
+    result2, err := convertor.ToFloat("abc")
+    result3, _ := convertor.ToFloat("-1")
+    result4, _ := convertor.ToFloat("-.11")
+    result5, _ := convertor.ToFloat("1.23e3")
+    result6, _ := convertor.ToFloat(true)
 
-	fmt.Println(result1)
-	fmt.Println(result2, err)
-	fmt.Println(result3)
-	fmt.Println(result4)
-	fmt.Println(result5)
-	fmt.Println(result6)
+    fmt.Println(result1)
+    fmt.Println(result2, err)
+    fmt.Println(result3)
+    fmt.Println(result4)
+    fmt.Println(result5)
+    fmt.Println(result6)
 
-	// Output:
-	// 0
-	// 0 strconv.ParseFloat: parsing "": invalid syntax
-	// -1
-	// -0.11
-	// 1230
-	// 0
+    // Output:
+    // 0
+    // 0 strconv.ParseFloat: parsing "": invalid syntax
+    // -1
+    // -0.11
+    // 1230
+    // 0
 }
 ```
 
@@ -309,23 +309,23 @@ import (
 
 func main() {
     result1, _ := convertor.ToInt("123")
-	result2, _ := convertor.ToInt("-123")
-	result3, _ := convertor.ToInt(float64(12.3))
-	result4, err := convertor.ToInt("abc")
-	result5, _ := convertor.ToInt(true)
+    result2, _ := convertor.ToInt("-123")
+    result3, _ := convertor.ToInt(float64(12.3))
+    result4, err := convertor.ToInt("abc")
+    result5, _ := convertor.ToInt(true)
 
-	fmt.Println(result1)
-	fmt.Println(result2)
-	fmt.Println(result3)
-	fmt.Println(result4, err)
-	fmt.Println(result5)
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4, err)
+    fmt.Println(result5)
 
-	// Output:
-	// 123
-	// -123
-	// 12
-	// 0 strconv.ParseInt: parsing "": invalid syntax
-	// 0
+    // Output:
+    // 123
+    // -123
+    // 12
+    // 0 strconv.ParseInt: parsing "": invalid syntax
+    // 0
 }
 ```
 
@@ -350,16 +350,16 @@ import (
 
 func main() {
     aMap := map[string]int{"a": 1, "b": 2, "c": 3}
-	result, err := ToJson(aMap)
+    result, err := ToJson(aMap)
 
-	if err != nil {
-		fmt.Printf("%v", err)
-	}
+    if err != nil {
+        fmt.Printf("%v", err)
+    }
 
-	fmt.Println(result)
+    fmt.Println(result)
 
-	// Output:
-	// {"a":1,"b":2,"c":3}
+    // Output:
+    // {"a":1,"b":2,"c":3}
 }
 ```
 
@@ -399,7 +399,7 @@ func main() {
     fmt.Println(result)
 
     // Output:
-	// map[100:Hello 101:Hi]
+    // map[100:Hello 101:Hi]
 }
 ```
 
@@ -427,7 +427,7 @@ func main() {
     fmt.Println(*result) 
     
     // Output:
-	// 123
+    // 123
 }
 ```
 
@@ -452,29 +452,29 @@ import (
 
 func main() {
     result1 := convertor.ToString("")
-	result2 := convertor.ToString(nil)
-	result3 := convertor.ToString(0)
-	result4 := convertor.ToString(1.23)
-	result5 := convertor.ToString(true)
-	result6 := convertor.ToString(false)
-	result7 := convertor.ToString([]int{1, 2, 3})
+    result2 := convertor.ToString(nil)
+    result3 := convertor.ToString(0)
+    result4 := convertor.ToString(1.23)
+    result5 := convertor.ToString(true)
+    result6 := convertor.ToString(false)
+    result7 := convertor.ToString([]int{1, 2, 3})
 
-	fmt.Println(result1)
-	fmt.Println(result2)
-	fmt.Println(result3)
-	fmt.Println(result4)
-	fmt.Println(result5)
-	fmt.Println(result6)
-	fmt.Println(result7)
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
+    fmt.Println(result5)
+    fmt.Println(result6)
+    fmt.Println(result7)
 
-	// Output:
-	//
-	//
-	// 0
-	// 1.23
-	// true
-	// false
-	// [1,2,3]
+    // Output:
+    //
+    //
+    // 0
+    // 1.23
+    // true
+    // false
+    // [1,2,3]
 }
 ```
 
@@ -499,23 +499,21 @@ import (
 
 func main() {
     type People struct {
-		Name string `json:"name"`
-		age  int
-	}
-	p := People{
-		"test",
-		100,
-	}
-	pm, _ := convertor.StructToMap(p)
+        Name string `json:"name"`
+        age  int
+    }
+    p := People{
+        "test",
+        100,
+    }
+    pm, _ := convertor.StructToMap(p)
 
-	fmt.Println(pm)
+    fmt.Println(pm)
 
-	// Output:
-	// map[name:test]
+    // Output:
+    // map[name:test]
 }
 ```
-
-
 
 ### <span id="MapToSlice">MapToSlice</span>
 
@@ -571,7 +569,7 @@ func main() {
     fmt.Println(byteData)
 
     // Output:
-	// [6 12 0 3 97 98 99]
+    // [6 12 0 3 97 98 99]
 }
 ```
 
@@ -596,16 +594,16 @@ import (
 
 func main() {
     var result string
-	byteData := []byte{6, 12, 0, 3, 97, 98, 99}
-	
+    byteData := []byte{6, 12, 0, 3, 97, 98, 99}
+    
     err := convertor.DecodeByte(byteData, &result)
     if err != nil {
-		return
-	}
+        return
+    }
 
     fmt.Println(result)
     
     // Output:
-	// abc
+    // abc
 }
 ```
