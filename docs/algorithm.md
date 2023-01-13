@@ -148,7 +148,7 @@ func main() {
     fmt.Println(peoples)
 
     // Output:
-    //[{d 8} {b 10} {c 17} {a 20} {e 28}]
+    // [{d 8} {b 10} {c 17} {a 20} {e 28}]
 }
 ```
 
@@ -196,7 +196,7 @@ func main() {
     fmt.Println(numbers)
 
     // Output:
-	// [1 2 3 4 5 6]
+    // [1 2 3 4 5 6]
 }
 ```
 

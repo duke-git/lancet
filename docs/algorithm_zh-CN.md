@@ -1,17 +1,19 @@
 # Algorithm
-algorithm算法包实现一些基本算法，sort，search，lrucache。
+
+algorithm 算法包实现一些基本算法，sort，search，lrucache。
 
 <div STYLE="page-break-after: always;"></div>
 
 ## 源码
 
-- [https://github.com/duke-git/lancet/blob/main/algorithm/sort.go](https://github.com/duke-git/lancet/blob/main/algorithm/sort.go)
-- [https://github.com/duke-git/lancet/blob/main/algorithm/search.go](https://github.com/duke-git/lancet/blob/main/algorithm/search.go)
-- [https://github.com/duke-git/lancet/blob/main/algorithm/lru_cache.go](https://github.com/duke-git/lancet/blob/main/algorithm/lru_cache.go)
+-   [https://github.com/duke-git/lancet/blob/main/algorithm/sort.go](https://github.com/duke-git/lancet/blob/main/algorithm/sort.go)
+-   [https://github.com/duke-git/lancet/blob/main/algorithm/search.go](https://github.com/duke-git/lancet/blob/main/algorithm/search.go)
+-   [https://github.com/duke-git/lancet/blob/main/algorithm/lru_cache.go](https://github.com/duke-git/lancet/blob/main/algorithm/lru_cache.go)
 
 <div STYLE="page-break-after: always;"></div>
 
 ## 用法
+
 ```go
 import (
     "github.com/duke-git/lancet/v2/algorithm"
@@ -22,25 +24,25 @@ import (
 
 ## 目录
 
-- [BubbleSort](#BubbleSort)
-- [InsertionSort](#InsertionSort)
-- [SelectionSort](#SelectionSort)
-- [ShellSort](#ShellSort)
-- [QuickSort](#QuickSort)
-- [HeapSort](#HeapSort)
-- [MergeSort](#MergeSort)
-- [CountSort](#CountSort)
-- [BinarySearch](#BinarySearch)
-- [BinaryIterativeSearch](#BinaryIterativeSearch)
-- [LinearSearch](#LinearSearch)
-- [LRUCache](#LRUCache)
-
+-   [BubbleSort](#BubbleSort)
+-   [InsertionSort](#InsertionSort)
+-   [SelectionSort](#SelectionSort)
+-   [ShellSort](#ShellSort)
+-   [QuickSort](#QuickSort)
+-   [HeapSort](#HeapSort)
+-   [MergeSort](#MergeSort)
+-   [CountSort](#CountSort)
+-   [BinarySearch](#BinarySearch)
+-   [BinaryIterativeSearch](#BinaryIterativeSearch)
+-   [LinearSearch](#LinearSearch)
+-   [LRUCache](#LRUCache)
 
 <div STYLE="page-break-after: always;"></div>
 
 ## 文档
 
 ### <span id="BubbleSort">BubbleSort</span>
+
 <p>冒泡排序，参数comparator需要实现包lancetconstraints.Comparator。</p>
 
 <b>函数签名:</b>
@@ -48,6 +50,7 @@ import (
 ```go
 func BubbleSort[T any](slice []T, comparator lancetconstraints.Comparator)
 ```
+
 <b>示例:</b>
 
 ```go
@@ -87,6 +90,7 @@ func main() {
 ```
 
 ### <span id="InsertionSort">InsertionSort</span>
+
 <p>插入排序，参数comparator需要实现包lancetconstraints.Comparator。</p>
 
 <b>函数签名:</b>
@@ -94,6 +98,7 @@ func main() {
 ```go
 func InsertionSort[T any](slice []T, comparator lancetconstraints.Comparator)
 ```
+
 <b>示例:</b>
 
 ```go
@@ -141,14 +146,14 @@ func main() {
     algorithm.InsertionSort(peoples, comparator)
 
     fmt.Println(peoples)
-    
+
     // Output:
     //[{d 8} {b 10} {c 17} {a 20} {e 28}]
 }
 ```
 
-
 ### <span id="SelectionSort">SelectionSort</span>
+
 <p>选择排序，参数comparator需要实现包lancetconstraints.Comparator。</p>
 
 <b>函数签名:</b>
@@ -156,6 +161,7 @@ func main() {
 ```go
 func SelectionSort[T any](slice []T, comparator lancetconstraints.Comparator)
 ```
+
 <b>示例:</b>
 
 ```go
@@ -195,6 +201,7 @@ func main() {
 ```
 
 ### <span id="ShellSort">ShellSort</span>
+
 <p>希尔排序，参数comparator需要实现包lancetconstraints.Comparator。</p>
 
 <b>函数签名:</b>
@@ -202,6 +209,7 @@ func main() {
 ```go
 func ShellSort[T any](slice []T, comparator lancetconstraints.Comparator)
 ```
+
 <b>示例:</b>
 
 ```go
@@ -241,6 +249,7 @@ func main() {
 ```
 
 ### <span id="QuickSort">QuickSort</span>
+
 <p>快速排序，参数comparator需要实现包lancetconstraints.Comparator。</p>
 
 <b>函数签名:</b>
@@ -248,6 +257,7 @@ func main() {
 ```go
 func QuickSort[T any](slice []T comparator lancetconstraints.Comparator)
 ```
+
 <b>示例:</b>
 
 ```go
@@ -287,6 +297,7 @@ func main() {
 ```
 
 ### <span id="HeapSort">HeapSort</span>
+
 <p>堆排序，参数comparator需要实现包lancetconstraints.Comparator。</p>
 
 <b>函数签名:</b>
@@ -294,6 +305,7 @@ func main() {
 ```go
 func HeapSort[T any](slice []T, comparator lancetconstraints.Comparator)
 ```
+
 <b>示例:</b>
 
 ```go
@@ -333,6 +345,7 @@ func main() {
 ```
 
 ### <span id="MergeSort">MergeSort</span>
+
 <p>归并排序，参数comparator需要实现包lancetconstraints.Comparator。</p>
 
 <b>函数签名:</b>
@@ -340,6 +353,7 @@ func main() {
 ```go
 func MergeSort[T any](slice []T, comparator lancetconstraints.Comparator)
 ```
+
 <b>示例:</b>
 
 ```go
@@ -379,6 +393,7 @@ func main() {
 ```
 
 ### <span id="CountSort">CountSort</span>
+
 <p>计数排序，参数comparator需要实现包lancetconstraints.Comparator。</p>
 
 <b>函数签名:</b>
@@ -386,6 +401,7 @@ func main() {
 ```go
 func CountSort[T any](slice []T, comparator lancetconstraints.Comparator) []T
 ```
+
 <b>示例:</b>
 
 ```go
@@ -426,6 +442,7 @@ func main() {
 ```
 
 ### <span id="BinarySearch">BinarySearch</span>
+
 <p>二分递归查找，返回元素索引，未找到元素返回-1，参数comparator需要实现包lancetconstraints.Comparator。</p>
 
 <b>函数签名:</b>
@@ -433,6 +450,7 @@ func main() {
 ```go
 func BinarySearch[T any](sortedSlice []T, target T, lowIndex, highIndex int, comparator lancetconstraints.Comparator) int
 ```
+
 <b>示例:</b>
 
 ```go
@@ -475,6 +493,7 @@ func main() {
 ```
 
 ### <span id="BinaryIterativeSearch">BinaryIterativeSearch</span>
+
 <p>二分迭代查找，返回元素索引，未找到元素返回-1，参数comparator需要实现包lancetconstraints.Comparator。</p>
 
 <b>函数签名:</b>
@@ -482,6 +501,7 @@ func main() {
 ```go
 func BinaryIterativeSearch[T any](sortedSlice []T, target T, lowIndex, highIndex int, comparator lancetconstraints.Comparator) int
 ```
+
 <b>示例:</b>
 
 ```go
@@ -524,6 +544,7 @@ func main() {
 ```
 
 ### <span id="LinearSearch">LinearSearch</span>
+
 <p>基于传入的相等函数线性查找元素，返回元素索引，未找到元素返回-1。</p>
 
 <b>函数签名:</b>
@@ -531,6 +552,7 @@ func main() {
 ```go
 func LinearSearch[T any](slice []T, target T, equal func(a, b T) bool) int
 ```
+
 <b>示例:</b>
 
 ```go
@@ -561,6 +583,7 @@ func main() {
 ```
 
 ### <span id="LRUCache">LRUCache</span>
+
 <p>lru算法实现缓存。</p>
 
 <b>函数签名:</b>
@@ -572,6 +595,7 @@ func (l *LRUCache[K, V]) Put(key K, value V)
 func (l *LRUCache[K, V]) Delete(key K) bool
 func (l *LRUCache[K, V]) Len() int
 ```
+
 <b>示例:</b>
 
 ```go
