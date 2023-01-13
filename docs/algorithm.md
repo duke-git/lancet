@@ -85,7 +85,7 @@ func main() {
     fmt.Println(numbers)
 
     // Output:
-	// [1 2 3 4 5 6]
+    // [1 2 3 4 5 6]
 }
 ```
 
@@ -244,7 +244,7 @@ func main() {
     fmt.Println(numbers)
 
     // Output:
-	// [1 2 3 4 5 6]
+    // [1 2 3 4 5 6]
 }
 ```
 
@@ -292,7 +292,7 @@ func main() {
     fmt.Println(numbers)
 
     // Output:
-	// [1 2 3 4 5 6]
+    // [1 2 3 4 5 6]
 }
 ```
 
@@ -340,7 +340,7 @@ func main() {
     fmt.Println(numbers)
 
     // Output:
-	// [1 2 3 4 5 6]
+    // [1 2 3 4 5 6]
 }
 ```
 
@@ -388,7 +388,7 @@ func main() {
     fmt.Println(numbers)
 
     // Output:
-	// [1 2 3 4 5 6]
+    // [1 2 3 4 5 6]
 }
 ```
 
@@ -437,7 +437,7 @@ func main() {
     fmt.Println(sortedNums)
 
     // Output:
-	// [1 2 3 4 5 6]
+    // [1 2 3 4 5 6]
 }
 ```
 
@@ -478,17 +478,17 @@ func (c *intComparator) Compare(v1 any, v2 any) int {
 
 func main() {
     numbers := []int{1, 2, 3, 4, 5, 6, 7, 8}
-	comparator := &intComparator{}
+    comparator := &intComparator{}
 
-	result1 := algorithm.BinarySearch(numbers, 5, 0, len(numbers)-1, comparator)
-	result2 := algorithm.BinarySearch(numbers, 9, 0, len(numbers)-1, comparator)
+    result1 := algorithm.BinarySearch(numbers, 5, 0, len(numbers)-1, comparator)
+    result2 := algorithm.BinarySearch(numbers, 9, 0, len(numbers)-1, comparator)
 
-	fmt.Println(result1)
-	fmt.Println(result2)
+    fmt.Println(result1)
+    fmt.Println(result2)
 
-	// Output:
-	// 4
-	// -1
+    // Output:
+    // 4
+    // -1
 }
 ```
 
