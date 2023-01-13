@@ -1,15 +1,17 @@
 # Fileutil
+
 Package fileutil implements some basic functions for file operations.
 
 <div STYLE="page-break-after: always;"></div>
 
 ## Source:
 
-- [https://github.com/duke-git/lancet/blob/main/fileutil/file.go](https://github.com/duke-git/lancet/blob/main/fileutil/file.go)
+-   [https://github.com/duke-git/lancet/blob/main/fileutil/file.go](https://github.com/duke-git/lancet/blob/main/fileutil/file.go)
 
 <div STYLE="page-break-after: always;"></div>
 
 ## Usage:
+
 ```go
 import (
     "github.com/duke-git/lancet/v2/fileutil"
@@ -19,30 +21,30 @@ import (
 <div STYLE="page-break-after: always;"></div>
 
 ## Index
-- [ClearFile](#ClearFile)
-- [CreateFile](#CreateFile)
-- [CreateDir](#CreateDir)
-- [CopyFile](#CopyFile)
-- [FileMode](#FileMode)
-- [MiMeType](#MiMeType)
-- [IsExist](#IsExist)
-- [IsLink](#IsLink)
-- [IsDir](#IsDir)
-- [ListFileNames](#ListFileNames)
-- [RemoveFile](#RemoveFile)
-- [ReadFileToString](#ReadFileToString)
-- [ReadFileByLine](#ReadFileByLine)
-- [Zip](#Zip)
-- [UnZip](#UnZip)
-- [UnZip](#UnZip)
+
+-   [ClearFile](#ClearFile)
+-   [CreateFile](#CreateFile)
+-   [CreateDir](#CreateDir)
+-   [CopyFile](#CopyFile)
+-   [FileMode](#FileMode)
+-   [MiMeType](#MiMeType)
+-   [IsExist](#IsExist)
+-   [IsLink](#IsLink)
+-   [IsDir](#IsDir)
+-   [ListFileNames](#ListFileNames)
+-   [RemoveFile](#RemoveFile)
+-   [ReadFileToString](#ReadFileToString)
+-   [ReadFileByLine](#ReadFileByLine)
+-   [Zip](#Zip)
+-   [UnZip](#UnZip)
+-   [UnZip](#UnZip)
 
 <div STYLE="page-break-after: always;"></div>
 
 ## Documentation
 
-
-
 ### <span id="ClearFile">ClearFile</span>
+
 <p>Clear the file content, write empty string to the file.</p>
 
 <b>Signature:</b>
@@ -50,6 +52,7 @@ import (
 ```go
 func ClearFile(path string) error
 ```
+
 <b>Example:</b>
 
 ```go
@@ -69,6 +72,7 @@ func main() {
 ```
 
 ### <span id="CreateFile">CreateFile</span>
+
 <p>Create file in path. return true if create succeed.</p>
 
 <b>Signature:</b>
@@ -76,6 +80,7 @@ func main() {
 ```go
 func CreateFile(path string) bool
 ```
+
 <b>Example:</b>
 
 ```go
@@ -92,9 +97,8 @@ func main() {
 }
 ```
 
-
-
 ### <span id="CreateDir">CreateDir</span>
+
 <p>Create directory in absolute path. param `absPath` like /a/, /a/b/.</p>
 
 <b>Signature:</b>
@@ -102,6 +106,7 @@ func main() {
 ```go
 func CreateDir(absPath string) error
 ```
+
 <b>Example:</b>
 
 ```go
@@ -118,8 +123,8 @@ func main() {
 }
 ```
 
-
 ### <span id="CopyFile">CopyFile</span>
+
 <p>Copy src file to dest file. If dest file exist will overwrite it.</p>
 
 <b>Signature:</b>
@@ -127,6 +132,7 @@ func main() {
 ```go
 func CopyFile(srcFilePath string, dstFilePath string) error
 ```
+
 <b>Example:</b>
 
 ```go
@@ -145,9 +151,8 @@ func main() {
 }
 ```
 
-
-
 ### <span id="FileMode">FileMode</span>
+
 <p>Return file mode infomation.</p>
 
 <b>Signature:</b>
@@ -155,6 +160,7 @@ func main() {
 ```go
 func FileMode(path string) (fs.FileMode, error)
 ```
+
 <b>Example:</b>
 
 ```go
@@ -174,9 +180,8 @@ func main() {
 }
 ```
 
-
-
 ### <span id="MiMeType">MiMeType</span>
+
 <p>Get file mime type, 'file' param's type should be string or *os.File.</p>
 
 <b>Signature:</b>
@@ -184,6 +189,7 @@ func main() {
 ```go
 func MiMeType(file any) string
 ```
+
 <b>Example:</b>
 
 ```go
@@ -205,10 +211,8 @@ func main() {
 }
 ```
 
-
-
-
 ### <span id="IsExist">IsExist</span>
+
 <p>Checks if a file or directory exists.</p>
 
 <b>Signature:</b>
@@ -216,6 +220,7 @@ func main() {
 ```go
 func IsExist(path string) bool
 ```
+
 <b>Example:</b>
 
 ```go
@@ -233,9 +238,8 @@ func main() {
 }
 ```
 
-
-
 ### <span id="IsLink">IsLink</span>
+
 <p>Checks if a file is symbol link or not.</p>
 
 <b>Signature:</b>
@@ -243,6 +247,7 @@ func main() {
 ```go
 func IsLink(path string) bool
 ```
+
 <b>Example:</b>
 
 ```go
@@ -259,16 +264,16 @@ func main() {
 }
 ```
 
-
-
 ### <span id="IsDir">IsDir</span>
+
 <p>Checks if the path is directy or not.</p>
 
 <b>Signature:</b>
 
 ```go
-func IsDir(path string) bool 
+func IsDir(path string) bool
 ```
+
 <b>Example:</b>
 
 ```go
@@ -288,9 +293,8 @@ func main() {
 }
 ```
 
-
-
 ### <span id="ListFileNames">ListFileNames</span>
+
 <p>List all file names in given path.</p>
 
 <b>Signature:</b>
@@ -298,6 +302,7 @@ func main() {
 ```go
 func ListFileNames(path string) ([]string, error)
 ```
+
 <b>Example:</b>
 
 ```go
@@ -314,9 +319,8 @@ func main() {
 }
 ```
 
-
-
 ### <span id="RemoveFile">RemoveFile</span>
+
 <p>Remove the file of path.</p>
 
 <b>Signature:</b>
@@ -324,6 +328,7 @@ func main() {
 ```go
 func RemoveFile(path string) error
 ```
+
 <b>Example:</b>
 
 ```go
@@ -342,8 +347,8 @@ func main() {
 }
 ```
 
-
 ### <span id="ReadFileToString">ReadFileToString</span>
+
 <p>Return string of file content.</p>
 
 <b>Signature:</b>
@@ -351,6 +356,7 @@ func main() {
 ```go
 func ReadFileToString(path string) (string, error)
 ```
+
 <b>Example:</b>
 
 ```go
@@ -374,9 +380,8 @@ func main() {
 }
 ```
 
-
-
 ### <span id="ReadFileByLine">ReadFileByLine</span>
+
 <p>Read file line by line, and return slice of lines</p>
 
 <b>Signature:</b>
@@ -384,6 +389,7 @@ func main() {
 ```go
 func ReadFileByLine(path string)([]string, error)
 ```
+
 <b>Example:</b>
 
 ```go
@@ -408,9 +414,8 @@ func main() {
 }
 ```
 
-
-
 ### <span id="Zip">Zip</span>
+
 <p>Create a zip file of fpath, fpath could be a file or a directory.</p>
 
 <b>Signature:</b>
@@ -418,6 +423,7 @@ func main() {
 ```go
 func Zip(fpath string, destPath string) error
 ```
+
 <b>Example:</b>
 
 ```go
@@ -436,10 +442,8 @@ func main() {
 }
 ```
 
-
-
-
 ### <span id="UnZip">UnZip</span>
+
 <p>Unzip the file and save it to dest path.</p>
 
 <b>Signature:</b>
@@ -447,6 +451,7 @@ func main() {
 ```go
 func UnZip(zipFile string, destPath string) error
 ```
+
 <b>Example:</b>
 
 ```go
@@ -464,8 +469,3 @@ func main() {
     }
 }
 ```
-
-
-
-
-
