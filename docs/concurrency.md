@@ -82,8 +82,8 @@ import (
 )
 
 func main() {
-	ctx, cancel := context.WithCancel(context.Background())
-	defer cancel()
+    ctx, cancel := context.WithCancel(context.Background())
+    defer cancel()
 
 	c := concurrency.NewChannel[int]()
 	genVals := func() <-chan <-chan int {
