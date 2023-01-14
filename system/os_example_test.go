@@ -3,10 +3,10 @@ package system
 import "fmt"
 
 func ExampleSetOsEnv() {
-	ok := SetOsEnv("foo", "abc")
+	err := SetOsEnv("foo", "abc")
 	result := GetOsEnv("foo")
 
-	fmt.Println(ok)
+	fmt.Println(err)
 	fmt.Println(result)
 	// Output:
 	// <nil>
@@ -25,14 +25,14 @@ func ExampleGetOsEnv() {
 }
 
 func ExampleRemoveOsEnv() {
-	ok1 := SetOsEnv("foo", "abc")
+	err1 := SetOsEnv("foo", "abc")
 	result1 := GetOsEnv("foo")
 
-	ok2 := RemoveOsEnv("foo")
+	err2 := RemoveOsEnv("foo")
 	result2 := GetOsEnv("foo")
 
-	fmt.Println(ok1)
-	fmt.Println(ok2)
+	fmt.Println(err1)
+	fmt.Println(err2)
 	fmt.Println(result1)
 	fmt.Println(result2)
 
@@ -49,9 +49,10 @@ func ExampleCompareOsEnv() {
 		return
 	}
 
-	result1 := CompareOsEnv("foo", "abc")
+	result := CompareOsEnv("foo", "abc")
 
-	fmt.Println(result1)
+	fmt.Println(result)
+
 	// Output:
 	// true
 }
