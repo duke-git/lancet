@@ -7,7 +7,6 @@ netutil 网络包支持获取 ip 地址，发送 http 请求。
 ## 源码:
 
 -   [https://github.com/duke-git/lancet/blob/main/netutil/net.go](https://github.com/duke-git/lancet/blob/main/netutil/net.go)
--   [https://github.com/duke-git/lancet/blob/main/netutil/http_client.go](https://github.com/duke-git/lancet/blob/main/netutil/http_client.go)
 
 -   [https://github.com/duke-git/lancet/blob/main/netutil/http.go](https://github.com/duke-git/lancet/blob/main/netutil/http.go)
 
@@ -113,8 +112,8 @@ func main() {
         fmt.Println(err)
     }
 
-    fmt.Println(encodedUrl) 
-    
+    fmt.Println(encodedUrl)
+
     // Output:
     // http://www.lancet.com?a=1&b=%5B2%5D
 }
@@ -175,8 +174,8 @@ import (
 
 func main() {
     ips := netutil.GetIps()
-    fmt.Println(ips) 
-    
+    fmt.Println(ips)
+
     // Output:
     // [192.168.1.9]
 }

@@ -8,8 +8,6 @@ Package netutil contains functions to get net information and send http request.
 
 -   [https://github.com/duke-git/lancet/blob/main/netutil/net.go](https://github.com/duke-git/lancet/blob/main/netutil/net.go)
 
--   [https://github.com/duke-git/lancet/blob/main/netutil/http_client.go](https://github.com/duke-git/lancet/blob/main/netutil/http_client.go)
-
 -   [https://github.com/duke-git/lancet/blob/main/netutil/http.go](https://github.com/duke-git/lancet/blob/main/netutil/http.go)
 
 <div STYLE="page-break-after: always;"></div>
