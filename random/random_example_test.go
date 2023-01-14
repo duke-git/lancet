@@ -6,7 +6,6 @@ import (
 )
 
 func ExampleRandInt() {
-
 	result := RandInt(1, 10)
 
 	if result >= 1 && result < 10 {
