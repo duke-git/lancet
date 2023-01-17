@@ -39,6 +39,22 @@ func TestFromSlice(t *testing.T) {
 	assert.Equal([]int{1, 2, 3}, stream.ToSlice())
 }
 
+func TestFromChannel(t *testing.T) {
+	assert := internal.NewAssert(t, "TestFromChannel")
+
+	ch := make(chan int)
+	go func() {
+		for i := 1; i < 4; i++ {
+			ch <- i
+		}
+		close(ch)
+	}()
+
+	stream := FromChannel(ch)
+
+	assert.Equal([]int{1, 2, 3}, stream.ToSlice())
+}
+
 func TestFromRange(t *testing.T) {
 	assert := internal.NewAssert(t, "TestFromRange")
 
