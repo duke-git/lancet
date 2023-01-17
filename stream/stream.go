@@ -6,7 +6,12 @@
 // powerful like other libs
 package stream
 
-import "golang.org/x/exp/constraints"
+import (
+	"bytes"
+	"encoding/gob"
+
+	"golang.org/x/exp/constraints"
+)
 
 // A stream should implements methods:
 // type StreamI[T any] interface {
@@ -67,6 +72,34 @@ func FromRange[T constraints.Integer | constraints.Float](start, end, step T) st
 	}
 
 	return stream[T]{source: source}
+}
+
+// Distinct returns a stream that removes the duplicated items.
+func (s stream[T]) Distinct() stream[T] {
+	source := make([]T, 0)
+
+	distinct := map[string]bool{}
+
+	for _, v := range s.source {
+		// todo: performance issue
+		k := hashKey(v)
+		if _, ok := distinct[k]; !ok {
+			distinct[k] = true
+			source = append(source, v)
+		}
+	}
+
+	return FromSlice(source)
+}
+
+func hashKey(data any) string {
+	buffer := bytes.NewBuffer(nil)
+	encoder := gob.NewEncoder(buffer)
+	err := encoder.Encode(data)
+	if err != nil {
+		panic("stream.hashKey: get hashkey failed")
+	}
+	return buffer.String()
 }
 
 // ToSlice return the elements in the stream.
