@@ -6,6 +6,31 @@ import (
 	"github.com/duke-git/lancet/v2/internal"
 )
 
+func TestOf(t *testing.T) {
+	assert := internal.NewAssert(t, "TestFromSlice")
+
+	stream := Of(1, 2, 3)
+	assert.Equal([]int{1, 2, 3}, stream.ToSlice())
+}
+
+func TestGenerate(t *testing.T) {
+	assert := internal.NewAssert(t, "TestFromSlice")
+
+	n := 0
+	max := 4
+
+	generator := func() func() (int, bool) {
+		return func() (int, bool) {
+			n++
+			return n, n < max
+		}
+	}
+
+	stream := Generate(generator)
+
+	assert.Equal([]int{1, 2, 3}, stream.ToSlice())
+}
+
 func TestFromSlice(t *testing.T) {
 	assert := internal.NewAssert(t, "TestFromSlice")
 
