@@ -2,7 +2,7 @@
 // Use of this source code is governed by MIT license
 
 // Package stream implements a sequence of elements supporting sequential and parallel aggregate operations.
-// this package is a experiment to explore if stream in go can work as the way java does. it's complete, but not
+// this package is an experiment to explore if stream in go can work as the way java does. it's complete, but not
 // powerful like other libs
 package stream
 
@@ -49,6 +49,11 @@ import (
 
 type stream[T any] struct {
 	source []T
+}
+
+// Of creates a stream stream whose elements are the specified values.
+func Of[T any](elems ...T) stream[T] {
+	return FromSlice(elems)
 }
 
 // FromSlice create stream from slice.
@@ -100,6 +105,35 @@ func hashKey(data any) string {
 		panic("stream.hashKey: get hashkey failed")
 	}
 	return buffer.String()
+}
+
+// Filter returns a stream consisting of the elements of this stream that match the given predicate.
+func (s stream[T]) Filter(predicate func(item T) bool) stream[T] {
+	source := make([]T, 0)
+
+	for _, v := range s.source {
+		if predicate(v) {
+			source = append(source, v)
+		}
+	}
+
+	return FromSlice(source)
+}
+
+// Map returns a stream consisting of the elements of this stream that apply the given function to elements of stream.
+func (s stream[T]) Map(mapper func(item T) T) stream[T] {
+	source := make([]T, s.Count(), s.Count())
+
+	for i, v := range s.source {
+		source[i] = mapper(v)
+	}
+
+	return FromSlice(source)
+}
+
+// Count returns the count of elements in the stream.
+func (s stream[T]) Count() int {
+	return len(s.source)
 }
 
 // ToSlice return the elements in the stream.

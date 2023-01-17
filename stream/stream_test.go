@@ -55,3 +55,31 @@ func TestStream_Distinct(t *testing.T) {
 	// {[{001 Tom 10} {002 Jim 20} {003 Mike 30}]}
 	t.Log(distinctStream)
 }
+
+func TestStream_Filter(t *testing.T) {
+	assert := internal.NewAssert(t, "TestStream_Filter")
+
+	stream := FromSlice([]int{1, 2, 3, 4, 5})
+
+	isEven := func(n int) bool {
+		return n%2 == 0
+	}
+
+	even := stream.Filter(isEven)
+
+	assert.Equal([]int{2, 4}, even.ToSlice())
+}
+
+func TestStream_Map(t *testing.T) {
+	assert := internal.NewAssert(t, "TestStream_Map")
+
+	stream := FromSlice([]int{1, 2, 3})
+
+	addOne := func(n int) int {
+		return n + 1
+	}
+
+	s := stream.Map(addOne)
+
+	assert.Equal([]int{2, 3, 4}, s.ToSlice())
+}
