@@ -28,7 +28,7 @@ import (
 // 	Min(less func(a, b T) bool) (T, bool)
 
 // 	Limit(maxSize int) StreamI[T]
-// 	Skip(n int64) StreamI[T]
+// 	Skip(n int) StreamI[T]
 
 // 	AllMatch(predicate func(item T) bool) bool
 // 	AnyMatch(predicate func(item T) bool) bool
@@ -153,6 +153,37 @@ func (s stream[T]) Map(mapper func(item T) T) stream[T] {
 
 	for i, v := range s.source {
 		source[i] = mapper(v)
+	}
+
+	return FromSlice(source)
+}
+
+// Peek returns a stream consisting of the elements of this stream, additionally performing the provided action on each element as elements are consumed from the resulting stream.
+func (s stream[T]) Peek(consumer func(item T)) stream[T] {
+	for _, v := range s.source {
+		consumer(v)
+	}
+
+	return s
+}
+
+// Skip Returns a stream consisting of the remaining elements of this stream after discarding the first n elements of the stream. If this stream contains fewer than n elements then an empty stream will be returned.
+func (s stream[T]) Skip(n int) stream[T] {
+	if n <= 0 {
+		return s
+	}
+
+	source := make([]T, 0)
+	l := len(s.source)
+
+	if n > l {
+		return FromSlice(source)
+	}
+
+	// source = make([]T, l-n+1, l-n+1)
+
+	for i := n; i < l; i++ {
+		source = append(source, s.source[i])
 	}
 
 	return FromSlice(source)

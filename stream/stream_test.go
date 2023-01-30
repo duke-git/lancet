@@ -1,6 +1,7 @@
 package stream
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/duke-git/lancet/v2/internal"
@@ -123,4 +124,35 @@ func TestStream_Map(t *testing.T) {
 	s := stream.Map(addOne)
 
 	assert.Equal([]int{2, 3, 4}, s.ToSlice())
+}
+
+func TestStream_Peek(t *testing.T) {
+	assert := internal.NewAssert(t, "TestStream_Peek")
+
+	stream := FromSlice([]int{1, 2, 3, 4, 5, 6})
+
+	result := []string{}
+	stream = stream.Filter(func(n int) bool {
+		return n <= 3
+	}).Peek(func(n int) {
+		result = append(result, fmt.Sprint("current: ", n))
+	})
+
+	assert.Equal([]int{1, 2, 3}, stream.ToSlice())
+	assert.Equal([]string{
+		"current: 1", "current: 2", "current: 3",
+	}, result)
+}
+
+func TestStream_Skip(t *testing.T) {
+	assert := internal.NewAssert(t, "TestStream_Peek")
+
+	stream := FromSlice([]int{1, 2, 3, 4, 5, 6})
+
+	s1 := stream.Skip(-1)
+	s2 := stream.Skip(0)
+	// s2 := stream.Skip(0)
+
+	assert.Equal([]int{1, 2, 3, 4, 5, 6}, s1.ToSlice())
+	assert.Equal([]int{1, 2, 3, 4, 5, 6}, s2.ToSlice())
 }
