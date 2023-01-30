@@ -13,10 +13,9 @@ import (
 )
 
 const (
-	NUMERAL       = "0123456789"
-	LOWER_LETTERS = "abcdefghijklmnopqrstuvwxyz"
-	UPPER_LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-	LETTERS       = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	_numeral      = "0123456789"
+	_lowerLetters = "abcdefghijklmnopqrstuvwxyz"
+	_upperLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 )
 
 // RandInt generate random int between min and max, maybe min,  not be max.
@@ -51,31 +50,41 @@ func RandBytes(length int) []byte {
 // RandString generate random string of specified length.
 // Play: https://go.dev/play/p/W2xvRUXA7Mi
 func RandString(length int) string {
-	return random(LETTERS, length)
+	return random(_lowerLetters+_upperLetters, length)
 }
 
 // RandUpper generate a random upper case string.
 // Play: https://go.dev/play/p/29QfOh0DVuh
 func RandUpper(length int) string {
-	return random(UPPER_LETTERS, length)
+	return random(_upperLetters, length)
 }
 
 // RandLower generate a random lower case string.
 // Play: https://go.dev/play/p/XJtZ471cmtI
 func RandLower(length int) string {
-	return random(LOWER_LETTERS, length)
+	return random(_lowerLetters, length)
 }
 
-// RandNumeral generate a random numeral string of specified length.
+// RandNumeral generate a random _numeral string of specified length.
 // Play: https://go.dev/play/p/g4JWVpHsJcf
 func RandNumeral(length int) string {
-	return random(NUMERAL, length)
+	return random(_numeral, length)
 }
 
-// RandNumeralOrLetter generate a random numeral or letter string.
+// RandNumeralOrLetter generate a random _numeral or _lowerLetters or _upperLetters string.
 // Play: https://go.dev/play/p/19CEQvpx2jD
 func RandNumeralOrLetter(length int) string {
-	return random(NUMERAL+LETTERS, length)
+	return random(_numeral+_lowerLetters+_upperLetters, length)
+}
+
+// RandNumeralOrLowerLetters generate a random _numeral or _lowerLetters string.
+func RandNumeralOrLowerLetters(length int) string {
+	return random(_numeral+_lowerLetters, length)
+}
+
+// RandNumeralOrUpperLetters generate a random _numeral or _upperLetters string.
+func RandNumeralOrUpperLetters(length int) string {
+	return random(_numeral+_upperLetters, length)
 }
 
 // random generate a random string based on given string range.
