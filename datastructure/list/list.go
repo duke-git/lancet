@@ -5,6 +5,7 @@
 package datastructure
 
 import (
+	"github.com/duke-git/lancet/v2/iterator"
 	"reflect"
 )
 
@@ -322,4 +323,47 @@ func (l *List[T]) SubList(fromIndex, toIndex int) *List[T] {
 	subList := make([]T, len(data))
 	copy(subList, data)
 	return NewList(subList)
+}
+
+// ForEach performs the given action for each element of the list.
+func (l *List[T]) ForEach(consumer func(T)) {
+	for _, it := range l.data {
+		consumer(it)
+	}
+}
+
+// RetainAll retains only the elements in this list that are contained in the given list.
+func (l *List[T]) RetainAll(list *List[T]) bool {
+	return l.batchRemove(list, true)
+}
+
+// DeleteAll removes from this list all of its elements that are contained in the given list.
+func (l *List[T]) DeleteAll(list *List[T]) bool {
+	return l.batchRemove(list, false)
+}
+
+func (l *List[T]) batchRemove(list *List[T], complement bool) bool {
+	var (
+		w    = 0
+		data = l.data
+		size = len(data)
+	)
+
+	for i := 0; i < size; i++ {
+		if list.Contain(data[i]) == complement {
+			data[w] = data[i]
+			w++
+		}
+	}
+
+	if w != size {
+		l.data = data[:w]
+		return true
+	}
+	return false
+}
+
+// Iterator returns an iterator over the elements in this list in proper sequence.
+func (l *List[T]) Iterator() iterator.Iterator[T] {
+	return iterator.FromSlice(l.data)
 }
