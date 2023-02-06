@@ -281,6 +281,10 @@ func IsZeroValue(value any) bool {
 	}
 
 	rv := reflect.ValueOf(value)
+	if rv.Kind() == reflect.Ptr {
+		rv = rv.Elem()
+	}
+
 	if !rv.IsValid() {
 		return true
 	}
