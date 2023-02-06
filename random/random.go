@@ -13,10 +13,10 @@ import (
 )
 
 const (
-	NUMERAL       = "0123456789"
-	LOWER_LETTERS = "abcdefghijklmnopqrstuvwxyz"
-	UPPER_LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-	LETTERS       = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	Numeral       = "0123456789"
+	LowwerLetters = "abcdefghijklmnopqrstuvwxyz"
+	UpperLetters  = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	Letters       = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 )
 
 // RandInt generate random int between min and max, maybe min,  not be max.
@@ -51,31 +51,31 @@ func RandBytes(length int) []byte {
 // RandString generate random string of specified length.
 // Play: https://go.dev/play/p/W2xvRUXA7Mi
 func RandString(length int) string {
-	return random(LETTERS, length)
+	return random(Letters, length)
 }
 
 // RandUpper generate a random upper case string.
 // Play: https://go.dev/play/p/29QfOh0DVuh
 func RandUpper(length int) string {
-	return random(UPPER_LETTERS, length)
+	return random(UpperLetters, length)
 }
 
 // RandLower generate a random lower case string.
 // Play: https://go.dev/play/p/XJtZ471cmtI
 func RandLower(length int) string {
-	return random(LOWER_LETTERS, length)
+	return random(LowwerLetters, length)
 }
 
 // RandNumeral generate a random numeral string of specified length.
 // Play: https://go.dev/play/p/g4JWVpHsJcf
 func RandNumeral(length int) string {
-	return random(NUMERAL, length)
+	return random(Numeral, length)
 }
 
 // RandNumeralOrLetter generate a random numeral or letter string.
 // Play: https://go.dev/play/p/19CEQvpx2jD
 func RandNumeralOrLetter(length int) string {
-	return random(NUMERAL+LETTERS, length)
+	return random(Numeral+Letters, length)
 }
 
 // random generate a random string based on given string range.
