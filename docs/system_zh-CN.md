@@ -289,7 +289,7 @@ func main() {
 func GetOsBits() int
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (

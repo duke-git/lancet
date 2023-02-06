@@ -38,7 +38,7 @@ import (
 func Unwrap[T any](val T, err error) T
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main

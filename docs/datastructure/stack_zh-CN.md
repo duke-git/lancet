@@ -64,7 +64,7 @@ type ArrayStack[T any] struct {
 }
 func NewArrayStack[T any]() *ArrayStack[T]
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -91,7 +91,7 @@ func main() {
 ```go
 func (s *ArrayStack[T]) Push(value T)
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -122,7 +122,7 @@ func main() {
 ```go
 func (s *ArrayStack[T]) Pop() (*T, error)
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -157,7 +157,7 @@ func main() {
 ```go
 func (s *ArrayStack[T]) Peak() (*T, error)
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -192,7 +192,7 @@ func main() {
 ```go
 func (s *ArrayStack[T]) Data() []T
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -223,7 +223,7 @@ func main() {
 ```go
 func (s *ArrayStack[T]) Size() int
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -254,7 +254,7 @@ func main() {
 ```go
 func (s *ArrayStack[T]) IsEmpty() bool
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -287,7 +287,7 @@ func main() {
 ```go
 func (s *ArrayStack[T]) Clear()
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -331,7 +331,7 @@ type LinkedStack[T any] struct {
 }
 func NewLinkedStack[T any]() *LinkedStack[T]
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -358,7 +358,7 @@ func main() {
 ```go
 func (s *LinkedStack[T]) Push(value T)
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -389,7 +389,7 @@ func main() {
 ```go
 func (s *LinkedStack[T]) Pop() (*T, error)
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -424,7 +424,7 @@ func main() {
 ```go
 func (s *LinkedStack[T]) Peak() (*T, error)
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -459,7 +459,7 @@ func main() {
 ```go
 func (s *LinkedStack[T]) Data() []T
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -490,7 +490,7 @@ func main() {
 ```go
 func (s *LinkedStack[T]) Size() int
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -521,7 +521,7 @@ func main() {
 ```go
 func (s *LinkedStack[T]) IsEmpty() bool
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -554,7 +554,7 @@ func main() {
 ```go
 func (s *LinkedStack[T]) Clear()
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -588,7 +588,7 @@ func main() {
 ```go
 func (s *LinkedStack[T]) Print()
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main

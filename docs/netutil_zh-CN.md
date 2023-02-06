@@ -59,7 +59,7 @@ import (
 func ConvertMapToQueryString(param map[string]any) string
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -94,7 +94,7 @@ func main() {
 func EncodeUrl(urlStr string) (string, error)
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -129,7 +129,7 @@ func main() {
 func GetInternalIp() string
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -161,7 +161,7 @@ func main() {
 func GetIps() []string
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -191,7 +191,7 @@ func main() {
 func GetMacAddrs() []string {
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -235,7 +235,7 @@ type PublicIpInfo struct {
 }
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -265,7 +265,7 @@ func main() {
 func GetRequestPublicIp(req *http.Request) string
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -303,7 +303,7 @@ func main() {
 func IsPublicIP(IP net.IP) bool
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -340,7 +340,7 @@ func main() {
 func IsInternalIP(IP net.IP) bool
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -384,7 +384,7 @@ type HttpRequest struct {
 }
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -441,7 +441,7 @@ func NewHttpClientWithConfig(config *HttpClientConfig) *HttpClient
 
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -472,7 +472,7 @@ func main() {
 func (client *HttpClient) SendRequest(request *HttpRequest) (*http.Response, error)
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -526,7 +526,7 @@ func main() {
 func (client *HttpClient) DecodeResponse(resp *http.Response, target any) error
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -580,7 +580,7 @@ func main() {
 func StructToUrlValues(targetStruct any) url.Values
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -624,7 +624,7 @@ func main() {
 func HttpGet(url string, params ...any) (*http.Response, error)
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -666,7 +666,7 @@ func main() {
 func HttpPost(url string, params ...any) (*http.Response, error)
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -715,7 +715,7 @@ func main() {
 func HttpPut(url string, params ...any) (*http.Response, error)
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -765,7 +765,7 @@ func main() {
 func HttpDelete(url string, params ...any) (*http.Response, error)
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -804,7 +804,7 @@ func main() {
 func HttpPatch(url string, params ...any) (*http.Response, error)
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -850,7 +850,7 @@ func main() {
 func ParseHttpResponse(resp *http.Response, obj any) error
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main

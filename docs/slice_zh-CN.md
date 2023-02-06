@@ -90,7 +90,7 @@ import (
 func AppendIfAbsent[T comparable](slice []T, item T) []T
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -121,7 +121,7 @@ func main() {
 func Contain[T comparable](slice []T, target T) bool
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -152,7 +152,7 @@ func main() {
 func ContainSubSlice[T comparable](slice, subSlice []T) bool
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -183,7 +183,7 @@ func main() {
 func Chunk[T any](slice []T, size int) [][]T
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -225,7 +225,7 @@ func main() {
 func Compact[T comparable](slice []T) []T
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -262,7 +262,7 @@ func main() {
 func Concat[T any](slice []T, slices ...[]T) []T
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -293,7 +293,7 @@ func main() {
 func Count[T comparable](slice []T, item T) int
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -326,7 +326,7 @@ func main() {
 func CountBy[T any](slice []T, predicate func(index int, item T) bool) int
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -360,7 +360,7 @@ func main() {
 func Difference[T comparable](slice, comparedSlice []T) []T
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -391,7 +391,7 @@ func main() {
 func DifferenceBy[T comparable](slice []T, comparedSlice []T, iteratee func(index int, item T) T) []T
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -426,7 +426,7 @@ func main() {
 func DifferenceWith[T any](slice []T, comparedSlice []T, comparator func(value, otherValue T) bool) []T
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -461,7 +461,7 @@ func main() {
 func DeleteAt[T any](slice []T, start int, end ...int)
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -496,7 +496,7 @@ func main() {
 func Drop[T any](slice []T, n int) []T
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -533,7 +533,7 @@ func main() {
 func Every[T any](slice []T, predicate func(index int, item T) bool) bool
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -567,7 +567,7 @@ func main() {
 func Equal[T comparable](slice1, slice2 []T) bool
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -602,7 +602,7 @@ func main() {
 func EqualWith[T, U any](slice1 []T, slice2 []U, comparator func(T, U) bool) bool
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -637,7 +637,7 @@ func main() {
 func Filter[T any](slice []T, predicate func(index int, item T) bool) []T
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -671,7 +671,7 @@ func main() {
 func Find[T any](slice []T, predicate func(index int, item T) bool) (*T, bool)
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -707,7 +707,7 @@ func main() {
 func FindLast[T any](slice []T, predicate func(index int, item T) bool) (*T, bool)
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -743,7 +743,7 @@ func main() {
 func Flatten(slice any) any
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -773,7 +773,7 @@ func main() {
 func FlattenDeep(slice any) any
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -803,7 +803,7 @@ func main() {
 func ForEach[T any](slice []T, iteratee func(index int, item T))
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -838,7 +838,7 @@ func main() {
 func GroupBy[T any](slice []T, groupFn func(index int, item T) bool) ([]T, []T)
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -874,7 +874,7 @@ func main() {
 func GroupWith[T any, U comparable](slice []T, iteratee func(T) U) map[U][]T
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -908,7 +908,7 @@ func main() {
 func IntSlice(slice any) []int
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -937,7 +937,7 @@ func main() {
 func InterfaceSlice(slice any) []any
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -966,7 +966,7 @@ func main() {
 func Intersection[T comparable](slices ...[]T) []T
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -997,7 +997,7 @@ func main() {
 func InsertAt[T any](slice []T, index int, value any) []T
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -1037,7 +1037,7 @@ func main() {
 func IndexOf[T comparable](slice []T, item T) int
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -1070,7 +1070,7 @@ func main() {
 func LastIndexOf[T comparable](slice []T, item T) int
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -1103,7 +1103,7 @@ func main() {
 func Map[T any, U any](slice []T, iteratee func(index int, item T) U) []U
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -1137,7 +1137,7 @@ func main() {
 func Merge[T any](slices ...[]T) []T
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -1168,7 +1168,7 @@ func main() {
 func Reverse[T any](slice []T)
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -1198,7 +1198,7 @@ func main() {
 func Reduce[T any](slice []T, iteratee func(index int, item1, item2 T) T, initial T) T
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -1232,7 +1232,7 @@ func main() {
 func Replace[T comparable](slice []T, old T, new T, n int) []T
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -1274,7 +1274,7 @@ func main() {
 func ReplaceAll[T comparable](slice []T, old T, new T) []T
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -1302,7 +1302,7 @@ func main() {
 func Repeat[T any](item T, n int) []T
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -1330,7 +1330,7 @@ func main() {
 func Shuffle[T any](slice []T) []T
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -1359,7 +1359,7 @@ func main() {
 func Sort[T constraints.Ordered](slice []T, sortOrder ...string)
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -1396,7 +1396,7 @@ func main() {
 func SortBy[T any](slice []T, less func(a, b T) bool)
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -1443,7 +1443,7 @@ func main() {
 func SortByField(slice any, field string, sortType ...string) error
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -1484,7 +1484,7 @@ func main() {
 func Some[T any](slice []T, predicate func(index int, item T) bool) bool
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -1518,7 +1518,7 @@ func main() {
 func StringSlice(slice any) []string
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -1547,7 +1547,7 @@ func main() {
 func SymmetricDifference[T comparable](slices ...[]T) []T
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -1578,7 +1578,7 @@ func main() {
 func ToSlice[T any](items ...T) []T
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -1606,7 +1606,7 @@ func main() {
 func ToSlicePointer[T any](items ...T) []*T
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -1641,7 +1641,7 @@ func main() {
 func Unique[T comparable](slice []T) []T
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -1668,7 +1668,7 @@ func main() {
 func UniqueBy[T comparable](slice []T, iteratee func(item T) T) []T
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -1699,7 +1699,7 @@ func main() {
 func Union[T comparable](slices ...[]T) []T
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -1730,7 +1730,7 @@ func main() {
 func UnionBy[T any, V comparable](predicate func(item T) V, slices ...[]T) []T
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -1763,7 +1763,7 @@ func main() {
 func UpdateAt[T any](slice []T, index int, value T) []T
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -1803,7 +1803,7 @@ func main() {
 func Without[T comparable](slice []T, items ...T) []T
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -1831,7 +1831,7 @@ func main() {
 func KeyBy[T any, U comparable](slice []T, iteratee func(item T) U) map[U]T
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (

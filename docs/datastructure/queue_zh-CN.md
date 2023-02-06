@@ -99,7 +99,7 @@ type ArrayQueue[T any] struct {
 	size     int
 }
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -125,7 +125,7 @@ func main() {
 ```go
 func (q *ArrayQueue[T]) Data() []T
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -152,7 +152,7 @@ func main() {
 ```go
 func (q *ArrayQueue[T]) Enqueue(item T) bool
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -183,7 +183,7 @@ func main() {
 ```go
 func (q *ArrayQueue[T]) Dequeue() (T, bool)
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -215,7 +215,7 @@ func main() {
 ```go
 func (q *ArrayQueue[T]) Front() T
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -247,7 +247,7 @@ func main() {
 ```go
 func (q *ArrayQueue[T]) Back() T
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -278,7 +278,7 @@ func main() {
 ```go
 func (q *ArrayQueue[T]) Size() int
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -308,7 +308,7 @@ func main() {
 ```go
 func (q *ArrayQueue[T]) IsEmpty() bool
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -341,7 +341,7 @@ func main() {
 ```go
 func (q *ArrayQueue[T]) IsFull() bool
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -373,7 +373,7 @@ func main() {
 ```go
 func (q *ArrayQueue[T]) Clear()
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -404,7 +404,7 @@ func main() {
 ```go
 func (q *ArrayQueue[T]) Contain(value T) bool
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -448,7 +448,7 @@ type QueueNode[T any] struct {
 	Next  *QueueNode[T]
 }
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -474,7 +474,7 @@ func main() {
 ```go
 func (q *LinkedQueue[T]) Data() []T
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -501,7 +501,7 @@ func main() {
 ```go
 func (q *LinkedQueue[T]) Enqueue(value T)
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -532,7 +532,7 @@ func main() {
 ```go
 func (q *LinkedQueue[T]) Dequeue() (T, error)
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -564,7 +564,7 @@ func main() {
 ```go
 func (q *LinkedQueue[T]) Front() (*T, error)
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -596,7 +596,7 @@ func main() {
 ```go
 func (q *LinkedQueue[T]) Back() (*T, error) 
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -627,7 +627,7 @@ func main() {
 ```go
 func (q *LinkedQueue[T]) Size() int
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -657,7 +657,7 @@ func main() {
 ```go
 func (q *LinkedQueue[T]) IsEmpty() bool
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -690,7 +690,7 @@ func main() {
 ```go
 func (q *LinkedQueue[T]) Clear()
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -721,7 +721,7 @@ func main() {
 ```go
 func (q *LinkedQueue[T]) Contain(value T) bool
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -763,7 +763,7 @@ type CircularQueue[T any] struct {
 	capacity  int
 }
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -789,7 +789,7 @@ func main() {
 ```go
 func (q *CircularQueue[T]) Data() []T
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -816,7 +816,7 @@ func main() {
 ```go
 func (q *CircularQueue[T]) Enqueue(value T) error
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -847,7 +847,7 @@ func main() {
 ```go
 func (q *CircularQueue[T]) Dequeue() (*T, bool)
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -880,7 +880,7 @@ func main() {
 ```go
 func (q *CircularQueue[T]) Front() T
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -912,7 +912,7 @@ func main() {
 ```go
 func (q *CircularQueue[T]) Back() T
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -943,7 +943,7 @@ func main() {
 ```go
 func (q *CircularQueue[T]) Size() int
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -973,7 +973,7 @@ func main() {
 ```go
 func (q *CircularQueue[T]) IsEmpty() bool
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -1006,7 +1006,7 @@ func main() {
 ```go
 func (q *CircularQueue[T]) IsFull() bool
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -1038,7 +1038,7 @@ func main() {
 ```go
 func (q *CircularQueue[T]) Clear()
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -1069,7 +1069,7 @@ func main() {
 ```go
 func (q *CircularQueue[T]) Contain(value T) bool
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -1108,7 +1108,7 @@ type PriorityQueue[T any] struct {
 	comparator lancetconstraints.Comparator
 }
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -1134,7 +1134,7 @@ func main() {
 ```go
 func (q *PriorityQueue[T]) Data() []T
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -1161,7 +1161,7 @@ func main() {
 ```go
 func (q *PriorityQueue[T]) Enqueue(item T) bool
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -1207,7 +1207,7 @@ func main() {
 ```go
 func (q *PriorityQueue[T]) Dequeue() (T, bool)
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -1254,7 +1254,7 @@ func main() {
 ```go
 func (q *PriorityQueue[T]) IsEmpty() bool
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -1301,7 +1301,7 @@ func main() {
 ```go
 func (q *PriorityQueue[T]) IsFull() bool
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -1348,7 +1348,7 @@ func main() {
 ```go
 func (q *PriorityQueue[T]) Size() int
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main

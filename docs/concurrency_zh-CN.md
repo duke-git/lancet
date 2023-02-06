@@ -46,7 +46,7 @@ import (
 type Channel[T any] struct
 func NewChannel[T any]() *Channel[T]
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -70,7 +70,7 @@ func main() {
 ```go
 func (c *Channel[T]) Bridge(ctx context.Context, chanStream <-chan <-chan T) <-chan T
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -122,7 +122,7 @@ func main() {
 ```go
 func (c *Channel[T]) FanIn(ctx context.Context, channels ...<-chan T) <-chan T
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -161,7 +161,7 @@ func main() {
 ```go
 func (c *Channel[T]) Generate(ctx context.Context, values ...T) <-chan T
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -199,7 +199,7 @@ func main() {
 ```go
 func (c *Channel[T]) Repeat(ctx context.Context, values ...T) <-chan T
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -238,7 +238,7 @@ func main() {
 ```go
 func (c *Channel[T]) RepeatFn(ctx context.Context, fn func() T) <-chan T
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -279,7 +279,7 @@ func main() {
 ```go
 func (c *Channel[T]) Or(channels ...<-chan T) <-chan T
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -322,7 +322,7 @@ func main() {
 ```go
 func (c *Channel[T]) OrDone(ctx context.Context, channel <-chan T) <-chan T
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -360,7 +360,7 @@ func main() {
 ```go
 func (c *Channel[T]) Take(ctx context.Context, valueStream <-chan T, number int) <-chan T
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -406,7 +406,7 @@ func main() {
 ```go
 func (c *Channel[T]) Tee(ctx context.Context, in <-chan T) (<-chan T, <-chan T)
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main

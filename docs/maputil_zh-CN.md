@@ -45,7 +45,7 @@ import (
 func ForEach[K comparable, V any](m map[K]V, iteratee func(key K, value V))
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -86,7 +86,7 @@ func main() {
 func Filter[K comparable, V any](m map[K]V, predicate func(key K, value V) bool) map[K]V
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -131,7 +131,7 @@ func main() {
 func Intersect[K comparable, V any](maps ...map[K]V) map[K]V
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -186,7 +186,7 @@ func main() {
 func Keys[K comparable, V any](m map[K]V) []K
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -225,7 +225,7 @@ func main() {
 func Merge[K comparable, V any](maps ...map[K]V) map[K]V
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -264,7 +264,7 @@ func main() {
 func Minus[K comparable, V any](mapA, mapB map[K]V) map[K]V
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -306,7 +306,7 @@ func main() {
 func Values[K comparable, V any](m map[K]V) []V
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -343,7 +343,7 @@ func main() {
 func IsDisjoint[K comparable, V any](mapA, mapB map[K]V) bool
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main

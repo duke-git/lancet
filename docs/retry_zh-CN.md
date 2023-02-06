@@ -42,7 +42,7 @@ import (
 func Context(ctx context.Context)
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -89,7 +89,7 @@ func main() {
 type RetryFunc func() error
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -135,7 +135,7 @@ func main() {
 func RetryTimes(n uint)
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -178,7 +178,7 @@ func main() {
 func RetryDuration(d time.Duration)
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -224,7 +224,7 @@ func main() {
 func Retry(retryFunc RetryFunc, opts ...Option) error
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main

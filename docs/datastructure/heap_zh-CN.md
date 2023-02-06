@@ -48,7 +48,7 @@ type MaxHeap[T any] struct {
 }
 func NewMaxHeap[T any](comparator lancetconstraints.Comparator) *MaxHeap[T]
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -89,7 +89,7 @@ func main() {
 ```go
 func (h *MaxHeap[T]) Push(value T)
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -136,7 +136,7 @@ func main() {
 ```go
 func (h *MaxHeap[T]) Pop() (T, bool)
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -184,7 +184,7 @@ func main() {
 ```go
 func (h *MaxHeap[T]) Peek() (T, bool)
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -232,7 +232,7 @@ func main() {
 ```go
 func (h *MaxHeap[T]) Data() []T
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -277,7 +277,7 @@ func main() {
 ```go
 func (h *MaxHeap[T]) Size() int
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -323,7 +323,7 @@ func main() {
 ```go
 func (h *MaxHeap[T]) PrintStructure()
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main

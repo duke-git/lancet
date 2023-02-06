@@ -45,7 +45,7 @@ slices和map的length大于0时，返回true，否则返回false<br/>
 ```go
 func Bool[T any](value T) bool
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -109,7 +109,7 @@ func main() {
 ```go
 func And[T, U any](a T, b U) bool
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -135,7 +135,7 @@ func main() {
 ```go
 func Or[T, U any](a T, b U) bool
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -161,7 +161,7 @@ func main() {
 ```go
 func Xor[T, U any](a T, b U) bool
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -187,7 +187,7 @@ func main() {
 ```go
 func Nor[T, U any](a T, b U) bool
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -213,7 +213,7 @@ func main() {
 ```go
 func Xnor[T, U any](a T, b U) bool
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -239,7 +239,7 @@ func main() {
 ```go
 func Nand[T, U any](a T, b U) bool
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -265,7 +265,7 @@ func main() {
 ```go
 func TernaryOperator[T, U any](isTrue T, ifValue U, elseValue U) U
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main

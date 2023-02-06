@@ -46,7 +46,7 @@ import (
 func NewHashMap() *HashMap
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -72,7 +72,7 @@ func main() {
 func NewHashMapWithCapacity(size, capacity uint64) *HashMap
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -98,7 +98,7 @@ func main() {
 func (hm *HashMap) Get(key any) any
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -126,7 +126,7 @@ func main() {
 func (hm *HashMap) Put(key any, value any) any
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -155,7 +155,7 @@ func main() {
 func (hm *HashMap) Delete(key any)
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -187,7 +187,7 @@ func main() {
 func (hm *HashMap) Contains(key any) bool
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -217,7 +217,7 @@ func main() {
 func (hm *HashMap) Iterate(iteratee func(key, value any))
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -252,7 +252,7 @@ func main() {
 func (hm *HashMap) Keys() []any
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -284,7 +284,7 @@ func main() {
 func (hm *HashMap) Values() []any
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main

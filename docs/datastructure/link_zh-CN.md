@@ -81,7 +81,7 @@ type SinglyLink[T any] struct {
 }
 func NewSinglyLink[T any]() *SinglyLink[T]
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -107,7 +107,7 @@ func main() {
 ```go
 func (link *SinglyLink[T]) Values() []T
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -139,7 +139,7 @@ func main() {
 ```go
 func (link *SinglyLink[T]) InsertAt(index int, value T)
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -174,7 +174,7 @@ func main() {
 ```go
 func (link *SinglyLink[T]) InsertAtHead(value T)
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -206,7 +206,7 @@ func main() {
 ```go
 func (link *SinglyLink[T]) InsertAtTail(value T)
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -237,7 +237,7 @@ func main() {
 ```go
 func (link *SinglyLink[T]) DeleteAt(index int)
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -271,7 +271,7 @@ func main() {
 ```go
 func (link *SinglyLink[T]) DeleteAtHead()
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -306,7 +306,7 @@ func main() {
 ```go
 func (link *SinglyLink[T]) DeleteAtTail()
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -339,7 +339,7 @@ func main() {
 ```go
 func (link *SinglyLink[T]) DeleteValue(value T)
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -373,7 +373,7 @@ func main() {
 ```go
 func (link *SinglyLink[T]) Reverse()
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -405,7 +405,7 @@ func main() {
 ```go
 func (link *SinglyLink[T]) GetMiddleNode() *datastructure.LinkNode[T]
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -437,7 +437,7 @@ func main() {
 ```go
 func (link *SinglyLink[T]) Size() int
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -468,7 +468,7 @@ func main() {
 ```go
 func (link *SinglyLink[T]) IsEmpty() bool
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -500,7 +500,7 @@ func main() {
 ```go
 func (link *SinglyLink[T]) Clear()
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -533,7 +533,7 @@ func main() {
 ```go
 func (link *SinglyLink[T]) Clear()
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -576,7 +576,7 @@ type DoublyLink[T any] struct {
 }
 func NewDoublyLink[T any]() *DoublyLink[T]
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -602,7 +602,7 @@ func main() {
 ```go
 func (link *DoublyLink[T]) Values() []T
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -634,7 +634,7 @@ func main() {
 ```go
 func (link *DoublyLink[T]) InsertAt(index int, value T)
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -669,7 +669,7 @@ func main() {
 ```go
 func (link *DoublyLink[T]) InsertAtHead(value T)
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -701,7 +701,7 @@ func main() {
 ```go
 func (link *DoublyLink[T]) InsertAtTail(value T)
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -732,7 +732,7 @@ func main() {
 ```go
 func (link *DoublyLink[T]) DeleteAt(index int)
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -766,7 +766,7 @@ func main() {
 ```go
 func (link *DoublyLink[T]) DeleteAtHead()
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -801,7 +801,7 @@ func main() {
 ```go
 func (link *DoublyLink[T]) DeleteAtTail()
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -835,7 +835,7 @@ func main() {
 ```go
 func (link *DoublyLink[T]) Reverse()
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -867,7 +867,7 @@ func main() {
 ```go
 func (link *DoublyLink[T]) GetMiddleNode() *datastructure.LinkNode[T]
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -899,7 +899,7 @@ func main() {
 ```go
 func (link *DoublyLink[T]) Size() int
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -930,7 +930,7 @@ func main() {
 ```go
 func (link *DoublyLink[T]) IsEmpty() bool
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -962,7 +962,7 @@ func main() {
 ```go
 func (link *DoublyLink[T]) Clear()
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -995,7 +995,7 @@ func main() {
 ```go
 func (link *DoublyLink[T]) Clear()
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main

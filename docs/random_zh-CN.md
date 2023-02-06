@@ -45,7 +45,7 @@ import (
 func RandBytes(length int) []byte
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -71,7 +71,7 @@ func main() {
 func RandInt(min, max int) int
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -97,7 +97,7 @@ func main() {
 func RandString(length int) string
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -123,7 +123,7 @@ func main() {
 func RandUpper(length int) string
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -149,7 +149,7 @@ func main() {
 func RandLower(length int) string
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -175,7 +175,7 @@ func main() {
 func RandNumeral(length int) string
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -201,7 +201,7 @@ func main() {
 func RandNumeralOrLetter(length int) string
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -227,7 +227,7 @@ func main() {
 func UUIdV4() (string, error)
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main

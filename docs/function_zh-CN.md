@@ -46,7 +46,7 @@ import (
 func After(n int, fn any) func(args ...any) []reflect.Value
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -79,7 +79,7 @@ func main() {
 func Before(n int, fn any) func(args ...any) []reflect.Value
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -117,7 +117,7 @@ type CurryFn[T any] func(...T) T
 func (cf CurryFn[T]) New(val T) func(...T) T
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -156,7 +156,7 @@ func main() {
 func Compose[T any](fnList ...func(...T) T) func(...T) T
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -194,7 +194,7 @@ func main() {
 func Debounced(fn func(), duration time.Duration) func()
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -244,7 +244,7 @@ func main() {
 func Delay(delay time.Duration, fn any, args ...any)
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -276,7 +276,7 @@ func main() {
 func Schedule(d time.Duration, fn any, args ...any) chan bool
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -315,7 +315,7 @@ func main() {
 func Pipeline[T any](funcs ...func(T) T) func(T) T
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -366,7 +366,7 @@ func (w *Watcher) Reset() //reset the watcher
 func (w *Watcher) GetElapsedTime() time.Duration //get the elapsed time of function execution
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main

@@ -52,7 +52,7 @@ import (
 func ClearFile(path string) error
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -80,7 +80,7 @@ func main() {
 func CreateFile(path string) bool
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -132,7 +132,7 @@ func main() {
 func CopyFile(srcFilePath string, dstFilePath string) error
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -160,7 +160,7 @@ func main() {
 func FileMode(path string) (fs.FileMode, error)
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -189,7 +189,7 @@ func main() {
 func MiMeType(file any) string
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -220,7 +220,7 @@ func main() {
 func IsExist(path string) bool
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -247,7 +247,7 @@ func main() {
 func IsLink(path string) bool
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -273,7 +273,7 @@ func main() {
 func IsDir(path string) bool
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -302,7 +302,7 @@ func main() {
 func ListFileNames(path string) ([]string, error)
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -328,7 +328,7 @@ func main() {
 func RemoveFile(path string) error
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -356,7 +356,7 @@ func main() {
 func ReadFileToString(path string) (string, error)
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -389,7 +389,7 @@ func main() {
 func ReadFileByLine(path string)([]string, error)
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -423,7 +423,7 @@ func main() {
 func Zip(fpath string, destPath string) error
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -451,7 +451,7 @@ func main() {
 func UnZip(zipFile string, destPath string) error
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main

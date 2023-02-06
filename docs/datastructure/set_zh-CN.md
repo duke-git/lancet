@@ -55,7 +55,7 @@ import (
 type Set[T comparable] map[T]bool
 func NewSet[T comparable](items ...T) Set[T]
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -81,7 +81,7 @@ func main() {
 ```go
 func NewSetFromSlice[T comparable](items []T) Set[T]
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -107,7 +107,7 @@ func main() {
 ```go
 func (s Set[T]) Values() []T
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -134,7 +134,7 @@ func main() {
 ```go
 func (s Set[T]) Add(items ...T)
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -161,7 +161,7 @@ func main() {
 ```go
 func (s Set[T]) AddIfNotExist(item T) bool
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -193,7 +193,7 @@ func main() {
 ```go
 func (s Set[T]) AddIfNotExistBy(item T, checker func(element T) bool) bool
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -232,7 +232,7 @@ func main() {
 ```go
 func (s Set[T]) Delete(items ...T)
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -261,7 +261,7 @@ func main() {
 ```go
 func (s Set[T]) Contain(item T) bool
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -291,7 +291,7 @@ func main() {
 ```go
 func (s Set[T]) ContainAll(other Set[T]) bool
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -321,7 +321,7 @@ func main() {
 ```go
 func (s Set[T]) Size() int
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -348,7 +348,7 @@ func main() {
 ```go
 func (s Set[T]) Clone() Set[T]
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -378,7 +378,7 @@ func main() {
 ```go
 func (s Set[T]) Equal(other Set[T]) bool
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -408,7 +408,7 @@ func main() {
 ```go
 func (s Set[T]) Iterate(fn func(item T))
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -439,7 +439,7 @@ func main() {
 ```go
 func (s Set[T]) IsEmpty() bool
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -468,7 +468,7 @@ func main() {
 ```go
 func (s Set[T]) Union(other Set[T]) Set[T]
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -497,7 +497,7 @@ func main() {
 ```go
 func (s Set[T]) Intersection(other Set[T]) Set[T]
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -525,7 +525,7 @@ func main() {
 ```go
 func (s Set[T]) SymmetricDifference(other Set[T]) Set[T]
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -556,7 +556,7 @@ func main() {
 ```go
 func (s Set[T]) Minus(comparedSet Set[T]) Set[T]
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main

@@ -68,7 +68,7 @@ import (
 
 ```go
 type List[T any] struct {
-	data []T
+    data []T
 }
 func NewList[T any](data []T) *List[T]
 ```
@@ -677,8 +677,8 @@ import (
 )
 
 func main() {
-	data := make([]int, 0, 100)
-	
+    data := make([]int, 0, 100)
+    
     li := list.NewList(data)
 
     fmt.Println(li.Cap()) // 100
@@ -852,7 +852,7 @@ import (
 
 func main() {
     list1 := NewList([]int{1, 2, 3})
-	list2 := NewList([]int{1, 2, 4})
+    list2 := NewList([]int{1, 2, 4})
 
     list3 := list1.Intersection(list2)
 
@@ -881,7 +881,7 @@ import (
 
 func main() {
     list1 := NewList([]int{1, 2, 3})
-	list2 := NewList([]int{1, 2, 4})
+    list2 := NewList([]int{1, 2, 4})
 
     list3 := list1.Intersection(list2)
 
@@ -910,16 +910,16 @@ import (
 
 func main() {
     list := NewList([]int{1, 2, 3, 4})
-	list1 := NewList([]int{1, 2, 3, 4})
-	list2 := NewList([]int{1, 2, 3, 4})
+    list1 := NewList([]int{1, 2, 3, 4})
+    list2 := NewList([]int{1, 2, 3, 4})
 
-	retain := NewList([]int{1, 2})
-	retain1 := NewList([]int{2, 3})
-	retain2 := NewList([]int{1, 2, 5})
+    retain := NewList([]int{1, 2})
+    retain1 := NewList([]int{2, 3})
+    retain2 := NewList([]int{1, 2, 5})
 
-	list.RetainAll(retain)
-	list1.RetainAll(retain1)
-	list2.RetainAll(retain2)
+    list.RetainAll(retain)
+    list1.RetainAll(retain1)
+    list2.RetainAll(retain2)
 
     fmt.Println(list.Data()) //1, 2
     fmt.Println(list1.Data()) //2, 3
@@ -948,16 +948,16 @@ import (
 
 func main() {
     list := NewList([]int{1, 2, 3, 4})
-	list1 := NewList([]int{1, 2, 3, 4})
-	list2 := NewList([]int{1, 2, 3, 4})
+    list1 := NewList([]int{1, 2, 3, 4})
+    list2 := NewList([]int{1, 2, 3, 4})
 
-	del := NewList([]int{1})
-	del1 := NewList([]int{2, 3})
-	del2 := NewList([]int{1, 2, 5})
+    del := NewList([]int{1})
+    del1 := NewList([]int{2, 3})
+    del2 := NewList([]int{1, 2, 5})
 
-	list.DeleteAll(del)
-	list1.DeleteAll(del1)
-	list2.DeleteAll(del2)
+    list.DeleteAll(del)
+    list1.DeleteAll(del1)
+    list2.DeleteAll(del2)
 
     fmt.Println(list.Data()) //2,3,4
     fmt.Println(list1.Data()) //1,4
@@ -987,10 +987,10 @@ import (
 func main() {
     list := NewList([]int{1, 2, 3, 4})
 
-	result := make([]int, 0)
-	list.ForEach(func(i int) {
-		result = append(result, i)
-	})
+    result := make([]int, 0)
+    list.ForEach(func(i int) {
+        result = append(result, i)
+    })
 
     fmt.Println(result.Data()) //1,2,3,4
 }
@@ -1018,13 +1018,13 @@ import (
 func main() {
     list := NewList([]int{1, 2, 3, 4})
 
-	iterator := list.Iterator()
+    iterator := list.Iterator()
 
-	result := make([]int, 0)
-	for iterator.HasNext() {
-		item, _ := iterator.Next()
-		result = append(result, item)
-	}
+    result := make([]int, 0)
+    for iterator.HasNext() {
+        item, _ := iterator.Next()
+        result = append(result, item)
+    }
 
     fmt.Println(result.Data()) //1,2,3,4
 }
@@ -1052,9 +1052,9 @@ import (
 func main() {
     list := NewList([]int{1, 2, 3, 4})
 
-	result := ListToMap(list, func(n int) (int, bool) {
-		return n, n > 1
-	})
+    result := ListToMap(list, func(n int) (int, bool) {
+        return n, n > 1
+    })
 
     fmt.Println(result) //map[int]bool{1: false, 2: true, 3: true, 4: true}
 }
@@ -1108,9 +1108,9 @@ import (
 )
 
 func main() {
-	l := list.NewList([]int{1, 1, 1, 1, 2, 3, 1, 1, 4, 1, 1, 1, 1, 1, 1})
+    l := list.NewList([]int{1, 1, 1, 1, 2, 3, 1, 1, 4, 1, 1, 1, 1, 1, 1})
 
-	fmt.Println(l.DeleteIf(func(a int) bool { return a == 1 })) // 12 
-	fmt.Println(l.Data()) // []int{2, 3, 4}
+    fmt.Println(l.DeleteIf(func(a int) bool { return a == 1 })) // 12 
+    fmt.Println(l.Data()) // []int{2, 3, 4}
 }
 ```

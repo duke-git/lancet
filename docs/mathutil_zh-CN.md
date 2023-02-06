@@ -49,7 +49,7 @@ import (
 func Average[T constraints.Integer | constraints.Float](numbers ...T) T
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -84,7 +84,7 @@ func main() {
 func Exponent(x, n int64) int64
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -120,7 +120,7 @@ func main() {
 func Fibonacci(first, second, n int) int
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -156,7 +156,7 @@ func main() {
 func Factorial(x uint) uint
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -192,7 +192,7 @@ func main() {
 func Max[T constraints.Integer | constraints.Float](numbers ...T) T
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -225,7 +225,7 @@ func main() {
 func MaxBy[T any](slice []T, comparator func(T, T) bool) T
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -269,7 +269,7 @@ func main() {
 func Min[T constraints.Integer | constraints.Float](numbers ...T) T
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -302,7 +302,7 @@ func main() {
 func MinBy[T any](slice []T, comparator func(T, T) bool) T
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -346,7 +346,7 @@ func main() {
 func Percent(val, total float64, n int) float64
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -379,7 +379,7 @@ func main() {
 func RoundToFloat(x float64, n int) float64
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -415,7 +415,7 @@ func main() {
 func RoundToString(x float64, n int) string
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -451,7 +451,7 @@ func main() {
 func TruncRound(x float64, n int) float64
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main

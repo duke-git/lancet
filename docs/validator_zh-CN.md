@@ -65,7 +65,7 @@ import (
 func ContainChinese(s string) bool
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -99,7 +99,7 @@ func main() {
 func ContainLetter(str string) bool
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -133,7 +133,7 @@ func main() {
 func ContainLower(str string) bool
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -167,7 +167,7 @@ func main() {
 func ContainUpper(str string) bool
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -201,7 +201,7 @@ func main() {
 func IsAlpha(s string) bool
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -235,7 +235,7 @@ func main() {
 func IsAllUpper(str string) bool
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -269,7 +269,7 @@ func main() {
 func IsAllLower(str string) bool
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -303,7 +303,7 @@ func main() {
 func IsBase64(base64 string) bool
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -334,7 +334,7 @@ func main() {
 func IsChineseMobile(mobileNum string) bool
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -365,7 +365,7 @@ func main() {
 func IsChineseIdNum(id string) bool
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -396,7 +396,7 @@ func main() {
 func IsChinesePhone(phone string) bool
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -427,7 +427,7 @@ func main() {
 func IsCreditCard(creditCart string) bool
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -458,7 +458,7 @@ func main() {
 func IsDns(dns string) bool
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -492,7 +492,7 @@ func main() {
 func IsEmail(email string) bool
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -523,7 +523,7 @@ func main() {
 func IsEmptyString(s string) bool
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -557,7 +557,7 @@ func main() {
 func IsFloatStr(s string) bool
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -594,7 +594,7 @@ func main() {
 func IsNumberStr(s string) bool
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -631,7 +631,7 @@ func main() {
 func IsJSON(str string) bool
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -668,7 +668,7 @@ func main() {
 func IsRegexMatch(s, regex string) bool
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -699,7 +699,7 @@ func main() {
 func IsIntStr(s string) bool
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -736,7 +736,7 @@ func main() {
 func IsIp(ipstr string) bool
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -773,7 +773,7 @@ func main() {
 func IsIpV4(ipstr string) bool
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -804,7 +804,7 @@ func main() {
 func IsIpV6(ipstr string) bool
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -835,7 +835,7 @@ func main() {
 func IsStrongPassword(password string, length int) bool
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -866,7 +866,7 @@ func main() {
 func IsUrl(str string) bool
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -901,7 +901,7 @@ func main() {
 func IsWeakPassword(password string, length int) bool
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -932,7 +932,7 @@ func main() {
 func IsZeroValue(value any) bool
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -969,7 +969,7 @@ func main() {
 func IsGBK(data []byte) bool
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 import (

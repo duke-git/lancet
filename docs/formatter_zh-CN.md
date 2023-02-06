@@ -38,7 +38,7 @@ import (
 func Comma[T constraints.Float | constraints.Integer | string](value T, symbol string) string
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
