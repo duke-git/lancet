@@ -34,7 +34,7 @@ import (
 // 	AnyMatch(predicate func(item T) bool) bool
 // 	NoneMatch(predicate func(item T) bool) bool
 // 	ForEach(consumer func(item T))
-// 	Reduce(accumulator func(a, b T) T) T
+// 	Reduce(init T, accumulator func(a, b T) T) T
 // 	Count() int
 
 // 	FindFirst() (T, bool)
