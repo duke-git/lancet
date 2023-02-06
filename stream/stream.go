@@ -34,7 +34,7 @@ import (
 // 	AnyMatch(predicate func(item T) bool) bool
 // 	NoneMatch(predicate func(item T) bool) bool
 // 	ForEach(consumer func(item T))
-// 	Reduce(accumulator func(a, b T) T) (T, bool)
+// 	Reduce(accumulator func(a, b T) T) T
 // 	Count() int
 
 // 	FindFirst() (T, bool)
@@ -232,6 +232,22 @@ func (s stream[T]) AnyMatch(predicate func(item T) bool) bool {
 // NoneMatch returns whether no elements of this stream match the provided predicate.
 func (s stream[T]) NoneMatch(predicate func(item T) bool) bool {
 	return !s.AnyMatch(predicate)
+}
+
+// ForEach performs an action for each element of this stream.
+func (s stream[T]) ForEach(action func(item T)) {
+	for _, v := range s.source {
+		action(v)
+	}
+}
+
+// Reduce performs a reduction on the elements of this stream, using an associative accumulation function, and returns an Optional describing the reduced value, if any.
+func (s stream[T]) Reduce(init T, accumulator func(a, b T) T) T {
+	for _, v := range s.source {
+		init = accumulator(init, v)
+	}
+
+	return init
 }
 
 // Count returns the count of elements in the stream.

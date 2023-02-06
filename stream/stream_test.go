@@ -222,3 +222,28 @@ func TestStream_NoneMatch(t *testing.T) {
 	assert.Equal(true, result1)
 	assert.Equal(false, result2)
 }
+
+func TestStream_ForEach(t *testing.T) {
+	assert := internal.NewAssert(t, "TestStream_ForEach")
+
+	stream := FromSlice([]int{1, 2, 3})
+
+	result := 0
+	stream.ForEach(func(item int) {
+		result += item
+	})
+
+	assert.Equal(6, result)
+}
+
+func TestStream_Reduce(t *testing.T) {
+	assert := internal.NewAssert(t, "TestStream_Reduce")
+
+	stream := FromSlice([]int{1, 2, 3})
+
+	result := stream.Reduce(0, func(a, b int) int {
+		return a + b
+	})
+
+	assert.Equal(6, result)
+}
