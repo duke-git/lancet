@@ -171,3 +171,54 @@ func TestStream_Limit(t *testing.T) {
 	assert.Equal([]int{1}, s3.ToSlice())
 	assert.Equal([]int{1, 2, 3, 4, 5, 6}, s4.ToSlice())
 }
+
+func TestStream_AllMatch(t *testing.T) {
+	assert := internal.NewAssert(t, "TestStream_AllMatch")
+
+	stream := FromSlice([]int{1, 2, 3, 4, 5, 6})
+
+	result1 := stream.AllMatch(func(item int) bool {
+		return item > 0
+	})
+
+	result2 := stream.AllMatch(func(item int) bool {
+		return item > 1
+	})
+
+	assert.Equal(true, result1)
+	assert.Equal(false, result2)
+}
+
+func TestStream_AnyMatch(t *testing.T) {
+	assert := internal.NewAssert(t, "TestStream_AnyMatch")
+
+	stream := FromSlice([]int{1, 2, 3})
+
+	result1 := stream.AnyMatch(func(item int) bool {
+		return item > 3
+	})
+
+	result2 := stream.AnyMatch(func(item int) bool {
+		return item > 1
+	})
+
+	assert.Equal(false, result1)
+	assert.Equal(true, result2)
+}
+
+func TestStream_NoneMatch(t *testing.T) {
+	assert := internal.NewAssert(t, "TestStream_NoneMatch")
+
+	stream := FromSlice([]int{1, 2, 3})
+
+	result1 := stream.NoneMatch(func(item int) bool {
+		return item > 3
+	})
+
+	result2 := stream.NoneMatch(func(item int) bool {
+		return item > 1
+	})
+
+	assert.Equal(true, result1)
+	assert.Equal(false, result2)
+}

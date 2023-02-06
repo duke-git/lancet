@@ -167,7 +167,8 @@ func (s stream[T]) Peek(consumer func(item T)) stream[T] {
 	return s
 }
 
-// Skip returns a stream consisting of the remaining elements of this stream after discarding the first n elements of the stream. If this stream contains fewer than n elements then an empty stream will be returned.
+// Skip returns a stream consisting of the remaining elements of this stream after discarding the first n elements of the stream.
+// If this stream contains fewer than n elements then an empty stream will be returned.
 func (s stream[T]) Skip(n int) stream[T] {
 	if n <= 0 {
 		return s
@@ -204,6 +205,33 @@ func (s stream[T]) Limit(maxSize int) stream[T] {
 	}
 
 	return FromSlice(source)
+}
+
+// AllMatch returns whether all elements of this stream match the provided predicate.
+func (s stream[T]) AllMatch(predicate func(item T) bool) bool {
+	for _, v := range s.source {
+		if !predicate(v) {
+			return false
+		}
+	}
+
+	return true
+}
+
+// AnyMatch returns whether any elements of this stream match the provided predicate.
+func (s stream[T]) AnyMatch(predicate func(item T) bool) bool {
+	for _, v := range s.source {
+		if predicate(v) {
+			return true
+		}
+	}
+
+	return false
+}
+
+// NoneMatch returns whether no elements of this stream match the provided predicate.
+func (s stream[T]) NoneMatch(predicate func(item T) bool) bool {
+	return !s.AnyMatch(predicate)
 }
 
 // Count returns the count of elements in the stream.
