@@ -328,6 +328,28 @@ func TestIntersection(t *testing.T) {
 	assert.Equal(true, expected.Equal(list3))
 }
 
+func TestDifference(t *testing.T) {
+	assert := internal.NewAssert(t, "TestDifference")
+
+	list1 := NewList([]int{1, 2, 3})
+	list2 := NewList([]int{1, 2, 4})
+	expected := NewList([]int{3})
+
+	list3 := list1.Difference(list2)
+	assert.Equal(true, expected.Equal(list3))
+}
+
+func TestSymmetricDifference(t *testing.T) {
+	assert := internal.NewAssert(t, "TestSymmetricDifference")
+
+	list1 := NewList([]int{1, 2, 3})
+	list2 := NewList([]int{1, 2, 4})
+	expected := NewList([]int{3, 4})
+
+	list3 := list1.SymmetricDifference(list2)
+	assert.Equal(true, expected.Equal(list3))
+}
+
 func TestSubSlice(t *testing.T) {
 	assert := internal.NewAssert(t, "TestSubSlice")
 

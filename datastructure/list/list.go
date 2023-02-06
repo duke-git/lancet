@@ -5,8 +5,9 @@
 package datastructure
 
 import (
-	"github.com/duke-git/lancet/v2/iterator"
 	"reflect"
+
+	"github.com/duke-git/lancet/v2/iterator"
 )
 
 // List is a linear table, implemented with slice.
@@ -310,6 +311,43 @@ func (l *List[T]) Intersection(other *List[T]) *List[T] {
 
 	for _, v := range l.data {
 		if other.Contain(v) {
+			result.data = append(result.data, v)
+		}
+	}
+
+	return result
+}
+
+// Difference returns the difference between two collections.
+// return a list whose element in the original list, not in the given list.
+func (l *List[T]) Difference(other *List[T]) *List[T] {
+	result := NewList(make([]T, 0))
+
+	intersectList := l.Intersection(other)
+
+	for _, v := range l.data {
+		if !intersectList.Contain(v) {
+			result.data = append(result.data, v)
+		}
+	}
+
+	return result
+}
+
+// SymmetricDifference oppoiste operation of intersection function.
+func (l *List[T]) SymmetricDifference(other *List[T]) *List[T] {
+	result := NewList(make([]T, 0))
+
+	intersectList := l.Intersection(other)
+
+	for _, v := range l.data {
+		if !intersectList.Contain(v) {
+			result.data = append(result.data, v)
+		}
+	}
+
+	for _, v := range other.data {
+		if !intersectList.Contain(v) {
 			result.data = append(result.data, v)
 		}
 	}
