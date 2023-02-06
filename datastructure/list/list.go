@@ -406,7 +406,7 @@ func (l *List[T]) Iterator() iterator.Iterator[T] {
 	return iterator.FromSlice(l.data)
 }
 
-// ToMap convert a list to a map based on iteratee function.
+// ListToMap convert a list to a map based on iteratee function.
 func ListToMap[T any, K comparable, V any](list *List[T], iteratee func(T) (K, V)) map[K]V {
 	result := make(map[K]V, list.Size())
 	for _, item := range list.data {
