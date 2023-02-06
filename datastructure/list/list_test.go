@@ -447,3 +447,16 @@ func TestIterator(t *testing.T) {
 
 	assert.Equal([]int{1, 2, 3, 4}, rs)
 }
+
+func TestListToMap(t *testing.T) {
+	assert := internal.NewAssert(t, "ListToMap")
+
+	list := NewList([]int{1, 2, 3, 4})
+
+	result := ListToMap(list, func(n int) (int, bool) {
+		return n, n > 1
+	})
+	expected := map[int]bool{1: false, 2: true, 3: true, 4: true}
+
+	assert.Equal(expected, result)
+}
