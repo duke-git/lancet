@@ -167,7 +167,7 @@ func (s stream[T]) Peek(consumer func(item T)) stream[T] {
 	return s
 }
 
-// Skip Returns a stream consisting of the remaining elements of this stream after discarding the first n elements of the stream. If this stream contains fewer than n elements then an empty stream will be returned.
+// Skip returns a stream consisting of the remaining elements of this stream after discarding the first n elements of the stream. If this stream contains fewer than n elements then an empty stream will be returned.
 func (s stream[T]) Skip(n int) stream[T] {
 	if n <= 0 {
 		return s
@@ -180,9 +180,26 @@ func (s stream[T]) Skip(n int) stream[T] {
 		return FromSlice(source)
 	}
 
-	// source = make([]T, l-n+1, l-n+1)
-
 	for i := n; i < l; i++ {
+		source = append(source, s.source[i])
+	}
+
+	return FromSlice(source)
+}
+
+// Limit returns a stream consisting of the elements of this stream, truncated to be no longer than maxSize in length.
+func (s stream[T]) Limit(maxSize int) stream[T] {
+	if s.source == nil {
+		return s
+	}
+
+	if maxSize < 0 {
+		return FromSlice([]T{})
+	}
+
+	source := make([]T, 0, maxSize)
+
+	for i := 0; i < len(s.source) && i < maxSize; i++ {
 		source = append(source, s.source[i])
 	}
 

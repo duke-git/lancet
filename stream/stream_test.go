@@ -151,8 +151,23 @@ func TestStream_Skip(t *testing.T) {
 
 	s1 := stream.Skip(-1)
 	s2 := stream.Skip(0)
-	// s2 := stream.Skip(0)
 
 	assert.Equal([]int{1, 2, 3, 4, 5, 6}, s1.ToSlice())
 	assert.Equal([]int{1, 2, 3, 4, 5, 6}, s2.ToSlice())
+}
+
+func TestStream_Limit(t *testing.T) {
+	assert := internal.NewAssert(t, "TestStream_Limit")
+
+	stream := FromSlice([]int{1, 2, 3, 4, 5, 6})
+
+	s1 := stream.Limit(-1)
+	s2 := stream.Limit(0)
+	s3 := stream.Limit(1)
+	s4 := stream.Limit(6)
+
+	assert.Equal([]int{}, s1.ToSlice())
+	assert.Equal([]int{}, s2.ToSlice())
+	assert.Equal([]int{1}, s3.ToSlice())
+	assert.Equal([]int{1, 2, 3, 4, 5, 6}, s4.ToSlice())
 }
