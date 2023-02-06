@@ -357,3 +357,71 @@ func TestDeleteIf(t *testing.T) {
 	assert.Equal([]int{2, 3, 4}, list.Data())
 	assert.Equal(0, count)
 }
+
+func TestForEach(t *testing.T) {
+	assert := internal.NewAssert(t, "TestForEach")
+
+	list := NewList([]int{1, 2, 3, 4})
+
+	rs := make([]int, 0)
+	list.ForEach(func(i int) {
+		rs = append(rs, i)
+	})
+
+	assert.Equal([]int{1, 2, 3, 4}, rs)
+}
+
+func TestRetainAll(t *testing.T) {
+	assert := internal.NewAssert(t, "TestRetainAll")
+
+	list := NewList([]int{1, 2, 3, 4})
+	list1 := NewList([]int{1, 2, 3, 4})
+	list2 := NewList([]int{1, 2, 3, 4})
+
+	retain := NewList([]int{1, 2})
+	retain1 := NewList([]int{2, 3})
+	retain2 := NewList([]int{1, 2, 5})
+
+	list.RetainAll(retain)
+	list1.RetainAll(retain1)
+	list2.RetainAll(retain2)
+
+	assert.Equal([]int{1, 2}, list.Data())
+	assert.Equal([]int{2, 3}, list1.Data())
+	assert.Equal([]int{1, 2}, list2.Data())
+}
+
+func TestDeleteAll(t *testing.T) {
+	assert := internal.NewAssert(t, "TestDeleteAll")
+
+	list := NewList([]int{1, 2, 3, 4})
+	list1 := NewList([]int{1, 2, 3, 4})
+	list2 := NewList([]int{1, 2, 3, 4})
+
+	del := NewList([]int{1})
+	del1 := NewList([]int{2, 3})
+	del2 := NewList([]int{1, 2, 5})
+
+	list.DeleteAll(del)
+	list1.DeleteAll(del1)
+	list2.DeleteAll(del2)
+	assert.Equal([]int{2, 3, 4}, list.Data())
+	assert.Equal([]int{1, 4}, list1.Data())
+	assert.Equal([]int{3, 4}, list2.Data())
+}
+
+func TestIterator(t *testing.T) {
+	assert := internal.NewAssert(t, "TestIterator")
+
+	list := NewList([]int{1, 2, 3, 4})
+
+	iterator := list.Iterator()
+
+	rs := make([]int, 0)
+	for iterator.HasNext() {
+		item, _ := iterator.Next()
+		rs = append(rs, item)
+	}
+
+	assert.Equal([]int{1, 2, 3, 4}, rs)
+}

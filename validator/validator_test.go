@@ -208,6 +208,7 @@ func TestIsChinesePhone(t *testing.T) {
 
 	assert.Equal(true, IsChinesePhone("010-32116675"))
 	assert.Equal(true, IsChinesePhone("0464-8756213"))
+	assert.Equal(true, IsChinesePhone("0731-82251545")) //长沙晚报电话
 	assert.Equal(false, IsChinesePhone("123-87562"))
 
 }
