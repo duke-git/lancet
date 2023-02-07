@@ -268,3 +268,27 @@ func TestStream_Reverse(t *testing.T) {
 
 	assert.Equal([]int{3, 2, 1}, rs.ToSlice())
 }
+
+func TestStream_Range(t *testing.T) {
+	assert := internal.NewAssert(t, "TestStream_Range")
+
+	s := FromSlice([]int{1, 2, 3})
+
+	s1 := s.Range(-1, 0)
+	assert.Equal([]int{}, s1.ToSlice())
+
+	s2 := s.Range(0, -1)
+	assert.Equal([]int{}, s2.ToSlice())
+
+	s3 := s.Range(0, 0)
+	assert.Equal([]int{}, s3.ToSlice())
+
+	s4 := s.Range(1, 1)
+	assert.Equal([]int{}, s4.ToSlice())
+
+	s5 := s.Range(0, 1)
+	assert.Equal([]int{1}, s5.ToSlice())
+
+	s6 := s.Range(0, 4)
+	assert.Equal([]int{1, 2, 3}, s6.ToSlice())
+}

@@ -277,6 +277,31 @@ func (s stream[T]) Reverse() stream[T] {
 	return FromSlice(source)
 }
 
+// Range returns a stream whose elements are in the range from start(included) to end(excluded) original stream.
+func (s stream[T]) Range(start, end int) stream[T] {
+	if start < 0 {
+		start = 0
+	}
+	if end < 0 {
+		end = 0
+	}
+	if start >= end {
+		return FromSlice([]T{})
+	}
+
+	source := make([]T, 0)
+
+	if end > len(s.source) {
+		end = len(s.source)
+	}
+
+	for i := start; i < end; i++ {
+		source = append(source, s.source[i])
+	}
+
+	return FromSlice(source)
+}
+
 // ToSlice return the elements in the stream.
 func (s stream[T]) ToSlice() []T {
 	return s.source
