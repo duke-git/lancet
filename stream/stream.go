@@ -43,7 +43,7 @@ import (
 
 // 	// part of methods custom extension
 // 	Reverse() StreamI[T]
-// 	Range(start, end int64) StreamI[T]
+// 	Range(start, end int) StreamI[T]
 // 	Concat(streams ...StreamI[T]) StreamI[T]
 // }
 
@@ -253,6 +253,28 @@ func (s stream[T]) Reduce(init T, accumulator func(a, b T) T) T {
 // Count returns the count of elements in the stream.
 func (s stream[T]) Count() int {
 	return len(s.source)
+}
+
+// FindFirst returns the first element of this stream and true, or zero value and false if the stream is empty.
+func (s stream[T]) FindFirst() (T, bool) {
+	var result T
+
+	if s.source == nil || len(s.source) == 0 {
+		return result, false
+	}
+
+	return s.source[0], true
+}
+
+// Reverse returns a stream whose elements are reverse order of given stream.
+func (s stream[T]) Reverse() stream[T] {
+	l := len(s.source)
+	source := make([]T, l)
+
+	for i := 0; i < l; i++ {
+		source[i] = s.source[l-1-i]
+	}
+	return FromSlice(source)
 }
 
 // ToSlice return the elements in the stream.

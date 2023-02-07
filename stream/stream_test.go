@@ -247,3 +247,24 @@ func TestStream_Reduce(t *testing.T) {
 
 	assert.Equal(6, result)
 }
+
+func TestStream_FindFirst(t *testing.T) {
+	assert := internal.NewAssert(t, "TestStream_FindFirst")
+
+	stream := FromSlice([]int{1, 2, 3})
+
+	result, ok := stream.FindFirst()
+
+	assert.Equal(1, result)
+	assert.Equal(true, ok)
+}
+
+func TestStream_Reverse(t *testing.T) {
+	assert := internal.NewAssert(t, "TestStream_Reverse")
+
+	s := FromSlice([]int{1, 2, 3})
+
+	rs := s.Reverse()
+
+	assert.Equal([]int{3, 2, 1}, rs.ToSlice())
+}
