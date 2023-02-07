@@ -292,3 +292,14 @@ func TestStream_Range(t *testing.T) {
 	s6 := s.Range(0, 4)
 	assert.Equal([]int{1, 2, 3}, s6.ToSlice())
 }
+
+func TestStream_Concat(t *testing.T) {
+	assert := internal.NewAssert(t, "TestStream_Concat")
+
+	s1 := FromSlice([]int{1, 2, 3})
+	s2 := FromSlice([]int{4, 5, 6})
+
+	s := Concat(s1, s2)
+
+	assert.Equal([]int{1, 2, 3, 4, 5, 6}, s.ToSlice())
+}

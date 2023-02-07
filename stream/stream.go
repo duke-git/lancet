@@ -72,12 +72,12 @@ func Generate[T any](generator func() func() (item T, ok bool)) stream[T] {
 	return FromSlice(source)
 }
 
-// FromSlice create stream from slice.
+// FromSlice creates stream from slice.
 func FromSlice[T any](source []T) stream[T] {
 	return stream[T]{source: source}
 }
 
-// FromChannel create stream from channel.
+// FromChannel creates stream from channel.
 func FromChannel[T any](source <-chan T) stream[T] {
 	s := make([]T, 0)
 
@@ -88,7 +88,7 @@ func FromChannel[T any](source <-chan T) stream[T] {
 	return FromSlice(s)
 }
 
-// FromRange create a number stream from start to end. both start and end are included. [start, end]
+// FromRange creates a number stream from start to end. both start and end are included. [start, end]
 func FromRange[T constraints.Integer | constraints.Float](start, end, step T) stream[T] {
 	if end < start {
 		panic("stream.FromRange: param start should be before param end")
@@ -102,6 +102,16 @@ func FromRange[T constraints.Integer | constraints.Float](start, end, step T) st
 	for i := 0; i < l; i++ {
 		source[i] = start + (T(i) * step)
 	}
+
+	return FromSlice(source)
+}
+
+// Concat creates a lazily concatenated stream whose elements are all the elements of the first stream followed by all the elements of the second stream.
+func Concat[T any](a, b stream[T]) stream[T] {
+	source := make([]T, 0)
+
+	source = append(source, a.source...)
+	source = append(source, b.source...)
 
 	return FromSlice(source)
 }
