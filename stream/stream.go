@@ -10,6 +10,7 @@ import (
 	"bytes"
 	"encoding/gob"
 
+	"github.com/duke-git/lancet/v2/slice"
 	"golang.org/x/exp/constraints"
 )
 
@@ -23,7 +24,7 @@ import (
 // 	Map(mapper func(item T) T) StreamI[T]
 // 	Peek(consumer func(item T)) StreamI[T]
 
-// 	Sort(less func(a, b T) bool) StreamI[T]
+// 	Sorted(less func(a, b T) bool) StreamI[T]
 // 	Max(less func(a, b T) bool) (T, bool)
 // 	Min(less func(a, b T) bool) (T, bool)
 
@@ -308,6 +309,16 @@ func (s stream[T]) Range(start, end int) stream[T] {
 	for i := start; i < end; i++ {
 		source = append(source, s.source[i])
 	}
+
+	return FromSlice(source)
+}
+
+// Sorted returns a stream consisting of the elements of this stream, sorted according to the provided less function.
+func (s stream[T]) Sorted(less func(a, b T) bool) stream[T] {
+	source := []T{}
+	source = append(source, s.source...)
+
+	slice.SortBy(source, less)
 
 	return FromSlice(source)
 }

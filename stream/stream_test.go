@@ -303,3 +303,14 @@ func TestStream_Concat(t *testing.T) {
 
 	assert.Equal([]int{1, 2, 3, 4, 5, 6}, s.ToSlice())
 }
+
+func TestStream_Sorted(t *testing.T) {
+	assert := internal.NewAssert(t, "TestStream_Sorted")
+
+	s := FromSlice([]int{4, 2, 1, 3})
+
+	s1 := s.Sorted(func(a, b int) bool { return a < b })
+
+	assert.Equal([]int{4, 2, 1, 3}, s.ToSlice())
+	assert.Equal([]int{1, 2, 3, 4}, s1.ToSlice())
+}
