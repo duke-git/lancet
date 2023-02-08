@@ -323,6 +323,41 @@ func (s stream[T]) Sorted(less func(a, b T) bool) stream[T] {
 	return FromSlice(source)
 }
 
+// Max returns the maximum element of this stream according to the provided less function.
+// less: a > b
+func (s stream[T]) Max(less func(a, b T) bool) (T, bool) {
+	var max T
+
+	if len(s.source) == 0 {
+		return max, false
+	}
+
+	for i, v := range s.source {
+		if less(v, max) || i == 0 {
+			max = v
+		}
+	}
+	return max, true
+}
+
+// Min returns the minimum element of this stream according to the provided less function.
+// less: a < b
+func (s stream[T]) Min(less func(a, b T) bool) (T, bool) {
+	var min T
+
+	if len(s.source) == 0 {
+		return min, false
+	}
+
+	for i, v := range s.source {
+		if less(v, min) || i == 0 {
+			min = v
+		}
+	}
+
+	return min, true
+}
+
 // ToSlice return the elements in the stream.
 func (s stream[T]) ToSlice() []T {
 	return s.source

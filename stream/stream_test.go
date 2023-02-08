@@ -314,3 +314,25 @@ func TestStream_Sorted(t *testing.T) {
 	assert.Equal([]int{4, 2, 1, 3}, s.ToSlice())
 	assert.Equal([]int{1, 2, 3, 4}, s1.ToSlice())
 }
+
+func TestStream_Max(t *testing.T) {
+	assert := internal.NewAssert(t, "TestStream_Max")
+
+	s := FromSlice([]int{4, 2, 1, 3})
+
+	max, ok := s.Max(func(a, b int) bool { return a > b })
+
+	assert.Equal(4, max)
+	assert.Equal(true, ok)
+}
+
+func TestStream_Min(t *testing.T) {
+	assert := internal.NewAssert(t, "TestStream_Min")
+
+	s := FromSlice([]int{4, 2, 1, 3})
+
+	max, ok := s.Max(func(a, b int) bool { return a < b })
+
+	assert.Equal(1, max)
+	assert.Equal(true, ok)
+}
