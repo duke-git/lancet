@@ -482,7 +482,25 @@ func ExampleDrop() {
 	// Output:
 	// [a b c]
 	// [b c]
+	// [a b c]
+	// []
+}
+
+func ExampleDropRight() {
+	result1 := DropRight([]string{"a", "b", "c"}, 0)
+	result2 := DropRight([]string{"a", "b", "c"}, 1)
+	result3 := DropRight([]string{"a", "b", "c"}, -1)
+	result4 := DropRight([]string{"a", "b", "c"}, 4)
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+	fmt.Println(result4)
+
+	// Output:
+	// [a b c]
 	// [a b]
+	// [a b c]
 	// []
 }
 

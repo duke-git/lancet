@@ -388,9 +388,22 @@ func TestDrop(t *testing.T) {
 	assert.Equal([]int{}, Drop([]int{1, 2, 3, 4, 5}, 5))
 	assert.Equal([]int{}, Drop([]int{1, 2, 3, 4, 5}, 6))
 
-	assert.Equal([]int{1, 2, 3, 4}, Drop([]int{1, 2, 3, 4, 5}, -1))
-	assert.Equal([]int{}, Drop([]int{1, 2, 3, 4, 5}, -6))
-	assert.Equal([]int{}, Drop([]int{1, 2, 3, 4, 5}, -6))
+	assert.Equal([]int{1, 2, 3, 4, 5}, Drop([]int{1, 2, 3, 4, 5}, -1))
+}
+
+func TestDropRight(t *testing.T) {
+	assert := internal.NewAssert(t, "TestInterfaceSlice")
+
+	assert.Equal([]int{}, DropRight([]int{}, 0))
+	assert.Equal([]int{}, DropRight([]int{}, 1))
+	assert.Equal([]int{}, DropRight([]int{}, -1))
+
+	assert.Equal([]int{1, 2, 3, 4, 5}, DropRight([]int{1, 2, 3, 4, 5}, 0))
+	assert.Equal([]int{1, 2, 3, 4}, DropRight([]int{1, 2, 3, 4, 5}, 1))
+	assert.Equal([]int{}, DropRight([]int{1, 2, 3, 4, 5}, 5))
+	assert.Equal([]int{}, DropRight([]int{1, 2, 3, 4, 5}, 6))
+
+	assert.Equal([]int{1, 2, 3, 4, 5}, DropRight([]int{1, 2, 3, 4, 5}, -1))
 }
 
 func TestInsertAt(t *testing.T) {

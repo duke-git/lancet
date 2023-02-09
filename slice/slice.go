@@ -6,7 +6,6 @@ package slice
 
 import (
 	"fmt"
-	"math"
 	"math/rand"
 	"reflect"
 	"sort"
@@ -559,24 +558,56 @@ func DeleteAt[T any](slice []T, start int, end ...int) []T {
 	return slice
 }
 
-// Drop creates a slice with `n` elements dropped from the beginning when n > 0, or `n` elements dropped from the ending when n < 0.
+// Drop drop n elements from the start of a slice.
 // Play: https://go.dev/play/p/pJ-d6MUWcvK
 func Drop[T any](slice []T, n int) []T {
 	size := len(slice)
 
-	if size == 0 || n == 0 {
-		return slice
-	}
-
-	if math.Abs(float64(n)) >= float64(size) {
+	if size <= n {
 		return []T{}
 	}
 
-	if n < 0 {
-		return slice[0 : size+n]
+	if n <= 0 {
+		return slice
 	}
 
-	return slice[n:size]
+	result := make([]T, 0, size-n)
+
+	return append(result, slice[n:]...)
+}
+
+// DropRight drop n elements from the end of a slice.
+// Play: todo
+func DropRight[T any](slice []T, n int) []T {
+	size := len(slice)
+
+	if size <= n {
+		return []T{}
+	}
+
+	if n <= 0 {
+		return slice
+	}
+
+	result := make([]T, 0, size-n)
+
+	return append(result, slice[:size-n]...)
+}
+
+// DropWhile drop n elements from the start of a slice while predicate function returns true.
+// Play: todo
+func DropWhile[T any](slice []T, predicate func(item T) bool) []T {
+	i := 0
+
+	for ; i < len(slice); i++ {
+		if !predicate(slice[i]) {
+			break
+		}
+	}
+
+	result := make([]T, 0, len(slice)-i)
+
+	return append(result, slice[i:]...)
 }
 
 // InsertAt insert the value or other slice into slice at index.
