@@ -603,6 +603,22 @@ func TestDifferenceBy(t *testing.T) {
 	assert.Equal([]int{1, 2}, DifferenceBy(s1, s2, addOne))
 }
 
+func TestIsAscending(t *testing.T) {
+	assert := internal.NewAssert(t, "TestIsAscending")
+
+	assert.Equal(true, IsAscending([]int{1, 2, 3, 4, 5}))
+	assert.Equal(false, IsAscending([]int{5, 4, 3, 2, 1}))
+	assert.Equal(false, IsAscending([]int{2, 1, 3, 4, 5}))
+}
+
+func TestIsdescending(t *testing.T) {
+	assert := internal.NewAssert(t, "TestIsdescending")
+
+	assert.Equal(true, Isdescending([]int{5, 4, 3, 2, 1}))
+	assert.Equal(false, Isdescending([]int{1, 2, 3, 4, 5}))
+	assert.Equal(false, Isdescending([]int{2, 1, 3, 4, 5}))
+}
+
 func TestSort(t *testing.T) {
 	assert := internal.NewAssert(t, "TestSort")
 

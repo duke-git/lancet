@@ -830,6 +830,30 @@ func Shuffle[T any](slice []T) []T {
 	return slice
 }
 
+// IsAscending checks if a slice is ascending order.
+// Play: todo
+func IsAscending[T constraints.Ordered](slice []T) bool {
+	for i := 1; i < len(slice); i++ {
+		if slice[i-1] > slice[i] {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Isdescending checks if a slice is descending order.
+// Play: todo
+func Isdescending[T constraints.Ordered](slice []T) bool {
+	for i := 1; i < len(slice); i++ {
+		if slice[i-1] < slice[i] {
+			return false
+		}
+	}
+
+	return true
+}
+
 // Sort sorts a slice of any ordered type(number or string), use quick sort algrithm.
 // default sort order is ascending (asc), if want descending order, set param `sortOrder` to `desc`.
 // Play: https://go.dev/play/p/V9AVjzf_4Fk

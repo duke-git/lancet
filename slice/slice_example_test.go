@@ -685,6 +685,38 @@ func ExampleReverse() {
 	// [d c b a]
 }
 
+func ExampleIsAscending() {
+
+	result1 := IsAscending([]int{1, 2, 3, 4, 5})
+	result2 := IsAscending([]int{5, 4, 3, 2, 1})
+	result3 := IsAscending([]int{2, 1, 3, 4, 5})
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+
+	// Output:
+	// true
+	// false
+	// false
+}
+
+func ExampleIsdescending() {
+
+	result1 := Isdescending([]int{5, 4, 3, 2, 1})
+	result2 := Isdescending([]int{1, 2, 3, 4, 5})
+	result3 := Isdescending([]int{2, 1, 3, 4, 5})
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+
+	// Output:
+	// true
+	// false
+	// false
+}
+
 func ExampleSort() {
 	nums := []int{1, 4, 3, 2, 5}
 
