@@ -611,12 +611,20 @@ func TestIsAscending(t *testing.T) {
 	assert.Equal(false, IsAscending([]int{2, 1, 3, 4, 5}))
 }
 
-func TestIsdescending(t *testing.T) {
-	assert := internal.NewAssert(t, "TestIsdescending")
+func TestIsDescending(t *testing.T) {
+	assert := internal.NewAssert(t, "TestIsDescending")
 
-	assert.Equal(true, Isdescending([]int{5, 4, 3, 2, 1}))
-	assert.Equal(false, Isdescending([]int{1, 2, 3, 4, 5}))
-	assert.Equal(false, Isdescending([]int{2, 1, 3, 4, 5}))
+	assert.Equal(true, IsDescending([]int{5, 4, 3, 2, 1}))
+	assert.Equal(false, IsDescending([]int{1, 2, 3, 4, 5}))
+	assert.Equal(false, IsDescending([]int{2, 1, 3, 4, 5}))
+}
+
+func TestIsSorted(t *testing.T) {
+	assert := internal.NewAssert(t, "TestIsSorted")
+
+	assert.Equal(true, IsSorted([]int{5, 4, 3, 2, 1}))
+	assert.Equal(true, IsSorted([]int{1, 2, 3, 4, 5}))
+	assert.Equal(false, IsSorted([]int{2, 1, 3, 4, 5}))
 }
 
 func TestSort(t *testing.T) {

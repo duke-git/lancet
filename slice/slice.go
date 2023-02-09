@@ -842,9 +842,9 @@ func IsAscending[T constraints.Ordered](slice []T) bool {
 	return true
 }
 
-// Isdescending checks if a slice is descending order.
+// IsDescending checks if a slice is descending order.
 // Play: todo
-func Isdescending[T constraints.Ordered](slice []T) bool {
+func IsDescending[T constraints.Ordered](slice []T) bool {
 	for i := 1; i < len(slice); i++ {
 		if slice[i-1] < slice[i] {
 			return false
@@ -852,6 +852,12 @@ func Isdescending[T constraints.Ordered](slice []T) bool {
 	}
 
 	return true
+}
+
+// IsSorted checks if a slice is sorted(ascending or descending).
+// Play: todo
+func IsSorted[T constraints.Ordered](slice []T) bool {
+	return IsAscending(slice) || IsDescending(slice)
 }
 
 // Sort sorts a slice of any ordered type(number or string), use quick sort algrithm.

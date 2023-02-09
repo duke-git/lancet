@@ -701,11 +701,11 @@ func ExampleIsAscending() {
 	// false
 }
 
-func ExampleIsdescending() {
+func ExampleIsDescending() {
 
-	result1 := Isdescending([]int{5, 4, 3, 2, 1})
-	result2 := Isdescending([]int{1, 2, 3, 4, 5})
-	result3 := Isdescending([]int{2, 1, 3, 4, 5})
+	result1 := IsDescending([]int{5, 4, 3, 2, 1})
+	result2 := IsDescending([]int{1, 2, 3, 4, 5})
+	result3 := IsDescending([]int{2, 1, 3, 4, 5})
 
 	fmt.Println(result1)
 	fmt.Println(result2)
@@ -714,6 +714,22 @@ func ExampleIsdescending() {
 	// Output:
 	// true
 	// false
+	// false
+}
+
+func ExampleIsSorted() {
+
+	result1 := IsSorted([]int{1, 2, 3, 4, 5})
+	result2 := IsSorted([]int{5, 4, 3, 2, 1})
+	result3 := IsSorted([]int{2, 1, 3, 4, 5})
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+
+	// Output:
+	// true
+	// true
 	// false
 }
 
