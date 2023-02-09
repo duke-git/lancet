@@ -610,6 +610,22 @@ func DropWhile[T any](slice []T, predicate func(item T) bool) []T {
 	return append(result, slice[i:]...)
 }
 
+// DropRightWhile drop n elements from the end of a slice while predicate function returns true.
+// Play: todo
+func DropRightWhile[T any](slice []T, predicate func(item T) bool) []T {
+	i := len(slice) - 1
+
+	for ; i >= 0; i-- {
+		if !predicate(slice[i]) {
+			break
+		}
+	}
+
+	result := make([]T, 0, i+1)
+
+	return append(result, slice[:i+1]...)
+}
+
 // InsertAt insert the value or other slice into slice at index.
 // Play: https://go.dev/play/p/hMLNxPEGJVE
 func InsertAt[T any](slice []T, index int, value any) []T {

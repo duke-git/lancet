@@ -427,6 +427,27 @@ func TestDropWhile(t *testing.T) {
 	assert.Equal([]int{1, 2, 3, 4, 5}, r3)
 }
 
+func TestDropRightWhile(t *testing.T) {
+	assert := internal.NewAssert(t, "TestDropRightWhile")
+
+	numbers := []int{1, 2, 3, 4, 5}
+
+	r1 := DropRightWhile(numbers, func(n int) bool {
+		return n != 2
+	})
+	assert.Equal([]int{1, 2}, r1)
+
+	r2 := DropRightWhile(numbers, func(n int) bool {
+		return true
+	})
+	assert.Equal([]int{}, r2)
+
+	r3 := DropRightWhile(numbers, func(n int) bool {
+		return n == 0
+	})
+	assert.Equal([]int{1, 2, 3, 4, 5}, r3)
+}
+
 func TestInsertAt(t *testing.T) {
 	assert := internal.NewAssert(t, "TestInsertAt")
 
