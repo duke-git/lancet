@@ -504,6 +504,29 @@ func ExampleDropRight() {
 	// []
 }
 
+func ExampleDropWhile() {
+	numbers := []int{1, 2, 3, 4, 5}
+
+	result1 := DropWhile(numbers, func(n int) bool {
+		return n != 2
+	})
+	result2 := DropWhile(numbers, func(n int) bool {
+		return true
+	})
+	result3 := DropWhile(numbers, func(n int) bool {
+		return n == 0
+	})
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+
+	// Output:
+	// [2 3 4 5]
+	// []
+	// [1 2 3 4 5]
+}
+
 func ExampleInsertAt() {
 	result1 := InsertAt([]string{"a", "b", "c"}, 0, "1")
 	result2 := InsertAt([]string{"a", "b", "c"}, 1, "1")

@@ -377,7 +377,7 @@ func TestDeleteAt(t *testing.T) {
 }
 
 func TestDrop(t *testing.T) {
-	assert := internal.NewAssert(t, "TestInterfaceSlice")
+	assert := internal.NewAssert(t, "TestDrop")
 
 	assert.Equal([]int{}, Drop([]int{}, 0))
 	assert.Equal([]int{}, Drop([]int{}, 1))
@@ -392,7 +392,7 @@ func TestDrop(t *testing.T) {
 }
 
 func TestDropRight(t *testing.T) {
-	assert := internal.NewAssert(t, "TestInterfaceSlice")
+	assert := internal.NewAssert(t, "TestDropRight")
 
 	assert.Equal([]int{}, DropRight([]int{}, 0))
 	assert.Equal([]int{}, DropRight([]int{}, 1))
@@ -404,6 +404,27 @@ func TestDropRight(t *testing.T) {
 	assert.Equal([]int{}, DropRight([]int{1, 2, 3, 4, 5}, 6))
 
 	assert.Equal([]int{1, 2, 3, 4, 5}, DropRight([]int{1, 2, 3, 4, 5}, -1))
+}
+
+func TestDropWhile(t *testing.T) {
+	assert := internal.NewAssert(t, "TestDropWhile")
+
+	numbers := []int{1, 2, 3, 4, 5}
+
+	r1 := DropWhile(numbers, func(n int) bool {
+		return n != 2
+	})
+	assert.Equal([]int{2, 3, 4, 5}, r1)
+
+	r2 := DropWhile(numbers, func(n int) bool {
+		return true
+	})
+	assert.Equal([]int{}, r2)
+
+	r3 := DropWhile(numbers, func(n int) bool {
+		return n == 0
+	})
+	assert.Equal([]int{1, 2, 3, 4, 5}, r3)
 }
 
 func TestInsertAt(t *testing.T) {
