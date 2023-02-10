@@ -832,9 +832,15 @@ import "github.com/duke-git/lancet/v2/slice"
 -   **<big>DeleteAt</big>** : delete the element of slice from specific start index to end index - 1.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#DeleteAt)]
     [[play](https://go.dev/play/p/pJ-d6MUWcvK)]
--   **<big>Drop</big>** : creates a slice with `n` elements dropped from the beginning when n > 0, or `n` elements dropped from the ending when n < 0.
+-   **<big>Drop</big>** : drop n elements from the start of a slice.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Drop)]
     [[play](https://go.dev/play/p/pJ-d6MUWcvK)]
+-   **<big>DropRight</big>** : drop n elements from the end of a slice.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#DropRight)]
+-   **<big>DropWhile</big>** : drop n elements from the start of a slice while predicate function returns true.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#DropWhile)]
+-   **<big>DropRightWhile</big>** : drop n elements from the end of a slice while predicate function returns true.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#DropRightWhile)]
 -   **<big>Equal</big>** : checks if two slices are equal: the same length and all elements' order and value are equal.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Equal)]
     [[play](https://go.dev/play/p/WcRQJ37ifPa)]
@@ -910,6 +916,14 @@ import "github.com/duke-git/lancet/v2/slice"
 -   **<big>Shuffle</big>** : shuffle the slice.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Shuffle)]
     [[play](https://go.dev/play/p/YHvhnWGU3Ge)]
+-   **<big>IsAscending</big>** : Checks if a slice is ascending order.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#IsAscending)]
+-   **<big>IsDescending</big>** : Checks if a slice is descending order.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#IsDescending)]
+-   **<big>IsSorted</big>** : Checks if a slice is sorted (ascending or descending).
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#IsSorted)]
+-   **<big>IsSortedByKey</big>** : Checks if a slice is sorted by iteratee function.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#IsSortedByKey)]
 -   **<big>Sort</big>** : sorts a slice of any ordered type(number or string).
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Sort)]
     [[play](https://go.dev/play/p/V9AVjzf_4Fk)]

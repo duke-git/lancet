@@ -839,9 +839,15 @@ import "github.com/duke-git/lancet/v2/slice"
 -   **<big>DeleteAt</big>** : 删除切片中指定开始索引到结束索引的元素。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#DeleteAt)]
     [[play](https://go.dev/play/p/pJ-d6MUWcvK)]
--   **<big>Drop</big>** : 创建一个切片，当n > 0时从开头删除n个元素，或者当n < 0时从结尾删除n个元素。
+-   **<big>Drop</big>** : 从切片头部删除n个元素。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Drop)]
     [[play](https://go.dev/play/p/pJ-d6MUWcvK)]
+-   **<big>DropRight</big>** : 从切片尾部删除n个元素。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#DropRight)]
+-   **<big>DropWhile</big>** : 从切片的头部删除n个元素，这个n个元素满足predicate函数返回true。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#DropWhile)]
+-   **<big>DropRightWhile</big>** : 从切片的尾部删除n个元素，这个n个元素满足predicate函数返回true。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#DropRightWhile)]
 -   **<big>Equal</big>** : 检查两个切片是否相等，相等条件：切片长度相同，元素顺序和值都相同。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Equal)]
     [[play](https://go.dev/play/p/WcRQJ37ifPa)]
@@ -917,6 +923,14 @@ import "github.com/duke-git/lancet/v2/slice"
 -   **<big>Shuffle</big>** : 随机打乱切片中的元素顺序。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Shuffle)]
     [[play](https://go.dev/play/p/YHvhnWGU3Ge)]
+-   **<big>IsAscending</big>** : 检查切片元素是否按升序排列。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#IsAscending)]
+-   **<big>IsDescending</big>** : 检查切片元素是否按降序排列。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#IsDescending)]
+-   **<big>IsSorted</big>** : 检查切片元素是否是有序的（升序或降序）。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#IsSorted)]
+-   **<big>IsSortedByKey</big>** : 通过iteratee函数，检查切片元素是否是有序的。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#IsSortedByKey)]
 -   **<big>Sort</big>** : 对任何有序类型（数字或字符串）的切片进行排序，使用快速排序算法。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Sort)]
     [[play](https://go.dev/play/p/V9AVjzf_4Fk)]
