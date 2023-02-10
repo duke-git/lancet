@@ -2,6 +2,7 @@ package convertor
 
 import (
 	"fmt"
+	"reflect"
 	"strconv"
 	"testing"
 
@@ -252,4 +253,48 @@ func TestDecodeByte(t *testing.T) {
 	err := DecodeByte(byteData, &obj)
 	assert.IsNil(err)
 	assert.Equal("abc", obj)
+}
+
+func TestDeepClone(t *testing.T) {
+	// assert := internal.NewAssert(t, "TestDeepClone")
+
+	type Struct struct {
+		Str        string
+		Int        int
+		Float      float64
+		Bool       bool
+		Nil        interface{}
+		unexported string
+	}
+
+	cases := []interface{}{
+		true,
+		1,
+		0.1,
+		map[string]int{
+			"a": 1,
+			"b": 2,
+		},
+		&Struct{
+			Str:   "test",
+			Int:   1,
+			Float: 0.1,
+			Bool:  true,
+			Nil:   nil,
+			// unexported: "can't be cloned",
+		},
+	}
+
+	for i, item := range cases {
+		cloned := DeepClone(item)
+
+		t.Log(cloned)
+		if &cloned == &item {
+			t.Fatalf("[TestDeepClone case #%d failed]: equal pointer", i)
+		}
+
+		if !reflect.DeepEqual(item, cloned) {
+			t.Fatalf("[TestDeepClone case #%d failed] unequal objects", i)
+		}
+	}
 }
