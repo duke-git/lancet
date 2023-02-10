@@ -733,6 +733,27 @@ func ExampleIsSorted() {
 	// false
 }
 
+func ExampleIsSortedByKey() {
+	result1 := IsSortedByKey([]string{"a", "ab", "abc"}, func(s string) int {
+		return len(s)
+	})
+	result2 := IsSortedByKey([]string{"abc", "ab", "a"}, func(s string) int {
+		return len(s)
+	})
+	result3 := IsSortedByKey([]string{"abc", "a", "ab"}, func(s string) int {
+		return len(s)
+	})
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+
+	// Output:
+	// true
+	// true
+	// false
+}
+
 func ExampleSort() {
 	nums := []int{1, 4, 3, 2, 5}
 

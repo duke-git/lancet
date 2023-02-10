@@ -627,6 +627,22 @@ func TestIsSorted(t *testing.T) {
 	assert.Equal(false, IsSorted([]int{2, 1, 3, 4, 5}))
 }
 
+func TestIsSortedByKey(t *testing.T) {
+	assert := internal.NewAssert(t, "TestIsSortedByKey")
+
+	assert.Equal(true, IsSortedByKey([]string{"a", "ab", "abc"}, func(s string) int {
+		return len(s)
+	}))
+
+	assert.Equal(true, IsSortedByKey([]string{"abc", "ab", "a"}, func(s string) int {
+		return len(s)
+	}))
+
+	assert.Equal(false, IsSortedByKey([]string{"abc", "a", "ab"}, func(s string) int {
+		return len(s)
+	}))
+}
+
 func TestSort(t *testing.T) {
 	assert := internal.NewAssert(t, "TestSort")
 

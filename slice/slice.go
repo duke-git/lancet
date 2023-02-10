@@ -860,6 +860,34 @@ func IsSorted[T constraints.Ordered](slice []T) bool {
 	return IsAscending(slice) || IsDescending(slice)
 }
 
+// IsSortedByKey checks if a slice is sorted by iteratee function.
+// Play: todo
+func IsSortedByKey[T any, K constraints.Ordered](slice []T, iteratee func(item T) K) bool {
+	size := len(slice)
+
+	isAscending := func(data []T) bool {
+		for i := 0; i < size-1; i++ {
+			if iteratee(data[i]) > iteratee(data[i+1]) {
+				return false
+			}
+		}
+
+		return true
+	}
+
+	isDescending := func(data []T) bool {
+		for i := 0; i < size-1; i++ {
+			if iteratee(data[i]) < iteratee(data[i+1]) {
+				return false
+			}
+		}
+
+		return true
+	}
+
+	return isAscending(slice) || isDescending(slice)
+}
+
 // Sort sorts a slice of any ordered type(number or string), use quick sort algrithm.
 // default sort order is ascending (asc), if want descending order, set param `sortOrder` to `desc`.
 // Play: https://go.dev/play/p/V9AVjzf_4Fk
