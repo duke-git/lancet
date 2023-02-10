@@ -35,6 +35,9 @@ import (
 -   [DifferenceWith](#DifferenceWith)
 -   [DeleteAt](#DeleteAt)
 -   [Drop](#Drop)
+-   [DropRight](#DropRight)
+-   [DropWhile](#DropWhile)
+-   [DropRightWhile](#DropRightWhile)
 -   [Every](#Every)
 -   [Equal](#Equal)
 -   [EqualWith](#EqualWith)
@@ -486,9 +489,10 @@ func main() {
 }
 ```
 
+
 ### <span id="Drop">Drop</span>
 
-<p>创建一个切片，当n > 0时从开头删除n个元素，或者当n < 0时从结尾删除n个元素</p>
+<p>从切片的头部删除n个元素。</p>
 
 <b>函数签名:</b>
 
@@ -506,20 +510,139 @@ import (
 
 func main() {
     result1 := slice.Drop([]string{"a", "b", "c"}, 0)
-    result2 := slice.Drop([]string{"a", "b", "c"}, 1)
-    result3 := slice.Drop([]string{"a", "b", "c"}, -1)
-    result4 := slice.Drop([]string{"a", "b", "c"}, 4)
+	result2 := slice.Drop([]string{"a", "b", "c"}, 1)
+	result3 := slice.Drop([]string{"a", "b", "c"}, -1)
+	result4 := slice.Drop([]string{"a", "b", "c"}, 4)
 
-    fmt.Println(result1)
-    fmt.Println(result2)
-    fmt.Println(result3)
-    fmt.Println(result4)
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+	fmt.Println(result4)
 
-    // Output:
-    // [a b c]
-    // [b c]
-    // [a b]
-    // []
+	// Output:
+	// [a b c]
+	// [b c]
+	// [a b c]
+	// []
+}
+```
+
+### <span id="DropRight">DropRight</span>
+
+<p>从切片的尾部删除n个元素。</p>
+
+<b>函数签名:</b>
+
+```go
+func DropRight[T any](slice []T, n int) []T
+```
+
+<b>示例:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+    result1 := slice.DropRight([]string{"a", "b", "c"}, 0)
+	result2 := slice.DropRight([]string{"a", "b", "c"}, 1)
+	result3 := slice.DropRight([]string{"a", "b", "c"}, -1)
+	result4 := slice.DropRight([]string{"a", "b", "c"}, 4)
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+	fmt.Println(result4)
+
+	// Output:
+	// [a b c]
+	// [a b]
+	// [a b c]
+	// []
+}
+```
+
+### <span id="DropWhile">DropWhile</span>
+
+<p>从切片的头部删除n个元素，这个n个元素满足predicate函数返回true。</p>
+
+<b>函数签名:</b>
+
+```go
+func DropWhile[T any](slice []T, predicate func(item T) bool) []T
+```
+
+<b>示例:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+    result1 := slice.DropWhile(numbers, func(n int) bool {
+		return n != 2
+	})
+	result2 := slice.DropWhile(numbers, func(n int) bool {
+		return true
+	})
+	result3 := slice.DropWhile(numbers, func(n int) bool {
+		return n == 0
+	})
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+
+	// Output:
+	// [2 3 4 5]
+	// []
+	// [1 2 3 4 5]
+}
+```
+
+### <span id="DropRightWhile">DropRightWhile</span>
+
+<p>从切片的尾部删除n个元素，这个n个元素满足predicate函数返回true。</p>
+
+<b>函数签名:</b>
+
+```go
+func DropRightWhile[T any](slice []T, predicate func(item T) bool) []T
+```
+
+<b>示例:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+    numbers := []int{1, 2, 3, 4, 5}
+
+	result1 := slice.DropRightWhile(numbers, func(n int) bool {
+		return n != 2
+	})
+	result2 := slice.DropRightWhile(numbers, func(n int) bool {
+		return true
+	})
+	result3 := slice.DropRightWhile(numbers, func(n int) bool {
+		return n == 0
+	})
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+
+	// Output:
+	// [1 2]
+	// []
+	// [1 2 3 4 5]
 }
 ```
 

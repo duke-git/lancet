@@ -35,6 +35,9 @@ import (
 -   [DifferenceWith](#DifferenceWith)
 -   [DeleteAt](#DeleteAt)
 -   [Drop](#Drop)
+-   [DropRight](#DropRight)
+-   [DropWhile](#DropWhile)
+-   [DropRightWhile](#DropRightWhile)
 -   [Equal](#Equal)
 -   [EqualWith](#EqualWith)
 -   [Every](#Every)
@@ -487,7 +490,7 @@ func main() {
 
 ### <span id="Drop">Drop</span>
 
-<p>Creates a slice with `n` elements dropped from the beginning when n > 0, or `n` elements dropped from the ending when n < 0.</p>
+<p>Drop n elements from the start of a slice.</p>
 
 <b>Signature:</b>
 
@@ -505,20 +508,139 @@ import (
 
 func main() {
     result1 := slice.Drop([]string{"a", "b", "c"}, 0)
-    result2 := slice.Drop([]string{"a", "b", "c"}, 1)
-    result3 := slice.Drop([]string{"a", "b", "c"}, -1)
-    result4 := slice.Drop([]string{"a", "b", "c"}, 4)
+	result2 := slice.Drop([]string{"a", "b", "c"}, 1)
+	result3 := slice.Drop([]string{"a", "b", "c"}, -1)
+	result4 := slice.Drop([]string{"a", "b", "c"}, 4)
 
-    fmt.Println(result1)
-    fmt.Println(result2)
-    fmt.Println(result3)
-    fmt.Println(result4)
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+	fmt.Println(result4)
 
-    // Output:
-    // [a b c]
-    // [b c]
-    // [a b]
-    // []
+	// Output:
+	// [a b c]
+	// [b c]
+	// [a b c]
+	// []
+}
+```
+
+### <span id="DropRight">DropRight</span>
+
+<p>Drop n elements from the end of a slice.</p>
+
+<b>Signature:</b>
+
+```go
+func DropRight[T any](slice []T, n int) []T
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+    result1 := slice.DropRight([]string{"a", "b", "c"}, 0)
+	result2 := slice.DropRight([]string{"a", "b", "c"}, 1)
+	result3 := slice.DropRight([]string{"a", "b", "c"}, -1)
+	result4 := slice.DropRight([]string{"a", "b", "c"}, 4)
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+	fmt.Println(result4)
+
+	// Output:
+	// [a b c]
+	// [a b]
+	// [a b c]
+	// []
+}
+```
+
+### <span id="DropWhile">DropWhile</span>
+
+<p>Drop n elements from the start of a slice while predicate function returns true.</p>
+
+<b>Signature:</b>
+
+```go
+func DropWhile[T any](slice []T, predicate func(item T) bool) []T
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+    result1 := slice.DropWhile(numbers, func(n int) bool {
+		return n != 2
+	})
+	result2 := slice.DropWhile(numbers, func(n int) bool {
+		return true
+	})
+	result3 := slice.DropWhile(numbers, func(n int) bool {
+		return n == 0
+	})
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+
+	// Output:
+	// [2 3 4 5]
+	// []
+	// [1 2 3 4 5]
+}
+```
+
+### <span id="DropRightWhile">DropRightWhile</span>
+
+<p>Drop n elements from the end of a slice while predicate function returns true.</p>
+
+<b>Signature:</b>
+
+```go
+func DropRightWhile[T any](slice []T, predicate func(item T) bool) []T
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+    numbers := []int{1, 2, 3, 4, 5}
+
+	result1 := slice.DropRightWhile(numbers, func(n int) bool {
+		return n != 2
+	})
+	result2 := slice.DropRightWhile(numbers, func(n int) bool {
+		return true
+	})
+	result3 := slice.DropRightWhile(numbers, func(n int) bool {
+		return n == 0
+	})
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+
+	// Output:
+	// [1 2]
+	// []
+	// [1 2 3 4 5]
 }
 ```
 
