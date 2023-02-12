@@ -1,11 +1,12 @@
 # Convertor
-convertor转换器包支持一些常见的数据类型转换
+
+convertor 转换器包支持一些常见的数据类型转换
 
 <div STYLE="page-break-after: always;"></div>
 
 ## 源码:
 
-- [https://github.com/duke-git/lancet/blob/main/convertor/convertor.go](https://github.com/duke-git/lancet/blob/main/convertor/convertor.go)
+-   [https://github.com/duke-git/lancet/blob/main/convertor/convertor.go](https://github.com/duke-git/lancet/blob/main/convertor/convertor.go)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -21,29 +22,30 @@ import (
 
 ## 目录
 
-- [ColorHexToRGB](#ColorHexToRGB)
-- [ColorRGBToHex](#ColorRGBToHex)
-- [ToBool](#ToBool)
-- [ToBytes](#ToBytes)
-- [ToChar](#ToChar)
-- [ToChannel](#ToChannel)
-- [ToFloat](#ToFloat)
-- [ToInt](#ToInt)
-- [ToJson](#ToJson)
-- [ToMap](#ToMap)
-- [ToPointer](#ToPointer)
-- [ToString](#ToString)
-- [StructToMap](#StructToMap)
-- [MapToSlice](#MapToSlice)
-- [EncodeByte](#EncodeByte)
-- [DecodeByte](#DecodeByte)
+-   [ColorHexToRGB](#ColorHexToRGB)
+-   [ColorRGBToHex](#ColorRGBToHex)
+-   [ToBool](#ToBool)
+-   [ToBytes](#ToBytes)
+-   [ToChar](#ToChar)
+-   [ToChannel](#ToChannel)
+-   [ToFloat](#ToFloat)
+-   [ToInt](#ToInt)
+-   [ToJson](#ToJson)
+-   [ToMap](#ToMap)
+-   [ToPointer](#ToPointer)
+-   [ToString](#ToString)
+-   [StructToMap](#StructToMap)
+-   [MapToSlice](#MapToSlice)
+-   [EncodeByte](#EncodeByte)
+-   [DecodeByte](#DecodeByte)
+-   [DeepClone](#DeepClone)
 
 <div STYLE="page-break-after: always;"></div>
 
 ## 文档
 
-
 ### <span id="ColorHexToRGB">ColorHexToRGB</span>
+
 <p>颜色值十六进制转rgb。</p>
 
 <b>函数签名:</b>
@@ -51,6 +53,7 @@ import (
 ```go
 func ColorHexToRGB(colorHex string) (red, green, blue int)
 ```
+
 <b>示例:</b>
 
 ```go
@@ -81,6 +84,7 @@ func main() {
 ```go
 func ColorRGBToHex(red, green, blue int) string
 ```
+
 <b>示例:</b>
 
 ```go
@@ -113,6 +117,7 @@ func main() {
 ```go
 func ToBool(s string) (bool, error)
 ```
+
 <b>示例:</b>
 
 ```go
@@ -153,6 +158,7 @@ func main() {
 ```go
 func ToBytes(data any) ([]byte, error)
 ```
+
 <b>示例:</b>
 
 ```go
@@ -185,6 +191,7 @@ func main() {
 ```go
 func ToChar(s string) []string
 ```
+
 <b>示例:</b>
 
 ```go
@@ -220,6 +227,7 @@ func main() {
 ```go
 func ToChannel[T any](array []T) <-chan T
 ```
+
 <b>示例:</b>
 
 ```go
@@ -256,6 +264,7 @@ func main() {
 ```go
 func ToFloat(value any) (float64, error)
 ```
+
 <b>示例:</b>
 
 ```go
@@ -300,6 +309,7 @@ func main() {
 ```go
 func ToInt(value any) (int64, error)
 ```
+
 <b>示例:</b>
 
 ```go
@@ -341,6 +351,7 @@ func main() {
 ```go
 func ToJson(value any) (string, error)
 ```
+
 <b>示例:</b>
 
 ```go
@@ -375,6 +386,7 @@ func main() {
 ```go
 func ToMap[T any, K comparable, V any](array []T, iteratee func(T) (K, V)) map[K]V
 ```
+
 <b>示例:</b>
 
 ```go
@@ -415,6 +427,7 @@ func main() {
 ```go
 func ToPointer[T any](value T) *T
 ```
+
 <b>示例:</b>
 
 ```go
@@ -427,8 +440,8 @@ import (
 
 func main() {
     result := convertor.ToPointer(123)
-    fmt.Println(*result) 
-    
+    fmt.Println(*result)
+
     // Output:
     // 123
 }
@@ -443,6 +456,7 @@ func main() {
 ```go
 func ToString(value any) string
 ```
+
 <b>示例:</b>
 
 ```go
@@ -490,6 +504,7 @@ func main() {
 ```go
 func StructToMap(value any) (map[string]any, error)
 ```
+
 <b>示例:</b>
 
 ```go
@@ -527,6 +542,7 @@ func main() {
 ```go
 func MapToSlice[T any, K comparable, V any](aMap map[K]V, iteratee func(K, V) T) []T
 ```
+
 <b>示例:</b>
 
 ```go
@@ -556,6 +572,7 @@ func main() {
 ```go
 func EncodeByte(data any) ([]byte, error)
 ```
+
 <b>示例:</b>
 
 ```go
@@ -584,6 +601,7 @@ func main() {
 ```go
 func DecodeByte(data []byte, target any) error
 ```
+
 <b>示例:</b>
 
 ```go
@@ -597,15 +615,79 @@ import (
 func main() {
     var result string
     byteData := []byte{6, 12, 0, 3, 97, 98, 99}
-    
+
     err := convertor.DecodeByte(byteData, &result)
     if err != nil {
         return
     }
 
     fmt.Println(result)
-    
+
     // Output:
     // abc
+}
+```
+
+### <span id="DeepClone">DeepClone</span>
+
+<p>创建一个传入值的深拷贝, 无法克隆结构体的非导出字段。</p>
+
+<b>函数签名:</b>
+
+```go
+func DeepClone[T any](src T) T
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/convertor"
+)
+
+func main() {
+    type Struct struct {
+		Str        string
+		Int        int
+		Float      float64
+		Bool       bool
+		Nil        interface{}
+		unexported string
+	}
+
+	cases := []interface{}{
+		true,
+		1,
+		0.1,
+		map[string]int{
+			"a": 1,
+			"b": 2,
+		},
+		&Struct{
+			Str:   "test",
+			Int:   1,
+			Float: 0.1,
+			Bool:  true,
+			Nil:   nil,
+			// unexported: "can't be cloned",
+		},
+	}
+
+	for _, item := range cases {
+		cloned := convertor.DeepClone(item)
+
+		isPointerEqual := &cloned == &item
+		fmt.Println(cloned, isPointerEqual)
+	}
+
+	// Output:
+	// true false
+	// 1 false
+	// 0.1 false
+	// map[a:1 b:2] false
+	// &{test 1 0.1 true <nil> } false
 }
 ```

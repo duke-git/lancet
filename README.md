@@ -246,6 +246,8 @@ import "github.com/duke-git/lancet/v2/convertor"
 -   **<big>DecodeByte</big>** : decode byte slice data to target object.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#DecodeByte)]
     [[play](https://go.dev/play/p/zI6xsmuQRbn)]
+-   **<big>DeepClone</big>** : creates a deep copy of passed item, can't clone unexported field of struct.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#DeepClone)]
 
 ### 5. Cryptor package is for data encryption and decryption.
 

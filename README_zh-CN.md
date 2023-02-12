@@ -245,6 +245,9 @@ import "github.com/duke-git/lancet/v2/convertor"
 -   **<big>DecodeByte</big>** : 解码字节切片到目标对象，目标对象需要传入一个指针实例。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#DecodeByte)]
     [[play](https://go.dev/play/p/zI6xsmuQRbn)]
+-   **<big>DeepClone</big>** : 创建一个传入值的深拷贝, 无法克隆结构体的非导出字段。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#DeepClone)]
+
 
 ### 5. cryptor 加密包支持数据加密和解密，获取 md5，hash 值。支持 base64, md5, hmac, aes, des, rsa。
 
