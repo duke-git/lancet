@@ -209,7 +209,7 @@ func main() {
 
 ### <span id="XError_With">XError_With</span>
 
-<p>Adds key and value related to the error object.</p>
+<p>Adds key and value related to the XError object.</p>
 
 <b>Signature:</b>
 
