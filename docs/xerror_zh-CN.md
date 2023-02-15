@@ -348,7 +348,7 @@ func main() {
 
 ### <span id="XError_StackTrace">XError_StackTrace</span>
 
-<p>返回与pkg/error兼容的堆栈信息</p>
+<p>返回与pkg/error兼容的堆栈信息。</p>
 
 <b>函数签名:</b>
 
