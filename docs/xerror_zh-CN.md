@@ -22,20 +22,20 @@ import (
 
 ## 目录
 
--   [Unwrap](#Unwrap)
+-   [TryUnwrap](#TryUnwrap)
 
 <div STYLE="page-break-after: always;"></div>
 
 ## 文档
 
-### <span id="Unwrap">Unwrap</span>
+### <span id="TryUnwrap">TryUnwrap</span>
 
-<p>检查error, 如果err为nil则展开，则它返回一个有效值，如果err不是nil则Unwrap使用err发生panic。</p>
+<p>检查error, 如果err为nil则展开，则它返回一个有效值，如果err不是nil则TryUnwrap使用err发生panic。</p>
 
 <b>函数签名:</b>
 
 ```go
-func Unwrap[T any](val T, err error) T
+func TryUnwrap[T any](val T, err error) T
 ```
 
 <b>示例:</b>
@@ -49,7 +49,7 @@ import (
 )
 
 func main() {
-    result1 := xerror.Unwrap(strconv.Atoi("42"))
+    result1 := xerror.TryUnwrap(strconv.Atoi("42"))
     fmt.Println(result1)
 
     _, err := strconv.Atoi("4o2")
@@ -59,7 +59,7 @@ func main() {
         fmt.Println(result2)
     }()
 
-    xerror.Unwrap(strconv.Atoi("4o2"))
+    xerror.TryUnwrap(strconv.Atoi("4o2"))
 
     // Output:
     // 42

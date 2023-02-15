@@ -22,20 +22,20 @@ import (
 
 ## Index
 
--   [Unwrap](#Unwrap)
+-   [TryUnwrap](#TryUnwrap)
 
 <div STYLE="page-break-after: always;"></div>
 
 ## Documentation
 
-### <span id="Unwrap">Unwrap</span>
+### <span id="TryUnwrap">TryUnwrap</span>
 
-<p>Unwrap if err is nil then it returns a valid value. If err is not nil, Unwrap panics with err.</p>
+<p>TryUnwrap if err is nil then it returns a valid value. If err is not nil, Unwrap panics with err.</p>
 
 <b>Signature:</b>
 
 ```go
-func Unwrap[T any](val T, err error) T
+func TryUnwrap[T any](val T, err error) T
 ```
 
 <b>Example:</b>
@@ -49,7 +49,7 @@ import (
 )
 
 func main() {
-    result1 := xerror.Unwrap(strconv.Atoi("42"))
+    result1 := xerror.TryUnwrap(strconv.Atoi("42"))
     fmt.Println(result1)
 
     _, err := strconv.Atoi("4o2")
@@ -59,7 +59,7 @@ func main() {
         fmt.Println(result2)
     }()
 
-    xerror.Unwrap(strconv.Atoi("4o2"))
+    xerror.TryUnwrap(strconv.Atoi("4o2"))
 
     // Output:
     // 42
