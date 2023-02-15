@@ -241,7 +241,7 @@ func main() {
 
 ### <span id="XError_Id">XError_Id</span>
 
-<p>设置XError对象的id.</p>
+<p>设置XError对象的id。</p>
 
 <b>函数签名:</b>
 

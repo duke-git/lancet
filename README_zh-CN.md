@@ -1188,11 +1188,34 @@ import "github.com/duke-git/lancet/v2/xerror"
 
 #### 函数列表:
 
-
--   **<big>Unwrap</big>** : 检查error, 如果err为nil则展开，则它返回一个有效值，如果err不是nil则Unwrap使用err发生panic。
+-   **<big>New</big>** : 创建XError对象实例。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/xerror_zh-CN.md#New)]
+-   **<big>Wrap</big>** : 根据error对象创建XError对象实例，可添加message。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/xerror_zh-CN.md#Wrap)]
+-   **<big>Unwrap</big>** : 从error对象中解构出XError。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/xerror_zh-CN.md#Unwrap)]
+-   **<big>XError_Wrap</big>** : 创建新的XError对象并将消息和id复制到新的对象中。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/xerror_zh-CN.md#XError_Wrap)]
+-   **<big>XError_Unwrap</big>** : 解构XEerror为error对象。适配github.com/pkg/errors。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/xerror_zh-CN.md#XError_Unwrap)]
+-   **<big>XError_With</big>** : 添加与XError对象的键和值。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/xerror_zh-CN.md#XError_With)]
+-   **<big>XError_Id</big>** : 设置XError对象的id。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/xerror_zh-CN.md#XError_Id)]
+-   **<big>XError_Is</big>** : 检查目标error是否为XError，两个错误中的error.id是否匹配。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/xerror_zh-CN.md#XError_Is)]
+-   **<big>XError_Values</big>** : 返回由With设置的键和值的映射。将合并所有XError键和值。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/xerror_zh-CN.md#XError_Values)]
+-   **<big>XError_StackTrace</big>** : 返回与pkg/error兼容的堆栈信息。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/xerror_zh-CN.md#XError_StackTrace)]
+-   **<big>XError_Info</big>** : 返回可打印的XError对象信息。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/xerror_zh-CN.md#XError_Info)]
+-   **<big>XError_Error</big>** : 实现标准库的error接口。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/xerror_zh-CN.md#XError_Error)]
+-   **<big>TryUnwrap</big>** : 检查error, 如果err为nil则展开，则它返回一个有效值，如果err不是nil则Unwrap使用err发生panic。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/xerror_zh-CN.md#TryUnwrap)]
     [[play](https://go.dev/play/p/w84d7Mb3Afk)]
-
+    
 
 ## 如何贡献代码
 

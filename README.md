@@ -1176,9 +1176,32 @@ import "github.com/duke-git/lancet/v2/xerror"
 ```
 
 #### Function list:
-
--   **<big>Unwrap</big>** : check if err is nil then it returns a valid value. If err is not nil, Unwrap panics with err.
+-   **<big>New</big>** : creates a new XError pointer instance with message.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/xerror.md#New)]
+-   **<big>Wrap</big>** : creates a new XError pointer instance based on error object, and add message.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/xerror.md#Wrap)]
+-   **<big>Unwrap</big>** : returns unwrapped XError from err by errors.As. If no XError, returns nil.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/xerror.md#Unwrap)]
+-   **<big>XError_Wrap</big>** : creates a new XError and copy message and id to new one.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/xerror.md#XError_Wrap)]
+-   **<big>XError_Unwrap</big>** : Compatible with github.com/pkg/errors.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/xerror.md#XError_Unwrap)]
+-   **<big>XError_With</big>** : adds key and value related to the XError object.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/xerror.md#XError_With)]
+-   **<big>XError_Id</big>** : sets XError object id to check equality in XError.Is.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/xerror.md#XError_Id)]
+-   **<big>XError_Is</big>** : checks if target error is XError and Error.id of two errors are matched.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/xerror.md#XError_Is)]
+-   **<big>XError_Values</big>** : returns map of key and value that is set by XError.With function. 
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/xerror.md#XError_Values)]
+-   **<big>XError_StackTrace</big>** : returns stack trace which is compatible with pkg/errors.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/xerror.md#XError_StackTrace)]
+-   **<big>XError_Info</big>** : returns information of xerror, which can be printed.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/xerror.md#XError_Info)]
+-   **<big>XError_Error</big>** : implements standard error interface.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/xerror.md#XError_Error)]
+-   **<big>TryUnwrap</big>** : check if err is nil then it returns a valid value. If err is not nil, TryUnwrap panics with err.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/xerror.md#TryUnwrap)]
     [[play](https://go.dev/play/p/w84d7Mb3Afk)]
 
 
