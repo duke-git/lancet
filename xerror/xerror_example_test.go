@@ -61,7 +61,7 @@ func ExampleXError_StackTrace() {
 
 	// Output:
 	// github.com/duke-git/lancet/v2/xerror.ExampleXError_StackTrace
-	// 49
+	// 52
 	// true
 }
 
