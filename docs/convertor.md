@@ -33,6 +33,7 @@ import (
 - [StructToMap](#StructToMap)
 - [EncodeByte](#EncodeByte)
 - [DecodeByte](#DecodeByte)
+- [DeepClone](#DeepClone)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -442,5 +443,69 @@ func main() {
 	byteData := []byte{6, 12, 0, 3, 97, 98, 99}
 	convertor.DecodeByte(byteData, &result)
     fmt.Println(result) //"abc"
+}
+```
+
+### <span id="DeepClone">DeepClone</span>
+
+<p>Creates a deep copy of passed item, can't clone unexported field of struct.</p>
+
+<b>Signature:</b>
+
+```go
+func DeepClone[T any](src T) T
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/convertor"
+)
+
+func main() {
+    type Struct struct {
+		Str        string
+		Int        int
+		Float      float64
+		Bool       bool
+		Nil        interface{}
+		unexported string
+	}
+
+	cases := []interface{}{
+		true,
+		1,
+		0.1,
+		map[string]int{
+			"a": 1,
+			"b": 2,
+		},
+		&Struct{
+			Str:   "test",
+			Int:   1,
+			Float: 0.1,
+			Bool:  true,
+			Nil:   nil,
+			// unexported: "can't be cloned",
+		},
+	}
+
+	for _, item := range cases {
+		cloned := convertor.DeepClone(item)
+
+		isPointerEqual := &cloned == &item
+		fmt.Println(cloned, isPointerEqual)
+	}
+
+	// Output:
+	// true false
+	// 1 false
+	// 0.1 false
+	// map[a:1 b:2] false
+	// &{test 1 0.1 true <nil> } false
 }
 ```

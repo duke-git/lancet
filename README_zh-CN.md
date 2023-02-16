@@ -82,6 +82,8 @@ import "github.com/duke-git/lancet/convertor"
 -   [StructToMap](https://github.com/duke-git/lancet/blob/v1/docs/convertor_zh-CN.md#StructToMap)
 -   [EncodeByte](https://github.com/duke-git/lancet/blob/v1/docs/convertor_zh-CN.md#EncodeByte)
 -   [DecodeByte](https://github.com/duke-git/lancet/blob/v1/docs/convertor_zh-CN.md#DecodeByte)
+-   [DeepClone](https://github.com/duke-git/lancet/blob/v1/docs/convertor_zh-CN.md#DeepClone)
+
 
 ### 2. cryptor 加密包支持数据加密和解密，获取 md5，hash 值。支持 base64, md5, hmac, aes, des, rsa。
 

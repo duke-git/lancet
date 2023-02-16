@@ -83,6 +83,7 @@ import "github.com/duke-git/lancet/convertor"
 -   [StructToMap](https://github.com/duke-git/lancet/blob/v1/docs/convertor.md#StructToMap)
 -   [EncodeByte](https://github.com/duke-git/lancet/blob/v1/docs/convertor.md#EncodeByte)
 -   [DecodeByte](https://github.com/duke-git/lancet/blob/v1/docs/convertor.md#DecodeByte)
+-   [DeepClone](https://github.com/duke-git/lancet/blob/v1/docs/convertor.md#DeepClone)
 
 ### 2. Cryptor package is for data encryption and decryption.
 
