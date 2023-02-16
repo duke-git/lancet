@@ -1187,31 +1187,43 @@ import "github.com/duke-git/lancet/v2/xerror"
 #### Function list:
 -   **<big>New</big>** : creates a new XError pointer instance with message.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/xerror.md#New)]
+    [[play](https://go.dev/play/p/w4oWZts7q7f)]
 -   **<big>Wrap</big>** : creates a new XError pointer instance based on error object, and add message.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/xerror.md#Wrap)]
+    [[play](https://go.dev/play/p/5385qT2dCi4)]
 -   **<big>Unwrap</big>** : returns unwrapped XError from err by errors.As. If no XError, returns nil.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/xerror.md#Unwrap)]
+    [[play](https://go.dev/play/p/LKMLep723tu)]
 -   **<big>XError_Wrap</big>** : creates a new XError and copy message and id to new one.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/xerror.md#XError_Wrap)]
+    [[play](https://go.dev/play/p/5385qT2dCi4)]
 -   **<big>XError_Unwrap</big>** : Compatible with github.com/pkg/errors.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/xerror.md#XError_Unwrap)]
+    [[play](https://go.dev/play/p/VUXJ8BST4c6)]
 -   **<big>XError_With</big>** : adds key and value related to the XError object.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/xerror.md#XError_With)]
+    [[play](https://go.dev/play/p/ow8UISXX_Dp)]
 -   **<big>XError_Id</big>** : sets XError object id to check equality in XError.Is.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/xerror.md#XError_Id)]
+    [[play](https://go.dev/play/p/X6HBlsy58U9)]
 -   **<big>XError_Is</big>** : checks if target error is XError and Error.id of two errors are matched.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/xerror.md#XError_Is)]
+    [[play](https://go.dev/play/p/X6HBlsy58U9)]
 -   **<big>XError_Values</big>** : returns map of key and value that is set by XError.With function. 
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/xerror.md#XError_Values)]
+    [[play](https://go.dev/play/p/ow8UISXX_Dp)]
 -   **<big>XError_StackTrace</big>** : returns stack trace which is compatible with pkg/errors.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/xerror.md#XError_StackTrace)]
+    [[play](https://go.dev/play/p/6FAvSQpa7pc)]
 -   **<big>XError_Info</big>** : returns information of xerror, which can be printed.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/xerror.md#XError_Info)]
+    [[play](https://go.dev/play/p/1ZX0ME1F-Jb)]
 -   **<big>XError_Error</big>** : implements standard error interface.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/xerror.md#XError_Error)]
+    [[play](https://go.dev/play/p/w4oWZts7q7f)]
 -   **<big>TryUnwrap</big>** : check if err is nil then it returns a valid value. If err is not nil, TryUnwrap panics with err.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/xerror.md#TryUnwrap)]
-    [[play](https://go.dev/play/p/w84d7Mb3Afk)]
+    [[play](https://go.dev/play/p/acyZVkNZEeW)]
 
 
 ## How to Contribute

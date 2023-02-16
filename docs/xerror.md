@@ -133,7 +133,7 @@ func main() {
     err1 := xerror.New("error").With("level", "high")
     wrapErr := errors.Wrap(err1, "oops")
 
-    err := xerror.Unwrap(err1)
+    err := xerror.Unwrap(wrapErr)
 
     values := err.Values()
     fmt.Println(values["level"])
@@ -441,7 +441,7 @@ import (
 )
 
 func main() {
-    err := New("error")
+    err := xerror.New("error")
     fmt.Println(err.Error())
 
     // Output:
