@@ -17,14 +17,23 @@ import (
 // AesEcbEncrypt encrypt data with key use AES ECB algorithm
 // len(key) should be 16, 24 or 32
 func AesEcbEncrypt(data, key []byte) []byte {
-	cipher, _ := aes.NewCipher(generateAesKey(key))
+	size := len(key)
+	if size != 16 && size != 24 && size != 32 {
+		panic("key length shoud be 16 or 24 or 32")
+	}
+
+	cipher, _ := aes.NewCipher(generateAesKey(key, size))
 	length := (len(data) + aes.BlockSize) / aes.BlockSize
+
 	plain := make([]byte, length*aes.BlockSize)
+
 	copy(plain, data)
+
 	pad := byte(len(plain) - len(data))
 	for i := len(data); i < len(plain); i++ {
 		plain[i] = pad
 	}
+
 	encrypted := make([]byte, len(plain))
 	for bs, be := 0, cipher.BlockSize(); bs <= len(data); bs, be = bs+cipher.BlockSize(), be+cipher.BlockSize() {
 		cipher.Encrypt(encrypted[bs:be], plain[bs:be])
@@ -36,9 +45,14 @@ func AesEcbEncrypt(data, key []byte) []byte {
 // AesEcbDecrypt decrypt data with key use AES ECB algorithm
 // len(key) should be 16, 24 or 32
 func AesEcbDecrypt(encrypted, key []byte) []byte {
-	cipher, _ := aes.NewCipher(generateAesKey(key))
+	size := len(key)
+	if size != 16 && size != 24 && size != 32 {
+		panic("key length shoud be 16 or 24 or 32")
+	}
+
+	cipher, _ := aes.NewCipher(generateAesKey(key, size))
 	decrypted := make([]byte, len(encrypted))
-	//
+
 	for bs, be := 0, cipher.BlockSize(); bs < len(encrypted); bs, be = bs+cipher.BlockSize(), be+cipher.BlockSize() {
 		cipher.Decrypt(decrypted[bs:be], encrypted[bs:be])
 	}
