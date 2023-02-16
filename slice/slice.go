@@ -559,7 +559,7 @@ func DeleteAt[T any](slice []T, start int, end ...int) []T {
 }
 
 // Drop drop n elements from the start of a slice.
-// Play: https://go.dev/play/p/pJ-d6MUWcvK
+// Play: https://go.dev/play/p/jnPO2yQsT8H
 func Drop[T any](slice []T, n int) []T {
 	size := len(slice)
 
@@ -577,7 +577,7 @@ func Drop[T any](slice []T, n int) []T {
 }
 
 // DropRight drop n elements from the end of a slice.
-// Play: todo
+// Play: https://go.dev/play/p/8bcXvywZezG
 func DropRight[T any](slice []T, n int) []T {
 	size := len(slice)
 
@@ -595,7 +595,7 @@ func DropRight[T any](slice []T, n int) []T {
 }
 
 // DropWhile drop n elements from the start of a slice while predicate function returns true.
-// Play: todo
+// Play: https://go.dev/play/p/4rt252UV_qs
 func DropWhile[T any](slice []T, predicate func(item T) bool) []T {
 	i := 0
 
@@ -611,7 +611,7 @@ func DropWhile[T any](slice []T, predicate func(item T) bool) []T {
 }
 
 // DropRightWhile drop n elements from the end of a slice while predicate function returns true.
-// Play: todo
+// Play: https://go.dev/play/p/6wyK3zMY56e
 func DropRightWhile[T any](slice []T, predicate func(item T) bool) []T {
 	i := len(slice) - 1
 
@@ -831,7 +831,7 @@ func Shuffle[T any](slice []T) []T {
 }
 
 // IsAscending checks if a slice is ascending order.
-// Play: todo
+// Play: https://go.dev/play/p/9CtsFjet4SH
 func IsAscending[T constraints.Ordered](slice []T) bool {
 	for i := 1; i < len(slice); i++ {
 		if slice[i-1] > slice[i] {
@@ -843,7 +843,7 @@ func IsAscending[T constraints.Ordered](slice []T) bool {
 }
 
 // IsDescending checks if a slice is descending order.
-// Play: todo
+// Play: https://go.dev/play/p/U_LljFXma14
 func IsDescending[T constraints.Ordered](slice []T) bool {
 	for i := 1; i < len(slice); i++ {
 		if slice[i-1] < slice[i] {
@@ -855,13 +855,13 @@ func IsDescending[T constraints.Ordered](slice []T) bool {
 }
 
 // IsSorted checks if a slice is sorted(ascending or descending).
-// Play: todo
+// Play: https://go.dev/play/p/nCE8wPLwSA-
 func IsSorted[T constraints.Ordered](slice []T) bool {
 	return IsAscending(slice) || IsDescending(slice)
 }
 
 // IsSortedByKey checks if a slice is sorted by iteratee function.
-// Play: todo
+// Play: https://go.dev/play/p/tUoGB7DOHI4
 func IsSortedByKey[T any, K constraints.Ordered](slice []T, iteratee func(item T) K) bool {
 	size := len(slice)
 

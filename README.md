@@ -248,6 +248,8 @@ import "github.com/duke-git/lancet/v2/convertor"
     [[play](https://go.dev/play/p/zI6xsmuQRbn)]
 -   **<big>DeepClone</big>** : creates a deep copy of passed item, can't clone unexported field of struct.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#DeepClone)]
+    [[play](https://go.dev/play/p/j4DP5dquxnk)]
+
 
 ### 5. Cryptor package is for data encryption and decryption.
 
@@ -836,13 +838,16 @@ import "github.com/duke-git/lancet/v2/slice"
     [[play](https://go.dev/play/p/pJ-d6MUWcvK)]
 -   **<big>Drop</big>** : drop n elements from the start of a slice.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Drop)]
-    [[play](https://go.dev/play/p/pJ-d6MUWcvK)]
+    [[play](https://go.dev/play/p/jnPO2yQsT8H)]
 -   **<big>DropRight</big>** : drop n elements from the end of a slice.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#DropRight)]
+    [[play](https://go.dev/play/p/8bcXvywZezG)]
 -   **<big>DropWhile</big>** : drop n elements from the start of a slice while predicate function returns true.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#DropWhile)]
+    [[play](https://go.dev/play/p/4rt252UV_qs)]
 -   **<big>DropRightWhile</big>** : drop n elements from the end of a slice while predicate function returns true.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#DropRightWhile)]
+    [[play](https://go.dev/play/p/6wyK3zMY56e)]
 -   **<big>Equal</big>** : checks if two slices are equal: the same length and all elements' order and value are equal.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Equal)]
     [[play](https://go.dev/play/p/WcRQJ37ifPa)]
@@ -920,12 +925,16 @@ import "github.com/duke-git/lancet/v2/slice"
     [[play](https://go.dev/play/p/YHvhnWGU3Ge)]
 -   **<big>IsAscending</big>** : Checks if a slice is ascending order.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#IsAscending)]
+    [[play](https://go.dev/play/p/9CtsFjet4SH)]
 -   **<big>IsDescending</big>** : Checks if a slice is descending order.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#IsDescending)]
+    [[play](https://go.dev/play/p/U_LljFXma14)]
 -   **<big>IsSorted</big>** : Checks if a slice is sorted (ascending or descending).
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#IsSorted)]
+    [[play](https://go.dev/play/p/nCE8wPLwSA-)]
 -   **<big>IsSortedByKey</big>** : Checks if a slice is sorted by iteratee function.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#IsSortedByKey)]
+    [[play](https://go.dev/play/p/tUoGB7DOHI4)]
 -   **<big>Sort</big>** : sorts a slice of any ordered type(number or string).
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Sort)]
     [[play](https://go.dev/play/p/V9AVjzf_4Fk)]

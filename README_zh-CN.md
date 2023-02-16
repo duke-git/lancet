@@ -247,6 +247,8 @@ import "github.com/duke-git/lancet/v2/convertor"
     [[play](https://go.dev/play/p/zI6xsmuQRbn)]
 -   **<big>DeepClone</big>** : 创建一个传入值的深拷贝, 无法克隆结构体的非导出字段。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#DeepClone)]
+    [[play](https://go.dev/play/p/j4DP5dquxnk)]
+
 
 
 ### 5. cryptor 加密包支持数据加密和解密，获取 md5，hash 值。支持 base64, md5, hmac, aes, des, rsa。
@@ -844,13 +846,16 @@ import "github.com/duke-git/lancet/v2/slice"
     [[play](https://go.dev/play/p/pJ-d6MUWcvK)]
 -   **<big>Drop</big>** : 从切片头部删除n个元素。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Drop)]
-    [[play](https://go.dev/play/p/pJ-d6MUWcvK)]
+    [[play](https://go.dev/play/p/jnPO2yQsT8H)]
 -   **<big>DropRight</big>** : 从切片尾部删除n个元素。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#DropRight)]
+    [[play](https://go.dev/play/p/8bcXvywZezG)]
 -   **<big>DropWhile</big>** : 从切片的头部删除n个元素，这个n个元素满足predicate函数返回true。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#DropWhile)]
+    [[play](https://go.dev/play/p/4rt252UV_qs)]
 -   **<big>DropRightWhile</big>** : 从切片的尾部删除n个元素，这个n个元素满足predicate函数返回true。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#DropRightWhile)]
+    [[play](https://go.dev/play/p/6wyK3zMY56e)]
 -   **<big>Equal</big>** : 检查两个切片是否相等，相等条件：切片长度相同，元素顺序和值都相同。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Equal)]
     [[play](https://go.dev/play/p/WcRQJ37ifPa)]
@@ -928,12 +933,16 @@ import "github.com/duke-git/lancet/v2/slice"
     [[play](https://go.dev/play/p/YHvhnWGU3Ge)]
 -   **<big>IsAscending</big>** : 检查切片元素是否按升序排列。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#IsAscending)]
+    [[play](https://go.dev/play/p/9CtsFjet4SH)]
 -   **<big>IsDescending</big>** : 检查切片元素是否按降序排列。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#IsDescending)]
+    [[play](https://go.dev/play/p/U_LljFXma14)]
 -   **<big>IsSorted</big>** : 检查切片元素是否是有序的（升序或降序）。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#IsSorted)]
+    [[play](https://go.dev/play/p/nCE8wPLwSA-)]
 -   **<big>IsSortedByKey</big>** : 通过iteratee函数，检查切片元素是否是有序的。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#IsSortedByKey)]
+    [[play](https://go.dev/play/p/tUoGB7DOHI4)]
 -   **<big>Sort</big>** : 对任何有序类型（数字或字符串）的切片进行排序，使用快速排序算法。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Sort)]
     [[play](https://go.dev/play/p/V9AVjzf_4Fk)]

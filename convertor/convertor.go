@@ -327,7 +327,7 @@ func DecodeByte(data []byte, target any) error {
 
 // DeepClone creates a deep copy of passed item.
 // can't clone unexported field of struct
-// Play: todo
+// Play: https://go.dev/play/p/j4DP5dquxnk
 func DeepClone[T any](src T) T {
 	c := cloner{
 		ptrs: map[reflect.Type]map[uintptr]reflect.Value{},
