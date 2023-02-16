@@ -4,7 +4,7 @@
 <br/>
 
 ![Go version](https://img.shields.io/badge/go-%3E%3Dv1.18-9cf)
-[![Release](https://img.shields.io/badge/release-2.1.14-green.svg)](https://github.com/duke-git/lancet/releases)
+[![Release](https://img.shields.io/badge/release-2.1.15-green.svg)](https://github.com/duke-git/lancet/releases)
 [![GoDoc](https://godoc.org/github.com/duke-git/lancet/v2?status.svg)](https://pkg.go.dev/github.com/duke-git/lancet/v2)
 [![Go Report Card](https://goreportcard.com/badge/github.com/duke-git/lancet/v2)](https://goreportcard.com/report/github.com/duke-git/lancet/v2)
 [![test](https://github.com/duke-git/lancet/actions/workflows/codecov.yml/badge.svg?branch=main&event=push)](https://github.com/duke-git/lancet/actions/workflows/codecov.yml)
@@ -23,7 +23,7 @@
 ## 特性
 
 -   👏 全面、高效、可复用
--   💪 300+常用 go 工具函数，支持 string、slice、datetime、net、crypt...
+-   💪 400+常用 go 工具函数，支持 string、slice、datetime、net、crypt...
 -   💅 只依赖 go 标准库
 -   🌍 所有导出函数单元测试覆盖率 100%
 
@@ -37,10 +37,10 @@
 go get github.com/duke-git/lancet/v2 //安装v2最新版本v2.x.x
 ```
 
-2. <b>使用 go1.18 以下版本的用户，必须安装 v1.x.x。目前最新的 v1 版本是 v1.3.5。</b>
+2. <b>使用 go1.18 以下版本的用户，必须安装 v1.x.x。目前最新的 v1 版本是 v1.3.6。</b>
 
 ```go
-go get github.com/duke-git/lancet@v1.3.5 // 使用go1.18以下版本, 必须安装v1.x.x版本
+go get github.com/duke-git/lancet@v1.3.6 // 使用go1.18以下版本, 必须安装v1.x.x版本
 ```
 
 ## 用法
