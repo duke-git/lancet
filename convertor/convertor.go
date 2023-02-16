@@ -262,3 +262,17 @@ func DecodeByte(data []byte, target interface{}) error {
 	decoder := gob.NewDecoder(buffer)
 	return decoder.Decode(target)
 }
+
+// DeepClone creates a deep copy of passed item.
+// can't clone unexported field of struct
+func DeepClone(src interface{}) interface{} {
+	c := cloner{
+		ptrs: map[reflect.Type]map[uintptr]reflect.Value{},
+	}
+	result := c.clone(reflect.ValueOf(src))
+	if result.Kind() == reflect.Invalid {
+		return nil
+	}
+
+	return result.Interface()
+}
