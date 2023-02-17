@@ -59,6 +59,33 @@ func TestKeysBy(t *testing.T) {
 	assert.Equal([]int{2, 3, 4}, keys)
 }
 
+func TestValuesBy(t *testing.T) {
+	assert := internal.NewAssert(t, "TestValuesBy")
+
+	m := map[int]string{
+		1: "a",
+		2: "b",
+		3: "c",
+	}
+
+	values := ValuesBy(m, func(v string) string {
+		switch v {
+		case "a":
+			return "a-1"
+		case "b":
+			return "b-2"
+		case "c":
+			return "c-3"
+		default:
+			return ""
+		}
+	})
+
+	sort.Strings(values)
+
+	assert.Equal([]string{"a-1", "b-2", "c-3"}, values)
+}
+
 func TestMerge(t *testing.T) {
 	assert := internal.NewAssert(t, "TestMerge")
 

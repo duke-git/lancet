@@ -46,6 +46,18 @@ func KeysBy[K comparable, V any, T any](m map[K]V, mapper func(item K) T) []T {
 	return keys
 }
 
+// ValuesBy creates a slice whose element is the result of function mapper invoked by every map's value.
+// todo:
+func ValuesBy[K comparable, V any, T any](m map[K]V, mapper func(item V) T) []T {
+	keys := make([]T, 0, len(m))
+
+	for _, v := range m {
+		keys = append(keys, mapper(v))
+	}
+
+	return keys
+}
+
 // Merge maps, next key will overwrite previous key.
 // Play: https://go.dev/play/p/H95LENF1uB-
 func Merge[K comparable, V any](maps ...map[K]V) map[K]V {
