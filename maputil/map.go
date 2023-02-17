@@ -226,3 +226,27 @@ func Transform[K1 comparable, V1 any, K2 comparable, V2 any](m map[K1]V1, iterat
 
 	return result
 }
+
+// MapKeys transforms a map to other type map by manipulating it's keys.
+// Play: todo
+func MapKeys[K comparable, V any, T comparable](m map[K]V, iteratee func(key K, value V) T) map[T]V {
+	result := make(map[T]V, len(m))
+
+	for k, v := range m {
+		result[iteratee(k, v)] = v
+	}
+
+	return result
+}
+
+// MapValues transforms a map to other type map by manipulating it's values.
+// Play: todo
+func MapValues[K comparable, V any, T any](m map[K]V, iteratee func(key K, value V) T) map[K]T {
+	result := make(map[K]T, len(m))
+
+	for k, v := range m {
+		result[k] = iteratee(k, v)
+	}
+
+	return result
+}

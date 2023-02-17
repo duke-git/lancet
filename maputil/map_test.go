@@ -311,3 +311,47 @@ func TestTransform(t *testing.T) {
 
 	assert.Equal(expected, result)
 }
+
+func TestMapKeys(t *testing.T) {
+	assert := internal.NewAssert(t, "TestMapKeys")
+
+	m := map[int]string{
+		1: "a",
+		2: "b",
+		3: "c",
+	}
+
+	result := MapKeys(m, func(k int, _ string) string {
+		return strconv.Itoa(k)
+	})
+
+	expected := map[string]string{
+		"1": "a",
+		"2": "b",
+		"3": "c",
+	}
+
+	assert.Equal(expected, result)
+}
+
+func TestMapValues(t *testing.T) {
+	assert := internal.NewAssert(t, "TestMapKeys")
+
+	m := map[int]string{
+		1: "a",
+		2: "b",
+		3: "c",
+	}
+
+	result := MapValues(m, func(k int, v string) string {
+		return v + strconv.Itoa(k)
+	})
+
+	expected := map[int]string{
+		1: "a1",
+		2: "b2",
+		3: "c3",
+	}
+
+	assert.Equal(expected, result)
+}
