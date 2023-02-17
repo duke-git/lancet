@@ -110,6 +110,19 @@ func FilterByKeys[K comparable, V any](m map[K]V, keys []K) map[K]V {
 	return result
 }
 
+// FilterByValues iterates over map, return a new map whose values are all given values.
+// todo:
+func FilterByValues[K comparable, V comparable](m map[K]V, values []V) map[K]V {
+	result := make(map[K]V)
+
+	for k, v := range m {
+		if slice.Contain(values, v) {
+			result[k] = v
+		}
+	}
+	return result
+}
+
 // Intersect iterates over maps, return a new map of key and value pairs in all given maps.
 // Play: https://go.dev/play/p/Zld0oj3sjcC
 func Intersect[K comparable, V any](maps ...map[K]V) map[K]V {
