@@ -39,7 +39,7 @@ func Values[K comparable, V any](m map[K]V) []V {
 }
 
 // KeysBy creates a slice whose element is the result of function mapper invoked by every map's key.
-// todo:
+// Play: todo
 func KeysBy[K comparable, V any, T any](m map[K]V, mapper func(item K) T) []T {
 	keys := make([]T, 0, len(m))
 
@@ -51,7 +51,7 @@ func KeysBy[K comparable, V any, T any](m map[K]V, mapper func(item K) T) []T {
 }
 
 // ValuesBy creates a slice whose element is the result of function mapper invoked by every map's value.
-// todo:
+// Play: todo
 func ValuesBy[K comparable, V any, T any](m map[K]V, mapper func(item V) T) []T {
 	keys := make([]T, 0, len(m))
 
@@ -98,7 +98,7 @@ func Filter[K comparable, V any](m map[K]V, predicate func(key K, value V) bool)
 }
 
 // FilterByKeys iterates over map, return a new map whose keys are all given keys.
-// todo:
+// Play: todo
 func FilterByKeys[K comparable, V any](m map[K]V, keys []K) map[K]V {
 	result := make(map[K]V)
 
@@ -111,7 +111,7 @@ func FilterByKeys[K comparable, V any](m map[K]V, keys []K) map[K]V {
 }
 
 // FilterByValues iterates over map, return a new map whose values are all given values.
-// todo:
+// Play: todo
 func FilterByValues[K comparable, V comparable](m map[K]V, values []V) map[K]V {
 	result := make(map[K]V)
 
@@ -179,4 +179,50 @@ func IsDisjoint[K comparable, V any](mapA, mapB map[K]V) bool {
 		}
 	}
 	return true
+}
+
+// Entry is a key/value pairs.
+type Entry[K comparable, V any] struct {
+	Key   K
+	Value V
+}
+
+// Entries transforms a map into array of key/value pairs.
+// Play: todo
+func Entries[K comparable, V any](m map[K]V) []Entry[K, V] {
+	entries := make([]Entry[K, V], 0, len(m))
+
+	for k, v := range m {
+		entries = append(entries, Entry[K, V]{
+			Key:   k,
+			Value: v,
+		})
+	}
+
+	return entries
+}
+
+// FromEntries creates a map based on a slice of key/value pairs
+// Play: todo
+func FromEntries[K comparable, V any](entries []Entry[K, V]) map[K]V {
+	result := make(map[K]V, len(entries))
+
+	for _, v := range entries {
+		result[v.Key] = v.Value
+	}
+
+	return result
+}
+
+// Transform a map to another type map.
+// Play: todo
+func Transform[K1 comparable, V1 any, K2 comparable, V2 any](m map[K1]V1, iteratee func(key K1, value V1) (K2, V2)) map[K2]V2 {
+	result := make(map[K2]V2, len(m))
+
+	for k1, v1 := range m {
+		k2, v2 := iteratee(k1, v1)
+		result[k2] = v2
+	}
+
+	return result
 }

@@ -2,6 +2,7 @@ package maputil
 
 import (
 	"sort"
+	"strconv"
 	"testing"
 
 	"github.com/duke-git/lancet/v2/internal"
@@ -252,4 +253,61 @@ func TestIsDisjoint(t *testing.T) {
 	}
 
 	assert.Equal(false, IsDisjoint(m1, m3))
+}
+
+func TestEntries(t *testing.T) {
+	assert := internal.NewAssert(t, "TestEntries")
+
+	m := map[string]int{
+		"a": 1,
+		"b": 2,
+		"c": 3,
+	}
+
+	result := Entries(m)
+
+	sort.Slice(result, func(i, j int) bool {
+		return result[i].Value < result[j].Value
+	})
+
+	expected := []Entry[string, int]{{Key: "a", Value: 1}, {Key: "b", Value: 2}, {Key: "c", Value: 3}}
+
+	assert.Equal(expected, result)
+}
+
+func TestFromEntries(t *testing.T) {
+	assert := internal.NewAssert(t, "TestFromEntries")
+
+	result := FromEntries([]Entry[string, int]{
+		{Key: "a", Value: 1},
+		{Key: "b", Value: 2},
+		{Key: "c", Value: 3},
+	})
+
+	assert.Equal(3, len(result))
+	assert.Equal(1, result["a"])
+	assert.Equal(2, result["b"])
+	assert.Equal(3, result["c"])
+}
+
+func TestTransform(t *testing.T) {
+	assert := internal.NewAssert(t, "TestTransform")
+
+	m := map[string]int{
+		"a": 1,
+		"b": 2,
+		"c": 3,
+	}
+
+	result := Transform(m, func(k string, v int) (string, string) {
+		return k, strconv.Itoa(v)
+	})
+
+	expected := map[string]string{
+		"a": "1",
+		"b": "2",
+		"c": "3",
+	}
+
+	assert.Equal(expected, result)
 }
