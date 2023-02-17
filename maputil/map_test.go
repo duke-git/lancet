@@ -149,6 +149,25 @@ func TestFilter(t *testing.T) {
 	}, acturl)
 }
 
+func TestFilterByKeys(t *testing.T) {
+	assert := internal.NewAssert(t, "TestFilterByKeys")
+
+	m := map[string]int{
+		"a": 1,
+		"b": 2,
+		"c": 3,
+		"d": 4,
+		"e": 5,
+	}
+
+	acturl := FilterByKeys(m, []string{"a", "b"})
+
+	assert.Equal(map[string]int{
+		"a": 1,
+		"b": 2,
+	}, acturl)
+}
+
 func TestIntersect(t *testing.T) {
 	assert := internal.NewAssert(t, "TestIntersect")
 

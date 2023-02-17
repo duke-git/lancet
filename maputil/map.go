@@ -4,7 +4,11 @@
 // Package maputil includes some functions to manipulate map.
 package maputil
 
-import "reflect"
+import (
+	"reflect"
+
+	"github.com/duke-git/lancet/v2/slice"
+)
 
 // Keys returns a slice of the map's keys.
 // Play: https://go.dev/play/p/xNB5bTb97Wd
@@ -87,6 +91,19 @@ func Filter[K comparable, V any](m map[K]V, predicate func(key K, value V) bool)
 
 	for k, v := range m {
 		if predicate(k, v) {
+			result[k] = v
+		}
+	}
+	return result
+}
+
+// FilterByKeys iterates over map, return a new map whose keys are all given keys.
+// todo:
+func FilterByKeys[K comparable, V any](m map[K]V, keys []K) map[K]V {
+	result := make(map[K]V)
+
+	for k, v := range m {
+		if slice.Contain(keys, k) {
 			result[k] = v
 		}
 	}
