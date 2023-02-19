@@ -3,6 +3,7 @@ package maputil
 import (
 	"fmt"
 	"sort"
+	"strconv"
 )
 
 func ExampleKeys() {
@@ -41,6 +42,51 @@ func ExampleValues() {
 	// [a a b c d]
 }
 
+func ExampleKeysBy() {
+	m := map[int]string{
+		1: "a",
+		2: "a",
+		3: "b",
+	}
+
+	keys := KeysBy(m, func(n int) int {
+		return n + 1
+	})
+
+	sort.Ints(keys)
+
+	fmt.Println(keys)
+
+	// Output:
+	// [2 3 4]
+}
+
+func ExampleValuesBy() {
+	m := map[int]string{
+		1: "a",
+		2: "b",
+		3: "c",
+	}
+	values := ValuesBy(m, func(v string) string {
+		switch v {
+		case "a":
+			return "a-1"
+		case "b":
+			return "b-2"
+		case "c":
+			return "c-3"
+		default:
+			return ""
+		}
+	})
+
+	sort.Strings(values)
+
+	fmt.Println(values)
+
+	// Output:
+	// [a-1 b-2 c-3]
+}
 func ExampleMerge() {
 	m1 := map[int]string{
 		1: "a",
@@ -97,6 +143,40 @@ func ExampleFilter() {
 
 	// Output:
 	// map[b:2 d:4]
+}
+
+func ExampleFilterByKeys() {
+	m := map[string]int{
+		"a": 1,
+		"b": 2,
+		"c": 3,
+		"d": 4,
+		"e": 5,
+	}
+
+	result := FilterByKeys(m, []string{"a", "b"})
+
+	fmt.Println(result)
+
+	// Output:
+	// map[a:1 b:2]
+}
+
+func ExampleFilterByValues() {
+	m := map[string]int{
+		"a": 1,
+		"b": 2,
+		"c": 3,
+		"d": 4,
+		"e": 5,
+	}
+
+	result := FilterByValues(m, []int{3, 4})
+
+	fmt.Println(result)
+
+	// Output:
+	// map[c:3 d:4]
 }
 
 func ExampleIntersect() {
@@ -178,4 +258,88 @@ func ExampleIsDisjoint() {
 	// Output:
 	// true
 	// false
+}
+
+func ExampleEntries() {
+	m := map[string]int{
+		"a": 1,
+		"b": 2,
+		"c": 3,
+	}
+
+	result := Entries(m)
+
+	sort.Slice(result, func(i, j int) bool {
+		return result[i].Value < result[j].Value
+	})
+
+	fmt.Println(result)
+
+	// Output:
+	// [{a 1} {b 2} {c 3}]
+}
+
+func ExampleFromEntries() {
+
+	result := FromEntries([]Entry[string, int]{
+		{Key: "a", Value: 1},
+		{Key: "b", Value: 2},
+		{Key: "c", Value: 3},
+	})
+
+	fmt.Println(result)
+
+	// Output:
+	// map[a:1 b:2 c:3]
+}
+
+func ExampleTransform() {
+	m := map[string]int{
+		"a": 1,
+		"b": 2,
+		"c": 3,
+	}
+
+	result := Transform(m, func(k string, v int) (string, string) {
+		return k, strconv.Itoa(v)
+	})
+
+	fmt.Println(result)
+
+	// Output:
+	// map[a:1 b:2 c:3]
+}
+
+func ExampleMapKeys() {
+	m := map[int]string{
+		1: "a",
+		2: "b",
+		3: "c",
+	}
+
+	result := MapKeys(m, func(k int, _ string) string {
+		return strconv.Itoa(k)
+	})
+
+	fmt.Println(result)
+
+	// Output:
+	// map[1:a 2:b 3:c]
+}
+
+func ExampleMapValues() {
+	m := map[int]string{
+		1: "a",
+		2: "b",
+		3: "c",
+	}
+
+	result := MapValues(m, func(k int, v string) string {
+		return v + strconv.Itoa(k)
+	})
+
+	fmt.Println(result)
+
+	// Output:
+	// map[1:a1 2:b2 3:c3]
 }
