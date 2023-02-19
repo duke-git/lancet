@@ -186,6 +186,33 @@ func ExampleUpperFirst() {
 	// Bar大
 }
 
+func ExamplePad() {
+	result1 := Pad("foo", 1, "bar")
+	result2 := Pad("foo", 2, "bar")
+	result3 := Pad("foo", 3, "bar")
+	result4 := Pad("foo", 4, "bar")
+	result5 := Pad("foo", 5, "bar")
+	result6 := Pad("foo", 6, "bar")
+	result7 := Pad("foo", 7, "bar")
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+	fmt.Println(result4)
+	fmt.Println(result5)
+	fmt.Println(result6)
+	fmt.Println(result7)
+
+	// Output:
+	// foo
+	// foo
+	// foo
+	// foob
+	// bfoob
+	// bfooba
+	// bafooba
+}
+
 func ExamplePadEnd() {
 	result1 := PadEnd("foo", 1, "bar")
 	result2 := PadEnd("foo", 2, "bar")

@@ -449,6 +449,51 @@ func main() {
 }
 ```
 
+### <span id="Pad">Pad</span>
+
+<p>如果字符串长度短于size，则在左右两侧填充字符串。</p>
+
+<b>函数签名:</b>
+
+```go
+func Pad(source string, size int, padStr string) string
+```
+
+<b>示例:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    result1 := strutil.Pad("foo", 1, "bar")
+	result2 := strutil.Pad("foo", 2, "bar")
+	result3 := strutil.Pad("foo", 3, "bar")
+	result4 := strutil.Pad("foo", 4, "bar")
+	result5 := strutil.Pad("foo", 5, "bar")
+	result6 := strutil.Pad("foo", 6, "bar")
+	result7 := strutil.Pad("foo", 7, "bar")
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+	fmt.Println(result4)
+	fmt.Println(result5)
+	fmt.Println(result6)
+	fmt.Println(result7)
+	// Output:
+	// foo
+	// foo
+	// foo
+	// foob
+	// bfoob
+	// bfooba
+	// bafooba
+}
+```
+
 ### <span id="PadEnd">PadEnd</span>
 
 <p>如果字符串长度短于size，则在右侧填充字符串。</p>

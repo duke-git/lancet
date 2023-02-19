@@ -33,8 +33,9 @@ import (
 -   [UpperKebabCase](#UpperKebabCase)
 -   [LowerFirst](#LowerFirst)
 -   [UpperFirst](#UpperFirst)
--   [PadEnd](#PadEnd)
+-   [Pad](#Pad)
 -   [PadStart](#PadStart)
+-   [PadEnd](#PadEnd)
 -   [Reverse](#Reverse)
 -   [SnakeCase](#SnakeCase)
 -   [UpperSnakeCase](#UpperSnakeCase)
@@ -446,6 +447,51 @@ func main() {
     // Bar
     // BAr
     // Bar大
+}
+```
+
+### <span id="Pad">Pad</span>
+
+<p>Pads string on the left and right side if it's shorter than size.</p>
+
+<b>Signature:</b>
+
+```go
+func Pad(source string, size int, padStr string) string
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    result1 := strutil.Pad("foo", 1, "bar")
+	result2 := strutil.Pad("foo", 2, "bar")
+	result3 := strutil.Pad("foo", 3, "bar")
+	result4 := strutil.Pad("foo", 4, "bar")
+	result5 := strutil.Pad("foo", 5, "bar")
+	result6 := strutil.Pad("foo", 6, "bar")
+	result7 := strutil.Pad("foo", 7, "bar")
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+	fmt.Println(result4)
+	fmt.Println(result5)
+	fmt.Println(result6)
+	fmt.Println(result7)
+	// Output:
+	// foo
+	// foo
+	// foo
+	// foob
+	// bfoob
+	// bfooba
+	// bafooba
 }
 ```
 
