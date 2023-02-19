@@ -67,44 +67,18 @@ func LowerFirst(s string) string {
 	return string(r) + s[size:]
 }
 
-// PadEnd pads string on the right side if it's shorter than size.
-// Padding characters are truncated if they exceed size.
-// Play: https://go.dev/play/p/9xP8rN0vz--
-func PadEnd(source string, size int, padStr string) string {
-	len1 := len(source)
-	len2 := len(padStr)
-
-	if len1 >= size {
-		return source
-	}
-
-	fill := ""
-	if len2 >= size-len1 {
-		fill = padStr[0 : size-len1]
-	} else {
-		fill = strings.Repeat(padStr, size-len1)
-	}
-	return source + fill[0:size-len1]
-}
-
 // PadStart pads string on the left side if it's shorter than size.
 // Padding characters are truncated if they exceed size.
 // Play: https://go.dev/play/p/xpTfzArDfvT
 func PadStart(source string, size int, padStr string) string {
-	len1 := len(source)
-	len2 := len(padStr)
+	return padAtPosition(source, size, padStr, 1)
+}
 
-	if len1 >= size {
-		return source
-	}
-
-	fill := ""
-	if len2 >= size-len1 {
-		fill = padStr[0 : size-len1]
-	} else {
-		fill = strings.Repeat(padStr, size-len1)
-	}
-	return fill[0:size-len1] + source
+// PadEnd pads string on the right side if it's shorter than size.
+// Padding characters are truncated if they exceed size.
+// Play: https://go.dev/play/p/9xP8rN0vz--
+func PadEnd(source string, size int, padStr string) string {
+	return padAtPosition(source, size, padStr, 2)
 }
 
 // KebabCase coverts string to kebab-case, non letters and numbers will be ignored.

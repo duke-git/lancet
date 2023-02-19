@@ -98,3 +98,40 @@ func toUpperAll(rs []rune) []rune {
 	}
 	return rs
 }
+
+// padWithPosition pads string
+func padAtPosition(str string, length int, padStr string, position int) string {
+	if len(str) >= length {
+		return str
+	}
+
+	if padStr == "" {
+		padStr = " "
+	}
+
+	length = length - len(str)
+	startPadLen := 0
+	if position == 0 {
+		startPadLen = length / 2
+	} else if position == 1 {
+		startPadLen = length
+	}
+	endPadLen := length - startPadLen
+
+	charLen := len(padStr)
+	leftPad := ""
+	cur := 0
+	for cur < startPadLen {
+		leftPad += string(padStr[cur%charLen])
+		cur++
+	}
+
+	cur = 0
+	rightPad := ""
+	for cur < endPadLen {
+		rightPad += string(padStr[cur%charLen])
+		cur++
+	}
+
+	return leftPad + str + rightPad
+}

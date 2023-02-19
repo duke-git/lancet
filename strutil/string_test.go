@@ -171,6 +171,7 @@ func TestLowerFirst(t *testing.T) {
 func TestPadEnd(t *testing.T) {
 	assert := internal.NewAssert(t, "TestPadEnd")
 
+	assert.Equal("a ", PadEnd("a", 2, " "))
 	assert.Equal("a", PadEnd("a", 1, "b"))
 	assert.Equal("ab", PadEnd("a", 2, "b"))
 	assert.Equal("abcdmn", PadEnd("abcd", 6, "mno"))
