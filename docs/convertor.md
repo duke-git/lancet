@@ -39,6 +39,7 @@ import (
 -   [EncodeByte](#EncodeByte)
 -   [DecodeByte](#DecodeByte)
 -   [DeepClone](#DeepClone)
+-   [CopyProperties](#CopyProperties)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -690,5 +691,69 @@ func main() {
 	// 0.1 false
 	// map[a:1 b:2] false
 	// &{test 1 0.1 true <nil> } false
+}
+```
+
+
+### <span id="CopyProperties">CopyProperties</span>
+
+<p>Copies each field from the source struct into the destination struct.</p>
+
+<b>Signature:</b>
+
+```go
+func CopyProperties[T, U any](dst T, src U) (err error)
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/convertor"
+)
+
+func main() {
+    type Address struct {
+		Country string
+		ZipCode string
+	}
+
+	type User struct {
+		Name   string
+		Age    int
+		Role   string
+		Addr   Address
+		Hobbys []string
+		salary int
+	}
+
+	type Employee struct {
+		Name   string
+		Age    int
+		Role   string
+		Addr   Address
+		Hobbys []string
+		salary int
+	}
+
+	user := User{Name: "user001", Age: 10, Role: "Admin", Addr: Address{Country: "CN", ZipCode: "001"}, Hobbys: []string{"a", "b"}, salary: 1000}
+
+	employee1 := Employee{}
+	CopyProperties(&employee1, &user)
+
+	employee2 := Employee{Name: "employee001", Age: 20, Role: "User",
+		Addr: Address{Country: "UK", ZipCode: "002"}, salary: 500}
+
+	CopyProperties(&employee2, &user)
+
+	fmt.Println(employee1)
+	fmt.Println(employee2)
+
+	// Output:
+	// {user001 10 Admin {CN 001} [a b] 0}
+	// {user001 10 Admin {CN 001} [a b] 500}
 }
 ```
