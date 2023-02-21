@@ -308,3 +308,20 @@ func TestSubstring(t *testing.T) {
 	assert.Equal("de", Substring("abcde", -2, 3))
 	assert.Equal("你好", Substring("你好，欢迎你", 0, 2))
 }
+
+func TestSplitWords(t *testing.T) {
+	assert := internal.NewAssert(t, "TestSplitWords")
+
+	cases := map[string][]string{
+		"a word":                       {"a", "word"},
+		"I'am a programmer":            {"I'am", "a", "programmer"},
+		"Bonjour, je suis programmeur": {"Bonjour", "je", "suis", "programmeur"},
+		"a -b-c' 'd'e":                 {"a", "b-c'", "d'e"},
+		"你好，我是一名码农":                    nil,
+		"こんにちは，私はプログラマーです": nil,
+	}
+
+	for k, v := range cases {
+		assert.Equal(v, SplitWords(k))
+	}
+}

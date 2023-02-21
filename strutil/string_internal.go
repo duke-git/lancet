@@ -135,3 +135,36 @@ func padAtPosition(str string, length int, padStr string, position int) string {
 
 	return leftPad + str + rightPad
 }
+
+// isLetter checks r is a letter but not CJK character.
+func isLetter(r rune) bool {
+	if !unicode.IsLetter(r) {
+		return false
+	}
+
+	switch {
+	// cjk char: /[\u3040-\u30ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff\uff66-\uff9f]/
+
+	// hiragana and katakana (Japanese only)
+	case r >= '\u3034' && r < '\u30ff':
+		return false
+
+	// CJK unified ideographs extension A (Chinese, Japanese, and Korean)
+	case r >= '\u3400' && r < '\u4dbf':
+		return false
+
+	// CJK unified ideographs (Chinese, Japanese, and Korean)
+	case r >= '\u4e00' && r < '\u9fff':
+		return false
+
+	// CJK compatibility ideographs (Chinese, Japanese, and Korean)
+	case r >= '\uf900' && r < '\ufaff':
+		return false
+
+	// half-width katakana (Japanese only)
+	case r >= '\uff66' && r < '\uff9f':
+		return false
+	}
+
+	return true
+}
