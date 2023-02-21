@@ -325,3 +325,20 @@ func TestSplitWords(t *testing.T) {
 		assert.Equal(v, SplitWords(k))
 	}
 }
+
+func TestWordCount(t *testing.T) {
+	assert := internal.NewAssert(t, "TestSplitWords")
+
+	cases := map[string]int{
+		"a word":                       2, //   {"a", "word"},
+		"I'am a programmer":            3, //   {"I'am", "a", "programmer"},
+		"Bonjour, je suis programmeur": 4, // {"Bonjour", "je", "suis", "programmeur"},
+		"a -b-c' 'd'e":                 3, // {"a", "b-c'", "d'e"},
+		"你好，我是一名码农":                    0, // nil,
+		"こんにちは，私はプログラマーです": 0, // nil,
+	}
+
+	for k, v := range cases {
+		assert.Equal(v, WordCount(k))
+	}
+}

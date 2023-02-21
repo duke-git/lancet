@@ -329,3 +329,34 @@ func SplitWords(s string) []string {
 
 	return words
 }
+
+// WordCount return the number of meaningful word, word only contains alphabetic characters.
+// Play: todo
+func WordCount(s string) int {
+	var r rune
+	var size, count int
+
+	isWord := false
+
+	for len(s) > 0 {
+		r, size = utf8.DecodeRuneInString(s)
+
+		switch {
+		case isLetter(r):
+			if !isWord {
+				isWord = true
+				count++
+			}
+
+		case isWord && (r == '\'' || r == '-'):
+			// is word
+
+		default:
+			isWord = false
+		}
+
+		s = s[size:]
+	}
+
+	return count
+}
