@@ -188,6 +188,69 @@ func TestFilterByValues(t *testing.T) {
 	}, acturl)
 }
 
+func TestOmitBy(t *testing.T) {
+	assert := internal.NewAssert(t, "TestOmitBy")
+
+	m := map[string]int{
+		"a": 1,
+		"b": 2,
+		"c": 3,
+		"d": 4,
+		"e": 5,
+	}
+	isEven := func(_ string, value int) bool {
+		return value%2 == 0
+	}
+
+	acturl := OmitBy(m, isEven)
+
+	assert.Equal(map[string]int{
+		"a": 1,
+		"c": 3,
+		"e": 5,
+	}, acturl)
+}
+
+func TestOmitByKeys(t *testing.T) {
+	assert := internal.NewAssert(t, "TestOmitByKeys")
+
+	m := map[string]int{
+		"a": 1,
+		"b": 2,
+		"c": 3,
+		"d": 4,
+		"e": 5,
+	}
+
+	acturl := OmitByKeys(m, []string{"a", "b"})
+
+	assert.Equal(map[string]int{
+		"c": 3,
+		"d": 4,
+		"e": 5,
+	}, acturl)
+}
+
+func TestOmitByValues(t *testing.T) {
+	assert := internal.NewAssert(t, "TestOmitByValues")
+
+	m := map[string]int{
+		"a": 1,
+		"b": 2,
+		"c": 3,
+		"d": 4,
+		"e": 5,
+	}
+
+	acturl := OmitByValues(m, []int{4, 5})
+
+	assert.Equal(map[string]int{
+		"a": 1,
+		"b": 2,
+		"c": 3,
+	}, acturl)
+}
+
 func TestIntersect(t *testing.T) {
 	assert := internal.NewAssert(t, "TestIntersect")
 

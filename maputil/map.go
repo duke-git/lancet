@@ -123,6 +123,45 @@ func FilterByValues[K comparable, V comparable](m map[K]V, values []V) map[K]V {
 	return result
 }
 
+// OmitBy is the opposite of Filter, removes all the map elements for which the predicate function returns true.
+// Play: todo
+func OmitBy[K comparable, V any](m map[K]V, predicate func(key K, value V) bool) map[K]V {
+	result := make(map[K]V)
+
+	for k, v := range m {
+		if !predicate(k, v) {
+			result[k] = v
+		}
+	}
+	return result
+}
+
+// OmitByKeys the opposite of FilterByKeys, extracts all the map elements which keys are not omitted.
+// Play: todo
+func OmitByKeys[K comparable, V any](m map[K]V, keys []K) map[K]V {
+	result := make(map[K]V)
+
+	for k, v := range m {
+		if !slice.Contain(keys, k) {
+			result[k] = v
+		}
+	}
+	return result
+}
+
+// OmitByValues the opposite of FilterByValues. remov all elements whose value are in the give slice.
+// Play: todo
+func OmitByValues[K comparable, V comparable](m map[K]V, values []V) map[K]V {
+	result := make(map[K]V)
+
+	for k, v := range m {
+		if !slice.Contain(values, v) {
+			result[k] = v
+		}
+	}
+	return result
+}
+
 // Intersect iterates over maps, return a new map of key and value pairs in all given maps.
 // Play: https://go.dev/play/p/Zld0oj3sjcC
 func Intersect[K comparable, V any](maps ...map[K]V) map[K]V {
