@@ -42,6 +42,8 @@ import (
 -   [Substring](#Substring)
 -   [Wrap](#Wrap)
 -   [Unwrap](#Unwrap)
+-   [SplitWords](#SplitWords)
+-   [WordCount](#WordCount)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -845,5 +847,92 @@ func main() {
     // *foo
     // foo*
     // *foo*
+}
+```
+
+### <span id="SplitWords">SplitWords</span>
+
+<p>将字符串拆分为单词，只支持字母字符单词。</p>
+
+<b>函数签名:</b>
+
+```go
+func SplitWords(s string) []string
+```
+
+<b>示例:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    result1 := strutil.SplitWords("a word")
+	result2 := strutil.SplitWords("I'am a programmer")
+	result3 := strutil.SplitWords("Bonjour, je suis programmeur")
+	result4 := strutil.SplitWords("a -b-c' 'd'e")
+	result5 := strutil.SplitWords("你好，我是一名码农")
+	result6 := strutil.SplitWords("こんにちは，私はプログラマーです")
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+	fmt.Println(result4)
+	fmt.Println(result5)
+	fmt.Println(result6)
+
+	// Output:
+	// [a word]
+	// [I'am a programmer]
+	// [Bonjour je suis programmeur]
+	// [a b-c' d'e]
+	// []
+	// []
+}
+```
+
+
+### <span id="WordCount">WordCount</span>
+
+<p>返回有意义单词的数量，只支持字母字符单词。</p>
+
+<b>函数签名:</b>
+
+```go
+func WordCount(s string) int
+```
+
+<b>示例:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    result1 := strutil.WordCount("a word")
+	result2 := strutil.WordCount("I'am a programmer")
+	result3 := strutil.WordCount("Bonjour, je suis programmeur")
+	result4 := strutil.WordCount("a -b-c' 'd'e")
+	result5 := strutil.WordCount("你好，我是一名码农")
+	result6 := strutil.WordCount("こんにちは，私はプログラマーです")
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+	fmt.Println(result4)
+	fmt.Println(result5)
+	fmt.Println(result6)
+
+	// Output:
+	// 2
+	// 3
+	// 4
+	// 3
+	// 0
+	// 0
 }
 ```
