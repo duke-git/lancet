@@ -343,3 +343,57 @@ func ExampleMapValues() {
 	// Output:
 	// map[1:a1 2:b2 3:c3]
 }
+
+func ExampleOmitBy() {
+	m := map[string]int{
+		"a": 1,
+		"b": 2,
+		"c": 3,
+		"d": 4,
+		"e": 5,
+	}
+	isEven := func(_ string, value int) bool {
+		return value%2 == 0
+	}
+
+	result := OmitBy(m, isEven)
+
+	fmt.Println(result)
+
+	// Output:
+	// map[a:1 c:3 e:5]
+}
+
+func ExampleOmitByKeys() {
+	m := map[string]int{
+		"a": 1,
+		"b": 2,
+		"c": 3,
+		"d": 4,
+		"e": 5,
+	}
+
+	result := OmitByKeys(m, []string{"a", "b"})
+
+	fmt.Println(result)
+
+	// Output:
+	// map[c:3 d:4 e:5]
+}
+
+func ExampleOmitByValues() {
+	m := map[string]int{
+		"a": 1,
+		"b": 2,
+		"c": 3,
+		"d": 4,
+		"e": 5,
+	}
+
+	result := OmitByValues(m, []int{4, 5})
+
+	fmt.Println(result)
+
+	// Output:
+	// map[a:1 b:2 c:3]
+}
