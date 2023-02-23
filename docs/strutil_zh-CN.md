@@ -1,5 +1,6 @@
 # Strutil
-strutil包含处理字符串的相关函数。
+
+strutil 包含处理字符串的相关函数。
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -7,10 +8,10 @@ strutil包含处理字符串的相关函数。
 
 [https://github.com/duke-git/lancet/blob/v1/strutil/string.go](https://github.com/duke-git/lancet/blob/v1/strutil/string.go)
 
-
 <div STYLE="page-break-after: always;"></div>
 
 ## 用法:
+
 ```go
 import (
     "github.com/duke-git/lancet/strutil"
@@ -20,34 +21,34 @@ import (
 <div STYLE="page-break-after: always;"></div>
 
 ## 目录
-- [After](#After)
-- [AfterLast](#AfterLast)
-- [Before](#Before)
-- [BeforeLast](#BeforeLast)
-- [CamelCase](#CamelCase)
-- [Capitalize](#Capitalize)
-- [IsString](#IsString)
-- [KebabCase](#KebabCase)
-- [UpperKebabCase](#UpperKebabCase)
-- [LowerFirst](#LowerFirst)
-- [UpperFirst](#UpperFirst)
-- [PadEnd](#PadEnd)
-- [PadStart](#PadStart)
-- [Reverse](#Reverse)
-- [SnakeCase](#SnakeCase)
-- [UpperSnakeCase](#UpperSnakeCase)
-- [Wrap](#Wrap)
-- [Unwrap](#Unwrap)
-- [SplitEx](#SplitEx)
-  
+
+-   [After](#After)
+-   [AfterLast](#AfterLast)
+-   [Before](#Before)
+-   [BeforeLast](#BeforeLast)
+-   [CamelCase](#CamelCase)
+-   [Capitalize](#Capitalize)
+-   [IsString](#IsString)
+-   [KebabCase](#KebabCase)
+-   [UpperKebabCase](#UpperKebabCase)
+-   [LowerFirst](#LowerFirst)
+-   [UpperFirst](#UpperFirst)
+-   [Pad](#Pad)
+-   [PadEnd](#PadEnd)
+-   [PadStart](#PadStart)
+-   [Reverse](#Reverse)
+-   [SnakeCase](#SnakeCase)
+-   [UpperSnakeCase](#UpperSnakeCase)
+-   [Wrap](#Wrap)
+-   [Unwrap](#Unwrap)
+-   [SplitEx](#SplitEx)
 
 <div STYLE="page-break-after: always;"></div>
 
-
-## Documentation文档
-
+## Documentation 文档
 
 ### <span id="After">After</span>
+
 <p>截取源字符串中char首次出现时的位置之后的子字符串</p>
 
 <b>函数签名:</b>
@@ -55,6 +56,7 @@ import (
 ```go
 func After(s, char string) string
 ```
+
 <b>例子:</b>
 
 ```go
@@ -75,9 +77,8 @@ func main() {
 }
 ```
 
-
-
 ### <span id="AfterLast">AfterLast</span>
+
 <p>截取源字符串中char最后一次出现时的位置之后的子字符串</p>
 
 <b>函数签名:</b>
@@ -85,6 +86,7 @@ func main() {
 ```go
 func AfterLast(s, char string) string
 ```
+
 <b>例子:</b>
 
 ```go
@@ -105,10 +107,8 @@ func main() {
 }
 ```
 
-
-
-
 ### <span id="Before">Before</span>
+
 <p>截取源字符串中char首次出现时的位置之前的子字符串</p>
 
 <b>函数签名:</b>
@@ -116,6 +116,7 @@ func main() {
 ```go
 func Before(s, char string) string
 ```
+
 <b>例子:</b>
 
 ```go
@@ -136,10 +137,8 @@ func main() {
 }
 ```
 
-
-
-
 ### <span id="BeforeLast">BeforeLast</span>
+
 <p>截取源字符串中char最后一次出现时的位置之前的子字符串</p>
 
 <b>函数签名:</b>
@@ -147,6 +146,7 @@ func main() {
 ```go
 func BeforeLast(s, char string) string
 ```
+
 <b>例子:</b>
 
 ```go
@@ -167,10 +167,8 @@ func main() {
 }
 ```
 
-
-
-
 ### <span id="CamelCase">CamelCase</span>
+
 <p>将字符串转换为驼峰式字符串, 非字母和数字会被忽略</p>
 
 <b>函数签名:</b>
@@ -178,6 +176,7 @@ func main() {
 ```go
 func CamelCase(s string) string
 ```
+
 <b>例子:</b>
 
 ```go
@@ -204,10 +203,8 @@ func main() {
 }
 ```
 
-
-
-
 ### <span id="Capitalize">Capitalize</span>
+
 <p>将字符串的第一个字符转换为大写</p>
 
 <b>函数签名:</b>
@@ -215,6 +212,7 @@ func main() {
 ```go
 func Capitalize(s string) string
 ```
+
 <b>例子:</b>
 
 ```go
@@ -235,9 +233,8 @@ func main() {
 }
 ```
 
-
-
 ### <span id="IsString">IsString</span>
+
 <p>检查值的数据类型是否为字符串</p>
 
 <b>函数签名:</b>
@@ -245,6 +242,7 @@ func main() {
 ```go
 func IsString(v interface{}) bool
 ```
+
 <b>例子:</b>
 
 ```go
@@ -263,8 +261,8 @@ func main() {
 }
 ```
 
-
 ### <span id="KebabCase">KebabCase</span>
+
 <p>将字符串转换为kebab-case, 非字母和数字会被忽略</p>
 
 <b>函数签名:</b>
@@ -272,6 +270,7 @@ func main() {
 ```go
 func KebabCase(s string) string
 ```
+
 <b>例子:</b>
 
 ```go
@@ -295,9 +294,8 @@ func main() {
 }
 ```
 
-
-
 ### <span id="UpperKebabCase">UpperKebabCase</span>
+
 <p>将字符串转换为大写KEBAB-CASE, 非字母和数字会被忽略</p>
 
 <b>函数签名:</b>
@@ -305,6 +303,7 @@ func main() {
 ```go
 func KebabCase(s string) string
 ```
+
 <b>例子:</b>
 
 ```go
@@ -328,8 +327,8 @@ func main() {
 }
 ```
 
-
 ### <span id="LowerFirst">LowerFirst</span>
+
 <p>将字符串的第一个字符转换为小写</p>
 
 <b>函数签名:</b>
@@ -337,6 +336,7 @@ func main() {
 ```go
 func LowerFirst(s string) string
 ```
+
 <b>例子:</b>
 
 ```go
@@ -360,10 +360,8 @@ func main() {
 }
 ```
 
-
-
-
 ### <span id="UpperFirst">UpperFirst</span>
+
 <p>将字符串的第一个字符转换为大写</p>
 
 <b>函数签名:</b>
@@ -371,6 +369,7 @@ func main() {
 ```go
 func UpperFirst(s string) string
 ```
+
 <b>例子:</b>
 
 ```go
@@ -394,78 +393,145 @@ func main() {
 }
 ```
 
+### <span id="Pad">Pad</span>
 
+<p>如果字符串长度短于size，则在左右两侧填充字符串。</p>
 
+<b>函数签名:</b>
+
+```go
+func Pad(source string, size int, padStr string) string
+```
+
+<b>示例:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    result1 := strutil.Pad("foo", 1, "bar")
+    result2 := strutil.Pad("foo", 2, "bar")
+    result3 := strutil.Pad("foo", 3, "bar")
+    result4 := strutil.Pad("foo", 4, "bar")
+    result5 := strutil.Pad("foo", 5, "bar")
+    result6 := strutil.Pad("foo", 6, "bar")
+    result7 := strutil.Pad("foo", 7, "bar")
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
+    fmt.Println(result5)
+    fmt.Println(result6)
+    fmt.Println(result7)
+    // Output:
+    // foo
+    // foo
+    // foo
+    // foob
+    // bfoob
+    // bfooba
+    // bafooba
+}
+```
 
 ### <span id="PadEnd">PadEnd</span>
-<p>如果字符串长度短于size，则在右侧填充字符串</p>
+
+<p>如果字符串长度短于size，则在右侧填充字符串。</p>
 
 <b>函数签名:</b>
 
 ```go
 func PadEnd(source string, size int, padStr string) string
 ```
-<b>例子:</b>
+
+<b>示例:</b>
 
 ```go
 import (
-	"fmt"
-	"github.com/duke-git/lancet/strutil"
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
 )
 
 func main() {
-	s1 := strutil.PadEnd("a", 1, "b")
-	fmt.Println(s1) //a
+    result1 := strutil.PadEnd("foo", 1, "bar")
+    result2 := strutil.PadEnd("foo", 2, "bar")
+    result3 := strutil.PadEnd("foo", 3, "bar")
+    result4 := strutil.PadEnd("foo", 4, "bar")
+    result5 := strutil.PadEnd("foo", 5, "bar")
+    result6 := strutil.PadEnd("foo", 6, "bar")
+    result7 := strutil.PadEnd("foo", 7, "bar")
 
-	s2 := strutil.PadEnd("a", 2, "b")
-	fmt.Println(s2) //ab
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
+    fmt.Println(result5)
+    fmt.Println(result6)
+    fmt.Println(result7)
 
-	s3 := strutil.PadEnd("abcd", 6, "mno")
-	fmt.Println(s3) //abcdmn
-
-	s4 := strutil.PadEnd("abc", 6, "ab")
-	fmt.Println(s4) //abcaba
+    // Output:
+    // foo
+    // foo
+    // foo
+    // foob
+    // fooba
+    // foobar
+    // foobarb
 }
 ```
 
-
-
-
 ### <span id="PadStart">PadStart</span>
-<p>如果字符串长度短于size，则在左侧填充字符串</p>
+
+<p>如果字符串长度短于size，则在左侧填充字符串。</p>
 
 <b>函数签名:</b>
 
 ```go
 func PadStart(source string, size int, padStr string) string
 ```
-<b>例子:</b>
+
+<b>示例:</b>
 
 ```go
 import (
-	"fmt"
-	"github.com/duke-git/lancet/strutil"
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
 )
 
 func main() {
-	s1 := strutil.PadStart("a", 1, "b")
-	fmt.Println(s1) //a
+    result1 := strutil.PadStart("foo", 1, "bar")
+    result2 := strutil.PadStart("foo", 2, "bar")
+    result3 := strutil.PadStart("foo", 3, "bar")
+    result4 := strutil.PadStart("foo", 4, "bar")
+    result5 := strutil.PadStart("foo", 5, "bar")
+    result6 := strutil.PadStart("foo", 6, "bar")
+    result7 := strutil.PadStart("foo", 7, "bar")
 
-	s2 := strutil.PadStart("a", 2, "b")
-	fmt.Println(s2) //ba
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
+    fmt.Println(result5)
+    fmt.Println(result6)
+    fmt.Println(result7)
 
-	s3 := strutil.PadStart("abcd", 6, "mno")
-	fmt.Println(s3) //mnabcd
-
-	s4 := strutil.PadStart("abc", 6, "ab")
-	fmt.Println(s4) //abaabc
+    // Output:
+    // foo
+    // foo
+    // foo
+    // bfoo
+    // bafoo
+    // barfoo
+    // barbfoo
 }
 ```
 
-
-
-
 ### <span id="ReverseStr">ReverseStr</span>
+
 <p>返回字符顺序与给定字符串相反的字符串</p>
 
 <b>函数签名:</b>
@@ -473,6 +539,7 @@ func main() {
 ```go
 func ReverseStr(s string) string
 ```
+
 <b>例子:</b>
 
 ```go
@@ -490,8 +557,8 @@ func main() {
 }
 ```
 
-
 ### <span id="SnakeCase">SnakeCase</span>
+
 <p>将字符串转换为snake_case形式, 非字母和数字会被忽略</p>
 
 <b>函数签名:</b>
@@ -499,6 +566,7 @@ func main() {
 ```go
 func SnakeCase(s string) string
 ```
+
 <b>例子:</b>
 
 ```go
@@ -525,8 +593,8 @@ func main() {
 }
 ```
 
-
 ### <span id="UpperSnakeCase">UpperSnakeCase</span>
+
 <p>将字符串转换为大写SNAKE_CASE形式, 非字母和数字会被忽略</p>
 
 <b>函数签名:</b>
@@ -534,6 +602,7 @@ func main() {
 ```go
 func SnakeCase(s string) string
 ```
+
 <b>例子:</b>
 
 ```go
@@ -560,9 +629,8 @@ func main() {
 }
 ```
 
-
-
 ### <span id="Wrap">Wrap</span>
+
 <p>用另一个字符串包裹一个字符串</p>
 
 <b>函数签名:</b>
@@ -570,6 +638,7 @@ func main() {
 ```go
 func Wrap(str string, wrapWith string) string
 ```
+
 <b>例子:</b>
 
 ```go
@@ -596,10 +665,8 @@ func main() {
 }
 ```
 
-
-
-
 ### <span id="Unwrap">Unwrap</span>
+
 <p>用另一个字符串解开包裹一个字符串</p>
 
 <b>函数签名:</b>
@@ -607,6 +674,7 @@ func main() {
 ```go
 func Unwrap(str string, wrapToken string) string
 ```
+
 <b>例子:</b>
 
 ```go
@@ -633,9 +701,8 @@ func main() {
 }
 ```
 
-
-
 ### <span id="SplitEx">SplitEx</span>
+
 <p>分割字符串为切片，removeEmptyString参数指定是否去除空字符串</p>
 
 <b>函数签名:</b>
@@ -643,6 +710,7 @@ func main() {
 ```go
 func SplitEx(s, sep string, removeEmptyString bool) []string
 ```
+
 <b>例子:</b>
 
 ```go
@@ -668,9 +736,3 @@ func main() {
 	fmt.Println(arr5) //[]string{" a", "b", "c"}
 }
 ```
-
-
-
-
-
-

@@ -1,4 +1,5 @@
 # Strutil
+
 Package strutil contains some functions to manipulate string.
 
 <div STYLE="page-break-after: always;"></div>
@@ -7,10 +8,10 @@ Package strutil contains some functions to manipulate string.
 
 [https://github.com/duke-git/lancet/blob/v1/strutil/string.go](https://github.com/duke-git/lancet/blob/v1/strutil/string.go)
 
-
 <div STYLE="page-break-after: always;"></div>
 
 ## Usage:
+
 ```go
 import (
     "github.com/duke-git/lancet/strutil"
@@ -20,33 +21,34 @@ import (
 <div STYLE="page-break-after: always;"></div>
 
 ## Index
-- [After](#After)
-- [AfterLast](#AfterLast)
-- [Before](#Before)
-- [BeforeLast](#BeforeLast)
-- [CamelCase](#CamelCase)
-- [Capitalize](#Capitalize)
-- [IsString](#IsString)
-- [KebabCase](#KebabCase)
-- [UpperKebabCase](#UpperKebabCase)
-- [LowerFirst](#LowerFirst)
-- [UpperFirst](#UpperFirst)
-- [PadEnd](#PadEnd)
-- [PadStart](#PadStart)
-- [Reverse](#Reverse)
-- [SnakeCase](#SnakeCase)
-- [UpperSnakeCase](#UpperSnakeCase)
-- [Wrap](#Wrap)
-- [Unwrap](#Unwrap)
-- [SplitEx](#SplitEx)
-  
+
+-   [After](#After)
+-   [AfterLast](#AfterLast)
+-   [Before](#Before)
+-   [BeforeLast](#BeforeLast)
+-   [CamelCase](#CamelCase)
+-   [Capitalize](#Capitalize)
+-   [IsString](#IsString)
+-   [KebabCase](#KebabCase)
+-   [UpperKebabCase](#UpperKebabCase)
+-   [LowerFirst](#LowerFirst)
+-   [UpperFirst](#UpperFirst)
+-   [Pad](#Pad)
+-   [PadEnd](#PadEnd)
+-   [PadStart](#PadStart)
+-   [Reverse](#Reverse)
+-   [SnakeCase](#SnakeCase)
+-   [UpperSnakeCase](#UpperSnakeCase)
+-   [Wrap](#Wrap)
+-   [Unwrap](#Unwrap)
+-   [SplitEx](#SplitEx)
 
 <div STYLE="page-break-after: always;"></div>
 
 ## Documentation
 
-
 ### <span id="After">After</span>
+
 <p>Creates substring in source string after position when char first appear.</p>
 
 <b>Signature:</b>
@@ -54,6 +56,7 @@ import (
 ```go
 func After(s, char string) string
 ```
+
 <b>Example:</b>
 
 ```go
@@ -74,9 +77,8 @@ func main() {
 }
 ```
 
-
-
 ### <span id="AfterLast">AfterLast</span>
+
 <p>Creates substring in source string after position when char last appear.</p>
 
 <b>Signature:</b>
@@ -84,6 +86,7 @@ func main() {
 ```go
 func AfterLast(s, char string) string
 ```
+
 <b>Example:</b>
 
 ```go
@@ -104,10 +107,8 @@ func main() {
 }
 ```
 
-
-
-
 ### <span id="Before">Before</span>
+
 <p>Creates substring in source string before position when char first appear.</p>
 
 <b>Signature:</b>
@@ -115,6 +116,7 @@ func main() {
 ```go
 func Before(s, char string) string
 ```
+
 <b>Example:</b>
 
 ```go
@@ -135,10 +137,8 @@ func main() {
 }
 ```
 
-
-
-
 ### <span id="BeforeLast">BeforeLast</span>
+
 <p>Creates substring in source string before position when char first appear.</p>
 
 <b>Signature:</b>
@@ -146,6 +146,7 @@ func main() {
 ```go
 func BeforeLast(s, char string) string
 ```
+
 <b>Example:</b>
 
 ```go
@@ -166,10 +167,8 @@ func main() {
 }
 ```
 
-
-
-
 ### <span id="CamelCase">CamelCase</span>
+
 <p>Coverts string to camelCase string, non letters and numbers will be ignored.</p>
 
 <b>Signature:</b>
@@ -177,6 +176,7 @@ func main() {
 ```go
 func CamelCase(s string) string
 ```
+
 <b>Example:</b>
 
 ```go
@@ -202,10 +202,8 @@ func main() {
 	fmt.Println(s4) //foo11Bar
 ```
 
-
-
-
 ### <span id="Capitalize">Capitalize</span>
+
 <p>Convert the first character of a string to upper case.</p>
 
 <b>Signature:</b>
@@ -213,6 +211,7 @@ func main() {
 ```go
 func Capitalize(s string) string
 ```
+
 <b>Example:</b>
 
 ```go
@@ -233,9 +232,8 @@ func main() {
 }
 ```
 
-
-
 ### <span id="IsString">IsString</span>
+
 <p>Check if the value's data type is string.</p>
 
 <b>Signature:</b>
@@ -243,6 +241,7 @@ func main() {
 ```go
 func IsString(v interface{}) bool
 ```
+
 <b>Example:</b>
 
 ```go
@@ -261,9 +260,8 @@ func main() {
 }
 ```
 
-
-
 ### <span id="KebabCase">KebabCase</span>
+
 <p>KebabCase covert string to kebab-case, non letters and numbers will be ignored.</p>
 
 <b>Signature:</b>
@@ -271,6 +269,7 @@ func main() {
 ```go
 func KebabCase(s string) string
 ```
+
 <b>Example:</b>
 
 ```go
@@ -294,9 +293,8 @@ func main() {
 }
 ```
 
-
-
 ### <span id="UpperKebabCase">UpperKebabCase</span>
+
 <p>UpperKebabCase covert string to upper KEBAB-CASE, non letters and numbers will be ignored.</p>
 
 <b>Signature:</b>
@@ -304,6 +302,7 @@ func main() {
 ```go
 func KebabCase(s string) string
 ```
+
 <b>Example:</b>
 
 ```go
@@ -327,9 +326,8 @@ func main() {
 }
 ```
 
-
-
 ### <span id="LowerFirst">LowerFirst</span>
+
 <p>Convert the first character of string to lower case.</p>
 
 <b>Signature:</b>
@@ -337,6 +335,7 @@ func main() {
 ```go
 func LowerFirst(s string) string
 ```
+
 <b>Example:</b>
 
 ```go
@@ -360,10 +359,8 @@ func main() {
 }
 ```
 
-
-
-
 ### <span id="UpperFirst">UpperFirst</span>
+
 <p>Convert the first character of string to upper case.</p>
 
 <b>Signature:</b>
@@ -371,6 +368,7 @@ func main() {
 ```go
 func UpperFirst(s string) string
 ```
+
 <b>Example:</b>
 
 ```go
@@ -394,10 +392,53 @@ func main() {
 }
 ```
 
+### <span id="Pad">Pad</span>
 
+<p>Pads string on the left and right side if it's shorter than size.</p>
 
+<b>Signature:</b>
+
+```go
+func Pad(source string, size int, padStr string) string
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/strutil"
+)
+
+func main() {
+    result1 := strutil.Pad("foo", 1, "bar")
+    result2 := strutil.Pad("foo", 2, "bar")
+    result3 := strutil.Pad("foo", 3, "bar")
+    result4 := strutil.Pad("foo", 4, "bar")
+    result5 := strutil.Pad("foo", 5, "bar")
+    result6 := strutil.Pad("foo", 6, "bar")
+    result7 := strutil.Pad("foo", 7, "bar")
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
+    fmt.Println(result5)
+    fmt.Println(result6)
+    fmt.Println(result7)
+    // Output:
+    // foo
+    // foo
+    // foo
+    // foob
+    // bfoob
+    // bfooba
+    // bafooba
+}
+```
 
 ### <span id="PadEnd">PadEnd</span>
+
 <p>Pads string on the right side if it's shorter than size.</p>
 
 <b>Signature:</b>
@@ -405,33 +446,45 @@ func main() {
 ```go
 func PadEnd(source string, size int, padStr string) string
 ```
+
 <b>Example:</b>
 
 ```go
 import (
-	"fmt"
-	"github.com/duke-git/lancet/strutil"
+    "fmt"
+    "github.com/duke-git/lancet/strutil"
 )
 
 func main() {
-	s1 := strutil.PadEnd("a", 1, "b")
-	fmt.Println(s1) //a
+    result1 := strutil.PadEnd("foo", 1, "bar")
+    result2 := strutil.PadEnd("foo", 2, "bar")
+    result3 := strutil.PadEnd("foo", 3, "bar")
+    result4 := strutil.PadEnd("foo", 4, "bar")
+    result5 := strutil.PadEnd("foo", 5, "bar")
+    result6 := strutil.PadEnd("foo", 6, "bar")
+    result7 := strutil.PadEnd("foo", 7, "bar")
 
-	s2 := strutil.PadEnd("a", 2, "b")
-	fmt.Println(s2) //ab
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
+    fmt.Println(result5)
+    fmt.Println(result6)
+    fmt.Println(result7)
 
-	s3 := strutil.PadEnd("abcd", 6, "mno")
-	fmt.Println(s3) //abcdmn
-
-	s4 := strutil.PadEnd("abc", 6, "ab")
-	fmt.Println(s4) //abcaba
+    // Output:
+    // foo
+    // foo
+    // foo
+    // foob
+    // fooba
+    // foobar
+    // foobarb
 }
 ```
 
-
-
-
 ### <span id="PadStart">PadStart</span>
+
 <p>Pads string on the left side if it's shorter than size.</p>
 
 <b>Signature:</b>
@@ -439,33 +492,45 @@ func main() {
 ```go
 func PadStart(source string, size int, padStr string) string
 ```
+
 <b>Example:</b>
 
 ```go
 import (
-	"fmt"
-	"github.com/duke-git/lancet/strutil"
+    "fmt"
+    "github.com/duke-git/lancet/strutil"
 )
 
 func main() {
-	s1 := strutil.PadStart("a", 1, "b")
-	fmt.Println(s1) //a
+    result1 := strutil.PadStart("foo", 1, "bar")
+    result2 := strutil.PadStart("foo", 2, "bar")
+    result3 := strutil.PadStart("foo", 3, "bar")
+    result4 := strutil.PadStart("foo", 4, "bar")
+    result5 := strutil.PadStart("foo", 5, "bar")
+    result6 := strutil.PadStart("foo", 6, "bar")
+    result7 := strutil.PadStart("foo", 7, "bar")
 
-	s2 := strutil.PadStart("a", 2, "b")
-	fmt.Println(s2) //ba
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
+    fmt.Println(result5)
+    fmt.Println(result6)
+    fmt.Println(result7)
 
-	s3 := strutil.PadStart("abcd", 6, "mno")
-	fmt.Println(s3) //mnabcd
-
-	s4 := strutil.PadStart("abc", 6, "ab")
-	fmt.Println(s4) //abaabc
+    // Output:
+    // foo
+    // foo
+    // foo
+    // bfoo
+    // bafoo
+    // barfoo
+    // barbfoo
 }
 ```
 
-
-
-
 ### <span id="ReverseStr">ReverseStr</span>
+
 <p>Return string whose char order is reversed to the given string.</p>
 
 <b>Signature:</b>
@@ -473,6 +538,7 @@ func main() {
 ```go
 func ReverseStr(s string) string
 ```
+
 <b>Example:</b>
 
 ```go
@@ -490,8 +556,8 @@ func main() {
 }
 ```
 
-
 ### <span id="SnakeCase">SnakeCase</span>
+
 <p>Coverts string to snake_case, non letters and numbers will be ignored.</p>
 
 <b>Signature:</b>
@@ -499,6 +565,7 @@ func main() {
 ```go
 func SnakeCase(s string) string
 ```
+
 <b>Example:</b>
 
 ```go
@@ -525,8 +592,8 @@ func main() {
 }
 ```
 
-
 ### <span id="UpperSnakeCase">UpperSnakeCase</span>
+
 <p>Coverts string to upper KEBAB-CASE, non letters and numbers will be ignored.</p>
 
 <b>Signature:</b>
@@ -534,6 +601,7 @@ func main() {
 ```go
 func SnakeCase(s string) string
 ```
+
 <b>Example:</b>
 
 ```go
@@ -560,9 +628,8 @@ func main() {
 }
 ```
 
-
-
 ### <span id="Wrap">Wrap</span>
+
 <p>Wrap a string with another string.</p>
 
 <b>Signature:</b>
@@ -570,6 +637,7 @@ func main() {
 ```go
 func Wrap(str string, wrapWith string) string
 ```
+
 <b>Example:</b>
 
 ```go
@@ -596,10 +664,8 @@ func main() {
 }
 ```
 
-
-
-
 ### <span id="Wrap">Wrap</span>
+
 <p>Unwrap a given string from anther string. will change str value.</p>
 
 <b>Signature:</b>
@@ -607,6 +673,7 @@ func main() {
 ```go
 func Unwrap(str string, wrapToken string) string
 ```
+
 <b>Example:</b>
 
 ```go
@@ -633,9 +700,8 @@ func main() {
 }
 ```
 
-
-
 ### <span id="SplitEx">SplitEx</span>
+
 <p>Split a given string whether the result contains empty string.</p>
 
 <b>Signature:</b>
@@ -643,6 +709,7 @@ func main() {
 ```go
 func SplitEx(s, sep string, removeEmptyString bool) []string
 ```
+
 <b>Example:</b>
 
 ```go
@@ -668,8 +735,3 @@ func main() {
 	fmt.Println(arr5) //[]string{" a", "b", "c"}
 }
 ```
-
-
-
-
-

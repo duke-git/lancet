@@ -66,42 +66,22 @@ func LowerFirst(s string) string {
 	return string(r) + s[size:]
 }
 
-// PadEnd pads string on the right side if it's shorter than size.
+// PadStart pads string on the left and right side if it's shorter than size.
 // Padding characters are truncated if they exceed size.
-func PadEnd(source string, size int, padStr string) string {
-	len1 := len(source)
-	len2 := len(padStr)
-
-	if len1 >= size {
-		return source
-	}
-
-	fill := ""
-	if len2 >= size-len1 {
-		fill = padStr[0 : size-len1]
-	} else {
-		fill = strings.Repeat(padStr, size-len1)
-	}
-	return source + fill[0:size-len1]
+func Pad(source string, size int, padStr string) string {
+	return padAtPosition(source, size, padStr, 0)
 }
 
 // PadStart pads string on the left side if it's shorter than size.
 // Padding characters are truncated if they exceed size.
 func PadStart(source string, size int, padStr string) string {
-	len1 := len(source)
-	len2 := len(padStr)
+	return padAtPosition(source, size, padStr, 1)
+}
 
-	if len1 >= size {
-		return source
-	}
-
-	fill := ""
-	if len2 >= size-len1 {
-		fill = padStr[0 : size-len1]
-	} else {
-		fill = strings.Repeat(padStr, size-len1)
-	}
-	return fill[0:size-len1] + source
+// PadEnd pads string on the right side if it's shorter than size.
+// Padding characters are truncated if they exceed size.
+func PadEnd(source string, size int, padStr string) string {
+	return padAtPosition(source, size, padStr, 2)
 }
 
 // KebabCase covert string to kebab-case
