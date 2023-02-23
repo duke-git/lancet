@@ -253,3 +253,74 @@ func SplitEx(s, sep string, removeEmptyString bool) []string {
 
 	return ret
 }
+
+// SplitWords splits a string into words, word only contains alphabetic characters.
+func SplitWords(s string) []string {
+	var word string
+	var words []string
+	var r rune
+	var size, pos int
+
+	isWord := false
+
+	for len(s) > 0 {
+		r, size = utf8.DecodeRuneInString(s)
+
+		switch {
+		case isLetter(r):
+			if !isWord {
+				isWord = true
+				word = s
+				pos = 0
+			}
+
+		case isWord && (r == '\'' || r == '-'):
+			// is word
+
+		default:
+			if isWord {
+				isWord = false
+				words = append(words, word[:pos])
+			}
+		}
+
+		pos += size
+		s = s[size:]
+	}
+
+	if isWord {
+		words = append(words, word[:pos])
+	}
+
+	return words
+}
+
+// WordCount return the number of meaningful word, word only contains alphabetic characters.
+func WordCount(s string) int {
+	var r rune
+	var size, count int
+
+	isWord := false
+
+	for len(s) > 0 {
+		r, size = utf8.DecodeRuneInString(s)
+
+		switch {
+		case isLetter(r):
+			if !isWord {
+				isWord = true
+				count++
+			}
+
+		case isWord && (r == '\'' || r == '-'):
+			// is word
+
+		default:
+			isWord = false
+		}
+
+		s = s[size:]
+	}
+
+	return count
+}

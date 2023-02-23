@@ -42,6 +42,8 @@ import (
 -   [Wrap](#Wrap)
 -   [Unwrap](#Unwrap)
 -   [SplitEx](#SplitEx)
+-   [SplitWords](#SplitWords)
+-   [WordCount](#WordCount)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -61,19 +63,19 @@ func After(s, char string) string
 
 ```go
 import (
-	"fmt"
-	"github.com/duke-git/lancet/strutil"
+    "fmt"
+    "github.com/duke-git/lancet/strutil"
 )
 
 func main() {
-	s1 := strutil.After("lancet", "")
-	fmt.Println(s1) //lancet
+    s1 := strutil.After("lancet", "")
+    fmt.Println(s1) //lancet
 
-	s2 := strutil.After("github.com/test/lancet", "/")
-	fmt.Println(s2) //test/lancet
+    s2 := strutil.After("github.com/test/lancet", "/")
+    fmt.Println(s2) //test/lancet
 
-	s3 := strutil.After("github.com/test/lancet", "test")
-	fmt.Println(s3) // /lancet
+    s3 := strutil.After("github.com/test/lancet", "test")
+    fmt.Println(s3) // /lancet
 }
 ```
 
@@ -91,19 +93,19 @@ func AfterLast(s, char string) string
 
 ```go
 import (
-	"fmt"
-	"github.com/duke-git/lancet/strutil"
+    "fmt"
+    "github.com/duke-git/lancet/strutil"
 )
 
 func main() {
-	s1 := strutil.AfterLast("lancet", "")
-	fmt.Println(s1) //lancet
+    s1 := strutil.AfterLast("lancet", "")
+    fmt.Println(s1) //lancet
 
-	s2 := strutil.AfterLast("github.com/test/lancet", "/")
-	fmt.Println(s2) //lancet
+    s2 := strutil.AfterLast("github.com/test/lancet", "/")
+    fmt.Println(s2) //lancet
 
-	s3 := strutil.AfterLast("github.com/test/test/lancet", "test")
-	fmt.Println(s3) // /lancet
+    s3 := strutil.AfterLast("github.com/test/test/lancet", "test")
+    fmt.Println(s3) // /lancet
 }
 ```
 
@@ -121,19 +123,19 @@ func Before(s, char string) string
 
 ```go
 import (
-	"fmt"
-	"github.com/duke-git/lancet/strutil"
+    "fmt"
+    "github.com/duke-git/lancet/strutil"
 )
 
 func main() {
-	s1 := strutil.Before("lancet", "")
-	fmt.Println(s1) //lancet
+    s1 := strutil.Before("lancet", "")
+    fmt.Println(s1) //lancet
 
-	s2 := strutil.Before("github.com/test/lancet", "/")
-	fmt.Println(s2) //github.com
+    s2 := strutil.Before("github.com/test/lancet", "/")
+    fmt.Println(s2) //github.com
 
-	s3 := strutil.Before("github.com/test/lancet", "test")
-	fmt.Println(s3) // github.com/
+    s3 := strutil.Before("github.com/test/lancet", "test")
+    fmt.Println(s3) // github.com/
 }
 ```
 
@@ -151,19 +153,19 @@ func BeforeLast(s, char string) string
 
 ```go
 import (
-	"fmt"
-	"github.com/duke-git/lancet/strutil"
+    "fmt"
+    "github.com/duke-git/lancet/strutil"
 )
 
 func main() {
-	s1 := strutil.BeforeLast("lancet", "")
-	fmt.Println(s1) //lancet
+    s1 := strutil.BeforeLast("lancet", "")
+    fmt.Println(s1) //lancet
 
-	s2 := strutil.BeforeLast("github.com/test/lancet", "/")
-	fmt.Println(s2) //github.com/test
+    s2 := strutil.BeforeLast("github.com/test/lancet", "/")
+    fmt.Println(s2) //github.com/test
 
-	s3 := strutil.BeforeLast("github.com/test/test/lancet", "test")
-	fmt.Println(s3) //github.com/test/
+    s3 := strutil.BeforeLast("github.com/test/test/lancet", "test")
+    fmt.Println(s3) //github.com/test/
 }
 ```
 
@@ -181,25 +183,25 @@ func CamelCase(s string) string
 
 ```go
 import (
-	"fmt"
-	"github.com/duke-git/lancet/strutil"
+    "fmt"
+    "github.com/duke-git/lancet/strutil"
 )
 
 func main() {
-	s1 := strutil.CamelCase("foo_bar")
-	fmt.Println(s1) //fooBar
+    s1 := strutil.CamelCase("foo_bar")
+    fmt.Println(s1) //fooBar
 
-	s2 := strutil.CamelCase("Foo-Bar")
-	fmt.Println(s2) //fooBar
+    s2 := strutil.CamelCase("Foo-Bar")
+    fmt.Println(s2) //fooBar
 
-	s3 := strutil.CamelCase("Foo&bar")
-	fmt.Println(s3) //fooBar
+    s3 := strutil.CamelCase("Foo&bar")
+    fmt.Println(s3) //fooBar
 
-	s4 := strutil.CamelCase("foo bar")
-	fmt.Println(s4) //fooBar
+    s4 := strutil.CamelCase("foo bar")
+    fmt.Println(s4) //fooBar
 
-	s4 := strutil.CamelCase("Foo-#1😄$_%^&*(1bar")
-	fmt.Println(s4) //foo11Bar
+    s4 := strutil.CamelCase("Foo-#1😄$_%^&*(1bar")
+    fmt.Println(s4) //foo11Bar
 }
 ```
 
@@ -217,19 +219,19 @@ func Capitalize(s string) string
 
 ```go
 import (
-	"fmt"
-	"github.com/duke-git/lancet/strutil"
+    "fmt"
+    "github.com/duke-git/lancet/strutil"
 )
 
 func main() {
-	s1 := strutil.Capitalize("foo")
-	fmt.Println(s1) //foo
+    s1 := strutil.Capitalize("foo")
+    fmt.Println(s1) //foo
 
-	s2 := strutil.Capitalize("Foo")
-	fmt.Println(s2) //foo
+    s2 := strutil.Capitalize("Foo")
+    fmt.Println(s2) //foo
 
-	s3 := strutil.Capitalize("FOo"
-	fmt.Println(s3) //fOo
+    s3 := strutil.Capitalize("FOo"
+    fmt.Println(s3) //fOo
 }
 ```
 
@@ -247,17 +249,17 @@ func IsString(v interface{}) bool
 
 ```go
 import (
-	"fmt"
-	"github.com/duke-git/lancet/strutil"
+    "fmt"
+    "github.com/duke-git/lancet/strutil"
 )
 
 func main() {
-	fmt.Println(strutil.IsString("lancet")) //true
-	fmt.Println(strutil.IsString("")) //true
+    fmt.Println(strutil.IsString("lancet")) //true
+    fmt.Println(strutil.IsString("")) //true
 
-	fmt.Println(strutil.IsString(1)) //false
-	fmt.Println(strutil.IsString("")) //false
-	fmt.Println(strutil.IsString([]string{})) //false
+    fmt.Println(strutil.IsString(1)) //false
+    fmt.Println(strutil.IsString("")) //false
+    fmt.Println(strutil.IsString([]string{})) //false
 }
 ```
 
@@ -275,22 +277,22 @@ func KebabCase(s string) string
 
 ```go
 import (
-	"fmt"
-	"github.com/duke-git/lancet/strutil"
+    "fmt"
+    "github.com/duke-git/lancet/strutil"
 )
 
 func main() {
-	s1 := strutil.KebabCase("Foo Bar-")
-	fmt.Println(s1) //foo-bar
+    s1 := strutil.KebabCase("Foo Bar-")
+    fmt.Println(s1) //foo-bar
 
-	s2 := strutil.KebabCase("foo_Bar")
-	fmt.Println(s2) //foo-bar
+    s2 := strutil.KebabCase("foo_Bar")
+    fmt.Println(s2) //foo-bar
 
-	s3 := strutil.KebabCase("fooBar")
-	fmt.Println(s3) //foo-bar
+    s3 := strutil.KebabCase("fooBar")
+    fmt.Println(s3) //foo-bar
 
-	s4 := strutil.KebabCase("__FOO_BAR__")
-	fmt.Println(s4) //foo-bar
+    s4 := strutil.KebabCase("__FOO_BAR__")
+    fmt.Println(s4) //foo-bar
 }
 ```
 
@@ -308,22 +310,22 @@ func KebabCase(s string) string
 
 ```go
 import (
-	"fmt"
-	"github.com/duke-git/lancet/strutil"
+    "fmt"
+    "github.com/duke-git/lancet/strutil"
 )
 
 func main() {
-	s1 := strutil.UpperKebabCase("Foo Bar-")
-	fmt.Println(s1) //FOO-BAR
+    s1 := strutil.UpperKebabCase("Foo Bar-")
+    fmt.Println(s1) //FOO-BAR
 
-	s2 := strutil.UpperKebabCase("foo_Bar")
-	fmt.Println(s2) //FOO-BAR
+    s2 := strutil.UpperKebabCase("foo_Bar")
+    fmt.Println(s2) //FOO-BAR
 
-	s3 := strutil.UpperKebabCase("fooBar")
-	fmt.Println(s3) //FOO-BAR
+    s3 := strutil.UpperKebabCase("fooBar")
+    fmt.Println(s3) //FOO-BAR
 
-	s4 := strutil.UpperKebabCase("__FOO_BAR__")
-	fmt.Println(s4) //FOO-BAR
+    s4 := strutil.UpperKebabCase("__FOO_BAR__")
+    fmt.Println(s4) //FOO-BAR
 }
 ```
 
@@ -341,22 +343,22 @@ func LowerFirst(s string) string
 
 ```go
 import (
-	"fmt"
-	"github.com/duke-git/lancet/strutil"
+    "fmt"
+    "github.com/duke-git/lancet/strutil"
 )
 
 func main() {
-	s1 := strutil.LowerFirst("foo")
-	fmt.Println(s1) //foo
+    s1 := strutil.LowerFirst("foo")
+    fmt.Println(s1) //foo
 
-	s2 := strutil.LowerFirst("BAR")
-	fmt.Println(s2) //bAR
+    s2 := strutil.LowerFirst("BAR")
+    fmt.Println(s2) //bAR
 
-	s3 := strutil.LowerFirst("FOo")
-	fmt.Println(s3) //fOo
+    s3 := strutil.LowerFirst("FOo")
+    fmt.Println(s3) //fOo
 
-	s4 := strutil.LowerFirst("fOo大")
-	fmt.Println(s4) //fOo大
+    s4 := strutil.LowerFirst("fOo大")
+    fmt.Println(s4) //fOo大
 }
 ```
 
@@ -374,22 +376,22 @@ func UpperFirst(s string) string
 
 ```go
 import (
-	"fmt"
-	"github.com/duke-git/lancet/strutil"
+    "fmt"
+    "github.com/duke-git/lancet/strutil"
 )
 
 func main() {
-	s1 := strutil.UpperFirst("foo")
-	fmt.Println(s1) //Foo
+    s1 := strutil.UpperFirst("foo")
+    fmt.Println(s1) //Foo
 
-	s2 := strutil.UpperFirst("bAR")
-	fmt.Println(s2) //BAR
+    s2 := strutil.UpperFirst("bAR")
+    fmt.Println(s2) //BAR
 
-	s3 := strutil.UpperFirst("FOo")
-	fmt.Println(s3) //FOo
+    s3 := strutil.UpperFirst("FOo")
+    fmt.Println(s3) //FOo
 
-	s4 := strutil.UpperFirst("fOo大")
-	fmt.Println(s4) //FOo大
+    s4 := strutil.UpperFirst("fOo大")
+    fmt.Println(s4) //FOo大
 }
 ```
 
@@ -408,7 +410,7 @@ func Pad(source string, size int, padStr string) string
 ```go
 import (
     "fmt"
-    "github.com/duke-git/lancet/v2/strutil"
+    "github.com/duke-git/lancet/strutil"
 )
 
 func main() {
@@ -453,7 +455,7 @@ func PadEnd(source string, size int, padStr string) string
 ```go
 import (
     "fmt"
-    "github.com/duke-git/lancet/v2/strutil"
+    "github.com/duke-git/lancet/strutil"
 )
 
 func main() {
@@ -499,7 +501,7 @@ func PadStart(source string, size int, padStr string) string
 ```go
 import (
     "fmt"
-    "github.com/duke-git/lancet/v2/strutil"
+    "github.com/duke-git/lancet/strutil"
 )
 
 func main() {
@@ -544,16 +546,16 @@ func ReverseStr(s string) string
 
 ```go
 import (
-	"fmt"
-	"github.com/duke-git/lancet/strutil"
+    "fmt"
+    "github.com/duke-git/lancet/strutil"
 )
 
 func main() {
-	s1 := strutil.ReverseStr("abc")
-	fmt.Println(s1) //cba
+    s1 := strutil.ReverseStr("abc")
+    fmt.Println(s1) //cba
 
-	s2 := strutil.ReverseStr("12345")
-	fmt.Println(s2) //54321
+    s2 := strutil.ReverseStr("12345")
+    fmt.Println(s2) //54321
 }
 ```
 
@@ -571,25 +573,25 @@ func SnakeCase(s string) string
 
 ```go
 import (
-	"fmt"
-	"github.com/duke-git/lancet/strutil"
+    "fmt"
+    "github.com/duke-git/lancet/strutil"
 )
 
 func main() {
-	s1 := strutil.SnakeCase("Foo Bar-")
-	fmt.Println(s1) //foo_bar
+    s1 := strutil.SnakeCase("Foo Bar-")
+    fmt.Println(s1) //foo_bar
 
-	s2 := strutil.SnakeCase("foo_Bar")
-	fmt.Println(s2) //foo_bar
+    s2 := strutil.SnakeCase("foo_Bar")
+    fmt.Println(s2) //foo_bar
 
-	s3 := strutil.SnakeCase("fooBar")
-	fmt.Println(s3) //foo_bar
+    s3 := strutil.SnakeCase("fooBar")
+    fmt.Println(s3) //foo_bar
 
-	s4 := strutil.SnakeCase("__FOO_BAR__")
-	fmt.Println(s4) //foo_bar
+    s4 := strutil.SnakeCase("__FOO_BAR__")
+    fmt.Println(s4) //foo_bar
 
-	s5 := strutil.SnakeCase("Foo-#1😄$_%^&*(1bar")
-	fmt.Println(s5) //foo_1_1_bar
+    s5 := strutil.SnakeCase("Foo-#1😄$_%^&*(1bar")
+    fmt.Println(s5) //foo_1_1_bar
 }
 ```
 
@@ -607,25 +609,25 @@ func SnakeCase(s string) string
 
 ```go
 import (
-	"fmt"
-	"github.com/duke-git/lancet/strutil"
+    "fmt"
+    "github.com/duke-git/lancet/strutil"
 )
 
 func main() {
-	s1 := strutil.UpperSnakeCase("Foo Bar-")
-	fmt.Println(s1) //FOO_BAR
+    s1 := strutil.UpperSnakeCase("Foo Bar-")
+    fmt.Println(s1) //FOO_BAR
 
-	s2 := strutil.UpperSnakeCase("foo_Bar")
-	fmt.Println(s2) //FOO_BAR
+    s2 := strutil.UpperSnakeCase("foo_Bar")
+    fmt.Println(s2) //FOO_BAR
 
-	s3 := strutil.UpperSnakeCase("fooBar")
-	fmt.Println(s3) //FOO_BAR
+    s3 := strutil.UpperSnakeCase("fooBar")
+    fmt.Println(s3) //FOO_BAR
 
-	s4 := strutil.UpperSnakeCase("__FOO_BAR__")
-	fmt.Println(s4) //FOO_BAR
+    s4 := strutil.UpperSnakeCase("__FOO_BAR__")
+    fmt.Println(s4) //FOO_BAR
 
-	s5 := strutil.UpperSnakeCase("Foo-#1😄$_%^&*(1bar")
-	fmt.Println(s5) //FOO_1_1_BAR
+    s5 := strutil.UpperSnakeCase("Foo-#1😄$_%^&*(1bar")
+    fmt.Println(s5) //FOO_1_1_BAR
 }
 ```
 
@@ -643,25 +645,25 @@ func Wrap(str string, wrapWith string) string
 
 ```go
 import (
-	"fmt"
-	"github.com/duke-git/lancet/strutil"
+    "fmt"
+    "github.com/duke-git/lancet/strutil"
 )
 
 func main() {
-	s1 := strutil.Wrap("ab", "")
-	fmt.Println(s1) //ab
+    s1 := strutil.Wrap("ab", "")
+    fmt.Println(s1) //ab
 
-	s2 := strutil.Wrap("", "*")
-	fmt.Println(s2) //""
+    s2 := strutil.Wrap("", "*")
+    fmt.Println(s2) //""
 
-	s3 := strutil.Wrap("ab", "*")
-	fmt.Println(s3) //*ab*
+    s3 := strutil.Wrap("ab", "*")
+    fmt.Println(s3) //*ab*
 
-	s4 := strutil.Wrap("ab", "\"")
-	fmt.Println(s4) //\"ab\"
+    s4 := strutil.Wrap("ab", "\"")
+    fmt.Println(s4) //\"ab\"
 
-	s5 := strutil.Wrap("ab", "'")
-	fmt.Println(s5) //'ab'
+    s5 := strutil.Wrap("ab", "'")
+    fmt.Println(s5) //'ab'
 }
 ```
 
@@ -679,25 +681,25 @@ func Unwrap(str string, wrapToken string) string
 
 ```go
 import (
-	"fmt"
-	"github.com/duke-git/lancet/strutil"
+    "fmt"
+    "github.com/duke-git/lancet/strutil"
 )
 
 func main() {
-	s1 := strutil.Unwrap("ab", "")
-	fmt.Println(s1) //ab
+    s1 := strutil.Unwrap("ab", "")
+    fmt.Println(s1) //ab
 
-	s2 := strutil.Unwrap("ab", "*")
-	fmt.Println(s2) //ab
+    s2 := strutil.Unwrap("ab", "*")
+    fmt.Println(s2) //ab
 
-	s3 := strutil.Unwrap("**ab**", "*")
-	fmt.Println(s3) //*ab*
+    s3 := strutil.Unwrap("**ab**", "*")
+    fmt.Println(s3) //*ab*
 
-	s4 := strutil.Unwrap("*ab", "*")
-	fmt.Println(s4) //*ab
+    s4 := strutil.Unwrap("*ab", "*")
+    fmt.Println(s4) //*ab
 
-	s5 := strutil.Unwrap("***", "**")
-	fmt.Println(s5) //***
+    s5 := strutil.Unwrap("***", "**")
+    fmt.Println(s5) //***
 }
 ```
 
@@ -715,24 +717,110 @@ func SplitEx(s, sep string, removeEmptyString bool) []string
 
 ```go
 import (
-	"fmt"
-	"github.com/duke-git/lancet/strutil"
+    "fmt"
+    "github.com/duke-git/lancet/strutil"
 )
 
 func main() {
-	arr1 := strutil.SplitEx(" a b c ", "", true)
-	fmt.Println(arr1) //[]string{}
+    arr1 := strutil.SplitEx(" a b c ", "", true)
+    fmt.Println(arr1) //[]string{}
 
-	arr2 := strutil.SplitEx(" a b c ", " ", false)
-	fmt.Println(arr2) //[]string{"", "a", "b", "c", ""}
+    arr2 := strutil.SplitEx(" a b c ", " ", false)
+    fmt.Println(arr2) //[]string{"", "a", "b", "c", ""}
 
-	arr3 := strutil.SplitEx(" a b c ", " ", true)
-	fmt.Println(arr3) //[]string{"a", "b", "c"}
+    arr3 := strutil.SplitEx(" a b c ", " ", true)
+    fmt.Println(arr3) //[]string{"a", "b", "c"}
 
-	arr4 := strutil.SplitEx(" a = b = c = ", " = ", false)
-	fmt.Println(arr4) //[]string{" a", "b", "c", ""}
+    arr4 := strutil.SplitEx(" a = b = c = ", " = ", false)
+    fmt.Println(arr4) //[]string{" a", "b", "c", ""}
 
-	arr5 := strutil.SplitEx(" a = b = c = ", " = ", true)
-	fmt.Println(arr5) //[]string{" a", "b", "c"}
+    arr5 := strutil.SplitEx(" a = b = c = ", " = ", true)
+    fmt.Println(arr5) //[]string{" a", "b", "c"}
+}
+```
+
+### <span id="SplitWords">SplitWords</span>
+
+<p>将字符串拆分为单词，只支持字母字符单词。</p>
+
+<b>函数签名:</b>
+
+```go
+func SplitWords(s string) []string
+```
+
+<b>示例:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/strutil"
+)
+
+func main() {
+    result1 := strutil.SplitWords("a word")
+    result2 := strutil.SplitWords("I'am a programmer")
+    result3 := strutil.SplitWords("Bonjour, je suis programmeur")
+    result4 := strutil.SplitWords("a -b-c' 'd'e")
+    result5 := strutil.SplitWords("你好，我是一名码农")
+    result6 := strutil.SplitWords("こんにちは，私はプログラマーです")
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
+    fmt.Println(result5)
+    fmt.Println(result6)
+
+    // Output:
+    // [a word]
+    // [I'am a programmer]
+    // [Bonjour je suis programmeur]
+    // [a b-c' d'e]
+    // []
+    // []
+}
+```
+
+### <span id="WordCount">WordCount</span>
+
+<p>返回有意义单词的数量，只支持字母字符单词。</p>
+
+<b>函数签名:</b>
+
+```go
+func WordCount(s string) int
+```
+
+<b>示例:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/strutil"
+)
+
+func main() {
+    result1 := strutil.WordCount("a word")
+    result2 := strutil.WordCount("I'am a programmer")
+    result3 := strutil.WordCount("Bonjour, je suis programmeur")
+    result4 := strutil.WordCount("a -b-c' 'd'e")
+    result5 := strutil.WordCount("你好，我是一名码农")
+    result6 := strutil.WordCount("こんにちは，私はプログラマーです")
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
+    fmt.Println(result5)
+    fmt.Println(result6)
+
+    // Output:
+    // 2
+    // 3
+    // 4
+    // 3
+    // 0
+    // 0
 }
 ```
