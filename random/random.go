@@ -19,16 +19,21 @@ const (
 	LETTERS       = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 )
 
+func init() {
+	rand.Seed(time.Now().UnixNano())
+}
+
 // RandInt generate random int between min and max, maybe min,  not be max
 func RandInt(min, max int) int {
 	if min == max {
 		return min
 	}
+
 	if max < min {
 		min, max = max, min
 	}
-	r := rand.New(rand.NewSource(time.Now().UnixNano()))
-	return r.Intn(max-min) + min
+
+	return rand.Intn(max-min) + min
 }
 
 // RandBytes generate random byte slice
@@ -72,9 +77,12 @@ func RandNumeralOrLetter(length int) string {
 // random generate a random string based on given string range
 func random(s string, length int) string {
 	b := make([]byte, length)
-	r := rand.New(rand.NewSource(time.Now().UnixNano()))
+
+	// fix: https://github.com/duke-git/lancet/issues/75
+	// r := rand.New(rand.NewSource(time.Now().UnixNano()))
+
 	for i := range b {
-		b[i] = s[r.Int63()%int64(len(s))]
+		b[i] = s[rand.Int63()%int64(len(s))]
 	}
 	return string(b)
 }
