@@ -130,3 +130,21 @@ func TestSchedule(t *testing.T) {
 	expected := []string{"*", "*", "*", "*", "*"}
 	assert.Equal(expected, res)
 }
+
+func TestPipeline(t *testing.T) {
+	assert := internal.NewAssert(t, "TestPipeline")
+
+	addOne := func(x interface{}) interface{} {
+		return x.(int) + 1
+	}
+	double := func(x interface{}) interface{} {
+		return 2 * x.(int)
+	}
+	square := func(x interface{}) interface{} {
+		return x.(int) * x.(int)
+	}
+
+	f := Pipeline(addOne, double, square)
+
+	assert.Equal(36, f(2))
+}

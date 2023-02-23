@@ -113,3 +113,15 @@ func Schedule(d time.Duration, fn interface{}, args ...interface{}) chan bool {
 
 	return quit
 }
+
+// Pipeline takes a list of functions and returns a function whose param will be passed into
+// the functions one by one.
+func Pipeline(funcs ...func(interface{}) interface{}) func(interface{}) interface{} {
+	return func(arg interface{}) (result interface{}) {
+		result = arg
+		for _, fn := range funcs {
+			result = fn(result)
+		}
+		return
+	}
+}

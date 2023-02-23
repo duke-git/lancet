@@ -29,6 +29,8 @@ import (
 -   [Compose](#Compose)
 -   [Debounced](#Debounced)
 -   [Delay](#Delay)
+-   [Pipeline](#Pipeline)
+-   [Schedule](#Schedule)
 -   [Watcher](#Watcher)
 
 <div STYLE="page-break-after: always;"></div>
@@ -295,6 +297,48 @@ func main() {
     close(stop)
 
     fmt.Println(res) //[* * * * *]
+}
+```
+
+### <span id="Pipeline">Pipeline</span>
+
+<p>管道执行多个函数</p>
+
+<b>函数签名:</b>
+
+```go
+func Pipeline(funcs ...func(interface{}) interface{}) func(interface{}) interface{}
+```
+
+<b>例子:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/function"
+)
+
+func main() {
+    addOne := func(x interface{}) interface{} {
+		return x.(int) + 1
+	}
+	double := func(x interface{}) interface{} {
+		return 2 * x.(int)
+	}
+	square := func(x interface{}) interface{} {
+		return x.(int) * x.(int)
+	}
+
+	f := function.Pipeline(addOne, double, square)
+
+    result := fn(2)
+
+    fmt.Println(result)
+
+    // Output:
+    // 36
 }
 ```
 
