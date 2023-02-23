@@ -29,6 +29,7 @@ import (
 -   [Compose](#Compose)
 -   [Debounced](#Debounced)
 -   [Delay](#Delay)
+-   [Schedule](#Schedule)
 -   [Pipeline](#Pipeline)
 -   [Watcher](#Watcher)
 

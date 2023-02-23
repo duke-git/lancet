@@ -33,6 +33,7 @@ import (
 -   [UpperKebabCase](#UpperKebabCase)
 -   [LowerFirst](#LowerFirst)
 -   [UpperFirst](#UpperFirst)
+-   [Pad](#Pad)
 -   [PadEnd](#PadEnd)
 -   [PadStart](#PadStart)
 -   [Reverse](#Reverse)
