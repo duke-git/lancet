@@ -56,8 +56,8 @@ import (
 )
 
 func main() {
-	randBytes := random.RandBytes(4)
-	fmt.Println(randBytes)
+    randBytes := random.RandBytes(4)
+    fmt.Println(randBytes)
 }
 ```
 
@@ -82,8 +82,8 @@ import (
 )
 
 func main() {
-	rInt := random.RandInt(1, 10)
-	fmt.Println(rInt)
+    rInt := random.RandInt(1, 10)
+    fmt.Println(rInt)
 }
 ```
 
@@ -108,8 +108,8 @@ import (
 )
 
 func main() {
-	randStr := random.RandString(6)
-	fmt.Println(randStr) //pGWsze
+    randStr := random.RandString(6)
+    fmt.Println(randStr) //pGWsze
 }
 ```
 
@@ -134,8 +134,8 @@ import (
 )
 
 func main() {
-	randStr := random.RandString(6)
-	fmt.Println(randStr) //PACWGF
+    randStr := random.RandString(6)
+    fmt.Println(randStr) //PACWGF
 }
 ```
 
@@ -160,8 +160,8 @@ import (
 )
 
 func main() {
-	randStr := random.RandLower(6)
-	fmt.Println(randStr) //siqbew
+    randStr := random.RandLower(6)
+    fmt.Println(randStr) //siqbew
 }
 ```
 
@@ -186,8 +186,8 @@ import (
 )
 
 func main() {
-	randStr := random.RandNumeral(6)
-	fmt.Println(randStr) //035172
+    randStr := random.RandNumeral(6)
+    fmt.Println(randStr) //035172
 }
 ```
 
@@ -212,8 +212,8 @@ import (
 )
 
 func main() {
-	randStr := random.RandNumeralOrLetter(6)
-	fmt.Println(randStr) //0aW7cQ
+    randStr := random.RandNumeralOrLetter(6)
+    fmt.Println(randStr) //0aW7cQ
 }
 ```
 
@@ -238,10 +238,10 @@ import (
 )
 
 func main() {
-	uuid, err := random.UUIdV4()
+    uuid, err := random.UUIdV4()
     if err != nil {
         return
     }
-	fmt.Println(uuid)
+    fmt.Println(uuid)
 }
 ```

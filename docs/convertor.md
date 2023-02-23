@@ -1,4 +1,5 @@
 # Convertor
+
 Package convertor contains some functions for data type convertion.
 
 <div STYLE="page-break-after: always;"></div>
@@ -10,6 +11,7 @@ Package convertor contains some functions for data type convertion.
 <div STYLE="page-break-after: always;"></div>
 
 ## Usage:
+
 ```go
 import (
     "github.com/duke-git/lancet/convertor"
@@ -20,28 +22,27 @@ import (
 
 ## Index
 
-- [ColorHexToRGB](#ColorHexToRGB)
-- [ColorRGBToHex](#ColorRGBToHex)
-- [ToBool](#ToBool)
-- [ToBytes](#ToBytes)
-- [ToChar](#ToChar)
-- [ToChannel](#ToChannel)
-- [ToFloat](#ToFloat)
-- [ToInt](#ToInt)
-- [ToJson](#ToJson)
-- [ToString](#ToString)
-- [StructToMap](#StructToMap)
-- [EncodeByte](#EncodeByte)
-- [DecodeByte](#DecodeByte)
-- [DeepClone](#DeepClone)
+-   [ColorHexToRGB](#ColorHexToRGB)
+-   [ColorRGBToHex](#ColorRGBToHex)
+-   [ToBool](#ToBool)
+-   [ToBytes](#ToBytes)
+-   [ToChar](#ToChar)
+-   [ToChannel](#ToChannel)
+-   [ToFloat](#ToFloat)
+-   [ToInt](#ToInt)
+-   [ToJson](#ToJson)
+-   [ToString](#ToString)
+-   [StructToMap](#StructToMap)
+-   [EncodeByte](#EncodeByte)
+-   [DecodeByte](#DecodeByte)
+-   [DeepClone](#DeepClone)
 
 <div STYLE="page-break-after: always;"></div>
 
 ## Documentation
 
-
-
 ### <span id="ColorHexToRGB">ColorHexToRGB</span>
+
 <p>Convert color hex to color rgb.</p>
 
 <b>Signature:</b>
@@ -49,6 +50,7 @@ import (
 ```go
 func ColorHexToRGB(colorHex string) (red, green, blue int)
 ```
+
 <b>Example:</b>
 
 ```go
@@ -66,8 +68,6 @@ func main() {
 }
 ```
 
-
-
 ### <span id="ColorRGBToHex">ColorRGBToHex</span>
 
 <p>Convert color rgb to color hex.</p>
@@ -77,6 +77,7 @@ func main() {
 ```go
 func ColorRGBToHex(red, green, blue int) string
 ```
+
 <b>Example:</b>
 
 ```go
@@ -97,8 +98,6 @@ func main() {
 }
 ```
 
-
-
 ### <span id="ToBool">ToBool</span>
 
 <p>Convert string to a boolean value. Use strconv.ParseBool</p>
@@ -108,6 +107,7 @@ func main() {
 ```go
 func ToBool(s string) (bool, error)
 ```
+
 <b>Example:</b>
 
 ```go
@@ -133,8 +133,6 @@ func main() {
 }
 ```
 
-
-
 ### <span id="ToBytes">ToBytes</span>
 
 <p>Convert interface to byte slice.</p>
@@ -144,6 +142,7 @@ func main() {
 ```go
 func ToBytes(data interface{}) ([]byte, error)
 ```
+
 <b>Example:</b>
 
 ```go
@@ -163,8 +162,6 @@ func main() {
 }
 ```
 
-
-
 ### <span id="ToChar">ToChar</span>
 
 <p>Convert string to char slice.</p>
@@ -174,6 +171,7 @@ func main() {
 ```go
 func ToChar(s string) []string
 ```
+
 <b>Example:</b>
 
 ```go
@@ -196,7 +194,6 @@ func main() {
 }
 ```
 
-
 ### <span id="ToChannel">ToChannel</span>
 
 <p>Convert a collection of elements to a read-only channels.</p>
@@ -206,6 +203,7 @@ func main() {
 ```go
 func ToChannel(array []interface{}) <-chan interface{}
 ```
+
 <b>Example:</b>
 
 ```go
@@ -233,8 +231,6 @@ func main() {
 }
 ```
 
-
-
 ### <span id="ToFloat">ToFloat</span>
 
 <p>Convert interface to a float64 value. If param is a invalid floatable, will return 0 and error. </p>
@@ -244,6 +240,7 @@ func main() {
 ```go
 func ToFloat(value interface{}) (float64, error)
 ```
+
 <b>Example:</b>
 
 ```go
@@ -266,8 +263,6 @@ func main() {
 }
 ```
 
-
-
 ### <span id="ToInt">ToInt</span>
 
 <p>Convert interface to a int64 value. If param is a invalid intable, will return 0 and error. </p>
@@ -277,6 +272,7 @@ func main() {
 ```go
 func ToInt(value interface{}) (int64, error)
 ```
+
 <b>Example:</b>
 
 ```go
@@ -299,8 +295,6 @@ func main() {
 }
 ```
 
-
-
 ### <span id="ToJson">ToJson</span>
 
 <p>Convert interface to json string. If param can't be converted, will return "" and error. </p>
@@ -310,6 +304,7 @@ func main() {
 ```go
 func ToJson(value interface{}) (string, error)
 ```
+
 <b>Example:</b>
 
 ```go
@@ -327,8 +322,6 @@ func main() {
 }
 ```
 
-
-
 ### <span id="ToString">ToString</span>
 
 <p>Convert interface to string. </p>
@@ -338,6 +331,7 @@ func main() {
 ```go
 func ToString(value interface{}) string
 ```
+
 <b>Example:</b>
 
 ```go
@@ -355,8 +349,6 @@ func main() {
 }
 ```
 
-
-
 ### <span id="StructToMap">StructToMap</span>
 
 <p>Convert struct to map, only convert exported field, struct field tag `json` should be set.</p>
@@ -366,6 +358,7 @@ func main() {
 ```go
 func StructToMap(value interface{}) (map[string]interface{}, error)
 ```
+
 <b>Example:</b>
 
 ```go
@@ -391,7 +384,6 @@ func main() {
 }
 ```
 
-
 ### <span id="EncodeByte">EncodeByte</span>
 
 <p>Encode data to byte slice.</p>
@@ -401,6 +393,7 @@ func main() {
 ```go
 func EncodeByte(data any) ([]byte, error)
 ```
+
 <b>Example:</b>
 
 ```go
@@ -417,8 +410,6 @@ func main() {
 }
 ```
 
-
-
 ### <span id="DecodeByte">DecodeByte</span>
 
 <p>Decode byte data to target object. target should be a pointer instance.</p>
@@ -428,6 +419,7 @@ func main() {
 ```go
 func DecodeByte(data []byte, target any) error
 ```
+
 <b>Example:</b>
 
 ```go
@@ -440,8 +432,8 @@ import (
 
 func main() {
     var result string
-	byteData := []byte{6, 12, 0, 3, 97, 98, 99}
-	convertor.DecodeByte(byteData, &result)
+    byteData := []byte{6, 12, 0, 3, 97, 98, 99}
+    convertor.DecodeByte(byteData, &result)
     fmt.Println(result) //"abc"
 }
 ```
@@ -468,44 +460,44 @@ import (
 
 func main() {
     type Struct struct {
-		Str        string
-		Int        int
-		Float      float64
-		Bool       bool
-		Nil        interface{}
-		unexported string
-	}
+        Str        string
+        Int        int
+        Float      float64
+        Bool       bool
+        Nil        interface{}
+        unexported string
+    }
 
-	cases := []interface{}{
-		true,
-		1,
-		0.1,
-		map[string]int{
-			"a": 1,
-			"b": 2,
-		},
-		&Struct{
-			Str:   "test",
-			Int:   1,
-			Float: 0.1,
-			Bool:  true,
-			Nil:   nil,
-			// unexported: "can't be cloned",
-		},
-	}
+    cases := []interface{}{
+        true,
+        1,
+        0.1,
+        map[string]int{
+            "a": 1,
+            "b": 2,
+        },
+        &Struct{
+            Str:   "test",
+            Int:   1,
+            Float: 0.1,
+            Bool:  true,
+            Nil:   nil,
+            // unexported: "can't be cloned",
+        },
+    }
 
-	for _, item := range cases {
-		cloned := convertor.DeepClone(item)
+    for _, item := range cases {
+        cloned := convertor.DeepClone(item)
 
-		isPointerEqual := &cloned == &item
-		fmt.Println(cloned, isPointerEqual)
-	}
+        isPointerEqual := &cloned == &item
+        fmt.Println(cloned, isPointerEqual)
+    }
 
-	// Output:
-	// true false
-	// 1 false
-	// 0.1 false
-	// map[a:1 b:2] false
-	// &{test 1 0.1 true <nil> } false
+    // Output:
+    // true false
+    // 1 false
+    // 0.1 false
+    // map[a:1 b:2] false
+    // &{test 1 0.1 true <nil> } false
 }
 ```

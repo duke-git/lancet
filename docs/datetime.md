@@ -1,4 +1,5 @@
 # Datetime
+
 Package datetime supports date and time format and compare.
 
 <div STYLE="page-break-after: always;"></div>
@@ -10,6 +11,7 @@ Package datetime supports date and time format and compare.
 <div STYLE="page-break-after: always;"></div>
 
 ## Usage:
+
 ```go
 import (
     "github.com/duke-git/lancet/datetime"
@@ -19,65 +21,67 @@ import (
 <div STYLE="page-break-after: always;"></div>
 
 ## Index
-- [AddDay](#AddDay)
-- [AddHour](#AddHour)
-- [AddMinute](#AddMinute)
-- [BeginOfMinute](#BeginOfMinute)
-- [BeginOfHour](#BeginOfHour)
-- [BeginOfDay](#BeginOfDay)
-- [BeginOfWeek](#BeginOfWeek)
-- [BeginOfMonth](#BeginOfMonth)
-- [BeginOfYear](#BeginOfYear)
-- [EndOfMinute](#EndOfMinute)
-- [EndOfHour](#EndOfHour)
-- [EndOfDay](#EndOfDay)
-- [EndOfWeek](#EndOfWeek)
-- [EndOfMonth](#EndOfMonth)
-- [EndOfYear](#EndOfYear)
-- [GetNowDate](#GetNowDate)
-- [GetNowTime](#GetNowTime)
-- [GetNowDateTime](#GetNowDateTime)
-- [GetZeroHourTimestamp](#GetZeroHourTimestamp)
-- [GetNightTimestamp](#GetNightTimestamp)
-- [FormatTimeToStr](#FormatTimeToStr)
 
-- [FormatStrToTime](#FormatStrToTime)
-- [NewUnixNow](#NewUnixNow)
-- [NewUnix](#NewUnix)
-- [NewFormat](#NewFormat)
-- [NewISO8601](#NewISO8601)
-- [ToUnix](#ToUnix)
-- [ToFormat](#ToFormat)
-- [ToFormatForTpl](#ToFormatForTpl)
-- [ToIso8601](#ToIso8601)
+-   [AddDay](#AddDay)
+-   [AddHour](#AddHour)
+-   [AddMinute](#AddMinute)
+-   [BeginOfMinute](#BeginOfMinute)
+-   [BeginOfHour](#BeginOfHour)
+-   [BeginOfDay](#BeginOfDay)
+-   [BeginOfWeek](#BeginOfWeek)
+-   [BeginOfMonth](#BeginOfMonth)
+-   [BeginOfYear](#BeginOfYear)
+-   [EndOfMinute](#EndOfMinute)
+-   [EndOfHour](#EndOfHour)
+-   [EndOfDay](#EndOfDay)
+-   [EndOfWeek](#EndOfWeek)
+-   [EndOfMonth](#EndOfMonth)
+-   [EndOfYear](#EndOfYear)
+-   [GetNowDate](#GetNowDate)
+-   [GetNowTime](#GetNowTime)
+-   [GetNowDateTime](#GetNowDateTime)
+-   [GetZeroHourTimestamp](#GetZeroHourTimestamp)
+-   [GetNightTimestamp](#GetNightTimestamp)
+-   [FormatTimeToStr](#FormatTimeToStr)
+-   [FormatStrToTime](#FormatStrToTime)
+-   [NewUnixNow](#NewUnixNow)
+-   [NewUnix](#NewUnix)
+-   [NewFormat](#NewFormat)
+-   [NewISO8601](#NewISO8601)
+-   [ToUnix](#ToUnix)
+-   [ToFormat](#ToFormat)
+-   [ToFormatForTpl](#ToFormatForTpl)
+-   [ToIso8601](#ToIso8601)
 
 <div STYLE="page-break-after: always;"></div>
 
 ## Documentation
 
 ## Note:
-1. 'format' string param in func FormatTimeToStr and FormatStrToTime function should be one of flows:
-- yyyy-mm-dd hh:mm:ss
-- yyyy-mm-dd hh:mm
-- yyyy-mm-dd hh
-- yyyy-mm-dd
-- yyyy-mm
-- mm-dd
-- dd-mm-yy hh:mm:ss
-- yyyy/mm/dd hh:mm:ss
-- yyyy/mm/dd hh:mm
-- yyyy-mm-dd hh
-- yyyy/mm/dd
-- yyyy/mm
-- mm/dd
-- dd/mm/yy hh:mm:ss
-- yyyy
-- mm
-- hh:mm:ss
-- mm:ss
 
+1. 'format' string param in func FormatTimeToStr and FormatStrToTime function should be one of flows:
+
+-   yyyy-mm-dd hh:mm:ss
+-   yyyy-mm-dd hh:mm
+-   yyyy-mm-dd hh
+-   yyyy-mm-dd
+-   yyyy-mm
+-   mm-dd
+-   dd-mm-yy hh:mm:ss
+-   yyyy/mm/dd hh:mm:ss
+-   yyyy/mm/dd hh:mm
+-   yyyy-mm-dd hh
+-   yyyy/mm/dd
+-   yyyy/mm
+-   mm/dd
+-   dd/mm/yy hh:mm:ss
+-   yyyy
+-   mm
+-   hh:mm:ss
+-   mm:ss
 
 ### <span id="AddDay">AddDay</span>
+
 <p>Add or sub days to time.</p>
 
 <b>Signature:</b>
@@ -85,6 +89,7 @@ import (
 ```go
 func AddDay(t time.Time, day int64) time.Time
 ```
+
 <b>Example:</b>
 
 ```go
@@ -105,8 +110,8 @@ func main() {
 }
 ```
 
-
 ### <span id="AddHour">AddHour</span>
+
 <p>Add or sub hours to time.</p>
 
 <b>Signature:</b>
@@ -114,6 +119,7 @@ func main() {
 ```go
 func AddHour(t time.Time, hour int64) time.Time
 ```
+
 <b>Example:</b>
 
 ```go
@@ -135,6 +141,7 @@ func main() {
 ```
 
 ### <span id="AddMinute">AddMinute</span>
+
 <p>Add or sub minutes to time.</p>
 
 <b>Signature:</b>
@@ -142,6 +149,7 @@ func main() {
 ```go
 func AddMinute(t time.Time, minute int64) time.Time
 ```
+
 <b>Example:</b>
 
 ```go
@@ -163,6 +171,7 @@ func main() {
 ```
 
 ### <span id="BeginOfMinute">BeginOfMinute</span>
+
 <p>Return beginning minute time of day.</p>
 
 <b>Signature:</b>
@@ -170,6 +179,7 @@ func main() {
 ```go
 func BeginOfMinute(t time.Time) time.Time
 ```
+
 <b>Example:</b>
 
 ```go
@@ -189,6 +199,7 @@ func main() {
 ```
 
 ### <span id="BeginOfHour">BeginOfHour</span>
+
 <p>Return zero time of day.</p>
 
 <b>Signature:</b>
@@ -196,6 +207,7 @@ func main() {
 ```go
 func BeginOfHour(t time.Time) time.Time
 ```
+
 <b>Example:</b>
 
 ```go
@@ -215,6 +227,7 @@ func main() {
 ```
 
 ### <span id="BeginOfDay">BeginOfDay</span>
+
 <p>Return begin time of day.</p>
 
 <b>Signature:</b>
@@ -222,6 +235,7 @@ func main() {
 ```go
 func BeginOfDay(t time.Time) time.Time
 ```
+
 <b>Example:</b>
 
 ```go
@@ -240,9 +254,8 @@ func main() {
 }
 ```
 
-
-
 ### <span id="BeginOfWeek">BeginOfWeek</span>
+
 <p>Return beginning time of week, week begin from Sunday.</p>
 
 <b>Signature:</b>
@@ -250,6 +263,7 @@ func main() {
 ```go
 func BeginOfWeek(t time.Time) time.Time
 ```
+
 <b>Example:</b>
 
 ```go
@@ -268,9 +282,8 @@ func main() {
 }
 ```
 
-
-
 ### <span id="BeginOfMonth">BeginOfMonth</span>
+
 <p>Return beginning time of month</p>
 
 <b>Signature:</b>
@@ -278,6 +291,7 @@ func main() {
 ```go
 func BeginOfMonth(t time.Time) time.Time
 ```
+
 <b>Example:</b>
 
 ```go
@@ -296,8 +310,8 @@ func main() {
 }
 ```
 
-
 ### <span id="BeginOfYear">BeginOfYear</span>
+
 <p>Return beginning time of year.</p>
 
 <b>Signature:</b>
@@ -305,6 +319,7 @@ func main() {
 ```go
 func BeginOfYear(t time.Time) time.Time
 ```
+
 <b>Example:</b>
 
 ```go
@@ -323,9 +338,8 @@ func main() {
 }
 ```
 
-
-
 ### <span id="EndOfMinute">EndOfMinute</span>
+
 <p>Return end time minute of day.</p>
 
 <b>Signature:</b>
@@ -333,6 +347,7 @@ func main() {
 ```go
 func EndOfMinute(t time.Time) time.Time
 ```
+
 <b>Example:</b>
 
 ```go
@@ -352,6 +367,7 @@ func main() {
 ```
 
 ### <span id="EndOfHour">EndOfHour</span>
+
 <p>Return end time hour of day.</p>
 
 <b>Signature:</b>
@@ -359,6 +375,7 @@ func main() {
 ```go
 func EndOfHour(t time.Time) time.Time
 ```
+
 <b>Example:</b>
 
 ```go
@@ -378,6 +395,7 @@ func main() {
 ```
 
 ### <span id="EndOfDay">EndOfDay</span>
+
 <p>Return end time hour of day.</p>
 
 <b>Signature:</b>
@@ -385,6 +403,7 @@ func main() {
 ```go
 func EndOfDay(t time.Time) time.Time
 ```
+
 <b>Example:</b>
 
 ```go
@@ -403,9 +422,8 @@ func main() {
 }
 ```
 
-
-
 ### <span id="EndOfWeek">EndOfWeek</span>
+
 <p>Return end time of week, week end with Saturday.</p>
 
 <b>Signature:</b>
@@ -413,6 +431,7 @@ func main() {
 ```go
 func EndOfWeek(t time.Time) time.Time
 ```
+
 <b>Example:</b>
 
 ```go
@@ -431,9 +450,8 @@ func main() {
 }
 ```
 
-
-
 ### <span id="EndOfMonth">EndOfMonth</span>
+
 <p>Return end time of month</p>
 
 <b>Signature:</b>
@@ -441,6 +459,7 @@ func main() {
 ```go
 func EndOfMonth(t time.Time) time.Time
 ```
+
 <b>Example:</b>
 
 ```go
@@ -459,8 +478,8 @@ func main() {
 }
 ```
 
-
 ### <span id="EndOfYear">EndOfYear</span>
+
 <p>Return beginning time of year.</p>
 
 <b>Signature:</b>
@@ -468,6 +487,7 @@ func main() {
 ```go
 func EndOfYear(t time.Time) time.Time
 ```
+
 <b>Example:</b>
 
 ```go
@@ -486,8 +506,8 @@ func main() {
 }
 ```
 
-
 ### <span id="GetNowDate">GetNowDate</span>
+
 <p>Get current date string, format is yyyy-mm-dd.</p>
 
 <b>Signature:</b>
@@ -495,6 +515,7 @@ func main() {
 ```go
 func GetNowDate() string
 ```
+
 <b>Example:</b>
 
 ```go
@@ -513,8 +534,8 @@ func main() {
 }
 ```
 
-
 ### <span id="GetNowTime">GetNowTime</span>
+
 <p>Get current time string, format is hh:mm:ss.</p>
 
 <b>Signature:</b>
@@ -522,6 +543,7 @@ func main() {
 ```go
 func GetNowTime() string
 ```
+
 <b>Example:</b>
 
 ```go
@@ -540,8 +562,8 @@ func main() {
 }
 ```
 
-
 ### <span id="GetNowDateTime">GetNowDateTime</span>
+
 <p>Get current date time string, format is yyyy-mm-dd hh:mm:ss.</p>
 
 <b>Signature:</b>
@@ -549,6 +571,7 @@ func main() {
 ```go
 func GetNowDateTime() string
 ```
+
 <b>Example:</b>
 
 ```go
@@ -567,8 +590,8 @@ func main() {
 }
 ```
 
-
 ### <span id="GetZeroHourTimestamp">GetZeroHourTimestamp</span>
+
 <p>Return timestamp of zero hour (timestamp of 00:00).</p>
 
 <b>Signature:</b>
@@ -576,6 +599,7 @@ func main() {
 ```go
 func GetZeroHourTimestamp() int64
 ```
+
 <b>Example:</b>
 
 ```go
@@ -594,8 +618,8 @@ func main() {
 }
 ```
 
-
 ### <span id="GetNightTimestamp">GetNightTimestamp</span>
+
 <p>Return timestamp of zero hour (timestamp of 23:59).</p>
 
 <b>Signature:</b>
@@ -603,6 +627,7 @@ func main() {
 ```go
 func GetNightTimestamp() int64
 ```
+
 <b>Example:</b>
 
 ```go
@@ -622,6 +647,7 @@ func main() {
 ```
 
 ### <span id="FormatTimeToStr">FormatTimeToStr</span>
+
 <p>Format time to string, `format` param specification see note 1.</p>
 
 <b>Signature:</b>
@@ -629,6 +655,7 @@ func main() {
 ```go
 func FormatTimeToStr(t time.Time, format string) string
 ```
+
 <b>Example:</b>
 
 ```go
@@ -647,8 +674,8 @@ func main() {
 }
 ```
 
-
 ### <span id="FormatStrToTime">FormatStrToTime</span>
+
 <p>Format string to time, `format` param specification see note 1.</p>
 
 <b>Signature:</b>
@@ -656,6 +683,7 @@ func main() {
 ```go
 func FormatStrToTime(str, format string) (time.Time, error)
 ```
+
 <b>Example:</b>
 
 ```go
@@ -672,19 +700,19 @@ func main() {
 }
 ```
 
-
-
 ### <span id="NewUnixNow">NewUnixNow</span>
+
 <p>Return unix timestamp of current time</p>
 
 <b>Signature:</b>
 
 ```go
 type theTime struct {
-	unix int64
+    unix int64
 }
 func NewUnixNow() *theTime
 ```
+
 <b>Example:</b>
 
 ```go
@@ -701,18 +729,19 @@ func main() {
 }
 ```
 
-
 ### <span id="NewUnix">NewUnix</span>
+
 <p>Return unix timestamp of specified int64 value.</p>
 
 <b>Signature:</b>
 
 ```go
 type theTime struct {
-	unix int64
+    unix int64
 }
 func NewUnix(unix int64) *theTime
 ```
+
 <b>Example:</b>
 
 ```go
@@ -729,19 +758,19 @@ func main() {
 }
 ```
 
-
-
 ### <span id="NewFormat">NewFormat</span>
+
 <p>Return unix timestamp of specified time string, t should be "yyyy-mm-dd hh:mm:ss".</p>
 
 <b>Signature:</b>
 
 ```go
 type theTime struct {
-	unix int64
+    unix int64
 }
 func NewFormat(t string) (*theTime, error)
 ```
+
 <b>Example:</b>
 
 ```go
@@ -758,20 +787,19 @@ func main() {
 }
 ```
 
-
-
-
 ### <span id="NewISO8601">NewISO8601</span>
+
 <p>Return unix timestamp of specified iso8601 time string.</p>
 
 <b>Signature:</b>
 
 ```go
 type theTime struct {
-	unix int64
+    unix int64
 }
 func NewISO8601(iso8601 string) (*theTime, error)
 ```
+
 <b>Example:</b>
 
 ```go
@@ -788,9 +816,8 @@ func main() {
 }
 ```
 
-
-
 ### <span id="ToUnix">ToUnix</span>
+
 <p>Return unix timestamp.</p>
 
 <b>Signature:</b>
@@ -798,6 +825,7 @@ func main() {
 ```go
 func (t *theTime) ToUnix() int64
 ```
+
 <b>Example:</b>
 
 ```go
@@ -814,9 +842,8 @@ func main() {
 }
 ```
 
-
-
 ### <span id="ToFormat">ToFormat</span>
+
 <p>Return time string 'yyyy-mm-dd hh:mm:ss'.</p>
 
 <b>Signature:</b>
@@ -824,6 +851,7 @@ func main() {
 ```go
 func (t *theTime) ToFormat() string
 ```
+
 <b>Example:</b>
 
 ```go
@@ -840,9 +868,8 @@ func main() {
 }
 ```
 
-
-
 ### <span id="ToFormatForTpl">ToFormatForTpl</span>
+
 <p>Return the time string which format is specified tpl.</p>
 
 <b>Signature:</b>
@@ -850,6 +877,7 @@ func main() {
 ```go
 func (t *theTime) ToFormatForTpl(tpl string) string
 ```
+
 <b>Example:</b>
 
 ```go
@@ -867,8 +895,8 @@ func main() {
 }
 ```
 
-
 ### <span id="ToIso8601">ToIso8601</span>
+
 <p>Return iso8601 time string.</p>
 
 <b>Signature:</b>
@@ -876,6 +904,7 @@ func main() {
 ```go
 func (t *theTime) ToIso8601() string
 ```
+
 <b>Example:</b>
 
 ```go

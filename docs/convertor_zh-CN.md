@@ -1,5 +1,6 @@
 # Convertor
-convertor转换器包支持一些常见的数据类型转换
+
+convertor 转换器包支持一些常见的数据类型转换
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -21,28 +22,27 @@ import (
 
 ## 目录
 
-- [ColorHexToRGB](#ColorHexToRGB)
-- [ColorRGBToHex](#ColorRGBToHex)
-- [ToBool](#ToBool)
-- [ToBytes](#ToBytes)
-- [ToChar](#ToChar)
-- [ToChannel](#ToChannel)
-- [ToFloat](#ToFloat)
-- [ToInt](#ToInt)
-- [ToJson](#ToJson)
-- [ToString](#ToString)
-- [StructToMap](#StructToMap)
-- [EncodeByte](#EncodeByte)
-- [DecodeByte](#DecodeByte)
-- [DeepClone](#DeepClone)
+-   [ColorHexToRGB](#ColorHexToRGB)
+-   [ColorRGBToHex](#ColorRGBToHex)
+-   [ToBool](#ToBool)
+-   [ToBytes](#ToBytes)
+-   [ToChar](#ToChar)
+-   [ToChannel](#ToChannel)
+-   [ToFloat](#ToFloat)
+-   [ToInt](#ToInt)
+-   [ToJson](#ToJson)
+-   [ToString](#ToString)
+-   [StructToMap](#StructToMap)
+-   [EncodeByte](#EncodeByte)
+-   [DecodeByte](#DecodeByte)
+-   [DeepClone](#DeepClone)
 
 <div STYLE="page-break-after: always;"></div>
 
 ## 文档
 
-
-
 ### <span id="ColorHexToRGB">ColorHexToRGB</span>
+
 <p>颜色值十六进制转rgb</p>
 
 <b>函数签名:</b>
@@ -50,6 +50,7 @@ import (
 ```go
 func ColorHexToRGB(colorHex string) (red, green, blue int)
 ```
+
 <b>列子:</b>
 
 ```go
@@ -67,8 +68,6 @@ func main() {
 }
 ```
 
-
-
 ### <span id="ColorRGBToHex">ColorRGBToHex</span>
 
 <p>颜色值rgb转十六进制</p>
@@ -78,6 +77,7 @@ func main() {
 ```go
 func ColorRGBToHex(red, green, blue int) string
 ```
+
 <b>列子:</b>
 
 ```go
@@ -98,8 +98,6 @@ func main() {
 }
 ```
 
-
-
 ### <span id="ToBool">ToBool</span>
 
 <p>字符串转布尔类型，使用strconv.ParseBool</p>
@@ -109,6 +107,7 @@ func main() {
 ```go
 func ToBool(s string) (bool, error)
 ```
+
 <b>列子:</b>
 
 ```go
@@ -134,8 +133,6 @@ func main() {
 }
 ```
 
-
-
 ### <span id="ToBytes">ToBytes</span>
 
 <p>interface转字节切片.</p>
@@ -145,6 +142,7 @@ func main() {
 ```go
 func ToBytes(data interface{}) ([]byte, error)
 ```
+
 <b>列子:</b>
 
 ```go
@@ -164,8 +162,6 @@ func main() {
 }
 ```
 
-
-
 ### <span id="ToChar">ToChar</span>
 
 <p>字符串转字符切片</p>
@@ -175,6 +171,7 @@ func main() {
 ```go
 func ToChar(s string) []string
 ```
+
 <b>列子:</b>
 
 ```go
@@ -197,8 +194,6 @@ func main() {
 }
 ```
 
-
-
 ### <span id="ToChannel">ToChannel</span>
 
 <p>将切片转为只读channel</p>
@@ -208,6 +203,7 @@ func main() {
 ```go
 func ToChannel(array []interface{}) <-chan interface{}
 ```
+
 <b>例子:</b>
 
 ```go
@@ -235,8 +231,6 @@ func main() {
 }
 ```
 
-
-
 ### <span id="ToFloat">ToFloat</span>
 
 <p>将interface转成float64类型，如果参数无法转换，会返回0和error</p>
@@ -246,6 +240,7 @@ func main() {
 ```go
 func ToFloat(value interface{}) (float64, error)
 ```
+
 <b>列子:</b>
 
 ```go
@@ -268,8 +263,6 @@ func main() {
 }
 ```
 
-
-
 ### <span id="ToInt">ToInt</span>
 
 <p>将interface转成intt64类型，如果参数无法转换，会返回0和error</p>
@@ -279,6 +272,7 @@ func main() {
 ```go
 func ToInt(value interface{}) (int64, error)
 ```
+
 <b>例子:</b>
 
 ```go
@@ -301,8 +295,6 @@ func main() {
 }
 ```
 
-
-
 ### <span id="ToJson">ToJson</span>
 
 <p>将interface转成json字符串，如果参数无法转换，会返回""和error</p>
@@ -312,6 +304,7 @@ func main() {
 ```go
 func ToJson(value interface{}) (string, error)
 ```
+
 <b>列子:</b>
 
 ```go
@@ -329,8 +322,6 @@ func main() {
 }
 ```
 
-
-
 ### <span id="ToString">ToString</span>
 
 <p>将interface转成字符串</p>
@@ -340,6 +331,7 @@ func main() {
 ```go
 func ToString(value interface{}) string
 ```
+
 <b>例子:</b>
 
 ```go
@@ -357,8 +349,6 @@ func main() {
 }
 ```
 
-
-
 ### <span id="StructToMap">StructToMap</span>
 
 <p>将struct转成map，只会转换struct中可导出的字段。struct中导出字段需要设置json tag标记</p>
@@ -368,6 +358,7 @@ func main() {
 ```go
 func StructToMap(value interface{}) (map[string]interface{}, error)
 ```
+
 <b>列子:</b>
 
 ```go
@@ -393,7 +384,6 @@ func main() {
 }
 ```
 
-
 ### <span id="EncodeByte">EncodeByte</span>
 
 <p>将data编码成字节切片</p>
@@ -403,6 +393,7 @@ func main() {
 ```go
 func EncodeByte(data any) ([]byte, error)
 ```
+
 <b>例子:</b>
 
 ```go
@@ -419,8 +410,6 @@ func main() {
 }
 ```
 
-
-
 ### <span id="DecodeByte">DecodeByte</span>
 
 <p>解码字节切片到目标对象，目标对象需要传入一个指针实例子</p>
@@ -430,6 +419,7 @@ func main() {
 ```go
 func DecodeByte(data []byte, target any) error
 ```
+
 <b>例子:</b>
 
 ```go
@@ -442,12 +432,11 @@ import (
 
 func main() {
     var result string
-	byteData := []byte{6, 12, 0, 3, 97, 98, 99}
-	convertor.DecodeByte(byteData, &result)
+    byteData := []byte{6, 12, 0, 3, 97, 98, 99}
+    convertor.DecodeByte(byteData, &result)
     fmt.Println(result) //"abc"
 }
 ```
-
 
 ### <span id="DeepClone">DeepClone</span>
 
@@ -471,44 +460,44 @@ import (
 
 func main() {
     type Struct struct {
-		Str        string
-		Int        int
-		Float      float64
-		Bool       bool
-		Nil        interface{}
-		unexported string
-	}
+        Str        string
+        Int        int
+        Float      float64
+        Bool       bool
+        Nil        interface{}
+        unexported string
+    }
 
-	cases := []interface{}{
-		true,
-		1,
-		0.1,
-		map[string]int{
-			"a": 1,
-			"b": 2,
-		},
-		&Struct{
-			Str:   "test",
-			Int:   1,
-			Float: 0.1,
-			Bool:  true,
-			Nil:   nil,
-			// unexported: "can't be cloned",
-		},
-	}
+    cases := []interface{}{
+        true,
+        1,
+        0.1,
+        map[string]int{
+            "a": 1,
+            "b": 2,
+        },
+        &Struct{
+            Str:   "test",
+            Int:   1,
+            Float: 0.1,
+            Bool:  true,
+            Nil:   nil,
+            // unexported: "can't be cloned",
+        },
+    }
 
-	for _, item := range cases {
-		cloned := convertor.DeepClone(item)
+    for _, item := range cases {
+        cloned := convertor.DeepClone(item)
 
-		isPointerEqual := &cloned == &item
-		fmt.Println(cloned, isPointerEqual)
-	}
+        isPointerEqual := &cloned == &item
+        fmt.Println(cloned, isPointerEqual)
+    }
 
-	// Output:
-	// true false
-	// 1 false
-	// 0.1 false
-	// map[a:1 b:2] false
-	// &{test 1 0.1 true <nil> } false
+    // Output:
+    // true false
+    // 1 false
+    // 0.1 false
+    // map[a:1 b:2] false
+    // &{test 1 0.1 true <nil> } false
 }
 ```

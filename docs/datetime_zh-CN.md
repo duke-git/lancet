@@ -1,5 +1,6 @@
 # Datetime
-datetime日期时间处理包，格式化日期，比较日期。
+
+datetime 日期时间处理包，格式化日期，比较日期。
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -10,6 +11,7 @@ datetime日期时间处理包，格式化日期，比较日期。
 <div STYLE="page-break-after: always;"></div>
 
 ## 用法:
+
 ```go
 import (
     "github.com/duke-git/lancet/datetime"
@@ -19,64 +21,67 @@ import (
 <div STYLE="page-break-after: always;"></div>
 
 ## 目录
-- [AddDay](#AddDay)
-- [AddHour](#AddHour)
-- [AddMinute](#AddMinute)
-- [BeginOfMinute](#BeginOfMinute)
-- [BeginOfHour](#BeginOfHour)
-- [BeginOfDay](#BeginOfDay)
-- [BeginOfWeek](#BeginOfWeek)
-- [BeginOfMonth](#BeginOfMonth)
-- [BeginOfYear](#BeginOfYear)
-- [EndOfMinute](#EndOfMinute)
-- [EndOfHour](#EndOfHour)
-- [EndOfDay](#EndOfDay)
-- [EndOfWeek](#EndOfWeek)
-- [EndOfMonth](#EndOfMonth)
-- [EndOfYear](#EndOfYear)
-- [GetNowDate](#GetNowDate)
-- [GetNowTime](#GetNowTime)
-- [GetNowDateTime](#GetNowDateTime)
-- [GetZeroHourTimestamp](#GetZeroHourTimestamp)
-- [GetNightTimestamp](#GetNightTimestamp)
-- [FormatTimeToStr](#FormatTimeToStr)
-- [FormatStrToTime](#FormatStrToTime)
-- [NewUnixNow](#NewUnixNow)
-- [NewUnix](#NewUnix)
-- [NewFormat](#NewFormat)
-- [NewISO8601](#NewISO8601)
-- [ToUnix](#ToUnix)
-- [ToFormat](#ToFormat)
-- [ToFormatForTpl](#ToFormatForTpl)
-- [ToIso8601](#ToIso8601)
+
+-   [AddDay](#AddDay)
+-   [AddHour](#AddHour)
+-   [AddMinute](#AddMinute)
+-   [BeginOfMinute](#BeginOfMinute)
+-   [BeginOfHour](#BeginOfHour)
+-   [BeginOfDay](#BeginOfDay)
+-   [BeginOfWeek](#BeginOfWeek)
+-   [BeginOfMonth](#BeginOfMonth)
+-   [BeginOfYear](#BeginOfYear)
+-   [EndOfMinute](#EndOfMinute)
+-   [EndOfHour](#EndOfHour)
+-   [EndOfDay](#EndOfDay)
+-   [EndOfWeek](#EndOfWeek)
+-   [EndOfMonth](#EndOfMonth)
+-   [EndOfYear](#EndOfYear)
+-   [GetNowDate](#GetNowDate)
+-   [GetNowTime](#GetNowTime)
+-   [GetNowDateTime](#GetNowDateTime)
+-   [GetZeroHourTimestamp](#GetZeroHourTimestamp)
+-   [GetNightTimestamp](#GetNightTimestamp)
+-   [FormatTimeToStr](#FormatTimeToStr)
+-   [FormatStrToTime](#FormatStrToTime)
+-   [NewUnixNow](#NewUnixNow)
+-   [NewUnix](#NewUnix)
+-   [NewFormat](#NewFormat)
+-   [NewISO8601](#NewISO8601)
+-   [ToUnix](#ToUnix)
+-   [ToFormat](#ToFormat)
+-   [ToFormatForTpl](#ToFormatForTpl)
+-   [ToIso8601](#ToIso8601)
 
 <div STYLE="page-break-after: always;"></div>
 
 ## 文档
 
 ## 注:
-1. 方法FormatTimeToStr和FormatStrToTime中的format参数值需要传以下类型之一：
-- yyyy-mm-dd hh:mm:ss
-- yyyy-mm-dd hh:mm
-- yyyy-mm-dd hh
-- yyyy-mm-dd
-- yyyy-mm
-- mm-dd
-- dd-mm-yy hh:mm:ss
-- yyyy/mm/dd hh:mm:ss
-- yyyy/mm/dd hh:mm
-- yyyy-mm-dd hh
-- yyyy/mm/dd
-- yyyy/mm
-- mm/dd
-- dd/mm/yy hh:mm:ss
-- yyyy
-- mm
-- hh:mm:ss
-- mm:ss
 
+1. 方法 FormatTimeToStr 和 FormatStrToTime 中的 format 参数值需要传以下类型之一：
+
+-   yyyy-mm-dd hh:mm:ss
+-   yyyy-mm-dd hh:mm
+-   yyyy-mm-dd hh
+-   yyyy-mm-dd
+-   yyyy-mm
+-   mm-dd
+-   dd-mm-yy hh:mm:ss
+-   yyyy/mm/dd hh:mm:ss
+-   yyyy/mm/dd hh:mm
+-   yyyy-mm-dd hh
+-   yyyy/mm/dd
+-   yyyy/mm
+-   mm/dd
+-   dd/mm/yy hh:mm:ss
+-   yyyy
+-   mm
+-   hh:mm:ss
+-   mm:ss
 
 ### <span id="AddDay">AddDay</span>
+
 <p>将日期加/减天数</p>
 
 <b>函数签名:</b>
@@ -84,6 +89,7 @@ import (
 ```go
 func AddDay(t time.Time, day int64) time.Time
 ```
+
 <b>例子:</b>
 
 ```go
@@ -97,15 +103,15 @@ import (
 
 func main() {
     now := time.Now()
-	after2Days := datetime.AddDay(now, 2)
-	before2Days := datetime.AddDay(now, -2)
+    after2Days := datetime.AddDay(now, 2)
+    before2Days := datetime.AddDay(now, -2)
 
     fmt.Println(after2Days, before2Days)
 }
 ```
 
-
 ### <span id="AddHour">AddHour</span>
+
 <p>将日期加/减小时数</p>
 
 <b>函数签名:</b>
@@ -113,6 +119,7 @@ func main() {
 ```go
 func AddHour(t time.Time, hour int64) time.Time
 ```
+
 <b>例子:</b>
 
 ```go
@@ -134,6 +141,7 @@ func main() {
 ```
 
 ### <span id="AddMinute">AddMinute</span>
+
 <p>将日期加/减分钟数</p>
 
 <b>函数签名:</b>
@@ -141,6 +149,7 @@ func main() {
 ```go
 func AddMinute(t time.Time, minute int64) time.Time
 ```
+
 <b>例子:</b>
 
 ```go
@@ -162,6 +171,7 @@ func main() {
 ```
 
 ### <span id="BeginOfMinute">BeginOfMinute</span>
+
 <p>返回指定时间的分钟开始时间</p>
 
 <b>函数签名:</b>
@@ -169,6 +179,7 @@ func main() {
 ```go
 func BeginOfMinute(t time.Time) time.Time
 ```
+
 <b>例子:</b>
 
 ```go
@@ -188,6 +199,7 @@ func main() {
 ```
 
 ### <span id="BeginOfHour">BeginOfHour</span>
+
 <p>返回指定时间的小时开始时间</p>
 
 <b>函数签名:</b>
@@ -195,6 +207,7 @@ func main() {
 ```go
 func BeginOfHour(t time.Time) time.Time
 ```
+
 <b>例子:</b>
 
 ```go
@@ -214,6 +227,7 @@ func main() {
 ```
 
 ### <span id="BeginOfDay">BeginOfDay</span>
+
 <p>返回指定时间的当天开始时间</p>
 
 <b>函数签名:</b>
@@ -221,6 +235,7 @@ func main() {
 ```go
 func BeginOfDay(t time.Time) time.Time
 ```
+
 <b>例子:</b>
 
 ```go
@@ -239,9 +254,8 @@ func main() {
 }
 ```
 
-
-
 ### <span id="BeginOfWeek">BeginOfWeek</span>
+
 <p>返回指定时间的星期开始时间</p>
 
 <b>函数签名:</b>
@@ -249,6 +263,7 @@ func main() {
 ```go
 func BeginOfWeek(t time.Time) time.Time
 ```
+
 <b>例子:</b>
 
 ```go
@@ -267,9 +282,8 @@ func main() {
 }
 ```
 
-
-
 ### <span id="BeginOfMonth">BeginOfMonth</span>
+
 <p>返回指定时间的当月开始时间</p>
 
 <b>函数签名:</b>
@@ -277,6 +291,7 @@ func main() {
 ```go
 func BeginOfMonth(t time.Time) time.Time
 ```
+
 <b>例子:</b>
 
 ```go
@@ -295,8 +310,8 @@ func main() {
 }
 ```
 
-
 ### <span id="BeginOfYear">BeginOfYear</span>
+
 <p>返回指定时间的当年开始时间</p>
 
 <b>函数签名:</b>
@@ -304,6 +319,7 @@ func main() {
 ```go
 func BeginOfYear(t time.Time) time.Time
 ```
+
 <b>例子:</b>
 
 ```go
@@ -322,9 +338,8 @@ func main() {
 }
 ```
 
-
-
 ### <span id="EndOfMinute">EndOfMinute</span>
+
 <p>返回指定时间的分钟结束时间</p>
 
 <b>函数签名:</b>
@@ -332,6 +347,7 @@ func main() {
 ```go
 func EndOfMinute(t time.Time) time.Time
 ```
+
 <b>例子:</b>
 
 ```go
@@ -351,6 +367,7 @@ func main() {
 ```
 
 ### <span id="EndOfHour">EndOfHour</span>
+
 <p>返回指定时间的小时结束时间</p>
 
 <b>函数签名:</b>
@@ -358,6 +375,7 @@ func main() {
 ```go
 func EndOfHour(t time.Time) time.Time
 ```
+
 <b>例子:</b>
 
 ```go
@@ -377,6 +395,7 @@ func main() {
 ```
 
 ### <span id="EndOfDay">EndOfDay</span>
+
 <p>返回指定时间的当天结束时间.</p>
 
 <b>函数签名:</b>
@@ -384,6 +403,7 @@ func main() {
 ```go
 func EndOfDay(t time.Time) time.Time
 ```
+
 <b>例子:</b>
 
 ```go
@@ -402,9 +422,8 @@ func main() {
 }
 ```
 
-
-
 ### <span id="EndOfWeek">EndOfWeek</span>
+
 <p>返回指定时间的星期结束时间</p>
 
 <b>函数签名:</b>
@@ -412,6 +431,7 @@ func main() {
 ```go
 func EndOfWeek(t time.Time) time.Time
 ```
+
 <b>例子:</b>
 
 ```go
@@ -430,9 +450,8 @@ func main() {
 }
 ```
 
-
-
 ### <span id="EndOfMonth">EndOfMonth</span>
+
 <p>返回指定时间的月份结束时间</p>
 
 <b>函数签名:</b>
@@ -440,6 +459,7 @@ func main() {
 ```go
 func EndOfMonth(t time.Time) time.Time
 ```
+
 <b>例子:</b>
 
 ```go
@@ -458,8 +478,8 @@ func main() {
 }
 ```
 
-
 ### <span id="EndOfYear">EndOfYear</span>
+
 <p>返回指定时间的年份结束时间</p>
 
 <b>函数签名:</b>
@@ -467,6 +487,7 @@ func main() {
 ```go
 func EndOfYear(t time.Time) time.Time
 ```
+
 <b>例子:</b>
 
 ```go
@@ -485,8 +506,8 @@ func main() {
 }
 ```
 
-
 ### <span id="GetNowDate">GetNowDate</span>
+
 <p>获取当天日期，返回格式：yyyy-mm-dd</p>
 
 <b>函数签名:</b>
@@ -494,6 +515,7 @@ func main() {
 ```go
 func GetNowDate() string
 ```
+
 <b>例子:</b>
 
 ```go
@@ -507,13 +529,13 @@ import (
 
 func main() {
     now := time.Now()
-	currentDate := datetime.GetNowDate()
+    currentDate := datetime.GetNowDate()
     fmt.Println(currentDate) // 2022-01-28
 }
 ```
 
-
 ### <span id="GetNowTime">GetNowTime</span>
+
 <p>获取当时时间，返回格式：hh:mm:ss</p>
 
 <b>函数签名:</b>
@@ -521,6 +543,7 @@ func main() {
 ```go
 func GetNowTime() string
 ```
+
 <b>例子:</b>
 
 ```go
@@ -539,8 +562,8 @@ func main() {
 }
 ```
 
-
 ### <span id="GetNowDateTime">GetNowDateTime</span>
+
 <p>获取当时日期和时间，返回格式：yyyy-mm-dd hh:mm:ss.</p>
 
 <b>函数签名:</b>
@@ -548,6 +571,7 @@ func main() {
 ```go
 func GetNowDateTime() string
 ```
+
 <b>例子:</b>
 
 ```go
@@ -566,8 +590,8 @@ func main() {
 }
 ```
 
-
 ### <span id="GetZeroHourTimestamp">GetZeroHourTimestamp</span>
+
 <p>获取零时时间戳(timestamp of 00:00).</p>
 
 <b>函数签名:</b>
@@ -575,6 +599,7 @@ func main() {
 ```go
 func GetZeroHourTimestamp() int64
 ```
+
 <b>例子:</b>
 
 ```go
@@ -593,8 +618,8 @@ func main() {
 }
 ```
 
-
 ### <span id="GetNightTimestamp">GetNightTimestamp</span>
+
 <p>获取午夜时间戳(timestamp of 23:59).</p>
 
 <b>函数签名:</b>
@@ -602,6 +627,7 @@ func main() {
 ```go
 func GetNightTimestamp() int64
 ```
+
 <b>例子:</b>
 
 ```go
@@ -621,6 +647,7 @@ func main() {
 ```
 
 ### <span id="FormatTimeToStr">FormatTimeToStr</span>
+
 <p>将日期格式化成字符串，`format` 参数格式参考注<sup>1</sup></p>
 
 <b>函数签名:</b>
@@ -628,6 +655,7 @@ func main() {
 ```go
 func FormatTimeToStr(t time.Time, format string) string
 ```
+
 <b>例子:</b>
 
 ```go
@@ -646,8 +674,8 @@ func main() {
 }
 ```
 
-
 ### <span id="FormatStrToTime">FormatStrToTime</span>
+
 <p>将字符串格式化成时间，`format` 参数格式参考注<sup>1</sup></p>
 
 <b>函数签名:</b>
@@ -655,6 +683,7 @@ func main() {
 ```go
 func FormatStrToTime(str, format string) (time.Time, error)
 ```
+
 <b>例子:</b>
 
 ```go
@@ -671,19 +700,19 @@ func main() {
 }
 ```
 
-
-
 ### <span id="NewUnixNow">NewUnixNow</span>
+
 <p>创建一个当前时间的unix时间戳</p>
 
 <b>函数签名:</b>
 
 ```go
 type theTime struct {
-	unix int64
+    unix int64
 }
 func NewUnixNow() *theTime
 ```
+
 <b>例子:</b>
 
 ```go
@@ -700,18 +729,19 @@ func main() {
 }
 ```
 
-
 ### <span id="NewUnix">NewUnix</span>
+
 <p>创建一个unix时间戳</p>
 
 <b>函数签名:</b>
 
 ```go
 type theTime struct {
-	unix int64
+    unix int64
 }
 func NewUnix(unix int64) *theTime
 ```
+
 <b>例子:</b>
 
 ```go
@@ -728,19 +758,19 @@ func main() {
 }
 ```
 
-
-
 ### <span id="NewFormat">NewFormat</span>
+
 <p>创建一个yyyy-mm-dd hh:mm:ss格式时间字符串的unix时间戳</p>
 
 <b>函数签名:</b>
 
 ```go
 type theTime struct {
-	unix int64
+    unix int64
 }
 func NewFormat(t string) (*theTime, error)
 ```
+
 <b>例子:</b>
 
 ```go
@@ -757,20 +787,19 @@ func main() {
 }
 ```
 
-
-
-
 ### <span id="NewISO8601">NewISO8601</span>
+
 <p>创建一个iso8601格式时间字符串的unix时间戳</p>
 
 <b>函数签名:</b>
 
 ```go
 type theTime struct {
-	unix int64
+    unix int64
 }
 func NewISO8601(iso8601 string) (*theTime, error)
 ```
+
 <b>例子:</b>
 
 ```go
@@ -787,9 +816,8 @@ func main() {
 }
 ```
 
-
-
 ### <span id="ToUnix">ToUnix</span>
+
 <p>返回unix时间戳</p>
 
 <b>函数签名:</b>
@@ -797,6 +825,7 @@ func main() {
 ```go
 func (t *theTime) ToUnix() int64
 ```
+
 <b>例子:</b>
 
 ```go
@@ -813,9 +842,8 @@ func main() {
 }
 ```
 
-
-
 ### <span id="ToFormat">ToFormat</span>
+
 <p>返回格式'yyyy-mm-dd hh:mm:ss'的日期字符串</p>
 
 <b>函数签名:</b>
@@ -823,6 +851,7 @@ func main() {
 ```go
 func (t *theTime) ToFormat() string
 ```
+
 <b>例子:</b>
 
 ```go
@@ -839,9 +868,8 @@ func main() {
 }
 ```
 
-
-
 ### <span id="ToFormatForTpl">ToFormatForTpl</span>
+
 <p>返回tpl格式指定的日期字符串</p>
 
 <b>函数签名:</b>
@@ -849,6 +877,7 @@ func main() {
 ```go
 func (t *theTime) ToFormatForTpl(tpl string) string
 ```
+
 <b>例子:</b>
 
 ```go
@@ -866,8 +895,8 @@ func main() {
 }
 ```
 
-
 ### <span id="ToIso8601">ToIso8601</span>
+
 <p>返回iso8601日期字符串</p>
 
 <b>函数签名:</b>
@@ -875,6 +904,7 @@ func main() {
 ```go
 func (t *theTime) ToIso8601() string
 ```
+
 <b>例子:</b>
 
 ```go
@@ -891,4 +921,3 @@ func main() {
     fmt.Println(ts) //"2006-01-02T23:04:05+08:00"
 }
 ```
-
