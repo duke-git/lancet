@@ -56,6 +56,8 @@ import (
 -   [IndexOf](#IndexOf)
 -   [LastIndexOf](#LastIndexOf)
 -   [Map](#Map)
+-   [FilterMap](#FilterMap)
+-   [FlatMap](#FlatMap)
 -   [Merge](#Merge)
 -   [Reverse](#Reverse)
 -   [Reduce](#Reduce)
@@ -1252,6 +1254,76 @@ func main() {
 }
 ```
 
+### <span id="FilterMap">FilterMap</span>
+
+<p>Returns a slice which apply both filtering and mapping to the given slice. iteratee callback function should returntwo values: 1, mapping result. 2, whether the result element should be included or not.</p>
+
+<b>Signature:</b>
+
+```go
+func FilterMap[T any, U any](slice []T, iteratee func(index int, item T) (U, bool)) []U
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+    nums := []int{1, 2, 3, 4, 5}
+
+	getEvenNumStr := func(i, num int) (string, bool) {
+		if num%2 == 0 {
+			return strconv.FormatInt(int64(num), 10), true
+		}
+		return "", false
+	}
+
+	result := slice.FilterMap(nums, getEvenNumStr)
+
+	fmt.Printf("%#v", result)
+
+	// Output:
+	// []string{"2", "4"}
+}
+```
+
+### <span id="FlatMap">FlatMap</span>
+
+<p>Manipulates a slice and transforms and flattens it to a slice of another type.</p>
+
+<b>Signature:</b>
+
+```go
+func FlatMap[T any, U any](slice []T, iteratee func(index int, item T) []U) []U
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+    nums := []int{1, 2, 3, 4}
+
+	result := slice.FlatMap(nums, func(i int, num int) []string {
+		s := "hi-" + strconv.FormatInt(int64(num), 10)
+		return []string{s}
+	})
+
+	fmt.Printf("%#v", result)
+
+	// Output:
+	// []string{"hi-1", "hi-2", "hi-3", "hi-4"}
+}
+```
+
 ### <span id="Merge">Merge</span>
 
 <p>Merge all given slices into one slice.</p>
@@ -1467,8 +1539,8 @@ func main() {
     nums := []int{1, 2, 3, 4, 5}
     result := slice.Shuffle(nums)
 
-    fmt.Println(res) 
-    
+    fmt.Println(res)
+
     // Output:
     // [3 1 5 4 2] (random order)
 }

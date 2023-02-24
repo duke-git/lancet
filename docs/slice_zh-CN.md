@@ -56,6 +56,8 @@ import (
 -   [IndexOf](#IndexOf)
 -   [LastIndexOf](#LastIndexOf)
 -   [Map](#Map)
+-   [FilterMap](#FilterMap)
+-   [FlatMap](#FlatMap)
 -   [Merge](#Merge)
 -   [Reverse](#Reverse)
 -   [Reduce](#Reduce)
@@ -1251,6 +1253,76 @@ func main() {
 
     // Output:
     // [2 3 4]
+}
+```
+
+### <span id="FilterMap">FilterMap</span>
+
+<p>返回一个将filter和map操作应用于给定切片的切片。 iteratee回调函数应该返回两个值：1，结果值。2，结果值是否应该被包含在返回的切片中。</p>
+
+<b>函数签名:</b>
+
+```go
+func FilterMap[T any, U any](slice []T, iteratee func(index int, item T) (U, bool)) []U
+```
+
+<b>示例:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+    nums := []int{1, 2, 3, 4, 5}
+
+	getEvenNumStr := func(i, num int) (string, bool) {
+		if num%2 == 0 {
+			return strconv.FormatInt(int64(num), 10), true
+		}
+		return "", false
+	}
+
+	result := slice.FilterMap(nums, getEvenNumStr)
+
+	fmt.Printf("%#v", result)
+
+	// Output:
+	// []string{"2", "4"}
+}
+```
+
+### <span id="FlatMap">FlatMap</span>
+
+<p>将切片转换为其它类型切片。</p>
+
+<b>函数签名:</b>
+
+```go
+func FlatMap[T any, U any](slice []T, iteratee func(index int, item T) []U) []U
+```
+
+<b>示例:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+    nums := []int{1, 2, 3, 4}
+
+	result := slice.FlatMap(nums, func(i int, num int) []string {
+		s := "hi-" + strconv.FormatInt(int64(num), 10)
+		return []string{s}
+	})
+
+	fmt.Printf("%#v", result)
+
+	// Output:
+	// []string{"hi-1", "hi-2", "hi-3", "hi-4"}
 }
 ```
 
