@@ -22,10 +22,21 @@ var (
 )
 
 // Contain check if the target value is in the slice or not.
-// Play: https://go.dev/play/p/_454yEHcNjf
+// Play: todo
 func Contain[T comparable](slice []T, target T) bool {
 	for _, item := range slice {
 		if item == target {
+			return true
+		}
+	}
+
+	return false
+}
+
+// ContainBy returns true if predicate function return true.
+func ContainBy[T any](slice []T, predicate func(item T) bool) bool {
+	for _, item := range slice {
+		if predicate(item) {
 			return true
 		}
 	}

@@ -20,6 +20,28 @@ func TestContain(t *testing.T) {
 	assert.Equal(true, Contain([]int{1, 2, 3}, 1))
 }
 
+func TestContainBy(t *testing.T) {
+	assert := internal.NewAssert(t, "TestContainBy")
+
+	type foo struct {
+		A string
+		B int
+	}
+
+	array1 := []foo{{A: "1", B: 1}, {A: "2", B: 2}}
+	result1 := ContainBy(array1, func(f foo) bool { return f.A == "1" && f.B == 1 })
+	result2 := ContainBy(array1, func(f foo) bool { return f.A == "2" && f.B == 1 })
+
+	array2 := []string{"a", "b", "c"}
+	result3 := ContainBy(array2, func(t string) bool { return t == "a" })
+	result4 := ContainBy(array2, func(t string) bool { return t == "d" })
+
+	assert.Equal(true, result1)
+	assert.Equal(false, result2)
+	assert.Equal(true, result3)
+	assert.Equal(false, result4)
+}
+
 func TestContainSubSlice(t *testing.T) {
 	assert := internal.NewAssert(t, "TestContainSubSlice")
 	assert.Equal(true, ContainSubSlice([]string{"a", "a", "b", "c"}, []string{"a", "a"}))

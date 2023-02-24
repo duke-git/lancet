@@ -24,6 +24,7 @@ import (
 
 -   [AppendIfAbsent](#AppendIfAbsent)
 -   [Contain](#Contain)
+-   [ContainBy](#ContainBy)
 -   [ContainSubSlice](#ContainSubSlice)
 -   [Chunk](#Chunk)
 -   [Compact](#Compact)
@@ -148,6 +149,51 @@ func main() {
     // Output:
     // true
     // false
+}
+```
+
+### <span id="ContainBy">ContainBy</span>
+
+<p>returns true if predicate function return true.</p>
+
+<b>Signature:</b>
+
+```go
+func ContainBy[T any](slice []T, predicate func(item T) bool) bool
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+    type foo struct {
+		A string
+		B int
+	}
+
+	array1 := []foo{{A: "1", B: 1}, {A: "2", B: 2}}
+	result1 := slice.ContainBy(array1, func(f foo) bool { return f.A == "1" && f.B == 1 })
+	result2 := slice.ContainBy(array1, func(f foo) bool { return f.A == "2" && f.B == 1 })
+
+	array2 := []string{"a", "b", "c"}
+	result3 := slice.ContainBy(array2, func(t string) bool { return t == "a" })
+	result4 := slice.ContainBy(array2, func(t string) bool { return t == "d" })
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+	fmt.Println(result4)
+
+	// Output:
+	// true
+	// false
+	// true
+	// false
 }
 ```
 
