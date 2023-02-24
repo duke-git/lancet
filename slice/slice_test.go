@@ -3,6 +3,7 @@ package slice
 import (
 	"fmt"
 	"math"
+	"strconv"
 	"testing"
 
 	"github.com/duke-git/lancet/v2/internal"
@@ -313,6 +314,23 @@ func TestMap(t *testing.T) {
 	}
 
 	assert.Equal(studentsOfAdd10Aage, Map(students, mapFunc))
+}
+
+func TestFilterMap(t *testing.T) {
+	assert := internal.NewAssert(t, "TestFilterMap")
+
+	nums := []int{1, 2, 3, 4, 5}
+
+	getEvenNumStr := func(i, num int) (string, bool) {
+		if num%2 == 0 {
+			return strconv.FormatInt(int64(num), 10), true
+		}
+		return "", false
+	}
+
+	result := FilterMap(nums, getEvenNumStr)
+
+	assert.Equal([]string{"2", "4"}, result)
 }
 
 func TestReduce(t *testing.T) {

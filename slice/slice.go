@@ -421,6 +421,23 @@ func Map[T any, U any](slice []T, iteratee func(index int, item T) U) []U {
 	return result
 }
 
+// FilterMap returns a slice which apply both filtering and mapping to the given slice.
+// iteratee callback function should returntwo values:
+// 1, mapping result.
+// 2, whether the result element should be included or not
+// Play: todo
+func FilterMap[T any, U any](slice []T, iteratee func(index int, item T) (U, bool)) []U {
+	result := []U{}
+
+	for i, v := range slice {
+		if a, ok := iteratee(i, v); ok {
+			result = append(result, a)
+		}
+	}
+
+	return result
+}
+
 // Reduce creates an slice of values by running each element of slice thru iteratee function.
 // Play: https://go.dev/play/p/_RfXJJWIsIm
 func Reduce[T any](slice []T, iteratee func(index int, item1, item2 T) T, initial T) T {

@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"math"
 	"reflect"
+	"strconv"
 )
 
 func ExampleContain() {
@@ -365,6 +366,24 @@ func ExampleMap() {
 
 	// Output:
 	// [2 3 4]
+}
+
+func ExampleFilterMap() {
+	nums := []int{1, 2, 3, 4, 5}
+
+	getEvenNumStr := func(i, num int) (string, bool) {
+		if num%2 == 0 {
+			return strconv.FormatInt(int64(num), 10), true
+		}
+		return "", false
+	}
+
+	result := FilterMap(nums, getEvenNumStr)
+
+	fmt.Printf("%#v", result)
+
+	// Output:
+	// []string{"2", "4"}
 }
 
 func ExampleReduce() {
