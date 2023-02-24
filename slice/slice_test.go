@@ -333,6 +333,19 @@ func TestFilterMap(t *testing.T) {
 	assert.Equal([]string{"2", "4"}, result)
 }
 
+func TestFlatMap(t *testing.T) {
+	assert := internal.NewAssert(t, "TestFlatMap")
+
+	nums := []int{1, 2, 3, 4}
+
+	result := FlatMap(nums, func(i int, num int) []string {
+		s := "hi-" + strconv.FormatInt(int64(num), 10)
+		return []string{s}
+	})
+
+	assert.Equal([]string{"hi-1", "hi-2", "hi-3", "hi-4"}, result)
+}
+
 func TestReduce(t *testing.T) {
 	cases := [][]int{
 		{},

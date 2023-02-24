@@ -386,6 +386,20 @@ func ExampleFilterMap() {
 	// []string{"2", "4"}
 }
 
+func ExampleFlatMap() {
+	nums := []int{1, 2, 3, 4}
+
+	result := FlatMap(nums, func(i int, num int) []string {
+		s := "hi-" + strconv.FormatInt(int64(num), 10)
+		return []string{s}
+	})
+
+	fmt.Printf("%#v", result)
+
+	// Output:
+	// []string{"hi-1", "hi-2", "hi-3", "hi-4"}
+}
+
 func ExampleReduce() {
 	nums := []int{1, 2, 3}
 

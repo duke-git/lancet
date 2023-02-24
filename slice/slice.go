@@ -438,6 +438,18 @@ func FilterMap[T any, U any](slice []T, iteratee func(index int, item T) (U, boo
 	return result
 }
 
+// FlatMap manipulates a slice and transforms and flattens it to a slice of another type.
+// Play: todo
+func FlatMap[T any, U any](slice []T, iteratee func(index int, item T) []U) []U {
+	result := make([]U, 0, len(slice))
+
+	for i, v := range slice {
+		result = append(result, iteratee(i, v)...)
+	}
+
+	return result
+}
+
 // Reduce creates an slice of values by running each element of slice thru iteratee function.
 // Play: https://go.dev/play/p/_RfXJJWIsIm
 func Reduce[T any](slice []T, iteratee func(index int, item1, item2 T) T, initial T) T {
