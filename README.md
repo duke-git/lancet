@@ -84,6 +84,7 @@ import "github.com/duke-git/lancet/convertor"
 -   [EncodeByte](https://github.com/duke-git/lancet/blob/v1/docs/convertor.md#EncodeByte)
 -   [DecodeByte](https://github.com/duke-git/lancet/blob/v1/docs/convertor.md#DecodeByte)
 -   [DeepClone](https://github.com/duke-git/lancet/blob/v1/docs/convertor.md#DeepClone)
+-   [CopyProperties](https://github.com/duke-git/lancet/blob/v1/docs/convertor.md#CopyProperties)
 
 ### 2. Cryptor package is for data encryption and decryption.
 
@@ -213,6 +214,8 @@ import "github.com/duke-git/lancet/function"
 -   [Compose](https://github.com/duke-git/lancet/blob/v1/docs/function.md#Compose)
 -   [Debounced](https://github.com/duke-git/lancet/blob/v1/docs/function.md#Debounced)
 -   [Delay](https://github.com/duke-git/lancet/blob/v1/docs/function.md#Delay)
+-   [Pipeline](https://github.com/duke-git/lancet/blob/v1/docs/function.md#Pipeline)
+-   [Schedule](https://github.com/duke-git/lancet/blob/v1/docs/function.md#Schedule)
 -   [Watcher](https://github.com/duke-git/lancet/blob/v1/docs/function.md#Watcher)
 
 ### 6. Mathutil package implements some functions for math calculation.
@@ -354,6 +357,7 @@ import "github.com/duke-git/lancet/strutil"
 -   [UpperKebabCase](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#UpperKebabCase)
 -   [LowerFirst](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#LowerFirst)
 -   [UpperFirst](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#UpperFirst)
+-   [Pad](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#Pad)
 -   [PadEnd](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#PadEnd)
 -   [PadStart](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#PadStart)
 -   [Reverse](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#Reverse)
@@ -362,6 +366,8 @@ import "github.com/duke-git/lancet/strutil"
 -   [SplitEx](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#SplitEx)
 -   [Wrap](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#Wrap)
 -   [Unwrap](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#Unwrap)
+-   [SplitWords](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#SplitWords)
+-   [WordCount](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#WordCount)
 
 ### 12. System package contain some functions about os, runtime, shell command.
 

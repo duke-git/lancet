@@ -83,7 +83,7 @@ import "github.com/duke-git/lancet/convertor"
 -   [EncodeByte](https://github.com/duke-git/lancet/blob/v1/docs/convertor_zh-CN.md#EncodeByte)
 -   [DecodeByte](https://github.com/duke-git/lancet/blob/v1/docs/convertor_zh-CN.md#DecodeByte)
 -   [DeepClone](https://github.com/duke-git/lancet/blob/v1/docs/convertor_zh-CN.md#DeepClone)
-
+-   [CopyProperties](https://github.com/duke-git/lancet/blob/v1/docs/convertor_zh-CN.md#CopyProperties)
 
 ### 2. cryptor 加密包支持数据加密和解密，获取 md5，hash 值。支持 base64, md5, hmac, aes, des, rsa。
 
@@ -213,6 +213,8 @@ import "github.com/duke-git/lancet/function"
 -   [Compose](https://github.com/duke-git/lancet/blob/v1/docs/function_zh-CN.md#Compose)
 -   [Debounced](https://github.com/duke-git/lancet/blob/v1/docs/function_zh-CN.md#Debounced)
 -   [Delay](https://github.com/duke-git/lancet/blob/v1/docs/function_zh-CN.md#Delay)
+-   [Pipeline](https://github.com/duke-git/lancet/blob/v1/docs/function_zh-CN.md#Pipeline)
+-   [Schedule](https://github.com/duke-git/lancet/blob/v1/docs/function_zh-CN.md#Schedule)
 -   [Watcher](https://github.com/duke-git/lancet/blob/v1/docs/function_zh-CN.md#Watcher)
 
 ### 6. mathutil 包实现了一些数学计算的函数。
@@ -354,6 +356,7 @@ import "github.com/duke-git/lancet/strutil"
 -   [UpperKebabCase](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#UpperKebabCase)
 -   [LowerFirst](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#LowerFirst)
 -   [UpperFirst](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#UpperFirst)
+-   [Pad](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#Pad)
 -   [PadEnd](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#PadEnd)
 -   [PadStart](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#PadStart)
 -   [Reverse](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#Reverse)
@@ -362,6 +365,8 @@ import "github.com/duke-git/lancet/strutil"
 -   [SplitEx](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#SplitEx)
 -   [Wrap](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#Wrap)
 -   [Unwrap](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#Unwrap)
+-   [SplitWords](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#SplitWords)
+-   [WordCount](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#WordCount)
 
 ### 13. system 包含 os, runtime, shell command 相关函数。
 
