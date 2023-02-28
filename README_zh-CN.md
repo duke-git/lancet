@@ -248,7 +248,8 @@ import "github.com/duke-git/lancet/v2/convertor"
 -   **<big>DeepClone</big>** : 创建一个传入值的深拷贝, 无法克隆结构体的非导出字段。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#DeepClone)]
     [[play](https://go.dev/play/p/j4DP5dquxnk)]
-
+-   **<big>CopyProperties</big>** : 拷贝不同结构体之间的同名字段。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#CopyProperties)]
 
 
 ### 5. cryptor 加密包支持数据加密和解密，获取 md5，hash 值。支持 base64, md5, hmac, aes, des, rsa。
@@ -610,12 +611,24 @@ import "github.com/duke-git/lancet/v2/maputil"
 -   **<big>Filter</big>** : 迭代 map 中的每对 key 和 value，返回 map，其中的 key 和 value 符合 predicate 函数。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#Filter)]
     [[play](https://go.dev/play/p/fSvF3wxuNG7)]
+-   **<big>FilterByKeys</big>** : 迭代map, 返回一个新map，其key都是给定的key值。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN#FilterByKeys)]
+-   **<big>FilterByValues</big>** : 迭代map, 返回一个新map，其value都是给定的value值。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN#FilterByValues)]
+-   **<big>OmitBy</big>** : Filter的反向操作, 迭代map中的每对key和value, 删除符合predicate函数的key, value, 返回新map。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN#OmitBy)]
+-   **<big>OmitByKeys</big>** : FilterByKeys的反向操作, 迭代map, 返回一个新map，其key不包括给定的key值。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN#OmitByKeys)]
+-   **<big>OmitByValues</big>** : FilterByValues的反向操作, 迭代map, 返回一个新map，其value不包括给定的value值。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN#OmitByValues)]
 -   **<big>Intersect</big>** : 多个 map 的交集操作。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#Intersect)]
     [[play](https://go.dev/play/p/Zld0oj3sjcC)]
 -   **<big>Keys</big>** : 返回 map 中所有 key 组成的切片。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#Keys)]
     [[play](https://go.dev/play/p/xNB5bTb97Wd)]
+-   **<big>KeysBy</big>** : 创建一个切片，其元素是每个map的key调用mapper函数的结果。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN#KeysBy)]
 -   **<big>Merge</big>** : 合并多个 map, 相同的 key 会被之后的 key 覆盖。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#Merge)]
     [[play](https://go.dev/play/p/H95LENF1uB-)]
@@ -625,7 +638,19 @@ import "github.com/duke-git/lancet/v2/maputil"
 -   **<big>Values</big>** : 返回 map 中所有 values 组成的切片
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#Values)]
     [[play](https://go.dev/play/p/CBKdUc5FTW6)]
--   **<big>IsDisjoint</big>** : 验证两个 map 是否具有不同的 key。
+-   **<big>ValuesBy</big>** : 创建一个切片，其元素是每个map的value调用mapper函数的结果。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN#ValuesBy)]
+-   **<big>MapKeys</big>** : 操作map的每个key，然后转为新的map。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN#MapKeys)]
+-   **<big>MapValues</big>** : 操作map的每个value，然后转为新的map。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN#MapValues)]
+-   **<big>Entries</big>** : 将map转换为键/值对切片。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN#Entries)]
+-   **<big>FromEntries</big>** : 基于键/值对的切片创建map。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN#FromEntries)]
+-   **<big>Transform</big>** : 将map转换为其他类型的map。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN#Transform)]
+-   **<big>IsDisjoint</big>** : 验证两个map是否具有不同的key。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#IsDisjoint)]
     [[play](https://go.dev/play/p/N9qgYg_Ho6f)]
 
@@ -814,6 +839,8 @@ import "github.com/duke-git/lancet/v2/slice"
 -   **<big>Contain</big>** : 判断slice是否包含value。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Contain)]
     [[play](https://go.dev/play/p/_454yEHcNjf)]
+-   **<big>ContainBy</big>** : 根据predicate函数判断切片是否包含某个值。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#ContainBy)]
 -   **<big>ContainSubSlice</big>** : 判断slice是否包含subslice。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#ContainSubSlice)]
     [[play](https://go.dev/play/p/bcuQ3UT6Sev)]
@@ -868,6 +895,8 @@ import "github.com/duke-git/lancet/v2/slice"
 -   **<big>Filter</big>** : 返回切片中通过predicate函数真值测试的所有元素。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Filter)]
     [[play](https://go.dev/play/p/SdPna-7qK4T)]
+-   **<big>FilterMap</big>** : 返回一个将filter和map操作应用于给定切片的切片。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#FilterMap)]
 -   **<big>Find</big>** : 遍历切片的元素，返回第一个通过predicate函数真值测试的元素。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Find)]
     [[play](https://go.dev/play/p/CBKeBoHVLgq)]
@@ -880,6 +909,8 @@ import "github.com/duke-git/lancet/v2/slice"
 -   **<big>FlattenDeep</big>** : 将多维切片递归展平到一层。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#FlattenDeep)]
     [[play](https://go.dev/play/p/yjYNHPyCFaF)]
+-   **<big>FlatMap</big>** : 将切片转换为其它类型切片。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#FlatMap)]
 -   **<big>ForEach</big>** : 遍历切片的元素并为每个元素调用iteratee函数。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#ForEach)]
     [[play](https://go.dev/play/p/DrPaa4YsHRF)]
@@ -1031,6 +1062,8 @@ import "github.com/duke-git/lancet/v2/strutil"
 -   **<big>UpperFirst</big>** : 将字符串的第一个字符转换为大写形式。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#UpperFirst)]
     [[play](https://go.dev/play/p/sBbBxRbs8MM)]
+-   **<big>Pad</big>** : 如果字符串长度短于size，则在左右两侧填充字符串。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#Pad)]
 -   **<big>PadEnd</big>** : 如果字符串短于限制大小，则在右侧用给定字符填充字符串。 如果填充字符超出大小，它们将被截断。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#PadEnd)]
     [[play](https://go.dev/play/p/9xP8rN0vz--)]
@@ -1058,6 +1091,10 @@ import "github.com/duke-git/lancet/v2/strutil"
 -   **<big>Unwrap</big>** : 从另一个字符串中解开一个给定的字符串。 将更改源字符串。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#Unwrap)]
     [[play](https://go.dev/play/p/Ec2q4BzCpG-)]
+-   **<big>SplitWords</big>** : 将字符串拆分为单词，只支持字母字符单词。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#SplitWords)]
+-   **<big>WordCount</big>** : 返回有意义单词的数量，只支持字母字符单词。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#WordCount)]
 
 ### 18. system 包含 os, runtime, shell command 的相关函数。
 

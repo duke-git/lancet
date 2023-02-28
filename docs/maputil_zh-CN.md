@@ -90,7 +90,7 @@ func main() {
 
 ### <span id="Filter">Filter</span>
 
-<p>迭代map中的每对key和value, 返回符合predicate函数的key, value</p>
+<p>迭代map中的每对key和value, 返回符合predicate函数的key, value。</p>
 
 <b>函数签名:</b>
 
@@ -135,7 +135,7 @@ func main() {
 
 ### <span id="FilterByKeys">FilterByKeys</span>
 
-<p>迭代map, 返回一个新map，其key都是给定的key值.</p>
+<p>迭代map, 返回一个新map，其key都是给定的key值。</p>
 
 <b>函数签名:</b>
 
@@ -174,7 +174,7 @@ func main() {
 
 ### <span id="FilterByValues">FilterByValues</span>
 
-<p>迭代map, 返回一个新map，其value都是给定的value值.</p>
+<p>迭代map, 返回一个新map，其value都是给定的value值。</p>
 
 <b>函数签名:</b>
 
@@ -213,7 +213,7 @@ func main() {
 
 ### <span id="OmitBy">OmitBy</span>
 
-<p>Filter的反向操作, 迭代map中的每对key和value, 删除符合predicate函数的key, value, 返回新map</p>
+<p>Filter的反向操作, 迭代map中的每对key和value, 删除符合predicate函数的key, value, 返回新map。</p>
 
 <b>函数签名:</b>
 
@@ -255,7 +255,7 @@ func main() {
 
 ### <span id="OmitByKeys">OmitByKeys</span>
 
-<p>FilterByKeys的反向操作, 迭代map, 返回一个新map，其key不包括给定的key值.</p>
+<p>FilterByKeys的反向操作, 迭代map, 返回一个新map，其key不包括给定的key值。</p>
 
 <b>函数签名:</b>
 
@@ -294,7 +294,7 @@ func main() {
 
 ### <span id="OmitByValues">OmitByValues</span>
 
-<p>FilterByValues的反向操作, 迭代map, 返回一个新map，其value不包括给定的value值.</p>
+<p>FilterByValues的反向操作, 迭代map, 返回一个新map，其value不包括给定的value值。</p>
 
 <b>函数签名:</b>
 
