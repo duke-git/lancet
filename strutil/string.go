@@ -69,7 +69,7 @@ func LowerFirst(s string) string {
 
 // PadStart pads string on the left and right side if it's shorter than size.
 // Padding characters are truncated if they exceed size.
-// Play: todo
+// Play: https://go.dev/play/p/NzImQq-VF8q
 func Pad(source string, size int, padStr string) string {
 	return padAtPosition(source, size, padStr, 0)
 }
@@ -289,7 +289,7 @@ func Substring(s string, offset int, length uint) string {
 }
 
 // SplitWords splits a string into words, word only contains alphabetic characters.
-// Play: todo
+// Play: https://go.dev/play/p/KLiX4WiysMM
 func SplitWords(s string) []string {
 	var word string
 	var words []string
@@ -331,7 +331,7 @@ func SplitWords(s string) []string {
 }
 
 // WordCount return the number of meaningful word, word only contains alphabetic characters.
-// Play: todo
+// Play: https://go.dev/play/p/bj7_odx3vRf
 func WordCount(s string) int {
 	var r rune
 	var size, count int

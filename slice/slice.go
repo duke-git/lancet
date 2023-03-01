@@ -22,7 +22,7 @@ var (
 )
 
 // Contain check if the target value is in the slice or not.
-// Play: todo
+// Play: https://go.dev/play/p/_454yEHcNjf
 func Contain[T comparable](slice []T, target T) bool {
 	for _, item := range slice {
 		if item == target {
@@ -34,6 +34,7 @@ func Contain[T comparable](slice []T, target T) bool {
 }
 
 // ContainBy returns true if predicate function return true.
+// Play: https://go.dev/play/p/49tkHfX4GNc
 func ContainBy[T any](slice []T, predicate func(item T) bool) bool {
 	for _, item := range slice {
 		if predicate(item) {
@@ -436,7 +437,7 @@ func Map[T any, U any](slice []T, iteratee func(index int, item T) U) []U {
 // iteratee callback function should returntwo values:
 // 1, mapping result.
 // 2, whether the result element should be included or not
-// Play: todo
+// Play: https://go.dev/play/p/J94SZ_9MiIe
 func FilterMap[T any, U any](slice []T, iteratee func(index int, item T) (U, bool)) []U {
 	result := []U{}
 
@@ -450,7 +451,7 @@ func FilterMap[T any, U any](slice []T, iteratee func(index int, item T) (U, boo
 }
 
 // FlatMap manipulates a slice and transforms and flattens it to a slice of another type.
-// Play: todo
+// Play: https://go.dev/play/p/_QARWlWs1N_F
 func FlatMap[T any, U any](slice []T, iteratee func(index int, item T) []U) []U {
 	result := make([]U, 0, len(slice))
 

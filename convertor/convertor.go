@@ -343,7 +343,7 @@ func DeepClone[T any](src T) T {
 }
 
 // CopyProperties copies each field from the source into the destination. It recursively copies struct pointers and interfaces that contain struct pointers.
-// Play: todo
+// Play: https://go.dev/play/p/FOVY3XJL-6B
 func CopyProperties[T, U any](dst T, src U) (err error) {
 	defer func() {
 		if e := recover(); e != nil {
