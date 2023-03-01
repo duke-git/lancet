@@ -17,7 +17,7 @@ type mapNode struct {
 	next  *mapNode
 }
 
-//HashMap implements a hash map
+// HashMap implements a hash map
 type HashMap struct {
 	capacity uint64
 	size     uint64

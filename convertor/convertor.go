@@ -347,7 +347,7 @@ func DeepClone[T any](src T) T {
 func CopyProperties[T, U any](dst T, src U) (err error) {
 	defer func() {
 		if e := recover(); e != nil {
-			err = errors.New(fmt.Sprintf("%v", e))
+			err = fmt.Errorf("%v", e)
 		}
 	}()
 

@@ -19,10 +19,14 @@ func ExampleContext() {
 		return errors.New("error occurs")
 	}
 
-	Retry(increaseNumber,
+	err := Retry(increaseNumber,
 		RetryDuration(time.Microsecond*50),
 		Context(ctx),
 	)
+
+	if err != nil {
+		return
+	}
 
 	fmt.Println(number)
 

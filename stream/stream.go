@@ -64,6 +64,7 @@ func Generate[T any](generator func() func() (item T, ok bool)) stream[T] {
 
 	var zeroValue T
 	for next, item, ok := generator(), zeroValue, true; ok; {
+
 		item, ok = next()
 		if ok {
 			source = append(source, item)
@@ -98,7 +99,7 @@ func FromRange[T constraints.Integer | constraints.Float](start, end, step T) st
 	}
 
 	l := int((end-start)/step) + 1
-	source := make([]T, l, l)
+	source := make([]T, l)
 
 	for i := 0; i < l; i++ {
 		source[i] = start + (T(i) * step)
@@ -160,7 +161,7 @@ func (s stream[T]) Filter(predicate func(item T) bool) stream[T] {
 
 // Map returns a stream consisting of the elements of this stream that apply the given function to elements of stream.
 func (s stream[T]) Map(mapper func(item T) T) stream[T] {
-	source := make([]T, s.Count(), s.Count())
+	source := make([]T, s.Count())
 
 	for i, v := range s.source {
 		source[i] = mapper(v)

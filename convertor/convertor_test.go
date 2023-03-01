@@ -259,12 +259,12 @@ func TestDeepClone(t *testing.T) {
 	// assert := internal.NewAssert(t, "TestDeepClone")
 
 	type Struct struct {
-		Str        string
-		Int        int
-		Float      float64
-		Bool       bool
-		Nil        interface{}
-		unexported string
+		Str   string
+		Int   int
+		Float float64
+		Bool  bool
+		Nil   interface{}
+		// unexported string
 	}
 
 	cases := []interface{}{
