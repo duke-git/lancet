@@ -200,3 +200,19 @@ func Range[T constraints.Integer | constraints.Float](start T, count int) []T {
 
 	return result
 }
+
+// RangeWithStep creates a slice of numbers from start to end with specified step.
+// Play: todo
+func RangeWithStep[T constraints.Integer | constraints.Float](start, end, step T) []T {
+	result := []T{}
+
+	if start >= end || step == 0 {
+		return result
+	}
+
+	for i := start; i < end; i += step {
+		result = append(result, i)
+	}
+
+	return result
+}
