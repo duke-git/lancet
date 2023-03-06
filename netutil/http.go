@@ -297,7 +297,11 @@ func StructToUrlValues(targetStruct any) url.Values {
 	for i := 0; i < fieldNum; i++ {
 		name := rt.Field(i).Name
 		tag := rt.Field(i).Tag.Get("json")
+		// if regex.MatchString(name) && tag != "" && !strings.Contains(tag, "omitempty"){
 		if regex.MatchString(name) && tag != "" {
+			if strings.Contains(tag, "omitempty") {
+				tag = strings.Split(tag, ",")[0]
+			}
 			result.Add(tag, fmt.Sprintf("%v", rv.Field(i).Interface()))
 		}
 	}

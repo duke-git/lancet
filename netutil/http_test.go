@@ -217,30 +217,31 @@ func TestStructToUrlValues(t *testing.T) {
 	assert := internal.NewAssert(t, "TestStructToUrlValues")
 
 	type TodoQuery struct {
-		Id     int `json:"id"`
-		UserId int `json:"userId"`
+		Id     int    `json:"id"`
+		UserId int    `json:"userId"`
+		Name   string `json:"name,omitempty"`
+		Status string
 	}
-	todoQuery := TodoQuery{
+	item1 := TodoQuery{
 		Id:     1,
-		UserId: 1,
+		UserId: 123,
+		Name:   "test",
+		Status: "completed",
 	}
-	todoValues := StructToUrlValues(todoQuery)
+	queryValues1 := StructToUrlValues(item1)
 
-	assert.Equal("1", todoValues.Get("id"))
-	assert.Equal("1", todoValues.Get("userId"))
+	assert.Equal("1", queryValues1.Get("id"))
+	assert.Equal("123", queryValues1.Get("userId"))
+	assert.Equal("test", queryValues1.Get("name"))
+	assert.Equal("", queryValues1.Get("status"))
 
-	request := &HttpRequest{
-		RawURL:      "https://jsonplaceholder.typicode.com/todos",
-		Method:      "GET",
-		QueryParams: todoValues,
+	item2 := TodoQuery{
+		Id:     2,
+		UserId: 456,
 	}
+	queryValues2 := StructToUrlValues(item2)
 
-	httpClient := NewHttpClient()
-	resp, err := httpClient.SendRequest(request)
-	if err != nil || resp.StatusCode != 200 {
-		log.Fatal(err)
-	}
-
-	body, _ := io.ReadAll(resp.Body)
-	t.Log("response: ", string(body))
+	assert.Equal("2", queryValues2.Get("id"))
+	assert.Equal("456", queryValues2.Get("userId"))
+	assert.Equal("", queryValues2.Get("name"))
 }
