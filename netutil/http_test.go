@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"io/ioutil"
 	"log"
+	"net/http"
 	"net/url"
 	"testing"
 
@@ -162,4 +163,89 @@ func TestParseResponse(t *testing.T) {
 		t.FailNow()
 	}
 	t.Log("response: ", toDoResp)
+}
+
+func TestHttpClient_Get(t *testing.T) {
+	assert := internal.NewAssert(t, "TestHttpClient_Get")
+
+	request := &HttpRequest{
+		RawURL: "https://jsonplaceholder.typicode.com/todos/1",
+		Method: "GET",
+	}
+
+	httpClient := NewHttpClient()
+	resp, err := httpClient.SendRequest(request)
+	if err != nil || resp.StatusCode != 200 {
+		log.Fatal(err)
+	}
+
+	type Todo struct {
+		UserId    int    `json:"userId"`
+		Id        int    `json:"id"`
+		Title     string `json:"title"`
+		Completed bool   `json:"completed"`
+	}
+
+	var todo Todo
+	httpClient.DecodeResponse(resp, &todo)
+
+	assert.Equal(1, todo.Id)
+}
+
+func TestHttpClent_Post(t *testing.T) {
+	header := http.Header{}
+	header.Add("Content-Type", "multipart/form-data")
+
+	postData := url.Values{}
+	postData.Add("userId", "1")
+	postData.Add("title", "testItem")
+
+	request := &HttpRequest{
+		RawURL:   "https://jsonplaceholder.typicode.com/todos",
+		Method:   "POST",
+		Headers:  header,
+		FormData: postData,
+	}
+
+	httpClient := NewHttpClient()
+	resp, err := httpClient.SendRequest(request)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	body, _ := ioutil.ReadAll(resp.Body)
+	t.Log("response: ", resp.StatusCode, string(body))
+}
+
+func TestStructToUrlValues(t *testing.T) {
+	assert := internal.NewAssert(t, "TestStructToUrlValues")
+
+	type TodoQuery struct {
+		Id     int    `json:"id"`
+		UserId int    `json:"userId"`
+		Name   string `json:"name,omitempty"`
+		Status string
+	}
+	item1 := TodoQuery{
+		Id:     1,
+		UserId: 123,
+		Name:   "test",
+		Status: "completed",
+	}
+	queryValues1 := StructToUrlValues(item1)
+
+	assert.Equal("1", queryValues1.Get("id"))
+	assert.Equal("123", queryValues1.Get("userId"))
+	assert.Equal("test", queryValues1.Get("name"))
+	assert.Equal("", queryValues1.Get("status"))
+
+	item2 := TodoQuery{
+		Id:     2,
+		UserId: 456,
+	}
+	queryValues2 := StructToUrlValues(item2)
+
+	assert.Equal("2", queryValues2.Get("id"))
+	assert.Equal("456", queryValues2.Get("userId"))
+	assert.Equal("", queryValues2.Get("name"))
 }

@@ -550,22 +550,34 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/netutil"
+    "github.com/duke-git/lancet/v2/netutil"
 )
 
 func main() {
     type TodoQuery struct {
-        Id     int `json:"id"`
-        UserId int `json:"userId"`
+        Id     int    `json:"id"`
+        UserId int    `json:"userId"`
+        Name   string `json:"name,omitempty"`
+        Status string
     }
-    todoQuery := TodoQuery{
+    item := TodoQuery{
         Id:     1,
-        UserId: 2,
+        UserId: 123,
+        Name:   "test",
+        Status: "completed",
     }
-    todoValues := netutil.StructToUrlValues(todoQuery)
+    queryValues := netutil.StructToUrlValues(item)
 
-    fmt.Println(todoValues.Get("id")) //1
-    fmt.Println(todoValues.Get("userId")) //2
+    fmt.Println(todoValues.Get("id"))
+    fmt.Println(todoValues.Get("userId"))
+    fmt.Println(todoValues.Get("name"))
+    fmt.Println(todoValues.Get("status"))
+
+    // Output:
+    // 1
+    // 123
+    // test
+    //
 }
 ```
 
