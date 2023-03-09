@@ -34,6 +34,8 @@ import (
 -   [RoundToFloat](#RoundToFloat)
 -   [RoundToString](#RoundToString)
 -   [TruncRound](#TruncRound)
+-   [Range](#Range)
+-   [RangeWithStep](#RangeWithStep)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -474,5 +476,83 @@ func main() {
     // 0.12
     // 0.12
     // 0.125
+}
+```
+
+### <span id="Range">Range</span>
+
+<p>Creates a slice of numbers from start with specified count, element step is 1.</p>
+
+<b>Signature:</b>
+
+```go
+func Range[T constraints.Integer | constraints.Float](start T, count int) []T
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/mathutil"
+)
+
+func main() {
+    result1 := mathutil.Range(1, 4)
+	result2 := mathutil.Range(1, -4)
+	result3 := mathutil.Range(-4, 4)
+	result4 := mathutil.Range(1.0, 4)
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+	fmt.Println(result4)
+
+	// Output:
+	// [1 2 3 4]
+	// [1 2 3 4]
+	// [-4 -3 -2 -1]
+	// [1 2 3 4]
+}
+```
+
+### <span id="RangeWithStep">RangeWithStep</span>
+
+<p>Creates a slice of numbers from start to end with specified step.</p>
+
+<b>Signature:</b>
+
+```go
+func RangeWithStep[T constraints.Integer | constraints.Float](start, end, step T) []T
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/mathutil"
+)
+
+func main() {
+    result1 := mathutil.RangeWithStep(1, 4, 1)
+	result2 := mathutil.RangeWithStep(1, -1, 0)
+	result3 := mathutil.RangeWithStep(-4, 1, 2)
+	result4 := mathutil.RangeWithStep(1.0, 4.0, 1.1)
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+	fmt.Println(result4)
+
+	// Output:
+	// [1 2 3]
+	// []
+	// [-4 -2 0]
+	// [1 2.1 3.2]
 }
 ```
