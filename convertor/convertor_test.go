@@ -180,18 +180,37 @@ func TestToMap(t *testing.T) {
 func TestStructToMap(t *testing.T) {
 	assert := internal.NewAssert(t, "TestStructToMap")
 
-	type People struct {
-		Name string `json:"name"`
-		age  int
-	}
-	p := People{
-		"test",
-		100,
-	}
-	pm, _ := StructToMap(p)
+	t.Run("StructToMap", func(t *testing.T) {
+		type People struct {
+			Name string `json:"name"`
+			age  int
+		}
+		p := People{
+			"test",
+			100,
+		}
+		pm, _ := StructToMap(p)
+		var expected = map[string]any{"name": "test"}
+		assert.Equal(expected, pm)
+	})
 
-	expected := map[string]any{"name": "test"}
-	assert.Equal(expected, pm)
+	t.Run("StructToMapWithJsonAttr", func(t *testing.T) {
+		type People struct {
+			Name  string `json:"name,omitempty"` // json tag with attribute
+			Phone string `json:"phone"`          // json tag without attribute
+			Sex   string `json:"-"`              // ignore
+			age   int    // no tag
+		}
+		p := People{
+			"test",
+			"1111",
+			"male",
+			100,
+		}
+		pm, _ := StructToMap(p)
+		var expected = map[string]any{"name": "test", "phone": "1111"}
+		assert.Equal(expected, pm)
+	})
 }
 
 func TestMapToSlice(t *testing.T) {
