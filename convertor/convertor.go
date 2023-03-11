@@ -253,10 +253,11 @@ func StructToMap(value any) (map[string]any, error) {
 	for i := 0; i < fieldNum; i++ {
 		name := t.Field(i).Name
 		tag := t.Field(i).Tag.Get("json")
-		if regex.MatchString(name) && tag != "" {
-			//result[name] = v.Field(i).Interface()
-			result[tag] = v.Field(i).Interface()
+		if tag == "" || strings.HasPrefix(tag, "-") || !regex.MatchString(name) {
+			continue
 		}
+		tag = strings.Split(tag, ",")[0]
+		result[tag] = v.Field(i).Interface()
 	}
 
 	return result, nil
