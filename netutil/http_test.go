@@ -217,17 +217,22 @@ func TestStructToUrlValues(t *testing.T) {
 	assert := internal.NewAssert(t, "TestStructToUrlValues")
 
 	type TodoQuery struct {
-		Id     int `json:"id"`
-		UserId int `json:"userId"`
+		Id     int    `json:"id"`
+		UserId int    `json:"userId"`
+		Name   string `json:"name,omitempty"`
 	}
 	todoQuery := TodoQuery{
 		Id:     1,
 		UserId: 1,
 	}
-	todoValues := StructToUrlValues(todoQuery)
+	todoValues, err := StructToUrlValues(todoQuery)
+	if err != nil {
+		t.Errorf("params is invalid: %v", err)
+	}
 
 	assert.Equal("1", todoValues.Get("id"))
 	assert.Equal("1", todoValues.Get("userId"))
+	assert.Equal("", todoValues.Get("name"))
 
 	request := &HttpRequest{
 		RawURL:      "https://jsonplaceholder.typicode.com/todos",

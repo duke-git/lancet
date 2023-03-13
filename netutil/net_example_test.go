@@ -123,14 +123,17 @@ func ExampleHttpClient_DecodeResponse() {
 
 func ExampleStructToUrlValues() {
 	type TodoQuery struct {
-		Id   int    `json:"id"`
+		Id   int    `json:"id,omitempty"`
 		Name string `json:"name"`
 	}
 	todoQuery := TodoQuery{
 		Id:   1,
 		Name: "Test",
 	}
-	todoValues := StructToUrlValues(todoQuery)
+	todoValues, err := StructToUrlValues(todoQuery)
+	if err != nil {
+		return
+	}
 
 	fmt.Println(todoValues.Get("id"))
 	fmt.Println(todoValues.Get("name"))
