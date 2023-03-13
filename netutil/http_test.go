@@ -220,26 +220,26 @@ func TestStructToUrlValues(t *testing.T) {
 		Id     int    `json:"id"`
 		UserId int    `json:"userId"`
 		Name   string `json:"name,omitempty"`
-		Status string
 	}
 	item1 := TodoQuery{
 		Id:     1,
 		UserId: 123,
-		Name:   "test",
-		Status: "completed",
+		Name:   "",
 	}
-	queryValues1 := StructToUrlValues(item1)
+	todoValues, err := StructToUrlValues(item1)
+	if err != nil {
+		t.Errorf("params is invalid: %v", err)
+	}
 
-	assert.Equal("1", queryValues1.Get("id"))
-	assert.Equal("123", queryValues1.Get("userId"))
-	assert.Equal("test", queryValues1.Get("name"))
-	assert.Equal("", queryValues1.Get("status"))
+	assert.Equal("1", todoValues.Get("id"))
+	assert.Equal("123", todoValues.Get("userId"))
+	assert.Equal("", todoValues.Get("name"))
 
 	item2 := TodoQuery{
 		Id:     2,
 		UserId: 456,
 	}
-	queryValues2 := StructToUrlValues(item2)
+	queryValues2, _ := StructToUrlValues(item2)
 
 	assert.Equal("2", queryValues2.Get("id"))
 	assert.Equal("456", queryValues2.Get("userId"))

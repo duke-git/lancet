@@ -134,13 +134,16 @@ func ExampleStructToUrlValues() {
 		Name:   "test",
 		Status: "completed",
 	}
-	queryValues1 := StructToUrlValues(item1)
+	queryValues1, err := StructToUrlValues(item1)
+	if err != nil {
+		return
+	}
 
 	item2 := TodoQuery{
 		Id:     2,
 		UserId: 456,
 	}
-	queryValues2 := StructToUrlValues(item2)
+	queryValues2, _ := StructToUrlValues(item2)
 
 	fmt.Println(queryValues1.Get("id"))
 	fmt.Println(queryValues1.Get("userId"))

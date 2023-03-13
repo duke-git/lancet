@@ -180,7 +180,7 @@ func TestToMap(t *testing.T) {
 func TestStructToMap(t *testing.T) {
 	assert := internal.NewAssert(t, "TestStructToMap")
 
-	t.Run("StructToMap", func(t *testing.T) {
+	t.Run("StructToMap", func(_ *testing.T) {
 		type People struct {
 			Name string `json:"name"`
 			age  int
@@ -194,7 +194,7 @@ func TestStructToMap(t *testing.T) {
 		assert.Equal(expected, pm)
 	})
 
-	t.Run("StructToMapWithJsonAttr", func(t *testing.T) {
+	t.Run("StructToMapWithJsonAttr", func(_ *testing.T) {
 		type People struct {
 			Name  string `json:"name,omitempty"` // json tag with attribute
 			Phone string `json:"phone"`          // json tag without attribute
@@ -202,13 +202,12 @@ func TestStructToMap(t *testing.T) {
 			age   int    // no tag
 		}
 		p := People{
-			"test",
-			"1111",
-			"male",
-			100,
+			Phone: "1111",
+			Sex:   "male",
+			age:   100,
 		}
 		pm, _ := StructToMap(p)
-		var expected = map[string]any{"name": "test", "phone": "1111"}
+		var expected = map[string]any{"phone": "1111"}
 		assert.Equal(expected, pm)
 	})
 }
