@@ -21,12 +21,11 @@ import (
 	"io"
 	"net/http"
 	"net/url"
-	"reflect"
-	"regexp"
 	"sort"
 	"strings"
 	"time"
 
+	"github.com/duke-git/lancet/v2/convertor"
 	"github.com/duke-git/lancet/v2/slice"
 )
 
@@ -219,7 +218,7 @@ func (client *HttpClient) setTLS(rawUrl string) {
 	}
 }
 
-// setHeader set http rquest header
+// setHeader set http request header
 func (client *HttpClient) setHeader(req *http.Request, headers http.Header) {
 	if headers == nil {
 		headers = make(http.Header)
@@ -278,29 +277,15 @@ func validateRequest(req *HttpRequest) error {
 // StructToUrlValues convert struct to url valuse,
 // only convert the field which is exported and has `json` tag.
 // Play: https://go.dev/play/p/pFqMkM40w9z
-func StructToUrlValues(targetStruct any) url.Values {
-	rv := reflect.ValueOf(targetStruct)
-	rt := reflect.TypeOf(targetStruct)
-
-	if rt.Kind() == reflect.Ptr {
-		rt = rt.Elem()
-	}
-	if rt.Kind() != reflect.Struct {
-		panic(fmt.Errorf("data type %T not support, shuld be struct or pointer to struct", targetStruct))
-	}
-
+func StructToUrlValues(targetStruct any) (url.Values, error) {
 	result := url.Values{}
-
-	fieldNum := rt.NumField()
-	pattern := `^[A-Z]`
-	regex := regexp.MustCompile(pattern)
-	for i := 0; i < fieldNum; i++ {
-		name := rt.Field(i).Name
-		tag := rt.Field(i).Tag.Get("json")
-		if regex.MatchString(name) && tag != "" {
-			result.Add(tag, fmt.Sprintf("%v", rv.Field(i).Interface()))
-		}
+	s, err := convertor.StructToMap(targetStruct)
+	if err != nil {
+		return nil, err
+	}
+	for k, v := range s {
+		result.Add(k, fmt.Sprintf("%v", v))
 	}
 
-	return result
+	return result, nil
 }
