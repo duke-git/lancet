@@ -43,7 +43,7 @@ func inOrderTraverse[T any](node *datastructure.TreeNode[T]) []T {
 // 		return
 // 	}
 
-// 	fmt.Printf("%v, ", node.rvalue)
+// 	fmt.Printf("%v, ", node.Value)
 // 	preOrderPrint(node.Left)
 // 	preOrderPrint(node.Right)
 // }
@@ -55,7 +55,7 @@ func inOrderTraverse[T any](node *datastructure.TreeNode[T]) []T {
 
 // 	postOrderPrint(node.Left)
 // 	postOrderPrint(node.Right)
-// 	fmt.Printf("%v, ", node.rvalue)
+// 	fmt.Printf("%v, ", node.Value)
 // }
 
 // func inOrderPrint[T any](node *datastructure.TreeNode[T]) {
@@ -64,7 +64,7 @@ func inOrderTraverse[T any](node *datastructure.TreeNode[T]) []T {
 // 	}
 
 // 	inOrderPrint(node.Left)
-// 	fmt.Printf("%v, ", node.rvalue)
+// 	fmt.Printf("%v, ", node.Value)
 // 	inOrderPrint(node.Right)
 // }
 

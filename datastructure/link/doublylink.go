@@ -6,7 +6,7 @@ import (
 	"github.com/duke-git/lancet/v2/datastructure"
 )
 
-// DoublyLink is a linked list. Whose node has a generic rvalue, Pre pointer points to a previous node of the dl, Next pointer points to a next node of the dl.
+// DoublyLink is a linked list. Whose node has a generic Value, Pre pointer points to a previous node of the dl, Next pointer points to a next node of the dl.
 type DoublyLink[T any] struct {
 	Head   *datastructure.LinkNode[T]
 	length int

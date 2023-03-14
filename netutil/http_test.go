@@ -221,31 +221,27 @@ func TestStructToUrlValues(t *testing.T) {
 		UserId int    `json:"userId"`
 		Name   string `json:"name,omitempty"`
 	}
-	todoQuery := TodoQuery{
+	item1 := TodoQuery{
 		Id:     1,
-		UserId: 1,
+		UserId: 123,
+		Name:   "",
 	}
-	todoValues, err := StructToUrlValues(todoQuery)
+	todoValues, err := StructToUrlValues(item1)
 	if err != nil {
 		t.Errorf("params is invalid: %v", err)
 	}
 
 	assert.Equal("1", todoValues.Get("id"))
-	assert.Equal("1", todoValues.Get("userId"))
+	assert.Equal("123", todoValues.Get("userId"))
 	assert.Equal("", todoValues.Get("name"))
 
-	request := &HttpRequest{
-		RawURL:      "https://jsonplaceholder.typicode.com/todos",
-		Method:      "GET",
-		QueryParams: todoValues,
+	item2 := TodoQuery{
+		Id:     2,
+		UserId: 456,
 	}
+	queryValues2, _ := StructToUrlValues(item2)
 
-	httpClient := NewHttpClient()
-	resp, err := httpClient.SendRequest(request)
-	if err != nil || resp.StatusCode != 200 {
-		log.Fatal(err)
-	}
-
-	body, _ := io.ReadAll(resp.Body)
-	t.Log("response: ", string(body))
+	assert.Equal("2", queryValues2.Get("id"))
+	assert.Equal("456", queryValues2.Get("userId"))
+	assert.Equal("", queryValues2.Get("name"))
 }

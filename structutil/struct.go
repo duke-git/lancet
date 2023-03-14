@@ -45,7 +45,7 @@ func New(value any) *Struct {
 //		Name string							// no tag
 //	 	Age string `json:"-"`				// json ignore tag
 //		sex string							// unexported field
-//	 	Goal int   `json:"goal,omitempty"`  // omitempty if the field is zero rvalue
+//	 	Goal int   `json:"goal,omitempty"`  // omitempty if the field is zero value
 //
 //	 	// custom map key
 //	 	Name string `json:"myName"`
@@ -105,7 +105,7 @@ func (s *Struct) Field(name string) (*Field, bool) {
 }
 
 // ToMap convert struct to map, only convert exported struct field
-// map key is specified same as struct field tag `json` rvalue.
+// map key is specified same as struct field tag `json` value.
 func ToMap(v any) (map[string]any, error) {
 	return New(v).ToMap()
 }

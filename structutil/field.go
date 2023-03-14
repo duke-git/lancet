@@ -26,12 +26,12 @@ func newField(v reflect.Value, f reflect.StructField, tagName string) *Field {
 	return field
 }
 
-// Tag returns the Value that the key in the tag string.
+// Tag returns the value that the key in the tag string.
 func (f *Field) Tag() *Tag {
 	return f.tag
 }
 
-// Value returns the underlying Value of the field.
+// Value returns the underlying value of the field.
 func (f *Field) Value() any {
 	return f.rvalue.Interface()
 }
@@ -46,7 +46,7 @@ func (f *Field) IsExported() bool {
 	return f.field.PkgPath == ""
 }
 
-// IsZero returns true if the given field is zero Value.
+// IsZero returns true if the given field is zero value.
 func (f *Field) IsZero() bool {
 	z := reflect.Zero(f.rvalue.Type()).Interface()
 	v := f.Value()
