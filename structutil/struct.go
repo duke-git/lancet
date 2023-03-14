@@ -19,6 +19,9 @@ type Struct struct {
 func New(value any) *Struct {
 	v := reflect.ValueOf(value)
 	t := reflect.TypeOf(value)
+	if t.Kind() == reflect.Ptr {
+		t = t.Elem()
+	}
 	if v.Kind() == reflect.Ptr {
 		v = v.Elem()
 	}
@@ -42,15 +45,18 @@ func New(value any) *Struct {
 //		Name string							// no tag
 //	 	Age string `json:"-"`				// json ignore tag
 //		sex string							// unexported field
-//	 	Goal int   `json:"goal,omitempty"`  // omitempty if the field is zero value
+//	 	Goal int   `json:"goal,omitempty"`  // omitempty if the field is zero rvalue
 //
 //	 	// custom map key
 //	 	Name string `json:"myName"`
 //
 // Only the exported fields of a struct can be converted.
 func (s *Struct) ToMap() (map[string]any, error) {
-	result := make(map[string]any)
+	if !s.IsStruct() {
+		return nil, ErrInvalidStruct(s)
+	}
 
+	result := make(map[string]any)
 	fields := s.Fields()
 	for _, f := range fields {
 		if !f.IsExported() || f.tag.IsEmpty() || f.tag.Name == "-" {
@@ -59,8 +65,7 @@ func (s *Struct) ToMap() (map[string]any, error) {
 		if f.IsZero() && f.tag.HasOption("omitempty") {
 			continue
 		}
-		// TODO: sub struct
-		result[f.tag.Name] = f.Value()
+		result[f.tag.Name] = f.MapValue(f.Value())
 	}
 
 	return result, nil
@@ -74,15 +79,33 @@ func (s *Struct) Fields() []*Field {
 	for i := 0; i < fieldNum; i++ {
 		v := s.rvalue.Field(i)
 		sf := s.rtype.Field(i)
-		field := newField(v, sf, DefaultTagName)
+		field := newField(v, sf, s.TagName)
 		fields = append(fields, field)
 	}
 
 	return fields
 }
 
+// IsStruct returns true if the given rvalue is a struct
+func (s *Struct) IsStruct() bool {
+	k := s.rvalue.Kind()
+	if k == reflect.Invalid {
+		return false
+	}
+	return k == reflect.Struct
+}
+
+// Field returns a Field if the given field name was found
+func (s *Struct) Field(name string) (*Field, bool) {
+	f, ok := s.rtype.FieldByName(name)
+	if !ok {
+		return nil, false
+	}
+	return newField(s.rvalue.FieldByName(name), f, s.TagName), true
+}
+
 // ToMap convert struct to map, only convert exported struct field
-// map key is specified same as struct field tag `json` value.
+// map key is specified same as struct field tag `json` rvalue.
 func ToMap(v any) (map[string]any, error) {
 	return New(v).ToMap()
 }

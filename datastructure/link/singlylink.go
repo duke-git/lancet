@@ -7,7 +7,7 @@ import (
 	"github.com/duke-git/lancet/v2/datastructure"
 )
 
-// SinglyLink is a linked list. Whose node has a Value generics and Next pointer points to a next node of the sl.
+// SinglyLink is a linked list. Whose node has a rvalue generics and Next pointer points to a next node of the sl.
 type SinglyLink[T any] struct {
 	Head   *datastructure.LinkNode[T]
 	length int
