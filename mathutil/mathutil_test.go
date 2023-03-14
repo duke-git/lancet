@@ -137,3 +137,33 @@ func TestMinBy(t *testing.T) {
 	})
 	assert.Equal("", res3)
 }
+
+func TestRange(t *testing.T) {
+	assert := internal.NewAssert(t, "Range")
+
+	result1 := Range(1, 4)
+	result2 := Range(1, -4)
+	result3 := Range(-4, 4)
+	result4 := Range(1.0, 4)
+	result5 := Range(1, 0)
+
+	assert.Equal([]int{1, 2, 3, 4}, result1)
+	assert.Equal([]int{1, 2, 3, 4}, result2)
+	assert.Equal([]int{-4, -3, -2, -1}, result3)
+	assert.Equal([]float64{1.0, 2.0, 3.0, 4.0}, result4)
+	assert.Equal([]int{}, result5)
+}
+
+func TestRangeWithStep(t *testing.T) {
+	assert := internal.NewAssert(t, "Range")
+
+	result1 := RangeWithStep(1, 4, 1)
+	result2 := RangeWithStep(1, -1, 0)
+	result3 := RangeWithStep(-4, 1, 2)
+	result4 := RangeWithStep(1.0, 4.0, 1.1)
+
+	assert.Equal([]int{1, 2, 3}, result1)
+	assert.Equal([]int{}, result2)
+	assert.Equal([]int{-4, -2, 0}, result3)
+	assert.Equal([]float64{1.0, 2.1, 3.2}, result4)
+}

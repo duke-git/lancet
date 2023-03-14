@@ -183,3 +183,36 @@ func Average[T constraints.Integer | constraints.Float](numbers ...T) T {
 	}
 	return sum / n
 }
+
+// Range creates a slice of numbers from start with specified count, element step is 1.
+// Play: todo
+func Range[T constraints.Integer | constraints.Float](start T, count int) []T {
+	size := count
+	if count < 0 {
+		size = -count
+	}
+
+	result := make([]T, size)
+
+	for i, j := 0, start; i < size; i, j = i+1, j+1 {
+		result[i] = j
+	}
+
+	return result
+}
+
+// RangeWithStep creates a slice of numbers from start to end with specified step.
+// Play: todo
+func RangeWithStep[T constraints.Integer | constraints.Float](start, end, step T) []T {
+	result := []T{}
+
+	if start >= end || step == 0 {
+		return result
+	}
+
+	for i := start; i < end; i += step {
+		result = append(result, i)
+	}
+
+	return result
+}

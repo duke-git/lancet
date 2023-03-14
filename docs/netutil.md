@@ -590,21 +590,29 @@ import (
 
 func main() {
     type TodoQuery struct {
-        Id   int    `json:"id"`
-        Name string `json:"name"`
+        Id     int    `json:"id"`
+        UserId int    `json:"userId"`
+        Name   string `json:"name,omitempty"`
+        Status string
     }
-    todoQuery := TodoQuery{
-        Id:   1,
-        Name: "Test",
+    item := TodoQuery{
+        Id:     1,
+        UserId: 123,
+        Name:   "test",
+        Status: "completed",
     }
-    todoValues := netutil.StructToUrlValues(todoQuery)
+    queryValues := netutil.StructToUrlValues(item)
 
     fmt.Println(todoValues.Get("id"))
+    fmt.Println(todoValues.Get("userId"))
     fmt.Println(todoValues.Get("name"))
+    fmt.Println(todoValues.Get("status"))
 
     // Output:
     // 1
-    // Test
+    // 123
+    // test
+    //
 }
 ```
 

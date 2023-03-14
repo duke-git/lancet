@@ -123,24 +123,45 @@ func ExampleHttpClient_DecodeResponse() {
 
 func ExampleStructToUrlValues() {
 	type TodoQuery struct {
-		Id   int    `json:"id,omitempty"`
-		Name string `json:"name"`
+		Id     int    `json:"id"`
+		UserId int    `json:"userId"`
+		Name   string `json:"name,omitempty"`
+		Status string
 	}
-	todoQuery := TodoQuery{
-		Id:   1,
-		Name: "Test",
+	item1 := TodoQuery{
+		Id:     1,
+		UserId: 123,
+		Name:   "test",
+		Status: "completed",
 	}
-	todoValues, err := StructToUrlValues(todoQuery)
+	queryValues1, err := StructToUrlValues(item1)
 	if err != nil {
 		return
 	}
 
-	fmt.Println(todoValues.Get("id"))
-	fmt.Println(todoValues.Get("name"))
+	item2 := TodoQuery{
+		Id:     2,
+		UserId: 456,
+	}
+	queryValues2, _ := StructToUrlValues(item2)
+
+	fmt.Println(queryValues1.Get("id"))
+	fmt.Println(queryValues1.Get("userId"))
+	fmt.Println(queryValues1.Get("name"))
+	fmt.Println(queryValues1.Get("status"))
+
+	fmt.Println(queryValues2.Get("id"))
+	fmt.Println(queryValues2.Get("userId"))
+	fmt.Println(queryValues2.Get("name"))
 
 	// Output:
 	// 1
-	// Test
+	// 123
+	// test
+	//
+	// 2
+	// 456
+	//
 }
 
 func ExampleConvertMapToQueryString() {

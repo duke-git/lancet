@@ -185,3 +185,39 @@ func ExampleMinBy() {
 	// ab
 	//
 }
+
+func ExampleRange() {
+	result1 := Range(1, 4)
+	result2 := Range(1, -4)
+	result3 := Range(-4, 4)
+	result4 := Range(1.0, 4)
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+	fmt.Println(result4)
+
+	// Output:
+	// [1 2 3 4]
+	// [1 2 3 4]
+	// [-4 -3 -2 -1]
+	// [1 2 3 4]
+}
+
+func ExampleRangeWithStep() {
+	result1 := RangeWithStep(1, 4, 1)
+	result2 := RangeWithStep(1, -1, 0)
+	result3 := RangeWithStep(-4, 1, 2)
+	result4 := RangeWithStep(1.0, 4.0, 1.1)
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+	fmt.Println(result4)
+
+	// Output:
+	// [1 2 3]
+	// []
+	// [-4 -2 0]
+	// [1 2.1 3.2]
+}
