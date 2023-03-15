@@ -1,4 +1,4 @@
-package structutil
+package structs
 
 import (
 	"github.com/duke-git/lancet/v2/internal"
@@ -152,7 +152,7 @@ func TestField_MapValue(t *testing.T) {
 
 		s := New(p1)
 		f, ok := s.Field("Child")
-		val := f.MapValue(f.Value())
+		val := f.mapValue(f.Value())
 
 		assert.Equal(true, ok)
 		assert.Equal(map[string]any{"name": "11-1"}, val)
@@ -176,7 +176,7 @@ func TestField_MapValue(t *testing.T) {
 
 		s := New(p1)
 		f, ok := s.Field("Child")
-		val := f.MapValue(f.Value())
+		val := f.mapValue(f.Value())
 
 		assert.Equal(true, ok)
 		assert.Equal(map[string]any{"name": "11-1"}, val)
@@ -195,13 +195,13 @@ func TestField_MapValue(t *testing.T) {
 
 		s := New(p1)
 		f, ok := s.Field("Child")
-		val := f.MapValue(f.Value())
+		val := f.mapValue(f.Value())
 
 		assert.Equal(true, ok)
 		assert.Equal([]int{1, 2, 3}, val)
 	})
 
-	t.Run("nested array in struct", func(t *testing.T) {
+	t.Run("nested array struct", func(t *testing.T) {
 		type Child struct {
 			Name string `json:"name"`
 		}
@@ -220,14 +220,14 @@ func TestField_MapValue(t *testing.T) {
 
 		s := New(p1)
 		f, ok := s.Field("Child")
-		val := f.MapValue(f.Value())
+		val := f.mapValue(f.Value())
 
 		assert.Equal(true, ok)
 		arr := []any{map[string]any{"name": "11-1"}, map[string]any{"name": "11-2"}}
 		assert.Equal(arr, val)
 	})
 
-	t.Run("nested ptr array in struct", func(t *testing.T) {
+	t.Run("nested ptr array struct", func(t *testing.T) {
 		type Child struct {
 			Name string `json:"name"`
 		}
@@ -246,7 +246,7 @@ func TestField_MapValue(t *testing.T) {
 
 		s := New(p1)
 		f, ok := s.Field("Child")
-		val := f.MapValue(f.Value())
+		val := f.mapValue(f.Value())
 
 		assert.Equal(true, ok)
 		arr := []any{map[string]any{"name": "11-1"}, map[string]any{"name": "11-2"}}
@@ -265,7 +265,7 @@ func TestField_MapValue(t *testing.T) {
 
 		s := New(p1)
 		f, ok := s.Field("Child")
-		val := f.MapValue(f.Value())
+		val := f.mapValue(f.Value())
 		assert.Equal(true, ok)
 		assert.Equal(map[string]any{"a": 1, "b": map[string]any{"name": "11-1"}}, val)
 	})

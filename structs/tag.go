@@ -1,4 +1,4 @@
-package structutil
+package structs
 
 import (
 	"github.com/duke-git/lancet/v2/validator"

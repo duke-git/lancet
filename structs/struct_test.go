@@ -1,4 +1,4 @@
-package structutil
+package structs
 
 import (
 	"github.com/duke-git/lancet/v2/internal"
@@ -9,7 +9,7 @@ import (
 func TestStruct_ToMap(t *testing.T) {
 	assert := internal.NewAssert(t, "TestStruct_ToMap")
 
-	t.Run("no struct", func(t *testing.T) {
+	t.Run("invalid struct", func(t *testing.T) {
 		m, _ := ToMap(1)
 		var expected map[string]any
 		assert.Equal(expected, m)
@@ -20,7 +20,7 @@ func TestStruct_ToMap(t *testing.T) {
 			Name string `json:"name"`
 			age  int
 		}
-		p := People{
+		p := &People{
 			"test",
 			100,
 		}

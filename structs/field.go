@@ -1,4 +1,4 @@
-package structutil
+package structs
 
 import (
 	"github.com/duke-git/lancet/v2/pointer"
@@ -18,6 +18,7 @@ func newField(v reflect.Value, f reflect.StructField, tagName string) *Field {
 		tag:   newTag(tag),
 	}
 	field.rvalue = v
+	field.rtype = v.Type()
 	field.TagName = tagName
 	return field
 }
@@ -64,7 +65,8 @@ func (f *Field) IsSlice() bool {
 	return k == reflect.Slice
 }
 
-func (f *Field) MapValue(value any) any {
+// mapValue return the value that the recursive the given value transform to a map
+func (f *Field) mapValue(value any) any {
 	val := pointer.ExtractPointer(value)
 	v := reflect.ValueOf(val)
 	var ret any
@@ -82,7 +84,7 @@ func (f *Field) MapValue(value any) any {
 			// iterate the map
 			m := make(map[string]any, v.Len())
 			for _, key := range v.MapKeys() {
-				m[key.String()] = f.MapValue(v.MapIndex(key).Interface())
+				m[key.String()] = f.mapValue(v.MapIndex(key).Interface())
 			}
 			ret = m
 		default:
@@ -94,7 +96,7 @@ func (f *Field) MapValue(value any) any {
 		case reflect.Ptr, reflect.Array, reflect.Map, reflect.Slice, reflect.Chan:
 			slices := make([]any, v.Len())
 			for i := 0; i < v.Len(); i++ {
-				slices[i] = f.MapValue(v.Index(i).Interface())
+				slices[i] = f.mapValue(v.Index(i).Interface())
 			}
 			ret = slices
 		default:
