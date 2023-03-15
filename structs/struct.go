@@ -57,7 +57,7 @@ func New(value any, tagName ...string) *Struct {
 //	 	// custom map key
 //	 	Name string `json:"myName"`
 //
-// Only the exported fields of a struct can be converted.
+// ToMap convert the exported fields of a struct to map.
 func (s *Struct) ToMap() (map[string]any, error) {
 	if !s.IsStruct() {
 		return nil, errInvalidStruct(s)

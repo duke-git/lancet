@@ -1,9 +1,10 @@
 package structs
 
 import (
-	"github.com/duke-git/lancet/v2/internal"
 	"reflect"
 	"testing"
+
+	"github.com/duke-git/lancet/v2/internal"
 )
 
 func TestStruct_ToMap(t *testing.T) {
@@ -113,6 +114,7 @@ func TestStruct_Field(t *testing.T) {
 	assert.Equal("1", a.Value())
 	assert.Equal("a", a.tag.Name)
 	assert.Equal(false, a.tag.HasOption("omitempty"))
+	assert.Equal(false, a.tag.IsEmpty())
 }
 
 func TestStruct_IsStruct(t *testing.T) {
