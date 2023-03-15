@@ -17,11 +17,7 @@ func newField(v reflect.Value, f reflect.StructField, tagName string) *Field {
 		field: f,
 		tag:   newTag(tag),
 	}
-	val := pointer.ExtractPointer(v.Interface())
-	rt := reflect.TypeOf(val)
-	rv := reflect.ValueOf(val)
-	field.rvalue = rv
-	field.rtype = rt
+	field.rvalue = v
 	field.TagName = tagName
 	return field
 }
@@ -38,12 +34,12 @@ func (f *Field) Value() any {
 
 // IsEmbedded returns true if the given field is an embedded field.
 func (f *Field) IsEmbedded() bool {
-	return f.field.Anonymous
+	return len(f.field.Index) > 1
 }
 
 // IsExported returns true if the given field is exported.
 func (f *Field) IsExported() bool {
-	return f.field.PkgPath == ""
+	return f.field.IsExported()
 }
 
 // IsZero returns true if the given field is zero value.

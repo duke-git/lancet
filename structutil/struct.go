@@ -1,6 +1,7 @@
 package structutil
 
 import (
+	"github.com/duke-git/lancet/v2/pointer"
 	"reflect"
 )
 
@@ -17,14 +18,9 @@ type Struct struct {
 
 // New returns a new *Struct
 func New(value any) *Struct {
+	value = pointer.ExtractPointer(value)
 	v := reflect.ValueOf(value)
 	t := reflect.TypeOf(value)
-	if t.Kind() == reflect.Ptr {
-		t = t.Elem()
-	}
-	if v.Kind() == reflect.Ptr {
-		v = v.Elem()
-	}
 	return &Struct{
 		raw:     value,
 		rtype:   t,
@@ -73,7 +69,6 @@ func (s *Struct) ToMap() (map[string]any, error) {
 
 // Fields returns all the struct fields within a slice
 func (s *Struct) Fields() []*Field {
-
 	var fields []*Field
 	fieldNum := s.rvalue.NumField()
 	for i := 0; i < fieldNum; i++ {
@@ -82,17 +77,7 @@ func (s *Struct) Fields() []*Field {
 		field := newField(v, sf, s.TagName)
 		fields = append(fields, field)
 	}
-
 	return fields
-}
-
-// IsStruct returns true if the given rvalue is a struct
-func (s *Struct) IsStruct() bool {
-	k := s.rvalue.Kind()
-	if k == reflect.Invalid {
-		return false
-	}
-	return k == reflect.Struct
 }
 
 // Field returns a Field if the given field name was found
@@ -102,6 +87,15 @@ func (s *Struct) Field(name string) (*Field, bool) {
 		return nil, false
 	}
 	return newField(s.rvalue.FieldByName(name), f, s.TagName), true
+}
+
+// IsStruct returns true if the given rvalue is a struct
+func (s *Struct) IsStruct() bool {
+	k := s.rvalue.Kind()
+	if k == reflect.Invalid {
+		return false
+	}
+	return k == reflect.Struct
 }
 
 // ToMap convert struct to map, only convert exported struct field
