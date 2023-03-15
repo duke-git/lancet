@@ -1,6 +1,7 @@
 package structutil
 
 import (
+	"github.com/duke-git/lancet/v2/pointer"
 	"reflect"
 )
 
@@ -17,11 +18,9 @@ type Struct struct {
 
 // New returns a new *Struct
 func New(value any) *Struct {
+	value = pointer.ExtractPointer(value)
 	v := reflect.ValueOf(value)
 	t := reflect.TypeOf(value)
-	if v.Kind() == reflect.Ptr {
-		v = v.Elem()
-	}
 	return &Struct{
 		raw:     value,
 		rtype:   t,
@@ -49,8 +48,11 @@ func New(value any) *Struct {
 //
 // Only the exported fields of a struct can be converted.
 func (s *Struct) ToMap() (map[string]any, error) {
-	result := make(map[string]any)
+	if !s.IsStruct() {
+		return nil, ErrInvalidStruct(s)
+	}
 
+	result := make(map[string]any)
 	fields := s.Fields()
 	for _, f := range fields {
 		if !f.IsExported() || f.tag.IsEmpty() || f.tag.Name == "-" {
@@ -59,8 +61,7 @@ func (s *Struct) ToMap() (map[string]any, error) {
 		if f.IsZero() && f.tag.HasOption("omitempty") {
 			continue
 		}
-		// TODO: sub struct
-		result[f.tag.Name] = f.Value()
+		result[f.tag.Name] = f.MapValue(f.Value())
 	}
 
 	return result, nil
@@ -68,17 +69,33 @@ func (s *Struct) ToMap() (map[string]any, error) {
 
 // Fields returns all the struct fields within a slice
 func (s *Struct) Fields() []*Field {
-
 	var fields []*Field
 	fieldNum := s.rvalue.NumField()
 	for i := 0; i < fieldNum; i++ {
 		v := s.rvalue.Field(i)
 		sf := s.rtype.Field(i)
-		field := newField(v, sf, DefaultTagName)
+		field := newField(v, sf, s.TagName)
 		fields = append(fields, field)
 	}
-
 	return fields
+}
+
+// Field returns a Field if the given field name was found
+func (s *Struct) Field(name string) (*Field, bool) {
+	f, ok := s.rtype.FieldByName(name)
+	if !ok {
+		return nil, false
+	}
+	return newField(s.rvalue.FieldByName(name), f, s.TagName), true
+}
+
+// IsStruct returns true if the given rvalue is a struct
+func (s *Struct) IsStruct() bool {
+	k := s.rvalue.Kind()
+	if k == reflect.Invalid {
+		return false
+	}
+	return k == reflect.Struct
 }
 
 // ToMap convert struct to map, only convert exported struct field
