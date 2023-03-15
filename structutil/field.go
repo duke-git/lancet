@@ -61,9 +61,6 @@ func (f *Field) Kind() reflect.Kind {
 
 func (f *Field) IsSlice() bool {
 	k := f.rvalue.Kind()
-	if k == reflect.Invalid {
-		return false
-	}
 	return k == reflect.Slice
 }
 

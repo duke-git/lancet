@@ -9,6 +9,12 @@ import (
 func TestStruct_ToMap(t *testing.T) {
 	assert := internal.NewAssert(t, "TestStruct_ToMap")
 
+	t.Run("no struct", func(t *testing.T) {
+		m, _ := ToMap(1)
+		var expected map[string]any
+		assert.Equal(expected, m)
+	})
+
 	t.Run("StructToMap", func(_ *testing.T) {
 		type People struct {
 			Name string `json:"name"`
@@ -101,7 +107,8 @@ func TestStruct_Field(t *testing.T) {
 	}
 
 	s := New(p1)
-	a, _ := s.Field("A")
+	a, ok := s.Field("A")
+	assert.Equal(true, ok)
 	assert.Equal(reflect.String, a.Kind())
 	assert.Equal("1", a.Value())
 	assert.Equal("a", a.tag.Name)

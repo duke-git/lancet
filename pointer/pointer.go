@@ -2,6 +2,7 @@ package pointer
 
 import "reflect"
 
+// ExtractPointer returns the underlying value by the given interface type
 func ExtractPointer(value any) any {
 	t := reflect.TypeOf(value)
 	v := reflect.ValueOf(value)
