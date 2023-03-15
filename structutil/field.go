@@ -1,10 +1,12 @@
 package structutil
 
 import (
-	"github.com/duke-git/lancet/v2/pointer"
 	"reflect"
+
+	"github.com/duke-git/lancet/v2/pointer"
 )
 
+// Field is abstract struct field for provide several high level functions
 type Field struct {
 	Struct
 	field reflect.StructField
@@ -59,11 +61,13 @@ func (f *Field) Kind() reflect.Kind {
 	return f.rvalue.Kind()
 }
 
+// IsSlice check if a struct field type is slice or not
 func (f *Field) IsSlice() bool {
 	k := f.rvalue.Kind()
 	return k == reflect.Slice
 }
 
+// MapValue conver field value to map.
 func (f *Field) MapValue(value any) any {
 	val := pointer.ExtractPointer(value)
 	v := reflect.ValueOf(val)
