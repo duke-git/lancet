@@ -7,7 +7,7 @@ import (
 )
 
 // DefaultTagName is the default tag for struct fields to lookup.
-var DefaultTagName = "json"
+var defaultTagName = "json"
 
 // Struct is abstract struct for provide several high level functions
 type Struct struct {
@@ -18,15 +18,25 @@ type Struct struct {
 }
 
 // New returns a new *Struct
-func New(value any) *Struct {
+func New(value any, tagName ...string) *Struct {
 	value = pointer.ExtractPointer(value)
 	v := reflect.ValueOf(value)
 	t := reflect.TypeOf(value)
+
+	tn := defaultTagName
+
+	if len(tagName) > 0 {
+		tn = tagName[0]
+	}
+
+	// if need: can also set defaultTagName to tn across structutil package level
+	// defaultTagName = tn
+
 	return &Struct{
 		raw:     value,
 		rtype:   t,
 		rvalue:  v,
-		TagName: DefaultTagName,
+		TagName: tn,
 	}
 }
 
