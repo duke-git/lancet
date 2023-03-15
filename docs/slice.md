@@ -48,6 +48,7 @@ import (
 -   [Flatten](#Flatten)
 -   [FlattenDeep](#FlattenDeep)
 -   [ForEach](#ForEach)
+-   [ForEachWithBreak](#ForEachWithBreak)
 -   [GroupBy](#GroupBy)
 -   [GroupWith](#GroupWith)
 -   [IntSlice<sup>deprecated</sup>](#IntSlice)
@@ -998,6 +999,45 @@ func main() {
 
     // Output:
     // [2 3 4]
+}
+```
+
+
+### <span id="ForEachWithBreak">ForEachWithBreak</span>
+
+<p>Iterates over elements of slice and invokes function for each element, when iteratee return true, will break the for each loop.</p>
+
+<b>Signature:</b>
+
+```go
+func ForEachWithBreak[T any](slice []T, iteratee func(index int, item T) bool)
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+    numbers := []int{1, 2, 3, 4, 5}
+
+	var sum int
+
+	slice.ForEachWithBreak(numbers, func(_, n int) bool {
+		if n > 3 {
+			return false
+		}
+		sum += n
+		return true
+	})
+
+	fmt.Println(sum)
+
+	// Output:
+	// 6
 }
 ```
 

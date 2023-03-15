@@ -48,6 +48,7 @@ import (
 -   [Flatten](#Flatten)
 -   [FlattenDeep](#FlattenDeep)
 -   [ForEach](#ForEach)
+-   [ForEachWithBreak](#ForEachWithBreak)
 -   [GroupBy](#GroupBy)
 -   [GroupWith](#GroupWith)
 -   [IntSlice<sup>deprecated</sup>](#IntSlice)
@@ -1002,6 +1003,46 @@ func main() {
     // [2 3 4]
 }
 ```
+
+
+### <span id="ForEachWithBreak">ForEachWithBreak</span>
+
+<p>遍历切片的元素并为每个元素调用iteratee函数，当iteratee函数返回false时，终止遍历。</p>
+
+<b>函数签名:</b>
+
+```go
+func ForEachWithBreak[T any](slice []T, iteratee func(index int, item T) bool)
+```
+
+<b>示例:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+    numbers := []int{1, 2, 3, 4, 5}
+
+	var sum int
+
+	slice.ForEachWithBreak(numbers, func(_, n int) bool {
+		if n > 3 {
+			return false
+		}
+		sum += n
+		return true
+	})
+
+	fmt.Println(sum)
+
+	// Output:
+	// 6
+}
+```
+
 
 ### <span id="GroupBy">GroupBy</span>
 
