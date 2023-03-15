@@ -2,6 +2,6 @@ package structutil
 
 import "fmt"
 
-func ErrInvalidStruct(v any) error {
+func errInvalidStruct(v any) error {
 	return fmt.Errorf("invalid struct %v", v)
 }

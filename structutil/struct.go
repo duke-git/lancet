@@ -1,8 +1,9 @@
 package structutil
 
 import (
-	"github.com/duke-git/lancet/v2/pointer"
 	"reflect"
+
+	"github.com/duke-git/lancet/v2/pointer"
 )
 
 // DefaultTagName is the default tag for struct fields to lookup.
@@ -49,7 +50,7 @@ func New(value any) *Struct {
 // Only the exported fields of a struct can be converted.
 func (s *Struct) ToMap() (map[string]any, error) {
 	if !s.IsStruct() {
-		return nil, ErrInvalidStruct(s)
+		return nil, errInvalidStruct(s)
 	}
 
 	result := make(map[string]any)
