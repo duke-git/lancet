@@ -1,4 +1,4 @@
-package structutil
+package structs
 
 import (
 	"strings"

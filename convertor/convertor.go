@@ -11,7 +11,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/duke-git/lancet/v2/structutil"
+	"github.com/duke-git/lancet/v2/structs"
 	"math"
 	"reflect"
 	"strconv"
@@ -235,7 +235,7 @@ func ToMap[T any, K comparable, V any](array []T, iteratee func(T) (K, V)) map[K
 // map key is specified same as struct field tag `json` value.
 // Play: https://go.dev/play/p/KYGYJqNUBOI
 func StructToMap(value any) (map[string]any, error) {
-	return structutil.ToMap(value)
+	return structs.ToMap(value)
 }
 
 // MapToSlice convert map to slice based on iteratee function.

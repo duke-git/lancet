@@ -1,4 +1,4 @@
-package structutil
+package structs
 
 import (
 	"reflect"
@@ -6,7 +6,7 @@ import (
 	"github.com/duke-git/lancet/v2/pointer"
 )
 
-// DefaultTagName is the default tag for struct fields to lookup.
+// defaultTagName is the default tag for struct fields to lookup.
 var defaultTagName = "json"
 
 // Struct is abstract struct for provide several high level functions
@@ -29,7 +29,7 @@ func New(value any, tagName ...string) *Struct {
 		tn = tagName[0]
 	}
 
-	// if need: can also set defaultTagName to tn across structutil package level
+	// if need: can also set defaultTagName to tn across structs package level
 	// defaultTagName = tn
 
 	return &Struct{
@@ -57,7 +57,7 @@ func New(value any, tagName ...string) *Struct {
 //	 	// custom map key
 //	 	Name string `json:"myName"`
 //
-// ToMap conver the exported fields of a struct to map.
+// ToMap convert the exported fields of a struct to map.
 func (s *Struct) ToMap() (map[string]any, error) {
 	if !s.IsStruct() {
 		return nil, errInvalidStruct(s)
@@ -72,7 +72,7 @@ func (s *Struct) ToMap() (map[string]any, error) {
 		if f.IsZero() && f.tag.HasOption("omitempty") {
 			continue
 		}
-		result[f.tag.Name] = f.MapValue(f.Value())
+		result[f.tag.Name] = f.mapValue(f.Value())
 	}
 
 	return result, nil
