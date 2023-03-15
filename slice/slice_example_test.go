@@ -379,6 +379,25 @@ func ExampleForEach() {
 	// [2 3 4]
 }
 
+func ExampleForEachWithBreak() {
+	numbers := []int{1, 2, 3, 4, 5}
+
+	var sum int
+
+	ForEachWithBreak(numbers, func(_, n int) bool {
+		if n > 3 {
+			return false
+		}
+		sum += n
+		return true
+	})
+
+	fmt.Println(sum)
+
+	// Output:
+	// 6
+}
+
 func ExampleMap() {
 	nums := []int{1, 2, 3}
 

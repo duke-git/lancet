@@ -307,6 +307,23 @@ func TestForEach(t *testing.T) {
 	assert.Equal(expected, numbersAddTwo)
 }
 
+func TestForEachWithBreak(t *testing.T) {
+	numbers := []int{1, 2, 3, 4, 5}
+
+	var sum int
+
+	ForEachWithBreak(numbers, func(_, n int) bool {
+		if n > 3 {
+			return false
+		}
+		sum += n
+		return true
+	})
+
+	assert := internal.NewAssert(t, "TestForEach")
+	assert.Equal(6, sum)
+}
+
 func TestMap(t *testing.T) {
 	nums := []int{1, 2, 3, 4}
 	multiplyTwo := func(i, num int) int {

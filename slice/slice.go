@@ -421,6 +421,17 @@ func ForEach[T any](slice []T, iteratee func(index int, item T)) {
 	}
 }
 
+// ForEachWithBreak iterates over elements of slice and invokes function for each element,
+// when iteratee return true, will break the for each loop.
+func ForEachWithBreak[T any](slice []T, iteratee func(index int, item T) bool) {
+loop:
+	for i, v := range slice {
+		if !iteratee(i, v) {
+			break loop
+		}
+	}
+}
+
 // Map creates an slice of values by running each element of slice thru iteratee function.
 // Play: https://go.dev/play/p/biaTefqPquw
 func Map[T any, U any](slice []T, iteratee func(index int, item T) U) []U {
