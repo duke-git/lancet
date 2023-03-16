@@ -1,5 +1,5 @@
 # Concurrency
-Package concurrency contain some functions to support concurrent programming. eg, goroutine, channel, async.
+Package concurrency contain some functions to support concurrent programming. eg, goroutine, channel.
 
 <div STYLE="page-break-after: always;"></div>
 

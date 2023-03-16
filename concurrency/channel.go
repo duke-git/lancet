@@ -1,7 +1,7 @@
 // Copyright 2021 dudaodong@gmail.com. All rights reserved.
 // Use of this source code is governed by MIT license
 
-// Package concurrency contain some functions to support concurrent programming. eg, goroutine, channel, async.
+// Package concurrency contain some functions to support concurrent programming. eg, goroutine, channel.
 package concurrency
 
 import (

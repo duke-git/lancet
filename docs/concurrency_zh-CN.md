@@ -1,5 +1,5 @@
 # Concurrency
-并发包包含一些支持并发编程的功能。例如：goroutine, channel, async等。
+并发包包含一些支持并发编程的功能。例如：goroutine, channel等。
 
 <div STYLE="page-break-after: always;"></div>
 
