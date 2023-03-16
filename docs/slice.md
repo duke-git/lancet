@@ -173,28 +173,28 @@ import (
 
 func main() {
     type foo struct {
-		A string
-		B int
-	}
+        A string
+        B int
+    }
 
-	array1 := []foo{{A: "1", B: 1}, {A: "2", B: 2}}
-	result1 := slice.ContainBy(array1, func(f foo) bool { return f.A == "1" && f.B == 1 })
-	result2 := slice.ContainBy(array1, func(f foo) bool { return f.A == "2" && f.B == 1 })
+    array1 := []foo{{A: "1", B: 1}, {A: "2", B: 2}}
+    result1 := slice.ContainBy(array1, func(f foo) bool { return f.A == "1" && f.B == 1 })
+    result2 := slice.ContainBy(array1, func(f foo) bool { return f.A == "2" && f.B == 1 })
 
-	array2 := []string{"a", "b", "c"}
-	result3 := slice.ContainBy(array2, func(t string) bool { return t == "a" })
-	result4 := slice.ContainBy(array2, func(t string) bool { return t == "d" })
+    array2 := []string{"a", "b", "c"}
+    result3 := slice.ContainBy(array2, func(t string) bool { return t == "a" })
+    result4 := slice.ContainBy(array2, func(t string) bool { return t == "d" })
 
-	fmt.Println(result1)
-	fmt.Println(result2)
-	fmt.Println(result3)
-	fmt.Println(result4)
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
 
-	// Output:
-	// true
-	// false
-	// true
-	// false
+    // Output:
+    // true
+    // false
+    // true
+    // false
 }
 ```
 
@@ -561,20 +561,20 @@ import (
 
 func main() {
     result1 := slice.Drop([]string{"a", "b", "c"}, 0)
-	result2 := slice.Drop([]string{"a", "b", "c"}, 1)
-	result3 := slice.Drop([]string{"a", "b", "c"}, -1)
-	result4 := slice.Drop([]string{"a", "b", "c"}, 4)
+    result2 := slice.Drop([]string{"a", "b", "c"}, 1)
+    result3 := slice.Drop([]string{"a", "b", "c"}, -1)
+    result4 := slice.Drop([]string{"a", "b", "c"}, 4)
 
-	fmt.Println(result1)
-	fmt.Println(result2)
-	fmt.Println(result3)
-	fmt.Println(result4)
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
 
-	// Output:
-	// [a b c]
-	// [b c]
-	// [a b c]
-	// []
+    // Output:
+    // [a b c]
+    // [b c]
+    // [a b c]
+    // []
 }
 ```
 
@@ -598,20 +598,20 @@ import (
 
 func main() {
     result1 := slice.DropRight([]string{"a", "b", "c"}, 0)
-	result2 := slice.DropRight([]string{"a", "b", "c"}, 1)
-	result3 := slice.DropRight([]string{"a", "b", "c"}, -1)
-	result4 := slice.DropRight([]string{"a", "b", "c"}, 4)
+    result2 := slice.DropRight([]string{"a", "b", "c"}, 1)
+    result3 := slice.DropRight([]string{"a", "b", "c"}, -1)
+    result4 := slice.DropRight([]string{"a", "b", "c"}, 4)
 
-	fmt.Println(result1)
-	fmt.Println(result2)
-	fmt.Println(result3)
-	fmt.Println(result4)
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
 
-	// Output:
-	// [a b c]
-	// [a b]
-	// [a b c]
-	// []
+    // Output:
+    // [a b c]
+    // [a b]
+    // [a b c]
+    // []
 }
 ```
 
@@ -635,23 +635,23 @@ import (
 
 func main() {
     result1 := slice.DropWhile(numbers, func(n int) bool {
-		return n != 2
-	})
-	result2 := slice.DropWhile(numbers, func(n int) bool {
-		return true
-	})
-	result3 := slice.DropWhile(numbers, func(n int) bool {
-		return n == 0
-	})
+        return n != 2
+    })
+    result2 := slice.DropWhile(numbers, func(n int) bool {
+        return true
+    })
+    result3 := slice.DropWhile(numbers, func(n int) bool {
+        return n == 0
+    })
 
-	fmt.Println(result1)
-	fmt.Println(result2)
-	fmt.Println(result3)
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
 
-	// Output:
-	// [2 3 4 5]
-	// []
-	// [1 2 3 4 5]
+    // Output:
+    // [2 3 4 5]
+    // []
+    // [1 2 3 4 5]
 }
 ```
 
@@ -676,24 +676,24 @@ import (
 func main() {
     numbers := []int{1, 2, 3, 4, 5}
 
-	result1 := slice.DropRightWhile(numbers, func(n int) bool {
-		return n != 2
-	})
-	result2 := slice.DropRightWhile(numbers, func(n int) bool {
-		return true
-	})
-	result3 := slice.DropRightWhile(numbers, func(n int) bool {
-		return n == 0
-	})
+    result1 := slice.DropRightWhile(numbers, func(n int) bool {
+        return n != 2
+    })
+    result2 := slice.DropRightWhile(numbers, func(n int) bool {
+        return true
+    })
+    result3 := slice.DropRightWhile(numbers, func(n int) bool {
+        return n == 0
+    })
 
-	fmt.Println(result1)
-	fmt.Println(result2)
-	fmt.Println(result3)
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
 
-	// Output:
-	// [1 2]
-	// []
-	// [1 2 3 4 5]
+    // Output:
+    // [1 2]
+    // []
+    // [1 2 3 4 5]
 }
 ```
 
@@ -1002,10 +1002,9 @@ func main() {
 }
 ```
 
-
 ### <span id="ForEachWithBreak">ForEachWithBreak</span>
 
-<p>Iterates over elements of slice and invokes function for each element, when iteratee return true, will break the for each loop.</p>
+<p>Iterates over elements of slice and invokes function for each element, when iteratee return false, will break the for each loop.</p>
 
 <b>Signature:</b>
 
@@ -1024,20 +1023,20 @@ import (
 func main() {
     numbers := []int{1, 2, 3, 4, 5}
 
-	var sum int
+    var sum int
 
-	slice.ForEachWithBreak(numbers, func(_, n int) bool {
-		if n > 3 {
-			return false
-		}
-		sum += n
-		return true
-	})
+    slice.ForEachWithBreak(numbers, func(_, n int) bool {
+        if n > 3 {
+            return false
+        }
+        sum += n
+        return true
+    })
 
-	fmt.Println(sum)
+    fmt.Println(sum)
 
-	// Output:
-	// 6
+    // Output:
+    // 6
 }
 ```
 
@@ -1361,19 +1360,19 @@ import (
 func main() {
     nums := []int{1, 2, 3, 4, 5}
 
-	getEvenNumStr := func(i, num int) (string, bool) {
-		if num%2 == 0 {
-			return strconv.FormatInt(int64(num), 10), true
-		}
-		return "", false
-	}
+    getEvenNumStr := func(i, num int) (string, bool) {
+        if num%2 == 0 {
+            return strconv.FormatInt(int64(num), 10), true
+        }
+        return "", false
+    }
 
-	result := slice.FilterMap(nums, getEvenNumStr)
+    result := slice.FilterMap(nums, getEvenNumStr)
 
-	fmt.Printf("%#v", result)
+    fmt.Printf("%#v", result)
 
-	// Output:
-	// []string{"2", "4"}
+    // Output:
+    // []string{"2", "4"}
 }
 ```
 
@@ -1398,15 +1397,15 @@ import (
 func main() {
     nums := []int{1, 2, 3, 4}
 
-	result := slice.FlatMap(nums, func(i int, num int) []string {
-		s := "hi-" + strconv.FormatInt(int64(num), 10)
-		return []string{s}
-	})
+    result := slice.FlatMap(nums, func(i int, num int) []string {
+        s := "hi-" + strconv.FormatInt(int64(num), 10)
+        return []string{s}
+    })
 
-	fmt.Printf("%#v", result)
+    fmt.Printf("%#v", result)
 
-	// Output:
-	// []string{"hi-1", "hi-2", "hi-3", "hi-4"}
+    // Output:
+    // []string{"hi-1", "hi-2", "hi-3", "hi-4"}
 }
 ```
 
@@ -1652,17 +1651,17 @@ import (
 
 func main() {
     result1 := slice.IsAscending([]int{1, 2, 3, 4, 5})
-	result2 := slice.IsAscending([]int{5, 4, 3, 2, 1})
-	result3 := slice.IsAscending([]int{2, 1, 3, 4, 5})
+    result2 := slice.IsAscending([]int{5, 4, 3, 2, 1})
+    result3 := slice.IsAscending([]int{2, 1, 3, 4, 5})
 
-	fmt.Println(result1)
-	fmt.Println(result2)
-	fmt.Println(result3)
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
 
-	// Output:
-	// true
-	// false
-	// false
+    // Output:
+    // true
+    // false
+    // false
 }
 ```
 
@@ -1686,17 +1685,17 @@ import (
 
 func main() {
     result1 := slice.IsDescending([]int{5, 4, 3, 2, 1})
-	result2 := slice.IsDescending([]int{1, 2, 3, 4, 5})
-	result3 := slice.IsDescending([]int{2, 1, 3, 4, 5})
+    result2 := slice.IsDescending([]int{1, 2, 3, 4, 5})
+    result3 := slice.IsDescending([]int{2, 1, 3, 4, 5})
 
-	fmt.Println(result1)
-	fmt.Println(result2)
-	fmt.Println(result3)
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
 
-	// Output:
-	// true
-	// false
-	// false
+    // Output:
+    // true
+    // false
+    // false
 }
 ```
 
@@ -1720,17 +1719,17 @@ import (
 
 func main() {
     result1 := slice.IsSorted([]int{5, 4, 3, 2, 1})
-	result2 := slice.IsSorted([]int{1, 2, 3, 4, 5})
-	result3 := slice.IsSorted([]int{2, 1, 3, 4, 5})
+    result2 := slice.IsSorted([]int{1, 2, 3, 4, 5})
+    result3 := slice.IsSorted([]int{2, 1, 3, 4, 5})
 
-	fmt.Println(result1)
-	fmt.Println(result2)
-	fmt.Println(result3)
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
 
-	// Output:
-	// true
-	// true
-	// false
+    // Output:
+    // true
+    // true
+    // false
 }
 ```
 
@@ -1754,23 +1753,23 @@ import (
 
 func main() {
     result1 := slice.IsSortedByKey([]string{"a", "ab", "abc"}, func(s string) int {
-		return len(s)
-	})
-	result2 := slice.IsSortedByKey([]string{"abc", "ab", "a"}, func(s string) int {
-		return len(s)
-	})
-	result3 := slice.IsSortedByKey([]string{"abc", "a", "ab"}, func(s string) int {
-		return len(s)
-	})
+        return len(s)
+    })
+    result2 := slice.IsSortedByKey([]string{"abc", "ab", "a"}, func(s string) int {
+        return len(s)
+    })
+    result3 := slice.IsSortedByKey([]string{"abc", "a", "ab"}, func(s string) int {
+        return len(s)
+    })
 
-	fmt.Println(result1)
-	fmt.Println(result2)
-	fmt.Println(result3)
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
 
-	// Output:
-	// true
-	// true
-	// false
+    // Output:
+    // true
+    // true
+    // false
 }
 ```
 
