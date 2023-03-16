@@ -88,9 +88,9 @@ func (a *Assert) IsNil(v any) {
 }
 
 // IsNotNil check if value is not nil
-func (a *Assert) IsNotNil(value any) {
-	if value == nil {
-		makeTestFailed(a.T, a.CaseName, "not nil", value)
+func (a *Assert) IsNotNil(v any) {
+	if v == nil || (reflect.ValueOf(v).Kind() == reflect.Ptr && reflect.ValueOf(v).IsNil()) {
+		makeTestFailed(a.T, a.CaseName, "not nil", v)
 	}
 }
 
