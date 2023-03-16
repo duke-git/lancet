@@ -137,10 +137,49 @@ func TestAll(t *testing.T) {
 		assert.IsNil(err)
 	})
 
-	// t.Run("AllPromisesEmpty", func(_ *testing.T) {
-	// 	var empty = []*Promise[any]{}
-	// 	p := All(empty)
-	// 	assert.IsNil(p)
-	// })
+	t.Run("EmptyPromises", func(_ *testing.T) {
+		var empty = []*Promise[any]{}
+		p := All(empty)
+		assert.IsNil(p)
+	})
+
+	t.Run("PromisesContainRejected", func(_ *testing.T) {
+		p1 := New(func(resolve func(string), reject func(error)) {
+			resolve("a")
+		})
+		p2 := New(func(resolve func(string), reject func(error)) {
+			reject(errors.New("error1"))
+		})
+		p3 := New(func(resolve func(string), reject func(error)) {
+			reject(errors.New("error2"))
+		})
+
+		p := All([]*Promise[string]{p1, p2, p3})
+
+		_, err := p.Await()
+
+		assert.IsNotNil(err)
+		// assert.Equal("error1", err.Error())
+	})
+
+	t.Run("PromisesOnlyRejected", func(_ *testing.T) {
+		p1 := New(func(resolve func(string), reject func(error)) {
+			reject(errors.New("error1"))
+
+		})
+		p2 := New(func(resolve func(string), reject func(error)) {
+			reject(errors.New("error2"))
+		})
+		p3 := New(func(resolve func(string), reject func(error)) {
+			reject(errors.New("error3"))
+		})
+
+		p := All([]*Promise[string]{p1, p2, p3})
+
+		_, err := p.Await()
+
+		assert.IsNotNil(err)
+		// assert.Equal("error1", err.Error())
+	})
 
 }
