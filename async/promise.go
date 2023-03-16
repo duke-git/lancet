@@ -8,6 +8,8 @@ import (
 	"errors"
 	"fmt"
 	"sync"
+
+	"github.com/duke-git/lancet/v2/internal"
 )
 
 // Promise represents the eventual completion (or failure) of an asynchronous operation and its resulting value.
@@ -267,9 +269,10 @@ func Any[T any](promises ...*Promise[T]) *Promise[T] {
 		}
 
 		errCombo := errs[0]
-		// for _, err := range errs[1:] {
-		// 	errCombo = errors.
-		// }
+		for _, err := range errs[1:] {
+			errCombo = internal.JoinError(err)
+		}
+
 		reject(errCombo)
 	})
 }
