@@ -79,10 +79,12 @@ func (a *Assert) LessOrEqual(expected, actual any) {
 }
 
 // IsNil check if value is nil
-func (a *Assert) IsNil(value any) {
-	if value != nil {
-		makeTestFailed(a.T, a.CaseName, nil, value)
+func (a *Assert) IsNil(v any) {
+	if v == nil || (reflect.ValueOf(v).Kind() == reflect.Ptr && reflect.ValueOf(v).IsNil()) {
+		return
 	}
+
+	makeTestFailed(a.T, a.CaseName, nil, v)
 }
 
 // IsNotNil check if value is not nil
