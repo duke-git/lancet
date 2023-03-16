@@ -33,9 +33,10 @@ func New[T any](runnable func(resolve func(T), reject func(error))) *Promise[T] 
 	}
 
 	p := &Promise[T]{
-		pending: true,
-		mu:      &sync.Mutex{},
-		wg:      &sync.WaitGroup{},
+		runnable: runnable,
+		pending:  true,
+		mu:       &sync.Mutex{},
+		wg:       &sync.WaitGroup{},
 	}
 
 	defer p.run()
