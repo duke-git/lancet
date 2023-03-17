@@ -3,6 +3,7 @@ package async
 import (
 	"errors"
 	"testing"
+	"time"
 
 	"github.com/duke-git/lancet/v2/internal"
 )
@@ -117,7 +118,7 @@ func TestPromise_Catch(t *testing.T) {
 }
 
 func TestAll(t *testing.T) {
-	assert := internal.NewAssert(t, "TestPromise_Catch")
+	assert := internal.NewAssert(t, "TestPromise_All")
 
 	t.Run("AllPromisesFullfilled", func(_ *testing.T) {
 		p1 := New(func(resolve func(string), reject func(error)) {
@@ -159,7 +160,7 @@ func TestAll(t *testing.T) {
 		_, err := p.Await()
 
 		assert.IsNotNil(err)
-		// assert.Equal("error1", err.Error())
+		assert.Equal("error1", err.Error())
 	})
 
 	t.Run("PromisesOnlyRejected", func(_ *testing.T) {
@@ -175,6 +176,122 @@ func TestAll(t *testing.T) {
 		})
 
 		p := All([]*Promise[string]{p1, p2, p3})
+
+		_, err := p.Await()
+
+		assert.IsNotNil(err)
+		// assert.Equal("error1", err.Error())
+	})
+
+}
+
+func TestAny(t *testing.T) {
+	assert := internal.NewAssert(t, "TestPromise_Any")
+
+	t.Run("AnyFullfilled", func(_ *testing.T) {
+		p1 := New(func(resolve func(string), reject func(error)) {
+			time.Sleep(time.Millisecond * 250)
+			resolve("fast")
+		})
+		p2 := New(func(resolve func(string), reject func(error)) {
+			time.Sleep(time.Millisecond * 500)
+			resolve("slow")
+		})
+		p3 := New(func(resolve func(string), reject func(error)) {
+			reject(errors.New("error"))
+		})
+
+		p := Any([]*Promise[string]{p1, p2, p3})
+
+		val, err := p.Await()
+		assert.Equal("fast", val)
+		assert.IsNil(err)
+	})
+
+	t.Run("EmptyPromises", func(_ *testing.T) {
+		var empty = []*Promise[any]{}
+		p := Any(empty)
+		assert.IsNil(p)
+	})
+
+	t.Run("OnlyRejected", func(_ *testing.T) {
+		p1 := New(func(resolve func(string), reject func(error)) {
+			reject(errors.New("error1"))
+		})
+		p2 := New(func(resolve func(string), reject func(error)) {
+			reject(errors.New("error2"))
+		})
+
+		p := Any([]*Promise[string]{p1, p2})
+
+		_, err := p.Await()
+
+		assert.IsNotNil(err)
+		// assert.Equal("error1", err.Error())
+	})
+
+}
+
+func TestRace(t *testing.T) {
+	assert := internal.NewAssert(t, "TestPromise_Race")
+
+	t.Run("PromisesFullfilled", func(_ *testing.T) {
+		p1 := New(func(resolve func(string), reject func(error)) {
+			time.Sleep(time.Millisecond * 100)
+			resolve("a")
+		})
+		p2 := New(func(resolve func(string), reject func(error)) {
+			time.Sleep(time.Millisecond * 300)
+			resolve("b")
+		})
+
+		p := Race([]*Promise[string]{p1, p2})
+
+		val, err := p.Await()
+		assert.Equal("a", val)
+		assert.IsNil(err)
+	})
+
+	t.Run("EmptyPromises", func(_ *testing.T) {
+		var empty = []*Promise[any]{}
+		p := Race(empty)
+		assert.IsNil(p)
+	})
+
+	t.Run("PromisesContainRejected", func(_ *testing.T) {
+		p1 := New(func(resolve func(string), reject func(error)) {
+			time.Sleep(time.Millisecond * 100)
+			resolve("a")
+		})
+		p2 := New(func(resolve func(string), reject func(error)) {
+			reject(errors.New("error1"))
+		})
+		p3 := New(func(resolve func(string), reject func(error)) {
+			reject(errors.New("error2"))
+		})
+
+		p := Race([]*Promise[string]{p1, p2, p3})
+
+		val, err := p.Await()
+
+		assert.IsNotNil(err)
+		// assert.Equal("error1", err.Error())
+		assert.Equal("", val)
+	})
+
+	t.Run("PromisesOnlyRejected", func(_ *testing.T) {
+		p1 := New(func(resolve func(string), reject func(error)) {
+			reject(errors.New("error1"))
+
+		})
+		p2 := New(func(resolve func(string), reject func(error)) {
+			reject(errors.New("error2"))
+		})
+		p3 := New(func(resolve func(string), reject func(error)) {
+			reject(errors.New("error3"))
+		})
+
+		p := Race([]*Promise[string]{p1, p2, p3})
 
 		_, err := p.Await()
 

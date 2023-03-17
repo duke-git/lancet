@@ -237,7 +237,7 @@ func Race[T any](promises []*Promise[T]) *Promise[T] {
 
 // Any resolves as soon as any of the input's Promises resolve, with the value of the resolved Promise.
 // Any rejects if all of the given Promises are rejected with a combination of all errors.
-func Any[T any](promises ...*Promise[T]) *Promise[T] {
+func Any[T any](promises []*Promise[T]) *Promise[T] {
 	if len(promises) == 0 {
 		return nil
 	}
