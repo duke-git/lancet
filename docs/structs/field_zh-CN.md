@@ -33,9 +33,9 @@ import (
 > 注意：由于`Field`继承于`Struct`，所以同样拥有`Struct`所有方法，如下：
 
 -   [ToMap](https://github.com/duke-git/lancet/blob/main/docs/structs/struct_zh-CN.md#ToMap)
--   [Fields](https://github.com/duke-git/lancet/blob/main/docs/structs/struct_zh-CN#Fields)
--   [Field](https://github.com/duke-git/lancet/blob/main/docs/structs/struct_zh-CN#Field)
--   [IsStruct](https://github.com/duke-git/lancet/blob/main/docs/structs/struct_zh-CN#IsStruct)
+-   [Fields](https://github.com/duke-git/lancet/blob/main/docs/structs/struct_zh-CN.md#Fields)
+-   [Field](https://github.com/duke-git/lancet/blob/main/docs/structs/struct_zh-CN.md#Field)
+-   [IsStruct](https://github.com/duke-git/lancet/blob/main/docs/structs/struct_zh-CN.md#IsStruct)
 
 <div STYLE="page-break-after: always;"></div>
 
