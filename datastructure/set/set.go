@@ -181,3 +181,15 @@ func (s Set[T]) EachWithBreak(iteratee func(item T) bool) {
 		}
 	}
 }
+
+// Pop delete the top element of set then return it, if set is empty, return nil-value of T and false.
+func (s Set[T]) Pop() (v T, ok bool) {
+	if len(s) > 0 {
+		items := s.Values()
+		item := items[len(s)-1]
+		delete(s, item)
+		return item, true
+	}
+
+	return v, false
+}

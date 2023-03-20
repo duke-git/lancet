@@ -209,3 +209,23 @@ func TestEachWithBreak(t *testing.T) {
 	assert := internal.NewAssert(t, "TestEachWithBreak")
 	assert.Equal(6, sum)
 }
+
+func TestPop(t *testing.T) {
+	assert := internal.NewAssert(t, "TestPop")
+
+	s := NewSet[int]()
+
+	val, ok := s.Pop()
+	assert.Equal(0, val)
+	assert.Equal(false, ok)
+
+	s.Add(1)
+	s.Add(2)
+	s.Add(3)
+
+	// s = NewSet(1, 2, 3, 4, 5)
+
+	val, ok = s.Pop()
+	assert.Equal(3, val)
+	assert.Equal(true, ok)
+}
