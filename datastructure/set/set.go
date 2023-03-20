@@ -171,3 +171,13 @@ func (s Set[T]) Minus(comparedSet Set[T]) Set[T] {
 
 	return set
 }
+
+// EachWithBreak iterates over elements of a set and invokes function for each element,
+// when iteratee return false, will break the for each loop.
+func (s Set[T]) EachWithBreak(iteratee func(item T) bool) {
+	for v := range s {
+		if !iteratee(v) {
+			break
+		}
+	}
+}

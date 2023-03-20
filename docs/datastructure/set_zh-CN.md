@@ -430,6 +430,41 @@ func main() {
 ```
 
 
+### <span id="EachWithBreak">EachWithBreak</span>
+<p>遍历集合的元素并为每个元素调用iteratee函数，当iteratee函数返回false时，终止遍历。</p>
+
+<b>函数签名:</b>
+
+```go
+func (s Set[T]) EachWithBreak(iteratee func(item T) bool)
+```
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    set "github.com/duke-git/lancet/v2/datastructure/set"
+)
+
+func main() {
+    s := set.NewSet(1, 2, 3, 4, 5)
+
+	var sum int
+
+	s.EachWithBreak(func(n int) bool {
+		if n > 3 {
+			return false
+		}
+		sum += n
+		return true
+	})
+
+    fmt.Println(sum) //6
+}
+```
+
 
 ### <span id="IsEmpty">IsEmpty</span>
 <p>判断集合是否为空</p>

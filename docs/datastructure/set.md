@@ -34,6 +34,7 @@ import (
 - [Size](#Size)
 - [Equal](#Equal)
 - [Iterate](#Iterate)
+- [EachWithBreak](#EachWithBreak)
 - [IsEmpty](#IsEmpty)
 - [Union](#Union)
 - [Intersection](#Intersection)
@@ -428,6 +429,40 @@ func main() {
 ```
 
 
+### <span id="EachWithBreak">EachWithBreak</span>
+<p>Iterates over elements of a set and invokes function for each element, when iteratee return false, will break the for each loop.</p>
+
+<b>Signature:</b>
+
+```go
+func (s Set[T]) EachWithBreak(iteratee func(item T) bool)
+```
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    set "github.com/duke-git/lancet/v2/datastructure/set"
+)
+
+func main() {
+    s := set.NewSet(1, 2, 3, 4, 5)
+
+	var sum int
+
+	s.EachWithBreak(func(n int) bool {
+		if n > 3 {
+			return false
+		}
+		sum += n
+		return true
+	})
+
+    fmt.Println(sum) //6
+}
+```
 
 ### <span id="IsEmpty">IsEmpty</span>
 <p>Check if the set is empty or not</p>

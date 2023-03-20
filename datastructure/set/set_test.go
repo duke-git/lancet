@@ -192,3 +192,20 @@ func TestSet_Minus(t *testing.T) {
 	assert.Equal(NewSet(1), set1.Minus(set2))
 	assert.Equal(NewSet(4, 5), set2.Minus(set3))
 }
+
+func TestEachWithBreak(t *testing.T) {
+	s := NewSet(1, 2, 3, 4, 5)
+
+	var sum int
+
+	s.EachWithBreak(func(n int) bool {
+		if n > 3 {
+			return false
+		}
+		sum += n
+		return true
+	})
+
+	assert := internal.NewAssert(t, "TestEachWithBreak")
+	assert.Equal(6, sum)
+}
