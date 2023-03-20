@@ -1,3 +1,4 @@
+// Package structs provide several high level functions to manipulate struct, tag, and field.
 package structs
 
 import (

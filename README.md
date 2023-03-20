@@ -703,6 +703,10 @@ import "github.com/duke-git/lancet/v2/mathutil"
 -   **<big>TruncRound</big>** : round off n decimal places for int64.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#TruncRound)]
     [[play](https://go.dev/play/p/aumarSHIGzP)]
+-   **<big>Range</big>** : Creates a slice of numbers from start with specified count, element step is 1.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#Range)]
+-   **<big>RangeWithStep</big>** : Creates a slice of numbers from start to end with specified step.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#Range)]
 
 ### 13. Netutil package contains functions to get net information and send http request.
 
@@ -916,6 +920,8 @@ import "github.com/duke-git/lancet/v2/slice"
 -   **<big>ForEach</big>** : iterates over elements of slice and invokes function for each element.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#ForEach)]
     [[play](https://go.dev/play/p/DrPaa4YsHRF)]
+-   **<big>ForEachWithBreak</big>** : iterates over elements of slice and invokes function for each element, when iteratee return false, will break the for each loop.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#ForEach)]
 -   **<big>GroupBy</big>** : iterate over elements of the slice, each element will be group by criteria, returns two slices.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#GroupBy)]
     [[play](https://go.dev/play/p/QVkPxzPR0iA)]
@@ -1022,7 +1028,41 @@ import "github.com/duke-git/lancet/v2/slice"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#KeyBy)]
     [[play](https://go.dev/play/p/uXod2LWD1Kg)]
 
-### 17. Strutil package contains some functions to manipulate string.
+
+### 17. Structs package provides several high level functions to manipulate struct, tag, and field.
+
+```go
+import "github.com/duke-git/lancet/v2/structs"
+```
+
+#### Function list:
+
+-   **<big>New</big>** : creates a `Struct` instance.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/structs/struct.md#New)]
+-   **<big>ToMap</big>** : converts a valid struct to a map.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/structs/struct.md#ToMap)]
+-   **<big>Fields</big>** : get all fields of a given struct, that the fields are abstract struct field.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/structs/struct.md#Fields)]
+-   **<big>IsStruct</big>** : check if the struct is valid.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/structs/struct.md#IsStruct)]
+-   **<big>Tag</big>** : get a `Tag` of the `Field`, `Tag` is a abstract struct field tag
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/structs/field.md#Tag)]
+-   **<big>Name</big>** : get the field name.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/structs/field.md#Name)]
+-   **<big>Value</big>** : get the `Field` underlying value.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/structs/field.md#Value)]
+-   **<big>Kind</big>** : get the field's kind
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/structs/field.md#Kind)]
+-   **<big>IsEmbedded</big>** : check if the field is an embedded field.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/structs/field.md#IsEmbedded)]
+-   **<big>IsExported</big>** : check if the field is exporte
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/structs/field.md#IsExported)]
+-   **<big>IsZero</big>** : check if the field is zero value
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/structs/field.md#IsZero)]
+-   **<big>IsSlice</big>** : check if the field is a slice
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/structs/field.md#IsSlice)]
+
+### 18. Strutil package contains some functions to manipulate string.
 
 ```go
 import "github.com/duke-git/lancet/v2/strutil"
@@ -1135,7 +1175,7 @@ import "github.com/duke-git/lancet/v2/system"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/system.md#GetOsBits)]
     [[play](https://go.dev/play/p/ml-_XH3gJbW)]
 
-### 19. Validator package contains some functions for data validation.
+### 20. Validator package contains some functions for data validation.
 
 ```go
 import "github.com/duke-git/lancet/v2/validator"
@@ -1228,7 +1268,7 @@ import "github.com/duke-git/lancet/v2/validator"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsGBK)]
     [[play](https://go.dev/play/p/E2nt3unlmzP)]
 
-### 20. xerror package implements helpers for errors.
+### 21. xerror package implements helpers for errors.
 
 ```go
 import "github.com/duke-git/lancet/v2/xerror"
