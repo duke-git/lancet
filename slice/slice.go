@@ -423,6 +423,7 @@ func ForEach[T any](slice []T, iteratee func(index int, item T)) {
 
 // ForEachWithBreak iterates over elements of slice and invokes function for each element,
 // when iteratee return false, will break the for each loop.
+// Play: https://go.dev/play/p/qScs39f3D9W
 func ForEachWithBreak[T any](slice []T, iteratee func(index int, item T) bool) {
 	for i, v := range slice {
 		if !iteratee(i, v) {

@@ -704,8 +704,11 @@ import "github.com/duke-git/lancet/v2/mathutil"
     [[play](https://go.dev/play/p/aumarSHIGzP)]
 -   **<big>Range</big>** : 根据指定的起始值和数量，创建一个数字切片。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#Range)]
+    [[play](https://go.dev/play/p/9ke2opxa8ZP)]
 -   **<big>RangeWithStep</big>** : 根据指定的起始值，结束值，步长，创建一个数字切片。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#RangeWithStep)]
+    [[play](https://go.dev/play/p/akLWz0EqOSM)]
+
 
 ### 13. netutil网络包支持获取 ip 地址，发送 http 请求。
 
@@ -921,6 +924,7 @@ import "github.com/duke-git/lancet/v2/slice"
     [[play](https://go.dev/play/p/DrPaa4YsHRF)]
 -   **<big>ForEachWithBreak</big>** : 遍历切片的元素并为每个元素调用iteratee函数，当iteratee函数返回false时，终止遍历。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#ForEachWithBreak)]
+    [[play](https://go.dev/play/p/qScs39f3D9W)]
 -   **<big>GroupBy</big>** : 迭代切片的元素，每个元素将按条件分组，返回两个切片。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#GroupBy)]
     [[play](https://go.dev/play/p/QVkPxzPR0iA)]

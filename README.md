@@ -705,8 +705,11 @@ import "github.com/duke-git/lancet/v2/mathutil"
     [[play](https://go.dev/play/p/aumarSHIGzP)]
 -   **<big>Range</big>** : Creates a slice of numbers from start with specified count, element step is 1.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#Range)]
+    [[play](https://go.dev/play/p/9ke2opxa8ZP)]
 -   **<big>RangeWithStep</big>** : Creates a slice of numbers from start to end with specified step.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#Range)]
+    [[play](https://go.dev/play/p/akLWz0EqOSM)]
+
 
 ### 13. Netutil package contains functions to get net information and send http request.
 
@@ -921,7 +924,8 @@ import "github.com/duke-git/lancet/v2/slice"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#ForEach)]
     [[play](https://go.dev/play/p/DrPaa4YsHRF)]
 -   **<big>ForEachWithBreak</big>** : iterates over elements of slice and invokes function for each element, when iteratee return false, will break the for each loop.
-    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#ForEach)]
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#ForEachWithBreak)]
+    [[play](https://go.dev/play/p/qScs39f3D9W)]
 -   **<big>GroupBy</big>** : iterate over elements of the slice, each element will be group by criteria, returns two slices.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#GroupBy)]
     [[play](https://go.dev/play/p/QVkPxzPR0iA)]

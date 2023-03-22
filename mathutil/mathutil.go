@@ -185,7 +185,7 @@ func Average[T constraints.Integer | constraints.Float](numbers ...T) T {
 }
 
 // Range creates a slice of numbers from start with specified count, element step is 1.
-// Play: todo
+// Play: https://go.dev/play/p/9ke2opxa8ZP
 func Range[T constraints.Integer | constraints.Float](start T, count int) []T {
 	size := count
 	if count < 0 {
@@ -202,7 +202,7 @@ func Range[T constraints.Integer | constraints.Float](start T, count int) []T {
 }
 
 // RangeWithStep creates a slice of numbers from start to end with specified step.
-// Play: todo
+// Play: https://go.dev/play/p/akLWz0EqOSM
 func RangeWithStep[T constraints.Integer | constraints.Float](start, end, step T) []T {
 	result := []T{}
 
