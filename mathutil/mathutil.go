@@ -230,3 +230,13 @@ func RadianToAngle(radian float64) float64 {
 	angle := radian * (180 / math.Pi)
 	return angle
 }
+
+// PointDistance get two points distance.
+// Play: todo
+func PointDistance(x1, y1, x2, y2 float64) float64 {
+	a := x1 - x2
+	b := y1 - y2
+	c := math.Pow(a, 2) + math.Pow(b, 2)
+
+	return math.Sqrt(c)
+}

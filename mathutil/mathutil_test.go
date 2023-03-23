@@ -192,3 +192,11 @@ func TestRadianToAngle(t *testing.T) {
 	assert.Equal(float64(90), result2)
 	assert.Equal(float64(45), result3)
 }
+
+func TestPointDistance(t *testing.T) {
+	assert := internal.NewAssert(t, "TestPointDistance")
+
+	result1 := PointDistance(1, 1, 4, 5)
+
+	assert.Equal(float64(5), result1)
+}

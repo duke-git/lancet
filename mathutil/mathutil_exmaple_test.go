@@ -254,3 +254,12 @@ func ExampleRadianToAngle() {
 	// 90
 	// 45
 }
+
+func ExamplePointDistance() {
+	result1 := PointDistance(1, 1, 4, 5)
+
+	fmt.Println(result1)
+
+	// Output:
+	// 5
+}
