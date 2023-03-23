@@ -216,3 +216,17 @@ func RangeWithStep[T constraints.Integer | constraints.Float](start, end, step T
 
 	return result
 }
+
+// AngleToRadian converts angle value to radian value.
+// Play: todo
+func AngleToRadian(angle float64) float64 {
+	radian := angle * (math.Pi / 180)
+	return radian
+}
+
+// RadianToAngle converts radian value to angle value.
+// Play: todo
+func RadianToAngle(radian float64) float64 {
+	angle := radian * (180 / math.Pi)
+	return angle
+}

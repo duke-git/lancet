@@ -1,6 +1,7 @@
 package mathutil
 
 import (
+	"math"
 	"testing"
 
 	"github.com/duke-git/lancet/v2/internal"
@@ -139,7 +140,7 @@ func TestMinBy(t *testing.T) {
 }
 
 func TestRange(t *testing.T) {
-	assert := internal.NewAssert(t, "Range")
+	assert := internal.NewAssert(t, "TestRange")
 
 	result1 := Range(1, 4)
 	result2 := Range(1, -4)
@@ -155,7 +156,7 @@ func TestRange(t *testing.T) {
 }
 
 func TestRangeWithStep(t *testing.T) {
-	assert := internal.NewAssert(t, "Range")
+	assert := internal.NewAssert(t, "TestRangeWithStep")
 
 	result1 := RangeWithStep(1, 4, 1)
 	result2 := RangeWithStep(1, -1, 0)
@@ -166,4 +167,28 @@ func TestRangeWithStep(t *testing.T) {
 	assert.Equal([]int{}, result2)
 	assert.Equal([]int{-4, -2, 0}, result3)
 	assert.Equal([]float64{1.0, 2.1, 3.2}, result4)
+}
+
+func TestAngleToRadian(t *testing.T) {
+	assert := internal.NewAssert(t, "TestAngleToRadian")
+
+	result1 := AngleToRadian(45)
+	result2 := AngleToRadian(90)
+	result3 := AngleToRadian(180)
+
+	assert.Equal(0.7853981633974483, result1)
+	assert.Equal(1.5707963267948966, result2)
+	assert.Equal(3.141592653589793, result3)
+}
+
+func TestRadianToAngle(t *testing.T) {
+	assert := internal.NewAssert(t, "TestAngleToRadian")
+
+	result1 := RadianToAngle(math.Pi)
+	result2 := RadianToAngle(math.Pi / 2)
+	result3 := RadianToAngle(math.Pi / 4)
+
+	assert.Equal(float64(180), result1)
+	assert.Equal(float64(90), result2)
+	assert.Equal(float64(45), result3)
 }

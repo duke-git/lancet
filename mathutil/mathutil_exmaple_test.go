@@ -1,6 +1,9 @@
 package mathutil
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
 func ExampleExponent() {
 	result1 := Exponent(10, 0)
@@ -220,4 +223,34 @@ func ExampleRangeWithStep() {
 	// []
 	// [-4 -2 0]
 	// [1 2.1 3.2]
+}
+
+func ExampleAngleToRadian() {
+	result1 := AngleToRadian(45)
+	result2 := AngleToRadian(90)
+	result3 := AngleToRadian(180)
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+
+	// Output:
+	// 0.7853981633974483
+	// 1.5707963267948966
+	// 3.141592653589793
+}
+
+func ExampleRadianToAngle() {
+	result1 := RadianToAngle(math.Pi)
+	result2 := RadianToAngle(math.Pi / 2)
+	result3 := RadianToAngle(math.Pi / 4)
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+
+	// Output:
+	// 180
+	// 90
+	// 45
 }
