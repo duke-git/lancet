@@ -36,6 +36,9 @@ import (
 -   [TruncRound](#TruncRound)
 -   [Range](#Range)
 -   [RangeWithStep](#RangeWithStep)
+-   [AngleToRadian](#AngleToRadian)
+-   [RadianToAngle](#RadianToAngle)
+-   [PointDistance](#PointDistance)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -501,20 +504,20 @@ import (
 
 func main() {
     result1 := mathutil.Range(1, 4)
-	result2 := mathutil.Range(1, -4)
-	result3 := mathutil.Range(-4, 4)
-	result4 := mathutil.Range(1.0, 4)
+    result2 := mathutil.Range(1, -4)
+    result3 := mathutil.Range(-4, 4)
+    result4 := mathutil.Range(1.0, 4)
 
-	fmt.Println(result1)
-	fmt.Println(result2)
-	fmt.Println(result3)
-	fmt.Println(result4)
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
 
-	// Output:
-	// [1 2 3 4]
-	// [1 2 3 4]
-	// [-4 -3 -2 -1]
-	// [1 2 3 4]
+    // Output:
+    // [1 2 3 4]
+    // [1 2 3 4]
+    // [-4 -3 -2 -1]
+    // [1 2 3 4]
 }
 ```
 
@@ -540,19 +543,121 @@ import (
 
 func main() {
     result1 := mathutil.RangeWithStep(1, 4, 1)
-	result2 := mathutil.RangeWithStep(1, -1, 0)
-	result3 := mathutil.RangeWithStep(-4, 1, 2)
-	result4 := mathutil.RangeWithStep(1.0, 4.0, 1.1)
+    result2 := mathutil.RangeWithStep(1, -1, 0)
+    result3 := mathutil.RangeWithStep(-4, 1, 2)
+    result4 := mathutil.RangeWithStep(1.0, 4.0, 1.1)
 
-	fmt.Println(result1)
-	fmt.Println(result2)
-	fmt.Println(result3)
-	fmt.Println(result4)
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
 
-	// Output:
-	// [1 2 3]
-	// []
-	// [-4 -2 0]
-	// [1 2.1 3.2]
+    // Output:
+    // [1 2 3]
+    // []
+    // [-4 -2 0]
+    // [1 2.1 3.2]
+}
+```
+
+### <span id="AngleToRadian">AngleToRadian</span>
+
+<p>将角度值转为弧度值</p>
+
+<b>函数签名:</b>
+
+```go
+func AngleToRadian(angle float64) float64
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/mathutil"
+)
+
+func main() {
+    result1 := mathutil.AngleToRadian(45)
+    result2 := mathutil.AngleToRadian(90)
+    result3 := mathutil.AngleToRadian(180)
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+
+    // Output:
+    // 0.7853981633974483
+    // 1.5707963267948966
+    // 3.141592653589793
+}
+```
+
+### <span id="RadianToAngle">RadianToAngle</span>
+
+<p>将弧度值转为角度值</p>
+
+<b>函数签名:</b>
+
+```go
+func RadianToAngle(radian float64) float64
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/mathutil"
+)
+
+func main() {
+    result1 := mathutil.RadianToAngle(math.Pi)
+    result2 := mathutil.RadianToAngle(math.Pi / 2)
+    result3 := mathutil.RadianToAngle(math.Pi / 4)
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+
+    // Output:
+    // 180
+    // 90
+    // 45
+}
+```
+
+### <span id="PointDistance">PointDistance</span>
+
+<p>计算两个坐标点的距离</p>
+
+<b>函数签名:</b>
+
+```go
+func PointDistance(x1, y1, x2, y2 float64) float64
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/mathutil"
+)
+
+func main() {
+    result1 := mathutil.PointDistance(1, 1, 4, 5)
+
+    fmt.Println(result1)
+
+    // Output:
+    // 5
 }
 ```
