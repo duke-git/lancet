@@ -1,8 +1,8 @@
 // Copyright 2023 dudaodong@gmail.com. All rights reserved.
 // Use of this source code is governed by MIT license
 
-// Package async contain some featurese to support async programming. eg, promise, asycn/await, eventbus.
-package async
+// Package promise contains some functions to support async programming.
+package promise
 
 import (
 	"errors"
