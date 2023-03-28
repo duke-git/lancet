@@ -665,8 +665,8 @@ func TestDifferenceWith(t *testing.T) {
 func TestDifferenceBy(t *testing.T) {
 	assert := internal.NewAssert(t, "TestDifferenceBy")
 
-	s1 := []int{1, 2, 3, 4, 5} //after add one: 2 3 4 5 6
-	s2 := []int{3, 4, 5}       //after add one: 4 5 6
+	s1 := []int{1, 2, 3, 4, 5} // after add one: 2 3 4 5 6
+	s2 := []int{3, 4, 5}       // after add one: 4 5 6
 	addOne := func(i int, v int) int {
 		return v + 1
 	}
@@ -873,8 +873,9 @@ func TestIndexOf(t *testing.T) {
 func TestLastIndexOf(t *testing.T) {
 	assert := internal.NewAssert(t, "TestLastIndexOf")
 
-	arr := []string{"a", "a", "b", "c"}
-	assert.Equal(1, LastIndexOf(arr, "a"))
+	arr := []string{"a", "b", "b", "c"}
+	assert.Equal(0, LastIndexOf(arr, "a"))
+	assert.Equal(2, LastIndexOf(arr, "b"))
 	assert.Equal(-1, LastIndexOf(arr, "d"))
 }
 

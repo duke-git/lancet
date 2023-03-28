@@ -1094,7 +1094,7 @@ func IndexOf[T comparable](arr []T, val T) int {
 // LastIndexOf returns the index at which the last occurrence of the item is found in a slice or return -1 if the then cannot be found.
 // Play: https://go.dev/play/p/DokM4cf1IKH
 func LastIndexOf[T comparable](slice []T, item T) int {
-	for i := len(slice) - 1; i > 0; i-- {
+	for i := len(slice) - 1; i >= 0; i-- {
 		if item == slice[i] {
 			return i
 		}
