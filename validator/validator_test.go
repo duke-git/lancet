@@ -401,3 +401,13 @@ func TestIsGBK(t *testing.T) {
 	assert.Equal(true, IsGBK(gbkData))
 	assert.Equal(false, utf8.Valid(gbkData))
 }
+
+func TestIsASCII(t *testing.T) {
+	assert := internal.NewAssert(t, "TestIsASCII")
+
+	assert.Equal(true, IsASCII("ABC"))
+	assert.Equal(true, IsASCII("123"))
+	assert.Equal(true, IsASCII(""))
+	assert.Equal(false, IsASCII("😄"))
+	assert.Equal(false, IsASCII("你好"))
+}

@@ -29,6 +29,7 @@ import (
 -   [IsAlpha](#IsAlpha)
 -   [IsAllUpper](#IsAllUpper)
 -   [IsAllLower](#IsAllLower)
+-   [IsASCII](#IsASCII)
 -   [IsBase64](#IsBase64)
 -   [IsChineseMobile](#IsChineseMobile)
 -   [IsChineseIdNum](#IsChineseIdNum)
@@ -287,6 +288,46 @@ func main() {
     fmt.Println(result3)
 
     // Output:
+    // true
+    // false
+    // false
+}
+```
+
+### <span id="IsASCII">IsASCII</span>
+
+<p>Checks if string is ASCII char.</p>
+
+<b>Signature:</b>
+
+```go
+func IsASCII(str string) bool
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/validator"
+)
+
+func main() {
+    result1 := validator.IsASCII("ABC")
+    result2 := validator.IsASCII("123")
+    result3 := validator.IsASCII("")
+    result4 := validator.IsASCII("😄")
+    result5 := validator.IsASCII("你好")
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
+    fmt.Println(result5)
+
+    // Output:
+    // true
+    // true
     // true
     // false
     // false

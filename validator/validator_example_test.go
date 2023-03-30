@@ -407,3 +407,24 @@ func ExampleIsGBK() {
 	// Output:
 	// true
 }
+
+func ExampleIsASCII() {
+	result1 := IsASCII("ABC")
+	result2 := IsASCII("123")
+	result3 := IsASCII("")
+	result4 := IsASCII("😄")
+	result5 := IsASCII("你好")
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+	fmt.Println(result4)
+	fmt.Println(result5)
+
+	// Output:
+	// true
+	// true
+	// true
+	// false
+	// false
+}

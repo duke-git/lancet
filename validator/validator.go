@@ -58,6 +58,17 @@ func IsAllLower(str string) bool {
 	return str != ""
 }
 
+// IsASCII checks if string is ASCII char.
+// Play:
+func IsASCII(str string) bool {
+	for i := 0; i < len(str); i++ {
+		if str[i] > unicode.MaxASCII {
+			return false
+		}
+	}
+	return true
+}
+
 // ContainUpper check if the string contain at least one upper case letter A-Z.
 // Play: https://go.dev/play/p/CmWeBEk27-z
 func ContainUpper(str string) bool {
