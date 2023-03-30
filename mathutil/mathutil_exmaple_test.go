@@ -263,3 +263,21 @@ func ExamplePointDistance() {
 	// Output:
 	// 5
 }
+
+func ExampleIsPrime() {
+	result1 := IsPrime(-1)
+	result2 := IsPrime(0)
+	result3 := IsPrime(1)
+	result4 := IsPrime(2)
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+	fmt.Println(result4)
+
+	// Output:
+	// false
+	// false
+	// false
+	// true
+}

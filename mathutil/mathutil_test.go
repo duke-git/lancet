@@ -200,3 +200,14 @@ func TestPointDistance(t *testing.T) {
 
 	assert.Equal(float64(5), result1)
 }
+
+func TestIsPrime(t *testing.T) {
+	assert := internal.NewAssert(t, "TestIsPrime")
+
+	assert.Equal(false, IsPrime(-1))
+	assert.Equal(false, IsPrime(0))
+	assert.Equal(false, IsPrime(1))
+	assert.Equal(true, IsPrime(2))
+	assert.Equal(true, IsPrime(3))
+	assert.Equal(false, IsPrime(4))
+}
