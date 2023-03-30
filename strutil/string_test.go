@@ -342,3 +342,10 @@ func TestWordCount(t *testing.T) {
 		assert.Equal(v, WordCount(k))
 	}
 }
+
+func TestRemoveNonPrintable(t *testing.T) {
+	assert := internal.NewAssert(t, "TestRemoveNonPrintable")
+
+	assert.Equal("hello world", RemoveNonPrintable("hello\u00a0 \u200bworld\n"))
+	assert.Equal("你好😄", RemoveNonPrintable("你好😄"))
+}

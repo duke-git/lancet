@@ -360,3 +360,16 @@ func WordCount(s string) int {
 
 	return count
 }
+
+// RemoveNonPrintable remove non-printable characters from a string.
+// Play: todo
+func RemoveNonPrintable(str string) string {
+	result := strings.Map(func(r rune) rune {
+		if unicode.IsPrint(r) {
+			return r
+		}
+		return -1
+	}, str)
+
+	return result
+}

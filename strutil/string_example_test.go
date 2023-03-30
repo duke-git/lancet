@@ -438,3 +438,14 @@ func ExampleWordCount() {
 	// 0
 	// 0
 }
+
+func ExampleRemoveNonPrintable() {
+	result1 := RemoveNonPrintable("hello\u00a0 \u200bworld\n")
+	result2 := RemoveNonPrintable("你好😄")
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	// Output:
+	// hello world
+	// 你好😄
+}
