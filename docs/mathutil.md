@@ -39,6 +39,7 @@ import (
 -   [AngleToRadian](#AngleToRadian)
 -   [RadianToAngle](#RadianToAngle)
 -   [PointDistance](#PointDistance)
+-   [IsPrime](#IsPrime)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -660,5 +661,45 @@ func main() {
 
     // Output:
     // 5
+}
+```
+
+
+### <span id="IsPrime">IsPrime</span>
+
+<p>Checks if number is prime number.</p>
+
+<b>Signature:</b>
+
+```go
+func IsPrime(n int) bool
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/mathutil"
+)
+
+func main() {
+    result1 := mathutil.IsPrime(-1)
+	result2 := mathutil.IsPrime(0)
+	result3 := mathutil.IsPrime(1)
+	result4 := mathutil.IsPrime(2)
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+	fmt.Println(result4)
+
+	// Output:
+	// false
+	// false
+	// false
+	// true
 }
 ```
