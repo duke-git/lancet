@@ -58,11 +58,25 @@ func IsAllLower(str string) bool {
 	return str != ""
 }
 
-// IsASCII checks if string is ASCII char.
-// Play:
+// IsASCII checks if string is all ASCII char.
+// Play: todo
 func IsASCII(str string) bool {
 	for i := 0; i < len(str); i++ {
 		if str[i] > unicode.MaxASCII {
+			return false
+		}
+	}
+	return true
+}
+
+// IsPrintable checks if string is all printable chars.
+// Play: todo
+func IsPrintable(str string) bool {
+	for _, r := range str {
+		if !unicode.IsPrint(r) {
+			if r == '\n' || r == '\r' || r == '\t' || r == '`' {
+				continue
+			}
 			return false
 		}
 	}

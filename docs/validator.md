@@ -51,6 +51,7 @@ import (
 -   [IsWeakPassword](#IsWeakPassword)
 -   [IsZeroValue](#IsZeroValue)
 -   [IsGBK](#IsGBK)
+-   [IsPrintable](#IsPrintable)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -296,7 +297,7 @@ func main() {
 
 ### <span id="IsASCII">IsASCII</span>
 
-<p>Checks if string is ASCII char.</p>
+<p>Checks if string is all ASCII char.</p>
 
 <b>Signature:</b>
 
@@ -1029,5 +1030,46 @@ func main() {
 
     // Output:
     // true
+}
+```
+
+
+### <span id="IsPrintable">IsPrintable</span>
+
+<p>Checks if string is all printable chars.</p>
+
+<b>Signature:</b>
+
+```go
+func IsPrintable(str string) bool
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/validator"
+)
+
+func main() {
+    result1 := validator.IsPrintable("ABC")
+    result2 := validator.IsPrintable("{id: 123}")
+    result3 := validator.IsPrintable("")
+    result4 := validator.IsPrintable("😄")
+    result5 := validator.IsPrintable("\u0000")
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
+    fmt.Println(result5)
+
+    // Output:
+    // true
+    // true
+    // true
+    // true
+    // false
 }
 ```

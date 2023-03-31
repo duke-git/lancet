@@ -428,3 +428,24 @@ func ExampleIsASCII() {
 	// false
 	// false
 }
+
+func ExampleIsPrintable() {
+	result1 := IsPrintable("ABC")
+	result2 := IsPrintable("{id: 123}")
+	result3 := IsPrintable("")
+	result4 := IsPrintable("😄")
+	result5 := IsPrintable("\u0000")
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+	fmt.Println(result4)
+	fmt.Println(result5)
+
+	// Output:
+	// true
+	// true
+	// true
+	// true
+	// false
+}

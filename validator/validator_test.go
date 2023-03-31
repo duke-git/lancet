@@ -411,3 +411,13 @@ func TestIsASCII(t *testing.T) {
 	assert.Equal(false, IsASCII("😄"))
 	assert.Equal(false, IsASCII("你好"))
 }
+
+func TestIsPrintable(t *testing.T) {
+	assert := internal.NewAssert(t, "TestIsPrintable")
+
+	assert.Equal(true, IsPrintable("ABC"))
+	assert.Equal(true, IsPrintable("{id: 123}"))
+	assert.Equal(true, IsPrintable(""))
+	assert.Equal(true, IsPrintable("😄"))
+	assert.Equal(false, IsPrintable("\u0000"))
+}
