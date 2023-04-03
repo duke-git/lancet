@@ -72,7 +72,7 @@ func main() {
 
 ## 文档
 
-### 1. algorithm包实现一些基本查找和排序算法。
+### 1. algorithm 包实现一些基本查找和排序算法。
 
 ```go
 import "github.com/duke-git/lancet/v2/algorithm"
@@ -117,7 +117,7 @@ import "github.com/duke-git/lancet/v2/algorithm"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm_zh-CN.md#LRUCache)]
     [[play](https://go.dev/play/p/-EZjgOURufP)]
 
-### 2. concurrency包含一些支持并发编程的功能。例如：goroutine, channel, async 等。
+### 2. concurrency 包含一些支持并发编程的功能。例如：goroutine, channel, async 等。
 
 ```go
 import "github.com/duke-git/lancet/v2/concurrency"
@@ -156,7 +156,7 @@ import "github.com/duke-git/lancet/v2/concurrency"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/concurrency_zh-CN.md#Tee)]
     [[play](https://go.dev/play/p/3TQPKnCirrP)]
 
-### 3. condition包含一些用于条件判断的函数。
+### 3. condition 包含一些用于条件判断的函数。
 
 ```go
 import "github.com/duke-git/lancet/v2/condition"
@@ -189,7 +189,7 @@ import "github.com/duke-git/lancet/v2/condition"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/condition_zh-CN.md#TernaryOperator)]
     [[play](https://go.dev/play/p/ElllPZY0guT)]
 
-### 4. convertor转换器包支持一些常见的数据类型转换。
+### 4. convertor 转换器包支持一些常见的数据类型转换。
 
 ```go
 import "github.com/duke-git/lancet/v2/convertor"
@@ -252,7 +252,7 @@ import "github.com/duke-git/lancet/v2/convertor"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#CopyProperties)]
     [[play](https://go.dev/play/p/FOVY3XJL-6B)]
 
-### 5. cryptor加密包支持数据加密和解密，获取 md5，hash 值。支持 base64, md5, hmac, aes, des, rsa。
+### 5. cryptor 加密包支持数据加密和解密，获取 md5，hash 值。支持 base64, md5, hmac, aes, des, rsa。
 
 ```go
 import "github.com/duke-git/lancet/v2/cryptor"
@@ -356,7 +356,7 @@ import "github.com/duke-git/lancet/v2/cryptor"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#RsaDecrypt)]
     [[play](https://go.dev/play/p/uef0q1fz53I)]
 
-### 6. datetime日期时间处理包，格式化日期，比较日期。
+### 6. datetime 日期时间处理包，格式化日期，比较日期。
 
 ```go
 import "github.com/duke-git/lancet/v2/datetime"
@@ -455,7 +455,7 @@ import "github.com/duke-git/lancet/v2/datetime"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#ToIso8601)]
     [[play](https://go.dev/play/p/mkhOHQkdeA2)]
 
-### 7. datastructure包含一些普通的数据结构实现。例如：list, linklist, stack, queue, set, tree, graph.
+### 7. datastructure 包含一些普通的数据结构实现。例如：list, linklist, stack, queue, set, tree, graph.
 
 ```go
 import list "github.com/duke-git/lancet/v2/datastructure/list"
@@ -487,7 +487,7 @@ import hashmap "github.com/duke-git/lancet/v2/datastructure/hashmap"
 -   **<big>Hashmap</big>** : 哈希映射。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/datastructure/hashmap_zh-CN.md)]
 
-### 8. fileutil包含文件基本操作。
+### 8. fileutil 包含文件基本操作。
 
 ```go
 import "github.com/duke-git/lancet/v2/fileutil"
@@ -541,7 +541,7 @@ import "github.com/duke-git/lancet/v2/fileutil"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil_zh-CN.md#UnZip)]
     [[play](https://go.dev/play/p/g0w34kS7B8m)]
 
-### 9. formatter格式化器包含一些数据格式化处理方法。
+### 9. formatter 格式化器包含一些数据格式化处理方法。
 
 ```go
 import "github.com/duke-git/lancet/v2/formatter"
@@ -553,7 +553,7 @@ import "github.com/duke-git/lancet/v2/formatter"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/formatter_zh-CN.md#Comma)]
     [[play](https://go.dev/play/p/eRD5k2vzUVX)]
 
-### 10. function函数包控制函数执行流程，包含部分函数式编程。
+### 10. function 函数包控制函数执行流程，包含部分函数式编程。
 
 ```go
 import "github.com/duke-git/lancet/v2/function"
@@ -589,7 +589,7 @@ import "github.com/duke-git/lancet/v2/function"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/function_zh-CN.md#Watcher)]
     [[play](https://go.dev/play/p/l2yrOpCLd1I)]
 
-### 11. maputil包括一些操作 map 的函数.
+### 11. maputil 包括一些操作 map 的函数.
 
 ```go
 import "github.com/duke-git/lancet/v2/maputil"
@@ -658,7 +658,7 @@ import "github.com/duke-git/lancet/v2/maputil"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#IsDisjoint)]
     [[play](https://go.dev/play/p/N9qgYg_Ho6f)]
 
-### 12. mathutil包实现了一些数学计算的函数。
+### 12. mathutil 包实现了一些数学计算的函数。
 
 ```go
 import "github.com/duke-git/lancet/v2/mathutil"
@@ -708,9 +708,16 @@ import "github.com/duke-git/lancet/v2/mathutil"
 -   **<big>RangeWithStep</big>** : 根据指定的起始值，结束值，步长，创建一个数字切片。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#RangeWithStep)]
     [[play](https://go.dev/play/p/akLWz0EqOSM)]
+-   **<big>AngleToRadian</big>** : 将角度值转为弧度值。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#AngleToRadian)]
+-   **<big>RadianToAngle</big>** : 将弧度值转为角度值。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#RadianToAngle)]
+-   **<big>PointDistance</big>** : 计算两个坐标点的距离。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#PointDistance)]
+-   **<big>IsPrime</big>** : 判断质数。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#IsPrime)]
 
-
-### 13. netutil网络包支持获取 ip 地址，发送 http 请求。
+### 13. netutil 网络包支持获取 ip 地址，发送 http 请求。
 
 ```go
 import "github.com/duke-git/lancet/v2/netutil"
@@ -773,7 +780,7 @@ import "github.com/duke-git/lancet/v2/netutil"
 -   **<big>ParseHttpResponse</big>** : 解析 http 响应体到目标结构体。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#ParseHttpResponse)]
 
-### 14. random随机数生成器包，可以生成随机[]bytes, int, string。
+### 14. random 随机数生成器包，可以生成随机[]bytes, int, string。
 
 ```go
 import "github.com/duke-git/lancet/v2/random"
@@ -806,7 +813,7 @@ import "github.com/duke-git/lancet/v2/random"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/random_zh-CN.md#UUIdV4)]
     [[play](https://go.dev/play/p/_Z9SFmr28ft)]
 
-### 15. retry重试执行函数直到函数运行成功或被 context cancel。
+### 15. retry 重试执行函数直到函数运行成功或被 context cancel。
 
 ```go
 import "github.com/duke-git/lancet/v2/retry"
@@ -830,7 +837,7 @@ import "github.com/duke-git/lancet/v2/retry"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/retry_zh-CN.md#RetryTimes)]
     [[play](https://go.dev/play/p/ssfVeU2SwLO)]
 
-### 16. slice包含操作切片的方法集合。
+### 16. slice 包含操作切片的方法集合。
 
 ```go
 import "github.com/duke-git/lancet/v2/slice"
@@ -922,7 +929,7 @@ import "github.com/duke-git/lancet/v2/slice"
 -   **<big>ForEach</big>** : 遍历切片的元素并为每个元素调用 iteratee 函数。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#ForEach)]
     [[play](https://go.dev/play/p/DrPaa4YsHRF)]
--   **<big>ForEachWithBreak</big>** : 遍历切片的元素并为每个元素调用iteratee函数，当iteratee函数返回false时，终止遍历。
+-   **<big>ForEachWithBreak</big>** : 遍历切片的元素并为每个元素调用 iteratee 函数，当 iteratee 函数返回 false 时，终止遍历。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#ForEachWithBreak)]
     [[play](https://go.dev/play/p/qScs39f3D9W)]
 -   **<big>GroupBy</big>** : 迭代切片的元素，每个元素将按条件分组，返回两个切片。
@@ -1031,7 +1038,7 @@ import "github.com/duke-git/lancet/v2/slice"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#KeyBy)]
     [[play](https://go.dev/play/p/uXod2LWD1Kg)]
 
-### 17. structs提供操作struct, tag, field的相关函数。
+### 17. structs 提供操作 struct, tag, field 的相关函数。
 
 ```go
 import "github.com/duke-git/lancet/v2/structs"
@@ -1041,21 +1048,21 @@ import "github.com/duke-git/lancet/v2/structs"
 
 -   **<big>New</big>** : `Struct`结构体的构造函数。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/structs/struct_zh-CN.md#New)]
--   **<big>ToMap</big>** : 将一个合法的struct对象转换为map[string]any。
+-   **<big>ToMap</big>** : 将一个合法的 struct 对象转换为 map[string]any。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/structs/struct_zh-CN.md#ToMap)]
--   **<big>Fields</big>** : 获取一个struct对象的属性列表。
+-   **<big>Fields</big>** : 获取一个 struct 对象的属性列表。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/structs/struct_zh-CN.md#Fields)]
--   **<big>Field</big>** : 根据属性名获取一个struct对象的属性。
+-   **<big>Field</big>** : 根据属性名获取一个 struct 对象的属性。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/structs/struct_zh-CN.md#Fields)]
--   **<big>IsStruct</big>** : 判断是否为一个合法的struct对象。
+-   **<big>IsStruct</big>** : 判断是否为一个合法的 struct 对象。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/structs/struct_zh-CN.md#IsStruct)]
--   **<big>Tag</big>** : 获取`Field`的`Tag`，默认的tag key是json。
+-   **<big>Tag</big>** : 获取`Field`的`Tag`，默认的 tag key 是 json。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/structs/field_zh-CN.md#Tag)]
 -   **<big>Name</big>** : 获取属性名。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/structs/field_zh-CN.md#Name)]
 -   **<big>Value</big>** : 获取`Field`属性的值。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/structs/field_zh-CN.md#Value)]
--   **<big>Kind</big>** : 获取属性Kind。
+-   **<big>Kind</big>** : 获取属性 Kind。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/structs/field_zh-CN.md#Kind)]
 -   **<big>IsEmbedded</big>** : 判断属性是否为嵌入。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/structs/field_zh-CN.md#IsEmbedded)]
@@ -1066,7 +1073,7 @@ import "github.com/duke-git/lancet/v2/structs"
 -   **<big>IsSlice</big>** : 判断属性是否是切片。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/structs/field_zh-CN.md#IsSlice)]
 
-### 18. strutil包含字符串处理的相关函数。
+### 18. strutil 包含字符串处理的相关函数。
 
 ```go
 import "github.com/duke-git/lancet/v2/strutil"
@@ -1143,9 +1150,10 @@ import "github.com/duke-git/lancet/v2/strutil"
 -   **<big>WordCount</big>** : 返回有意义单词的数量，只支持字母字符单词。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#WordCount)]
     [[play](https://go.dev/play/p/bj7_odx3vRf)]
+-   **<big>RemoveNonPrintable</big>** : 删除字符串中不可打印的字符。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#RemoveNonPrintable)]
 
-
-### 19. system包含 os, runtime, shell command 的相关函数。
+### 19. system 包含 os, runtime, shell command 的相关函数。
 
 ```go
 import "github.com/duke-git/lancet/v2/system"
@@ -1181,7 +1189,7 @@ import "github.com/duke-git/lancet/v2/system"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/system_zh-CN#GetOsBits)]
     [[play](https://go.dev/play/p/ml-_XH3gJbW)]
 
-### 20. validator验证器包，包含常用字符串格式验证函数。
+### 20. validator 验证器包，包含常用字符串格式验证函数。
 
 ```go
 import "github.com/duke-git/lancet/v2/validator"
@@ -1273,8 +1281,12 @@ import "github.com/duke-git/lancet/v2/validator"
 -   **<big>IsGBK</big>** : 检查数据编码是否为 gbk（汉字内部代码扩展规范）。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsGBK)]
     [[play](https://go.dev/play/p/E2nt3unlmzP)]
+-   **<big>IsASCII</big>** : 验证字符串全部为 ASCII 字符。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsASCII)]
+-   **<big>IsPrintable</big>** : 检查字符串是否全部为可打印字符。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsPrintable)]
 
-### 21. xerror包实现一些错误处理函数
+### 21. xerror 包实现一些错误处理函数
 
 ```go
 import "github.com/duke-git/lancet/v2/xerror"

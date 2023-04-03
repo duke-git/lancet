@@ -39,6 +39,7 @@ import (
 -   [AngleToRadian](#AngleToRadian)
 -   [RadianToAngle](#RadianToAngle)
 -   [PointDistance](#PointDistance)
+-   [IsPrime](#IsPrime)
 
 <div STYLE="page-break-after: always;"></div>
 

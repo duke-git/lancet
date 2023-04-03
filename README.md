@@ -709,7 +709,14 @@ import "github.com/duke-git/lancet/v2/mathutil"
 -   **<big>RangeWithStep</big>** : Creates a slice of numbers from start to end with specified step.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#Range)]
     [[play](https://go.dev/play/p/akLWz0EqOSM)]
-
+-   **<big>AngleToRadian</big>** : converts angle value to radian value.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#AngleToRadian)]
+-   **<big>RadianToAngle</big>** : converts radian value to angle value.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#RadianToAngle)]
+-   **<big>PointDistance</big>** : get two points distance.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#PointDistance)]
+-   **<big>IsPrime</big>** : checks if number is prime number.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#IsPrime)]
 
 ### 13. Netutil package contains functions to get net information and send http request.
 
@@ -1032,7 +1039,6 @@ import "github.com/duke-git/lancet/v2/slice"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#KeyBy)]
     [[play](https://go.dev/play/p/uXod2LWD1Kg)]
 
-
 ### 17. Structs package provides several high level functions to manipulate struct, tag, and field.
 
 ```go
@@ -1142,6 +1148,8 @@ import "github.com/duke-git/lancet/v2/strutil"
 -   **<big>WordCount</big>** : return the number of meaningful word of a string, word only contains alphabetic characters.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#WordCount)]
     [[play](https://go.dev/play/p/bj7_odx3vRf)]
+-   **<big>RemoveNonPrintable</big>** : remove non-printable characters from a string.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#RemoveNonPrintable)]
 
 ### 19. System package contain some functions about os, runtime, shell command.
 
@@ -1271,6 +1279,10 @@ import "github.com/duke-git/lancet/v2/validator"
 -   **<big>IsGBK</big>** : check if data encoding is gbk.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsGBK)]
     [[play](https://go.dev/play/p/E2nt3unlmzP)]
+-   **<big>IsASCII</big>** : checks if string is all ASCII char.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsASCII)]
+-   **<big>IsPrintable</big>** : checks if string is all printable chars.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsPrintable)]
 
 ### 21. xerror package implements helpers for errors.
 
