@@ -218,21 +218,21 @@ func RangeWithStep[T constraints.Integer | constraints.Float](start, end, step T
 }
 
 // AngleToRadian converts angle value to radian value.
-// Play: todo
+// Play: https://go.dev/play/p/CIvlICqrHql
 func AngleToRadian(angle float64) float64 {
 	radian := angle * (math.Pi / 180)
 	return radian
 }
 
 // RadianToAngle converts radian value to angle value.
-// Play: todo
+// Play: https://go.dev/play/p/dQtmOTUOMgi
 func RadianToAngle(radian float64) float64 {
 	angle := radian * (180 / math.Pi)
 	return angle
 }
 
 // PointDistance get two points distance.
-// Play: todo
+// Play: https://go.dev/play/p/RrG4JIaziM8
 func PointDistance(x1, y1, x2, y2 float64) float64 {
 	a := x1 - x2
 	b := y1 - y2
@@ -242,7 +242,7 @@ func PointDistance(x1, y1, x2, y2 float64) float64 {
 }
 
 // IsPrimes checks if number is prime number.
-// Play: todo
+// Play: https://go.dev/play/p/Rdd8UTHZJ7u
 func IsPrime(n int) bool {
 	if n < 2 {
 		return false

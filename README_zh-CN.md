@@ -710,12 +710,16 @@ import "github.com/duke-git/lancet/v2/mathutil"
     [[play](https://go.dev/play/p/akLWz0EqOSM)]
 -   **<big>AngleToRadian</big>** : 将角度值转为弧度值。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#AngleToRadian)]
+    [[play](https://go.dev/play/p/CIvlICqrHql)]
 -   **<big>RadianToAngle</big>** : 将弧度值转为角度值。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#RadianToAngle)]
+    [[play](https://go.dev/play/p/dQtmOTUOMgi)]
 -   **<big>PointDistance</big>** : 计算两个坐标点的距离。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#PointDistance)]
+    [[play](https://go.dev/play/p/RrG4JIaziM8)]
 -   **<big>IsPrime</big>** : 判断质数。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#IsPrime)]
+    [[play](https://go.dev/play/p/Rdd8UTHZJ7u)]
 
 ### 13. netutil 网络包支持获取 ip 地址，发送 http 请求。
 
@@ -1152,6 +1156,7 @@ import "github.com/duke-git/lancet/v2/strutil"
     [[play](https://go.dev/play/p/bj7_odx3vRf)]
 -   **<big>RemoveNonPrintable</big>** : 删除字符串中不可打印的字符。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#RemoveNonPrintable)]
+    [[play](https://go.dev/play/p/og47F5x_jTZ)]
 
 ### 19. system 包含 os, runtime, shell command 的相关函数。
 
@@ -1283,8 +1288,10 @@ import "github.com/duke-git/lancet/v2/validator"
     [[play](https://go.dev/play/p/E2nt3unlmzP)]
 -   **<big>IsASCII</big>** : 验证字符串全部为 ASCII 字符。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsASCII)]
+    [[play](https://go.dev/play/p/hfQNPLX0jNa)]
 -   **<big>IsPrintable</big>** : 检查字符串是否全部为可打印字符。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsPrintable)]
+    [[play](https://go.dev/play/p/Pe1FE2gdtTP)]
 
 ### 21. xerror 包实现一些错误处理函数
 

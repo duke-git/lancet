@@ -711,12 +711,16 @@ import "github.com/duke-git/lancet/v2/mathutil"
     [[play](https://go.dev/play/p/akLWz0EqOSM)]
 -   **<big>AngleToRadian</big>** : converts angle value to radian value.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#AngleToRadian)]
+    [[play](https://go.dev/play/p/CIvlICqrHql)]
 -   **<big>RadianToAngle</big>** : converts radian value to angle value.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#RadianToAngle)]
+    [[play](https://go.dev/play/p/dQtmOTUOMgi)]
 -   **<big>PointDistance</big>** : get two points distance.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#PointDistance)]
+    [[play](https://go.dev/play/p/RrG4JIaziM8)]
 -   **<big>IsPrime</big>** : checks if number is prime number.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#IsPrime)]
+    [[play](https://go.dev/play/p/Rdd8UTHZJ7u)]
 
 ### 13. Netutil package contains functions to get net information and send http request.
 
@@ -1150,6 +1154,8 @@ import "github.com/duke-git/lancet/v2/strutil"
     [[play](https://go.dev/play/p/bj7_odx3vRf)]
 -   **<big>RemoveNonPrintable</big>** : remove non-printable characters from a string.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#RemoveNonPrintable)]
+    [[play](https://go.dev/play/p/og47F5x_jTZ)]
+
 
 ### 19. System package contain some functions about os, runtime, shell command.
 
@@ -1281,8 +1287,10 @@ import "github.com/duke-git/lancet/v2/validator"
     [[play](https://go.dev/play/p/E2nt3unlmzP)]
 -   **<big>IsASCII</big>** : checks if string is all ASCII char.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsASCII)]
+    [[play](https://go.dev/play/p/hfQNPLX0jNa)]
 -   **<big>IsPrintable</big>** : checks if string is all printable chars.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsPrintable)]
+    [[play](https://go.dev/play/p/Pe1FE2gdtTP)]
 
 ### 21. xerror package implements helpers for errors.
 

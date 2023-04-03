@@ -362,7 +362,7 @@ func WordCount(s string) int {
 }
 
 // RemoveNonPrintable remove non-printable characters from a string.
-// Play: todo
+// Play: https://go.dev/play/p/og47F5x_jTZ
 func RemoveNonPrintable(str string) string {
 	result := strings.Map(func(r rune) rune {
 		if unicode.IsPrint(r) {
