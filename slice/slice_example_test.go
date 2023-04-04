@@ -477,6 +477,17 @@ func ExampleReduceBy() {
 	// 1234
 }
 
+func ExampleReduceRight() {
+	result := ReduceRight([]int{1, 2, 3, 4}, "", func(_ int, item int, agg string) string {
+		return agg + fmt.Sprintf("%v", item)
+	})
+
+	fmt.Println(result)
+
+	// Output:
+	// 4321
+}
+
 func ExampleReplace() {
 	strs := []string{"a", "b", "c", "a"}
 

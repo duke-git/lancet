@@ -504,6 +504,18 @@ func ReduceBy[T any, U any](slice []T, initial U, reducer func(index int, item T
 	return accumulator
 }
 
+// ReduceRight is like ReduceBy, but it iterates over elements of slice from right to left.
+// Play: todo
+func ReduceRight[T any, U any](slice []T, initial U, reducer func(index int, item T, agg U) U) U {
+	accumulator := initial
+
+	for i := len(slice) - 1; i >= 0; i-- {
+		accumulator = reducer(i, slice[i], accumulator)
+	}
+
+	return accumulator
+}
+
 // Replace returns a copy of the slice with the first n non-overlapping instances of old replaced by new.
 // Play: https://go.dev/play/p/P5mZp7IhOFo
 func Replace[T comparable](slice []T, old T, new T, n int) []T {

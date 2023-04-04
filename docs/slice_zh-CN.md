@@ -64,6 +64,7 @@ import (
 -   [Reverse](#Reverse)
 -   [Reduce](#Reduce)
 -   [ReduceBy](#ReduceBy)
+-   [ReduceRight](#ReduceRight)
 -   [Replace](#Replace)
 -   [ReplaceAll](#ReplaceAll)
 -   [Repeat](#Repeat)
@@ -1506,7 +1507,6 @@ func main() {
 }
 ```
 
-
 ### <span id="ReduceBy">ReduceBy</span>
 
 <p>对切片中执行reduce操作。</p>
@@ -1543,6 +1543,35 @@ func main() {
 }
 ```
 
+### <span id="ReduceRight">ReduceRight</span>
+
+<p>类似ReduceBy操作，迭代切片元素顺序从右至左。</p>
+
+<b>函数签名:</b>
+
+```go
+func ReduceRight[T any, U any](slice []T, initial U, reducer func(index int, item T, agg U) U) U
+```
+
+<b>示例:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+    result := slice.ReduceRight([]int{1, 2, 3, 4}, "", func(_ int, item int, agg string) string {
+        return agg + fmt.Sprintf("%v", item)
+    })
+
+    fmt.Println(result)
+
+    // Output:
+    // 4321
+}
+```
 
 ### <span id="Replace">Replace</span>
 
