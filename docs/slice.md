@@ -63,6 +63,7 @@ import (
 -   [Merge](#Merge)
 -   [Reverse](#Reverse)
 -   [Reduce](#Reduce)
+-   [ReduceBy](#ReduceBy)
 -   [Replace](#Replace)
 -   [ReplaceAll](#ReplaceAll)
 -   [Repeat](#Repeat)
@@ -1501,6 +1502,43 @@ func main() {
 
     // Output:
     // 6
+}
+```
+
+
+### <span id="ReduceBy">ReduceBy</span>
+
+<p>Produces a value from slice by accumulating the result of each element as passed through the reducer function.</p>
+
+<b>Signature:</b>
+
+```go
+func ReduceBy[T any, U any](slice []T, initial U, reducer func(index int, item T, agg U) U) U
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+    result1 := slice.ReduceBy([]int{1, 2, 3, 4}, 0, func(_ int, item int, agg int) int {
+        return agg + item
+    })
+
+    result2 := slice.ReduceBy([]int{1, 2, 3, 4}, "", func(_ int, item int, agg string) string {
+        return agg + fmt.Sprintf("%v", item)
+    })
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+
+    // Output:
+    // 10
+    // 1234
 }
 ```
 

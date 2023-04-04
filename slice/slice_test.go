@@ -405,6 +405,22 @@ func TestReduce(t *testing.T) {
 	}
 }
 
+func TestReduceBy(t *testing.T) {
+	assert := internal.NewAssert(t, "TestReduce2")
+
+	result1 := ReduceBy([]int{1, 2, 3, 4}, 0, func(_ int, item int, agg int) int {
+		return agg + item
+	})
+
+	result2 := ReduceBy([]int{1, 2, 3, 4}, "", func(_ int, item int, agg string) string {
+		return agg + fmt.Sprintf("%v", item)
+	})
+
+	assert.Equal(10, result1)
+	assert.Equal("1234", result2)
+
+}
+
 func TestIntSlice(t *testing.T) {
 	var nums []any
 	nums = append(nums, 1, 2, 3)

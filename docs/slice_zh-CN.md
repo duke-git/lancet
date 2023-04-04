@@ -63,6 +63,7 @@ import (
 -   [Merge](#Merge)
 -   [Reverse](#Reverse)
 -   [Reduce](#Reduce)
+-   [ReduceBy](#ReduceBy)
 -   [Replace](#Replace)
 -   [ReplaceAll](#ReplaceAll)
 -   [Repeat](#Repeat)
@@ -1504,6 +1505,44 @@ func main() {
     // 6
 }
 ```
+
+
+### <span id="ReduceBy">ReduceBy</span>
+
+<p>对切片中执行reduce操作。</p>
+
+<b>函数签名:</b>
+
+```go
+func ReduceBy[T any, U any](slice []T, initial U, reducer func(index int, item T, agg U) U) U
+```
+
+<b>示例:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+    result1 := slice.ReduceBy([]int{1, 2, 3, 4}, 0, func(_ int, item int, agg int) int {
+        return agg + item
+    })
+
+    result2 := slice.ReduceBy([]int{1, 2, 3, 4}, "", func(_ int, item int, agg string) string {
+        return agg + fmt.Sprintf("%v", item)
+    })
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+
+    // Output:
+    // 10
+    // 1234
+}
+```
+
 
 ### <span id="Replace">Replace</span>
 

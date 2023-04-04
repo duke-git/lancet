@@ -492,6 +492,18 @@ func Reduce[T any](slice []T, iteratee func(index int, item1, item2 T) T, initia
 	return result
 }
 
+// ReduceBy produces a value from slice by accumulating the result of each element as passed through the reducer function.
+// Play: todo
+func ReduceBy[T any, U any](slice []T, initial U, reducer func(index int, item T, agg U) U) U {
+	accumulator := initial
+
+	for i, v := range slice {
+		accumulator = reducer(i, v, accumulator)
+	}
+
+	return accumulator
+}
+
 // Replace returns a copy of the slice with the first n non-overlapping instances of old replaced by new.
 // Play: https://go.dev/play/p/P5mZp7IhOFo
 func Replace[T comparable](slice []T, old T, new T, n int) []T {

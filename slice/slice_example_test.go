@@ -460,6 +460,23 @@ func ExampleReduce() {
 	// 6
 }
 
+func ExampleReduceBy() {
+	result1 := ReduceBy([]int{1, 2, 3, 4}, 0, func(_ int, item int, agg int) int {
+		return agg + item
+	})
+
+	result2 := ReduceBy([]int{1, 2, 3, 4}, "", func(_ int, item int, agg string) string {
+		return agg + fmt.Sprintf("%v", item)
+	})
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+
+	// Output:
+	// 10
+	// 1234
+}
+
 func ExampleReplace() {
 	strs := []string{"a", "b", "c", "a"}
 
