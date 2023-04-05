@@ -241,3 +241,8 @@ func TestListFileNames(t *testing.T) {
 	expected := []string{"formatter.go", "formatter_example_test.go", "formatter_test.go"}
 	assert.Equal(expected, filesInPath)
 }
+
+func TestCurrentPath(t *testing.T) {
+	absPath := CurrentPath()
+	t.Log(absPath)
+}

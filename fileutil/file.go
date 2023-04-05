@@ -15,6 +15,7 @@ import (
 	"os"
 	"path"
 	"path/filepath"
+	"runtime"
 	"strings"
 )
 
@@ -344,4 +345,16 @@ func MiMeType(file any) string {
 		return http.DetectContentType(buffer)
 	}
 	return mediatype
+}
+
+// CurrentPath return current absolute path.
+// Play: todo
+func CurrentPath() string {
+	var absPath string
+	_, filename, _, ok := runtime.Caller(1)
+	if ok {
+		absPath = path.Dir(filename)
+	}
+
+	return absPath
 }

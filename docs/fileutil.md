@@ -26,6 +26,7 @@ import (
 -   [CreateFile](#CreateFile)
 -   [CreateDir](#CreateDir)
 -   [CopyFile](#CopyFile)
+-   [CurrentPath](#CurrentPath)
 -   [FileMode](#FileMode)
 -   [MiMeType](#MiMeType)
 -   [IsExist](#IsExist)
@@ -148,6 +149,32 @@ func main() {
     if err != nil {
         fmt.Println(err)
     }
+}
+```
+
+### <span id="CurrentPath">CurrentPath</span>
+
+<p>return current absolute path.</p>
+
+<b>Signature:</b>
+
+```go
+func CurrentPath() string
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/fileutil"
+)
+
+func main() {
+    absPath := CurrentPath()
+    fmt.Println(absPath)
 }
 ```
 
