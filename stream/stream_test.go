@@ -147,13 +147,17 @@ func TestStream_Peek(t *testing.T) {
 func TestStream_Skip(t *testing.T) {
 	assert := internal.NewAssert(t, "TestStream_Peek")
 
-	stream := FromSlice([]int{1, 2, 3, 4, 5, 6})
+	stream := FromSlice([]int{1, 2, 3, 4})
 
 	s1 := stream.Skip(-1)
 	s2 := stream.Skip(0)
+	s3 := stream.Skip(1)
+	s4 := stream.Skip(2)
 
-	assert.Equal([]int{1, 2, 3, 4, 5, 6}, s1.ToSlice())
-	assert.Equal([]int{1, 2, 3, 4, 5, 6}, s2.ToSlice())
+	assert.Equal([]int{1, 2, 3, 4}, s1.ToSlice())
+	assert.Equal([]int{1, 2, 3, 4}, s2.ToSlice())
+	assert.Equal([]int{2, 3, 4}, s3.ToSlice())
+	assert.Equal([]int{3, 4}, s4.ToSlice())
 }
 
 func TestStream_Limit(t *testing.T) {
@@ -246,6 +250,16 @@ func TestStream_Reduce(t *testing.T) {
 	})
 
 	assert.Equal(6, result)
+}
+
+func TestStream_Count(t *testing.T) {
+	assert := internal.NewAssert(t, "TestStream_Count")
+
+	s1 := FromSlice([]int{1, 2, 3})
+	s2 := FromSlice([]int{})
+
+	assert.Equal(3, s1.Count())
+	assert.Equal(0, s2.Count())
 }
 
 func TestStream_FindFirst(t *testing.T) {
