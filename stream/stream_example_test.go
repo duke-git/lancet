@@ -91,11 +91,11 @@ func ExampleConcat() {
 }
 
 func ExampleStream_Distinct() {
-	originalStream := FromSlice([]int{1, 2, 2, 3, 3, 3})
-	distinctStream := originalStream.Distinct()
+	original := FromSlice([]int{1, 2, 2, 3, 3, 3})
+	distinct := original.Distinct()
 
-	data1 := originalStream.ToSlice()
-	data2 := distinctStream.ToSlice()
+	data1 := original.ToSlice()
+	data2 := distinct.ToSlice()
 
 	fmt.Println(data1)
 	fmt.Println(data2)
@@ -267,10 +267,8 @@ func ExampleStream_ForEach() {
 func ExampleStream_Reduce() {
 	original := FromSlice([]int{1, 2, 3})
 
-	result := 0
-
-	original.ForEach(func(item int) {
-		result += item
+	result := original.Reduce(0, func(a, b int) int {
+		return a + b
 	})
 
 	fmt.Println(result)

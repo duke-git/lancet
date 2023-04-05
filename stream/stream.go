@@ -51,7 +51,7 @@ type stream[T any] struct {
 	source []T
 }
 
-// Of creates a stream stream whose elements are the specified values.
+// Of creates a stream whose elements are the specified values.
 // Play: https://go.dev/play/p/jI6_iZZuVFE
 func Of[T any](elems ...T) stream[T] {
 	return FromSlice(elems)
@@ -268,7 +268,7 @@ func (s stream[T]) ForEach(action func(item T)) {
 }
 
 // Reduce performs a reduction on the elements of this stream, using an associative accumulation function, and returns an Optional describing the reduced value, if any.
-// Play: https://go.dev/play/p/g-xkHiuIpTi
+// Play: https://go.dev/play/p/6uzZjq_DJLU
 func (s stream[T]) Reduce(initial T, accumulator func(a, b T) T) T {
 	for _, v := range s.source {
 		initial = accumulator(initial, v)
