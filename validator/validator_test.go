@@ -100,6 +100,34 @@ func TestIsJSON(t *testing.T) {
 	assert.Equal(false, IsJSON("&@#$%^&*"))
 }
 
+func TestIsNumber(t *testing.T) {
+	assert := internal.NewAssert(t, "TestIsNumber")
+
+	assert.Equal(false, IsNumber(""))
+	assert.Equal(false, IsNumber("3"))
+	assert.Equal(true, IsNumber(0))
+	assert.Equal(true, IsNumber(0.1))
+}
+
+func TestIsFloat(t *testing.T) {
+	assert := internal.NewAssert(t, "TestIsFloat")
+
+	assert.Equal(false, IsFloat(""))
+	assert.Equal(false, IsFloat("3"))
+	assert.Equal(false, IsFloat(0))
+	assert.Equal(true, IsFloat(0.1))
+}
+
+func TestIsInt(t *testing.T) {
+	assert := internal.NewAssert(t, "TestIsInt")
+
+	assert.Equal(false, IsInt(""))
+	assert.Equal(false, IsInt("3"))
+	assert.Equal(false, IsInt(0.1))
+	assert.Equal(true, IsInt(0))
+	assert.Equal(true, IsInt(-1))
+}
+
 func TestIsNumberStr(t *testing.T) {
 	assert := internal.NewAssert(t, "TestIsNumberStr")
 

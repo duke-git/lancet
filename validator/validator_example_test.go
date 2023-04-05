@@ -449,3 +449,57 @@ func ExampleIsPrintable() {
 	// true
 	// false
 }
+
+func ExampleIsInt() {
+	result1 := IsInt("")
+	result2 := IsInt("3")
+	result3 := IsInt(0.1)
+	result4 := IsInt(0)
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+	fmt.Println(result4)
+
+	// Output:
+	// false
+	// false
+	// false
+	// true
+}
+
+func ExampleIsFloat() {
+	result1 := IsFloat("")
+	result2 := IsFloat("3")
+	result3 := IsFloat(0)
+	result4 := IsFloat(0.1)
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+	fmt.Println(result4)
+
+	// Output:
+	// false
+	// false
+	// false
+	// true
+}
+
+func ExampleIsNumber() {
+	result1 := IsNumber("")
+	result2 := IsNumber("3")
+	result3 := IsNumber(0)
+	result4 := IsNumber(0.1)
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+	fmt.Println(result4)
+
+	// Output:
+	// false
+	// false
+	// true
+	// true
+}

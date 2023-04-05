@@ -369,3 +369,29 @@ func IsGBK(data []byte) bool {
 
 	return true
 }
+
+// IsNumberStr check if the value is Number(integer, float) or not.
+// Play: todo
+func IsNumber(v any) bool {
+	return IsInt(v) || IsFloat(v)
+}
+
+// IsFloat check if the value is float(float32, float34) or not.
+// Play: todo
+func IsFloat(v any) bool {
+	switch v.(type) {
+	case float32, float64:
+		return true
+	}
+	return false
+}
+
+// IsInt check if the value is integer(int, unit) or not.
+// Play: todo
+func IsInt(v any) bool {
+	switch v.(type) {
+	case int, int8, int16, int32, int64, uint, uint8, uint16, uint32, uint64, uintptr:
+		return true
+	}
+	return false
+}
