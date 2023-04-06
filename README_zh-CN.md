@@ -1255,7 +1255,7 @@ import "github.com/duke-git/lancet/v2/validator"
     [[play](https://go.dev/play/p/LzaKocSV79u)]
 -   **<big>IsJSON</big>** : 验证字符串是否是有效 json。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsJSON)]
-    [[play](https://go.dev/play/p/sRS6c4K8jGk)]
+    [[play](https://go.dev/play/p/8Kip1Itjiil)]
 -   **<big>IsRegexMatch</big>** : 验证字符串是否可以匹配正则表达式。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsRegexMatch)]
     [[play](https://go.dev/play/p/z_XeZo_litG)]

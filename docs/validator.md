@@ -38,11 +38,14 @@ import (
 -   [IsDns](#IsDns)
 -   [IsEmail](#IsEmail)
 -   [IsEmptyString](#IsEmptyString)
+-   [IsInt](#IsInt)
+-   [IsFloat](#IsFloat)
+-   [IsNumber](#IsNumber)
+-   [IsIntStr](#IsIntStr)
 -   [IsFloatStr](#IsFloatStr)
 -   [IsNumberStr](#IsNumberStr)
 -   [IsJSON](#IsJSON)
 -   [IsRegexMatch](#IsRegexMatch)
--   [IsIntStr](#IsIntStr)
 -   [IsIp](#IsIp)
 -   [IsIpV4](#IsIpV4)
 -   [IsIpV6](#IsIpV6)
@@ -589,6 +592,154 @@ func main() {
 }
 ```
 
+### <span id="IsInt">IsInt</span>
+
+<p>Check if the value is integer(int, unit) or not.</p>
+
+<b>Signature:</b>
+
+```go
+func IsInt(v any) bool
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/validator"
+)
+
+func main() {
+    result1 := validator.IsInt("")
+    result2 := validator.IsInt("3")
+    result3 := validator.IsInt(0.1)
+    result4 := validator.IsInt(0)
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
+
+    // Output:
+    // false
+    // false
+    // false
+    // true
+}
+```
+
+### <span id="IsFloat">IsInt</span>
+
+<p>Check if the value is float(float32, float34) or not.</p>
+
+<b>Signature:</b>
+
+```go
+func IsFloat(v any) bool
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/validator"
+)
+
+func main() {
+    result1 := validator.IsFloat("")
+    result2 := validator.IsFloat("3")
+    result3 := validator.IsFloat(0)
+    result4 := validator.IsFloat(0.1)
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
+
+    // Output:
+    // false
+    // false
+    // false
+    // true
+}
+```
+
+### <span id="IsNumber">IsNumber</span>
+
+<p>Check if the value is number(integer, float) or not.</p>
+
+<b>Signature:</b>
+
+```go
+func IsNumber(v any) bool
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/validator"
+)
+
+func main() {
+    result1 := validator.IsNumber("")
+    result2 := validator.IsNumber("3")
+    result3 := validator.IsNumber(0.1)
+    result4 := validator.IsNumber(0)
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
+
+    // Output:
+    // false
+    // false
+    // true
+    // true
+}
+```
+
+### <span id="IsIntStr">IsIntStr</span>
+
+<p>Check if the string can convert to a integer.</p>
+
+<b>Signature:</b>
+
+```go
+func IsIntStr(s string) bool
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/validator"
+)
+
+func main() {
+    result1 := validator.IsIntStr("+3")
+    result2 := validator.IsIntStr("-3")
+    result3 := validator.IsIntStr("3.")
+    result4 := validator.IsIntStr("abc")
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
+
+    // Output:
+    // true
+    // true
+    // false
+    // false
+}
+```
+
 ### <span id="IsFloatStr">IsFloatStr</span>
 
 <p>Check if the string can convert to a float.</p>
@@ -684,8 +835,8 @@ import (
 func main() {
     result1 := validator.IsJSON("{}")
     result2 := validator.IsJSON("{\"name\": \"test\"}")
-    result3 := validator.IsIntStr("")
-    result4 := validator.IsIntStr("abc")
+    result3 := validator.IsJSON("")
+    result4 := validator.IsJSON("abc")
 
     fmt.Println(result1)
     fmt.Println(result2)
@@ -727,43 +878,6 @@ func main() {
 
     // Output:
     // true
-    // false
-}
-```
-
-### <span id="IsIntStr">IsIntStr</span>
-
-<p>Check if the string can convert to a integer.</p>
-
-<b>Signature:</b>
-
-```go
-func IsIntStr(s string) bool
-```
-
-<b>Example:</b>
-
-```go
-import (
-    "fmt"
-    "github.com/duke-git/lancet/v2/validator"
-)
-
-func main() {
-    result1 := validator.IsIntStr("+3")
-    result2 := validator.IsIntStr("-3")
-    result3 := validator.IsIntStr("3.")
-    result4 := validator.IsIntStr("abc")
-
-    fmt.Println(result1)
-    fmt.Println(result2)
-    fmt.Println(result3)
-    fmt.Println(result4)
-
-    // Output:
-    // true
-    // true
-    // false
     // false
 }
 ```
@@ -1032,7 +1146,6 @@ func main() {
     // true
 }
 ```
-
 
 ### <span id="IsPrintable">IsPrintable</span>
 

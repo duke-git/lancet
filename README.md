@@ -1254,7 +1254,7 @@ import "github.com/duke-git/lancet/v2/validator"
     [[play](https://go.dev/play/p/LzaKocSV79u)]
 -   **<big>IsJSON</big>** : check if the string is valid JSON.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsJSON)]
-    [[play](https://go.dev/play/p/sRS6c4K8jGk)]
+    [[play](https://go.dev/play/p/8Kip1Itjiil)]
 -   **<big>IsRegexMatch</big>** : check if the string match the regexp.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsRegexMatch)]
     [[play](https://go.dev/play/p/z_XeZo_litG)]

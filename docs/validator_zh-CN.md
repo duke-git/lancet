@@ -38,11 +38,14 @@ import (
 -   [IsDns](#IsDns)
 -   [IsEmail](#IsEmail)
 -   [IsEmptyString](#IsEmptyString)
+-   [IsInt](#IsInt)
+-   [IsFloat](#IsFloat)
+-   [IsNumber](#IsNumber)
+-   [IsIntStr](#IsIntStr)
 -   [IsFloatStr](#IsFloatStr)
 -   [IsNumberStr](#IsNumberStr)
 -   [IsJSON](#IsJSON)
 -   [IsRegexMatch](#IsRegexMatch)
--   [IsIntStr](#IsIntStr)
 -   [IsIp](#IsIp)
 -   [IsIpV4](#IsIpV4)
 -   [IsIpV6](#IsIpV6)
@@ -589,6 +592,155 @@ func main() {
 }
 ```
 
+### <span id="IsInt">IsInt</span>
+
+<p>验证参数是否是整数(int, unit)。</p>
+
+<b>函数签名:</b>
+
+```go
+func IsInt(v any) bool
+```
+
+<b>示例:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/validator"
+)
+
+func main() {
+    result1 := validator.IsInt("")
+    result2 := validator.IsInt("3")
+    result3 := validator.IsInt(0.1)
+    result4 := validator.IsInt(0)
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
+
+    // Output:
+    // false
+    // false
+    // false
+    // true
+}
+```
+
+### <span id="IsFloat">IsInt</span>
+
+<p>验证参数是否是浮点数((float32, float34)。</p>
+
+<b>函数签名:</b>
+
+```go
+func IsFloat(v any) bool
+```
+
+<b>示例:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/validator"
+)
+
+func main() {
+    result1 := validator.IsFloat("")
+    result2 := validator.IsFloat("3")
+    result3 := validator.IsFloat(0)
+    result4 := validator.IsFloat(0.1)
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
+
+    // Output:
+    // false
+    // false
+    // false
+    // true
+}
+```
+
+### <span id="IsNumber">IsNumber</span>
+
+<p>验证参数是否是数字(integer or float)</p>
+
+<b>函数签名:</b>
+
+```go
+func IsNumber(v any) bool
+```
+
+<b>示例:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/validator"
+)
+
+func main() {
+    result1 := validator.IsNumber("")
+    result2 := validator.IsNumber("3")
+    result3 := validator.IsNumber(0.1)
+    result4 := validator.IsNumber(0)
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
+
+    // Output:
+    // false
+    // false
+    // true
+    // true
+}
+```
+
+
+### <span id="IsIntStr">IsIntStr</span>
+
+<p>验证字符串是否是可以转换为整数</p>
+
+<b>函数签名:</b>
+
+```go
+func IsIntStr(s string) bool
+```
+
+<b>示例:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/validator"
+)
+
+func main() {
+    result1 := validator.IsIntStr("+3")
+    result2 := validator.IsIntStr("-3")
+    result3 := validator.IsIntStr("3.")
+    result4 := validator.IsIntStr("abc")
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
+
+    // Output:
+    // true
+    // true
+    // false
+    // false
+}
+```
+
 ### <span id="IsFloatStr">IsFloatStr</span>
 
 <p>验证字符串是否是可以转换为浮点数</p>
@@ -684,8 +836,8 @@ import (
 func main() {
     result1 := validator.IsJSON("{}")
     result2 := validator.IsJSON("{\"name\": \"test\"}")
-    result3 := validator.IsIntStr("")
-    result4 := validator.IsIntStr("abc")
+    result3 := validator.IsJSON("")
+    result4 := validator.IsJSON("abc")
 
     fmt.Println(result1)
     fmt.Println(result2)
@@ -731,42 +883,7 @@ func main() {
 }
 ```
 
-### <span id="IsIntStr">IsIntStr</span>
 
-<p>验证字符串是否是可以转换为整数</p>
-
-<b>函数签名:</b>
-
-```go
-func IsIntStr(s string) bool
-```
-
-<b>示例:</b>
-
-```go
-import (
-    "fmt"
-    "github.com/duke-git/lancet/v2/validator"
-)
-
-func main() {
-    result1 := validator.IsIntStr("+3")
-    result2 := validator.IsIntStr("-3")
-    result3 := validator.IsIntStr("3.")
-    result4 := validator.IsIntStr("abc")
-
-    fmt.Println(result1)
-    fmt.Println(result2)
-    fmt.Println(result3)
-    fmt.Println(result4)
-
-    // Output:
-    // true
-    // true
-    // false
-    // false
-}
-```
 
 ### <span id="IsIp">IsIp</span>
 

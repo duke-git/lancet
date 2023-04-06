@@ -285,8 +285,8 @@ func ExampleIsIntStr() {
 func ExampleIsJSON() {
 	result1 := IsJSON("{}")
 	result2 := IsJSON("{\"name\": \"test\"}")
-	result3 := IsIntStr("")
-	result4 := IsIntStr("abc")
+	result3 := IsJSON("")
+	result4 := IsJSON("abc")
 
 	fmt.Println(result1)
 	fmt.Println(result2)

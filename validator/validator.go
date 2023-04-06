@@ -112,7 +112,7 @@ func ContainLetter(str string) bool {
 }
 
 // IsJSON checks if the string is valid JSON.
-// Play: https://go.dev/play/p/sRS6c4K8jGk
+// Play: https://go.dev/play/p/8Kip1Itjiil
 func IsJSON(str string) bool {
 	var js json.RawMessage
 	return json.Unmarshal([]byte(str), &js) == nil
@@ -370,7 +370,7 @@ func IsGBK(data []byte) bool {
 	return true
 }
 
-// IsNumberStr check if the value is Number(integer, float) or not.
+// IsNumberStr check if the value is number(integer, float) or not.
 // Play: todo
 func IsNumber(v any) bool {
 	return IsInt(v) || IsFloat(v)
