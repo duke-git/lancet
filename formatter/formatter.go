@@ -5,7 +5,9 @@
 package formatter
 
 import (
+	"encoding/json"
 	"fmt"
+	"io"
 
 	"github.com/duke-git/lancet/v2/convertor"
 	"github.com/duke-git/lancet/v2/strutil"
@@ -43,4 +45,24 @@ func Comma[T constraints.Float | constraints.Integer | string](value T, symbol s
 	}
 
 	return ""
+}
+
+// Pretty data to JSON string.
+// Play: todo
+func Pretty(v any) (string, error) {
+	out, err := json.MarshalIndent(v, "", "    ")
+	return string(out), err
+}
+
+// PrettyToWriter pretty encode data to writer.
+// Play: todo
+func PrettyToWriter(v any, out io.Writer) error {
+	enc := json.NewEncoder(out)
+	enc.SetIndent("", "    ")
+
+	if err := enc.Encode(v); err != nil {
+		return err
+	}
+
+	return nil
 }
