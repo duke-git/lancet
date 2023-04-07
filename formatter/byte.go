@@ -93,7 +93,7 @@ func DecimalBytes(size float64, precision ...int) string {
 	return fmt.Sprintf("%.*g%s", p, size, unit)
 }
 
-// BinaryBytes returns a human-readable byte size under decimal standard (base 1024)
+// BinaryBytes returns a human-readable byte size under binary standard (base 1024)
 // The precision parameter specifies the number of digits after the decimal point, which defaults to 4.
 // Play: todo
 func BinaryBytes(size float64, precision ...int) string {
@@ -116,14 +116,14 @@ func calculateByteSize(size float64, base float64, byteUnits []string) (float64,
 	return size, byteUnits[i]
 }
 
-// ParseDecimalBytes the human readable bytes size string into the amount it represents(base 1000).
+// ParseDecimalBytes return the human readable bytes size string into the amount it represents(base 1000).
 // ParseDecimalBytes("42 MB") -> 42000000, nil
 // Play: todo
 func ParseDecimalBytes(size string) (uint64, error) {
 	return parseBytes(size, "decimal")
 }
 
-// ParseBinaryBytes the human readable bytes size string into the amount it represents(base 1024).
+// ParseBinaryBytes return the human readable bytes size string into the amount it represents(base 1024).
 // ParseBinaryBytes("42 mib") -> 44040192, nil
 // Play: todo
 func ParseBinaryBytes(size string) (uint64, error) {

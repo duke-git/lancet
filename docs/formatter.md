@@ -7,6 +7,7 @@ formatter contains some functions for data formatting.
 ## Source:
 
 -   [https://github.com/duke-git/lancet/blob/main/formatter/formatter.go](https://github.com/duke-git/lancet/blob/main/formatter/formatter.go)
+-   [https://github.com/duke-git/lancet/blob/main/formatter/byte.go](https://github.com/duke-git/lancet/blob/main/formatter/byte.go)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -25,6 +26,10 @@ import (
 -   [Comma](#Comma)
 -   [Pretty](#Pretty)
 -   [PrettyToWriter](#PrettyToWriter)
+-   [DecimalBytes](#DecimalBytes)
+-   [BinaryBytes](#BinaryBytes)
+-   [ParseDecimalBytes](#ParseDecimalBytes)
+-   [ParseBinaryBytes](#ParseBinaryBytes)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -145,5 +150,161 @@ func main() {
     // }
     //
     // <nil>
+}
+```
+
+### <span id="DecimalBytes">DecimalBytes</span>
+
+<p>Returns a human readable byte size under decimal standard (base 1000). The precision parameter specifies the number of digits after the decimal point, which is 4 for default.</p>
+
+<b>Signature:</b>
+
+```go
+func DecimalBytes(size float64, precision ...int) string
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/formatter"
+)
+
+func main() {
+    result1 := formatter.DecimalBytes(1000)
+    result2 := formatter.DecimalBytes(1024)
+    result3 := formatter.DecimalBytes(1234567)
+    result4 := formatter.DecimalBytes(1234567, 3)
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
+
+    // Output:
+    // 1KB
+    // 1.024KB
+    // 1.2346MB
+    // 1.235MB
+}
+```
+
+### <span id="BinaryBytes">BinaryBytes</span>
+
+<p>Returns a human readable byte size under binary standard (base 1024). The precision parameter specifies the number of digits after the decimal point, which is 4 for default.</p>
+
+<b>Signature:</b>
+
+```go
+func BinaryBytes(size float64, precision ...int) string
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/formatter"
+)
+
+func main() {
+    result1 := formatter.BinaryBytes(1024)
+    result2 := formatter.BinaryBytes(1024 * 1024)
+    result3 := formatter.BinaryBytes(1234567)
+    result4 := formatter.BinaryBytes(1234567, 2)
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
+
+    // Output:
+    // 1KiB
+    // 1MiB
+    // 1.1774MiB
+    // 1.18MiB
+}
+```
+
+### <span id="ParseDecimalBytes">ParseDecimalBytes</span>
+
+<p>Returns the human readable bytes size string into the amount it represents(base 1000).</p>
+
+<b>Signature:</b>
+
+```go
+func ParseDecimalBytes(size string) (uint64, error)
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/formatter"
+)
+
+func main() {
+    result1, _ := formatter.ParseDecimalBytes("12")
+    result2, _ := formatter.ParseDecimalBytes("12k")
+    result3, _ := formatter.ParseDecimalBytes("12 Kb")
+    result4, _ := formatter.ParseDecimalBytes("12.2 kb")
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
+
+    // Output:
+    // 12
+    // 12000
+    // 12000
+    // 12200
+}
+```
+
+### <span id="ParseBinaryBytes">ParseBinaryBytes</span>
+
+<p>Returns the human readable bytes size string into the amount it represents(base 1024).</p>
+
+<b>Signature:</b>
+
+```go
+func ParseBinaryBytes(size string) (uint64, error)
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/formatter"
+)
+
+func main() {
+    result1, _ := formatter.ParseBinaryBytes("12")
+    result2, _ := formatter.ParseBinaryBytes("12ki")
+    result3, _ := formatter.ParseBinaryBytes("12 KiB")
+    result4, _ := formatter.ParseBinaryBytes("12.2 kib")
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
+
+    // Output:
+    // 12
+    // 12288
+    // 12288
+    // 12492
 }
 ```
