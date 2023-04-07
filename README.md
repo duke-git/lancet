@@ -772,15 +772,15 @@ import "github.com/duke-git/lancet/v2/netutil"
 -   **<big>StructToUrlValues</big>** : convert struct to url valuse.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#StructToUrlValues)]
     [[play](https://go.dev/play/p/pFqMkM40w9z)]
--   **<big>HttpGet<sup>deprecated</sup></big>** : send get http request.
+-   **<big>HttpGet<sup>deprecated</sup></big>** : send http get request.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#HttpGet)]
--   **<big>HttpDelete<sup>deprecated</sup></big>** : send delete http request.
+-   **<big>HttpDelete<sup>deprecated</sup></big>** : send http delete request.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#HttpDelete)]
--   **<big>HttpPost<sup>deprecated</sup></big>** : send post http request.
+-   **<big>HttpPost<sup>deprecated</sup></big>** : send http post request.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#HttpPost)]
--   **<big>HttpPut<sup>deprecated</sup></big>** : send put http request.
+-   **<big>HttpPut<sup>deprecated</sup></big>** : send http put request.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#HttpPut)]
--   **<big>HttpPatch<sup>deprecated</sup></big>** : send patch http request.
+-   **<big>HttpPatch<sup>deprecated</sup></big>** : send http patch request.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#HttpPatch)]
 -   **<big>ParseHttpResponse</big>** : decode http response into target object.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#ParseHttpResponse)]
