@@ -24,7 +24,7 @@ English | [简体中文](./README_zh-CN.md)
 ## Feature
 
 -   👏 Comprehensive, efficient and reusable.
--   💪 400+ go util functions, support string, slice, datetime, net, crypt...
+-   💪 500+ go util functions, support string, slice, datetime, net, crypt...
 -   💅 Only depend on the go standard library.
 -   🌍 Unit test for every exported function.
 
@@ -41,7 +41,7 @@ go get github.com/duke-git/lancet/v2 // will install latest version of v2.x.x
 2. <b>For users who use version below go1.18, you should install v1.x.x. The latest of v1.x.x is v1.3.7. </b>
 
 ```go
-go get github.com/duke-git/lancet@v1.3.7 // below go1.18, install latest version of v1.x.x
+go get github.com/duke-git/lancet // below go1.18, install latest version of v1.x.x
 ```
 
 ## Usage
