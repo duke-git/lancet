@@ -95,4 +95,27 @@ func TestBaseType(t *testing.T) {
 	assert.EqualValues(t, tc["str"], dist.Str)
 	assert.EqualValues(t, tc["tf"], dist.Tf)
 	assert.EqualValues(t, tc["complex"], dist.Comp)
+
+	var number float64
+
+	MapTo(tc["i"], &number)
+	assert.EqualValues(t, -1, number)
+	MapTo(tc["i8"], &number)
+	assert.EqualValues(t, -8, number)
+	MapTo(tc["i16"], &number)
+	assert.EqualValues(t, -16, number)
+	MapTo(tc["i32"], &number)
+	assert.EqualValues(t, -32, number)
+	MapTo(tc["i64"], &number)
+	assert.EqualValues(t, -64, number)
+	MapTo(tc["u"], &number)
+	assert.EqualValues(t, 1, number)
+	MapTo(tc["u8"], &number)
+	assert.EqualValues(t, 8, number)
+	MapTo(tc["u16"], &number)
+	assert.EqualValues(t, 16, number)
+	MapTo(tc["u32"], &number)
+	assert.EqualValues(t, 32, number)
+	MapTo(tc["u64"], &number)
+	assert.EqualValues(t, 64, number)
 }
