@@ -8,3 +8,4 @@ fileutil/*.link
 fileutil/unzip/*
 slice/testdata/*
 cryptor/*.pem
+test
