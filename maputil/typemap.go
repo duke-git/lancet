@@ -52,7 +52,7 @@ var _ = func() struct{} {
 		}
 
 		var dist Target
-		if err := typemap.MapTo(v,&dist); err != nil {
+		if err := maputil.MapTo(v,&dist); err != nil {
 			log.Println(err)
 			return
 		}
