@@ -4,9 +4,11 @@
 package strutil
 
 import (
+	"reflect"
 	"strings"
 	"unicode"
 	"unicode/utf8"
+	"unsafe"
 )
 
 // CamelCase coverts string to camelCase string. Non letters and numbers will be ignored.
@@ -372,4 +374,68 @@ func RemoveNonPrintable(str string) string {
 	}, str)
 
 	return result
+}
+
+// StringToBytes converts a string to byte slice without a memory allocation
+func StringToBytes(str string) (b []byte) {
+	sh := *(*reflect.StringHeader)(unsafe.Pointer(&str))
+	bh := (*reflect.SliceHeader)(unsafe.Pointer(&b))
+	bh.Data, bh.Len, bh.Cap = sh.Data, sh.Len, sh.Len
+	return b
+}
+
+// BytesToString converts a byte slice to string without a memory allocation
+func BytesToString(bytes []byte) string {
+	return *(*string)(unsafe.Pointer(&bytes))
+}
+
+// IsBlank checks if a string is whitespace, empty
+func IsBlank(str string) bool {
+	if len(str) == 0 {
+		return true
+	}
+	// memory copies will occur here, but UTF8 will be compatible
+	runes := []rune(str)
+	for _, r := range runes {
+		if !unicode.IsSpace(r) {
+			return false
+		}
+	}
+	return true
+}
+
+// HasPrefixAny check if a string starts with any of an array of specified strings
+func HasPrefixAny(str string, prefixes []string) bool {
+	if len(str) == 0 || len(prefixes) == 0 {
+		return false
+	}
+	for _, prefix := range prefixes {
+		if strings.HasPrefix(str, prefix) {
+			return true
+		}
+	}
+	return false
+}
+
+// HasSuffixAny check if a string ends with any of an array of specified strings
+func HasSuffixAny(str string, suffixes []string) bool {
+	if len(str) == 0 || len(suffixes) == 0 {
+		return false
+	}
+	for _, suffix := range suffixes {
+		if strings.HasSuffix(str, suffix) {
+			return true
+		}
+	}
+	return false
+}
+
+// IndexOffset returns the index of the first instance of substr in s after offsetting the string by `idxFrom`,
+// or -1 if substr is not present in s.
+func IndexOffset(str string, substr string, idxFrom int) int {
+	if idxFrom > len(str)-1 || idxFrom < 0 {
+		return -1
+	}
+
+	return strings.Index(str[idxFrom:], substr) + idxFrom
 }
