@@ -175,11 +175,11 @@ func ExampleReadFileByLine() {
 }
 
 func ExampleListFileNames() {
-	fileList, _ := ListFileNames("../formatter/")
+	fileList, _ := ListFileNames("./")
 	fmt.Println(fileList)
 
 	// Output:
-	// [formatter.go formatter_example_test.go formatter_test.go]
+	// [file.go file_example_test.go file_test.go]
 }
 
 func ExampleZip() {
