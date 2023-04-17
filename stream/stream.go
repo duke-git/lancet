@@ -2,7 +2,7 @@
 // Use of this source code is governed by MIT license
 
 // Package stream implements a sequence of elements supporting sequential and operations.
-// this package is an experiment to explore if stream in go can work as the way java does. it's function is very limited.
+// this package is an experiment to explore if stream in go can work as the way java does. its function is very limited.
 package stream
 
 import (

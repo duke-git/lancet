@@ -554,17 +554,17 @@ import "github.com/duke-git/lancet/v2/formatter"
 -   **<big>Comma</big>** : 用逗号每隔 3 位分割数字/字符串，支持前缀添加符号。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/formatter_zh-CN.md#Comma)]
     [[play](https://go.dev/play/p/eRD5k2vzUVX)]
--   **<big>Pretty</big>** : 返回pretty JSON字符串。
+-   **<big>Pretty</big>** : 返回 pretty JSON 字符串。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/formatter_zh-CN.md#Pretty)]
--   **<big>PrettyToWriter</big>** : Pretty encode数据到writer。
+-   **<big>PrettyToWriter</big>** : Pretty encode 数据到 writer。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/formatter_zh-CN.md#PrettyToWriter)]
--   **<big>DecimalBytes</big>** : 返回十进制标准（以1000为基数）下的可读字节单位字符串。precision参数指定小数点后的位数，默认为4。
+-   **<big>DecimalBytes</big>** : 返回十进制标准（以 1000 为基数）下的可读字节单位字符串。precision 参数指定小数点后的位数，默认为 4。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/formatter_zh-CN.md#DecimalBytes)]
--   **<big>BinaryBytes</big>** : 返回binary标准（以1024为基数）下的可读字节单位字符串。precision参数指定小数点后的位数，默认为4。
+-   **<big>BinaryBytes</big>** : 返回 binary 标准（以 1024 为基数）下的可读字节单位字符串。precision 参数指定小数点后的位数，默认为 4。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/formatter_zh-CN.md#BinaryBytes)]
--   **<big>ParseDecimalBytes</big>** : 将字节单位字符串转换成其所表示的字节数（以1000为基数）。
+-   **<big>ParseDecimalBytes</big>** : 将字节单位字符串转换成其所表示的字节数（以 1000 为基数）。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/formatter_zh-CN.md#ParseDecimalBytes)]
--   **<big>ParseBinaryBytes</big>** : 将字节单位字符串转换成其所表示的字节数（以1024为基数）。
+-   **<big>ParseBinaryBytes</big>** : 将字节单位字符串转换成其所表示的字节数（以 1024 为基数）。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/formatter_zh-CN.md#ParseBinaryBytes)]
 
 ### 10. function 函数包控制函数执行流程，包含部分函数式编程。
@@ -611,7 +611,7 @@ import "github.com/duke-git/lancet/v2/maputil"
 
 #### 函数列表:
 
--   **<big>MapTo</big>** : 快速将map或者其他类型映射到结构体或者指定类型。
+-   **<big>MapTo</big>** : 快速将 map 或者其他类型映射到结构体或者指定类型。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#MapTo)]
 -   **<big>ForEach</big>** : 对 map 中的每对 key 和 value 执行 iteratee 函数。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#ForEach)]
@@ -985,12 +985,12 @@ import "github.com/duke-git/lancet/v2/slice"
 -   **<big>Reverse</big>** : 反转切片中的元素顺序。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Reverse)]
     [[play](https://go.dev/play/p/8uI8f1lwNrQ)]
--   **<big>Reduce<sup>deprecated</sup></big>** : 将切片中的元素依次运行iteratee函数，返回运行结果。(废弃：建议使用ReduceBy)
+-   **<big>Reduce<sup>deprecated</sup></big>** : 将切片中的元素依次运行 iteratee 函数，返回运行结果。(废弃：建议使用 ReduceBy)
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Reduce)]
     [[play](https://go.dev/play/p/_RfXJJWIsIm)]
--   **<big>ReduceBy</big>** : 对切片元素执行reduce操作。
+-   **<big>ReduceBy</big>** : 对切片元素执行 reduce 操作。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#ReduceBy)]
--   **<big>ReduceRight</big>** : 类似ReduceBy操作，迭代切片元素顺序从右至左。
+-   **<big>ReduceRight</big>** : 类似 ReduceBy 操作，迭代切片元素顺序从右至左。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#ReduceRight)]
 -   **<big>Replace</big>** : 返回切片的副本，其中前 n 个不重叠的 old 替换为 new。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Replace)]
@@ -1062,7 +1062,91 @@ import "github.com/duke-git/lancet/v2/slice"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#KeyBy)]
     [[play](https://go.dev/play/p/uXod2LWD1Kg)]
 
-### 17. structs 提供操作 struct, tag, field 的相关函数。
+### 17. Stream 流，该包仅验证简单的 stream 实现，功能有限。
+
+```go
+import "github.com/duke-git/lancet/v2/stream"
+```
+
+#### Function list:
+
+-   **<big>Of</big>** : 创建元素为指定值的 stream。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/stream_zh-CN.md#Of)]
+    [[play](https://go.dev/play/p/jI6_iZZuVFE)]
+-   **<big>FromSlice</big>** : 从切片创建 stream。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/stream_zh-CN.md#FromSlice)]
+    [[play](https://go.dev/play/p/wywTO0XZtI4)]
+-   **<big>FromChannel</big>** : 从通道创建 stream。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/stream_zh-CN.md#FromChannel)]
+    [[play](https://go.dev/play/p/9TZYugGMhXZ)]
+-   **<big>FromRange</big>** : 指定一个数字范围创建 stream, 范围两端点值都包括在内。. [start, end]
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/stream_zh-CN.md#FromRange)]
+    [[play](https://go.dev/play/p/9Ex1-zcg-B-)]
+-   **<big>Generate</big>** : 创建一个 stream，其中每个元素都由提供的生成器函数生成。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/stream_zh-CN.md#Generate)]
+    [[play](https://go.dev/play/p/rkOWL1yA3j9)]
+-   **<big>Concat</big>** : 创建一个延迟连接 stream，其元素是第一个 stream 的所有元素，后跟第二个 stream 的全部元素。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/stream_zh-CN.md#Concat)]
+    [[play](https://go.dev/play/p/HM4OlYk_OUC)]
+-   **<big>Distinct</big>** : 创建并返回一个 stream，用于删除重复的项。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/stream_zh-CN.md#Distinct)]
+    [[play](https://go.dev/play/p/eGkOSrm64cB)]
+-   **<big>Filter</big>** : 返回一个通过判定函数的 stream。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/stream_zh-CN.md#Filter)]
+    [[play](https://go.dev/play/p/MFlSANo-buc)]
+-   **<big>Map</big>** : 返回一个 stream，该 stream 由将给定函数应用于源 stream 元素的元素组成。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/stream_zh-CN.md#Map)]
+    [[play](https://go.dev/play/p/OtNQUImdYko)]
+-   **<big>Peek</big>** : 返回一个由源 stream 的元素组成的 stream，并在从生成的 stream 中消耗元素时对每个元素执行所提供的操作。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/stream_zh-CN.md#Peek)]
+    [[play](https://go.dev/play/p/u1VNzHs6cb2)]
+-   **<big>Skip</big>** : 在丢弃 stream 的前 n 个元素后，返回由源 stream 的其余元素组成的 stream。如果此 stream 包含的元素少于 n 个，则将返回一个空 stream。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/stream_zh-CN.md#Skip)]
+    [[play](https://go.dev/play/p/fNdHbqjahum)]
+-   **<big>Limit</big>** : 返回由源 stream 的元素组成的 stream，该 stream 被截断为长度不超过 maxSize。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/stream_zh-CN.md#Limit)]
+    [[play](https://go.dev/play/p/qsO4aniDcGf)]
+-   **<big>Reverse</big>** : 返回元素与源 stream 的顺序相反的 stream。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/stream_zh-CN.md#Reverse)]
+    [[play](https://go.dev/play/p/A8_zkJnLHm4)]
+-   **<big>Range</big>** : 返回一个 stream，该 stream 的元素在从源 stream 的开始（包含）到结束（排除）的范围内。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/stream_zh-CN.md#Range)]
+    [[play](https://go.dev/play/p/indZY5V2f4j)]
+-   **<big>Sorted</big>** : 返回一个 stream，该 stream 由源 stream 的元素组成，并根据提供的 less 函数进行排序。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/stream_zh-CN.md#Sorted)]
+    [[play](https://go.dev/play/p/XXtng5uonFj)]
+-   **<big>ForEach</big>** : 对 stream 的每个元素执行一个操作。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/stream_zh-CN.md#ForEach)]
+    [[play](https://go.dev/play/p/Dsm0fPqcidk)]
+-   **<big>Reduce</big>** : 使用关联累加函数对 stream 的元素执行 reduce 操作，并 reduce 操作结果（如果有）。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/stream_zh-CN.md#Reduce)]
+    [[play](https://go.dev/play/p/6uzZjq_DJLU)]
+-   **<big>FindFirst</big>** : 返回此 stream 的第一个元素和 true，如果 stream 为空，则返回零值和 false。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/stream_zh-CN.md#FindFirst)]
+    [[play](https://go.dev/play/p/9xEf0-6C1e3)]
+-   **<big>Max</big>** : 根据提供的 less 函数返回 stream 的最大元素。less 函数: a > b
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/stream_zh-CN.md#Max)]
+    [[play](https://go.dev/play/p/fm-1KOPtGzn)]
+-   **<big>Min</big>** : 根据提供的 less 函数返回 stream 的最小元素。less 函数: a < b
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/stream_zh-CN.md#Min)]
+    [[play](https://go.dev/play/p/vZfIDgGNRe_0)]
+-   **<big>AllMatch</big>** : 判断 stream 的所有元素是否全部匹配指定判定函数。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/stream_zh-CN.md#AllMatch)]
+    [[play](https://go.dev/play/p/V5TBpVRs-Cx)]
+-   **<big>AnyMatch</big>** : 判断 stream 是否包含匹配指定判定函数的元素。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/stream_zh-CN.md#AnyMatch)]
+    [[play](https://go.dev/play/p/PTCnWn4OxSn)]
+-   **<big>NoneMatch</big>** : 判断 stream 的元素是否全部不匹配指定的判定函数。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/stream_zh-CN.md#NoneMatch)]
+    [[play](https://go.dev/play/p/iWS64pL1oo3)]
+-   **<big>Count</big>** : 返回 stream 中元素的数量。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/stream_zh-CN.md#Count)]
+    [[play](https://go.dev/play/p/r3koY6y_Xo-)]
+-   **<big>ToSlice</big>** : 返回 stream 中的元素切片。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/stream_zh-CN.md#ToSlice)]
+    [[play](https://go.dev/play/p/jI6_iZZuVFE)]
+
+### 18. structs 提供操作 struct, tag, field 的相关函数。
 
 ```go
 import "github.com/duke-git/lancet/v2/structs"
@@ -1097,7 +1181,7 @@ import "github.com/duke-git/lancet/v2/structs"
 -   **<big>IsSlice</big>** : 判断属性是否是切片。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/structs/field_zh-CN.md#IsSlice)]
 
-### 18. strutil 包含字符串处理的相关函数。
+### 19. strutil 包含字符串处理的相关函数。
 
 ```go
 import "github.com/duke-git/lancet/v2/strutil"
@@ -1178,7 +1262,7 @@ import "github.com/duke-git/lancet/v2/strutil"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#RemoveNonPrintable)]
     [[play](https://go.dev/play/p/og47F5x_jTZ)]
 
-### 19. system 包含 os, runtime, shell command 的相关函数。
+### 20. system 包含 os, runtime, shell command 的相关函数。
 
 ```go
 import "github.com/duke-git/lancet/v2/system"
@@ -1214,7 +1298,7 @@ import "github.com/duke-git/lancet/v2/system"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/system_zh-CN#GetOsBits)]
     [[play](https://go.dev/play/p/ml-_XH3gJbW)]
 
-### 20. validator 验证器包，包含常用字符串格式验证函数。
+### 21. validator 验证器包，包含常用字符串格式验证函数。
 
 ```go
 import "github.com/duke-git/lancet/v2/validator"
@@ -1288,10 +1372,10 @@ import "github.com/duke-git/lancet/v2/validator"
 -   **<big>IsIntStr</big>** : 验证字符串是否是可以转换为整数。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsIntStr)]
     [[play](https://go.dev/play/p/jQRtFv-a0Rk)]
--   **<big>IsIp</big>** : 验证字符串是否是ip地址。
+-   **<big>IsIp</big>** : 验证字符串是否是 ip 地址。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsIp)]
     [[play](https://go.dev/play/p/FgcplDvmxoD)]
--   **<big>IsIpV4</big>** : 验证字符串是否是ipv4地址。
+-   **<big>IsIpV4</big>** : 验证字符串是否是 ipv4 地址。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsIpV4)]
     [[play](https://go.dev/play/p/zBGT99EjaIu)]
 -   **<big>IsIpV6</big>** : 验证字符串是否是 ipv6 地址。
@@ -1319,7 +1403,7 @@ import "github.com/duke-git/lancet/v2/validator"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsPrintable)]
     [[play](https://go.dev/play/p/Pe1FE2gdtTP)]
 
-### 21. xerror 包实现一些错误处理函数
+### 22. xerror 包实现一些错误处理函数
 
 ```go
 import "github.com/duke-git/lancet/v2/xerror"

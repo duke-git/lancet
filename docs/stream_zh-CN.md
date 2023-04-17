@@ -1,6 +1,6 @@
-# Strutil
+# Stream
 
-Stream 实现，该包仅验证简单 go stream 实现，功能有限。
+Stream 流，该包仅验证简单 stream 实现，功能有限。
 
 <div STYLE="page-break-after: always;"></div>
 
