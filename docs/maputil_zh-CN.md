@@ -22,6 +22,7 @@ import (
 
 ## 目录:
 
+-   [MapTo](#MapTo)
 -   [ForEach](#ForEach)
 -   [Filter](#Filter)
 -   [FilterByKeys](#FilterByKeys)
@@ -46,6 +47,63 @@ import (
 <div STYLE="page-break-after: always;"></div>
 
 ## API 文档:
+
+### <span id="MapTo">MapTo</span>
+
+<p>快速将map或者其他类型映射到结构体或者指定类型。</p>
+
+<b>函数签名:</b>
+
+```go
+func MapTo(src any, dst any) error
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/maputil"
+)
+
+func main() {
+    type (
+        Person struct {
+            Name  string  `json:"name"`
+            Age   int     `json:"age"`
+            Phone string  `json:"phone"`
+            Addr  Address `json:"address"`
+        }
+
+        Address struct {
+            Street string `json:"street"`
+            Number int    `json:"number"`
+        }
+    )
+
+    personInfo := map[string]interface{}{
+        "name":  "Nothin",
+        "age":   28,
+        "phone": "123456789",
+        "address": map[string]interface{}{
+            "street": "test",
+            "number": 1,
+        },
+    }
+
+    var p Person
+    err := MapTo(personInfo, &p)
+
+    fmt.Println(err)
+    fmt.Println(p)
+
+    // Output:
+    // <nil>
+    // {Nothin 28 123456789 {test 1}}
+}
+```
 
 ### <span id="ForEach">ForEach</span>
 
@@ -80,7 +138,7 @@ func main() {
     maputil.ForEach(m, func(_ string, value int) {
         sum += value
     })
-    
+
     fmt.Println(sum)
 
     // Output:
@@ -123,7 +181,7 @@ func main() {
     maputil.Filter(m, func(_ string, value int) {
         sum += value
     })
-    
+
     result := Filter(m, isEven)
 
     fmt.Println(result)
@@ -171,7 +229,6 @@ func main() {
 }
 ```
 
-
 ### <span id="FilterByValues">FilterByValues</span>
 
 <p>迭代map, 返回一个新map，其value都是给定的value值。</p>
@@ -209,7 +266,6 @@ func main() {
     // map[c:3 d:4]
 }
 ```
-
 
 ### <span id="OmitBy">OmitBy</span>
 
@@ -252,7 +308,6 @@ func main() {
 }
 ```
 
-
 ### <span id="OmitByKeys">OmitByKeys</span>
 
 <p>FilterByKeys的反向操作, 迭代map, 返回一个新map，其key不包括给定的key值。</p>
@@ -290,7 +345,6 @@ func main() {
     // map[c:3 d:4 e:5]
 }
 ```
-
 
 ### <span id="OmitByValues">OmitByValues</span>
 
@@ -416,7 +470,7 @@ func main() {
 
     keys := maputil.Keys(m)
     sort.Ints(keys)
-    
+
     fmt.Println(keys)
 
     // Output:
@@ -453,7 +507,7 @@ func main() {
         1: "1",
         3: "2",
     }
-    
+
     result := maputil.Merge(m1, m2)
 
     fmt.Println(result)
@@ -632,7 +686,6 @@ func main() {
 }
 ```
 
-
 ### <span id="MapKeys">MapKeys</span>
 
 <p>操作map的每个key，然后转为新的map。</p>
@@ -711,7 +764,6 @@ func main() {
 }
 ```
 
-
 ### <span id="Entry">Entry</span>
 
 <p>将map转换为键/值对切片。</p>
@@ -756,7 +808,6 @@ func main() {
     // [{a 1} {b 2} {c 3}]
 }
 ```
-
 
 ### <span id="FromEntries">FromEntries</span>
 

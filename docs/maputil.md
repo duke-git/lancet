@@ -22,6 +22,7 @@ import (
 
 ## Index
 
+-   [MapTo](#MapTo)
 -   [ForEach](#ForEach)
 -   [Filter](#Filter)
 -   [FilterByKeys](#FilterByKeys)
@@ -46,6 +47,64 @@ import (
 <div STYLE="page-break-after: always;"></div>
 
 ## Documentation
+
+
+### <span id="MapTo">MapTo</span>
+
+<p>Rry to map any interface to struct or base type.</p>
+
+<b>Signature:</b>
+
+```go
+func MapTo(src any, dst any) error
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/maputil"
+)
+
+func main() {
+    type (
+        Person struct {
+            Name  string  `json:"name"`
+            Age   int     `json:"age"`
+            Phone string  `json:"phone"`
+            Addr  Address `json:"address"`
+        }
+
+        Address struct {
+            Street string `json:"street"`
+            Number int    `json:"number"`
+        }
+    )
+
+    personInfo := map[string]interface{}{
+        "name":  "Nothin",
+        "age":   28,
+        "phone": "123456789",
+        "address": map[string]interface{}{
+            "street": "test",
+            "number": 1,
+        },
+    }
+
+    var p Person
+    err := MapTo(personInfo, &p)
+
+    fmt.Println(err)
+    fmt.Println(p)
+
+    // Output:
+    // <nil>
+    // {Nothin 28 123456789 {test 1}}
+}
+```
 
 ### <span id="ForEach">ForEach</span>
 
@@ -123,7 +182,7 @@ func main() {
     maputil.Filter(m, func(_ string, value int) {
         sum += value
     })
-    
+
     result := maputil.Filter(m, isEven)
 
     fmt.Println(result)
@@ -132,7 +191,6 @@ func main() {
     // map[b:2 d:4]
 }
 ```
-
 
 ### <span id="FilterByKeys">FilterByKeys</span>
 
@@ -172,7 +230,6 @@ func main() {
 }
 ```
 
-
 ### <span id="FilterByValues">FilterByValues</span>
 
 <p>Iterates over map, return a new map whose values are all given values.</p>
@@ -210,7 +267,6 @@ func main() {
     // map[c:3 d:4]
 }
 ```
-
 
 ### <span id="OmitBy">OmitBy</span>
 
@@ -253,7 +309,6 @@ func main() {
 }
 ```
 
-
 ### <span id="OmitByKeys">OmitByKeys</span>
 
 <p>The opposite of FilterByKeys, extracts all the map elements which keys are not omitted.</p>
@@ -292,7 +347,6 @@ func main() {
 }
 ```
 
-
 ### <span id="OmitByValues">OmitByValues</span>
 
 <p>The opposite of FilterByValues. remov all elements whose value are in the give slice.</p>
@@ -330,7 +384,6 @@ func main() {
     // map[a:1 b:2 c:3]
 }
 ```
-
 
 ### <span id="Intersect">Intersect</span>
 
@@ -419,7 +472,7 @@ func main() {
 
     keys := maputil.Keys(m)
     sort.Ints(keys)
-    
+
     fmt.Println(keys)
 
     // Output:
@@ -498,7 +551,7 @@ func main() {
         "b": 22,
         "d": 33,
     }
-    
+
     result := maputil.Minus(m1, m2)
 
     fmt.Println(result)
@@ -638,7 +691,6 @@ func main() {
 }
 ```
 
-
 ### <span id="MapKeys">MapKeys</span>
 
 <p>Transforms a map to other type map by manipulating it's keys.</p>
@@ -717,7 +769,6 @@ func main() {
 }
 ```
 
-
 ### <span id="Entry">Entry</span>
 
 <p>Transforms a map into array of key/value pairs.</p>
@@ -762,7 +813,6 @@ func main() {
     // [{a 1} {b 2} {c 3}]
 }
 ```
-
 
 ### <span id="FromEntries">FromEntries</span>
 
@@ -840,7 +890,6 @@ func main() {
     // map[a:1 b:2 c:3]
 }
 ```
-
 
 ### <span id="IsDisjoint">IsDisjoint</span>
 

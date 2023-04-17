@@ -597,6 +597,8 @@ import "github.com/duke-git/lancet/v2/maputil"
 
 #### 函数列表:
 
+-   **<big>MapTo</big>** : 快速将map或者其他类型映射到结构体或者指定类型。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#MapTo)]
 -   **<big>ForEach</big>** : 对 map 中的每对 key 和 value 执行 iteratee 函数。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#ForEach)]
     [[play](https://go.dev/play/p/OaThj6iNVXK)]

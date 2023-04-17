@@ -598,6 +598,8 @@ import "github.com/duke-git/lancet/v2/maputil"
 
 #### Function list:
 
+-   **<big>MapTo</big>** : quick map any value to struct or any base type.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil.md#MapTo)]
 -   **<big>ForEach</big>** : executes iteratee funcation for every key and value pair in map.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil.md#ForEach)]
     [[play](https://go.dev/play/p/OaThj6iNVXK)]
@@ -1340,7 +1342,12 @@ import "github.com/duke-git/lancet/v2/xerror"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/xerror.md#TryUnwrap)]
     [[play](https://go.dev/play/p/acyZVkNZEeW)]
 
+
+
 ## How to Contribute
+
+
+
 
 I really appreciate any code commits which make lancet lib powerful. Please follow the rules below to create your pull request.
 
