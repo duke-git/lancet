@@ -249,6 +249,25 @@ func TestFind(t *testing.T) {
 	assert.Equal(2, *res)
 }
 
+func TestFindBy(t *testing.T) {
+	assert := internal.NewAssert(t, "TestFindBy")
+
+	nums := []int{1, 2, 3, 4, 5}
+	even := func(i, num int) bool {
+		return num%2 == 0
+	}
+	res, ok := FindBy(nums, even)
+	if !ok {
+		t.Fatal("found nothing")
+	}
+	assert.Equal(2, res)
+
+	res, ok = FindBy(nums, func(_ int, v int) bool {
+		return v == 6
+	})
+	assert.Equal(res == 0 && ok == false, true)
+}
+
 func TestFindLast(t *testing.T) {
 	nums := []int{1, 2, 3, 4, 5}
 	even := func(i, num int) bool {
