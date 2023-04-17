@@ -1,9 +1,10 @@
 package strutil
 
 import (
-	"github.com/duke-git/lancet/v2/internal"
 	"reflect"
 	"testing"
+
+	"github.com/duke-git/lancet/v2/internal"
 )
 
 func TestCamelCase(t *testing.T) {
@@ -350,15 +351,15 @@ func TestRemoveNonPrintable(t *testing.T) {
 	assert.Equal("你好😄", RemoveNonPrintable("你好😄"))
 }
 
-func TestString2Bytes(t *testing.T) {
-	assert := internal.NewAssert(t, "TestString2Bytes")
+func TestStringToBytes(t *testing.T) {
+	assert := internal.NewAssert(t, "TestStringToBytes")
 	str := "abc"
 	bytes := StringToBytes(str)
 	assert.Equal(reflect.DeepEqual(bytes, []byte{'a', 'b', 'c'}), true)
 }
 
-func TestBytes2String(t *testing.T) {
-	assert := internal.NewAssert(t, "TestBytes2String")
+func TestBytesToString(t *testing.T) {
+	assert := internal.NewAssert(t, "TestBytesToString")
 	bytes := []byte{'a', 'b', 'c'}
 	str := BytesToString(bytes)
 	assert.Equal(str == "abc", true)

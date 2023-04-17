@@ -2,6 +2,7 @@ package strutil
 
 import (
 	"fmt"
+	"reflect"
 )
 
 func ExampleAfter() {
@@ -448,4 +449,82 @@ func ExampleRemoveNonPrintable() {
 	// Output:
 	// hello world
 	// 你好😄
+}
+
+func ExampleStringToBytes() {
+	result1 := StringToBytes("abc")
+	result2 := reflect.DeepEqual(result1, []byte{'a', 'b', 'c'})
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	// Output:
+	// [97 98 99]
+	// true
+}
+
+func ExampleBytesToString() {
+	bytes := []byte{'a', 'b', 'c'}
+	result := BytesToString(bytes)
+
+	fmt.Println(result)
+	// Output:
+	// abc
+}
+
+func ExampleIsBlank() {
+	result1 := IsBlank("")
+	result2 := IsBlank("\t\v\f\n")
+	result3 := IsBlank(" 中文")
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+	// Output:
+	// true
+	// true
+	// false
+}
+
+func ExampleHasPrefixAny() {
+	result1 := HasPrefixAny("foo bar", []string{"fo", "xyz", "hello"})
+	result2 := HasPrefixAny("foo bar", []string{"oom", "world"})
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	// Output:
+	// true
+	// false
+}
+
+func ExampleHasSuffixAny() {
+	result1 := HasSuffixAny("foo bar", []string{"bar", "xyz", "hello"})
+	result2 := HasSuffixAny("foo bar", []string{"oom", "world"})
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	// Output:
+	// true
+	// false
+}
+
+func ExampleIndexOffset() {
+	str := "foo bar hello world"
+
+	result1 := IndexOffset(str, "o", 5)
+	result2 := IndexOffset(str, "o", 0)
+	result3 := IndexOffset(str, "d", len(str)-1)
+	result4 := IndexOffset(str, "d", len(str))
+	result5 := IndexOffset(str, "f", -1)
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+	fmt.Println(result4)
+	fmt.Println(result5)
+	// Output:
+	// 12
+	// 1
+	// 18
+	// -1
+	// -1
 }
