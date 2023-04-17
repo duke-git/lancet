@@ -397,3 +397,39 @@ func ExampleOmitByValues() {
 	// Output:
 	// map[a:1 b:2 c:3]
 }
+
+func ExampleMapTo() {
+	type (
+		Person struct {
+			Name  string  `json:"name"`
+			Age   int     `json:"age"`
+			Phone string  `json:"phone"`
+			Addr  Address `json:"address"`
+		}
+
+		Address struct {
+			Street string `json:"street"`
+			Number int    `json:"number"`
+		}
+	)
+
+	personInfo := map[string]interface{}{
+		"name":  "Nothin",
+		"age":   28,
+		"phone": "123456789",
+		"address": map[string]interface{}{
+			"street": "test",
+			"number": 1,
+		},
+	}
+
+	var p Person
+	err := MapTo(personInfo, &p)
+
+	fmt.Println(err)
+	fmt.Println(p)
+
+	// Output:
+	// <nil>
+	// {Nothin 28 123456789 {test 1}}
+}

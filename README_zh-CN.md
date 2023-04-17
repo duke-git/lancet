@@ -597,6 +597,8 @@ import "github.com/duke-git/lancet/v2/maputil"
 
 #### 函数列表:
 
+-   **<big>MapTo</big>** : 快速将map或者其他类型映射到结构体或者指定类型。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#MapTo)]
 -   **<big>ForEach</big>** : 对 map 中的每对 key 和 value 执行 iteratee 函数。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#ForEach)]
     [[play](https://go.dev/play/p/OaThj6iNVXK)]
@@ -1340,52 +1342,6 @@ import "github.com/duke-git/lancet/v2/xerror"
 -   **<big>TryUnwrap</big>** : 检查 error, 如果 err 为 nil 则展开，则它返回一个有效值，如果 err 不是 nil 则 Unwrap 使用 err 发生 panic。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/xerror_zh-CN.md#TryUnwrap)]
     [[play](https://go.dev/play/p/acyZVkNZEeW)]
-
-
-
-### 22. [typemap] 快速将map或者其他类型映射到结构体或者指定类型
-```go
-import "github.com/duke-git/lancet/v2/typemap"
-```
-#### Example
-```go
-type (
-	Person struct {
-		Name  string  `json:"name"`
-		Age   int     `json:"age"`
-		Phone string  `json:"phone"`
-		Addr  Address `json:"address"`
-	}
-
-	Address struct {
-		Street string `json:"street"`
-		Number int    `json:"number"`
-	}
-)
-
-func main() {
-    v := map[string]interface{}{
-        "person":map[string]interface{}{
-            "name":"Nothin",
-            "age":123,
-            "phone":"123421312",
-            "address":map[string]interface{}{
-                "street":"test",
-                "number":1,
-            },
-        },
-        "other":1234,
-    }
-
-    var person Person
-    err :=typemap.MapTo(v["person"],&person)
-    if err != nil {
-        //error handler ...
-    }
-
-    log.Println(person)
-}
-
 
 ## 如何贡献代码
 
