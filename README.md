@@ -1340,7 +1340,57 @@ import "github.com/duke-git/lancet/v2/xerror"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/xerror.md#TryUnwrap)]
     [[play](https://go.dev/play/p/acyZVkNZEeW)]
 
+### 22. quick map any to struct or any base type
+```go
+import "github.com/duke-git/lancet/v2/typemap"
+```
+#### Example
+```go
+type (
+	Person struct {
+		Name  string  `json:"name"`
+		Age   int     `json:"age"`
+		Phone string  `json:"phone"`
+		Addr  Address `json:"address"`
+	}
+
+	Address struct {
+		Street string `json:"street"`
+		Number int    `json:"number"`
+	}
+)
+
+func main() {
+    v := map[string]interface{}{
+        "person":map[string]interface{}{
+            "name":"Nothin",
+            "age":123,
+            "phone":"123421312",
+            "address":map[string]interface{}{
+                "street":"test",
+                "number":1,
+            },
+        },
+        "other":1234,
+    }
+
+    var person Person
+    err :=typemap.MapTo(v["person"],&person)
+    if err != nil {
+        //error handler ...
+    }
+
+    log.Println(person)
+}
+
+
+```
+
+
 ## How to Contribute
+
+
+
 
 I really appreciate any code commits which make lancet lib powerful. Please follow the rules below to create your pull request.
 

@@ -1341,6 +1341,52 @@ import "github.com/duke-git/lancet/v2/xerror"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/xerror_zh-CN.md#TryUnwrap)]
     [[play](https://go.dev/play/p/acyZVkNZEeW)]
 
+
+
+### 22. [typemap] 快速将map或者其他类型映射到结构体或者指定类型
+```go
+import "github.com/duke-git/lancet/v2/typemap"
+```
+#### Example
+```go
+type (
+	Person struct {
+		Name  string  `json:"name"`
+		Age   int     `json:"age"`
+		Phone string  `json:"phone"`
+		Addr  Address `json:"address"`
+	}
+
+	Address struct {
+		Street string `json:"street"`
+		Number int    `json:"number"`
+	}
+)
+
+func main() {
+    v := map[string]interface{}{
+        "person":map[string]interface{}{
+            "name":"Nothin",
+            "age":123,
+            "phone":"123421312",
+            "address":map[string]interface{}{
+                "street":"test",
+                "number":1,
+            },
+        },
+        "other":1234,
+    }
+
+    var person Person
+    err :=typemap.MapTo(v["person"],&person)
+    if err != nil {
+        //error handler ...
+    }
+
+    log.Println(person)
+}
+
+
 ## 如何贡献代码
 
 非常感激任何的代码提交以使 lancet 的功能越来越强大。创建 pull request 时请遵守以下规则。
