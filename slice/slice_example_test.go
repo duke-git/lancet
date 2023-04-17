@@ -358,6 +358,23 @@ func ExampleFindBy() {
 	// true
 }
 
+func ExampleFindLastBy() {
+	nums := []int{1, 2, 3, 4, 5}
+
+	isEven := func(i, num int) bool {
+		return num%2 == 0
+	}
+
+	result, ok := FindLastBy(nums, isEven)
+
+	fmt.Println(result)
+	fmt.Println(ok)
+
+	// Output:
+	// 4
+	// true
+}
+
 func ExampleFlatten() {
 	arrs := [][][]string{{{"a", "b"}}, {{"c", "d"}}}
 

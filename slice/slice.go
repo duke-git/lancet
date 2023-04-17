@@ -367,6 +367,26 @@ func FindBy[T any](slice []T, predicate func(index int, item T) bool) (v T, ok b
 	return slice[index], true
 }
 
+// FindLastBy iterates over elements of slice, returning the last one that passes a truth test on predicate function.
+// If return T is nil or zero value then no items matched the predicate func.
+// In contrast to Find or FindLast, its return value no longer requires dereferencing
+func FindLastBy[T any](slice []T, predicate func(index int, item T) bool) (v T, ok bool) {
+	index := -1
+
+	for i := len(slice) - 1; i >= 0; i-- {
+		if predicate(i, slice[i]) {
+			index = i
+			break
+		}
+	}
+
+	if index == -1 {
+		return v, false
+	}
+
+	return slice[index], true
+}
+
 // Flatten flattens slice with one level.
 // Play: https://go.dev/play/p/hYa3cBEevtm
 func Flatten(slice any) any {
