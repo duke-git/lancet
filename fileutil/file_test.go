@@ -235,10 +235,10 @@ func TestMiMeType(t *testing.T) {
 func TestListFileNames(t *testing.T) {
 	assert := internal.NewAssert(t, "TestListFileNames")
 
-	filesInPath, err := ListFileNames("../formatter/")
+	filesInPath, err := ListFileNames("./")
 	assert.IsNil(err)
 
-	expected := []string{"formatter.go", "formatter_example_test.go", "formatter_test.go"}
+	expected := []string{"file.go", "file_example_test.go", "file_test.go"}
 	assert.Equal(expected, filesInPath)
 }
 
