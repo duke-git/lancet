@@ -541,6 +541,8 @@ import "github.com/duke-git/lancet/v2/fileutil"
 -   **<big>UnZip</big>** : unzip the zip file and save it to dest path.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#UnZip)]
     [[play](https://go.dev/play/p/g0w34kS7B8m)]
+-   **<big>CurrentPath</big>** : return current absolute path.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#CurrentPath)]
 
 ### 9. Formatter contains some functions for data formatting.
 
@@ -553,6 +555,18 @@ import "github.com/duke-git/lancet/v2/formatter"
 -   **<big>Comma</big>** : add comma to a number value by every 3 numbers from right, ahead by symbol char.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/formatter.md#Comma)]
     [[play](https://go.dev/play/p/eRD5k2vzUVX)]
+-   **<big>Pretty</big>** : pretty print data to JSON string.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/formatter.md#Pretty)]
+-   **<big>PrettyToWriter</big>** : pretty encode data to writer.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/formatter.md#PrettyToWriter)]
+-   **<big>DecimalBytes</big>** : returns a human readable byte size under decimal standard (base 1000).
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/formatter.md#DecimalBytes)]
+-   **<big>BinaryBytes</big>** : returns a human-readable byte size under binary standard (base 1024).
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/formatter.md#BinaryBytes)]
+-   **<big>ParseDecimalBytes</big>** : return the human readable bytes size string into the amount it represents(base 1000).
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/formatter.md#ParseDecimalBytes)]
+-   **<big>ParseBinaryBytes</big>** : return the human readable bytes size string into the amount it represents(base 1024).
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/formatter.md#ParseBinaryBytes)]
 
 ### 10. Function package can control the flow of function execution and support part of functional programming
 
@@ -972,8 +986,12 @@ import "github.com/duke-git/lancet/v2/slice"
 -   **<big>Reverse</big>** : return slice of element order is reversed to the given slice.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Reverse)]
     [[play](https://go.dev/play/p/8uI8f1lwNrQ)]
--   **<big>Reduce</big>** : creates an slice of values by running each element of slice thru iteratee function.
+-   **<big>Reduce<sup>deprecated</sup></big>** : creates an slice of values by running each element of slice thru iteratee function.(Deprecated: use ReduceBy)
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Reduce)]
+-   **<big>ReduceBy</big>** : produces a value from slice by accumulating the result of each element as passed through the reducer function.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#ReduceBy)]
+-   **<big>ReduceRight</big>** : ReduceRight is like ReduceBy, but it iterates over elements of slice from right to left.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#ReduceRight)]
     [[play](https://go.dev/play/p/_RfXJJWIsIm)]
 -   **<big>Replace</big>** : returns a copy of the slice with the first n non-overlapping instances of old replaced by new.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Replace)]
@@ -1158,7 +1176,6 @@ import "github.com/duke-git/lancet/v2/strutil"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#RemoveNonPrintable)]
     [[play](https://go.dev/play/p/og47F5x_jTZ)]
 
-
 ### 19. System package contain some functions about os, runtime, shell command.
 
 ```go
@@ -1248,9 +1265,13 @@ import "github.com/duke-git/lancet/v2/validator"
 -   **<big>IsEmptyString</big>** : check if the string is empty.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsEmptyString)]
     [[play](https://go.dev/play/p/dpzgUjFnBCX)]
+-   **<big>IsFloat</big>** : check if the value is float(float32, float34) or not.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsFloat)]
 -   **<big>IsFloatStr</big>** : check if the string can convert to a float.
-    [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator.md#LOYwS_Oyl7U)]
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsFloatStr)]
     [[play](https://go.dev/play/p/LOYwS_Oyl7U)]
+-   **<big>IsNumber</big>** : check if the value is number(integer, float) or not.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsNumber)]
 -   **<big>IsNumberStr</big>** : check if the string can convert to a number.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsNumberStr)]
     [[play](https://go.dev/play/p/LzaKocSV79u)]
@@ -1260,6 +1281,8 @@ import "github.com/duke-git/lancet/v2/validator"
 -   **<big>IsRegexMatch</big>** : check if the string match the regexp.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsRegexMatch)]
     [[play](https://go.dev/play/p/z_XeZo_litG)]
+-   **<big>IsInt</big>** : check if the string can convert to a number.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsInt)]
 -   **<big>IsIntStr</big>** : check if the string can convert to a integer.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsIntStr)]
     [[play](https://go.dev/play/p/jQRtFv-a0Rk)]
@@ -1342,12 +1365,7 @@ import "github.com/duke-git/lancet/v2/xerror"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/xerror.md#TryUnwrap)]
     [[play](https://go.dev/play/p/acyZVkNZEeW)]
 
-
-
 ## How to Contribute
-
-
-
 
 I really appreciate any code commits which make lancet lib powerful. Please follow the rules below to create your pull request.
 

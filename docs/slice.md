@@ -62,7 +62,7 @@ import (
 -   [FlatMap](#FlatMap)
 -   [Merge](#Merge)
 -   [Reverse](#Reverse)
--   [Reduce](#Reduce)
+-   [Reduce<sup>deprecated</sup>](#Reduce)
 -   [ReduceBy](#ReduceBy)
 -   [ReduceRight](#ReduceRight)
 -   [Replace](#Replace)
@@ -1474,7 +1474,7 @@ func main() {
 
 ### <span id="Reduce">Reduce</span>
 
-<p>Reduce slice.</p>
+<p>Reduce slice.(Deprecated: use ReduceBy)</p>
 
 <b>Signature:</b>
 

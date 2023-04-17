@@ -629,7 +629,7 @@ func main() {
 }
 ```
 
-### <span id="IsFloat">IsInt</span>
+### <span id="IsFloat">IsFloat</span>
 
 <p>Check if the value is float(float32, float34) or not.</p>
 

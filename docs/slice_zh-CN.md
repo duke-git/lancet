@@ -62,7 +62,7 @@ import (
 -   [FlatMap](#FlatMap)
 -   [Merge](#Merge)
 -   [Reverse](#Reverse)
--   [Reduce](#Reduce)
+-   [Reduce<sup>deprecated</sup>](#Reduce)
 -   [ReduceBy](#ReduceBy)
 -   [ReduceRight](#ReduceRight)
 -   [Replace](#Replace)
@@ -1475,7 +1475,7 @@ func main() {
 
 ### <span id="Reduce">Reduce</span>
 
-<p>将切片中的元素依次运行iteratee函数，返回运行结果</p>
+<p>将切片中的元素依次运行iteratee函数，返回运行结果(废弃：建议使用ReduceBy)</p>
 
 <b>函数签名:</b>
 
@@ -1509,7 +1509,7 @@ func main() {
 
 ### <span id="ReduceBy">ReduceBy</span>
 
-<p>对切片中执行reduce操作。</p>
+<p>对切片元素执行reduce操作。</p>
 
 <b>函数签名:</b>
 

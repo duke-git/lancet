@@ -540,6 +540,8 @@ import "github.com/duke-git/lancet/v2/fileutil"
 -   **<big>UnZip</big>** : zip 解压缩文件并保存在目录中。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil_zh-CN.md#UnZip)]
     [[play](https://go.dev/play/p/g0w34kS7B8m)]
+-   **<big>CurrentPath</big>** : 返回当前位置的绝对路径。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil_zh-CN.md#CurrentPath)]
 
 ### 9. formatter 格式化器包含一些数据格式化处理方法。
 
@@ -552,6 +554,18 @@ import "github.com/duke-git/lancet/v2/formatter"
 -   **<big>Comma</big>** : 用逗号每隔 3 位分割数字/字符串，支持前缀添加符号。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/formatter_zh-CN.md#Comma)]
     [[play](https://go.dev/play/p/eRD5k2vzUVX)]
+-   **<big>Pretty</big>** : 返回pretty JSON字符串。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/formatter_zh-CN.md#Pretty)]
+-   **<big>PrettyToWriter</big>** : Pretty encode数据到writer。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/formatter_zh-CN.md#PrettyToWriter)]
+-   **<big>DecimalBytes</big>** : 返回十进制标准（以1000为基数）下的可读字节单位字符串。precision参数指定小数点后的位数，默认为4。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/formatter_zh-CN.md#DecimalBytes)]
+-   **<big>BinaryBytes</big>** : 返回binary标准（以1024为基数）下的可读字节单位字符串。precision参数指定小数点后的位数，默认为4。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/formatter_zh-CN.md#BinaryBytes)]
+-   **<big>ParseDecimalBytes</big>** : 将字节单位字符串转换成其所表示的字节数（以1000为基数）。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/formatter_zh-CN.md#ParseDecimalBytes)]
+-   **<big>ParseBinaryBytes</big>** : 将字节单位字符串转换成其所表示的字节数（以1024为基数）。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/formatter_zh-CN.md#ParseBinaryBytes)]
 
 ### 10. function 函数包控制函数执行流程，包含部分函数式编程。
 
@@ -971,9 +985,13 @@ import "github.com/duke-git/lancet/v2/slice"
 -   **<big>Reverse</big>** : 反转切片中的元素顺序。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Reverse)]
     [[play](https://go.dev/play/p/8uI8f1lwNrQ)]
--   **<big>Reduce</big>** : 将切片中的元素依次运行 iteratee 函数，返回运行结果。
+-   **<big>Reduce<sup>deprecated</sup></big>** : 将切片中的元素依次运行iteratee函数，返回运行结果。(废弃：建议使用ReduceBy)
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Reduce)]
     [[play](https://go.dev/play/p/_RfXJJWIsIm)]
+-   **<big>ReduceBy</big>** : 对切片元素执行reduce操作。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#ReduceBy)]
+-   **<big>ReduceRight</big>** : 类似ReduceBy操作，迭代切片元素顺序从右至左。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#ReduceRight)]
 -   **<big>Replace</big>** : 返回切片的副本，其中前 n 个不重叠的 old 替换为 new。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Replace)]
     [[play](https://go.dev/play/p/P5mZp7IhOFo)]
@@ -1249,9 +1267,13 @@ import "github.com/duke-git/lancet/v2/validator"
 -   **<big>IsEmptyString</big>** : 验证字符串是否是空字符串。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsEmptyString)]
     [[play](https://go.dev/play/p/dpzgUjFnBCX)]
+-   **<big>IsFloat</big>** : 验证参数是否是浮点数((float32，float34)。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsFloat)]
 -   **<big>IsFloatStr</big>** : 验证字符串是否是可以转换为浮点数。
-    [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#LOYwS_Oyl7U)]
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsFloatStr)]
     [[play](https://go.dev/play/p/LOYwS_Oyl7U)]
+-   **<big>IsNumber</big>** : 验证参数是否是数字(integer，float)。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsNumber)]
 -   **<big>IsNumberStr</big>** : 验证字符串是否是可以转换为数字。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsNumberStr)]
     [[play](https://go.dev/play/p/LzaKocSV79u)]
@@ -1261,13 +1283,15 @@ import "github.com/duke-git/lancet/v2/validator"
 -   **<big>IsRegexMatch</big>** : 验证字符串是否可以匹配正则表达式。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsRegexMatch)]
     [[play](https://go.dev/play/p/z_XeZo_litG)]
+-   **<big>IsInt</big>** : 验证参数是否是整数(int, unit)。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsInt)]
 -   **<big>IsIntStr</big>** : 验证字符串是否是可以转换为整数。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsIntStr)]
     [[play](https://go.dev/play/p/jQRtFv-a0Rk)]
--   **<big>IsIp</big>** : 验证字符串是否是 ip 地址。
+-   **<big>IsIp</big>** : 验证字符串是否是ip地址。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsIp)]
     [[play](https://go.dev/play/p/FgcplDvmxoD)]
--   **<big>IsIpV4</big>** : 验证字符串是否是 ipv4 地址。
+-   **<big>IsIpV4</big>** : 验证字符串是否是ipv4地址。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsIpV4)]
     [[play](https://go.dev/play/p/zBGT99EjaIu)]
 -   **<big>IsIpV6</big>** : 验证字符串是否是 ipv6 地址。

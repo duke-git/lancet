@@ -629,7 +629,7 @@ func main() {
 }
 ```
 
-### <span id="IsFloat">IsInt</span>
+### <span id="IsFloat">IsFloat</span>
 
 <p>验证参数是否是浮点数((float32, float34)。</p>
 
