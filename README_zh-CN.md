@@ -542,6 +542,7 @@ import "github.com/duke-git/lancet/v2/fileutil"
     [[play](https://go.dev/play/p/g0w34kS7B8m)]
 -   **<big>CurrentPath</big>** : 返回当前位置的绝对路径。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil_zh-CN.md#CurrentPath)]
+    [[play](https://go.dev/play/p/s74a9iBGcSw)]
 
 ### 9. formatter 格式化器包含一些数据格式化处理方法。
 
@@ -556,16 +557,22 @@ import "github.com/duke-git/lancet/v2/formatter"
     [[play](https://go.dev/play/p/eRD5k2vzUVX)]
 -   **<big>Pretty</big>** : 返回 pretty JSON 字符串。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/formatter_zh-CN.md#Pretty)]
+    [[play](https://go.dev/play/p/YsciGj3FH2x)]
 -   **<big>PrettyToWriter</big>** : Pretty encode 数据到 writer。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/formatter_zh-CN.md#PrettyToWriter)]
+    [[play](https://go.dev/play/p/LPLZ3lDi5ma)]
 -   **<big>DecimalBytes</big>** : 返回十进制标准（以 1000 为基数）下的可读字节单位字符串。precision 参数指定小数点后的位数，默认为 4。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/formatter_zh-CN.md#DecimalBytes)]
+    [[play](https://go.dev/play/p/FPXs1suwRcs)]
 -   **<big>BinaryBytes</big>** : 返回 binary 标准（以 1024 为基数）下的可读字节单位字符串。precision 参数指定小数点后的位数，默认为 4。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/formatter_zh-CN.md#BinaryBytes)]
+    [[play](https://go.dev/play/p/G9oHHMCAZxP)]
 -   **<big>ParseDecimalBytes</big>** : 将字节单位字符串转换成其所表示的字节数（以 1000 为基数）。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/formatter_zh-CN.md#ParseDecimalBytes)]
+    [[play](https://go.dev/play/p/Am98ybWjvjj)]
 -   **<big>ParseBinaryBytes</big>** : 将字节单位字符串转换成其所表示的字节数（以 1024 为基数）。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/formatter_zh-CN.md#ParseBinaryBytes)]
+    [[play](https://go.dev/play/p/69v1tTT62x8)]
 
 ### 10. function 函数包控制函数执行流程，包含部分函数式编程。
 
@@ -613,6 +620,7 @@ import "github.com/duke-git/lancet/v2/maputil"
 
 -   **<big>MapTo</big>** : 快速将 map 或者其他类型映射到结构体或者指定类型。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#MapTo)]
+    [[play](https://go.dev/play/p/4K7KBEPgS5M)]
 -   **<big>ForEach</big>** : 对 map 中的每对 key 和 value 执行 iteratee 函数。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#ForEach)]
     [[play](https://go.dev/play/p/OaThj6iNVXK)]
@@ -990,8 +998,10 @@ import "github.com/duke-git/lancet/v2/slice"
     [[play](https://go.dev/play/p/_RfXJJWIsIm)]
 -   **<big>ReduceBy</big>** : 对切片元素执行 reduce 操作。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#ReduceBy)]
+    [[play](https://go.dev/play/p/YKDpLi7gtee)]
 -   **<big>ReduceRight</big>** : 类似 ReduceBy 操作，迭代切片元素顺序从右至左。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#ReduceRight)]
+    [[play](https://go.dev/play/p/qT9dZC03A1K)]
 -   **<big>Replace</big>** : 返回切片的副本，其中前 n 个不重叠的 old 替换为 new。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Replace)]
     [[play](https://go.dev/play/p/P5mZp7IhOFo)]
@@ -1353,11 +1363,13 @@ import "github.com/duke-git/lancet/v2/validator"
     [[play](https://go.dev/play/p/dpzgUjFnBCX)]
 -   **<big>IsFloat</big>** : 验证参数是否是浮点数((float32，float34)。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsFloat)]
+    [[play](https://go.dev/play/p/vsyG-sxr99_Z)]
 -   **<big>IsFloatStr</big>** : 验证字符串是否是可以转换为浮点数。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsFloatStr)]
     [[play](https://go.dev/play/p/LOYwS_Oyl7U)]
 -   **<big>IsNumber</big>** : 验证参数是否是数字(integer，float)。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsNumber)]
+    [[play](https://go.dev/play/p/mdJHOAvtsvF)]
 -   **<big>IsNumberStr</big>** : 验证字符串是否是可以转换为数字。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsNumberStr)]
     [[play](https://go.dev/play/p/LzaKocSV79u)]
@@ -1369,6 +1381,7 @@ import "github.com/duke-git/lancet/v2/validator"
     [[play](https://go.dev/play/p/z_XeZo_litG)]
 -   **<big>IsInt</big>** : 验证参数是否是整数(int, unit)。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsInt)]
+    [[play](https://go.dev/play/p/eFoIHbgzl-z)]
 -   **<big>IsIntStr</big>** : 验证字符串是否是可以转换为整数。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsIntStr)]
     [[play](https://go.dev/play/p/jQRtFv-a0Rk)]

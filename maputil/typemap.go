@@ -60,6 +60,7 @@ var _ = func() struct{} {
 		log.Println(dist)
 
 */
+// Play: https://go.dev/play/p/4K7KBEPgS5M
 func MapTo(src any, dst any) error {
 
 	dstRef := reflect.ValueOf(dst)

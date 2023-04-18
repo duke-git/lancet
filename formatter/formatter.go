@@ -48,14 +48,14 @@ func Comma[T constraints.Float | constraints.Integer | string](value T, symbol s
 }
 
 // Pretty data to JSON string.
-// Play: todo
+// Play: https://go.dev/play/p/YsciGj3FH2x
 func Pretty(v any) (string, error) {
 	out, err := json.MarshalIndent(v, "", "    ")
 	return string(out), err
 }
 
 // PrettyToWriter pretty encode data to writer.
-// Play: todo
+// Play: https://go.dev/play/p/LPLZ3lDi5ma
 func PrettyToWriter(v any, out io.Writer) error {
 	enc := json.NewEncoder(out)
 	enc.SetIndent("", "    ")

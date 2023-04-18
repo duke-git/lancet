@@ -82,7 +82,7 @@ var (
 
 // DecimalBytes returns a human readable byte size under decimal standard (base 1000)
 // The precision parameter specifies the number of digits after the decimal point, which defaults to 4.
-// Play: todo
+// Play: https://go.dev/play/p/FPXs1suwRcs
 func DecimalBytes(size float64, precision ...int) string {
 	p := 5
 	if len(precision) > 0 {
@@ -95,7 +95,7 @@ func DecimalBytes(size float64, precision ...int) string {
 
 // BinaryBytes returns a human-readable byte size under binary standard (base 1024)
 // The precision parameter specifies the number of digits after the decimal point, which defaults to 4.
-// Play: todo
+// Play: https://go.dev/play/p/G9oHHMCAZxP
 func BinaryBytes(size float64, precision ...int) string {
 	p := 5
 	if len(precision) > 0 {
@@ -118,14 +118,14 @@ func calculateByteSize(size float64, base float64, byteUnits []string) (float64,
 
 // ParseDecimalBytes return the human readable bytes size string into the amount it represents(base 1000).
 // ParseDecimalBytes("42 MB") -> 42000000, nil
-// Play: todo
+// Play: https://go.dev/play/p/Am98ybWjvjj
 func ParseDecimalBytes(size string) (uint64, error) {
 	return parseBytes(size, "decimal")
 }
 
 // ParseBinaryBytes return the human readable bytes size string into the amount it represents(base 1024).
 // ParseBinaryBytes("42 mib") -> 44040192, nil
-// Play: todo
+// Play: https://go.dev/play/p/69v1tTT62x8
 func ParseBinaryBytes(size string) (uint64, error) {
 	return parseBytes(size, "binary")
 }

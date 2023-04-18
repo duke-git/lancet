@@ -348,7 +348,7 @@ func MiMeType(file any) string {
 }
 
 // CurrentPath return current absolute path.
-// Play: todo
+// Play: https://go.dev/play/p/s74a9iBGcSw
 func CurrentPath() string {
 	var absPath string
 	_, filename, _, ok := runtime.Caller(1)

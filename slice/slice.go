@@ -523,7 +523,7 @@ func Reduce[T any](slice []T, iteratee func(index int, item1, item2 T) T, initia
 }
 
 // ReduceBy produces a value from slice by accumulating the result of each element as passed through the reducer function.
-// Play: todo
+// Play: https://go.dev/play/p/YKDpLi7gtee
 func ReduceBy[T any, U any](slice []T, initial U, reducer func(index int, item T, agg U) U) U {
 	accumulator := initial
 
@@ -535,7 +535,7 @@ func ReduceBy[T any, U any](slice []T, initial U, reducer func(index int, item T
 }
 
 // ReduceRight is like ReduceBy, but it iterates over elements of slice from right to left.
-// Play: todo
+// Play: https://go.dev/play/p/qT9dZC03A1K
 func ReduceRight[T any, U any](slice []T, initial U, reducer func(index int, item T, agg U) U) U {
 	accumulator := initial
 

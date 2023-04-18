@@ -371,13 +371,13 @@ func IsGBK(data []byte) bool {
 }
 
 // IsNumberStr check if the value is number(integer, float) or not.
-// Play: todo
+// Play: https://go.dev/play/p/mdJHOAvtsvF
 func IsNumber(v any) bool {
 	return IsInt(v) || IsFloat(v)
 }
 
 // IsFloat check if the value is float(float32, float34) or not.
-// Play: todo
+// Play: https://go.dev/play/p/vsyG-sxr99_Z
 func IsFloat(v any) bool {
 	switch v.(type) {
 	case float32, float64:
@@ -387,7 +387,7 @@ func IsFloat(v any) bool {
 }
 
 // IsInt check if the value is integer(int, unit) or not.
-// Play: todo
+// Play: https://go.dev/play/p/eFoIHbgzl-z
 func IsInt(v any) bool {
 	switch v.(type) {
 	case int, int8, int16, int32, int64, uint, uint8, uint16, uint32, uint64, uintptr:

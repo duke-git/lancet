@@ -239,14 +239,17 @@ func main() {
 }
 ```
 
-### <span id="ExecCommand">CompareOsEnv</span>
+### <span id="ExecCommand">ExecCommand</span>
 
 <p>Execute shell command, return the stdout and stderr string of command, and error if error occur. param `command` is a complete command string, like, ls -a (linux), dir(windows), ping 127.0.0.1. In linux, use /bin/bash -c to execute command, In windows, use powershell.exe to execute command.</p>
 
 <b>Signature:</b>
 
 ```go
-func ExecCommand(command string) (stdout, stderr string, err error)
+type (
+	Option func(*exec.Cmd)
+)
+func ExecCommand(command string, opts ...Option) (stdout, stderr string, err error)
 ```
 
 <b>Example:</b>

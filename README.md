@@ -543,6 +543,7 @@ import "github.com/duke-git/lancet/v2/fileutil"
     [[play](https://go.dev/play/p/g0w34kS7B8m)]
 -   **<big>CurrentPath</big>** : return current absolute path.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#CurrentPath)]
+    [[play](https://go.dev/play/p/s74a9iBGcSw)]
 
 ### 9. Formatter contains some functions for data formatting.
 
@@ -557,16 +558,22 @@ import "github.com/duke-git/lancet/v2/formatter"
     [[play](https://go.dev/play/p/eRD5k2vzUVX)]
 -   **<big>Pretty</big>** : pretty print data to JSON string.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/formatter.md#Pretty)]
+    [[play](https://go.dev/play/p/YsciGj3FH2x)]
 -   **<big>PrettyToWriter</big>** : pretty encode data to writer.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/formatter.md#PrettyToWriter)]
+    [[play](https://go.dev/play/p/LPLZ3lDi5ma)]
 -   **<big>DecimalBytes</big>** : returns a human readable byte size under decimal standard (base 1000).
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/formatter.md#DecimalBytes)]
+    [[play](https://go.dev/play/p/FPXs1suwRcs)]
 -   **<big>BinaryBytes</big>** : returns a human-readable byte size under binary standard (base 1024).
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/formatter.md#BinaryBytes)]
+    [[play](https://go.dev/play/p/G9oHHMCAZxP)]
 -   **<big>ParseDecimalBytes</big>** : return the human readable bytes size string into the amount it represents(base 1000).
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/formatter.md#ParseDecimalBytes)]
+    [[play](https://go.dev/play/p/Am98ybWjvjj)]
 -   **<big>ParseBinaryBytes</big>** : return the human readable bytes size string into the amount it represents(base 1024).
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/formatter.md#ParseBinaryBytes)]
+    [[play](https://go.dev/play/p/69v1tTT62x8)]
 
 ### 10. Function package can control the flow of function execution and support part of functional programming
 
@@ -614,6 +621,7 @@ import "github.com/duke-git/lancet/v2/maputil"
 
 -   **<big>MapTo</big>** : quick map any value to struct or any base type.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil.md#MapTo)]
+    [[play](https://go.dev/play/p/4K7KBEPgS5M)]
 -   **<big>ForEach</big>** : executes iteratee funcation for every key and value pair in map.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil.md#ForEach)]
     [[play](https://go.dev/play/p/OaThj6iNVXK)]
@@ -988,11 +996,13 @@ import "github.com/duke-git/lancet/v2/slice"
     [[play](https://go.dev/play/p/8uI8f1lwNrQ)]
 -   **<big>Reduce<sup>deprecated</sup></big>** : creates an slice of values by running each element of slice thru iteratee function.(Deprecated: use ReduceBy)
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Reduce)]
+    [[play](https://go.dev/play/p/_RfXJJWIsIm)]
 -   **<big>ReduceBy</big>** : produces a value from slice by accumulating the result of each element as passed through the reducer function.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#ReduceBy)]
+    [[play](https://go.dev/play/p/YKDpLi7gtee)]
 -   **<big>ReduceRight</big>** : ReduceRight is like ReduceBy, but it iterates over elements of slice from right to left.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#ReduceRight)]
-    [[play](https://go.dev/play/p/_RfXJJWIsIm)]
+    [[play](https://go.dev/play/p/qT9dZC03A1K)]
 -   **<big>Replace</big>** : returns a copy of the slice with the first n non-overlapping instances of old replaced by new.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Replace)]
     [[play](https://go.dev/play/p/P5mZp7IhOFo)]
@@ -1351,11 +1361,13 @@ import "github.com/duke-git/lancet/v2/validator"
     [[play](https://go.dev/play/p/dpzgUjFnBCX)]
 -   **<big>IsFloat</big>** : check if the value is float(float32, float34) or not.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsFloat)]
+    [[play](https://go.dev/play/p/vsyG-sxr99_Z)]
 -   **<big>IsFloatStr</big>** : check if the string can convert to a float.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsFloatStr)]
     [[play](https://go.dev/play/p/LOYwS_Oyl7U)]
 -   **<big>IsNumber</big>** : check if the value is number(integer, float) or not.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsNumber)]
+    [[play](https://go.dev/play/p/mdJHOAvtsvF)]
 -   **<big>IsNumberStr</big>** : check if the string can convert to a number.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsNumberStr)]
     [[play](https://go.dev/play/p/LzaKocSV79u)]
@@ -1367,6 +1379,7 @@ import "github.com/duke-git/lancet/v2/validator"
     [[play](https://go.dev/play/p/z_XeZo_litG)]
 -   **<big>IsInt</big>** : check if the string can convert to a number.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsInt)]
+    [[play](https://go.dev/play/p/eFoIHbgzl-z)]
 -   **<big>IsIntStr</big>** : check if the string can convert to a integer.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsIntStr)]
     [[play](https://go.dev/play/p/jQRtFv-a0Rk)]
