@@ -46,6 +46,12 @@ import (
 -   [SplitWords](#SplitWords)
 -   [WordCount](#WordCount)
 -   [RemoveNonPrintable](#RemoveNonPrintable)
+-   [StringToBytes](#StringToBytes)
+-   [BytesToString](#BytesToString)
+-   [IsBlank](#IsBlank)
+-   [HasPrefixAny](#HasPrefixAny)
+-   [HasSuffixAny](#HasSuffixAny)
+-   [IndexOffset](#IndexOffset)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -852,7 +858,6 @@ func main() {
 }
 ```
 
-
 ### <span id="SplitWords">SplitWords</span>
 
 <p>Splits a string into words, word only contains alphabetic characters.</p>
@@ -895,7 +900,6 @@ func main() {
     // []
 }
 ```
-
 
 ### <span id="WordCount">WordCount</span>
 
@@ -940,7 +944,6 @@ func main() {
 }
 ```
 
-
 ### <span id="RemoveNonPrintable">RemoveNonPrintable</span>
 
 <p>Remove non-printable characters from a string.</p>
@@ -968,5 +971,197 @@ func main() {
     // Output:
     // hello world
     // 你好😄
+}
+```
+
+### <span id="StringToBytes">StringToBytes</span>
+
+<p>Converts a string to byte slice without a memory allocation.</p>
+
+<b>Signature:</b>
+
+```go
+func StringToBytes(str string) (b []byte)
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    result1 := strutil.StringToBytes("abc")
+	result2 := reflect.DeepEqual(result1, []byte{'a', 'b', 'c'})
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	// Output:
+	// [97 98 99]
+	// true
+}
+```
+
+### <span id="BytesToString">BytesToString</span>
+
+<p>Converts a byte slice to string without a memory allocation.</p>
+
+<b>Signature:</b>
+
+```go
+func BytesToString(bytes []byte) string
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    bytes := []byte{'a', 'b', 'c'}
+	result := strutil.BytesToString(bytes)
+
+	fmt.Println(result)
+	// Output:
+	// abc
+}
+```
+
+### <span id="IsBlank">IsBlank</span>
+
+<p>Checks if a string is whitespace or empty.</p>
+
+<b>Signature:</b>
+
+```go
+func IsBlank(str string) bool
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    result1 := strutil.IsBlank("")
+	result2 := strutil.IsBlank("\t\v\f\n")
+	result3 := strutil.IsBlank(" 中文")
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+	// Output:
+	// true
+	// true
+	// false
+}
+```
+
+### <span id="HasPrefixAny">HasPrefixAny</span>
+
+<p>Checks if a string starts with any of an array of specified strings.</p>
+
+<b>Signature:</b>
+
+```go
+func HasPrefixAny(str string, prefixes []string) bool
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    result1 := strutil.HasPrefixAny("foo bar", []string{"fo", "xyz", "hello"})
+	result2 := strutil.HasPrefixAny("foo bar", []string{"oom", "world"})
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	// Output:
+	// true
+	// false
+}
+```
+
+### <span id="HasSuffixAny">HasSuffixAny</span>
+
+<p>Checks if a string ends with any of an array of specified strings.</p>
+
+<b>Signature:</b>
+
+```go
+func HasSuffixAny(str string, suffixes []string) bool
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    result1 := strutil.HasSuffixAny("foo bar", []string{"bar", "xyz", "hello"})
+	result2 := strutil.HasSuffixAny("foo bar", []string{"oom", "world"})
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	// Output:
+	// true
+	// false
+}
+```
+
+### <span id="IndexOffset">IndexOffset</span>
+
+<p>Returns the index of the first instance of substr in string after offsetting the string by `idxFrom`, or -1 if substr is not present in string.</p>
+
+<b>Signature:</b>
+
+```go
+func IndexOffset(str string, substr string, idxFrom int) int
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    str := "foo bar hello world"
+
+	result1 := strutil.IndexOffset(str, "o", 5)
+	result2 := strutil.IndexOffset(str, "o", 0)
+	result3 := strutil.IndexOffset(str, "d", len(str)-1)
+	result4 := strutil.IndexOffset(str, "d", len(str))
+	result5 := strutil.IndexOffset(str, "f", -1)
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+	fmt.Println(result4)
+	fmt.Println(result5)
+	// Output:
+	// 12
+	// 1
+	// 18
+	// -1
+	// -1
 }
 ```

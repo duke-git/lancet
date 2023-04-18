@@ -43,8 +43,10 @@ import (
 -   [Equal](#Equal)
 -   [EqualWith](#EqualWith)
 -   [Filter](#Filter)
--   [Find](#Find)
--   [FindLast](#FindLast)
+-   [Find<sup>deprecated</sup>](#Find)
+-   [FindBy](#FindBy)
+-   [FindLast<sup>deprecated</sup>](#FindLast)
+-   [FindLastBy](#FindLastBy)
 -   [Flatten](#Flatten)
 -   [FlattenDeep](#FlattenDeep)
 -   [ForEach](#ForEach)
@@ -838,9 +840,9 @@ func main() {
 }
 ```
 
-### <span id="Find">Find</span>
+### <span id="Find">Find (废弃：使用 FindBy)</span>
 
-<p>遍历切片的元素，返回第一个通过predicate函数真值测试的元素</p>
+<p>遍历slice的元素，返回第一个通过predicate函数真值测试的元素</p>
 
 <b>函数签名:</b>
 
@@ -874,9 +876,45 @@ func main() {
 }
 ```
 
-### <span id="FindLast">FindLast</span>
+### <span id="FindBy">FindBy</span>
 
-<p>从头到尾遍历slice的元素，返回最后一个通过predicate函数真值测试的元素。</p>
+<p>遍历slice的元素，返回第一个通过predicate函数真值测试的元素</p>
+
+<b>函数签名:</b>
+
+```go
+func FindBy[T any](slice []T, predicate func(index int, item T) bool) (v T, ok bool)
+```
+
+<b>示例:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+    nums := []int{1, 2, 3, 4, 5}
+
+	isEven := func(i, num int) bool {
+		return num%2 == 0
+	}
+
+	result, ok := slice.FindBy(nums, isEven)
+
+	fmt.Println(result)
+	fmt.Println(ok)
+
+	// Output:
+	// 2
+	// true
+}
+```
+
+### <span id="FindLast">FindLast(废弃：使用 FindLastBy)</span>
+
+<p>遍历slice的元素，返回最后一个通过predicate函数真值测试的元素。</p>
 
 <b>函数签名:</b>
 
@@ -907,6 +945,42 @@ func main() {
     // Output:
     // 4
     // true
+}
+```
+
+### <span id="FindLastBy">FindLastBy</span>
+
+<p>从遍历slice的元素，返回最后一个通过predicate函数真值测试的元素。</p>
+
+<b>函数签名:</b>
+
+```go
+func FindLastBy[T any](slice []T, predicate func(index int, item T) bool) (v T, ok bool)
+```
+
+<b>示例:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+    nums := []int{1, 2, 3, 4, 5}
+
+	isEven := func(i, num int) bool {
+		return num%2 == 0
+	}
+
+	result, ok := slice.FindLastBy(nums, isEven)
+
+	fmt.Println(result)
+	fmt.Println(ok)
+
+	// Output:
+	// 4
+	// true
 }
 ```
 

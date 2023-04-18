@@ -43,8 +43,10 @@ import (
 -   [EqualWith](#EqualWith)
 -   [Every](#Every)
 -   [Filter](#Filter)
--   [Find](#Find)
--   [FindLast](#FindLast)
+-   [Find<sup>deprecated</sup>](#Find)
+-   [FindBy](#FindBy)
+-   [FindLast<sup>deprecated</sup>](#FindLast)
+-   [FindLastBy](#FindLastBy)
 -   [Flatten](#Flatten)
 -   [FlattenDeep](#FlattenDeep)
 -   [ForEach](#ForEach)
@@ -837,7 +839,7 @@ func main() {
 }
 ```
 
-### <span id="Find">Find</span>
+### <span id="Find">Find(deprecated: use FindBy)</span>
 
 <p>Iterates over elements of slice, returning the first one that passes a truth test on function.</p>
 
@@ -873,7 +875,43 @@ func main() {
 }
 ```
 
-### <span id="FindLast">FindLast</span>
+### <span id="FindBy">FindBy</span>
+
+<p>Iterates over elements of slice, returning the first one that passes a truth test on predicate function.If return T is nil or zero value then no items matched the predicate func. In contrast to Find or FindLast, its return value no longer requires dereferencing</p>
+
+<b>Signature:</b>
+
+```go
+func FindBy[T any](slice []T, predicate func(index int, item T) bool) (v T, ok bool)
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+    nums := []int{1, 2, 3, 4, 5}
+
+	isEven := func(i, num int) bool {
+		return num%2 == 0
+	}
+
+	result, ok := slice.FindBy(nums, isEven)
+
+	fmt.Println(result)
+	fmt.Println(ok)
+
+	// Output:
+	// 2
+	// true
+}
+```
+
+### <span id="FindLast">FindLast(deprecated: use FindLastBy)</span>
 
 <p>iterates over elements of slice from end to begin, returning the last one that passes a truth test on function.</p>
 
@@ -906,6 +944,42 @@ func main() {
     // Output:
     // 4
     // true
+}
+```
+
+### <span id="FindLastBy">FindLastBy</span>
+
+<p>FindLastBy iterates over elements of slice, returning the last one that passes a truth test on predicate function. If return T is nil or zero value then no items matched the predicate func. In contrast to Find or FindLast, its return value no longer requires dereferencing</p>
+
+<b>Signature:</b>
+
+```go
+func FindLastBy[T any](slice []T, predicate func(index int, item T) bool) (v T, ok bool)
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+    nums := []int{1, 2, 3, 4, 5}
+
+	isEven := func(i, num int) bool {
+		return num%2 == 0
+	}
+
+	result, ok := slice.FindLastBy(nums, isEven)
+
+	fmt.Println(result)
+	fmt.Println(ok)
+
+	// Output:
+	// 4
+	// true
 }
 ```
 

@@ -46,6 +46,12 @@ import (
 -   [SplitWords](#SplitWords)
 -   [WordCount](#WordCount)
 -   [RemoveNonPrintable](#RemoveNonPrintable)
+-   [StringToBytes](#StringToBytes)
+-   [BytesToString](#BytesToString)
+-   [IsBlank](#IsBlank)
+-   [HasPrefixAny](#HasPrefixAny)
+-   [HasSuffixAny](#HasSuffixAny)
+-   [IndexOffset](#IndexOffset)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -895,7 +901,6 @@ func main() {
 }
 ```
 
-
 ### <span id="WordCount">WordCount</span>
 
 <p>返回有意义单词的数量，只支持字母字符单词。</p>
@@ -939,7 +944,6 @@ func main() {
 }
 ```
 
-
 ### <span id="RemoveNonPrintable">RemoveNonPrintable</span>
 
 <p>删除字符串中不可打印的字符。</p>
@@ -967,5 +971,197 @@ func main() {
     // Output:
     // hello world
     // 你好😄
+}
+```
+
+### <span id="StringToBytes">StringToBytes</span>
+
+<p>在不分配内存的情况下将字符串转换为字节片。</p>
+
+<b>函数签名:</b>
+
+```go
+func StringToBytes(str string) (b []byte)
+```
+
+<b>示例:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    result1 := strutil.StringToBytes("abc")
+	result2 := reflect.DeepEqual(result1, []byte{'a', 'b', 'c'})
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	// Output:
+	// [97 98 99]
+	// true
+}
+```
+
+### <span id="BytesToString">BytesToString</span>
+
+<p>在不分配内存的情况下将字节切片转换为字符串。</p>
+
+<b>函数签名:</b>
+
+```go
+func BytesToString(bytes []byte) string
+```
+
+<b>示例:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    bytes := []byte{'a', 'b', 'c'}
+	result := strutil.BytesToString(bytes)
+
+	fmt.Println(result)
+	// Output:
+	// abc
+}
+```
+
+### <span id="IsBlank">IsBlank</span>
+
+<p>检查字符串是否为空格或空。</p>
+
+<b>函数签名:</b>
+
+```go
+func IsBlank(str string) bool
+```
+
+<b>示例:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    result1 := strutil.IsBlank("")
+	result2 := strutil.IsBlank("\t\v\f\n")
+	result3 := strutil.IsBlank(" 中文")
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+	// Output:
+	// true
+	// true
+	// false
+}
+```
+
+### <span id="HasPrefixAny">HasPrefixAny</span>
+
+<p>检查字符串是否以指定字符串数组中的任何一个开头。</p>
+
+<b>函数签名:</b>
+
+```go
+func HasPrefixAny(str string, prefixes []string) bool
+```
+
+<b>示例:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    result1 := strutil.HasPrefixAny("foo bar", []string{"fo", "xyz", "hello"})
+	result2 := strutil.HasPrefixAny("foo bar", []string{"oom", "world"})
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	// Output:
+	// true
+	// false
+}
+```
+
+### <span id="HasSuffixAny">HasSuffixAny</span>
+
+<p>检查字符串是否以指定字符串数组中的任何一个结尾。</p>
+
+<b>函数签名:</b>
+
+```go
+func HasSuffixAny(str string, suffixes []string) bool
+```
+
+<b>示例:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    result1 := strutil.HasSuffixAny("foo bar", []string{"bar", "xyz", "hello"})
+	result2 := strutil.HasSuffixAny("foo bar", []string{"oom", "world"})
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	// Output:
+	// true
+	// false
+}
+```
+
+### <span id="IndexOffset">IndexOffset</span>
+
+<p>将字符串偏移idxFrom后，返回字符串中第一个 substr 实例的索引，如果字符串中不存在 substr，则返回 -1。</p>
+
+<b>函数签名:</b>
+
+```go
+func IndexOffset(str string, substr string, idxFrom int) int
+```
+
+<b>示例:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    str := "foo bar hello world"
+
+	result1 := strutil.IndexOffset(str, "o", 5)
+	result2 := strutil.IndexOffset(str, "o", 0)
+	result3 := strutil.IndexOffset(str, "d", len(str)-1)
+	result4 := strutil.IndexOffset(str, "d", len(str))
+	result5 := strutil.IndexOffset(str, "f", -1)
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+	fmt.Println(result4)
+	fmt.Println(result5)
+	// Output:
+	// 12
+	// 1
+	// 18
+	// -1
+	// -1
 }
 ```
