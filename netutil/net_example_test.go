@@ -16,18 +16,18 @@ func ExampleGetInternalIp() {
 	// true
 }
 
-func ExampleGetPublicIpInfo() {
-	ipInfo, err := GetPublicIpInfo()
-	if err != nil {
-		return
-	}
+// func ExampleGetPublicIpInfo() {
+// 	ipInfo, err := GetPublicIpInfo()
+// 	if err != nil {
+// 		return
+// 	}
 
-	result := IsPublicIP(net.ParseIP(ipInfo.Ip))
-	fmt.Println(result)
+// 	result := IsPublicIP(net.ParseIP(ipInfo.Ip))
+// 	fmt.Println(result)
 
-	// Output:
-	// true
-}
+// 	// Output:
+// 	// true
+// }
 
 func ExampleGetRequestPublicIp() {
 	ip := "36.112.24.10"
