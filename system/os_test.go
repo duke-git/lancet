@@ -45,7 +45,7 @@ func TestExecCommand(t *testing.T) {
 	assert := internal.NewAssert(t, "TestExecCommand")
 
 	// linux or mac
-	stdout, stderr, err := ExecCommand("ls")
+	stdout, stderr, err := ExecCommand("ls", WithForeground())
 	t.Log("std out: ", stdout)
 	t.Log("std err: ", stderr)
 	assert.Equal("", stderr)

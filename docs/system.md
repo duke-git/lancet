@@ -207,14 +207,17 @@ func main() {
 }
 ```
 
-### <span id="ExecCommand">CompareOsEnv</span>
+### <span id="ExecCommand">ExecCommand</span>
 
 <p>use shell /bin/bash -c(linux) or cmd (windows) to execute command.</p>
 
 <b>Signature:</b>
 
 ```go
-func ExecCommand(command string) (stdout, stderr string, err error)
+type (
+	Option func(*exec.Cmd)
+)
+func ExecCommand(command string, opts ...Option) (stdout, stderr string, err error)
 ```
 
 <b>Example:</b>
