@@ -180,7 +180,7 @@ func ExampleConvertMapToQueryString() {
 }
 
 func ExampleIsPingConnected() {
-	result1 := IsPingConnected("cn.bing.com")
+	result1 := IsPingConnected("bing.com")
 	result2 := IsPingConnected("www.!@#&&&.com")
 
 	fmt.Println(result1)
@@ -192,7 +192,7 @@ func ExampleIsPingConnected() {
 }
 
 func ExampleIsTelnetConnected() {
-	result1 := IsTelnetConnected("cn.bing.com", "80")
+	result1 := IsTelnetConnected("bing.com", "80")
 	result2 := IsTelnetConnected("www.baidu.com", "123")
 
 	fmt.Println(result1)
