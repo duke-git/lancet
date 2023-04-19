@@ -44,6 +44,8 @@ import (
 -   [HttpPut<sup>Deprecated</sup>](#HttpPut)
 -   [HttpPatch<sup>Deprecated</sup>](#HttpPatch)
 -   [ParseHttpResponse](#ParseHttpResponse)
+-   [DownloadFile](#DownloadFile)
+-   [UploadFile](#UploadFile)
 -   [IsPingConnected](#IsPingConnected)
 -   [IsTelnetConnected](#IsTelnetConnected)
 
@@ -901,6 +903,61 @@ func main() {
 }
 ```
 
+### <span id="DownloadFile">DownloadFile</span>
+
+<p>从指定的server地址下载文件。</p>
+
+<b>函数签名:</b>
+
+```go
+func DownloadFile(filepath string, url string) error
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/netutil"
+)
+
+func main() {
+    err := DownloadFile("./lancet_logo.jpg", "https://picx.zhimg.com/v2-fc82a4199749de9cfb71e32e54f489d3_720w.jpg?source=172ae18b")
+
+    fmt.Println(err)
+}
+```
+
+### <span id="UploadFile">UploadFile</span>
+
+<p>将文件上传指定的server地址。</p>
+
+<b>函数签名:</b>
+
+```go
+func UploadFile(filepath string, server string) (bool, error)
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/netutil"
+)
+
+func main() {
+    ok, err := netutil.UploadFile("./a.jpg", "http://www.xxx.com/bucket/test")
+
+    fmt.Println(ok)
+    fmt.Println(err)
+}
+```
+
 ### <span id="IsPingConnected">IsPingConnected</span>
 
 <p>检查能否ping通主机。</p>
@@ -917,10 +974,7 @@ func IsPingConnected(host string) bool
 package main
 
 import (
-    "encoding/json"
     "fmt"
-    "io/ioutil"
-    "log"
     "github.com/duke-git/lancet/v2/netutil"
 )
 
@@ -953,10 +1007,7 @@ func IsTelnetConnected(host string, port string) bool
 package main
 
 import (
-    "encoding/json"
     "fmt"
-    "io/ioutil"
-    "log"
     "github.com/duke-git/lancet/v2/netutil"
 )
 
