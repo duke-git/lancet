@@ -10,7 +10,9 @@ import (
 	"net/http"
 	"net/url"
 	"os"
+	"os/exec"
 	"strings"
+	"time"
 
 	"github.com/duke-git/lancet/v2/fileutil"
 )
@@ -244,4 +246,31 @@ func DownloadFile(filepath string, url string) error {
 	_, err = io.Copy(out, resp.Body)
 
 	return err
+}
+
+// IsPingConnected checks if can ping specified host or not.
+// Play: todo
+func IsPingConnected(host string) bool {
+	cmd := exec.Command("ping", host, "-c", "1", "-W", "6")
+	err := cmd.Run()
+	if err != nil {
+		return false
+	}
+	return true
+}
+
+// IsTelnetConnected checks if can telnet specified host or not.
+// only support two args: args[0] is port, args[1] is user
+// Play: todo
+func IsTelnetConnected(host string, port string) bool {
+	adder := host + ":" + port
+	conn, err := net.DialTimeout("tcp", adder, 5*time.Second)
+
+	if err != nil {
+		return false
+	}
+
+	defer conn.Close()
+
+	return true
 }
