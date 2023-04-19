@@ -23,7 +23,7 @@
 ## 特性
 
 -   👏 全面、高效、可复用
--   💪 200+常用 go 工具函数，支持 string、slice、datetime、net、crypt...
+-   💪 300+常用 go 工具函数，支持 string、slice、datetime、net、crypt...
 -   💅 只依赖 go 标准库
 -   🌍 所有导出函数单元测试覆盖率 100%
 
