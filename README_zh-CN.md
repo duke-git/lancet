@@ -188,6 +188,7 @@ import "github.com/duke-git/lancet/fileutil"
 -   [ReadFileByLine](https://github.com/duke-git/lancet/blob/v1/docs/fileutil_zh-CN.md#ReadFileByLine)
 -   [Zip](https://github.com/duke-git/lancet/blob/v1/docs/fileutil_zh-CN.md#Zip)
 -   [UnZip](https://github.com/duke-git/lancet/blob/v1/docs/fileutil_zh-CN.md#UnZip)
+-   [CurrentPath](https://github.com/duke-git/lancet/blob/v1/docs/fileutil_zh-CN.md#CurrentPath)
 
 ### 5. formatter 格式化器包含一些数据格式化处理方法。
 
@@ -198,6 +199,12 @@ import "github.com/duke-git/lancet/formatter"
 #### 函数列表:
 
 -   [Comma](https://github.com/duke-git/lancet/blob/v1/docs/formatter_zh-CN.md#Comma)
+-   [Pretty](https://github.com/duke-git/lancet/blob/v1/docs/formatter_zh-CN.md#Pretty)
+-   [PrettyToWriter](https://github.com/duke-git/lancet/blob/v1/docs/formatter_zh-CN.md#PrettyToWriter)
+-   [DecimalBytes](https://github.com/duke-git/lancet/blob/v1/docs/formatter_zh-CN.md#DecimalBytes)
+-   [BinaryBytes](https://github.com/duke-git/lancet/blob/v1/docs/formatter_zh-CN.md#BinaryBytes)
+-   [ParseDecimalBytes](https://github.com/duke-git/lancet/blob/v1/docs/formatter_zh-CN.md#ParseDecimalBytes)
+-   [ParseBinaryBytes](https://github.com/duke-git/lancet/blob/v1/docs/formatter_zh-CN.md#ParseBinaryBytes)
 
 ### function 函数包控制函数执行流程，包含部分函数式编程。
 
@@ -232,6 +239,10 @@ import "github.com/duke-git/lancet/mathutil"
 -   [RoundToFloat](https://github.com/duke-git/lancet/blob/v1/docs/mathutil_zh-CN.md#RoundToFloat)
 -   [RoundToString](https://github.com/duke-git/lancet/blob/v1/docs/mathutil_zh-CN.md#RoundToString)
 -   [TruncRound](https://github.com/duke-git/lancet/blob/v1/docs/mathutil_zh-CN.md#TruncRound)
+-   [AngleToRadian](https://github.com/duke-git/lancet/blob/v1/docs/mathutil_zh-CN.md#AngleToRadian)
+-   [RadianToAngle](https://github.com/duke-git/lancet/blob/v1/docs/mathutil_zh-CN.md#RadianToAngle)
+-   [PointDistance](https://github.com/duke-git/lancet/blob/v1/docs/mathutil_zh-CN.md#PointDistance)
+-   [IsPrime](https://github.com/duke-git/lancet/blob/v1/docs/mathutil_zh-CN.md#IsPrime)
 
 ### 7. netutil 网络包支持获取 ip 地址，发送 http 请求。
 
@@ -256,6 +267,10 @@ import "github.com/duke-git/lancet/netutil"
 -   [HttpPut](https://github.com/duke-git/lancet/blob/v1/docs/netutil_zh-CN.md#HttpPut)
 -   [HttpPatch](https://github.com/duke-git/lancet/blob/v1/docs/netutil_zh-CN.md#HttpPatch)
 -   [ParseHttpResponse](https://github.com/duke-git/lancet/blob/v1/docs/netutil_zh-CN.md#ParseHttpResponse)
+-   [UploadFile](https://github.com/duke-git/lancet/blob/v1/docs/netutil_zh-CN.md#UploadFile)
+-   [DownloadFile](https://github.com/duke-git/lancet/blob/v1/docs/netutil_zh-CN.md#DownloadFile)
+-   [IsPingConnected](https://github.com/duke-git/lancet/blob/v1/docs/netutil_zh-CN.md#IsPingConnected)
+-   [IsTelnetConnected](https://github.com/duke-git/lancet/blob/v1/docs/netutil_zh-CN.md#IsTelnetConnected)
 
 ### 8. random 随机数生成器包，可以生成随机[]bytes, int, string。
 
@@ -367,6 +382,13 @@ import "github.com/duke-git/lancet/strutil"
 -   [Unwrap](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#Unwrap)
 -   [SplitWords](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#SplitWords)
 -   [WordCount](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#WordCount)
+-   [RemoveNonPrintable](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#RemoveNonPrintable)
+-   [StringToBytes](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#StringToBytes)
+-   [BytesToString](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#BytesToString)
+-   [IsBlank](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#IsBlank)
+-   [HasPrefixAny](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#HasPrefixAny)
+-   [HasSuffixAny](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#HasSuffixAny)
+-   [IndexOffset](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#IndexOffset)
 
 ### 13. system 包含 os, runtime, shell command 相关函数。
 
@@ -409,11 +431,14 @@ import "github.com/duke-git/lancet/validator"
 -   [IsDns](https://github.com/duke-git/lancet/blob/v1/docs/validator_zh-CN.md#IsDns)
 -   [IsEmail](https://github.com/duke-git/lancet/blob/v1/docs/validator_zh-CN.md#IsEmail)
 -   [IsEmptyString](https://github.com/duke-git/lancet/blob/v1/docs/validator_zh-CN.md#IsEmptyString)
+-   [IsInt](https://github.com/duke-git/lancet/blob/v1/docs/validator_zh-CN.md#IsInt)
+-   [IsFloat](https://github.com/duke-git/lancet/blob/v1/docs/validator_zh-CN.md#IsFloat)
+-   [IsNumber](https://github.com/duke-git/lancet/blob/v1/docs/validator_zh-CN.md#IsNumber)
+-   [IsIntStr](https://github.com/duke-git/lancet/blob/v1/docs/validator_zh-CN.md#IsIntStr)
 -   [IsFloatStr](https://github.com/duke-git/lancet/blob/v1/docs/validator_zh-CN.md#IsFloatStr)
 -   [IsNumberStr](https://github.com/duke-git/lancet/blob/v1/docs/validator_zh-CN.md#IsNumberStr)
 -   [IsJSON](https://github.com/duke-git/lancet/blob/v1/docs/validator_zh-CN.md#IsJSON)
 -   [IsRegexMatch](https://github.com/duke-git/lancet/blob/v1/docs/validator_zh-CN.md#IsRegexMatch)
--   [IsIntStr](https://github.com/duke-git/lancet/blob/v1/docs/validator_zh-CN.md#IsIntStr)
 -   [IsIp](https://github.com/duke-git/lancet/blob/v1/docs/validator_zh-CN.md#IsIp)
 -   [IsIpV4](https://github.com/duke-git/lancet/blob/v1/docs/validator_zh-CN.md#IsIpV4)
 -   [IsIpV6](https://github.com/duke-git/lancet/blob/v1/docs/validator_zh-CN.md#IsIpV6)
@@ -422,6 +447,8 @@ import "github.com/duke-git/lancet/validator"
 -   [IsWeakPassword](https://github.com/duke-git/lancet/blob/v1/docs/validator_zh-CN.md#IsWeakPassword)
 -   [IsZeroValue](https://github.com/duke-git/lancet/blob/v1/docs/validator_zh-CN.md#IsZeroValue)
 -   [IsGBK](https://github.com/duke-git/lancet/blob/v1/docs/validator_zh-CN.md#IsGBK)
+-   [IsASCII](https://github.com/duke-git/lancet/blob/v1/docs/validator_zh-CN.md#IsASCII)
+-   [IsPrintable](https://github.com/duke-git/lancet/blob/v1/docs/validator_zh-CN.md#IsPrintable)
 
 ## 如何贡献代码
 

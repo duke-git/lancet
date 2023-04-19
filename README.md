@@ -189,6 +189,7 @@ import "github.com/duke-git/lancet/fileutil"
 -   [ReadFileByLine](https://github.com/duke-git/lancet/blob/v1/docs/fileutil.md#ReadFileByLine)
 -   [Zip](https://github.com/duke-git/lancet/blob/v1/docs/fileutil.md#Zip)
 -   [UnZip](https://github.com/duke-git/lancet/blob/v1/docs/fileutil.md#UnZip)
+-   [CurrentPath](https://github.com/duke-git/lancet/blob/v1/docs/fileutil.md#CurrentPath)
 
 ### 5. Formatter contains some functions for data formatting.
 
@@ -199,6 +200,12 @@ import "github.com/duke-git/lancet/formatter"
 #### Function list:
 
 -   [Comma](https://github.com/duke-git/lancet/blob/v1/docs/formatter.md#Comma)
+-   [Pretty](https://github.com/duke-git/lancet/blob/v1/docs/formatter.md#Pretty)
+-   [PrettyToWriter](https://github.com/duke-git/lancet/blob/v1/docs/formatter.md#PrettyToWriter)
+-   [DecimalBytes](https://github.com/duke-git/lancet/blob/v1/docs/formatter.md#DecimalBytes)
+-   [BinaryBytes](https://github.com/duke-git/lancet/blob/v1/docs/formatter.md#BinaryBytes)
+-   [ParseDecimalBytes](https://github.com/duke-git/lancet/blob/v1/docs/formatter.md#ParseDecimalBytes)
+-   [ParseBinaryBytes](https://github.com/duke-git/lancet/blob/v1/docs/formatter.md#ParseBinaryBytes)
 
 ### Function package can control the flow of function execution and support part of functional programming
 
@@ -233,6 +240,10 @@ import "github.com/duke-git/lancet/mathutil"
 -   [RoundToFloat](https://github.com/duke-git/lancet/blob/v1/docs/mathutil.md#RoundToFloat)
 -   [RoundToString](https://github.com/duke-git/lancet/blob/v1/docs/mathutil.md#RoundToString)
 -   [TruncRound](https://github.com/duke-git/lancet/blob/v1/docs/mathutil.md#TruncRound)
+-   [AngleToRadian](https://github.com/duke-git/lancet/blob/v1/docs/mathutil.md#AngleToRadian)
+-   [RadianToAngle](https://github.com/duke-git/lancet/blob/v1/docs/mathutil.md#RadianToAngle)
+-   [PointDistance](https://github.com/duke-git/lancet/blob/v1/docs/mathutil.md#PointDistance)
+-   [IsPrime](https://github.com/duke-git/lancet/blob/v1/docs/mathutil.md#IsPrime)
 
 ### 7. Netutil package contains functions to get net information and send http request.
 
@@ -257,6 +268,10 @@ import "github.com/duke-git/lancet/netutil"
 -   [HttpPut](https://github.com/duke-git/lancet/blob/v1/docs/netutil.md#HttpPut)
 -   [HttpPatch](https://github.com/duke-git/lancet/blob/v1/docs/netutil.md#HttpPatch)
 -   [ParseHttpResponse](https://github.com/duke-git/lancet/blob/v1/docs/netutil.md#ParseHttpResponse)
+-   [UploadFile](https://github.com/duke-git/lancet/blob/v1/docs/netutil.md#UploadFile)
+-   [DownloadFile](https://github.com/duke-git/lancet/blob/v1/docs/netutil.md#DownloadFile)
+-   [IsPingConnected](https://github.com/duke-git/lancet/blob/v1/docs/netutil.md#IsPingConnected)
+-   [IsTelnetConnected](https://github.com/duke-git/lancet/blob/v1/docs/netutil.md#IsTelnetConnected)
 
 ### 8. Random package implements some basic functions to generate random int and string.
 
@@ -368,6 +383,13 @@ import "github.com/duke-git/lancet/strutil"
 -   [Unwrap](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#Unwrap)
 -   [SplitWords](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#SplitWords)
 -   [WordCount](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#WordCount)
+-   [RemoveNonPrintable](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#RemoveNonPrintable)
+-   [StringToBytes](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#StringToBytes)
+-   [BytesToString](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#BytesToString)
+-   [IsBlank](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#IsBlank)
+-   [HasPrefixAny](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#HasPrefixAny)
+-   [HasSuffixAny](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#HasSuffixAny)
+-   [IndexOffset](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#IndexOffset)
 
 ### 12. System package contain some functions about os, runtime, shell command.
 
@@ -410,11 +432,14 @@ import "github.com/duke-git/lancet/validator"
 -   [IsDns](https://github.com/duke-git/lancet/blob/v1/docs/validator.md#IsDns)
 -   [IsEmail](https://github.com/duke-git/lancet/blob/v1/docs/validator.md#IsEmail)
 -   [IsEmptyString](https://github.com/duke-git/lancet/blob/v1/docs/validator.md#IsEmptyString)
+-   [IsInt](https://github.com/duke-git/lancet/blob/v1/docs/validator.md#IsInt)
+-   [IsFloat](https://github.com/duke-git/lancet/blob/v1/docs/validator.md#IsFloat)
+-   [IsNumber](https://github.com/duke-git/lancet/blob/v1/docs/validator.md#IsNumber)
+-   [IsIntStr](https://github.com/duke-git/lancet/blob/v1/docs/validator.md#IsIntStr)
 -   [IsFloatStr](https://github.com/duke-git/lancet/blob/v1/docs/validator.md#IsFloatStr)
 -   [IsNumberStr](https://github.com/duke-git/lancet/blob/v1/docs/validator.md#IsNumberStr)
 -   [IsJSON](https://github.com/duke-git/lancet/blob/v1/docs/validator.md#IsJSON)
 -   [IsRegexMatch](https://github.com/duke-git/lancet/blob/v1/docs/validator.md#IsRegexMatch)
--   [IsIntStr](https://github.com/duke-git/lancet/blob/v1/docs/validator.md#IsIntStr)
 -   [IsIp](https://github.com/duke-git/lancet/blob/v1/docs/validator.md#IsIp)
 -   [IsIpV4](https://github.com/duke-git/lancet/blob/v1/docs/validator.md#IsIpV4)
 -   [IsIpV6](https://github.com/duke-git/lancet/blob/v1/docs/validator.md#IsIpV6)
@@ -423,6 +448,8 @@ import "github.com/duke-git/lancet/validator"
 -   [IsWeakPassword](https://github.com/duke-git/lancet/blob/v1/docs/validator.md#IsWeakPassword)
 -   [IsZeroValue](https://github.com/duke-git/lancet/blob/v1/docs/validator.md#IsZeroValue)
 -   [IsGBK](https://github.com/duke-git/lancet/blob/v1/docs/validator.md#IsGBK)
+-   [IsASCII](https://github.com/duke-git/lancet/blob/v1/docs/validator.md#IsASCII)
+-   [IsPrintable](https://github.com/duke-git/lancet/blob/v1/docs/validator.md#IsPrintable)
 
 ## How to Contribute
 

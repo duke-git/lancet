@@ -400,3 +400,51 @@ func TestIsGBK(t *testing.T) {
 	assert.Equal(true, IsGBK(gbkData))
 	assert.Equal(false, utf8.Valid(gbkData))
 }
+
+func TestIsNumber(t *testing.T) {
+	assert := internal.NewAssert(t, "TestIsNumber")
+
+	assert.Equal(false, IsNumber(""))
+	assert.Equal(false, IsNumber("3"))
+	assert.Equal(true, IsNumber(0))
+	assert.Equal(true, IsNumber(0.1))
+}
+
+func TestIsFloat(t *testing.T) {
+	assert := internal.NewAssert(t, "TestIsFloat")
+
+	assert.Equal(false, IsFloat(""))
+	assert.Equal(false, IsFloat("3"))
+	assert.Equal(false, IsFloat(0))
+	assert.Equal(true, IsFloat(0.1))
+}
+
+func TestIsInt(t *testing.T) {
+	assert := internal.NewAssert(t, "TestIsInt")
+
+	assert.Equal(false, IsInt(""))
+	assert.Equal(false, IsInt("3"))
+	assert.Equal(false, IsInt(0.1))
+	assert.Equal(true, IsInt(0))
+	assert.Equal(true, IsInt(-1))
+}
+
+func TestIsASCII(t *testing.T) {
+	assert := internal.NewAssert(t, "TestIsASCII")
+
+	assert.Equal(true, IsASCII("ABC"))
+	assert.Equal(true, IsASCII("123"))
+	assert.Equal(true, IsASCII(""))
+	assert.Equal(false, IsASCII("😄"))
+	assert.Equal(false, IsASCII("你好"))
+}
+
+func TestIsPrintable(t *testing.T) {
+	assert := internal.NewAssert(t, "TestIsPrintable")
+
+	assert.Equal(true, IsPrintable("ABC"))
+	assert.Equal(true, IsPrintable("{id: 123}"))
+	assert.Equal(true, IsPrintable(""))
+	assert.Equal(true, IsPrintable("😄"))
+	assert.Equal(false, IsPrintable("\u0000"))
+}

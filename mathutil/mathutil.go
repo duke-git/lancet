@@ -90,3 +90,39 @@ func TruncRound(x float64, n int) float64 {
 	res, _ := strconv.ParseFloat(newFloat, 64)
 	return res
 }
+
+// AngleToRadian converts angle value to radian value.
+func AngleToRadian(angle float64) float64 {
+	radian := angle * (math.Pi / 180)
+	return radian
+}
+
+// RadianToAngle converts radian value to angle value.
+func RadianToAngle(radian float64) float64 {
+	angle := radian * (180 / math.Pi)
+	return angle
+}
+
+// PointDistance get two points distance.
+func PointDistance(x1, y1, x2, y2 float64) float64 {
+	a := x1 - x2
+	b := y1 - y2
+	c := math.Pow(a, 2) + math.Pow(b, 2)
+
+	return math.Sqrt(c)
+}
+
+// IsPrimes checks if number is prime number.
+func IsPrime(n int) bool {
+	if n < 2 {
+		return false
+	}
+
+	for i := 2; i <= int(math.Sqrt(float64(n))); i++ {
+		if n%i == 0 {
+			return false
+		}
+	}
+
+	return true
+}

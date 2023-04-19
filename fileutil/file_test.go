@@ -221,3 +221,8 @@ func TestMiMeType(t *testing.T) {
 	assert.Equal("text/plain; charset=utf-8", MiMeType(f))
 	assert.Equal("text/plain; charset=utf-8", MiMeType("./file.go"))
 }
+
+func TestCurrentPath(t *testing.T) {
+	absPath := CurrentPath()
+	t.Log(absPath)
+}

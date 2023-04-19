@@ -1,6 +1,7 @@
 package mathutil
 
 import (
+	"math"
 	"testing"
 
 	"github.com/duke-git/lancet/internal"
@@ -69,4 +70,47 @@ func TestTruncRound(t *testing.T) {
 	assert.Equal(TruncRound(0.125, 2), float64(0.12))
 	assert.Equal(TruncRound(0.125, 3), float64(0.125))
 	assert.Equal(TruncRound(33.33333, 2), float64(33.33))
+}
+
+func TestAngleToRadian(t *testing.T) {
+	assert := internal.NewAssert(t, "TestAngleToRadian")
+
+	result1 := AngleToRadian(45)
+	result2 := AngleToRadian(90)
+	result3 := AngleToRadian(180)
+
+	assert.Equal(0.7853981633974483, result1)
+	assert.Equal(1.5707963267948966, result2)
+	assert.Equal(3.141592653589793, result3)
+}
+
+func TestRadianToAngle(t *testing.T) {
+	assert := internal.NewAssert(t, "TestAngleToRadian")
+
+	result1 := RadianToAngle(math.Pi)
+	result2 := RadianToAngle(math.Pi / 2)
+	result3 := RadianToAngle(math.Pi / 4)
+
+	assert.Equal(float64(180), result1)
+	assert.Equal(float64(90), result2)
+	assert.Equal(float64(45), result3)
+}
+
+func TestPointDistance(t *testing.T) {
+	assert := internal.NewAssert(t, "TestPointDistance")
+
+	result1 := PointDistance(1, 1, 4, 5)
+
+	assert.Equal(float64(5), result1)
+}
+
+func TestIsPrime(t *testing.T) {
+	assert := internal.NewAssert(t, "TestIsPrime")
+
+	assert.Equal(false, IsPrime(-1))
+	assert.Equal(false, IsPrime(0))
+	assert.Equal(false, IsPrime(1))
+	assert.Equal(true, IsPrime(2))
+	assert.Equal(true, IsPrime(3))
+	assert.Equal(false, IsPrime(4))
 }

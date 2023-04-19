@@ -37,6 +37,7 @@ import (
 -   [ReadFileByLine](#ReadFileByLine)
 -   [Zip](#Zip)
 -   [UnZip](#UnZip)
+-   [CurrentPath](#CurrentPath)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -466,5 +467,31 @@ func main() {
     if err != nil {
         fmt.Println(err)
     }
+}
+```
+
+### <span id="CurrentPath">CurrentPath</span>
+
+<p>返回当前位置的绝对路径。</p>
+
+<b>函数签名:</b>
+
+```go
+func CurrentPath() string
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/fileutil"
+)
+
+func main() {
+    absPath := CurrentPath()
+    fmt.Println(absPath)
 }
 ```

@@ -45,6 +45,8 @@ import (
 -   [HttpPut<sup>Deprecated</sup>](#HttpPut)
 -   [HttpPatch<sup>Deprecated</sup>](#HttpPatch)
 -   [ParseHttpResponse](#ParseHttpResponse)
+-   [UploadFile](#UploadFile)
+-   [DownloadFile](#DownloadFile)
 -   [IsPingConnected](#IsPingConnected)
 -   [IsTelnetConnected](#IsTelnetConnected)
 
@@ -552,7 +554,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/v2/netutil"
+    "github.com/duke-git/lancet/netutil"
 )
 
 func main() {
@@ -861,6 +863,62 @@ func main() {
     }
 
     fmt.Println(toDoResp)
+}
+```
+
+### <span id="UploadFile">UploadFile</span>
+
+<p>将文件上传指定的server地址。</p>
+
+<b>函数签名:</b>
+
+```go
+func UploadFile(filepath string, server string) (bool, error)
+```
+
+<b>例子:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/netutil"
+)
+
+func main() {
+    ok, err := netutil.UploadFile("./a.jpg", "http://www.xxx.com/bucket/test")
+
+    fmt.Println(ok)
+    fmt.Println(err)
+}
+```
+
+### <span id="DownloadFile">DownloadFile</span>
+
+<p>从指定的server地址下载文件。</p>
+
+<b>函数签名:</b>
+
+```go
+func DownloadFile(filepath string, url string) error
+```
+
+<b>例子:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/netutil"
+)
+
+func main() {
+    ok, err := netutil.DownloadFile("./", "http://www.xxx.com/a.jpg")
+
+    fmt.Println(ok)
+    fmt.Println(err)
 }
 ```
 

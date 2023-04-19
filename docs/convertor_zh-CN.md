@@ -211,7 +211,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/v2/convertor"
+    "github.com/duke-git/lancet/convertor"
 )
 
 func main() {
@@ -401,7 +401,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/v2/convertor"
+    "github.com/duke-git/lancet/convertor"
 )
 
 func main() {
@@ -427,7 +427,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/v2/convertor"
+    "github.com/duke-git/lancet/convertor"
 )
 
 func main() {

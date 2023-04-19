@@ -1007,7 +1007,7 @@ func ToSlice(value ...interface{}) interface{}
 ```go
 import (
     "fmt"
-    "github.com/duke-git/lancet/v2/slice"
+    "github.com/duke-git/lancet/slice"
 )
 
 func main() {
@@ -1031,7 +1031,7 @@ func ToSlicePointer(value ...interface{}) []*interface{}
 ```go
 import (
     "fmt"
-    "github.com/duke-git/lancet/v2/slice"
+    "github.com/duke-git/lancet/slice"
 )
 
 func main() {

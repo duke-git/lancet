@@ -316,3 +316,49 @@ func IsGBK(data []byte) bool {
 
 	return true
 }
+
+// IsNumberStr check if the value is number(integer, float) or not.
+func IsNumber(v interface{}) bool {
+	return IsInt(v) || IsFloat(v)
+}
+
+// IsFloat check if the value is float(float32, float34) or not.
+func IsFloat(v interface{}) bool {
+	switch v.(type) {
+	case float32, float64:
+		return true
+	}
+	return false
+}
+
+// IsInt check if the value is integer(int, unit) or not.
+func IsInt(v interface{}) bool {
+	switch v.(type) {
+	case int, int8, int16, int32, int64, uint, uint8, uint16, uint32, uint64, uintptr:
+		return true
+	}
+	return false
+}
+
+// IsASCII checks if string is all ASCII char.
+func IsASCII(str string) bool {
+	for i := 0; i < len(str); i++ {
+		if str[i] > unicode.MaxASCII {
+			return false
+		}
+	}
+	return true
+}
+
+// IsPrintable checks if string is all printable chars.
+func IsPrintable(str string) bool {
+	for _, r := range str {
+		if !unicode.IsPrint(r) {
+			if r == '\n' || r == '\r' || r == '\t' || r == '`' {
+				continue
+			}
+			return false
+		}
+	}
+	return true
+}

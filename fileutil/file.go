@@ -16,6 +16,7 @@ import (
 	"os"
 	"path"
 	"path/filepath"
+	"runtime"
 	"strings"
 )
 
@@ -88,7 +89,7 @@ func CopyFile(srcFilePath string, dstFilePath string) error {
 	}
 }
 
-//ClearFile write empty string to path file
+// ClearFile write empty string to path file
 func ClearFile(path string) error {
 	f, err := os.OpenFile(path, os.O_WRONLY|os.O_TRUNC, 0777)
 	if err != nil {
@@ -100,7 +101,7 @@ func ClearFile(path string) error {
 	return err
 }
 
-//ReadFileToString return string of file content
+// ReadFileToString return string of file content
 func ReadFileToString(path string) (string, error) {
 	bytes, err := ioutil.ReadFile(path)
 	if err != nil {
@@ -317,4 +318,15 @@ func MiMeType(file interface{}) string {
 		return http.DetectContentType(buffer)
 	}
 	return mediatype
+}
+
+// CurrentPath return current absolute path.
+func CurrentPath() string {
+	var absPath string
+	_, filename, _, ok := runtime.Caller(1)
+	if ok {
+		absPath = path.Dir(filename)
+	}
+
+	return absPath
 }

@@ -25,11 +25,14 @@ import (
 -   [Exponent](#Exponent)
 -   [Fibonacci](#Fibonacci)
 -   [Factorial](#Factorial)
-
 -   [Percent](#Percent)
 -   [RoundToFloat](#RoundToFloat)
 -   [RoundToString](#RoundToString)
 -   [TruncRound](#TruncRound)
+-   [AngleToRadian](#AngleToRadian)
+-   [RadianToAngle](#RadianToAngle)
+-   [PointDistance](#PointDistance)
+-   [IsPrime](#IsPrime)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -229,5 +232,146 @@ func main() {
     fmt.Println(mathutil.TruncRound(0.124, 2)) //0.12
     fmt.Println(mathutil.TruncRound(0.125, 2)) //0.12
     fmt.Println(mathutil.TruncRound(0.125, 3)) //0.125
+}
+```
+
+### <span id="AngleToRadian">AngleToRadian</span>
+
+<p>将角度值转为弧度值</p>
+
+<b>函数签名:</b>
+
+```go
+func AngleToRadian(angle float64) float64
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/mathutil"
+)
+
+func main() {
+    result1 := mathutil.AngleToRadian(45)
+    result2 := mathutil.AngleToRadian(90)
+    result3 := mathutil.AngleToRadian(180)
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+
+    // Output:
+    // 0.7853981633974483
+    // 1.5707963267948966
+    // 3.141592653589793
+}
+```
+
+### <span id="RadianToAngle">RadianToAngle</span>
+
+<p>将弧度值转为角度值</p>
+
+<b>函数签名:</b>
+
+```go
+func RadianToAngle(radian float64) float64
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/mathutil"
+)
+
+func main() {
+    result1 := mathutil.RadianToAngle(math.Pi)
+    result2 := mathutil.RadianToAngle(math.Pi / 2)
+    result3 := mathutil.RadianToAngle(math.Pi / 4)
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+
+    // Output:
+    // 180
+    // 90
+    // 45
+}
+```
+
+### <span id="PointDistance">PointDistance</span>
+
+<p>计算两个坐标点的距离</p>
+
+<b>函数签名:</b>
+
+```go
+func PointDistance(x1, y1, x2, y2 float64) float64
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/mathutil"
+)
+
+func main() {
+    result1 := mathutil.PointDistance(1, 1, 4, 5)
+
+    fmt.Println(result1)
+
+    // Output:
+    // 5
+}
+```
+
+### <span id="IsPrime">IsPrime</span>
+
+<p>判断质数。</p>
+
+<b>函数签名:</b>
+
+```go
+func IsPrime(n int) bool
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/mathutil"
+)
+
+func main() {
+    result1 := mathutil.IsPrime(-1)
+	result2 := mathutil.IsPrime(0)
+	result3 := mathutil.IsPrime(1)
+	result4 := mathutil.IsPrime(2)
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+	fmt.Println(result4)
+
+	// Output:
+	// false
+	// false
+	// false
+	// true
 }
 ```

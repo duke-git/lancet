@@ -37,11 +37,14 @@ import (
 -   [IsDns](#IsDns)
 -   [IsEmail](#IsEmail)
 -   [IsEmptyString](#IsEmptyString)
+-   [IsInt](#IsInt)
+-   [IsFloat](#IsFloat)
+-   [IsNumber](#IsNumber)
+-   [IsIntStr](#IsIntStr)
 -   [IsFloatStr](#IsFloatStr)
 -   [IsNumberStr](#IsNumberStr)
 -   [IsJSON](#IsJSON)
 -   [IsRegexMatch](#IsRegexMatch)
--   [IsIntStr](#IsIntStr)
 -   [IsIp](#IsIp)
 -   [IsIpV4](#IsIpV4)
 -   [IsIpV6](#IsIpV6)
@@ -50,6 +53,8 @@ import (
 -   [IsWeakPassword](#IsWeakPassword)
 -   [IsZeroValue](#IsZeroValue)
 -   [IsGBK](#IsGBK)
+-   [IsASCII](#IsASCII)
+-   [IsAIsPrintableSCII](#IsPrintable)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -478,6 +483,143 @@ func main() {
 }
 ```
 
+### <span id="IsInt">IsInt</span>
+
+<p>Check if the value is integer(int, unit) or not.</p>
+
+<b>Signature:</b>
+
+```go
+func IsInt(v interface{}) bool
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/validator"
+)
+
+func main() {
+    result1 := validator.IsInt("")
+    result2 := validator.IsInt("3")
+    result3 := validator.IsInt(0.1)
+    result4 := validator.IsInt(0)
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
+
+    // Output:
+    // false
+    // false
+    // false
+    // true
+}
+```
+
+### <span id="IsFloat">IsFloat</span>
+
+<p>Check if the value is float(float32, float34) or not.</p>
+
+<b>Signature:</b>
+
+```go
+func IsFloat(v interface{}) bool
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/validator"
+)
+
+func main() {
+    result1 := validator.IsFloat("")
+    result2 := validator.IsFloat("3")
+    result3 := validator.IsFloat(0)
+    result4 := validator.IsFloat(0.1)
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
+
+    // Output:
+    // false
+    // false
+    // false
+    // true
+}
+```
+
+### <span id="IsNumber">IsNumber</span>
+
+<p>Check if the value is number(integer, float) or not.</p>
+
+<b>Signature:</b>
+
+```go
+func IsNumber(v interface{}) bool
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/validator"
+)
+
+func main() {
+    result1 := validator.IsNumber("")
+    result2 := validator.IsNumber("3")
+    result3 := validator.IsNumber(0.1)
+    result4 := validator.IsNumber(0)
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
+
+    // Output:
+    // false
+    // false
+    // true
+    // true
+}
+```
+
+### <span id="IsIntStr">IsIntStr</span>
+
+<p>Check if the string can convert to a integer.</p>
+
+<b>Signature:</b>
+
+```go
+func IsIntStr(s string) bool
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/validator"
+)
+
+func main() {
+    fmt.Println(validator.IsIntStr("+3")) //true
+    fmt.Println(validator.IsIntStr("-3")) //true
+    fmt.Println(validator.IsIntStr("3.")) //false
+    fmt.Println(validator.IsIntStr("abc")) //false
+}
+```
+
 ### <span id="IsFloatStr">IsFloatStr</span>
 
 <p>Check if the string can convert to a float.</p>
@@ -584,32 +726,6 @@ func main() {
     fmt.Println(validator.IsRegexMatch("abc", `^[a-zA-Z]+$`)) //true
     fmt.Println(validator.IsRegexMatch("1ab", `^[a-zA-Z]+$`)) //false
     fmt.Println(validator.IsRegexMatch("", `^[a-zA-Z]+$`)) //false
-}
-```
-
-### <span id="IsIntStr">IsIntStr</span>
-
-<p>Check if the string can convert to a integer.</p>
-
-<b>Signature:</b>
-
-```go
-func IsIntStr(s string) bool
-```
-
-<b>Example:</b>
-
-```go
-import (
-    "fmt"
-    "github.com/duke-git/lancet/validator"
-)
-
-func main() {
-    fmt.Println(validator.IsIntStr("+3")) //true
-    fmt.Println(validator.IsIntStr("-3")) //true
-    fmt.Println(validator.IsIntStr("3.")) //false
-    fmt.Println(validator.IsIntStr("abc")) //false
 }
 ```
 
@@ -778,7 +894,7 @@ func main() {
 <b>Signature:</b>
 
 ```go
-func IsZeroValue(value any) bool
+func IsZeroValue(value interface{}) bool
 ```
 
 <b>Example:</b>
@@ -829,5 +945,85 @@ func main() {
         fmt.Println("data encoding is GBK")
     }
     fmt.Println("data encoding is unknown")
+}
+```
+
+### <span id="IsASCII">IsASCII</span>
+
+<p>Checks if string is all ASCII char.</p>
+
+<b>Signature:</b>
+
+```go
+func IsASCII(str string) bool
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/validator"
+)
+
+func main() {
+    result1 := validator.IsASCII("ABC")
+    result2 := validator.IsASCII("123")
+    result3 := validator.IsASCII("")
+    result4 := validator.IsASCII("😄")
+    result5 := validator.IsASCII("你好")
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
+    fmt.Println(result5)
+
+    // Output:
+    // true
+    // true
+    // true
+    // false
+    // false
+}
+```
+
+### <span id="IsPrintable">IsPrintable</span>
+
+<p>Checks if string is all printable chars.</p>
+
+<b>Signature:</b>
+
+```go
+func IsPrintable(str string) bool
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/validator"
+)
+
+func main() {
+    result1 := validator.IsPrintable("ABC")
+    result2 := validator.IsPrintable("{id: 123}")
+    result3 := validator.IsPrintable("")
+    result4 := validator.IsPrintable("😄")
+    result5 := validator.IsPrintable("\u0000")
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
+    fmt.Println(result5)
+
+    // Output:
+    // true
+    // true
+    // true
+    // true
+    // false
 }
 ```
