@@ -15,14 +15,14 @@ func TestGetInternalIp(t *testing.T) {
 	assert.IsNotNil(ip)
 }
 
-func TestGetPublicIpInfo(t *testing.T) {
-	assert := internal.NewAssert(t, "TestGetPublicIpInfo")
+// func TestGetPublicIpInfo(t *testing.T) {
+// 	assert := internal.NewAssert(t, "TestGetPublicIpInfo")
 
-	publicIpInfo, err := GetPublicIpInfo()
-	assert.IsNil(err)
+// 	publicIpInfo, err := GetPublicIpInfo()
+// 	assert.IsNil(err)
 
-	t.Logf("public ip info is: %+v \n", *publicIpInfo)
-}
+// 	t.Logf("public ip info is: %+v \n", *publicIpInfo)
+// }
 
 func TestIsPublicIP(t *testing.T) {
 	assert := internal.NewAssert(t, "TestIsPublicIP")

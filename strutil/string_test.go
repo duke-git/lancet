@@ -1,6 +1,7 @@
 package strutil
 
 import (
+	"reflect"
 	"testing"
 
 	"github.com/duke-git/lancet/internal"
@@ -328,4 +329,60 @@ func TestWordCount(t *testing.T) {
 	for k, v := range cases {
 		assert.Equal(v, WordCount(k))
 	}
+}
+
+func TestRemoveNonPrintable(t *testing.T) {
+	assert := internal.NewAssert(t, "TestRemoveNonPrintable")
+
+	assert.Equal("hello world", RemoveNonPrintable("hello\u00a0 \u200bworld\n"))
+	assert.Equal("你好😄", RemoveNonPrintable("你好😄"))
+}
+
+func TestStringToBytes(t *testing.T) {
+	assert := internal.NewAssert(t, "TestStringToBytes")
+	str := "abc"
+	bytes := StringToBytes(str)
+	assert.Equal(reflect.DeepEqual(bytes, []byte{'a', 'b', 'c'}), true)
+}
+
+func TestBytesToString(t *testing.T) {
+	assert := internal.NewAssert(t, "TestBytesToString")
+	bytes := []byte{'a', 'b', 'c'}
+	str := BytesToString(bytes)
+	assert.Equal(str == "abc", true)
+}
+
+func TestIsBlank(t *testing.T) {
+	assert := internal.NewAssert(t, "TestIsBlank")
+	assert.Equal(IsBlank(""), true)
+	assert.Equal(IsBlank("\t\v\f\n"), true)
+	assert.Equal(IsBlank(" 中文"), false)
+}
+
+func TestHasPrefixAny(t *testing.T) {
+	assert := internal.NewAssert(t, "TestHasPrefixAny")
+	str := "foo bar"
+	prefixes := []string{"fo", "xyz", "hello"}
+	notMatches := []string{"oom", "world"}
+	assert.Equal(HasPrefixAny(str, prefixes), true)
+	assert.Equal(HasPrefixAny(str, notMatches), false)
+}
+
+func TestHasSuffixAny(t *testing.T) {
+	assert := internal.NewAssert(t, "TestHasSuffixAny")
+	str := "foo bar"
+	suffixes := []string{"bar", "xyz", "hello"}
+	notMatches := []string{"oom", "world"}
+	assert.Equal(HasSuffixAny(str, suffixes), true)
+	assert.Equal(HasSuffixAny(str, notMatches), false)
+}
+
+func TestIndexOffset(t *testing.T) {
+	assert := internal.NewAssert(t, "TestIndexOffset")
+	str := "foo bar hello world"
+	assert.Equal(IndexOffset(str, "o", 5), 12)
+	assert.Equal(IndexOffset(str, "o", 0), 1)
+	assert.Equal(IndexOffset(str, "d", len(str)-1), len(str)-1)
+	assert.Equal(IndexOffset(str, "d", len(str)), -1)
+	assert.Equal(IndexOffset(str, "f", -1), -1)
 }
