@@ -44,6 +44,8 @@ import (
 -   [HttpPut<sup>Deprecated</sup>](#HttpPut)
 -   [HttpPatch<sup>Deprecated</sup>](#HttpPatch)
 -   [ParseHttpResponse](#ParseHttpResponse)
+-   [IsPingConnected](#IsPingConnected)
+-   [IsTelnetConnected](#IsTelnetConnected)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -110,8 +112,8 @@ func main() {
         fmt.Println(err)
     }
 
-    fmt.Println(encodedUrl) 
-    
+    fmt.Println(encodedUrl)
+
     // Output:
     // http://www.lancet.com?a=1&b=%5B2%5D
 }
@@ -142,8 +144,8 @@ func main() {
     internalIp := netutil.GetInternalIp()
     ip := net.ParseIP(internalIp)
 
-    fmt.Println(ip) 
-    
+    fmt.Println(ip)
+
     // Output:
     // 192.168.1.9
 }
@@ -172,7 +174,7 @@ import (
 
 func main() {
     ips := netutil.GetIps()
-    fmt.Println(ips) 
+    fmt.Println(ips)
 
     // Output:
     // [192.168.1.9]
@@ -894,5 +896,77 @@ func main() {
     }
 
     fmt.Println(toDoResp)
+}
+```
+
+### <span id="IsPingConnected">IsPingConnected</span>
+
+<p>checks if can ping the specified host or not.</p>
+
+<b>Signature:</b>
+
+```go
+func IsPingConnected(host string) bool
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "encoding/json"
+    "fmt"
+    "io/ioutil"
+    "log"
+    "github.com/duke-git/lancet/v2/netutil"
+)
+
+func main() {
+    result1 := netutil.IsPingConnected("www.baidu.com")
+    result2 := netutil.IsPingConnected("www.!@#&&&.com")
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+
+    // Output:
+    // true
+    // false
+}
+```
+
+### <span id="IsTelnetConnected">IsTelnetConnected</span>
+
+<p>Checks if can telnet the specified host or not.</p>
+
+<b>Signature:</b>
+
+```go
+func IsTelnetConnected(host string, port string) bool
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "encoding/json"
+    "fmt"
+    "io/ioutil"
+    "log"
+    "github.com/duke-git/lancet/v2/netutil"
+)
+
+func main() {
+    result1 := netutil.IsTelnetConnected("www.baidu.com", "80")
+    result2 := netutil.IsTelnetConnected("www.baidu.com", "123")
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+
+    // Output:
+    // true
+    // false
 }
 ```

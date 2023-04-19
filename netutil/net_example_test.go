@@ -178,3 +178,27 @@ func ExampleConvertMapToQueryString() {
 	// Output:
 	// a=1&b=2&c=3
 }
+
+func ExampleIsPingConnected() {
+	result1 := IsPingConnected("www.baidu.com")
+	result2 := IsPingConnected("www.!@#&&&.com")
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+
+	// Output:
+	// true
+	// false
+}
+
+func ExampleIsTelnetConnected() {
+	result1 := IsTelnetConnected("www.baidu.com", "80")
+	result2 := IsTelnetConnected("www.baidu.com", "123")
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+
+	// Output:
+	// true
+	// false
+}
