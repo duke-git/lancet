@@ -916,9 +916,8 @@ import (
 )
 
 func main() {
-    ok, err := netutil.DownloadFile("./", "http://www.xxx.com/a.jpg")
+    err := DownloadFile("./lancet_logo.jpg", "https://picx.zhimg.com/v2-fc82a4199749de9cfb71e32e54f489d3_720w.jpg?source=172ae18b")
 
-    fmt.Println(ok)
     fmt.Println(err)
 }
 ```
@@ -939,10 +938,7 @@ func IsPingConnected(host string) bool
 package main
 
 import (
-    "encoding/json"
     "fmt"
-    "io/ioutil"
-    "log"
     "github.com/duke-git/lancet/netutil"
 )
 
@@ -975,10 +971,7 @@ func IsTelnetConnected(host string, port string) bool
 package main
 
 import (
-    "encoding/json"
     "fmt"
-    "io/ioutil"
-    "log"
     "github.com/duke-git/lancet/netutil"
 )
 
