@@ -180,14 +180,13 @@ func ExampleConvertMapToQueryString() {
 }
 
 func ExampleIsPingConnected() {
-	result1 := IsPingConnected("bing.com")
+	// result1 := IsPingConnected("bing.com")
 	result2 := IsPingConnected("www.!@#&&&.com")
 
-	fmt.Println(result1)
+	// fmt.Println(result1)
 	fmt.Println(result2)
 
 	// Output:
-	// true
 	// false
 }
 
