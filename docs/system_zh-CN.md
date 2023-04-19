@@ -229,7 +229,7 @@ import (
 )
 
 func main() {
-    out, errout, err := system.ExecCommand("ls")
+    out, errout, err := system.ExecCommand("ls", system.WithForeground())
     fmt.Println(out)
     fmt.Println(errout)
     fmt.Println(err)
