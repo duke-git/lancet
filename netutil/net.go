@@ -260,7 +260,6 @@ func IsPingConnected(host string) bool {
 }
 
 // IsTelnetConnected checks if can telnet specified host or not.
-// only support two args: args[0] is port, args[1] is user
 // Play: todo
 func IsTelnetConnected(host string, port string) bool {
 	adder := host + ":" + port
