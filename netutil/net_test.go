@@ -52,3 +52,23 @@ func TestGetMacAddrs(t *testing.T) {
 	macAddrs := GetMacAddrs()
 	t.Log(macAddrs)
 }
+
+func TestIsPingConnected(t *testing.T) {
+	assert := internal.NewAssert(t, "TestIsPingConnected")
+
+	result1 := IsPingConnected("www.baidu.com")
+	assert.Equal(true, result1)
+
+	result2 := IsPingConnected("www.!@#&&&.com")
+	assert.Equal(false, result2)
+}
+
+func TestTelnetConnected(t *testing.T) {
+	assert := internal.NewAssert(t, "TestTelnetConnected")
+
+	result1 := IsTelnetConnected("www.baidu.com", "80")
+	assert.Equal(true, result1)
+
+	result2 := IsTelnetConnected("www.baidu.com", "123")
+	assert.Equal(false, result2)
+}

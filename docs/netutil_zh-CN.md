@@ -45,6 +45,8 @@ import (
 -   [HttpPut<sup>Deprecated</sup>](#HttpPut)
 -   [HttpPatch<sup>Deprecated</sup>](#HttpPatch)
 -   [ParseHttpResponse](#ParseHttpResponse)
+-   [IsPingConnected](#IsPingConnected)
+-   [IsTelnetConnected](#IsTelnetConnected)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -859,5 +861,77 @@ func main() {
     }
 
     fmt.Println(toDoResp)
+}
+```
+
+### <span id="IsPingConnected">IsPingConnected</span>
+
+<p>检查能否ping通主机。</p>
+
+<b>函数签名:</b>
+
+```go
+func IsPingConnected(host string) bool
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "encoding/json"
+    "fmt"
+    "io/ioutil"
+    "log"
+    "github.com/duke-git/lancet/netutil"
+)
+
+func main() {
+    result1 := netutil.IsPingConnected("www.baidu.com")
+    result2 := netutil.IsPingConnected("www.!@#&&&.com")
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+
+    // Output:
+    // true
+    // false
+}
+```
+
+### <span id="IsTelnetConnected">IsTelnetConnected</span>
+
+<p>检查能否telnet到主机。</p>
+
+<b>函数签名:</b>
+
+```go
+func IsTelnetConnected(host string, port string) bool
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "encoding/json"
+    "fmt"
+    "io/ioutil"
+    "log"
+    "github.com/duke-git/lancet/netutil"
+)
+
+func main() {
+    result1 := netutil.IsTelnetConnected("www.baidu.com", "80")
+    result2 := netutil.IsTelnetConnected("www.baidu.com", "123")
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+
+    // Output:
+    // true
+    // false
 }
 ```

@@ -1,12 +1,21 @@
 package netutil
 
 import (
+	"bytes"
 	"encoding/json"
+	"errors"
+	"io"
 	"io/ioutil"
+	"mime/multipart"
 	"net"
 	"net/http"
 	"net/url"
+	"os"
+	"os/exec"
 	"strings"
+	"time"
+
+	"github.com/duke-git/lancet/fileutil"
 )
 
 // GetInternalIp return internal ipv4
@@ -169,4 +178,89 @@ func EncodeUrl(urlStr string) (string, error) {
 	URL.RawQuery = URL.Query().Encode()
 
 	return URL.String(), nil
+}
+
+// DownloadFile will upload the file to a server.
+func UploadFile(filepath string, server string) (bool, error) {
+	if !fileutil.IsExist(filepath) {
+		return false, errors.New("file not exist")
+	}
+
+	fileInfo, err := os.Stat(filepath)
+	if err != nil {
+		return false, err
+	}
+
+	bodyBuffer := &bytes.Buffer{}
+	writer := multipart.NewWriter(bodyBuffer)
+
+	formFile, err := writer.CreateFormFile("uploadfile", fileInfo.Name())
+	if err != nil {
+		return false, err
+	}
+
+	srcFile, err := os.Open(filepath)
+	if err != nil {
+		return false, err
+	}
+	defer srcFile.Close()
+
+	_, err = io.Copy(formFile, srcFile)
+	if err != nil {
+		return false, err
+	}
+
+	contentType := writer.FormDataContentType()
+	writer.Close()
+
+	_, err = http.Post(server, contentType, bodyBuffer)
+	if err != nil {
+		return false, err
+	}
+
+	return true, nil
+}
+
+// DownloadFile will download the file exist in url to a local file.
+// Play: todo
+func DownloadFile(filepath string, url string) error {
+	resp, err := http.Get(url)
+	if err != nil {
+		return err
+	}
+	defer resp.Body.Close()
+
+	out, err := os.Create(filepath)
+	if err != nil {
+		return err
+	}
+	defer out.Close()
+
+	_, err = io.Copy(out, resp.Body)
+
+	return err
+}
+
+// IsPingConnected checks if can ping specified host or not.
+func IsPingConnected(host string) bool {
+	cmd := exec.Command("ping", host, "-c", "1", "-W", "6")
+	err := cmd.Run()
+	if err != nil {
+		return false
+	}
+	return true
+}
+
+// IsTelnetConnected checks if can telnet specified host or not.
+func IsTelnetConnected(host string, port string) bool {
+	adder := host + ":" + port
+	conn, err := net.DialTimeout("tcp", adder, 5*time.Second)
+
+	if err != nil {
+		return false
+	}
+
+	defer conn.Close()
+
+	return true
 }
