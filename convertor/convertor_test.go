@@ -320,49 +320,51 @@ func TestDeepClone(t *testing.T) {
 func TestCopyProperties(t *testing.T) {
 	assert := internal.NewAssert(t, "TestCopyProperties")
 
-	type Address struct {
-		Country string
-		ZipCode string
+	type Disk struct {
+		Name    string  `json:"name"`
+		Total   string  `json:"total"`
+		Used    string  `json:"used"`
+		Percent float64 `json:"percent"`
 	}
 
-	type User struct {
-		Name   string
-		Age    int
-		Role   string
-		Addr   Address
-		Hobbys []string
-		salary int
+	type DiskVO struct {
+		Name    string  `json:"name"`
+		Total   string  `json:"total"`
+		Used    string  `json:"used"`
+		Percent float64 `json:"percent"`
 	}
 
-	type Employee struct {
-		Name   string
-		Age    int
-		Role   string
-		Addr   Address
-		Hobbys []string
-		salary int
+	type Indicator struct {
+		Id      string    `json:"id"`
+		Ip      string    `json:"ip"`
+		UpTime  string    `json:"upTime"`
+		LoadAvg string    `json:"loadAvg"`
+		Cpu     int       `json:"cpu"`
+		Disk    []Disk    `json:"disk"`
+		Stop    chan bool `json:"-"`
 	}
 
-	user := User{Name: "user001", Age: 10, Role: "Admin", Addr: Address{Country: "CN", ZipCode: "001"}, Hobbys: []string{"a", "b"}, salary: 1000}
+	type IndicatorVO struct {
+		Id      string   `json:"id"`
+		Ip      string   `json:"ip"`
+		UpTime  string   `json:"upTime"`
+		LoadAvg string   `json:"loadAvg"`
+		Cpu     int64    `json:"cpu"`
+		Disk    []DiskVO `json:"disk"`
+	}
 
-	employee1 := Employee{}
+	indicator := &Indicator{Id: "001", Ip: "127.0.0.1", Cpu: 1, Disk: []Disk{
+		{Name: "disk-001", Total: "100", Used: "1", Percent: 10},
+		{Name: "disk-002", Total: "200", Used: "1", Percent: 20},
+		{Name: "disk-003", Total: "300", Used: "1", Percent: 30},
+	}}
 
-	err := CopyProperties(&employee1, &user)
+	indicatorVO := IndicatorVO{}
+
+	err := CopyProperties(&indicatorVO, indicator)
 
 	assert.IsNil(err)
-	assert.Equal("user001", employee1.Name)
-	assert.Equal("Admin", employee1.Role)
-	assert.Equal("CN", employee1.Addr.Country)
-	assert.Equal(0, employee1.salary)
-
-	employee2 := Employee{Name: "employee001", Age: 20, Role: "User",
-		Addr: Address{Country: "UK", ZipCode: "002"}, salary: 500}
-
-	err = CopyProperties(&employee2, &user)
-
-	assert.IsNil(err)
-	assert.Equal("user001", employee2.Name)
-	assert.Equal("Admin", employee2.Role)
-	assert.Equal("CN", employee2.Addr.Country)
-	assert.Equal(500, employee2.salary)
+	assert.Equal("001", indicatorVO.Id)
+	assert.Equal("127.0.0.1", indicatorVO.Ip)
+	assert.Equal(3, len(indicatorVO.Disk))
 }

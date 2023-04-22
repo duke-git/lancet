@@ -11,11 +11,12 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/duke-git/lancet/v2/structs"
 	"math"
 	"reflect"
 	"strconv"
 	"strings"
+
+	"github.com/duke-git/lancet/v2/structs"
 )
 
 // ToBool convert string to boolean.
@@ -319,43 +320,29 @@ func DeepClone[T any](src T) T {
 }
 
 // CopyProperties copies each field from the source into the destination. It recursively copies struct pointers and interfaces that contain struct pointers.
-// Play: https://go.dev/play/p/FOVY3XJL-6B
-func CopyProperties[T, U any](dst T, src U) (err error) {
-	defer func() {
-		if e := recover(); e != nil {
-			err = fmt.Errorf("%v", e)
-		}
-	}()
-
-	dstType, dstValue := reflect.TypeOf(dst), reflect.ValueOf(dst)
-	srcType, srcValue := reflect.TypeOf(src), reflect.ValueOf(src)
+// use json.Marshal/Unmarshal, so json tag should be set for fields of dst and src struct.
+// Play: todo
+func CopyProperties[T, U any](dst T, src U) error {
+	dstType, srcType := reflect.TypeOf(dst), reflect.TypeOf(src)
 
 	if dstType.Kind() != reflect.Ptr || dstType.Elem().Kind() != reflect.Struct {
-		return errors.New("CopyProperties: param dst should be struct pointer")
+		return errors.New("CopyProperties: parameter dst should be struct pointer")
 	}
 
 	if srcType.Kind() == reflect.Ptr {
-		srcType, srcValue = srcType.Elem(), srcValue.Elem()
+		srcType = srcType.Elem()
 	}
 	if srcType.Kind() != reflect.Struct {
-		return errors.New("CopyProperties: param src should be a struct or struct pointer")
+		return errors.New("CopyProperties: parameter src should be a struct or struct pointer")
 	}
 
-	dstType, dstValue = dstType.Elem(), dstValue.Elem()
-
-	propertyNums := dstType.NumField()
-
-	for i := 0; i < propertyNums; i++ {
-		property := dstType.Field(i)
-		propertyValue := srcValue.FieldByName(property.Name)
-
-		if !propertyValue.IsValid() || property.Type != propertyValue.Type() {
-			continue
-		}
-
-		if dstValue.Field(i).CanSet() {
-			dstValue.Field(i).Set(propertyValue)
-		}
+	bytes, err := json.Marshal(src)
+	if err != nil {
+		return fmt.Errorf("CopyProperties: unable to marshal src: %s", err)
+	}
+	err = json.Unmarshal(bytes, dst)
+	if err != nil {
+		return fmt.Errorf("CopyProperties: unable to unmarshal into dst: %s", err)
 	}
 
 	return nil

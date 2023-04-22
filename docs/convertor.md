@@ -697,7 +697,7 @@ func main() {
 
 ### <span id="CopyProperties">CopyProperties</span>
 
-<p>Copies each field from the source struct into the destination struct.</p>
+<p>Copies each field from the source struct into the destination struct. Use json.Marshal/Unmarshal, so json tag should be set for fields of dst and src struct.</p>
 
 <b>Signature:</b>
 
@@ -716,44 +716,56 @@ import (
 )
 
 func main() {
-    type Address struct {
-        Country string
-        ZipCode string
+    type Disk struct {
+        Name    string  `json:"name"`
+        Total   string  `json:"total"`
+        Used    string  `json:"used"`
+        Percent float64 `json:"percent"`
     }
 
-    type User struct {
-        Name   string
-        Age    int
-        Role   string
-        Addr   Address
-        Hobbys []string
-        salary int
+    type DiskVO struct {
+        Name    string  `json:"name"`
+        Total   string  `json:"total"`
+        Used    string  `json:"used"`
+        Percent float64 `json:"percent"`
     }
 
-    type Employee struct {
-        Name   string
-        Age    int
-        Role   string
-        Addr   Address
-        Hobbys []string
-        salary int
+    type Indicator struct {
+        Id      string    `json:"id"`
+        Ip      string    `json:"ip"`
+        UpTime  string    `json:"upTime"`
+        LoadAvg string    `json:"loadAvg"`
+        Cpu     int       `json:"cpu"`
+        Disk    []Disk    `json:"disk"`
+        Stop    chan bool `json:"-"`
     }
 
-    user := User{Name: "user001", Age: 10, Role: "Admin", Addr: Address{Country: "CN", ZipCode: "001"}, Hobbys: []string{"a", "b"}, salary: 1000}
+    type IndicatorVO struct {
+        Id      string   `json:"id"`
+        Ip      string   `json:"ip"`
+        UpTime  string   `json:"upTime"`
+        LoadAvg string   `json:"loadAvg"`
+        Cpu     int64    `json:"cpu"`
+        Disk    []DiskVO `json:"disk"`
+    }
 
-    employee1 := Employee{}
-    CopyProperties(&employee1, &user)
+    indicator := &Indicator{Id: "001", Ip: "127.0.0.1", Cpu: 1, Disk: []Disk{
+        {Name: "disk-001", Total: "100", Used: "1", Percent: 10},
+        {Name: "disk-002", Total: "200", Used: "1", Percent: 20},
+        {Name: "disk-003", Total: "300", Used: "1", Percent: 30},
+    }}
 
-    employee2 := Employee{Name: "employee001", Age: 20, Role: "User",
-        Addr: Address{Country: "UK", ZipCode: "002"}, salary: 500}
+    indicatorVO := IndicatorVO{}
 
-    CopyProperties(&employee2, &user)
+    CopyProperties(&indicatorVO, indicator)
 
-    fmt.Println(employee1)
-    fmt.Println(employee2)
+    fmt.Println(indicatorVO.Id)
+    fmt.Println(indicatorVO.Ip)
+    fmt.Println(len(indicatorVO.Disk))
 
     // Output:
-    // {user001 10 Admin {CN 001} [a b] 0}
-    // {user001 10 Admin {CN 001} [a b] 500}
+    // 001
+    // 127.0.0.1
+    // 3
 }
 ```
