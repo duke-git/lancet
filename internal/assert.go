@@ -211,7 +211,7 @@ func compare(x, y any) int {
 
 }
 
-// logFailedInfo make test failed and log error info
+// makeTestFailed make test failed and log error info
 func makeTestFailed(t *testing.T, caseName string, expected, actual any) {
 	_, file, line, _ := runtime.Caller(2)
 	errInfo := fmt.Sprintf("Case %v failed. file: %v, line: %v, expected: %v, actual: %v.", caseName, file, line, expected, actual)

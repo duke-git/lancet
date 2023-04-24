@@ -38,7 +38,7 @@ import (
 -   [ReadFileByLine](#ReadFileByLine)
 -   [Zip](#Zip)
 -   [UnZip](#UnZip)
--   [UnZip](#UnZip)
+-   [IsZipFile](#IsZipFile)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -494,5 +494,32 @@ func main() {
     if err != nil {
         fmt.Println(err)
     }
+}
+```
+
+
+### <span id="IsZipFile">IsZipFile</span>
+
+<p>Checks if file is zip file or not.</p>
+
+<b>Signature:</b>
+
+```go
+func IsZipFile(filepath string) bool
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/fileutil"
+)
+
+func main() {
+    isZip := IsZipFile("./zipfile.zip")
+    fmt.Println(isZip)
 }
 ```

@@ -38,6 +38,7 @@ import (
 -   [ReadFileByLine](#ReadFileByLine)
 -   [Zip](#Zip)
 -   [UnZip](#UnZip)
+-   [IsZipFile](#IsZipFile)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -472,7 +473,7 @@ func main() {
 
 <p>zip解压缩文件并保存在目录中</p>
 
-<b>Signature:</b>
+<b>函数签名:</b>
 
 ```go
 func UnZip(zipFile string, destPath string) error
@@ -493,5 +494,31 @@ func main() {
     if err != nil {
         fmt.Println(err)
     }
+}
+```
+
+### <span id="IsZipFile">IsZipFile</span>
+
+<p>判断文件是否是zip压缩文件。</p>
+
+<b>函数签名:</b>
+
+```go
+func IsZipFile(filepath string) bool
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/fileutil"
+)
+
+func main() {
+    isZip := IsZipFile("./zipfile.zip")
+    fmt.Println(isZip)
 }
 ```

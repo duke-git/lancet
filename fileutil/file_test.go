@@ -246,3 +246,10 @@ func TestCurrentPath(t *testing.T) {
 	absPath := CurrentPath()
 	t.Log(absPath)
 }
+
+func TestIsZipFile(t *testing.T) {
+	assert := internal.NewAssert(t, "TestIsZipFile")
+
+	assert.Equal(false, IsZipFile("./file.go"))
+	assert.Equal(true, IsZipFile("./test/file.go.zip"))
+}

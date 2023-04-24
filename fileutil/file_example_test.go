@@ -223,3 +223,15 @@ func ExampleUnZip() {
 	// Output:
 	// application/octet-stream
 }
+
+func ExampleIsZipFile() {
+	result1 := IsZipFile("./file.go")
+	result2 := IsZipFile("./test/file.go.zip")
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+
+	// Output:
+	// false
+	// true
+}

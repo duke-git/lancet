@@ -7,6 +7,7 @@ package fileutil
 import (
 	"archive/zip"
 	"bufio"
+	"bytes"
 	"errors"
 	"fmt"
 	"io"
@@ -174,6 +175,23 @@ func ListFileNames(path string) ([]string, error) {
 	return result, nil
 }
 
+// IsZipFile checks if file is zip or not.
+// Play: todo
+func IsZipFile(filepath string) bool {
+	f, err := os.Open(filepath)
+	if err != nil {
+		return false
+	}
+	defer f.Close()
+
+	buf := make([]byte, 4)
+	if n, err := f.Read(buf); err != nil || n < 4 {
+		return false
+	}
+
+	return bytes.Equal(buf, []byte("PK\x03\x04"))
+}
+
 // Zip create zip file, fpath could be a single file or a directory.
 // Play: https://go.dev/play/p/j-3sWBp8ik_P
 func Zip(fpath string, destPath string) error {
@@ -276,6 +294,7 @@ func UnZip(zipFile string, destPath string) error {
 			}
 		}
 	}
+
 	return nil
 }
 
