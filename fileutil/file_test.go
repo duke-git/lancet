@@ -251,5 +251,5 @@ func TestIsZipFile(t *testing.T) {
 	assert := internal.NewAssert(t, "TestIsZipFile")
 
 	assert.Equal(false, IsZipFile("./file.go"))
-	assert.Equal(true, IsZipFile("./test/file.go.zip"))
+	assert.Equal(true, IsZipFile("./testdata/file.go.zip"))
 }

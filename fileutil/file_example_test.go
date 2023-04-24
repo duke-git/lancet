@@ -226,7 +226,7 @@ func ExampleUnZip() {
 
 func ExampleIsZipFile() {
 	result1 := IsZipFile("./file.go")
-	result2 := IsZipFile("./test/file.go.zip")
+	result2 := IsZipFile("./testdata/file.go.zip")
 
 	fmt.Println(result1)
 	fmt.Println(result2)
