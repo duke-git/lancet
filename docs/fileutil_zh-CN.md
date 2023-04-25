@@ -131,7 +131,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func CopyFile(srcFilePath string, dstFilePath string) error
+func CopyFile(srcPath string, dstPath string) error
 ```
 
 <b>示例:</b>

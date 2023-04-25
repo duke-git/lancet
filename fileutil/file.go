@@ -69,14 +69,14 @@ func RemoveFile(path string) error {
 
 // CopyFile copy src file to dest file.
 // Play: https://go.dev/play/p/Jg9AMJMLrJi
-func CopyFile(srcFilePath string, dstFilePath string) error {
-	srcFile, err := os.Open(srcFilePath)
+func CopyFile(srcPath string, dstPath string) error {
+	srcFile, err := os.Open(srcPath)
 	if err != nil {
 		return err
 	}
 	defer srcFile.Close()
 
-	distFile, err := os.Create(dstFilePath)
+	distFile, err := os.Create(dstPath)
 	if err != nil {
 		return err
 	}
