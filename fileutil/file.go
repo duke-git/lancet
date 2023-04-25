@@ -8,6 +8,9 @@ import (
 	"archive/zip"
 	"bufio"
 	"bytes"
+	"crypto/sha1"
+	"crypto/sha256"
+	"crypto/sha512"
 	"errors"
 	"fmt"
 	"io"
@@ -376,4 +379,58 @@ func CurrentPath() string {
 	}
 
 	return absPath
+}
+
+// FileSize returns file size in bytes.
+// Play: todo
+func FileSize(path string) (int64, error) {
+	f, err := os.Stat(path)
+	if err != nil {
+		return 0, err
+	}
+	return f.Size(), nil
+}
+
+// MTime returns file modified time.
+// Play: todo
+func MTime(filepath string) (int64, error) {
+	f, err := os.Stat(filepath)
+	if err != nil {
+		return 0, err
+	}
+	return f.ModTime().Unix(), nil
+}
+
+// MTime returns file modified time, param `shaType` should be 1, 256 or 512.
+// Play: todo
+func Sha(filepath string, shaType ...int) (string, error) {
+	file, err := os.Open(filepath)
+	if err != nil {
+		return "", err
+	}
+	defer file.Close()
+
+	h := sha1.New()
+	if len(shaType) > 0 {
+		if shaType[0] == 1 {
+			h = sha1.New()
+		} else if shaType[0] == 256 {
+			h = sha256.New()
+		} else if shaType[0] == 512 {
+			h = sha512.New()
+		} else {
+			return "", errors.New("param `shaType` should be 1, 256 or 512.")
+		}
+	}
+
+	_, err = io.Copy(h, file)
+
+	if err != nil {
+		return "", err
+	}
+
+	sha := fmt.Sprintf("%x", h.Sum(nil))
+
+	return sha, nil
+
 }

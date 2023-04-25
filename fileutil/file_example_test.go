@@ -235,3 +235,42 @@ func ExampleIsZipFile() {
 	// false
 	// true
 }
+
+func ExampleFileSize() {
+	size, err := FileSize("./testdata/test.txt")
+
+	fmt.Println(size)
+	fmt.Println(err)
+
+	// Output:
+	// 20
+	// <nil>
+}
+
+func ExampleMTime() {
+	mtime, err := MTime("./testdata/test.txt")
+
+	fmt.Println(mtime)
+	fmt.Println(err)
+
+	// Output:
+	// 1682391110
+	// <nil>
+}
+
+func ExampleSha() {
+	sha1, err := Sha("./testdata/test.txt", 1)
+	sha256, _ := Sha("./testdata/test.txt", 256)
+	sha512, _ := Sha("./testdata/test.txt", 512)
+
+	fmt.Println(sha1)
+	fmt.Println(sha256)
+	fmt.Println(sha512)
+	fmt.Println(err)
+
+	// Output:
+	// dda3cf10c5a6ff6c6659a497bf7261b287af2bc7
+	// aa6d0a3fbc3442c228d606da09e0c1dc98c69a1cac3da1909199e0266171df35
+	// d22aba2a1b7a2e2f512756255cc1c3708905646920cb1eb95e45b531ba74774dbbb89baebf1f716220eb9cf4908f1cfc5b2a01267704d9a59f59d77cab609870
+	// <nil>
+}
