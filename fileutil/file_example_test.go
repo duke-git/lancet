@@ -274,3 +274,14 @@ func ExampleSha() {
 	// d22aba2a1b7a2e2f512756255cc1c3708905646920cb1eb95e45b531ba74774dbbb89baebf1f716220eb9cf4908f1cfc5b2a01267704d9a59f59d77cab609870
 	// <nil>
 }
+
+func ExampleReadCsvFile() {
+	content, err := ReadCsvFile("./testdata/test.csv")
+
+	fmt.Println(content)
+	fmt.Println(err)
+
+	// Output:
+	// [[Bob  12  male] [Duke  14  male] [Lucy  16  female]]
+	// <nil>
+}

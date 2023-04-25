@@ -11,6 +11,7 @@ import (
 	"crypto/sha1"
 	"crypto/sha256"
 	"crypto/sha512"
+	"encoding/csv"
 	"errors"
 	"fmt"
 	"io"
@@ -433,4 +434,22 @@ func Sha(filepath string, shaType ...int) (string, error) {
 
 	return sha, nil
 
+}
+
+// MTime returns file modified time.
+// Play: todo
+func ReadCsvFile(filepath string) ([][]string, error) {
+	f, err := os.Open(filepath)
+	if err != nil {
+		return nil, err
+	}
+	defer f.Close()
+
+	csvReader := csv.NewReader(f)
+	records, err := csvReader.ReadAll()
+	if err != nil {
+		return nil, err
+	}
+
+	return records, nil
 }
