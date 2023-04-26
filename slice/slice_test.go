@@ -594,7 +594,6 @@ func TestInsertAt(t *testing.T) {
 	assert.Equal([]string{"a", "b", "c", "1"}, InsertAt(strs, 3, "1"))
 	assert.Equal([]string{"1", "2", "3", "a", "b", "c"}, InsertAt(strs, 0, []string{"1", "2", "3"}))
 	assert.Equal([]string{"a", "b", "c", "1", "2", "3"}, InsertAt(strs, 3, []string{"1", "2", "3"}))
-	t.Log(strs)
 }
 
 func TestUpdateAt(t *testing.T) {
@@ -821,10 +820,9 @@ func TestSortBy(t *testing.T) {
 		return a.Age < b.Age
 	})
 
-	t.Logf("sort users by age: %v", users)
-
-	// output
-	// [{b 15} {a 21} {c 100}]
+	assert.EqualValues(15, users[0].Age)
+	assert.EqualValues(21, users[1].Age)
+	assert.EqualValues(100, users[2].Age)
 }
 
 func TestSortByFielDesc(t *testing.T) {
@@ -890,7 +888,6 @@ func TestShuffle(t *testing.T) {
 
 	s := []int{1, 2, 3, 4, 5}
 	res := Shuffle(s)
-	t.Log("Shuffle result: ", res)
 
 	assert.Equal(5, len(res))
 }

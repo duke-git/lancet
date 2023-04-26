@@ -182,7 +182,7 @@ func TestHttpClient_Get(t *testing.T) {
 	var todo Todo
 	err = httpClient.DecodeResponse(resp, &todo)
 	if err != nil {
-		t.Log(err)
+		t.FailNow()
 	}
 
 	assert.Equal(1, todo.Id)

@@ -103,7 +103,7 @@ func TestEncodeUrl(t *testing.T) {
 	urlAddr := "http://www.lancet.com?a=1&b=[2]"
 	encodedUrl, err := EncodeUrl(urlAddr)
 	if err != nil {
-		t.Log(err)
+		t.Fail()
 	}
 
 	expected := "http://www.lancet.com?a=1&b=%5B2%5D"

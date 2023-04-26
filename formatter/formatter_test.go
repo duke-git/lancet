@@ -55,8 +55,6 @@ func TestPretty(t *testing.T) {
 		result, err := Pretty(v)
 
 		assert.IsNil(err)
-
-		t.Log("result -> ", result)
 		assert.Equal(expects[i], result)
 	}
 }

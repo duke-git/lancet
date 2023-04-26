@@ -200,7 +200,6 @@ func TestCountSort(t *testing.T) {
 	}
 	comparator := &peopleAgeComparator{}
 	sortedPeopleByAge := CountSort(peoples, comparator)
-	t.Log(sortedPeopleByAge)
 
 	expected := "[{d 8} {b 10} {c 17} {a 20} {e 28}]"
 	actual := fmt.Sprintf("%v", sortedPeopleByAge)

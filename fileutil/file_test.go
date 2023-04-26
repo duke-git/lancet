@@ -107,7 +107,7 @@ func TestReadFileToString(t *testing.T) {
 
 	_, err := f.WriteString("hello world")
 	if err != nil {
-		t.Log(err)
+		t.Error(err)
 	}
 
 	content, _ := ReadFileToString(path)
@@ -127,7 +127,7 @@ func TestClearFile(t *testing.T) {
 
 	_, err := f.WriteString("hello world")
 	if err != nil {
-		t.Log(err)
+		t.Error(err)
 	}
 
 	err = ClearFile(path)
@@ -151,7 +151,7 @@ func TestReadFileByLine(t *testing.T) {
 
 	_, err := f.WriteString("hello\nworld")
 	if err != nil {
-		t.Log(err)
+		t.Error(err)
 	}
 
 	expected := []string{"hello", "world"}
@@ -198,9 +198,9 @@ func TestFileMode(t *testing.T) {
 	CreateFile(srcFile)
 
 	mode, err := FileMode(srcFile)
-	assert.IsNil(err)
 
-	t.Log(mode)
+	assert.IsNotNil(mode)
+	assert.IsNil(err)
 
 	os.Remove(srcFile)
 }
@@ -269,7 +269,7 @@ func TestMTime(t *testing.T) {
 	mtime, err := MTime("./testdata/test.txt")
 
 	assert.IsNil(err)
-	assert.Equal(int64(1682391110), mtime)
+	assert.Equal(int64(1682478195), mtime)
 }
 
 func TestSha(t *testing.T) {
@@ -289,7 +289,6 @@ func TestReadCsvFile(t *testing.T) {
 	assert := internal.NewAssert(t, "TestReadCsvFile")
 
 	content, err := ReadCsvFile("./testdata/test.csv")
-	t.Log(content)
 
 	assert.IsNil(err)
 

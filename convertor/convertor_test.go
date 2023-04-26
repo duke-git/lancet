@@ -306,7 +306,6 @@ func TestDeepClone(t *testing.T) {
 	for i, item := range cases {
 		cloned := DeepClone(item)
 
-		t.Log(cloned)
 		if &cloned == &item {
 			t.Fatalf("[TestDeepClone case #%d failed]: equal pointer", i)
 		}

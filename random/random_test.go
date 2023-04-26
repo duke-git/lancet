@@ -57,7 +57,6 @@ func TestRandNumeralOrLetter(t *testing.T) {
 	reg := regexp.MustCompile(pattern)
 
 	randStr := RandNumeralOrLetter(10)
-	t.Log(randStr)
 
 	assert := internal.NewAssert(t, "TestRandNumeralOrLetter")
 	assert.Equal(10, len(randStr))
@@ -68,7 +67,6 @@ func TestRandInt(t *testing.T) {
 	assert := internal.NewAssert(t, "TestRandInt")
 
 	r1 := RandInt(1, 10)
-	t.Log(r1)
 	assert.GreaterOrEqual(r1, 1)
 	assert.Less(r1, 10)
 
@@ -99,7 +97,6 @@ func TestUUIdV4(t *testing.T) {
 
 	uuid, err := UUIdV4()
 	if err != nil {
-		t.Log(err)
 		t.Fail()
 	}
 

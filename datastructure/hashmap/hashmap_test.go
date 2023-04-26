@@ -64,7 +64,6 @@ func TestHashMap_KeysValues(t *testing.T) {
 
 	keys := hm.Keys()
 	values := hm.Values()
-	t.Log(keys, values)
 
 	assert.Equal(3, len(values))
 	assert.Equal(3, len(keys))

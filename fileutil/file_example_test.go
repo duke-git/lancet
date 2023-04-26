@@ -254,7 +254,7 @@ func ExampleMTime() {
 	fmt.Println(err)
 
 	// Output:
-	// 1682391110
+	// 1682478195
 	// <nil>
 }
 

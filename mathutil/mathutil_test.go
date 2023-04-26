@@ -78,7 +78,6 @@ func TestAverage(t *testing.T) {
 	assert.Equal(Average(0, 0), 0)
 	assert.Equal(Average(1, 1), 1)
 	avg := Average(1.2, 1.4)
-	t.Log(avg)
 	assert.Equal(1.3, RoundToFloat(avg, 1))
 }
 
