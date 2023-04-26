@@ -18,3 +18,9 @@ func WithWinHide() Option {
 		}
 	}
 }
+
+func WithForeground() Option {
+	return func(c *exec.Cmd) {
+
+	}
+}
