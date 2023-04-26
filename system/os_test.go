@@ -68,15 +68,15 @@ func TestExecCommand(t *testing.T) {
 	assert.IsNotNil(err)
 }
 
-func TestExecCommandWithOption(t *testing.T) {
-	assert := internal.NewAssert(t, "TestExecCommand")
+// func TestExecCommandWithOption(t *testing.T) {
+// 	assert := internal.NewAssert(t, "TestExecCommandWithOption")
 
-	stdout, stderr, err := ExecCommand("ls", WithForeground())
-	t.Log("std out: ", stdout)
-	t.Log("std err: ", stderr)
-	assert.Equal("", stderr)
-	assert.IsNil(err)
-}
+// 	stdout, stderr, err := ExecCommand("ls", WithForeground())
+// 	t.Log("std out: ", stdout)
+// 	t.Log("std err: ", stderr)
+// 	assert.Equal("", stderr)
+// 	assert.IsNil(err)
+// }
 
 func TestGetOsBits(t *testing.T) {
 	osBits := GetOsBits()

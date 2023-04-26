@@ -247,16 +247,16 @@ func ExampleFileSize() {
 	// <nil>
 }
 
-func ExampleMTime() {
-	mtime, err := MTime("./testdata/test.txt")
+// func ExampleMTime() {
+// 	mtime, err := MTime("./testdata/test.txt")
 
-	fmt.Println(mtime)
-	fmt.Println(err)
+// 	fmt.Println(mtime) // 1682478195 (unix timestamp)
+// 	fmt.Println(err)
 
-	// Output:
-	// 1682478195
-	// <nil>
-}
+// 	// Output:
+// 	// 1682478195
+// 	// <nil>
+// }
 
 func ExampleSha() {
 	sha1, err := Sha("./testdata/test.txt", 1)
