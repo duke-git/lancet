@@ -190,6 +190,11 @@ import "github.com/duke-git/lancet/fileutil"
 -   [Zip](https://github.com/duke-git/lancet/blob/v1/docs/fileutil.md#Zip)
 -   [UnZip](https://github.com/duke-git/lancet/blob/v1/docs/fileutil.md#UnZip)
 -   [CurrentPath](https://github.com/duke-git/lancet/blob/v1/docs/fileutil.md#CurrentPath)
+-   [IsZipFile](https://github.com/duke-git/lancet/blob/v1/docs/fileutil.md#IsZipFile)
+-   [FileSize](https://github.com/duke-git/lancet/blob/v1/docs/fileutil.md#FileSize)
+-   [MTime](https://github.com/duke-git/lancet/blob/v1/docs/fileutil.md#MTime)
+-   [Sha](https://github.com/duke-git/lancet/blob/v1/docs/fileutil.md#Sha)
+-   [ReadCsvFile](https://github.com/duke-git/lancet/blob/v1/docs/fileutil.md#ReadCsvFile)
 
 ### 5. Formatter contains some functions for data formatting.
 

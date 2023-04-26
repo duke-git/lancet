@@ -189,6 +189,11 @@ import "github.com/duke-git/lancet/fileutil"
 -   [Zip](https://github.com/duke-git/lancet/blob/v1/docs/fileutil_zh-CN.md#Zip)
 -   [UnZip](https://github.com/duke-git/lancet/blob/v1/docs/fileutil_zh-CN.md#UnZip)
 -   [CurrentPath](https://github.com/duke-git/lancet/blob/v1/docs/fileutil_zh-CN.md#CurrentPath)
+-   [IsZipFile](https://github.com/duke-git/lancet/blob/v1/docs/fileutil_zh-CN.md#IsZipFile)
+-   [FileSize](https://github.com/duke-git/lancet/blob/v1/docs/fileutil_zh-CN.md#FileSize)
+-   [MTime](https://github.com/duke-git/lancet/blob/v1/docs/fileutil_zh-CN.md#MTime)
+-   [Sha](https://github.com/duke-git/lancet/blob/v1/docs/fileutil_zh-CN.md#Sha)
+-   [ReadCsvFile](https://github.com/duke-git/lancet/blob/v1/docs/fileutil_zh-CN.md#ReadCsvFile)
 
 ### 5. formatter 格式化器包含一些数据格式化处理方法。
 

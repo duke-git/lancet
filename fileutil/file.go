@@ -7,6 +7,11 @@ package fileutil
 import (
 	"archive/zip"
 	"bufio"
+	"bytes"
+	"crypto/sha1"
+	"crypto/sha256"
+	"crypto/sha512"
+	"encoding/csv"
 	"errors"
 	"fmt"
 	"io"
@@ -329,4 +334,88 @@ func CurrentPath() string {
 	}
 
 	return absPath
+}
+
+// IsZipFile checks if file is zip or not.
+func IsZipFile(filepath string) bool {
+	f, err := os.Open(filepath)
+	if err != nil {
+		return false
+	}
+	defer f.Close()
+
+	buf := make([]byte, 4)
+	if n, err := f.Read(buf); err != nil || n < 4 {
+		return false
+	}
+
+	return bytes.Equal(buf, []byte("PK\x03\x04"))
+}
+
+// FileSize returns file size in bytes.
+func FileSize(path string) (int64, error) {
+	f, err := os.Stat(path)
+	if err != nil {
+		return 0, err
+	}
+	return f.Size(), nil
+}
+
+// MTime returns file modified time.
+func MTime(filepath string) (int64, error) {
+	f, err := os.Stat(filepath)
+	if err != nil {
+		return 0, err
+	}
+	return f.ModTime().Unix(), nil
+}
+
+// MTime returns file sha value, param `shaType` should be 1, 256 or 512.
+func Sha(filepath string, shaType ...int) (string, error) {
+	file, err := os.Open(filepath)
+	if err != nil {
+		return "", err
+	}
+	defer file.Close()
+
+	h := sha1.New()
+	if len(shaType) > 0 {
+		if shaType[0] == 1 {
+			h = sha1.New()
+		} else if shaType[0] == 256 {
+			h = sha256.New()
+		} else if shaType[0] == 512 {
+			h = sha512.New()
+		} else {
+			return "", errors.New("param `shaType` should be 1, 256 or 512.")
+		}
+	}
+
+	_, err = io.Copy(h, file)
+
+	if err != nil {
+		return "", err
+	}
+
+	sha := fmt.Sprintf("%x", h.Sum(nil))
+
+	return sha, nil
+
+}
+
+// ReadCsvFile read file content into slice.
+func ReadCsvFile(filepath string) ([][]string, error) {
+	f, err := os.Open(filepath)
+	if err != nil {
+		return nil, err
+	}
+	defer f.Close()
+
+	csvReader := csv.NewReader(f)
+	records, err := csvReader.ReadAll()
+	if err != nil {
+		return nil, err
+	}
+
+	return records, nil
 }
