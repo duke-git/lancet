@@ -68,3 +68,67 @@ func TestEqualValue(t *testing.T) {
 
 	assert.Equal(false, EqualValue(1, "2"))
 }
+
+func TestLessThan(t *testing.T) {
+	assert := internal.NewAssert(t, "TestLessThan")
+
+	assert.Equal(true, LessThan(1, 2))
+	assert.Equal(true, LessThan(1.1, 2.2))
+	assert.Equal(true, LessThan("a", "b"))
+
+	time1 := time.Now()
+	time2 := time1.Add(time.Second)
+	assert.Equal(true, LessThan(time1, time2))
+
+	assert.Equal(false, LessThan(1, 1))
+	assert.Equal(false, LessThan(1, int64(1)))
+}
+
+func TestGreaterThan(t *testing.T) {
+	assert := internal.NewAssert(t, "TestGreaterThan")
+
+	assert.Equal(true, GreaterThan(2, 1))
+	assert.Equal(true, GreaterThan(2.2, 1.1))
+	assert.Equal(true, GreaterThan("b", "a"))
+
+	time1 := time.Now()
+	time2 := time1.Add(time.Second)
+	assert.Equal(true, GreaterThan(time2, time1))
+
+	assert.Equal(false, GreaterThan(1, 2))
+	assert.Equal(false, GreaterThan(int64(2), 1))
+	assert.Equal(false, GreaterThan("b", "c"))
+}
+
+func TestLessOrEqual(t *testing.T) {
+	assert := internal.NewAssert(t, "TestLessOrEqual")
+
+	assert.Equal(true, LessOrEqual(1, 2))
+	assert.Equal(true, LessOrEqual(1, 1))
+	assert.Equal(true, LessOrEqual(1.1, 2.2))
+	assert.Equal(true, LessOrEqual("a", "b"))
+
+	time1 := time.Now()
+	time2 := time1.Add(time.Second)
+	assert.Equal(true, LessOrEqual(time1, time2))
+
+	assert.Equal(false, LessOrEqual(2, 1))
+	assert.Equal(false, LessOrEqual(1, int64(2)))
+}
+
+func TestGreaterOrEqual(t *testing.T) {
+	assert := internal.NewAssert(t, "TestGreaterThan")
+
+	assert.Equal(true, GreaterOrEqual(2, 1))
+	assert.Equal(true, GreaterOrEqual(1, 1))
+	assert.Equal(true, GreaterOrEqual(2.2, 1.1))
+	assert.Equal(true, GreaterOrEqual("b", "b"))
+
+	time1 := time.Now()
+	time2 := time1.Add(time.Second)
+	assert.Equal(true, GreaterOrEqual(time2, time1))
+
+	assert.Equal(false, GreaterOrEqual(1, 2))
+	assert.Equal(false, GreaterOrEqual(int64(2), 1))
+	assert.Equal(false, GreaterOrEqual("b", "c"))
+}
