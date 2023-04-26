@@ -121,7 +121,7 @@ func TestIsPingConnected(t *testing.T) {
 	assert := internal.NewAssert(t, "TestIsPingConnected")
 
 	// in github action env, this will fail
-	// result1 := IsPingConnected("bing.com")
+	// result1 := IsPingConnected("www.baidu.com")
 	// assert.Equal(true, result1)
 
 	result2 := IsPingConnected("www.!@#&&&.com")
