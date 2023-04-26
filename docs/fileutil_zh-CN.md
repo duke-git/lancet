@@ -39,6 +39,10 @@ import (
 -   [Zip](#Zip)
 -   [UnZip](#UnZip)
 -   [IsZipFile](#IsZipFile)
+-   [FileSize](#FileSize)
+-   [MTime](#MTime)
+-   [Sha](#Sha)
+-   [ReadCsvFile](#ReadCsvFile)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -108,7 +112,7 @@ func main() {
 func CreateDir(absPath string) error
 ```
 
-<b>Example:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -520,5 +524,139 @@ import (
 func main() {
     isZip := IsZipFile("./zipfile.zip")
     fmt.Println(isZip)
+}
+```
+
+### <span id="FileSize">FileSize</span>
+
+<p>返回文件字节大小。</p>
+
+<b>函数签名:</b>
+
+```go
+func FileSize(path string) (int64, error)
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/fileutil"
+)
+
+func main() {
+    size, err := fileutil.FileSize("./testdata/test.txt")
+
+    fmt.Println(size)
+    fmt.Println(err)
+
+    // Output:
+    // 20
+    // <nil>
+}
+```
+
+### <span id="MTime">MTime</span>
+
+<p>返回文件修改时间(unix timestamp).</p>
+
+<b>函数签名:</b>
+
+```go
+func MTime(filepath string) (int64, error)
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/fileutil"
+)
+
+func main() {
+    mtime, err := fileutil.MTime("./testdata/test.txt")
+
+    fmt.Println(mtime)
+    fmt.Println(err)
+
+    // Output:
+    // 1682391110
+    // <nil>
+}
+```
+
+### <span id="Sha">Sha</span>
+
+<p>返回文件sha值，参数`shaType` 应传值为: 1, 256，512.</p>
+
+<b>函数签名:</b>
+
+```go
+func Sha(filepath string, shaType ...int) (string, error)
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/fileutil"
+)
+
+func main() {
+    sha1, err := fileutil.Sha("./testdata/test.txt", 1)
+    sha256, _ := fileutil.Sha("./testdata/test.txt", 256)
+    sha512, _ := fileutil.Sha("./testdata/test.txt", 512)
+
+    fmt.Println(sha1)
+    fmt.Println(sha256)
+    fmt.Println(sha512)
+    fmt.Println(err)
+
+    // Output:
+    // dda3cf10c5a6ff6c6659a497bf7261b287af2bc7
+    // aa6d0a3fbc3442c228d606da09e0c1dc98c69a1cac3da1909199e0266171df35
+    // d22aba2a1b7a2e2f512756255cc1c3708905646920cb1eb95e45b531ba74774dbbb89baebf1f716220eb9cf4908f1cfc5b2a01267704d9a59f59d77cab609870
+    // <nil>
+}
+```
+
+### <span id="ReadCsvFile">ReadCsvFile</span>
+
+<p>读取csv文件内容到切片</p>
+
+<b>函数签名:</b>
+
+```go
+func ReadCsvFile(filepath string) ([][]string, error)
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/fileutil"
+)
+
+func main() {
+    content, err := fileutil.ReadCsvFile("./testdata/test.csv")
+
+    fmt.Println(content)
+    fmt.Println(err)
+
+    // Output:
+    // [[Bob  12  male] [Duke  14  male] [Lucy  16  female]]
+    // <nil>
 }
 ```
