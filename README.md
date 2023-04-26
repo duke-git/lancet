@@ -118,7 +118,28 @@ import "github.com/duke-git/lancet/v2/algorithm"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#LRUCache)]
     [[play](https://go.dev/play/p/-EZjgOURufP)]
 
-### 2. Concurrency package contain some functions to support concurrent programming. eg, goroutine, channel, async.
+### 2. Compare package provides a lightweight comparison function on any type.
+
+```go
+import "github.com/duke-git/lancet/v2/compare"
+```
+
+#### Function list:
+
+-   **<big>Equal</big>** : Checks if two values are equal or not. (check both type and value)
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/compare.md#Equal)]
+-   **<big>EqualValue</big>** : Checks if two values are equal or not. (check value only)
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/compare.md#EqualValue)]
+-   **<big>LessThan</big>** : Checks if value `left` less than value `right`.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/compare.md#LessThan)]
+-   **<big>GreaterThan</big>** : Checks if value `left` greater than value `right`.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/compare.md#GreaterThan)]
+-   **<big>LessOrEqual</big>** : Checks if value `left` less than or equal than value `right`.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/compare.md#LessOrEqual)]
+-   **<big>GreaterOrEqual</big>** : Checks if value `left` less greater or equal than value `right`.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/compare.md#GreaterOrEqual)]
+
+### 3. Concurrency package contain some functions to support concurrent programming. eg, goroutine, channel, async.
 
 ```go
 import "github.com/duke-git/lancet/v2/concurrency"
@@ -157,7 +178,7 @@ import "github.com/duke-git/lancet/v2/concurrency"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/concurrency.md#Tee)]
     [[play](https://go.dev/play/p/3TQPKnCirrP)]
 
-### 3. Condition package contains some functions for conditional judgment. eg. And, Or, TernaryOperator...
+### 4. Condition package contains some functions for conditional judgment. eg. And, Or, TernaryOperator...
 
 ```go
 import "github.com/duke-git/lancet/v2/condition"
@@ -190,7 +211,7 @@ import "github.com/duke-git/lancet/v2/condition"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/condition.md#TernaryOperator)]
     [[play](https://go.dev/play/p/ElllPZY0guT)]
 
-### 4. Convertor package contains some functions for data convertion.
+### 5. Convertor package contains some functions for data convertion.
 
 ```go
 import "github.com/duke-git/lancet/v2/convertor"
@@ -253,7 +274,7 @@ import "github.com/duke-git/lancet/v2/convertor"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#CopyProperties)]
     [[play](https://go.dev/play/p/FOVY3XJL-6B)]
 
-### 5. Cryptor package is for data encryption and decryption.
+### 6. Cryptor package is for data encryption and decryption.
 
 ```go
 import "github.com/duke-git/lancet/v2/cryptor"
@@ -357,7 +378,7 @@ import "github.com/duke-git/lancet/v2/cryptor"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#RsaDecrypt)]
     [[play](https://go.dev/play/p/uef0q1fz53I)]
 
-### 6. Datetime package supports date and time format and compare.
+### 7. Datetime package supports date and time format and compare.
 
 ```go
 import "github.com/duke-git/lancet/v2/datetime"
@@ -456,7 +477,7 @@ import "github.com/duke-git/lancet/v2/datetime"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#ToIso8601)]
     [[play](https://go.dev/play/p/mkhOHQkdeA2)]
 
-### 7. Datastructure package constains some common data structure. eg. list, linklist, stack, queue, set, tree, graph.
+### 8. Datastructure package constains some common data structure. eg. list, linklist, stack, queue, set, tree, graph.
 
 ```go
 import list "github.com/duke-git/lancet/v2/datastructure/list"
@@ -488,7 +509,7 @@ import hashmap "github.com/duke-git/lancet/v2/datastructure/hashmap"
 -   **<big>Hashmap</big>** : hash map structure.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/datastructure/hashmap.md)]
 
-### 8. Fileutil package implements some basic functions for file operations.
+### 9. Fileutil package implements some basic functions for file operations.
 
 ```go
 import "github.com/duke-git/lancet/v2/fileutil"
@@ -544,8 +565,18 @@ import "github.com/duke-git/lancet/v2/fileutil"
 -   **<big>CurrentPath</big>** : return current absolute path.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#CurrentPath)]
     [[play](https://go.dev/play/p/s74a9iBGcSw)]
+-   **<big>IsZipFile</big>** : checks if file is zip file or not.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#IsZipFile)]
+-   **<big>FileSize</big>** : return file size in bytes.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#FileSize)]
+-   **<big>MTime</big>** : return file modified time(unix timestamp).
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#MTime)]
+-   **<big>Sha</big>** : return file sha value.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#Sha)]
+-   **<big>ReadCsvFile</big>** : read file content into slice.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#ReadCsvFile)]
 
-### 9. Formatter contains some functions for data formatting.
+### 10. Formatter contains some functions for data formatting.
 
 ```go
 import "github.com/duke-git/lancet/v2/formatter"
@@ -575,7 +606,7 @@ import "github.com/duke-git/lancet/v2/formatter"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/formatter.md#ParseBinaryBytes)]
     [[play](https://go.dev/play/p/69v1tTT62x8)]
 
-### 10. Function package can control the flow of function execution and support part of functional programming
+### 11. Function package can control the flow of function execution and support part of functional programming
 
 ```go
 import "github.com/duke-git/lancet/v2/function"
@@ -611,7 +642,7 @@ import "github.com/duke-git/lancet/v2/function"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/function.md#Watcher)]
     [[play](https://go.dev/play/p/l2yrOpCLd1I)]
 
-### 11. Maputil package includes some functions to manipulate map.
+### 12. Maputil package includes some functions to manipulate map.
 
 ```go
 import "github.com/duke-git/lancet/v2/maputil"
@@ -683,7 +714,7 @@ import "github.com/duke-git/lancet/v2/maputil"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil.md#IsDisjoint)]
     [[play](https://go.dev/play/p/N9qgYg_Ho6f)]
 
-### 12. Mathutil package implements some functions for math calculation.
+### 13. Mathutil package implements some functions for math calculation.
 
 ```go
 import "github.com/duke-git/lancet/v2/mathutil"
@@ -746,7 +777,7 @@ import "github.com/duke-git/lancet/v2/mathutil"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#IsPrime)]
     [[play](https://go.dev/play/p/Rdd8UTHZJ7u)]
 
-### 13. Netutil package contains functions to get net information and send http request.
+### 14. Netutil package contains functions to get net information and send http request.
 
 ```go
 import "github.com/duke-git/lancet/v2/netutil"
@@ -808,8 +839,16 @@ import "github.com/duke-git/lancet/v2/netutil"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#HttpPatch)]
 -   **<big>ParseHttpResponse</big>** : decode http response into target object.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#ParseHttpResponse)]
+-   **<big>DownloadFile</big>** : download the file exist in url to a local file.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#DownloadFile)]
+-   **<big>UploadFile</big>** : upload the file to a server.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#UploadFile)]
+-   **<big>IsPingConnected</big>** : checks if can ping the specified host or not.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#IsPingConnected)]
+-   **<big>IsTelnetConnected</big>** : checks if can if can telnet the specified host or not.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#IsTelnetConnected)]
 
-### 14. Random package implements some basic functions to generate random int and string.
+### 15. Random package implements some basic functions to generate random int and string.
 
 ```go
 import "github.com/duke-git/lancet/v2/random"
@@ -842,7 +881,7 @@ import "github.com/duke-git/lancet/v2/random"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/random.md#UUIdV4)]
     [[play](https://go.dev/play/p/_Z9SFmr28ft)]
 
-### 15. Retry package is for executing a function repeatedly until it was successful or canceled by the context.
+### 16. Retry package is for executing a function repeatedly until it was successful or canceled by the context.
 
 ```go
 import "github.com/duke-git/lancet/v2/retry"
@@ -866,7 +905,7 @@ import "github.com/duke-git/lancet/v2/retry"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/retry.md#RetryTimes)]
     [[play](https://go.dev/play/p/ssfVeU2SwLO)]
 
-### 16. Slice contains some functions to manipulate slice.
+### 17. Slice contains some functions to manipulate slice.
 
 ```go
 import "github.com/duke-git/lancet/v2/slice"
@@ -940,12 +979,16 @@ import "github.com/duke-git/lancet/v2/slice"
 -   **<big>FilterMap</big>** : returns a slice which apply both filtering and mapping to the given slice.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#FilterMap)]
     [[play](https://go.dev/play/p/J94SZ_9MiIe)]
--   **<big>Find</big>** : iterates over elements of slice, returning the first one that passes a truth test on predicate function.
+-   **<big>Find<sup>deprecated</sup></big>** : iterates over elements of slice, returning the first one that passes a truth test on predicate function.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Find)]
     [[play](https://go.dev/play/p/CBKeBoHVLgq)]
--   **<big>FindLast</big>** : return the last item that passes a truth test on predicate function.
+-   **<big>FindBy</big>** : iterates over elements of slice, returning the first one that passes a truth test on predicate function.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#FindBy)]
+-   **<big>FindLast<sup>deprecated</sup></big>** : return the last item that passes a truth test on predicate function.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#FindLast)]
     [[play](https://go.dev/play/p/FFDPV_j7URd)]
+-   **<big>FindLastBy</big>** : iterates over elements of slice, returning the last one that passes a truth test on predicate function.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#FindLastBy)]
 -   **<big>Flatten</big>** : flattens slice one level.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Flatten)]
     [[play](https://go.dev/play/p/hYa3cBEevtm)]
@@ -1073,7 +1116,7 @@ import "github.com/duke-git/lancet/v2/slice"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#KeyBy)]
     [[play](https://go.dev/play/p/uXod2LWD1Kg)]
 
-### 17. Stream package implements a sequence of elements supporting sequential and operations. this package is an experiment to explore if stream in go can work as the way java does. its function is very limited.
+### 18. Stream package implements a sequence of elements supporting sequential and operations. this package is an experiment to explore if stream in go can work as the way java does. its function is very limited.
 
 ```go
 import "github.com/duke-git/lancet/v2/stream"
@@ -1157,7 +1200,7 @@ import "github.com/duke-git/lancet/v2/stream"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/stream.md#ToSlice)]
     [[play](https://go.dev/play/p/jI6_iZZuVFE)]
 
-### 18. Structs package provides several high level functions to manipulate struct, tag, and field.
+### 19. Structs package provides several high level functions to manipulate struct, tag, and field.
 
 ```go
 import "github.com/duke-git/lancet/v2/structs"
@@ -1190,7 +1233,7 @@ import "github.com/duke-git/lancet/v2/structs"
 -   **<big>IsSlice</big>** : check if the field is a slice
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/structs/field.md#IsSlice)]
 
-### 19. Strutil package contains some functions to manipulate string.
+### 20. Strutil package contains some functions to manipulate string.
 
 ```go
 import "github.com/duke-git/lancet/v2/strutil"
@@ -1269,8 +1312,20 @@ import "github.com/duke-git/lancet/v2/strutil"
 -   **<big>RemoveNonPrintable</big>** : remove non-printable characters from a string.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#RemoveNonPrintable)]
     [[play](https://go.dev/play/p/og47F5x_jTZ)]
+-   **<big>StringToBytes</big>** : converts a string to byte slice without a memory allocation.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#StringToBytes)]
+-   **<big>BytesToString</big>** : converts a byte slice to string without a memory allocation.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#BytesToString)]
+-   **<big>IsBlank</big>** : checks if a string is whitespace or empty.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#IsBlank)]
+-   **<big>HasPrefixAny</big>** : checks if a string starts with any of an array of specified strings.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#HasPrefixAny)]
+-   **<big>HasSuffixAny</big>** : checks if a string ends with any of an array of specified strings.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#HasSuffixAny)]
+-   **<big>IndexOffset</big>** : returns the index of the first instance of substr in string after offsetting the string by `idxFrom`.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#IndexOffset)]
 
-### 20. System package contain some functions about os, runtime, shell command.
+### 21. System package contain some functions about os, runtime, shell command.
 
 ```go
 import "github.com/duke-git/lancet/v2/system"
@@ -1306,7 +1361,7 @@ import "github.com/duke-git/lancet/v2/system"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/system.md#GetOsBits)]
     [[play](https://go.dev/play/p/ml-_XH3gJbW)]
 
-### 21. Validator package contains some functions for data validation.
+### 22. Validator package contains some functions for data validation.
 
 ```go
 import "github.com/duke-git/lancet/v2/validator"
@@ -1414,7 +1469,7 @@ import "github.com/duke-git/lancet/v2/validator"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsPrintable)]
     [[play](https://go.dev/play/p/Pe1FE2gdtTP)]
 
-### 22. xerror package implements helpers for errors.
+### 23. xerror package implements helpers for errors.
 
 ```go
 import "github.com/duke-git/lancet/v2/xerror"
