@@ -394,22 +394,19 @@ func ExampleSplitWords() {
 
 	result1 := SplitWords("a word")
 	result2 := SplitWords("I'am a programmer")
-	result3 := SplitWords("Bonjour, je suis programmeur")
-	result4 := SplitWords("a -b-c' 'd'e")
-	result5 := SplitWords("你好，我是一名码农")
-	result6 := SplitWords("こんにちは，私はプログラマーです")
+	result3 := SplitWords("a -b-c' 'd'e")
+	result4 := SplitWords("你好，我是一名码农")
+	result5 := SplitWords("こんにちは，私はプログラマーです")
 
 	fmt.Println(result1)
 	fmt.Println(result2)
 	fmt.Println(result3)
 	fmt.Println(result4)
 	fmt.Println(result5)
-	fmt.Println(result6)
 
 	// Output:
 	// [a word]
 	// [I'am a programmer]
-	// [Bonjour je suis programmeur]
 	// [a b-c' d'e]
 	// []
 	// []

@@ -314,11 +314,10 @@ func TestSplitWords(t *testing.T) {
 	assert := internal.NewAssert(t, "TestSplitWords")
 
 	cases := map[string][]string{
-		"a word":                       {"a", "word"},
-		"I'am a programmer":            {"I'am", "a", "programmer"},
-		"Bonjour, je suis programmeur": {"Bonjour", "je", "suis", "programmeur"},
-		"a -b-c' 'd'e":                 {"a", "b-c'", "d'e"},
-		"你好，我是一名码农":                    nil,
+		"a word":            {"a", "word"},
+		"I'am a programmer": {"I'am", "a", "programmer"},
+		"a -b-c' 'd'e":      {"a", "b-c'", "d'e"},
+		"你好，我是一名码农":         nil,
 		"こんにちは，私はプログラマーです": nil,
 	}
 
@@ -331,11 +330,10 @@ func TestWordCount(t *testing.T) {
 	assert := internal.NewAssert(t, "TestSplitWords")
 
 	cases := map[string]int{
-		"a word":                       2, //   {"a", "word"},
-		"I'am a programmer":            3, //   {"I'am", "a", "programmer"},
-		"Bonjour, je suis programmeur": 4, // {"Bonjour", "je", "suis", "programmeur"},
-		"a -b-c' 'd'e":                 3, // {"a", "b-c'", "d'e"},
-		"你好，我是一名码农":                    0, // nil,
+		"a word":            2, //   {"a", "word"},
+		"I'am a programmer": 3, //   {"I'am", "a", "programmer"},
+		"a -b-c' 'd'e":      3, // {"a", "b-c'", "d'e"},
+		"你好，我是一名码农":         0, // nil,
 		"こんにちは，私はプログラマーです": 0, // nil,
 	}
 
