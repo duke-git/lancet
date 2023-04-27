@@ -205,10 +205,10 @@ import "github.com/duke-git/lancet/v2/condition"
     [[play](https://go.dev/play/p/gObZrW7ZbG8)]
 -   **<big>Nor</big>** : 异或的取反操作。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/condition_zh-CN.md#Nor)]
-    [[play](https://go.dev/play/p/g2j08F_zZky)
+    [[play](https://go.dev/play/p/g2j08F_zZky)]
 -   **<big>Xnor</big>** : 如果 a 和 b 都是真的或 a 和 b 均是假的，则返回 true。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/condition_zh-CN.md#Xnor)]
-[[play](https://go.dev/play/p/OuDB9g51643)]]
+[[play](https://go.dev/play/p/OuDB9g51643)]
 -   **<big>Nand</big>** : 如果 a 和 b 都为真，返回 false，否则返回 true
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/condition_zh-CN.md#Nand)]
     [[play](https://go.dev/play/p/vSRMLxLIbq8)]
