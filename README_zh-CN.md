@@ -127,16 +127,22 @@ import "github.com/duke-git/lancet/v2/compare"
 
 -   **<big>Equal</big>** : 检查两个值是否相等(检查类型和值)。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/compare_zh-CN.md#Equal)]
+    [[play](https://go.dev/play/p/wmVxR-to4lz)]
 -   **<big>EqualValue</big>** : 检查两个值是否相等(只检查值)。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/compare_zh-CN.md#EqualValue)]
+    [[play](https://go.dev/play/p/fxnna_LLD9u)]
 -   **<big>LessThan</big>** : 验证参数`left`的值是否小于参数`right`的值。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/compare_zh-CN.md#LessThan)]
+    [[play](https://go.dev/play/p/cYh7FQQj0ne)]
 -   **<big>GreaterThan</big>** : 验证参数`left`的值是否大于参数`right`的值。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/compare_zh-CN.md#GreaterThan)]
+    [[play](https://go.dev/play/p/9-NYDFZmIMp)]
 -   **<big>LessOrEqual</big>** : 验证参数`left`的值是否小于或等于参数`right`的值。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/compare_zh-CN.md#LessOrEqual)]
+    [[play](https://go.dev/play/p/e4T_scwoQzp)]
 -   **<big>GreaterOrEqual</big>** : 验证参数`left`的值是否大于或等于参数`right`的值。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/compare_zh-CN.md#GreaterOrEqual)]
+    [[play](https://go.dev/play/p/vx8mP0U8DFk)]
 
 ### 3. concurrency 包含一些支持并发编程的功能。例如：goroutine, channel, async 等。
 
@@ -564,7 +570,7 @@ import "github.com/duke-git/lancet/v2/fileutil"
 -   **<big>CurrentPath</big>** : 返回当前位置的绝对路径。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil_zh-CN.md#CurrentPath)]
     [[play](https://go.dev/play/p/s74a9iBGcSw)]
--   **<big>IsZipFile</big>** : 判断文件是否是zip压缩文件。
+-   **<big>IsZipFile</big>** : 判断文件是否是 zip 压缩文件。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil_zh-CN.md#IsZipFile)]
     [[play](https://go.dev/play/p/9M0g2j_uF_e)]
 -   **<big>FileSize</big>** : 返回文件字节大小。
@@ -573,13 +579,12 @@ import "github.com/duke-git/lancet/v2/fileutil"
 -   **<big>MTime</big>** : 返回文件修改时间(unix timestamp)。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil_zh-CN.md#MTime)]
     [[play](https://go.dev/play/p/s_Tl7lZoAaY)]
--   **<big>Sha</big>** : 返回文件sha值。
+-   **<big>Sha</big>** : 返回文件 sha 值。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil_zh-CN.md#Sha)]
     [[play](https://go.dev/play/p/VfEEcO2MJYf)]
--   **<big>ReadCsvFile</big>** : 读取csv文件内容到切片。
+-   **<big>ReadCsvFile</big>** : 读取 csv 文件内容到切片。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil_zh-CN.md#ReadCsvFile)]
     [[play](https://go.dev/play/p/OExTkhGEd3_u)]
-
 
 ### 10. formatter 格式化器包含一些数据格式化处理方法。
 
@@ -842,16 +847,16 @@ import "github.com/duke-git/lancet/v2/netutil"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#HttpPut)]
 -   **<big>HttpPatch<sup>deprecated</sup></big>** : 发送 http patch 请求（已弃用：SendRequest 代替）。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#HttpPatch)]
--   **<big>ParseHttpResponse</big>** : 解析http响应体到目标结构体。
+-   **<big>ParseHttpResponse</big>** : 解析 http 响应体到目标结构体。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#ParseHttpResponse)]
--   **<big>DownloadFile</big>** : 从指定的server地址下载文件。
+-   **<big>DownloadFile</big>** : 从指定的 server 地址下载文件。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#DownloadFile)]
--   **<big>UploadFile</big>** : 将文件上传指定的server地址。
+-   **<big>UploadFile</big>** : 将文件上传指定的 server 地址。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#UploadFile)]
--   **<big>IsPingConnected</big>** : 检查能否ping通主机。
+-   **<big>IsPingConnected</big>** : 检查能否 ping 通主机。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#IsPingConnected)]
     [[play](https://go.dev/play/p/q8OzTijsA87)]
--   **<big>IsTelnetConnected</big>** : 检查能否telnet到主机。
+-   **<big>IsTelnetConnected</big>** : 检查能否 telnet 到主机。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#IsTelnetConnected)]
     [[play](https://go.dev/play/p/yiLCGtQv_ZG)]
 
@@ -995,7 +1000,7 @@ import "github.com/duke-git/lancet/v2/slice"
 -   **<big>FindLast<sup>deprecated</sup></big>** : 从头到尾遍历 slice 的元素，返回最后一个通过 predicate 函数真值测试的元素。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#FindLast)]
     [[play](https://go.dev/play/p/FFDPV_j7URd)]
--   **<big>FindLastBy</big>** : 从遍历slice的元素，返回最后一个通过predicate函数真值测试的元素。
+-   **<big>FindLastBy</big>** : 从遍历 slice 的元素，返回最后一个通过 predicate 函数真值测试的元素。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#FindLastBy)]
     [[play](https://go.dev/play/p/8iqomzyCl_s)]
 -   **<big>Flatten</big>** : 将多维切片展平一层。
@@ -1339,7 +1344,7 @@ import "github.com/duke-git/lancet/v2/strutil"
 -   **<big>HasSuffixAny</big>** : 检查字符串是否以指定字符串数组中的任何一个结尾。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#HasSuffixAny)]
     [[play](https://go.dev/play/p/sKWpCQdOVkx)]
--   **<big>IndexOffset</big>** : 将字符串偏移idxFrom后，返回字符串中第一个 substr 实例的索引。
+-   **<big>IndexOffset</big>** : 将字符串偏移 idxFrom 后，返回字符串中第一个 substr 实例的索引。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#IndexOffset)]
     [[play](https://go.dev/play/p/qZo4lV2fomB)]
 

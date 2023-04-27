@@ -128,16 +128,22 @@ import "github.com/duke-git/lancet/v2/compare"
 
 -   **<big>Equal</big>** : Checks if two values are equal or not. (check both type and value)
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/compare.md#Equal)]
+    [[play](https://go.dev/play/p/wmVxR-to4lz)]
 -   **<big>EqualValue</big>** : Checks if two values are equal or not. (check value only)
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/compare.md#EqualValue)]
+    [[play](https://go.dev/play/p/fxnna_LLD9u)]
 -   **<big>LessThan</big>** : Checks if value `left` less than value `right`.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/compare.md#LessThan)]
+    [[play](https://go.dev/play/p/cYh7FQQj0ne)]
 -   **<big>GreaterThan</big>** : Checks if value `left` greater than value `right`.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/compare.md#GreaterThan)]
+    [[play](https://go.dev/play/p/9-NYDFZmIMp)]
 -   **<big>LessOrEqual</big>** : Checks if value `left` less than or equal than value `right`.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/compare.md#LessOrEqual)]
+    [[play](https://go.dev/play/p/e4T_scwoQzp)]
 -   **<big>GreaterOrEqual</big>** : Checks if value `left` less greater or equal than value `right`.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/compare.md#GreaterOrEqual)]
+    [[play](https://go.dev/play/p/vx8mP0U8DFk)]
 
 ### 3. Concurrency package contain some functions to support concurrent programming. eg, goroutine, channel, async.
 
@@ -580,7 +586,6 @@ import "github.com/duke-git/lancet/v2/fileutil"
 -   **<big>ReadCsvFile</big>** : read file content into slice.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#ReadCsvFile)]
     [[play](https://go.dev/play/p/OExTkhGEd3_u)]
-
 
 ### 10. Formatter contains some functions for data formatting.
 
@@ -1340,7 +1345,6 @@ import "github.com/duke-git/lancet/v2/strutil"
 -   **<big>IndexOffset</big>** : returns the index of the first instance of substr in string after offsetting the string by `idxFrom`.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#IndexOffset)]
     [[play](https://go.dev/play/p/qZo4lV2fomB)]
-
 
 ### 21. System package contain some functions about os, runtime, shell command.
 
