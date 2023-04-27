@@ -968,6 +968,7 @@ func main() {
 
     fmt.Println(result1)
     fmt.Println(result2)
+    
     // Output:
     // hello world
     // 你好😄
@@ -1027,6 +1028,7 @@ func main() {
 	result := strutil.BytesToString(bytes)
 
 	fmt.Println(result)
+
 	// Output:
 	// abc
 }
@@ -1058,6 +1060,7 @@ func main() {
 	fmt.Println(result1)
 	fmt.Println(result2)
 	fmt.Println(result3)
+
 	// Output:
 	// true
 	// true
@@ -1089,6 +1092,7 @@ func main() {
 
 	fmt.Println(result1)
 	fmt.Println(result2)
+
 	// Output:
 	// true
 	// false
@@ -1119,6 +1123,7 @@ func main() {
 
 	fmt.Println(result1)
 	fmt.Println(result2)
+
 	// Output:
 	// true
 	// false
@@ -1157,6 +1162,7 @@ func main() {
 	fmt.Println(result3)
 	fmt.Println(result4)
 	fmt.Println(result5)
+
 	// Output:
 	// 12
 	// 1

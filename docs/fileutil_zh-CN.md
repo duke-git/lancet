@@ -522,7 +522,7 @@ import (
 )
 
 func main() {
-    isZip := IsZipFile("./zipfile.zip")
+    isZip := fileutil.IsZipFile("./zipfile.zip")
     fmt.Println(isZip)
 }
 ```

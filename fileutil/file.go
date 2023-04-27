@@ -180,7 +180,7 @@ func ListFileNames(path string) ([]string, error) {
 }
 
 // IsZipFile checks if file is zip or not.
-// Play: todo
+// Play: https://go.dev/play/p/9M0g2j_uF_e
 func IsZipFile(filepath string) bool {
 	f, err := os.Open(filepath)
 	if err != nil {
@@ -383,7 +383,7 @@ func CurrentPath() string {
 }
 
 // FileSize returns file size in bytes.
-// Play: todo
+// Play: https://go.dev/play/p/H9Z05uD-Jjc
 func FileSize(path string) (int64, error) {
 	f, err := os.Stat(path)
 	if err != nil {
@@ -393,7 +393,7 @@ func FileSize(path string) (int64, error) {
 }
 
 // MTime returns file modified time.
-// Play: todo
+// Play: https://go.dev/play/p/s_Tl7lZoAaY
 func MTime(filepath string) (int64, error) {
 	f, err := os.Stat(filepath)
 	if err != nil {
@@ -403,7 +403,7 @@ func MTime(filepath string) (int64, error) {
 }
 
 // MTime returns file sha value, param `shaType` should be 1, 256 or 512.
-// Play: todo
+// Play: https://go.dev/play/p/VfEEcO2MJYf
 func Sha(filepath string, shaType ...int) (string, error) {
 	file, err := os.Open(filepath)
 	if err != nil {
@@ -437,7 +437,7 @@ func Sha(filepath string, shaType ...int) (string, error) {
 }
 
 // ReadCsvFile read file content into slice.
-// Play: todo
+// Play: https://go.dev/play/p/OExTkhGEd3_u
 func ReadCsvFile(filepath string) ([][]string, error) {
 	f, err := os.Open(filepath)
 	if err != nil {

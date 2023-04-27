@@ -272,7 +272,7 @@ import "github.com/duke-git/lancet/v2/convertor"
     [[play](https://go.dev/play/p/j4DP5dquxnk)]
 -   **<big>CopyProperties</big>** : copies each field from the source struct into the destination struct.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#CopyProperties)]
-    [[play](https://go.dev/play/p/FOVY3XJL-6B)]
+    [[play](https://go.dev/play/p/oZujoB5Sgg5)]
 
 ### 6. Cryptor package is for data encryption and decryption.
 
@@ -567,14 +567,20 @@ import "github.com/duke-git/lancet/v2/fileutil"
     [[play](https://go.dev/play/p/s74a9iBGcSw)]
 -   **<big>IsZipFile</big>** : checks if file is zip file or not.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#IsZipFile)]
+    [[play](https://go.dev/play/p/9M0g2j_uF_e)]
 -   **<big>FileSize</big>** : return file size in bytes.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#FileSize)]
+    [[play](https://go.dev/play/p/H9Z05uD-Jjc)]
 -   **<big>MTime</big>** : return file modified time(unix timestamp).
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#MTime)]
+    [[play](https://go.dev/play/p/s_Tl7lZoAaY)]
 -   **<big>Sha</big>** : return file sha value.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#Sha)]
+    [[play](https://go.dev/play/p/VfEEcO2MJYf)]
 -   **<big>ReadCsvFile</big>** : read file content into slice.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#ReadCsvFile)]
+    [[play](https://go.dev/play/p/OExTkhGEd3_u)]
+
 
 ### 10. Formatter contains some functions for data formatting.
 
@@ -845,8 +851,10 @@ import "github.com/duke-git/lancet/v2/netutil"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#UploadFile)]
 -   **<big>IsPingConnected</big>** : checks if can ping the specified host or not.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#IsPingConnected)]
+    [[play](https://go.dev/play/p/q8OzTijsA87)]
 -   **<big>IsTelnetConnected</big>** : checks if can if can telnet the specified host or not.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#IsTelnetConnected)]
+    [[play](https://go.dev/play/p/yiLCGtQv_ZG)]
 
 ### 15. Random package implements some basic functions to generate random int and string.
 
@@ -984,11 +992,13 @@ import "github.com/duke-git/lancet/v2/slice"
     [[play](https://go.dev/play/p/CBKeBoHVLgq)]
 -   **<big>FindBy</big>** : iterates over elements of slice, returning the first one that passes a truth test on predicate function.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#FindBy)]
+    [[play](https://go.dev/play/p/n1lysBYl-GB)]
 -   **<big>FindLast<sup>deprecated</sup></big>** : return the last item that passes a truth test on predicate function.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#FindLast)]
     [[play](https://go.dev/play/p/FFDPV_j7URd)]
 -   **<big>FindLastBy</big>** : iterates over elements of slice, returning the last one that passes a truth test on predicate function.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#FindLastBy)]
+    [[play](https://go.dev/play/p/8iqomzyCl_s)]
 -   **<big>Flatten</big>** : flattens slice one level.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Flatten)]
     [[play](https://go.dev/play/p/hYa3cBEevtm)]
@@ -1314,16 +1324,23 @@ import "github.com/duke-git/lancet/v2/strutil"
     [[play](https://go.dev/play/p/og47F5x_jTZ)]
 -   **<big>StringToBytes</big>** : converts a string to byte slice without a memory allocation.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#StringToBytes)]
+    [[play](https://go.dev/play/p/7OyFBrf9AxA)]
 -   **<big>BytesToString</big>** : converts a byte slice to string without a memory allocation.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#BytesToString)]
+    [[play](https://go.dev/play/p/6c68HRvJecH)]
 -   **<big>IsBlank</big>** : checks if a string is whitespace or empty.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#IsBlank)]
+    [[play](https://go.dev/play/p/6zXRH_c0Qd3)]
 -   **<big>HasPrefixAny</big>** : checks if a string starts with any of an array of specified strings.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#HasPrefixAny)]
+    [[play](https://go.dev/play/p/8UUTl2C5slo)]
 -   **<big>HasSuffixAny</big>** : checks if a string ends with any of an array of specified strings.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#HasSuffixAny)]
+    [[play](https://go.dev/play/p/sKWpCQdOVkx)]
 -   **<big>IndexOffset</big>** : returns the index of the first instance of substr in string after offsetting the string by `idxFrom`.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#IndexOffset)]
+    [[play](https://go.dev/play/p/qZo4lV2fomB)]
+
 
 ### 21. System package contain some functions about os, runtime, shell command.
 

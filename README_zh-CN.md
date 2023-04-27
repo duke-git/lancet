@@ -271,7 +271,7 @@ import "github.com/duke-git/lancet/v2/convertor"
     [[play](https://go.dev/play/p/j4DP5dquxnk)]
 -   **<big>CopyProperties</big>** : 拷贝不同结构体之间的同名字段。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#CopyProperties)]
-    [[play](https://go.dev/play/p/FOVY3XJL-6B)]
+    [[play](https://go.dev/play/p/oZujoB5Sgg5)]
 
 ### 6. cryptor 加密包支持数据加密和解密，获取 md5，hash 值。支持 base64, md5, hmac, aes, des, rsa。
 
@@ -566,14 +566,20 @@ import "github.com/duke-git/lancet/v2/fileutil"
     [[play](https://go.dev/play/p/s74a9iBGcSw)]
 -   **<big>IsZipFile</big>** : 判断文件是否是zip压缩文件。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil_zh-CN.md#IsZipFile)]
+    [[play](https://go.dev/play/p/9M0g2j_uF_e)]
 -   **<big>FileSize</big>** : 返回文件字节大小。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil_zh-CN.md#FileSize)]
+    [[play](https://go.dev/play/p/H9Z05uD-Jjc)]
 -   **<big>MTime</big>** : 返回文件修改时间(unix timestamp)。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil_zh-CN.md#MTime)]
+    [[play](https://go.dev/play/p/s_Tl7lZoAaY)]
 -   **<big>Sha</big>** : 返回文件sha值。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil_zh-CN.md#Sha)]
+    [[play](https://go.dev/play/p/VfEEcO2MJYf)]
 -   **<big>ReadCsvFile</big>** : 读取csv文件内容到切片。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil_zh-CN.md#ReadCsvFile)]
+    [[play](https://go.dev/play/p/OExTkhGEd3_u)]
+
 
 ### 10. formatter 格式化器包含一些数据格式化处理方法。
 
@@ -844,8 +850,10 @@ import "github.com/duke-git/lancet/v2/netutil"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#UploadFile)]
 -   **<big>IsPingConnected</big>** : 检查能否ping通主机。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#IsPingConnected)]
+    [[play](https://go.dev/play/p/q8OzTijsA87)]
 -   **<big>IsTelnetConnected</big>** : 检查能否telnet到主机。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#IsTelnetConnected)]
+    [[play](https://go.dev/play/p/yiLCGtQv_ZG)]
 
 ### 15. random 随机数生成器包，可以生成随机[]bytes, int, string。
 
@@ -983,11 +991,13 @@ import "github.com/duke-git/lancet/v2/slice"
     [[play](https://go.dev/play/p/CBKeBoHVLgq)]
 -   **<big>FindBy</big>** : 遍历切片的元素，返回第一个通过 predicate 函数真值测试的元素。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#FindBy)]
+    [[play](https://go.dev/play/p/n1lysBYl-GB)]
 -   **<big>FindLast<sup>deprecated</sup></big>** : 从头到尾遍历 slice 的元素，返回最后一个通过 predicate 函数真值测试的元素。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#FindLast)]
     [[play](https://go.dev/play/p/FFDPV_j7URd)]
 -   **<big>FindLastBy</big>** : 从遍历slice的元素，返回最后一个通过predicate函数真值测试的元素。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#FindLastBy)]
+    [[play](https://go.dev/play/p/8iqomzyCl_s)]
 -   **<big>Flatten</big>** : 将多维切片展平一层。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Flatten)]
     [[play](https://go.dev/play/p/hYa3cBEevtm)]
@@ -1316,16 +1326,22 @@ import "github.com/duke-git/lancet/v2/strutil"
     [[play](https://go.dev/play/p/og47F5x_jTZ)]
 -   **<big>StringToBytes</big>** : 在不分配内存的情况下将字符串转换为字节片。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#StringToBytes)]
+    [[play](https://go.dev/play/p/7OyFBrf9AxA)]
 -   **<big>BytesToString</big>** : 在不分配内存的情况下将字节切片转换为字符串。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#BytesToString)]
+    [[play](https://go.dev/play/p/6c68HRvJecH)]
 -   **<big>IsBlank</big>** : 检查字符串是否为空格或空。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#IsBlank)]
+    [[play](https://go.dev/play/p/6zXRH_c0Qd3)]
 -   **<big>HasPrefixAny</big>** : 检查字符串是否以指定字符串数组中的任何一个开头。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#HasPrefixAny)]
+    [[play](https://go.dev/play/p/8UUTl2C5slo)]
 -   **<big>HasSuffixAny</big>** : 检查字符串是否以指定字符串数组中的任何一个结尾。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#HasSuffixAny)]
+    [[play](https://go.dev/play/p/sKWpCQdOVkx)]
 -   **<big>IndexOffset</big>** : 将字符串偏移idxFrom后，返回字符串中第一个 substr 实例的索引。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#IndexOffset)]
+    [[play](https://go.dev/play/p/qZo4lV2fomB)]
 
 ### 21. system 包含 os, runtime, shell command 的相关函数。
 

@@ -922,7 +922,7 @@ import (
 )
 
 func main() {
-    err := DownloadFile("./lancet_logo.jpg", "https://picx.zhimg.com/v2-fc82a4199749de9cfb71e32e54f489d3_720w.jpg?source=172ae18b")
+    err := netutil.DownloadFile("./lancet_logo.jpg", "https://picx.zhimg.com/v2-fc82a4199749de9cfb71e32e54f489d3_720w.jpg?source=172ae18b")
 
     fmt.Println(err)
 }

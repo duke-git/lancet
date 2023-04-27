@@ -250,7 +250,7 @@ func DownloadFile(filepath string, url string) error {
 }
 
 // IsPingConnected checks if can ping specified host or not.
-// Play: todo
+// Play: https://go.dev/play/p/q8OzTijsA87
 func IsPingConnected(host string) bool {
 	cmd := exec.Command("ping", host, "-c", "4", "-W", "6")
 
@@ -266,7 +266,7 @@ func IsPingConnected(host string) bool {
 }
 
 // IsTelnetConnected checks if can telnet specified host or not.
-// Play: todo
+// Play: https://go.dev/play/p/yiLCGtQv_ZG
 func IsTelnetConnected(host string, port string) bool {
 	adder := host + ":" + port
 	conn, err := net.DialTimeout("tcp", adder, 5*time.Second)

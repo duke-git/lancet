@@ -338,7 +338,7 @@ func FindLast[T any](slice []T, predicate func(index int, item T) bool) (*T, boo
 // FindBy iterates over elements of slice, returning the first one that passes a truth test on predicate function.
 // If return T is nil or zero value then no items matched the predicate func.
 // In contrast to Find or FindLast, its return value no longer requires dereferencing
-// Play: todo
+// Play: https://go.dev/play/p/n1lysBYl-GB
 func FindBy[T any](slice []T, predicate func(index int, item T) bool) (v T, ok bool) {
 	index := -1
 
@@ -359,7 +359,7 @@ func FindBy[T any](slice []T, predicate func(index int, item T) bool) (v T, ok b
 // FindLastBy iterates over elements of slice, returning the last one that passes a truth test on predicate function.
 // If return T is nil or zero value then no items matched the predicate func.
 // In contrast to Find or FindLast, its return value no longer requires dereferencing
-// Play: todo
+// Play: https://go.dev/play/p/8iqomzyCl_s
 func FindLastBy[T any](slice []T, predicate func(index int, item T) bool) (v T, ok bool) {
 	index := -1
 

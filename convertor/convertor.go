@@ -321,7 +321,7 @@ func DeepClone[T any](src T) T {
 
 // CopyProperties copies each field from the source into the destination. It recursively copies struct pointers and interfaces that contain struct pointers.
 // use json.Marshal/Unmarshal, so json tag should be set for fields of dst and src struct.
-// Play: todo
+// Play: https://go.dev/play/p/oZujoB5Sgg5
 func CopyProperties[T, U any](dst T, src U) error {
 	dstType, srcType := reflect.TypeOf(dst), reflect.TypeOf(src)
 

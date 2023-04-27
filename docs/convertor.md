@@ -757,7 +757,11 @@ func main() {
 
     indicatorVO := IndicatorVO{}
 
-    CopyProperties(&indicatorVO, indicator)
+    err := convertor.CopyProperties(&indicatorVO, indicator)
+
+    if err != nil {
+        return
+    }
 
     fmt.Println(indicatorVO.Id)
     fmt.Println(indicatorVO.Ip)

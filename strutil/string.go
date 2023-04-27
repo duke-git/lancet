@@ -377,7 +377,7 @@ func RemoveNonPrintable(str string) string {
 }
 
 // StringToBytes converts a string to byte slice without a memory allocation.
-// Play: todo
+// Play: https://go.dev/play/p/7OyFBrf9AxA
 func StringToBytes(str string) (b []byte) {
 	sh := *(*reflect.StringHeader)(unsafe.Pointer(&str))
 	bh := (*reflect.SliceHeader)(unsafe.Pointer(&b))
@@ -386,13 +386,13 @@ func StringToBytes(str string) (b []byte) {
 }
 
 // BytesToString converts a byte slice to string without a memory allocation.
-// Play: todo
+// Play: https://go.dev/play/p/6c68HRvJecH
 func BytesToString(bytes []byte) string {
 	return *(*string)(unsafe.Pointer(&bytes))
 }
 
 // IsBlank checks if a string is whitespace, empty.
-// Play: todo
+// Play: https://go.dev/play/p/6zXRH_c0Qd3
 func IsBlank(str string) bool {
 	if len(str) == 0 {
 		return true
@@ -408,7 +408,7 @@ func IsBlank(str string) bool {
 }
 
 // HasPrefixAny check if a string starts with any of an array of specified strings.
-// Play: todo
+// Play: https://go.dev/play/p/8UUTl2C5slo
 func HasPrefixAny(str string, prefixes []string) bool {
 	if len(str) == 0 || len(prefixes) == 0 {
 		return false
@@ -422,7 +422,7 @@ func HasPrefixAny(str string, prefixes []string) bool {
 }
 
 // HasSuffixAny check if a string ends with any of an array of specified strings.
-// Play: todo
+// Play: https://go.dev/play/p/sKWpCQdOVkx
 func HasSuffixAny(str string, suffixes []string) bool {
 	if len(str) == 0 || len(suffixes) == 0 {
 		return false
@@ -437,7 +437,7 @@ func HasSuffixAny(str string, suffixes []string) bool {
 
 // IndexOffset returns the index of the first instance of substr in string after offsetting the string by `idxFrom`,
 // or -1 if substr is not present in string.
-// Play: todo
+// Play: https://go.dev/play/p/qZo4lV2fomB
 func IndexOffset(str string, substr string, idxFrom int) int {
 	if idxFrom > len(str)-1 || idxFrom < 0 {
 		return -1
