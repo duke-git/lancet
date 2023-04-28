@@ -230,3 +230,13 @@ func TestEndOfYear(t *testing.T) {
 
 	assert.Equal(expected, actual)
 }
+
+func TestIsLeapYear(t *testing.T) {
+	assert := internal.NewAssert(t, "TestEndOfYear")
+
+	result1 := IsLeapYear(2000)
+	result2 := IsLeapYear(2001)
+
+	assert.Equal(true, result1)
+	assert.Equal(false, result2)
+}

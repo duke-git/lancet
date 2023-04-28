@@ -321,3 +321,15 @@ func ExampleNewUnixNow() {
 // 	// Output:
 // 	// 2006-01-02T23:04:05+08:00
 // }
+
+func ExampleIsLeapYear() {
+	result1 := IsLeapYear(2000)
+	result2 := IsLeapYear(2001)
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+
+	// Output:
+	// true
+	// false
+}
