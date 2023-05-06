@@ -239,12 +239,12 @@ func TestGCD(t *testing.T) {
 func TestLCM(t *testing.T) {
 	assert := internal.NewAssert(t, "TestLCM")
 
-	assert.Equal(0, LCM(0))
 	assert.Equal(1, LCM(1))
 	assert.Equal(-1, LCM(-1))
-	assert.Equal(0, LCM(0, -1))
-	assert.Equal(0, LCM(0, 1))
+	assert.Equal(-1, LCM(1, -1))
+	assert.Equal(1, LCM(-1, 1))
 	assert.Equal(1, LCM(1, 1))
-	assert.Equal(1, LCM(1, 2))
-	assert.Equal(6, LCM(3, 6, 9))
+	assert.Equal(-1, LCM(-1, -1))
+	assert.Equal(2, LCM(1, 2))
+	assert.Equal(18, LCM(3, 6, 9))
 }

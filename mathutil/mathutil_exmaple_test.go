@@ -281,3 +281,39 @@ func ExampleIsPrime() {
 	// false
 	// true
 }
+
+func ExampleGCD() {
+	result1 := GCD(1, 1)
+	result2 := GCD(1, -1)
+	result3 := GCD(-1, 1)
+	result4 := GCD(-1, -1)
+	result5 := GCD(3, 6, 9)
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+	fmt.Println(result4)
+	fmt.Println(result5)
+
+	// Output:
+	// 1
+	// 1
+	// -1
+	// -1
+	// 3
+}
+
+func ExampleLCM() {
+	result1 := LCM(1, 1)
+	result2 := LCM(1, 2)
+	result3 := LCM(3, 6, 9)
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+
+	// Output:
+	// 1
+	// 2
+	// 18
+}

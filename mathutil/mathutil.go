@@ -287,8 +287,8 @@ func gcd[T constraints.Integer](a, b T) T {
 func LCM[T constraints.Integer](integers ...T) T {
 	result := integers[0]
 
-	for i := 1; i < len(integers)-1; i++ {
-		result = lcm(result, integers[i])
+	for k := range integers {
+		result = lcm(integers[k], result)
 	}
 
 	return result
@@ -296,5 +296,8 @@ func LCM[T constraints.Integer](integers ...T) T {
 
 // find Least Common Multiple (LCM) via GCD.
 func lcm[T constraints.Integer](a, b T) T {
+	if a == 0 || b == 0 {
+		panic("lcm function: provide non zero integers only.")
+	}
 	return a * b / gcd(a, b)
 }

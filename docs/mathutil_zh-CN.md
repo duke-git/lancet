@@ -40,6 +40,8 @@ import (
 -   [RadianToAngle](#RadianToAngle)
 -   [PointDistance](#PointDistance)
 -   [IsPrime](#IsPrime)
+-   [GCD](#GCD)
+-   [LCM](#LCM)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -702,3 +704,83 @@ func main() {
 	// false
 	// true
 }
+```
+
+### <span id="GCD">GCD</span>
+
+<p>计算最大公约数。</p>
+
+<b>函数签名:</b>
+
+```go
+func GCD[T constraints.Integer](integers ...T) T
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/mathutil"
+)
+
+func main() {
+    result1 := mathutil.GCD(1, 1)
+	result2 := mathutil.GCD(1, -1)
+	result3 := mathutil.GCD(-1, 1)
+	result4 := mathutil.GCD(-1, -1)
+	result5 := mathutil.GCD(3, 6, 9)
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+	fmt.Println(result4)
+	fmt.Println(result5)
+
+	// Output:
+	// 1
+	// 1
+	// -1
+	// -1
+	// 3
+}
+```
+
+
+### <span id="LCM">LCM</span>
+
+<p>计算最小公倍数。</p>
+
+<b>函数签名:</b>
+
+```go
+func LCM[T constraints.Integer](integers ...T) T
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/mathutil"
+)
+
+func main() {
+    result1 := mathutil.LCM(1, 1)
+	result2 := mathutil.LCM(1, 2)
+	result3 := mathutil.LCM(3, 6, 9)
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+
+	// Output:
+	// 1
+	// 2
+	// 18
+}
+```
