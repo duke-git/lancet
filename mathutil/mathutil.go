@@ -256,3 +256,45 @@ func IsPrime(n int) bool {
 
 	return true
 }
+
+// GCD return greatest common divisor (GCD) of integers.
+// Play: todo
+func GCD[T constraints.Integer](integers ...T) T {
+	result := integers[0]
+
+	for k := range integers {
+		result = gcd(integers[k], result)
+
+		if result == 1 {
+			return 1
+		}
+	}
+
+	return result
+}
+
+// find greatest common divisor (GCD)
+func gcd[T constraints.Integer](a, b T) T {
+	if b == 0 {
+		return a
+	}
+
+	return gcd(b, a%b)
+}
+
+// LCM return Least Common Multiple (LCM) of integers.
+// Play: todo
+func LCM[T constraints.Integer](integers ...T) T {
+	result := integers[0]
+
+	for i := 1; i < len(integers)-1; i++ {
+		result = lcm(result, integers[i])
+	}
+
+	return result
+}
+
+// find Least Common Multiple (LCM) via GCD.
+func lcm[T constraints.Integer](a, b T) T {
+	return a * b / gcd(a, b)
+}

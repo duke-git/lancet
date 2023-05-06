@@ -210,3 +210,41 @@ func TestIsPrime(t *testing.T) {
 	assert.Equal(true, IsPrime(3))
 	assert.Equal(false, IsPrime(4))
 }
+
+func TestGCD(t *testing.T) {
+	assert := internal.NewAssert(t, "TestGCD")
+
+	assert.Equal(1, GCD(1, 1))
+	assert.Equal(1, GCD(1, -1))
+	assert.Equal(-1, GCD(-1, 1))
+	assert.Equal(-1, GCD(-1, -1))
+
+	assert.Equal(1, GCD(1, 0))
+	assert.Equal(1, GCD(0, 1))
+	assert.Equal(-1, GCD(-1, 0))
+	assert.Equal(-1, GCD(0, -1))
+
+	assert.Equal(1, GCD(1, -2))
+	assert.Equal(1, GCD(-2, 1))
+	assert.Equal(-1, GCD(-1, 2))
+	assert.Equal(-1, GCD(2, -1))
+
+	assert.Equal(-1, GCD(-1, -2))
+	assert.Equal(-1, GCD(-2, -1))
+
+	assert.Equal(-9, GCD(-27, -36))
+	assert.Equal(3, GCD(3, 6, 9))
+}
+
+func TestLCM(t *testing.T) {
+	assert := internal.NewAssert(t, "TestLCM")
+
+	assert.Equal(0, LCM(0))
+	assert.Equal(1, LCM(1))
+	assert.Equal(-1, LCM(-1))
+	assert.Equal(0, LCM(0, -1))
+	assert.Equal(0, LCM(0, 1))
+	assert.Equal(1, LCM(1, 1))
+	assert.Equal(1, LCM(1, 2))
+	assert.Equal(6, LCM(3, 6, 9))
+}
