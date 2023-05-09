@@ -367,3 +367,32 @@ func TestCopyProperties(t *testing.T) {
 	assert.Equal("127.0.0.1", indicatorVO.Ip)
 	assert.Equal(3, len(indicatorVO.Disk))
 }
+
+func TestToInterface(t *testing.T) {
+	assert := internal.NewAssert(t, "TestToInterface")
+
+	cases := []reflect.Value{
+		reflect.ValueOf("abc"),
+		reflect.ValueOf(int(0)), reflect.ValueOf(int8(1)), reflect.ValueOf(int16(-1)), reflect.ValueOf(int32(123)), reflect.ValueOf(int64(123)),
+		reflect.ValueOf(uint(123)), reflect.ValueOf(uint8(123)), reflect.ValueOf(uint16(123)), reflect.ValueOf(uint32(123)), reflect.ValueOf(uint64(123)),
+		reflect.ValueOf(float64(12.3)), reflect.ValueOf(float32(12.3)),
+		reflect.ValueOf(true), reflect.ValueOf(false),
+	}
+
+	expected := []interface{}{
+		"abc",
+		0, int8(1), int16(-1), int32(123), int64(123),
+		uint(123), uint8(123), uint16(123), uint32(123), uint64(123),
+		float64(12.3), float32(12.3),
+		true, false,
+	}
+
+	for i := 0; i < len(cases); i++ {
+		actual, _ := ToInterface(cases[i])
+		assert.Equal(expected[i], actual)
+	}
+
+	nilVal, ok := ToInterface(reflect.ValueOf(nil))
+	assert.EqualValues(nil, nilVal)
+	assert.Equal(false, ok)
+}

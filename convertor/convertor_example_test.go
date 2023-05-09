@@ -2,6 +2,7 @@ package convertor
 
 import (
 	"fmt"
+	"reflect"
 	"strconv"
 )
 
@@ -348,4 +349,18 @@ func ExampleCopyProperties() {
 	// 001
 	// 127.0.0.1
 	// 3
+}
+
+func ExampleToInterface() {
+	val := reflect.ValueOf("abc")
+	iVal, ok := ToInterface(val)
+
+	fmt.Printf("%T\n", iVal)
+	fmt.Printf("%v\n", iVal)
+	fmt.Println(ok)
+
+	// Output:
+	// string
+	// abc
+	// true
 }
