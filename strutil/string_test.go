@@ -410,3 +410,25 @@ func TestReplaceWithMap(t *testing.T) {
 	assert.Equal(str, "ac ab ab ac")
 	assert.Equal(ReplaceWithMap(str, replaces), "1c 12 12 1c")
 }
+
+func TestTrim(t *testing.T) {
+	assert := internal.NewAssert(t, "TestTrim")
+
+	str1 := "$ ab	cd $ "
+
+	assert.Equal("$ ab	cd $", Trim(str1))
+	assert.Equal("ab	cd", Trim(str1, "$"))
+	assert.Equal("abcd", Trim("\nabcd"))
+}
+
+func TestSplitAndTrim(t *testing.T) {
+	assert := internal.NewAssert(t, "TestTrim")
+
+	str := " a,b, c,d,$1 "
+
+	result1 := SplitAndTrim(str, ",")
+	result2 := SplitAndTrim(str, ",", "$")
+
+	assert.Equal([]string{"a", "b", "c", "d", "$1"}, result1)
+	assert.Equal([]string{"a", "b", "c", "d", "1"}, result2)
+}

@@ -539,3 +539,35 @@ func ExampleReplaceWithMap() {
 	// Output:
 	// 1c 12 12 1c
 }
+
+func ExampleTrim() {
+	result1 := Trim("\nabcd")
+
+	str := "$ ab	cd $ "
+
+	result2 := Trim(str)
+	result3 := Trim(str, "$")
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+
+	// Output:
+	// abcd
+	// $ ab	cd $
+	// ab	cd
+}
+
+func ExampleSplitAndTrim() {
+	str := " a,b, c,d,$1 "
+
+	result1 := SplitAndTrim(str, ",")
+	result2 := SplitAndTrim(str, ",", "$")
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+
+	// Output:
+	// [a b c d $1]
+	// [a b c d 1]
+}

@@ -456,3 +456,46 @@ func ReplaceWithMap(str string, replaces map[string]string) string {
 
 	return str
 }
+
+// SplitAndTrim splits string `str` by a string `delimiter` to an array,
+// and calls Trim to every element of this array. It ignores the elements
+// which are empty after Trim.
+func SplitAndTrim(str, delimiter string, characterMask ...string) []string {
+	result := make([]string, 0)
+
+	for _, v := range strings.Split(str, delimiter) {
+		v = Trim(v, characterMask...)
+		if v != "" {
+			result = append(result, v)
+		}
+	}
+
+	return result
+}
+
+var (
+	// DefaultTrimChars are the characters which are stripped by Trim* functions in default.
+	DefaultTrimChars = string([]byte{
+		'\t', // Tab.
+		'\v', // Vertical tab.
+		'\n', // New line (line feed).
+		'\r', // Carriage return.
+		'\f', // New page.
+		' ',  // Ordinary space.
+		0x00, // NUL-byte.
+		0x85, // Delete.
+		0xA0, // Non-breaking space.
+	})
+)
+
+// Trim strips whitespace (or other characters) from the beginning and end of a string.
+// The optional parameter `characterMask` specifies the additional stripped characters.
+func Trim(str string, characterMask ...string) string {
+	trimChars := DefaultTrimChars
+
+	if len(characterMask) > 0 {
+		trimChars += characterMask[0]
+	}
+
+	return strings.Trim(str, trimChars)
+}
