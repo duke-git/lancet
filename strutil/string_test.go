@@ -398,8 +398,8 @@ func TestIndexOffset(t *testing.T) {
 	assert.Equal(IndexOffset(str, "f", -1), -1)
 }
 
-func TestReplaceByMap(t *testing.T) {
-	assert := internal.NewAssert(t, "TestReplaceByMap")
+func TestReplaceWithMap(t *testing.T) {
+	assert := internal.NewAssert(t, "TestReplaceWithMap")
 
 	str := "ac ab ab ac"
 	replaces := map[string]string{
@@ -408,5 +408,5 @@ func TestReplaceByMap(t *testing.T) {
 	}
 
 	assert.Equal(str, "ac ab ab ac")
-	assert.Equal(ReplaceByMap(str, replaces), "1c 12 12 1c")
+	assert.Equal(ReplaceWithMap(str, replaces), "1c 12 12 1c")
 }

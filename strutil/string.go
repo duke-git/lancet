@@ -446,10 +446,10 @@ func IndexOffset(str string, substr string, idxFrom int) int {
 	return strings.Index(str[idxFrom:], substr) + idxFrom
 }
 
-// ReplaceByMap returns a copy of `origin`,
+// ReplaceWithMap returns a copy of `str`,
 // which is replaced by a map in unordered way, case-sensitively.
 // Play: todo
-func ReplaceByMap(str string, replaces map[string]string) string {
+func ReplaceWithMap(str string, replaces map[string]string) string {
 	for k, v := range replaces {
 		str = strings.ReplaceAll(str, k, v)
 	}

@@ -526,14 +526,14 @@ func ExampleIndexOffset() {
 	// -1
 }
 
-func ExampleReplaceByMap() {
+func ExampleReplaceWithMap() {
 	str := "ac ab ab ac"
 	replaces := map[string]string{
 		"a": "1",
 		"b": "2",
 	}
 
-	result := ReplaceByMap(str, replaces)
+	result := ReplaceWithMap(str, replaces)
 
 	fmt.Println(result)
 	// Output:
