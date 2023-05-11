@@ -40,6 +40,7 @@ import (
 -   [DecodeByte](#DecodeByte)
 -   [DeepClone](#DeepClone)
 -   [CopyProperties](#CopyProperties)
+-   [ToInterface](#ToInterface)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -629,7 +630,6 @@ func main() {
 }
 ```
 
-
 ### <span id="DeepClone">DeepClone</span>
 
 <p>Creates a deep copy of passed item, can't clone unexported field of struct.</p>
@@ -693,7 +693,6 @@ func main() {
     // &{test 1 0.1 true <nil> } false
 }
 ```
-
 
 ### <span id="CopyProperties">CopyProperties</span>
 
@@ -771,5 +770,40 @@ func main() {
     // 001
     // 127.0.0.1
     // 3
+}
+```
+
+### <span id="ToInterface">ToInterface</span>
+
+<p>Converts reflect value to its interface type.</p>
+
+<b>Signature:</b>
+
+```go
+func ToInterface(v reflect.Value) (value interface{}, ok bool)
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/convertor"
+)
+
+func main() {
+    val := reflect.ValueOf("abc")
+	iVal, ok := convertor.ToInterface(val)
+
+	fmt.Printf("%T\n", iVal)
+	fmt.Printf("%v\n", iVal)
+	fmt.Println(ok)
+
+	// Output:
+	// string
+	// abc
+	// true    
 }
 ```

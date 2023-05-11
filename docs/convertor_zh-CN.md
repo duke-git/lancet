@@ -40,7 +40,7 @@ import (
 -   [DecodeByte](#DecodeByte)
 -   [DeepClone](#DeepClone)
 -   [CopyProperties](#CopyProperties)
-
+-   [ToInterface](#ToInterface)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -770,5 +770,40 @@ func main() {
     // 001
     // 127.0.0.1
     // 3
+}
+```
+
+### <span id="ToInterface">ToInterface</span>
+
+<p>将反射值转换成对应的interface类型。</p>
+
+<b>函数签名:</b>
+
+```go
+func ToInterface(v reflect.Value) (value interface{}, ok bool)
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/convertor"
+)
+
+func main() {
+    val := reflect.ValueOf("abc")
+	iVal, ok := convertor.ToInterface(val)
+
+	fmt.Printf("%T\n", iVal)
+	fmt.Printf("%v\n", iVal)
+	fmt.Println(ok)
+
+	// Output:
+	// string
+	// abc
+	// true
 }
 ```

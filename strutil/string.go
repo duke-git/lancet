@@ -407,7 +407,7 @@ func IsBlank(str string) bool {
 	return true
 }
 
-// HasPrefixAny check if a string starts with any of an array of specified strings.
+// HasPrefixAny check if a string starts with any of a slice of specified strings.
 // Play: https://go.dev/play/p/8UUTl2C5slo
 func HasPrefixAny(str string, prefixes []string) bool {
 	if len(str) == 0 || len(prefixes) == 0 {
@@ -421,7 +421,7 @@ func HasPrefixAny(str string, prefixes []string) bool {
 	return false
 }
 
-// HasSuffixAny check if a string ends with any of an array of specified strings.
+// HasSuffixAny check if a string ends with any of a slice of specified strings.
 // Play: https://go.dev/play/p/sKWpCQdOVkx
 func HasSuffixAny(str string, suffixes []string) bool {
 	if len(str) == 0 || len(suffixes) == 0 {
@@ -457,8 +457,8 @@ func ReplaceWithMap(str string, replaces map[string]string) string {
 	return str
 }
 
-// SplitAndTrim splits string `str` by a string `delimiter` to an array,
-// and calls Trim to every element of this array. It ignores the elements
+// SplitAndTrim splits string `str` by a string `delimiter` to a slice,
+// and calls Trim to every element of this slice. It ignores the elements
 // which are empty after Trim.
 func SplitAndTrim(str, delimiter string, characterMask ...string) []string {
 	result := make([]string, 0)

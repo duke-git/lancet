@@ -52,6 +52,9 @@ import (
 -   [HasPrefixAny](#HasPrefixAny)
 -   [HasSuffixAny](#HasSuffixAny)
 -   [IndexOffset](#IndexOffset)
+-   [ReplaceWithMap](#ReplaceWithMap)
+-   [Trim](#Trim)
+-   [SplitAndTrim](#SplitAndTrim)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -1169,5 +1172,110 @@ func main() {
 	// 18
 	// -1
 	// -1
+}
+```
+
+
+### <span id="ReplaceWithMap">ReplaceWithMap</span>
+
+<p>返回`str`的副本，以无序的方式被map替换，区分大小写。</p>
+
+<b>函数签名:</b>
+
+```go
+func ReplaceWithMap(str string, replaces map[string]string) string
+```
+
+<b>示例:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    str := "ac ab ab ac"
+	replaces := map[string]string{
+		"a": "1",
+		"b": "2",
+	}
+
+	result := strutil.ReplaceWithMap(str, replaces)
+
+	fmt.Println(result)
+	// Output:
+	// 1c 12 12 1c
+}
+```
+
+### <span id="Trim">Trim</span>
+
+<p>从字符串的开头和结尾去除空格（或其他字符）。 可选参数 characterMask 指定额外的剥离字符。</p>
+
+<b>函数签名:</b>
+
+```go
+func Trim(str string, characterMask ...string) string
+```
+
+<b>示例:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    result1 := strutil.Trim("\nabcd")
+
+	str := "$ ab	cd $ "
+
+	result2 := strutil.Trim(str)
+	result3 := strutil.Trim(str, "$")
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+
+	// Output:
+	// abcd
+	// $ ab	cd $
+	// ab	cd
+}
+```
+
+
+### <span id="SplitAndTrim">SplitAndTrim</span>
+
+<p>将字符串str按字符串 =delimiter拆分为一个切片，并对该数组的每个元素调用Trim。忽略Trim后为空的元素。</p>
+
+<b>函数签名:</b>
+
+```go
+func SplitAndTrim(str, delimiter string, characterMask ...string) []string
+```
+
+<b>示例:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    str := " a,b, c,d,$1 "
+
+	result1 := strutil.SplitAndTrim(str, ",")
+	result2 := strutil.SplitAndTrim(str, ",", "$")
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+
+	// Output:
+	// [a b c d $1]
+	// [a b c d 1]
 }
 ```
