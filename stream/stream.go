@@ -295,6 +295,18 @@ func (s stream[T]) FindFirst() (T, bool) {
 	return s.source[0], true
 }
 
+// FindLast returns the last element of this stream and true, or zero value and false if the stream is empty.
+// Play: https://go.dev/play/p/9xEf0-6C1e3
+func (s stream[T]) FindLast() (T, bool) {
+	var result T
+
+	if s.source == nil || len(s.source) == 0 {
+		return result, false
+	}
+
+	return s.source[len(s.source)-1], true
+}
+
 // Reverse returns a stream whose elements are reverse order of given stream.
 // Play: https://go.dev/play/p/A8_zkJnLHm4
 func (s stream[T]) Reverse() stream[T] {

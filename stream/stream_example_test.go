@@ -290,6 +290,19 @@ func ExampleStream_FindFirst() {
 	// true
 }
 
+func ExampleStream_FindLast() {
+	original := FromSlice([]int{3, 2, 1})
+
+	result, ok := original.FindLast()
+
+	fmt.Println(result)
+	fmt.Println(ok)
+
+	// Output:
+	// 1
+	// true
+}
+
 func ExampleStream_Reverse() {
 	original := FromSlice([]int{1, 2, 3})
 
