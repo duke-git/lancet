@@ -72,6 +72,10 @@ func AddDay(t time.Time, day int64) time.Time {
 	return t.Add(24 * time.Hour * time.Duration(day))
 }
 
+func AddYear(t time.Time, year int64) time.Time {
+	return t.Add(365 * 24 * time.Hour * time.Duration(year))
+}
+
 // GetNowDate return format yyyy-mm-dd of current date.
 // Play: https://go.dev/play/p/PvfkPpcpBBf
 func GetNowDate() string {
