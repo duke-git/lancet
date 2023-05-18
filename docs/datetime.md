@@ -26,6 +26,7 @@ import (
 -   [AddDay](#AddDay)
 -   [AddHour](#AddHour)
 -   [AddMinute](#AddMinute)
+-   [AddYear](#AddYear)
 -   [BeginOfMinute](#BeginOfMinute)
 -   [BeginOfHour](#BeginOfHour)
 -   [BeginOfDay](#BeginOfDay)
@@ -195,6 +196,45 @@ func main() {
     // Output:
     // 2m0s
     // -2m0s
+}
+```
+
+### <span id="AddYear">AddYear</span>
+
+<p>Add or sub year to the time.</p>
+
+<b>Signature:</b>
+
+```go
+func AddYear(t time.Time, year int64) time.Time
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "time"
+    "github.com/duke-git/lancet/v2/datetime"
+)
+
+func main() {
+    now := time.Now()
+
+	after1Year := AddYear(now, 1)
+	diff1 := after1Year.Sub(now)
+
+	before1Year := AddYear(now, -1)
+	diff2 := before1Year.Sub(now)
+
+	fmt.Println(diff1)
+	fmt.Println(diff2)
+
+	// Output:
+	// 8760h0m0s
+	// -8760h0m0s
 }
 ```
 
@@ -607,8 +647,8 @@ func main() {
     now := time.Now()
     currentDate := datetime.GetNowDate()
 
-    fmt.Println(currentDate) 
-    
+    fmt.Println(currentDate)
+
     // Output:
     // 2022-01-28
 }
@@ -671,8 +711,8 @@ func main() {
     now := time.Now()
     current := datetime.GetNowDateTime()
 
-    fmt.Println(current) 
-    
+    fmt.Println(current)
+
     // Output:
     // 2022-01-28 15:59:33
 }
@@ -702,9 +742,9 @@ import (
 func main() {
     now := time.Now()
     zeroTime := datetime.GetZeroHourTimestamp()
-    
-    fmt.Println(zeroTime) 
-    
+
+    fmt.Println(zeroTime)
+
     // Output:
     // 1643299200
 }
@@ -735,8 +775,8 @@ func main() {
     now := time.Now()
     nightTime := datetime.GetNightTimestamp()
 
-    fmt.Println(nightTime) 
-    
+    fmt.Println(nightTime)
+
     // Output:
     // 1643385599
 }
@@ -842,8 +882,8 @@ import (
 
 func main() {
     tm := datetime.NewUnixNow()
-    fmt.Println(tm) 
-    
+    fmt.Println(tm)
+
     // Output:
     // &{1647597438}
 }
@@ -874,8 +914,8 @@ import (
 
 func main() {
     tm := datetime.NewUnix(1647597438)
-    fmt.Println(tm) 
-    
+    fmt.Println(tm)
+
     // Output:
     // &{1647597438}
 }
@@ -906,8 +946,8 @@ import (
 
 func main() {
     tm, err := datetime.NewFormat("2022-03-18 17:04:05")
-    fmt.Println(tm) 
-    
+    fmt.Println(tm)
+
     // Output:
     // &{1647594245}
 }
@@ -938,8 +978,8 @@ import (
 
 func main() {
     tm, err := datetime.NewISO8601("2006-01-02T15:04:05.999Z")
-    fmt.Println(tm) 
-    
+    fmt.Println(tm)
+
     // Output:
     // &{1136214245}
 }
@@ -967,8 +1007,8 @@ import (
 
 func main() {
     tm := datetime.NewUnixNow()
-    fmt.Println(tm.ToUnix()) 
-    
+    fmt.Println(tm.ToUnix())
+
     // Output:
     // 1647597438
 }
@@ -996,8 +1036,8 @@ import (
 
 func main() {
     tm, _ := datetime.NewFormat("2022-03-18 17:04:05")
-    fmt.Println(tm.ToFormat()) 
-    
+    fmt.Println(tm.ToFormat())
+
     // Output:
     // 2022-03-18 17:04:05
 }
@@ -1026,8 +1066,8 @@ import (
 func main() {
     tm, _ := datetime.NewFormat("2022-03-18 17:04:05")
     ts := tm.ToFormatForTpl("2006/01/02 15:04:05")
-    fmt.Println(ts) 
-    
+    fmt.Println(ts)
+
     // Output:
     // 2022/03/18 17:04:05
 }
@@ -1056,8 +1096,8 @@ import (
 func main() {
     tm, _ := datetime.NewISO8601("2006-01-02T15:04:05.999Z")
     ts := tm.ToIso8601()
-    fmt.Println(ts) 
-    
+    fmt.Println(ts)
+
     // Output:
     // 2006-01-02T23:04:05+08:00
 }

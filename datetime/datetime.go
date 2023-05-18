@@ -72,6 +72,8 @@ func AddDay(t time.Time, day int64) time.Time {
 	return t.Add(24 * time.Hour * time.Duration(day))
 }
 
+// AddYear add or sub year to the time.
+// Play: todo
 func AddYear(t time.Time, year int64) time.Time {
 	return t.Add(365 * 24 * time.Hour * time.Duration(year))
 }
