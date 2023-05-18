@@ -36,6 +36,24 @@ func ExampleContainLetter() {
 	// true
 }
 
+func ExampleContainNumber() {
+	result1 := ContainNumber("你好")
+	result2 := ContainNumber("&@#$%^&*")
+	result3 := ContainNumber("ab1")
+	result4 := ContainNumber("1234")
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+	fmt.Println(result4)
+
+	// Output:
+	// false
+	// false
+	// true
+	// true
+}
+
 func ExampleContainLower() {
 	result1 := ContainLower("abc")
 	result2 := ContainLower("aBC")
