@@ -7,6 +7,19 @@ import (
 	"github.com/duke-git/lancet/v2/internal"
 )
 
+func TestAddYear(t *testing.T) {
+	assert := internal.NewAssert(t, "TestAddDay")
+
+	now := time.Now()
+	after2Years := AddYear(now, 1)
+	diff1 := after2Years.Sub(now)
+	assert.Equal(float64(8760), diff1.Hours())
+
+	before2Years := AddYear(now, -1)
+	diff2 := before2Years.Sub(now)
+	assert.Equal(float64(-8760), diff2.Hours())
+}
+
 func TestAddDay(t *testing.T) {
 	assert := internal.NewAssert(t, "TestAddDay")
 
