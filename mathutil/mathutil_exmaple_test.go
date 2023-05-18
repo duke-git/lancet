@@ -53,13 +53,16 @@ func ExampleFactorial() {
 func ExamplePercent() {
 	result1 := Percent(1, 2, 2)
 	result2 := Percent(0.1, 0.3, 2)
+	result3 := Percent(-30305, 408420, 2)
 
 	fmt.Println(result1)
 	fmt.Println(result2)
+	fmt.Println(result3)
 
 	// Output:
-	// 0.5
-	// 0.33
+	// 50
+	// 33.33
+	// -7.42
 }
 
 func ExampleRoundToFloat() {

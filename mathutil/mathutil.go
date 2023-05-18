@@ -60,7 +60,7 @@ func Percent(val, total float64, n int) float64 {
 	if total == 0 {
 		return float64(0)
 	}
-	tmp := val / total
+	tmp := val / total * 100
 	result := RoundToFloat(tmp, n)
 
 	return result
