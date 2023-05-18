@@ -273,6 +273,24 @@ func TestStream_FindFirst(t *testing.T) {
 	assert.Equal(true, ok)
 }
 
+func TestStream_FindLast(t *testing.T) {
+	assert := internal.NewAssert(t, "TestStream_FindLast")
+
+	stream := FromSlice([]int{3, 2, 1})
+
+	result, ok := stream.FindLast()
+
+	assert.Equal(1, result)
+	assert.Equal(true, ok)
+
+	stream2 := FromSlice([]int{})
+
+	result, ok = stream2.FindLast()
+
+	assert.Equal(0, result)
+	assert.Equal(false, ok)
+}
+
 func TestStream_Reverse(t *testing.T) {
 	assert := internal.NewAssert(t, "TestStream_Reverse")
 
