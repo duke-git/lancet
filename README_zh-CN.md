@@ -208,7 +208,7 @@ import "github.com/duke-git/lancet/v2/condition"
     [[play](https://go.dev/play/p/g2j08F_zZky)]
 -   **<big>Xnor</big>** : 如果 a 和 b 都是真的或 a 和 b 均是假的，则返回 true。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/condition_zh-CN.md#Xnor)]
-[[play](https://go.dev/play/p/OuDB9g51643)]
+    [[play](https://go.dev/play/p/OuDB9g51643)]
 -   **<big>Nand</big>** : 如果 a 和 b 都为真，返回 false，否则返回 true
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/condition_zh-CN.md#Nand)]
     [[play](https://go.dev/play/p/vSRMLxLIbq8)]
@@ -278,6 +278,8 @@ import "github.com/duke-git/lancet/v2/convertor"
 -   **<big>CopyProperties</big>** : 拷贝不同结构体之间的同名字段。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#CopyProperties)]
     [[play](https://go.dev/play/p/oZujoB5Sgg5)]
+-   **<big>ToInterface</big>** : 将反射值转换成对应的 interface 类型。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#ToInterface)]
 
 ### 6. cryptor 加密包支持数据加密和解密，获取 md5，hash 值。支持 base64, md5, hmac, aes, des, rsa。
 
@@ -400,6 +402,8 @@ import "github.com/duke-git/lancet/v2/datetime"
 -   **<big>AddMinute</big>** : 将日期加/减分钟数。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#AddMinute)]
     [[play](https://go.dev/play/p/nT1heB1KUUK)]
+-   **<big>AddYear</big>** : 将日期加/减分年数。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#AddYear)]
 -   **<big>BeginOfMinute</big>** : 返回指定时间的分钟开始时间。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#BeginOfMinute)]
     [[play](https://go.dev/play/p/ieOLVJ9CiFT)]
@@ -475,12 +479,14 @@ import "github.com/duke-git/lancet/v2/datetime"
 -   **<big>ToFormat</big>** : 返回格式'yyyy-mm-dd hh:mm:ss'的日期字符串。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#ToFormat)]
     [[play](https://go.dev/play/p/VkW08ZOaXPZ)]
--   **<big>ToFormatForTpl</big>** : 返回 tpl 格式指定的日期字符串。
+-   **<big>ToFormatForTpl</big>** : 返回tpl格式指定的日期字符串。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#ToFormatForTpl)]
     [[play](https://go.dev/play/p/nyXxXcQJ8L5)]
--   **<big>ToIso8601</big>** : 返回 iso8601 日期字符串。
+-   **<big>ToIso8601</big>** : 返回iso8601日期字符串。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#ToIso8601)]
     [[play](https://go.dev/play/p/mkhOHQkdeA2)]
+-   **<big>IsLeapYear</big>** :验证是否是闰年。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#IsLeapYear)]
 
 ### 8. datastructure 包含一些普通的数据结构实现。例如：list, linklist, stack, queue, set, tree, graph.
 
@@ -786,6 +792,10 @@ import "github.com/duke-git/lancet/v2/mathutil"
 -   **<big>IsPrime</big>** : 判断质数。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#IsPrime)]
     [[play](https://go.dev/play/p/Rdd8UTHZJ7u)]
+-   **<big>GCD</big>** : 求最大公约数。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#GCD)]
+-   **<big>LCM</big>** : 求最小公倍数。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#LCM)]
 
 ### 14. netutil 网络包支持获取 ip 地址，发送 http 请求。
 
@@ -1130,7 +1140,7 @@ import "github.com/duke-git/lancet/v2/slice"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#KeyBy)]
     [[play](https://go.dev/play/p/uXod2LWD1Kg)]
 
-### 18. Stream 流，该包仅验证简单的 stream 实现，功能有限。
+### 18. Stream流，该包仅验证简单的stream实现，功能有限。
 
 ```go
 import "github.com/duke-git/lancet/v2/stream"
@@ -1189,9 +1199,11 @@ import "github.com/duke-git/lancet/v2/stream"
 -   **<big>Reduce</big>** : 使用关联累加函数对 stream 的元素执行 reduce 操作，并 reduce 操作结果（如果有）。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/stream_zh-CN.md#Reduce)]
     [[play](https://go.dev/play/p/6uzZjq_DJLU)]
--   **<big>FindFirst</big>** : 返回此 stream 的第一个元素和 true，如果 stream 为空，则返回零值和 false。
+-   **<big>FindFirst</big>** : 返回此 stream的第一个元素，如果 stream 为空，则返回零值和 false。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/stream_zh-CN.md#FindFirst)]
     [[play](https://go.dev/play/p/9xEf0-6C1e3)]
+-   **<big>FindLast</big>** : 返回此 stream的最后一个元素，如果 stream 为空，则返回零值和 false。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/stream_zh-CN.md#FindLast)]
 -   **<big>Max</big>** : 根据提供的 less 函数返回 stream 的最大元素。less 函数: a > b
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/stream_zh-CN.md#Max)]
     [[play](https://go.dev/play/p/fm-1KOPtGzn)]
@@ -1347,6 +1359,12 @@ import "github.com/duke-git/lancet/v2/strutil"
 -   **<big>IndexOffset</big>** : 将字符串偏移 idxFrom 后，返回字符串中第一个 substr 实例的索引。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#IndexOffset)]
     [[play](https://go.dev/play/p/qZo4lV2fomB)]
+-   **<big>ReplaceWithMap</big>** : 返回 string 的副本，以无序的方式被 map 替换，区分大小写。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#ReplaceWithMap)]
+-   **<big>Trim</big>** : 从字符串的开头和结尾去除空格（或其他字符）。 可选参数 characterMask 指定额外的剥离字符。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#Trim)]
+-   **<big>SplitAndTrim</big>** : 将字符串str按字符串delimiter拆分为一个切片，并对该数组的每个元素调用Trim。忽略Trim后为空的元素。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#SplitAndTrim)]
 
 ### 21. system 包含 os, runtime, shell command 的相关函数。
 

@@ -1249,7 +1249,7 @@ func main() {
 
 ### <span id="SplitAndTrim">SplitAndTrim</span>
 
-<p>Splits string `str` by a string `delimiter` to a slice, and calls Trim to every element of this array. It ignores the elements which are empty after Trim.</p>
+<p>Splits string `str` by a string `delimiter` to a slice, and calls Trim to every element of slice. It ignores the elements which are empty after Trim.</p>
 
 <b>Signature:</b>
 

@@ -1249,7 +1249,7 @@ func main() {
 
 ### <span id="SplitAndTrim">SplitAndTrim</span>
 
-<p>将字符串str按字符串 =delimiter拆分为一个切片，并对该数组的每个元素调用Trim。忽略Trim后为空的元素。</p>
+<p>将字符串str按字符串delimiter拆分为一个切片，并对该数组的每个元素调用Trim。忽略Trim后为空的元素。</p>
 
 <b>函数签名:</b>
 

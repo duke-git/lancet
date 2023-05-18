@@ -200,7 +200,7 @@ import "github.com/duke-git/lancet/v2/condition"
     [[play](https://go.dev/play/p/W1SSUmt6pvr)]
 -   **<big>Or</big>** : returns false if neither a nor b is truthy.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/condition.md#Or)]
-[[play](https://go.dev/play/p/UlQTxHaeEkq)]
+    [[play](https://go.dev/play/p/UlQTxHaeEkq)]
 -   **<big>Xor</big>** : returns true if a or b but not both is truthy.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/condition.md#Xor)]
     [[play](https://go.dev/play/p/gObZrW7ZbG8)]
@@ -279,6 +279,8 @@ import "github.com/duke-git/lancet/v2/convertor"
 -   **<big>CopyProperties</big>** : copies each field from the source struct into the destination struct.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#CopyProperties)]
     [[play](https://go.dev/play/p/oZujoB5Sgg5)]
+-   **<big>ToInterface</big>** : converts reflect value to its interface type.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#ToInterface)]
 
 ### 6. Cryptor package is for data encryption and decryption.
 
@@ -401,6 +403,8 @@ import "github.com/duke-git/lancet/v2/datetime"
 -   **<big>AddMinute</big>** : add or sub day to the time.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#AddMinute)]
     [[play](https://go.dev/play/p/nT1heB1KUUK)]
+-   **<big>AddYear</big>** : add or sub year to the time.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#AddYear)]
 -   **<big>BeginOfMinute</big>** : return the date time at the begin of minute of specific date.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#BeginOfMinute)]
     [[play](https://go.dev/play/p/ieOLVJ9CiFT)]
@@ -482,6 +486,8 @@ import "github.com/duke-git/lancet/v2/datetime"
 -   **<big>ToIso8601</big>** : return iso8601 time string.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#ToIso8601)]
     [[play](https://go.dev/play/p/mkhOHQkdeA2)]
+-   **<big>IsLeapYear</big>** : check if param `year` is leap year or not.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#IsLeapYear)]
 
 ### 8. Datastructure package constains some common data structure. eg. list, linklist, stack, queue, set, tree, graph.
 
@@ -787,6 +793,10 @@ import "github.com/duke-git/lancet/v2/mathutil"
 -   **<big>IsPrime</big>** : checks if number is prime number.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#IsPrime)]
     [[play](https://go.dev/play/p/Rdd8UTHZJ7u)]
+-   **<big>GCD</big>** : return greatest common divisor (GCD) of integers.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#GCD)]
+-   **<big>LCM</big>** : return Least Common Multiple (LCM) of integers.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#LCM)]
 
 ### 14. Netutil package contains functions to get net information and send http request.
 
@@ -1193,6 +1203,8 @@ import "github.com/duke-git/lancet/v2/stream"
 -   **<big>FindFirst</big>** : returns the first element of this stream and true, or zero value and false if the stream is empty.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/stream.md#FindFirst)]
     [[play](https://go.dev/play/p/9xEf0-6C1e3)]
+-   **<big>FindLast</big>** : returns the last element of this stream and true, or zero value and false if the stream is empty.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/stream.md#FindLast)]
 -   **<big>Max</big>** : returns the maximum element of this stream according to the provided less function. less fuction: a > b
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/stream.md#Max)]
     [[play](https://go.dev/play/p/fm-1KOPtGzn)]
@@ -1345,6 +1357,12 @@ import "github.com/duke-git/lancet/v2/strutil"
 -   **<big>IndexOffset</big>** : returns the index of the first instance of substr in string after offsetting the string by `idxFrom`.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#IndexOffset)]
     [[play](https://go.dev/play/p/qZo4lV2fomB)]
+-   **<big>ReplaceWithMap</big>** : returns a copy of `str`, which is replaced by a map in unordered way, case-sensitively.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#ReplaceWithMap)]
+-   **<big>Trim</big>** : strips whitespace (or other characters) from the beginning and end of a string.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#Trim)]
+-   **<big>SplitAndTrim</big>** : splits string `str` by a string `delimiter` to a slice, and calls Trim to every element of slice.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#SplitAndTrim)]
 
 ### 21. System package contain some functions about os, runtime, shell command.
 

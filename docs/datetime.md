@@ -1104,7 +1104,6 @@ func main() {
 }
 ```
 
-
 ### <span id="IsLeapYear">IsLeapYear</span>
 
 <p>check if param `year` is leap year or not.</p>
