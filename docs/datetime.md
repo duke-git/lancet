@@ -26,6 +26,7 @@ import (
 -   [AddDay](#AddDay)
 -   [AddHour](#AddHour)
 -   [AddMinute](#AddMinute)
+-   [AddYear](#AddYear)
 -   [BeginOfMinute](#BeginOfMinute)
 -   [BeginOfHour](#BeginOfHour)
 -   [BeginOfDay](#BeginOfDay)
@@ -196,6 +197,45 @@ func main() {
     // Output:
     // 2m0s
     // -2m0s
+}
+```
+
+### <span id="AddYear">AddYear</span>
+
+<p>Add or sub year to the time.</p>
+
+<b>Signature:</b>
+
+```go
+func AddYear(t time.Time, year int64) time.Time
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "time"
+    "github.com/duke-git/lancet/v2/datetime"
+)
+
+func main() {
+    now := time.Now()
+
+	after1Year := AddYear(now, 1)
+	diff1 := after1Year.Sub(now)
+
+	before1Year := AddYear(now, -1)
+	diff2 := before1Year.Sub(now)
+
+	fmt.Println(diff1)
+	fmt.Println(diff2)
+
+	// Output:
+	// 8760h0m0s
+	// -8760h0m0s
 }
 ```
 

@@ -40,6 +40,7 @@ import (
 -   [ForEach](#ForEach)
 -   [Reduce](#Reduce)
 -   [FindFirst](#FindFirst)
+-   [FindLast](#FindLast)
 -   [Max](#Max)
 -   [Min](#Min)
 -   [AllMatch](#AllMatch)
@@ -664,6 +665,38 @@ func main() {
     // Output:
     // 1
     // true
+}
+```
+
+### <span id="FindLast">FindLast</span>
+
+<p>Returns the last element of this stream and true, or zero value and false if the stream is empty.</p>
+
+<b>Signature:</b>
+
+```go
+func (s stream[T]) FindLast() (T, bool)
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/stream"
+)
+
+func main() {
+    original := FromSlice([]int{3, 2, 1})
+
+	result, ok := original.FindLast()
+
+	fmt.Println(result)
+	fmt.Println(ok)
+
+	// Output:
+	// 1
+	// true
 }
 ```
 

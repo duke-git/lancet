@@ -57,6 +57,23 @@ func ExampleAddMinute() {
 	// -2m0s
 }
 
+func ExampleAddYear() {
+	now := time.Now()
+
+	after1Year := AddYear(now, 1)
+	diff1 := after1Year.Sub(now)
+
+	before1Year := AddYear(now, -1)
+	diff2 := before1Year.Sub(now)
+
+	fmt.Println(diff1)
+	fmt.Println(diff2)
+
+	// Output:
+	// 8760h0m0s
+	// -8760h0m0s
+}
+
 func ExampleGetNowDate() {
 	result := GetNowDate()
 
