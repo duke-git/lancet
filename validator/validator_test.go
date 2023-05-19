@@ -86,6 +86,23 @@ func TestContainLetter(t *testing.T) {
 	assert.Equal(false, ContainLetter("&@#$%^&*"))
 }
 
+func TestContainNumber(t *testing.T) {
+	assert := internal.NewAssert(t, "TestContainNumber")
+
+	assert.Equal(true, ContainNumber("123"))
+	assert.Equal(true, ContainNumber("1Bc"))
+	assert.Equal(true, ContainNumber("a2c"))
+	assert.Equal(true, ContainNumber("ab3"))
+	assert.Equal(true, ContainNumber("a23"))
+	assert.Equal(true, ContainNumber("a23c"))
+	assert.Equal(true, ContainNumber("1%%%"))
+
+	assert.Equal(false, ContainNumber("ABC"))
+	assert.Equal(false, ContainNumber(""))
+	assert.Equal(false, ContainNumber("你好"))
+	assert.Equal(false, ContainNumber("&@#$%^&*"))
+}
+
 func TestIsJSON(t *testing.T) {
 	assert := internal.NewAssert(t, "TestIsJSON")
 

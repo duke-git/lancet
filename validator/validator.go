@@ -18,6 +18,7 @@ import (
 var (
 	alphaMatcher         *regexp.Regexp = regexp.MustCompile(`^[a-zA-Z]+$`)
 	letterRegexMatcher   *regexp.Regexp = regexp.MustCompile(`[a-zA-Z]`)
+	numberRegexMatcher   *regexp.Regexp = regexp.MustCompile(`\d`)
 	intStrMatcher        *regexp.Regexp = regexp.MustCompile(`^[\+-]?\d+$`)
 	urlMatcher           *regexp.Regexp = regexp.MustCompile(`^((ftp|http|https?):\/\/)?(\S+(:\S*)?@)?((([1-9]\d?|1\d\d|2[01]\d|22[0-3])(\.(1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.([0-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(([a-zA-Z0-9]+([-\.][a-zA-Z0-9]+)*)|((www\.)?))?(([a-z\x{00a1}-\x{ffff}0-9]+-?-?)*[a-z\x{00a1}-\x{ffff}0-9]+)(?:\.([a-z\x{00a1}-\x{ffff}]{2,}))?))(:(\d{1,5}))?((\/|\?|#)[^\s]*)?$`)
 	dnsMatcher           *regexp.Regexp = regexp.MustCompile(`^[a-zA-Z]([a-zA-Z0-9\-]+[\.]?)*[a-zA-Z0-9]$`)
@@ -109,6 +110,12 @@ func ContainLower(str string) bool {
 // Play: https://go.dev/play/p/lqFD04Yyewp
 func ContainLetter(str string) bool {
 	return letterRegexMatcher.MatchString(str)
+}
+
+
+// ContainLetter check if the string contain at least one number.
+func ContainNumber(input string) bool {
+	return numberRegexMatcher.MatchString(input)
 }
 
 // IsJSON checks if the string is valid JSON.
