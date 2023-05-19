@@ -1211,6 +1211,7 @@ import "github.com/duke-git/lancet/v2/stream"
     [[play](https://go.dev/play/p/9xEf0-6C1e3)]
 -   **<big>FindLast</big>** : returns the last element of this stream and true, or zero value and false if the stream is empty.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/stream.md#FindLast)]
+    [[play](https://go.dev/play/p/WZD2rDAW-2h)]
 -   **<big>Max</big>** : returns the maximum element of this stream according to the provided less function. less fuction: a > b
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/stream.md#Max)]
     [[play](https://go.dev/play/p/fm-1KOPtGzn)]
