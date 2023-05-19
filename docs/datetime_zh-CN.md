@@ -223,10 +223,10 @@ import (
 func main() {
     now := time.Now()
 
-	after1Year := AddYear(now, 1)
+	after1Year := datetime.AddYear(now, 1)
 	diff1 := after1Year.Sub(now)
 
-	before1Year := AddYear(now, -1)
+	before1Year := datetime.AddYear(now, -1)
 	diff2 := before1Year.Sub(now)
 
 	fmt.Println(diff1)
@@ -1102,7 +1102,6 @@ func main() {
     // 2006-01-02T23:04:05+08:00
 }
 ```
-
 
 ### <span id="IsLeapYear">IsLeapYear</span>
 

@@ -55,7 +55,7 @@ func Factorial(x uint) uint {
 }
 
 // Percent calculate the percentage of value to total.
-// Play: https://go.dev/play/p/QQM9B13coSP
+// Play: https://go.dev/play/p/s0NdFCtwuyd
 func Percent(val, total float64, n int) float64 {
 	if total == 0 {
 		return float64(0)
@@ -258,7 +258,7 @@ func IsPrime(n int) bool {
 }
 
 // GCD return greatest common divisor (GCD) of integers.
-// Play: todo
+// Play: https://go.dev/play/p/CiEceLSoAKB
 func GCD[T constraints.Integer](integers ...T) T {
 	result := integers[0]
 
@@ -283,7 +283,7 @@ func gcd[T constraints.Integer](a, b T) T {
 }
 
 // LCM return Least Common Multiple (LCM) of integers.
-// Play: todo
+// Play: https://go.dev/play/p/EjcZxfY7G_g
 func LCM[T constraints.Integer](integers ...T) T {
 	result := integers[0]
 

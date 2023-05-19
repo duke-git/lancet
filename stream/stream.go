@@ -296,7 +296,7 @@ func (s stream[T]) FindFirst() (T, bool) {
 }
 
 // FindLast returns the last element of this stream and true, or zero value and false if the stream is empty.
-// Play: https://go.dev/play/p/9xEf0-6C1e3
+// Play: https://go.dev/play/p/WZD2rDAW-2h
 func (s stream[T]) FindLast() (T, bool) {
 	var result T
 

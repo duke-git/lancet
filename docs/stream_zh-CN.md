@@ -687,7 +687,7 @@ import (
 )
 
 func main() {
-    original := FromSlice([]int{3, 2, 1})
+    original := stream.FromSlice([]int{3, 2, 1})
 
 	result, ok := original.FindLast()
 

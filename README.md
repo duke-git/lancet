@@ -281,6 +281,7 @@ import "github.com/duke-git/lancet/v2/convertor"
     [[play](https://go.dev/play/p/oZujoB5Sgg5)]
 -   **<big>ToInterface</big>** : converts reflect value to its interface type.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#ToInterface)]
+    [[play](https://go.dev/play/p/syqw0-WG7Xd)]
 
 ### 6. Cryptor package is for data encryption and decryption.
 
@@ -405,6 +406,7 @@ import "github.com/duke-git/lancet/v2/datetime"
     [[play](https://go.dev/play/p/nT1heB1KUUK)]
 -   **<big>AddYear</big>** : add or sub year to the time.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#AddYear)]
+    [[play](https://go.dev/play/p/MqW2ujnBx10)]
 -   **<big>BeginOfMinute</big>** : return the date time at the begin of minute of specific date.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#BeginOfMinute)]
     [[play](https://go.dev/play/p/ieOLVJ9CiFT)]
@@ -488,6 +490,8 @@ import "github.com/duke-git/lancet/v2/datetime"
     [[play](https://go.dev/play/p/mkhOHQkdeA2)]
 -   **<big>IsLeapYear</big>** : check if param `year` is leap year or not.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#IsLeapYear)]
+    [[play](https://go.dev/play/p/xS1eS2ejGew)]
+
 
 ### 8. Datastructure package constains some common data structure. eg. list, linklist, stack, queue, set, tree, graph.
 
@@ -765,7 +769,7 @@ import "github.com/duke-git/lancet/v2/mathutil"
     [[play](https://go.dev/play/p/N9qgYg_Ho6f)]
 -   **<big>Percent</big>** : calculate the percentage of value to total.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#Percent)]
-    [[play](https://go.dev/play/p/QQM9B13coSP)]
+    [[play](https://go.dev/play/p/s0NdFCtwuyd)]
 -   **<big>RoundToFloat</big>** : round up to n decimal places for float64.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#RoundToFloat)]
     [[play](https://go.dev/play/p/ghyb528JRJL)]
@@ -795,8 +799,10 @@ import "github.com/duke-git/lancet/v2/mathutil"
     [[play](https://go.dev/play/p/Rdd8UTHZJ7u)]
 -   **<big>GCD</big>** : return greatest common divisor (GCD) of integers.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#GCD)]
+    [[play](https://go.dev/play/p/CiEceLSoAKB)]
 -   **<big>LCM</big>** : return Least Common Multiple (LCM) of integers.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#LCM)]
+    [[play](https://go.dev/play/p/EjcZxfY7G_g)]
 
 ### 14. Netutil package contains functions to get net information and send http request.
 
@@ -1359,10 +1365,13 @@ import "github.com/duke-git/lancet/v2/strutil"
     [[play](https://go.dev/play/p/qZo4lV2fomB)]
 -   **<big>ReplaceWithMap</big>** : returns a copy of `str`, which is replaced by a map in unordered way, case-sensitively.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#ReplaceWithMap)]
+    [[play](https://go.dev/play/p/h3t7CNj2Vvu)]
 -   **<big>Trim</big>** : strips whitespace (or other characters) from the beginning and end of a string.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#Trim)]
+    [[play](https://go.dev/play/p/Y0ilP0NRV3j)]
 -   **<big>SplitAndTrim</big>** : splits string `str` by a string `delimiter` to a slice, and calls Trim to every element of slice.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#SplitAndTrim)]
+    [[play](https://go.dev/play/p/ZNL6o4SkYQ7)]
 
 ### 21. System package contain some functions about os, runtime, shell command.
 

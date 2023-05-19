@@ -365,9 +365,9 @@ import (
 )
 
 func main() {
-    result1 := Percent(1, 2, 2)
-	result2 := Percent(0.1, 0.3, 2)
-	result3 := Percent(-30305, 408420, 2)
+    result1 := mathutil.Percent(1, 2, 2)
+	result2 := mathutil.Percent(0.1, 0.3, 2)
+	result3 := mathutil.Percent(-30305, 408420, 2)
 
 	fmt.Println(result1)
 	fmt.Println(result2)

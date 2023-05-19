@@ -73,7 +73,7 @@ func AddDay(t time.Time, day int64) time.Time {
 }
 
 // AddYear add or sub year to the time.
-// Play: todo
+// Play: https://go.dev/play/p/MqW2ujnBx10
 func AddYear(t time.Time, year int64) time.Time {
 	return t.Add(365 * 24 * time.Hour * time.Duration(year))
 }
@@ -226,7 +226,7 @@ func EndOfYear(t time.Time) time.Time {
 }
 
 // IsLeapYear check if param year is leap year or not.
-// Play: todo
+// Play: https://go.dev/play/p/xS1eS2ejGew
 func IsLeapYear(year int) bool {
 	return year%4 == 0 && (year%100 != 0 || year%400 == 0)
 }

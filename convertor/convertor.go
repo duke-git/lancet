@@ -349,7 +349,7 @@ func CopyProperties[T, U any](dst T, src U) error {
 }
 
 // ToInterface converts reflect value to its interface type.
-// Play: todo
+// Play: https://go.dev/play/p/syqw0-WG7Xd
 func ToInterface(v reflect.Value) (value interface{}, ok bool) {
 	if v.IsValid() && v.CanInterface() {
 		return v.Interface(), true

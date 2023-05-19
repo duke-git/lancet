@@ -448,7 +448,7 @@ func IndexOffset(str string, substr string, idxFrom int) int {
 
 // ReplaceWithMap returns a copy of `str`,
 // which is replaced by a map in unordered way, case-sensitively.
-// Play: todo
+// Play: https://go.dev/play/p/h3t7CNj2Vvu
 func ReplaceWithMap(str string, replaces map[string]string) string {
 	for k, v := range replaces {
 		str = strings.ReplaceAll(str, k, v)
@@ -460,6 +460,7 @@ func ReplaceWithMap(str string, replaces map[string]string) string {
 // SplitAndTrim splits string `str` by a string `delimiter` to a slice,
 // and calls Trim to every element of this slice. It ignores the elements
 // which are empty after Trim.
+// Play: https://go.dev/play/p/ZNL6o4SkYQ7
 func SplitAndTrim(str, delimiter string, characterMask ...string) []string {
 	result := make([]string, 0)
 
@@ -490,6 +491,7 @@ var (
 
 // Trim strips whitespace (or other characters) from the beginning and end of a string.
 // The optional parameter `characterMask` specifies the additional stripped characters.
+// Play: https://go.dev/play/p/Y0ilP0NRV3j
 func Trim(str string, characterMask ...string) string {
 	trimChars := DefaultTrimChars
 
