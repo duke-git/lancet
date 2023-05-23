@@ -571,3 +571,23 @@ func ExampleSplitAndTrim() {
 	// [a b c d $1]
 	// [a b c d 1]
 }
+
+func ExampleHideString() {
+	str := "13242658976"
+
+	result1 := HideString(str, 3, 3, "*")
+	result2 := HideString(str, 3, 4, "*")
+	result3 := HideString(str, 3, 7, "*")
+	result4 := HideString(str, 7, 11, "*")
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+	fmt.Println(result4)
+
+	// Output:
+	// 13242658976
+	// 132*2658976
+	// 132****8976
+	// 1324265****
+}

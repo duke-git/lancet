@@ -501,3 +501,30 @@ func Trim(str string, characterMask ...string) string {
 
 	return strings.Trim(str, trimChars)
 }
+
+// HideString hide some chars in source string with param `replaceChar`.
+// replace range is origin[start : end]. [start, end)
+// Play: todo
+func HideString(origin string, start, end int, replaceChar string) string {
+	size := len(origin)
+
+	if start > size-1 || start < 0 || end < 0 || start > end {
+		return origin
+	}
+
+	if end > size {
+		end = size
+	}
+
+	if replaceChar == "" {
+		return origin
+	}
+
+	startStr := origin[0:start]
+	endStr := origin[end:size]
+
+	replaceSize := end - start
+	replaceStr := strings.Repeat(replaceChar, replaceSize)
+
+	return startStr + replaceStr + endStr
+}

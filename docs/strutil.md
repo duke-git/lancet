@@ -55,6 +55,7 @@ import (
 -   [ReplaceWithMap](#ReplaceWithMap)
 -   [Trim](#Trim)
 -   [SplitAndTrim](#SplitAndTrim)
+-   [HideString](#HideString)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -1246,7 +1247,6 @@ func main() {
 }
 ```
 
-
 ### <span id="SplitAndTrim">SplitAndTrim</span>
 
 <p>Splits string `str` by a string `delimiter` to a slice, and calls Trim to every element of slice. It ignores the elements which are empty after Trim.</p>
@@ -1277,5 +1277,44 @@ func main() {
 	// Output:
 	// [a b c d $1]
 	// [a b c d 1]
+}
+```
+
+### <span id="HideString">HideString</span>
+
+<p>HideString hide some chars in source string with param `replaceChar`. replace range is origin[start : end]. [start, end).</p>
+
+<b>Signature:</b>
+
+```go
+func HideString(origin string, start, end int, replaceChar string) string
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    str := "13242658976"
+
+	result1 := strutil.HideString(str, 3, 3, "*")
+	result2 := strutil.HideString(str, 3, 4, "*")
+	result3 := strutil.HideString(str, 3, 7, "*")
+	result4 := strutil.HideString(str, 7, 11, "*")
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+	fmt.Println(result4)
+
+	// Output:
+	// 13242658976
+	// 132*2658976
+	// 132****8976
+	// 1324265****
 }
 ```

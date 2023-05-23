@@ -432,3 +432,21 @@ func TestSplitAndTrim(t *testing.T) {
 	assert.Equal([]string{"a", "b", "c", "d", "$1"}, result1)
 	assert.Equal([]string{"a", "b", "c", "d", "1"}, result2)
 }
+
+func TestHideString(t *testing.T) {
+	assert := internal.NewAssert(t, "TestTrim")
+
+	str := "13242658976"
+
+	assert.Equal("13242658976", HideString(str, 0, -1, "*"))
+	assert.Equal("13242658976", HideString(str, 0, 0, "*"))
+	assert.Equal("****2658976", HideString(str, 0, 4, "*"))
+
+	assert.Equal("13242658976", HideString(str, 3, 3, "*"))
+	assert.Equal("132*2658976", HideString(str, 3, 4, "*"))
+	assert.Equal("132****8976", HideString(str, 3, 7, "*"))
+	assert.Equal("1324265****", HideString(str, 7, 11, "*"))
+
+	assert.Equal("1324265****", HideString(str, 7, 100, "*"))
+	assert.Equal("13242658976", HideString(str, 100, 100, "*"))
+}

@@ -55,6 +55,7 @@ import (
 -   [ReplaceWithMap](#ReplaceWithMap)
 -   [Trim](#Trim)
 -   [SplitAndTrim](#SplitAndTrim)
+-   [HideString](#HideString)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -1277,5 +1278,45 @@ func main() {
 	// Output:
 	// [a b c d $1]
 	// [a b c d 1]
+}
+```
+
+
+### <span id="HideString">HideString</span>
+
+<p>使用参数`replaceChar`隐藏源字符串中的一些字符。替换范围是 origin[start : end]。</p>
+
+<b>函数签名:</b>
+
+```go
+func HideString(origin string, start, end int, replaceChar string) string
+```
+
+<b>示例:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    str := "13242658976"
+
+	result1 := strutil.HideString(str, 3, 3, "*")
+	result2 := strutil.HideString(str, 3, 4, "*")
+	result3 := strutil.HideString(str, 3, 7, "*")
+	result4 := strutil.HideString(str, 7, 11, "*")
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+	fmt.Println(result4)
+
+	// Output:
+	// 13242658976
+	// 132*2658976
+	// 132****8976
+	// 1324265****
 }
 ```
