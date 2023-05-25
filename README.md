@@ -25,7 +25,7 @@ English | [简体中文](./README_zh-CN.md)
 
 -   👏 Comprehensive, efficient and reusable.
 -   💪 500+ go util functions, support string, slice, datetime, net, crypt...
--   💅 Only depend on the go standard library.
+-   💅 Only depends on two kinds of libraries: go standard library and golang.org/x.
 -   🌍 Unit test for every exported function.
 
 ## Installation
