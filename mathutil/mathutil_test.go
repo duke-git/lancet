@@ -249,3 +249,23 @@ func TestLCM(t *testing.T) {
 	assert.Equal(2, LCM(1, 2))
 	assert.Equal(18, LCM(3, 6, 9))
 }
+
+func TestCos(t *testing.T) {
+	assert := internal.NewAssert(t, "TestCos")
+
+	assert.EqualValues(1, Cos(0))
+	assert.EqualValues(-0.447, Cos(90))
+	assert.EqualValues(-0.598, Cos(180))
+	assert.EqualValues(-1, Cos(math.Pi))
+	assert.EqualValues(0, Cos(math.Pi/2))
+}
+
+func TestSin(t *testing.T) {
+	assert := internal.NewAssert(t, "TestSin")
+
+	assert.EqualValues(0, Sin(0))
+	assert.EqualValues(0.894, Sin(90))
+	assert.EqualValues(-0.801, Sin(180))
+	assert.EqualValues(0, Sin(math.Pi))
+	assert.EqualValues(1, Sin(math.Pi/2))
+}

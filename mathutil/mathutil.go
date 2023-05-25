@@ -301,3 +301,25 @@ func lcm[T constraints.Integer](a, b T) T {
 	}
 	return a * b / gcd(a, b)
 }
+
+// Cos returns the cosine of the radian argument.
+// Play: todo
+func Cos(radian float64, precision ...int) float64 {
+	t := 1.0 / (2.0 * math.Pi)
+	radian *= t
+	radian -= 0.25 + math.Floor(radian+0.25)
+	radian *= 16.0 * (math.Abs(radian) - 0.5)
+	radian += 0.225 * radian * (math.Abs(radian) - 1.0)
+
+	if len(precision) == 1 {
+		return TruncRound(radian, precision[0])
+	}
+
+	return TruncRound(radian, 3)
+}
+
+// Cos returns the sine of the radian argument.
+// Play: todo
+func Sin(radian float64, precision ...int) float64 {
+	return Cos((math.Pi / 2) - radian)
+}
