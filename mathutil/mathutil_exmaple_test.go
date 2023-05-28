@@ -320,3 +320,45 @@ func ExampleLCM() {
 	// 2
 	// 18
 }
+
+func ExampleCos() {
+	result1 := Cos(0)
+	result2 := Cos(90)
+	result3 := Cos(180)
+	result4 := Cos(math.Pi)
+	result5 := Cos(math.Pi / 2)
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+	fmt.Println(result4)
+	fmt.Println(result5)
+
+	// Output:
+	// 1
+	// -0.447
+	// -0.598
+	// -1
+	// 0
+}
+
+func ExampleSin() {
+	result1 := Sin(0)
+	result2 := Sin(90)
+	result3 := Sin(180)
+	result4 := Sin(math.Pi)
+	result5 := Sin(math.Pi / 2)
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+	fmt.Println(result4)
+	fmt.Println(result5)
+
+	// Output:
+	// 0
+	// 0.894
+	// -0.801
+	// 0
+	// 1
+}

@@ -42,6 +42,8 @@ import (
 -   [IsPrime](#IsPrime)
 -   [GCD](#GCD)
 -   [LCM](#LCM)
+-   [Cos](#Cos)
+-   [Sin](#Sin)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -366,17 +368,17 @@ import (
 
 func main() {
     result1 := mathutil.Percent(1, 2, 2)
-	result2 := mathutil.Percent(0.1, 0.3, 2)
-	result3 := mathutil.Percent(-30305, 408420, 2)
+    result2 := mathutil.Percent(0.1, 0.3, 2)
+    result3 := mathutil.Percent(-30305, 408420, 2)
 
-	fmt.Println(result1)
-	fmt.Println(result2)
-	fmt.Println(result3)
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
 
-	// Output:
-	// 50
-	// 33.33
-	// -7.42
+    // Output:
+    // 50
+    // 33.33
+    // -7.42
 }
 ```
 
@@ -602,7 +604,6 @@ func main() {
 }
 ```
 
-
 ### <span id="RadianToAngle">RadianToAngle</span>
 
 <p>Converts radian value to angle value.</p>
@@ -669,7 +670,6 @@ func main() {
 }
 ```
 
-
 ### <span id="IsPrime">IsPrime</span>
 
 <p>Checks if number is prime number.</p>
@@ -692,20 +692,20 @@ import (
 
 func main() {
     result1 := mathutil.IsPrime(-1)
-	result2 := mathutil.IsPrime(0)
-	result3 := mathutil.IsPrime(1)
-	result4 := mathutil.IsPrime(2)
+    result2 := mathutil.IsPrime(0)
+    result3 := mathutil.IsPrime(1)
+    result4 := mathutil.IsPrime(2)
 
-	fmt.Println(result1)
-	fmt.Println(result2)
-	fmt.Println(result3)
-	fmt.Println(result4)
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
 
-	// Output:
-	// false
-	// false
-	// false
-	// true
+    // Output:
+    // false
+    // false
+    // false
+    // true
 }
 ```
 
@@ -731,26 +731,25 @@ import (
 
 func main() {
     result1 := mathutil.GCD(1, 1)
-	result2 := mathutil.GCD(1, -1)
-	result3 := mathutil.GCD(-1, 1)
-	result4 := mathutil.GCD(-1, -1)
-	result5 := mathutil.GCD(3, 6, 9)
+    result2 := mathutil.GCD(1, -1)
+    result3 := mathutil.GCD(-1, 1)
+    result4 := mathutil.GCD(-1, -1)
+    result5 := mathutil.GCD(3, 6, 9)
 
-	fmt.Println(result1)
-	fmt.Println(result2)
-	fmt.Println(result3)
-	fmt.Println(result4)
-	fmt.Println(result5)
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
+    fmt.Println(result5)
 
-	// Output:
-	// 1
-	// 1
-	// -1
-	// -1
-	// 3
+    // Output:
+    // 1
+    // 1
+    // -1
+    // -1
+    // 3
 }
 ```
-
 
 ### <span id="LCM">LCM</span>
 
@@ -774,16 +773,102 @@ import (
 
 func main() {
     result1 := mathutil.LCM(1, 1)
-	result2 := mathutil.LCM(1, 2)
-	result3 := mathutil.LCM(3, 6, 9)
+    result2 := mathutil.LCM(1, 2)
+    result3 := mathutil.LCM(3, 6, 9)
 
-	fmt.Println(result1)
-	fmt.Println(result2)
-	fmt.Println(result3)
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
 
-	// Output:
-	// 1
-	// 2
-	// 18
+    // Output:
+    // 1
+    // 2
+    // 18
+}
+```
+
+
+### <span id="Cos">Cos</span>
+
+<p>Returns the cosine of the radian argument.</p>
+
+<b>Signature:</b>
+
+```go
+func Cos(radian float64, precision ...int) float64
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/mathutil"
+)
+
+func main() {
+    result1 := mathutil.Cos(0)
+    result2 := mathutil.Cos(90)
+    result3 := mathutil.Cos(180)
+    result4 := mathutil.Cos(math.Pi)
+    result5 := mathutil.Cos(math.Pi / 2)
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
+    fmt.Println(result5)
+
+    // Output:
+    // 1
+    // -0.447
+    // -0.598
+    // -1
+    // 0
+}
+```
+
+
+### <span id="Sin">Sin</span>
+
+<p>Returns the sine of the radian argument.</p>
+
+<b>Signature:</b>
+
+```go
+func Sin(radian float64, precision ...int) float64
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/mathutil"
+)
+
+func main() {
+    result1 := mathutil.Sin(0)
+    result2 := mathutil.Sin(90)
+    result3 := mathutil.Sin(180)
+    result4 := mathutil.Sin(math.Pi)
+    result5 := mathutil.Sin(math.Pi / 2)
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
+    fmt.Println(result5)
+
+    // Output:
+    // 0
+    // 0.894
+    // -0.801
+    // 0
+    // 1
 }
 ```
