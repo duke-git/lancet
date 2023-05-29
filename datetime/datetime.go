@@ -35,7 +35,7 @@ func init() {
 	timeFormat = map[string]string{
 		"yyyy-mm-dd hh:mm:ss": "2006-01-02 15:04:05",
 		"yyyy-mm-dd hh:mm":    "2006-01-02 15:04",
-		"yyyy-mm-dd hh":       "2006-01-02 15:04",
+		"yyyy-mm-dd hh":       "2006-01-02 15",
 		"yyyy-mm-dd":          "2006-01-02",
 		"yyyy-mm":             "2006-01",
 		"mm-dd":               "01-02",
