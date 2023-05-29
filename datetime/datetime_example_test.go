@@ -114,15 +114,18 @@ func ExampleFormatTimeToStr() {
 	result1 := FormatTimeToStr(datetime, "yyyy-mm-dd hh:mm:ss")
 	result2 := FormatTimeToStr(datetime, "yyyy-mm-dd")
 	result3 := FormatTimeToStr(datetime, "dd-mm-yy hh:mm:ss")
+	result4 := FormatTimeToStr(datetime, "yyyy-mm-dd hh")
 
 	fmt.Println(result1)
 	fmt.Println(result2)
 	fmt.Println(result3)
+	fmt.Println(result4)
 
 	// Output:
 	// 2021-01-02 16:04:08
 	// 2021-01-02
 	// 02-01-21 16:04:08
+	// 2021-01-02 16
 }
 
 func ExampleFormatStrToTime() {
