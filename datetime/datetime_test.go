@@ -84,12 +84,16 @@ func TestFormatTimeToStr(t *testing.T) {
 	cases := []string{
 		"yyyy-mm-dd hh:mm:ss", "yyyy-mm-dd",
 		"dd-mm-yy hh:mm:ss", "yyyy/mm/dd hh:mm:ss",
-		"hh:mm:ss", "yyyy/mm"}
+		"hh:mm:ss", "yyyy/mm",
+		"yyyy-mm-dd hh",
+	}
 
 	expected := []string{
 		"2021-01-02 16:04:08", "2021-01-02",
 		"02-01-21 16:04:08", "2021/01/02 16:04:08",
-		"16:04:08", "2021/01"}
+		"16:04:08", "2021/01",
+		"2021-01-02 16",
+	}
 
 	for i := 0; i < len(cases); i++ {
 		actual := FormatTimeToStr(datetime, cases[i])
