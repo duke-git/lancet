@@ -55,6 +55,7 @@ import (
 -   [ToFormatForTpl](#ToFormatForTpl)
 -   [ToIso8601](#ToIso8601)
 -   [IsLeapYear](#IsLeapYear)
+-   [BetweenSeconds](#BetweenSeconds)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -1134,5 +1135,43 @@ func main() {
     // Output:
     // true
     // false
+}
+```
+
+
+### <span id="BetweenSeconds">BetweenSeconds</span>
+
+<p>Return the number of seconds between two times.</p>
+
+<b>Signature:</b>
+
+```go
+func BetweenSeconds(t1 time.Time, t2 time.Time) int64
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/datetime"
+)
+
+func main() {
+    today := time.Now()
+	tomorrow := AddDay(today, 1)
+	yesterday := AddDay(today, -1)
+
+	result1 := datetime.BetweenSeconds(today, tomorrow)
+	result2 := datetime.BetweenSeconds(today, yesterday)
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+
+	// Output:
+	// 86400
+	// -86400
 }
 ```

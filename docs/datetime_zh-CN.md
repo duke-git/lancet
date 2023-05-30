@@ -54,6 +54,8 @@ import (
 -   [ToFormatForTpl](#ToFormatForTpl)
 -   [ToIso8601](#ToIso8601)
 -   [IsLeapYear](#IsLeapYear)
+-   [BetweenSeconds](#BetweenSeconds)
+
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -1133,5 +1135,42 @@ func main() {
     // Output:
     // true
     // false
+}
+```
+
+### <span id="BetweenSeconds">BetweenSeconds</span>
+
+<p>返回两个时间的间隔秒数。</p>
+
+<b>函数签名:</b>
+
+```go
+func BetweenSeconds(t1 time.Time, t2 time.Time) int64
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/datetime"
+)
+
+func main() {
+    today := time.Now()
+	tomorrow := AddDay(today, 1)
+	yesterday := AddDay(today, -1)
+
+	result1 := datetime.BetweenSeconds(today, tomorrow)
+	result2 := datetime.BetweenSeconds(today, yesterday)
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+
+	// Output:
+	// 86400
+	// -86400
 }
 ```
