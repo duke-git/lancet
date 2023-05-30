@@ -36,6 +36,9 @@ import (
 -   [EncodeByte](#EncodeByte)
 -   [DecodeByte](#DecodeByte)
 -   [DeepClone](#DeepClone)
+-   [CopyProperties](#CopyProperties)
+-   [ToInterface](#ToInterface)
+
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -499,5 +502,119 @@ func main() {
     // 0.1 false
     // map[a:1 b:2] false
     // &{test 1 0.1 true <nil> } false
+}
+```
+
+### <span id="CopyProperties">CopyProperties</span>
+
+<p>Copies each field from the source struct into the destination struct. Use json.Marshal/Unmarshal, so json tag should be set for fields of dst and src struct.</p>
+
+<b>Signature:</b>
+
+```go
+func CopyProperties(dst, src interface{}) error
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/convertor"
+)
+
+func main() {
+    type Disk struct {
+        Name    string  `json:"name"`
+        Total   string  `json:"total"`
+        Used    string  `json:"used"`
+        Percent float64 `json:"percent"`
+    }
+
+    type DiskVO struct {
+        Name    string  `json:"name"`
+        Total   string  `json:"total"`
+        Used    string  `json:"used"`
+        Percent float64 `json:"percent"`
+    }
+
+    type Indicator struct {
+        Id      string    `json:"id"`
+        Ip      string    `json:"ip"`
+        UpTime  string    `json:"upTime"`
+        LoadAvg string    `json:"loadAvg"`
+        Cpu     int       `json:"cpu"`
+        Disk    []Disk    `json:"disk"`
+        Stop    chan bool `json:"-"`
+    }
+
+    type IndicatorVO struct {
+        Id      string   `json:"id"`
+        Ip      string   `json:"ip"`
+        UpTime  string   `json:"upTime"`
+        LoadAvg string   `json:"loadAvg"`
+        Cpu     int64    `json:"cpu"`
+        Disk    []DiskVO `json:"disk"`
+    }
+
+    indicator := &Indicator{Id: "001", Ip: "127.0.0.1", Cpu: 1, Disk: []Disk{
+        {Name: "disk-001", Total: "100", Used: "1", Percent: 10},
+        {Name: "disk-002", Total: "200", Used: "1", Percent: 20},
+        {Name: "disk-003", Total: "300", Used: "1", Percent: 30},
+    }}
+
+    indicatorVO := IndicatorVO{}
+
+    err := convertor.CopyProperties(&indicatorVO, indicator)
+
+    if err != nil {
+        return
+    }
+
+    fmt.Println(indicatorVO.Id)
+    fmt.Println(indicatorVO.Ip)
+    fmt.Println(len(indicatorVO.Disk))
+
+    // Output:
+    // 001
+    // 127.0.0.1
+    // 3
+}
+```
+
+### <span id="ToInterface">ToInterface</span>
+
+<p>Converts reflect value to its interface type.</p>
+
+<b>Signature:</b>
+
+```go
+func ToInterface(v reflect.Value) (value interface{}, ok bool)
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/convertor"
+)
+
+func main() {
+    val := reflect.ValueOf("abc")
+	iVal, ok := convertor.ToInterface(val)
+
+	fmt.Printf("%T\n", iVal)
+	fmt.Printf("%v\n", iVal)
+	fmt.Println(ok)
+
+	// Output:
+	// string
+	// abc
+	// true    
 }
 ```

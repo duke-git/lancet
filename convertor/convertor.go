@@ -278,44 +278,99 @@ func DeepClone(src interface{}) interface{} {
 	return result.Interface()
 }
 
-// CopyProperties copies each field from the source into the destination. It recursively copies struct pointers and interfaces that contain struct pointers.
-func CopyProperties(dst, src interface{}) (err error) {
-	defer func() {
-		if e := recover(); e != nil {
-			err = errors.New(fmt.Sprintf("%v", e))
-		}
-	}()
+// // CopyProperties copies each field from the source into the destination. It recursively copies struct pointers and interfaces that contain struct pointers.
+// func CopyProperties(dst, src interface{}) (err error) {
+// 	defer func() {
+// 		if e := recover(); e != nil {
+// 			err = errors.New(fmt.Sprintf("%v", e))
+// 		}
+// 	}()
 
-	dstType, dstValue := reflect.TypeOf(dst), reflect.ValueOf(dst)
-	srcType, srcValue := reflect.TypeOf(src), reflect.ValueOf(src)
+// 	dstType, dstValue := reflect.TypeOf(dst), reflect.ValueOf(dst)
+// 	srcType, srcValue := reflect.TypeOf(src), reflect.ValueOf(src)
+
+// 	if dstType.Kind() != reflect.Ptr || dstType.Elem().Kind() != reflect.Struct {
+// 		return errors.New("CopyProperties: param dst should be struct pointer")
+// 	}
+
+// 	if srcType.Kind() == reflect.Ptr {
+// 		srcType, srcValue = srcType.Elem(), srcValue.Elem()
+// 	}
+// 	if srcType.Kind() != reflect.Struct {
+// 		return errors.New("CopyProperties: param src should be a struct or struct pointer")
+// 	}
+
+// 	dstType, dstValue = dstType.Elem(), dstValue.Elem()
+
+// 	propertyNums := dstType.NumField()
+
+// 	for i := 0; i < propertyNums; i++ {
+// 		property := dstType.Field(i)
+// 		propertyValue := srcValue.FieldByName(property.Name)
+
+// 		if !propertyValue.IsValid() || property.Type != propertyValue.Type() {
+// 			continue
+// 		}
+
+// 		if dstValue.Field(i).CanSet() {
+// 			dstValue.Field(i).Set(propertyValue)
+// 		}
+// 	}
+
+// 	return nil
+// }
+
+// CopyProperties copies each field from the source into the destination. It recursively copies struct pointers and interfaces that contain struct pointers.
+// use json.Marshal/Unmarshal, so json tag should be set for fields of dst and src struct.
+func CopyProperties(dst, src interface{}) error {
+	dstType, srcType := reflect.TypeOf(dst), reflect.TypeOf(src)
 
 	if dstType.Kind() != reflect.Ptr || dstType.Elem().Kind() != reflect.Struct {
-		return errors.New("CopyProperties: param dst should be struct pointer")
+		return errors.New("CopyProperties: parameter dst should be struct pointer")
 	}
 
 	if srcType.Kind() == reflect.Ptr {
-		srcType, srcValue = srcType.Elem(), srcValue.Elem()
+		srcType = srcType.Elem()
 	}
 	if srcType.Kind() != reflect.Struct {
-		return errors.New("CopyProperties: param src should be a struct or struct pointer")
+		return errors.New("CopyProperties: parameter src should be a struct or struct pointer")
 	}
 
-	dstType, dstValue = dstType.Elem(), dstValue.Elem()
-
-	propertyNums := dstType.NumField()
-
-	for i := 0; i < propertyNums; i++ {
-		property := dstType.Field(i)
-		propertyValue := srcValue.FieldByName(property.Name)
-
-		if !propertyValue.IsValid() || property.Type != propertyValue.Type() {
-			continue
-		}
-
-		if dstValue.Field(i).CanSet() {
-			dstValue.Field(i).Set(propertyValue)
-		}
+	bytes, err := json.Marshal(src)
+	if err != nil {
+		return fmt.Errorf("CopyProperties: unable to marshal src: %s", err)
+	}
+	err = json.Unmarshal(bytes, dst)
+	if err != nil {
+		return fmt.Errorf("CopyProperties: unable to unmarshal into dst: %s", err)
 	}
 
 	return nil
+}
+
+// ToInterface converts reflect value to its interface type.
+func ToInterface(v reflect.Value) (value interface{}, ok bool) {
+	if v.IsValid() && v.CanInterface() {
+		return v.Interface(), true
+	}
+	switch v.Kind() {
+	case reflect.Bool:
+		return v.Bool(), true
+	case reflect.Int, reflect.Int8, reflect.Int16, reflect.Int32, reflect.Int64:
+		return v.Int(), true
+	case reflect.Uint, reflect.Uint8, reflect.Uint16, reflect.Uint32, reflect.Uint64, reflect.Uintptr:
+		return v.Uint(), true
+	case reflect.Float32, reflect.Float64:
+		return v.Float(), true
+	case reflect.Complex64, reflect.Complex128:
+		return v.Complex(), true
+	case reflect.String:
+		return v.String(), true
+	case reflect.Ptr:
+		return ToInterface(v.Elem())
+	case reflect.Interface:
+		return ToInterface(v.Elem())
+	default:
+		return nil, false
+	}
 }
