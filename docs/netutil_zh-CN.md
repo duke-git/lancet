@@ -585,9 +585,9 @@ func main() {
 }
 ```
 
-### <span id="HttpGet">HttpGet (Deprecated: use SendRequest for replacement)</span>
+### <span id="HttpGet">HttpGet</span>
 
-<p>发送http get请求</p>
+<p>发送http get请求。(已废弃: 使用SendRequest)</p>
 
 <b>函数签名:</b>
 
@@ -627,9 +627,9 @@ func main() {
 }
 ```
 
-### <span id="HttpPost">HttpPost (Deprecated: use SendRequest for replacement)</span>
+### <span id="HttpPost">HttpPost</span>
 
-<p>发送http post请求</p>
+<p>发送http post请求。(已废弃: 使用SendRequest)</p>
 
 <b>函数签名:</b>
 
@@ -657,28 +657,30 @@ import (
 func main() {
     url := "https://jsonplaceholder.typicode.com/todos"
     header := map[string]string{
-        "Content-Type": "application/json",
-    }
-    type Todo struct {
-        UserId int    `json:"userId"`
-        Title  string `json:"title"`
-    }
-    todo := Todo{1, "TestAddToDo"}
-    bodyParams, _ := json.Marshal(todo)
+		"Content-Type": "application/x-www-form-urlencoded",
+		// "Content-Type": "multipart/form-data",
+	}
 
-    resp, err := netutil.HttpPost(url, header, nil, bodyParams)
-    if err != nil {
-        log.Fatal(err)
-    }
+	postData := url.Values{}
+	postData.Add("userId", "1")
+	postData.Add("title", "TestToDo")
 
-    body, _ := ioutil.ReadAll(resp.Body)
+	// postData := make(map[string]string)
+	// postData["userId"] = "1"
+	// postData["title"] = "title"
+
+	resp, err := netutil.HttpPost(apiUrl, header, nil, postData)
+	if err != nil {
+		log.Fatal(err)
+	}
+	body, _ := io.ReadAll(resp.Body)
     fmt.Println(body)
 }
 ```
 
-### <span id="HttpPut">HttpPut (Deprecated: use SendRequest for replacement)</span>
+### <span id="HttpPut">HttpPut</span>
 
-<p>发送http put请求</p>
+<p>发送http put请求。(已废弃: 使用SendRequest)</p>
 
 <b>函数签名:</b>
 
@@ -726,9 +728,9 @@ func main() {
 }
 ```
 
-### <span id="HttpDelete">HttpDelete (Deprecated: use SendRequest for replacement)</span>
+### <span id="HttpDelete">HttpDelete</span>
 
-<p>发送http delete请求</p>
+<p>发送http delete请求。(已废弃: 使用SendRequest)</p>
 
 <b>函数签名:</b>
 
@@ -765,9 +767,9 @@ func main() {
 }
 ```
 
-### <span id="HttpPatch">HttpPatch (Deprecated: use SendRequest for replacement)</span>
+### <span id="HttpPatch">HttpPatch</span>
 
-<p>发送http patch请求</p>
+<p>发送http patch请求。(已废弃: 使用SendRequest)</p>
 
 <b>函数签名:</b>
 

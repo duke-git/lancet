@@ -2,6 +2,7 @@ package netutil
 
 import (
 	"encoding/json"
+	"io"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -51,23 +52,23 @@ func TestHttpPost(t *testing.T) {
 func TestHttpPostFormData(t *testing.T) {
 	apiUrl := "https://jsonplaceholder.typicode.com/todos"
 	header := map[string]string{
-		// "Content-Type": "application/x-www-form-urlencoded",
-		"Content-Type": "multipart/form-data",
+		"Content-Type": "application/x-www-form-urlencoded",
+		// "Content-Type": "multipart/form-data",
 	}
-	type Todo struct {
-		UserId int    `json:"userId"`
-		Title  string `json:"title"`
-	}
+
 	postData := url.Values{}
 	postData.Add("userId", "1")
-	postData.Add("title", "TestAddToDo")
+	postData.Add("title", "TestToDo")
 
-	resp, err := HttpPost(apiUrl, header, postData, nil)
+	// postData := make(map[string]string)
+	// postData["userId"] = "1"
+	// postData["title"] = "title"
+
+	resp, err := HttpPost(apiUrl, header, nil, postData)
 	if err != nil {
 		log.Fatal(err)
-		t.FailNow()
 	}
-	body, _ := ioutil.ReadAll(resp.Body)
+	body, _ := io.ReadAll(resp.Body)
 	t.Log("response: ", resp.StatusCode, string(body))
 }
 
