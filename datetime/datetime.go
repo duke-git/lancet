@@ -4,24 +4,24 @@
 // Package datetime implements some functions to format date and time.
 // Note:
 // 1. `format` param in FormatTimeToStr function should be as flow:
-//"yyyy-mm-dd hh:mm:ss"
-//"yyyy-mm-dd hh:mm"
-//"yyyy-mm-dd hh"
-//"yyyy-mm-dd"
-//"yyyy-mm"
-//"mm-dd"
-//"dd-mm-yy hh:mm:ss"
-//"yyyy/mm/dd hh:mm:ss"
-//"yyyy/mm/dd hh:mm"
-//"yyyy/mm/dd hh"
-//"yyyy/mm/dd"
-//"yyyy/mm"
-//"mm/dd"
-//"dd/mm/yy hh:mm:ss"
-//"yyyy"
-//"mm"
-//"hh:mm:ss"
-//"mm:ss"
+// "yyyy-mm-dd hh:mm:ss"
+// "yyyy-mm-dd hh:mm"
+// "yyyy-mm-dd hh"
+// "yyyy-mm-dd"
+// "yyyy-mm"
+// "mm-dd"
+// "dd-mm-yy hh:mm:ss"
+// "yyyy/mm/dd hh:mm:ss"
+// "yyyy/mm/dd hh:mm"
+// "yyyy/mm/dd hh"
+// "yyyy/mm/dd"
+// "yyyy/mm"
+// "mm/dd"
+// "dd/mm/yy hh:mm:ss"
+// "yyyy"
+// "mm"
+// "hh:mm:ss"
+// "mm:ss"
 package datetime
 
 import (
@@ -35,7 +35,7 @@ func init() {
 	timeFormat = map[string]string{
 		"yyyy-mm-dd hh:mm:ss": "2006-01-02 15:04:05",
 		"yyyy-mm-dd hh:mm":    "2006-01-02 15:04",
-		"yyyy-mm-dd hh":       "2006-01-02 15:04",
+		"yyyy-mm-dd hh":       "2006-01-02 15",
 		"yyyy-mm-dd":          "2006-01-02",
 		"yyyy-mm":             "2006-01",
 		"mm-dd":               "01-02",
