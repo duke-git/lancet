@@ -386,3 +386,56 @@ func TestIndexOffset(t *testing.T) {
 	assert.Equal(IndexOffset(str, "d", len(str)), -1)
 	assert.Equal(IndexOffset(str, "f", -1), -1)
 }
+
+func TestReplaceWithMap(t *testing.T) {
+	assert := internal.NewAssert(t, "TestReplaceWithMap")
+
+	str := "ac ab ab ac"
+	replaces := map[string]string{
+		"a": "1",
+		"b": "2",
+	}
+
+	assert.Equal(str, "ac ab ab ac")
+	assert.Equal(ReplaceWithMap(str, replaces), "1c 12 12 1c")
+}
+
+func TestTrim(t *testing.T) {
+	assert := internal.NewAssert(t, "TestTrim")
+
+	str1 := "$ ab	cd $ "
+
+	assert.Equal("$ ab	cd $", Trim(str1))
+	assert.Equal("ab	cd", Trim(str1, "$"))
+	assert.Equal("abcd", Trim("\nabcd"))
+}
+
+func TestSplitAndTrim(t *testing.T) {
+	assert := internal.NewAssert(t, "TestTrim")
+
+	str := " a,b, c,d,$1 "
+
+	result1 := SplitAndTrim(str, ",")
+	result2 := SplitAndTrim(str, ",", "$")
+
+	assert.Equal([]string{"a", "b", "c", "d", "$1"}, result1)
+	assert.Equal([]string{"a", "b", "c", "d", "1"}, result2)
+}
+
+func TestHideString(t *testing.T) {
+	assert := internal.NewAssert(t, "TestTrim")
+
+	str := "13242658976"
+
+	assert.Equal("13242658976", HideString(str, 0, -1, "*"))
+	assert.Equal("13242658976", HideString(str, 0, 0, "*"))
+	assert.Equal("****2658976", HideString(str, 0, 4, "*"))
+
+	assert.Equal("13242658976", HideString(str, 3, 3, "*"))
+	assert.Equal("132*2658976", HideString(str, 3, 4, "*"))
+	assert.Equal("132****8976", HideString(str, 3, 7, "*"))
+	assert.Equal("1324265****", HideString(str, 7, 11, "*"))
+
+	assert.Equal("1324265****", HideString(str, 7, 100, "*"))
+	assert.Equal("13242658976", HideString(str, 100, 100, "*"))
+}

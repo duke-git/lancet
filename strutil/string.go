@@ -403,3 +403,81 @@ func IndexOffset(str string, substr string, idxFrom int) int {
 
 	return strings.Index(str[idxFrom:], substr) + idxFrom
 }
+
+// ReplaceWithMap returns a copy of `str`, which is replaced by a map in unordered way, case-sensitively.
+func ReplaceWithMap(str string, replaces map[string]string) string {
+	for k, v := range replaces {
+		str = strings.ReplaceAll(str, k, v)
+	}
+
+	return str
+}
+
+// SplitAndTrim splits string `str` by a string `delimiter` to a slice,
+// and calls Trim to every element of this slice. It ignores the elements
+// which are empty after Trim.
+func SplitAndTrim(str, delimiter string, characterMask ...string) []string {
+	result := make([]string, 0)
+
+	for _, v := range strings.Split(str, delimiter) {
+		v = Trim(v, characterMask...)
+		if v != "" {
+			result = append(result, v)
+		}
+	}
+
+	return result
+}
+
+var (
+	// DefaultTrimChars are the characters which are stripped by Trim* functions in default.
+	DefaultTrimChars = string([]byte{
+		'\t', // Tab.
+		'\v', // Vertical tab.
+		'\n', // New line (line feed).
+		'\r', // Carriage return.
+		'\f', // New page.
+		' ',  // Ordinary space.
+		0x00, // NUL-byte.
+		0x85, // Delete.
+		0xA0, // Non-breaking space.
+	})
+)
+
+// Trim strips whitespace (or other characters) from the beginning and end of a string.
+// The optional parameter `characterMask` specifies the additional stripped characters.
+func Trim(str string, characterMask ...string) string {
+	trimChars := DefaultTrimChars
+
+	if len(characterMask) > 0 {
+		trimChars += characterMask[0]
+	}
+
+	return strings.Trim(str, trimChars)
+}
+
+// HideString hide some chars in source string with param `replaceChar`.
+// replace range is origin[start : end]. [start, end)
+func HideString(origin string, start, end int, replaceChar string) string {
+	size := len(origin)
+
+	if start > size-1 || start < 0 || end < 0 || start > end {
+		return origin
+	}
+
+	if end > size {
+		end = size
+	}
+
+	if replaceChar == "" {
+		return origin
+	}
+
+	startStr := origin[0:start]
+	endStr := origin[end:size]
+
+	replaceSize := end - start
+	replaceStr := strings.Repeat(replaceChar, replaceSize)
+
+	return startStr + replaceStr + endStr
+}

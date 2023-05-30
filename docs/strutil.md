@@ -51,6 +51,10 @@ import (
 -   [HasPrefixAny](#HasPrefixAny)
 -   [HasSuffixAny](#HasSuffixAny)
 -   [IndexOffset](#IndexOffset)
+-   [ReplaceWithMap](#ReplaceWithMap)
+-   [Trim](#Trim)
+-   [SplitAndTrim](#SplitAndTrim)
+-   [HideString](#HideString)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -1020,5 +1024,147 @@ func main() {
 	// 18
 	// -1
 	// -1
+}
+```
+
+### <span id="ReplaceWithMap">ReplaceWithMap</span>
+
+<p>Returns a copy of `str`, which is replaced by a map in unordered way, case-sensitively.</p>
+
+<b>Signature:</b>
+
+```go
+func ReplaceWithMap(str string, replaces map[string]string) string
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/strutil"
+)
+
+func main() {
+    str := "ac ab ab ac"
+	replaces := map[string]string{
+		"a": "1",
+		"b": "2",
+	}
+
+	result := strutil.ReplaceWithMap(str, replaces)
+
+	fmt.Println(result)
+	// Output:
+	// 1c 12 12 1c
+}
+```
+
+### <span id="Trim">Trim</span>
+
+<p>Strips whitespace (or other characters) from the beginning and end of a string. The optional parameter `characterMask` specifies the additional stripped characters.</p>
+
+<b>Signature:</b>
+
+```go
+func Trim(str string, characterMask ...string) string
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/strutil"
+)
+
+func main() {
+    result1 := strutil.Trim("\nabcd")
+
+	str := "$ ab	cd $ "
+
+	result2 := strutil.Trim(str)
+	result3 := strutil.Trim(str, "$")
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+
+	// Output:
+	// abcd
+	// $ ab	cd $
+	// ab	cd
+}
+```
+
+### <span id="SplitAndTrim">SplitAndTrim</span>
+
+<p>Splits string `str` by a string `delimiter` to a slice, and calls Trim to every element of slice. It ignores the elements which are empty after Trim.</p>
+
+<b>Signature:</b>
+
+```go
+func SplitAndTrim(str, delimiter string, characterMask ...string) []string
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/strutil"
+)
+
+func main() {
+    str := " a,b, c,d,$1 "
+
+	result1 := strutil.SplitAndTrim(str, ",")
+	result2 := strutil.SplitAndTrim(str, ",", "$")
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+
+	// Output:
+	// [a b c d $1]
+	// [a b c d 1]
+}
+```
+
+### <span id="HideString">HideString</span>
+
+<p>HideString hide some chars in source string with param `replaceChar`. replace range is origin[start : end]. [start, end).</p>
+
+<b>Signature:</b>
+
+```go
+func HideString(origin string, start, end int, replaceChar string) string
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/strutil"
+)
+
+func main() {
+    str := "13242658976"
+
+	result1 := strutil.HideString(str, 3, 3, "*")
+	result2 := strutil.HideString(str, 3, 4, "*")
+	result3 := strutil.HideString(str, 3, 7, "*")
+	result4 := strutil.HideString(str, 7, 11, "*")
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+	fmt.Println(result4)
+
+	// Output:
+	// 13242658976
+	// 132*2658976
+	// 132****8976
+	// 1324265****
 }
 ```
