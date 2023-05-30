@@ -33,6 +33,10 @@ import (
 -   [RadianToAngle](#RadianToAngle)
 -   [PointDistance](#PointDistance)
 -   [IsPrime](#IsPrime)
+-   [GCD](#GCD)
+-   [LCM](#LCM)
+-   [Cos](#Cos)
+-   [Sin](#Sin)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -373,5 +377,170 @@ func main() {
 	// false
 	// false
 	// true
+}
+```
+
+
+### <span id="GCD">GCD</span>
+
+<p>计算整数最大公约数。</p>
+
+<b>函数签名:</b>
+
+```go
+func GCD(integers ...int) int
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/mathutil"
+)
+
+func main() {
+    result1 := mathutil.GCD(1, 1)
+    result2 := mathutil.GCD(1, -1)
+    result3 := mathutil.GCD(-1, 1)
+    result4 := mathutil.GCD(-1, -1)
+    result5 := mathutil.GCD(3, 6, 9)
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
+    fmt.Println(result5)
+
+    // Output:
+    // 1
+    // 1
+    // -1
+    // -1
+    // 3
+}
+```
+
+### <span id="LCM">LCM</span>
+
+<p>计算整数最小公倍数。</p>
+
+<b>函数签名:</b>
+
+```go
+func LCM(integers ...int) int
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/mathutil"
+)
+
+func main() {
+    result1 := mathutil.LCM(1, 1)
+    result2 := mathutil.LCM(1, 2)
+    result3 := mathutil.LCM(3, 6, 9)
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+
+    // Output:
+    // 1
+    // 2
+    // 18
+}
+```
+
+
+### <span id="Cos">Cos</span>
+
+<p>计算弧度的余弦值。</p>
+
+<b>函数签名:</b>
+
+```go
+func Cos(radian float64, precision ...int) float64
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/mathutil"
+)
+
+func main() {
+    result1 := mathutil.Cos(0)
+    result2 := mathutil.Cos(90)
+    result3 := mathutil.Cos(180)
+    result4 := mathutil.Cos(math.Pi)
+    result5 := mathutil.Cos(math.Pi / 2)
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
+    fmt.Println(result5)
+
+    // Output:
+    // 1
+    // -0.447
+    // -0.598
+    // -1
+    // 0
+}
+```
+
+
+### <span id="Sin">Sin</span>
+
+<p>计算弧度的正弦值。</p>
+
+<b>函数签名:</b>
+
+```go
+func Sin(radian float64, precision ...int) float64
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/mathutil"
+)
+
+func main() {
+    result1 := mathutil.Sin(0)
+    result2 := mathutil.Sin(90)
+    result3 := mathutil.Sin(180)
+    result4 := mathutil.Sin(math.Pi)
+    result5 := mathutil.Sin(math.Pi / 2)
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
+    fmt.Println(result5)
+
+    // Output:
+    // 0
+    // 0.894
+    // -0.801
+    // 0
+    // 1
 }
 ```
