@@ -231,6 +231,8 @@ func IsLeapYear(year int) bool {
 	return year%4 == 0 && (year%100 != 0 || year%400 == 0)
 }
 
+// BetweenSeconds returns the number of seconds between two times.
+// Play: todo
 func BetweenSeconds(t1 time.Time, t2 time.Time) int64 {
 	index := t2.Unix() - t1.Unix()
 	return index

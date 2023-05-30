@@ -1,7 +1,6 @@
 package datetime
 
 import (
-	"fmt"
 	"testing"
 	"time"
 
@@ -22,9 +21,17 @@ func TestAddYear(t *testing.T) {
 }
 
 func TestBetweenSeconds(t *testing.T) {
-	now := time.Now()
-	target := AddDay(now, 1)
-	fmt.Println(BetweenSeconds(now, target))
+	assert := internal.NewAssert(t, "TestBetweenSeconds")
+
+	today := time.Now()
+	tomorrow := AddDay(today, 1)
+	yesterday := AddDay(today, -1)
+
+	result1 := BetweenSeconds(today, tomorrow)
+	result2 := BetweenSeconds(today, yesterday)
+
+	assert.Equal(int64(86400), result1)
+	assert.Equal(int64(-86400), result2)
 }
 
 func TestAddDay(t *testing.T) {

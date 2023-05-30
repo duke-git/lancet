@@ -355,14 +355,15 @@ func ExampleIsLeapYear() {
 }
 
 func ExampleBetweenSeconds() {
-	now := time.Now()
-	target := AddDay(now, 1)
+	today := time.Now()
+	tomorrow := AddDay(today, 1)
+	yesterday := AddDay(today, -1)
 
-	now1 := time.Now()
-	target1 := AddDay(now, -1)
+	result1 := BetweenSeconds(today, tomorrow)
+	result2 := BetweenSeconds(today, yesterday)
 
-	fmt.Println(BetweenSeconds(now, target))
-	fmt.Println(BetweenSeconds(now1, target1))
+	fmt.Println(result1)
+	fmt.Println(result2)
 
 	// Output:
 	// 86400
