@@ -25,6 +25,7 @@ import (
 -   [AddDay](#AddDay)
 -   [AddHour](#AddHour)
 -   [AddMinute](#AddMinute)
+-   [AddYear](#AddYear)
 -   [BeginOfMinute](#BeginOfMinute)
 -   [BeginOfHour](#BeginOfHour)
 -   [BeginOfDay](#BeginOfDay)
@@ -52,6 +53,7 @@ import (
 -   [ToFormat](#ToFormat)
 -   [ToFormatForTpl](#ToFormatForTpl)
 -   [ToIso8601](#ToIso8601)
+-   [IsLeapYear](#IsLeapYear)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -167,6 +169,45 @@ func main() {
     before2Minute := datetime.AddMinute(now, -2)
 
     fmt.Println(after2Minute, before2Minute)
+}
+```
+
+### <span id="AddYear">AddYear</span>
+
+<p>Add or sub year to the time.</p>
+
+<b>Signature:</b>
+
+```go
+func AddYear(t time.Time, year int64) time.Time
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "time"
+    "github.com/duke-git/lancet/datetime"
+)
+
+func main() {
+    now := time.Now()
+
+	after1Year := datetime.AddYear(now, 1)
+	diff1 := after1Year.Sub(now)
+
+	before1Year := datetime.AddYear(now, -1)
+	diff2 := before1Year.Sub(now)
+
+	fmt.Println(diff1)
+	fmt.Println(diff2)
+
+	// Output:
+	// 8760h0m0s
+	// -8760h0m0s
 }
 ```
 
@@ -919,5 +960,38 @@ func main() {
     tm, _ := datetime.NewISO8601("2006-01-02T15:04:05.999Z")
     ts := tm.ToIso8601()
     fmt.Println(ts) //"2006-01-02T23:04:05+08:00"
+}
+```
+
+### <span id="IsLeapYear">IsLeapYear</span>
+
+<p>check if param `year` is leap year or not.</p>
+
+<b>Signature:</b>
+
+```go
+func IsLeapYear(year int) bool
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/datetime"
+)
+
+func main() {
+    result1 := datetime.IsLeapYear(2000)
+    result2 := datetime.IsLeapYear(2001)
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+
+    // Output:
+    // true
+    // false
 }
 ```

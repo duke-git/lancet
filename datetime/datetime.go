@@ -69,6 +69,11 @@ func AddDay(t time.Time, day int64) time.Time {
 	return t.Add(24 * time.Hour * time.Duration(day))
 }
 
+// AddYear add or sub year to the time.
+func AddYear(t time.Time, year int64) time.Time {
+	return t.Add(365 * 24 * time.Hour * time.Duration(year))
+}
+
 // GetNowDate return format yyyy-mm-dd of current date
 func GetNowDate() string {
 	return time.Now().Format("2006-01-02")
@@ -179,4 +184,9 @@ func BeginOfYear(t time.Time) time.Time {
 // EndOfYear return end of year
 func EndOfYear(t time.Time) time.Time {
 	return BeginOfYear(t).AddDate(1, 0, 0).Add(-time.Nanosecond)
+}
+
+// IsLeapYear check if param year is leap year or not.
+func IsLeapYear(year int) bool {
+	return year%4 == 0 && (year%100 != 0 || year%400 == 0)
 }

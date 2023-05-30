@@ -46,6 +46,19 @@ func TestAddMinute(t *testing.T) {
 	assert.Equal(float64(-2), diff2.Minutes())
 }
 
+func TestAddYear(t *testing.T) {
+	assert := internal.NewAssert(t, "TestAddDay")
+
+	now := time.Now()
+	after2Years := AddYear(now, 1)
+	diff1 := after2Years.Sub(now)
+	assert.Equal(float64(8760), diff1.Hours())
+
+	before2Years := AddYear(now, -1)
+	diff2 := before2Years.Sub(now)
+	assert.Equal(float64(-8760), diff2.Hours())
+}
+
 func TestGetNowDate(t *testing.T) {
 	assert := internal.NewAssert(t, "TestGetNowDate")
 	expected := time.Now().Format("2006-01-02")
@@ -230,4 +243,14 @@ func TestEndOfYear(t *testing.T) {
 	actual := EndOfYear(td)
 
 	assert.Equal(expected, actual)
+}
+
+func TestIsLeapYear(t *testing.T) {
+	assert := internal.NewAssert(t, "TestEndOfYear")
+
+	result1 := IsLeapYear(2000)
+	result2 := IsLeapYear(2001)
+
+	assert.Equal(true, result1)
+	assert.Equal(false, result2)
 }
