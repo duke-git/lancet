@@ -12,6 +12,7 @@ import (
 	"net/url"
 	"os"
 	"os/exec"
+	"runtime"
 	"strings"
 	"time"
 
@@ -242,11 +243,17 @@ func DownloadFile(filepath string, url string) error {
 
 // IsPingConnected checks if can ping specified host or not.
 func IsPingConnected(host string) bool {
-	cmd := exec.Command("ping", host, "-c", "1", "-W", "6")
+	cmd := exec.Command("ping", host, "-c", "4", "-W", "6")
+
+	if runtime.GOOS == "windows" {
+		cmd = exec.Command("ping", host, "-n", "4", "-w", "6")
+	}
+
 	err := cmd.Run()
 	if err != nil {
 		return false
 	}
+
 	return true
 }
 
