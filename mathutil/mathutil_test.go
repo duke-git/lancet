@@ -114,3 +114,61 @@ func TestIsPrime(t *testing.T) {
 	assert.Equal(true, IsPrime(3))
 	assert.Equal(false, IsPrime(4))
 }
+
+func TestGCD(t *testing.T) {
+	assert := internal.NewAssert(t, "TestGCD")
+
+	assert.Equal(1, GCD(1, 1))
+	assert.Equal(1, GCD(1, -1))
+	assert.Equal(-1, GCD(-1, 1))
+	assert.Equal(-1, GCD(-1, -1))
+
+	assert.Equal(1, GCD(1, 0))
+	assert.Equal(1, GCD(0, 1))
+	assert.Equal(-1, GCD(-1, 0))
+	assert.Equal(-1, GCD(0, -1))
+
+	assert.Equal(1, GCD(1, -2))
+	assert.Equal(1, GCD(-2, 1))
+	assert.Equal(-1, GCD(-1, 2))
+	assert.Equal(-1, GCD(2, -1))
+
+	assert.Equal(-1, GCD(-1, -2))
+	assert.Equal(-1, GCD(-2, -1))
+
+	assert.Equal(-9, GCD(-27, -36))
+	assert.Equal(3, GCD(3, 6, 9))
+}
+
+func TestLCM(t *testing.T) {
+	assert := internal.NewAssert(t, "TestLCM")
+
+	assert.Equal(1, LCM(1))
+	assert.Equal(-1, LCM(-1))
+	assert.Equal(-1, LCM(1, -1))
+	assert.Equal(1, LCM(-1, 1))
+	assert.Equal(1, LCM(1, 1))
+	assert.Equal(-1, LCM(-1, -1))
+	assert.Equal(2, LCM(1, 2))
+	assert.Equal(18, LCM(3, 6, 9))
+}
+
+func TestCos(t *testing.T) {
+	assert := internal.NewAssert(t, "TestCos")
+
+	assert.EqualValues(1, Cos(0))
+	assert.EqualValues(-0.447, Cos(90))
+	assert.EqualValues(-0.598, Cos(180))
+	assert.EqualValues(-1, Cos(math.Pi))
+	assert.EqualValues(0, Cos(math.Pi/2))
+}
+
+func TestSin(t *testing.T) {
+	assert := internal.NewAssert(t, "TestSin")
+
+	assert.EqualValues(0, Sin(0))
+	assert.EqualValues(0.894, Sin(90))
+	assert.EqualValues(-0.801, Sin(180))
+	assert.EqualValues(0, Sin(math.Pi))
+	assert.EqualValues(1, Sin(math.Pi/2))
+}

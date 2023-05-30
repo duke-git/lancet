@@ -5,6 +5,7 @@
 package internal
 
 import (
+	"bytes"
 	"fmt"
 	"reflect"
 	"runtime"
@@ -34,6 +35,52 @@ func (a *Assert) Equal(expected, actual interface{}) {
 	if compare(expected, actual) != compareEqual {
 		makeTestFailed(a.T, a.CaseName, expected, actual)
 	}
+}
+
+// EqualValues asserts that two objects are equal or convertable to the same types and equal.
+// https://github.com/stretchr/testify/assert/assertions.go
+func (a *Assert) EqualValues(expected, actual interface{}) {
+	if !objectsAreEqualValues(expected, actual) {
+		makeTestFailed(a.T, a.CaseName, expected, actual)
+	}
+}
+
+func objectsAreEqualValues(expected, actual interface{}) bool {
+	if objectsAreEqual(expected, actual) {
+		return true
+	}
+
+	actualType := reflect.TypeOf(actual)
+	if actualType == nil {
+		return false
+	}
+	expectedValue := reflect.ValueOf(expected)
+	if expectedValue.IsValid() && expectedValue.Type().ConvertibleTo(actualType) {
+		// Attempt comparison after type conversion
+		return reflect.DeepEqual(expectedValue.Convert(actualType).Interface(), actual)
+	}
+
+	return false
+}
+
+func objectsAreEqual(expected, actual interface{}) bool {
+	if expected == nil || actual == nil {
+		return expected == actual
+	}
+
+	exp, ok := expected.([]byte)
+	if !ok {
+		return reflect.DeepEqual(expected, actual)
+	}
+
+	act, ok := actual.([]byte)
+	if !ok {
+		return false
+	}
+	if exp == nil || act == nil {
+		return exp == nil && act == nil
+	}
+	return bytes.Equal(exp, act)
 }
 
 // NotEqual check if expected is not equal with actual

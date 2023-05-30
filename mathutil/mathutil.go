@@ -126,3 +126,66 @@ func IsPrime(n int) bool {
 
 	return true
 }
+
+// GCD return greatest common divisor (GCD) of integers.
+func GCD(integers ...int) int {
+	result := integers[0]
+
+	for k := range integers {
+		result = gcd(integers[k], result)
+
+		if result == 1 {
+			return 1
+		}
+	}
+
+	return result
+}
+
+// find greatest common divisor (GCD)
+func gcd(a, b int) int {
+	if b == 0 {
+		return a
+	}
+
+	return gcd(b, a%b)
+}
+
+// LCM return Least Common Multiple (LCM) of integers.
+func LCM(integers ...int) int {
+	result := integers[0]
+
+	for k := range integers {
+		result = lcm(integers[k], result)
+	}
+
+	return result
+}
+
+// find Least Common Multiple (LCM) via GCD.
+func lcm(a, b int) int {
+	if a == 0 || b == 0 {
+		panic("lcm function: provide non zero integers only.")
+	}
+	return a * b / gcd(a, b)
+}
+
+// Cos returns the cosine of the radian argument.
+func Cos(radian float64, precision ...int) float64 {
+	t := 1.0 / (2.0 * math.Pi)
+	radian *= t
+	radian -= 0.25 + math.Floor(radian+0.25)
+	radian *= 16.0 * (math.Abs(radian) - 0.5)
+	radian += 0.225 * radian * (math.Abs(radian) - 1.0)
+
+	if len(precision) == 1 {
+		return TruncRound(radian, precision[0])
+	}
+
+	return TruncRound(radian, 3)
+}
+
+// Cos returns the sine of the radian argument.
+func Sin(radian float64, precision ...int) float64 {
+	return Cos((math.Pi / 2) - radian)
+}
