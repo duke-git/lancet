@@ -230,3 +230,8 @@ func EndOfYear(t time.Time) time.Time {
 func IsLeapYear(year int) bool {
 	return year%4 == 0 && (year%100 != 0 || year%400 == 0)
 }
+
+func BetweenSeconds(t1 time.Time, t2 time.Time) int64 {
+	index := t2.Unix() - t1.Unix()
+	return index
+}
