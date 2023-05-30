@@ -49,8 +49,8 @@ func TestHttpPost(t *testing.T) {
 func TestHttpPostFormData(t *testing.T) {
 	apiUrl := "https://jsonplaceholder.typicode.com/todos"
 	header := map[string]string{
-		// "Content-Type": "application/x-www-form-urlencoded",
-		"Content-Type": "multipart/form-data",
+		"Content-Type": "application/x-www-form-urlencoded",
+		// "Content-Type": "multipart/form-data",
 	}
 
 	postData := url.Values{}
@@ -61,7 +61,7 @@ func TestHttpPostFormData(t *testing.T) {
 	// postData["userId"] = "1"
 	// postData["title"] = "title"
 
-	resp, err := HttpPost(apiUrl, header, postData, nil)
+	resp, err := HttpPost(apiUrl, header, nil, postData)
 	if err != nil {
 		log.Fatal(err)
 	}
