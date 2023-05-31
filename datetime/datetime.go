@@ -242,3 +242,8 @@ func DayOfYear(t1 time.Time) int {
 	nowDate := time.Date(y, m, d, 0, 0, 0, 0, t1.Location())
 	return int(nowDate.Sub(firstDay).Hours() / 24)
 }
+
+func IsWeekend(t1 time.Time) bool {
+	var isWeekend = time.Saturday == t1.Weekday() || time.Sunday == t1.Weekday()
+	return isWeekend
+}
