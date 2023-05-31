@@ -56,6 +56,8 @@ import (
 -   [IsLeapYear](#IsLeapYear)
 -   [BetweenSeconds](#BetweenSeconds)
 -   [DayOfYear](#DayOfYear)
+-   [IsWeekend](#IsWeekend)
+
 
 <div STYLE="page-break-after: always;"></div>
 

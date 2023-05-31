@@ -283,3 +283,18 @@ func TestDayOfYear(t *testing.T) {
 	result3 := DayOfYear(date3)
 	assert.Equal(0, result3)
 }
+
+func TestIsWeekend(t *testing.T) {
+	assert := internal.NewAssert(t, "TestIsWeekend")
+	date := time.Date(2023, 06, 03, 0, 0, 0, 0, time.Local)
+	result := IsWeekend(date)
+	assert.Equal(true, result)
+
+	date1 := time.Date(2023, 06, 04, 0, 0, 0, 0, time.Local)
+	result1 := IsWeekend(date1)
+	assert.Equal(true, result1)
+
+	date2 := time.Date(2023, 06, 02, 0, 0, 0, 0, time.Local)
+	result2 := IsWeekend(date2)
+	assert.Equal(false, result2)
+}
