@@ -285,3 +285,59 @@ func ExampleReadCsvFile() {
 	// [[Bob  12  male] [Duke  14  male] [Lucy  16  female]]
 	// <nil>
 }
+
+func ExampleWriteStringToFile() {
+	filepath := "./test.txt"
+
+	file, err := os.Create(filepath)
+	if err != nil {
+		return
+	}
+
+	defer file.Close()
+
+	err = WriteStringToFile(filepath, "hello", true)
+	if err != nil {
+		return
+	}
+
+	content, err := ReadFileToString(filepath)
+	if err != nil {
+		return
+	}
+
+	os.Remove(filepath)
+
+	fmt.Println(content)
+
+	// Output:
+	// hello
+}
+
+func ExampleWriteBytesToFile() {
+	filepath := "./bytes.txt"
+
+	file, err := os.Create(filepath)
+	if err != nil {
+		return
+	}
+
+	defer file.Close()
+
+	err = WriteBytesToFile(filepath, []byte("hello"))
+	if err != nil {
+		return
+	}
+
+	content, err := ReadFileToString(filepath)
+	if err != nil {
+		return
+	}
+
+	os.Remove(filepath)
+
+	fmt.Println(content)
+
+	// Output:
+	// hello
+}
