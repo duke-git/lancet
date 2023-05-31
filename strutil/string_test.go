@@ -450,3 +450,19 @@ func TestHideString(t *testing.T) {
 	assert.Equal("1324265****", HideString(str, 7, 100, "*"))
 	assert.Equal("13242658976", HideString(str, 100, 100, "*"))
 }
+
+func TestContainsAll(t *testing.T) {
+	assert := internal.NewAssert(t, "TestContainsAll")
+
+	assert.Equal(true, ContainsAll("hello world", []string{"hello", "world"}))
+	assert.Equal(true, ContainsAll("hello world", []string{""}))
+	assert.Equal(false, ContainsAll("hello world", []string{"hello", "abc"}))
+}
+
+func TestContainsAny(t *testing.T) {
+	assert := internal.NewAssert(t, "TestContainsAny")
+
+	assert.Equal(true, ContainsAny("hello world", []string{"hello", "world"}))
+	assert.Equal(true, ContainsAny("hello world", []string{"hello", "abc"}))
+	assert.Equal(false, ContainsAny("hello world", []string{"123", "abc"}))
+}

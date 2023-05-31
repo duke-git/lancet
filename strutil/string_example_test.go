@@ -591,3 +591,34 @@ func ExampleHideString() {
 	// 132****8976
 	// 1324265****
 }
+
+func ExampleContainsAll() {
+	str := "hello world"
+
+	result1 := ContainsAll(str, []string{"hello", "world"})
+	result2 := ContainsAll(str, []string{"hello", "abc"})
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+
+	// Output:
+	// true
+	// false
+}
+
+func ExampleContainsAny() {
+	str := "hello world"
+
+	result1 := ContainsAny(str, []string{"hello", "world"})
+	result2 := ContainsAny(str, []string{"hello", "abc"})
+	result3 := ContainsAny(str, []string{"123", "abc"})
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+
+	// Output:
+	// true
+	// true
+	// false
+}
