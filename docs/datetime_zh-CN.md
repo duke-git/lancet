@@ -54,6 +54,8 @@ import (
 -   [ToFormatForTpl](#ToFormatForTpl)
 -   [ToIso8601](#ToIso8601)
 -   [IsLeapYear](#IsLeapYear)
+-   [BetweenSeconds](#BetweenSeconds)
+-   [DayOfYear](#DayOfYear)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -993,5 +995,83 @@ func main() {
     // Output:
     // true
     // false
+}
+```
+
+### <span id="BetweenSeconds">BetweenSeconds</span>
+
+<p>返回两个时间的间隔秒数。</p>
+
+<b>函数签名:</b>
+
+```go
+func BetweenSeconds(t1 time.Time, t2 time.Time) int64
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/datetime"
+)
+
+func main() {
+    today := time.Now()
+    tomorrow := AddDay(today, 1)
+    yesterday := AddDay(today, -1)
+
+    result1 := datetime.BetweenSeconds(today, tomorrow)
+    result2 := datetime.BetweenSeconds(today, yesterday)
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+
+    // Output:
+    // 86400
+    // -86400
+}
+```
+
+### <span id="DayOfYear">DayOfYear</span>
+
+<p>返回参数日期是一年中的第几天。</p>
+
+<b>函数签名:</b>
+
+```go
+func DayOfYear(t time.Time) int
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/datetime"
+)
+
+func main() {
+    date1 := time.Date(2023, 02, 01, 1, 1, 1, 0, time.Local)
+    result1 := datetime.DayOfYear(date1)
+
+    date2 := time.Date(2023, 01, 02, 1, 1, 1, 0, time.Local)
+    result2 := datetime.DayOfYear(date2)
+
+    date3 := time.Date(2023, 01, 01, 1, 1, 1, 0, time.Local)
+    result3 := datetime.DayOfYear(date3)
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+
+    // Output:
+    // 31
+    // 1
+    // 0
 }
 ```

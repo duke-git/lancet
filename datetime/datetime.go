@@ -190,3 +190,18 @@ func EndOfYear(t time.Time) time.Time {
 func IsLeapYear(year int) bool {
 	return year%4 == 0 && (year%100 != 0 || year%400 == 0)
 }
+
+// BetweenSeconds returns the number of seconds between two times.
+func BetweenSeconds(t1 time.Time, t2 time.Time) int64 {
+	index := t2.Unix() - t1.Unix()
+	return index
+}
+
+// DayOfYear returns which day of the year the parameter date `t` is.
+func DayOfYear(t time.Time) int {
+	y, m, d := t.Date()
+	firstDay := time.Date(y, 1, 1, 0, 0, 0, 0, t.Location())
+	nowDate := time.Date(y, m, d, 0, 0, 0, 0, t.Location())
+
+	return int(nowDate.Sub(firstDay).Hours() / 24)
+}

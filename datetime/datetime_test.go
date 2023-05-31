@@ -254,3 +254,32 @@ func TestIsLeapYear(t *testing.T) {
 	assert.Equal(true, result1)
 	assert.Equal(false, result2)
 }
+
+func TestBetweenSeconds(t *testing.T) {
+	assert := internal.NewAssert(t, "TestBetweenSeconds")
+
+	today := time.Now()
+	tomorrow := AddDay(today, 1)
+	yesterday := AddDay(today, -1)
+
+	result1 := BetweenSeconds(today, tomorrow)
+	result2 := BetweenSeconds(today, yesterday)
+
+	assert.Equal(int64(86400), result1)
+	assert.Equal(int64(-86400), result2)
+}
+
+func TestDayOfYear(t *testing.T) {
+	assert := internal.NewAssert(t, "TestDayOfYear")
+	date1 := time.Date(2023, 02, 01, 1, 1, 1, 0, time.Local)
+	result1 := DayOfYear(date1)
+	assert.Equal(31, result1)
+
+	date2 := time.Date(2023, 01, 02, 1, 1, 1, 0, time.Local)
+	result2 := DayOfYear(date2)
+	assert.Equal(1, result2)
+
+	date3 := time.Date(2023, 01, 01, 1, 1, 1, 0, time.Local)
+	result3 := DayOfYear(date3)
+	assert.Equal(0, result3)
+}
