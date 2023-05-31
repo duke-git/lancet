@@ -238,9 +238,12 @@ func BetweenSeconds(t1 time.Time, t2 time.Time) int64 {
 	return index
 }
 
-func DayOfYear(t1 time.Time) int {
-	y, m, d := t1.Date()
-	firstDay := time.Date(y, 1, 1, 0, 0, 0, 0, t1.Location())
-	nowDate := time.Date(y, m, d, 0, 0, 0, 0, t1.Location())
+// DayOfYear returns which day of the year the parameter date `t` is.
+// Play: todo
+func DayOfYear(t time.Time) int {
+	y, m, d := t.Date()
+	firstDay := time.Date(y, 1, 1, 0, 0, 0, 0, t.Location())
+	nowDate := time.Date(y, m, d, 0, 0, 0, 0, t.Location())
+
 	return int(nowDate.Sub(firstDay).Hours() / 24)
 }

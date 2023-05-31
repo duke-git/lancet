@@ -274,15 +274,15 @@ func TestIsLeapYear(t *testing.T) {
 
 func TestDayOfYear(t *testing.T) {
 	assert := internal.NewAssert(t, "TestDayOfYear")
-	date := time.Date(2023, 02, 01, 1, 1, 1, 0, time.Local)
-	result := DayOfYear(date)
-	assert.Equal(31, result)
-
-	date1 := time.Date(2023, 01, 02, 1, 1, 1, 0, time.Local)
+	date1 := time.Date(2023, 02, 01, 1, 1, 1, 0, time.Local)
 	result1 := DayOfYear(date1)
-	assert.Equal(1, result1)
+	assert.Equal(31, result1)
+
+	date2 := time.Date(2023, 01, 02, 1, 1, 1, 0, time.Local)
+	result2 := DayOfYear(date2)
+	assert.Equal(1, result2)
 
 	date3 := time.Date(2023, 01, 01, 1, 1, 1, 0, time.Local)
-	result2 := DayOfYear(date3)
-	assert.Equal(0, result2)
+	result3 := DayOfYear(date3)
+	assert.Equal(0, result3)
 }

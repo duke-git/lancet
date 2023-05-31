@@ -369,3 +369,23 @@ func ExampleBetweenSeconds() {
 	// 86400
 	// -86400
 }
+
+func ExampleDayOfYear() {
+	date1 := time.Date(2023, 02, 01, 1, 1, 1, 0, time.Local)
+	result1 := DayOfYear(date1)
+
+	date2 := time.Date(2023, 01, 02, 1, 1, 1, 0, time.Local)
+	result2 := DayOfYear(date2)
+
+	date3 := time.Date(2023, 01, 01, 1, 1, 1, 0, time.Local)
+	result3 := DayOfYear(date3)
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+
+	// Output:
+	// 31
+	// 1
+	// 0
+}
