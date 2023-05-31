@@ -43,6 +43,8 @@ import (
 -   [MTime](#MTime)
 -   [Sha](#Sha)
 -   [ReadCsvFile](#ReadCsvFile)
+-   [WriteStringToFile](#WriteStringToFile)
+-   [WriteBytesToFile](#WriteBytesToFile)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -658,5 +660,105 @@ func main() {
     // Output:
     // [[Bob  12  male] [Duke  14  male] [Lucy  16  female]]
     // <nil>
+}
+```
+
+
+### <span id="WriteBytesToFile">WriteBytesToFile</span>
+
+<p>将bytes写入文件。</p>
+
+<b>函数签名:</b>
+
+```go
+func WriteBytesToFile(filepath string, content []byte) error
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/fileutil"
+)
+
+func main() {
+    filepath := "./bytes.txt"
+
+    file, err := os.Create(filepath)
+    if err != nil {
+        return
+    }
+
+    defer file.Close()
+
+    err = fileutil.WriteBytesToFile(filepath, []byte("hello"))
+    if err != nil {
+        return
+    }
+
+    content, err := fileutil.ReadFileToString(filepath)
+    if err != nil {
+        return
+    }
+
+    os.Remove(filepath)
+
+    fmt.Println(content)
+
+    // Output:
+    // hello
+}
+```
+
+
+### <span id="WriteStringToFile">WriteStringToFile</span>
+
+<p>将字符串写入文件。</p>
+
+<b>函数签名:</b>
+
+```go
+func WriteStringToFile(filepath string, content string, append bool) error
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/fileutil"
+)
+
+func main() {
+    filepath := "./test.txt"
+
+    file, err := os.Create(filepath)
+    if err != nil {
+        return
+    }
+
+    defer file.Close()
+
+    err = fileutil.WriteStringToFile(filepath, "hello", true)
+    if err != nil {
+        return
+    }
+
+    content, err := fileutil.ReadFileToString(filepath)
+    if err != nil {
+        return
+    }
+
+    os.Remove(filepath)
+
+    fmt.Println(content)
+
+    // Output:
+    // hello
 }
 ```
