@@ -249,6 +249,5 @@ func DayOfYear(t time.Time) int {
 }
 
 func IsWeekend(t1 time.Time) bool {
-	var isWeekend = time.Saturday == t1.Weekday() || time.Sunday == t1.Weekday()
-	return isWeekend
+	return time.Saturday == t1.Weekday() || time.Sunday == t1.Weekday()
 }
