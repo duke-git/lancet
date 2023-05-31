@@ -389,3 +389,22 @@ func ExampleDayOfYear() {
 	// 1
 	// 0
 }
+
+func ExampleIsWeekend() {
+	date1 := time.Date(2023, 06, 03, 0, 0, 0, 0, time.Local)
+	date2 := time.Date(2023, 06, 04, 0, 0, 0, 0, time.Local)
+	date3 := time.Date(2023, 06, 02, 0, 0, 0, 0, time.Local)
+
+	result1 := IsWeekend(date1)
+	result2 := IsWeekend(date2)
+	result3 := IsWeekend(date3)
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+
+	// Output:
+	// true
+	// true
+	// false
+}

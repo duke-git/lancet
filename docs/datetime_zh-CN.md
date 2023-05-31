@@ -56,6 +56,7 @@ import (
 -   [IsLeapYear](#IsLeapYear)
 -   [BetweenSeconds](#BetweenSeconds)
 -   [DayOfYear](#DayOfYear)
+-   [IsWeekend](#IsWeekend)
 
 
 <div STYLE="page-break-after: always;"></div>
@@ -1214,5 +1215,45 @@ func main() {
     // 31
     // 1
     // 0
+}
+```
+
+### <span id="IsWeekend">IsWeekend</span>
+
+<p>判断日期是否是周末。</p>
+
+<b>函数签名:</b>
+
+```go
+func IsWeekend(t time.Time) bool
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/datetime"
+)
+
+func main() {
+    date1 := time.Date(2023, 06, 03, 0, 0, 0, 0, time.Local)
+    date2 := time.Date(2023, 06, 04, 0, 0, 0, 0, time.Local)
+    date3 := time.Date(2023, 06, 02, 0, 0, 0, 0, time.Local)
+
+    result1 := datetime.IsWeekend(date1)
+    result2 := datetime.IsWeekend(date2)
+    result3 := datetime.IsWeekend(date3)
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+
+    // Output:
+    // true
+    // true
+    // false
 }
 ```

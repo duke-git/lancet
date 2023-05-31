@@ -248,6 +248,8 @@ func DayOfYear(t time.Time) int {
 	return int(nowDate.Sub(firstDay).Hours() / 24)
 }
 
-func IsWeekend(t1 time.Time) bool {
-	return time.Saturday == t1.Weekday() || time.Sunday == t1.Weekday()
+// IsWeekend checks if passed time is weekend or not.
+// Play: todo
+func IsWeekend(t time.Time) bool {
+	return time.Saturday == t.Weekday() || time.Sunday == t.Weekday()
 }
