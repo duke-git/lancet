@@ -56,6 +56,8 @@ import (
 -   [Trim](#Trim)
 -   [SplitAndTrim](#SplitAndTrim)
 -   [HideString](#HideString)
+-   [ContainsAll](#ContainsAll)
+-   [ContainsAny](#ContainsAny)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -999,14 +1001,14 @@ import (
 
 func main() {
     result1 := strutil.StringToBytes("abc")
-	result2 := reflect.DeepEqual(result1, []byte{'a', 'b', 'c'})
+    result2 := reflect.DeepEqual(result1, []byte{'a', 'b', 'c'})
 
-	fmt.Println(result1)
-	fmt.Println(result2)
+    fmt.Println(result1)
+    fmt.Println(result2)
 
-	// Output:
-	// [97 98 99]
-	// true
+    // Output:
+    // [97 98 99]
+    // true
 }
 ```
 
@@ -1030,12 +1032,12 @@ import (
 
 func main() {
     bytes := []byte{'a', 'b', 'c'}
-	result := strutil.BytesToString(bytes)
+    result := strutil.BytesToString(bytes)
 
-	fmt.Println(result)
+    fmt.Println(result)
 
-	// Output:
-	// abc
+    // Output:
+    // abc
 }
 ```
 
@@ -1059,17 +1061,17 @@ import (
 
 func main() {
     result1 := strutil.IsBlank("")
-	result2 := strutil.IsBlank("\t\v\f\n")
-	result3 := strutil.IsBlank(" 中文")
+    result2 := strutil.IsBlank("\t\v\f\n")
+    result3 := strutil.IsBlank(" 中文")
 
-	fmt.Println(result1)
-	fmt.Println(result2)
-	fmt.Println(result3)
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
 
-	// Output:
-	// true
-	// true
-	// false
+    // Output:
+    // true
+    // true
+    // false
 }
 ```
 
@@ -1093,14 +1095,14 @@ import (
 
 func main() {
     result1 := strutil.HasPrefixAny("foo bar", []string{"fo", "xyz", "hello"})
-	result2 := strutil.HasPrefixAny("foo bar", []string{"oom", "world"})
+    result2 := strutil.HasPrefixAny("foo bar", []string{"oom", "world"})
 
-	fmt.Println(result1)
-	fmt.Println(result2)
+    fmt.Println(result1)
+    fmt.Println(result2)
 
-	// Output:
-	// true
-	// false
+    // Output:
+    // true
+    // false
 }
 ```
 
@@ -1124,14 +1126,14 @@ import (
 
 func main() {
     result1 := strutil.HasSuffixAny("foo bar", []string{"bar", "xyz", "hello"})
-	result2 := strutil.HasSuffixAny("foo bar", []string{"oom", "world"})
+    result2 := strutil.HasSuffixAny("foo bar", []string{"oom", "world"})
 
-	fmt.Println(result1)
-	fmt.Println(result2)
+    fmt.Println(result1)
+    fmt.Println(result2)
 
-	// Output:
-	// true
-	// false
+    // Output:
+    // true
+    // false
 }
 ```
 
@@ -1156,24 +1158,24 @@ import (
 func main() {
     str := "foo bar hello world"
 
-	result1 := strutil.IndexOffset(str, "o", 5)
-	result2 := strutil.IndexOffset(str, "o", 0)
-	result3 := strutil.IndexOffset(str, "d", len(str)-1)
-	result4 := strutil.IndexOffset(str, "d", len(str))
-	result5 := strutil.IndexOffset(str, "f", -1)
+    result1 := strutil.IndexOffset(str, "o", 5)
+    result2 := strutil.IndexOffset(str, "o", 0)
+    result3 := strutil.IndexOffset(str, "d", len(str)-1)
+    result4 := strutil.IndexOffset(str, "d", len(str))
+    result5 := strutil.IndexOffset(str, "f", -1)
 
-	fmt.Println(result1)
-	fmt.Println(result2)
-	fmt.Println(result3)
-	fmt.Println(result4)
-	fmt.Println(result5)
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
+    fmt.Println(result5)
 
-	// Output:
-	// 12
-	// 1
-	// 18
-	// -1
-	// -1
+    // Output:
+    // 12
+    // 1
+    // 18
+    // -1
+    // -1
 }
 ```
 
@@ -1197,16 +1199,16 @@ import (
 
 func main() {
     str := "ac ab ab ac"
-	replaces := map[string]string{
-		"a": "1",
-		"b": "2",
-	}
+    replaces := map[string]string{
+        "a": "1",
+        "b": "2",
+    }
 
-	result := strutil.ReplaceWithMap(str, replaces)
+    result := strutil.ReplaceWithMap(str, replaces)
 
-	fmt.Println(result)
-	// Output:
-	// 1c 12 12 1c
+    fmt.Println(result)
+    // Output:
+    // 1c 12 12 1c
 }
 ```
 
@@ -1231,19 +1233,19 @@ import (
 func main() {
     result1 := strutil.Trim("\nabcd")
 
-	str := "$ ab	cd $ "
+    str := "$ ab    cd $ "
 
-	result2 := strutil.Trim(str)
-	result3 := strutil.Trim(str, "$")
+    result2 := strutil.Trim(str)
+    result3 := strutil.Trim(str, "$")
 
-	fmt.Println(result1)
-	fmt.Println(result2)
-	fmt.Println(result3)
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
 
-	// Output:
-	// abcd
-	// $ ab	cd $
-	// ab	cd
+    // Output:
+    // abcd
+    // $ ab    cd $
+    // ab    cd
 }
 ```
 
@@ -1268,15 +1270,15 @@ import (
 func main() {
     str := " a,b, c,d,$1 "
 
-	result1 := strutil.SplitAndTrim(str, ",")
-	result2 := strutil.SplitAndTrim(str, ",", "$")
+    result1 := strutil.SplitAndTrim(str, ",")
+    result2 := strutil.SplitAndTrim(str, ",", "$")
 
-	fmt.Println(result1)
-	fmt.Println(result2)
+    fmt.Println(result1)
+    fmt.Println(result2)
 
-	// Output:
-	// [a b c d $1]
-	// [a b c d 1]
+    // Output:
+    // [a b c d $1]
+    // [a b c d 1]
 }
 ```
 
@@ -1301,20 +1303,90 @@ import (
 func main() {
     str := "13242658976"
 
-	result1 := strutil.HideString(str, 3, 3, "*")
-	result2 := strutil.HideString(str, 3, 4, "*")
-	result3 := strutil.HideString(str, 3, 7, "*")
-	result4 := strutil.HideString(str, 7, 11, "*")
+    result1 := strutil.HideString(str, 3, 3, "*")
+    result2 := strutil.HideString(str, 3, 4, "*")
+    result3 := strutil.HideString(str, 3, 7, "*")
+    result4 := strutil.HideString(str, 7, 11, "*")
 
-	fmt.Println(result1)
-	fmt.Println(result2)
-	fmt.Println(result3)
-	fmt.Println(result4)
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
 
-	// Output:
-	// 13242658976
-	// 132*2658976
-	// 132****8976
-	// 1324265****
+    // Output:
+    // 13242658976
+    // 132*2658976
+    // 132****8976
+    // 1324265****
+}
+```
+
+
+### <span id="ContainsAll">ContainsAll</span>
+
+<p>Return true if target string contains all the substrings.</p>
+
+<b>Signature:</b>
+
+```go
+func ContainsAll(str string, substrs []string) bool
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    str := "hello world"
+
+    result1 := strutil.ContainsAll(str, []string{"hello", "world"})
+    result2 := strutil.ContainsAll(str, []string{"hello", "abc"})
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+
+    // Output:
+    // true
+    // false
+}
+```
+
+### <span id="ContainsAny">ContainsAny</span>
+
+<p>Return true if target string contains any one of the substrings.</p>
+
+<b>Signature:</b>
+
+```go
+func ContainsAny(str string, substrs []string) bool
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    str := "hello world"
+
+    result1 := strutil.ContainsAny(str, []string{"hello", "world"})
+    result2 := strutil.ContainsAny(str, []string{"hello", "abc"})
+    result3 := strutil.ContainsAny(str, []string{"123", "abc"})
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+
+    // Output:
+    // true
+    // true
+    // false
 }
 ```
