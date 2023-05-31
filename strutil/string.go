@@ -481,3 +481,25 @@ func HideString(origin string, start, end int, replaceChar string) string {
 
 	return startStr + replaceStr + endStr
 }
+
+// ContainsAll return true if target string contains all the substrs.
+func ContainsAll(str string, substrs []string) bool {
+	for _, v := range substrs {
+		if !strings.Contains(str, v) {
+			return false
+		}
+	}
+
+	return true
+}
+
+// ContainsAny return true if target string contains any one of the substrs.
+func ContainsAny(str string, substrs []string) bool {
+	for _, v := range substrs {
+		if strings.Contains(str, v) {
+			return true
+		}
+	}
+
+	return false
+}

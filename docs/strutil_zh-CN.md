@@ -27,6 +27,8 @@ import (
 -   [Before](#Before)
 -   [BeforeLast](#BeforeLast)
 -   [CamelCase](#CamelCase)
+-   [ContainsAll](#ContainsAll)
+-   [ContainsAny](#ContainsAny)
 -   [Capitalize](#Capitalize)
 -   [IsString](#IsString)
 -   [KebabCase](#KebabCase)
@@ -1199,5 +1201,74 @@ func main() {
 	// 132*2658976
 	// 132****8976
 	// 1324265****
+}
+```
+
+### <span id="ContainsAll">ContainsAll</span>
+
+<p>判断字符串是否包括全部给定的子字符串切片。</p>
+
+<b>函数签名:</b>
+
+```go
+func ContainsAll(str string, substrs []string) bool
+```
+
+<b>示例:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/strutil"
+)
+
+func main() {
+    str := "hello world"
+
+    result1 := strutil.ContainsAll(str, []string{"hello", "world"})
+    result2 := strutil.ContainsAll(str, []string{"hello", "abc"})
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+
+    // Output:
+    // true
+    // false
+}
+```
+
+### <span id="ContainsAny">ContainsAny</span>
+
+<p>判断字符串是否包括给定的子字符串切片中任意一个子字符串。</p>
+
+<b>函数签名:</b>
+
+```go
+func ContainsAny(str string, substrs []string) bool
+```
+
+<b>示例:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/strutil"
+)
+
+func main() {
+    str := "hello world"
+
+    result1 := strutil.ContainsAny(str, []string{"hello", "world"})
+    result2 := strutil.ContainsAny(str, []string{"hello", "abc"})
+    result3 := strutil.ContainsAny(str, []string{"123", "abc"})
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+
+    // Output:
+    // true
+    // true
+    // false
 }
 ```

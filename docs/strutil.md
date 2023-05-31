@@ -28,6 +28,8 @@ import (
 -   [BeforeLast](#BeforeLast)
 -   [CamelCase](#CamelCase)
 -   [Capitalize](#Capitalize)
+-   [ContainsAll](#ContainsAll)
+-   [ContainsAny](#ContainsAny)
 -   [IsString](#IsString)
 -   [KebabCase](#KebabCase)
 -   [UpperKebabCase](#UpperKebabCase)
@@ -1166,5 +1168,75 @@ func main() {
 	// 132*2658976
 	// 132****8976
 	// 1324265****
+}
+```
+
+
+### <span id="ContainsAll">ContainsAll</span>
+
+<p>Return true if target string contains all the substrings.</p>
+
+<b>Signature:</b>
+
+```go
+func ContainsAll(str string, substrs []string) bool
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/strutil"
+)
+
+func main() {
+    str := "hello world"
+
+    result1 := strutil.ContainsAll(str, []string{"hello", "world"})
+    result2 := strutil.ContainsAll(str, []string{"hello", "abc"})
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+
+    // Output:
+    // true
+    // false
+}
+```
+
+### <span id="ContainsAny">ContainsAny</span>
+
+<p>Return true if target string contains any one of the substrings.</p>
+
+<b>Signature:</b>
+
+```go
+func ContainsAny(str string, substrs []string) bool
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/strutil"
+)
+
+func main() {
+    str := "hello world"
+
+    result1 := strutil.ContainsAny(str, []string{"hello", "world"})
+    result2 := strutil.ContainsAny(str, []string{"hello", "abc"})
+    result3 := strutil.ContainsAny(str, []string{"123", "abc"})
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+
+    // Output:
+    // true
+    // true
+    // false
 }
 ```
