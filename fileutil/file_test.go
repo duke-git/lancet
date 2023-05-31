@@ -277,3 +277,68 @@ func TestReadCsvFile(t *testing.T) {
 	assert.Equal(3, len(content[0]))
 	assert.Equal("Bob", content[0][0])
 }
+
+func TestWriteStringToFile(t *testing.T) {
+	assert := internal.NewAssert(t, "TestWriteStringToFile")
+
+	filepath := "./test.txt"
+
+	file, err := os.Create(filepath)
+	if err != nil {
+		t.Fail()
+	}
+
+	defer file.Close()
+
+	err = WriteStringToFile(filepath, "hello", false)
+	if err != nil {
+		t.Fail()
+	}
+
+	content1, err := ReadFileToString(filepath)
+	if err != nil {
+		t.Fail()
+	}
+
+	err = WriteStringToFile(filepath, " world", true)
+	if err != nil {
+		t.Fail()
+	}
+
+	content2, err := os.ReadFile(filepath)
+	if err != nil {
+		t.Fail()
+	}
+
+	assert.Equal("hello", content1)
+	assert.Equal("hello world", string(content2))
+
+	os.Remove(filepath)
+}
+
+func TestWriteBytesToFile(t *testing.T) {
+	assert := internal.NewAssert(t, "TestWriteBytesToFile")
+
+	filepath := "./bytes.txt"
+
+	file, err := os.Create(filepath)
+	if err != nil {
+		t.Fail()
+	}
+
+	defer file.Close()
+
+	err = WriteBytesToFile(filepath, []byte("hello"))
+	if err != nil {
+		t.Fail()
+	}
+
+	content, err := os.ReadFile(filepath)
+	if err != nil {
+		t.Fail()
+	}
+
+	assert.Equal("hello", string(content))
+
+	os.Remove(filepath)
+}

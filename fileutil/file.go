@@ -419,3 +419,33 @@ func ReadCsvFile(filepath string) ([][]string, error) {
 
 	return records, nil
 }
+
+// WriteStringToFile write string to target file.
+func WriteStringToFile(filepath string, content string, append bool) error {
+	flag := os.O_RDWR | os.O_CREATE
+	if append {
+		flag = flag | os.O_APPEND
+	}
+
+	f, err := os.OpenFile(filepath, flag, 0644)
+	if err != nil {
+		return err
+	}
+	defer f.Close()
+
+	_, err = f.WriteString(content)
+	return err
+}
+
+// WriteBytesToFile write bytes to target file.
+func WriteBytesToFile(filepath string, content []byte) error {
+	f, err := os.OpenFile(filepath, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0644)
+	if err != nil {
+		return err
+	}
+
+	defer f.Close()
+
+	_, err = f.Write(content)
+	return err
+}
