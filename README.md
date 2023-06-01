@@ -4,7 +4,7 @@
 <br/>
 
 ![Go version](https://img.shields.io/badge/go-v1.16-9cf)
-[![Release](https://img.shields.io/badge/release-1.3.8-green.svg)](https://github.com/duke-git/lancet/releases)
+[![Release](https://img.shields.io/badge/release-1.3.9-green.svg)](https://github.com/duke-git/lancet/releases)
 [![GoDoc](https://godoc.org/github.com//duke-git/lancet?status.svg)](https://pkg.go.dev/github.com/duke-git/lancet)
 [![Go Report Card](https://goreportcard.com/badge/github.com/duke-git/lancet)](https://goreportcard.com/report/github.com/duke-git/lancet)
 [![test](https://github.com/duke-git/lancet/actions/workflows/codecov.yml/badge.svg?branch=main&event=push)](https://github.com/duke-git/lancet/actions/workflows/codecov.yml)
@@ -153,6 +153,7 @@ import "github.com/duke-git/lancet/datetime"
 -   [AddDay](https://github.com/duke-git/lancet/blob/v1/docs/datetime.md#AddDay)
 -   [AddHour](https://github.com/duke-git/lancet/blob/v1/docs/datetime.md#AddHour)
 -   [AddMinute](https://github.com/duke-git/lancet/blob/v1/docs/datetime.md#AddMinute)
+-   [AddYear](https://github.com/duke-git/lancet/blob/v1/docs/datetime.md#AddYear)
 -   [BeginOfMinute](https://github.com/duke-git/lancet/blob/v1/docs/datetime.md#BeginOfMinute)
 -   [BeginOfHour](https://github.com/duke-git/lancet/blob/v1/docs/datetime.md#BeginOfHour)
 -   [BeginOfDay](https://github.com/duke-git/lancet/blob/v1/docs/datetime.md#BeginOfDay)
@@ -180,6 +181,10 @@ import "github.com/duke-git/lancet/datetime"
 -   [ToFormat](https://github.com/duke-git/lancet/blob/v1/docs/datetime.md#ToFormat)
 -   [ToFormatForTpl](https://github.com/duke-git/lancet/blob/v1/docs/datetime.md#ToFormatForTpl)
 -   [ToIso8601](https://github.com/duke-git/lancet/blob/v1/docs/datetime.md#ToIso8601)
+-   [IsLeapYear](https://github.com/duke-git/lancet/blob/v1/docs/datetime.md#IsLeapYear)
+-   [BetweenSeconds](https://github.com/duke-git/lancet/blob/v1/docs/datetime.md#BetweenSeconds)
+-   [DayOfYear](https://github.com/duke-git/lancet/blob/v1/docs/datetime.md#DayOfYear)
+-   [IsWeekend](https://github.com/duke-git/lancet/blob/v1/docs/datetime.md#IsWeekend)
 
 ### 5. Fileutil package implements some basic functions for file operations.
 
@@ -210,6 +215,8 @@ import "github.com/duke-git/lancet/fileutil"
 -   [MTime](https://github.com/duke-git/lancet/blob/v1/docs/fileutil.md#MTime)
 -   [Sha](https://github.com/duke-git/lancet/blob/v1/docs/fileutil.md#Sha)
 -   [ReadCsvFile](https://github.com/duke-git/lancet/blob/v1/docs/fileutil.md#ReadCsvFile)
+-   [WriteStringToFile](https://github.com/duke-git/lancet/blob/v1/docs/fileutil.md#WriteStringToFile)
+-   [WriteBytesToFile](https://github.com/duke-git/lancet/blob/v1/docs/fileutil.md#WriteBytesToFile)
 
 ### 6. Formatter contains some functions for data formatting.
 
@@ -264,6 +271,10 @@ import "github.com/duke-git/lancet/mathutil"
 -   [RadianToAngle](https://github.com/duke-git/lancet/blob/v1/docs/mathutil.md#RadianToAngle)
 -   [PointDistance](https://github.com/duke-git/lancet/blob/v1/docs/mathutil.md#PointDistance)
 -   [IsPrime](https://github.com/duke-git/lancet/blob/v1/docs/mathutil.md#IsPrime)
+-   [GCD](https://github.com/duke-git/lancet/blob/v1/docs/mathutil.md#GCD)
+-   [LCM](https://github.com/duke-git/lancet/blob/v1/docs/mathutil.md#LCM)
+-   [Cos](https://github.com/duke-git/lancet/blob/v1/docs/mathutil.md#Cos)
+-   [Sin](https://github.com/duke-git/lancet/blob/v1/docs/mathutil.md#Sin)
 
 ### 9. Netutil package contains functions to get net information and send http request.
 
@@ -387,6 +398,8 @@ import "github.com/duke-git/lancet/strutil"
 -   [BeforeLast](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#BeforeLast)
 -   [CamelCase](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#CamelCase)
 -   [Capitalize](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#Capitalize)
+-   [ContainsAll](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#ContainsAll)
+-   [ContainsAny](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#ContainsAny)
 -   [IsString](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#IsString)
 -   [KebabCase](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#KebabCase)
 -   [UpperKebabCase](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#UpperKebabCase)
@@ -410,6 +423,10 @@ import "github.com/duke-git/lancet/strutil"
 -   [HasPrefixAny](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#HasPrefixAny)
 -   [HasSuffixAny](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#HasSuffixAny)
 -   [IndexOffset](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#IndexOffset)
+-   [ReplaceWithMap](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#ReplaceWithMap)
+-   [Trim](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#Trim)
+-   [SplitAndTrim](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#SplitAndTrim)
+-   [HideString](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#HideString)
 
 ### 14. System package contain some functions about os, runtime, shell command.
 

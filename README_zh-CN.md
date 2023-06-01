@@ -4,7 +4,7 @@
 <br/>
 
 ![Go version](https://img.shields.io/badge/go-v1.16-9cf)
-[![Release](https://img.shields.io/badge/release-1.3.8-green.svg)](https://github.com/duke-git/lancet/releases)
+[![Release](https://img.shields.io/badge/release-1.3.9-green.svg)](https://github.com/duke-git/lancet/releases)
 [![GoDoc](https://godoc.org/github.com//duke-git/lancet?status.svg)](https://pkg.go.dev/github.com/duke-git/lancet)
 [![Go Report Card](https://goreportcard.com/badge/github.com/duke-git/lancet)](https://goreportcard.com/report/github.com/duke-git/lancet)
 [![test](https://github.com/duke-git/lancet/actions/workflows/codecov.yml/badge.svg?branch=main&event=push)](https://github.com/duke-git/lancet/actions/workflows/codecov.yml)
@@ -152,6 +152,7 @@ import "github.com/duke-git/lancet/datetime"
 -   [AddDay](https://github.com/duke-git/lancet/blob/v1/docs/datetime_zh-CN.md#AddDay)
 -   [AddHour](https://github.com/duke-git/lancet/blob/v1/docs/datetime_zh-CN.md#AddHour)
 -   [AddMinute](https://github.com/duke-git/lancet/blob/v1/docs/datetime_zh-CN.md#AddMinute)
+-   [AddYear](https://github.com/duke-git/lancet/blob/v1/docs/datetime_zh-CN.md#AddYear)
 -   [BeginOfMinute](https://github.com/duke-git/lancet/blob/v1/docs/datetime.md#BeginOfMinute)
 -   [BeginOfHour](https://github.com/duke-git/lancet/blob/v1/docs/datetime.md#BeginOfHour)
 -   [BeginOfDay](https://github.com/duke-git/lancet/blob/v1/docs/datetime.md#BeginOfDay)
@@ -179,6 +180,10 @@ import "github.com/duke-git/lancet/datetime"
 -   [ToFormat](https://github.com/duke-git/lancet/blob/v1/docs/datetime_zh-CN.md#ToFormat)
 -   [ToFormatForTpl](https://github.com/duke-git/lancet/blob/v1/docs/datetime_zh-CN.md#ToFormatForTpl)
 -   [ToIso8601](https://github.com/duke-git/lancet/blob/v1/docs/datetime_zh-CN.md#ToIso8601)
+-   [IsLeapYear](https://github.com/duke-git/lancet/blob/v1/docs/datetime_zh-CN.md#IsLeapYear)
+-   [BetweenSeconds](https://github.com/duke-git/lancet/blob/v1/docs/datetime_zh-CN.md#BetweenSeconds)
+-   [DayOfYear](https://github.com/duke-git/lancet/blob/v1/docs/datetime_zh-CN.md#DayOfYear)
+-   [IsWeekend](https://github.com/duke-git/lancet/blob/v1/docs/datetime_zh-CN.md#IsWeekend)
 
 ### 5. fileutil 包支持文件基本操作。
 
@@ -209,6 +214,8 @@ import "github.com/duke-git/lancet/fileutil"
 -   [MTime](https://github.com/duke-git/lancet/blob/v1/docs/fileutil_zh-CN.md#MTime)
 -   [Sha](https://github.com/duke-git/lancet/blob/v1/docs/fileutil_zh-CN.md#Sha)
 -   [ReadCsvFile](https://github.com/duke-git/lancet/blob/v1/docs/fileutil_zh-CN.md#ReadCsvFile)
+-   [WriteStringToFile](https://github.com/duke-git/lancet/blob/v1/docs/fileutil_zh-CN.md#WriteStringToFile)
+-   [WriteBytesToFile](https://github.com/duke-git/lancet/blob/v1/docs/fileutil_zh-CN.md#WriteBytesToFile)
 
 ### 6. formatter 格式化器包含一些数据格式化处理方法。
 
@@ -263,6 +270,10 @@ import "github.com/duke-git/lancet/mathutil"
 -   [RadianToAngle](https://github.com/duke-git/lancet/blob/v1/docs/mathutil_zh-CN.md#RadianToAngle)
 -   [PointDistance](https://github.com/duke-git/lancet/blob/v1/docs/mathutil_zh-CN.md#PointDistance)
 -   [IsPrime](https://github.com/duke-git/lancet/blob/v1/docs/mathutil_zh-CN.md#IsPrime)
+-   [GCD](https://github.com/duke-git/lancet/blob/v1/docs/mathutil_zh-CN.md#GCD)
+-   [LCM](https://github.com/duke-git/lancet/blob/v1/docs/mathutil_zh-CN.md#LCM)
+-   [Cos](https://github.com/duke-git/lancet/blob/v1/docs/mathutil_zh-CN.md#Cos)
+-   [Sin](https://github.com/duke-git/lancet/blob/v1/docs/mathutil_zh-CN.md#Sin)
 
 ### 9. netutil 网络包支持获取 ip 地址，发送 http 请求。
 
@@ -386,6 +397,8 @@ import "github.com/duke-git/lancet/strutil"
 -   [BeforeLast](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#BeforeLast)
 -   [CamelCase](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#CamelCase)
 -   [Capitalize](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#Capitalize)
+-   [ContainsAll](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#ContainsAll)
+-   [ContainsAny](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#ContainsAny)
 -   [IsString](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#IsString)
 -   [KebabCase](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#KebabCase)
 -   [UpperKebabCase](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#UpperKebabCase)
@@ -409,6 +422,10 @@ import "github.com/duke-git/lancet/strutil"
 -   [HasPrefixAny](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#HasPrefixAny)
 -   [HasSuffixAny](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#HasSuffixAny)
 -   [IndexOffset](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#IndexOffset)
+-   [ReplaceWithMap](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#ReplaceWithMap)
+-   [Trim](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#Trim)
+-   [SplitAndTrim](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#SplitAndTrim)
+-   [HideString](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#HideString)
 
 ### 14. system 包含 os, runtime, shell command 相关函数。
 
