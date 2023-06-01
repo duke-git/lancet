@@ -1284,7 +1284,7 @@ func main() {
 
 ### <span id="HideString">HideString</span>
 
-<p>HideString hide some chars in source string with param `replaceChar`. replace range is origin[start : end]. [start, end).</p>
+<p>Hide some chars in source string with param `replaceChar`. replace range is origin[start : end]. [start, end).</p>
 
 <b>Signature:</b>
 

@@ -491,7 +491,12 @@ import "github.com/duke-git/lancet/v2/datetime"
 -   **<big>IsLeapYear</big>** : check if param `year` is leap year or not.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#IsLeapYear)]
     [[play](https://go.dev/play/p/xS1eS2ejGew)]
-
+-   **<big>BetweenSeconds</big>** : returns the number of seconds between two times.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#BetweenSeconds)]
+-   **<big>DayOfYear</big>** : returns which day of the year the parameter date `t` is.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#DayOfYear)]
+-   **<big>IsWeekend</big>** : checks if passed time is weekend or not.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#IsWeekend)]
 
 ### 8. Datastructure package constains some common data structure. eg. list, linklist, stack, queue, set, tree, graph.
 
@@ -596,6 +601,10 @@ import "github.com/duke-git/lancet/v2/fileutil"
 -   **<big>ReadCsvFile</big>** : read file content into slice.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#ReadCsvFile)]
     [[play](https://go.dev/play/p/OExTkhGEd3_u)]
+-   **<big>WriteBytesToFile</big>** : write bytes to target file.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#WriteBytesToFile)]
+-   **<big>WriteStringToFile</big>** : write string to target file.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#WriteStringToFile)]
 
 ### 10. Formatter contains some functions for data formatting.
 
@@ -803,6 +812,10 @@ import "github.com/duke-git/lancet/v2/mathutil"
 -   **<big>LCM</big>** : return Least Common Multiple (LCM) of integers.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#LCM)]
     [[play](https://go.dev/play/p/EjcZxfY7G_g)]
+-   **<big>Cos</big>** : return the cosine of the radian argument.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#Cos)]
+-   **<big>Sin</big>** : return the sine of the radian argument.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#Sin)]
 
 ### 14. Netutil package contains functions to get net information and send http request.
 
@@ -1292,6 +1305,10 @@ import "github.com/duke-git/lancet/v2/strutil"
 -   **<big>Capitalize</big>** : converts the first character of source string to upper case and the remaining to lower case.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#Capitalize)]
     [[play](https://go.dev/play/p/2OAjgbmAqHZ)]
+-   **<big>ContainsAll</big>** : return true if target string contains all the substrings.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#ContainsAll)]
+-   **<big>ContainsAny</big>** : return true if target string contains any one of the substrings.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#ContainsAny)]
 -   **<big>IsString</big>** : checks if the parameter value data type is string or not.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#IsString)]
     [[play](https://go.dev/play/p/IOgq7oF9ERm)]
@@ -1373,6 +1390,8 @@ import "github.com/duke-git/lancet/v2/strutil"
 -   **<big>SplitAndTrim</big>** : splits string `str` by a string `delimiter` to a slice, and calls Trim to every element of slice.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#SplitAndTrim)]
     [[play](https://go.dev/play/p/ZNL6o4SkYQ7)]
+-   **<big>HideString</big>** : Hide some chars in source string with param `replaceChar`.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#HideString)]
 
 ### 21. System package contain some functions about os, runtime, shell command.
 

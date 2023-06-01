@@ -56,6 +56,9 @@ import (
 -   [Trim](#Trim)
 -   [SplitAndTrim](#SplitAndTrim)
 -   [HideString](#HideString)
+-   [ContainsAll](#ContainsAll)
+-   [ContainsAny](#ContainsAny)
+
 
 <div STYLE="page-break-after: always;"></div>
 
