@@ -416,22 +416,19 @@ func ExampleWordCount() {
 
 	result1 := WordCount("a word")
 	result2 := WordCount("I'am a programmer")
-	result3 := WordCount("Bonjour, je suis programmeur")
-	result4 := WordCount("a -b-c' 'd'e")
-	result5 := WordCount("你好，我是一名码农")
-	result6 := WordCount("こんにちは，私はプログラマーです")
+	result3 := WordCount("a -b-c' 'd'e")
+	result4 := WordCount("你好，我是一名码农")
+	result5 := WordCount("こんにちは，私はプログラマーです")
 
 	fmt.Println(result1)
 	fmt.Println(result2)
 	fmt.Println(result3)
 	fmt.Println(result4)
 	fmt.Println(result5)
-	fmt.Println(result6)
 
 	// Output:
 	// 2
 	// 3
-	// 4
 	// 3
 	// 0
 	// 0

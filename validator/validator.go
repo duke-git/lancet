@@ -112,7 +112,6 @@ func ContainLetter(str string) bool {
 	return letterRegexMatcher.MatchString(str)
 }
 
-
 // ContainLetter check if the string contain at least one number.
 func ContainNumber(input string) bool {
 	return numberRegexMatcher.MatchString(input)
