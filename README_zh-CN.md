@@ -495,10 +495,14 @@ import "github.com/duke-git/lancet/v2/datetime"
     [[play](https://go.dev/play/p/xS1eS2ejGew)]
 -   **<big>BetweenSeconds</big>** : 返回两个时间的间隔秒数。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#BetweenSeconds)]
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#BetweenSeconds)]
 -   **<big>DayOfYear</big>** : 返回参数日期是一年中的第几天。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#DayOfYear)]
+    [[play](https://go.dev/play/p/0hjqhTwFNlH)]
 -   **<big>IsWeekend</big>** : 判断日期是否是周末。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#IsWeekend)]
+    [[play](https://go.dev/play/p/cupRM5aZOIY)]
+
 
 ### 8. datastructure 包含一些普通的数据结构实现。例如：list, linklist, stack, queue, set, tree, graph.
 
@@ -605,8 +609,12 @@ import "github.com/duke-git/lancet/v2/fileutil"
     [[play](https://go.dev/play/p/OExTkhGEd3_u)]
 -   **<big>WriteBytesToFile</big>** : 将bytes写入文件。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil_zh-CN.md#WriteBytesToFile)]
+    [[play](https://go.dev/play/p/s7QlDxMj3P8)]
 -   **<big>WriteStringToFile</big>** : 将字符串写入文件。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil_zh-CN.md#WriteStringToFile)]
+    [[play](https://go.dev/play/p/GhLS6d8lH_g)]
+    
+
 
 ### 10. formatter 格式化器包含一些数据格式化处理方法。
 
@@ -816,8 +824,11 @@ import "github.com/duke-git/lancet/v2/mathutil"
     [[play](https://go.dev/play/p/EjcZxfY7G_g)]
 -   **<big>Cos</big>** : 计算弧度的余弦值。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#Cos)]
+    [[play](https://go.dev/play/p/Sm89LoIfvFq)]
 -   **<big>Sin</big>** : 计算弧度的正弦值。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#Sin)]
+    [[play](https://go.dev/play/p/TWMQlMywDsP)]
+
 
 ### 14. netutil 网络包支持获取 ip 地址，发送 http 请求。
 
@@ -1312,8 +1323,10 @@ import "github.com/duke-git/lancet/v2/strutil"
     [[play](https://go.dev/play/p/2OAjgbmAqHZ)]
 -   **<big>ContainsAll</big>** : 判断字符串是否包括全部给定的子字符串切片。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#ContainsAll)]
+    [[play](https://go.dev/play/p/KECtK2Os4zq)]
 -   **<big>ContainsAny</big>** : 判断字符串是否包括给定的子字符串切片中任意一个子字符串。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#ContainsAny)]
+    [[play](https://go.dev/play/p/dZGSSMB3LXE)]
 -   **<big>IsString</big>** : 判断传入参数的数据类型是否为字符串。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#IsString)]
     [[play](https://go.dev/play/p/IOgq7oF9ERm)]
@@ -1397,6 +1410,8 @@ import "github.com/duke-git/lancet/v2/strutil"
     [[play](https://go.dev/play/p/ZNL6o4SkYQ7)]
 -   **<big>HideString</big>** : 隐藏源字符串中的一些字符。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#HideString)]
+    [[play](https://go.dev/play/p/pzbaIVCTreZ)]
+
 
 ### 21. system 包含 os, runtime, shell command 的相关函数。
 

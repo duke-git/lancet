@@ -504,7 +504,7 @@ func Trim(str string, characterMask ...string) string {
 
 // HideString hide some chars in source string with param `replaceChar`.
 // replace range is origin[start : end]. [start, end)
-// Play: todo
+// Play: https://go.dev/play/p/pzbaIVCTreZ)
 func HideString(origin string, start, end int, replaceChar string) string {
 	size := len(origin)
 
@@ -530,7 +530,7 @@ func HideString(origin string, start, end int, replaceChar string) string {
 }
 
 // ContainsAll return true if target string contains all the substrs.
-// Play: todo
+// Play: https://go.dev/play/p/KECtK2Os4zq
 func ContainsAll(str string, substrs []string) bool {
 	for _, v := range substrs {
 		if !strings.Contains(str, v) {
@@ -542,7 +542,7 @@ func ContainsAll(str string, substrs []string) bool {
 }
 
 // ContainsAny return true if target string contains any one of the substrs.
-// Play: todo
+// Play: https://go.dev/play/p/dZGSSMB3LXE
 func ContainsAny(str string, substrs []string) bool {
 	for _, v := range substrs {
 		if strings.Contains(str, v) {

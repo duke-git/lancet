@@ -303,7 +303,7 @@ func lcm[T constraints.Integer](a, b T) T {
 }
 
 // Cos returns the cosine of the radian argument.
-// Play: todo
+// Play: https://go.dev/play/p/Sm89LoIfvFq
 func Cos(radian float64, precision ...int) float64 {
 	t := 1.0 / (2.0 * math.Pi)
 	radian *= t
@@ -319,7 +319,7 @@ func Cos(radian float64, precision ...int) float64 {
 }
 
 // Cos returns the sine of the radian argument.
-// Play: todo
+// Play: https://go.dev/play/p/TWMQlMywDsP
 func Sin(radian float64, precision ...int) float64 {
 	return Cos((math.Pi / 2) - radian)
 }

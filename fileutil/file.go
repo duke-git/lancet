@@ -455,7 +455,7 @@ func ReadCsvFile(filepath string) ([][]string, error) {
 }
 
 // WriteStringToFile write string to target file.
-// Play: todo
+// Play: https://go.dev/play/p/GhLS6d8lH_g
 func WriteStringToFile(filepath string, content string, append bool) error {
 	flag := os.O_RDWR | os.O_CREATE
 	if append {
@@ -473,7 +473,7 @@ func WriteStringToFile(filepath string, content string, append bool) error {
 }
 
 // WriteBytesToFile write bytes to target file.
-// Play: todo
+// Play: https://go.dev/play/p/s7QlDxMj3P8
 func WriteBytesToFile(filepath string, content []byte) error {
 	f, err := os.OpenFile(filepath, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0644)
 	if err != nil {

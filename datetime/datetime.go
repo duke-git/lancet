@@ -232,14 +232,14 @@ func IsLeapYear(year int) bool {
 }
 
 // BetweenSeconds returns the number of seconds between two times.
-// Play: todo
+// Play: https://go.dev/play/p/n3YDRyfyXJu
 func BetweenSeconds(t1 time.Time, t2 time.Time) int64 {
 	index := t2.Unix() - t1.Unix()
 	return index
 }
 
 // DayOfYear returns which day of the year the parameter date `t` is.
-// Play: todo
+// Play: https://go.dev/play/p/0hjqhTwFNlH
 func DayOfYear(t time.Time) int {
 	y, m, d := t.Date()
 	firstDay := time.Date(y, 1, 1, 0, 0, 0, 0, t.Location())
@@ -249,7 +249,7 @@ func DayOfYear(t time.Time) int {
 }
 
 // IsWeekend checks if passed time is weekend or not.
-// Play: todo
+// Play: https://go.dev/play/p/cupRM5aZOIY
 func IsWeekend(t time.Time) bool {
 	return time.Saturday == t.Weekday() || time.Sunday == t.Weekday()
 }

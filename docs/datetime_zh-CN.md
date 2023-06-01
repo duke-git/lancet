@@ -1162,8 +1162,8 @@ import (
 
 func main() {
     today := time.Now()
-    tomorrow := AddDay(today, 1)
-    yesterday := AddDay(today, -1)
+    tomorrow := datetime.AddDay(today, 1)
+    yesterday := datetime.AddDay(today, -1)
 
     result1 := datetime.BetweenSeconds(today, tomorrow)
     result2 := datetime.BetweenSeconds(today, yesterday)
