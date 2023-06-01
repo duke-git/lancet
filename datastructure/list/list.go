@@ -1,7 +1,7 @@
 // Copyright 2021 dudaodong@gmail.com. All rights reserved.
 // Use of this source code is governed by MIT license
 
-// Package datastructure implements some data structure. eg. list, linklist, stack, queue, tree, graph.
+// Package datastructure contains some data structure. list is a linear table, implemented with slice.
 package datastructure
 
 import (

@@ -1,6 +1,10 @@
+// Copyright 2021 dudaodong@gmail.com. All rights reserved.
+// Use of this source code is governed by MIT license
+
+// Package datastructure contains some data structure. Set is a data container, like slice, but element of set is not duplicate.
 package datastructure
 
-// Set is a data container, like slice, but element of set is not duplicate
+// Set is a data container, like slice, but element of set is not duplicate.
 type Set[T comparable] map[T]struct{}
 
 // NewSet return a instance of set

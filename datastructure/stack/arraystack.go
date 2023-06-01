@@ -1,3 +1,7 @@
+// Copyright 2021 dudaodong@gmail.com. All rights reserved.
+// Use of this source code is governed by MIT license
+
+// Package datastructure contains some data structure. Stack structure contains ArrayStack and LinkedStack.
 package datastructure
 
 import "errors"

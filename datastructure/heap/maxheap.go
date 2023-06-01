@@ -1,7 +1,7 @@
 // Copyright 2021 dudaodong@gmail.com. All rights reserved.
 // Use of this source code is governed by MIT license
 
-// Package datastructure implements some data structure. eg. list, linklist, stack, queue, tree, graph.
+// Package datastructure implements some data structure. MaxHeap is a binary max heap.
 package datastructure
 
 import (
