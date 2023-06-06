@@ -362,3 +362,18 @@ func ExampleSin() {
 	// 0
 	// 1
 }
+
+func ExampleLog() {
+	result1 := Log(8, 2)
+	result2 := TruncRound(Log(5, 2), 2)
+	result3 := TruncRound(Log(27, 3), 0)
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+
+	// Output:
+	// 3
+	// 2.32
+	// 3
+}

@@ -269,3 +269,11 @@ func TestSin(t *testing.T) {
 	assert.EqualValues(0, Sin(math.Pi))
 	assert.EqualValues(1, Sin(math.Pi/2))
 }
+
+func TestLog(t *testing.T) {
+	assert := internal.NewAssert(t, "TestLog")
+
+	assert.EqualValues(3, Log(8, 2))
+	assert.EqualValues(3, TruncRound(Log(27, 3), 0))
+	assert.EqualValues(2.32, TruncRound(Log(5, 2), 2))
+}
