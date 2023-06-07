@@ -44,6 +44,7 @@ import (
 -   [LCM](#LCM)
 -   [Cos](#Cos)
 -   [Sin](#Sin)
+-   [Log](#Log)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -870,5 +871,41 @@ func main() {
     // -0.801
     // 0
     // 1
+}
+```
+
+### <span id="Log">Log</span>
+
+<p>Returns the logarithm of base n.</p>
+
+<b>Signature:</b>
+
+```go
+func Log(n, base float64) float64
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/mathutil"
+)
+
+func main() {
+    result1 := mathutil.Log(8, 2)
+	result2 := mathutil.TruncRound(mathutil.Log(5, 2), 2)
+	result3 := mathutil.TruncRound(mathutil.Log(27, 3), 0)
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+
+	// Output:
+	// 3
+	// 2.32
+	// 3
 }
 ```

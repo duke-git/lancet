@@ -324,7 +324,7 @@ func Sin(radian float64, precision ...int) float64 {
 	return Cos((math.Pi / 2) - radian)
 }
 
-// Log retur the logarithm of base n.
+// Log returns the logarithm of base n.
 // Play: todo
 func Log(n, base float64) float64 {
 	return math.Log(n) / math.Log(base)
