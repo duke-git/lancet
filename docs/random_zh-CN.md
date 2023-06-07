@@ -30,6 +30,7 @@ import (
 -   [RandNumeral](#RandNumeral)
 -   [RandNumeralOrLetter](#RandNumeralOrLetter)
 -   [UUIdV4](#UUIdV4)
+-   [RandUniqueIntSlice](#RandUniqueIntSlice)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -243,5 +244,31 @@ func main() {
         return
     }
     fmt.Println(uuid)
+}
+```
+
+### <span id="RandUniqueIntSlice">RandUniqueIntSlice</span>
+
+<p>生成一个不重复的长度为n的随机int切片。</p>
+
+<b>函数签名:</b>
+
+```go
+func RandUniqueIntSlice(n, min, max int) []int
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/random"
+)
+
+func main() {
+    result := RandUniqueIntSlice(5, 0, 10)
+    fmt.Println(result) //[0 4 7 1 5] (random)
 }
 ```
