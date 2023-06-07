@@ -103,3 +103,36 @@ func TestUUIdV4(t *testing.T) {
 	isUUiDV4 := regexp.MustCompile(`^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$`)
 	assert.Equal(true, isUUiDV4.MatchString(uuid))
 }
+
+func TestRandUniqueIntSlice(t *testing.T) {
+	assert := internal.NewAssert(t, "TestRandUniqueIntSlice")
+
+	r1 := RandUniqueIntSlice(5, 0, 9)
+	assert.Equal(len(r1), 5)
+	if hasDuplicate(r1) {
+		t.Error("hasDuplicate int")
+	}
+
+	r2 := RandUniqueIntSlice(20, 0, 10)
+	assert.Equal(len(r2), 10)
+	if hasDuplicate(r2) {
+		t.Error("hasDuplicate int")
+	}
+
+	r3 := RandUniqueIntSlice(10, 20, 10)
+	assert.Equal(len(r3), 0)
+
+	r4 := RandUniqueIntSlice(0, 20, 10)
+	assert.Equal(len(r4), 0)
+}
+
+func hasDuplicate(arr []int) bool {
+	elements := make(map[int]bool)
+	for _, v := range arr {
+		if elements[v] {
+			return true
+		}
+		elements[v] = true
+	}
+	return false
+}

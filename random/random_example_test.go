@@ -123,3 +123,14 @@ func ExampleUUIdV4() {
 	// Output:
 	// true
 }
+
+func ExampleRandUniqueIntSlice() {
+	result := RandUniqueIntSlice(5, 0, 10)
+
+	if len(result) == 5 {
+		fmt.Println("ok")
+	}
+
+	// Output:
+	// ok
+}
