@@ -619,3 +619,17 @@ func ExampleContainsAny() {
 	// true
 	// false
 }
+
+func ExampleRemoveWhiteSpace() {
+	str := " hello   \r\n	\t   world"
+
+	result1 := RemoveWhiteSpace(str, true)
+	result2 := RemoveWhiteSpace(str, false)
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+
+	// Output:
+	// helloworld
+	// hello world
+}

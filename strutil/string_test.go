@@ -466,3 +466,13 @@ func TestContainsAny(t *testing.T) {
 	assert.Equal(true, ContainsAny("hello world", []string{"hello", "abc"}))
 	assert.Equal(false, ContainsAny("hello world", []string{"123", "abc"}))
 }
+
+func TestRemoveWhiteSpace(t *testing.T) {
+	assert := internal.NewAssert(t, "TestRemoveWhiteSpace")
+
+	str := " hello   \r\n	\t   world"
+
+	assert.Equal("", RemoveWhiteSpace("", true))
+	assert.Equal("helloworld", RemoveWhiteSpace(str, true))
+	assert.Equal("hello world", RemoveWhiteSpace(str, false))
+}
