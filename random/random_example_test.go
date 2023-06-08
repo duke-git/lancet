@@ -130,7 +130,6 @@ func ExampleRandUniqueIntSlice() {
 	if len(result) == 5 {
 		fmt.Println("ok")
 	}
-	fmt.Println(result)
 
 	// Output:
 	// ok
