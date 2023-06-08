@@ -276,7 +276,7 @@ func ExampleSha() {
 }
 
 func ExampleReadCsvFile() {
-	content, err := ReadCsvFile("./testdata/test.csv")
+	content, err := ReadCsvFile("./testdata/demo.csv")
 
 	fmt.Println(content)
 	fmt.Println(err)
@@ -284,6 +284,22 @@ func ExampleReadCsvFile() {
 	// Output:
 	// [[Bob  12  male] [Duke  14  male] [Lucy  16  female]]
 	// <nil>
+}
+
+func ExampleWriteCsvFile() {
+	data := [][]string{
+		{"Lili", "22", "female"},
+		{"Jim", "21", "male"},
+	}
+	err := WriteCsvFile("./testdata/test2.csv", data, false)
+	fmt.Println(err)
+
+	content, _ := ReadCsvFile("./testdata/test2.csv")
+	fmt.Println(content)
+
+	// Output:
+	// <nil>
+	// [[Lili 22 female] [Jim 21 male]]
 }
 
 func ExampleWriteStringToFile() {

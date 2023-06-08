@@ -43,6 +43,7 @@ import (
 -   [MTime](#MTime)
 -   [Sha](#Sha)
 -   [ReadCsvFile](#ReadCsvFile)
+-   [WirteCsvFile](#WirteCsvFile)
 -   [WriteStringToFile](#WriteStringToFile)
 -   [WriteBytesToFile](#WriteBytesToFile)
 
@@ -660,6 +661,43 @@ func main() {
     // Output:
     // [[Bob  12  male] [Duke  14  male] [Lucy  16  female]]
     // <nil>
+}
+```
+
+### <span id="WriteCsvFile">WriteCsvFile</span>
+
+<p>向csv文件写入内容。</p>
+
+<b>函数签名:</b>
+
+```go
+func WriteCsvFile(filepath string, records [][]string, append bool) error
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/fileutil"
+)
+
+func main() {
+    data := [][]string{
+        {"Lili", "22", "female"},
+        {"Jim", "21", "male"},
+    }
+    err := WriteCsvFile("./testdata/test2.csv", data, false)
+    fmt.Println(err)
+
+    content, _ := ReadCsvFile("./testdata/test2.csv")
+    fmt.Println(content)
+
+    // Output:
+    // <nil>
+    // [[Lili 22 female] [Jim 21 male]]
 }
 ```
 

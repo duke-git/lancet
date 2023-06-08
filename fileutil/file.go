@@ -454,6 +454,28 @@ func ReadCsvFile(filepath string) ([][]string, error) {
 	return records, nil
 }
 
+// WriteCsvFile write content to target csv file.
+// Play: todo
+func WriteCsvFile(filepath string, records [][]string, append bool) error {
+	flag := os.O_RDWR | os.O_CREATE
+
+	if append {
+		flag = flag | os.O_APPEND
+	}
+
+	f, err := os.OpenFile(filepath, flag, 0644)
+	if err != nil {
+		return err
+	}
+
+	defer f.Close()
+
+	writer := csv.NewWriter(f)
+	writer.Comma = ','
+
+	return writer.WriteAll(records)
+}
+
 // WriteStringToFile write string to target file.
 // Play: https://go.dev/play/p/GhLS6d8lH_g
 func WriteStringToFile(filepath string, content string, append bool) error {
