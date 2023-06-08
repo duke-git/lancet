@@ -44,40 +44,41 @@ func TestPercent(t *testing.T) {
 func TestRoundToFloat(t *testing.T) {
 	assert := internal.NewAssert(t, "TestRoundToFloat")
 
-	assert.Equal(RoundToFloat(0, 0), float64(0))
-	assert.Equal(RoundToFloat(0, 1), float64(0))
-	assert.Equal(RoundToFloat(0.124, 2), float64(0.12))
-	assert.Equal(RoundToFloat(0.125, 2), float64(0.13))
-	assert.Equal(RoundToFloat(0.125, 3), float64(0.125))
-	assert.Equal(RoundToFloat(33.33333, 2), float64(33.33))
+	assert.Equal(float64(0), RoundToFloat(0, 0))
+	assert.Equal(float64(0), RoundToFloat(0, 1))
+	assert.Equal(0.12, RoundToFloat(0.124, 2))
+	assert.Equal(0.13, RoundToFloat(0.125, 2))
+	assert.Equal(0.125, RoundToFloat(0.125, 3))
+	assert.Equal(33.33, RoundToFloat(33.33333, 2))
 }
 
 func TestRoundToString(t *testing.T) {
 	assert := internal.NewAssert(t, "TestRoundToString")
 
-	assert.Equal(RoundToString(0, 0), "0")
-	assert.Equal(RoundToString(0, 1), "0.0")
-	assert.Equal(RoundToString(0.124, 2), "0.12")
-	assert.Equal(RoundToString(0.125, 2), "0.13")
-	assert.Equal(RoundToString(0.125, 3), "0.125")
+	assert.Equal("0", RoundToString(0, 0))
+	assert.Equal("0.0", RoundToString(0, 1))
+	assert.Equal("0.12", RoundToString(0.124, 2))
+	assert.Equal("0.13", RoundToString(0.125, 2))
+	assert.Equal("0.125", RoundToString(0.125, 3))
 }
 
 func TestTruncRound(t *testing.T) {
 	assert := internal.NewAssert(t, "TestTruncRound")
 
-	assert.Equal(TruncRound(0, 0), float64(0))
-	assert.Equal(TruncRound(0, 1), float64(0))
-	assert.Equal(TruncRound(0.124, 2), float64(0.12))
-	assert.Equal(TruncRound(0.125, 2), float64(0.12))
-	assert.Equal(TruncRound(0.125, 3), float64(0.125))
-	assert.Equal(TruncRound(33.33333, 2), float64(33.33))
+	assert.Equal(float64(0), TruncRound(0, 0))
+	assert.Equal(float64(0), TruncRound(0, 1))
+	assert.Equal(0.12, TruncRound(0.124, 2))
+	assert.Equal(0.12, TruncRound(0.125, 2))
+	assert.Equal(0.125, TruncRound(0.125, 3))
+	assert.Equal(33.33, TruncRound(33.33333, 2))
 }
 
 func TestAverage(t *testing.T) {
 	assert := internal.NewAssert(t, "TestAverage")
 
-	assert.Equal(Average(0, 0), 0)
-	assert.Equal(Average(1, 1), 1)
+	assert.Equal(0, Average(0, 0))
+	assert.Equal(1, Average(1, 1))
+
 	avg := Average(1.2, 1.4)
 	assert.Equal(1.3, RoundToFloat(avg, 1))
 }
@@ -92,12 +93,12 @@ func TestSum(t *testing.T) {
 func TestMax(t *testing.T) {
 	assert := internal.NewAssert(t, "TestMax")
 
-	assert.Equal(Max(0, 0), 0)
-	assert.Equal(Max(1, 2, 3), 3)
-	assert.Equal(Max(1.2, 1.4, 1.1, 1.4), 1.4)
+	assert.Equal(0, Max(0, 0))
+	assert.Equal(3, Max(1, 2, 3))
+	assert.Equal(1.4, Max(1.2, 1.4, 1.1, 1.4))
 
 	type Integer int
-	assert.Equal(Max(Integer(1), Integer(0)), Integer(1))
+	assert.Equal(Integer(1), Max(Integer(1), Integer(0)))
 }
 
 func TestMaxBy(t *testing.T) {
@@ -122,9 +123,9 @@ func TestMaxBy(t *testing.T) {
 func TestMin(t *testing.T) {
 	assert := internal.NewAssert(t, "TestMin")
 
-	assert.Equal(Min(0, 0), 0)
-	assert.Equal(Min(1, 2, 3), 1)
-	assert.Equal(Min(1.2, 1.4, 1.1, 1.4), 1.1)
+	assert.Equal(0, Min(0, 0))
+	assert.Equal(1, Min(1, 2, 3))
+	assert.Equal(1.1, Min(1.2, 1.4, 1.1, 1.4))
 }
 
 func TestMinBy(t *testing.T) {
