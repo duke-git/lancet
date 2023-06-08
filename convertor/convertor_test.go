@@ -5,9 +5,11 @@ import (
 	"reflect"
 	"strconv"
 	"testing"
+	"unicode/utf8"
 
 	"github.com/duke-git/lancet/v2/internal"
 	"github.com/duke-git/lancet/v2/slice"
+	"github.com/duke-git/lancet/v2/validator"
 )
 
 func TestToChar(t *testing.T) {
@@ -395,4 +397,26 @@ func TestToInterface(t *testing.T) {
 	nilVal, ok := ToInterface(reflect.ValueOf(nil))
 	assert.EqualValues(nil, nilVal)
 	assert.Equal(false, ok)
+}
+
+func TestUtf8ToGbk(t *testing.T) {
+	assert := internal.NewAssert(t, "TestUtf8ToGbk")
+
+	utf8Data := []byte("hello")
+	gbkData, err := Utf8ToGbk(utf8Data)
+
+	assert.Equal(true, utf8.Valid(utf8Data))
+	assert.Equal(true, validator.IsGBK(gbkData))
+	assert.IsNil(err)
+}
+
+func TestGbkToUtf8(t *testing.T) {
+	assert := internal.NewAssert(t, "TestGbkToUtf8")
+
+	gbkData, err := Utf8ToGbk([]byte("hello"))
+	utf8Data, err := GbkToUtf8(gbkData)
+
+	assert.IsNil(err)
+	assert.Equal(true, utf8.Valid(utf8Data))
+	assert.Equal("hello", string(utf8Data))
 }

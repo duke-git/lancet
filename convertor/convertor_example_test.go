@@ -4,6 +4,9 @@ import (
 	"fmt"
 	"reflect"
 	"strconv"
+	"unicode/utf8"
+
+	"github.com/duke-git/lancet/v2/validator"
 )
 
 func ExampleToBool() {
@@ -363,4 +366,28 @@ func ExampleToInterface() {
 	// string
 	// abc
 	// true
+}
+
+func ExampleUtf8ToGbk() {
+	utf8Data := []byte("hello")
+	gbkData, _ := Utf8ToGbk(utf8Data)
+
+	fmt.Println(utf8.Valid(utf8Data))
+	fmt.Println(validator.IsGBK(gbkData))
+
+	// Output:
+	// true
+	// true
+}
+
+func ExampleGbkToUtf8() {
+	gbkData, _ := Utf8ToGbk([]byte("hello"))
+	utf8Data, _ := GbkToUtf8(gbkData)
+
+	fmt.Println(utf8.Valid(utf8Data))
+	fmt.Println(string(utf8Data))
+
+	// Output:
+	// true
+	// hello
 }
