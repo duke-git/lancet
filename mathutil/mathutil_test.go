@@ -82,6 +82,13 @@ func TestAverage(t *testing.T) {
 	assert.Equal(1.3, RoundToFloat(avg, 1))
 }
 
+func TestSum(t *testing.T) {
+	assert := internal.NewAssert(t, "TestSum")
+
+	assert.Equal(1, Sum(0, 1))
+	assert.Equal(1.1, Sum(0.1, float64(1)))
+}
+
 func TestMax(t *testing.T) {
 	assert := internal.NewAssert(t, "TestMax")
 

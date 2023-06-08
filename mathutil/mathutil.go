@@ -172,6 +172,18 @@ func MinBy[T any](slice []T, comparator func(T, T) bool) T {
 	return min
 }
 
+// Sum return sum of passed numbers.
+// Play: todo
+func Sum[T constraints.Integer | constraints.Float](numbers ...T) T {
+	var sum T
+
+	for _, v := range numbers {
+		sum += v
+	}
+
+	return sum
+}
+
 // Average return average value of numbers.
 // Play: https://go.dev/play/p/Vv7LBwER-pz
 func Average[T constraints.Integer | constraints.Float](numbers ...T) T {

@@ -122,6 +122,18 @@ func ExampleAverage() {
 	// 1.3
 }
 
+func ExampleSum() {
+	result1 := Sum(1, 2)
+	result2 := Sum(0.1, float64(1))
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+
+	// Output:
+	// 3
+	// 1.1
+}
+
 func ExampleMax() {
 	result1 := Max(1, 2, 3)
 	result2 := Max(1.2, 1.4, 1.1, 1.4)
