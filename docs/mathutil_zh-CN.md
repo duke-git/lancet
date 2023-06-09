@@ -45,6 +45,7 @@ import (
 -   [Cos](#Cos)
 -   [Sin](#Sin)
 -   [Log](#Log)
+-   [Sum](#Sum)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -908,3 +909,37 @@ func main() {
 	// 2.32
 	// 3
 }
+```
+
+### <span id="Sum">Sum</span>
+
+<p>求传入参数之和。</p>
+
+<b>函数签名:</b>
+
+```go
+func Sum[T constraints.Integer | constraints.Float](numbers ...T) T
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/mathutil"
+)
+
+func main() {
+    result1 := mathutil.Sum(1, 2)
+    result2 := mathutil.Sum(0.1, float64(1))
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+
+    // Output:
+    // 3
+    // 1.1
+}
+```

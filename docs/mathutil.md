@@ -45,6 +45,7 @@ import (
 -   [Cos](#Cos)
 -   [Sin](#Sin)
 -   [Log](#Log)
+-   [Sum](#Sum)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -896,16 +897,49 @@ import (
 
 func main() {
     result1 := mathutil.Log(8, 2)
-	result2 := mathutil.TruncRound(mathutil.Log(5, 2), 2)
-	result3 := mathutil.TruncRound(mathutil.Log(27, 3), 0)
+    result2 := mathutil.TruncRound(mathutil.Log(5, 2), 2)
+    result3 := mathutil.TruncRound(mathutil.Log(27, 3), 0)
 
-	fmt.Println(result1)
-	fmt.Println(result2)
-	fmt.Println(result3)
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
 
-	// Output:
-	// 3
-	// 2.32
-	// 3
+    // Output:
+    // 3
+    // 2.32
+    // 3
+}
+```
+
+### <span id="Sum">Sum</span>
+
+<p>Returns sum of passed numbers.</p>
+
+<b>Signature:</b>
+
+```go
+func Sum[T constraints.Integer | constraints.Float](numbers ...T) T
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/mathutil"
+)
+
+func main() {
+    result1 := mathutil.Sum(1, 2)
+    result2 := mathutil.Sum(0.1, float64(1))
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+
+    // Output:
+    // 3
+    // 1.1
 }
 ```
