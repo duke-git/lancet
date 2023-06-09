@@ -58,7 +58,7 @@ import (
 -   [HideString](#HideString)
 -   [ContainsAll](#ContainsAll)
 -   [ContainsAny](#ContainsAny)
-
+-   [RemoveWhiteSpace](#RemoveWhiteSpace)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -975,7 +975,7 @@ func main() {
 
     fmt.Println(result1)
     fmt.Println(result2)
-    
+
     // Output:
     // hello world
     // 你好😄
@@ -1179,7 +1179,6 @@ func main() {
 }
 ```
 
-
 ### <span id="ReplaceWithMap">ReplaceWithMap</span>
 
 <p>返回`str`的副本，以无序的方式被map替换，区分大小写。</p>
@@ -1250,7 +1249,6 @@ func main() {
 }
 ```
 
-
 ### <span id="SplitAndTrim">SplitAndTrim</span>
 
 <p>将字符串str按字符串delimiter拆分为一个切片，并对该数组的每个元素调用Trim。忽略Trim后为空的元素。</p>
@@ -1283,7 +1281,6 @@ func main() {
     // [a b c d 1]
 }
 ```
-
 
 ### <span id="HideString">HideString</span>
 
@@ -1390,5 +1387,38 @@ func main() {
     // true
     // true
     // false
+}
+```
+
+### <span id="RemoveWhiteSpace">RemoveWhiteSpace</span>
+
+<p>删除字符串中的空格，当设置repalceAll为true时，删除全部空格，为false时，替换多个空格为1个空格。</p>
+
+<b>函数签名:</b>
+
+```go
+func RemoveWhiteSpace(str string, repalceAll bool) string
+```
+
+<b>示例:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    str := " hello   \r\n	\t   world"
+
+	result1 := strutil.RemoveWhiteSpace(str, true)
+	result2 := strutil.RemoveWhiteSpace(str, false)
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+
+	// Output:
+	// helloworld
+	// hello world
 }
 ```

@@ -58,6 +58,7 @@ import (
 -   [HideString](#HideString)
 -   [ContainsAll](#ContainsAll)
 -   [ContainsAny](#ContainsAny)
+-   [RemoveWhiteSpace](#RemoveWhiteSpace)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -1388,5 +1389,39 @@ func main() {
     // true
     // true
     // false
+}
+```
+
+
+### <span id="RemoveWhiteSpace">RemoveWhiteSpace</span>
+
+<p>Remove whitespace characters from a string. when set repalceAll is true removes all whitespace, false only replaces consecutive whitespace characters with one space.</p>
+
+<b>Signature:</b>
+
+```go
+func RemoveWhiteSpace(str string, repalceAll bool) string
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    str := " hello   \r\n	\t   world"
+
+	result1 := strutil.RemoveWhiteSpace(str, true)
+	result2 := strutil.RemoveWhiteSpace(str, false)
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+
+	// Output:
+	// helloworld
+	// hello world
 }
 ```
