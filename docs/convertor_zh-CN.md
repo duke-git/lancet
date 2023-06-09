@@ -795,15 +795,82 @@ import (
 
 func main() {
     val := reflect.ValueOf("abc")
-	iVal, ok := convertor.ToInterface(val)
+    iVal, ok := convertor.ToInterface(val)
 
-	fmt.Printf("%T\n", iVal)
-	fmt.Printf("%v\n", iVal)
-	fmt.Println(ok)
+    fmt.Printf("%T\n", iVal)
+    fmt.Printf("%v\n", iVal)
+    fmt.Println(ok)
 
-	// Output:
-	// string
-	// abc
-	// true
+    // Output:
+    // string
+    // abc
+    // true
+}
+```
+
+### <span id="Utf8ToGbk">Utf8ToGbk</span>
+
+<p>utf8编码转GBK编码。</p>
+
+<b>函数签名:</b>
+
+```go
+func Utf8ToGbk(bs []byte) ([]byte, error)
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/convertor"
+    "github.com/duke-git/lancet/v2/validator"
+)
+
+func main() {
+    utf8Data := []byte("hello")
+    gbkData, _ := convertor.Utf8ToGbk(utf8Data)
+
+    fmt.Println(utf8.Valid(utf8Data))
+    fmt.Println(validator.IsGBK(gbkData))
+
+    // Output:
+    // true
+    // true   
+}
+```
+
+### <span id="GbkToUtf8">GbkToUtf8</span>
+
+<p>GBK编码转utf8编码。</p>
+
+<b>函数签名:</b>
+
+```go
+func GbkToUtf8(bs []byte) ([]byte, error)
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/convertor"
+)
+
+func main() {
+    gbkData, _ := convertor.Utf8ToGbk([]byte("hello"))
+    utf8Data, _ := convertor.GbkToUtf8(gbkData)
+
+    fmt.Println(utf8.Valid(utf8Data))
+    fmt.Println(string(utf8Data))
+
+    // Output:
+    // true
+    // hello   
 }
 ```
