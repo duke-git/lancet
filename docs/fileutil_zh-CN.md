@@ -43,7 +43,7 @@ import (
 -   [MTime](#MTime)
 -   [Sha](#Sha)
 -   [ReadCsvFile](#ReadCsvFile)
--   [WirteCsvFile](#WirteCsvFile)
+-   [WriteCsvFile](#WriteCsvFile)
 -   [WriteStringToFile](#WriteStringToFile)
 -   [WriteBytesToFile](#WriteBytesToFile)
 
