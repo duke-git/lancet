@@ -43,6 +43,7 @@ import (
 -   [MTime](#MTime)
 -   [Sha](#Sha)
 -   [ReadCsvFile](#ReadCsvFile)
+-   [WriteCsvFile](#WriteCsvFile)
 -   [WriteStringToFile](#WriteStringToFile)
 -   [WriteBytesToFile](#WriteBytesToFile)
 
@@ -503,7 +504,6 @@ func main() {
 }
 ```
 
-
 ### <span id="IsZipFile">IsZipFile</span>
 
 <p>判断文件是否是zip压缩文件。</p>
@@ -664,6 +664,43 @@ func main() {
 }
 ```
 
+### <span id="WriteCsvFile">WriteCsvFile</span>
+
+<p>向csv文件写入内容。</p>
+
+<b>函数签名:</b>
+
+```go
+func WriteCsvFile(filepath string, records [][]string, append bool) error
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/fileutil"
+)
+
+func main() {
+    data := [][]string{
+        {"Lili", "22", "female"},
+        {"Jim", "21", "male"},
+    }
+    err := WriteCsvFile("./testdata/test2.csv", data, false)
+    fmt.Println(err)
+
+    content, _ := ReadCsvFile("./testdata/test2.csv")
+    fmt.Println(content)
+
+    // Output:
+    // <nil>
+    // [[Lili 22 female] [Jim 21 male]]
+}
+```
+
 ### <span id="WriteBytesToFile">WriteBytesToFile</span>
 
 <p>将bytes写入文件。</p>
@@ -687,32 +724,31 @@ import (
 func main() {
     filepath := "./bytes.txt"
 
-	file, err := os.Create(filepath)
-	if err != nil {
-		return
-	}
+    file, err := os.Create(filepath)
+    if err != nil {
+        return
+    }
 
-	defer file.Close()
+    defer file.Close()
 
-	err = fileutil.WriteBytesToFile(filepath, []byte("hello"))
-	if err != nil {
-		return
-	}
+    err = fileutil.WriteBytesToFile(filepath, []byte("hello"))
+    if err != nil {
+        return
+    }
 
-	content, err := fileutil.ReadFileToString(filepath)
-	if err != nil {
-		return
-	}
+    content, err := fileutil.ReadFileToString(filepath)
+    if err != nil {
+        return
+    }
 
-	os.Remove(filepath)
+    os.Remove(filepath)
 
-	fmt.Println(content)
+    fmt.Println(content)
 
-	// Output:
-	// hello
+    // Output:
+    // hello
 }
 ```
-
 
 ### <span id="WriteStringToFile">WriteStringToFile</span>
 
@@ -737,28 +773,28 @@ import (
 func main() {
     filepath := "./test.txt"
 
-	file, err := os.Create(filepath)
-	if err != nil {
-		return
-	}
+    file, err := os.Create(filepath)
+    if err != nil {
+        return
+    }
 
-	defer file.Close()
+    defer file.Close()
 
-	err = fileutil.WriteStringToFile(filepath, "hello", true)
-	if err != nil {
-		return
-	}
+    err = fileutil.WriteStringToFile(filepath, "hello", true)
+    if err != nil {
+        return
+    }
 
-	content, err := fileutil.ReadFileToString(filepath)
-	if err != nil {
-		return
-	}
+    content, err := fileutil.ReadFileToString(filepath)
+    if err != nil {
+        return
+    }
 
-	os.Remove(filepath)
+    os.Remove(filepath)
 
-	fmt.Println(content)
+    fmt.Println(content)
 
-	// Output:
-	// hello
+    // Output:
+    // hello
 }
 ```

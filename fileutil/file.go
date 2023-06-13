@@ -370,7 +370,7 @@ func MTime(filepath string) (int64, error) {
 	return f.ModTime().Unix(), nil
 }
 
-// MTime returns file sha value, param `shaType` should be 1, 256 or 512.
+// Sha returns file sha value, param `shaType` should be 1, 256 or 512.
 func Sha(filepath string, shaType ...int) (string, error) {
 	file, err := os.Open(filepath)
 	if err != nil {
@@ -418,6 +418,27 @@ func ReadCsvFile(filepath string) ([][]string, error) {
 	}
 
 	return records, nil
+}
+
+// WriteCsvFile write content to target csv file.
+func WriteCsvFile(filepath string, records [][]string, append bool) error {
+	flag := os.O_RDWR | os.O_CREATE
+
+	if append {
+		flag = flag | os.O_APPEND
+	}
+
+	f, err := os.OpenFile(filepath, flag, 0644)
+	if err != nil {
+		return err
+	}
+
+	defer f.Close()
+
+	writer := csv.NewWriter(f)
+	writer.Comma = ','
+
+	return writer.WriteAll(records)
 }
 
 // WriteStringToFile write string to target file.

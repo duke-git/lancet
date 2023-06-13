@@ -268,7 +268,7 @@ func TestSha(t *testing.T) {
 func TestReadCsvFile(t *testing.T) {
 	assert := internal.NewAssert(t, "TestReadCsvFile")
 
-	content, err := ReadCsvFile("./testdata/test.csv")
+	content, err := ReadCsvFile("./testdata/demo.csv")
 	t.Log(content)
 
 	assert.IsNil(err)
@@ -276,6 +276,27 @@ func TestReadCsvFile(t *testing.T) {
 	assert.Equal(3, len(content))
 	assert.Equal(3, len(content[0]))
 	assert.Equal("Bob", content[0][0])
+}
+
+func TestWriteCsvFile(t *testing.T) {
+	assert := internal.NewAssert(t, "TestWriteCsvFile")
+
+	csvFilePath := "./testdata/test1.csv"
+	content := [][]string{
+		{"Lili", "22", "female"},
+		{"Jim", "21", "male"},
+	}
+
+	err := WriteCsvFile(csvFilePath, content, false)
+	assert.IsNil(err)
+
+	readContent, err := ReadCsvFile(csvFilePath)
+
+	assert.IsNil(err)
+
+	assert.Equal(2, len(readContent))
+	assert.Equal(3, len(readContent[0]))
+	assert.Equal("Lili", content[0][0])
 }
 
 func TestWriteStringToFile(t *testing.T) {
