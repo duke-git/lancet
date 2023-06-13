@@ -30,6 +30,7 @@ import (
 -   [RandNumeral](#RandNumeral)
 -   [RandNumeralOrLetter](#RandNumeralOrLetter)
 -   [UUIdV4](#UUIdV4)
+-   [RandUniqueIntSlice](#RandUniqueIntSlice)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -243,5 +244,31 @@ func main() {
         return
     }
     fmt.Println(uuid)
+}
+```
+
+### <span id="RandUniqueIntSlice">RandUniqueIntSlice</span>
+
+<p>Generate a slice of random int of length n that do not repeat.</p>
+
+<b>Signature:</b>
+
+```go
+func RandUniqueIntSlice(n, min, max int) []int
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/random"
+)
+
+func main() {
+    result := RandUniqueIntSlice(5, 0, 10)
+    fmt.Println(result) //[0 4 7 1 5] (random)
 }
 ```

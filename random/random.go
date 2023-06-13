@@ -101,3 +101,27 @@ func UUIdV4() (string, error) {
 
 	return fmt.Sprintf("%x-%x-%x-%x-%x", uuid[0:4], uuid[4:6], uuid[6:8], uuid[8:10], uuid[10:]), nil
 }
+
+// RandUniqueIntSlice generate a slice of random int of length n that do not repeat.
+func RandUniqueIntSlice(n, min, max int) []int {
+	if min > max {
+		return []int{}
+	}
+	if n > max-min {
+		n = max - min
+	}
+
+	nums := make([]int, n)
+	used := make(map[int]struct{}, n)
+	for i := 0; i < n; {
+		r := RandInt(min, max)
+		if _, use := used[r]; use {
+			continue
+		}
+		used[r] = struct{}{}
+		nums[i] = r
+		i++
+	}
+
+	return nums
+}
