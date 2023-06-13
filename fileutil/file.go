@@ -402,7 +402,7 @@ func MTime(filepath string) (int64, error) {
 	return f.ModTime().Unix(), nil
 }
 
-// MTime returns file sha value, param `shaType` should be 1, 256 or 512.
+// Sha returns file sha value, param `shaType` should be 1, 256 or 512.
 // Play: https://go.dev/play/p/VfEEcO2MJYf
 func Sha(filepath string, shaType ...int) (string, error) {
 	file, err := os.Open(filepath)
