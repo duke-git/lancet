@@ -19,8 +19,10 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	"mime/multipart"
 	"net/http"
 	"net/url"
+	"os"
 	"sort"
 	"strings"
 	"time"
@@ -94,6 +96,7 @@ type HttpRequest struct {
 	Headers     http.Header
 	QueryParams url.Values
 	FormData    url.Values
+	File        *File
 	Body        []byte
 }
 
@@ -186,7 +189,11 @@ func (client *HttpClient) SendRequest(request *HttpRequest) (*http.Response, err
 	}
 
 	if request.FormData != nil {
-		client.setFormData(req, request.FormData)
+		if request.File != nil {
+			err = client.setFormData(req, request.FormData, setFile(request.File))
+		} else {
+			err = client.setFormData(req, request.FormData, nil)
+		}
 	}
 
 	client.Request = req
@@ -251,10 +258,80 @@ func (client *HttpClient) setQueryParam(req *http.Request, reqUrl string, queryP
 	return nil
 }
 
-func (client *HttpClient) setFormData(req *http.Request, values url.Values) {
-	formData := []byte(values.Encode())
-	req.Body = io.NopCloser(bytes.NewReader(formData))
-	req.ContentLength = int64(len(formData))
+// setFormData set http request FormData param
+func (client *HttpClient) setFormData(req *http.Request, values url.Values, setFile SetFileFunc) error {
+	if setFile != nil {
+		err := setFile(req, values)
+		if err != nil {
+			return err
+		}
+	} else {
+		formData := []byte(values.Encode())
+		req.Body = io.NopCloser(bytes.NewReader(formData))
+		req.ContentLength = int64(len(formData))
+	}
+	return nil
+}
+
+type SetFileFunc func(req *http.Request, values url.Values) error
+
+// File struct is a combination of file attributes
+type File struct {
+	Content   []byte
+	Path      string
+	FieldName string
+	FileName  string
+}
+
+// setFile set parameters for http request formdata file upload
+func setFile(f *File) SetFileFunc {
+	return func(req *http.Request, values url.Values) error {
+		body := &bytes.Buffer{}
+		writer := multipart.NewWriter(body)
+
+		for key, vals := range values {
+			for _, val := range vals {
+				err := writer.WriteField(key, val)
+				if err != nil {
+					return err
+				}
+			}
+		}
+
+		if f.Content != nil {
+			part, err := writer.CreateFormFile(f.FieldName, f.FileName)
+			if err != nil {
+				return err
+			}
+			part.Write(f.Content)
+		} else if f.Path != "" {
+			file, err := os.Open(f.Path)
+			if err != nil {
+				return err
+			}
+			defer file.Close()
+
+			part, err := writer.CreateFormFile(f.FieldName, f.FileName)
+			if err != nil {
+				return err
+			}
+			_, err = io.Copy(part, file)
+			if err != nil {
+				return err
+			}
+		}
+
+		err := writer.Close()
+		if err != nil {
+			return err
+		}
+
+		req.Body = io.NopCloser(body)
+		req.Header.Set("Content-Type", writer.FormDataContentType())
+		req.ContentLength = int64(body.Len())
+
+		return nil
+	}
 }
 
 // validateRequest check if a request has url, and valid method.
