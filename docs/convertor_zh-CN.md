@@ -608,16 +608,16 @@ import (
 
 func main() {
     val := reflect.ValueOf("abc")
-	iVal, ok := convertor.ToInterface(val)
+    iVal, ok := convertor.ToInterface(val)
 
-	fmt.Printf("%T\n", iVal)
-	fmt.Printf("%v\n", iVal)
-	fmt.Println(ok)
+    fmt.Printf("%T\n", iVal)
+    fmt.Printf("%v\n", iVal)
+    fmt.Println(ok)
 
-	// Output:
-	// string
-	// abc
-	// true    
+    // Output:
+    // string
+    // abc
+    // true    
 }
 ```
 

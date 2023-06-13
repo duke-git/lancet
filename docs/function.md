@@ -323,16 +323,16 @@ import (
 
 func main() {
     addOne := func(x interface{}) interface{} {
-		return x.(int) + 1
-	}
-	double := func(x interface{}) interface{} {
-		return 2 * x.(int)
-	}
-	square := func(x interface{}) interface{} {
-		return x.(int) * x.(int)
-	}
+        return x.(int) + 1
+    }
+    double := func(x interface{}) interface{} {
+        return 2 * x.(int)
+    }
+    square := func(x interface{}) interface{} {
+        return x.(int) * x.(int)
+    }
 
-	f := function.Pipeline(addOne, double, square)
+    f := function.Pipeline(addOne, double, square)
 
     result := fn(2)
 

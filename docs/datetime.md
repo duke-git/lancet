@@ -199,18 +199,18 @@ import (
 func main() {
     now := time.Now()
 
-	after1Year := datetime.AddYear(now, 1)
-	diff1 := after1Year.Sub(now)
+    after1Year := datetime.AddYear(now, 1)
+    diff1 := after1Year.Sub(now)
 
-	before1Year := datetime.AddYear(now, -1)
-	diff2 := before1Year.Sub(now)
+    before1Year := datetime.AddYear(now, -1)
+    diff2 := before1Year.Sub(now)
 
-	fmt.Println(diff1)
-	fmt.Println(diff2)
+    fmt.Println(diff1)
+    fmt.Println(diff2)
 
-	// Output:
-	// 8760h0m0s
-	// -8760h0m0s
+    // Output:
+    // 8760h0m0s
+    // -8760h0m0s
 }
 ```
 
