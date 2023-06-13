@@ -6,6 +6,7 @@ package strutil
 
 import (
 	"reflect"
+	"regexp"
 	"strings"
 	"unicode"
 	"unicode/utf8"
@@ -502,4 +503,22 @@ func ContainsAny(str string, substrs []string) bool {
 	}
 
 	return false
+}
+
+var (
+	whitespaceRegexMatcher     *regexp.Regexp = regexp.MustCompile(`\s`)
+	mutiWhitespaceRegexMatcher *regexp.Regexp = regexp.MustCompile(`[[:space:]]{2,}|[\s\p{Zs}]{2,}`)
+)
+
+// RemoveWhiteSpace remove whitespace characters from a string.
+// when set repalceAll is true removes all whitespace, false only replaces consecutive whitespace characters with one space.
+func RemoveWhiteSpace(str string, repalceAll bool) string {
+	if repalceAll && str != "" {
+		return strings.Join(strings.Fields(str), "")
+	} else if str != "" {
+		str = mutiWhitespaceRegexMatcher.ReplaceAllString(str, " ")
+		str = whitespaceRegexMatcher.ReplaceAllString(str, " ")
+	}
+
+	return strings.TrimSpace(str)
 }
