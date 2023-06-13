@@ -37,6 +37,7 @@ import (
 -   [LCM](#LCM)
 -   [Cos](#Cos)
 -   [Sin](#Sin)
+-   [Log](#Log)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -363,20 +364,20 @@ import (
 
 func main() {
     result1 := mathutil.IsPrime(-1)
-	result2 := mathutil.IsPrime(0)
-	result3 := mathutil.IsPrime(1)
-	result4 := mathutil.IsPrime(2)
+    result2 := mathutil.IsPrime(0)
+    result3 := mathutil.IsPrime(1)
+    result4 := mathutil.IsPrime(2)
 
-	fmt.Println(result1)
-	fmt.Println(result2)
-	fmt.Println(result3)
-	fmt.Println(result4)
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
 
-	// Output:
-	// false
-	// false
-	// false
-	// true
+    // Output:
+    // false
+    // false
+    // false
+    // true
 }
 ```
 
@@ -542,5 +543,41 @@ func main() {
     // -0.801
     // 0
     // 1
+}
+```
+
+### <span id="Log">Log</span>
+
+<p>计算以base为底n的对数。</p>
+
+<b>函数签名:</b>
+
+```go
+func Log(n, base float64) float64
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/mathutil"
+)
+
+func main() {
+    result1 := mathutil.Log(8, 2)
+    result2 := mathutil.TruncRound(mathutil.Log(5, 2), 2)
+    result3 := mathutil.TruncRound(mathutil.Log(27, 3), 0)
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+
+    // Output:
+    // 3
+    // 2.32
+    // 3
 }
 ```
