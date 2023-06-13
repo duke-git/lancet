@@ -1,11 +1,15 @@
 package netutil
 
 import (
+	"bytes"
 	"encoding/json"
 	"io"
+	"io/ioutil"
 	"log"
 	"net/http"
+	"net/http/httptest"
 	"net/url"
+	"os"
 	"testing"
 
 	"github.com/duke-git/lancet/v2/internal"
@@ -244,4 +248,109 @@ func TestStructToUrlValues(t *testing.T) {
 	assert.Equal("2", queryValues2.Get("id"))
 	assert.Equal("456", queryValues2.Get("userId"))
 	assert.Equal("", queryValues2.Get("name"))
+}
+
+func handleFileRequest(t *testing.T, w http.ResponseWriter, r *http.Request) {
+	err := r.ParseMultipartForm(1024)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	key1 := r.FormValue("key1")
+	expectedKey1 := "value1"
+	if key1 != expectedKey1 {
+		t.Fatalf("expected %s, got %s", expectedKey1, key1)
+	}
+
+	key2 := r.FormValue("key2")
+	expectedKey2 := "value2"
+	if key2 != expectedKey2 {
+		t.Fatalf("expected %s, got %s", expectedKey2, key2)
+	}
+
+	file, header, err := r.FormFile("image")
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	expectedFileName := "testImage.jpg"
+	if header.Filename != expectedFileName {
+		t.Fatalf("expected %s, got %s", expectedFileName, header.Filename)
+	}
+
+	defer file.Close()
+
+	content, err := ioutil.ReadAll(file)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	expectedContent := []byte("file content")
+	if !bytes.Equal(content, expectedContent) {
+		t.Fatalf("expected %s, got %s", string(expectedContent), string(content))
+	}
+}
+
+func TestSendRequestWithFileContent(t *testing.T) {
+	handler := http.HandlerFunc(func(writer http.ResponseWriter, request *http.Request) {
+		handleFileRequest(t, writer, request)
+	})
+
+	server := httptest.NewServer(handler)
+	defer server.Close()
+
+	client := NewHttpClient()
+	request := &HttpRequest{
+		RawURL:   server.URL,
+		Method:   "POST",
+		File:     &File{Content: []byte("file content"), FieldName: "image", FileName: "testImage.jpg"},
+		FormData: url.Values{"key1": {"value1"}, "key2": {"value2"}},
+	}
+
+	resp, err := client.SendRequest(request)
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusOK {
+		t.Fatalf("expected %d, got %d", http.StatusOK, resp.StatusCode)
+	}
+}
+
+func TestSendRequestWithFilePath(t *testing.T) {
+	handler := http.HandlerFunc(func(writer http.ResponseWriter, request *http.Request) {
+		handleFileRequest(t, writer, request)
+	})
+
+	server := httptest.NewServer(handler)
+	defer server.Close()
+
+	tmpFile, err := ioutil.TempFile("", "testImage.jpg")
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	defer os.Remove(tmpFile.Name())
+
+	tmpFile.Write([]byte("file content"))
+	tmpFile.Close()
+
+	client := NewHttpClient()
+	request := &HttpRequest{
+		RawURL:   server.URL,
+		Method:   "POST",
+		File:     &File{Path: tmpFile.Name(), FieldName: "image", FileName: "testImage.jpg"},
+		FormData: url.Values{"key1": {"value1"}, "key2": {"value2"}},
+	}
+
+	resp, err := client.SendRequest(request)
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusOK {
+		t.Fatalf("expected %d, got %d", http.StatusOK, resp.StatusCode)
+	}
 }
