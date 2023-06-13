@@ -38,6 +38,8 @@ import (
 -   [DeepClone](#DeepClone)
 -   [CopyProperties](#CopyProperties)
 -   [ToInterface](#ToInterface)
+-   [Utf8ToGbk](#Utf8ToGbk)
+-   [GbkToUtf8](#GbkToUtf8)
 
 
 <div STYLE="page-break-after: always;"></div>
@@ -616,5 +618,72 @@ func main() {
 	// string
 	// abc
 	// true    
+}
+```
+
+### <span id="Utf8ToGbk">Utf8ToGbk</span>
+
+<p>Converts utf8 encoding data to GBK encoding data.</p>
+
+<b>Signature:</b>
+
+```go
+func Utf8ToGbk(bs []byte) ([]byte, error)
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/convertor"
+    "github.com/duke-git/lancet/validator"
+)
+
+func main() {
+    utf8Data := []byte("hello")
+    gbkData, _ := convertor.Utf8ToGbk(utf8Data)
+
+    fmt.Println(utf8.Valid(utf8Data))
+    fmt.Println(validator.IsGBK(gbkData))
+
+    // Output:
+    // true
+    // true   
+}
+```
+
+### <span id="GbkToUtf8">GbkToUtf8</span>
+
+<p>Converts GBK encoding data to utf8 encoding data.</p>
+
+<b>Signature:</b>
+
+```go
+func GbkToUtf8(bs []byte) ([]byte, error)
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/convertor"
+)
+
+func main() {
+    gbkData, _ := convertor.Utf8ToGbk([]byte("hello"))
+    utf8Data, _ := convertor.GbkToUtf8(gbkData)
+
+    fmt.Println(utf8.Valid(utf8Data))
+    fmt.Println(string(utf8Data))
+
+    // Output:
+    // true
+    // hello   
 }
 ```

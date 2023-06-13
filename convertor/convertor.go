@@ -11,11 +11,15 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"io"
 	"math"
 	"reflect"
 	"regexp"
 	"strconv"
 	"strings"
+
+	"golang.org/x/text/encoding/simplifiedchinese"
+	"golang.org/x/text/transform"
 )
 
 // ToBool convert string to a boolean
@@ -373,4 +377,18 @@ func ToInterface(v reflect.Value) (value interface{}, ok bool) {
 	default:
 		return nil, false
 	}
+}
+
+// Utf8ToGbk convert utf8 encoding data to GBK encoding data.
+func Utf8ToGbk(bs []byte) ([]byte, error) {
+	r := transform.NewReader(bytes.NewReader(bs), simplifiedchinese.GBK.NewEncoder())
+	b, err := io.ReadAll(r)
+	return b, err
+}
+
+// GbkToUtf8 convert GBK encoding data to utf8 encoding data.
+func GbkToUtf8(bs []byte) ([]byte, error) {
+	r := transform.NewReader(bytes.NewReader(bs), simplifiedchinese.GBK.NewDecoder())
+	b, err := io.ReadAll(r)
+	return b, err
 }
