@@ -21,6 +21,7 @@ import (
 <div STYLE="page-break-after: always;"></div>
 
 ## Index:
+
 -   [New](#New)
 -   [ToMap](#ToMap)
 -   [Fields](#Fields)
@@ -47,16 +48,16 @@ func New(value any, tagName ...string) *Struct
 package main
 
 import (
-	"github.com/duke-git/lancet/v2/structs"
+    "github.com/duke-git/lancet/v2/structs"
 )
 
 func main() {
-	type People struct {
-		Name string `json:"name"`
-	}
-	p1 := &People{Name: "11"}
-	s := structs.New(p1)
-	// to do something
+    type People struct {
+        Name string `json:"name"`
+    }
+    p1 := &People{Name: "11"}
+    s := structs.New(p1)
+    // to do something
 }
 ```
 
@@ -82,29 +83,29 @@ func ToMap(v any) (map[string]any, error)
 package main
 
 import (
-	"fmt"
-	"github.com/duke-git/lancet/v2/structs"
+    "fmt"
+    "github.com/duke-git/lancet/v2/structs"
 )
 
 func main() {
-	type People struct {
-		Name string `json:"name"`
-	}
-	p1 := &People{Name: "11"}
-	// use constructor function
-	s1 := structs.New(p1)
-	m1, _ := s1.ToMap()
+    type People struct {
+        Name string `json:"name"`
+    }
+    p1 := &People{Name: "11"}
+    // use constructor function
+    s1 := structs.New(p1)
+    m1, _ := s1.ToMap()
 
-	fmt.Println(m1)
-	
-	// use static function
-	m2, _ := structs.ToMap(p1)
-	
-	fmt.Println(m2)
-	
-	// Output: 
-	// map[name:11]
-	// map[name:11]
+    fmt.Println(m1)
+
+    // use static function
+    m2, _ := structs.ToMap(p1)
+
+    fmt.Println(m2)
+
+    // Output:
+    // map[name:11]
+    // map[name:11]
 }
 ```
 
@@ -124,22 +125,22 @@ func (s *Struct) Fields() []*Field
 package main
 
 import (
-	"fmt"
-	"github.com/duke-git/lancet/v2/structs"
+    "fmt"
+    "github.com/duke-git/lancet/v2/structs"
 )
 
 func main() {
-	type People struct {
-		Name string `json:"name"`
-	}
-	p1 := &People{Name: "11"}
-	s := structs.New(p1)
-	fields := s.Fields()
+    type People struct {
+        Name string `json:"name"`
+    }
+    p1 := &People{Name: "11"}
+    s := structs.New(p1)
+    fields := s.Fields()
 
-	fmt.Println(len(fields))
-	
-	// Output: 
-	// 1
+    fmt.Println(len(fields))
+
+    // Output:
+    // 1
 }
 ```
 
@@ -159,22 +160,22 @@ func (s *Struct) Field(name string) *Field
 package main
 
 import (
-	"fmt"
-	"github.com/duke-git/lancet/v2/structs"
+    "fmt"
+    "github.com/duke-git/lancet/v2/structs"
 )
 
 func main() {
-	type People struct {
-		Name string `json:"name"`
-	}
-	p1 := &People{Name: "11"}
-	s := structs.New(p1)
-	f := s.Field("Name")
+    type People struct {
+        Name string `json:"name"`
+    }
+    p1 := &People{Name: "11"}
+    s := structs.New(p1)
+    f := s.Field("Name")
 
-	fmt.Println(f.Value())
-	
-	// Output: 
-	// 11
+    fmt.Println(f.Value())
+
+    // Output:
+    // 11
 }
 ```
 
@@ -194,20 +195,20 @@ func (s *Struct) IsStruct() bool
 package main
 
 import (
-	"fmt"
-	"github.com/duke-git/lancet/v2/structs"
+    "fmt"
+    "github.com/duke-git/lancet/v2/structs"
 )
 
 func main() {
-	type People struct {
-		Name string `json:"name"`
-	}
-	p1 := &People{Name: "11"}
-	s := structs.New(p1)
+    type People struct {
+        Name string `json:"name"`
+    }
+    p1 := &People{Name: "11"}
+    s := structs.New(p1)
 
-	fmt.Println(s.IsStruct())
-	
-	// Output: 
-	// true
+    fmt.Println(s.IsStruct())
+
+    // Output:
+    // true
 }
 ```

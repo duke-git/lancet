@@ -1322,7 +1322,6 @@ func main() {
 }
 ```
 
-
 ### <span id="ContainsAll">ContainsAll</span>
 
 <p>Return true if target string contains all the substrings.</p>
@@ -1392,7 +1391,6 @@ func main() {
 }
 ```
 
-
 ### <span id="RemoveWhiteSpace">RemoveWhiteSpace</span>
 
 <p>Remove whitespace characters from a string. when set repalceAll is true removes all whitespace, false only replaces consecutive whitespace characters with one space.</p>
@@ -1412,16 +1410,16 @@ import (
 )
 
 func main() {
-    str := " hello   \r\n	\t   world"
+    str := " hello   \r\n    \t   world"
 
-	result1 := strutil.RemoveWhiteSpace(str, true)
-	result2 := strutil.RemoveWhiteSpace(str, false)
+    result1 := strutil.RemoveWhiteSpace(str, true)
+    result2 := strutil.RemoveWhiteSpace(str, false)
 
-	fmt.Println(result1)
-	fmt.Println(result2)
+    fmt.Println(result1)
+    fmt.Println(result2)
 
-	// Output:
-	// helloworld
-	// hello world
+    // Output:
+    // helloworld
+    // hello world
 }
 ```

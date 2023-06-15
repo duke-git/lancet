@@ -896,18 +896,18 @@ import (
 func main() {
     nums := []int{1, 2, 3, 4, 5}
 
-	isEven := func(i, num int) bool {
-		return num%2 == 0
-	}
+    isEven := func(i, num int) bool {
+        return num%2 == 0
+    }
 
-	result, ok := slice.FindBy(nums, isEven)
+    result, ok := slice.FindBy(nums, isEven)
 
-	fmt.Println(result)
-	fmt.Println(ok)
+    fmt.Println(result)
+    fmt.Println(ok)
 
-	// Output:
-	// 2
-	// true
+    // Output:
+    // 2
+    // true
 }
 ```
 
@@ -968,18 +968,18 @@ import (
 func main() {
     nums := []int{1, 2, 3, 4, 5}
 
-	isEven := func(i, num int) bool {
-		return num%2 == 0
-	}
+    isEven := func(i, num int) bool {
+        return num%2 == 0
+    }
 
-	result, ok := slice.FindLastBy(nums, isEven)
+    result, ok := slice.FindLastBy(nums, isEven)
 
-	fmt.Println(result)
-	fmt.Println(ok)
+    fmt.Println(result)
+    fmt.Println(ok)
 
-	// Output:
-	// 4
-	// true
+    // Output:
+    // 4
+    // true
 }
 ```
 

@@ -1409,16 +1409,16 @@ import (
 )
 
 func main() {
-    str := " hello   \r\n	\t   world"
+    str := " hello   \r\n    \t   world"
 
-	result1 := strutil.RemoveWhiteSpace(str, true)
-	result2 := strutil.RemoveWhiteSpace(str, false)
+    result1 := strutil.RemoveWhiteSpace(str, true)
+    result2 := strutil.RemoveWhiteSpace(str, false)
 
-	fmt.Println(result1)
-	fmt.Println(result2)
+    fmt.Println(result1)
+    fmt.Println(result2)
 
-	// Output:
-	// helloworld
-	// hello world
+    // Output:
+    // helloworld
+    // hello world
 }
 ```

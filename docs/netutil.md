@@ -694,15 +694,15 @@ func main() {
     header := map[string]string{
         "Content-Type": "application/x-www-form-urlencoded",
     }
-    
+
     postData := url.Values{}
-	postData.Add("userId", "1")
-	postData.Add("title", "TestToDo")
+    postData.Add("userId", "1")
+    postData.Add("title", "TestToDo")
 
     resp, err := netutil.HttpPost(apiUrl, header, nil, postData)
-	if err != nil {
-		log.Fatal(err)
-	}
+    if err != nil {
+        log.Fatal(err)
+    }
 
     body, _ := ioutil.ReadAll(resp.Body)
     fmt.Println(body)

@@ -689,14 +689,14 @@ import (
 func main() {
     original := stream.FromSlice([]int{3, 2, 1})
 
-	result, ok := original.FindLast()
+    result, ok := original.FindLast()
 
-	fmt.Println(result)
-	fmt.Println(ok)
+    fmt.Println(result)
+    fmt.Println(ok)
 
-	// Output:
-	// 1
-	// true
+    // Output:
+    // 1
+    // true
 }
 ```
 

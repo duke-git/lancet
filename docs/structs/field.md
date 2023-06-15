@@ -21,6 +21,7 @@ import (
 <div STYLE="page-break-after: always;"></div>
 
 ## Index:
+
 -   [Tag](#Tag)
 -   [Name](#Name)
 -   [Value](#Value)
@@ -57,24 +58,24 @@ func (f *Field) Tag() *Tag
 package main
 
 import (
-	"fmt"
-	"github.com/duke-git/lancet/v2/structs"
+    "fmt"
+    "github.com/duke-git/lancet/v2/structs"
 )
 
 func main() {
-	type Parent struct {
-		Name string `json:"name,omitempty"`
-	}
-	p1 := &Parent{"111"}
+    type Parent struct {
+        Name string `json:"name,omitempty"`
+    }
+    p1 := &Parent{"111"}
 
-	s := structs.New(p1)
-	n, _ := s.Field("Name")
-	tag := n.Tag()
+    s := structs.New(p1)
+    n, _ := s.Field("Name")
+    tag := n.Tag()
 
-	fmt.Println(tag.Name)
-	
-	// Output:
-	// name
+    fmt.Println(tag.Name)
+
+    // Output:
+    // name
 }
 ```
 
@@ -94,23 +95,23 @@ func (f *Field) Value() any
 package main
 
 import (
-	"fmt"
-	"github.com/duke-git/lancet/v2/structs"
+    "fmt"
+    "github.com/duke-git/lancet/v2/structs"
 )
 
 func main() {
-	type Parent struct {
-		Name string `json:"name,omitempty"`
-	}
-	p1 := &Parent{"111"}
+    type Parent struct {
+        Name string `json:"name,omitempty"`
+    }
+    p1 := &Parent{"111"}
 
-	s := structs.New(p1)
-	n, _ := s.Field("Name")
-	
-	fmt.Println(n.Value())
-	
-	// Output: 
-	// 111
+    s := structs.New(p1)
+    n, _ := s.Field("Name")
+
+    fmt.Println(n.Value())
+
+    // Output:
+    // 111
 }
 ```
 
@@ -130,32 +131,32 @@ func (f *Field) IsEmbedded() bool
 package main
 
 import (
-	"fmt"
-	"github.com/duke-git/lancet/v2/structs"
+    "fmt"
+    "github.com/duke-git/lancet/v2/structs"
 )
 
 func main() {
-	type Parent struct {
-		Name string
-	}
-	type Child struct {
-		Parent
-		Age int
-	}
-	c1 := &Child{}
-	c1.Name = "111"
-	c1.Age = 11
+    type Parent struct {
+        Name string
+    }
+    type Child struct {
+        Parent
+        Age int
+    }
+    c1 := &Child{}
+    c1.Name = "111"
+    c1.Age = 11
 
-	s := structs.New(c1)
-	n, _ := s.Field("Name")
-	a, _ := s.Field("Age")
-	
-	fmt.Println(n.IsEmbedded())
-	fmt.Println(a.IsEmbedded())
-	
-	// Output: 
-	// true
-	// false
+    s := structs.New(c1)
+    n, _ := s.Field("Name")
+    a, _ := s.Field("Age")
+
+    fmt.Println(n.IsEmbedded())
+    fmt.Println(a.IsEmbedded())
+
+    // Output:
+    // true
+    // false
 }
 ```
 
@@ -175,26 +176,26 @@ func (f *Field) IsExported() bool
 package main
 
 import (
-	"fmt"
-	"github.com/duke-git/lancet/v2/structs"
+    "fmt"
+    "github.com/duke-git/lancet/v2/structs"
 )
 
 func main() {
-	type Parent struct {
-		Name string
-		age  int
-	}
-	p1 := &Parent{Name: "11", age: 11}
-	s := structs.New(p1)
-	n, _ := s.Field("Name")
-	a, _ := s.Field("age")
-	
-	fmt.Println(n.IsExported())
-	fmt.Println(a.IsExported())
-	
-	// Output: 
-	// true
-	// false
+    type Parent struct {
+        Name string
+        age  int
+    }
+    p1 := &Parent{Name: "11", age: 11}
+    s := structs.New(p1)
+    n, _ := s.Field("Name")
+    a, _ := s.Field("age")
+
+    fmt.Println(n.IsExported())
+    fmt.Println(a.IsExported())
+
+    // Output:
+    // true
+    // false
 }
 ```
 
@@ -214,26 +215,26 @@ func (f *Field) IsZero() bool
 package main
 
 import (
-	"fmt"
-	"github.com/duke-git/lancet/v2/structs"
+    "fmt"
+    "github.com/duke-git/lancet/v2/structs"
 )
 
 func main() {
-	type Parent struct {
-		Name string
-		Age  int
-	}
-	p1 := &Parent{Age: 11}
-	s := structs.New(p1)
-	n, _ := s.Field("Name")
-	a, _ := s.Field("Age")
-	
-	fmt.Println(n.IsZero())
-	fmt.Println(a.IsZero())
-	
-	// Output: 
-	// true
-	// false
+    type Parent struct {
+        Name string
+        Age  int
+    }
+    p1 := &Parent{Age: 11}
+    s := structs.New(p1)
+    n, _ := s.Field("Name")
+    a, _ := s.Field("Age")
+
+    fmt.Println(n.IsZero())
+    fmt.Println(a.IsZero())
+
+    // Output:
+    // true
+    // false
 }
 ```
 
@@ -253,26 +254,26 @@ func (f *Field) Name() string
 package main
 
 import (
-	"fmt"
-	"github.com/duke-git/lancet/v2/structs"
+    "fmt"
+    "github.com/duke-git/lancet/v2/structs"
 )
 
 func main() {
-	type Parent struct {
-		Name string
-		Age  int
-	}
-	p1 := &Parent{Age: 11}
-	s := structs.New(p1)
-	n, _ := s.Field("Name")
-	a, _ := s.Field("Age")
-	
-	fmt.Println(n.Name())
-	fmt.Println(a.Name())
-	
-	// Output: 
-	// Name
-	// Age
+    type Parent struct {
+        Name string
+        Age  int
+    }
+    p1 := &Parent{Age: 11}
+    s := structs.New(p1)
+    n, _ := s.Field("Name")
+    a, _ := s.Field("Age")
+
+    fmt.Println(n.Name())
+    fmt.Println(a.Name())
+
+    // Output:
+    // Name
+    // Age
 }
 ```
 
@@ -292,26 +293,26 @@ func (f *Field) Kind() reflect.Kind
 package main
 
 import (
-	"fmt"
-	"github.com/duke-git/lancet/v2/structs"
+    "fmt"
+    "github.com/duke-git/lancet/v2/structs"
 )
 
 func main() {
-	type Parent struct {
-		Name string
-		Age  int
-	}
-	p1 := &Parent{Age: 11}
-	s := structs.New(p1)
-	n, _ := s.Field("Name")
-	a, _ := s.Field("Age")
-	
-	fmt.Println(n.Kind())
-	fmt.Println(a.Kind())
-	
-	// Output: 
-	// string
-	// int
+    type Parent struct {
+        Name string
+        Age  int
+    }
+    p1 := &Parent{Age: 11}
+    s := structs.New(p1)
+    n, _ := s.Field("Name")
+    a, _ := s.Field("Age")
+
+    fmt.Println(n.Kind())
+    fmt.Println(a.Kind())
+
+    // Output:
+    // string
+    // int
 }
 ```
 
@@ -331,23 +332,23 @@ func (f *Field) IsSlice() bool
 package main
 
 import (
-	"fmt"
-	"github.com/duke-git/lancet/v2/structs"
+    "fmt"
+    "github.com/duke-git/lancet/v2/structs"
 )
 
 func main() {
-	type Parent struct {
-		Name string
-		arr  []int
-	}
+    type Parent struct {
+        Name string
+        arr  []int
+    }
 
-	p1 := &Parent{arr: []int{1, 2, 3}}
-	s := structs.New(p1)
-	a, _ := s.Field("arr")
-	
-	fmt.Println(a.IsSlice())
-	
-	// Output: 
-	// true
+    p1 := &Parent{arr: []int{1, 2, 3}}
+    s := structs.New(p1)
+    a, _ := s.Field("arr")
+
+    fmt.Println(a.IsSlice())
+
+    // Output:
+    // true
 }
 ```

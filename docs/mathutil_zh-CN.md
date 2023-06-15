@@ -789,7 +789,6 @@ func main() {
 }
 ```
 
-
 ### <span id="Cos">Cos</span>
 
 <p>计算弧度的余弦值</p>
@@ -831,7 +830,6 @@ func main() {
     // 0
 }
 ```
-
 
 ### <span id="Sin">Sin</span>
 
@@ -897,17 +895,17 @@ import (
 
 func main() {
     result1 := mathutil.Log(8, 2)
-	result2 := mathutil.TruncRound(mathutil.Log(5, 2), 2)
-	result3 := mathutil.TruncRound(mathutil.Log(27, 3), 0)
+    result2 := mathutil.TruncRound(mathutil.Log(5, 2), 2)
+    result3 := mathutil.TruncRound(mathutil.Log(27, 3), 0)
 
-	fmt.Println(result1)
-	fmt.Println(result2)
-	fmt.Println(result3)
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
 
-	// Output:
-	// 3
-	// 2.32
-	// 3
+    // Output:
+    // 3
+    // 2.32
+    // 3
 }
 ```
 
