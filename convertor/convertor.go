@@ -82,33 +82,45 @@ func ToChar(s string) []string {
 
 // ToString convert value to string
 func ToString(value interface{}) string {
-	res := ""
 	if value == nil {
-		return res
+		return ""
 	}
 
-	v := reflect.ValueOf(value)
-
-	switch value.(type) {
-	case float32, float64:
-		res = strconv.FormatFloat(v.Float(), 'f', -1, 64)
-		return res
-	case int, int8, int16, int32, int64:
-		res = strconv.FormatInt(v.Int(), 10)
-		return res
-	case uint, uint8, uint16, uint32, uint64:
-		res = strconv.FormatUint(v.Uint(), 10)
-		return res
+	switch val := value.(type) {
+	case float32:
+		return strconv.FormatFloat(float64(val), 'f', -1, 32)
+	case float64:
+		return strconv.FormatFloat(val, 'f', -1, 64)
+	case int:
+		return strconv.FormatInt(int64(val), 10)
+	case int8:
+		return strconv.FormatInt(int64(val), 10)
+	case int16:
+		return strconv.FormatInt(int64(val), 10)
+	case int32:
+		return strconv.FormatInt(int64(val), 10)
+	case int64:
+		return strconv.FormatInt(val, 10)
+	case uint:
+		return strconv.FormatUint(uint64(val), 10)
+	case uint8:
+		return strconv.FormatUint(uint64(val), 10)
+	case uint16:
+		return strconv.FormatUint(uint64(val), 10)
+	case uint32:
+		return strconv.FormatUint(uint64(val), 10)
+	case uint64:
+		return strconv.FormatUint(val, 10)
 	case string:
-		res = v.String()
-		return res
+		return val
 	case []byte:
-		res = string(v.Bytes())
-		return res
+		return string(val)
 	default:
-		newValue, _ := json.Marshal(value)
-		res = string(newValue)
-		return res
+		b, err := json.Marshal(val)
+		if err != nil {
+			return ""
+		}
+		return string(b)
 	}
 }
 
