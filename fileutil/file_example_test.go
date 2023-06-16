@@ -224,6 +224,30 @@ func ExampleUnZip() {
 	// application/octet-stream
 }
 
+func ExampleZipAppendEntry() {
+	zipFile := "./test.zip"
+	CopyFile("./testdata/file.go.zip", zipFile)
+
+	ZipAppendEntry("./testdata", zipFile)
+
+	unZipPath := "./unzip"
+	UnZip(zipFile, unZipPath)
+
+	fmt.Println(IsExist("./unzip/file.go"))
+	fmt.Println(IsExist("./unzip/testdata/file.go.zip"))
+	fmt.Println(IsExist("./unzip/testdata/test.csv"))
+	fmt.Println(IsExist("./unzip/testdata/test.txt"))
+
+	os.Remove(zipFile)
+	os.RemoveAll(unZipPath)
+
+	// Output:
+	// true
+	// true
+	// true
+	// true
+}
+
 func ExampleIsZipFile() {
 	result1 := IsZipFile("./file.go")
 	result2 := IsZipFile("./testdata/file.go.zip")
