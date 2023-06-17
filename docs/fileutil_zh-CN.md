@@ -37,6 +37,7 @@ import (
 -   [ReadFileToString](#ReadFileToString)
 -   [ReadFileByLine](#ReadFileByLine)
 -   [Zip](#Zip)
+-   [ZipAppendEntry](#ZipAppendEntry)
 -   [UnZip](#UnZip)
 -   [IsZipFile](#IsZipFile)
 -   [FileSize](#FileSize)
@@ -476,6 +477,34 @@ func main() {
 }
 ```
 
+### <span id="ZipAppendEntry">ZipAppendEntry</span>
+
+<p>通过将单个文件或目录追加到现有的zip文件</p>
+
+<b>函数签名:</b>
+
+```go
+func ZipAppendEntry(fpath string, destPath string) error
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/fileutil"
+)
+
+func main() {
+    err := fileutil.ZipAppendEntry("./test.txt", "./test.zip")
+    if err != nil {
+        fmt.Println(err)
+    }
+}
+```
+
 ### <span id="UnZip">UnZip</span>
 
 <p>zip解压缩文件并保存在目录中</p>
@@ -701,7 +730,6 @@ func main() {
 }
 ```
 
-
 ### <span id="WriteBytesToFile">WriteBytesToFile</span>
 
 <p>将bytes写入文件。</p>
@@ -750,7 +778,6 @@ func main() {
     // hello
 }
 ```
-
 
 ### <span id="WriteStringToFile">WriteStringToFile</span>
 

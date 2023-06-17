@@ -37,6 +37,7 @@ import (
 -   [ReadFileToString](#ReadFileToString)
 -   [ReadFileByLine](#ReadFileByLine)
 -   [Zip](#Zip)
+-   [ZipAppendEntry](#ZipAppendEntry)
 -   [UnZip](#UnZip)
 -   [IsZipFile](#IsZipFile)
 -   [FileSize](#FileSize)
@@ -470,6 +471,34 @@ import (
 
 func main() {
     err := fileutil.Zip("./test.txt", "./test.zip")
+    if err != nil {
+        fmt.Println(err)
+    }
+}
+```
+
+### <span id="ZipAppendEntry">ZipAppendEntry</span>
+
+<p>Append a single file or directory by fpath to an existing zip file.</p>
+
+<b>Signature:</b>
+
+```go
+func ZipAppendEntry(fpath string, destPath string) error 
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/fileutil"
+)
+
+func main() {
+    err := fileutil.ZipAppendEntry("./test.txt", "./test.zip")
     if err != nil {
         fmt.Println(err)
     }
