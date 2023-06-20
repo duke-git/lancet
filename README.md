@@ -284,8 +284,11 @@ import "github.com/duke-git/lancet/v2/convertor"
     [[play](https://go.dev/play/p/syqw0-WG7Xd)]
 -   **<big>Utf8ToGbk</big>** : converts utf8 encoding data to GBK encoding data
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#Utf8ToGbk)]
+    [[play](https://go.dev/play/p/9FlIaFLArIL)]
 -   **<big>GbkToUtf8</big>** : converts GBK encoding data to utf8 encoding data.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#GbkToUtf8)]
+    [[play](https://go.dev/play/p/OphmHCN_9u8)]
+
 
 ### 6. Cryptor package is for data encryption and decryption.
 
@@ -613,6 +616,7 @@ import "github.com/duke-git/lancet/v2/fileutil"
     [[play](https://go.dev/play/p/OExTkhGEd3_u)]
 -   **<big>WriteCsvFile</big>** : write content to target csv file.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#WriteCsvFile)]
+    [[play](https://go.dev/play/p/dAXm58Q5U1o)]
 -   **<big>WriteBytesToFile</big>** : write bytes to target file.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#WriteBytesToFile)]
     [[play](https://go.dev/play/p/s7QlDxMj3P8)]
@@ -835,8 +839,11 @@ import "github.com/duke-git/lancet/v2/mathutil"
     [[play](https://go.dev/play/p/TWMQlMywDsP)]
 -   **<big>Log</big>** : returns the logarithm of base n.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#Log)]
+    [[play](https://go.dev/play/p/_d4bi8oyhat)]
 -   **<big>Sum</big>** : return sum of passed numbers.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#Sum)]
+    [[play](https://go.dev/play/p/1To2ImAMJA7)]
+
 
 ### 14. Netutil package contains functions to get net information and send http request.
 
@@ -945,6 +952,8 @@ import "github.com/duke-git/lancet/v2/random"
     [[play](https://go.dev/play/p/_Z9SFmr28ft)]
 -   **<big>RandUniqueIntSlice</big>** : generate a slice of random int of length n that do not repeat.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/random.md#RandUniqueIntSlice)]
+    [[play](https://go.dev/play/p/uBkRSOz73Ec)]
+
 
 ### 16. Retry package is for executing a function repeatedly until it was successful or canceled by the context.
 

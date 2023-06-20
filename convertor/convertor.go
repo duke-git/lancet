@@ -380,7 +380,7 @@ func ToInterface(v reflect.Value) (value interface{}, ok bool) {
 }
 
 // Utf8ToGbk convert utf8 encoding data to GBK encoding data.
-// Play: todo
+// Play: https://go.dev/play/p/9FlIaFLArIL
 func Utf8ToGbk(bs []byte) ([]byte, error) {
 	r := transform.NewReader(bytes.NewReader(bs), simplifiedchinese.GBK.NewEncoder())
 	b, err := io.ReadAll(r)
@@ -388,7 +388,7 @@ func Utf8ToGbk(bs []byte) ([]byte, error) {
 }
 
 // GbkToUtf8 convert GBK encoding data to utf8 encoding data.
-// Play: todo
+// Play: https://go.dev/play/p/OphmHCN_9u8
 func GbkToUtf8(bs []byte) ([]byte, error) {
 	r := transform.NewReader(bytes.NewReader(bs), simplifiedchinese.GBK.NewDecoder())
 	b, err := io.ReadAll(r)

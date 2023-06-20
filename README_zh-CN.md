@@ -283,8 +283,11 @@ import "github.com/duke-git/lancet/v2/convertor"
     [[play](https://go.dev/play/p/syqw0-WG7Xd)]
 -   **<big>Utf8ToGbk</big>** : utf8 编码转 GBK 编码。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#Utf8ToGbk)]
+    [[play](https://go.dev/play/p/9FlIaFLArIL)]
 -   **<big>GbkToUtf8</big>** : GBK 编码转 utf8 编码。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#GbkToUtf8)]
+    [[play](https://go.dev/play/p/OphmHCN_9u8)]
+
 
 ### 6. cryptor 加密包支持数据加密和解密，获取 md5，hash 值。支持 base64, md5, hmac, aes, des, rsa。
 
@@ -614,6 +617,7 @@ import "github.com/duke-git/lancet/v2/fileutil"
     [[play](https://go.dev/play/p/OExTkhGEd3_u)]
 -   **<big>WriteCsvFile</big>** : 向 csv 文件写入内容。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil_zh-CN.md#WriteCsvFile)]
+    [[play](https://go.dev/play/p/dAXm58Q5U1o)]
 -   **<big>WriteBytesToFile</big>** : 将 bytes 写入文件。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil_zh-CN.md#WriteBytesToFile)]
     [[play](https://go.dev/play/p/s7QlDxMj3P8)]
@@ -835,8 +839,11 @@ import "github.com/duke-git/lancet/v2/mathutil"
     [[play](https://go.dev/play/p/TWMQlMywDsP)]
 -   **<big>Log</big>** : 计算以 base 为底 n 的对数。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#Log)]
+    [[play](https://go.dev/play/p/_d4bi8oyhat)]
 -   **<big>Sum</big>** : 求传入参数之和。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#Sum)]
+    [[play](https://go.dev/play/p/1To2ImAMJA7)]
+
 
 ### 14. netutil 网络包支持获取 ip 地址，发送 http 请求。
 
@@ -945,6 +952,8 @@ import "github.com/duke-git/lancet/v2/random"
     [[play](https://go.dev/play/p/_Z9SFmr28ft)]
 -   **<big>RandUniqueIntSlice</big>** : 生成一个不重复的长度为n的随机int切片。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/random_zh-CN.md#RandUniqueIntSlice)]
+    [[play](https://go.dev/play/p/uBkRSOz73Ec)]
+
 
 ### 16. retry 重试执行函数直到函数运行成功或被 context cancel。
 

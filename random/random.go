@@ -116,7 +116,7 @@ func UUIdV4() (string, error) {
 }
 
 // RandUniqueIntSlice generate a slice of random int of length n that do not repeat.
-// Play: todo
+// Play: https://go.dev/play/p/uBkRSOz73Ec
 func RandUniqueIntSlice(n, min, max int) []int {
 	if min > max {
 		return []int{}

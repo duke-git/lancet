@@ -714,18 +714,30 @@ import (
 )
 
 func main() {
+    fpath := "./test.csv"
+    fileutil.CreateFile(fpath)
+
+    f, _ := os.OpenFile(fpath, os.O_WRONLY|os.O_TRUNC, 0777)
+    defer f.Close()
+
     data := [][]string{
         {"Lili", "22", "female"},
         {"Jim", "21", "male"},
     }
-    err := WriteCsvFile("./testdata/test2.csv", data, false)
-    fmt.Println(err)
+    err := fileutil.WriteCsvFile(fpath, data, false)
 
-    content, _ := ReadCsvFile("./testdata/test2.csv")
+    if err != nil {
+        return
+    }
+
+    content, err := fileutil.ReadCsvFile(fpath)
+
+    if err != nil {
+        return
+    }
     fmt.Println(content)
 
     // Output:
-    // <nil>
     // [[Lili 22 female] [Jim 21 male]]
 }
 ```

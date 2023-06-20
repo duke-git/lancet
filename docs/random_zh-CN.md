@@ -268,7 +268,7 @@ import (
 )
 
 func main() {
-    result := RandUniqueIntSlice(5, 0, 10)
+    result := random.RandUniqueIntSlice(5, 0, 10)
     fmt.Println(result) //[0 4 7 1 5] (random)
 }
 ```

@@ -507,7 +507,7 @@ func ReadCsvFile(filepath string) ([][]string, error) {
 }
 
 // WriteCsvFile write content to target csv file.
-// Play: todo
+// Play: https://go.dev/play/p/dAXm58Q5U1o
 func WriteCsvFile(filepath string, records [][]string, append bool) error {
 	flag := os.O_RDWR | os.O_CREATE
 

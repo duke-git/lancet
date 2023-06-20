@@ -173,7 +173,7 @@ func MinBy[T any](slice []T, comparator func(T, T) bool) T {
 }
 
 // Sum return sum of passed numbers.
-// Play: todo
+// Play: https://go.dev/play/p/1To2ImAMJA7
 func Sum[T constraints.Integer | constraints.Float](numbers ...T) T {
 	var sum T
 
@@ -337,7 +337,7 @@ func Sin(radian float64, precision ...int) float64 {
 }
 
 // Log returns the logarithm of base n.
-// Play: todo
+// Play: https://go.dev/play/p/_d4bi8oyhat
 func Log(n, base float64) float64 {
 	return math.Log(n) / math.Log(base)
 }

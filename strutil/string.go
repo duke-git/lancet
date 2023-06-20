@@ -561,7 +561,7 @@ var (
 
 // RemoveWhiteSpace remove whitespace characters from a string.
 // when set repalceAll is true removes all whitespace, false only replaces consecutive whitespace characters with one space.
-// Play: todo
+// Play: https://go.dev/play/p/HzLC9vsTwkf
 func RemoveWhiteSpace(str string, repalceAll bool) string {
 	if repalceAll && str != "" {
 		return strings.Join(strings.Fields(str), "")
