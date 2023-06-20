@@ -99,7 +99,9 @@ import "github.com/duke-git/lancet/convertor"
 -   [DecodeByte](https://github.com/duke-git/lancet/blob/v1/docs/convertor_zh-CN.md#DecodeByte)
 -   [DeepClone](https://github.com/duke-git/lancet/blob/v1/docs/convertor_zh-CN.md#DeepClone)
 -   [CopyProperties](https://github.com/duke-git/lancet/blob/v1/docs/convertor_zh-CN.md#CopyProperties)
-
+-   [ToInterface](https://github.com/duke-git/lancet/blob/v1/docs/convertor_zh-CN.md#ToInterface)
+-   [Utf8ToGbk](https://github.com/duke-git/lancet/blob/v1/docs/convertor_zh-CN.md#Utf8ToGbk)
+-   [GbkToUtf8](https://github.com/duke-git/lancet/blob/v1/docs/convertor_zh-CN.md#GbkToUtf8)
 ### 3. cryptor 加密包支持数据加密和解密，获取 md5，hash 值。支持 base64, md5, hmac, aes, des, rsa。
 
 ```go
@@ -214,6 +216,7 @@ import "github.com/duke-git/lancet/fileutil"
 -   [MTime](https://github.com/duke-git/lancet/blob/v1/docs/fileutil_zh-CN.md#MTime)
 -   [Sha](https://github.com/duke-git/lancet/blob/v1/docs/fileutil_zh-CN.md#Sha)
 -   [ReadCsvFile](https://github.com/duke-git/lancet/blob/v1/docs/fileutil_zh-CN.md#ReadCsvFile)
+-   [WriteCsvFile](https://github.com/duke-git/lancet/blob/v1/docs/fileutil_zh-CN.md#WriteCsvFile)
 -   [WriteStringToFile](https://github.com/duke-git/lancet/blob/v1/docs/fileutil_zh-CN.md#WriteStringToFile)
 -   [WriteBytesToFile](https://github.com/duke-git/lancet/blob/v1/docs/fileutil_zh-CN.md#WriteBytesToFile)
 
@@ -274,7 +277,7 @@ import "github.com/duke-git/lancet/mathutil"
 -   [LCM](https://github.com/duke-git/lancet/blob/v1/docs/mathutil_zh-CN.md#LCM)
 -   [Cos](https://github.com/duke-git/lancet/blob/v1/docs/mathutil_zh-CN.md#Cos)
 -   [Sin](https://github.com/duke-git/lancet/blob/v1/docs/mathutil_zh-CN.md#Sin)
-
+-   [Log](https://github.com/duke-git/lancet/blob/v1/docs/mathutil_zh-CN.md#Log)
 ### 9. netutil 网络包支持获取 ip 地址，发送 http 请求。
 
 ```go
@@ -319,6 +322,7 @@ import "github.com/duke-git/lancet/random"
 -   [RandNumeral](https://github.com/duke-git/lancet/blob/v1/docs/random_zh-CN.md#RandNumeral)
 -   [RandNumeralOrLetter](https://github.com/duke-git/lancet/blob/v1/docs/random_zh-CN.md#RandNumeralOrLetter)
 -   [UUIdV4](https://github.com/duke-git/lancet/blob/v1/docs/random.md#UUIdV4)
+-   [RandUniqueIntSlice](https://github.com/duke-git/lancet/blob/v1/docs/random.md#RandUniqueIntSlice)
 
 ### 11. retry 重试执行函数直到函数运行成功或被 context cancel。
 
@@ -426,6 +430,7 @@ import "github.com/duke-git/lancet/strutil"
 -   [Trim](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#Trim)
 -   [SplitAndTrim](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#SplitAndTrim)
 -   [HideString](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#HideString)
+-   [RemoveWhiteSpace](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#RemoveWhiteSpace)
 
 ### 14. system 包含 os, runtime, shell command 相关函数。
 

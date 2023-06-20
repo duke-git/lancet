@@ -100,6 +100,9 @@ import "github.com/duke-git/lancet/convertor"
 -   [DecodeByte](https://github.com/duke-git/lancet/blob/v1/docs/convertor.md#DecodeByte)
 -   [DeepClone](https://github.com/duke-git/lancet/blob/v1/docs/convertor.md#DeepClone)
 -   [CopyProperties](https://github.com/duke-git/lancet/blob/v1/docs/convertor.md#CopyProperties)
+-   [ToInterface](https://github.com/duke-git/lancet/blob/v1/docs/convertor.md#ToInterface)
+-   [Utf8ToGbk](https://github.com/duke-git/lancet/blob/v1/docs/convertor.md#Utf8ToGbk)
+-   [GbkToUtf8](https://github.com/duke-git/lancet/blob/v1/docs/convertor.md#GbkToUtf8)
 
 ### 3. Cryptor package is for data encryption and decryption.
 
@@ -215,6 +218,7 @@ import "github.com/duke-git/lancet/fileutil"
 -   [MTime](https://github.com/duke-git/lancet/blob/v1/docs/fileutil.md#MTime)
 -   [Sha](https://github.com/duke-git/lancet/blob/v1/docs/fileutil.md#Sha)
 -   [ReadCsvFile](https://github.com/duke-git/lancet/blob/v1/docs/fileutil.md#ReadCsvFile)
+-   [WriteCsvFile](https://github.com/duke-git/lancet/blob/v1/docs/fileutil.md#WriteCsvFile)
 -   [WriteStringToFile](https://github.com/duke-git/lancet/blob/v1/docs/fileutil.md#WriteStringToFile)
 -   [WriteBytesToFile](https://github.com/duke-git/lancet/blob/v1/docs/fileutil.md#WriteBytesToFile)
 
@@ -275,6 +279,7 @@ import "github.com/duke-git/lancet/mathutil"
 -   [LCM](https://github.com/duke-git/lancet/blob/v1/docs/mathutil.md#LCM)
 -   [Cos](https://github.com/duke-git/lancet/blob/v1/docs/mathutil.md#Cos)
 -   [Sin](https://github.com/duke-git/lancet/blob/v1/docs/mathutil.md#Sin)
+-   [Log](https://github.com/duke-git/lancet/blob/v1/docs/mathutil.md#Log)
 
 ### 9. Netutil package contains functions to get net information and send http request.
 
@@ -320,6 +325,7 @@ import "github.com/duke-git/lancet/random"
 -   [RandNumeral](https://github.com/duke-git/lancet/blob/v1/docs/random.md#RandNumeral)
 -   [RandNumeralOrLetter](https://github.com/duke-git/lancet/blob/v1/docs/random.md#RandNumeralOrLetter)
 -   [UUIdV4](https://github.com/duke-git/lancet/blob/v1/docs/random.md#UUIdV4)
+-   [RandUniqueIntSlice](https://github.com/duke-git/lancet/blob/v1/docs/random.md#RandUniqueIntSlice)
 
 ### 11. Retry package is for executing a function repeatedly until it was successful or canceled by the context.
 
@@ -427,7 +433,7 @@ import "github.com/duke-git/lancet/strutil"
 -   [Trim](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#Trim)
 -   [SplitAndTrim](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#SplitAndTrim)
 -   [HideString](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#HideString)
-
+-   [RemoveWhiteSpace](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#RemoveWhiteSpace)
 ### 14. System package contain some functions about os, runtime, shell command.
 
 ```go
