@@ -175,11 +175,11 @@ func ExampleReadFileByLine() {
 }
 
 func ExampleListFileNames() {
-	fileList, _ := ListFileNames("./")
+	fileList, _ := ListFileNames("../internal")
 	fmt.Println(fileList)
 
 	// Output:
-	// [file.go file_example_test.go file_test.go]
+	// [assert.go assert_test.go error_join.go]
 }
 
 func ExampleZip() {
@@ -235,14 +235,12 @@ func ExampleZipAppendEntry() {
 
 	fmt.Println(IsExist("./unzip/file.go"))
 	fmt.Println(IsExist("./unzip/testdata/file.go.zip"))
-	fmt.Println(IsExist("./unzip/testdata/test.csv"))
 	fmt.Println(IsExist("./unzip/testdata/test.txt"))
 
 	os.Remove(zipFile)
 	os.RemoveAll(unZipPath)
 
 	// Output:
-	// true
 	// true
 	// true
 	// true

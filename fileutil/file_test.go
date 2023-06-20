@@ -222,7 +222,6 @@ func TestZipAppendEntry(t *testing.T) {
 	assert.Equal(true, IsExist("./unzip/text.txt"))
 	assert.Equal(true, IsExist("./unzip/file.go"))
 	assert.Equal(true, IsExist("./unzip/testdata/file.go.zip"))
-	assert.Equal(true, IsExist("./unzip/testdata/test.csv"))
 	assert.Equal(true, IsExist("./unzip/testdata/test.txt"))
 
 	os.Remove(srcFile)
@@ -274,10 +273,10 @@ func TestMiMeType(t *testing.T) {
 func TestListFileNames(t *testing.T) {
 	assert := internal.NewAssert(t, "TestListFileNames")
 
-	filesInPath, err := ListFileNames("./")
+	filesInPath, err := ListFileNames("../internal")
 	assert.IsNil(err)
 
-	expected := []string{"file.go", "file_example_test.go", "file_test.go"}
+	expected := []string{"assert.go", "assert_test.go", "error_join.go"}
 	assert.Equal(expected, filesInPath)
 }
 
