@@ -282,6 +282,10 @@ import "github.com/duke-git/lancet/v2/convertor"
 -   **<big>ToInterface</big>** : converts reflect value to its interface type.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#ToInterface)]
     [[play](https://go.dev/play/p/syqw0-WG7Xd)]
+-   **<big>Utf8ToGbk</big>** : converts utf8 encoding data to GBK encoding data
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#Utf8ToGbk)]
+-   **<big>GbkToUtf8</big>** : converts GBK encoding data to utf8 encoding data.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#GbkToUtf8)]
 
 ### 6. Cryptor package is for data encryption and decryption.
 
@@ -581,9 +585,11 @@ import "github.com/duke-git/lancet/v2/fileutil"
 -   **<big>ReadFileByLine</big>** : read file line by line, return string slice of file content.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#ReadFileByLine)]
     [[play](https://go.dev/play/p/svJP_7ZrBrD)]
--   **<big>Zip</big>** : create zip file.
+-   **<big>Zip</big>** : create a zip file of fpath, fpath could be a file or a directory.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#Zip)]
     [[play](https://go.dev/play/p/j-3sWBp8ik_P)]
+-   **<big>ZipAppendEntry</big>** : append a single file or directory by fpath to an existing zip file.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#ZipAppendEntry)]
 -   **<big>UnZip</big>** : unzip the zip file and save it to dest path.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#UnZip)]
     [[play](https://go.dev/play/p/g0w34kS7B8m)]
@@ -605,6 +611,8 @@ import "github.com/duke-git/lancet/v2/fileutil"
 -   **<big>ReadCsvFile</big>** : read file content into slice.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#ReadCsvFile)]
     [[play](https://go.dev/play/p/OExTkhGEd3_u)]
+-   **<big>WriteCsvFile</big>** : write content to target csv file.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#WriteCsvFile)]
 -   **<big>WriteBytesToFile</big>** : write bytes to target file.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#WriteBytesToFile)]
     [[play](https://go.dev/play/p/s7QlDxMj3P8)]
@@ -825,7 +833,10 @@ import "github.com/duke-git/lancet/v2/mathutil"
 -   **<big>Sin</big>** : return the sine of the radian argument.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#Sin)]
     [[play](https://go.dev/play/p/TWMQlMywDsP)]
-
+-   **<big>Log</big>** : returns the logarithm of base n.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#Log)]
+-   **<big>Sum</big>** : return sum of passed numbers.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#Sum)]
 
 ### 14. Netutil package contains functions to get net information and send http request.
 
@@ -932,6 +943,8 @@ import "github.com/duke-git/lancet/v2/random"
 -   **<big>UUIdV4</big>** : generate a random UUID of version 4 according to RFC 4122.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/random.md#UUIdV4)]
     [[play](https://go.dev/play/p/_Z9SFmr28ft)]
+-   **<big>RandUniqueIntSlice</big>** : generate a slice of random int of length n that do not repeat.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/random.md#RandUniqueIntSlice)]
 
 ### 16. Retry package is for executing a function repeatedly until it was successful or canceled by the context.
 
@@ -1405,7 +1418,8 @@ import "github.com/duke-git/lancet/v2/strutil"
 -   **<big>HideString</big>** : Hide some chars in source string with param `replaceChar`.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#HideString)]
     [[play](https://go.dev/play/p/pzbaIVCTreZ)]
-
+-   **<big>RemoveWhiteSpace</big>** : remove whitespace characters from a string.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#RemoveWhiteSpace)]
 
 ### 21. System package contain some functions about os, runtime, shell command.
 

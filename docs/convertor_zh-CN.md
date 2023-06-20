@@ -41,6 +41,8 @@ import (
 -   [DeepClone](#DeepClone)
 -   [CopyProperties](#CopyProperties)
 -   [ToInterface](#ToInterface)
+-   [Utf8ToGbk](#Utf8ToGbk)
+-   [GbkToUtf8](#GbkToUtf8)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -838,7 +840,7 @@ func main() {
 
     // Output:
     // true
-    // true   
+    // true
 }
 ```
 
@@ -871,6 +873,6 @@ func main() {
 
     // Output:
     // true
-    // hello   
+    // hello
 }
 ```

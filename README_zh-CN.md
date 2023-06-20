@@ -25,7 +25,7 @@
 -   👏 全面、高效、可复用。
 -   💪 500+常用 go 工具函数，支持 string、slice、datetime、net、crypt...
 -   💅 只依赖 go 标准库和 golang.org/x。
--   🌍 所有导出函数单元测试覆盖率100%。
+-   🌍 所有导出函数单元测试覆盖率 100%。
 
 ## 安装
 
@@ -281,6 +281,10 @@ import "github.com/duke-git/lancet/v2/convertor"
 -   **<big>ToInterface</big>** : 将反射值转换成对应的 interface 类型。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#ToInterface)]
     [[play](https://go.dev/play/p/syqw0-WG7Xd)]
+-   **<big>Utf8ToGbk</big>** : utf8 编码转 GBK 编码。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#Utf8ToGbk)]
+-   **<big>GbkToUtf8</big>** : GBK 编码转 utf8 编码。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#GbkToUtf8)]
 
 ### 6. cryptor 加密包支持数据加密和解密，获取 md5，hash 值。支持 base64, md5, hmac, aes, des, rsa。
 
@@ -503,7 +507,6 @@ import "github.com/duke-git/lancet/v2/datetime"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#IsWeekend)]
     [[play](https://go.dev/play/p/cupRM5aZOIY)]
 
-
 ### 8. datastructure 包含一些普通的数据结构实现。例如：list, linklist, stack, queue, set, tree, graph.
 
 ```go
@@ -586,6 +589,8 @@ import "github.com/duke-git/lancet/v2/fileutil"
 -   **<big>Zip</big>** : zip 压缩文件, 参数可以是文件或目录。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil_zh-CN.md#Zip)]
     [[play](https://go.dev/play/p/j-3sWBp8ik_P)]
+-   **<big>ZipAppendEntry</big>** : 通过将单个文件或目录追加到现有的 zip 文件。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil_zh-CN.md#ZipAppendEntry)]
 -   **<big>UnZip</big>** : zip 解压缩文件并保存在目录中。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil_zh-CN.md#UnZip)]
     [[play](https://go.dev/play/p/g0w34kS7B8m)]
@@ -607,14 +612,14 @@ import "github.com/duke-git/lancet/v2/fileutil"
 -   **<big>ReadCsvFile</big>** : 读取 csv 文件内容到切片。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil_zh-CN.md#ReadCsvFile)]
     [[play](https://go.dev/play/p/OExTkhGEd3_u)]
--   **<big>WriteBytesToFile</big>** : 将bytes写入文件。
+-   **<big>WriteCsvFile</big>** : 向 csv 文件写入内容。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil_zh-CN.md#WriteCsvFile)]
+-   **<big>WriteBytesToFile</big>** : 将 bytes 写入文件。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil_zh-CN.md#WriteBytesToFile)]
     [[play](https://go.dev/play/p/s7QlDxMj3P8)]
 -   **<big>WriteStringToFile</big>** : 将字符串写入文件。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil_zh-CN.md#WriteStringToFile)]
     [[play](https://go.dev/play/p/GhLS6d8lH_g)]
-    
-
 
 ### 10. formatter 格式化器包含一些数据格式化处理方法。
 
@@ -828,7 +833,10 @@ import "github.com/duke-git/lancet/v2/mathutil"
 -   **<big>Sin</big>** : 计算弧度的正弦值。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#Sin)]
     [[play](https://go.dev/play/p/TWMQlMywDsP)]
-
+-   **<big>Log</big>** : 计算以 base 为底 n 的对数。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#Log)]
+-   **<big>Sum</big>** : 求传入参数之和。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#Sum)]
 
 ### 14. netutil 网络包支持获取 ip 地址，发送 http 请求。
 
@@ -935,6 +943,8 @@ import "github.com/duke-git/lancet/v2/random"
 -   **<big>UUIdV4</big>** : 生成 UUID v4 字符串。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/random_zh-CN.md#UUIdV4)]
     [[play](https://go.dev/play/p/_Z9SFmr28ft)]
+-   **<big>RandUniqueIntSlice</big>** : 生成一个不重复的长度为n的随机int切片。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/random_zh-CN.md#RandUniqueIntSlice)]
 
 ### 16. retry 重试执行函数直到函数运行成功或被 context cancel。
 
@@ -1411,7 +1421,8 @@ import "github.com/duke-git/lancet/v2/strutil"
 -   **<big>HideString</big>** : 隐藏源字符串中的一些字符。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#HideString)]
     [[play](https://go.dev/play/p/pzbaIVCTreZ)]
-
+-   **<big>RemoveWhiteSpace</big>** : 删除字符串中的空格。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#RemoveWhiteSpace)]
 
 ### 21. system 包含 os, runtime, shell command 的相关函数。
 
