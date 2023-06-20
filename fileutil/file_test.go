@@ -182,6 +182,44 @@ func TestZipAndUnZip(t *testing.T) {
 	os.RemoveAll(unZipPath)
 }
 
+func TestZipAppendEntry(t *testing.T) {
+	assert := internal.NewAssert(t, "TestZipAppendEntry")
+
+	zipFile := "./text.zip"
+	err := CopyFile("./testdata/file.go.zip", zipFile)
+	assert.IsNil(err)
+
+	srcFile := "./text.txt"
+	CreateFile(srcFile)
+
+	file, _ := os.OpenFile(srcFile, os.O_WRONLY|os.O_TRUNC, os.ModePerm)
+
+	_, err = file.WriteString("hello\nworld")
+	if err != nil {
+		t.Fail()
+	}
+	file.Close()
+
+	err = ZipAppendEntry(srcFile, zipFile)
+	assert.IsNil(err)
+
+	err = ZipAppendEntry("./testdata", zipFile)
+	assert.IsNil(err)
+
+	unZipPath := "./unzip"
+	err = UnZip(zipFile, unZipPath)
+	assert.IsNil(err)
+
+	assert.Equal(true, IsExist("./unzip/text.txt"))
+	assert.Equal(true, IsExist("./unzip/file.go"))
+	assert.Equal(true, IsExist("./unzip/testdata/file.go.zip"))
+	assert.Equal(true, IsExist("./unzip/testdata/test.txt"))
+
+	os.Remove(srcFile)
+	os.Remove(zipFile)
+	os.RemoveAll(unZipPath)
+}
+
 func TestFileMode(t *testing.T) {
 	assert := internal.NewAssert(t, "TestFileMode")
 

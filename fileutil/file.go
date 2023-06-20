@@ -178,44 +178,7 @@ func Zip(fpath string, destPath string) error {
 	archive := zip.NewWriter(zipFile)
 	defer archive.Close()
 
-	filepath.Walk(fpath, func(path string, info os.FileInfo, err error) error {
-		if err != nil {
-			return err
-		}
-
-		header, err := zip.FileInfoHeader(info)
-		if err != nil {
-			return err
-		}
-
-		header.Name = strings.TrimPrefix(path, filepath.Dir(fpath)+"/")
-
-		if info.IsDir() {
-			header.Name += "/"
-		} else {
-			header.Method = zip.Deflate
-		}
-
-		writer, err := archive.CreateHeader(header)
-		if err != nil {
-			return err
-		}
-
-		if !info.IsDir() {
-			file, err := os.Open(path)
-			if err != nil {
-				return err
-			}
-			defer file.Close()
-			_, err = io.Copy(writer, file)
-			if err != nil {
-				return err
-			}
-		}
-		return nil
-	})
-
-	return nil
+	return addFileToArchive(fpath, archive)
 }
 
 // UnZip unzip the file and save it to destPath
@@ -258,6 +221,99 @@ func UnZip(zipFile string, destPath string) error {
 		}
 	}
 	return nil
+}
+
+// ZipAppendEntry append a single file or directory by fpath to an existing zip file.
+// Play: https://go.dev/play/p/cxvaT8TRNQp
+func ZipAppendEntry(fpath string, destPath string) error {
+	tempFile, err := os.CreateTemp("", "temp.zip")
+	if err != nil {
+		return err
+	}
+	defer os.Remove(tempFile.Name())
+
+	zipReader, err := zip.OpenReader(destPath)
+	if err != nil {
+		return err
+	}
+
+	archive := zip.NewWriter(tempFile)
+
+	for _, zipItem := range zipReader.File {
+		zipItemReader, err := zipItem.Open()
+		if err != nil {
+			return err
+		}
+		header, err := zip.FileInfoHeader(zipItem.FileInfo())
+		if err != nil {
+			return err
+		}
+		header.Name = zipItem.Name
+		targetItem, err := archive.CreateHeader(header)
+		if err != nil {
+			return err
+		}
+		_, err = io.Copy(targetItem, zipItemReader)
+		if err != nil {
+			return err
+		}
+	}
+
+	err = addFileToArchive(fpath, archive)
+
+	if err != nil {
+		return err
+	}
+
+	err = zipReader.Close()
+	if err != nil {
+		return err
+	}
+	err = archive.Close()
+	if err != nil {
+		return err
+	}
+	err = tempFile.Close()
+	if err != nil {
+		return err
+	}
+
+	return CopyFile(tempFile.Name(), destPath)
+}
+
+func addFileToArchive(fpath string, archive *zip.Writer) error {
+	err := filepath.Walk(fpath, func(path string, info os.FileInfo, err error) error {
+		if err != nil {
+			return err
+		}
+
+		header, err := zip.FileInfoHeader(info)
+		if err != nil {
+			return err
+		}
+
+		header.Name = strings.TrimPrefix(path, filepath.Dir(fpath)+"/")
+
+		if info.IsDir() {
+			header.Name += "/"
+		} else {
+			header.Method = zip.Deflate
+			writer, err := archive.CreateHeader(header)
+			if err != nil {
+				return err
+			}
+			file, err := os.Open(path)
+			if err != nil {
+				return err
+			}
+			defer file.Close()
+			if _, err := io.Copy(writer, file); err != nil {
+				return err
+			}
+		}
+		return nil
+	})
+	return err
 }
 
 func safeFilepathJoin(path1, path2 string) (string, error) {

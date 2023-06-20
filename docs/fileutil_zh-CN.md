@@ -30,13 +30,14 @@ import (
 -   [MiMeType](#MiMeType)
 -   [IsExist](#IsExist)
 -   [IsLink](#IsLink)
--   [IsDir](#IsDir)
+-   [IsDir](#IsDir)画
 -   [ListFileNames](#ListFileNames)
 -   [RemoveFile](#RemoveFile)
 -   [ReadFileToString](#ReadFileToString)
 -   [ReadFileByLine](#ReadFileByLine)
 -   [Zip](#Zip)
 -   [UnZip](#UnZip)
+-   [ZipAppendEntry](#ZipAppendEntry)
 -   [CurrentPath](#CurrentPath)
 -   [IsZipFile](#IsZipFile)
 -   [FileSize](#FileSize)
@@ -472,6 +473,34 @@ import (
 
 func main() {
     err := fileutil.Zip("./test.zip", "./unzip/test.txt")
+    if err != nil {
+        fmt.Println(err)
+    }
+}
+```
+
+### <span id="ZipAppendEntry">ZipAppendEntry</span>
+
+<p>通过将单个文件或目录追加到现有的zip文件</p>
+
+<b>函数签名:</b>
+
+```go
+func ZipAppendEntry(fpath string, destPath string) error
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/fileutil"
+)
+
+func main() {
+    err := fileutil.ZipAppendEntry("./test.txt", "./test.zip")
     if err != nil {
         fmt.Println(err)
     }
