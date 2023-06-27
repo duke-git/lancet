@@ -46,6 +46,8 @@ import (
 -   [Sin](#Sin)
 -   [Log](#Log)
 -   [Sum](#Sum)
+-   [Abs](#Abs)
+
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -941,5 +943,41 @@ func main() {
     // Output:
     // 3
     // 1.1
+}
+```
+
+### <span id="Abs">Abs</span>
+
+<p>Returns the absolute value of x.</p>
+
+<b>Signature:</b>
+
+```go
+func Abs[T constraints.Integer | constraints.Float](x T) T
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/mathutil"
+)
+
+func main() {
+    result1 := Abs(-1)
+	result2 := Abs(-0.1)
+	result3 := Abs(float32(0.2))
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+
+	// Output:
+	// 1
+	// 0.1
+	// 0.2
 }
 ```

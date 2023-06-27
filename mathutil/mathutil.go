@@ -341,3 +341,13 @@ func Sin(radian float64, precision ...int) float64 {
 func Log(n, base float64) float64 {
 	return math.Log(n) / math.Log(base)
 }
+
+// Abs returns the absolute value of x.
+// Play: todo
+func Abs[T constraints.Integer | constraints.Float](x T) T {
+	if x < 0 {
+		return (-x)
+	}
+
+	return x
+}

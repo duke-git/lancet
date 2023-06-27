@@ -285,3 +285,16 @@ func TestLog(t *testing.T) {
 	assert.EqualValues(3, TruncRound(Log(27, 3), 0))
 	assert.EqualValues(2.32, TruncRound(Log(5, 2), 2))
 }
+
+func TestAbs(t *testing.T) {
+	assert := internal.NewAssert(t, "TestAbs")
+
+	assert.Equal(0, Abs(0))
+	assert.Equal(1, Abs(-1))
+
+	assert.Equal(0.1, Abs(-0.1))
+
+	assert.Equal(int64(1), Abs(int64(-1)))
+	assert.Equal(float32(1), Abs(float32(-1)))
+
+}

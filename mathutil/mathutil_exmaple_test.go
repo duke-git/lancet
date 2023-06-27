@@ -389,3 +389,18 @@ func ExampleLog() {
 	// 2.32
 	// 3
 }
+
+func ExampleAbs() {
+	result1 := Abs(-1)
+	result2 := Abs(-0.1)
+	result3 := Abs(float32(0.2))
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+
+	// Output:
+	// 1
+	// 0.1
+	// 0.2
+}
