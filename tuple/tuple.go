@@ -41,6 +41,22 @@ func Zip2[A any, B any](a []A, b []B) []Tuple2[A, B] {
 	return tuples
 }
 
+// Unzip2 creates a group of slice from a slice of Tuple2.
+// Play: todo
+func Unzip2[A any, B any](tuples []Tuple2[A, B]) ([]A, []B) {
+	size := len(tuples)
+
+	r1 := make([]A, size)
+	r2 := make([]B, size)
+
+	for i, t := range tuples {
+		r1[i] = t.FieldA
+		r2[i] = t.FieldB
+	}
+
+	return r1, r2
+}
+
 // Tuple3 represents a 3 elemnets tuple
 type Tuple3[A any, B any, C any] struct {
 	FieldA A
@@ -76,6 +92,24 @@ func Zip3[A any, B any, C any](a []A, b []B, c []C) []Tuple3[A, B, C] {
 	}
 
 	return tuples
+}
+
+// Unzip3 creates a group of slice from a slice of Tuple3.
+// Play: todo
+func Unzip3[A any, B any, C any](tuples []Tuple3[A, B, C]) ([]A, []B, []C) {
+	size := len(tuples)
+
+	r1 := make([]A, size)
+	r2 := make([]B, size)
+	r3 := make([]C, size)
+
+	for i, t := range tuples {
+		r1[i] = t.FieldA
+		r2[i] = t.FieldB
+		r3[i] = t.FieldC
+	}
+
+	return r1, r2, r3
 }
 
 // Tuple4 represents a 4 elemnets tuple
@@ -115,6 +149,26 @@ func Zip4[A any, B any, C any, D any](a []A, b []B, c []C, d []D) []Tuple4[A, B,
 	}
 
 	return tuples
+}
+
+// Unzip4 creates a group of slice from a slice of Tuple4.
+// Play: todo
+func Unzip4[A any, B any, C any, D any](tuples []Tuple4[A, B, C, D]) ([]A, []B, []C, []D) {
+	size := len(tuples)
+
+	r1 := make([]A, size)
+	r2 := make([]B, size)
+	r3 := make([]C, size)
+	r4 := make([]D, size)
+
+	for i, t := range tuples {
+		r1[i] = t.FieldA
+		r2[i] = t.FieldB
+		r3[i] = t.FieldC
+		r4[i] = t.FieldD
+	}
+
+	return r1, r2, r3, r4
 }
 
 // Tuple5 represents a 5 elemnets tuple
@@ -160,6 +214,28 @@ func Zip5[A any, B any, C any, D any, E any](a []A, b []B, c []C, d []D, e []E) 
 	return tuples
 }
 
+// Unzip5 creates a group of slice from a slice of Tuple5.
+// Play: todo
+func Unzip5[A any, B any, C any, D any, E any](tuples []Tuple5[A, B, C, D, E]) ([]A, []B, []C, []D, []E) {
+	size := len(tuples)
+
+	r1 := make([]A, size)
+	r2 := make([]B, size)
+	r3 := make([]C, size)
+	r4 := make([]D, size)
+	r5 := make([]E, size)
+
+	for i, t := range tuples {
+		r1[i] = t.FieldA
+		r2[i] = t.FieldB
+		r3[i] = t.FieldC
+		r4[i] = t.FieldD
+		r5[i] = t.FieldE
+	}
+
+	return r1, r2, r3, r4, r5
+}
+
 // Tuple6 represents a 6 elemnets tuple
 type Tuple6[A any, B any, C any, D any, E any, F any] struct {
 	FieldA A
@@ -203,6 +279,30 @@ func Zip6[A any, B any, C any, D any, E any, F any](a []A, b []B, c []C, d []D, 
 	}
 
 	return tuples
+}
+
+// Unzip6 creates a group of slice from a slice of Tuple6.
+// Play: todo
+func Unzip6[A any, B any, C any, D any, E any, F any](tuples []Tuple6[A, B, C, D, E, F]) ([]A, []B, []C, []D, []E, []F) {
+	size := len(tuples)
+
+	r1 := make([]A, size)
+	r2 := make([]B, size)
+	r3 := make([]C, size)
+	r4 := make([]D, size)
+	r5 := make([]E, size)
+	r6 := make([]F, size)
+
+	for i, t := range tuples {
+		r1[i] = t.FieldA
+		r2[i] = t.FieldB
+		r3[i] = t.FieldC
+		r4[i] = t.FieldD
+		r5[i] = t.FieldE
+		r6[i] = t.FieldF
+	}
+
+	return r1, r2, r3, r4, r5, r6
 }
 
 // Tuple7 represents a 7 elemnets tuple
@@ -251,6 +351,32 @@ func Zip7[A any, B any, C any, D any, E any, F any, G any](a []A, b []B, c []C, 
 	}
 
 	return tuples
+}
+
+// Unzip7 creates a group of slice from a slice of Tuple7.
+// Play: todo
+func Unzip7[A any, B any, C any, D any, E any, F any, G any](tuples []Tuple7[A, B, C, D, E, F, G]) ([]A, []B, []C, []D, []E, []F, []G) {
+	size := len(tuples)
+
+	r1 := make([]A, size)
+	r2 := make([]B, size)
+	r3 := make([]C, size)
+	r4 := make([]D, size)
+	r5 := make([]E, size)
+	r6 := make([]F, size)
+	r7 := make([]G, size)
+
+	for i, t := range tuples {
+		r1[i] = t.FieldA
+		r2[i] = t.FieldB
+		r3[i] = t.FieldC
+		r4[i] = t.FieldD
+		r5[i] = t.FieldE
+		r6[i] = t.FieldF
+		r7[i] = t.FieldG
+	}
+
+	return r1, r2, r3, r4, r5, r6, r7
 }
 
 // Tuple8 represents a 8 elemnets tuple
@@ -303,6 +429,34 @@ func Zip8[A any, B any, C any, D any, E any, F any, G any, H any](a []A, b []B, 
 	return tuples
 }
 
+// Unzip8 creates a group of slice from a slice of Tuple8.
+// Play: todo
+func Unzip8[A any, B any, C any, D any, E any, F any, G any, H any](tuples []Tuple8[A, B, C, D, E, F, G, H]) ([]A, []B, []C, []D, []E, []F, []G, []H) {
+	size := len(tuples)
+
+	r1 := make([]A, size)
+	r2 := make([]B, size)
+	r3 := make([]C, size)
+	r4 := make([]D, size)
+	r5 := make([]E, size)
+	r6 := make([]F, size)
+	r7 := make([]G, size)
+	r8 := make([]H, size)
+
+	for i, t := range tuples {
+		r1[i] = t.FieldA
+		r2[i] = t.FieldB
+		r3[i] = t.FieldC
+		r4[i] = t.FieldD
+		r5[i] = t.FieldE
+		r6[i] = t.FieldF
+		r7[i] = t.FieldG
+		r8[i] = t.FieldH
+	}
+
+	return r1, r2, r3, r4, r5, r6, r7, r8
+}
+
 // Tuple9 represents a 9 elemnets tuple
 type Tuple9[A any, B any, C any, D any, E any, F any, G any, H any, I any] struct {
 	FieldA A
@@ -353,6 +507,36 @@ func Zip9[A any, B any, C any, D any, E any, F any, G any, H any, I any](a []A, 
 	}
 
 	return tuples
+}
+
+// Unzip9 creates a group of slice from a slice of Tuple9.
+// Play: todo
+func Unzip9[A any, B any, C any, D any, E any, F any, G any, H any, I any](tuples []Tuple9[A, B, C, D, E, F, G, H, I]) ([]A, []B, []C, []D, []E, []F, []G, []H, []I) {
+	size := len(tuples)
+
+	r1 := make([]A, size)
+	r2 := make([]B, size)
+	r3 := make([]C, size)
+	r4 := make([]D, size)
+	r5 := make([]E, size)
+	r6 := make([]F, size)
+	r7 := make([]G, size)
+	r8 := make([]H, size)
+	r9 := make([]I, size)
+
+	for i, t := range tuples {
+		r1[i] = t.FieldA
+		r2[i] = t.FieldB
+		r3[i] = t.FieldC
+		r4[i] = t.FieldD
+		r5[i] = t.FieldE
+		r6[i] = t.FieldF
+		r7[i] = t.FieldG
+		r8[i] = t.FieldH
+		r9[i] = t.FieldI
+	}
+
+	return r1, r2, r3, r4, r5, r6, r7, r8, r9
 }
 
 // Tuple10 represents a 10 elemnets tuple
@@ -408,6 +592,38 @@ func Zip10[A any, B any, C any, D any, E any, F any, G any, H any, I any, J any]
 	}
 
 	return tuples
+}
+
+// Unzip10 creates a group of slice from a slice of Tuple10.
+// Play: todo
+func Unzip10[A any, B any, C any, D any, E any, F any, G any, H any, I any, J any](tuples []Tuple10[A, B, C, D, E, F, G, H, I, J]) ([]A, []B, []C, []D, []E, []F, []G, []H, []I, []J) {
+	size := len(tuples)
+
+	r1 := make([]A, size)
+	r2 := make([]B, size)
+	r3 := make([]C, size)
+	r4 := make([]D, size)
+	r5 := make([]E, size)
+	r6 := make([]F, size)
+	r7 := make([]G, size)
+	r8 := make([]H, size)
+	r9 := make([]I, size)
+	r10 := make([]J, size)
+
+	for i, t := range tuples {
+		r1[i] = t.FieldA
+		r2[i] = t.FieldB
+		r3[i] = t.FieldC
+		r4[i] = t.FieldD
+		r5[i] = t.FieldE
+		r6[i] = t.FieldF
+		r7[i] = t.FieldG
+		r8[i] = t.FieldH
+		r9[i] = t.FieldI
+		r10[i] = t.FieldJ
+	}
+
+	return r1, r2, r3, r4, r5, r6, r7, r8, r9, r10
 }
 
 func getByIndex[T any](slice []T, index int) (T, bool) {

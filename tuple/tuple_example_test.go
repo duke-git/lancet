@@ -13,20 +13,6 @@ func ExampleNewTuple2() {
 }
 
 func ExampleTuple2_Unbox() {
-	// type foo struct {
-	// 	A string
-	// }
-
-	// t2 := NewTuple2(1, 0.1)
-	// t3 := NewTuple3[int, float64, string](1, 0.1, "a")
-	// t4 := NewTuple4[int, float64, string, bool](1, 0.1, "a", true)
-	// t5 := NewTuple5[int, float64, string, bool, int64](1, 0.1, "a", true, 2)
-	// t6 := NewTuple6[int, float64, string, bool, int64, float32](1, 0.1, "a", true, 2, 2.2)
-	// t7 := NewTuple7[int, float64, string, bool, int64, float32, string](1, 0.1, "a", true, 2, 2.2, "b")
-	// t8 := NewTuple8[int, float64, string, bool, int64, float32, string, string](1, 0.1, "a", true, 2, 2.2, "b", "c")
-	// t9 := NewTuple9[int, float64, string, bool, int64, float32, string, string, map[string]int](1, 0.1, "a", true, 2, 2.2, "b", "c", map[string]int{"a": 1})
-	// t10 := NewTuple10[int, float64, string, bool, int64, float32, string, string, map[string]int, foo](1, 0.1, "a", true, 2, 2.2, "b", "c", map[string]int{"a": 1}, foo{A: "a"})
-
 	t := NewTuple2(1, 0.1)
 	v1, v2 := t.Unbox()
 	fmt.Printf("%v %v", v1, v2)
