@@ -22,6 +22,23 @@ func NewTuple2[A any, B any](a A, b B) Tuple2[A, B] {
 	return Tuple2[A, B]{FieldA: a, FieldB: b}
 }
 
+// Zip2 create a slice of Tuple2.
+// Play: todo
+func Zip2[A any, B any](a []A, b []B) []Tuple2[A, B] {
+	if len(a) != len(b) {
+		panic("slices must have same length")
+	}
+
+	size := len(a)
+	tuples := make([]Tuple2[A, B], size)
+
+	for i := 0; i < size; i++ {
+		tuples[i] = Tuple2[A, B]{FieldA: a[i], FieldB: b[i]}
+	}
+
+	return tuples
+}
+
 // Tuple3 represents a 3 elemnets tuple
 type Tuple3[A any, B any, C any] struct {
 	FieldA A
@@ -39,6 +56,23 @@ func (t Tuple3[A, B, C]) Unbox() (A, B, C) {
 // Play: todo
 func NewTuple3[A any, B any, C any](a A, b B, c C) Tuple3[A, B, C] {
 	return Tuple3[A, B, C]{FieldA: a, FieldB: b, FieldC: c}
+}
+
+// Zip3 create a slice of Tuple3. s
+// Play: todo
+func Zip3[A any, B any, C any](a []A, b []B) []Tuple2[A, B] {
+	if len(a) != len(b) {
+		panic("slices must have same length")
+	}
+
+	size := len(a)
+	tuples := make([]Tuple2[A, B], size)
+
+	for i := 0; i < size; i++ {
+		tuples[i] = Tuple2[A, B]{FieldA: a[i], FieldB: b[i]}
+	}
+
+	return tuples
 }
 
 // Tuple4 represents a 4 elemnets tuple
@@ -201,3 +235,7 @@ func (t Tuple10[A, B, C, D, E, F, G, H, I, J]) Unbox() (A, B, C, D, E, F, G, H, 
 func NewTuple10[A any, B any, C any, D any, E any, F any, G any, H any, I any, J any](a A, b B, c C, d D, e E, f F, g G, h H, i I, j J) Tuple10[A, B, C, D, E, F, G, H, I, J] {
 	return Tuple10[A, B, C, D, E, F, G, H, I, J]{FieldA: a, FieldB: b, FieldC: c, FieldD: d, FieldE: e, FieldF: f, FieldG: g, FieldH: h, FieldI: i, FieldJ: j}
 }
+
+// func mustBeSameLenght()  {
+
+// }
