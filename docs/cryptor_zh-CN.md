@@ -45,6 +45,7 @@ import (
 - [HmacSha256](#HmacSha256)
 - [HmacSha512](#HmacSha512)
 - [Md5String](#Md5String)
+- [Md5Byte](#Md5Byte)
 - [Md5File](#Md5File)
 - [Sha1](#Sha1)
 - [Sha256](#Sha256)
@@ -876,6 +877,35 @@ func main() {
 
     // Output:
     // 5d41402abc4b2a76b9719d911017c592
+}
+```
+
+### <span id="Md5Byte">Md5Byte</span>
+
+<p>获取byte slice的md5至。</p>
+
+<b>函数签名:</b>
+
+```go
+func Md5Byte(data []byte) string
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/cryptor"
+)
+
+func main() {
+    md5Str := cryptor.Md5Byte([]byte{'a'})
+	fmt.Println(md5Str)
+
+	// Output:
+	// 0cc175b9c0f1b6a831c399e269772661
 }
 ```
 

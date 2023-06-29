@@ -40,6 +40,14 @@ func Md5String(s string) string {
 	return hex.EncodeToString(h.Sum(nil))
 }
 
+// Md5String return the md5 string of byte slice.
+// Play: todo
+func Md5Byte(data []byte) string {
+	h := md5.New()
+	h.Write(data)
+	return hex.EncodeToString(h.Sum(nil))
+}
+
 // Md5File return the md5 value of file.
 func Md5File(filename string) (string, error) {
 	if fileInfo, err := os.Stat(filename); err != nil {

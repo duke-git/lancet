@@ -21,6 +21,12 @@ func TestMd5String(t *testing.T) {
 	assert.Equal("5d41402abc4b2a76b9719d911017c592", Md5String("hello"))
 }
 
+func TestMd5Byte(t *testing.T) {
+	assert := internal.NewAssert(t, "TestMd5Byte")
+	data := []byte{'a'}
+	assert.Equal("0cc175b9c0f1b6a831c399e269772661", Md5Byte(data))
+}
+
 func TestMd5File(t *testing.T) {
 	fileMd5, err := Md5File("./basic.go")
 	assert := internal.NewAssert(t, "TestMd5File")

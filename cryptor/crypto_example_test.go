@@ -366,21 +366,22 @@ func ExampleHmacSha512() {
 }
 
 func ExampleMd5String() {
-	str := "hello"
-
-	md5Str := Md5String(str)
-
+	md5Str := Md5String("hello")
 	fmt.Println(md5Str)
 
 	// Output:
 	// 5d41402abc4b2a76b9719d911017c592
 }
 
+func ExampleMd5Byte() {
+	md5Str := Md5Byte([]byte{'a'})
+	fmt.Println(md5Str)
+
+	// Output:
+	// 0cc175b9c0f1b6a831c399e269772661
+}
 func ExampleSha1() {
-	str := "hello"
-
-	result := Sha1(str)
-
+	result := Sha1("hello")
 	fmt.Println(result)
 
 	// Output:
@@ -388,10 +389,7 @@ func ExampleSha1() {
 }
 
 func ExampleSha256() {
-	str := "hello"
-
-	result := Sha256(str)
-
+	result := Sha256("hello")
 	fmt.Println(result)
 
 	// Output:
@@ -399,10 +397,7 @@ func ExampleSha256() {
 }
 
 func ExampleSha512() {
-	str := "hello"
-
-	result := Sha512(str)
-
+	result := Sha512("hello")
 	fmt.Println(result)
 
 	// Output:
