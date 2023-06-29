@@ -96,6 +96,18 @@ func GetNowDateTime() string {
 	return time.Now().Format("2006-01-02 15:04:05")
 }
 
+// GetTodayStartTime return the start time of today, format: yyyy-mm-dd 00:00:00.
+// Play: todo
+func GetTodayStartTime() string {
+	return time.Now().Format("2006-01-02") + " 00:00:00"
+}
+
+// GetTodayEndTime return the end time of today, format: yyyy-mm-dd 23:59:59.
+// Play: todo
+func GetTodayEndTime() string {
+	return time.Now().Format("2006-01-02") + " 23:59:59"
+}
+
 // GetZeroHourTimestamp return timestamp of zero hour (timestamp of 00:00).
 // Play: https://go.dev/play/p/QmL2oIaGE3q
 func GetZeroHourTimestamp() int64 {

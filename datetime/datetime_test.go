@@ -91,6 +91,18 @@ func TestGetNowDateTime(t *testing.T) {
 	assert.Equal(expected, GetNowDateTime())
 }
 
+func TestGetTodayStartTime(t *testing.T) {
+	assert := internal.NewAssert(t, "TestGetTodayStartTime")
+	expected := time.Now().Format("2006-01-02") + " 00:00:00"
+	assert.Equal(expected, GetTodayStartTime())
+}
+
+func TestGetTodayEndTime(t *testing.T) {
+	assert := internal.NewAssert(t, "TestGetTodayEndTime")
+	expected := time.Now().Format("2006-01-02") + " 23:59:59"
+	assert.Equal(expected, GetTodayEndTime())
+}
+
 func TestFormatTimeToStr(t *testing.T) {
 	assert := internal.NewAssert(t, "TestFormatTimeToStr")
 

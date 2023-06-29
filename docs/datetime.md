@@ -42,6 +42,8 @@ import (
 -   [GetNowDate](#GetNowDate)
 -   [GetNowTime](#GetNowTime)
 -   [GetNowDateTime](#GetNowDateTime)
+-   [GetTodayStartTime](#GetTodayStartTime)
+-   [GetTodayEndTime](#GetTodayEndTime)
 -   [GetZeroHourTimestamp](#GetZeroHourTimestamp)
 -   [GetNightTimestamp](#GetNightTimestamp)
 -   [FormatTimeToStr](#FormatTimeToStr)
@@ -643,14 +645,11 @@ package main
 
 import (
     "fmt"
-    "time"
     "github.com/duke-git/lancet/v2/datetime"
 )
 
 func main() {
-    now := time.Now()
     currentDate := datetime.GetNowDate()
-
     fmt.Println(currentDate)
 
     // Output:
@@ -675,14 +674,11 @@ package main
 
 import (
     "fmt"
-    "time"
     "github.com/duke-git/lancet/v2/datetime"
 )
 
 func main() {
-    now := time.Now()
     currentTime := datetime.GetNowTime()
-
     fmt.Println(currentTime) // 15:57:33
 
     // Output:
@@ -707,18 +703,73 @@ package main
 
 import (
     "fmt"
-    "time"
     "github.com/duke-git/lancet/v2/datetime"
 )
 
 func main() {
-    now := time.Now()
     current := datetime.GetNowDateTime()
-
     fmt.Println(current)
 
     // Output:
     // 2022-01-28 15:59:33
+}
+```
+
+### <span id="GetTodayStartTime">GetTodayStartTime</span>
+
+<p>Return the start time of today, format: yyyy-mm-dd 00:00:00.</p>
+
+<b>Signature:</b>
+
+```go
+func GetTodayStartTime() string
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/datetime"
+)
+
+func main() {
+    startTime := datetime.GetTodayStartTime()
+    fmt.Println(startTime)
+
+    // Output:
+    // 2023-06-29 00:00:00
+}
+```
+
+### <span id="GetTodayEndTime">GetTodayEndTime</span>
+
+<p>Return the end time of today, format: yyyy-mm-dd 23:59:59.</p>
+
+<b>Signature:</b>
+
+```go
+func GetTodayEndTime() string
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/datetime"
+)
+
+func main() {
+    endTime := datetime.GetTodayEndTime()
+    fmt.Println(endTime)
+
+    // Output:
+    // 2023-06-29 23:59:59
 }
 ```
 
@@ -739,14 +790,11 @@ package main
 
 import (
     "fmt"
-    "time"
     "github.com/duke-git/lancet/v2/datetime"
 )
 
 func main() {
-    now := time.Now()
     zeroTime := datetime.GetZeroHourTimestamp()
-
     fmt.Println(zeroTime)
 
     // Output:
@@ -771,14 +819,11 @@ package main
 
 import (
     "fmt"
-    "time"
     "github.com/duke-git/lancet/v2/datetime"
 )
 
 func main() {
-    now := time.Now()
     nightTime := datetime.GetNightTimestamp()
-
     fmt.Println(nightTime)
 
     // Output:
