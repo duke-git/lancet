@@ -11,6 +11,7 @@ import (
 )
 
 func TestTuples(t *testing.T) {
+	t.Parallel()
 	assert := internal.NewAssert(t, "TestTuples")
 
 	type foo struct {
@@ -39,6 +40,7 @@ func TestTuples(t *testing.T) {
 }
 
 func TestTuple_Unbox(t *testing.T) {
+	t.Parallel()
 	assert := internal.NewAssert(t, "TestTuple_Unbox")
 
 	type foo struct {
@@ -125,5 +127,69 @@ func TestTuple_Unbox(t *testing.T) {
 	assert.Equal("c", v8)
 	assert.Equal(map[string]int{"a": 1}, v9)
 	assert.Equal(foo{A: "a"}, v10)
+}
 
+func TestZip(t *testing.T) {
+	t.Parallel()
+	assert := internal.NewAssert(t, "TestZip")
+
+	r2 := Zip2(
+		[]int{1, 2},
+		[]string{"a", "b"},
+	)
+	assert.Equal(r2, []Tuple2[int, string]{
+		{FieldA: 1, FieldB: "a"},
+		{FieldA: 2, FieldB: "b"},
+	})
+
+	r3 := Zip3(
+		[]int{1, 2, 3},
+		[]string{"a", "b", "c"},
+		[]float64{0.1, 0.2, 0.3},
+	)
+	assert.Equal(r3, []Tuple3[int, string, float64]{
+		{FieldA: 1, FieldB: "a", FieldC: 0.1},
+		{FieldA: 2, FieldB: "b", FieldC: 0.2},
+		{FieldA: 3, FieldB: "c", FieldC: 0.3},
+	})
+
+	r4 := Zip4(
+		[]int{1, 2, 3, 4},
+		[]string{"a", "b", "c", "d"},
+		[]float64{0.1, 0.2, 0.3, 0.4},
+		[]bool{true, true, true, true},
+	)
+	assert.Equal(r4, []Tuple4[int, string, float64, bool]{
+		{FieldA: 1, FieldB: "a", FieldC: 0.1, FieldD: true},
+		{FieldA: 2, FieldB: "b", FieldC: 0.2, FieldD: true},
+		{FieldA: 3, FieldB: "c", FieldC: 0.3, FieldD: true},
+		{FieldA: 4, FieldB: "d", FieldC: 0.4, FieldD: true},
+	})
+
+	r5 := Zip5(
+		[]int{1, 2, 3, 4, 5},
+		[]string{"a", "b", "c", "d", "e"},
+		[]float64{0.1, 0.2, 0.3, 0.4, 0.5},
+		[]bool{true, true, true, true, true},
+		[]int{6, 7, 8, 9, 10},
+	)
+	assert.Equal(r5, []Tuple5[int, string, float64, bool, int]{
+		{FieldA: 1, FieldB: "a", FieldC: 0.1, FieldD: true, FieldE: 6},
+		{FieldA: 2, FieldB: "b", FieldC: 0.2, FieldD: true, FieldE: 7},
+		{FieldA: 3, FieldB: "c", FieldC: 0.3, FieldD: true, FieldE: 8},
+		{FieldA: 4, FieldB: "d", FieldC: 0.4, FieldD: true, FieldE: 9},
+		{FieldA: 5, FieldB: "e", FieldC: 0.5, FieldD: true, FieldE: 10},
+	})
+
+}
+
+func TestUnzip(t *testing.T) {
+	t.Parallel()
+	assert := internal.NewAssert(t, "TestUnzip")
+
+	r1, r2, r3 := Unzip3([]Tuple3[string, int, float64]{{FieldA: "a", FieldB: 1, FieldC: 0.1}, {FieldA: "b", FieldB: 2, FieldC: 0.2}})
+
+	assert.Equal(r1, []string{"a", "b"})
+	assert.Equal(r2, []int{1, 2})
+	assert.Equal(r3, []float64{0.1, 0.2})
 }
