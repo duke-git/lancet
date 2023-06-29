@@ -7,6 +7,8 @@ import (
 )
 
 func TestLinkedQueue_Enqueue(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestLinkedQueue_Enqueue")
 
 	queue := NewLinkedQueue[int]()
@@ -19,6 +21,8 @@ func TestLinkedQueue_Enqueue(t *testing.T) {
 }
 
 func TestLinkedQueue_Dequeue(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestLinkedQueue_DeQueue")
 
 	queue := NewLinkedQueue[int]()
@@ -35,6 +39,8 @@ func TestLinkedQueue_Dequeue(t *testing.T) {
 }
 
 func TestLinkedQueue_Front(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestLinkedQueue_Front")
 
 	queue := NewLinkedQueue[int]()
@@ -51,6 +57,8 @@ func TestLinkedQueue_Front(t *testing.T) {
 }
 
 func TestLinkedQueue_Back(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestLinkedQueue_Back")
 
 	queue := NewLinkedQueue[int]()
@@ -67,6 +75,8 @@ func TestLinkedQueue_Back(t *testing.T) {
 }
 
 func TestLinkedQueue_Clear(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestLinkedQueue_Back")
 
 	queue := NewLinkedQueue[int]()
@@ -82,10 +92,11 @@ func TestLinkedQueue_Clear(t *testing.T) {
 }
 
 func TestLinkedQueue_Contain(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestLinkedQueue_Contain")
 
 	queue := NewLinkedQueue[int]()
-
 	queue.Enqueue(1)
 	queue.Enqueue(2)
 	queue.Enqueue(3)

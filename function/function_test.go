@@ -11,6 +11,8 @@ import (
 )
 
 func TestAfter(t *testing.T) {
+	t.Parallel()
+
 	arr := []string{"a", "b"}
 	f := After(len(arr), func(i int) int {
 		fmt.Println("print done")
@@ -34,6 +36,8 @@ func TestAfter(t *testing.T) {
 }
 
 func TestBefore(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestBefore")
 
 	arr := []string{"a", "b", "c", "d", "e"}
@@ -57,6 +61,8 @@ func TestBefore(t *testing.T) {
 }
 
 func TestCurry(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestCurry")
 
 	add := func(a, b int) int {
@@ -71,6 +77,8 @@ func TestCurry(t *testing.T) {
 }
 
 func TestCompose(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestCompose")
 
 	toUpper := func(strs ...string) string {

@@ -7,6 +7,8 @@ import (
 )
 
 func TestCircularQueue_Enqueue(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestCircularQueue_Enqueue")
 
 	queue := NewCircularQueue[int](6)
@@ -34,6 +36,8 @@ func TestCircularQueue_Enqueue(t *testing.T) {
 }
 
 func TestCircularQueue_Dequeue(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestCircularQueue_DeQueue")
 
 	queue := NewCircularQueue[int](4)
@@ -60,6 +64,8 @@ func TestCircularQueue_Dequeue(t *testing.T) {
 }
 
 func TestCircularQueue_Front(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestCircularQueue_Front")
 
 	queue := NewCircularQueue[int](6)
@@ -80,6 +86,8 @@ func TestCircularQueue_Front(t *testing.T) {
 }
 
 func TestCircularQueue_Back(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestCircularQueue_Back")
 
 	queue := NewCircularQueue[int](3)
@@ -103,6 +111,8 @@ func TestCircularQueue_Back(t *testing.T) {
 }
 
 func TestCircularQueue_Contain(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestCircularQueue_Contain")
 
 	queue := NewCircularQueue[int](2)
@@ -114,6 +124,8 @@ func TestCircularQueue_Contain(t *testing.T) {
 }
 
 func TestCircularQueue_Clear(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestCircularQueue_Clear")
 
 	queue := NewCircularQueue[int](3)
@@ -132,6 +144,8 @@ func TestCircularQueue_Clear(t *testing.T) {
 }
 
 func TestCircularQueue_Data(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestCircularQueue_Data")
 
 	queue := NewCircularQueue[int](3)

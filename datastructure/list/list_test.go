@@ -7,6 +7,8 @@ import (
 )
 
 func TestListData(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestListData")
 
 	list := NewList([]int{1, 2, 3})
@@ -14,6 +16,8 @@ func TestListData(t *testing.T) {
 }
 
 func TestValueOf(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestValueOf")
 
 	list := NewList([]int{1, 2, 3})
@@ -26,6 +30,8 @@ func TestValueOf(t *testing.T) {
 }
 
 func TestIndexOf(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestIndexOf")
 
 	list := NewList([]int{1, 2, 3})
@@ -37,6 +43,8 @@ func TestIndexOf(t *testing.T) {
 }
 
 func TestIndexOfFunc(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestIndexOf")
 
 	list := NewList([]int{1, 2, 3})
@@ -48,6 +56,8 @@ func TestIndexOfFunc(t *testing.T) {
 }
 
 func TestLastIndexOf(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestIndexOf")
 
 	list := NewList([]int{1, 2, 3, 3, 3, 3, 4, 5, 6, 9})
@@ -65,6 +75,8 @@ func TestLastIndexOf(t *testing.T) {
 }
 
 func TestLastIndexOfFunc(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestIndexOf")
 
 	list := NewList([]int{1, 2, 3, 3, 3, 3, 4, 5, 6, 9})
@@ -82,6 +94,8 @@ func TestLastIndexOfFunc(t *testing.T) {
 }
 
 func TestContain(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestContain")
 
 	list := NewList([]int{1, 2, 3})
@@ -90,6 +104,8 @@ func TestContain(t *testing.T) {
 }
 
 func TestPush(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestPush")
 
 	list := NewList([]int{1, 2, 3})
@@ -99,6 +115,8 @@ func TestPush(t *testing.T) {
 }
 
 func TestInsertAtFirst(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestInsertAtFirst")
 
 	list := NewList([]int{1, 2, 3})
@@ -108,6 +126,8 @@ func TestInsertAtFirst(t *testing.T) {
 }
 
 func TestInsertAtLast(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestInsertAtLast")
 
 	list := NewList([]int{1, 2, 3})
@@ -117,6 +137,8 @@ func TestInsertAtLast(t *testing.T) {
 }
 
 func TestInsertAt(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestInsertAt")
 
 	list := NewList([]int{1, 2, 3})
@@ -135,6 +157,8 @@ func TestInsertAt(t *testing.T) {
 }
 
 func TestPopFirst(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestPopFirst")
 
 	list := NewList([]int{1, 2, 3})
@@ -150,6 +174,8 @@ func TestPopFirst(t *testing.T) {
 }
 
 func TestPopLast(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestPopLast")
 
 	list := NewList([]int{1, 2, 3})
@@ -165,6 +191,8 @@ func TestPopLast(t *testing.T) {
 }
 
 func TestDeleteAt(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestDeleteAt")
 
 	list := NewList([]int{1, 2, 3, 4})
@@ -183,6 +211,8 @@ func TestDeleteAt(t *testing.T) {
 }
 
 func TestUpdateAt(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestUpdateAt")
 
 	list := NewList([]int{1, 2, 3, 4})
@@ -201,6 +231,8 @@ func TestUpdateAt(t *testing.T) {
 }
 
 func TestEqual(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestEqual")
 
 	list1 := NewList([]int{1, 2, 3, 4})
@@ -212,6 +244,8 @@ func TestEqual(t *testing.T) {
 }
 
 func TestIsEmpty(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestIsEmpty")
 
 	list1 := NewList([]int{1, 2, 3, 4})
@@ -222,6 +256,8 @@ func TestIsEmpty(t *testing.T) {
 }
 
 func TestIsClear(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestIsClear")
 
 	list1 := NewList([]int{1, 2, 3, 4})
@@ -232,6 +268,8 @@ func TestIsClear(t *testing.T) {
 }
 
 func TestClone(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestClone")
 
 	list1 := NewList([]int{1, 2, 3, 4})
@@ -241,6 +279,8 @@ func TestClone(t *testing.T) {
 }
 
 func TestMerge(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestMerge")
 
 	list1 := NewList([]int{1, 2, 3, 4})
@@ -252,6 +292,8 @@ func TestMerge(t *testing.T) {
 }
 
 func TestSize(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestSize")
 
 	list := NewList([]int{1, 2, 3, 4})
@@ -262,6 +304,8 @@ func TestSize(t *testing.T) {
 }
 
 func TestCap(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestCap")
 
 	data := make([]int, 0, 100)
@@ -274,6 +318,8 @@ func TestCap(t *testing.T) {
 }
 
 func TestSwap(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestSwap")
 
 	list := NewList([]int{1, 2, 3, 4})
@@ -285,6 +331,8 @@ func TestSwap(t *testing.T) {
 }
 
 func TestReverse(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestReverse")
 
 	list := NewList([]int{1, 2, 3, 4})
@@ -296,6 +344,8 @@ func TestReverse(t *testing.T) {
 }
 
 func TestUnique(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestUnique")
 
 	list := NewList([]int{1, 2, 2, 3, 4})
@@ -307,6 +357,8 @@ func TestUnique(t *testing.T) {
 }
 
 func TestUnion(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestUnion")
 
 	list1 := NewList([]int{1, 2, 3, 4})
@@ -318,6 +370,8 @@ func TestUnion(t *testing.T) {
 }
 
 func TestIntersection(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestIntersection")
 
 	list1 := NewList([]int{1, 2, 3, 4})
@@ -329,6 +383,8 @@ func TestIntersection(t *testing.T) {
 }
 
 func TestDifference(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestDifference")
 
 	list1 := NewList([]int{1, 2, 3})
@@ -340,6 +396,8 @@ func TestDifference(t *testing.T) {
 }
 
 func TestSymmetricDifference(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestSymmetricDifference")
 
 	list1 := NewList([]int{1, 2, 3})
@@ -351,6 +409,8 @@ func TestSymmetricDifference(t *testing.T) {
 }
 
 func TestSubSlice(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestSubSlice")
 
 	list := NewList([]int{1, 2, 3, 4, 5, 8})
@@ -367,6 +427,8 @@ func BenchmarkSubSlice(b *testing.B) {
 }
 
 func TestDeleteIf(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestDeleteIf")
 
 	list := NewList([]int{1, 1, 1, 1, 2, 3, 1, 1, 4, 1, 1, 1, 1, 1, 1})
@@ -381,10 +443,11 @@ func TestDeleteIf(t *testing.T) {
 }
 
 func TestForEach(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestForEach")
 
 	list := NewList([]int{1, 2, 3, 4})
-
 	rs := make([]int, 0)
 	list.ForEach(func(i int) {
 		rs = append(rs, i)
@@ -394,6 +457,8 @@ func TestForEach(t *testing.T) {
 }
 
 func TestRetainAll(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestRetainAll")
 
 	list := NewList([]int{1, 2, 3, 4})
@@ -414,6 +479,8 @@ func TestRetainAll(t *testing.T) {
 }
 
 func TestDeleteAll(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestDeleteAll")
 
 	list := NewList([]int{1, 2, 3, 4})
@@ -433,10 +500,11 @@ func TestDeleteAll(t *testing.T) {
 }
 
 func TestIterator(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestIterator")
 
 	list := NewList([]int{1, 2, 3, 4})
-
 	iterator := list.Iterator()
 
 	rs := make([]int, 0)
@@ -449,14 +517,15 @@ func TestIterator(t *testing.T) {
 }
 
 func TestListToMap(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "ListToMap")
 
 	list := NewList([]int{1, 2, 3, 4})
-
 	result := ListToMap(list, func(n int) (int, bool) {
 		return n, n > 1
 	})
-	expected := map[int]bool{1: false, 2: true, 3: true, 4: true}
 
+	expected := map[int]bool{1: false, 2: true, 3: true, 4: true}
 	assert.Equal(expected, result)
 }

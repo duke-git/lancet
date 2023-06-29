@@ -7,6 +7,8 @@ import (
 )
 
 func TestAesEcbEncrypt(t *testing.T) {
+	t.Parallel()
+
 	data := "hello world"
 	key := "abcdefghijklmnop"
 
@@ -18,6 +20,8 @@ func TestAesEcbEncrypt(t *testing.T) {
 }
 
 func TestAesCbcEncrypt(t *testing.T) {
+	t.Parallel()
+
 	data := "hello world"
 	key := "abcdefghijklmnop"
 
@@ -29,6 +33,8 @@ func TestAesCbcEncrypt(t *testing.T) {
 }
 
 func TestAesCtrCrypt(t *testing.T) {
+	t.Parallel()
+
 	data := "hello world"
 	key := "abcdefghijklmnop"
 
@@ -40,6 +46,8 @@ func TestAesCtrCrypt(t *testing.T) {
 }
 
 func TestAesCfbEncrypt(t *testing.T) {
+	t.Parallel()
+
 	data := "hello world"
 	key := "abcdefghijklmnop"
 
@@ -51,6 +59,8 @@ func TestAesCfbEncrypt(t *testing.T) {
 }
 
 func TestAesOfbEncrypt(t *testing.T) {
+	t.Parallel()
+
 	data := "hello world"
 	key := "abcdefghijklmnop"
 
@@ -62,6 +72,8 @@ func TestAesOfbEncrypt(t *testing.T) {
 }
 
 func TestDesEcbEncrypt(t *testing.T) {
+	t.Parallel()
+
 	data := "hello world"
 	key := "abcdefgh"
 
@@ -73,6 +85,8 @@ func TestDesEcbEncrypt(t *testing.T) {
 }
 
 func TestDesCbcEncrypt(t *testing.T) {
+	t.Parallel()
+
 	data := "hello world"
 	key := "abcdefgh"
 
@@ -84,6 +98,8 @@ func TestDesCbcEncrypt(t *testing.T) {
 }
 
 func TestDesCtrCrypt(t *testing.T) {
+	t.Parallel()
+
 	data := "hello world"
 	key := "abcdefgh"
 
@@ -95,6 +111,8 @@ func TestDesCtrCrypt(t *testing.T) {
 }
 
 func TestDesCfbEncrypt(t *testing.T) {
+	t.Parallel()
+
 	data := "hello world"
 	key := "abcdefgh"
 
@@ -106,6 +124,8 @@ func TestDesCfbEncrypt(t *testing.T) {
 }
 
 func TestDesOfbEncrypt(t *testing.T) {
+	t.Parallel()
+
 	data := "hello world"
 	key := "abcdefgh"
 
@@ -117,6 +137,8 @@ func TestDesOfbEncrypt(t *testing.T) {
 }
 
 func TestRsaEncrypt(t *testing.T) {
+	t.Parallel()
+
 	err := GenerateRsaKey(4096, "rsa_private.pem", "rsa_public.pem")
 	if err != nil {
 		t.FailNow()

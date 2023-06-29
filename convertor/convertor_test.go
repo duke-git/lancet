@@ -13,6 +13,8 @@ import (
 )
 
 func TestToChar(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestToChar")
 
 	cases := []string{"", "abc", "1 2#3"}
@@ -27,6 +29,8 @@ func TestToChar(t *testing.T) {
 }
 
 func TestToChannel(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestToChannel")
 
 	ch := ToChannel([]int{1, 2, 3})
@@ -39,6 +43,8 @@ func TestToChannel(t *testing.T) {
 }
 
 func TestToBool(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestToBool")
 
 	cases := []string{"1", "true", "True", "false", "False", "0", "123", "0.0", "abc"}
@@ -51,6 +57,8 @@ func TestToBool(t *testing.T) {
 }
 
 func TestToBytes(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestToBytes")
 
 	cases := []any{
@@ -77,6 +85,8 @@ func TestToBytes(t *testing.T) {
 }
 
 func TestToInt(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestToInt")
 
 	cases := []any{"123", "-123", 123,
@@ -93,6 +103,8 @@ func TestToInt(t *testing.T) {
 }
 
 func TestToFloat(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestToFloat")
 
 	cases := []any{
@@ -111,6 +123,8 @@ func TestToFloat(t *testing.T) {
 }
 
 func TestToString(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestToString")
 
 	aMap := make(map[string]int)
@@ -146,6 +160,8 @@ func TestToString(t *testing.T) {
 	}
 }
 func TestToJson(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestToJson")
 
 	var aMap = map[string]int{"a": 1, "b": 2, "c": 3}
@@ -161,6 +177,8 @@ func TestToJson(t *testing.T) {
 }
 
 func TestToMap(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestToMap")
 
 	type Message struct {
@@ -180,6 +198,8 @@ func TestToMap(t *testing.T) {
 }
 
 func TestStructToMap(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestStructToMap")
 
 	t.Run("StructToMap", func(_ *testing.T) {
@@ -215,6 +235,8 @@ func TestStructToMap(t *testing.T) {
 }
 
 func TestMapToSlice(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestMapToSlice")
 
 	aMap := map[string]int{"a": 1, "b": 2, "c": 3}
@@ -229,6 +251,8 @@ func TestMapToSlice(t *testing.T) {
 }
 
 func TestColorHexToRGB(t *testing.T) {
+	t.Parallel()
+
 	colorHex := "#003366"
 	r, g, b := ColorHexToRGB(colorHex)
 	colorRGB := fmt.Sprintf("%d,%d,%d", r, g, b)
@@ -239,6 +263,8 @@ func TestColorHexToRGB(t *testing.T) {
 }
 
 func TestColorRGBToHex(t *testing.T) {
+	t.Parallel()
+
 	r := 0
 	g := 51
 	b := 102
@@ -250,6 +276,8 @@ func TestColorRGBToHex(t *testing.T) {
 }
 
 func TestToPointer(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestToPointer")
 	result := ToPointer(123)
 
@@ -257,6 +285,8 @@ func TestToPointer(t *testing.T) {
 }
 
 func TestEncodeByte(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestEncodeByte")
 
 	byteData, _ := EncodeByte("abc")
@@ -266,6 +296,8 @@ func TestEncodeByte(t *testing.T) {
 }
 
 func TestDecodeByte(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestDecodeByte")
 
 	var obj string
@@ -276,6 +308,8 @@ func TestDecodeByte(t *testing.T) {
 }
 
 func TestDeepClone(t *testing.T) {
+	t.Parallel()
+
 	// assert := internal.NewAssert(t, "TestDeepClone")
 
 	type Struct struct {
@@ -319,6 +353,8 @@ func TestDeepClone(t *testing.T) {
 }
 
 func TestCopyProperties(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestCopyProperties")
 
 	type Disk struct {
@@ -371,6 +407,8 @@ func TestCopyProperties(t *testing.T) {
 }
 
 func TestToInterface(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestToInterface")
 
 	cases := []reflect.Value{
@@ -400,6 +438,7 @@ func TestToInterface(t *testing.T) {
 }
 
 func TestUtf8ToGbk(t *testing.T) {
+	t.Parallel()
 	assert := internal.NewAssert(t, "TestUtf8ToGbk")
 
 	utf8Data := []byte("hello")
@@ -411,6 +450,7 @@ func TestUtf8ToGbk(t *testing.T) {
 }
 
 func TestGbkToUtf8(t *testing.T) {
+	t.Parallel()
 	assert := internal.NewAssert(t, "TestGbkToUtf8")
 
 	gbkData, err := Utf8ToGbk([]byte("hello"))

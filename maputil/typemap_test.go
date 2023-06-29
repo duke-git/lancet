@@ -21,6 +21,8 @@ type (
 )
 
 func TestStructType(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestStructType")
 
 	src := map[string]interface{}{
@@ -44,6 +46,8 @@ func TestStructType(t *testing.T) {
 }
 
 func TestBaseType(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestBaseType")
 
 	tc := map[string]interface{}{
@@ -90,22 +94,31 @@ func TestBaseType(t *testing.T) {
 
 	MapTo(tc["i"], &number)
 	assert.EqualValues(-1, number)
+
 	MapTo(tc["i8"], &number)
 	assert.EqualValues(-8, number)
+
 	MapTo(tc["i16"], &number)
 	assert.EqualValues(-16, number)
+
 	MapTo(tc["i32"], &number)
 	assert.EqualValues(-32, number)
+
 	MapTo(tc["i64"], &number)
 	assert.EqualValues(-64, number)
+
 	MapTo(tc["u"], &number)
 	assert.EqualValues(1, number)
+
 	MapTo(tc["u8"], &number)
 	assert.EqualValues(8, number)
+
 	MapTo(tc["u16"], &number)
 	assert.EqualValues(16, number)
+
 	MapTo(tc["u32"], &number)
 	assert.EqualValues(32, number)
+
 	MapTo(tc["u64"], &number)
 	assert.EqualValues(64, number)
 }

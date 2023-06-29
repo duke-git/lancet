@@ -7,6 +7,8 @@ import (
 )
 
 func TestDecimalBytes(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestDecimalBytes")
 
 	assert.Equal("1KB", DecimalBytes(1000))
@@ -21,6 +23,8 @@ func TestDecimalBytes(t *testing.T) {
 }
 
 func TestBinaryBytes(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestBinaryBytes")
 
 	assert.Equal("1KiB", BinaryBytes(1024))
@@ -30,6 +34,8 @@ func TestBinaryBytes(t *testing.T) {
 }
 
 func TestParseDecimalBytes(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestParseDecimalBytes")
 
 	cases := map[string]uint64{
@@ -58,6 +64,8 @@ func TestParseDecimalBytes(t *testing.T) {
 }
 
 func TestParseBinaryBytes(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestParseBinaryBytes")
 
 	cases := map[string]uint64{

@@ -8,6 +8,8 @@ import (
 )
 
 func TestComma(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestComma")
 
 	assert.Equal("", Comma("", ""))
@@ -29,6 +31,8 @@ func TestComma(t *testing.T) {
 }
 
 func TestPretty(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestPretty")
 
 	cases := []any{
@@ -60,6 +64,8 @@ func TestPretty(t *testing.T) {
 }
 
 func TestPrettyToWriter(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestPrettyToWriter")
 
 	type User struct {

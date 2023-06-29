@@ -7,6 +7,8 @@ import (
 )
 
 func TestToUnix(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestToUnix")
 
 	tm1 := NewUnixNow()
@@ -17,6 +19,8 @@ func TestToUnix(t *testing.T) {
 }
 
 func TestToFormat(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestToFormat")
 
 	tm, err := NewFormat("2022-03-18 17:04:05")
@@ -25,18 +29,21 @@ func TestToFormat(t *testing.T) {
 }
 
 func TestToFormatForTpl(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestToFormatForTpl")
 
 	_, err := NewFormat("2022/03/18 17:04:05")
 	assert.IsNotNil(err)
 
 	tm, err := NewFormat("2022-03-18 17:04:05")
-	// assert.Equal("2022/03/18 17:04:05", tm.ToFormatForTpl("2006/01/02 15:04:05"))
 	t.Log("TestToFormatForTpl", tm.ToFormatForTpl("2006/01/02 15:04:05"))
 	assert.IsNil(err)
 }
 
 func TestToIso8601(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestToIso8601")
 
 	_, err := NewISO8601("2022-03-18 17:04:05")
@@ -44,6 +51,5 @@ func TestToIso8601(t *testing.T) {
 
 	tm, err := NewISO8601("2006-01-02T15:04:05.999Z")
 	t.Log("TestToIso8601", tm.ToIso8601())
-	// assert.Equal("2006-01-02T23:04:05+08:00", tm.ToIso8601())
 	assert.IsNil(err)
 }

@@ -21,6 +21,8 @@ func (c *intComparator) Compare(v1, v2 any) int {
 }
 
 func TestMaxHeap_BuildMaxHeap(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestMaxHeap_BuildMaxHeap")
 
 	values := []int{6, 5, 2, 4, 7, 10, 12, 1, 3, 8, 9, 11}
@@ -33,6 +35,8 @@ func TestMaxHeap_BuildMaxHeap(t *testing.T) {
 }
 
 func TestMaxHeap_Push(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestMaxHeap_Push")
 
 	heap := NewMaxHeap[int](&intComparator{})
@@ -51,6 +55,8 @@ func TestMaxHeap_Push(t *testing.T) {
 }
 
 func TestMaxHeap_Pop(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestMaxHeap_Pop")
 
 	heap := NewMaxHeap[int](&intComparator{})
@@ -70,6 +76,8 @@ func TestMaxHeap_Pop(t *testing.T) {
 }
 
 func TestMaxHeap_Peek(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestMaxHeap_Peek")
 
 	heap := NewMaxHeap[int](&intComparator{})

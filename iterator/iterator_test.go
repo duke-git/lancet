@@ -12,6 +12,8 @@ import (
 )
 
 func TestSliceIterator(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestSliceIterator")
 
 	// HashNext
@@ -60,6 +62,8 @@ func TestSliceIterator(t *testing.T) {
 }
 
 func TestRangeIterator(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestRangeIterator")
 
 	t.Run("range iterator: ", func(t *testing.T) {
@@ -85,6 +89,8 @@ func TestRangeIterator(t *testing.T) {
 }
 
 func TestChannelIterator(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestRangeIterator")
 
 	iter := FromSlice([]int{1, 2, 3, 4})

@@ -7,6 +7,8 @@ import (
 )
 
 func TestDoublyLink_InsertAtFirst(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestDoublyLink_InsertAtFirst")
 
 	link := NewDoublyLink[int]()
@@ -22,6 +24,8 @@ func TestDoublyLink_InsertAtFirst(t *testing.T) {
 }
 
 func TestDoublyLink_InsertAtTail(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestDoublyLink_InsertAtTail")
 
 	link := NewDoublyLink[int]()
@@ -37,12 +41,12 @@ func TestDoublyLink_InsertAtTail(t *testing.T) {
 }
 
 func TestDoublyLink_InsertAt(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestDoublyLink_InsertAt")
 
 	link := NewDoublyLink[int]()
-
 	link.InsertAt(1, 1) //do nothing
-
 	link.InsertAt(0, 1)
 	link.InsertAt(1, 2)
 	link.InsertAt(2, 4)
@@ -55,6 +59,8 @@ func TestDoublyLink_InsertAt(t *testing.T) {
 }
 
 func TestDoublyLink_DeleteAtHead(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestDoublyLink_DeleteAtHead")
 
 	link := NewDoublyLink[int]()
@@ -74,6 +80,8 @@ func TestDoublyLink_DeleteAtHead(t *testing.T) {
 }
 
 func TestDoublyLink_DeleteAtTail(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestDoublyLink_DeleteAtTail")
 
 	link := NewDoublyLink[int]()
@@ -93,6 +101,8 @@ func TestDoublyLink_DeleteAtTail(t *testing.T) {
 }
 
 func TestDoublyLink_DeleteAt(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestDoublyLink_DeleteAt")
 
 	link := NewDoublyLink[int]()
@@ -116,6 +126,8 @@ func TestDoublyLink_DeleteAt(t *testing.T) {
 }
 
 func TestDoublyLink_Reverse(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestDoublyLink_Reverse")
 
 	link := NewDoublyLink[int]()
@@ -130,6 +142,8 @@ func TestDoublyLink_Reverse(t *testing.T) {
 }
 
 func TestDoublyLink_GetMiddleNode(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestDoublyLink_GetMiddleNode")
 
 	link := NewDoublyLink[int]()
@@ -149,10 +163,11 @@ func TestDoublyLink_GetMiddleNode(t *testing.T) {
 }
 
 func TestDoublyLink_Clear(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestDoublyLink_Clear")
 
 	link := NewDoublyLink[int]()
-
 	assert.Equal(true, link.IsEmpty())
 	assert.Equal(0, link.Size())
 

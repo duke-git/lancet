@@ -8,6 +8,8 @@ import (
 )
 
 func TestIsExist(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestIsExist")
 
 	cases := []string{"./", "./file.go", "./a.txt"}
@@ -20,6 +22,8 @@ func TestIsExist(t *testing.T) {
 }
 
 func TestCreateFile(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestCreateFile")
 
 	f := "./text.txt"
@@ -36,6 +40,8 @@ func TestCreateFile(t *testing.T) {
 }
 
 func TestCreateDir(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestCreateDir")
 
 	pwd, err := os.Getwd()
@@ -57,6 +63,8 @@ func TestCreateDir(t *testing.T) {
 }
 
 func TestIsDir(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestIsDir")
 
 	cases := []string{"./", "./a.txt"}
@@ -69,6 +77,8 @@ func TestIsDir(t *testing.T) {
 }
 
 func TestRemoveFile(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestRemoveFile")
 	f := "./text.txt"
 	if !IsExist(f) {

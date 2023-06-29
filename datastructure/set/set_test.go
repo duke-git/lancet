@@ -7,6 +7,8 @@ import (
 )
 
 func TestSet_NewSetFromSlice(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestSet_NewSetFromSlice")
 
 	s1 := NewSetFromSlice([]int{1, 2, 2, 3})
@@ -20,17 +22,21 @@ func TestSet_NewSetFromSlice(t *testing.T) {
 }
 
 func TestSet_Add(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestSet_Add")
 
 	set := NewSet[int]()
 	set.Add(1, 2, 3)
 
-	expected := NewSet(1, 2, 3)
+	cmpSet := NewSet(1, 2, 3)
 
-	assert.Equal(true, set.Equal(expected))
+	assert.Equal(true, set.Equal(cmpSet))
 }
 
 func TestSet_AddIfNotExist(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestSet_AddIfNotExist")
 
 	set := NewSet[int]()
@@ -42,6 +48,8 @@ func TestSet_AddIfNotExist(t *testing.T) {
 }
 
 func TestSet_AddIfNotExistBy(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestSet_AddIfNotExistBy")
 
 	set := NewSet[int]()
@@ -63,6 +71,8 @@ func TestSet_AddIfNotExistBy(t *testing.T) {
 }
 
 func TestSet_Contain(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestSet_Contain")
 
 	set := NewSet[int]()
@@ -73,6 +83,8 @@ func TestSet_Contain(t *testing.T) {
 }
 
 func TestSet_ContainAll(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestSet_ContainAll")
 
 	set1 := NewSet(1, 2, 3)
@@ -84,6 +96,8 @@ func TestSet_ContainAll(t *testing.T) {
 }
 
 func TestSet_Clone(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestSet_Clone")
 
 	set1 := NewSet(1, 2, 3)
@@ -94,18 +108,20 @@ func TestSet_Clone(t *testing.T) {
 }
 
 func TestSet_Delete(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestSet_Delete")
 
 	set := NewSet[int]()
 	set.Add(1, 2, 3)
 	set.Delete(3)
 
-	expected := NewSet(1, 2)
-
-	assert.Equal(true, set.Equal(expected))
+	assert.Equal(true, set.Equal(NewSet(1, 2)))
 }
 
 func TestSet_Equal(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestSet_Equal")
 
 	set1 := NewSet(1, 2, 3)
@@ -117,6 +133,8 @@ func TestSet_Equal(t *testing.T) {
 }
 
 func TestSet_Iterate(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestSet_Iterate")
 
 	set := NewSet(1, 2, 3)
@@ -129,6 +147,8 @@ func TestSet_Iterate(t *testing.T) {
 }
 
 func TestSet_IsEmpty(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestSet_IsEmpty")
 
 	set := NewSet[int]()
@@ -136,6 +156,8 @@ func TestSet_IsEmpty(t *testing.T) {
 }
 
 func TestSet_Size(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestSet_Size")
 
 	set := NewSet(1, 2, 3)
@@ -143,6 +165,8 @@ func TestSet_Size(t *testing.T) {
 }
 
 func TestSet_Values(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestSet_Values")
 
 	set := NewSet(1, 2, 3)
@@ -152,28 +176,33 @@ func TestSet_Values(t *testing.T) {
 }
 
 func TestSet_Union(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestSet_Union")
 
 	set1 := NewSet(1, 2, 3)
 	set2 := NewSet(2, 3, 4, 5)
-	expected := NewSet(1, 2, 3, 4, 5)
+
 	unionSet := set1.Union(set2)
 
-	assert.Equal(expected, unionSet)
+	assert.Equal(NewSet(1, 2, 3, 4, 5), unionSet)
 }
 
 func TestSet_Intersection(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestSet_Intersection")
 
 	set1 := NewSet(1, 2, 3)
 	set2 := NewSet(2, 3, 4, 5)
-	expected := NewSet(2, 3)
 	intersectionSet := set1.Intersection(set2)
 
-	assert.Equal(expected, intersectionSet)
+	assert.Equal(NewSet(2, 3), intersectionSet)
 }
 
 func TestSet_SymmetricDifference(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestSet_SymmetricDifference")
 
 	set1 := NewSet(1, 2, 3)
@@ -183,6 +212,8 @@ func TestSet_SymmetricDifference(t *testing.T) {
 }
 
 func TestSet_Minus(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestSet_Minus")
 
 	set1 := NewSet(1, 2, 3)

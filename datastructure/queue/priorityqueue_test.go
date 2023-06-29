@@ -20,6 +20,8 @@ func (c *intComparator) Compare(v1, v2 any) int {
 	return 0
 }
 func TestPriorityQueue_Enqueue(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestPriorityQueue_Enqueue")
 
 	comparator := &intComparator{}
@@ -45,6 +47,8 @@ func TestPriorityQueue_Enqueue(t *testing.T) {
 }
 
 func TestPriorityQueue_Dequeue(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestPriorityQueue_Dequeue")
 
 	comparator := &intComparator{}

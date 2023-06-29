@@ -9,6 +9,8 @@ import (
 )
 
 func TestKeys(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestKeys")
 
 	m := map[int]string{
@@ -26,6 +28,8 @@ func TestKeys(t *testing.T) {
 }
 
 func TestValues(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestValues")
 
 	m := map[int]string{
@@ -43,6 +47,8 @@ func TestValues(t *testing.T) {
 }
 
 func TestKeysBy(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestKeysBy")
 
 	m := map[int]string{
@@ -61,6 +67,8 @@ func TestKeysBy(t *testing.T) {
 }
 
 func TestValuesBy(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestValuesBy")
 
 	m := map[int]string{
@@ -88,6 +96,8 @@ func TestValuesBy(t *testing.T) {
 }
 
 func TestMerge(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestMerge")
 
 	m1 := map[int]string{
@@ -110,6 +120,8 @@ func TestMerge(t *testing.T) {
 }
 
 func TestForEach(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestForEach")
 
 	m := map[string]int{
@@ -129,6 +141,8 @@ func TestForEach(t *testing.T) {
 }
 
 func TestFilter(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestFilter")
 
 	m := map[string]int{
@@ -151,6 +165,8 @@ func TestFilter(t *testing.T) {
 }
 
 func TestFilterByKeys(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestFilterByKeys")
 
 	m := map[string]int{
@@ -170,6 +186,8 @@ func TestFilterByKeys(t *testing.T) {
 }
 
 func TestFilterByValues(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestFilterByValues")
 
 	m := map[string]int{
@@ -189,6 +207,8 @@ func TestFilterByValues(t *testing.T) {
 }
 
 func TestOmitBy(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestOmitBy")
 
 	m := map[string]int{
@@ -212,6 +232,8 @@ func TestOmitBy(t *testing.T) {
 }
 
 func TestOmitByKeys(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestOmitByKeys")
 
 	m := map[string]int{
@@ -232,6 +254,8 @@ func TestOmitByKeys(t *testing.T) {
 }
 
 func TestOmitByValues(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestOmitByValues")
 
 	m := map[string]int{
@@ -252,6 +276,8 @@ func TestOmitByValues(t *testing.T) {
 }
 
 func TestIntersect(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestIntersect")
 
 	m1 := map[string]int{
@@ -279,6 +305,8 @@ func TestIntersect(t *testing.T) {
 }
 
 func TestMinus(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestMinus")
 
 	m1 := map[string]int{
@@ -297,6 +325,8 @@ func TestMinus(t *testing.T) {
 }
 
 func TestIsDisjoint(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestMinus")
 
 	m1 := map[string]int{
@@ -319,6 +349,8 @@ func TestIsDisjoint(t *testing.T) {
 }
 
 func TestEntries(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestEntries")
 
 	m := map[string]int{
@@ -339,6 +371,8 @@ func TestEntries(t *testing.T) {
 }
 
 func TestFromEntries(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestFromEntries")
 
 	result := FromEntries([]Entry[string, int]{
@@ -354,6 +388,8 @@ func TestFromEntries(t *testing.T) {
 }
 
 func TestTransform(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestTransform")
 
 	m := map[string]int{
@@ -376,6 +412,8 @@ func TestTransform(t *testing.T) {
 }
 
 func TestMapKeys(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestMapKeys")
 
 	m := map[int]string{
@@ -398,6 +436,8 @@ func TestMapKeys(t *testing.T) {
 }
 
 func TestMapValues(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestMapKeys")
 
 	m := map[int]string{

@@ -7,6 +7,8 @@ import (
 )
 
 func TestLinkedStack_Push(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestLinkedStack_Push")
 
 	stack := NewLinkedStack[int]()
@@ -14,15 +16,16 @@ func TestLinkedStack_Push(t *testing.T) {
 	stack.Push(2)
 	stack.Push(3)
 
-	expected := []int{3, 2, 1}
 	values := stack.Data()
 	size := stack.Size()
 
-	assert.Equal(expected, values)
+	assert.Equal([]int{3, 2, 1}, values)
 	assert.Equal(3, size)
 }
 
 func TestLinkedStack_Pop(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestLinkedStack_Pop")
 
 	stack := NewLinkedStack[int]()
@@ -37,12 +40,13 @@ func TestLinkedStack_Pop(t *testing.T) {
 	assert.IsNil(err)
 	assert.Equal(3, *topItem)
 
-	expected := []int{2, 1}
 	stack.Print()
-	assert.Equal(expected, stack.Data())
+	assert.Equal([]int{2, 1}, stack.Data())
 }
 
 func TestLinkedStack_Peak(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestLinkedStack_Peak")
 
 	stack := NewLinkedStack[int]()
@@ -57,11 +61,12 @@ func TestLinkedStack_Peak(t *testing.T) {
 	assert.IsNil(err)
 	assert.Equal(3, *topItem)
 
-	expected := []int{3, 2, 1}
-	assert.Equal(expected, stack.Data())
+	assert.Equal([]int{3, 2, 1}, stack.Data())
 }
 
 func TestLinkedStack_Empty(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestLinkedStack_Empty")
 
 	stack := NewLinkedStack[int]()

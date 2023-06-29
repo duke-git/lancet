@@ -7,6 +7,8 @@ import (
 )
 
 func TestWatcher(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestWatcher")
 
 	w := NewWatcher()

@@ -17,6 +17,8 @@ import (
 )
 
 func TestMapIterator(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestMapIterator")
 
 	iter := FromSlice([]int{1, 2, 3, 4})
@@ -28,6 +30,8 @@ func TestMapIterator(t *testing.T) {
 }
 
 func TestFilterIterator(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestFilterIterator")
 
 	iter := FromSlice([]int{1, 2, 3, 4})
@@ -39,6 +43,8 @@ func TestFilterIterator(t *testing.T) {
 }
 
 func TestJoinIterator(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestJoinIterator")
 
 	iter1 := FromSlice([]int{1, 2})
@@ -54,6 +60,8 @@ func TestJoinIterator(t *testing.T) {
 }
 
 func TestReduce(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestReduce")
 
 	iter := FromSlice([]int{1, 2, 3, 4})
@@ -62,6 +70,8 @@ func TestReduce(t *testing.T) {
 }
 
 func TestTakeIterator(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestTakeIterator")
 
 	iter := FromSlice([]int{1, 2, 3, 4, 5})

@@ -20,16 +20,9 @@ func (c *intComparator) Compare(v1, v2 any) int {
 	return 0
 }
 
-func TestBSTree_Insert(t *testing.T) {
-	bstree := NewBSTree(6, &intComparator{})
-
-	bstree.Insert(7)
-	bstree.Insert(5)
-	bstree.Insert(2)
-	bstree.Insert(4)
-}
-
 func TestBSTree_PreOrderTraverse(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestBSTree_PreOrderTraverse")
 
 	bstree := NewBSTree(6, &intComparator{})
@@ -44,6 +37,8 @@ func TestBSTree_PreOrderTraverse(t *testing.T) {
 }
 
 func TestBSTree_PostOrderTraverse(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestBSTree_PostOrderTraverse")
 
 	bstree := NewBSTree(6, &intComparator{})
@@ -58,6 +53,8 @@ func TestBSTree_PostOrderTraverse(t *testing.T) {
 }
 
 func TestBSTree_InOrderTraverse(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestBSTree_InOrderTraverse")
 
 	bstree := NewBSTree(6, &intComparator{})
@@ -72,6 +69,8 @@ func TestBSTree_InOrderTraverse(t *testing.T) {
 }
 
 func TestBSTree_LevelOrderTraverse(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestBSTree_LevelOrderTraverse")
 
 	bstree := NewBSTree(6, &intComparator{})
@@ -86,6 +85,8 @@ func TestBSTree_LevelOrderTraverse(t *testing.T) {
 }
 
 func TestBSTree_Delete(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestBSTree_Delete")
 
 	bstree := NewBSTree(6, &intComparator{})
@@ -108,6 +109,8 @@ func TestBSTree_Delete(t *testing.T) {
 }
 
 func TestBSTree_Depth(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestBSTree_Depth")
 
 	bstree := NewBSTree(6, &intComparator{})
@@ -121,6 +124,8 @@ func TestBSTree_Depth(t *testing.T) {
 }
 
 func TestBSTree_IsSubTree(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestBSTree_IsSubTree")
 
 	superTree := NewBSTree(8, &intComparator{})

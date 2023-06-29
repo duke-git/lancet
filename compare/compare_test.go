@@ -8,6 +8,7 @@ import (
 )
 
 func TestEqual(t *testing.T) {
+	t.Parallel()
 	assert := internal.NewAssert(t, "TestEqual")
 
 	assert.Equal(true, Equal(1, 1))
@@ -60,6 +61,7 @@ func TestEqual(t *testing.T) {
 }
 
 func TestEqualValue(t *testing.T) {
+	t.Parallel()
 	assert := internal.NewAssert(t, "TestEqualValue")
 
 	assert.Equal(true, EqualValue(1, 1))
@@ -70,6 +72,7 @@ func TestEqualValue(t *testing.T) {
 }
 
 func TestLessThan(t *testing.T) {
+	t.Parallel()
 	assert := internal.NewAssert(t, "TestLessThan")
 
 	assert.Equal(true, LessThan(1, 2))
@@ -85,6 +88,7 @@ func TestLessThan(t *testing.T) {
 }
 
 func TestGreaterThan(t *testing.T) {
+	t.Parallel()
 	assert := internal.NewAssert(t, "TestGreaterThan")
 
 	assert.Equal(true, GreaterThan(2, 1))
@@ -101,6 +105,7 @@ func TestGreaterThan(t *testing.T) {
 }
 
 func TestLessOrEqual(t *testing.T) {
+	t.Parallel()
 	assert := internal.NewAssert(t, "TestLessOrEqual")
 
 	assert.Equal(true, LessOrEqual(1, 2))
@@ -117,6 +122,7 @@ func TestLessOrEqual(t *testing.T) {
 }
 
 func TestGreaterOrEqual(t *testing.T) {
+	t.Parallel()
 	assert := internal.NewAssert(t, "TestGreaterThan")
 
 	assert.Equal(true, GreaterOrEqual(2, 1))

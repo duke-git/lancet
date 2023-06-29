@@ -46,6 +46,7 @@ func (c *intComparator) Compare(v1 any, v2 any) int {
 }
 
 func TestBubbleSortForStructSlice(t *testing.T) {
+	t.Parallel()
 	asssert := internal.NewAssert(t, "TestBubbleSortForStructSlice")
 
 	peoples := []people{
@@ -65,6 +66,7 @@ func TestBubbleSortForStructSlice(t *testing.T) {
 }
 
 func TestBubbleSortForIntSlice(t *testing.T) {
+	t.Parallel()
 	asssert := internal.NewAssert(t, "TestBubbleSortForIntSlice")
 
 	numbers := []int{2, 1, 5, 3, 6, 4}
@@ -75,6 +77,7 @@ func TestBubbleSortForIntSlice(t *testing.T) {
 }
 
 func TestInsertionSort(t *testing.T) {
+	t.Parallel()
 	asssert := internal.NewAssert(t, "TestInsertionSort")
 
 	peoples := []people{
@@ -94,6 +97,7 @@ func TestInsertionSort(t *testing.T) {
 }
 
 func TestSelectionSort(t *testing.T) {
+	t.Parallel()
 	asssert := internal.NewAssert(t, "TestSelectionSort")
 
 	peoples := []people{
@@ -113,6 +117,7 @@ func TestSelectionSort(t *testing.T) {
 }
 
 func TestShellSort(t *testing.T) {
+	t.Parallel()
 	asssert := internal.NewAssert(t, "TestShellSort")
 
 	peoples := []people{
@@ -132,6 +137,7 @@ func TestShellSort(t *testing.T) {
 }
 
 func TestQuickSort(t *testing.T) {
+	t.Parallel()
 	asssert := internal.NewAssert(t, "TestQuickSort")
 
 	peoples := []people{
@@ -151,6 +157,7 @@ func TestQuickSort(t *testing.T) {
 }
 
 func TestHeapSort(t *testing.T) {
+	t.Parallel()
 	asssert := internal.NewAssert(t, "TestHeapSort")
 
 	peoples := []people{
@@ -170,6 +177,7 @@ func TestHeapSort(t *testing.T) {
 }
 
 func TestMergeSort(t *testing.T) {
+	t.Parallel()
 	asssert := internal.NewAssert(t, "TestMergeSort")
 
 	peoples := []people{
@@ -189,6 +197,7 @@ func TestMergeSort(t *testing.T) {
 }
 
 func TestCountSort(t *testing.T) {
+	t.Parallel()
 	asssert := internal.NewAssert(t, "TestCountSort")
 
 	peoples := []people{

@@ -7,6 +7,7 @@ import (
 )
 
 func TestLRUCache(t *testing.T) {
+	t.Parallel()
 	asssert := internal.NewAssert(t, "TestLRUCache")
 
 	cache := NewLRUCache[int, int](3)

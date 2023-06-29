@@ -7,6 +7,7 @@ import (
 )
 
 func TestLinearSearch(t *testing.T) {
+	t.Parallel()
 	asssert := internal.NewAssert(t, "TestLinearSearch")
 
 	numbers := []int{3, 4, 5, 3, 2, 1}
@@ -19,6 +20,7 @@ func TestLinearSearch(t *testing.T) {
 }
 
 func TestBinarySearch(t *testing.T) {
+	t.Parallel()
 	asssert := internal.NewAssert(t, "TestBinarySearch")
 
 	sortedNumbers := []int{1, 2, 3, 4, 5, 6, 7, 8}

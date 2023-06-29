@@ -9,6 +9,7 @@ import (
 )
 
 func TestGenerate(t *testing.T) {
+	t.Parallel()
 	assert := internal.NewAssert(t, "TestGenerate")
 
 	ctx, cancel := context.WithCancel(context.Background())
@@ -23,6 +24,7 @@ func TestGenerate(t *testing.T) {
 }
 
 func TestRepeat(t *testing.T) {
+	t.Parallel()
 	assert := internal.NewAssert(t, "TestRepeat")
 
 	ctx, cancel := context.WithCancel(context.Background())
@@ -39,6 +41,7 @@ func TestRepeat(t *testing.T) {
 }
 
 func TestRepeatFn(t *testing.T) {
+	t.Parallel()
 	assert := internal.NewAssert(t, "TestRepeatFn")
 
 	ctx, cancel := context.WithCancel(context.Background())
@@ -57,6 +60,7 @@ func TestRepeatFn(t *testing.T) {
 }
 
 func TestTake(t *testing.T) {
+	t.Parallel()
 	assert := internal.NewAssert(t, "TestTake")
 
 	ctx, cancel := context.WithCancel(context.Background())
@@ -79,6 +83,7 @@ func TestTake(t *testing.T) {
 }
 
 func TestFanIn(t *testing.T) {
+	t.Parallel()
 	assert := internal.NewAssert(t, "TestFanIn")
 
 	ctx, cancel := context.WithCancel(context.Background())
@@ -101,6 +106,7 @@ func TestFanIn(t *testing.T) {
 }
 
 func TestOr(t *testing.T) {
+	t.Parallel()
 	assert := internal.NewAssert(t, "TestOr")
 
 	sig := func(after time.Duration) <-chan any {
@@ -127,6 +133,7 @@ func TestOr(t *testing.T) {
 }
 
 func TestOrDone(t *testing.T) {
+	t.Parallel()
 	assert := internal.NewAssert(t, "TestOrDone")
 
 	ctx, cancel := context.WithCancel(context.Background())
@@ -141,6 +148,7 @@ func TestOrDone(t *testing.T) {
 }
 
 func TestTee(t *testing.T) {
+	t.Parallel()
 	assert := internal.NewAssert(t, "TestTee")
 
 	ctx, cancel := context.WithCancel(context.Background())
@@ -159,6 +167,7 @@ func TestTee(t *testing.T) {
 }
 
 func TestBridge(t *testing.T) {
+	t.Parallel()
 	assert := internal.NewAssert(t, "TestBridge")
 
 	ctx, cancel := context.WithCancel(context.Background())
