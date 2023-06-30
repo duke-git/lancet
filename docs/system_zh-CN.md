@@ -34,19 +34,19 @@ import (
 
 <div STYLE="page-break-after: always;"></div>
 
-## Documentation 文档
+## 文档
 
 ### <span id="IsWindows">IsWindows</span>
 
 <p>检查当前操作系统是否是windows</p>
 
-<b>Signature:</b>
+<b>函数签名:</b>
 
 ```go
 func IsWindows() bool
 ```
 
-<b>Example:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -64,13 +64,13 @@ func main() {
 
 <p>检查当前操作系统是否是linux</p>
 
-<b>Signature:</b>
+<b>函数签名:</b>
 
 ```go
 func IsLinux() bool
 ```
 
-<b>Example:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -88,13 +88,13 @@ func main() {
 
 <p>检查当前操作系统是否是macos</p>
 
-<b>Signature:</b>
+<b>函数签名:</b>
 
 ```go
 func IsMac() bool
 ```
 
-<b>Example:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -112,13 +112,13 @@ func main() {
 
 <p>获取key命名的环境变量的值</p>
 
-<b>Signature:</b>
+<b>函数签名:</b>
 
 ```go
 func GetOsEnv(key string) string
 ```
 
-<b>Example:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -142,13 +142,13 @@ func main() {
 
 <p>设置由key命名的环境变量的值</p>
 
-<b>Signature:</b>
+<b>函数签名:</b>
 
 ```go
 func SetOsEnv(key, value string) error
 ```
 
-<b>Example:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -172,13 +172,13 @@ func main() {
 
 <p>删除单个环境变量</p>
 
-<b>Signature:</b>
+<b>函数签名:</b>
 
 ```go
 func RemoveOsEnv(key string) error
 ```
 
-<b>Example:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -210,13 +210,13 @@ func main() {
 
 <p>获取key命名的环境变量值并与compareEnv进行比较</p>
 
-<b>Signature:</b>
+<b>函数签名:</b>
 
 ```go
 func CompareOsEnv(key, comparedEnv string) bool
 ```
 
-<b>Example:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -243,7 +243,7 @@ func main() {
 
 <p>执行shell命令，返回命令的stdout和stderr字符串，如果出现错误，则返回错误。参数`command`是一个完整的命令字符串，如ls-a（linux），dir（windows），ping 127.0.0.1。在linux中，使用/bin/bash-c执行命令，在windows中，使用powershell.exe执行命令。</p>
 
-<b>Signature:</b>
+<b>函数签名:</b>
 
 ```go
 type (
@@ -252,7 +252,7 @@ type (
 func ExecCommand(command string, opts ...Option) (stdout, stderr string, err error)
 ```
 
-<b>Example:</b>
+<b>示例:</b>
 
 ```go
 import (
