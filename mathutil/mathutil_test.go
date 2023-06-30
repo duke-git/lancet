@@ -8,6 +8,8 @@ import (
 )
 
 func TestExponent(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestExponent")
 
 	assert.Equal(int64(1), Exponent(10, 0))
@@ -16,6 +18,8 @@ func TestExponent(t *testing.T) {
 }
 
 func TestFibonacci(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestFibonacci")
 
 	assert.Equal(0, Fibonacci(1, 1, 0))
@@ -25,6 +29,8 @@ func TestFibonacci(t *testing.T) {
 }
 
 func TestFactorial(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestFactorial")
 
 	assert.Equal(uint(1), Factorial(0))
@@ -34,6 +40,8 @@ func TestFactorial(t *testing.T) {
 }
 
 func TestPercent(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestPercent")
 
 	assert.EqualValues(50, Percent(1, 2, 2))
@@ -42,6 +50,8 @@ func TestPercent(t *testing.T) {
 }
 
 func TestRoundToFloat(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestRoundToFloat")
 
 	assert.Equal(float64(0), RoundToFloat(0, 0))
@@ -53,6 +63,8 @@ func TestRoundToFloat(t *testing.T) {
 }
 
 func TestRoundToString(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestRoundToString")
 
 	assert.Equal("0", RoundToString(0, 0))
@@ -63,6 +75,8 @@ func TestRoundToString(t *testing.T) {
 }
 
 func TestTruncRound(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestTruncRound")
 
 	assert.Equal(float64(0), TruncRound(0, 0))
@@ -74,6 +88,8 @@ func TestTruncRound(t *testing.T) {
 }
 
 func TestAverage(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestAverage")
 
 	assert.Equal(0, Average(0, 0))
@@ -84,6 +100,8 @@ func TestAverage(t *testing.T) {
 }
 
 func TestSum(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestSum")
 
 	assert.Equal(1, Sum(0, 1))
@@ -91,6 +109,8 @@ func TestSum(t *testing.T) {
 }
 
 func TestMax(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestMax")
 
 	assert.Equal(0, Max(0, 0))
@@ -102,6 +122,8 @@ func TestMax(t *testing.T) {
 }
 
 func TestMaxBy(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "MaxBy")
 
 	res1 := MaxBy([]string{"a", "ab", "abc"}, func(v1, v2 string) bool {
@@ -121,6 +143,8 @@ func TestMaxBy(t *testing.T) {
 }
 
 func TestMin(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestMin")
 
 	assert.Equal(0, Min(0, 0))
@@ -129,6 +153,8 @@ func TestMin(t *testing.T) {
 }
 
 func TestMinBy(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestMinBy")
 
 	res1 := MinBy([]string{"a", "ab", "abc"}, func(v1, v2 string) bool {
@@ -148,6 +174,8 @@ func TestMinBy(t *testing.T) {
 }
 
 func TestRange(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestRange")
 
 	result1 := Range(1, 4)
@@ -164,6 +192,8 @@ func TestRange(t *testing.T) {
 }
 
 func TestRangeWithStep(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestRangeWithStep")
 
 	result1 := RangeWithStep(1, 4, 1)
@@ -178,6 +208,8 @@ func TestRangeWithStep(t *testing.T) {
 }
 
 func TestAngleToRadian(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestAngleToRadian")
 
 	result1 := AngleToRadian(45)
@@ -190,6 +222,8 @@ func TestAngleToRadian(t *testing.T) {
 }
 
 func TestRadianToAngle(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestAngleToRadian")
 
 	result1 := RadianToAngle(math.Pi)
@@ -202,6 +236,8 @@ func TestRadianToAngle(t *testing.T) {
 }
 
 func TestPointDistance(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestPointDistance")
 
 	result1 := PointDistance(1, 1, 4, 5)
@@ -210,6 +246,8 @@ func TestPointDistance(t *testing.T) {
 }
 
 func TestIsPrime(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestIsPrime")
 
 	assert.Equal(false, IsPrime(-1))
@@ -221,6 +259,8 @@ func TestIsPrime(t *testing.T) {
 }
 
 func TestGCD(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestGCD")
 
 	assert.Equal(1, GCD(1, 1))
@@ -246,6 +286,8 @@ func TestGCD(t *testing.T) {
 }
 
 func TestLCM(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestLCM")
 
 	assert.Equal(1, LCM(1))
@@ -259,6 +301,8 @@ func TestLCM(t *testing.T) {
 }
 
 func TestCos(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestCos")
 
 	assert.EqualValues(1, Cos(0))
@@ -269,6 +313,8 @@ func TestCos(t *testing.T) {
 }
 
 func TestSin(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestSin")
 
 	assert.EqualValues(0, Sin(0))
@@ -279,6 +325,8 @@ func TestSin(t *testing.T) {
 }
 
 func TestLog(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestLog")
 
 	assert.EqualValues(3, Log(8, 2))
@@ -287,6 +335,8 @@ func TestLog(t *testing.T) {
 }
 
 func TestAbs(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestAbs")
 
 	assert.Equal(0, Abs(0))
@@ -296,5 +346,4 @@ func TestAbs(t *testing.T) {
 
 	assert.Equal(int64(1), Abs(int64(-1)))
 	assert.Equal(float32(1), Abs(float32(-1)))
-
 }

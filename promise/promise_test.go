@@ -9,6 +9,8 @@ import (
 )
 
 func TestResolve(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestResolve")
 
 	p := Resolve("abc")
@@ -18,6 +20,8 @@ func TestResolve(t *testing.T) {
 }
 
 func TestReject(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestReject")
 
 	err := errors.New("error")
@@ -28,6 +32,8 @@ func TestReject(t *testing.T) {
 }
 
 func TestThen(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestThen")
 
 	p1 := New(func(resolve func(string), reject func(error)) {
@@ -48,6 +54,8 @@ func TestThen(t *testing.T) {
 }
 
 func TestPromise_Then(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestPromise_Then")
 
 	p1 := New(func(resolve func(int), reject func(error)) {
@@ -68,6 +76,8 @@ func TestPromise_Then(t *testing.T) {
 }
 
 func TestCatch(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestCatch")
 
 	p1 := New(func(resolve func(string), reject func(error)) {
@@ -93,6 +103,8 @@ func TestCatch(t *testing.T) {
 }
 
 func TestPromise_Catch(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestPromise_Catch")
 
 	p1 := New(func(resolve func(string), reject func(error)) {
@@ -118,6 +130,8 @@ func TestPromise_Catch(t *testing.T) {
 }
 
 func TestAll(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestPromise_All")
 
 	t.Run("AllPromisesFullfilled", func(_ *testing.T) {
@@ -180,7 +194,6 @@ func TestAll(t *testing.T) {
 		_, err := p.Await()
 
 		assert.IsNotNil(err)
-		// assert.Equal("error1", err.Error())
 	})
 
 }
@@ -227,7 +240,6 @@ func TestAny(t *testing.T) {
 		_, err := p.Await()
 
 		assert.IsNotNil(err)
-		// assert.Equal("error1", err.Error())
 	})
 
 }
@@ -275,7 +287,6 @@ func TestRace(t *testing.T) {
 		val, err := p.Await()
 
 		assert.IsNotNil(err)
-		// assert.Equal("error1", err.Error())
 		assert.Equal("", val)
 	})
 
@@ -296,7 +307,6 @@ func TestRace(t *testing.T) {
 		_, err := p.Await()
 
 		assert.IsNotNil(err)
-		// assert.Equal("error1", err.Error())
 	})
 
 }

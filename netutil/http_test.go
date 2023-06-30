@@ -126,6 +126,8 @@ func TestHttpDelete(t *testing.T) {
 }
 
 func TestConvertMapToQueryString(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestConvertMapToQueryString")
 
 	var m = map[string]any{
@@ -133,6 +135,7 @@ func TestConvertMapToQueryString(t *testing.T) {
 		"a": 1,
 		"b": 2,
 	}
+
 	assert.Equal("a=1&b=2&c=3", ConvertMapToQueryString(m))
 }
 
@@ -163,6 +166,8 @@ func TestParseResponse(t *testing.T) {
 }
 
 func TestHttpClient_Get(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestHttpClient_Get")
 
 	request := &HttpRequest{
@@ -218,6 +223,8 @@ func TestHttpClent_Post(t *testing.T) {
 }
 
 func TestStructToUrlValues(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestStructToUrlValues")
 
 	type TodoQuery struct {

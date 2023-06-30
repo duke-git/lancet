@@ -8,6 +8,8 @@ import (
 )
 
 func TestCamelCase(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestCamelCase")
 
 	cases := map[string]string{
@@ -27,6 +29,8 @@ func TestCamelCase(t *testing.T) {
 }
 
 func TestCapitalize(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestCapitalize")
 
 	cases := map[string]string{
@@ -46,6 +50,8 @@ func TestCapitalize(t *testing.T) {
 }
 
 func TestKebabCase(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestKebabCase")
 
 	cases := map[string]string{
@@ -69,6 +75,8 @@ func TestKebabCase(t *testing.T) {
 }
 
 func TestUpperKebabCase(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestUpperKebabCase")
 
 	cases := map[string]string{
@@ -92,6 +100,8 @@ func TestUpperKebabCase(t *testing.T) {
 }
 
 func TestSnakeCase(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestSnakeCase")
 
 	cases := map[string]string{
@@ -115,6 +125,8 @@ func TestSnakeCase(t *testing.T) {
 }
 
 func TestUpperSnakeCase(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestUpperSnakeCase")
 
 	cases := map[string]string{
@@ -138,6 +150,8 @@ func TestUpperSnakeCase(t *testing.T) {
 }
 
 func TestUpperFirst(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestLowerFirst")
 
 	cases := map[string]string{
@@ -154,6 +168,8 @@ func TestUpperFirst(t *testing.T) {
 }
 
 func TestLowerFirst(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestLowerFirst")
 
 	cases := map[string]string{
@@ -170,6 +186,8 @@ func TestLowerFirst(t *testing.T) {
 }
 
 func TestPad(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestPad")
 
 	assert.Equal("a ", Pad("a", 2, ""))
@@ -192,6 +210,8 @@ func TestPadEnd(t *testing.T) {
 }
 
 func TestPadStart(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestPadStart")
 
 	assert.Equal("a", PadStart("a", 1, "b"))
@@ -204,6 +224,8 @@ func TestPadStart(t *testing.T) {
 }
 
 func TestBefore(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestBefore")
 
 	assert.Equal("lancet", Before("lancet", ""))
@@ -213,6 +235,8 @@ func TestBefore(t *testing.T) {
 }
 
 func TestBeforeLast(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestBeforeLast")
 
 	assert.Equal("lancet", BeforeLast("lancet", ""))
@@ -223,6 +247,8 @@ func TestBeforeLast(t *testing.T) {
 }
 
 func TestAfter(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestAfter")
 
 	assert.Equal("lancet", After("lancet", ""))
@@ -232,6 +258,8 @@ func TestAfter(t *testing.T) {
 }
 
 func TestAfterLast(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestAfterLast")
 
 	assert.Equal("lancet", AfterLast("lancet", ""))
@@ -243,6 +271,8 @@ func TestAfterLast(t *testing.T) {
 }
 
 func TestIsString(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestIsString")
 
 	assert.Equal(true, IsString("lancet"))
@@ -253,6 +283,8 @@ func TestIsString(t *testing.T) {
 }
 
 func TestReverse(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestReverse")
 
 	assert.Equal("cba", Reverse("abc"))
@@ -260,6 +292,8 @@ func TestReverse(t *testing.T) {
 }
 
 func TestWrap(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestWrap")
 
 	assert.Equal("ab", Wrap("ab", ""))
@@ -270,6 +304,8 @@ func TestWrap(t *testing.T) {
 }
 
 func TestUnwrap(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestUnwrap")
 
 	assert.Equal("", Unwrap("", "*"))
@@ -288,6 +324,8 @@ func TestUnwrap(t *testing.T) {
 }
 
 func TestSplitEx(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestSplitEx")
 
 	assert.Equal([]string{}, SplitEx(" a b c ", "", true))
@@ -300,6 +338,8 @@ func TestSplitEx(t *testing.T) {
 }
 
 func TestSubstring(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestSubstring")
 
 	assert.Equal("bcd", Substring("abcde", 1, 3))
@@ -311,6 +351,8 @@ func TestSubstring(t *testing.T) {
 }
 
 func TestSplitWords(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestSplitWords")
 
 	cases := map[string][]string{
@@ -327,6 +369,8 @@ func TestSplitWords(t *testing.T) {
 }
 
 func TestWordCount(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestSplitWords")
 
 	cases := map[string]int{
@@ -343,6 +387,8 @@ func TestWordCount(t *testing.T) {
 }
 
 func TestRemoveNonPrintable(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestRemoveNonPrintable")
 
 	assert.Equal("hello world", RemoveNonPrintable("hello\u00a0 \u200bworld\n"))
@@ -350,47 +396,67 @@ func TestRemoveNonPrintable(t *testing.T) {
 }
 
 func TestStringToBytes(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestStringToBytes")
+
 	str := "abc"
 	bytes := StringToBytes(str)
+
 	assert.Equal(reflect.DeepEqual(bytes, []byte{'a', 'b', 'c'}), true)
 }
 
 func TestBytesToString(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestBytesToString")
+
 	bytes := []byte{'a', 'b', 'c'}
 	str := BytesToString(bytes)
+
 	assert.Equal(str == "abc", true)
 }
 
 func TestIsBlank(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestIsBlank")
 	assert.Equal(IsBlank(""), true)
 	assert.Equal(IsBlank("\t\v\f\n"), true)
+
 	assert.Equal(IsBlank(" 中文"), false)
 }
 
 func TestHasPrefixAny(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestHasPrefixAny")
 	str := "foo bar"
 	prefixes := []string{"fo", "xyz", "hello"}
 	notMatches := []string{"oom", "world"}
+
 	assert.Equal(HasPrefixAny(str, prefixes), true)
 	assert.Equal(HasPrefixAny(str, notMatches), false)
 }
 
 func TestHasSuffixAny(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestHasSuffixAny")
 	str := "foo bar"
 	suffixes := []string{"bar", "xyz", "hello"}
 	notMatches := []string{"oom", "world"}
+
 	assert.Equal(HasSuffixAny(str, suffixes), true)
 	assert.Equal(HasSuffixAny(str, notMatches), false)
 }
 
 func TestIndexOffset(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestIndexOffset")
 	str := "foo bar hello world"
+
 	assert.Equal(IndexOffset(str, "o", 5), 12)
 	assert.Equal(IndexOffset(str, "o", 0), 1)
 	assert.Equal(IndexOffset(str, "d", len(str)-1), len(str)-1)
@@ -399,6 +465,8 @@ func TestIndexOffset(t *testing.T) {
 }
 
 func TestReplaceWithMap(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestReplaceWithMap")
 
 	str := "ac ab ab ac"
@@ -412,6 +480,8 @@ func TestReplaceWithMap(t *testing.T) {
 }
 
 func TestTrim(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestTrim")
 
 	str1 := "$ ab	cd $ "
@@ -422,6 +492,8 @@ func TestTrim(t *testing.T) {
 }
 
 func TestSplitAndTrim(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestTrim")
 
 	str := " a,b, c,d,$1 "
@@ -434,6 +506,8 @@ func TestSplitAndTrim(t *testing.T) {
 }
 
 func TestHideString(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestTrim")
 
 	str := "13242658976"
@@ -452,6 +526,8 @@ func TestHideString(t *testing.T) {
 }
 
 func TestContainsAll(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestContainsAll")
 
 	assert.Equal(true, ContainsAll("hello world", []string{"hello", "world"}))
@@ -460,6 +536,8 @@ func TestContainsAll(t *testing.T) {
 }
 
 func TestContainsAny(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestContainsAny")
 
 	assert.Equal(true, ContainsAny("hello world", []string{"hello", "world"}))

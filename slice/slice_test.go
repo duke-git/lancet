@@ -10,6 +10,8 @@ import (
 )
 
 func TestContain(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestContain")
 
 	assert.Equal(true, Contain([]string{"a", "b", "c"}, "a"))
@@ -21,6 +23,8 @@ func TestContain(t *testing.T) {
 }
 
 func TestContainBy(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestContainBy")
 
 	type foo struct {
@@ -43,6 +47,8 @@ func TestContainBy(t *testing.T) {
 }
 
 func TestContainSubSlice(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestContainSubSlice")
 	assert.Equal(true, ContainSubSlice([]string{"a", "a", "b", "c"}, []string{"a", "a"}))
 	assert.Equal(false, ContainSubSlice([]string{"a", "a", "b", "c"}, []string{"a", "d"}))
@@ -51,6 +57,8 @@ func TestContainSubSlice(t *testing.T) {
 }
 
 func TestChunk(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestChunk")
 
 	arr := []string{"a", "b", "c", "d", "e"}
@@ -79,6 +87,8 @@ func TestChunk(t *testing.T) {
 }
 
 func TestCompact(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TesCompact")
 
 	assert.Equal([]int{}, Compact([]int{0}))
@@ -90,6 +100,8 @@ func TestCompact(t *testing.T) {
 }
 
 func TestConcat(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "Concat")
 
 	assert.Equal([]int{1, 2, 3, 4, 5}, Concat([]int{1, 2, 3}, []int{4, 5}))
@@ -97,6 +109,8 @@ func TestConcat(t *testing.T) {
 }
 
 func TestEqual(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestEqual")
 
 	slice1 := []int{1, 2, 3}
@@ -115,6 +129,8 @@ func FuzzEqual(f *testing.F) {
 }
 
 func TestEqualWith(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestEqualWith")
 
 	slice1 := []int{1, 2, 3}
@@ -128,6 +144,8 @@ func TestEqualWith(t *testing.T) {
 }
 
 func TestEvery(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestEvery")
 
 	nums := []int{1, 2, 3, 5}
@@ -139,6 +157,8 @@ func TestEvery(t *testing.T) {
 }
 
 func TestNone(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestNone")
 
 	nums := []int{1, 2, 3, 5}
@@ -150,6 +170,8 @@ func TestNone(t *testing.T) {
 }
 
 func TestSome(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestSome")
 
 	nums := []int{1, 2, 3, 5}
@@ -161,6 +183,8 @@ func TestSome(t *testing.T) {
 }
 
 func TestFilter(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestFilter")
 
 	nums := []int{1, 2, 3, 4, 5}
@@ -193,6 +217,8 @@ func TestFilter(t *testing.T) {
 }
 
 func TestGroupBy(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestGroupBy")
 
 	nums := []int{1, 2, 3, 4, 5, 6}
@@ -206,6 +232,8 @@ func TestGroupBy(t *testing.T) {
 }
 
 func TestGroupWith(t *testing.T) {
+	t.Parallel()
+
 	nums := []float64{6.1, 4.2, 6.3}
 	floor := func(num float64) float64 {
 		return math.Floor(num)
@@ -220,6 +248,8 @@ func TestGroupWith(t *testing.T) {
 }
 
 func TestCount(t *testing.T) {
+	t.Parallel()
+
 	numbers := []int{1, 2, 3, 3, 5, 6}
 
 	assert := internal.NewAssert(t, "TestCountBy")
@@ -229,6 +259,8 @@ func TestCount(t *testing.T) {
 }
 
 func TestCountBy(t *testing.T) {
+	t.Parallel()
+
 	nums := []int{1, 2, 3, 4, 5, 6}
 	evenFunc := func(i, num int) bool {
 		return (num % 2) == 0
@@ -239,6 +271,8 @@ func TestCountBy(t *testing.T) {
 }
 
 func TestFind(t *testing.T) {
+	t.Parallel()
+
 	nums := []int{1, 2, 3, 4, 5}
 	even := func(i, num int) bool {
 		return num%2 == 0
@@ -251,6 +285,8 @@ func TestFind(t *testing.T) {
 }
 
 func TestFindBy(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestFindBy")
 
 	nums := []int{1, 2, 3, 4, 5}
@@ -269,6 +305,8 @@ func TestFindBy(t *testing.T) {
 }
 
 func TestFindLastBy(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestFindLastBy")
 
 	nums := []int{1, 2, 3, 4, 5}
@@ -289,6 +327,8 @@ func TestFindLastBy(t *testing.T) {
 }
 
 func TestFindLast(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestFindLast")
 
 	nums := []int{1, 2, 3, 4, 5}
@@ -304,6 +344,8 @@ func TestFindLast(t *testing.T) {
 }
 
 func TestFindFoundNothing(t *testing.T) {
+	t.Parallel()
+
 	nums := []int{1, 1, 1, 1, 1, 1}
 	findFunc := func(i, num int) bool {
 		return num > 1
@@ -315,6 +357,8 @@ func TestFindFoundNothing(t *testing.T) {
 }
 
 func TestFlatten(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestFlatten")
 
 	input := [][][]string{{{"a", "b"}}, {{"c", "d"}}}
@@ -324,6 +368,8 @@ func TestFlatten(t *testing.T) {
 }
 
 func TestFlattenDeep(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestFlattenDeep")
 
 	input := [][][]string{{{"a", "b"}}, {{"c", "d"}}}
@@ -333,6 +379,8 @@ func TestFlattenDeep(t *testing.T) {
 }
 
 func TestForEach(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestForEach")
 
 	numbers := []int{1, 2, 3, 4, 5}
@@ -348,6 +396,8 @@ func TestForEach(t *testing.T) {
 }
 
 func TestForEachWithBreak(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestForEach")
 
 	numbers := []int{1, 2, 3, 4, 5}
@@ -366,6 +416,8 @@ func TestForEachWithBreak(t *testing.T) {
 }
 
 func TestMap(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestMap")
 
 	nums := []int{1, 2, 3, 4}
@@ -398,6 +450,8 @@ func TestMap(t *testing.T) {
 }
 
 func TestFilterMap(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestFilterMap")
 
 	nums := []int{1, 2, 3, 4, 5}
@@ -415,6 +469,8 @@ func TestFilterMap(t *testing.T) {
 }
 
 func TestFlatMap(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestFlatMap")
 
 	nums := []int{1, 2, 3, 4}
@@ -428,6 +484,8 @@ func TestFlatMap(t *testing.T) {
 }
 
 func TestReduce(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestReduce")
 
 	cases := [][]int{
@@ -448,6 +506,8 @@ func TestReduce(t *testing.T) {
 }
 
 func TestReduceBy(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestReduceBy")
 
 	result1 := ReduceBy([]int{1, 2, 3, 4}, 0, func(_ int, item int, agg int) int {
@@ -464,6 +524,8 @@ func TestReduceBy(t *testing.T) {
 }
 
 func TestReduceRight(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestReduceRight")
 
 	result := ReduceRight([]int{1, 2, 3, 4}, "", func(_ int, item int, agg string) string {
@@ -474,6 +536,8 @@ func TestReduceRight(t *testing.T) {
 }
 
 func TestIntSlice(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestIntSlice")
 
 	var nums []any
@@ -483,6 +547,8 @@ func TestIntSlice(t *testing.T) {
 }
 
 func TestStringSlice(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestStringSlice")
 
 	var strs []any
@@ -492,6 +558,8 @@ func TestStringSlice(t *testing.T) {
 }
 
 func TestInterfaceSlice(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestInterfaceSlice")
 
 	strs := []string{"a", "b", "c"}
@@ -501,6 +569,8 @@ func TestInterfaceSlice(t *testing.T) {
 }
 
 func TestDeleteAt(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestDeleteAt")
 
 	assert.Equal([]string{"a", "b", "c"}, DeleteAt([]string{"a", "b", "c"}, -1))
@@ -518,6 +588,8 @@ func TestDeleteAt(t *testing.T) {
 }
 
 func TestDrop(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestDrop")
 
 	assert.Equal([]int{}, Drop([]int{}, 0))
@@ -533,6 +605,8 @@ func TestDrop(t *testing.T) {
 }
 
 func TestDropRight(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestDropRight")
 
 	assert.Equal([]int{}, DropRight([]int{}, 0))
@@ -548,6 +622,8 @@ func TestDropRight(t *testing.T) {
 }
 
 func TestDropWhile(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestDropWhile")
 
 	numbers := []int{1, 2, 3, 4, 5}
@@ -569,6 +645,8 @@ func TestDropWhile(t *testing.T) {
 }
 
 func TestDropRightWhile(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestDropRightWhile")
 
 	numbers := []int{1, 2, 3, 4, 5}
@@ -590,6 +668,8 @@ func TestDropRightWhile(t *testing.T) {
 }
 
 func TestInsertAt(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestInsertAt")
 
 	strs := []string{"a", "b", "c"}
@@ -604,6 +684,8 @@ func TestInsertAt(t *testing.T) {
 }
 
 func TestUpdateAt(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestUpdateAt")
 
 	assert.Equal([]string{"a", "b", "c"}, UpdateAt([]string{"a", "b", "c"}, -1, "1"))
@@ -613,6 +695,8 @@ func TestUpdateAt(t *testing.T) {
 }
 
 func TestUnique(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestUnique")
 
 	assert.Equal([]int{1, 2, 3}, Unique([]int{1, 2, 2, 3}))
@@ -620,6 +704,8 @@ func TestUnique(t *testing.T) {
 }
 
 func TestUniqueBy(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestUniqueBy")
 
 	actual := UniqueBy([]int{1, 2, 3, 4, 5, 6}, func(val int) int {
@@ -629,6 +715,8 @@ func TestUniqueBy(t *testing.T) {
 }
 
 func TestUnion(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestUnion")
 
 	s1 := []int{1, 3, 4, 6}
@@ -641,6 +729,8 @@ func TestUnion(t *testing.T) {
 }
 
 func TestUnionBy(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestUnionBy")
 
 	testFunc := func(i int) int {
@@ -652,6 +742,8 @@ func TestUnionBy(t *testing.T) {
 }
 
 func TestMerge(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestMerge")
 
 	s1 := []int{1, 2, 3, 4}
@@ -664,6 +756,8 @@ func TestMerge(t *testing.T) {
 }
 
 func TestIntersection(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestIntersection")
 
 	s1 := []int{1, 2, 2, 3}
@@ -690,6 +784,8 @@ func TestIntersection(t *testing.T) {
 }
 
 func TestSymmetricDifference(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestSymmetricDifference")
 
 	s1 := []int{1, 2, 3}
@@ -702,6 +798,8 @@ func TestSymmetricDifference(t *testing.T) {
 }
 
 func TestReverse(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestReverse")
 
 	s1 := []int{1, 2, 3, 4, 5}
@@ -714,6 +812,8 @@ func TestReverse(t *testing.T) {
 }
 
 func TestDifference(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestDifference")
 
 	s1 := []int{1, 2, 3, 4, 5}
@@ -723,6 +823,8 @@ func TestDifference(t *testing.T) {
 }
 
 func TestDifferenceWith(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestDifferenceWith")
 
 	s1 := []int{1, 2, 3, 4, 5}
@@ -735,6 +837,8 @@ func TestDifferenceWith(t *testing.T) {
 }
 
 func TestDifferenceBy(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestDifferenceBy")
 
 	s1 := []int{1, 2, 3, 4, 5} // after add one: 2 3 4 5 6
@@ -747,6 +851,8 @@ func TestDifferenceBy(t *testing.T) {
 }
 
 func TestIsAscending(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestIsAscending")
 
 	assert.Equal(true, IsAscending([]int{1, 2, 3, 4, 5}))
@@ -755,6 +861,8 @@ func TestIsAscending(t *testing.T) {
 }
 
 func TestIsDescending(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestIsDescending")
 
 	assert.Equal(true, IsDescending([]int{5, 4, 3, 2, 1}))
@@ -763,6 +871,8 @@ func TestIsDescending(t *testing.T) {
 }
 
 func TestIsSorted(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestIsSorted")
 
 	assert.Equal(true, IsSorted([]int{5, 4, 3, 2, 1}))
@@ -771,6 +881,8 @@ func TestIsSorted(t *testing.T) {
 }
 
 func TestIsSortedByKey(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestIsSortedByKey")
 
 	assert.Equal(true, IsSortedByKey([]string{"a", "ab", "abc"}, func(s string) int {
@@ -787,6 +899,8 @@ func TestIsSortedByKey(t *testing.T) {
 }
 
 func TestSort(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestSort")
 
 	numbers := []int{1, 4, 3, 2, 5}
@@ -807,6 +921,8 @@ func TestSort(t *testing.T) {
 }
 
 func TestSortBy(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestSortBy")
 
 	numbers := []int{1, 4, 3, 2, 5}
@@ -836,6 +952,8 @@ func TestSortBy(t *testing.T) {
 }
 
 func TestSortByFielDesc(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestSortByFielDesc")
 
 	type student struct {
@@ -862,6 +980,8 @@ func TestSortByFielDesc(t *testing.T) {
 }
 
 func TestSortByFieldAsc(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestSortByFieldAsc")
 
 	type student struct {
@@ -888,12 +1008,16 @@ func TestSortByFieldAsc(t *testing.T) {
 }
 
 func TestWithout(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestWithout")
 	assert.Equal([]int{3, 4, 5}, Without([]int{1, 2, 3, 4, 5}, 1, 2))
 	assert.Equal([]int{1, 2, 3, 4, 5}, Without([]int{1, 2, 3, 4, 5}))
 }
 
 func TestShuffle(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestShuffle")
 
 	numbers := []int{1, 2, 3, 4, 5}
@@ -903,6 +1027,8 @@ func TestShuffle(t *testing.T) {
 }
 
 func TestIndexOf(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestIndexOf")
 
 	arr := []string{"a", "a", "b", "c"}
@@ -942,6 +1068,8 @@ func TestIndexOf(t *testing.T) {
 }
 
 func TestLastIndexOf(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestLastIndexOf")
 
 	arr := []string{"a", "b", "b", "c"}
@@ -951,6 +1079,8 @@ func TestLastIndexOf(t *testing.T) {
 }
 
 func TestToSlice(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestToSlice")
 
 	str1 := "a"
@@ -960,6 +1090,8 @@ func TestToSlice(t *testing.T) {
 }
 
 func TestToSlicePointer(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestToSlicePointer")
 
 	str1 := "a"
@@ -969,6 +1101,8 @@ func TestToSlicePointer(t *testing.T) {
 }
 
 func TestAppendIfAbsent(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestAppendIfAbsent")
 
 	str1 := []string{"a", "b"}
@@ -977,6 +1111,8 @@ func TestAppendIfAbsent(t *testing.T) {
 }
 
 func TestReplace(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestReplace")
 
 	strs := []string{"a", "b", "a", "c", "d", "a"}
@@ -995,6 +1131,8 @@ func TestReplace(t *testing.T) {
 }
 
 func TestReplaceAll(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestReplaceAll")
 
 	strs := []string{"a", "b", "a", "c", "d", "a"}
@@ -1004,6 +1142,8 @@ func TestReplaceAll(t *testing.T) {
 }
 
 func TestKeyBy(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestKeyBy")
 
 	result := KeyBy([]string{"a", "ab", "abc"}, func(str string) int {
@@ -1014,6 +1154,8 @@ func TestKeyBy(t *testing.T) {
 }
 
 func TestRepeat(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestRepeat")
 
 	assert.Equal([]string{}, Repeat("a", 0))

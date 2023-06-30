@@ -8,8 +8,9 @@ import (
 )
 
 func TestStruct_ToMap(t *testing.T) {
-	assert := internal.NewAssert(t, "TestStruct_ToMap")
+	t.Parallel()
 
+	assert := internal.NewAssert(t, "TestStruct_ToMap")
 	t.Run("invalid struct", func(t *testing.T) {
 		m, _ := ToMap(1)
 		var expected map[string]any
@@ -65,6 +66,8 @@ func TestStruct_ToMap(t *testing.T) {
 }
 
 func TestStruct_Fields(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestStruct_Fields")
 
 	type Parent struct {
@@ -91,6 +94,8 @@ func TestStruct_Fields(t *testing.T) {
 }
 
 func TestStruct_Field(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestStruct_Field")
 
 	type Parent struct {
@@ -109,6 +114,7 @@ func TestStruct_Field(t *testing.T) {
 
 	s := New(p1)
 	a, ok := s.Field("A")
+
 	assert.Equal(true, ok)
 	assert.Equal(reflect.String, a.Kind())
 	assert.Equal("1", a.Value())
@@ -118,6 +124,8 @@ func TestStruct_Field(t *testing.T) {
 }
 
 func TestStruct_IsStruct(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestStruct_Field")
 
 	type Test1 struct{}

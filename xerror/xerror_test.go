@@ -10,11 +10,15 @@ import (
 )
 
 func TestTryUnwrap(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestTryUnwrap")
 	assert.Equal(42, TryUnwrap(strconv.Atoi("42")))
 }
 
 func TestTryUnwrapFail(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestTryUnwrapFail")
 
 	_, err := strconv.Atoi("4o2")
@@ -27,6 +31,8 @@ func TestTryUnwrapFail(t *testing.T) {
 }
 
 func TestNew(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestNew")
 
 	err := New("error occurs")
@@ -34,6 +40,8 @@ func TestNew(t *testing.T) {
 }
 
 func TestWrap(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestWrap")
 
 	err := New("wrong password")
@@ -43,6 +51,8 @@ func TestWrap(t *testing.T) {
 }
 
 func TestXError_Wrap(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestXError_Wrap")
 
 	err1 := New("error").With("level", "high")
@@ -52,6 +62,8 @@ func TestXError_Wrap(t *testing.T) {
 }
 
 func TestXError_Unwrap(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestXError_Unwrap")
 
 	err1 := New("error").With("level", "high")
@@ -64,6 +76,8 @@ func TestXError_Unwrap(t *testing.T) {
 }
 
 func TestXError_StackTrace(t *testing.T) {
+	// t.Parallel()
+
 	assert := internal.NewAssert(t, "TestXError_StackTrace")
 
 	err := New("error")
@@ -72,11 +86,13 @@ func TestXError_StackTrace(t *testing.T) {
 
 	assert.Equal(3, len(stacks))
 	assert.Equal("github.com/duke-git/lancet/v2/xerror.TestXError_StackTrace", stacks[0].Func)
-	assert.Equal(69, stacks[0].Line)
+	assert.Equal(83, stacks[0].Line)
 	assert.Equal(true, strings.Contains(stacks[0].File, "xerror_test.go"))
 }
 
 func TestXError_With_Id_Is_Values(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestXError_With_Id_Is_Values")
 
 	baseErr := New("baseError")
@@ -94,6 +110,8 @@ func TestXError_With_Id_Is_Values(t *testing.T) {
 }
 
 func TestXError_Info(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestXError_Info")
 
 	cause := errors.New("error")

@@ -8,6 +8,8 @@ import (
 )
 
 func TestOf(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestFromSlice")
 
 	stream := Of(1, 2, 3)
@@ -15,6 +17,8 @@ func TestOf(t *testing.T) {
 }
 
 func TestGenerate(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestFromSlice")
 
 	n := 0
@@ -33,14 +37,17 @@ func TestGenerate(t *testing.T) {
 }
 
 func TestFromSlice(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestFromSlice")
 
 	stream := FromSlice([]int{1, 2, 3})
-
 	assert.Equal([]int{1, 2, 3}, stream.ToSlice())
 }
 
 func TestFromChannel(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestFromChannel")
 
 	ch := make(chan int)
@@ -57,6 +64,8 @@ func TestFromChannel(t *testing.T) {
 }
 
 func TestFromRange(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestFromRange")
 
 	s1 := FromRange(1, 5, 1)
@@ -67,6 +76,8 @@ func TestFromRange(t *testing.T) {
 }
 
 func TestStream_Distinct(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestStream_Distinct")
 
 	nums := FromSlice([]int{1, 2, 2, 3, 3, 3})
@@ -99,6 +110,8 @@ func TestStream_Distinct(t *testing.T) {
 }
 
 func TestStream_Filter(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestStream_Filter")
 
 	stream := FromSlice([]int{1, 2, 3, 4, 5})

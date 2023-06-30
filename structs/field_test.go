@@ -1,12 +1,15 @@
 package structs
 
 import (
-	"github.com/duke-git/lancet/v2/internal"
 	"reflect"
 	"testing"
+
+	"github.com/duke-git/lancet/v2/internal"
 )
 
 func TestField_Tag(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestField_Tag")
 
 	type Parent struct {
@@ -17,11 +20,14 @@ func TestField_Tag(t *testing.T) {
 	s := New(p1)
 	n, _ := s.Field("Name")
 	tag := n.Tag()
+
 	assert.Equal("name", tag.Name)
 	assert.Equal(true, tag.HasOption("omitempty"))
 }
 
 func TestField_Value(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestField_Value")
 
 	type Parent struct {
@@ -36,7 +42,10 @@ func TestField_Value(t *testing.T) {
 }
 
 func TestField_IsEmbedded(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestField_IsEmbedded")
+
 	type Parent struct {
 		Name string
 	}
@@ -51,11 +60,14 @@ func TestField_IsEmbedded(t *testing.T) {
 	s := New(c1)
 	n, _ := s.Field("Name")
 	a, _ := s.Field("Age")
+
 	assert.Equal(true, n.IsEmbedded())
 	assert.Equal(false, a.IsEmbedded())
 }
 
 func TestField_IsExported(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestField_IsEmbedded")
 
 	type Parent struct {
@@ -66,11 +78,14 @@ func TestField_IsExported(t *testing.T) {
 	s := New(p1)
 	n, _ := s.Field("Name")
 	a, _ := s.Field("age")
+
 	assert.Equal(true, n.IsExported())
 	assert.Equal(false, a.IsExported())
 }
 
 func TestField_IsZero(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestField_IsZero")
 
 	type Parent struct {
@@ -81,11 +96,14 @@ func TestField_IsZero(t *testing.T) {
 	s := New(p1)
 	n, _ := s.Field("Name")
 	a, _ := s.Field("Age")
+
 	assert.Equal(true, n.IsZero())
 	assert.Equal(false, a.IsZero())
 }
 
 func TestField_Name(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestField_Name")
 
 	type Parent struct {
@@ -102,6 +120,8 @@ func TestField_Name(t *testing.T) {
 }
 
 func TestField_Kind(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestField_Kind")
 
 	type Parent struct {
@@ -118,6 +138,8 @@ func TestField_Kind(t *testing.T) {
 }
 
 func TestField_IsSlice(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestField_IsSlice")
 
 	type Parent struct {
@@ -133,6 +155,8 @@ func TestField_IsSlice(t *testing.T) {
 }
 
 func TestField_MapValue(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestField_MapValue")
 
 	t.Run("nested struct", func(t *testing.T) {

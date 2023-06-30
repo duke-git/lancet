@@ -8,6 +8,8 @@ import (
 )
 
 func TestOsDetection(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestOsJudgment")
 
 	osType, _, _ := ExecCommand("echo $OSTYPE")
@@ -20,6 +22,8 @@ func TestOsDetection(t *testing.T) {
 }
 
 func TestOsEnvOperation(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestOsEnvOperation")
 
 	envNotExist := GetOsEnv("foo")
@@ -44,6 +48,8 @@ func TestOsEnvOperation(t *testing.T) {
 }
 
 func TestExecCommand(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestExecCommand")
 
 	// linux or mac
@@ -79,6 +85,8 @@ func TestExecCommand(t *testing.T) {
 // }
 
 func TestGetOsBits(t *testing.T) {
+	t.Parallel()
+
 	osBits := GetOsBits()
 	switch osBits {
 	case 32, 64:

@@ -7,6 +7,8 @@ import (
 )
 
 func TestOf(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestOf")
 
 	result1 := Of(123)
@@ -17,6 +19,8 @@ func TestOf(t *testing.T) {
 }
 
 func TestUnwrap(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestUnwrap")
 
 	a := 123
@@ -27,6 +31,8 @@ func TestUnwrap(t *testing.T) {
 }
 
 func TestExtractPointer(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestExtractPointer")
 
 	a := 1

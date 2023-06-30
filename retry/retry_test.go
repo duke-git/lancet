@@ -10,6 +10,8 @@ import (
 )
 
 func TestRetryFailed(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestRetryFailed")
 
 	var number int
@@ -25,6 +27,8 @@ func TestRetryFailed(t *testing.T) {
 }
 
 func TestRetrySucceeded(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestRetrySucceeded")
 
 	var number int
@@ -43,6 +47,8 @@ func TestRetrySucceeded(t *testing.T) {
 }
 
 func TestSetRetryTimes(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestSetRetryTimes")
 
 	var number int
@@ -58,6 +64,8 @@ func TestSetRetryTimes(t *testing.T) {
 }
 
 func TestCancelRetry(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestCancelRetry")
 
 	ctx, cancel := context.WithCancel(context.TODO())

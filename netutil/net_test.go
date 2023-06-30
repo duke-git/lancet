@@ -9,6 +9,8 @@ import (
 )
 
 func TestGetInternalIp(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestGetInternalIp")
 
 	internalIp := GetInternalIp()
@@ -17,6 +19,8 @@ func TestGetInternalIp(t *testing.T) {
 }
 
 func TestGetRequestPublicIp(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestGetPublicIpInfo")
 
 	ip := "36.112.24.10"
@@ -50,6 +54,8 @@ func TestGetRequestPublicIp(t *testing.T) {
 // }
 
 func TestIsPublicIP(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestIsPublicIP")
 
 	ips := []net.IP{
@@ -69,6 +75,8 @@ func TestIsPublicIP(t *testing.T) {
 }
 
 func TestIsInternalIP(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestIsInternalIP")
 
 	ips := []net.IP{
@@ -110,14 +118,9 @@ func TestEncodeUrl(t *testing.T) {
 	assert.Equal(expected, encodedUrl)
 }
 
-// func TestDownloadFile(t *testing.T) {
-// 	assert := internal.NewAssert(t, "TestDownloadFile")
-
-// 	err := DownloadFile("./lancet_logo.jpg", "https://picx.zhimg.com/v2-fc82a4199749de9cfb71e32e54f489d3_720w.jpg?source=172ae18b")
-// 	assert.IsNil(err)
-// }
-
 func TestIsPingConnected(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestIsPingConnected")
 
 	// in github action env, this will fail
@@ -129,6 +132,8 @@ func TestIsPingConnected(t *testing.T) {
 }
 
 func TestTelnetConnected(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestTelnetConnected")
 
 	result1 := IsTelnetConnected("bing.com", "80")

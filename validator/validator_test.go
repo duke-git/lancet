@@ -11,6 +11,8 @@ import (
 )
 
 func TestIsAllUpper(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestIsAllUpper")
 
 	assert.Equal(true, IsAllUpper("ABC"))
@@ -26,6 +28,8 @@ func TestIsAllUpper(t *testing.T) {
 }
 
 func TestIsAllLower(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestIsAllLower")
 
 	assert.Equal(true, IsAllLower("abc"))
@@ -41,6 +45,8 @@ func TestIsAllLower(t *testing.T) {
 }
 
 func TestContainLower(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestContainLower")
 
 	assert.Equal(true, ContainLower("abc"))
@@ -57,6 +63,8 @@ func TestContainLower(t *testing.T) {
 }
 
 func TestContainUpper(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestContainUpper")
 
 	assert.Equal(true, ContainUpper("ABC"))
@@ -73,6 +81,8 @@ func TestContainUpper(t *testing.T) {
 }
 
 func TestContainLetter(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestContainLetter")
 
 	assert.Equal(true, ContainLetter("ABC"))
@@ -87,6 +97,8 @@ func TestContainLetter(t *testing.T) {
 }
 
 func TestContainNumber(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestContainNumber")
 
 	assert.Equal(true, ContainNumber("123"))
@@ -104,6 +116,8 @@ func TestContainNumber(t *testing.T) {
 }
 
 func TestIsJSON(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestIsJSON")
 
 	assert.Equal(true, IsJSON("{}"))
@@ -118,6 +132,8 @@ func TestIsJSON(t *testing.T) {
 }
 
 func TestIsNumber(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestIsNumber")
 
 	assert.Equal(false, IsNumber(""))
@@ -127,6 +143,8 @@ func TestIsNumber(t *testing.T) {
 }
 
 func TestIsFloat(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestIsFloat")
 
 	assert.Equal(false, IsFloat(""))
@@ -136,6 +154,8 @@ func TestIsFloat(t *testing.T) {
 }
 
 func TestIsInt(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestIsInt")
 
 	assert.Equal(false, IsInt(""))
@@ -146,6 +166,8 @@ func TestIsInt(t *testing.T) {
 }
 
 func TestIsNumberStr(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestIsNumberStr")
 
 	assert.Equal(true, IsNumberStr("3."))
@@ -156,6 +178,8 @@ func TestIsNumberStr(t *testing.T) {
 }
 
 func TestIsFloatStr(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestIsFloatStr")
 
 	assert.Equal(true, IsFloatStr("3."))
@@ -166,6 +190,8 @@ func TestIsFloatStr(t *testing.T) {
 }
 
 func TestIsIntStr(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestIsIntStr")
 
 	assert.Equal(true, IsIntStr("+3"))
@@ -175,6 +201,8 @@ func TestIsIntStr(t *testing.T) {
 }
 
 func TestIsPort(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestIsPort")
 
 	assert.Equal(true, IsPort("1"))
@@ -187,6 +215,8 @@ func TestIsPort(t *testing.T) {
 }
 
 func TestIsIp(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestIsIntStr")
 
 	assert.Equal(true, IsIp("127.0.0.1"))
@@ -196,6 +226,8 @@ func TestIsIp(t *testing.T) {
 }
 
 func TestIsIpV4(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestIsIpV4")
 
 	assert.Equal(true, IsIpV4("127.0.0.1"))
@@ -203,6 +235,8 @@ func TestIsIpV4(t *testing.T) {
 }
 
 func TestIsIpV6(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestIsIpV6")
 
 	assert.Equal(false, IsIpV6("127.0.0.1"))
@@ -210,6 +244,8 @@ func TestIsIpV6(t *testing.T) {
 }
 
 func TestIsUrl(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestIsUrl")
 
 	assert.Equal(true, IsUrl("http://abc.com"))
@@ -219,6 +255,8 @@ func TestIsUrl(t *testing.T) {
 }
 
 func TestIsDns(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestIsDns")
 
 	assert.Equal(true, IsDns("abc.com"))
@@ -227,6 +265,8 @@ func TestIsDns(t *testing.T) {
 }
 
 func TestIsEmail(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestIsEmail")
 
 	assert.Equal(true, IsEmail("abc@xyz.com"))
@@ -234,6 +274,8 @@ func TestIsEmail(t *testing.T) {
 }
 
 func TestContainChinese(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestContainChinese")
 
 	assert.Equal(true, ContainChinese("你好"))
@@ -242,6 +284,8 @@ func TestContainChinese(t *testing.T) {
 }
 
 func TestIsChineseMobile(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestIsChineseMobile")
 
 	assert.Equal(true, IsChineseMobile("13263527980"))
@@ -249,6 +293,8 @@ func TestIsChineseMobile(t *testing.T) {
 }
 
 func TestIsChinesePhone(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestIsChinesePhone")
 
 	assert.Equal(true, IsChinesePhone("010-32116675"))
@@ -259,6 +305,8 @@ func TestIsChinesePhone(t *testing.T) {
 }
 
 func TestIsChineseIdNum(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestIsChineseIdNum")
 
 	assert.Equal(true, IsChineseIdNum("210911192105130715"))
@@ -268,6 +316,8 @@ func TestIsChineseIdNum(t *testing.T) {
 }
 
 func TestIsCreditCard(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestIsCreditCard")
 
 	assert.Equal(true, IsCreditCard("4111111111111111"))
@@ -275,6 +325,8 @@ func TestIsCreditCard(t *testing.T) {
 }
 
 func TestIsBase64(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestIsBase64")
 
 	assert.Equal(true, IsBase64("aGVsbG8="))
@@ -282,6 +334,8 @@ func TestIsBase64(t *testing.T) {
 }
 
 func TestIsEmptyString(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestIsEmptyString")
 
 	assert.Equal(true, IsEmptyString(""))
@@ -291,6 +345,8 @@ func TestIsEmptyString(t *testing.T) {
 }
 
 func TestIsAlpha(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestIsAlpha")
 
 	assert.Equal(true, IsAlpha("abc"))
@@ -301,6 +357,8 @@ func TestIsAlpha(t *testing.T) {
 }
 
 func TestIsRegexMatch(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestIsRegexMatch")
 
 	assert.Equal(true, IsRegexMatch("abc", `^[a-zA-Z]+$`))
@@ -309,6 +367,8 @@ func TestIsRegexMatch(t *testing.T) {
 }
 
 func TestIsStrongPassword(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestIsStrongPassword")
 
 	assert.Equal(false, IsStrongPassword("abc", 3))
@@ -321,6 +381,8 @@ func TestIsStrongPassword(t *testing.T) {
 }
 
 func TestIsWeakPassword(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestIsWeakPassword")
 
 	assert.Equal(true, IsWeakPassword("abc"))
@@ -331,6 +393,8 @@ func TestIsWeakPassword(t *testing.T) {
 }
 
 func TestIsZeroValue(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestIsZeroValue")
 
 	var (
@@ -438,6 +502,8 @@ func TestIsZeroValue(t *testing.T) {
 }
 
 func TestIsGBK(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestIsGBK")
 
 	str := "你好"
@@ -448,6 +514,8 @@ func TestIsGBK(t *testing.T) {
 }
 
 func TestIsASCII(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestIsASCII")
 
 	assert.Equal(true, IsASCII("ABC"))
@@ -458,6 +526,8 @@ func TestIsASCII(t *testing.T) {
 }
 
 func TestIsPrintable(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestIsPrintable")
 
 	assert.Equal(true, IsPrintable("ABC"))
