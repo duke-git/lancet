@@ -73,7 +73,36 @@ func main() {
 
 ## Documentation
 
-### 1. Algorithm package implements some basic algorithm. eg. sort, search.
+### <span id="index">Index<span>
+
+-   [Algorithm](#Algorithm)
+-   [Compare](#Compare)
+-   [Concurrency](#Concurrency)
+-   [Condition](#Condition)
+-   [Convetor](#Convetor)
+-   [Cryptor](#Cryptor)
+-   [Datetime](#Datetime)
+-   [Datastructure](#Datastructure)
+-   [Fileutil](#Fileutil)
+-   [Formatter](#Formatter)
+-   [Function](#Function)
+-   [Iterator](#Iterator)
+-   [Maputil](#Maputil)
+-   [Mathutil](#Mathutil)
+-   [Netutil](#Netutil)
+-   [Pointer](#Pointer)
+-   [Random](#Random)
+-   [Retry](#Retry)
+-   [Slice](#Slice)
+-   [Stream](#Stream)
+-   [Structs](#Structs)
+-   [Strutil](#Strutil)
+-   [System](#System)
+-   [Tuple](#Tuple)
+-   [Validator](#Validator)
+-   [Xerror](#Xerror)
+
+### <span id="Algorithm">1. Algorithm package implements some basic algorithm. eg. sort, search.</span></span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [index](#index)
 
 ```go
 import "github.com/duke-git/lancet/v2/algorithm"
@@ -118,7 +147,7 @@ import "github.com/duke-git/lancet/v2/algorithm"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#LRUCache)]
     [[play](https://go.dev/play/p/-EZjgOURufP)]
 
-### 2. Compare package provides a lightweight comparison function on any type.
+### <span id="Compare">2. Compare package provides a lightweight comparison function on any type.</span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [index](#index)
 
 ```go
 import "github.com/duke-git/lancet/v2/compare"
@@ -145,7 +174,7 @@ import "github.com/duke-git/lancet/v2/compare"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/compare.md#GreaterOrEqual)]
     [[play](https://go.dev/play/p/vx8mP0U8DFk)]
 
-### 3. Concurrency package contain some functions to support concurrent programming. eg, goroutine, channel, async.
+### <span id="Concurrency">3. Concurrency package contain some functions to support concurrent programming. eg, goroutine, channel, async.</span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [index](#index)
 
 ```go
 import "github.com/duke-git/lancet/v2/concurrency"
@@ -184,7 +213,7 @@ import "github.com/duke-git/lancet/v2/concurrency"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/concurrency.md#Tee)]
     [[play](https://go.dev/play/p/3TQPKnCirrP)]
 
-### 4. Condition package contains some functions for conditional judgment. eg. And, Or, TernaryOperator...
+### <span id="Condition">4. Condition package contains some functions for conditional judgment. eg. And, Or, TernaryOperator...</span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [index](#index)
 
 ```go
 import "github.com/duke-git/lancet/v2/condition"
@@ -217,7 +246,7 @@ import "github.com/duke-git/lancet/v2/condition"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/condition.md#TernaryOperator)]
     [[play](https://go.dev/play/p/ElllPZY0guT)]
 
-### 5. Convertor package contains some functions for data convertion.
+### <span id="Convertor">5. Convertor package contains some functions for data convertion.</span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [index](#index)
 
 ```go
 import "github.com/duke-git/lancet/v2/convertor"
@@ -289,7 +318,7 @@ import "github.com/duke-git/lancet/v2/convertor"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#GbkToUtf8)]
     [[play](https://go.dev/play/p/OphmHCN_9u8)]
 
-### 6. Cryptor package is for data encryption and decryption.
+### <span id="Cryptor">6. Cryptor package is for data encryption and decryption.</span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [index](#index)
 
 ```go
 import "github.com/duke-git/lancet/v2/cryptor"
@@ -393,7 +422,7 @@ import "github.com/duke-git/lancet/v2/cryptor"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#RsaDecrypt)]
     [[play](https://go.dev/play/p/uef0q1fz53I)]
 
-### 7. Datetime package supports date and time format and compare.
+### <span id="Datetime">7. Datetime package supports date and time format and compare.</span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [index](#index)
 
 ```go
 import "github.com/duke-git/lancet/v2/datetime"
@@ -507,7 +536,7 @@ import "github.com/duke-git/lancet/v2/datetime"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#IsWeekend)]
     [[play](https://go.dev/play/p/cupRM5aZOIY)]
 
-### 8. Datastructure package constains some common data structure. eg. list, linklist, stack, queue, set, tree, graph.
+### <span id="Datastructure">8. Datastructure package constains some common data structure. eg. list, linklist, stack, queue, set, tree, graph.</span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [index](#index)
 
 ```go
 import list "github.com/duke-git/lancet/v2/datastructure/list"
@@ -539,7 +568,7 @@ import hashmap "github.com/duke-git/lancet/v2/datastructure/hashmap"
 -   **<big>Hashmap</big>** : hash map structure.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/datastructure/hashmap.md)]
 
-### 9. Fileutil package implements some basic functions for file operations.
+### <span id="Fileutil">9. Fileutil package implements some basic functions for file operations.</span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [index](#index)
 
 ```go
 import "github.com/duke-git/lancet/v2/fileutil"
@@ -622,7 +651,7 @@ import "github.com/duke-git/lancet/v2/fileutil"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#WriteStringToFile)]
     [[play](https://go.dev/play/p/GhLS6d8lH_g)]
 
-### 10. Formatter contains some functions for data formatting.
+### <span id="Formatter">10. Formatter contains some functions for data formatting.</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [index](#index)
 
 ```go
 import "github.com/duke-git/lancet/v2/formatter"
@@ -652,7 +681,7 @@ import "github.com/duke-git/lancet/v2/formatter"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/formatter.md#ParseBinaryBytes)]
     [[play](https://go.dev/play/p/69v1tTT62x8)]
 
-### 11. Function package can control the flow of function execution and support part of functional programming
+### <span id="Function">11. Function package can control the flow of function execution and support part of functional programming.</span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [index](#index)
 
 ```go
 import "github.com/duke-git/lancet/v2/function"
@@ -688,7 +717,7 @@ import "github.com/duke-git/lancet/v2/function"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/function.md#Watcher)]
     [[play](https://go.dev/play/p/l2yrOpCLd1I)]
 
-### 12. Maputil package includes some functions to manipulate map.
+### <span id="Maputil">12. Maputil package includes some functions to manipulate map.</span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [index](#index)
 
 ```go
 import "github.com/duke-git/lancet/v2/maputil"
@@ -760,7 +789,7 @@ import "github.com/duke-git/lancet/v2/maputil"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil.md#IsDisjoint)]
     [[play](https://go.dev/play/p/N9qgYg_Ho6f)]
 
-### 13. Mathutil package implements some functions for math calculation.
+### <span id="Mathutil">13. Mathutil package implements some functions for math calculation.</span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [index](#index)
 
 ```go
 import "github.com/duke-git/lancet/v2/mathutil"
@@ -841,7 +870,7 @@ import "github.com/duke-git/lancet/v2/mathutil"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#Sum)]
     [[play](https://go.dev/play/p/1To2ImAMJA7)]
 
-### 14. Netutil package contains functions to get net information and send http request.
+### <span id="Netutil">14. Netutil package contains functions to get net information and send http request.</span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [index](#index)
 
 ```go
 import "github.com/duke-git/lancet/v2/netutil"
@@ -914,7 +943,7 @@ import "github.com/duke-git/lancet/v2/netutil"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#IsTelnetConnected)]
     [[play](https://go.dev/play/p/yiLCGtQv_ZG)]
 
-### 15. Pointer package contains some util functions to operate go pointer.
+### <span id="Pointer">15. Pointer package contains some util functions to operate go pointer.</span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [index](#index)
 
 ```go
 import "github.com/duke-git/lancet/v2/pointer"
@@ -932,7 +961,7 @@ import "github.com/duke-git/lancet/v2/pointer"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/pointer.md#Unwrap)]
     [[play](https://go.dev/play/p/cgeu3g7cjWb)]
 
-### 16. Random package implements some basic functions to generate random int and string.
+### <span id="Random">16. Random package implements some basic functions to generate random int and string.</span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [index](#index)
 
 ```go
 import "github.com/duke-git/lancet/v2/random"
@@ -968,7 +997,7 @@ import "github.com/duke-git/lancet/v2/random"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/random.md#RandUniqueIntSlice)]
     [[play](https://go.dev/play/p/uBkRSOz73Ec)]
 
-### 17. Retry package is for executing a function repeatedly until it was successful or canceled by the context.
+### <span id="Retry">17. Retry package is for executing a function repeatedly until it was successful or canceled by the context.</span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [index](#index)
 
 ```go
 import "github.com/duke-git/lancet/v2/retry"
@@ -992,7 +1021,7 @@ import "github.com/duke-git/lancet/v2/retry"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/retry.md#RetryTimes)]
     [[play](https://go.dev/play/p/ssfVeU2SwLO)]
 
-### 18. Slice contains some functions to manipulate slice.
+### <span id="Slice">18. Slice contains some functions to manipulate slice.</span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [index](#index)
 
 ```go
 import "github.com/duke-git/lancet/v2/slice"
@@ -1205,7 +1234,7 @@ import "github.com/duke-git/lancet/v2/slice"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#KeyBy)]
     [[play](https://go.dev/play/p/uXod2LWD1Kg)]
 
-### 19. Stream package implements a sequence of elements supporting sequential and operations. this package is an experiment to explore if stream in go can work as the way java does. its function is very limited.
+### <span id="Stream">19. Stream package implements a sequence of elements supporting sequential and operations. this package is an experiment to explore if stream in go can work as the way java does. its function is very limited.</span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [index](#index)
 
 ```go
 import "github.com/duke-git/lancet/v2/stream"
@@ -1292,7 +1321,7 @@ import "github.com/duke-git/lancet/v2/stream"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/stream.md#ToSlice)]
     [[play](https://go.dev/play/p/jI6_iZZuVFE)]
 
-### 20. Structs package provides several high level functions to manipulate struct, tag, and field.
+### <span id="Structs">20. Structs package provides several high level functions to manipulate struct, tag, and field.</span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [index](#index)
 
 ```go
 import "github.com/duke-git/lancet/v2/structs"
@@ -1325,7 +1354,7 @@ import "github.com/duke-git/lancet/v2/structs"
 -   **<big>IsSlice</big>** : check if the field is a slice
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/structs/field.md#IsSlice)]
 
-### 21. Strutil package contains some functions to manipulate string.
+### <span id="Strutil">21. Strutil package contains some functions to manipulate string.</span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [index](#index)
 
 ```go
 import "github.com/duke-git/lancet/v2/strutil"
@@ -1443,7 +1472,7 @@ import "github.com/duke-git/lancet/v2/strutil"
 -   **<big>RemoveWhiteSpace</big>** : remove whitespace characters from a string.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#RemoveWhiteSpace)]
 
-### 22. System package contain some functions about os, runtime, shell command.
+### <span id="System">22. System package contain some functions about os, runtime, shell command.</span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [index](#index)
 
 ```go
 import "github.com/duke-git/lancet/v2/system"
@@ -1479,7 +1508,7 @@ import "github.com/duke-git/lancet/v2/system"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/system.md#GetOsBits)]
     [[play](https://go.dev/play/p/ml-_XH3gJbW)]
 
-### 23. Tuple package implements tuple data type and some operations on it.
+### <span id="Tuple">23. Tuple package implements tuple data type and some operations on it.</span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [index](#index)
 
 ```go
 import "github.com/duke-git/lancet/v2/tuple"
@@ -1560,7 +1589,7 @@ import "github.com/duke-git/lancet/v2/tuple"
 -   **<big>Unzip10</big>** : create a group of slice from a slice of Tuple10.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Unzip10)]
 
-### 24. Validator package contains some functions for data validation.
+### <span id="Validator">24. Validator package contains some functions for data validation.</span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [index](#index)
 
 ```go
 import "github.com/duke-git/lancet/v2/validator"
@@ -1668,7 +1697,7 @@ import "github.com/duke-git/lancet/v2/validator"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsPrintable)]
     [[play](https://go.dev/play/p/Pe1FE2gdtTP)]
 
-### 25. xerror package implements helpers for errors.
+### <span id="Xerror">25. xerror package implements helpers for errors.</span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [index](#index)
 
 ```go
 import "github.com/duke-git/lancet/v2/xerror"
