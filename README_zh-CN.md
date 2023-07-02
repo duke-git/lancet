@@ -23,7 +23,7 @@
 ## 特性
 
 -   👏 全面、高效、可复用。
--   💪 500+常用 go 工具函数，支持 string、slice、datetime、net、crypt...
+-   💪 600+常用 go 工具函数，支持 string、slice、datetime、net、crypt...
 -   💅 只依赖 go 标准库和 golang.org/x。
 -   🌍 所有导出函数单元测试覆盖率 100%。
 
@@ -287,7 +287,6 @@ import "github.com/duke-git/lancet/v2/convertor"
 -   **<big>GbkToUtf8</big>** : GBK 编码转 utf8 编码。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor_zh-CN.md#GbkToUtf8)]
     [[play](https://go.dev/play/p/OphmHCN_9u8)]
-
 
 ### 6. cryptor 加密包支持数据加密和解密，获取 md5，hash 值。支持 base64, md5, hmac, aes, des, rsa。
 
@@ -844,7 +843,6 @@ import "github.com/duke-git/lancet/v2/mathutil"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#Sum)]
     [[play](https://go.dev/play/p/1To2ImAMJA7)]
 
-
 ### 14. netutil 网络包支持获取 ip 地址，发送 http 请求。
 
 ```go
@@ -918,7 +916,25 @@ import "github.com/duke-git/lancet/v2/netutil"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/netutil_zh-CN.md#IsTelnetConnected)]
     [[play](https://go.dev/play/p/yiLCGtQv_ZG)]
 
-### 15. random 随机数生成器包，可以生成随机[]bytes, int, string。
+### 15. Pointer 包支持一些指针类型的操作。
+
+```go
+import "github.com/duke-git/lancet/v2/pointer"
+```
+
+#### 函数列表:
+
+-   **<big>ExtractPointer</big>** : 返回传入 interface 的底层值。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/pointer_zh-CN.md#ExtractPointer)]
+    [[play](https://go.dev/play/p/D7HFjeWU2ZP)]
+-   **<big>Of</big>** : 返回传入参数的指针值。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/pointer_zh-CN.md#Of)]
+    [[play](https://go.dev/play/p/HFd70x4DrMj)]
+-   **<big>Unwrap</big>** : 返回传入指针指向的值。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/pointer_zh-CN.md#Unwrap)]
+    [[play](https://go.dev/play/p/cgeu3g7cjWb)]
+
+### 16. random 随机数生成器包，可以生成随机[]bytes, int, string。
 
 ```go
 import "github.com/duke-git/lancet/v2/random"
@@ -950,12 +966,11 @@ import "github.com/duke-git/lancet/v2/random"
 -   **<big>UUIdV4</big>** : 生成 UUID v4 字符串。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/random_zh-CN.md#UUIdV4)]
     [[play](https://go.dev/play/p/_Z9SFmr28ft)]
--   **<big>RandUniqueIntSlice</big>** : 生成一个不重复的长度为n的随机int切片。
+-   **<big>RandUniqueIntSlice</big>** : 生成一个不重复的长度为 n 的随机 int 切片。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/random_zh-CN.md#RandUniqueIntSlice)]
     [[play](https://go.dev/play/p/uBkRSOz73Ec)]
 
-
-### 16. retry 重试执行函数直到函数运行成功或被 context cancel。
+### 17. retry 重试执行函数直到函数运行成功或被 context cancel。
 
 ```go
 import "github.com/duke-git/lancet/v2/retry"
@@ -979,7 +994,7 @@ import "github.com/duke-git/lancet/v2/retry"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/retry_zh-CN.md#RetryTimes)]
     [[play](https://go.dev/play/p/ssfVeU2SwLO)]
 
-### 17. slice 包含操作切片的方法集合。
+### 18. slice 包含操作切片的方法集合。
 
 ```go
 import "github.com/duke-git/lancet/v2/slice"
@@ -1192,7 +1207,7 @@ import "github.com/duke-git/lancet/v2/slice"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#KeyBy)]
     [[play](https://go.dev/play/p/uXod2LWD1Kg)]
 
-### 18. Stream 流，该包仅验证简单的 stream 实现，功能有限。
+### 19. Stream 流，该包仅验证简单的 stream 实现，功能有限。
 
 ```go
 import "github.com/duke-git/lancet/v2/stream"
@@ -1279,7 +1294,7 @@ import "github.com/duke-git/lancet/v2/stream"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/stream_zh-CN.md#ToSlice)]
     [[play](https://go.dev/play/p/jI6_iZZuVFE)]
 
-### 19. structs 提供操作 struct, tag, field 的相关函数。
+### 20. structs 提供操作 struct, tag, field 的相关函数。
 
 ```go
 import "github.com/duke-git/lancet/v2/structs"
@@ -1314,7 +1329,7 @@ import "github.com/duke-git/lancet/v2/structs"
 -   **<big>IsSlice</big>** : 判断属性是否是切片。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/structs/field_zh-CN.md#IsSlice)]
 
-### 20. strutil 包含字符串处理的相关函数。
+### 21. strutil 包含字符串处理的相关函数。
 
 ```go
 import "github.com/duke-git/lancet/v2/strutil"
@@ -1433,7 +1448,7 @@ import "github.com/duke-git/lancet/v2/strutil"
 -   **<big>RemoveWhiteSpace</big>** : 删除字符串中的空格。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#RemoveWhiteSpace)]
 
-### 21. system 包含 os, runtime, shell command 的相关函数。
+### 22. system 包含 os, runtime, shell command 的相关函数。
 
 ```go
 import "github.com/duke-git/lancet/v2/system"
@@ -1469,7 +1484,88 @@ import "github.com/duke-git/lancet/v2/system"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/system_zh-CN#GetOsBits)]
     [[play](https://go.dev/play/p/ml-_XH3gJbW)]
 
-### 22. validator 验证器包，包含常用字符串格式验证函数。
+### 23. Tuple 包实现一个元组数据类型。
+
+```go
+import "github.com/duke-git/lancet/v2/tuple"
+```
+
+#### 函数列表:
+
+-   **<big>Tuple2</big>** : 2 元元组
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Tuple2)]
+-   **<big>Tuple2_Unbox</big>** : 返回 2 元元组的字段值。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Tuple2_Unbox)]
+-   **<big>Zip2</big>** : 创建一个 Tuple2 元组切片, 其中元组的元素和传入切片元素相对应。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Zip2)]
+-   **<big>Unzip2</big>** : 根据传入的Tuple2切片，创建一组和Tuple2元素相对应的切片。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Unzip2)]
+-   **<big>Tuple3</big>** : 3 元元组
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Tuple3)]
+-   **<big>Tuple3_Unbox</big>** : 返回 3 元元组的字段值。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Tuple3_Unbox)]
+-   **<big>Zip3</big>** : 创建一个 Tuple3 元组切片, 其中元组的元素和传入切片元素相对应。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Zip3)]
+-   **<big>Unzip3</big>** : 根据传入的Tuple3切片，创建一组和Tuple3元素相对应的切片。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Unzip3)]
+-   **<big>Tuple4</big>** : 4 元元组
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Tuple4)]
+-   **<big>Tuple4_Unbox</big>** : 返回 4 元元组的字段值。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Tuple4_Unbox)]
+-   **<big>Zip4</big>** : 创建一个 Tuple4 元组切片, 其中元组的元素和传入切片元素相对应。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Zip4)]
+-   **<big>Unzip4</big>** : 根据传入的Tuple4切片，创建一组和Tuple4元素相对应的切片。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Unzip4)]
+-   **<big>Tuple5</big>** : 5 元元组
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Tuple5)]
+-   **<big>Tuple5_Unbox</big>** : 返回 5 元元组的字段值。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Tuple5_Unbox)]
+-   **<big>Zip5</big>** : 创建一个 Tuple5 元组切片, 其中元组的元素和传入切片元素相对应。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Zip5)]
+-   **<big>Unzip5</big>** : 根据传入的Tuple5切片，创建一组和Tuple5元素相对应的切片。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Unzip5)]
+-   **<big>Tuple6</big>** : 6 元元组
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Tuple6)]
+-   **<big>Tuple6_Unbox</big>** : 返回 6 元元组的字段值。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Tuple6_Unbox)]
+-   **<big>Zip6</big>** : 创建一个 Tuple6 元组切片, 其中元组的元素和传入切片元素相对应。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Zip6)]
+-   **<big>Unzip6</big>** : 根据传入的Tuple6切片，创建一组和Tuple6元素相对应的切片。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Unzip6)]
+-   **<big>Tuple7</big>** : 7 元元组
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Tuple7)]
+-   **<big>Tuple7_Unbox</big>** : 返回 7 元元组的字段值。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Tuple7_Unbox)]
+-   **<big>Zip7</big>** : 创建一个 Tuple7 元组切片, 其中元组的元素和传入切片元素相对应。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Zip7)]
+-   **<big>Unzip7</big>** : 根据传入的Tuple7切片，创建一组和Tuple7元素相对应的切片。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Unzip7)]
+-   **<big>Tuple8</big>** : 8 元元组
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Tuple8)]
+-   **<big>Tuple8_Unbox</big>** : 返回 8 元元组的字段值。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Tuple8_Unbox)]
+-   **<big>Zip8</big>** : 创建一个 Tuple8 元组切片, 其中元组的元素和传入切片元素相对应。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Zip8)]
+-   **<big>Unzip8</big>** : 根据传入的Tuple8切片，创建一组和Tuple8元素相对应的切片。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Unzip8)]
+-   **<big>Tuple9</big>** : 9 元元组
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Tuple9)]
+-   **<big>Tuple9_Unbox</big>** : 返回 9 元元组的字段值。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Tuple9_Unbox)]
+-   **<big>Zip9</big>** : 创建一个 Tuple9 元组切片, 其中元组的元素和传入切片元素相对应。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Zip9)]
+-   **<big>Unzip9</big>** : 根据传入的Tuple9切片，创建一组和Tuple9元素相对应的切片。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Unzip9)]
+-   **<big>Tuple10</big>** : 10 元元组
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Tuple10)]
+-   **<big>Tuple10_Unbox</big>** : 返回 10 元元组的字段值。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Tuple10_Unbox)]
+-   **<big>Zip10</big>** : 创建一个 Tuple10 元组切片, 其中元组的元素和传入切片元素相对应。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Zip10)]
+-   **<big>Unzip10</big>** : 根据传入的Tuple10切片，创建一组和Tuple10元素相对应的切片。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Unzip10)]
+
+### 24. validator 验证器包，包含常用字符串格式验证函数。
 
 ```go
 import "github.com/duke-git/lancet/v2/validator"
@@ -1577,7 +1673,7 @@ import "github.com/duke-git/lancet/v2/validator"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator_zh-CN.md#IsPrintable)]
     [[play](https://go.dev/play/p/Pe1FE2gdtTP)]
 
-### 23. xerror 包实现一些错误处理函数
+### 25. xerror 包实现一些错误处理函数
 
 ```go
 import "github.com/duke-git/lancet/v2/xerror"

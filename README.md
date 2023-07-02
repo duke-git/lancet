@@ -24,7 +24,7 @@ English | [简体中文](./README_zh-CN.md)
 ## Feature
 
 -   👏 Comprehensive, efficient and reusable.
--   💪 500+ go util functions, support string, slice, datetime, net, crypt...
+-   💪 600+ go util functions, support string, slice, datetime, net, crypt...
 -   💅 Only depends on two kinds of libraries: go standard library and golang.org/x.
 -   🌍 Unit test for every exported function.
 
@@ -289,7 +289,6 @@ import "github.com/duke-git/lancet/v2/convertor"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/convertor.md#GbkToUtf8)]
     [[play](https://go.dev/play/p/OphmHCN_9u8)]
 
-
 ### 6. Cryptor package is for data encryption and decryption.
 
 ```go
@@ -508,7 +507,6 @@ import "github.com/duke-git/lancet/v2/datetime"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#IsWeekend)]
     [[play](https://go.dev/play/p/cupRM5aZOIY)]
 
-
 ### 8. Datastructure package constains some common data structure. eg. list, linklist, stack, queue, set, tree, graph.
 
 ```go
@@ -623,7 +621,6 @@ import "github.com/duke-git/lancet/v2/fileutil"
 -   **<big>WriteStringToFile</big>** : write string to target file.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/fileutil.md#WriteStringToFile)]
     [[play](https://go.dev/play/p/GhLS6d8lH_g)]
-
 
 ### 10. Formatter contains some functions for data formatting.
 
@@ -844,7 +841,6 @@ import "github.com/duke-git/lancet/v2/mathutil"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#Sum)]
     [[play](https://go.dev/play/p/1To2ImAMJA7)]
 
-
 ### 14. Netutil package contains functions to get net information and send http request.
 
 ```go
@@ -918,7 +914,25 @@ import "github.com/duke-git/lancet/v2/netutil"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/netutil.md#IsTelnetConnected)]
     [[play](https://go.dev/play/p/yiLCGtQv_ZG)]
 
-### 15. Random package implements some basic functions to generate random int and string.
+### 15. Pointer package contains some util functions to operate go pointer.
+
+```go
+import "github.com/duke-git/lancet/v2/pointer"
+```
+
+#### Function list:
+
+-   **<big>ExtractPointer</big>** : return the underlying value by the given interface type.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/pointer.md#ExtractPointer)]
+    [[play](https://go.dev/play/p/D7HFjeWU2ZP)]
+-   **<big>Of</big>** : return a pointer to the value `v`.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/pointer.md#Of)]
+    [[play](https://go.dev/play/p/HFd70x4DrMj)]
+-   **<big>Unwrap</big>** : return the value from the pointer.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/pointer.md#Unwrap)]
+    [[play](https://go.dev/play/p/cgeu3g7cjWb)]
+
+### 16. Random package implements some basic functions to generate random int and string.
 
 ```go
 import "github.com/duke-git/lancet/v2/random"
@@ -954,8 +968,7 @@ import "github.com/duke-git/lancet/v2/random"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/random.md#RandUniqueIntSlice)]
     [[play](https://go.dev/play/p/uBkRSOz73Ec)]
 
-
-### 16. Retry package is for executing a function repeatedly until it was successful or canceled by the context.
+### 17. Retry package is for executing a function repeatedly until it was successful or canceled by the context.
 
 ```go
 import "github.com/duke-git/lancet/v2/retry"
@@ -979,7 +992,7 @@ import "github.com/duke-git/lancet/v2/retry"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/retry.md#RetryTimes)]
     [[play](https://go.dev/play/p/ssfVeU2SwLO)]
 
-### 17. Slice contains some functions to manipulate slice.
+### 18. Slice contains some functions to manipulate slice.
 
 ```go
 import "github.com/duke-git/lancet/v2/slice"
@@ -1192,7 +1205,7 @@ import "github.com/duke-git/lancet/v2/slice"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#KeyBy)]
     [[play](https://go.dev/play/p/uXod2LWD1Kg)]
 
-### 18. Stream package implements a sequence of elements supporting sequential and operations. this package is an experiment to explore if stream in go can work as the way java does. its function is very limited.
+### 19. Stream package implements a sequence of elements supporting sequential and operations. this package is an experiment to explore if stream in go can work as the way java does. its function is very limited.
 
 ```go
 import "github.com/duke-git/lancet/v2/stream"
@@ -1279,7 +1292,7 @@ import "github.com/duke-git/lancet/v2/stream"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/stream.md#ToSlice)]
     [[play](https://go.dev/play/p/jI6_iZZuVFE)]
 
-### 19. Structs package provides several high level functions to manipulate struct, tag, and field.
+### 20. Structs package provides several high level functions to manipulate struct, tag, and field.
 
 ```go
 import "github.com/duke-git/lancet/v2/structs"
@@ -1312,7 +1325,7 @@ import "github.com/duke-git/lancet/v2/structs"
 -   **<big>IsSlice</big>** : check if the field is a slice
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/structs/field.md#IsSlice)]
 
-### 20. Strutil package contains some functions to manipulate string.
+### 21. Strutil package contains some functions to manipulate string.
 
 ```go
 import "github.com/duke-git/lancet/v2/strutil"
@@ -1430,7 +1443,7 @@ import "github.com/duke-git/lancet/v2/strutil"
 -   **<big>RemoveWhiteSpace</big>** : remove whitespace characters from a string.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#RemoveWhiteSpace)]
 
-### 21. System package contain some functions about os, runtime, shell command.
+### 22. System package contain some functions about os, runtime, shell command.
 
 ```go
 import "github.com/duke-git/lancet/v2/system"
@@ -1466,7 +1479,88 @@ import "github.com/duke-git/lancet/v2/system"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/system.md#GetOsBits)]
     [[play](https://go.dev/play/p/ml-_XH3gJbW)]
 
-### 22. Validator package contains some functions for data validation.
+### 23. Tuple package implements tuple data type and some operations on it.
+
+```go
+import "github.com/duke-git/lancet/v2/tuple"
+```
+
+#### Function list:
+
+-   **<big>Tuple2</big>** : represents a 2 elemnets tuple.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Tuple2)]
+-   **<big>Tuple2_Unbox</big>** : returns values in Tuple2.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Tuple2_Unbox)]
+-   **<big>Zip2</big>** : create a slice of Tuple2, whose elements are correspond to the given slice elements.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Zip2)]
+-   **<big>Unzip2</big>** : create a group of slice from a slice of Tuple2.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Unzip2)]
+-   **<big>Tuple3</big>** : represents a 3 elemnets tuple.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Tuple3)]
+-   **<big>Tuple3_Unbox</big>** : returns values in Tuple3.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Tuple3_Unbox)]
+-   **<big>Zip3</big>** : create a slice of Tuple3, whose elements are correspond to the given slice elements.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Zip3)]
+-   **<big>Unzip3</big>** : create a group of slice from a slice of Tuple3.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Unzip3)]
+-   **<big>Tuple4</big>** : represents a 4 elemnets tuple.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Tuple4)]
+-   **<big>Tuple4_Unbox</big>** : returns values in Tuple4.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Tuple4_Unbox)]
+-   **<big>Zip4</big>** : create a slice of Tuple4, whose elements are correspond to the given slice elements.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Zip4)]
+-   **<big>Unzip4</big>** : create a group of slice from a slice of Tuple4.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Unzip4)]
+-   **<big>Tuple5</big>** : represents a 5 elemnets tuple.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Tuple5)]
+-   **<big>Tuple5_Unbox</big>** : returns values in Tuple4.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Tuple5_Unbox)]
+-   **<big>Zip5</big>** : create a slice of Tuple5, whose elements are correspond to the given slice elements.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Zip5)]
+-   **<big>Unzip5</big>** : create a group of slice from a slice of Tuple5.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Unzip5)]
+-   **<big>Tuple6</big>** : represents a 6 elemnets tuple.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Tuple6)]
+-   **<big>Tuple6_Unbox</big>** : returns values in Tuple6.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Tuple6_Unbox)]
+-   **<big>Zip6</big>** : create a slice of Tuple6, whose elements are correspond to the given slice elements.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Zip6)]
+-   **<big>Unzip6</big>** : create a group of slice from a slice of Tuple6.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Unzip6)]
+-   **<big>Tuple7</big>** : represents a 7 elemnets tuple.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Tuple7)]
+-   **<big>Tuple7_Unbox</big>** : returns values in Tuple7.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Tuple7_Unbox)]
+-   **<big>Zip7</big>** : create a slice of Tuple7, whose elements are correspond to the given slice elements.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Zip7)]
+-   **<big>Unzip7</big>** : create a group of slice from a slice of Tuple7.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Unzip7)]
+-   **<big>Tuple8</big>** : represents a 8 elemnets tuple.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Tuple8)]
+-   **<big>Tuple8_Unbox</big>** : returns values in Tuple8.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Tuple8_Unbox)]
+-   **<big>Zip8</big>** : create a slice of Tuple8, whose elements are correspond to the given slice elements.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Zip8)]
+-   **<big>Unzip8</big>** : create a group of slice from a slice of Tuple8.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Unzip8)]
+-   **<big>Tuple9</big>** : represents a 9 elemnets tuple.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Tuple9)]
+-   **<big>Tuple9_Unbox</big>** : returns values in Tuple9.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Tuple9_Unbox)]
+-   **<big>Zip9</big>** : create a slice of Tuple9, whose elements are correspond to the given slice elements.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Zip9)]
+-   **<big>Unzip9</big>** : create a group of slice from a slice of Tuple9.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Unzip9)]
+-   **<big>Tuple10</big>** : represents a 10 elemnets tuple.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Tuple10)]
+-   **<big>Tuple10_Unbox</big>** : returns values in Tuple10.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Tuple10_Unbox)]
+-   **<big>Zip10</big>** : create a slice of Tuple10, whose elements are correspond to the given slice elements.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Zip10)]
+-   **<big>Unzip10</big>** : create a group of slice from a slice of Tuple10.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Unzip10)]
+
+### 24. Validator package contains some functions for data validation.
 
 ```go
 import "github.com/duke-git/lancet/v2/validator"
@@ -1574,7 +1668,7 @@ import "github.com/duke-git/lancet/v2/validator"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/validator.md#IsPrintable)]
     [[play](https://go.dev/play/p/Pe1FE2gdtTP)]
 
-### 23. xerror package implements helpers for errors.
+### 25. xerror package implements helpers for errors.
 
 ```go
 import "github.com/duke-git/lancet/v2/xerror"
