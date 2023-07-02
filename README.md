@@ -79,7 +79,7 @@ func main() {
 -   [Compare](#Compare)
 -   [Concurrency](#Concurrency)
 -   [Condition](#Condition)
--   [Convetor](#Convetor)
+-   [Convertor](#Convertor)
 -   [Cryptor](#Cryptor)
 -   [Datetime](#Datetime)
 -   [Datastructure](#Datastructure)
