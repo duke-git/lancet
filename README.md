@@ -102,9 +102,7 @@ func main() {
 -   [Validator](#Validator)
 -   [Xerror](#Xerror)
 
-### 1. Algorithm package implements some basic algorithm. eg. sort, search. 
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
- <p hidden id="Algorithm">Algorithm</p> [index](#index)
+### 1. Algorithm package implements some basic algorithm. eg. sort, search. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span hidden id="Algorithm" style="display:none;">Algorithm</span> [index](#index)
 
 ```go
 import "github.com/duke-git/lancet/v2/algorithm"
