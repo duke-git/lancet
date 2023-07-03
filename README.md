@@ -75,7 +75,7 @@ func main() {
 
 ### <span id="index">Index<span>
 
--   [Algorithm](#Algorithm)
+-   <a href="#Algorithm">Algorithm</a>
 -   [Compare](#Compare)
 -   [Concurrency](#Concurrency)
 -   [Condition](#Condition)
@@ -102,7 +102,7 @@ func main() {
 -   [Validator](#Validator)
 -   [Xerror](#Xerror)
 
-### <span id="Algorithm">1. Algorithm package implements some basic algorithm. eg. sort, search.</span></span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [index](#index)
+### <span id="Algorithm"> 1. Algorithm package implements some basic algorithm. eg. sort, search.</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [index](#index)
 
 ```go
 import "github.com/duke-git/lancet/v2/algorithm"
@@ -147,7 +147,7 @@ import "github.com/duke-git/lancet/v2/algorithm"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#LRUCache)]
     [[play](https://go.dev/play/p/-EZjgOURufP)]
 
-### <span id="Compare">2. Compare package provides a lightweight comparison function on any type.</span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [index](#index)
+### <span id="Compare"> 2. Compare package provides a lightweight comparison function on any type.</span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [index](#index)
 
 ```go
 import "github.com/duke-git/lancet/v2/compare"
