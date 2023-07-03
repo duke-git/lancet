@@ -76,6 +76,7 @@ func main() {
 ### <span id="index">Index<span>
 
 -   <a href="#Algorithm">Algorithm</a>
+-   [Algorithm](#Algorithm)
 -   [Compare](#Compare)
 -   [Concurrency](#Concurrency)
 -   [Condition](#Condition)
@@ -102,7 +103,8 @@ func main() {
 -   [Validator](#Validator)
 -   [Xerror](#Xerror)
 
-### 1. Algorithm package implements some basic algorithm. eg. sort, search. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span hidden id="Algorithm" style="display:none;">Algorithm</span> [index](#index)
+### 1. Algorithm package implements some basic algorithm. eg. sort, search. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  [index](#index)
+<span id="Algorithm" style="display:none;">Algorithm</span>
 
 ```go
 import "github.com/duke-git/lancet/v2/algorithm"
