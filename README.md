@@ -75,7 +75,7 @@ func main() {
 
 ### <span id="index">Index<span>
 
--   <a href="#Algorithm">Algorithm</a>
+-   <a href="#user-content-Algorithm">Algorithm</a>
 -   [Compare](#Compare)
 -   [Concurrency](#Concurrency)
 -   [Condition](#Condition)
