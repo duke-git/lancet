@@ -97,13 +97,13 @@ func GetNowDateTime() string {
 }
 
 // GetTodayStartTime return the start time of today, format: yyyy-mm-dd 00:00:00.
-// Play: todo
+// Play: https://go.dev/play/p/84siyYF7t99
 func GetTodayStartTime() string {
 	return time.Now().Format("2006-01-02") + " 00:00:00"
 }
 
 // GetTodayEndTime return the end time of today, format: yyyy-mm-dd 23:59:59.
-// Play: todo
+// Play: https://go.dev/play/p/jjrLnfoqgn3
 func GetTodayEndTime() string {
 	return time.Now().Format("2006-01-02") + " 23:59:59"
 }

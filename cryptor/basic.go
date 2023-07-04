@@ -40,8 +40,8 @@ func Md5String(s string) string {
 	return hex.EncodeToString(h.Sum(nil))
 }
 
-// Md5String return the md5 string of byte slice.
-// Play: todo
+// Md5Byte return the md5 string of byte slice.
+// Play: https://go.dev/play/p/suraalH8lyC
 func Md5Byte(data []byte) string {
 	h := md5.New()
 	h.Write(data)

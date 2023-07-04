@@ -396,6 +396,9 @@ import "github.com/duke-git/lancet/v2/cryptor"
 -   **<big>HmacSha512</big>** : 返回字符串 sha256 hmac 值。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#HmacSha512)]
     [[play](https://go.dev/play/p/59Od6m4A0Ud)]
+-   **<big>Md5Byte</big>** : 返回byte slice的md5值.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#Md5Byte)]
+    [[play](https://go.dev/play/p/suraalH8lyC)]
 -   **<big>Md5String</big>** : 返回字符串 md5 值。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#Md5String)]
     [[play](https://go.dev/play/p/1bLcVetbTOI)]
@@ -485,6 +488,12 @@ import "github.com/duke-git/lancet/v2/datetime"
 -   **<big>GetNowDateTime</big>** : 获取当时日期和时间，返回格式：yyyy-mm-dd hh:mm:ss。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#GetNowDateTime)]
     [[play](https://go.dev/play/p/pI4AqngD0al)]
+-   **<big>GetTodayStartTime</big>** : 返回当天开始时间， 格式: yyyy-mm-dd 00:00:00。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#GetTodayStartTime)]
+    [[play](https://go.dev/play/p/84siyYF7t99)]
+-   **<big>GetTodayEndTime</big>** : 返回当天结束时间，格式: yyyy-mm-dd 23:59:59。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#GetTodayEndTime)]
+    [[play](https://go.dev/play/p/jjrLnfoqgn3)]
 -   **<big>GetZeroHourTimestamp</big>** : 获取零时时间戳(timestamp of 00:00)。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#GetZeroHourTimestamp)]
     [[play](https://go.dev/play/p/QmL2oIaGE3q)]
@@ -1522,76 +1531,113 @@ import "github.com/duke-git/lancet/v2/tuple"
 
 -   **<big>Tuple2</big>** : 2 元元组
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Tuple2)]
+    [[play](https://go.dev/play/p/3sHVqBQpLYN)]
 -   **<big>Tuple2_Unbox</big>** : 返回 2 元元组的字段值。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Tuple2_Unbox)]
+    [[play](https://go.dev/play/p/0fD1qfCVwjm)]
 -   **<big>Zip2</big>** : 创建一个 Tuple2 元组切片, 其中元组的元素和传入切片元素相对应。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Zip2)]
+    [[play](https://go.dev/play/p/4ncWJJ77Xio)]
 -   **<big>Unzip2</big>** : 根据传入的Tuple2切片，创建一组和Tuple2元素相对应的切片。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Unzip2)]
+    [[play](https://go.dev/play/p/KBecr60feXb)]
 -   **<big>Tuple3</big>** : 3 元元组
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Tuple3)]
+    [[play](https://go.dev/play/p/FtH2sdCLlCf)]
 -   **<big>Tuple3_Unbox</big>** : 返回 3 元元组的字段值。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Tuple3_Unbox)]
+    [[play](https://go.dev/play/p/YojLy-id1BS)]
 -   **<big>Zip3</big>** : 创建一个 Tuple3 元组切片, 其中元组的元素和传入切片元素相对应。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Zip3)]
+    [[play](https://go.dev/play/p/97NgmsTILfu)]
 -   **<big>Unzip3</big>** : 根据传入的Tuple3切片，创建一组和Tuple3元素相对应的切片。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Unzip3)]
+    [[play](https://go.dev/play/p/bba4cpAa7KO)]
 -   **<big>Tuple4</big>** : 4 元元组
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Tuple4)]
+    [[play](https://go.dev/play/p/D2EqDz096tk)]
 -   **<big>Tuple4_Unbox</big>** : 返回 4 元元组的字段值。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Tuple4_Unbox)]
+    [[play](https://go.dev/play/p/ACj9YuACGgW)]
 -   **<big>Zip4</big>** : 创建一个 Tuple4 元组切片, 其中元组的元素和传入切片元素相对应。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Zip4)]
+    [[play](https://go.dev/play/p/PEmTYVK5hL4)]
 -   **<big>Unzip4</big>** : 根据传入的Tuple4切片，创建一组和Tuple4元素相对应的切片。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Unzip4)]
+    [[play](https://go.dev/play/p/rb8z4gyYSRN)]
 -   **<big>Tuple5</big>** : 5 元元组
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Tuple5)]
+    [[play](https://go.dev/play/p/2WndmVxPg-r)]
 -   **<big>Tuple5_Unbox</big>** : 返回 5 元元组的字段值。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Tuple5_Unbox)]
+    [[play](https://go.dev/play/p/GyIyZHjCvoS)]
 -   **<big>Zip5</big>** : 创建一个 Tuple5 元组切片, 其中元组的元素和传入切片元素相对应。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Zip5)]
+    [[play](https://go.dev/play/p/fCAAJLMfBIP)]
 -   **<big>Unzip5</big>** : 根据传入的Tuple5切片，创建一组和Tuple5元素相对应的切片。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Unzip5)]
+    [[play](https://go.dev/play/p/gyl6vKfhqPb)]
 -   **<big>Tuple6</big>** : 6 元元组
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Tuple6)]
+    [[play](https://go.dev/play/p/VjqcCwEJZbs)]
 -   **<big>Tuple6_Unbox</big>** : 返回 6 元元组的字段值。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Tuple6_Unbox)]
+    [[play](https://go.dev/play/p/FjIHV7lpxmW)]
 -   **<big>Zip6</big>** : 创建一个 Tuple6 元组切片, 其中元组的元素和传入切片元素相对应。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Zip6)]
+    [[play](https://go.dev/play/p/oWPrnUYuFHo)]
 -   **<big>Unzip6</big>** : 根据传入的Tuple6切片，创建一组和Tuple6元素相对应的切片。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Unzip6)]
+    [[play](https://go.dev/play/p/l41XFqCyh5E)]
 -   **<big>Tuple7</big>** : 7 元元组
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Tuple7)]
+    [[play](https://go.dev/play/p/dzAgv_Ezub9)]
 -   **<big>Tuple7_Unbox</big>** : 返回 7 元元组的字段值。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Tuple7_Unbox)]
+    [[play](https://go.dev/play/p/R9I8qeDk0zs)]
 -   **<big>Zip7</big>** : 创建一个 Tuple7 元组切片, 其中元组的元素和传入切片元素相对应。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Zip7)]
+    [[play](https://go.dev/play/p/WUJuo897Egf)]
 -   **<big>Unzip7</big>** : 根据传入的Tuple7切片，创建一组和Tuple7元素相对应的切片。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Unzip7)]
+    [[play](https://go.dev/play/p/hws_P1Fr2j3)]
 -   **<big>Tuple8</big>** : 8 元元组
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Tuple8)]
+    [[play](https://go.dev/play/p/YA9S0rz3dRz)]
 -   **<big>Tuple8_Unbox</big>** : 返回 8 元元组的字段值。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Tuple8_Unbox)]
+    [[play](https://go.dev/play/p/PRxLBBb4SMl)]
 -   **<big>Zip8</big>** : 创建一个 Tuple8 元组切片, 其中元组的元素和传入切片元素相对应。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Zip8)]
+    [[play](https://go.dev/play/p/8V9jWkuJfaQ)]
 -   **<big>Unzip8</big>** : 根据传入的Tuple8切片，创建一组和Tuple8元素相对应的切片。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Unzip8)]
+    [[play](https://go.dev/play/p/1SndOwGsZB4)]
 -   **<big>Tuple9</big>** : 9 元元组
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Tuple9)]
+    [[play](https://go.dev/play/p/yS2NGGtZpQr)]
 -   **<big>Tuple9_Unbox</big>** : 返回 9 元元组的字段值。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Tuple9_Unbox)]
+    [[play](https://go.dev/play/p/oFJFGTAuOa8)]
 -   **<big>Zip9</big>** : 创建一个 Tuple9 元组切片, 其中元组的元素和传入切片元素相对应。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Zip9)]
+    [[play](https://go.dev/play/p/cgsL15QYnfz)]
 -   **<big>Unzip9</big>** : 根据传入的Tuple9切片，创建一组和Tuple9元素相对应的切片。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Unzip9)]
+    [[play](https://go.dev/play/p/91-BU_KURSA)]
 -   **<big>Tuple10</big>** : 10 元元组
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Tuple10)]
+    [[play](https://go.dev/play/p/799qqZg0hUv)]
 -   **<big>Tuple10_Unbox</big>** : 返回 10 元元组的字段值。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Tuple10_Unbox)]
+    [[play](https://go.dev/play/p/qfyx3x_X0Cu)]
 -   **<big>Zip10</big>** : 创建一个 Tuple10 元组切片, 其中元组的元素和传入切片元素相对应。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Zip10)]
+    [[play](https://go.dev/play/p/YSR-2cXnrY4)]
 -   **<big>Unzip10</big>** : 根据传入的Tuple10切片，创建一组和Tuple10元素相对应的切片。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Unzip10)]
+    [[play](https://go.dev/play/p/-taQB6Wfre_z)]
+
 
 <h3 id="Validator"> 24. validator 验证器包，包含常用字符串格式验证函数。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 

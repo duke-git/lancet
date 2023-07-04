@@ -237,9 +237,9 @@ import (
 )
 
 func main() {
-    t := tuple.NewTuple2(1, 0.1, "a")
+    t := tuple.NewTuple3(1, 0.1, "a")
     v1, v2, v3 := t.Unbox()
-    fmt.Printf("%v %v %v", t.FieldA, t.FieldB, t.FieldC)
+    fmt.Printf("%v %v %v", v1, v2, v3)
 
     // Output: 1 0.1 a
 }
@@ -1134,8 +1134,6 @@ func main() {
     fmt.Printf("%v %v %v %v %v %v %v %v %v %v", v1, v2, v3, v4, v5, v6, v7, v8, v9, v10)
 
     // Output: 1 0.1 a true 2 2.2 b c map[a:1] {a}
-
-    // Output: 1 0.1 a true 2 2.2 b c map[a:1]
 }
 ```
 

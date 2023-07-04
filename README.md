@@ -397,6 +397,9 @@ import "github.com/duke-git/lancet/v2/cryptor"
 -   **<big>HmacSha512</big>** : return the hmac hash of string use sha512.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#HmacSha512)]
     [[play](https://go.dev/play/p/59Od6m4A0Ud)]
+-   **<big>Md5Byte</big>** : return the md5 string of byte slice.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#Md5Byte)]
+    [[play](https://go.dev/play/p/suraalH8lyC)]
 -   **<big>Md5String</big>** : return the md5 value of string.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#Md5String)]
     [[play](https://go.dev/play/p/1bLcVetbTOI)]
@@ -486,6 +489,12 @@ import "github.com/duke-git/lancet/v2/datetime"
 -   **<big>GetNowDateTime</big>** : return format yyyy-mm-dd hh-mm-ss of current datetime.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#GetNowDateTime)]
     [[play](https://go.dev/play/p/pI4AqngD0al)]
+-   **<big>GetTodayStartTime</big>** : return the start time of today, format: yyyy-mm-dd 00:00:00.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#GetTodayStartTime)]
+    [[play](https://go.dev/play/p/84siyYF7t99)]
+-   **<big>GetTodayEndTime</big>** : return the end time of today, format: yyyy-mm-dd 23:59:59.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#GetTodayEndTime)]
+    [[play](https://go.dev/play/p/jjrLnfoqgn3)]
 -   **<big>GetZeroHourTimestamp</big>** : return timestamp of zero hour (timestamp of 00:00).
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#GetZeroHourTimestamp)]
     [[play](https://go.dev/play/p/QmL2oIaGE3q)]
@@ -1517,76 +1526,112 @@ import "github.com/duke-git/lancet/v2/tuple"
 
 -   **<big>Tuple2</big>** : represents a 2 elemnets tuple.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Tuple2)]
+    [[play](https://go.dev/play/p/3sHVqBQpLYN)]
 -   **<big>Tuple2_Unbox</big>** : returns values in Tuple2.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Tuple2_Unbox)]
+    [[play](https://go.dev/play/p/0fD1qfCVwjm)]
 -   **<big>Zip2</big>** : create a slice of Tuple2, whose elements are correspond to the given slice elements.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Zip2)]
+    [[play](https://go.dev/play/p/4ncWJJ77Xio)]
 -   **<big>Unzip2</big>** : create a group of slice from a slice of Tuple2.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Unzip2)]
+    [[play](https://go.dev/play/p/KBecr60feXb)]
 -   **<big>Tuple3</big>** : represents a 3 elemnets tuple.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Tuple3)]
+    [[play](https://go.dev/play/p/FtH2sdCLlCf)]
 -   **<big>Tuple3_Unbox</big>** : returns values in Tuple3.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Tuple3_Unbox)]
+    [[play](https://go.dev/play/p/YojLy-id1BS)]
 -   **<big>Zip3</big>** : create a slice of Tuple3, whose elements are correspond to the given slice elements.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Zip3)]
+    [[play](https://go.dev/play/p/97NgmsTILfu)]
 -   **<big>Unzip3</big>** : create a group of slice from a slice of Tuple3.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Unzip3)]
+    [[play](https://go.dev/play/p/bba4cpAa7KO)]
 -   **<big>Tuple4</big>** : represents a 4 elemnets tuple.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Tuple4)]
+    [[play](https://go.dev/play/p/D2EqDz096tk)]
 -   **<big>Tuple4_Unbox</big>** : returns values in Tuple4.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Tuple4_Unbox)]
+    [[play](https://go.dev/play/p/ACj9YuACGgW)]
 -   **<big>Zip4</big>** : create a slice of Tuple4, whose elements are correspond to the given slice elements.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Zip4)]
+    [[play](https://go.dev/play/p/PEmTYVK5hL4)]
 -   **<big>Unzip4</big>** : create a group of slice from a slice of Tuple4.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Unzip4)]
+    [[play](https://go.dev/play/p/rb8z4gyYSRN)]
 -   **<big>Tuple5</big>** : represents a 5 elemnets tuple.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Tuple5)]
+    [[play](https://go.dev/play/p/2WndmVxPg-r)]
 -   **<big>Tuple5_Unbox</big>** : returns values in Tuple4.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Tuple5_Unbox)]
+    [[play](https://go.dev/play/p/GyIyZHjCvoS)]
 -   **<big>Zip5</big>** : create a slice of Tuple5, whose elements are correspond to the given slice elements.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Zip5)]
+    [[play](https://go.dev/play/p/fCAAJLMfBIP)]
 -   **<big>Unzip5</big>** : create a group of slice from a slice of Tuple5.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Unzip5)]
+    [[play](https://go.dev/play/p/gyl6vKfhqPb)]
 -   **<big>Tuple6</big>** : represents a 6 elemnets tuple.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Tuple6)]
+    [[play](https://go.dev/play/p/VjqcCwEJZbs)]
 -   **<big>Tuple6_Unbox</big>** : returns values in Tuple6.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Tuple6_Unbox)]
+    [[play](https://go.dev/play/p/FjIHV7lpxmW)]
 -   **<big>Zip6</big>** : create a slice of Tuple6, whose elements are correspond to the given slice elements.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Zip6)]
+    [[play](https://go.dev/play/p/oWPrnUYuFHo)]
 -   **<big>Unzip6</big>** : create a group of slice from a slice of Tuple6.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Unzip6)]
+    [[play](https://go.dev/play/p/l41XFqCyh5E)]
 -   **<big>Tuple7</big>** : represents a 7 elemnets tuple.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Tuple7)]
+    [[play](https://go.dev/play/p/dzAgv_Ezub9)]
 -   **<big>Tuple7_Unbox</big>** : returns values in Tuple7.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Tuple7_Unbox)]
+    [[play](https://go.dev/play/p/R9I8qeDk0zs)]
 -   **<big>Zip7</big>** : create a slice of Tuple7, whose elements are correspond to the given slice elements.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Zip7)]
+    [[play](https://go.dev/play/p/WUJuo897Egf)]
 -   **<big>Unzip7</big>** : create a group of slice from a slice of Tuple7.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Unzip7)]
+    [[play](https://go.dev/play/p/hws_P1Fr2j3)]
 -   **<big>Tuple8</big>** : represents a 8 elemnets tuple.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Tuple8)]
+    [[play](https://go.dev/play/p/YA9S0rz3dRz)]
 -   **<big>Tuple8_Unbox</big>** : returns values in Tuple8.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Tuple8_Unbox)]
+    [[play](https://go.dev/play/p/PRxLBBb4SMl)]
 -   **<big>Zip8</big>** : create a slice of Tuple8, whose elements are correspond to the given slice elements.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Zip8)]
+    [[play](https://go.dev/play/p/8V9jWkuJfaQ)]
 -   **<big>Unzip8</big>** : create a group of slice from a slice of Tuple8.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Unzip8)]
+    [[play](https://go.dev/play/p/1SndOwGsZB4)]
 -   **<big>Tuple9</big>** : represents a 9 elemnets tuple.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Tuple9)]
+    [[play](https://go.dev/play/p/yS2NGGtZpQr)]
 -   **<big>Tuple9_Unbox</big>** : returns values in Tuple9.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Tuple9_Unbox)]
+    [[play](https://go.dev/play/p/oFJFGTAuOa8)]
 -   **<big>Zip9</big>** : create a slice of Tuple9, whose elements are correspond to the given slice elements.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Zip9)]
+    [[play](https://go.dev/play/p/cgsL15QYnfz)]
 -   **<big>Unzip9</big>** : create a group of slice from a slice of Tuple9.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Unzip9)]
+    [[play](https://go.dev/play/p/91-BU_KURSA)]
 -   **<big>Tuple10</big>** : represents a 10 elemnets tuple.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Tuple10)]
+    [[play](https://go.dev/play/p/799qqZg0hUv)]
 -   **<big>Tuple10_Unbox</big>** : returns values in Tuple10.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Tuple10_Unbox)]
+    [[play](https://go.dev/play/p/qfyx3x_X0Cu)]
 -   **<big>Zip10</big>** : create a slice of Tuple10, whose elements are correspond to the given slice elements.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Zip10)]
+    [[play](https://go.dev/play/p/YSR-2cXnrY4)]
 -   **<big>Unzip10</big>** : create a group of slice from a slice of Tuple10.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple.md#Unzip10)]
+    [[play](https://go.dev/play/p/-taQB6Wfre_z)]
 
 <h3 id="Validator"> 24. Validator package contains some functions for data validation. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 

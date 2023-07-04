@@ -717,7 +717,7 @@ func main() {
 
 ### <span id="GetTodayStartTime">GetTodayStartTime</span>
 
-<p>返回当天开始时间， 格式: yyyy-mm-dd 00:00:00.</p>
+<p>返回当天开始时间， 格式: yyyy-mm-dd 00:00:00。</p>
 
 <b>函数签名:</b>
 
@@ -746,7 +746,7 @@ func main() {
 
 ### <span id="GetTodayEndTime">GetTodayEndTime</span>
 
-<p>返回当天结束时间，格式: yyyy-mm-dd 23:59:59.</p>
+<p>返回当天结束时间，格式: yyyy-mm-dd 23:59:59。</p>
 
 <b>函数签名:</b>
 
