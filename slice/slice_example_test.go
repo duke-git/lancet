@@ -1032,3 +1032,17 @@ func ExampleKeyBy() {
 	// Output:
 	// map[1:a 2:ab 3:abc]
 }
+
+func ExampleJoin() {
+	nums := []int{1, 2, 3, 4, 5}
+
+	result1 := Join(nums, ",")
+	result2 := Join(nums, "-")
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+
+	// Output:
+	// 1,2,3,4,5
+	// 1-2-3-4-5
+}

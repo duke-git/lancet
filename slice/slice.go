@@ -9,6 +9,7 @@ import (
 	"math/rand"
 	"reflect"
 	"sort"
+	"strings"
 	"time"
 
 	"golang.org/x/exp/constraints"
@@ -1187,4 +1188,14 @@ func KeyBy[T any, U comparable](slice []T, iteratee func(item T) U) map[U]T {
 	}
 
 	return result
+}
+
+// Join the slice item with specify separator.
+// Play: todo
+func Join[T any](s []T, separator string) string {
+	str := Map(s, func(_ int, item T) string {
+		return fmt.Sprint(item)
+	})
+
+	return strings.Join(str, separator)
 }

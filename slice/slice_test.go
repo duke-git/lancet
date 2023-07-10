@@ -1161,3 +1161,17 @@ func TestRepeat(t *testing.T) {
 	assert.Equal([]string{}, Repeat("a", 0))
 	assert.Equal([]string{"a", "a", "a", "a", "a", "a"}, Repeat("a", 6))
 }
+
+func TestJoin(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestJoin")
+
+	nums := []int{1, 2, 3, 4, 5}
+
+	result1 := Join(nums, ",")
+	result2 := Join(nums, "-")
+
+	assert.Equal("1,2,3,4,5", result1)
+	assert.Equal("1-2-3-4-5", result2)
+}

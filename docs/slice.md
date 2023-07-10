@@ -90,6 +90,7 @@ import (
 -   [UpdateAt](#UpdateAt)
 -   [Without](#Without)
 -   [KeyBy](#KeyBy)
+-   [Join](#Join)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -2415,5 +2416,38 @@ func main() {
 
     // Output:
     // map[1:a 2:ab 3:abc]
+}
+```
+
+### <span id="Join">Join</span>
+
+<p>Join the slice item with specify separator.</p>
+
+<b>Signature:</b>
+
+```go
+func Join[T any](s []T, separator string) string
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+    nums := []int{1, 2, 3, 4, 5}
+
+    result1 := slice.Join(nums, ",")
+    result2 := slice.Join(nums, "-")
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+
+    // Output:
+    // 1,2,3,4,5
+    // 1-2-3-4-5
 }
 ```
