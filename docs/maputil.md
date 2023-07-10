@@ -43,6 +43,7 @@ import (
 -   [Merge](#Merge)
 -   [Minus](#Minus)
 -   [IsDisjoint](#IsDisjoint)
+-   [HasKey](#HasKey)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -893,7 +894,7 @@ func main() {
 
 ### <span id="IsDisjoint">IsDisjoint</span>
 
-<p>Checks two maps are disjoint if they have no keys in common</p>
+<p>Checks two maps are disjoint if they have no keys in common.</p>
 
 <b>Signature:</b>
 
@@ -928,6 +929,52 @@ func main() {
 
     result1 := maputil.IsDisjoint(m1, m2)
     result2 := maputil.IsDisjoint(m1, m3)
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+
+    // Output:
+    // true
+    // false
+}
+```
+
+### <span id="HasKey">HasKey</span>
+
+<p>Checks if map has key or not. This function is used to replace the following boilerplate code:</p>
+
+```go
+_, haskey := amap["baz"];
+
+if haskey {
+    fmt.Println("map has key baz")
+}
+```
+
+<b>Signature:</b>
+
+```go
+func HasKey[K comparable, V any](m map[K]V, key K) bool
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/maputil"
+)
+
+func main() {
+    m := map[string]int{
+        "a": 1,
+        "b": 2,
+    }
+
+    result1 := HasKey(m, "a")
+    result2 := HasKey(m, "c")
 
     fmt.Println(result1)
     fmt.Println(result2)

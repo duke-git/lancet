@@ -43,6 +43,7 @@ import (
 -   [Merge](#Merge)
 -   [Minus](#Minus)
 -   [IsDisjoint](#IsDisjoint)
+-   [HasKey](#HasKey)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -923,6 +924,52 @@ func main() {
 
     result1 := maputil.IsDisjoint(m1, m2)
     result2 := maputil.IsDisjoint(m1, m3)
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+
+    // Output:
+    // true
+    // false
+}
+```
+
+### <span id="HasKey">HasKey</span>
+
+<p>检查map是否包含某个key。用于代替以下样板代码:</p>
+
+```go
+_, haskey := amap["baz"];
+
+if haskey {
+    fmt.Println("map has key baz")
+}
+```
+
+<b>函数签名:</b>
+
+```go
+func HasKey[K comparable, V any](m map[K]V, key K) bool
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/maputil"
+)
+
+func main() {
+    m := map[string]int{
+        "a": 1,
+        "b": 2,
+    }
+
+    result1 := HasKey(m, "a")
+    result2 := HasKey(m, "c")
 
     fmt.Println(result1)
     fmt.Println(result2)
