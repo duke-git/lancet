@@ -50,7 +50,7 @@ func TestCreateDir(t *testing.T) {
 		t.FailNow()
 	}
 
-	dirPath := pwd + "/a/"
+	dirPath := pwd + "/a/b"
 	err = CreateDir(dirPath)
 	if err != nil {
 		t.Error(err)
@@ -58,7 +58,9 @@ func TestCreateDir(t *testing.T) {
 	}
 
 	assert.Equal(true, IsExist(dirPath))
-	os.Remove(dirPath)
+
+	os.RemoveAll(pwd + "/a")
+
 	assert.Equal(false, IsExist(dirPath))
 }
 

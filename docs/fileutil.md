@@ -108,7 +108,7 @@ func main() {
 
 ### <span id="CreateDir">CreateDir</span>
 
-<p>Create directory in absolute path. param `absPath` like /a/, /a/b/.</p>
+<p>Create directory in absolute path. param `absPath` like /a, /a/b.</p>
 
 <b>Signature:</b>
 
@@ -127,7 +127,7 @@ import (
 )
 
 func main() {
-    err := fileutil.CreateDir("/a/")
+    err := fileutil.CreateDir("/a/b") // will create folder /a/b
     fmt.Println(err)
 }
 ```

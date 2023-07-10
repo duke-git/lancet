@@ -39,7 +39,7 @@ func ExampleCreateFile() {
 
 func ExampleCreateDir() {
 	pwd, _ := os.Getwd()
-	dirPath := pwd + "/test_xxx/"
+	dirPath := pwd + "/createdir/a/b"
 
 	result1 := IsExist(dirPath)
 
@@ -48,15 +48,21 @@ func ExampleCreateDir() {
 		return
 	}
 
-	result2 := IsExist(dirPath)
-
-	os.Remove(dirPath)
+	result2 := IsExist(pwd + "/createdir/")
+	result3 := IsExist(pwd + "/createdir/a")
+	result4 := IsExist(pwd + "/createdir/a/b")
 
 	fmt.Println(result1)
 	fmt.Println(result2)
+	fmt.Println(result3)
+	fmt.Println(result4)
+
+	os.RemoveAll(pwd + "/createdir/")
 
 	// Output:
 	// false
+	// true
+	// true
 	// true
 }
 

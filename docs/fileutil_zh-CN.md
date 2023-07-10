@@ -108,7 +108,7 @@ func main() {
 
 ### <span id="CreateDir">CreateDir</span>
 
-<p>使用绝对路径创建嵌套目录，例如/a/, /a/b/</p>
+<p>使用绝对路径创建嵌套目录，例如/a/, /a/b</p>
 
 <b>函数签名:</b>
 
@@ -127,7 +127,7 @@ import (
 )
 
 func main() {
-    err := fileutil.CreateDir("/a/")
+    err := fileutil.CreateDir("/a/b") // will create folder /a/b
     fmt.Println(err)
 }
 ```
