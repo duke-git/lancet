@@ -433,3 +433,20 @@ func ExampleMapTo() {
 	// <nil>
 	// {Nothin 28 123456789 {test 1}}
 }
+
+func ExampleHasKey() {
+	m := map[string]int{
+		"a": 1,
+		"b": 2,
+	}
+
+	result1 := HasKey(m, "a")
+	result2 := HasKey(m, "c")
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+
+	// Output:
+	// true
+	// false
+}

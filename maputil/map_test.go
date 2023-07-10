@@ -458,3 +458,17 @@ func TestMapValues(t *testing.T) {
 
 	assert.Equal(expected, result)
 }
+
+func TestHasKey(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestHasKey")
+
+	m := map[string]int{
+		"a": 1,
+		"b": 2,
+	}
+
+	assert.Equal(true, HasKey(m, "a"))
+	assert.Equal(false, HasKey(m, "c"))
+}

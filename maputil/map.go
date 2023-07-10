@@ -289,3 +289,21 @@ func MapValues[K comparable, V any, T any](m map[K]V, iteratee func(key K, value
 
 	return result
 }
+
+// HasKey checks if map has key or not.
+// This function is used to replace the following boilerplate code:
+// _, haskey := amap["baz"];
+//
+//	if haskey {
+//	   fmt.Println("map has key baz")
+//	}
+//
+// Play: todo
+func HasKey[K comparable, V any](m map[K]V, key K) bool {
+	_, haskey := m[key]
+	if haskey {
+		return true
+	}
+
+	return false
+}
