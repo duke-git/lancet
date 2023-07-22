@@ -24,6 +24,8 @@ import (
 
 -   [Of](#Of)
 -   [Unwrap](#Unwrap)
+-   [UnwarpOr](#UnwarpOr)
+-   [UnwarpOrDefault](#UnwarpOrDefault)
 -   [ExtractPointer](#ExtractPointer)
 
 <div STYLE="page-break-after: always;"></div>
@@ -99,6 +101,99 @@ func main() {
     // abc
 }
 ```
+
+
+### <span id="UnwarpOr">UnwarpOr</span>
+
+<p>Returns the value from the pointer or fallback if the pointer is nil.</p>
+
+<b>Signature:</b>
+```go
+UnwarpOr[T any](p *T, fallback T) T
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/pointer"
+)
+
+func main() {
+	a := 123
+	b := "abc"
+
+	var c *int
+	var d *string
+
+	result1 := pointer.UnwarpOr(&a, 456)
+	result2 := pointer.UnwarpOr(&b, "abc")
+	result3 := pointer.UnwarpOr(c, 456)
+	result4 := pointer.UnwarpOr(d, "def")
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+	fmt.Println(result4)
+
+	// Output:
+	// 123
+	// abc
+	// 456
+	// def
+}
+```
+
+--- ord derad
+
+
+### <span id="UnwarpOrDefault">UnwarpOrDefault</span>
+
+<p>Returns the value from the pointer or the default value if the pointer is nil.</p>
+
+<b>Signature:</b>
+```go
+UnwarpOrDefault[T any](p *T) T
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/pointer"
+)
+
+func main() {
+	a := 123
+	b := "abc"
+
+	var c *int
+	var d *string
+
+	result1 := pointer.UnwarpOrDefault(&a)
+	result2 := pointer.UnwarpOrDefault(&b)
+	result3 := pointer.UnwarpOrDefault(c)
+	result4 := pointer.UnwarpOrDefault(d)
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+	fmt.Println(result4)
+
+	// Output:
+	// 123
+	// abc
+	// 0
+	//
+}
+```
+
 
 ### <span id="ExtractPointer">ExtractPointer</span>
 
