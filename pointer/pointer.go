@@ -18,6 +18,26 @@ func Unwrap[T any](p *T) T {
 	return *p
 }
 
+// UnwarpOr returns the value from the pointer or fallback if the pointer is nil.
+// Play: https://go.dev/play/p/mmNaLC38W8C
+func UnwarpOr[T any](p *T, fallback T) T {
+	if p == nil {
+		return fallback
+	}
+	return *p
+}
+
+// UnwarpOrDefault returns the value from the pointer or the default value if the pointer is nil.
+// Play: https://go.dev/play/p/ZnGIHf8_o4E
+func UnwarpOrDefault[T any](p *T) T {
+	var v T
+
+	if p == nil {
+		return v
+	}
+	return *p
+}
+
 // ExtractPointer returns the underlying value by the given interface type
 // Play: https://go.dev/play/p/D7HFjeWU2ZP
 func ExtractPointer(value any) any {
