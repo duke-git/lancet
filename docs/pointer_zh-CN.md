@@ -1,6 +1,6 @@
 # Pointer
 
-pointer包支持一些指针类型的操作。
+pointer 包支持一些指针类型的操作。
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -25,6 +25,8 @@ import (
 -   [Of](#Of)
 -   [Unwrap](#Unwrap)
 -   [ExtractPointer](#ExtractPointer)
+-   [UnwarpOr](#UnwarpOr)
+-   [UnwarpOrDefault](#UnwarpOrDefault)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -62,7 +64,6 @@ func main() {
     // abc
 }
 ```
-
 
 ### <span id="Unwrap">Unwrap</span>
 
@@ -132,5 +133,95 @@ func main() {
 
     // Output:
     // 1
+}
+```
+
+### <span id="UnwarpOr">UnwarpOr</span>
+
+<p>返回指针的值，如果指针为零值，则返回fallback。</p>
+
+<b>函数签名:</b>
+
+```go
+UnwarpOr[T any](p *T, fallback T) T
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/pointer"
+)
+
+func main() {
+	a := 123
+	b := "abc"
+
+	var c *int
+	var d *string
+
+	result1 := pointer.UnwarpOr(&a, 456)
+	result2 := pointer.UnwarpOr(&b, "abc")
+	result3 := pointer.UnwarpOr(c, 456)
+	result4 := pointer.UnwarpOr(d, "def")
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+	fmt.Println(result4)
+
+	// Output:
+	// 123
+	// abc
+	// 456
+	// def
+}
+```
+
+### <span id="UnwarpOrDefault">UnwarpOrDefault</span>
+
+<p>返回指针的值，如果指针为零值，则返回相应零值。</p>
+
+<b>函数签名:</b>
+
+```go
+UnwarpOrDefault[T any](p *T) T
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/pointer"
+)
+
+func main() {
+	a := 123
+	b := "abc"
+
+	var c *int
+	var d *string
+
+	result1 := pointer.UnwarpOrDefault(&a)
+	result2 := pointer.UnwarpOrDefault(&b)
+	result3 := pointer.UnwarpOrDefault(c)
+	result4 := pointer.UnwarpOrDefault(d)
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+	fmt.Println(result4)
+
+	// Output:
+	// 123
+	// abc
+	// 0
+	//
 }
 ```
