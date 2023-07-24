@@ -301,9 +301,5 @@ func MapValues[K comparable, V any, T any](m map[K]V, iteratee func(key K, value
 // Play: todo
 func HasKey[K comparable, V any](m map[K]V, key K) bool {
 	_, haskey := m[key]
-	if haskey {
-		return true
-	}
-
-	return false
+	return haskey
 }
