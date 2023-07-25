@@ -42,13 +42,18 @@ func TestConcurrentMap_GetOrSet(t *testing.T) {
 
 	cm := NewConcurrentMap[string, int](100)
 
+	var wg sync.WaitGroup
+	wg.Add(5)
+
 	for i := 0; i < 5; i++ {
 		go func(n int) {
 			val, ok := cm.GetOrSet(fmt.Sprintf("%d", n), n)
 			assert.Equal(n, val)
 			assert.Equal(false, ok)
+			wg.Done()
 		}(i)
 	}
+	wg.Wait()
 
 	for j := 0; j < 5; j++ {
 		go func(n int) {
