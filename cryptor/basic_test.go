@@ -77,6 +77,18 @@ func TestHmacSha1(t *testing.T) {
 	assert.Equal(expected, hmacSha1)
 }
 
+func TestHmacSha1WithBase64(t *testing.T) {
+	t.Parallel()
+
+	s := "hello"
+	key := "12345"
+	hmacSha1 := HmacSha1WithBase64(s, key)
+	expected := "XGqdsMzLkuNu0DI/0Jt/k23prOA="
+
+	assert := internal.NewAssert(t, "TestHmacSha1")
+	assert.Equal(expected, hmacSha1)
+}
+
 func TestHmacSha256(t *testing.T) {
 	t.Parallel()
 

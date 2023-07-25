@@ -322,7 +322,6 @@ func ExampleHmacMd5() {
 	key := "12345"
 
 	hms := HmacMd5(str, key)
-
 	fmt.Println(hms)
 
 	// Output:
@@ -334,11 +333,21 @@ func ExampleHmacSha1() {
 	key := "12345"
 
 	hms := HmacSha1(str, key)
-
 	fmt.Println(hms)
 
 	// Output:
 	// 5c6a9db0cccb92e36ed0323fd09b7f936de9ace0
+}
+
+func ExampleHmacSha1WithBase64() {
+	str := "hello"
+	key := "12345"
+
+	hms := HmacSha1WithBase64(str, key)
+	fmt.Println(hms)
+
+	// Output:
+	// XGqdsMzLkuNu0DI/0Jt/k23prOA=
 }
 
 func ExampleHmacSha256() {
@@ -346,11 +355,21 @@ func ExampleHmacSha256() {
 	key := "12345"
 
 	hms := HmacSha256(str, key)
-
 	fmt.Println(hms)
 
 	// Output:
 	// 315bb93c4e989862ba09cb62e05d73a5f376cb36f0d786edab0c320d059fde75
+}
+
+func ExampleHmacSha256WithBase64() {
+	str := "hello"
+	key := "12345"
+
+	hms := HmacSha256WithBase64(str, key)
+	fmt.Println(hms)
+
+	// Output:
+	// MVu5PE6YmGK6Ccti4F1zpfN2yzbw14btqwwyDQWf3nU=
 }
 
 func ExampleHmacSha512() {
@@ -358,11 +377,21 @@ func ExampleHmacSha512() {
 	key := "12345"
 
 	hms := HmacSha512(str, key)
-
 	fmt.Println(hms)
 
 	// Output:
 	// dd8f1290a9dd23d354e2526d9a2e9ce8cffffdd37cb320800d1c6c13d2efc363288376a196c5458daf53f8e1aa6b45a6d856303d5c0a2064bff9785861d48cfc
+}
+
+func ExampleHmacSha512WithBase64() {
+	str := "hello"
+	key := "12345"
+
+	hms := HmacSha512WithBase64(str, key)
+	fmt.Println(hms)
+
+	// Output:
+	// 3Y8SkKndI9NU4lJtmi6c6M///dN8syCADRxsE9Lvw2Mog3ahlsVFja9T+OGqa0Wm2FYwPVwKIGS/+XhYYdSM/A==
 }
 
 func ExampleMd5String() {
@@ -373,6 +402,14 @@ func ExampleMd5String() {
 	// 5d41402abc4b2a76b9719d911017c592
 }
 
+func ExampleMd5StringWithBase64() {
+	md5Str := Md5StringWithBase64("hello")
+	fmt.Println(md5Str)
+
+	// Output:
+	// XUFAKrxLKna5cZ2REBfFkg==
+}
+
 func ExampleMd5Byte() {
 	md5Str := Md5Byte([]byte{'a'})
 	fmt.Println(md5Str)
@@ -380,12 +417,29 @@ func ExampleMd5Byte() {
 	// Output:
 	// 0cc175b9c0f1b6a831c399e269772661
 }
+
+func ExampleMd5ByteWithBase64() {
+	md5Str := Md5ByteWithBase64([]byte("hello"))
+	fmt.Println(md5Str)
+
+	// Output:
+	// XUFAKrxLKna5cZ2REBfFkg==
+}
+
 func ExampleSha1() {
 	result := Sha1("hello")
 	fmt.Println(result)
 
 	// Output:
 	// aaf4c61ddcc5e8a2dabede0f3b482cd9aea9434d
+}
+
+func ExampleSha1WithBase64() {
+	result := Sha1WithBase64("hello")
+	fmt.Println(result)
+
+	// Output:
+	// qvTGHdzF6KLavt4PO0gs2a6pQ00=
 }
 
 func ExampleSha256() {
@@ -396,10 +450,26 @@ func ExampleSha256() {
 	// 2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824
 }
 
+func ExampleSha256WithBase64() {
+	result := Sha256WithBase64("hello")
+	fmt.Println(result)
+
+	// Output:
+	// LPJNul+wow4m6DsqxbninhsWHlwfp0JecwQzYpOLmCQ=
+}
+
 func ExampleSha512() {
 	result := Sha512("hello")
 	fmt.Println(result)
 
 	// Output:
 	// 9b71d224bd62f3785d96d46ad3ea3d73319bfbc2890caadae2dff72519673ca72323c3d99ba5c11d7c7acc6e14b8c5da0c4663475c2e5c3adef46f73bcdec043
+}
+
+func ExampleSha512WithBase64() {
+	result := Sha512WithBase64("hello")
+	fmt.Println(result)
+
+	// Output:
+	// m3HSJL1i83hdltRq0+o9czGb+8KJDKra4t/3JRlnPKcjI8PZm6XBHXx6zG4UuMXaDEZjR1wuXDre9G9zvN7AQw==
 }
