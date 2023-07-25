@@ -144,7 +144,7 @@ func HmacSha512(data, key string) string {
 	return hex.EncodeToString(h.Sum([]byte("")))
 }
 
-// HmacSha512 return the hmac hash of string use sha512.
+// HmacSha512 return the hmac hash of string use sha512 with base64..
 // Play: https://go.dev/play/p/61wBBOKO-GH
 func HmacSha512WithBase64(data, key string) string {
 	h := hmac.New(sha512.New, []byte(key))
@@ -160,8 +160,8 @@ func Sha1(data string) string {
 	return hex.EncodeToString(sha1.Sum([]byte("")))
 }
 
-// Sha1 return the sha1 value (SHA-1 hash algorithm) of string.
-// Play: qvTGHdzF6KLavt4PO0gs2a6pQ00=
+// Sha1 return the sha1 value (SHA-1 hash algorithm) of base64 string.
+// Play: todo
 func Sha1WithBase64(data string) string {
 	sha1 := sha1.New()
 	sha1.Write([]byte(data))
@@ -176,7 +176,7 @@ func Sha256(data string) string {
 	return hex.EncodeToString(sha256.Sum([]byte("")))
 }
 
-// Sha256 return the sha256 value (SHA256 hash algorithm) of string.
+// Sha256 return the sha256 value (SHA256 hash algorithm) of base64 string.
 // Play: https://go.dev/play/p/85IXJHIal1k
 func Sha256WithBase64(data string) string {
 	sha256 := sha256.New()
@@ -192,7 +192,7 @@ func Sha512(data string) string {
 	return hex.EncodeToString(sha512.Sum([]byte("")))
 }
 
-// Sha512 return the sha512 value (SHA512 hash algorithm) of string.
+// Sha512 return the sha512 value (SHA512 hash algorithm) of base64 string.
 // Play: https://go.dev/play/p/q_fY2rA-k5I
 func Sha512WithBase64(data string) string {
 	sha512 := sha512.New()

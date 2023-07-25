@@ -27,12 +27,26 @@ func TestMd5String(t *testing.T) {
 	assert.Equal("5d41402abc4b2a76b9719d911017c592", Md5String("hello"))
 }
 
+func TestMd5StringWithBase64(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestMd5StringWithBase64")
+	assert.Equal("XUFAKrxLKna5cZ2REBfFkg==", Md5StringWithBase64("hello"))
+}
+
 func TestMd5Byte(t *testing.T) {
 	t.Parallel()
 
 	assert := internal.NewAssert(t, "TestMd5Byte")
 	data := []byte{'a'}
 	assert.Equal("0cc175b9c0f1b6a831c399e269772661", Md5Byte(data))
+}
+
+func TestMd5ByteWithBase64(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestMd5ByteWithBase64")
+	assert.Equal("XUFAKrxLKna5cZ2REBfFkg==", Md5ByteWithBase64([]byte("hello")))
 }
 
 func TestMd5File(t *testing.T) {
@@ -66,13 +80,25 @@ func TestHmacSha1(t *testing.T) {
 func TestHmacSha256(t *testing.T) {
 	t.Parallel()
 
-	s := "hello world"
+	str := "hello world"
 	key := "12345"
-	hmacSha256 := HmacSha256(s, key)
+	hmacSha256 := HmacSha256(str, key)
 	expected := "9dce2609f2d67d41f74c7f9efc8ccd44370d41ad2de52982627588dfe7289ab8"
 
 	assert := internal.NewAssert(t, "TestHmacSha256")
 	assert.Equal(expected, hmacSha256)
+}
+
+func TestHmacSha256WithBase64(t *testing.T) {
+	t.Parallel()
+
+	str := "hello"
+	key := "12345"
+	hms := HmacSha256WithBase64(str, key)
+	expected := "MVu5PE6YmGK6Ccti4F1zpfN2yzbw14btqwwyDQWf3nU="
+
+	assert := internal.NewAssert(t, "TestHmacSha256WithBase64")
+	assert.Equal(expected, hms)
 }
 
 func TestHmacSha512(t *testing.T) {
@@ -87,6 +113,18 @@ func TestHmacSha512(t *testing.T) {
 	assert.Equal(expected, hmacSha512)
 }
 
+func TestHmacSha512WithBase64(t *testing.T) {
+	t.Parallel()
+
+	str := "hello"
+	key := "12345"
+	hms := HmacSha512WithBase64(str, key)
+	expected := "3Y8SkKndI9NU4lJtmi6c6M///dN8syCADRxsE9Lvw2Mog3ahlsVFja9T+OGqa0Wm2FYwPVwKIGS/+XhYYdSM/A=="
+
+	assert := internal.NewAssert(t, "TestHmacSha512WithBase64")
+	assert.Equal(expected, hms)
+}
+
 func TestSha1(t *testing.T) {
 	t.Parallel()
 
@@ -96,6 +134,16 @@ func TestSha1(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestSha1")
 	assert.Equal(expected, sha1)
+}
+
+func TestSha1WithBase64(t *testing.T) {
+	t.Parallel()
+
+	str := Sha1WithBase64("hello")
+	expected := "qvTGHdzF6KLavt4PO0gs2a6pQ00="
+
+	assert := internal.NewAssert(t, "TestSha1WithBase64")
+	assert.Equal(expected, str)
 }
 
 func TestSha256(t *testing.T) {
@@ -109,6 +157,16 @@ func TestSha256(t *testing.T) {
 	assert.Equal(expected, sha256)
 }
 
+func TestSha256WithBase64(t *testing.T) {
+	t.Parallel()
+
+	str := Sha256WithBase64("hello")
+	expected := "LPJNul+wow4m6DsqxbninhsWHlwfp0JecwQzYpOLmCQ="
+
+	assert := internal.NewAssert(t, "TestSha256WithBase64")
+	assert.Equal(expected, str)
+}
+
 func TestSha512(t *testing.T) {
 	t.Parallel()
 
@@ -118,4 +176,14 @@ func TestSha512(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestSha512")
 	assert.Equal(expected, sha512)
+}
+
+func TestSha512WithBase64(t *testing.T) {
+	t.Parallel()
+
+	str := Sha512WithBase64("hello")
+	expected := "m3HSJL1i83hdltRq0+o9czGb+8KJDKra4t/3JRlnPKcjI8PZm6XBHXx6zG4UuMXaDEZjR1wuXDre9G9zvN7AQw=="
+
+	assert := internal.NewAssert(t, "TestSha512WithBase64")
+	assert.Equal(expected, str)
 }
