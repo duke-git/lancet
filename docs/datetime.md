@@ -61,6 +61,10 @@ import (
 -   [DayOfYear](#DayOfYear)
 -   [IsWeekend](#IsWeekend)
 -   [NowDateOrTime](#NowDateOrTime)
+-   [Timestamp](#Timestamp)
+-   [TimestampMilli](#TimestampMilli)
+-   [TimestampMicro](#TimestampMicro)
+-   [TimestampNano](#TimestampNano)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -1339,5 +1343,126 @@ func main() {
     // Output:
     // 2023-07-26 15:01:30
     // 2023-07-26 02:01:30
+}
+```
+
+### <span id="Timestamp">Timestamp</span>
+
+<p>Return current second timestamp.</p>
+
+<b>Signature:</b>
+
+```go
+func Timestamp(timezone ...string) int64
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/datetime"
+)
+
+func main() {
+    ts := datetime.Timestamp()
+
+    fmt.Println(ts)
+
+    // Output:
+    // 1690363051
+}
+```
+
+
+### <span id="TimestampMilli">TimestampMilli</span>
+
+<p>Return current mill second timestamp.</p>
+
+<b>Signature:</b>
+
+```go
+func TimestampMilli(timezone ...string) int64
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/datetime"
+)
+
+func main() {
+    ts := datetime.TimestampMilli()
+
+    fmt.Println(ts)
+
+    // Output:
+    // 1690363051331
+}
+```
+
+### <span id="TimestampMicro">TimestampMicro</span>
+
+<p>Return current micro second timestamp.</p>
+
+<b>Signature:</b>
+
+```go
+func TimestampMicro(timezone ...string) int64
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/datetime"
+)
+
+func main() {
+    ts := datetime.TimestampMicro()
+
+    fmt.Println(ts)
+
+    // Output:
+    // 1690363051331784
+}
+```
+
+### <span id="TimestampNano">TimestampNano</span>
+
+<p>Return current nano second timestamp.</p>
+
+<b>Signature:</b>
+
+```go
+func TimestampNano(timezone ...string) int64
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/datetime"
+)
+
+func main() {
+    ts := datetime.TimestampNano()
+
+    fmt.Println(ts)
+
+    // Output:
+    // 1690363051331788000
 }
 ```

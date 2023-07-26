@@ -394,3 +394,19 @@ func TestNowDateOrTime(t *testing.T) {
 		t.Log(result)
 	}
 }
+
+func TestTimestamp(t *testing.T) {
+	t.Parallel()
+
+	ts1 := Timestamp()
+	t.Log(ts1)
+
+	ts2 := TimestampMilli()
+	t.Log(ts2)
+
+	ts3 := TimestampMicro()
+	t.Log(ts3)
+
+	ts4 := TimestampNano()
+	t.Log(ts4)
+}

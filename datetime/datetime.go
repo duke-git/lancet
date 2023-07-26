@@ -315,3 +315,68 @@ func NowDateOrTime(format string, timezone ...string) string {
 
 	return time.Now().Format(tf)
 }
+
+// Timestamp return current second timestamp.
+// Play: todo
+func Timestamp(timezone ...string) int64 {
+	t := time.Now()
+
+	if timezone != nil && timezone[0] != "" {
+		loc, err := time.LoadLocation(timezone[0])
+		if err != nil {
+			return 0
+		}
+
+		t = t.In(loc)
+	}
+
+	return t.Unix()
+}
+
+// TimestampMilli return current mill second timestamp.
+// Play: todo
+func TimestampMilli(timezone ...string) int64 {
+	t := time.Now()
+
+	if timezone != nil && timezone[0] != "" {
+		loc, err := time.LoadLocation(timezone[0])
+		if err != nil {
+			return 0
+		}
+		t = t.In(loc)
+	}
+
+	return int64(time.Nanosecond) * t.UnixNano() / int64(time.Millisecond)
+}
+
+// TimestampMicro return current micro second timestamp.
+// Play: todo
+func TimestampMicro(timezone ...string) int64 {
+	t := time.Now()
+
+	if timezone != nil && timezone[0] != "" {
+		loc, err := time.LoadLocation(timezone[0])
+		if err != nil {
+			return 0
+		}
+		t = t.In(loc)
+	}
+
+	return int64(time.Nanosecond) * t.UnixNano() / int64(time.Microsecond)
+}
+
+// TimestampNano return current nano second timestamp.
+// Play: todo
+func TimestampNano(timezone ...string) int64 {
+	t := time.Now()
+
+	if timezone != nil && timezone[0] != "" {
+		loc, err := time.LoadLocation(timezone[0])
+		if err != nil {
+			return 0
+		}
+		t = t.In(loc)
+	}
+
+	return t.UnixNano()
+}
