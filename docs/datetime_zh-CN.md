@@ -61,14 +61,13 @@ import (
 -   [IsWeekend](#IsWeekend)
 -   [NowDateOrTime](#NowDateOrTime)
 
-
 <div STYLE="page-break-after: always;"></div>
 
 ## 文档
 
 ## 注:
 
-1. 方法 FormatTimeToStr 和 FormatStrToTime 中的 format 参数值需要传以下类型之一：
+1. 函数中`format`参数值需要传以下值之一 (忽略大小写):
 
 -   yyyy-mm-dd hh:mm:ss
 -   yyyy-mm-dd hh:mm
@@ -79,14 +78,18 @@ import (
 -   dd-mm-yy hh:mm:ss
 -   yyyy/mm/dd hh:mm:ss
 -   yyyy/mm/dd hh:mm
--   yyyy-mm-dd hh
+-   yyyy/mm/dd hh
 -   yyyy/mm/dd
 -   yyyy/mm
 -   mm/dd
 -   dd/mm/yy hh:mm:ss
+-   yyyymmdd
+-   mmddyy
 -   yyyy
+-   yy
 -   mm
 -   hh:mm:ss
+-   hh:mm
 -   mm:ss
 
 ### <span id="AddDay">AddDay</span>

@@ -3,7 +3,7 @@
 
 // Package datetime implements some functions to format date and time.
 // Note:
-// 1. `format` param in FormatTimeToStr function should be as flow:
+// 1. `format` param in FormatTimeToStr function should be as flow (case no sensitive):
 // "yyyy-mm-dd hh:mm:ss"
 // "yyyy-mm-dd hh:mm"
 // "yyyy-mm-dd hh"
@@ -18,14 +18,19 @@
 // "yyyy/mm"
 // "mm/dd"
 // "dd/mm/yy hh:mm:ss"
+// "yyyymmdd"
+// "mmddyy"
 // "yyyy"
+// "yy"
 // "mm"
 // "hh:mm:ss"
+// "hh:mm"
 // "mm:ss"
 package datetime
 
 import (
 	"fmt"
+	"strings"
 	"time"
 )
 
@@ -47,7 +52,10 @@ func init() {
 		"yyyy/mm":             "2006/01",
 		"mm/dd":               "01/02",
 		"dd/mm/yy hh:mm:ss":   "02/01/06 15:04:05",
+		"yyyymmdd":            "20060102",
+		"mmddyy":              "010206",
 		"yyyy":                "2006",
+		"yy":                  "06",
 		"mm":                  "01",
 		"hh:mm:ss":            "15:04:05",
 		"hh:mm":               "15:04",
@@ -126,22 +134,27 @@ func GetNightTimestamp() int64 {
 // FormatTimeToStr convert time to string.
 // Play: https://go.dev/play/p/_Ia7M8H_OvE
 func FormatTimeToStr(t time.Time, format string, timezone ...string) string {
+	tf, ok := timeFormat[strings.ToLower(format)]
+	if !ok {
+		return ""
+	}
+
 	if timezone != nil && timezone[0] != "" {
 		loc, err := time.LoadLocation(timezone[0])
 		if err != nil {
 			return ""
 		}
-		return t.In(loc).Format(timeFormat[format])
+		return t.In(loc).Format(tf)
 	}
-	return t.Format(timeFormat[format])
+	return t.Format(tf)
 }
 
 // FormatStrToTime convert string to time.
 // Play: https://go.dev/play/p/1h9FwdU8ql4
 func FormatStrToTime(str, format string, timezone ...string) (time.Time, error) {
-	tf, ok := timeFormat[format]
+	tf, ok := timeFormat[strings.ToLower(format)]
 	if !ok {
-		return time.Time{}, fmt.Errorf("format %s not found", format)
+		return time.Time{}, fmt.Errorf("format %s not support", format)
 	}
 
 	if timezone != nil && timezone[0] != "" {
@@ -286,8 +299,8 @@ func IsWeekend(t time.Time) bool {
 // NowDateOrTime return current datetime with specific format and timezone.
 // Play: todo
 func NowDateOrTime(format string, timezone ...string) string {
-	tf := timeFormat[format]
-	if tf == "" {
+	tf, ok := timeFormat[strings.ToLower(format)]
+	if !ok {
 		return ""
 	}
 

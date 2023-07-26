@@ -68,7 +68,7 @@ import (
 
 ## Note:
 
-1. 'format' string param in func FormatTimeToStr and FormatStrToTime function should be one of flows:
+1. In below functions, the `format` string param should be one of flows value (case no sensitive):
 
 -   yyyy-mm-dd hh:mm:ss
 -   yyyy-mm-dd hh:mm
@@ -79,14 +79,18 @@ import (
 -   dd-mm-yy hh:mm:ss
 -   yyyy/mm/dd hh:mm:ss
 -   yyyy/mm/dd hh:mm
--   yyyy-mm-dd hh
+-   yyyy/mm/dd hh
 -   yyyy/mm/dd
 -   yyyy/mm
 -   mm/dd
 -   dd/mm/yy hh:mm:ss
+-   yyyymmdd
+-   mmddyy
 -   yyyy
+-   yy
 -   mm
 -   hh:mm:ss
+-   hh:mm
 -   mm:ss
 
 ### <span id="AddDay">AddDay</span>
@@ -1186,7 +1190,6 @@ func main() {
 }
 ```
 
-
 ### <span id="BetweenSeconds">BetweenSeconds</span>
 
 <p>Return the number of seconds between two times.</p>
@@ -1223,7 +1226,6 @@ func main() {
     // -86400
 }
 ```
-
 
 ### <span id="DayOfYear">DayOfYear</span>
 
@@ -1265,7 +1267,6 @@ func main() {
     // 0
 }
 ```
-
 
 ### <span id="IsWeekend">IsWeekend</span>
 
