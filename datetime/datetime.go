@@ -50,6 +50,7 @@ func init() {
 		"yyyy":                "2006",
 		"mm":                  "01",
 		"hh:mm:ss":            "15:04:05",
+		"hh:mm":               "15:04",
 		"mm:ss":               "04:05",
 	}
 }
@@ -280,4 +281,24 @@ func DayOfYear(t time.Time) int {
 // Play: https://go.dev/play/p/cupRM5aZOIY
 func IsWeekend(t time.Time) bool {
 	return time.Saturday == t.Weekday() || time.Sunday == t.Weekday()
+}
+
+// NowDateOrTime return current datetime with specific format and timezone.
+// Play: todo
+func NowDateOrTime(format string, timezone ...string) string {
+	tf := timeFormat[format]
+	if tf == "" {
+		return ""
+	}
+
+	if timezone != nil && timezone[0] != "" {
+		loc, err := time.LoadLocation(timezone[0])
+		if err != nil {
+			return ""
+		}
+
+		return time.Now().In(loc).Format(tf)
+	}
+
+	return time.Now().Format(tf)
 }

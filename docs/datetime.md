@@ -60,6 +60,7 @@ import (
 -   [BetweenSeconds](#BetweenSeconds)
 -   [DayOfYear](#DayOfYear)
 -   [IsWeekend](#IsWeekend)
+-   [NowDateOrTime](#NowDateOrTime)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -1303,5 +1304,39 @@ func main() {
     // true
     // true
     // false
+}
+```
+
+### <span id="NowDateOrTime">NowDateOrTime</span>
+
+<p>Return current datetime with specific format and timezone.</p>
+
+<b>Signature:</b>
+
+```go
+func NowDateOrTime(format string, timezone ...string) string
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/datetime"
+)
+
+func main() {
+    result1 := datetime.NowDateOrTime("yyyy-mm-dd hh:mm:ss")
+
+	result2 := datetime.NowDateOrTime("yyyy-mm-dd hh:mm:ss", "EST")
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+
+    // Output:
+    // 2023-07-26 15:01:30
+    // 2023-07-26 02:01:30
 }
 ```
