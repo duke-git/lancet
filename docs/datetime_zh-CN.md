@@ -838,7 +838,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func FormatTimeToStr(t time.Time, format string) string
+func FormatTimeToStr(t time.Time, format string, timezone ...string) string
 ```
 
 <b>示例:</b>
@@ -877,7 +877,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func FormatStrToTime(str, format string) (time.Time, error)
+func FormatStrToTime(str, format string, timezone ...string) (time.Time, error)
 ```
 
 <b>示例:</b>

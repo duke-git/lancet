@@ -838,7 +838,7 @@ func main() {
 <b>Signature:</b>
 
 ```go
-func FormatTimeToStr(t time.Time, format string) string
+func FormatTimeToStr(t time.Time, format string, timezone ...string) string
 ```
 
 <b>Example:</b>
@@ -877,7 +877,7 @@ func main() {
 <b>Signature:</b>
 
 ```go
-func FormatStrToTime(str, format string) (time.Time, error)
+func FormatStrToTime(str, format string, timezone ...string) (time.Time, error)
 ```
 
 <b>Example:</b>

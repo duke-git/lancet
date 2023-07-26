@@ -147,6 +147,9 @@ func TestFormatTimeToStr(t *testing.T) {
 		actual := FormatTimeToStr(datetime, cases[i])
 		assert.Equal(expected[i], actual)
 	}
+
+	ds := FormatTimeToStr(datetime, "yyyy-mm-dd hh:mm:ss", "EST")
+	t.Log(ds)
 }
 
 func TestFormatStrToTime(t *testing.T) {
@@ -163,19 +166,23 @@ func TestFormatStrToTime(t *testing.T) {
 		"dd-mm-yy hh:mm:ss", "yyyy/mm/dd hh:mm:ss",
 		"yyyy/mm"}
 
-	datetimeStr := []string{
+	expected := []string{
 		"2021-01-02 16:04:08", "2021-01-02",
 		"02-01-21 16:04:08", "2021/01/02 16:04:08",
 		"2021/01"}
 
 	for i := 0; i < len(cases); i++ {
-		actual, err := FormatStrToTime(datetimeStr[i], cases[i])
+		actual, err := FormatStrToTime(expected[i], cases[i])
 		if err != nil {
 			t.Fatal(err)
 		}
-		expected, _ := time.Parse(formats[i], datetimeStr[i])
+		expected, _ := time.Parse(formats[i], expected[i])
 		assert.Equal(expected, actual)
 	}
+
+	estTime, err := FormatStrToTime("2021-01-02 16:04:08", "yyyy-mm-dd hh:mm:ss", "EST")
+	t.Log(estTime)
+	assert.IsNil(err)
 }
 
 func TestBeginOfMinute(t *testing.T) {

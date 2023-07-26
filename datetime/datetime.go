@@ -124,19 +124,35 @@ func GetNightTimestamp() int64 {
 
 // FormatTimeToStr convert time to string.
 // Play: https://go.dev/play/p/_Ia7M8H_OvE
-func FormatTimeToStr(t time.Time, format string) string {
+func FormatTimeToStr(t time.Time, format string, timezone ...string) string {
+	if timezone != nil && timezone[0] != "" {
+		loc, err := time.LoadLocation(timezone[0])
+		if err != nil {
+			return ""
+		}
+		return t.In(loc).Format(timeFormat[format])
+	}
 	return t.Format(timeFormat[format])
 }
 
 // FormatStrToTime convert string to time.
 // Play: https://go.dev/play/p/1h9FwdU8ql4
-func FormatStrToTime(str, format string) (time.Time, error) {
-	v, ok := timeFormat[format]
+func FormatStrToTime(str, format string, timezone ...string) (time.Time, error) {
+	tf, ok := timeFormat[format]
 	if !ok {
 		return time.Time{}, fmt.Errorf("format %s not found", format)
 	}
 
-	return time.Parse(v, str)
+	if timezone != nil && timezone[0] != "" {
+		loc, err := time.LoadLocation(timezone[0])
+		if err != nil {
+			return time.Time{}, err
+		}
+
+		return time.ParseInLocation(tf, str, loc)
+	}
+
+	return time.Parse(tf, str)
 }
 
 // BeginOfMinute return beginning minute time of day.
