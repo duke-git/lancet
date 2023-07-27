@@ -42,14 +42,22 @@ import (
 - [DesOfbDecrypt](#DesOfbDecrypt)
 - [HmacMd5](#HmacMd5)
 - [HmacSha1](#HmacSha1)
+- [HmacSha1WithBase64](#HmacSha1WithBase64)
 - [HmacSha256](#HmacSha256)
+- [HmacSha256WithBase64](#HmacSha256WithBase64)
 - [HmacSha512](#HmacSha512)
+- [HmacSha512WithBase64](#HmacSha512WithBase64)
 - [Md5String](#Md5String)
+- [Md5StringWithBase64](#Md5StringWithBase64)
 - [Md5Byte](#Md5Byte)
+- [Md5ByteWithBase64](#Md5ByteWithBase64)
 - [Md5File](#Md5File)
 - [Sha1](#Sha1)
+- [Sha1WithBase64](#Sha1WithBase64)
 - [Sha256](#Sha256)
+- [Sha256WithBase64](#Sha256WithBase64)
 - [Sha512](#Sha512)
+- [Sha512WithBase64](#Sha512WithBase64)
 - [GenerateRsaKey](#GenerateRsaKey)
 - [RsaEncrypt](#RsaEncrypt)
 - [RsaDecrypt](#RsaDecrypt)
@@ -755,12 +763,12 @@ func main() {
 ```
 ### <span id="HmacSha1">HmacSha1</span>
 
-<p>获取字符串sha1 hmac值。</p>
+<p>获取字符串的sha1 hmac值。</p>
 
 <b>函数签名:</b>
 
 ```go
-func HmacSha1(data, key string) string
+func HmacSha1(str, key string) string
 ```
 
 <b>示例:</b>
@@ -784,6 +792,40 @@ func main() {
     // 5c6a9db0cccb92e36ed0323fd09b7f936de9ace0
 }
 ```
+
+### <span id="HmacSha1WithBase64">HmacSha1WithBase64</span>
+
+<p>获取字符串的sha1 base64值。</p>
+
+<b>函数签名:</b>
+
+```go
+func HmacSha1WithBase64(str, key string) string
+```
+
+<b>实例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/cryptor"
+)
+
+func main() {
+    str := "hello"
+    key := "12345"
+
+    hms := cryptor.HmacSha1WithBase64(str, key)
+    fmt.Println(hms)
+
+    // Output:
+    // XGqdsMzLkuNu0DI/0Jt/k23prOA=
+}
+```
+
+
 ### <span id="HmacSha256">HmacSha256</span>
 
 <p>获取字符串sha256 hmac值。</p>
@@ -791,7 +833,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func HmacSha256(data, key string) string
+func HmacSha256(str, key string) string
 ```
 
 <b>示例:</b>
@@ -816,6 +858,38 @@ func main() {
 }
 ```
 
+### <span id="HmacSha256WithBase64">HmacSha256WithBase64</span>
+
+<p>获取字符串sha256 hmac base64值。</p>
+
+<b>函数签名:</b>
+
+```go
+func HmacSha256WithBase64(str, key string) string
+```
+
+<b>实例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/cryptor"
+)
+
+func main() {
+    str := "hello"
+    key := "12345"
+
+    hms := cryptor.HmacSha256WithBase64(str, key)
+    fmt.Println(hms)
+
+    // Output:
+    // MVu5PE6YmGK6Ccti4F1zpfN2yzbw14btqwwyDQWf3nU=
+}
+```
+
 ### <span id="HmacSha512">HmacSha512</span>
 
 <p>获取字符串sha512 hmac值。</p>
@@ -823,7 +897,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func HmacSha512(data, key string) string
+func HmacSha512(str, key string) string
 ```
 
 <b>示例:</b>
@@ -848,6 +922,38 @@ func main() {
 }
 ```
 
+### <span id="HmacSha512WithBase64">HmacSha512WithBase64</span>
+
+<p>获取字符串sha512 hmac base64值。</p>
+
+<b>函数签名:</b>
+
+```go
+func HmacSha512WithBase64(str, key string) string
+```
+
+<b>实例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/cryptor"
+)
+
+func main() {
+    str := "hello"
+	key := "12345"
+
+	hms := cryptor.HmacSha512WithBase64(str, key)
+	fmt.Println(hms)
+
+	// Output:
+	// 3Y8SkKndI9NU4lJtmi6c6M///dN8syCADRxsE9Lvw2Mog3ahlsVFja9T+OGqa0Wm2FYwPVwKIGS/+XhYYdSM/A==
+}
+```
+
 
 ### <span id="Md5String">Md5String</span>
 
@@ -856,7 +962,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func Md5String(s string) string
+func Md5String(str string) string
 ```
 
 <b>示例:</b>
@@ -880,9 +986,38 @@ func main() {
 }
 ```
 
+### <span id="Md5StringWithBase64">Md5StringWithBase64</span>
+
+<p>获取字符串md5 base64值。</p>
+
+<b>函数签名:</b>
+
+```go
+func Md5StringWithBase64(s string) string
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/cryptor"
+)
+
+func main() {
+    md5Str := cryptor.Md5StringWithBase64("hello")
+	fmt.Println(md5Str)
+
+	// Output:
+	// XUFAKrxLKna5cZ2REBfFkg==
+}
+```
+
 ### <span id="Md5Byte">Md5Byte</span>
 
-<p>获取byte slice的md5至。</p>
+<p>获取byte slice的md5值。</p>
 
 <b>函数签名:</b>
 
@@ -906,6 +1041,35 @@ func main() {
 
 	// Output:
 	// 0cc175b9c0f1b6a831c399e269772661
+}
+```
+
+### <span id="Md5ByteWithBase64">Md5ByteWithBase64</span>
+
+<p>获取byte slice的md5 base64值。</p>
+
+<b>函数签名:</b>
+
+```go
+func Md5ByteWithBase64(data []byte) string
+```
+
+<b>实例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/cryptor"
+)
+
+func main() {
+    md5Str := cryptor.Md5ByteWithBase64([]byte("hello"))
+	fmt.Println(md5Str)
+
+	// Output:
+	// XUFAKrxLKna5cZ2REBfFkg==
 }
 ```
 
@@ -942,7 +1106,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func Sha1(data string) string
+func Sha1(str string) string
 ```
 
 <b>示例:</b>
@@ -966,6 +1130,35 @@ func main() {
 }
 ```
 
+### <span id="Sha1WithBase64">Sha1WithBase64</span>
+
+<p>获取字符串sha1 base64值。</p>
+
+<b>函数签名:</b>
+
+```go
+func Sha1WithBase64(str string) string
+```
+
+<b>实例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/cryptor"
+)
+
+func main() {
+    result := cryptor.Sha1WithBase64("hello")
+	fmt.Println(result)
+
+	// Output:
+	// qvTGHdzF6KLavt4PO0gs2a6pQ00=
+}
+```
+
 ### <span id="Sha256">Sha256</span>
 
 <p>获取字符串sha256值。</p>
@@ -973,7 +1166,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func Sha256(data string) string
+func Sha256(str string) string
 ```
 
 <b>示例:</b>
@@ -997,6 +1190,35 @@ func main() {
 }
 ```
 
+### <span id="Sha256WithBase64">Sha256WithBase64</span>
+
+<p>获取字符串sha256 base64值。</p>
+
+<b>函数签名:</b>
+
+```go
+func Sha256WithBase64(str string) string
+```
+
+<b>实例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/cryptor"
+)
+
+func main() {
+    result := cryptor.Sha256WithBase64("hello")
+	fmt.Println(result)
+
+	// Output:
+	// LPJNul+wow4m6DsqxbninhsWHlwfp0JecwQzYpOLmCQ=
+}
+```
+
 ### <span id="Sha512">Sha512</span>
 
 <p>获取字符串sha512值。</p>
@@ -1004,7 +1226,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func Sha512(data string) string
+func Sha512(str string) string
 ```
 
 <b>示例:</b>
@@ -1025,6 +1247,35 @@ func main() {
 
     // Output:
     // 9b71d224bd62f3785d96d46ad3ea3d73319bfbc2890caadae2dff72519673ca72323c3d99ba5c11d7c7acc6e14b8c5da0c4663475c2e5c3adef46f73bcdec043
+}
+```
+
+### <span id="Sha512WithBase64">Sha512WithBase64</span>
+
+<p>获取字符串sha512 base64值。</p>
+
+<b>函数签名:</b>
+
+```go
+func Sha512WithBase64(str string) string
+```
+
+<b>实例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/cryptor"
+)
+
+func main() {
+    result := cryptor.Sha512WithBase64("hello")
+	fmt.Println(result)
+
+	// Output:
+	// m3HSJL1i83hdltRq0+o9czGb+8KJDKra4t/3JRlnPKcjI8PZm6XBHXx6zG4UuMXaDEZjR1wuXDre9G9zvN7AQw==
 }
 ```
 
