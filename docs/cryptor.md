@@ -46,14 +46,24 @@ import (
 -   [DesOfbEncrypt](#DesOfbEncrypt)
 -   [DesOfbDecrypt](#DesOfbDecrypt)
 -   [HmacMd5](#HmacMd5)
+-   [HmacMd5WithBase64](#HmacMd5WithBase64)
 -   [HmacSha1](#HmacSha1)
+-   [HmacSha1WithBase64](#HmacSha1WithBase64)
 -   [HmacSha256](#HmacSha256)
+-   [HmacSha256WithBase64](#HmacSha256WithBase64)
 -   [HmacSha512](#HmacSha512)
+-   [HmacSha512WithBase64](#HmacSha512WithBase64)
 -   [Md5String](#Md5String)
+-   [Md5StringWithBase64](#Md5StringWithBase64)
+-   [Md5Byte](#Md5Byte)
+-   [Md5ByteWithBase64](#Md5ByteWithBase64)
 -   [Md5File](#Md5File)
 -   [Sha1](#Sha1)
+-   [Sha1WithBase64](#Sha1WithBase64)
 -   [Sha256](#Sha256)
+-   [Sha256WithBase64](#Sha256WithBase64)
 -   [Sha512](#Sha512)
+-   [Sha512WithBase64](#Sha512WithBase64)
 -   [GenerateRsaKey](#GenerateRsaKey)
 -   [RsaEncrypt](#RsaEncrypt)
 -   [RsaDecrypt](#RsaDecrypt)
@@ -664,6 +674,32 @@ func main() {
 }
 ```
 
+### <span id="HmacMd5WithBase64">HmacMd5WithBase64</span>
+
+<p>Return the hmac hash of string use md5 with base64.</p>
+
+<b>Signature:</b>
+
+```go
+func HmacMd5WithBase64(data, key string) string
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/cryptor"
+)
+
+func main() {
+    s := cryptor.HmacMd5WithBase64("hello", "12345"))
+    fmt.Println(s) //6DQwbquJLYclJdSRinpjmg==
+}
+```
+
 ### <span id="HmacSha1">HmacSha1</span>
 
 <p>Get the sha1 hmac hash of string.</p>
@@ -687,6 +723,37 @@ import (
 func main() {
     s := cryptor.HmacSha1("hello world", "12345"))
     fmt.Println(s) //3826f812255d8683f051ee97346d1359234d5dbd
+}
+```
+### <span id="HmacSha1WithBase64">HmacSha1WithBase64</span>
+
+<p>Return the hmac hash of string use sha1 with base64.</p>
+
+<b>Signature:</b>
+
+```go
+func HmacSha1WithBase64(str, key string) string
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/cryptor"
+)
+
+func main() {
+    str := "hello"
+    key := "12345"
+
+    hms := cryptor.HmacSha1WithBase64(str, key)
+    fmt.Println(hms)
+
+    // Output:
+    // XGqdsMzLkuNu0DI/0Jt/k23prOA=
 }
 ```
 
@@ -716,6 +783,38 @@ func main() {
 }
 ```
 
+### <span id="HmacSha256WithBase64">HmacSha256WithBase64</span>
+
+<p>Return the hmac hash of string use sha256 with base64.</p>
+
+<b>Signature:</b>
+
+```go
+func HmacSha256WithBase64(str, key string) string
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/cryptor"
+)
+
+func main() {
+    str := "hello"
+    key := "12345"
+
+    hms := cryptor.HmacSha256WithBase64(str, key)
+    fmt.Println(hms)
+
+    // Output:
+    // MVu5PE6YmGK6Ccti4F1zpfN2yzbw14btqwwyDQWf3nU=
+}
+```
+
 ### <span id="HmacSha512">HmacSha512</span>
 
 <p>Get the sha512 hmac hash of string.</p>
@@ -742,6 +841,38 @@ func main() {
 }
 ```
 
+### <span id="HmacSha512WithBase64">HmacSha512WithBase64</span>
+
+<p>Return the hmac hash of string use sha512 with base64.</p>
+
+<b>Signature:</b>
+
+```go
+func HmacSha512WithBase64(str, key string) string
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/cryptor"
+)
+
+func main() {
+    str := "hello"
+    key := "12345"
+
+    hms := cryptor.HmacSha512WithBase64(str, key)
+    fmt.Println(hms)
+
+    // Output:
+    // 3Y8SkKndI9NU4lJtmi6c6M///dN8syCADRxsE9Lvw2Mog3ahlsVFja9T+OGqa0Wm2FYwPVwKIGS/+XhYYdSM/A==
+}
+```
+
 ### <span id="Md5String">Md5String</span>
 
 <p>Get the md5 value of string.</p>
@@ -765,6 +896,93 @@ import (
 func main() {
     s := cryptor.Md5String("hello"))
     fmt.Println(s) //5d41402abc4b2a76b9719d911017c592
+}
+```
+
+### <span id="Md5StringWithBase64">Md5StringWithBase64</span>
+
+<p>Return the md5 value of string with base64.</p>
+
+<b>Signature:</b>
+
+```go
+func Md5StringWithBase64(s string) string
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/cryptor"
+)
+
+func main() {
+    md5Str := cryptor.Md5StringWithBase64("hello")
+    fmt.Println(md5Str)
+
+    // Output:
+    // XUFAKrxLKna5cZ2REBfFkg==
+}
+```
+
+### <span id="Md5Byte">Md5Byte</span>
+
+<p>Return the md5 string of byte slice.</p>
+
+<b>Signature:</b>
+
+```go
+func Md5Byte(data []byte) string
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/cryptor"
+)
+
+func main() {
+    md5Str := cryptor.Md5Byte([]byte{'a'})
+    fmt.Println(md5Str)
+
+    // Output:
+    // 0cc175b9c0f1b6a831c399e269772661
+}
+```
+
+### <span id="Md5ByteWithBase64">Md5ByteWithBase64</span>
+
+<p>Return the md5 string of byte slice with base64.</p>
+
+<b>Signature:</b>
+
+```go
+func Md5ByteWithBase64(data []byte) string
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/cryptor"
+)
+
+func main() {
+    md5Str := cryptor.Md5ByteWithBase64([]byte("hello"))
+    fmt.Println(md5Str)
+
+    // Output:
+    // XUFAKrxLKna5cZ2REBfFkg==
 }
 ```
 
@@ -820,6 +1038,35 @@ func main() {
 }
 ```
 
+### <span id="Sha1WithBase64">Sha1WithBase64</span>
+
+<p>Return the sha1 value (SHA-1 hash algorithm) of base64 string.</p>
+
+<b>Signature:</b>
+
+```go
+func Sha1WithBase64(str string) string
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/cryptor"
+)
+
+func main() {
+    result := cryptor.Sha1WithBase64("hello")
+    fmt.Println(result)
+
+    // Output:
+    // qvTGHdzF6KLavt4PO0gs2a6pQ00=
+}
+```
+
 ### <span id="Sha256">Sha256</span>
 
 <p>Get the sha256 value of string.</p>
@@ -846,6 +1093,35 @@ func main() {
 }
 ```
 
+### <span id="Sha256WithBase64">Sha256WithBase64</span>
+
+<p>Return the sha256 value (SHA256 hash algorithm) of base64 string.</p>
+
+<b>Signature:</b>
+
+```go
+func Sha256WithBase64(str string) string
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/cryptor"
+)
+
+func main() {
+    result := cryptor.Sha256WithBase64("hello")
+    fmt.Println(result)
+
+    // Output:
+    // LPJNul+wow4m6DsqxbninhsWHlwfp0JecwQzYpOLmCQ=
+}
+```
+
 ### <span id="Sha512">Sha512</span>
 
 <p>Get the sha512 value of string.</p>
@@ -869,6 +1145,35 @@ import (
 func main() {
     s := cryptor.Sha512("hello world"))
     fmt.Println(s) //309ecc489c12d6eb4cc40f50c902f2b4d0ed77ee511a7c7a9bcd3ca86d4cd86f989dd35bc5ff499670da34255b45b0cfd830e81f605dcf7dc5542e93ae9cd76f
+}
+```
+
+### <span id="Sha512WithBase64">Sha512WithBase64</span>
+
+<p>Get the sha512 value of string with base64.</p>
+
+<b>Signature:</b>
+
+```go
+func Sha512WithBase64(str string) string
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/cryptor"
+)
+
+func main() {
+    result := cryptor.Sha512WithBase64("hello")
+    fmt.Println(result)
+
+    // Output:
+    // m3HSJL1i83hdltRq0+o9czGb+8KJDKra4t/3JRlnPKcjI8PZm6XBHXx6zG4UuMXaDEZjR1wuXDre9G9zvN7AQw==
 }
 ```
 
