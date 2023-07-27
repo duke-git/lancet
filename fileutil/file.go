@@ -50,7 +50,7 @@ func CreateFile(path string) bool {
 
 // CreateDir create directory in absolute path. param `absPath` like /a/, /a/b/
 func CreateDir(absPath string) error {
-	return os.MkdirAll(path.Dir(absPath), os.ModePerm)
+	return os.MkdirAll(absPath, os.ModePerm)
 }
 
 // IsDir checks if the path is directory or not
