@@ -121,3 +121,49 @@ func TestConcurrentMap_GetAndDelete(t *testing.T) {
 		}(j)
 	}
 }
+
+func TestConcurrentMap_Has(t *testing.T) {
+	assert := internal.NewAssert(t, "TestConcurrentMap_Has")
+
+	cm := NewConcurrentMap[string, int](100)
+
+	var wg1 sync.WaitGroup
+	wg1.Add(10)
+
+	for i := 0; i < 10; i++ {
+		go func(n int) {
+			cm.Set(fmt.Sprintf("%d", n), n)
+			wg1.Done()
+		}(i)
+	}
+	wg1.Wait()
+
+	for j := 0; j < 10; j++ {
+		go func(n int) {
+			ok := cm.Has(fmt.Sprintf("%d", n))
+			assert.Equal(true, ok)
+		}(j)
+	}
+}
+
+func TestConcurrentMap_Range(t *testing.T) {
+	assert := internal.NewAssert(t, "TestConcurrentMap_Range")
+
+	cm := NewConcurrentMap[string, int](100)
+
+	var wg1 sync.WaitGroup
+	wg1.Add(10)
+
+	for i := 0; i < 10; i++ {
+		go func(n int) {
+			cm.Set(fmt.Sprintf("%d", n), n)
+			wg1.Done()
+		}(i)
+	}
+	wg1.Wait()
+
+	cm.Range(func(key string, value int) bool {
+		assert.Equal(key, fmt.Sprintf("%d", value))
+		return true
+	})
+}
