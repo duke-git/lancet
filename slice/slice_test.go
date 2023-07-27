@@ -624,3 +624,15 @@ func TestAppendIfAbsent(t *testing.T) {
 	assert.Equal([]string{"a", "b"}, AppendIfAbsent(str1, "a"))
 	assert.Equal([]string{"a", "b", "c"}, AppendIfAbsent(str1, "c"))
 }
+
+func TestJoin(t *testing.T) {
+	assert := internal.NewAssert(t, "TestJoin")
+
+	nums := []int{1, 2, 3, 4, 5}
+
+	result1 := Join(nums, ",")
+	result2 := Join(nums, "-")
+
+	assert.Equal("1,2,3,4,5", result1)
+	assert.Equal("1-2-3-4-5", result2)
+}

@@ -968,3 +968,16 @@ func AppendIfAbsent(slice interface{}, value interface{}) interface{} {
 	}
 	return out.Interface()
 }
+
+// AppendIfAbsent only absent append the value
+func Join(slice interface{}, separator string) string {
+	sv := sliceValue(slice)
+
+	strs := make([]string, sv.Len())
+
+	for i := 0; i < sv.Len(); i++ {
+		strs[i] = fmt.Sprint(sv.Index(i).Interface())
+	}
+
+	return strings.Join(strs, separator)
+}

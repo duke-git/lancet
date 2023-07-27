@@ -62,6 +62,8 @@ import (
 -   [Union](#Union)
 -   [UpdateByIndex](#UpdateByIndex)
 -   [Without](#Without)
+-   [Join](#Join)
+
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -1166,5 +1168,38 @@ import (
 func main() {
     res := slice.Without([]int{1, 2, 3, 4, 5}, 1, 2)
     fmt.Println(res) //[]int{3, 4, 5}
+}
+```
+
+### <span id="Join">Join</span>
+
+<p>用指定的分隔符链接切片元素。</p>
+
+<b>函数签名:</b>
+
+```go
+func Join(slice interface{}, separator string) string
+```
+
+<b>示例:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/slice"
+)
+
+func main() {
+    nums := []int{1, 2, 3, 4, 5}
+
+    result1 := slice.Join(nums, ",")
+    result2 := slice.Join(nums, "-")
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+
+    // Output:
+    // 1,2,3,4,5
+    // 1-2-3-4-5
 }
 ```
