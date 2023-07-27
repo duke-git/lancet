@@ -6,10 +6,8 @@ cryptor 加密包支持数据加密和解密，获取 md5，hash 值。支持 ba
 
 ## 源码:
 
--   [https://github.com/duke-git/lancet/blob/v1/cryptor/aes.go](https://github.com/duke-git/lancet/blob/v1/cryptor/aes.go)
--   [https://github.com/duke-git/lancet/blob/v1/cryptor/des.go](https://github.com/duke-git/lancet/blob/v1/cryptor/des.go)
 -   [https://github.com/duke-git/lancet/blob/v1/cryptor/basic.go](https://github.com/duke-git/lancet/blob/v1/cryptor/basic.go)
--   [https://github.com/duke-git/lancet/blob/v1/cryptor/rsa.go](https://github.com/duke-git/lancet/blob/v1/cryptor/rsa.go)
+-   [https://github.com/duke-git/lancet/blob/v1/cryptor/crypto.go](https://github.com/duke-git/lancet/blob/v1/cryptor/crypto.go)
 
 <div STYLE="page-break-after: always;"></div>
 

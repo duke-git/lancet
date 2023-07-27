@@ -6,10 +6,8 @@ Package cryptor contains some functions for data encryption and decryption. Supp
 
 ## Source:
 
--   [https://github.com/duke-git/lancet/blob/v1/cryptor/aes.go](https://github.com/duke-git/lancet/blob/v1/cryptor/aes.go)
--   [https://github.com/duke-git/lancet/blob/v1/cryptor/des.go](https://github.com/duke-git/lancet/blob/v1/cryptor/des.go)
 -   [https://github.com/duke-git/lancet/blob/v1/cryptor/basic.go](https://github.com/duke-git/lancet/blob/v1/cryptor/basic.go)
--   [https://github.com/duke-git/lancet/blob/v1/cryptor/rsa.go](https://github.com/duke-git/lancet/blob/v1/cryptor/rsa.go)
+-   [https://github.com/duke-git/lancet/blob/v1/cryptor/crypto.go](https://github.com/duke-git/lancet/blob/v1/cryptor/crypto.go)
 
 <div STYLE="page-break-after: always;"></div>
 
