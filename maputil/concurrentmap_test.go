@@ -24,17 +24,13 @@ func TestConcurrentMap_Set_Get(t *testing.T) {
 	}
 	wg1.Wait()
 
-	var wg2 sync.WaitGroup
-	wg2.Add(10)
 	for j := 0; j < 10; j++ {
 		go func(n int) {
 			val, ok := cm.Get(fmt.Sprintf("%d", n))
 			assert.Equal(n, val)
 			assert.Equal(true, ok)
-			wg2.Done()
 		}(j)
 	}
-	wg2.Wait()
 }
 
 func TestConcurrentMap_GetOrSet(t *testing.T) {

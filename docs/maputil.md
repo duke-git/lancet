@@ -44,11 +44,18 @@ import (
 -   [Minus](#Minus)
 -   [IsDisjoint](#IsDisjoint)
 -   [HasKey](#HasKey)
+-   [NewConcurrentMap](#NewConcurrentMap)
+-   [ConcurrentMap_Get](#ConcurrentMap_Get)
+-   [ConcurrentMap_Set](#ConcurrentMap_Set)
+-   [ConcurrentMap_GetOrSet](#ConcurrentMap_GetOrSet)
+-   [ConcurrentMap_Delete](#ConcurrentMap_Delete)
+-   [ConcurrentMap_GetAndDelete](#ConcurrentMap_GetAndDelete)
+-   [ConcurrentMap_Has](#ConcurrentMap_Has)
+-   [ConcurrentMap_Range](#ConcurrentMap_Range)
 
 <div STYLE="page-break-after: always;"></div>
 
 ## Documentation
-
 
 ### <span id="MapTo">MapTo</span>
 
@@ -982,5 +989,358 @@ func main() {
     // Output:
     // true
     // false
+}
+```
+
+### <span id="NewConcurrentMap">NewConcurrentMap</span>
+
+<p>ConcurrentMap is like map, but is safe for concurrent use by multiple goroutines.</p>
+
+<b>Signature:</b>
+
+```go
+// NewConcurrentMap create a ConcurrentMap with specific shard count.
+func NewConcurrentMap[K comparable, V any](shardCount int) *ConcurrentMap[K, V]
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/maputil"
+)
+
+func main() {
+    // create a ConcurrentMap whose key type is string, value type is int
+    cm := maputil.NewConcurrentMap[string, int](100)
+}
+```
+
+### <span id="ConcurrentMap_Set">ConcurrentMap_Set</span>
+
+<p>Set the value for a key.</p>
+
+<b>Signature:</b>
+
+```go
+func (cm *ConcurrentMap[K, V]) Set(key K, value V)
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/maputil"
+)
+
+func main() {
+    cm := maputil.NewConcurrentMap[string, int](100)
+
+    var wg1 sync.WaitGroup
+    wg1.Add(5)
+
+    for i := 0; i < 5; i++ {
+        go func(n int) {
+            cm.Set(fmt.Sprintf("%d", n), n)
+            wg1.Done()
+        }(i)
+    }
+    wg1.Wait()
+
+
+    for j := 0; j < 5; j++ {
+        go func(n int) {
+            val, ok := cm.Get(fmt.Sprintf("%d", n))
+            fmt.Println(val, ok)
+        }(j)
+    }
+
+    // output: (order may change)
+    // 1 true
+    // 3 true
+    // 2 true
+    // 0 true
+    // 4 true
+}
+```
+
+### <span id="ConcurrentMap_Get">ConcurrentMap_Get</span>
+
+<p>Get the value stored in the map for a key, or nil if no.</p>
+
+<b>Signature:</b>
+
+```go
+func (cm *ConcurrentMap[K, V]) Get(key K) (V, bool)
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/maputil"
+)
+
+func main() {
+    cm := maputil.NewConcurrentMap[string, int](100)
+
+    var wg1 sync.WaitGroup
+    wg1.Add(5)
+
+    for i := 0; i < 5; i++ {
+        go func(n int) {
+            cm.Set(fmt.Sprintf("%d", n), n)
+            wg1.Done()
+        }(i)
+    }
+    wg1.Wait()
+
+
+    for j := 0; j < 5; j++ {
+        go func(n int) {
+            val, ok := cm.Get(fmt.Sprintf("%d", n))
+            fmt.Println(val, ok)
+        }(j)
+    }
+
+    // output: (order may change)
+    // 1 true
+    // 3 true
+    // 2 true
+    // 0 true
+    // 4 true
+}
+```
+
+### <span id="ConcurrentMap_GetOrSet">ConcurrentMap_GetOrSet</span>
+
+<p>Returns the existing value for the key if present. Otherwise, it sets and returns the given value.</p>
+
+<b>Signature:</b>
+
+```go
+func (cm *ConcurrentMap[K, V]) GetOrSet(key K, value V) (actual V, ok bool)
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/maputil"
+)
+
+func main() {
+    cm := maputil.NewConcurrentMap[string, int](100)
+
+    var wg sync.WaitGroup
+    wg.Add(5)
+
+    for i := 0; i < 5; i++ {
+        go func(n int) {
+            val, ok := cm.GetOrSet(fmt.Sprintf("%d", n), n)
+            fmt.Println(val, ok)
+            wg.Done()
+        }(i)
+    }
+    wg.Wait()
+
+    // output: (order may change)
+    // 1 false
+    // 3 false
+    // 2 false
+    // 0 false
+    // 4 false
+}
+```
+
+### <span id="ConcurrentMap_Delete">ConcurrentMap_Delete</span>
+
+<p>Delete the value for a key.</p>
+
+<b>Signature:</b>
+
+```go
+func (cm *ConcurrentMap[K, V]) Delete(key K)
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/maputil"
+)
+
+func main() {
+    cm := maputil.NewConcurrentMap[string, int](100)
+
+    var wg1 sync.WaitGroup
+    wg1.Add(5)
+
+    for i := 0; i < 5; i++ {
+        go func(n int) {
+            cm.Set(fmt.Sprintf("%d", n), n)
+            wg1.Done()
+        }(i)
+    }
+    wg1.Wait()
+
+
+    for j := 0; j < 5; j++ {
+        go func(n int) {
+            cm.Delete(fmt.Sprintf("%d", n))
+            wg2.Done()
+        }(i)
+    }
+}
+```
+
+
+### <span id="ConcurrentMap_GetAndDelete">ConcurrentMap_GetAndDelete</span>
+
+<p>Returns the existing value for the key if present and then delete the value for the key. Otherwise, do nothing, just return false.</p>
+
+<b>Signature:</b>
+
+```go
+func (cm *ConcurrentMap[K, V]) GetAndDelete(key K) (actual V, ok bool)
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/maputil"
+)
+
+func main() {
+    cm := maputil.NewConcurrentMap[string, int](100)
+
+    var wg1 sync.WaitGroup
+    wg1.Add(5)
+
+    for i := 0; i < 5; i++ {
+        go func(n int) {
+            cm.Set(fmt.Sprintf("%d", n), n)
+            wg1.Done()
+        }(i)
+    }
+    wg1.Wait()
+
+
+    for j := 0; j < 5; j++ {
+        go func(n int) {
+            val, ok := cm.GetAndDelete(fmt.Sprintf("%d", n))
+            fmt.Println(val, ok) //n, true
+
+            _, ok = cm.Get(fmt.Sprintf("%d", n))
+            fmt.Println(val, ok) //false
+        }(j)
+    }
+}
+```
+
+
+### <span id="ConcurrentMap_Has">ConcurrentMap_Has</span>
+
+<p>Checks if map has the value for a key.</p>
+
+<b>Signature:</b>
+
+```go
+func (cm *ConcurrentMap[K, V]) Has(key K) bool
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/maputil"
+)
+
+func main() {
+    cm := maputil.NewConcurrentMap[string, int](100)
+
+    var wg1 sync.WaitGroup
+    wg1.Add(5)
+
+    for i := 0; i < 5; i++ {
+        go func(n int) {
+            cm.Set(fmt.Sprintf("%d", n), n)
+            wg1.Done()
+        }(i)
+    }
+    wg1.Wait()
+
+
+    for j := 0; j < 5; j++ {
+        go func(n int) {
+            ok := cm.Has(fmt.Sprintf("%d", n))
+            fmt.Println(ok) // true
+        }(j)
+    }
+}
+```
+
+
+### <span id="ConcurrentMap_Range">ConcurrentMap_Range</span>
+
+<p>Calls iterator sequentially for each key and value present in each of the shards in the map. If iterator returns false, range stops the iteration.</p>
+
+<b>Signature:</b>
+
+```go
+func (cm *ConcurrentMap[K, V]) Range(iterator func(key K, value V) bool)
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/maputil"
+)
+
+func main() {
+    cm := maputil.NewConcurrentMap[string, int](100)
+
+    var wg1 sync.WaitGroup
+    wg1.Add(5)
+
+    for i := 0; i < 5; i++ {
+        go func(n int) {
+            cm.Set(fmt.Sprintf("%d", n), n)
+            wg1.Done()
+        }(i)
+    }
+    wg1.Wait()
+
+
+    cm.Range(func(key string, value int) bool {
+        fmt.Println(value)
+        return true
+    })
 }
 ```

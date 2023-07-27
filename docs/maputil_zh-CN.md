@@ -44,6 +44,15 @@ import (
 -   [Minus](#Minus)
 -   [IsDisjoint](#IsDisjoint)
 -   [HasKey](#HasKey)
+-   [NewConcurrentMap](#NewConcurrentMap)
+-   [ConcurrentMap_Get](#ConcurrentMap_Get)
+-   [ConcurrentMap_Set](#ConcurrentMap_Set)
+-   [ConcurrentMap_GetOrSet](#ConcurrentMap_GetOrSet)
+-   [ConcurrentMap_Delete](#ConcurrentMap_Delete)
+-   [ConcurrentMap_GetAndDelete](#ConcurrentMap_GetAndDelete)
+-   [ConcurrentMap_Has](#ConcurrentMap_Has)
+-   [ConcurrentMap_Range](#ConcurrentMap_Range)
+
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -979,3 +988,357 @@ func main() {
     // false
 }
 ```
+
+### <span id="NewConcurrentMap">NewConcurrentMap</span>
+
+<p>ConcurrentMap协程安全的map结构。</p>
+
+<b>函数签名:</b>
+
+```go
+// NewConcurrentMap create a ConcurrentMap with specific shard count.
+func NewConcurrentMap[K comparable, V any](shardCount int) *ConcurrentMap[K, V]
+```
+
+<b>实例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/maputil"
+)
+
+func main() {
+    // create a ConcurrentMap whose key type is string, value type is int
+    cm := maputil.NewConcurrentMap[string, int](100)
+}
+```
+
+### <span id="ConcurrentMap_Set">ConcurrentMap_Set</span>
+
+<p>在map中设置key和value。</p>
+
+<b>函数签名:</b>
+
+```go
+func (cm *ConcurrentMap[K, V]) Set(key K, value V)
+```
+
+<b>实例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/maputil"
+)
+
+func main() {
+    cm := maputil.NewConcurrentMap[string, int](100)
+
+    var wg1 sync.WaitGroup
+    wg1.Add(5)
+
+    for i := 0; i < 5; i++ {
+        go func(n int) {
+            cm.Set(fmt.Sprintf("%d", n), n)
+            wg1.Done()
+        }(i)
+    }
+    wg1.Wait()
+
+
+    for j := 0; j < 5; j++ {
+        go func(n int) {
+            val, ok := cm.Get(fmt.Sprintf("%d", n))
+            fmt.Println(val, ok)
+        }(j)
+    }
+
+    // output: (order may change)
+    // 1 true
+    // 3 true
+    // 2 true
+    // 0 true
+    // 4 true
+}
+```
+
+### <span id="ConcurrentMap_Get">ConcurrentMap_Get</span>
+
+<p>根据key获取value, 如果不存在key,返回零值。</p>
+
+<b>函数签名:</b>
+
+```go
+func (cm *ConcurrentMap[K, V]) Get(key K) (V, bool)
+```
+
+<b>实例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/maputil"
+)
+
+func main() {
+    cm := maputil.NewConcurrentMap[string, int](100)
+
+    var wg1 sync.WaitGroup
+    wg1.Add(5)
+
+    for i := 0; i < 5; i++ {
+        go func(n int) {
+            cm.Set(fmt.Sprintf("%d", n), n)
+            wg1.Done()
+        }(i)
+    }
+    wg1.Wait()
+
+
+    for j := 0; j < 5; j++ {
+        go func(n int) {
+            val, ok := cm.Get(fmt.Sprintf("%d", n))
+            fmt.Println(val, ok)
+        }(j)
+    }
+
+    // output: (order may change)
+    // 1 true
+    // 3 true
+    // 2 true
+    // 0 true
+    // 4 true
+}
+```
+
+### <span id="ConcurrentMap_GetOrSet">ConcurrentMap_GetOrSet</span>
+
+<p>返回键的现有值（如果存在），否则，设置key并返回给定值。</p>
+
+<b>函数签名:</b>
+
+```go
+func (cm *ConcurrentMap[K, V]) GetOrSet(key K, value V) (actual V, ok bool)
+```
+
+<b>实例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/maputil"
+)
+
+func main() {
+    cm := maputil.NewConcurrentMap[string, int](100)
+
+    var wg sync.WaitGroup
+    wg.Add(5)
+
+    for i := 0; i < 5; i++ {
+        go func(n int) {
+            val, ok := cm.GetOrSet(fmt.Sprintf("%d", n), n)
+            fmt.Println(val, ok)
+            wg.Done()
+        }(i)
+    }
+    wg.Wait()
+
+    // output: (order may change)
+    // 1 false
+    // 3 false
+    // 2 false
+    // 0 false
+    // 4 false
+}
+```
+
+### <span id="ConcurrentMap_Delete">ConcurrentMap_Delete</span>
+
+<p>删除key。</p>
+
+<b>函数签名:</b>
+
+```go
+func (cm *ConcurrentMap[K, V]) Delete(key K)
+```
+
+<b>实例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/maputil"
+)
+
+func main() {
+    cm := maputil.NewConcurrentMap[string, int](100)
+
+    var wg1 sync.WaitGroup
+    wg1.Add(5)
+
+    for i := 0; i < 5; i++ {
+        go func(n int) {
+            cm.Set(fmt.Sprintf("%d", n), n)
+            wg1.Done()
+        }(i)
+    }
+    wg1.Wait()
+
+
+    for j := 0; j < 5; j++ {
+        go func(n int) {
+            cm.Delete(fmt.Sprintf("%d", n))
+            wg2.Done()
+        }(i)
+    }
+}
+```
+
+
+### <span id="ConcurrentMap_GetAndDelete">ConcurrentMap_GetAndDelete</span>
+
+<p>获取key，然后删除。</p>
+
+<b>函数签名:</b>
+
+```go
+func (cm *ConcurrentMap[K, V]) GetAndDelete(key K) (actual V, ok bool)
+```
+
+<b>实例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/maputil"
+)
+
+func main() {
+    cm := maputil.NewConcurrentMap[string, int](100)
+
+    var wg1 sync.WaitGroup
+    wg1.Add(5)
+
+    for i := 0; i < 5; i++ {
+        go func(n int) {
+            cm.Set(fmt.Sprintf("%d", n), n)
+            wg1.Done()
+        }(i)
+    }
+    wg1.Wait()
+
+
+    for j := 0; j < 5; j++ {
+        go func(n int) {
+            val, ok := cm.GetAndDelete(fmt.Sprintf("%d", n))
+            fmt.Println(val, ok) //n, true
+
+            _, ok = cm.Get(fmt.Sprintf("%d", n))
+            fmt.Println(val, ok) //false
+        }(j)
+    }
+}
+```
+
+
+### <span id="ConcurrentMap_Has">ConcurrentMap_Has</span>
+
+<p>验证是否包含key。</p>
+
+<b>函数签名:</b>
+
+```go
+func (cm *ConcurrentMap[K, V]) Has(key K) bool
+```
+
+<b>实例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/maputil"
+)
+
+func main() {
+    cm := maputil.NewConcurrentMap[string, int](100)
+
+    var wg1 sync.WaitGroup
+    wg1.Add(5)
+
+    for i := 0; i < 5; i++ {
+        go func(n int) {
+            cm.Set(fmt.Sprintf("%d", n), n)
+            wg1.Done()
+        }(i)
+    }
+    wg1.Wait()
+
+
+    for j := 0; j < 5; j++ {
+        go func(n int) {
+            ok := cm.Has(fmt.Sprintf("%d", n))
+            fmt.Println(ok) // true
+        }(j)
+    }
+}
+```
+
+
+### <span id="ConcurrentMap_Range">ConcurrentMap_Range</span>
+
+<p>为map中每个键和值顺序调用迭代器。 如果iterator返回false，则停止迭代。</p>
+
+<b>函数签名:</b>
+
+```go
+func (cm *ConcurrentMap[K, V]) Range(iterator func(key K, value V) bool)
+```
+
+<b>实例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/maputil"
+)
+
+func main() {
+    cm := maputil.NewConcurrentMap[string, int](100)
+
+    var wg1 sync.WaitGroup
+    wg1.Add(5)
+
+    for i := 0; i < 5; i++ {
+        go func(n int) {
+            cm.Set(fmt.Sprintf("%d", n), n)
+            wg1.Done()
+        }(i)
+    }
+    wg1.Wait()
+
+
+    cm.Range(func(key string, value int) bool {
+        fmt.Println(value)
+        return true
+    })
+}
+```
+
