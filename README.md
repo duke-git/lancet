@@ -133,14 +133,24 @@ import "github.com/duke-git/lancet/cryptor"
 -   [DesOfbEncrypt](https://github.com/duke-git/lancet/blob/v1/docs/cryptor.md#DesOfbEncrypt)
 -   [DesOfbDecrypt](https://github.com/duke-git/lancet/blob/v1/docs/cryptor.md#DesOfbDecrypt)
 -   [HmacMd5](https://github.com/duke-git/lancet/blob/v1/docs/cryptor.md#HmacMd5)
+-   [HmacMd5WithBase64](https://github.com/duke-git/lancet/blob/v1/docs/cryptor.md#HmacMd5WithBase64)
+-   [HmacSha1WithBase64](https://github.com/duke-git/lancet/blob/v1/docs/cryptor.md#HmacSha1WithBase64)
 -   [HmacSha1](https://github.com/duke-git/lancet/blob/v1/docs/cryptor.md#HmacSha1)
--   [HmacSha256](https://github.com/duke-git/lancet/blob/v1/docs/cryptor.md#HmacSha256)
--   [HmacSha512](https://github.com/duke-git/lancet/blob/v1/docs/cryptor.md#HmacSha512)
+-   [HmacSha256WithBase64](https://github.com/duke-git/lancet/blob/v1/docs/cryptor.md#HmacSha256WithBase64)
+-   [HmacSha1](https://github.com/duke-git/lancet/blob/v1/docs/cryptor.md#HmacSha1)
+-   [HmacSha512WithBase64](https://github.com/duke-git/lancet/blob/v1/docs/cryptor.md#HmacSha512WithBase64)
+-   [HmacSha1](https://github.com/duke-git/lancet/blob/v1/docs/cryptor.md#HmacSha1)
 -   [Md5String](https://github.com/duke-git/lancet/blob/v1/docs/cryptor.md#Md5String)
+-   [Md5StringWithBase64](https://github.com/duke-git/lancet/blob/v1/docs/cryptor.md#Md5StringWithBase64)
+-   [Md5Byte](https://github.com/duke-git/lancet/blob/v1/docs/cryptor.md#Md5Byte)
+-   [Md5ByteWithBase64](https://github.com/duke-git/lancet/blob/v1/docs/cryptor.md#Md5ByteWithBase64)
 -   [Md5File](https://github.com/duke-git/lancet/blob/v1/docs/cryptor.md#Md5File)
 -   [Sha1](https://github.com/duke-git/lancet/blob/v1/docs/cryptor.md#Sha1)
+-   [Sha1WithBase64](https://github.com/duke-git/lancet/blob/v1/docs/cryptor.md#Sha1WithBase64)
 -   [Sha256](https://github.com/duke-git/lancet/blob/v1/docs/cryptor.md#Sha256)
+-   [Sha256WithBase64](https://github.com/duke-git/lancet/blob/v1/docs/cryptor.md#Sha256WithBase64)
 -   [Sha512](https://github.com/duke-git/lancet/blob/v1/docs/cryptor.md#Sha512)
+-   [Sha512WithBase64](https://github.com/duke-git/lancet/blob/v1/docs/cryptor.md#Sha512WithBase64)
 -   [GenerateRsaKey](https://github.com/duke-git/lancet/blob/v1/docs/cryptor.md#GenerateRsaKey)
 -   [RsaEncrypt](https://github.com/duke-git/lancet/blob/v1/docs/cryptor.md#RsaEncrypt)
 -   [RsaDecrypt](https://github.com/duke-git/lancet/blob/v1/docs/cryptor.md#RsaDecrypt)
@@ -188,6 +198,11 @@ import "github.com/duke-git/lancet/datetime"
 -   [BetweenSeconds](https://github.com/duke-git/lancet/blob/v1/docs/datetime.md#BetweenSeconds)
 -   [DayOfYear](https://github.com/duke-git/lancet/blob/v1/docs/datetime.md#DayOfYear)
 -   [IsWeekend](https://github.com/duke-git/lancet/blob/v1/docs/datetime.md#IsWeekend)
+-   [NowDateOrTime](https://github.com/duke-git/lancet/blob/v1/docs/datetime.md#NowDateOrTime)
+-   [Timestamp](https://github.com/duke-git/lancet/blob/v1/docs/datetime.md#Timestamp)
+-   [TimestampMilli](https://github.com/duke-git/lancet/blob/v1/docs/datetime.md#TimestampMilli)
+-   [TimestampMicro](https://github.com/duke-git/lancet/blob/v1/docs/datetime.md#TimestampMicro)
+-   [TimestampNano](https://github.com/duke-git/lancet/blob/v1/docs/datetime.md#TimestampNano)
 
 ### 5. Fileutil package implements some basic functions for file operations.
 
@@ -390,6 +405,7 @@ import "github.com/duke-git/lancet/slice"
 -   [Union](https://github.com/duke-git/lancet/blob/v1/docs/slice.md#Union)
 -   [UpdateByIndex](https://github.com/duke-git/lancet/blob/v1/docs/slice.md#UpdateByIndex)
 -   [Without](https://github.com/duke-git/lancet/blob/v1/docs/slice.md#Without)
+-   [Join](https://github.com/duke-git/lancet/blob/v1/docs/slice.md#Join)
 
 ### 13. Strutil package contains some functions to manipulate string.
 
