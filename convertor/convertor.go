@@ -9,20 +9,27 @@ import (
 	"encoding/binary"
 	"encoding/gob"
 	"encoding/json"
+	"errors"
 	"fmt"
+	"io"
 	"math"
 	"reflect"
-	"regexp"
 	"strconv"
 	"strings"
+
+	"github.com/duke-git/lancet/v2/structs"
+	"golang.org/x/text/encoding/simplifiedchinese"
+	"golang.org/x/text/transform"
 )
 
-// ToBool convert string to a boolean
+// ToBool convert string to boolean.
+// Play: https://go.dev/play/p/ARht2WnGdIN
 func ToBool(s string) (bool, error) {
 	return strconv.ParseBool(s)
 }
 
-// ToBytes convert interface to bytes
+// ToBytes convert value to byte slice.
+// Play: https://go.dev/play/p/fAMXYFDvOvr
 func ToBytes(value any) ([]byte, error) {
 	v := reflect.ValueOf(value)
 
@@ -63,7 +70,8 @@ func ToBytes(value any) ([]byte, error) {
 	}
 }
 
-// ToChar convert string to char slice
+// ToChar convert string to char slice.
+// Play: https://go.dev/play/p/JJ1SvbFkVdM
 func ToChar(s string) []string {
 	c := make([]string, 0)
 	if len(s) == 0 {
@@ -75,7 +83,8 @@ func ToChar(s string) []string {
 	return c
 }
 
-// ToChannel convert a array of elements to a read-only channels
+// ToChannel convert a slice of elements to a read-only channel.
+// Play: https://go.dev/play/p/hOx_oYZbAnL
 func ToChannel[T any](array []T) <-chan T {
 	ch := make(chan T)
 
@@ -90,38 +99,59 @@ func ToChannel[T any](array []T) <-chan T {
 }
 
 // ToString convert value to string
+// for number, string, []byte, will convert to string
+// for other type (slice, map, array, struct) will call json.Marshal.
+// Play: https://go.dev/play/p/nF1zOOslpQq
 func ToString(value any) string {
-	result := ""
 	if value == nil {
-		return result
+		return ""
 	}
 
-	v := reflect.ValueOf(value)
-
-	switch value.(type) {
-	case float32, float64:
-		result = strconv.FormatFloat(v.Float(), 'f', -1, 64)
-		return result
-	case int, int8, int16, int32, int64:
-		result = strconv.FormatInt(v.Int(), 10)
-		return result
-	case uint, uint8, uint16, uint32, uint64:
-		result = strconv.FormatUint(v.Uint(), 10)
-		return result
+	switch val := value.(type) {
+	case float32:
+		return strconv.FormatFloat(float64(val), 'f', -1, 32)
+	case float64:
+		return strconv.FormatFloat(val, 'f', -1, 64)
+	case int:
+		return strconv.FormatInt(int64(val), 10)
+	case int8:
+		return strconv.FormatInt(int64(val), 10)
+	case int16:
+		return strconv.FormatInt(int64(val), 10)
+	case int32:
+		return strconv.FormatInt(int64(val), 10)
+	case int64:
+		return strconv.FormatInt(val, 10)
+	case uint:
+		return strconv.FormatUint(uint64(val), 10)
+	case uint8:
+		return strconv.FormatUint(uint64(val), 10)
+	case uint16:
+		return strconv.FormatUint(uint64(val), 10)
+	case uint32:
+		return strconv.FormatUint(uint64(val), 10)
+	case uint64:
+		return strconv.FormatUint(val, 10)
 	case string:
-		result = v.String()
-		return result
+		return val
 	case []byte:
-		result = string(v.Bytes())
-		return result
+		return string(val)
 	default:
-		newValue, _ := json.Marshal(value)
-		result = string(newValue)
-		return result
+		b, err := json.Marshal(val)
+		if err != nil {
+			return ""
+		}
+		return string(b)
+
+		// todo: maybe we should't supprt other type conversion
+		// v := reflect.ValueOf(value)
+		// log.Panicf("Unsupported data type: %s ", v.String())
+		// return ""
 	}
 }
 
-// ToJson convert value to a valid json string
+// ToJson convert value to a json string.
+// Play: https://go.dev/play/p/2rLIkMmXWvR
 func ToJson(value any) (string, error) {
 	result, err := json.Marshal(value)
 	if err != nil {
@@ -131,7 +161,8 @@ func ToJson(value any) (string, error) {
 	return string(result), nil
 }
 
-// ToFloat convert value to a float64, if input is not a float return 0.0 and error
+// ToFloat convert value to float64, if input is not a float return 0.0 and error.
+// Play: https://go.dev/play/p/4YTmPCibqHJ
 func ToFloat(value any) (float64, error) {
 	v := reflect.ValueOf(value)
 
@@ -158,12 +189,13 @@ func ToFloat(value any) (float64, error) {
 	}
 }
 
-// ToInt convert value to a int64, if input is not a numeric format return 0 and error
+// ToInt convert value to int64 value, if input is not numerical, return 0 and error.
+// Play: https://go.dev/play/p/9_h9vIt-QZ_b
 func ToInt(value any) (int64, error) {
 	v := reflect.ValueOf(value)
 
 	var result int64
-	err := fmt.Errorf("ToInt: invalid interface type %T", value)
+	err := fmt.Errorf("ToInt: invalid value type %T", value)
 	switch value.(type) {
 	case int, int8, int16, int32, int64:
 		result = v.Int()
@@ -185,12 +217,14 @@ func ToInt(value any) (int64, error) {
 	}
 }
 
-// ToPointer returns a pointer to this value
+// ToPointer returns a pointer to passed value.
+// Play: https://go.dev/play/p/ASf_etHNlw1
 func ToPointer[T any](value T) *T {
 	return &value
 }
 
-// ToMap convert a slice or an array of structs to a map based on iteratee function
+// ToMap convert a slice of structs to a map based on iteratee function.
+// Play: https://go.dev/play/p/tVFy7E-t24l
 func ToMap[T any, K comparable, V any](array []T, iteratee func(T) (K, V)) map[K]V {
 	result := make(map[K]V, len(array))
 	for _, item := range array {
@@ -202,36 +236,14 @@ func ToMap[T any, K comparable, V any](array []T, iteratee func(T) (K, V)) map[K
 }
 
 // StructToMap convert struct to map, only convert exported struct field
-// map key is specified same as struct field tag `json` value
+// map key is specified same as struct field tag `json` value.
+// Play: https://go.dev/play/p/KYGYJqNUBOI
 func StructToMap(value any) (map[string]any, error) {
-	v := reflect.ValueOf(value)
-	t := reflect.TypeOf(value)
-
-	if t.Kind() == reflect.Ptr {
-		t = t.Elem()
-	}
-	if t.Kind() != reflect.Struct {
-		return nil, fmt.Errorf("data type %T not support, shuld be struct or pointer to struct", value)
-	}
-
-	result := make(map[string]any)
-
-	fieldNum := t.NumField()
-	pattern := `^[A-Z]`
-	regex := regexp.MustCompile(pattern)
-	for i := 0; i < fieldNum; i++ {
-		name := t.Field(i).Name
-		tag := t.Field(i).Tag.Get("json")
-		if regex.MatchString(name) && tag != "" {
-			//result[name] = v.Field(i).Interface()
-			result[tag] = v.Field(i).Interface()
-		}
-	}
-
-	return result, nil
+	return structs.ToMap(value)
 }
 
-// MapToSlice convert a map to a slice based on iteratee function
+// MapToSlice convert map to slice based on iteratee function.
+// Play: https://go.dev/play/p/dmX4Ix5V6Wl
 func MapToSlice[T any, K comparable, V any](aMap map[K]V, iteratee func(K, V) T) []T {
 	result := make([]T, 0, len(aMap))
 
@@ -242,7 +254,8 @@ func MapToSlice[T any, K comparable, V any](aMap map[K]V, iteratee func(K, V) T)
 	return result
 }
 
-// ColorHexToRGB convert hex color to rgb color
+// ColorHexToRGB convert hex color to rgb color.
+// Play: https://go.dev/play/p/o7_ft-JCJBV
 func ColorHexToRGB(colorHex string) (red, green, blue int) {
 	colorHex = strings.TrimPrefix(colorHex, "#")
 	color64, err := strconv.ParseInt(colorHex, 16, 32)
@@ -253,7 +266,8 @@ func ColorHexToRGB(colorHex string) (red, green, blue int) {
 	return color >> 16, (color & 0x00FF00) >> 8, color & 0x0000FF
 }
 
-// ColorRGBToHex convert rgb color to hex color
+// ColorRGBToHex convert rgb color to hex color.
+// Play: https://go.dev/play/p/nzKS2Ro87J1
 func ColorRGBToHex(red, green, blue int) string {
 	r := strconv.FormatInt(int64(red), 16)
 	g := strconv.FormatInt(int64(green), 16)
@@ -272,7 +286,8 @@ func ColorRGBToHex(red, green, blue int) string {
 	return "#" + r + g + b
 }
 
-// EncodeByte encode data to byte
+// EncodeByte encode data to byte slice.
+// Play: https://go.dev/play/p/DVmM1G5JfuP
 func EncodeByte(data any) ([]byte, error) {
 	buffer := bytes.NewBuffer(nil)
 	encoder := gob.NewEncoder(buffer)
@@ -283,9 +298,99 @@ func EncodeByte(data any) ([]byte, error) {
 	return buffer.Bytes(), nil
 }
 
-// DecodeByte decode byte data to target object
+// DecodeByte decode byte slice data to target object.
+// Play: https://go.dev/play/p/zI6xsmuQRbn
 func DecodeByte(data []byte, target any) error {
 	buffer := bytes.NewBuffer(data)
 	decoder := gob.NewDecoder(buffer)
 	return decoder.Decode(target)
+}
+
+// DeepClone creates a deep copy of passed item.
+// can't clone unexported field of struct
+// Play: https://go.dev/play/p/j4DP5dquxnk
+func DeepClone[T any](src T) T {
+	c := cloner{
+		ptrs: map[reflect.Type]map[uintptr]reflect.Value{},
+	}
+	result := c.clone(reflect.ValueOf(src))
+	if result.Kind() == reflect.Invalid {
+		var zeroValue T
+		return zeroValue
+	}
+
+	return result.Interface().(T)
+}
+
+// CopyProperties copies each field from the source into the destination. It recursively copies struct pointers and interfaces that contain struct pointers.
+// use json.Marshal/Unmarshal, so json tag should be set for fields of dst and src struct.
+// Play: https://go.dev/play/p/oZujoB5Sgg5
+func CopyProperties[T, U any](dst T, src U) error {
+	dstType, srcType := reflect.TypeOf(dst), reflect.TypeOf(src)
+
+	if dstType.Kind() != reflect.Ptr || dstType.Elem().Kind() != reflect.Struct {
+		return errors.New("CopyProperties: parameter dst should be struct pointer")
+	}
+
+	if srcType.Kind() == reflect.Ptr {
+		srcType = srcType.Elem()
+	}
+	if srcType.Kind() != reflect.Struct {
+		return errors.New("CopyProperties: parameter src should be a struct or struct pointer")
+	}
+
+	bytes, err := json.Marshal(src)
+	if err != nil {
+		return fmt.Errorf("CopyProperties: unable to marshal src: %s", err)
+	}
+	err = json.Unmarshal(bytes, dst)
+	if err != nil {
+		return fmt.Errorf("CopyProperties: unable to unmarshal into dst: %s", err)
+	}
+
+	return nil
+}
+
+// ToInterface converts reflect value to its interface type.
+// Play: https://go.dev/play/p/syqw0-WG7Xd
+func ToInterface(v reflect.Value) (value interface{}, ok bool) {
+	if v.IsValid() && v.CanInterface() {
+		return v.Interface(), true
+	}
+	switch v.Kind() {
+	case reflect.Bool:
+		return v.Bool(), true
+	case reflect.Int, reflect.Int8, reflect.Int16, reflect.Int32, reflect.Int64:
+		return v.Int(), true
+	case reflect.Uint, reflect.Uint8, reflect.Uint16, reflect.Uint32, reflect.Uint64, reflect.Uintptr:
+		return v.Uint(), true
+	case reflect.Float32, reflect.Float64:
+		return v.Float(), true
+	case reflect.Complex64, reflect.Complex128:
+		return v.Complex(), true
+	case reflect.String:
+		return v.String(), true
+	case reflect.Ptr:
+		return ToInterface(v.Elem())
+	case reflect.Interface:
+		return ToInterface(v.Elem())
+	default:
+		return nil, false
+	}
+}
+
+// Utf8ToGbk convert utf8 encoding data to GBK encoding data.
+// Play: https://go.dev/play/p/9FlIaFLArIL
+func Utf8ToGbk(bs []byte) ([]byte, error) {
+	r := transform.NewReader(bytes.NewReader(bs), simplifiedchinese.GBK.NewEncoder())
+	b, err := io.ReadAll(r)
+	return b, err
+}
+
+// GbkToUtf8 convert GBK encoding data to utf8 encoding data.
+// Play: https://go.dev/play/p/OphmHCN_9u8
+func GbkToUtf8(bs []byte) ([]byte, error) {
+	r := transform.NewReader(bytes.NewReader(bs), simplifiedchinese.GBK.NewDecoder())
+	b, err := io.ReadAll(r)
+	return b, err
 }

@@ -10,10 +10,11 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/duke-git/lancet/v2/lancetconstraints"
+	"golang.org/x/exp/constraints"
 )
 
-// Exponent calculate x^n
+// Exponent calculate x^n.
+// Play: https://go.dev/play/p/uF3HGNPk8wr
 func Exponent(x, n int64) int64 {
 	if n == 0 {
 		return 1
@@ -28,7 +29,8 @@ func Exponent(x, n int64) int64 {
 	return t * t
 }
 
-// Fibonacci calculate fibonacci number before n
+// Fibonacci calculate fibonacci number before n.
+// Play: https://go.dev/play/p/IscseUNMuUc
 func Fibonacci(first, second, n int) int {
 	if n <= 0 {
 		return 0
@@ -42,7 +44,8 @@ func Fibonacci(first, second, n int) int {
 	}
 }
 
-// Factorial calculate x!
+// Factorial calculate x!.
+// Play: https://go.dev/play/p/tt6LdOK67Nx
 func Factorial(x uint) uint {
 	var f uint = 1
 	for ; x > 1; x-- {
@@ -51,7 +54,8 @@ func Factorial(x uint) uint {
 	return f
 }
 
-// Percent calculate the percentage of val to total
+// Percent calculate the percentage of value to total.
+// Play: https://go.dev/play/p/s0NdFCtwuyd
 func Percent(val, total float64, n int) float64 {
 	if total == 0 {
 		return float64(0)
@@ -62,7 +66,8 @@ func Percent(val, total float64, n int) float64 {
 	return result
 }
 
-// RoundToString round up to n decimal places
+// RoundToString round up to n decimal places.
+// Play: https://go.dev/play/p/kZwpBRAcllO
 func RoundToString(x float64, n int) string {
 	tmp := math.Pow(10.0, float64(n))
 	x *= tmp
@@ -71,7 +76,8 @@ func RoundToString(x float64, n int) string {
 	return result
 }
 
-// RoundToFloat round up to n decimal places
+// RoundToFloat round up to n decimal places.
+// Play: https://go.dev/play/p/ghyb528JRJL
 func RoundToFloat(x float64, n int) float64 {
 	tmp := math.Pow(10.0, float64(n))
 	x *= tmp
@@ -79,7 +85,8 @@ func RoundToFloat(x float64, n int) float64 {
 	return x / tmp
 }
 
-// TruncRound round off n decimal places
+// TruncRound round off n decimal places.
+// Play: https://go.dev/play/p/aumarSHIGzP
 func TruncRound(x float64, n int) float64 {
 	floatStr := fmt.Sprintf("%."+strconv.Itoa(n+1)+"f", x)
 	temp := strings.Split(floatStr, ".")
@@ -93,8 +100,9 @@ func TruncRound(x float64, n int) float64 {
 	return result
 }
 
-// Max return max value of params
-func Max[T lancetconstraints.Number](numbers ...T) T {
+// Max return max value of numbers.
+// Play: https://go.dev/play/p/cN8DHI0rTkH
+func Max[T constraints.Integer | constraints.Float](numbers ...T) T {
 	max := numbers[0]
 
 	for _, v := range numbers {
@@ -106,7 +114,8 @@ func Max[T lancetconstraints.Number](numbers ...T) T {
 	return max
 }
 
-// MaxBy search the maximum value of a slice using the given comparator function.
+// MaxBy return the maximum value of a slice using the given comparator function.
+// Play: https://go.dev/play/p/pbe2MT-7DV2
 func MaxBy[T any](slice []T, comparator func(T, T) bool) T {
 	var max T
 
@@ -127,8 +136,9 @@ func MaxBy[T any](slice []T, comparator func(T, T) bool) T {
 	return max
 }
 
-// Min return min value of params
-func Min[T lancetconstraints.Number](numbers ...T) T {
+// Min return min value of numbers.
+// Play: https://go.dev/play/p/21BER_mlGUj
+func Min[T constraints.Integer | constraints.Float](numbers ...T) T {
 	min := numbers[0]
 
 	for _, v := range numbers {
@@ -140,7 +150,8 @@ func Min[T lancetconstraints.Number](numbers ...T) T {
 	return min
 }
 
-// MinBy search the minimum value of a slice using the given comparator function.
+// MinBy return the minimum value of a slice using the given comparator function.
+// Play: https://go.dev/play/p/XuJDKrDdglW
 func MinBy[T any](slice []T, comparator func(T, T) bool) T {
 	var min T
 
@@ -161,8 +172,21 @@ func MinBy[T any](slice []T, comparator func(T, T) bool) T {
 	return min
 }
 
-// Average return average value of params
-func Average[T lancetconstraints.Number](numbers ...T) T {
+// Sum return sum of passed numbers.
+// Play: https://go.dev/play/p/1To2ImAMJA7
+func Sum[T constraints.Integer | constraints.Float](numbers ...T) T {
+	var sum T
+
+	for _, v := range numbers {
+		sum += v
+	}
+
+	return sum
+}
+
+// Average return average value of numbers.
+// Play: https://go.dev/play/p/Vv7LBwER-pz
+func Average[T constraints.Integer | constraints.Float](numbers ...T) T {
 	var sum T
 	n := T(len(numbers))
 
@@ -170,4 +194,160 @@ func Average[T lancetconstraints.Number](numbers ...T) T {
 		sum += v
 	}
 	return sum / n
+}
+
+// Range creates a slice of numbers from start with specified count, element step is 1.
+// Play: https://go.dev/play/p/9ke2opxa8ZP
+func Range[T constraints.Integer | constraints.Float](start T, count int) []T {
+	size := count
+	if count < 0 {
+		size = -count
+	}
+
+	result := make([]T, size)
+
+	for i, j := 0, start; i < size; i, j = i+1, j+1 {
+		result[i] = j
+	}
+
+	return result
+}
+
+// RangeWithStep creates a slice of numbers from start to end with specified step.
+// Play: https://go.dev/play/p/akLWz0EqOSM
+func RangeWithStep[T constraints.Integer | constraints.Float](start, end, step T) []T {
+	result := []T{}
+
+	if start >= end || step == 0 {
+		return result
+	}
+
+	for i := start; i < end; i += step {
+		result = append(result, i)
+	}
+
+	return result
+}
+
+// AngleToRadian converts angle value to radian value.
+// Play: https://go.dev/play/p/CIvlICqrHql
+func AngleToRadian(angle float64) float64 {
+	radian := angle * (math.Pi / 180)
+	return radian
+}
+
+// RadianToAngle converts radian value to angle value.
+// Play: https://go.dev/play/p/dQtmOTUOMgi
+func RadianToAngle(radian float64) float64 {
+	angle := radian * (180 / math.Pi)
+	return angle
+}
+
+// PointDistance get two points distance.
+// Play: https://go.dev/play/p/RrG4JIaziM8
+func PointDistance(x1, y1, x2, y2 float64) float64 {
+	a := x1 - x2
+	b := y1 - y2
+	c := math.Pow(a, 2) + math.Pow(b, 2)
+
+	return math.Sqrt(c)
+}
+
+// IsPrimes checks if number is prime number.
+// Play: https://go.dev/play/p/Rdd8UTHZJ7u
+func IsPrime(n int) bool {
+	if n < 2 {
+		return false
+	}
+
+	for i := 2; i <= int(math.Sqrt(float64(n))); i++ {
+		if n%i == 0 {
+			return false
+		}
+	}
+
+	return true
+}
+
+// GCD return greatest common divisor (GCD) of integers.
+// Play: https://go.dev/play/p/CiEceLSoAKB
+func GCD[T constraints.Integer](integers ...T) T {
+	result := integers[0]
+
+	for k := range integers {
+		result = gcd(integers[k], result)
+
+		if result == 1 {
+			return 1
+		}
+	}
+
+	return result
+}
+
+// find greatest common divisor (GCD)
+func gcd[T constraints.Integer](a, b T) T {
+	if b == 0 {
+		return a
+	}
+
+	return gcd(b, a%b)
+}
+
+// LCM return Least Common Multiple (LCM) of integers.
+// Play: https://go.dev/play/p/EjcZxfY7G_g
+func LCM[T constraints.Integer](integers ...T) T {
+	result := integers[0]
+
+	for k := range integers {
+		result = lcm(integers[k], result)
+	}
+
+	return result
+}
+
+// find Least Common Multiple (LCM) via GCD.
+func lcm[T constraints.Integer](a, b T) T {
+	if a == 0 || b == 0 {
+		panic("lcm function: provide non zero integers only.")
+	}
+	return a * b / gcd(a, b)
+}
+
+// Cos returns the cosine of the radian argument.
+// Play: https://go.dev/play/p/Sm89LoIfvFq
+func Cos(radian float64, precision ...int) float64 {
+	t := 1.0 / (2.0 * math.Pi)
+	radian *= t
+	radian -= 0.25 + math.Floor(radian+0.25)
+	radian *= 16.0 * (math.Abs(radian) - 0.5)
+	radian += 0.225 * radian * (math.Abs(radian) - 1.0)
+
+	if len(precision) == 1 {
+		return TruncRound(radian, precision[0])
+	}
+
+	return TruncRound(radian, 3)
+}
+
+// Cos returns the sine of the radian argument.
+// Play: https://go.dev/play/p/TWMQlMywDsP
+func Sin(radian float64, precision ...int) float64 {
+	return Cos((math.Pi / 2) - radian)
+}
+
+// Log returns the logarithm of base n.
+// Play: https://go.dev/play/p/_d4bi8oyhat
+func Log(n, base float64) float64 {
+	return math.Log(n) / math.Log(base)
+}
+
+// Abs returns the absolute value of x.
+// Play: todo
+func Abs[T constraints.Integer | constraints.Float](x T) T {
+	if x < 0 {
+		return (-x)
+	}
+
+	return x
 }

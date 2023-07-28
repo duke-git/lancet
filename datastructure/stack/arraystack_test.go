@@ -7,6 +7,8 @@ import (
 )
 
 func TestArrayStack_Push(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestArrayStack_Push")
 
 	stack := NewArrayStack[int]()
@@ -14,15 +16,16 @@ func TestArrayStack_Push(t *testing.T) {
 	stack.Push(2)
 	stack.Push(3)
 
-	expected := []int{3, 2, 1}
 	values := stack.Data()
 	length := stack.Size()
 
-	assert.Equal(expected, values)
+	assert.Equal([]int{3, 2, 1}, values)
 	assert.Equal(3, length)
 }
 
 func TestArrayStack_Pop(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestArrayStack_Pop")
 
 	stack := NewArrayStack[int]()
@@ -37,11 +40,12 @@ func TestArrayStack_Pop(t *testing.T) {
 	assert.IsNil(err)
 	assert.Equal(3, *topItem)
 
-	expected := []int{2, 1}
-	assert.Equal(expected, stack.Data())
+	assert.Equal([]int{2, 1}, stack.Data())
 }
 
 func TestArrayStack_Peak(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestArrayStack_Peak")
 
 	stack := NewArrayStack[int]()
@@ -56,11 +60,12 @@ func TestArrayStack_Peak(t *testing.T) {
 	assert.IsNil(err)
 	assert.Equal(3, *topItem)
 
-	expected := []int{3, 2, 1}
-	assert.Equal(expected, stack.Data())
+	assert.Equal([]int{3, 2, 1}, stack.Data())
 }
 
 func TestArrayStack_Clear(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestArrayStack_Clear")
 
 	stack := NewArrayStack[int]()

@@ -46,6 +46,7 @@ func (c *intComparator) Compare(v1 any, v2 any) int {
 }
 
 func TestBubbleSortForStructSlice(t *testing.T) {
+	t.Parallel()
 	asssert := internal.NewAssert(t, "TestBubbleSortForStructSlice")
 
 	peoples := []people{
@@ -65,7 +66,9 @@ func TestBubbleSortForStructSlice(t *testing.T) {
 }
 
 func TestBubbleSortForIntSlice(t *testing.T) {
+	t.Parallel()
 	asssert := internal.NewAssert(t, "TestBubbleSortForIntSlice")
+
 	numbers := []int{2, 1, 5, 3, 6, 4}
 	comparator := &intComparator{}
 	BubbleSort(numbers, comparator)
@@ -74,6 +77,7 @@ func TestBubbleSortForIntSlice(t *testing.T) {
 }
 
 func TestInsertionSort(t *testing.T) {
+	t.Parallel()
 	asssert := internal.NewAssert(t, "TestInsertionSort")
 
 	peoples := []people{
@@ -93,6 +97,7 @@ func TestInsertionSort(t *testing.T) {
 }
 
 func TestSelectionSort(t *testing.T) {
+	t.Parallel()
 	asssert := internal.NewAssert(t, "TestSelectionSort")
 
 	peoples := []people{
@@ -112,6 +117,7 @@ func TestSelectionSort(t *testing.T) {
 }
 
 func TestShellSort(t *testing.T) {
+	t.Parallel()
 	asssert := internal.NewAssert(t, "TestShellSort")
 
 	peoples := []people{
@@ -131,6 +137,7 @@ func TestShellSort(t *testing.T) {
 }
 
 func TestQuickSort(t *testing.T) {
+	t.Parallel()
 	asssert := internal.NewAssert(t, "TestQuickSort")
 
 	peoples := []people{
@@ -150,6 +157,7 @@ func TestQuickSort(t *testing.T) {
 }
 
 func TestHeapSort(t *testing.T) {
+	t.Parallel()
 	asssert := internal.NewAssert(t, "TestHeapSort")
 
 	peoples := []people{
@@ -169,6 +177,7 @@ func TestHeapSort(t *testing.T) {
 }
 
 func TestMergeSort(t *testing.T) {
+	t.Parallel()
 	asssert := internal.NewAssert(t, "TestMergeSort")
 
 	peoples := []people{
@@ -188,6 +197,7 @@ func TestMergeSort(t *testing.T) {
 }
 
 func TestCountSort(t *testing.T) {
+	t.Parallel()
 	asssert := internal.NewAssert(t, "TestCountSort")
 
 	peoples := []people{
@@ -199,7 +209,6 @@ func TestCountSort(t *testing.T) {
 	}
 	comparator := &peopleAgeComparator{}
 	sortedPeopleByAge := CountSort(peoples, comparator)
-	t.Log(sortedPeopleByAge)
 
 	expected := "[{d 8} {b 10} {c 17} {a 20} {e 28}]"
 	actual := fmt.Sprintf("%v", sortedPeopleByAge)

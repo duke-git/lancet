@@ -9,39 +9,54 @@ import (
 	"os"
 	"os/exec"
 	"runtime"
+	"unicode/utf8"
+
+	"github.com/duke-git/lancet/v2/validator"
+	"golang.org/x/text/encoding/simplifiedchinese"
 )
 
-// IsWindows check if current os is windows
+type (
+	Option func(*exec.Cmd)
+)
+
+// IsWindows check if current os is windows.
+// Play: https://go.dev/play/p/XzJULbzmf9m
 func IsWindows() bool {
 	return runtime.GOOS == "windows"
 }
 
-// IsLinux check if current os is linux
+// IsLinux check if current os is linux.
+// Play: https://go.dev/play/p/zIflQgZNuxD
 func IsLinux() bool {
 	return runtime.GOOS == "linux"
 }
 
-// IsMac check if current os is macos
+// IsMac check if current os is macos.
+// Play: https://go.dev/play/p/Mg4Hjtyq7Zc
 func IsMac() bool {
 	return runtime.GOOS == "darwin"
 }
 
 // GetOsEnv gets the value of the environment variable named by the key.
+// Play: https://go.dev/play/p/D88OYVCyjO-
 func GetOsEnv(key string) string {
 	return os.Getenv(key)
 }
 
 // SetOsEnv sets the value of the environment variable named by the key.
+// Play: https://go.dev/play/p/D88OYVCyjO-
 func SetOsEnv(key, value string) error {
 	return os.Setenv(key, value)
 }
 
 // RemoveOsEnv remove a single environment variable.
+// Play: https://go.dev/play/p/fqyq4b3xUFQ
 func RemoveOsEnv(key string) error {
 	return os.Unsetenv(key)
 }
 
-// CompareOsEnv gets env named by the key and compare it with comparedEnv
+// CompareOsEnv gets env named by the key and compare it with comparedEnv.
+// Play: https://go.dev/play/p/BciHrKYOHbp
 func CompareOsEnv(key, comparedEnv string) bool {
 	env := GetOsEnv(key)
 	if env == "" {
@@ -50,29 +65,70 @@ func CompareOsEnv(key, comparedEnv string) bool {
 	return env == comparedEnv
 }
 
-// ExecCommand use shell /bin/bash -c to execute command
-func ExecCommand(command string) (stdout, stderr string, err error) {
+// ExecCommand execute command, return the stdout and stderr string of command, and error if error occur
+// param `command` is a complete command string, like, ls -a (linux), dir(windows), ping 127.0.0.1
+// in linux,  use /bin/bash -c to execute command
+// in windows, use powershell.exe to execute command
+// Play: https://go.dev/play/p/n-2fLyZef-4
+func ExecCommand(command string, opts ...Option) (stdout, stderr string, err error) {
 	var out bytes.Buffer
-	var errout bytes.Buffer
+	var errOut bytes.Buffer
 
 	cmd := exec.Command("/bin/bash", "-c", command)
 	if IsWindows() {
-		cmd = exec.Command("cmd")
+		cmd = exec.Command("powershell.exe", command)
+	}
+
+	for _, opt := range opts {
+		if opt != nil {
+			opt(cmd)
+		}
 	}
 	cmd.Stdout = &out
-	cmd.Stderr = &errout
+	cmd.Stderr = &errOut
+
 	err = cmd.Run()
 
 	if err != nil {
-		stderr = string(errout.Bytes())
+		if utf8.Valid(errOut.Bytes()) {
+			stderr = byteToString(errOut.Bytes(), "UTF8")
+		} else if validator.IsGBK(errOut.Bytes()) {
+			stderr = byteToString(errOut.Bytes(), "GBK")
+		}
+		return
 	}
-	stdout = string(out.Bytes())
+
+	data := out.Bytes()
+	if utf8.Valid(data) {
+		stdout = byteToString(data, "UTF8")
+	} else if validator.IsGBK(data) {
+		stdout = byteToString(data, "GBK")
+	}
 
 	return
 }
 
-// GetOsBits get this system bits 32bit or 64bit
-// return bit int (32/64)
+func byteToString(data []byte, charset string) string {
+	var result string
+
+	switch charset {
+	case "GBK":
+		decodeBytes, _ := simplifiedchinese.GBK.NewDecoder().Bytes(data)
+		result = string(decodeBytes)
+	case "GB18030":
+		decodeBytes, _ := simplifiedchinese.GB18030.NewDecoder().Bytes(data)
+		result = string(decodeBytes)
+	case "UTF8":
+		fallthrough
+	default:
+		result = string(data)
+	}
+
+	return result
+}
+
+// GetOsBits return current os bits (32 or 64).
+// Play: https://go.dev/play/p/ml-_XH3gJbW
 func GetOsBits() int {
 	return 32 << (^uint(0) >> 63)
 }

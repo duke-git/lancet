@@ -29,7 +29,6 @@ import (
 - [PreOrderTraverse](#BSTree_PreOrderTraverse)
 - [InOrderTraverse](#BSTree_InOrderTraverse)
 - [PostOrderTraverse](#BSTree_PostOrderTraverse)
-  
 - [LevelOrderTraverse](#BSTree_LevelOrderTraverse)
 - [Depth](#BSTree_Depth)
 - [HasSubTree](#BSTree_HasSubTree)
@@ -63,7 +62,7 @@ type TreeNode[T any] struct {
 	Right *TreeNode[T]
 }
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -104,7 +103,7 @@ func main() {
 ```go
 func (t *BSTree[T]) Insert(data T)
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -150,7 +149,7 @@ func main() {
 ```go
 func (t *BSTree[T]) Delete(data T)
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -198,7 +197,7 @@ func main() {
 ```go
 func (t *BSTree[T]) PreOrderTraverse() []T
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -244,7 +243,7 @@ func main() {
 ```go
 func (t *BSTree[T]) InOrderTraverse() []T
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -290,7 +289,7 @@ func main() {
 ```go
 func (t *BSTree[T]) PostOrderTraverse() []T
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -336,7 +335,7 @@ func main() {
 ```go
 func (t *BSTree[T]) LevelOrderTraverse() []T
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -382,7 +381,7 @@ func main() {
 ```go
 func (t *BSTree[T]) Depth() int
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -428,7 +427,7 @@ func main() {
 ```go
 func (t *BSTree[T]) HasSubTree(subTree *BSTree[T]) bool
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -480,7 +479,7 @@ func main() {
 ```go
 func (t *BSTree[T]) Print()
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main

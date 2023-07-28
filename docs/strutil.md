@@ -1,16 +1,17 @@
 # Strutil
+
 Package strutil contains some functions to manipulate string.
 
 <div STYLE="page-break-after: always;"></div>
 
 ## Source:
 
-- [https://github.com/duke-git/lancet/blob/main/strutil/string.go](https://github.com/duke-git/lancet/blob/main/strutil/string.go)
-
+-   [https://github.com/duke-git/lancet/blob/main/strutil/string.go](https://github.com/duke-git/lancet/blob/main/strutil/string.go)
 
 <div STYLE="page-break-after: always;"></div>
 
 ## Usage:
+
 ```go
 import (
     "github.com/duke-git/lancet/v2/strutil"
@@ -20,189 +21,310 @@ import (
 <div STYLE="page-break-after: always;"></div>
 
 ## Index
-- [After](#After)
-- [AfterLast](#AfterLast)
-- [Before](#Before)
-- [BeforeLast](#BeforeLast)
-- [CamelCase](#CamelCase)
-- [Capitalize](#Capitalize)
-- [IsString](#IsString)
-- [KebabCase](#KebabCase)
-- [LowerFirst](#LowerFirst)
-- [UpperFirst](#UpperFirst)
-- [PadEnd](#PadEnd)
-- [PadStart](#PadStart)
-- [Reverse](#Reverse)
-- [SnakeCase](#SnakeCase)
-- [SplitEx](#SplitEx)
-- [Wrap](#Wrap)
-  
-- [Unwrap](#Unwrap)
-  
+
+-   [After](#After)
+-   [AfterLast](#AfterLast)
+-   [Before](#Before)
+-   [BeforeLast](#BeforeLast)
+-   [CamelCase](#CamelCase)
+-   [Capitalize](#Capitalize)
+-   [IsString](#IsString)
+-   [KebabCase](#KebabCase)
+-   [UpperKebabCase](#UpperKebabCase)
+-   [LowerFirst](#LowerFirst)
+-   [UpperFirst](#UpperFirst)
+-   [Pad](#Pad)
+-   [PadStart](#PadStart)
+-   [PadEnd](#PadEnd)
+-   [Reverse](#Reverse)
+-   [SnakeCase](#SnakeCase)
+-   [UpperSnakeCase](#UpperSnakeCase)
+-   [SplitEx](#SplitEx)
+-   [Substring](#Substring)
+-   [Wrap](#Wrap)
+-   [Unwrap](#Unwrap)
+-   [SplitWords](#SplitWords)
+-   [WordCount](#WordCount)
+-   [RemoveNonPrintable](#RemoveNonPrintable)
+-   [StringToBytes](#StringToBytes)
+-   [BytesToString](#BytesToString)
+-   [IsBlank](#IsBlank)
+-   [HasPrefixAny](#HasPrefixAny)
+-   [HasSuffixAny](#HasSuffixAny)
+-   [IndexOffset](#IndexOffset)
+-   [ReplaceWithMap](#ReplaceWithMap)
+-   [Trim](#Trim)
+-   [SplitAndTrim](#SplitAndTrim)
+-   [HideString](#HideString)
+-   [ContainsAll](#ContainsAll)
+-   [ContainsAny](#ContainsAny)
+-   [RemoveWhiteSpace](#RemoveWhiteSpace)
 
 <div STYLE="page-break-after: always;"></div>
 
 ## Documentation
 
-
 ### <span id="After">After</span>
-<p>Creates substring in source string after position when char first appear.</p>
+
+<p>Returns the substring after the first occurrence of a specified string in the source string.</p>
 
 <b>Signature:</b>
 
 ```go
 func After(s, char string) string
 ```
+
 <b>Example:</b>
 
 ```go
 import (
-	"fmt"
-	"github.com/duke-git/lancet/v2/strutil"
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
 )
 
 func main() {
-	s1 := strutil.After("lancet", "")
-	fmt.Println(s1) //lancet
+    result1 := strutil.After("foo", "")
+    result2 := strutil.After("foo", "foo")
+    result3 := strutil.After("foo/bar", "foo")
+    result4 := strutil.After("foo/bar", "/")
+    result5 := strutil.After("foo/bar/baz", "/")
 
-	s2 := strutil.After("github.com/test/lancet", "/")
-	fmt.Println(s2) //test/lancet
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
+    fmt.Println(result5)
 
-	s3 := strutil.After("github.com/test/lancet", "test")
-	fmt.Println(s3) // /lancet
+    // Output:
+    // foo
+    //
+    // /bar
+    // bar
+    // bar/baz
 }
 ```
 
-
-
 ### <span id="AfterLast">AfterLast</span>
-<p>Creates substring in source string after position when char last appear.</p>
+
+<p>Returns the substring after the last occurrence of a specified string in the source string.</p>
 
 <b>Signature:</b>
 
 ```go
 func AfterLast(s, char string) string
 ```
+
 <b>Example:</b>
 
 ```go
 import (
-	"fmt"
-	"github.com/duke-git/lancet/v2/strutil"
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
 )
 
 func main() {
-	s1 := strutil.AfterLast("lancet", "")
-	fmt.Println(s1) //lancet
+    result1 := strutil.AfterLast("foo", "")
+    result2 := strutil.AfterLast("foo", "foo")
+    result3 := strutil.AfterLast("foo/bar", "/")
+    result4 := strutil.AfterLast("foo/bar/baz", "/")
+    result5 := strutil.AfterLast("foo/bar/foo/baz", "foo")
 
-	s2 := strutil.AfterLast("github.com/test/lancet", "/")
-	fmt.Println(s2) //lancet
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
+    fmt.Println(result5)
 
-	s3 := strutil.AfterLast("github.com/test/test/lancet", "test")
-	fmt.Println(s3) // /test/lancet
+    // Output:
+    // foo
+    //
+    // bar
+    // baz
+    // /baz
 }
 ```
 
-
-
-
 ### <span id="Before">Before</span>
-<p>Creates substring in source string before position when char first appear.</p>
+
+<p>Returns the substring of the source string up to the first occurrence of the specified string.</p>
 
 <b>Signature:</b>
 
 ```go
 func Before(s, char string) string
 ```
+
 <b>Example:</b>
 
 ```go
 import (
-	"fmt"
-	"github.com/duke-git/lancet/v2/strutil"
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
 )
 
 func main() {
-	s1 := strutil.Before("lancet", "")
-	fmt.Println(s1) //lancet
+    result1 := strutil.Before("foo", "")
+    result2 := strutil.Before("foo", "foo")
+    result3 := strutil.Before("foo/bar", "/")
+    result4 := strutil.Before("foo/bar/baz", "/")
 
-	s2 := strutil.Before("github.com/test/lancet", "/")
-	fmt.Println(s2) //github.com
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
 
-	s3 := strutil.Before("github.com/test/lancet", "test")
-	fmt.Println(s3) // github.com/
+    // Output:
+    // foo
+    //
+    // foo
+    // foo
 }
 ```
 
-
-
-
 ### <span id="BeforeLast">BeforeLast</span>
-<p>Creates substring in source string before position when char first appear.</p>
+
+<p>Returns the substring of the source string up to the last occurrence of the specified string.</p>
 
 <b>Signature:</b>
 
 ```go
 func BeforeLast(s, char string) string
 ```
+
 <b>Example:</b>
 
 ```go
 import (
-	"fmt"
-	"github.com/duke-git/lancet/v2/strutil"
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
 )
 
 func main() {
-	s1 := strutil.BeforeLast("lancet", "")
-	fmt.Println(s1) //lancet
+    result1 := strutil.BeforeLast("foo", "")
+    result2 := strutil.BeforeLast("foo", "foo")
+    result3 := strutil.BeforeLast("foo/bar", "/")
+    result4 := strutil.BeforeLast("foo/bar/baz", "/")
 
-	s2 := strutil.BeforeLast("github.com/test/lancet", "/")
-	fmt.Println(s2) //github.com/test
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
 
-	s3 := strutil.BeforeLast("github.com/test/test/lancet", "test")
-	fmt.Println(s3) //github.com/test/
+    // Output:
+    // foo
+    //
+    // foo
+    // foo/bar
 }
 ```
 
-
-
-
 ### <span id="CamelCase">CamelCase</span>
-<p>Covert string to camelCase string.</p>
+
+<p>Coverts string to camelCase string, non letters and numbers will be ignored.</p>
 
 <b>Signature:</b>
 
 ```go
 func CamelCase(s string) string
 ```
+
 <b>Example:</b>
 
 ```go
 import (
-	"fmt"
-	"github.com/duke-git/lancet/v2/strutil"
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
 )
 
 func main() {
-	s1 := strutil.CamelCase("foo_bar")
-	fmt.Println(s1) //fooBar
+    strings := []string{"", "foobar", "&FOO:BAR$BAZ", "$foo%", "Foo-#1😄$_%^&*(1bar"}
 
-	s2 := strutil.CamelCase("Foo-Bar")
-	fmt.Println(s2) //fooBar
+    for _, v := range strings {
+        s := strutil.CamelCase(v)
+        fmt.Println(s)
+    }
 
-	s3 := strutil.CamelCase("Foo&bar")
-	fmt.Println(s3) //fooBar
-
-	s4 := strutil.CamelCase("foo bar")
-	fmt.Println(s4) //fooBar
+    // Output:
+    //
+    // foobar
+    // fooBarBaz
+    // foo
+    // foo11Bar
 }
 ```
 
+### <span id="KebabCase">KebabCase</span>
 
+<p>KebabCase covert string to kebab-case, non letters and numbers will be ignored.</p>
 
+<b>Signature:</b>
+
+```go
+func KebabCase(s string) string
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    strings := []string{"", "foo-bar", "Foo Bar-", "FOOBAR", "Foo-#1😄$_%^&*(1bar"}
+
+    for _, v := range strings {
+        s := strutil.KebabCase(v)
+        fmt.Println(s)
+    }
+
+    // Output:
+    //
+    // foo-bar
+    // foo-bar
+    // foobar
+    // foo-1-1-bar
+}
+```
+
+### <span id="UpperKebabCase">UpperKebabCase</span>
+
+<p>UpperKebabCase covert string to upper KEBAB-CASE, non letters and numbers will be ignored.</p>
+
+<b>Signature:</b>
+
+```go
+func UpperKebabCase(s string) string
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    strings := []string{"", "foo-bar", "Foo Bar-", "FooBAR", "Foo-#1😄$_%^&*(1bar"}
+
+    for _, v := range strings {
+        s := strutil.UpperKebabCase(v)
+        fmt.Println(s)
+    }
+
+    // Output:
+    //
+    // FOO-BAR
+    // FOO-BAR
+    // FOO-BAR
+    // FOO-1-1-BAR
+}
+```
 
 ### <span id="Capitalize">Capitalize</span>
+
 <p>Convert the first character of a string to upper case.</p>
 
 <b>Signature:</b>
@@ -210,29 +332,34 @@ func main() {
 ```go
 func Capitalize(s string) string
 ```
+
 <b>Example:</b>
 
 ```go
 import (
-	"fmt"
-	"github.com/duke-git/lancet/v2/strutil"
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
 )
 
 func main() {
-	s1 := strutil.Capitalize("foo")
-	fmt.Println(s1) //foo
+    strings := []string{"", "Foo", "_foo", "fooBar", "foo-bar"}
 
-	s2 := strutil.Capitalize("Foo")
-	fmt.Println(s2) //foo
+    for _, v := range strings {
+        s := strutil.Capitalize(v)
+        fmt.Println(s)
+    }
 
-	s3 := strutil.Capitalize("FOo"
-	fmt.Println(s3) //fOo
+    // Output:
+    //
+    // Foo
+    // _foo
+    // Foobar
+    // Foo-bar
 }
 ```
 
-
-
 ### <span id="IsString">IsString</span>
+
 <p>Check if the value's data type is string.</p>
 
 <b>Signature:</b>
@@ -240,61 +367,39 @@ func main() {
 ```go
 func IsString(v any) bool
 ```
+
 <b>Example:</b>
 
 ```go
 import (
-	"fmt"
-	"github.com/duke-git/lancet/v2/strutil"
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
 )
 
 func main() {
-	fmt.Println(strutil.IsString("lancet")) //true
-	fmt.Println(strutil.IsString("")) //true
+    result1 := strutil.IsString("")
+    result2 := strutil.IsString("a")
+    result3 := strutil.IsString(1)
+    result4 := strutil.IsString(true)
+    result5 := strutil.IsString([]string{"a"})
 
-	fmt.Println(strutil.IsString(1)) //false
-	fmt.Println(strutil.IsString("")) //false
-	fmt.Println(strutil.IsString([]string{})) //false
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
+    fmt.Println(result5)
+
+    // Output:
+    // true
+    // true
+    // false
+    // false
+    // false
 }
 ```
-
-
-
-### <span id="KebabCase">KebabCase</span>
-<p>Covert string to kebab-case.</p>
-
-<b>Signature:</b>
-
-```go
-func KebabCase(s string) string
-```
-<b>Example:</b>
-
-```go
-import (
-	"fmt"
-	"github.com/duke-git/lancet/v2/strutil"
-)
-
-func main() {
-	s1 := strutil.KebabCase("Foo Bar-")
-	fmt.Println(s1) //foo-bar
-
-	s2 := strutil.KebabCase("foo_Bar")
-	fmt.Println(s2) //foo-bar
-
-	s3 := strutil.KebabCase("fooBar")
-	fmt.Println(s3) //foo-bar
-
-	s4 := strutil.KebabCase("__FOO_BAR__")
-	fmt.Println(s4) //f-o-o-b-a-r
-}
-```
-
-
-
 
 ### <span id="LowerFirst">LowerFirst</span>
+
 <p>Convert the first character of string to lower case.</p>
 
 <b>Signature:</b>
@@ -302,33 +407,33 @@ func main() {
 ```go
 func LowerFirst(s string) string
 ```
+
 <b>Example:</b>
 
 ```go
 import (
-	"fmt"
-	"github.com/duke-git/lancet/v2/strutil"
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
 )
 
 func main() {
-	s1 := strutil.LowerFirst("foo")
-	fmt.Println(s1) //foo
+    strings := []string{"", "bar", "BAr", "Bar大"}
 
-	s2 := strutil.LowerFirst("BAR")
-	fmt.Println(s2) //bAR
+    for _, v := range strings {
+        s := strutil.LowerFirst(v)
+        fmt.Println(s)
+    }
 
-	s3 := strutil.LowerFirst("FOo")
-	fmt.Println(s3) //fOo
-
-	s4 := strutil.LowerFirst("fOo大")
-	fmt.Println(s4) //fOo大
+    // Output:
+    //
+    // bar
+    // bAr
+    // bar大
 }
 ```
 
-
-
-
 ### <span id="UpperFirst">UpperFirst</span>
+
 <p>Convert the first character of string to upper case.</p>
 
 <b>Signature:</b>
@@ -336,33 +441,78 @@ func main() {
 ```go
 func UpperFirst(s string) string
 ```
+
 <b>Example:</b>
 
 ```go
 import (
-	"fmt"
-	"github.com/duke-git/lancet/v2/strutil"
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
 )
 
 func main() {
-	s1 := strutil.UpperFirst("foo")
-	fmt.Println(s1) //Foo
+    strings := []string{"", "bar", "BAr", "bar大"}
 
-	s2 := strutil.UpperFirst("bAR")
-	fmt.Println(s2) //BAR
+    for _, v := range strings {
+        s := strutil.UpperFirst(v)
+        fmt.Println(s)
+    }
 
-	s3 := strutil.UpperFirst("FOo")
-	fmt.Println(s3) //FOo
-
-	s4 := strutil.UpperFirst("fOo大")
-	fmt.Println(s4) //FOo大
+    // Output:
+    //
+    // Bar
+    // BAr
+    // Bar大
 }
 ```
 
+### <span id="Pad">Pad</span>
 
+<p>Pads string on the left and right side if it's shorter than size.</p>
 
+<b>Signature:</b>
+
+```go
+func Pad(source string, size int, padStr string) string
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    result1 := strutil.Pad("foo", 1, "bar")
+    result2 := strutil.Pad("foo", 2, "bar")
+    result3 := strutil.Pad("foo", 3, "bar")
+    result4 := strutil.Pad("foo", 4, "bar")
+    result5 := strutil.Pad("foo", 5, "bar")
+    result6 := strutil.Pad("foo", 6, "bar")
+    result7 := strutil.Pad("foo", 7, "bar")
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
+    fmt.Println(result5)
+    fmt.Println(result6)
+    fmt.Println(result7)
+    // Output:
+    // foo
+    // foo
+    // foo
+    // foob
+    // bfoob
+    // bfooba
+    // bafooba
+}
+```
 
 ### <span id="PadEnd">PadEnd</span>
+
 <p>Pads string on the right side if it's shorter than size.</p>
 
 <b>Signature:</b>
@@ -370,33 +520,45 @@ func main() {
 ```go
 func PadEnd(source string, size int, padStr string) string
 ```
+
 <b>Example:</b>
 
 ```go
 import (
-	"fmt"
-	"github.com/duke-git/lancet/v2/strutil"
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
 )
 
 func main() {
-	s1 := strutil.PadEnd("a", 1, "b")
-	fmt.Println(s1) //a
+    result1 := strutil.PadEnd("foo", 1, "bar")
+    result2 := strutil.PadEnd("foo", 2, "bar")
+    result3 := strutil.PadEnd("foo", 3, "bar")
+    result4 := strutil.PadEnd("foo", 4, "bar")
+    result5 := strutil.PadEnd("foo", 5, "bar")
+    result6 := strutil.PadEnd("foo", 6, "bar")
+    result7 := strutil.PadEnd("foo", 7, "bar")
 
-	s2 := strutil.PadEnd("a", 2, "b")
-	fmt.Println(s2) //ab
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
+    fmt.Println(result5)
+    fmt.Println(result6)
+    fmt.Println(result7)
 
-	s3 := strutil.PadEnd("abcd", 6, "mno")
-	fmt.Println(s3) //abcdmn
-
-	s4 := strutil.PadEnd("abc", 6, "ab")
-	fmt.Println(s4) //abcaba
+    // Output:
+    // foo
+    // foo
+    // foo
+    // foob
+    // fooba
+    // foobar
+    // foobarb
 }
 ```
 
-
-
-
 ### <span id="PadStart">PadStart</span>
+
 <p>Pads string on the left side if it's shorter than size.</p>
 
 <b>Signature:</b>
@@ -404,33 +566,45 @@ func main() {
 ```go
 func PadStart(source string, size int, padStr string) string
 ```
+
 <b>Example:</b>
 
 ```go
 import (
-	"fmt"
-	"github.com/duke-git/lancet/v2/strutil"
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
 )
 
 func main() {
-	s1 := strutil.PadStart("a", 1, "b")
-	fmt.Println(s1) //a
+    result1 := strutil.PadStart("foo", 1, "bar")
+    result2 := strutil.PadStart("foo", 2, "bar")
+    result3 := strutil.PadStart("foo", 3, "bar")
+    result4 := strutil.PadStart("foo", 4, "bar")
+    result5 := strutil.PadStart("foo", 5, "bar")
+    result6 := strutil.PadStart("foo", 6, "bar")
+    result7 := strutil.PadStart("foo", 7, "bar")
 
-	s2 := strutil.PadStart("a", 2, "b")
-	fmt.Println(s2) //ba
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
+    fmt.Println(result5)
+    fmt.Println(result6)
+    fmt.Println(result7)
 
-	s3 := strutil.PadStart("abcd", 6, "mno")
-	fmt.Println(s3) //mnabcd
-
-	s4 := strutil.PadStart("abc", 6, "ab")
-	fmt.Println(s4) //abaabc
+    // Output:
+    // foo
+    // foo
+    // foo
+    // bfoo
+    // bafoo
+    // barfoo
+    // barbfoo
 }
 ```
 
-
-
-
 ### <span id="Reverse">Reverse</span>
+
 <p>Return string whose char order is reversed to the given string.</p>
 
 <b>Signature:</b>
@@ -438,63 +612,100 @@ func main() {
 ```go
 func Reverse(s string) string
 ```
+
 <b>Example:</b>
 
 ```go
 import (
-	"fmt"
-	"github.com/duke-git/lancet/v2/strutil"
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
 )
 
 func main() {
-	s1 := strutil.ReverseStr("abc")
-	fmt.Println(s1) //cba
+    s := "foo"
+    rs := strutil.Reverse(s)
 
-	s2 := strutil.ReverseStr("12345")
-	fmt.Println(s2) //54321
+    fmt.Println(s)
+    fmt.Println(rs)
+
+    // Output:
+    // foo
+    // oof
 }
 ```
 
-
-
 ### <span id="SnakeCase">SnakeCase</span>
-<p>Covert string to snake_case.</p>
+
+<p>Coverts string to snake_case, non letters and numbers will be ignored.</p>
 
 <b>Signature:</b>
 
 ```go
 func SnakeCase(s string) string
 ```
+
 <b>Example:</b>
 
 ```go
 import (
-	"fmt"
-	"github.com/duke-git/lancet/v2/strutil"
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
 )
 
 func main() {
-	s1 := strutil.SnakeCase("Foo Bar-")
-	fmt.Println(s1) //foo_bar
+    strings := []string{"", "foo-bar", "Foo Bar-", "FOOBAR", "Foo-#1😄$_%^&*(1bar"}
 
-	s2 := strutil.SnakeCase("foo_Bar")
-	fmt.Println(s2) //foo_bar
+    for _, v := range strings {
+        s := strutil.SnakeCase(v)
+        fmt.Println(s)
+    }
 
-	s3 := strutil.SnakeCase("fooBar")
-	fmt.Println(s3) //foo_bar
-
-	s4 := strutil.SnakeCase("__FOO_BAR__")
-	fmt.Println(s4) //f_o_o_b_a_r
-
-	s5 := strutil.SnakeCase("aBbc-s$@a&%_B.B^C")
-	fmt.Println(s5) //a_bbc_s_a_b_b_c
+    // Output:
+    //
+    // foo_bar
+    // foo_bar
+    // foobar
+    // foo_1_1_bar
 }
 ```
 
+### <span id="UpperSnakeCase">UpperSnakeCase</span>
 
+<p>Coverts string to upper KEBAB-CASE, non letters and numbers will be ignored.</p>
 
+<b>Signature:</b>
+
+```go
+func SnakeCase(s string) string
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    strings := []string{"", "foo-bar", "Foo Bar-", "FooBAR", "Foo-#1😄$_%^&*(1bar"}
+
+    for _, v := range strings {
+        s := strutil.UpperSnakeCase(v)
+        fmt.Println(s)
+    }
+
+    // Output:
+    //
+    // FOO_BAR
+    // FOO_BAR
+    // FOO_BAR
+    // FOO_1_1_BAR
+}
+```
 
 ### <span id="SplitEx">SplitEx</span>
+
 <p>Split a given string whether the result contains empty string.</p>
 
 <b>Signature:</b>
@@ -502,111 +713,713 @@ func main() {
 ```go
 func SplitEx(s, sep string, removeEmptyString bool) []string
 ```
+
 <b>Example:</b>
 
 ```go
 import (
-	"fmt"
-	"github.com/duke-git/lancet/v2/strutil"
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
 )
 
 func main() {
-	arr1 := strutil.SplitEx(" a b c ", "", true)
-	fmt.Println(arr1) //[]string{}
+    result1 := strutil.SplitEx(" a b c ", "", true)
 
-	arr2 := strutil.SplitEx(" a b c ", " ", false)
-	fmt.Println(arr2) //[]string{"", "a", "b", "c", ""}
+    result2 := strutil.SplitEx(" a b c ", " ", false)
+    result3 := strutil.SplitEx(" a b c ", " ", true)
 
-	arr3 := strutil.SplitEx(" a b c ", " ", true)
-	fmt.Println(arr3) //[]string{"a", "b", "c"}
+    result4 := strutil.SplitEx("a = b = c = ", " = ", false)
+    result5 := strutil.SplitEx("a = b = c = ", " = ", true)
 
-	arr4 := strutil.SplitEx(" a = b = c = ", " = ", false)
-	fmt.Println(arr4) //[]string{" a", "b", "c", ""}
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
+    fmt.Println(result5)
 
-	arr5 := strutil.SplitEx(" a = b = c = ", " = ", true)
-	fmt.Println(arr5) //[]string{" a", "b", "c"}
+    // Output:
+    // []
+    // [ a b c ]
+    // [a b c]
+    // [a b c ]
 }
 ```
 
+### <span id="Substring">Substring</span>
 
+<p>Returns a substring of the specified length starting at the specified offset position.</p>
 
+<b>Signature:</b>
+
+```go
+func Substring(s string, offset int, length uint) string
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    result1 := strutil.Substring("abcde", 1, 3)
+    result2 := strutil.Substring("abcde", 1, 5)
+    result3 := strutil.Substring("abcde", -1, 3)
+    result4 := strutil.Substring("abcde", -2, 2)
+    result5 := strutil.Substring("abcde", -2, 3)
+    result6 := strutil.Substring("你好，欢迎你", 0, 2)
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
+    fmt.Println(result5)
+    fmt.Println(result6)
+
+    // Output:
+    // bcd
+    // bcde
+    // e
+    // de
+    // de
+    // 你好
+}
+```
 
 ### <span id="Wrap">Wrap</span>
-<p>Wrap a string with another string.</p>
+
+<p>Wrap a string with given string.</p>
 
 <b>Signature:</b>
 
 ```go
 func Wrap(str string, wrapWith string) string
 ```
+
 <b>Example:</b>
 
 ```go
 import (
-	"fmt"
-	"github.com/duke-git/lancet/v2/strutil"
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
 )
 
 func main() {
-	s1 := strutil.Wrap("ab", "")
-	fmt.Println(s1) //ab
+    result1 := strutil.Wrap("foo", "")
+    result2 := strutil.Wrap("foo", "*")
+    result3 := strutil.Wrap("'foo'", "'")
+    result4 := strutil.Wrap("", "*")
 
-	s2 := strutil.Wrap("", "*")
-	fmt.Println(s2) //""
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
 
-	s3 := strutil.Wrap("ab", "*")
-	fmt.Println(s3) //*ab*
-
-	s4 := strutil.Wrap("ab", "\"")
-	fmt.Println(s4) //\"ab\"
-
-	s5 := strutil.Wrap("ab", "'")
-	fmt.Println(s5) //'ab'
+    // Output:
+    // foo
+    // *foo*
+    // ''foo''
+    //
 }
 ```
 
-
-
-
 ### <span id="Wrap">Wrap</span>
-<p>Unwrap a given string from anther string. will change str value.</p>
+
+<p>Unwrap a given string from anther string. will change source string.</p>
 
 <b>Signature:</b>
 
 ```go
 func Unwrap(str string, wrapToken string) string
 ```
+
 <b>Example:</b>
 
 ```go
 import (
-	"fmt"
-	"github.com/duke-git/lancet/v2/strutil"
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
 )
 
 func main() {
-	s1 := strutil.Unwrap("ab", "")
-	fmt.Println(s1) //ab
+    result1 := strutil.Unwrap("foo", "")
+    result2 := strutil.Unwrap("*foo*", "*")
+    result3 := strutil.Unwrap("*foo", "*")
+    result4 := strutil.Unwrap("foo*", "*")
+    result5 := strutil.Unwrap("**foo**", "*")
 
-	s2 := strutil.Unwrap("ab", "*")
-	fmt.Println(s2) //ab
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
+    fmt.Println(result5)
 
-	s3 := strutil.Unwrap("**ab**", "*")
-	fmt.Println(s3) //*ab*
-
-	s4 := strutil.Unwrap("*ab", "*")
-	fmt.Println(s4) //*ab
-
-	s5 := strutil.Unwrap("***", "**")
-	fmt.Println(s5) //***
+    // Output:
+    // foo
+    // foo
+    // *foo
+    // foo*
+    // *foo*
 }
 ```
 
+### <span id="SplitWords">SplitWords</span>
 
+<p>Splits a string into words, word only contains alphabetic characters.</p>
 
+<b>Signature:</b>
 
+```go
+func SplitWords(s string) []string
+```
 
+<b>Example:</b>
 
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
 
+func main() {
+    result1 := strutil.SplitWords("a word")
+    result2 := strutil.SplitWords("I'am a programmer")
+    result3 := strutil.SplitWords("Bonjour, je suis programmeur")
+    result4 := strutil.SplitWords("a -b-c' 'd'e")
+    result5 := strutil.SplitWords("你好，我是一名码农")
+    result6 := strutil.SplitWords("こんにちは，私はプログラマーです")
 
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
+    fmt.Println(result5)
+    fmt.Println(result6)
 
+    // Output:
+    // [a word]
+    // [I'am a programmer]
+    // [Bonjour je suis programmeur]
+    // [a b-c' d'e]
+    // []
+    // []
+}
+```
+
+### <span id="WordCount">WordCount</span>
+
+<p>Return the number of meaningful word, word only contains alphabetic characters.</p>
+
+<b>Signature:</b>
+
+```go
+func WordCount(s string) int
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    result1 := strutil.WordCount("a word")
+    result2 := strutil.WordCount("I'am a programmer")
+    result3 := strutil.WordCount("Bonjour, je suis programmeur")
+    result4 := strutil.WordCount("a -b-c' 'd'e")
+    result5 := strutil.WordCount("你好，我是一名码农")
+    result6 := strutil.WordCount("こんにちは，私はプログラマーです")
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
+    fmt.Println(result5)
+    fmt.Println(result6)
+
+    // Output:
+    // 2
+    // 3
+    // 4
+    // 3
+    // 0
+    // 0
+}
+```
+
+### <span id="RemoveNonPrintable">RemoveNonPrintable</span>
+
+<p>Remove non-printable characters from a string.</p>
+
+<b>Signature:</b>
+
+```go
+func RemoveNonPrintable(str string) string
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    result1 := strutil.RemoveNonPrintable("hello\u00a0 \u200bworld\n")
+    result2 := strutil.RemoveNonPrintable("你好😄")
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+
+    // Output:
+    // hello world
+    // 你好😄
+}
+```
+
+### <span id="StringToBytes">StringToBytes</span>
+
+<p>Converts a string to byte slice without a memory allocation.</p>
+
+<b>Signature:</b>
+
+```go
+func StringToBytes(str string) (b []byte)
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    result1 := strutil.StringToBytes("abc")
+    result2 := reflect.DeepEqual(result1, []byte{'a', 'b', 'c'})
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+
+    // Output:
+    // [97 98 99]
+    // true
+}
+```
+
+### <span id="BytesToString">BytesToString</span>
+
+<p>Converts a byte slice to string without a memory allocation.</p>
+
+<b>Signature:</b>
+
+```go
+func BytesToString(bytes []byte) string
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    bytes := []byte{'a', 'b', 'c'}
+    result := strutil.BytesToString(bytes)
+
+    fmt.Println(result)
+
+    // Output:
+    // abc
+}
+```
+
+### <span id="IsBlank">IsBlank</span>
+
+<p>Checks if a string is whitespace or empty.</p>
+
+<b>Signature:</b>
+
+```go
+func IsBlank(str string) bool
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    result1 := strutil.IsBlank("")
+    result2 := strutil.IsBlank("\t\v\f\n")
+    result3 := strutil.IsBlank(" 中文")
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+
+    // Output:
+    // true
+    // true
+    // false
+}
+```
+
+### <span id="HasPrefixAny">HasPrefixAny</span>
+
+<p>Checks if a string starts with any of an array of specified strings.</p>
+
+<b>Signature:</b>
+
+```go
+func ReplaceWithMap(str string, replaces map[string]string) string
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    result1 := strutil.HasPrefixAny("foo bar", []string{"fo", "xyz", "hello"})
+    result2 := strutil.HasPrefixAny("foo bar", []string{"oom", "world"})
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+
+    // Output:
+    // true
+    // false
+}
+```
+
+### <span id="HasSuffixAny">HasSuffixAny</span>
+
+<p>Checks if a string ends with any of an array of specified strings.</p>
+
+<b>Signature:</b>
+
+```go
+func HasSuffixAny(str string, suffixes []string) bool
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    result1 := strutil.HasSuffixAny("foo bar", []string{"bar", "xyz", "hello"})
+    result2 := strutil.HasSuffixAny("foo bar", []string{"oom", "world"})
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+
+    // Output:
+    // true
+    // false
+}
+```
+
+### <span id="IndexOffset">IndexOffset</span>
+
+<p>Returns the index of the first instance of substr in string after offsetting the string by `idxFrom`, or -1 if substr is not present in string.</p>
+
+<b>Signature:</b>
+
+```go
+func IndexOffset(str string, substr string, idxFrom int) int
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    str := "foo bar hello world"
+
+    result1 := strutil.IndexOffset(str, "o", 5)
+    result2 := strutil.IndexOffset(str, "o", 0)
+    result3 := strutil.IndexOffset(str, "d", len(str)-1)
+    result4 := strutil.IndexOffset(str, "d", len(str))
+    result5 := strutil.IndexOffset(str, "f", -1)
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
+    fmt.Println(result5)
+
+    // Output:
+    // 12
+    // 1
+    // 18
+    // -1
+    // -1
+}
+```
+
+### <span id="ReplaceWithMap">ReplaceWithMap</span>
+
+<p>Returns a copy of `str`, which is replaced by a map in unordered way, case-sensitively.</p>
+
+<b>Signature:</b>
+
+```go
+func ReplaceWithMap(str string, replaces map[string]string) string
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    str := "ac ab ab ac"
+    replaces := map[string]string{
+        "a": "1",
+        "b": "2",
+    }
+
+    result := strutil.ReplaceWithMap(str, replaces)
+
+    fmt.Println(result)
+    // Output:
+    // 1c 12 12 1c
+}
+```
+
+### <span id="Trim">Trim</span>
+
+<p>Strips whitespace (or other characters) from the beginning and end of a string. The optional parameter `characterMask` specifies the additional stripped characters.</p>
+
+<b>Signature:</b>
+
+```go
+func Trim(str string, characterMask ...string) string
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    result1 := strutil.Trim("\nabcd")
+
+    str := "$ ab    cd $ "
+
+    result2 := strutil.Trim(str)
+    result3 := strutil.Trim(str, "$")
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+
+    // Output:
+    // abcd
+    // $ ab    cd $
+    // ab    cd
+}
+```
+
+### <span id="SplitAndTrim">SplitAndTrim</span>
+
+<p>Splits string `str` by a string `delimiter` to a slice, and calls Trim to every element of slice. It ignores the elements which are empty after Trim.</p>
+
+<b>Signature:</b>
+
+```go
+func SplitAndTrim(str, delimiter string, characterMask ...string) []string
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    str := " a,b, c,d,$1 "
+
+    result1 := strutil.SplitAndTrim(str, ",")
+    result2 := strutil.SplitAndTrim(str, ",", "$")
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+
+    // Output:
+    // [a b c d $1]
+    // [a b c d 1]
+}
+```
+
+### <span id="HideString">HideString</span>
+
+<p>Hide some chars in source string with param `replaceChar`. replace range is origin[start : end]. [start, end).</p>
+
+<b>Signature:</b>
+
+```go
+func HideString(origin string, start, end int, replaceChar string) string
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    str := "13242658976"
+
+    result1 := strutil.HideString(str, 3, 3, "*")
+    result2 := strutil.HideString(str, 3, 4, "*")
+    result3 := strutil.HideString(str, 3, 7, "*")
+    result4 := strutil.HideString(str, 7, 11, "*")
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
+
+    // Output:
+    // 13242658976
+    // 132*2658976
+    // 132****8976
+    // 1324265****
+}
+```
+
+### <span id="ContainsAll">ContainsAll</span>
+
+<p>Return true if target string contains all the substrings.</p>
+
+<b>Signature:</b>
+
+```go
+func ContainsAll(str string, substrs []string) bool
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    str := "hello world"
+
+    result1 := strutil.ContainsAll(str, []string{"hello", "world"})
+    result2 := strutil.ContainsAll(str, []string{"hello", "abc"})
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+
+    // Output:
+    // true
+    // false
+}
+```
+
+### <span id="ContainsAny">ContainsAny</span>
+
+<p>Return true if target string contains any one of the substrings.</p>
+
+<b>Signature:</b>
+
+```go
+func ContainsAny(str string, substrs []string) bool
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    str := "hello world"
+
+    result1 := strutil.ContainsAny(str, []string{"hello", "world"})
+    result2 := strutil.ContainsAny(str, []string{"hello", "abc"})
+    result3 := strutil.ContainsAny(str, []string{"123", "abc"})
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+
+    // Output:
+    // true
+    // true
+    // false
+}
+```
+
+### <span id="RemoveWhiteSpace">RemoveWhiteSpace</span>
+
+<p>Remove whitespace characters from a string. when set repalceAll is true removes all whitespace, false only replaces consecutive whitespace characters with one space.</p>
+
+<b>Signature:</b>
+
+```go
+func RemoveWhiteSpace(str string, repalceAll bool) string
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    str := " hello   \r\n    \t   world"
+
+    result1 := strutil.RemoveWhiteSpace(str, true)
+    result2 := strutil.RemoveWhiteSpace(str, false)
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+
+    // Output:
+    // helloworld
+    // hello world
+}
+```

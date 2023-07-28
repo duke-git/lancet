@@ -3,6 +3,8 @@ package netutil
 import (
 	"bytes"
 	"errors"
+	"fmt"
+	"io"
 	"io/ioutil"
 	"net/http"
 	"net/url"
@@ -72,52 +74,34 @@ func setHeaderAndQueryParam(req *http.Request, reqUrl string, header, queryParam
 }
 
 func setHeaderAndQueryAndBody(req *http.Request, reqUrl string, header, queryParam, body any) error {
-	err := setHeader(req, header)
-	if err != nil {
+	if err := setHeader(req, header); err != nil {
+		return err
+	} else if err = setQueryParam(req, reqUrl, queryParam); err != nil {
+		return err
+	} else if err = setBodyByte(req, body); err != nil {
 		return err
 	}
-	err = setQueryParam(req, reqUrl, queryParam)
-	if err != nil {
-		return err
-	}
-	if strings.Contains(req.Header.Get("Content-Type"), "multipart/form-data") || req.Header.Get("Content-Type") == "application/x-www-form-urlencoded" {
-		if formData, ok := queryParam.(url.Values); ok {
-			err = setBodyByte(req, []byte(formData.Encode()))
-		}
-		if formData, ok := queryParam.(map[string]string); ok {
-			postData := url.Values{}
-			for k, v := range formData {
-				postData.Set(k, v)
-			}
-			err = setBodyByte(req, []byte(postData.Encode()))
-		}
-
-	} else {
-		err = setBodyByte(req, body)
-	}
-	if err != nil {
-		return err
-	}
-
 	return nil
 }
 
 func setHeader(req *http.Request, header any) error {
-	if header != nil {
-		switch v := header.(type) {
-		case map[string]string:
-			for k := range v {
-				req.Header.Add(k, v[k])
-			}
-		case http.Header:
-			for k, vv := range v {
-				for _, vvv := range vv {
-					req.Header.Add(k, vvv)
-				}
-			}
-		default:
-			return errors.New("header params type should be http.Header or map[string]string")
+	if header == nil {
+		return nil
+	}
+
+	switch v := header.(type) {
+	case map[string]string:
+		for k := range v {
+			req.Header.Add(k, v[k])
 		}
+	case http.Header:
+		for k, vv := range v {
+			for _, vvv := range vv {
+				req.Header.Add(k, vvv)
+			}
+		}
+	default:
+		return errors.New("header params type should be http.Header or map[string]string")
 	}
 
 	if host := req.Header.Get("Host"); host != "" {
@@ -137,19 +121,21 @@ func setUrl(req *http.Request, reqUrl string) error {
 }
 
 func setQueryParam(req *http.Request, reqUrl string, queryParam any) error {
+	if queryParam == nil {
+		return nil
+	}
+
 	var values url.Values
-	if queryParam != nil {
-		switch v := queryParam.(type) {
-		case map[string]string:
-			values = url.Values{}
-			for k := range v {
-				values.Set(k, v[k])
-			}
-		case url.Values:
-			values = v
-		default:
-			return errors.New("query string params type should be url.Values or map[string]string")
+	switch v := queryParam.(type) {
+	case map[string]string:
+		values = url.Values{}
+		for k := range v {
+			values.Set(k, v[k])
 		}
+	case url.Values:
+		values = v
+	default:
+		return errors.New("query string params type should be url.Values or map[string]string")
 	}
 
 	// set url
@@ -170,14 +156,36 @@ func setQueryParam(req *http.Request, reqUrl string, queryParam any) error {
 }
 
 func setBodyByte(req *http.Request, body any) error {
-	if body != nil {
-		switch b := body.(type) {
-		case []byte:
-			req.Body = ioutil.NopCloser(bytes.NewReader(b))
-			req.ContentLength = int64(len(b))
-		default:
-			return errors.New("body type should be []byte")
+	if body == nil {
+		return nil
+	}
+	var bodyReader *bytes.Reader
+	switch b := body.(type) {
+	case io.Reader:
+		buf := bytes.NewBuffer(nil)
+		if _, err := io.Copy(buf, b); err != nil {
+			return err
 		}
+		req.Body = ioutil.NopCloser(buf)
+		req.ContentLength = int64(buf.Len())
+	case []byte:
+		bodyReader = bytes.NewReader(b)
+		req.Body = ioutil.NopCloser(bodyReader)
+		req.ContentLength = int64(bodyReader.Len())
+	case map[string]interface{}:
+		values := url.Values{}
+		for k := range b {
+			values.Set(k, fmt.Sprintf("%v", b[k]))
+		}
+		bodyReader = bytes.NewReader([]byte(values.Encode()))
+		req.Body = ioutil.NopCloser(bodyReader)
+		req.ContentLength = int64(bodyReader.Len())
+	case url.Values:
+		bodyReader = bytes.NewReader([]byte(b.Encode()))
+		req.Body = ioutil.NopCloser(bodyReader)
+		req.ContentLength = int64(bodyReader.Len())
+	default:
+		return fmt.Errorf("invalid body type: %T", b)
 	}
 	return nil
 }

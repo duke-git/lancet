@@ -8,6 +8,8 @@ import (
 )
 
 func TestIsExist(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestIsExist")
 
 	cases := []string{"./", "./file.go", "./a.txt"}
@@ -20,14 +22,17 @@ func TestIsExist(t *testing.T) {
 }
 
 func TestCreateFile(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestCreateFile")
 
 	f := "./text.txt"
 	if CreateFile(f) {
 		file, err := os.Open(f)
-		defer file.Close()
 		assert.IsNil(err)
 		assert.Equal(f, file.Name())
+
+		defer file.Close()
 	} else {
 		t.FailNow()
 	}
@@ -35,6 +40,8 @@ func TestCreateFile(t *testing.T) {
 }
 
 func TestCreateDir(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestCreateDir")
 
 	pwd, err := os.Getwd()
@@ -56,6 +63,8 @@ func TestCreateDir(t *testing.T) {
 }
 
 func TestIsDir(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestIsDir")
 
 	cases := []string{"./", "./a.txt"}
@@ -68,6 +77,8 @@ func TestIsDir(t *testing.T) {
 }
 
 func TestRemoveFile(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestRemoveFile")
 	f := "./text.txt"
 	if !IsExist(f) {
@@ -95,16 +106,6 @@ func TestCopyFile(t *testing.T) {
 	os.Remove(destFile)
 }
 
-func TestListFileNames(t *testing.T) {
-	assert := internal.NewAssert(t, "TestListFileNames")
-
-	filesInPath, err := ListFileNames("./")
-	assert.IsNil(err)
-
-	expected := []string{"file.go", "file_test.go"}
-	assert.Equal(expected, filesInPath)
-}
-
 func TestReadFileToString(t *testing.T) {
 	assert := internal.NewAssert(t, "TestReadFileToString")
 
@@ -113,7 +114,11 @@ func TestReadFileToString(t *testing.T) {
 
 	f, _ := os.OpenFile(path, os.O_WRONLY|os.O_TRUNC, 0777)
 	defer f.Close()
-	f.WriteString("hello world")
+
+	_, err := f.WriteString("hello world")
+	if err != nil {
+		t.Error(err)
+	}
 
 	content, _ := ReadFileToString(path)
 	assert.Equal("hello world", content)
@@ -130,9 +135,12 @@ func TestClearFile(t *testing.T) {
 	f, _ := os.OpenFile(path, os.O_WRONLY|os.O_TRUNC, 0777)
 	defer f.Close()
 
-	f.WriteString("hello world")
+	_, err := f.WriteString("hello world")
+	if err != nil {
+		t.Error(err)
+	}
 
-	err := ClearFile(path)
+	err = ClearFile(path)
 	assert.IsNil(err)
 
 	content, _ := ReadFileToString(path)
@@ -148,8 +156,13 @@ func TestReadFileByLine(t *testing.T) {
 	CreateFile(path)
 
 	f, _ := os.OpenFile(path, os.O_WRONLY|os.O_TRUNC, 0777)
+
 	defer f.Close()
-	f.WriteString("hello\nworld")
+
+	_, err := f.WriteString("hello\nworld")
+	if err != nil {
+		t.Error(err)
+	}
 
 	expected := []string{"hello", "world"}
 	actual, _ := ReadFileByLine(path)
@@ -166,10 +179,14 @@ func TestZipAndUnZip(t *testing.T) {
 
 	file, _ := os.OpenFile(srcFile, os.O_WRONLY|os.O_TRUNC, 0777)
 	defer file.Close()
-	file.WriteString("hello\nworld")
+
+	_, err := file.WriteString("hello\nworld")
+	if err != nil {
+		t.Fail()
+	}
 
 	zipFile := "./text.zip"
-	err := Zip(srcFile, zipFile)
+	err = Zip(srcFile, zipFile)
 	assert.IsNil(err)
 
 	unZipPath := "./unzip"
@@ -184,6 +201,44 @@ func TestZipAndUnZip(t *testing.T) {
 	os.RemoveAll(unZipPath)
 }
 
+func TestZipAppendEntry(t *testing.T) {
+	assert := internal.NewAssert(t, "TestZipAppendEntry")
+
+	zipFile := "./text.zip"
+	err := CopyFile("./testdata/file.go.zip", zipFile)
+	assert.IsNil(err)
+
+	srcFile := "./text.txt"
+	CreateFile(srcFile)
+
+	file, _ := os.OpenFile(srcFile, os.O_WRONLY|os.O_TRUNC, os.ModePerm)
+
+	_, err = file.WriteString("hello\nworld")
+	if err != nil {
+		t.Fail()
+	}
+	file.Close()
+
+	err = ZipAppendEntry(srcFile, zipFile)
+	assert.IsNil(err)
+
+	err = ZipAppendEntry("./testdata", zipFile)
+	assert.IsNil(err)
+
+	unZipPath := "./unzip"
+	err = UnZip(zipFile, unZipPath)
+	assert.IsNil(err)
+
+	assert.Equal(true, IsExist("./unzip/text.txt"))
+	assert.Equal(true, IsExist("./unzip/file.go"))
+	assert.Equal(true, IsExist("./unzip/testdata/file.go.zip"))
+	assert.Equal(true, IsExist("./unzip/testdata/test.txt"))
+
+	os.Remove(srcFile)
+	os.Remove(zipFile)
+	os.RemoveAll(unZipPath)
+}
+
 func TestFileMode(t *testing.T) {
 	assert := internal.NewAssert(t, "TestFileMode")
 
@@ -191,9 +246,9 @@ func TestFileMode(t *testing.T) {
 	CreateFile(srcFile)
 
 	mode, err := FileMode(srcFile)
-	assert.IsNil(err)
 
-	t.Log(mode)
+	assert.IsNotNil(mode)
+	assert.IsNil(err)
 
 	os.Remove(srcFile)
 }
@@ -223,4 +278,157 @@ func TestMiMeType(t *testing.T) {
 	defer f.Close()
 	assert.Equal("text/plain; charset=utf-8", MiMeType(f))
 	assert.Equal("text/plain; charset=utf-8", MiMeType("./file.go"))
+}
+
+func TestListFileNames(t *testing.T) {
+	assert := internal.NewAssert(t, "TestListFileNames")
+
+	filesInPath, err := ListFileNames("../internal")
+	assert.IsNil(err)
+
+	expected := []string{"assert.go", "assert_test.go", "error_join.go"}
+	assert.Equal(expected, filesInPath)
+}
+
+func TestCurrentPath(t *testing.T) {
+	absPath := CurrentPath()
+	t.Log(absPath)
+}
+
+func TestIsZipFile(t *testing.T) {
+	assert := internal.NewAssert(t, "TestIsZipFile")
+
+	assert.Equal(false, IsZipFile("./file.go"))
+	assert.Equal(true, IsZipFile("./testdata/file.go.zip"))
+}
+
+func TestFileSize(t *testing.T) {
+	assert := internal.NewAssert(t, "TestFileSize")
+
+	size, err := FileSize("./testdata/test.txt")
+
+	assert.IsNil(err)
+	assert.Equal(int64(20), size)
+}
+
+func TestMTime(t *testing.T) {
+	assert := internal.NewAssert(t, "TestMTime")
+
+	mtime, err := MTime("./testdata/test.txt")
+	t.Log("TestMTime", mtime)
+	assert.IsNil(err)
+	// assert.Equal(int64(1682478195), mtime)
+}
+
+func TestSha(t *testing.T) {
+	assert := internal.NewAssert(t, "TestSha")
+
+	sha1, err := Sha("./testdata/test.txt", 1)
+	sha256, err := Sha("./testdata/test.txt", 256)
+	sha512, err := Sha("./testdata/test.txt", 512)
+
+	assert.IsNil(err)
+	assert.Equal("dda3cf10c5a6ff6c6659a497bf7261b287af2bc7", sha1)
+	assert.Equal("aa6d0a3fbc3442c228d606da09e0c1dc98c69a1cac3da1909199e0266171df35", sha256)
+	assert.Equal("d22aba2a1b7a2e2f512756255cc1c3708905646920cb1eb95e45b531ba74774dbbb89baebf1f716220eb9cf4908f1cfc5b2a01267704d9a59f59d77cab609870", sha512)
+}
+
+func TestReadCsvFile(t *testing.T) {
+	assert := internal.NewAssert(t, "TestReadCsvFile")
+
+	content, err := ReadCsvFile("./testdata/demo.csv")
+
+	assert.IsNil(err)
+
+	assert.Equal(3, len(content))
+	assert.Equal(3, len(content[0]))
+	assert.Equal("Bob", content[0][0])
+}
+
+func TestWriteCsvFile(t *testing.T) {
+	assert := internal.NewAssert(t, "TestWriteCsvFile")
+
+	csvFilePath := "./testdata/test1.csv"
+	content := [][]string{
+		{"Lili", "22", "female"},
+		{"Jim", "21", "male"},
+	}
+
+	err := WriteCsvFile(csvFilePath, content, false)
+	assert.IsNil(err)
+
+	readContent, err := ReadCsvFile(csvFilePath)
+
+	assert.IsNil(err)
+
+	assert.Equal(2, len(readContent))
+	assert.Equal(3, len(readContent[0]))
+	assert.Equal("Lili", content[0][0])
+
+	// RemoveFile(csvFilePath)
+}
+
+func TestWriteStringToFile(t *testing.T) {
+	assert := internal.NewAssert(t, "TestWriteStringToFile")
+
+	filepath := "./test.txt"
+
+	file, err := os.Create(filepath)
+	if err != nil {
+		t.Fail()
+	}
+
+	defer file.Close()
+
+	err = WriteStringToFile(filepath, "hello", false)
+	if err != nil {
+		t.Fail()
+	}
+
+	content1, err := ReadFileToString(filepath)
+	if err != nil {
+		t.Fail()
+	}
+
+	err = WriteStringToFile(filepath, " world", true)
+	if err != nil {
+		t.Fail()
+	}
+
+	content2, err := os.ReadFile(filepath)
+	if err != nil {
+		t.Fail()
+	}
+
+	assert.Equal("hello", content1)
+	assert.Equal("hello world", string(content2))
+
+	os.Remove(filepath)
+}
+
+func TestWriteBytesToFile(t *testing.T) {
+	assert := internal.NewAssert(t, "TestWriteBytesToFile")
+
+	filepath := "./bytes.txt"
+
+	file, err := os.Create(filepath)
+	if err != nil {
+		t.Fail()
+	}
+
+	defer file.Close()
+
+	err = WriteBytesToFile(filepath, []byte("hello"))
+	if err != nil {
+		t.Fail()
+	}
+
+	content, err := os.ReadFile(filepath)
+	if err != nil {
+		t.Fail()
+	}
+
+	assert.Equal("hello", string(content))
+
+	os.Remove(filepath)
 }

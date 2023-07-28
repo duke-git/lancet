@@ -32,6 +32,8 @@ func TestHashMap_Resize(t *testing.T) {
 }
 
 func TestHashMap_Delete(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestHashMap_Delete")
 
 	hm := NewHashMap()
@@ -44,6 +46,8 @@ func TestHashMap_Delete(t *testing.T) {
 }
 
 func TestHashMap_Contains(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestHashMap_Contains")
 
 	hm := NewHashMap()
@@ -51,4 +55,22 @@ func TestHashMap_Contains(t *testing.T) {
 
 	hm.Put("abc", 3)
 	assert.Equal(true, hm.Contains("abc"))
+}
+
+func TestHashMap_KeysValues(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestHashMap_KeysValues")
+
+	hm := NewHashMap()
+
+	hm.Put("a", 1)
+	hm.Put("b", 2)
+	hm.Put("c", 3)
+
+	keys := hm.Keys()
+	values := hm.Values()
+
+	assert.Equal(3, len(values))
+	assert.Equal(3, len(keys))
 }

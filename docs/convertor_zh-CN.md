@@ -1,11 +1,12 @@
 # Convertor
-convertor转换器包支持一些常见的数据类型转换
+
+convertor 转换器包支持一些常见的数据类型转换
 
 <div STYLE="page-break-after: always;"></div>
 
 ## 源码:
 
-- [https://github.com/duke-git/lancet/blob/main/convertor/convertor.go](https://github.com/duke-git/lancet/blob/main/convertor/convertor.go)
+-   [https://github.com/duke-git/lancet/blob/main/convertor/convertor.go](https://github.com/duke-git/lancet/blob/main/convertor/convertor.go)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -21,39 +22,43 @@ import (
 
 ## 目录
 
-- [ColorHexToRGB](#ColorHexToRGB)
-- [ColorRGBToHex](#ColorRGBToHex)
-- [ToBool](#ToBool)
-- [ToBytes](#ToBytes)
-- [ToChar](#ToChar)
-- [ToChannel](#ToChannel)
-
-- [ToFloat](#ToFloat)
-- [ToInt](#ToInt)
-- [ToJson](#ToJson)
-- [ToMap](#ToMap)
-- [ToPointer](#ToPointer)
-- [ToString](#ToString)
-- [StructToMap](#StructToMap)
-- [MapToSlice](#MapToSlice)
-- [EncodeByte](#EncodeByte)
-- [DecodeByte](#DecodeByte)
+-   [ColorHexToRGB](#ColorHexToRGB)
+-   [ColorRGBToHex](#ColorRGBToHex)
+-   [ToBool](#ToBool)
+-   [ToBytes](#ToBytes)
+-   [ToChar](#ToChar)
+-   [ToChannel](#ToChannel)
+-   [ToFloat](#ToFloat)
+-   [ToInt](#ToInt)
+-   [ToJson](#ToJson)
+-   [ToMap](#ToMap)
+-   [ToPointer](#ToPointer)
+-   [ToString](#ToString)
+-   [StructToMap](#StructToMap)
+-   [MapToSlice](#MapToSlice)
+-   [EncodeByte](#EncodeByte)
+-   [DecodeByte](#DecodeByte)
+-   [DeepClone](#DeepClone)
+-   [CopyProperties](#CopyProperties)
+-   [ToInterface](#ToInterface)
+-   [Utf8ToGbk](#Utf8ToGbk)
+-   [GbkToUtf8](#GbkToUtf8)
 
 <div STYLE="page-break-after: always;"></div>
 
 ## 文档
 
-
-
 ### <span id="ColorHexToRGB">ColorHexToRGB</span>
-<p>颜色值十六进制转rgb</p>
+
+<p>颜色值十六进制转rgb。</p>
 
 <b>函数签名:</b>
 
 ```go
 func ColorHexToRGB(colorHex string) (red, green, blue int)
 ```
-<b>列子:</b>
+
+<b>示例:</b>
 
 ```go
 package main
@@ -66,22 +71,25 @@ import (
 func main() {
     colorHex := "#003366"
     r, g, b := convertor.ColorHexToRGB(colorHex)
-    fmt.Println(r, g, b) //0,51,102
+
+    fmt.Println(r, g, b)
+
+    // Output:
+    // 0 51 102
 }
 ```
 
-
-
 ### <span id="ColorRGBToHex">ColorRGBToHex</span>
 
-<p>颜色值rgb转十六进制</p>
+<p>颜色值rgb转十六进制。</p>
 
 <b>函数签名:</b>
 
 ```go
 func ColorRGBToHex(red, green, blue int) string
 ```
-<b>列子:</b>
+
+<b>示例:</b>
 
 ```go
 package main
@@ -95,24 +103,26 @@ func main() {
     r := 0
     g := 51
     b := 102
-    colorHex := convertor.ColorRGBToHex(r, g, b)
+    colorHex := ColorRGBToHex(r, g, b)
 
-    fmt.Println(colorHex) //#003366
+    fmt.Println(colorHex)
+
+    // Output:
+    // #003366
 }
 ```
 
-
-
 ### <span id="ToBool">ToBool</span>
 
-<p>字符串转布尔类型，使用strconv.ParseBool</p>
+<p>字符串转布尔类型，使用strconv.ParseBool。</p>
 
 <b>函数签名:</b>
 
 ```go
 func ToBool(s string) (bool, error)
 ```
-<b>列子:</b>
+
+<b>示例:</b>
 
 ```go
 package main
@@ -123,32 +133,37 @@ import (
 )
 
 func main() {
-    v1, _ := convertor.ToBool("1")
-    fmt.Println(v1) //true
+    cases := []string{"1", "true", "True", "false", "False", "0", "123", "0.0", "abc"}
 
-    v2, _ := convertor.ToBool("true")
-    fmt.Println(v2) //true
+    for i := 0; i < len(cases); i++ {
+        result, _ := convertor.ToBool(cases[i])
+        fmt.Println(result)
+    }
 
-    v3, _ := convertor.ToBool("True")
-    fmt.Println(v3) //true
-
-    v4, _ := convertor.ToBool("123")
-    fmt.Println(v4) //false
+    // Output:
+    // true
+    // true
+    // true
+    // false
+    // false
+    // false
+    // false
+    // false
+    // false
 }
 ```
 
-
-
 ### <span id="ToBytes">ToBytes</span>
 
-<p>interface转字节切片.</p>
+<p>Interface转字节切片。</p>
 
 <b>函数签名:</b>
 
 ```go
 func ToBytes(data any) ([]byte, error)
 ```
-<b>列子:</b>
+
+<b>示例:</b>
 
 ```go
 package main
@@ -159,26 +174,29 @@ import (
 )
 
 func main() {
-    bytesData, err := convertor.ToBytes("0")
+    bytesData, err := convertor.ToBytes("abc")
     if err != nil {
         fmt.Println(err)
     }
-    fmt.Println(bytesData) //[]bytes{3, 4, 0, 0}
+
+    fmt.Println(bytesData)
+
+    // Output:
+    // [97 98 99]
 }
 ```
 
-
-
 ### <span id="ToChar">ToChar</span>
 
-<p>字符串转字符切片</p>
+<p>字符串转字符切片。</p>
 
 <b>函数签名:</b>
 
 ```go
 func ToChar(s string) []string
 ```
-<b>列子:</b>
+
+<b>示例:</b>
 
 ```go
 package main
@@ -189,29 +207,32 @@ import (
 )
 
 func main() {
-    chars := convertor.ToChar("")
-    fmt.Println(chars) //[]string{""}
+    result1 := convertor.ToChar("")
+    result2 := convertor.ToChar("abc")
+    result3 := convertor.ToChar("1 2#3")
 
-    chars = convertor.ToChar("abc")
-    fmt.Println(chars) //[]string{"a", "b", "c"}
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
 
-    chars = convertor.ToChar("1 2#3")
-    fmt.Println(chars) //[]string{"1", " ", "2", "#", "3"}
+    // Output:
+    // []
+    // [a b c]
+    // [1   2 # 3]
 }
 ```
 
-
-
 ### <span id="ToChannel">ToChannel</span>
 
-<p>将切片转为只读channel</p>
+<p>将切片转为只读channel。</p>
 
 <b>函数签名:</b>
 
 ```go
 func ToChannel[T any](array []T) <-chan T
 ```
-<b>例子:</b>
+
+<b>示例:</b>
 
 ```go
 package main
@@ -223,33 +244,32 @@ import (
 
 func main() {
     ch := convertor.ToChannel([]int{1, 2, 3})
+    result1 := <-ch
+    result2 := <-ch
+    result3 := <-ch
 
-    val1, _ := <-ch
-    fmt.Println(val1) //1
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
 
-    val2, _ := <-ch
-    fmt.Println(val2) //2
-
-    val3, _ := <-ch
-    fmt.Println(val3) //3
-
-    _, ok := <-ch
-    fmt.Println(ok) //false
+    // Output:
+    // 1
+    // 2
+    // 3
 }
 ```
 
-
-
 ### <span id="ToFloat">ToFloat</span>
 
-<p>将interface转成float64类型，如果参数无法转换，会返回0和error</p>
+<p>将interface转成float64类型，如果参数无法转换，会返回0和error。</p>
 
 <b>函数签名:</b>
 
 ```go
 func ToFloat(value any) (float64, error)
 ```
-<b>列子:</b>
+
+<b>示例:</b>
 
 ```go
 package main
@@ -260,29 +280,41 @@ import (
 )
 
 func main() {
-    v, err := convertor.ToFloat("")
-    if err != nil {
-        fmt.Println(err) //strconv.ParseFloat: parsing "": invalid syntax
-    }
-    fmt.Println(v) //0
+    result1, _ := convertor.ToFloat("")
+    result2, err := convertor.ToFloat("abc")
+    result3, _ := convertor.ToFloat("-1")
+    result4, _ := convertor.ToFloat("-.11")
+    result5, _ := convertor.ToFloat("1.23e3")
+    result6, _ := convertor.ToFloat(true)
 
-    v, _ = convertor.ToFloat("-.11")
-    fmt.Println(v) //-0.11
+    fmt.Println(result1)
+    fmt.Println(result2, err)
+    fmt.Println(result3)
+    fmt.Println(result4)
+    fmt.Println(result5)
+    fmt.Println(result6)
+
+    // Output:
+    // 0
+    // 0 strconv.ParseFloat: parsing "": invalid syntax
+    // -1
+    // -0.11
+    // 1230
+    // 0
 }
 ```
 
-
-
 ### <span id="ToInt">ToInt</span>
 
-<p>将interface转成int64类型，如果参数无法转换，会返回0和error</p>
+<p>将interface转成int64类型，如果参数无法转换，会返回0和error。</p>
 
 <b>函数签名:</b>
 
 ```go
 func ToInt(value any) (int64, error)
 ```
-<b>例子:</b>
+
+<b>示例:</b>
 
 ```go
 package main
@@ -293,29 +325,38 @@ import (
 )
 
 func main() {
-    v, err := convertor.ToInt("")
-    if err != nil {
-        fmt.Println(err) //strconv.ParseInt: parsing "": invalid syntax
-    }
-    fmt.Println(v) //0
+    result1, _ := convertor.ToInt("123")
+    result2, _ := convertor.ToInt("-123")
+    result3, _ := convertor.ToInt(float64(12.3))
+    result4, err := convertor.ToInt("abc")
+    result5, _ := convertor.ToInt(true)
 
-    v, _ = convertor.ToFloat(1.12)
-    fmt.Println(v) //1
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4, err)
+    fmt.Println(result5)
+
+    // Output:
+    // 123
+    // -123
+    // 12
+    // 0 strconv.ParseInt: parsing "": invalid syntax
+    // 0
 }
 ```
 
-
-
 ### <span id="ToJson">ToJson</span>
 
-<p>将interface转成json字符串，如果参数无法转换，会返回""和error</p>
+<p>将interface转成json字符串，如果参数无法转换，会返回""和error。</p>
 
 <b>函数签名:</b>
 
 ```go
 func ToJson(value any) (string, error)
 ```
-<b>列子:</b>
+
+<b>示例:</b>
 
 ```go
 package main
@@ -326,24 +367,31 @@ import (
 )
 
 func main() {
-    var aMap = map[string]int{"a": 1, "b": 2, "c": 3}
-    jsonStr, _ := convertor.ToJson(aMap)
-    fmt.Printf("%q", jsonStr) //"{\"a\":1,\"b\":2,\"c\":3}"
+    aMap := map[string]int{"a": 1, "b": 2, "c": 3}
+    result, err := ToJson(aMap)
+
+    if err != nil {
+        fmt.Printf("%v", err)
+    }
+
+    fmt.Println(result)
+
+    // Output:
+    // {"a":1,"b":2,"c":3}
 }
 ```
 
-
-
 ### <span id="ToMap">ToMap</span>
 
-<p>将切片转为map</p>
+<p>将切片转为map。</p>
 
 <b>函数签名:</b>
 
 ```go
 func ToMap[T any, K comparable, V any](array []T, iteratee func(T) (K, V)) map[K]V
 ```
-<b>例子:</b>
+
+<b>示例:</b>
 
 ```go
 package main
@@ -362,26 +410,29 @@ func main() {
         {name: "Hello", code: 100},
         {name: "Hi", code: 101},
     }
+
     result := convertor.ToMap(messages, func(msg Message) (int, string) {
         return msg.code, msg.name
     })
 
-    fmt.Println(result) //{100: "Hello", 101: "Hi"}
+    fmt.Println(result)
+
+    // Output:
+    // map[100:Hello 101:Hi]
 }
 ```
 
-
-
 ### <span id="ToPointer">ToPointer</span>
 
-<p>返回传入值的指针</p>
+<p>返回传入值的指针。</p>
 
 <b>函数签名:</b>
 
 ```go
 func ToPointer[T any](value T) *T
 ```
-<b>例子:</b>
+
+<b>示例:</b>
 
 ```go
 package main
@@ -393,22 +444,24 @@ import (
 
 func main() {
     result := convertor.ToPointer(123)
-    fmt.Println(*result) //123
+    fmt.Println(*result)
+
+    // Output:
+    // 123
 }
 ```
 
-
-
 ### <span id="ToString">ToString</span>
 
-<p>将interface转成字符串</p>
+<p>将值转换为字符串，对于数字、字符串、[]byte，将转换为字符串。 对于其他类型（切片、映射、数组、结构体）将调用 json.Marshal</p>
 
 <b>函数签名:</b>
 
 ```go
 func ToString(value any) string
 ```
-<b>例子:</b>
+
+<b>示例:</b>
 
 ```go
 package main
@@ -419,24 +472,44 @@ import (
 )
 
 func main() {
-    fmt.Printf("%q", convertor.ToString(1)) //"1"
-    fmt.Printf("%q", convertor.ToString(1.1)) //"1.1"
-    fmt.Printf("%q", convertor.ToString([]int{1, 2, 3})) //"[1,2,3]"
+    result1 := convertor.ToString("")
+    result2 := convertor.ToString(nil)
+    result3 := convertor.ToString(0)
+    result4 := convertor.ToString(1.23)
+    result5 := convertor.ToString(true)
+    result6 := convertor.ToString(false)
+    result7 := convertor.ToString([]int{1, 2, 3})
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
+    fmt.Println(result5)
+    fmt.Println(result6)
+    fmt.Println(result7)
+
+    // Output:
+    //
+    //
+    // 0
+    // 1.23
+    // true
+    // false
+    // [1,2,3]
 }
 ```
 
-
-
 ### <span id="StructToMap">StructToMap</span>
 
-<p>将struct转成map，只会转换struct中可导出的字段。struct中导出字段需要设置json tag标记</p>
+<p>将struct转成map，只会转换struct中可导出的字段。struct中导出字段需要设置json tag标记。</p>
 
 <b>函数签名:</b>
 
 ```go
 func StructToMap(value any) (map[string]any, error)
 ```
-<b>列子:</b>
+
+<b>示例:</b>
 
 ```go
 package main
@@ -457,22 +530,24 @@ func main() {
     }
     pm, _ := convertor.StructToMap(p)
 
-    fmt.Printf("type: %T, value: %s", pm, pm) //type: map[string]interface {}, value: map[name:test]
+    fmt.Println(pm)
+
+    // Output:
+    // map[name:test]
 }
 ```
 
-
-
 ### <span id="MapToSlice">MapToSlice</span>
 
-<p>map中key和value执行函数iteratee后，转为切片</p>
+<p>map中key和value执行函数iteratee后，转为切片。</p>
 
 <b>函数签名:</b>
 
 ```go
 func MapToSlice[T any, K comparable, V any](aMap map[K]V, iteratee func(K, V) T) []T
 ```
-<b>例子:</b>
+
+<b>示例:</b>
 
 ```go
 package main
@@ -492,18 +567,17 @@ func main() {
 }
 ```
 
-
-
 ### <span id="EncodeByte">EncodeByte</span>
 
-<p>将data编码成字节切片</p>
+<p>将data编码成字节切片。</p>
 
 <b>函数签名:</b>
 
 ```go
 func EncodeByte(data any) ([]byte, error)
 ```
-<b>例子:</b>
+
+<b>示例:</b>
 
 ```go
 package main
@@ -515,22 +589,24 @@ import (
 
 func main() {
     byteData, _ := convertor.EncodeByte("abc")
-    fmt.Println(byteData) //[]byte{6, 12, 0, 3, 97, 98, 99}
+    fmt.Println(byteData)
+
+    // Output:
+    // [6 12 0 3 97 98 99]
 }
 ```
 
-
-
 ### <span id="DecodeByte">DecodeByte</span>
 
-<p>解码字节切片到目标对象，目标对象需要传入一个指针实例子</p>
+<p>解码字节切片到目标对象，目标对象需要传入一个指针实例。</p>
 
 <b>函数签名:</b>
 
 ```go
 func DecodeByte(data []byte, target any) error
 ```
-<b>例子:</b>
+
+<b>示例:</b>
 
 ```go
 package main
@@ -542,8 +618,261 @@ import (
 
 func main() {
     var result string
-	byteData := []byte{6, 12, 0, 3, 97, 98, 99}
-	convertor.DecodeByte(byteData, &result)
-    fmt.Println(result) //"abc"
+    byteData := []byte{6, 12, 0, 3, 97, 98, 99}
+
+    err := convertor.DecodeByte(byteData, &result)
+    if err != nil {
+        return
+    }
+
+    fmt.Println(result)
+
+    // Output:
+    // abc
+}
+```
+
+### <span id="DeepClone">DeepClone</span>
+
+<p>创建一个传入值的深拷贝, 无法克隆结构体的非导出字段。</p>
+
+<b>函数签名:</b>
+
+```go
+func DeepClone[T any](src T) T
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/convertor"
+)
+
+func main() {
+    type Struct struct {
+        Str        string
+        Int        int
+        Float      float64
+        Bool       bool
+        Nil        interface{}
+        unexported string
+    }
+
+    cases := []interface{}{
+        true,
+        1,
+        0.1,
+        map[string]int{
+            "a": 1,
+            "b": 2,
+        },
+        &Struct{
+            Str:   "test",
+            Int:   1,
+            Float: 0.1,
+            Bool:  true,
+            Nil:   nil,
+            // unexported: "can't be cloned",
+        },
+    }
+
+    for _, item := range cases {
+        cloned := convertor.DeepClone(item)
+
+        isPointerEqual := &cloned == &item
+        fmt.Println(cloned, isPointerEqual)
+    }
+
+    // Output:
+    // true false
+    // 1 false
+    // 0.1 false
+    // map[a:1 b:2] false
+    // &{test 1 0.1 true <nil> } false
+}
+```
+
+### <span id="CopyProperties">CopyProperties</span>
+
+<p>拷贝不同结构体之间的同名字段。使用json.Marshal序列化，需要设置dst和src struct字段的json tag。</p>
+
+<b>函数签名:</b>
+
+```go
+func CopyProperties[T, U any](dst T, src U) (err error)
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/convertor"
+)
+
+func main() {
+    type Disk struct {
+        Name    string  `json:"name"`
+        Total   string  `json:"total"`
+        Used    string  `json:"used"`
+        Percent float64 `json:"percent"`
+    }
+
+    type DiskVO struct {
+        Name    string  `json:"name"`
+        Total   string  `json:"total"`
+        Used    string  `json:"used"`
+        Percent float64 `json:"percent"`
+    }
+
+    type Indicator struct {
+        Id      string    `json:"id"`
+        Ip      string    `json:"ip"`
+        UpTime  string    `json:"upTime"`
+        LoadAvg string    `json:"loadAvg"`
+        Cpu     int       `json:"cpu"`
+        Disk    []Disk    `json:"disk"`
+        Stop    chan bool `json:"-"`
+    }
+
+    type IndicatorVO struct {
+        Id      string   `json:"id"`
+        Ip      string   `json:"ip"`
+        UpTime  string   `json:"upTime"`
+        LoadAvg string   `json:"loadAvg"`
+        Cpu     int64    `json:"cpu"`
+        Disk    []DiskVO `json:"disk"`
+    }
+
+    indicator := &Indicator{Id: "001", Ip: "127.0.0.1", Cpu: 1, Disk: []Disk{
+        {Name: "disk-001", Total: "100", Used: "1", Percent: 10},
+        {Name: "disk-002", Total: "200", Used: "1", Percent: 20},
+        {Name: "disk-003", Total: "300", Used: "1", Percent: 30},
+    }}
+
+    indicatorVO := IndicatorVO{}
+
+    err := convertor.CopyProperties(&indicatorVO, indicator)
+
+    if err != nil {
+        return
+    }
+
+    fmt.Println(indicatorVO.Id)
+    fmt.Println(indicatorVO.Ip)
+    fmt.Println(len(indicatorVO.Disk))
+
+    // Output:
+    // 001
+    // 127.0.0.1
+    // 3
+}
+```
+
+### <span id="ToInterface">ToInterface</span>
+
+<p>将反射值转换成对应的interface类型。</p>
+
+<b>函数签名:</b>
+
+```go
+func ToInterface(v reflect.Value) (value interface{}, ok bool)
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/convertor"
+)
+
+func main() {
+    val := reflect.ValueOf("abc")
+    iVal, ok := convertor.ToInterface(val)
+
+    fmt.Printf("%T\n", iVal)
+    fmt.Printf("%v\n", iVal)
+    fmt.Println(ok)
+
+    // Output:
+    // string
+    // abc
+    // true
+}
+```
+
+### <span id="Utf8ToGbk">Utf8ToGbk</span>
+
+<p>utf8编码转GBK编码。</p>
+
+<b>函数签名:</b>
+
+```go
+func Utf8ToGbk(bs []byte) ([]byte, error)
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/convertor"
+    "github.com/duke-git/lancet/v2/validator"
+)
+
+func main() {
+    utf8Data := []byte("hello")
+    gbkData, _ := convertor.Utf8ToGbk(utf8Data)
+
+    fmt.Println(utf8.Valid(utf8Data))
+    fmt.Println(validator.IsGBK(gbkData))
+
+    // Output:
+    // true
+    // true
+}
+```
+
+### <span id="GbkToUtf8">GbkToUtf8</span>
+
+<p>GBK编码转utf8编码。</p>
+
+<b>函数签名:</b>
+
+```go
+func GbkToUtf8(bs []byte) ([]byte, error)
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/convertor"
+)
+
+func main() {
+    gbkData, _ := convertor.Utf8ToGbk([]byte("hello"))
+    utf8Data, _ := convertor.GbkToUtf8(gbkData)
+
+    fmt.Println(utf8.Valid(utf8Data))
+    fmt.Println(string(utf8Data))
+
+    // Output:
+    // true
+    // hello
 }
 ```

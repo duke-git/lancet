@@ -29,7 +29,6 @@ import (
 - [PreOrderTraverse](#BSTree_PreOrderTraverse)
 - [InOrderTraverse](#BSTree_InOrderTraverse)
 - [PostOrderTraverse](#BSTree_PostOrderTraverse)
-  
 - [LevelOrderTraverse](#BSTree_LevelOrderTraverse)
 - [Depth](#BSTree_Depth)
 - [HasSubTree](#BSTree_HasSubTree)

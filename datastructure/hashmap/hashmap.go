@@ -1,7 +1,7 @@
 // Copyright 2021 dudaodong@gmail.com. All rights reserved.
 // Use of this source code is governed by MIT license
 
-// Package datastructure implements some data structure. eg. list, linklist, stack, queue, tree, graph.
+// Package datastructure implements some data structure. hashmap structure.
 package datastructure
 
 import (
@@ -17,7 +17,7 @@ type mapNode struct {
 	next  *mapNode
 }
 
-//HashMap implements a hash map
+// HashMap implements a hash map
 type HashMap struct {
 	capacity uint64
 	size     uint64
@@ -91,6 +91,46 @@ func (hm *HashMap) Delete(key any) {
 func (hm *HashMap) Contains(key any) bool {
 	node := hm.table[hm.hash(key)]
 	return node != nil
+}
+
+// Iterate executes iteratee funcation for every key and value pair of hashmap (random order)
+func (hm *HashMap) Iterate(iteratee func(key, value any)) {
+	if hm.size > 0 {
+		for i := 0; i < len(hm.table); i++ {
+			item := hm.table[i]
+			if item != nil {
+				iteratee(item.key, item.value)
+			}
+		}
+	}
+}
+
+// Keys returns a slice of the hashmap's keys (random order)
+func (hm *HashMap) Keys() []any {
+	keys := make([]any, int(hm.size))
+	index := 0
+	if hm.size > 0 {
+		hm.Iterate(func(key, value any) {
+			keys[index] = key
+			index++
+		})
+	}
+
+	return keys
+}
+
+// Values returns a slice of the hashmap's keys (random order)
+func (hm *HashMap) Values() []any {
+	values := make([]any, int(hm.size))
+	index := 0
+	if hm.size > 0 {
+		hm.Iterate(func(key, value any) {
+			values[index] = value
+			index++
+		})
+	}
+
+	return values
 }
 
 func (hm *HashMap) resize() {

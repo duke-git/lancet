@@ -1,7 +1,7 @@
 // Copyright 2021 dudaodong@gmail.com. All rights reserved.
 // Use of this source code is governed by MIT license
 
-// Package concurrency contain some functions to support concurrent programming. eg, goroutine, channel, async.
+// Package concurrency contain some functions to support concurrent programming. eg, goroutine, channel.
 package concurrency
 
 import (
@@ -11,17 +11,18 @@ import (
 
 // Channel is a logic object which can generate or manipulate go channel
 // all methods of Channel are in the book tilted《Concurrency in Go》
-type Channel struct {
+type Channel[T any] struct {
 }
 
 // NewChannel return a Channel instance
-func NewChannel() *Channel {
-	return &Channel{}
+func NewChannel[T any]() *Channel[T] {
+	return &Channel[T]{}
 }
 
-// Generate a data of type any chan, put param `values` into the chan
-func (c *Channel) Generate(ctx context.Context, values ...any) <-chan any {
-	dataStream := make(chan any)
+// Generate creates channel, then put values into the channel.
+// Play: https://go.dev/play/p/7aB4KyMMp9A
+func (c *Channel[T]) Generate(ctx context.Context, values ...T) <-chan T {
+	dataStream := make(chan T)
 
 	go func() {
 		defer close(dataStream)
@@ -38,9 +39,10 @@ func (c *Channel) Generate(ctx context.Context, values ...any) <-chan any {
 	return dataStream
 }
 
-// Repeat return a data of type any chan, put param `values` into the chan repeatly until cancel the context.
-func (c *Channel) Repeat(ctx context.Context, values ...any) <-chan any {
-	dataStream := make(chan any)
+// Repeat create channel, put values into the channel repeatly until cancel the context.
+// Play: https://go.dev/play/p/k5N_ALVmYjE
+func (c *Channel[T]) Repeat(ctx context.Context, values ...T) <-chan T {
+	dataStream := make(chan T)
 
 	go func() {
 		defer close(dataStream)
@@ -57,10 +59,11 @@ func (c *Channel) Repeat(ctx context.Context, values ...any) <-chan any {
 	return dataStream
 }
 
-// RepeatFn return a chan, excutes fn repeatly, and put the result into retruned chan
-// until close the `done` channel
-func (c *Channel) RepeatFn(ctx context.Context, fn func() any) <-chan any {
-	dataStream := make(chan any)
+// RepeatFn create a channel, excutes fn repeatly, and put the result into the channel
+// until close context.
+// Play: https://go.dev/play/p/4J1zAWttP85
+func (c *Channel[T]) RepeatFn(ctx context.Context, fn func() T) <-chan T {
+	dataStream := make(chan T)
 
 	go func() {
 		defer close(dataStream)
@@ -75,9 +78,10 @@ func (c *Channel) RepeatFn(ctx context.Context, fn func() any) <-chan any {
 	return dataStream
 }
 
-// Take return a chan whose values are tahken from another chan
-func (c *Channel) Take(ctx context.Context, valueStream <-chan any, number int) <-chan any {
-	takeStream := make(chan any)
+// Take create a channel whose values are taken from another channel with limit number.
+// Play: https://go.dev/play/p/9Utt-1pDr2J
+func (c *Channel[T]) Take(ctx context.Context, valueStream <-chan T, number int) <-chan T {
+	takeStream := make(chan T)
 
 	go func() {
 		defer close(takeStream)
@@ -94,16 +98,17 @@ func (c *Channel) Take(ctx context.Context, valueStream <-chan any, number int) 
 	return takeStream
 }
 
-// FanIn merge multiple channels into one channel
-func (c *Channel) FanIn(ctx context.Context, channels ...<-chan any) <-chan any {
-	out := make(chan any)
+// FanIn merge multiple channels into one channel.
+// Play: https://go.dev/play/p/2VYFMexEvTm
+func (c *Channel[T]) FanIn(ctx context.Context, channels ...<-chan T) <-chan T {
+	out := make(chan T)
 
 	go func() {
 		var wg sync.WaitGroup
 		wg.Add(len(channels))
 
 		for _, c := range channels {
-			go func(c <-chan any) {
+			go func(c <-chan T) {
 				defer wg.Done()
 				for v := range c {
 					select {
@@ -121,10 +126,11 @@ func (c *Channel) FanIn(ctx context.Context, channels ...<-chan any) <-chan any 
 	return out
 }
 
-// Tee split one chanel into two channels
-func (c *Channel) Tee(ctx context.Context, in <-chan any) (<-chan any, <-chan any) {
-	out1 := make(chan any)
-	out2 := make(chan any)
+// Tee split one chanel into two channels, until cancel the context.
+// Play: https://go.dev/play/p/3TQPKnCirrP
+func (c *Channel[T]) Tee(ctx context.Context, in <-chan T) (<-chan T, <-chan T) {
+	out1 := make(chan T)
+	out2 := make(chan T)
 
 	go func() {
 		defer close(out1)
@@ -147,18 +153,19 @@ func (c *Channel) Tee(ctx context.Context, in <-chan any) (<-chan any, <-chan an
 	return out1, out2
 }
 
-// Bridge link multiply channels into one channel
-func (c *Channel) Bridge(ctx context.Context, chanStream <-chan <-chan any) <-chan any {
-	valStream := make(chan any)
+// Bridge link multiply channels into one channel.
+// Play: https://go.dev/play/p/qmWSy1NVF-Y
+func (c *Channel[T]) Bridge(ctx context.Context, chanStream <-chan <-chan T) <-chan T {
+	valStream := make(chan T)
 
 	go func() {
 		defer close(valStream)
 
 		for {
-			var stream <-chan any
+			var stream <-chan T
 			select {
 			case maybeStream, ok := <-chanStream:
-				if ok == false {
+				if !ok {
 					return
 				}
 				stream = maybeStream
@@ -178,8 +185,9 @@ func (c *Channel) Bridge(ctx context.Context, chanStream <-chan <-chan any) <-ch
 	return valStream
 }
 
-// Or read one or more channels into one channel, will close when any readin channel is closed
-func (c *Channel) Or(channels ...<-chan any) <-chan any {
+// Or read one or more channels into one channel, will close when any readin channel is closed.
+// Play: https://go.dev/play/p/Wqz9rwioPww
+func (c *Channel[T]) Or(channels ...<-chan T) <-chan T {
 	switch len(channels) {
 	case 0:
 		return nil
@@ -187,7 +195,7 @@ func (c *Channel) Or(channels ...<-chan any) <-chan any {
 		return channels[0]
 	}
 
-	orDone := make(chan any)
+	orDone := make(chan T)
 
 	go func() {
 		defer close(orDone)
@@ -199,17 +207,12 @@ func (c *Channel) Or(channels ...<-chan any) <-chan any {
 			case <-channels[1]:
 			}
 		default:
-			m := len(channels) / 2
 			select {
-			case <-c.Or(channels[:m]...):
-			case <-c.Or(channels[m:]...):
+			case <-channels[0]:
+			case <-channels[1]:
+			case <-channels[2]:
+			case <-c.Or(append(channels[3:], orDone)...):
 			}
-			// select {
-			// case <-channels[0]:
-			// case <-channels[1]:
-			// case <-channels[2]:
-			// case <-c.Or(append(channels[3:], orDone)...):
-			// }
 		}
 	}()
 
@@ -217,8 +220,9 @@ func (c *Channel) Or(channels ...<-chan any) <-chan any {
 }
 
 // OrDone read a channel into another channel, will close until cancel context.
-func (c *Channel) OrDone(ctx context.Context, channel <-chan any) <-chan any {
-	valStream := make(chan any)
+// Play: https://go.dev/play/p/lm_GoS6aDjo
+func (c *Channel[T]) OrDone(ctx context.Context, channel <-chan T) <-chan T {
+	valStream := make(chan T)
 
 	go func() {
 		defer close(valStream)

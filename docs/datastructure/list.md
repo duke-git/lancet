@@ -47,6 +47,13 @@ import (
 - [Unique](#Unique)
 - [Union](#Union)
 - [Intersection](#Intersection)
+- [Difference](#Difference)
+- [SymmetricDifference](#SymmetricDifference)
+- [RetainAll](#RetainAll)
+- [DeleteAll](#DeleteAll)
+- [ForEach](#ForEach)
+- [Iterator](#Iterator)
+- [ListToMap](#ListToMap)
 - [SubList](#SubList)
 - [DeleteIf](#DeleteIf)
 
@@ -62,7 +69,7 @@ NewList function return a list pointer</p>
 
 ```go
 type List[T any] struct {
-	data []T
+    data []T
 }
 func NewList[T any](data []T) *List[T]
 ```
@@ -671,8 +678,8 @@ import (
 )
 
 func main() {
-	data := make([]int, 0, 100)
-	
+    data := make([]int, 0, 100)
+    
     li := list.NewList(data)
 
     fmt.Println(li.Cap()) // 100
@@ -828,6 +835,233 @@ func main() {
 
 
 
+### <span id="Difference">Difference</span>
+<p>Return a list whose element in the original list, not in the given list.</p>
+
+<b>Signature:</b>
+
+```go
+func (l *List[T]) Difference(other *List[T]) *List[T]
+```
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    list "github.com/duke-git/lancet/v2/datastructure/list"
+)
+
+func main() {
+    list1 := NewList([]int{1, 2, 3})
+    list2 := NewList([]int{1, 2, 4})
+
+    list3 := list1.Intersection(list2)
+
+    fmt.Println(list3.Data()) //3
+}
+```
+
+
+### <span id="SymmetricDifference">SymmetricDifference</span>
+<p>Oppoiste operation of intersection function.</p>
+
+<b>Signature:</b>
+
+```go
+func (l *List[T]) SymmetricDifference(other *List[T]) *List[T]
+```
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    list "github.com/duke-git/lancet/v2/datastructure/list"
+)
+
+func main() {
+    list1 := NewList([]int{1, 2, 3})
+    list2 := NewList([]int{1, 2, 4})
+
+    list3 := list1.Intersection(list2)
+
+    fmt.Println(list3.Data()) //3, 4
+}
+```
+
+
+### <span id="RetainAll">RetainAll</span>
+<p>Retains only the elements in this list that are contained in the given list.</p>
+
+<b>Signature:</b>
+
+```go
+func (l *List[T]) RetainAll(list *List[T]) bool
+```
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    list "github.com/duke-git/lancet/v2/datastructure/list"
+)
+
+func main() {
+    list := NewList([]int{1, 2, 3, 4})
+    list1 := NewList([]int{1, 2, 3, 4})
+    list2 := NewList([]int{1, 2, 3, 4})
+
+    retain := NewList([]int{1, 2})
+    retain1 := NewList([]int{2, 3})
+    retain2 := NewList([]int{1, 2, 5})
+
+    list.RetainAll(retain)
+    list1.RetainAll(retain1)
+    list2.RetainAll(retain2)
+
+    fmt.Println(list.Data()) //1, 2
+    fmt.Println(list1.Data()) //2, 3
+    fmt.Println(list2.Data()) //1, 2
+}
+```
+
+
+### <span id="DeleteAll">DeleteAll</span>
+<p>Removes from this list all of its elements that are contained in the given list.</p>
+
+<b>Signature:</b>
+
+```go
+func (l *List[T]) DeleteAll(list *List[T]) bool
+```
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    list "github.com/duke-git/lancet/v2/datastructure/list"
+)
+
+func main() {
+    list := NewList([]int{1, 2, 3, 4})
+    list1 := NewList([]int{1, 2, 3, 4})
+    list2 := NewList([]int{1, 2, 3, 4})
+
+    del := NewList([]int{1})
+    del1 := NewList([]int{2, 3})
+    del2 := NewList([]int{1, 2, 5})
+
+    list.DeleteAll(del)
+    list1.DeleteAll(del1)
+    list2.DeleteAll(del2)
+
+    fmt.Println(list.Data()) //2,3,4
+    fmt.Println(list1.Data()) //1,4
+    fmt.Println(list2.Data()) //3,4
+}
+```
+
+
+### <span id="ForEach">ForEach</span>
+<p>Performs the given action for each element of the list.</p>
+
+<b>Signature:</b>
+
+```go
+func (l *List[T]) ForEach(consumer func(T))
+```
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    list "github.com/duke-git/lancet/v2/datastructure/list"
+)
+
+func main() {
+    list := NewList([]int{1, 2, 3, 4})
+
+    result := make([]int, 0)
+    list.ForEach(func(i int) {
+        result = append(result, i)
+    })
+
+    fmt.Println(result.Data()) //1,2,3,4
+}
+```
+
+
+### <span id="Iterator">Iterator</span>
+<p>Returns an iterator over the elements in this list in proper sequence.</p>
+
+<b>Signature:</b>
+
+```go
+func (l *List[T]) Iterator() iterator.Iterator[T]
+```
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    list "github.com/duke-git/lancet/v2/datastructure/list"
+)
+
+func main() {
+    list := NewList([]int{1, 2, 3, 4})
+
+    iterator := list.Iterator()
+
+    result := make([]int, 0)
+    for iterator.HasNext() {
+        item, _ := iterator.Next()
+        result = append(result, item)
+    }
+
+    fmt.Println(result.Data()) //1,2,3,4
+}
+```
+
+
+### <span id="ListToMap">ListToMap</span>
+<p>Converts a list to a map based on iteratee function.</p>
+
+<b>Signature:</b>
+
+```go
+func ListToMap[T any, K comparable, V any](list *List[T], iteratee func(T) (K, V)) map[K]V
+```
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    list "github.com/duke-git/lancet/v2/datastructure/list"
+)
+
+func main() {
+    list := NewList([]int{1, 2, 3, 4})
+
+    result := ListToMap(list, func(n int) (int, bool) {
+        return n, n > 1
+    })
+
+    fmt.Println(result) //map[int]bool{1: false, 2: true, 3: true, 4: true}
+}
+```
 
 ### <span id="SubList">SubList</span>
 <p>SubList returns a sub list of the original list between the specified fromIndex, inclusive, and toIndex, exclusive.</p>
@@ -876,9 +1110,9 @@ import (
 )
 
 func main() {
-	l := list.NewList([]int{1, 1, 1, 1, 2, 3, 1, 1, 4, 1, 1, 1, 1, 1, 1})
+    l := list.NewList([]int{1, 1, 1, 1, 2, 3, 1, 1, 4, 1, 1, 1, 1, 1, 1})
 
-	fmt.Println(l.DeleteIf(func(a int) bool { return a == 1 })) // 12 
-	fmt.Println(l.Data()) // []int{2, 3, 4}
+    fmt.Println(l.DeleteIf(func(a int) bool { return a == 1 })) // 12 
+    fmt.Println(l.Data()) // []int{2, 3, 4}
 }
 ```

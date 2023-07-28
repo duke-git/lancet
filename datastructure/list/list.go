@@ -1,24 +1,26 @@
 // Copyright 2021 dudaodong@gmail.com. All rights reserved.
 // Use of this source code is governed by MIT license
 
-// Package datastructure implements some data structure. eg. list, linklist, stack, queue, tree, graph.
+// Package datastructure contains some data structure. list is a linear table, implemented with slice.
 package datastructure
 
 import (
 	"reflect"
+
+	"github.com/duke-git/lancet/v2/iterator"
 )
 
-// List is a linear table, implemented with slice
+// List is a linear table, implemented with slice.
 type List[T any] struct {
 	data []T
 }
 
-// NewList return a pointer of List
+// NewList return a pointer of List.
 func NewList[T any](data []T) *List[T] {
 	return &List[T]{data: data}
 }
 
-// Data return list data
+// Data return list data.
 func (l *List[T]) Data() []T {
 	return l.data
 }
@@ -31,7 +33,7 @@ func (l *List[T]) ValueOf(index int) (*T, bool) {
 	return &l.data[index], true
 }
 
-// IndexOf returns the index of value. if not found return -1
+// IndexOf returns the index of value. if not found return -1.
 func (l *List[T]) IndexOf(value T) int {
 	index := -1
 	data := l.data
@@ -45,7 +47,7 @@ func (l *List[T]) IndexOf(value T) int {
 }
 
 // LastIndexOf returns the index of the last occurrence of the value in this list.
-// if not found return -1
+// if not found return -1.
 func (l *List[T]) LastIndexOf(value T) int {
 	index := -1
 	data := l.data
@@ -59,7 +61,7 @@ func (l *List[T]) LastIndexOf(value T) int {
 }
 
 // IndexOfFunc returns the first index satisfying f(v)
-// if not found return -1
+// if not found return -1.
 func (l *List[T]) IndexOfFunc(f func(T) bool) int {
 	index := -1
 	data := l.data
@@ -73,7 +75,7 @@ func (l *List[T]) IndexOfFunc(f func(T) bool) int {
 }
 
 // LastIndexOfFunc returns the index of the last occurrence of the value in this list satisfying f(data[i])
-// if not found return -1
+// if not found return -1.
 func (l *List[T]) LastIndexOfFunc(f func(T) bool) int {
 	index := -1
 	data := l.data
@@ -86,7 +88,7 @@ func (l *List[T]) LastIndexOfFunc(f func(T) bool) int {
 	return index
 }
 
-// Contain checks if the value in the list or not
+// Contain checks if the value in the list or not.
 func (l *List[T]) Contain(value T) bool {
 	data := l.data
 	for _, v := range data {
@@ -97,22 +99,22 @@ func (l *List[T]) Contain(value T) bool {
 	return false
 }
 
-// Push append value to the list data
+// Push append value to the list data.
 func (l *List[T]) Push(value T) {
 	l.data = append(l.data, value)
 }
 
-// InsertAtFirst insert value into list at first index
+// InsertAtFirst insert value into list at first index.
 func (l *List[T]) InsertAtFirst(value T) {
 	l.InsertAt(0, value)
 }
 
-// InsertAtLast insert value into list at last index
+// InsertAtLast insert value into list at last index.
 func (l *List[T]) InsertAtLast(value T) {
 	l.InsertAt(len(l.data), value)
 }
 
-// InsertAt insert value into list at index
+// InsertAt insert value into list at index.
 func (l *List[T]) InsertAt(index int, value T) {
 	data := l.data
 	size := len(data)
@@ -123,7 +125,7 @@ func (l *List[T]) InsertAt(index int, value T) {
 	l.data = append(data[:index], append([]T{value}, data[index:]...)...)
 }
 
-// PopFirst delete the first value of list and return it
+// PopFirst delete the first value of list and return it.
 func (l *List[T]) PopFirst() (*T, bool) {
 	if len(l.data) == 0 {
 		return nil, false
@@ -135,7 +137,7 @@ func (l *List[T]) PopFirst() (*T, bool) {
 	return &v, true
 }
 
-// PopLast delete the last value of list and return it
+// PopLast delete the last value of list and return it.
 func (l *List[T]) PopLast() (*T, bool) {
 	size := len(l.data)
 	if size == 0 {
@@ -148,7 +150,7 @@ func (l *List[T]) PopLast() (*T, bool) {
 	return &v, true
 }
 
-// DeleteAt delete the value of list at index
+// DeleteAt delete the value of list at index.
 func (l *List[T]) DeleteAt(index int) {
 	data := l.data
 	size := len(data)
@@ -156,7 +158,7 @@ func (l *List[T]) DeleteAt(index int) {
 		return
 	}
 	if index == size-1 {
-		data = append(data[:index])
+		data = data[:index]
 	} else {
 		data = append(data[:index], data[index+1:]...)
 	}
@@ -174,7 +176,7 @@ func (l *List[T]) DeleteIf(f func(T) bool) int {
 			continue
 		}
 		if index == size-1 {
-			data = append(data[:index])
+			data = data[:index]
 		} else {
 			data = append(data[:index], data[index+1:]...)
 			index--
@@ -199,7 +201,7 @@ func (l *List[T]) UpdateAt(index int, value T) {
 	l.data = append(data[:index], append([]T{value}, data[index+1:]...)...)
 }
 
-// Equal compare list to other list, use reflect.DeepEqual
+// Equal compare list to other list, use reflect.DeepEqual.
 func (l *List[T]) Equal(other *List[T]) bool {
 	if len(l.data) != len(other.data) {
 		return false
@@ -214,17 +216,17 @@ func (l *List[T]) Equal(other *List[T]) bool {
 	return true
 }
 
-// IsEmpty check if the list is empty or not
+// IsEmpty check if the list is empty or not.
 func (l *List[T]) IsEmpty() bool {
 	return len(l.data) == 0
 }
 
-// Clear the data of list
+// Clear the data of list.
 func (l *List[T]) Clear() {
-	l.data = make([]T, 0, 0)
+	l.data = make([]T, 0)
 }
 
-// Clone return a copy of list
+// Clone return a copy of list.
 func (l *List[T]) Clone() *List[T] {
 	cl := NewList(make([]T, len(l.data)))
 	copy(cl.data, l.data)
@@ -232,10 +234,10 @@ func (l *List[T]) Clone() *List[T] {
 	return cl
 }
 
-// Merge two list, return new list, don't change original list
+// Merge two list, return new list, don't change original list.
 func (l *List[T]) Merge(other *List[T]) *List[T] {
 	l1, l2 := len(l.data), len(other.data)
-	ml := NewList(make([]T, l1+l2, l1+l2))
+	ml := NewList(make([]T, l1+l2))
 
 	data := append([]T{}, append(l.data, other.data...)...)
 	ml.data = data
@@ -243,17 +245,17 @@ func (l *List[T]) Merge(other *List[T]) *List[T] {
 	return ml
 }
 
-// Size return number of list data items
+// Size return number of list data items.
 func (l *List[T]) Size() int {
 	return len(l.data)
 }
 
-// Cap return cap of the inner data
+// Cap return cap of the inner data.
 func (l *List[T]) Cap() int {
 	return cap(l.data)
 }
 
-// Swap the value of index i and j in list
+// Swap the value of index i and j in list.
 func (l *List[T]) Swap(i, j int) {
 	size := len(l.data)
 	if i < 0 || i >= size || j < 0 || j >= size {
@@ -262,19 +264,19 @@ func (l *List[T]) Swap(i, j int) {
 	l.data[i], l.data[j] = l.data[j], l.data[i]
 }
 
-// Reverse the item order of list
+// Reverse the item order of list.
 func (l *List[T]) Reverse() {
 	for i, j := 0, len(l.data)-1; i < j; i, j = i+1, j-1 {
 		l.data[i], l.data[j] = l.data[j], l.data[i]
 	}
 }
 
-// Unique remove duplicate items in list
+// Unique remove duplicate items in list.
 func (l *List[T]) Unique() {
 	data := l.data
 	size := len(data)
 
-	uniqueData := make([]T, 0, 0)
+	uniqueData := make([]T, 0)
 	for i := 0; i < size; i++ {
 		value := data[i]
 		skip := true
@@ -303,12 +305,49 @@ func (l *List[T]) Union(other *List[T]) *List[T] {
 	return result
 }
 
-// Intersection creates a new list whose element both be contained in list l and other
+// Intersection creates a new list whose element both be contained in list l and other.
 func (l *List[T]) Intersection(other *List[T]) *List[T] {
-	result := NewList(make([]T, 0, 0))
+	result := NewList(make([]T, 0))
 
 	for _, v := range l.data {
 		if other.Contain(v) {
+			result.data = append(result.data, v)
+		}
+	}
+
+	return result
+}
+
+// Difference returns the difference between two collections.
+// return a list whose element in the original list, not in the given list.
+func (l *List[T]) Difference(other *List[T]) *List[T] {
+	result := NewList(make([]T, 0))
+
+	intersectList := l.Intersection(other)
+
+	for _, v := range l.data {
+		if !intersectList.Contain(v) {
+			result.data = append(result.data, v)
+		}
+	}
+
+	return result
+}
+
+// SymmetricDifference oppoiste operation of intersection function.
+func (l *List[T]) SymmetricDifference(other *List[T]) *List[T] {
+	result := NewList(make([]T, 0))
+
+	intersectList := l.Intersection(other)
+
+	for _, v := range l.data {
+		if !intersectList.Contain(v) {
+			result.data = append(result.data, v)
+		}
+	}
+
+	for _, v := range other.data {
+		if !intersectList.Contain(v) {
 			result.data = append(result.data, v)
 		}
 	}
@@ -322,4 +361,58 @@ func (l *List[T]) SubList(fromIndex, toIndex int) *List[T] {
 	subList := make([]T, len(data))
 	copy(subList, data)
 	return NewList(subList)
+}
+
+// ForEach performs the given action for each element of the list.
+func (l *List[T]) ForEach(consumer func(T)) {
+	for _, it := range l.data {
+		consumer(it)
+	}
+}
+
+// RetainAll retains only the elements in this list that are contained in the given list.
+func (l *List[T]) RetainAll(list *List[T]) bool {
+	return l.batchRemove(list, true)
+}
+
+// DeleteAll removes from this list all of its elements that are contained in the given list.
+func (l *List[T]) DeleteAll(list *List[T]) bool {
+	return l.batchRemove(list, false)
+}
+
+func (l *List[T]) batchRemove(list *List[T], complement bool) bool {
+	var (
+		w    = 0
+		data = l.data
+		size = len(data)
+	)
+
+	for i := 0; i < size; i++ {
+		if list.Contain(data[i]) == complement {
+			data[w] = data[i]
+			w++
+		}
+	}
+
+	if w != size {
+		l.data = data[:w]
+		return true
+	}
+	return false
+}
+
+// Iterator returns an iterator over the elements in this list in proper sequence.
+func (l *List[T]) Iterator() iterator.Iterator[T] {
+	return iterator.FromSlice(l.data)
+}
+
+// ListToMap convert a list to a map based on iteratee function.
+func ListToMap[T any, K comparable, V any](list *List[T], iteratee func(T) (K, V)) map[K]V {
+	result := make(map[K]V, list.Size())
+	for _, item := range list.data {
+		k, v := iteratee(item)
+		result[k] = v
+	}
+
+	return result
 }

@@ -3,6 +3,8 @@ package slice
 import (
 	"fmt"
 	"reflect"
+
+	"golang.org/x/exp/constraints"
 )
 
 // sliceValue return the reflect value of a slice
@@ -14,45 +16,6 @@ func sliceValue(slice any) reflect.Value {
 	return v
 }
 
-// functionValue return the reflect value of a function
-func functionValue(function any) reflect.Value {
-	v := reflect.ValueOf(function)
-	if v.Kind() != reflect.Func {
-		panic(fmt.Sprintf("Invalid function type, value of type %T", function))
-	}
-	return v
-}
-
-// checkSliceCallbackFuncSignature Check func sign :  s :[]type1{} -> func(i int, data type1) type2
-// see https://coolshell.cn/articles/21164.html#%E6%B3%9B%E5%9E%8BMap-Reduce
-func checkSliceCallbackFuncSignature(fn reflect.Value, types ...reflect.Type) bool {
-	//Check it is a function
-	if fn.Kind() != reflect.Func {
-		return false
-	}
-	// NumIn() - returns a function type's input parameter count.
-	// NumOut() - returns a function type's output parameter count.
-	if (fn.Type().NumIn() != len(types)-1) || (fn.Type().NumOut() != 1) {
-		return false
-	}
-	// In() - returns the type of a function type's i'th input parameter.
-	// first input param type should be int
-	if fn.Type().In(0) != reflect.TypeOf(1) {
-		return false
-	}
-	for i := 0; i < len(types)-1; i++ {
-		if fn.Type().In(i) != types[i] {
-			return false
-		}
-	}
-	// Out() - returns the type of a function type's i'th output parameter.
-	outType := types[len(types)-1]
-	if outType != nil && fn.Type().Out(0) != outType {
-		return false
-	}
-	return true
-}
-
 // sliceElemType get slice element type
 func sliceElemType(reflectType reflect.Type) reflect.Type {
 	for {
@@ -62,4 +25,67 @@ func sliceElemType(reflectType reflect.Type) reflect.Type {
 
 		reflectType = reflectType.Elem()
 	}
+}
+
+func quickSort[T constraints.Ordered](slice []T, lowIndex, highIndex int, order string) {
+	if lowIndex < highIndex {
+		p := partitionOrderedSlice(slice, lowIndex, highIndex, order)
+		quickSort(slice, lowIndex, p-1, order)
+		quickSort(slice, p+1, highIndex, order)
+	}
+}
+
+// partitionOrderedSlice split ordered slice into two parts for quick sort
+func partitionOrderedSlice[T constraints.Ordered](slice []T, lowIndex, highIndex int, order string) int {
+	p := slice[highIndex]
+	i := lowIndex
+
+	for j := lowIndex; j < highIndex; j++ {
+		if order == "desc" {
+			if slice[j] > p {
+				swap(slice, i, j)
+				i++
+			}
+		} else {
+			if slice[j] < p {
+				swap(slice, i, j)
+				i++
+			}
+		}
+	}
+
+	swap(slice, i, highIndex)
+
+	return i
+}
+
+func quickSortBy[T any](slice []T, lowIndex, highIndex int, less func(a, b T) bool) {
+	if lowIndex < highIndex {
+		p := partitionAnySlice(slice, lowIndex, highIndex, less)
+		quickSortBy(slice, lowIndex, p-1, less)
+		quickSortBy(slice, p+1, highIndex, less)
+	}
+}
+
+// partitionAnySlice split any slice into two parts for quick sort
+func partitionAnySlice[T any](slice []T, lowIndex, highIndex int, less func(a, b T) bool) int {
+	p := slice[highIndex]
+	i := lowIndex
+
+	for j := lowIndex; j < highIndex; j++ {
+
+		if less(slice[j], p) {
+			swap(slice, i, j)
+			i++
+		}
+	}
+
+	swap(slice, i, highIndex)
+
+	return i
+}
+
+// swap two slice value at index i and j
+func swap[T any](slice []T, i, j int) {
+	slice[i], slice[j] = slice[j], slice[i]
 }

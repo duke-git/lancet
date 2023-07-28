@@ -34,21 +34,24 @@ type RetryFunc func() error
 // Option is for adding retry config
 type Option func(*RetryConfig)
 
-// RetryTimes set times of retry
+// RetryTimes set times of retry.
+// Play: https://go.dev/play/p/ssfVeU2SwLO
 func RetryTimes(n uint) Option {
 	return func(rc *RetryConfig) {
 		rc.retryTimes = n
 	}
 }
 
-// RetryDuration set duration of retries
+// RetryDuration set duration of retries.
+// Play: https://go.dev/play/p/nk2XRmagfVF
 func RetryDuration(d time.Duration) Option {
 	return func(rc *RetryConfig) {
 		rc.retryDuration = d
 	}
 }
 
-// Context set retry context config
+// Context set retry context config.
+// Play: https://go.dev/play/p/xnAOOXv9GkS
 func Context(ctx context.Context) Option {
 	return func(rc *RetryConfig) {
 		rc.context = ctx
@@ -56,7 +59,8 @@ func Context(ctx context.Context) Option {
 }
 
 // Retry executes the retryFunc repeatedly until it was successful or canceled by the context
-// The default times of retries is 5 and the default duration between retries is 3 seconds
+// The default times of retries is 5 and the default duration between retries is 3 seconds.
+// Play: https://go.dev/play/p/nk2XRmagfVF
 func Retry(retryFunc RetryFunc, opts ...Option) error {
 	config := &RetryConfig{
 		retryTimes:    DefaultRetryTimes,

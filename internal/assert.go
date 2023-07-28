@@ -5,6 +5,7 @@
 package internal
 
 import (
+	"bytes"
 	"fmt"
 	"reflect"
 	"runtime"
@@ -44,6 +45,52 @@ func (a *Assert) NotEqual(expected, actual any) {
 	}
 }
 
+// EqualValues asserts that two objects are equal or convertable to the same types and equal.
+// https://github.com/stretchr/testify/assert/assertions.go
+func (a *Assert) EqualValues(expected, actual any) {
+	if !objectsAreEqualValues(expected, actual) {
+		makeTestFailed(a.T, a.CaseName, expected, actual)
+	}
+}
+
+func objectsAreEqualValues(expected, actual interface{}) bool {
+	if objectsAreEqual(expected, actual) {
+		return true
+	}
+
+	actualType := reflect.TypeOf(actual)
+	if actualType == nil {
+		return false
+	}
+	expectedValue := reflect.ValueOf(expected)
+	if expectedValue.IsValid() && expectedValue.Type().ConvertibleTo(actualType) {
+		// Attempt comparison after type conversion
+		return reflect.DeepEqual(expectedValue.Convert(actualType).Interface(), actual)
+	}
+
+	return false
+}
+
+func objectsAreEqual(expected, actual interface{}) bool {
+	if expected == nil || actual == nil {
+		return expected == actual
+	}
+
+	exp, ok := expected.([]byte)
+	if !ok {
+		return reflect.DeepEqual(expected, actual)
+	}
+
+	act, ok := actual.([]byte)
+	if !ok {
+		return false
+	}
+	if exp == nil || act == nil {
+		return exp == nil && act == nil
+	}
+	return bytes.Equal(exp, act)
+}
+
 // Greater check if expected is greate than actual
 func (a *Assert) Greater(expected, actual any) {
 	if compare(expected, actual) != compareGreater {
@@ -79,16 +126,18 @@ func (a *Assert) LessOrEqual(expected, actual any) {
 }
 
 // IsNil check if value is nil
-func (a *Assert) IsNil(value any) {
-	if value != nil {
-		makeTestFailed(a.T, a.CaseName, nil, value)
+func (a *Assert) IsNil(v any) {
+	if v == nil || (reflect.ValueOf(v).Kind() == reflect.Ptr && reflect.ValueOf(v).IsNil()) {
+		return
 	}
+
+	makeTestFailed(a.T, a.CaseName, nil, v)
 }
 
 // IsNotNil check if value is not nil
-func (a *Assert) IsNotNil(value any) {
-	if value == nil {
-		makeTestFailed(a.T, a.CaseName, "not nil", value)
+func (a *Assert) IsNotNil(v any) {
+	if v == nil || (reflect.ValueOf(v).Kind() == reflect.Ptr && reflect.ValueOf(v).IsNil()) {
+		makeTestFailed(a.T, a.CaseName, "not nil", v)
 	}
 }
 
@@ -162,7 +211,7 @@ func compare(x, y any) int {
 
 }
 
-// logFailedInfo make test failed and log error info
+// makeTestFailed make test failed and log error info
 func makeTestFailed(t *testing.T, caseName string, expected, actual any) {
 	_, file, line, _ := runtime.Caller(2)
 	errInfo := fmt.Sprintf("Case %v failed. file: %v, line: %v, expected: %v, actual: %v.", caseName, file, line, expected, actual)

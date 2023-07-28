@@ -9,6 +9,8 @@ import (
 )
 
 func TestGetInternalIp(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestGetInternalIp")
 
 	internalIp := GetInternalIp()
@@ -17,6 +19,8 @@ func TestGetInternalIp(t *testing.T) {
 }
 
 func TestGetRequestPublicIp(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestGetPublicIpInfo")
 
 	ip := "36.112.24.10"
@@ -40,16 +44,18 @@ func TestGetRequestPublicIp(t *testing.T) {
 	assert.Equal(publicIp, ip)
 }
 
-func TestGetPublicIpInfo(t *testing.T) {
-	assert := internal.NewAssert(t, "TestGetPublicIpInfo")
+// func TestGetPublicIpInfo(t *testing.T) {
+// 	assert := internal.NewAssert(t, "TestGetPublicIpInfo")
 
-	publicIpInfo, err := GetPublicIpInfo()
-	assert.IsNil(err)
+// 	publicIpInfo, err := GetPublicIpInfo()
+// 	assert.IsNil(err)
 
-	t.Logf("public ip info is: %+v \n", *publicIpInfo)
-}
+// 	t.Logf("public ip info is: %+v \n", *publicIpInfo)
+// }
 
 func TestIsPublicIP(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestIsPublicIP")
 
 	ips := []net.IP{
@@ -69,6 +75,8 @@ func TestIsPublicIP(t *testing.T) {
 }
 
 func TestIsInternalIP(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestIsInternalIP")
 
 	ips := []net.IP{
@@ -98,14 +106,39 @@ func TestGetMacAddrs(t *testing.T) {
 }
 
 func TestEncodeUrl(t *testing.T) {
-	assert := internal.NewAssert(t, "TestIsInternalIP")
+	assert := internal.NewAssert(t, "TestEncodeUrl")
 
 	urlAddr := "http://www.lancet.com?a=1&b=[2]"
 	encodedUrl, err := EncodeUrl(urlAddr)
 	if err != nil {
-		t.Log(err)
+		t.Fail()
 	}
 
 	expected := "http://www.lancet.com?a=1&b=%5B2%5D"
 	assert.Equal(expected, encodedUrl)
+}
+
+func TestIsPingConnected(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestIsPingConnected")
+
+	// in github action env, this will fail
+	// result1 := IsPingConnected("www.baidu.com")
+	// assert.Equal(true, result1)
+
+	result2 := IsPingConnected("www.!@#&&&.com")
+	assert.Equal(false, result2)
+}
+
+func TestTelnetConnected(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestTelnetConnected")
+
+	result1 := IsTelnetConnected("bing.com", "80")
+	assert.Equal(true, result1)
+
+	result2 := IsTelnetConnected("www.baidu.com", "123")
+	assert.Equal(false, result2)
 }

@@ -13,6 +13,7 @@ import "reflect"
 // If the type has an IsZero() bool method, the opposite value is returned.
 // Slices and maps are truthy if they have a length greater than zero.
 // All other types are truthy if they are not their zero value.
+// Play: https://go.dev/play/p/ETzeDJRSvhm
 func Bool[T any](value T) bool {
 	switch m := any(value).(type) {
 	case interface{ Bool() bool }:
@@ -34,40 +35,47 @@ func reflectValue(vp any) bool {
 }
 
 // And returns true if both a and b are truthy.
+// Play: https://go.dev/play/p/W1SSUmt6pvr
 func And[T, U any](a T, b U) bool {
 	return Bool(a) && Bool(b)
 }
 
-// Or returns false iff neither a nor b is truthy.
+// Or returns false if neither a nor b is truthy.
+// Play: https://go.dev/play/p/UlQTxHaeEkq
 func Or[T, U any](a T, b U) bool {
 	return Bool(a) || Bool(b)
 }
 
-// Xor returns true iff a or b but not both is truthy.
+// Xor returns true if a or b but not both is truthy.
+// Play: https://go.dev/play/p/gObZrW7ZbG8
 func Xor[T, U any](a T, b U) bool {
 	valA := Bool(a)
 	valB := Bool(b)
 	return (valA || valB) && valA != valB
 }
 
-// Nor returns true iff neither a nor b is truthy.
+// Nor returns true if neither a nor b is truthy.
+// Play: https://go.dev/play/p/g2j08F_zZky
 func Nor[T, U any](a T, b U) bool {
 	return !(Bool(a) || Bool(b))
 }
 
-// Xnor returns true iff both a and b or neither a nor b are truthy.
+// Xnor returns true if both a and b or neither a nor b are truthy.
+// Play: https://go.dev/play/p/OuDB9g51643
 func Xnor[T, U any](a T, b U) bool {
 	valA := Bool(a)
 	valB := Bool(b)
 	return (valA && valB) || (!valA && !valB)
 }
 
-// Nand returns false iff both a and b are truthy.
+// Nand returns false if both a and b are truthy.
+// Play: https://go.dev/play/p/vSRMLxLIbq8
 func Nand[T, U any](a T, b U) bool {
 	return !Bool(a) || !Bool(b)
 }
 
-// TernaryOperator checks the value of param `isTrue`, if true return ifValue else return elseValue
+// TernaryOperator checks the value of param `isTrue`, if true return ifValue else return elseValue.
+// Play: https://go.dev/play/p/ElllPZY0guT
 func TernaryOperator[T, U any](isTrue T, ifValue U, elseValue U) U {
 	if Bool(isTrue) {
 		return ifValue

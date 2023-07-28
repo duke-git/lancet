@@ -11,6 +11,8 @@ import (
 )
 
 func TestAfter(t *testing.T) {
+	t.Parallel()
+
 	arr := []string{"a", "b"}
 	f := After(len(arr), func(i int) int {
 		fmt.Println("print done")
@@ -34,6 +36,8 @@ func TestAfter(t *testing.T) {
 }
 
 func TestBefore(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestBefore")
 
 	arr := []string{"a", "b", "c", "d", "e"}
@@ -57,29 +61,35 @@ func TestBefore(t *testing.T) {
 }
 
 func TestCurry(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestCurry")
 
 	add := func(a, b int) int {
 		return a + b
 	}
-	var addCurry Fn = func(values ...any) any {
-		return add(values[0].(int), values[1].(int))
+	var addCurry CurryFn[int] = func(values ...int) int {
+		return add(values[0], values[1])
 	}
-	add1 := addCurry.Curry(1)
+	add1 := addCurry.New(1)
+
 	assert.Equal(3, add1(2))
 }
 
 func TestCompose(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestCompose")
 
-	toUpper := func(a ...any) any {
-		return strings.ToUpper(a[0].(string))
+	toUpper := func(strs ...string) string {
+		return strings.ToUpper(strs[0])
 	}
-	toLower := func(a ...any) any {
-		return strings.ToLower(a[0].(string))
+	toLower := func(strs ...string) string {
+		return strings.ToLower(strs[0])
 	}
 
 	expected := toUpper(toLower("aBCde"))
+
 	cf := Compose(toUpper, toLower)
 	res := cf("aBCde")
 
@@ -133,4 +143,22 @@ func TestSchedule(t *testing.T) {
 	// res maybe [* * * * *] or [* * * * * *]
 	// expected := []string{"*", "*", "*", "*", "*"}
 	// assert.Equal(expected, res)
+}
+
+func TestPipeline(t *testing.T) {
+	assert := internal.NewAssert(t, "TestPipeline")
+
+	addOne := func(x int) int {
+		return x + 1
+	}
+	double := func(x int) int {
+		return 2 * x
+	}
+	square := func(x int) int {
+		return x * x
+	}
+
+	f := Pipeline(addOne, double, square)
+
+	assert.Equal(36, f(2))
 }

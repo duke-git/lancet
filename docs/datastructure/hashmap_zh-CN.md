@@ -24,11 +24,13 @@ import (
 
 - [NewHashMap](#NewHashMap)
 - [NewHashMapWithCapacity](#NewHashMapWithCapacity)
-
 - [Get](#Get)
 - [Put](#Put)
 - [Delete](#Delete)
 - [Contains](#Contains)
+- [Iterate](#Iterate)
+- [Keys](#Keys)
+- [Values](#Values)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -44,7 +46,7 @@ import (
 func NewHashMap() *HashMap
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -70,7 +72,7 @@ func main() {
 func NewHashMapWithCapacity(size, capacity uint64) *HashMap
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -96,7 +98,7 @@ func main() {
 func (hm *HashMap) Get(key any) any
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -124,7 +126,7 @@ func main() {
 func (hm *HashMap) Put(key any, value any) any
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -153,7 +155,7 @@ func main() {
 func (hm *HashMap) Delete(key any)
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -185,7 +187,7 @@ func main() {
 func (hm *HashMap) Contains(key any) bool
 ```
 
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -203,3 +205,104 @@ func main() {
     fmt.Println(hm.Contains("b")) //false
 }
 ```
+
+
+### <span id="Iterate">Iterate</span>
+
+<p>迭代hashmap，对每个key和value执行iteratee函数</p>
+
+<b>函数签名:</b>
+
+```go
+func (hm *HashMap) Iterate(iteratee func(key, value any))
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    hashmap "github.com/duke-git/lancet/v2/datastructure/hashmap"
+)
+
+func main() {
+    hm := heap.NewHashMap()
+    hm.Put("a", 1)
+    hm.Put("b", 2)
+    hm.Put("c", 3)
+
+    hm.Iterate(func(key, value any) {
+        fmt.Println(key)
+        fmt.Println(value)
+    })
+}
+```
+
+
+
+### <span id="Keys">Keys</span>
+
+<p>返回hashmap所有key的切片 (随机顺序)</p>
+
+<b>函数签名:</b>
+
+```go
+func (hm *HashMap) Keys() []any
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    hashmap "github.com/duke-git/lancet/v2/datastructure/hashmap"
+)
+
+func main() {
+    hm := heap.NewHashMap()
+    hm.Put("a", 1)
+    hm.Put("b", 2)
+    hm.Put("c", 3)
+
+    keys := hm.Keys()
+    fmt.Println(keys) //[]interface{"a", "b", "c"}
+}
+```
+
+
+### <span id="Values">Values</span>
+
+<p>返回hashmap所有值的切片 (随机顺序).</p>
+
+<b>函数签名:</b>
+
+```go
+func (hm *HashMap) Values() []any
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    hashmap "github.com/duke-git/lancet/v2/datastructure/hashmap"
+)
+
+func main() {
+    hm := heap.NewHashMap()
+    hm.Put("a", 1)
+    hm.Put("b", 2)
+    hm.Put("c", 3)
+
+    values := hm.Values()
+    fmt.Println(values) //[]interface{2, 1, 3}
+}
+```
+
+

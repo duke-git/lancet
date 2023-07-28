@@ -7,9 +7,11 @@ import (
 )
 
 func TestWatcher(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestWatcher")
 
-	w := &Watcher{}
+	w := NewWatcher()
 	w.Start()
 
 	longRunningTask()
@@ -29,9 +31,10 @@ func TestWatcher(t *testing.T) {
 	assert.Equal(int64(0), w.stopTime)
 }
 
-func longRunningTask() {
-	var slice []int64
+func longRunningTask() []int64 {
+	var data []int64
 	for i := 0; i < 10000000; i++ {
-		slice = append(slice, int64(i))
+		data = append(data, int64(i))
 	}
+	return data
 }

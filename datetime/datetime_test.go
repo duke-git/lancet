@@ -7,7 +7,40 @@ import (
 	"github.com/duke-git/lancet/v2/internal"
 )
 
+func TestAddYear(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestAddDay")
+
+	now := time.Now()
+	after2Years := AddYear(now, 1)
+	diff1 := after2Years.Sub(now)
+	assert.Equal(float64(8760), diff1.Hours())
+
+	before2Years := AddYear(now, -1)
+	diff2 := before2Years.Sub(now)
+	assert.Equal(float64(-8760), diff2.Hours())
+}
+
+func TestBetweenSeconds(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestBetweenSeconds")
+
+	today := time.Now()
+	tomorrow := AddDay(today, 1)
+	yesterday := AddDay(today, -1)
+
+	result1 := BetweenSeconds(today, tomorrow)
+	result2 := BetweenSeconds(today, yesterday)
+
+	assert.Equal(int64(86400), result1)
+	assert.Equal(int64(-86400), result2)
+}
+
 func TestAddDay(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestAddDay")
 
 	now := time.Now()
@@ -21,6 +54,8 @@ func TestAddDay(t *testing.T) {
 }
 
 func TestAddHour(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestAddHour")
 
 	now := time.Now()
@@ -34,6 +69,8 @@ func TestAddHour(t *testing.T) {
 }
 
 func TestAddMinute(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestAddMinute")
 
 	now := time.Now()
@@ -47,45 +84,74 @@ func TestAddMinute(t *testing.T) {
 }
 
 func TestGetNowDate(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestGetNowDate")
 	expected := time.Now().Format("2006-01-02")
 	assert.Equal(expected, GetNowDate())
 }
 
-func TestGetNotTime(t *testing.T) {
-	assert := internal.NewAssert(t, "TestGetNotTime")
+func TestGetNowTime(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestGetNowTime")
 	expected := time.Now().Format("15:04:05")
 	assert.Equal(expected, GetNowTime())
 }
 
 func TestGetNowDateTime(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestGetNowDateTime")
 	expected := time.Now().Format("2006-01-02 15:04:05")
 	assert.Equal(expected, GetNowDateTime())
 }
 
+func TestGetTodayStartTime(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestGetTodayStartTime")
+	expected := time.Now().Format("2006-01-02") + " 00:00:00"
+	assert.Equal(expected, GetTodayStartTime())
+}
+
+func TestGetTodayEndTime(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestGetTodayEndTime")
+	expected := time.Now().Format("2006-01-02") + " 23:59:59"
+	assert.Equal(expected, GetTodayEndTime())
+}
+
 func TestFormatTimeToStr(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestFormatTimeToStr")
 
 	datetime, _ := time.Parse("2006-01-02 15:04:05", "2021-01-02 16:04:08")
 	cases := []string{
 		"yyyy-mm-dd hh:mm:ss", "yyyy-mm-dd",
 		"dd-mm-yy hh:mm:ss", "yyyy/mm/dd hh:mm:ss",
-		"hh:mm:ss", "yyyy/mm"}
+		"hh:mm:ss", "yyyy/mm",
+		"yyyy-mm-dd hh",
+	}
 
 	expected := []string{
 		"2021-01-02 16:04:08", "2021-01-02",
 		"02-01-21 16:04:08", "2021/01/02 16:04:08",
-		"16:04:08", "2021/01"}
+		"16:04:08", "2021/01",
+		"2021-01-02 16",
+	}
 
 	for i := 0; i < len(cases); i++ {
 		actual := FormatTimeToStr(datetime, cases[i])
 		assert.Equal(expected[i], actual)
-
 	}
 }
 
 func TestFormatStrToTime(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestFormatStrToTime")
 
 	formats := []string{
@@ -113,6 +179,8 @@ func TestFormatStrToTime(t *testing.T) {
 }
 
 func TestBeginOfMinute(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestBeginOfMinute")
 
 	expected := time.Date(2022, 2, 15, 15, 48, 0, 0, time.Local)
@@ -123,6 +191,8 @@ func TestBeginOfMinute(t *testing.T) {
 }
 
 func TestEndOfMinute(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestEndOfMinute")
 
 	expected := time.Date(2022, 2, 15, 15, 48, 59, 999999999, time.Local)
@@ -133,6 +203,8 @@ func TestEndOfMinute(t *testing.T) {
 }
 
 func TestBeginOfHour(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestBeginOfHour")
 
 	expected := time.Date(2022, 2, 15, 15, 0, 0, 0, time.Local)
@@ -143,6 +215,8 @@ func TestBeginOfHour(t *testing.T) {
 }
 
 func TestEndOfHour(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestEndOfHour")
 
 	expected := time.Date(2022, 2, 15, 15, 59, 59, 999999999, time.Local)
@@ -153,6 +227,8 @@ func TestEndOfHour(t *testing.T) {
 }
 
 func TestBeginOfDay(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestBeginOfDay")
 
 	expected := time.Date(2022, 2, 15, 0, 0, 0, 0, time.Local)
@@ -163,6 +239,8 @@ func TestBeginOfDay(t *testing.T) {
 }
 
 func TestEndOfDay(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestEndOfDay")
 
 	expected := time.Date(2022, 2, 15, 23, 59, 59, 999999999, time.Local)
@@ -173,6 +251,8 @@ func TestEndOfDay(t *testing.T) {
 }
 
 func TestBeginOfWeek(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestBeginOfWeek")
 
 	expected := time.Date(2022, 2, 13, 0, 0, 0, 0, time.Local)
@@ -183,6 +263,8 @@ func TestBeginOfWeek(t *testing.T) {
 }
 
 func TestEndOfWeek(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestEndOfWeek")
 
 	expected := time.Date(2022, 2, 19, 23, 59, 59, 999999999, time.Local)
@@ -193,6 +275,8 @@ func TestEndOfWeek(t *testing.T) {
 }
 
 func TestBeginOfMonth(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestBeginOfMonth")
 
 	expected := time.Date(2022, 2, 1, 0, 0, 0, 0, time.Local)
@@ -203,6 +287,8 @@ func TestBeginOfMonth(t *testing.T) {
 }
 
 func TestEndOfMonth(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestEndOfMonth")
 
 	expected := time.Date(2022, 2, 28, 23, 59, 59, 999999999, time.Local)
@@ -213,6 +299,8 @@ func TestEndOfMonth(t *testing.T) {
 }
 
 func TestBeginOfYear(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestBeginOfYear")
 
 	expected := time.Date(2022, 1, 1, 0, 0, 0, 0, time.Local)
@@ -223,6 +311,8 @@ func TestBeginOfYear(t *testing.T) {
 }
 
 func TestEndOfYear(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestEndOfYear")
 
 	expected := time.Date(2022, 12, 31, 23, 59, 59, 999999999, time.Local)
@@ -230,4 +320,51 @@ func TestEndOfYear(t *testing.T) {
 	actual := EndOfYear(td)
 
 	assert.Equal(expected, actual)
+}
+
+func TestIsLeapYear(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestEndOfYear")
+
+	result1 := IsLeapYear(2000)
+	result2 := IsLeapYear(2001)
+
+	assert.Equal(true, result1)
+	assert.Equal(false, result2)
+}
+
+func TestDayOfYear(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestDayOfYear")
+	date1 := time.Date(2023, 02, 01, 1, 1, 1, 0, time.Local)
+	result1 := DayOfYear(date1)
+	assert.Equal(31, result1)
+
+	date2 := time.Date(2023, 01, 02, 1, 1, 1, 0, time.Local)
+	result2 := DayOfYear(date2)
+	assert.Equal(1, result2)
+
+	date3 := time.Date(2023, 01, 01, 1, 1, 1, 0, time.Local)
+	result3 := DayOfYear(date3)
+	assert.Equal(0, result3)
+}
+
+func TestIsWeekend(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestIsWeekend")
+
+	date := time.Date(2023, 06, 03, 0, 0, 0, 0, time.Local)
+	result := IsWeekend(date)
+	assert.Equal(true, result)
+
+	date1 := time.Date(2023, 06, 04, 0, 0, 0, 0, time.Local)
+	result1 := IsWeekend(date1)
+	assert.Equal(true, result1)
+
+	date2 := time.Date(2023, 06, 02, 0, 0, 0, 0, time.Local)
+	result2 := IsWeekend(date2)
+	assert.Equal(false, result2)
 }

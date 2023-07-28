@@ -7,21 +7,37 @@ import (
 )
 
 func TestBase64StdEncode(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestBase64StdEncode")
 	assert.Equal("aGVsbG8gd29ybGQ=", Base64StdEncode("hello world"))
 }
 
 func TestBase64StdDecode(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestBase64StdDecode")
 	assert.Equal("hello world", Base64StdDecode("aGVsbG8gd29ybGQ="))
 }
 
 func TestMd5String(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestMd5String")
 	assert.Equal("5d41402abc4b2a76b9719d911017c592", Md5String("hello"))
 }
 
+func TestMd5Byte(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestMd5Byte")
+	data := []byte{'a'}
+	assert.Equal("0cc175b9c0f1b6a831c399e269772661", Md5Byte(data))
+}
+
 func TestMd5File(t *testing.T) {
+	t.Parallel()
+
 	fileMd5, err := Md5File("./basic.go")
 	assert := internal.NewAssert(t, "TestMd5File")
 	assert.IsNotNil(fileMd5)
@@ -29,11 +45,15 @@ func TestMd5File(t *testing.T) {
 }
 
 func TestHmacMd5(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestHmacMd5")
 	assert.Equal("5f4c9faaff0a1ad3007d9ddc06abe36d", HmacMd5("hello world", "12345"))
 }
 
 func TestHmacSha1(t *testing.T) {
+	t.Parallel()
+
 	s := "hello world"
 	key := "12345"
 	hmacSha1 := HmacSha1(s, key)
@@ -44,6 +64,8 @@ func TestHmacSha1(t *testing.T) {
 }
 
 func TestHmacSha256(t *testing.T) {
+	t.Parallel()
+
 	s := "hello world"
 	key := "12345"
 	hmacSha256 := HmacSha256(s, key)
@@ -54,6 +76,8 @@ func TestHmacSha256(t *testing.T) {
 }
 
 func TestHmacSha512(t *testing.T) {
+	t.Parallel()
+
 	s := "hello world"
 	key := "12345"
 	hmacSha512 := HmacSha512(s, key)
@@ -64,6 +88,8 @@ func TestHmacSha512(t *testing.T) {
 }
 
 func TestSha1(t *testing.T) {
+	t.Parallel()
+
 	s := "hello world"
 	sha1 := Sha1(s)
 	expected := "2aae6c35c94fcfb415dbe95f408b9ce91ee846ed"
@@ -73,6 +99,8 @@ func TestSha1(t *testing.T) {
 }
 
 func TestSha256(t *testing.T) {
+	t.Parallel()
+
 	s := "hello world"
 	sha256 := Sha256(s)
 	expected := "b94d27b9934d3e08a52e52d7da7dabfac484efe37a5380ee9088f7ace2efcde9"
@@ -82,6 +110,8 @@ func TestSha256(t *testing.T) {
 }
 
 func TestSha512(t *testing.T) {
+	t.Parallel()
+
 	s := "hello world"
 	sha512 := Sha512(s)
 	expected := "309ecc489c12d6eb4cc40f50c902f2b4d0ed77ee511a7c7a9bcd3ca86d4cd86f989dd35bc5ff499670da34255b45b0cfd830e81f605dcf7dc5542e93ae9cd76f"

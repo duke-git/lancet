@@ -1,16 +1,18 @@
 # Function
+
 Package function can control the flow of function execution and support part of functional programming.
 
 <div STYLE="page-break-after: always;"></div>
 
 ## Source:
 
-- [https://github.com/duke-git/lancet/blob/main/function/function.go](https://github.com/duke-git/lancet/blob/main/function/function.go)
-- [https://github.com/duke-git/lancet/blob/main/function/watcher.go](https://github.com/duke-git/lancet/blob/main/function/watcher.go)
+-   [https://github.com/duke-git/lancet/blob/main/function/function.go](https://github.com/duke-git/lancet/blob/main/function/function.go)
+-   [https://github.com/duke-git/lancet/blob/main/function/watcher.go](https://github.com/duke-git/lancet/blob/main/function/watcher.go)
 
 <div STYLE="page-break-after: always;"></div>
 
 ## Usage:
+
 ```go
 import (
     "github.com/duke-git/lancet/v2/function"
@@ -20,21 +22,23 @@ import (
 <div STYLE="page-break-after: always;"></div>
 
 ## Index
-- [After](#After)
-- [Before](#Before)
-- [Curry](#Curry)
-- [Compose](#Compose)
-- [Debounced](#Debounced)
-- [Delay](#Delay)
-- [Watcher](#Watcher)
+
+-   [After](#After)
+-   [Before](#Before)
+-   [CurryFn](#CurryFn)
+-   [Compose](#Compose)
+-   [Debounced](#Debounced)
+-   [Delay](#Delay)
+-   [Schedule](#Schedule)
+-   [Pipeline](#Pipeline)
+-   [Watcher](#Watcher)
 
 <div STYLE="page-break-after: always;"></div>
 
 ## Documentation
 
-
-
 ### <span id="After">After</span>
+
 <p>Creates a function that invokes given func once it's called n or more times.</p>
 
 <b>Signature:</b>
@@ -42,6 +46,7 @@ import (
 ```go
 func After(n int, fn any) func(args ...any) []reflect.Value
 ```
+
 <b>Example:</b>
 
 ```go
@@ -53,32 +58,17 @@ import (
 )
 
 func main() {
-	arr := []string{"a", "b"}
-	f := function.After(len(arr), func(i int) int {
-		fmt.Println("last print")
-		return i
-	})
+    fn := function.After(2, func() {
+        fmt.Println("hello")
+    })
 
-	type cb func(args ...any) []reflect.Value
-	print := func(i int, s string, fn cb) {
-		fmt.Printf("arr[%d] is %s \n", i, s)
-		fn(i)
-	}
+    fn()
+    fn()
 
-	fmt.Println("arr is", arr)
-	for i := 0; i < len(arr); i++ {
-		print(i, arr[i], f)
-	}
-
-    //output:
-    // arr is [a b]
-    // arr[0] is a 
-    // arr[1] is b 
-    // last print
+    // Output:
+    // hello
 }
 ```
-
-
 
 ### <span id="Before">Before</span>
 
@@ -89,6 +79,7 @@ func main() {
 ```go
 func Before(n int, fn any) func(args ...any) []reflect.Value
 ```
+
 <b>Example:</b>
 
 ```go
@@ -101,39 +92,32 @@ import (
 )
 
 func main() {
-	arr := []string{"a", "b", "c", "d", "e"}
-	f := function.Before(3, func(i int) int {
-		return i
-	})
+    fn := function.Before(2, func() {
+        fmt.Println("hello")
+    })
 
-	var res []int64
-	type cb func(args ...any) []reflect.Value
-	appendStr := func(i int, s string, fn cb) {
-		v := fn(i)
-		res = append(res, v[0].Int())
-	}
+    fn()
+    fn()
+    fn()
+    fn()
 
-	for i := 0; i < len(arr); i++ {
-		appendStr(i, arr[i], f)
-	}
-
-	expected := []int64{0, 1, 2, 2, 2}
-	fmt.Println(res) // 0, 1, 2, 2, 2
+    // Output:
+    // hello
+    // hello
 }
 ```
 
+### <span id="CurryFn">CurryFn</span>
 
-
-### <span id="Curry">Curry</span>
-
-<p>Make a curry function.</p>
+<p>Make curry function.</p>
 
 <b>Signature:</b>
 
 ```go
-type Fn func(...any) any
-func (f Fn) Curry(i any) func(...any) any
+type CurryFn[T any] func(...T) T
+func (cf CurryFn[T]) New(val T) func(...T) T
 ```
+
 <b>Example:</b>
 
 ```go
@@ -146,18 +130,22 @@ import (
 
 func main() {
     add := func(a, b int) int {
-		return a + b
-	}
-	var addCurry function.Fn = func(values ...any) any {
-		return add(values[0].(int), values[1].(int))
-	}
-	add1 := addCurry.Curry(1)
-	result := add1(2)
-    fmt.Println(result) //3
+        return a + b
+    }
+
+    var addCurry function.CurryFn[int] = func(values ...int) int {
+        return add(values[0], values[1])
+    }
+    add1 := addCurry.New(1)
+
+    result := add1(2)
+
+    fmt.Println(result)
+
+    // Output:
+    // 3
 }
 ```
-
-
 
 ### <span id="Compose">Compose</span>
 
@@ -166,8 +154,9 @@ func main() {
 <b>Signature:</b>
 
 ```go
-func Compose(fnList ...func(...any) any) func(...any) any
+func Compose[T any](fnList ...func(...T) T) func(...T) T
 ```
+
 <b>Example:</b>
 
 ```go
@@ -179,21 +168,22 @@ import (
 )
 
 func main() {
-    add1 := func(v ...any) any {
-		return v[0].(int) + 1
-	}
-    add2 := func(v ...any) any {
-		return v[0].(int) + 2
-	}
+    toUpper := func(strs ...string) string {
+        return strings.ToUpper(strs[0])
+    }
+    toLower := func(strs ...string) string {
+        return strings.ToLower(strs[0])
+    }
+    transform := function.Compose(toUpper, toLower)
 
-    add3 := function.Compose(add1, add2)
-	result := add3(1)
+    result := transform("aBCde")
 
-    fmt.Println(result) //4
+    fmt.Println(result)
+
+    // Output:
+    // ABCDE
 }
 ```
-
-
 
 ### <span id="Debounced">Debounced</span>
 
@@ -204,6 +194,7 @@ func main() {
 ```go
 func Debounced(fn func(), duration time.Duration) func()
 ```
+
 <b>Example:</b>
 
 ```go
@@ -216,26 +207,33 @@ import (
 
 func main() {
     count := 0
-	add := func() {
-		count++
-	}
 
-	debouncedAdd := function.Debounced(add, 50*time.Microsecond)
-	function.debouncedAdd()
-	function.debouncedAdd()
-	function.debouncedAdd()
-	function.debouncedAdd()
+    add := func() {
+        count++
+    }
 
-	time.Sleep(100 * time.Millisecond)
-	fmt.Println(count) //1
+    debouncedAdd := function.Debounced(add, 50*time.Microsecond)
 
-	function.debouncedAdd()
-	time.Sleep(100 * time.Millisecond)
-	fmt.Println(count) //2
+    debouncedAdd()
+    debouncedAdd()
+    debouncedAdd()
+    debouncedAdd()
+
+    time.Sleep(100 * time.Millisecond)
+
+    fmt.Println(count)
+
+    debouncedAdd()
+
+    time.Sleep(100 * time.Millisecond)
+
+    fmt.Println(count)
+
+    // Output:
+    // 1
+    // 2
 }
 ```
-
-
 
 ### <span id="Delay">Delay</span>
 
@@ -246,6 +244,7 @@ func main() {
 ```go
 func Delay(delay time.Duration, fn any, args ...any)
 ```
+
 <b>Example:</b>
 
 ```go
@@ -257,14 +256,16 @@ import (
 )
 
 func main() {
-	var print = func(s string) {
-		fmt.Println(count) //test delay
-	}
-	function.Delay(2*time.Second, print, "test delay")
+    var print = func(s string) {
+        fmt.Println(s)
+    }
+
+    function.Delay(2*time.Second, print, "hello")
+
+    // Output:
+    // hello
 }
 ```
-
-
 
 ### <span id="Schedule">Schedule</span>
 
@@ -275,6 +276,7 @@ func main() {
 ```go
 func Schedule(d time.Duration, fn any, args ...any) chan bool
 ```
+
 <b>Example:</b>
 
 ```go
@@ -286,20 +288,66 @@ import (
 )
 
 func main() {
-    var res []string
-	appendStr := func(s string) {
-		res = append(res, s)
-	}
+    count := 0
 
-	stop := function.Schedule(1*time.Second, appendStr, "*")
-	time.Sleep(5 * time.Second)
-	close(stop)
+    increase := func() {
+        count++
+    }
 
-	fmt.Println(res) //[* * * * *]
+    stop := function.Schedule(2*time.Second, increase)
+
+    time.Sleep(2 * time.Second)
+    close(stop)
+
+    fmt.Println(count)
+
+    // Output:
+    // 2
 }
 ```
 
+### <span id="Pipeline">Pipeline</span>
 
+<p>Pipeline takes a list of functions and returns a function whose param will be passed into
+the functions one by one.</p>
+
+<b>Signature:</b>
+
+```go
+func Pipeline[T any](funcs ...func(T) T) func(T) T
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/function"
+)
+
+func main() {
+    addOne := func(x int) int {
+        return x + 1
+    }
+    double := func(x int) int {
+        return 2 * x
+    }
+    square := func(x int) int {
+        return x * x
+    }
+
+    fn := function.Pipeline(addOne, double, square)
+
+    result := fn(2)
+
+    fmt.Println(result)
+
+    // Output:
+    // 36
+}
+```
 
 ### <span id="Watcher">Watcher</span>
 
@@ -309,15 +357,17 @@ func main() {
 
 ```go
 type Watcher struct {
-	startTime int64
-	stopTime  int64
-	excuting  bool
+    startTime int64
+    stopTime  int64
+    excuting  bool
 }
+func NewWatcher() *Watcher
 func (w *Watcher) Start() //start the watcher
 func (w *Watcher) Stop() //stop the watcher
 func (w *Watcher) Reset() //reset the watcher
 func (w *Watcher) GetElapsedTime() time.Duration //get the elapsed time of function execution
 ```
+
 <b>Example:</b>
 
 ```go
@@ -329,34 +379,28 @@ import (
 )
 
 func main() {
-    w := &function.Watcher{}
-	w.Start()
+       w := function.NewWatcher()
 
-	longRunningTask()
+    w.Start()
 
-	fmt.Println(w.excuting) //true
+    longRunningTask()
 
-	w.Stop()
+    fmt.Println(w.excuting) //true
 
-	eapsedTime := w.GetElapsedTime().Milliseconds()
-	fmt.Println(eapsedTime)
+    w.Stop()
 
-	w.Reset()
+    eapsedTime := w.GetElapsedTime().Milliseconds()
 
-	fmt.Println(w.excuting) //false
+    fmt.Println(eapsedTime)
 
-	fmt.Println(w.startTime) //0
-	fmt.Println(w.stopTime) //0
+    w.Reset()
 }
 
 func longRunningTask() {
-	var slice []int64
-	for i := 0; i < 10000000; i++ {
-		slice = append(slice, int64(i))
-	}
+    var slice []int64
+    for i := 0; i < 10000000; i++ {
+        slice = append(slice, int64(i))
+    }
 }
 
 ```
-
-
-

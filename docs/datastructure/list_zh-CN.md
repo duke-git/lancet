@@ -34,7 +34,6 @@ import (
 - [PopLast](#PopLast)
 - [DeleteAt](#DeleteAt)
 - [InsertAt](#InsertAt)
-
 - [UpdateAt](#UpdateAt)
 - [Equal](#Equal)
 - [IsEmpty](#IsEmpty)
@@ -48,6 +47,13 @@ import (
 - [Unique](#Unique)
 - [Union](#Union)
 - [Intersection](#Intersection)
+- [Difference](#Difference)
+- [SymmetricDifference](#SymmetricDifference)
+- [RetainAll](#RetainAll)
+- [DeleteAll](#DeleteAll)
+- [ForEach](#ForEach)
+- [Iterator](#Iterator)
+- [ListToMap](#ListToMap)
 - [SubList](#SubList)
 - [DeleteIf](#DeleteIf)
 
@@ -62,11 +68,11 @@ import (
 
 ```go
 type List[T any] struct {
-	data []T
+    data []T
 }
 func NewList[T any](data []T) *List[T]
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -92,7 +98,7 @@ func main() {
 ```go
 func (l *List[T]) Contain(value T) bool
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -121,7 +127,7 @@ func main() {
 ```go
 func (l *List[T]) Data() []T
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -150,7 +156,7 @@ func main() {
 ```go
 func (l *List[T]) ValueOf(index int) (*T, bool)
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -180,7 +186,7 @@ func main() {
 ```go
 func (l *List[T]) IndexOf(value T) int
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -207,7 +213,7 @@ func main() {
 ```go
 func (l *List[T]) LastIndexOf(value T) int
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -233,7 +239,7 @@ func main() {
 ```go
 func (l *List[T]) IndexOfFunc(f func(T) bool) int 
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -259,7 +265,7 @@ func main() {
 ```go
 func (l *List[T]) LastIndexOfFunc(f func(T) bool) int
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -287,7 +293,7 @@ func main() {
 ```go
 func (l *List[T]) Push(value T)
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -316,7 +322,7 @@ func main() {
 ```go
 func (l *List[T]) PopFirst() (*T, bool)
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -348,7 +354,7 @@ func main() {
 ```go
 func (l *List[T]) PopLast() (*T, bool)
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -379,7 +385,7 @@ func main() {
 ```go
 func (l *List[T]) DeleteAt(index int)
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -417,7 +423,7 @@ func main() {
 ```go
 func (l *List[T]) InsertAt(index int, value T)
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -454,7 +460,7 @@ func main() {
 ```go
 func (l *List[T]) UpdateAt(index int, value T)
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -487,7 +493,7 @@ func main() {
 ```go
 func (l *List[T]) Equal(other *List[T]) bool
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -517,7 +523,7 @@ func main() {
 ```go
 func (l *List[T]) IsEmpty() bool
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -547,7 +553,7 @@ func main() {
 ```go
 func (l *List[T]) Clear()
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -575,7 +581,7 @@ func main() {
 ```go
 func (l *List[T]) Clone() *List[T]
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -604,7 +610,7 @@ func main() {
 ```go
 func (l *List[T]) Merge(other *List[T]) *List[T]
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -633,7 +639,7 @@ func main() {
 ```go
 func (l *List[T]) Size() int
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -660,7 +666,7 @@ func main() {
 ```go
 func (l *List[T]) Cap() int
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -671,8 +677,8 @@ import (
 )
 
 func main() {
-	data := make([]int, 0, 100)
-	
+    data := make([]int, 0, 100)
+    
     li := list.NewList(data)
 
     fmt.Println(li.Cap()) // 100
@@ -689,7 +695,7 @@ func main() {
 ```go
 func (l *List[T]) Swap(i, j int)
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -718,7 +724,7 @@ func main() {
 ```go
 func (l *List[T]) Reverse()
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -747,7 +753,7 @@ func main() {
 ```go
 func (l *List[T]) Unique()
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -776,7 +782,7 @@ func main() {
 ```go
 func (l *List[T]) Union(other *List[T]) *List[T]
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -806,7 +812,7 @@ func main() {
 ```go
 func (l *List[T]) Intersection(other *List[T]) *List[T]
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -826,16 +832,244 @@ func main() {
 ```
 
 
+### <span id="Difference">Difference</span>
+<p>差集运算。</p>
+
+<b>函数签名:</b>
+
+```go
+func (l *List[T]) Difference(other *List[T]) *List[T]
+```
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    list "github.com/duke-git/lancet/v2/datastructure/list"
+)
+
+func main() {
+    list1 := NewList([]int{1, 2, 3})
+    list2 := NewList([]int{1, 2, 4})
+
+    list3 := list1.Intersection(list2)
+
+    fmt.Println(list3.Data()) //3
+}
+```
+
+
+### <span id="SymmetricDifference">SymmetricDifference</span>
+<p>对称差集运算。</p>
+
+<b>函数签名:</b>
+
+```go
+func (l *List[T]) SymmetricDifference(other *List[T]) *List[T]
+```
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    list "github.com/duke-git/lancet/v2/datastructure/list"
+)
+
+func main() {
+    list1 := NewList([]int{1, 2, 3})
+    list2 := NewList([]int{1, 2, 4})
+
+    list3 := list1.Intersection(list2)
+
+    fmt.Println(list3.Data()) //3, 4
+}
+```
+
+
+### <span id="RetainAll">RetainAll</span>
+<p>仅保留列表中包含在给定列表中的元素。</p>
+
+<b>函数签名:</b>
+
+```go
+func (l *List[T]) RetainAll(list *List[T]) bool
+```
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    list "github.com/duke-git/lancet/v2/datastructure/list"
+)
+
+func main() {
+    list := NewList([]int{1, 2, 3, 4})
+    list1 := NewList([]int{1, 2, 3, 4})
+    list2 := NewList([]int{1, 2, 3, 4})
+
+    retain := NewList([]int{1, 2})
+    retain1 := NewList([]int{2, 3})
+    retain2 := NewList([]int{1, 2, 5})
+
+    list.RetainAll(retain)
+    list1.RetainAll(retain1)
+    list2.RetainAll(retain2)
+
+    fmt.Println(list.Data()) //1, 2
+    fmt.Println(list1.Data()) //2, 3
+    fmt.Println(list2.Data()) //1, 2
+}
+```
+
+
+### <span id="DeleteAll">DeleteAll</span>
+<p>从列表中删除给定列表中包含的所有元素。</p>
+
+<b>函数签名:</b>
+
+```go
+func (l *List[T]) DeleteAll(list *List[T]) bool
+```
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    list "github.com/duke-git/lancet/v2/datastructure/list"
+)
+
+func main() {
+    list := NewList([]int{1, 2, 3, 4})
+    list1 := NewList([]int{1, 2, 3, 4})
+    list2 := NewList([]int{1, 2, 3, 4})
+
+    del := NewList([]int{1})
+    del1 := NewList([]int{2, 3})
+    del2 := NewList([]int{1, 2, 5})
+
+    list.DeleteAll(del)
+    list1.DeleteAll(del1)
+    list2.DeleteAll(del2)
+
+    fmt.Println(list.Data()) //2,3,4
+    fmt.Println(list1.Data()) //1,4
+    fmt.Println(list2.Data()) //3,4
+}
+```
+
+
+### <span id="ForEach">ForEach</span>
+<p>对列表的每个元素执行给定的操作。</p>
+
+<b>函数签名:</b>
+
+```go
+func (l *List[T]) ForEach(consumer func(T))
+```
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    list "github.com/duke-git/lancet/v2/datastructure/list"
+)
+
+func main() {
+    list := NewList([]int{1, 2, 3, 4})
+
+    result := make([]int, 0)
+    list.ForEach(func(i int) {
+        result = append(result, i)
+    })
+
+    fmt.Println(result.Data()) //1,2,3,4
+}
+```
+
+
+### <span id="Iterator">Iterator</span>
+<p>按顺序返回列表中元素的迭代器。</p>
+
+<b>函数签名:</b>
+
+```go
+func (l *List[T]) Iterator() iterator.Iterator[T]
+```
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    list "github.com/duke-git/lancet/v2/datastructure/list"
+)
+
+func main() {
+    list := NewList([]int{1, 2, 3, 4})
+
+    iterator := list.Iterator()
+
+    result := make([]int, 0)
+    for iterator.HasNext() {
+        item, _ := iterator.Next()
+        result = append(result, item)
+    }
+
+    fmt.Println(result.Data()) //1,2,3,4
+}
+```
+
+
+### <span id="ListToMap">ListToMap</span>
+<p>基于iteratee函数将列表转换为映射map。</p>
+
+<b>函数签名:</b>
+
+```go
+func ListToMap[T any, K comparable, V any](list *List[T], iteratee func(T) (K, V)) map[K]V
+```
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    list "github.com/duke-git/lancet/v2/datastructure/list"
+)
+
+func main() {
+    list := NewList([]int{1, 2, 3, 4})
+
+    result := ListToMap(list, func(n int) (int, bool) {
+        return n, n > 1
+    })
+
+    fmt.Println(result) //map[int]bool{1: false, 2: true, 3: true, 4: true}
+}
+```
+
 
 ### <span id="SubList">SubList</span>
-<p>SubList returns a sub list of the original list between the specified fromIndex, inclusive, and toIndex, exclusive.</p>
+<p>返回指定的fromIndex（包含）和toIndex（不包含）之间的原始列表的子列表。</p>
 
 <b>函数签名:</b>
 
 ```go
 func (l *List[T]) SubList(fromIndex, toIndex int) *List[T] 
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -863,7 +1097,7 @@ func main() {
 ```go
 func (l *List[T]) DeleteIf(f func(T) bool) int
 ```
-<b>例子:</b>
+<b>示例:</b>
 
 ```go
 package main
@@ -874,9 +1108,9 @@ import (
 )
 
 func main() {
-	l := list.NewList([]int{1, 1, 1, 1, 2, 3, 1, 1, 4, 1, 1, 1, 1, 1, 1})
+    l := list.NewList([]int{1, 1, 1, 1, 2, 3, 1, 1, 4, 1, 1, 1, 1, 1, 1})
 
-	fmt.Println(l.DeleteIf(func(a int) bool { return a == 1 })) // 12 
-	fmt.Println(l.Data()) // []int{2, 3, 4}
+    fmt.Println(l.DeleteIf(func(a int) bool { return a == 1 })) // 12 
+    fmt.Println(l.Data()) // []int{2, 3, 4}
 }
 ```

@@ -8,24 +8,30 @@ import (
 )
 
 func TestOsDetection(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestOsJudgment")
 
 	osType, _, _ := ExecCommand("echo $OSTYPE")
-	if strings.Index(osType, "linux") != -1 {
+	if strings.Contains(osType, "linux") {
 		assert.Equal(true, IsLinux())
 	}
-	if strings.Index(osType, "darwin") != -1 {
+	if strings.Contains(osType, "darwin") {
 		assert.Equal(true, IsMac())
 	}
 }
 
 func TestOsEnvOperation(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestOsEnvOperation")
 
 	envNotExist := GetOsEnv("foo")
 	assert.Equal("", envNotExist)
 
-	SetOsEnv("foo", "foo_value")
+	err := SetOsEnv("foo", "foo_value")
+	assert.IsNil(err)
+
 	envExist := GetOsEnv("foo")
 	assert.Equal("foo_value", envExist)
 
@@ -34,7 +40,7 @@ func TestOsEnvOperation(t *testing.T) {
 	assert.Equal(false, CompareOsEnv("abc", "abc"))
 	assert.Equal(false, CompareOsEnv("abc", "abc"))
 
-	err := RemoveOsEnv("foo")
+	err = RemoveOsEnv("foo")
 	if err != nil {
 		t.Fail()
 	}
@@ -42,26 +48,45 @@ func TestOsEnvOperation(t *testing.T) {
 }
 
 func TestExecCommand(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestExecCommand")
 
-	out, errout, err := ExecCommand("ls")
-	t.Log("std out: ", out)
-	t.Log("std err: ", errout)
+	// linux or mac
+	stdout, stderr, err := ExecCommand("ls")
+	t.Log("std out: ", stdout)
+	t.Log("std err: ", stderr)
+	assert.Equal("", stderr)
 	assert.IsNil(err)
 
-	out, errout, err = ExecCommand("abc")
-	t.Log("std out: ", out)
-	t.Log("std err: ", errout)
-	if err != nil {
-		t.Logf("error: %v\n", err)
+	// windows
+	stdout, stderr, err = ExecCommand("dir")
+	t.Log("std out: ", stdout)
+	t.Log("std err: ", stderr)
+	if IsWindows() {
+		assert.IsNil(err)
 	}
 
-	if !IsWindows() {
-		assert.IsNotNil(err)
-	}
+	// error command
+	stdout, stderr, err = ExecCommand("abc")
+	t.Log("std out: ", stdout)
+	t.Log("std err: ", stderr)
+	assert.IsNotNil(err)
 }
 
+// func TestExecCommandWithOption(t *testing.T) {
+// 	assert := internal.NewAssert(t, "TestExecCommandWithOption")
+
+// 	stdout, stderr, err := ExecCommand("ls", WithForeground())
+// 	t.Log("std out: ", stdout)
+// 	t.Log("std err: ", stderr)
+// 	assert.Equal("", stderr)
+// 	assert.IsNil(err)
+// }
+
 func TestGetOsBits(t *testing.T) {
+	t.Parallel()
+
 	osBits := GetOsBits()
 	switch osBits {
 	case 32, 64:

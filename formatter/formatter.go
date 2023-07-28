@@ -4,14 +4,65 @@
 // Package formatter implements some functions to format string, struct.
 package formatter
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"io"
 
-// Comma add comma to number by every 3 numbers from right. ahead by symbol char
-func Comma(v any, symbol string) string {
-	s := numString(v)
-	dotIndex := strings.Index(s, ".")
-	if dotIndex != -1 {
-		return symbol + commaString(s[:dotIndex]) + s[dotIndex:]
+	"github.com/duke-git/lancet/v2/convertor"
+	"github.com/duke-git/lancet/v2/strutil"
+	"github.com/duke-git/lancet/v2/validator"
+	"golang.org/x/exp/constraints"
+)
+
+// Comma add comma to a number value by every 3 numbers from right. ahead by symbol char.
+// if value is invalid number string eg "aa", return empty string
+// Comma("12345", "$") => "$12,345", Comma(12345, "$") => "$12,345"
+// Play: https://go.dev/play/p/eRD5k2vzUVX
+func Comma[T constraints.Float | constraints.Integer | string](value T, symbol string) string {
+	if validator.IsInt(value) {
+		v, err := convertor.ToInt(value)
+		if err != nil {
+			return ""
+		}
+		return symbol + commaInt(v)
 	}
-	return symbol + commaString(s)
+
+	if validator.IsFloat(value) {
+		v, err := convertor.ToFloat(value)
+		if err != nil {
+			return ""
+		}
+		return symbol + commaFloat(v)
+	}
+
+	if strutil.IsString(value) {
+		v := fmt.Sprintf("%v", value)
+		if validator.IsNumberStr(v) {
+			return symbol + commaStr(v)
+		}
+		return ""
+	}
+
+	return ""
+}
+
+// Pretty data to JSON string.
+// Play: https://go.dev/play/p/YsciGj3FH2x
+func Pretty(v any) (string, error) {
+	out, err := json.MarshalIndent(v, "", "    ")
+	return string(out), err
+}
+
+// PrettyToWriter pretty encode data to writer.
+// Play: https://go.dev/play/p/LPLZ3lDi5ma
+func PrettyToWriter(v any, out io.Writer) error {
+	enc := json.NewEncoder(out)
+	enc.SetIndent("", "    ")
+
+	if err := enc.Encode(v); err != nil {
+		return err
+	}
+
+	return nil
 }

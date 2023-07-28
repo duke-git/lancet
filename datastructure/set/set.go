@@ -1,25 +1,66 @@
+// Copyright 2021 dudaodong@gmail.com. All rights reserved.
+// Use of this source code is governed by MIT license
+
+// Package datastructure contains some data structure. Set is a data container, like slice, but element of set is not duplicate.
 package datastructure
 
-// Set is a data container, like slice, but element of set is not duplicate
+// Set is a data container, like slice, but element of set is not duplicate.
 type Set[T comparable] map[T]struct{}
 
 // NewSet return a instance of set
-func NewSet[T comparable](values ...T) Set[T] {
+func NewSet[T comparable](items ...T) Set[T] {
 	set := make(Set[T])
-	set.Add(values...)
+	set.Add(items...)
 	return set
 }
 
-// Add value to set
-func (s Set[T]) Add(values ...T) {
-	for _, v := range values {
+// NewSetFromSlice create a set from slice
+func NewSetFromSlice[T comparable](items []T) Set[T] {
+	set := make(Set[T])
+	for _, item := range items {
+		set.Add(item)
+	}
+	return set
+}
+
+// Add items to set
+func (s Set[T]) Add(items ...T) {
+	for _, v := range items {
 		s[v] = struct{}{}
 	}
 }
 
-// Contain checks if set contains value or not
-func (s Set[T]) Contain(value T) bool {
-	_, ok := s[value]
+// AddIfNotExist checks if item exists in the set,
+// it adds the item to set and returns true if it does not exist in the set,
+// or else it does nothing and returns false.
+func (s Set[T]) AddIfNotExist(item T) bool {
+	if !s.Contain(item) {
+		if _, ok := s[item]; !ok {
+			s[item] = struct{}{}
+			return true
+		}
+	}
+	return false
+}
+
+// AddIfNotExistBy checks if item exists in the set and pass the `checker` function
+// it adds the item to set and returns true if it does not exists in the set and
+// function `checker` returns true, or else it does nothing and returns false.
+func (s Set[T]) AddIfNotExistBy(item T, checker func(element T) bool) bool {
+	if !s.Contain(item) {
+		if checker(item) {
+			if _, ok := s[item]; !ok {
+				s[item] = struct{}{}
+				return true
+			}
+		}
+	}
+	return false
+}
+
+// Contain checks if set contains item or not
+func (s Set[T]) Contain(item T) bool {
+	_, ok := s[item]
 	return ok
 }
 
@@ -41,9 +82,9 @@ func (s Set[T]) Clone() Set[T] {
 	return set
 }
 
-// Delete value of set
-func (s Set[T]) Delete(values ...T) {
-	for _, v := range values {
+// Delete item of set
+func (s Set[T]) Delete(items ...T) {
+	for _, v := range items {
 		delete(s, v)
 	}
 }
@@ -58,7 +99,7 @@ func (s Set[T]) Equal(other Set[T]) bool {
 }
 
 // Iterate call function by every element of set
-func (s Set[T]) Iterate(fn func(value T)) {
+func (s Set[T]) Iterate(fn func(item T)) {
 	for v := range s {
 		fn(v)
 	}
@@ -76,13 +117,13 @@ func (s Set[T]) Size() int {
 
 // Values return all values of set
 func (s Set[T]) Values() []T {
-	values := make([]T, 0, 0)
+	result := make([]T, 0, len(s))
 
 	s.Iterate(func(value T) {
-		values = append(values, value)
+		result = append(result, value)
 	})
 
-	return values
+	return result
 }
 
 // Union creates a new set contain all element of set s and other
@@ -133,4 +174,26 @@ func (s Set[T]) Minus(comparedSet Set[T]) Set[T] {
 	})
 
 	return set
+}
+
+// EachWithBreak iterates over elements of a set and invokes function for each element,
+// when iteratee return false, will break the for each loop.
+func (s Set[T]) EachWithBreak(iteratee func(item T) bool) {
+	for _, v := range s.Values() {
+		if !iteratee(v) {
+			break
+		}
+	}
+}
+
+// Pop delete the top element of set then return it, if set is empty, return nil-value of T and false.
+func (s Set[T]) Pop() (v T, ok bool) {
+	if len(s) > 0 {
+		items := s.Values()
+		item := items[len(s)-1]
+		delete(s, item)
+		return item, true
+	}
+
+	return v, false
 }

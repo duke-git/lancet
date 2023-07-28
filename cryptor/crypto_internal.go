@@ -2,11 +2,11 @@ package cryptor
 
 import "bytes"
 
-func generateAesKey(key []byte) []byte {
-	genKey := make([]byte, 16)
+func generateAesKey(key []byte, size int) []byte {
+	genKey := make([]byte, size)
 	copy(genKey, key)
-	for i := 16; i < len(key); {
-		for j := 0; j < 16 && i < len(key); j, i = j+1, i+1 {
+	for i := size; i < len(key); {
+		for j := 0; j < size && i < len(key); j, i = j+1, i+1 {
 			genKey[j] ^= key[i]
 		}
 	}
