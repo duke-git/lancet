@@ -57,6 +57,11 @@ import (
 -   [BetweenSeconds](#BetweenSeconds)
 -   [DayOfYear](#DayOfYear)
 -   [IsWeekend](#IsWeekend)
+-   [NowDateOrTime](#NowDateOrTime)
+-   [Timestamp](#Timestamp)
+-   [TimestampMilli](#TimestampMilli)
+-   [TimestampMicro](#TimestampMicro)
+-   [TimestampNano](#TimestampNano)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -64,7 +69,7 @@ import (
 
 ## Note:
 
-1. 'format' string param in func FormatTimeToStr and FormatStrToTime function should be one of flows:
+1. In below functions, the `format` string param should be one of flows value (case no sensitive):
 
 -   yyyy-mm-dd hh:mm:ss
 -   yyyy-mm-dd hh:mm
@@ -75,14 +80,18 @@ import (
 -   dd-mm-yy hh:mm:ss
 -   yyyy/mm/dd hh:mm:ss
 -   yyyy/mm/dd hh:mm
--   yyyy-mm-dd hh
+-   yyyy/mm/dd hh
 -   yyyy/mm/dd
 -   yyyy/mm
 -   mm/dd
 -   dd/mm/yy hh:mm:ss
+-   yyyymmdd
+-   mmddyy
 -   yyyy
+-   yy
 -   mm
 -   hh:mm:ss
+-   hh:mm
 -   mm:ss
 
 ### <span id="AddDay">AddDay</span>
@@ -1036,7 +1045,6 @@ func main() {
 }
 ```
 
-
 ### <span id="DayOfYear">DayOfYear</span>
 
 <p>Returns which day of the year the parameter date `t` is.</p>
@@ -1155,5 +1163,200 @@ func main() {
     // true
     // true
     // false
+}
+```
+
+### <span id="IsWeekend">IsWeekend</span>
+
+<p>Checks if passed time is weekend or not.</p>
+
+<b>Signature:</b>
+
+```go
+func IsWeekend(t time.Time) bool
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/datetime"
+)
+
+func main() {
+    date1 := time.Date(2023, 06, 03, 0, 0, 0, 0, time.Local)
+    date2 := time.Date(2023, 06, 04, 0, 0, 0, 0, time.Local)
+    date3 := time.Date(2023, 06, 02, 0, 0, 0, 0, time.Local)
+
+    result1 := datetime.IsWeekend(date1)
+    result2 := datetime.IsWeekend(date2)
+    result3 := datetime.IsWeekend(date3)
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+
+    // Output:
+    // true
+    // true
+    // false
+}
+```
+
+### <span id="NowDateOrTime">NowDateOrTime</span>
+
+<p>Return current datetime with specific format and timezone.</p>
+
+<b>Signature:</b>
+
+```go
+func NowDateOrTime(format string, timezone ...string) string
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/datetime"
+)
+
+func main() {
+    result1 := datetime.NowDateOrTime("yyyy-mm-dd hh:mm:ss")
+
+	result2 := datetime.NowDateOrTime("yyyy-mm-dd hh:mm:ss", "EST")
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+
+    // Output:
+    // 2023-07-26 15:01:30
+    // 2023-07-26 02:01:30
+}
+```
+
+### <span id="Timestamp">Timestamp</span>
+
+<p>Return current second timestamp.</p>
+
+<b>Signature:</b>
+
+```go
+func Timestamp(timezone ...string) int64
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/datetime"
+)
+
+func main() {
+    ts := datetime.Timestamp()
+
+    fmt.Println(ts)
+
+    // Output:
+    // 1690363051
+}
+```
+
+
+### <span id="TimestampMilli">TimestampMilli</span>
+
+<p>Return current mill second timestamp.</p>
+
+<b>Signature:</b>
+
+```go
+func TimestampMilli(timezone ...string) int64
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/datetime"
+)
+
+func main() {
+    ts := datetime.TimestampMilli()
+
+    fmt.Println(ts)
+
+    // Output:
+    // 1690363051331
+}
+```
+
+### <span id="TimestampMicro">TimestampMicro</span>
+
+<p>Return current micro second timestamp.</p>
+
+<b>Signature:</b>
+
+```go
+func TimestampMicro(timezone ...string) int64
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/datetime"
+)
+
+func main() {
+    ts := datetime.TimestampMicro()
+
+    fmt.Println(ts)
+
+    // Output:
+    // 1690363051331784
+}
+```
+
+### <span id="TimestampNano">TimestampNano</span>
+
+<p>Return current nano second timestamp.</p>
+
+<b>Signature:</b>
+
+```go
+func TimestampNano(timezone ...string) int64
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/datetime"
+)
+
+func main() {
+    ts := datetime.TimestampNano()
+
+    fmt.Println(ts)
+
+    // Output:
+    // 1690363051331788000
 }
 ```

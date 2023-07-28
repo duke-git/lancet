@@ -298,3 +298,38 @@ func TestIsWeekend(t *testing.T) {
 	result2 := IsWeekend(date2)
 	assert.Equal(false, result2)
 }
+
+func TestNowDateOrTime(t *testing.T) {
+	t.Parallel()
+
+	formats := []string{
+		"yyyy-mm-dd hh:mm:ss",
+		"yyyy-mm-dd",
+		"dd-mm-yy hh:mm:ss",
+		"yyyy/mm/dd hh:mm:ss",
+		"hh:mm:ss",
+		"yyyy/mm",
+		"yyyy-mm-dd hh",
+	}
+
+	for i := 0; i < len(formats); i++ {
+		result := NowDateOrTime(formats[i], "UTC")
+		t.Log(result)
+	}
+}
+
+func TestTimestamp(t *testing.T) {
+	t.Parallel()
+
+	ts1 := Timestamp()
+	t.Log(ts1)
+
+	ts2 := TimestampMilli()
+	t.Log(ts2)
+
+	ts3 := TimestampMicro()
+	t.Log(ts3)
+
+	ts4 := TimestampNano()
+	t.Log(ts4)
+}

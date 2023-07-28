@@ -57,7 +57,11 @@ import (
 -   [BetweenSeconds](#BetweenSeconds)
 -   [DayOfYear](#DayOfYear)
 -   [IsWeekend](#IsWeekend)
-
+-   [NowDateOrTime](#NowDateOrTime)
+-   [Timestamp](#Timestamp)
+-   [TimestampMilli](#TimestampMilli)
+-   [TimestampMicro](#TimestampMicro)
+-   [TimestampNano](#TimestampNano)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -65,7 +69,7 @@ import (
 
 ## 注:
 
-1. 方法 FormatTimeToStr 和 FormatStrToTime 中的 format 参数值需要传以下类型之一：
+1. 函数中`format`参数值需要传以下值之一 (忽略大小写):
 
 -   yyyy-mm-dd hh:mm:ss
 -   yyyy-mm-dd hh:mm
@@ -76,14 +80,18 @@ import (
 -   dd-mm-yy hh:mm:ss
 -   yyyy/mm/dd hh:mm:ss
 -   yyyy/mm/dd hh:mm
--   yyyy-mm-dd hh
+-   yyyy/mm/dd hh
 -   yyyy/mm/dd
 -   yyyy/mm
 -   mm/dd
 -   dd/mm/yy hh:mm:ss
+-   yyyymmdd
+-   mmddyy
 -   yyyy
+-   yy
 -   mm
 -   hh:mm:ss
+-   hh:mm
 -   mm:ss
 
 ### <span id="AddDay">AddDay</span>
@@ -1075,5 +1083,200 @@ func main() {
     // 31
     // 1
     // 0
+}
+```
+
+### <span id="IsWeekend">IsWeekend</span>
+
+<p>判断日期是否是周末。</p>
+
+<b>函数签名:</b>
+
+```go
+func IsWeekend(t time.Time) bool
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/datetime"
+)
+
+func main() {
+    date1 := time.Date(2023, 06, 03, 0, 0, 0, 0, time.Local)
+    date2 := time.Date(2023, 06, 04, 0, 0, 0, 0, time.Local)
+    date3 := time.Date(2023, 06, 02, 0, 0, 0, 0, time.Local)
+
+    result1 := datetime.IsWeekend(date1)
+    result2 := datetime.IsWeekend(date2)
+    result3 := datetime.IsWeekend(date3)
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+
+    // Output:
+    // true
+    // true
+    // false
+}
+```
+
+### <span id="NowDateOrTime">NowDateOrTime</span>
+
+<p>根据指定的格式和时区返回当前时间字符串。</p>
+
+<b>函数签名:</b>
+
+```go
+func NowDateOrTime(format string, timezone ...string) string
+```
+
+<b>实例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/datetime"
+)
+
+func main() {
+    result1 := datetime.NowDateOrTime("yyyy-mm-dd hh:mm:ss")
+
+	result2 := datetime.NowDateOrTime("yyyy-mm-dd hh:mm:ss", "EST")
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+
+    // Output:
+    // 2023-07-26 15:01:30
+    // 2023-07-26 02:01:30
+}
+```
+
+### <span id="Timestamp">Timestamp</span>
+
+<p>返回当前秒级时间戳。</p>
+
+<b>函数签名:</b>
+
+```go
+func Timestamp(timezone ...string) int64
+```
+
+<b>实例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/datetime"
+)
+
+func main() {
+    ts := datetime.Timestamp()
+
+    fmt.Println(ts)
+
+    // Output:
+    // 1690363051
+}
+```
+
+
+### <span id="TimestampMilli">TimestampMilli</span>
+
+<p>返回当前毫秒级时间戳。</p>
+
+<b>函数签名:</b>
+
+```go
+func TimestampMilli(timezone ...string) int64
+```
+
+<b>实例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/datetime"
+)
+
+func main() {
+    ts := datetime.TimestampMilli()
+
+    fmt.Println(ts)
+
+    // Output:
+    // 1690363051331
+}
+```
+
+### <span id="TimestampMicro">TimestampMicro</span>
+
+<p>返回当前微秒级时间戳。</p>
+
+<b>函数签名:</b>
+
+```go
+func TimestampMicro(timezone ...string) int64
+```
+
+<b>实例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/datetime"
+)
+
+func main() {
+    ts := datetime.TimestampMicro()
+
+    fmt.Println(ts)
+
+    // Output:
+    // 1690363051331784
+}
+```
+
+### <span id="TimestampNano">TimestampNano</span>
+
+<p>返回当前纳秒级时间戳。</p>
+
+<b>函数签名:</b>
+
+```go
+func TimestampNano(timezone ...string) int64
+```
+
+<b>实例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/datetime"
+)
+
+func main() {
+    ts := datetime.TimestampNano()
+
+    fmt.Println(ts)
+
+    // Output:
+    // 1690363051331788000
 }
 ```
