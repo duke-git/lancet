@@ -104,6 +104,14 @@ func HmacMd5(str, key string) string {
 	return hex.EncodeToString(h.Sum([]byte("")))
 }
 
+// HmacMd5WithBase64 return the hmac hash of string use md5 with base64.
+// todo
+func HmacMd5WithBase64(data, key string) string {
+	h := hmac.New(md5.New, []byte(key))
+	h.Write([]byte(data))
+	return base64.StdEncoding.EncodeToString(h.Sum([]byte("")))
+}
+
 // HmacSha1 return the hmac hash of string use sha1.
 // Play: https://go.dev/play/p/1UI4oQ4WXKM
 func HmacSha1(str, key string) string {

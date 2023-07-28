@@ -65,6 +65,13 @@ func TestHmacMd5(t *testing.T) {
 	assert.Equal("5f4c9faaff0a1ad3007d9ddc06abe36d", HmacMd5("hello world", "12345"))
 }
 
+func TestHmacMd5WithBase64(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestHmacMd5WithBase64")
+	assert.Equal("6DQwbquJLYclJdSRinpjmg==", HmacMd5WithBase64("hello", "12345"))
+}
+
 func TestHmacSha1(t *testing.T) {
 	t.Parallel()
 

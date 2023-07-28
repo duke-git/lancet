@@ -41,6 +41,7 @@ import (
 - [DesOfbEncrypt](#DesOfbEncrypt)
 - [DesOfbDecrypt](#DesOfbDecrypt)
 - [HmacMd5](#HmacMd5)
+- [HmacMd5WithBase64](#HmacMd5WithBase64)
 - [HmacSha1](#HmacSha1)
 - [HmacSha1WithBase64](#HmacSha1WithBase64)
 - [HmacSha256](#HmacSha256)
@@ -737,7 +738,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func HmacMd5(data, key string) string
+func HmacMd5(str, key string) string
 ```
 
 <b>示例:</b>
@@ -751,7 +752,7 @@ import (
 )
 
 func main() {
-      str := "hello"
+    str := "hello"
     key := "12345"
 
     hms := cryptor.HmacMd5(str, key)
@@ -759,6 +760,38 @@ func main() {
 
     // Output:
     // e834306eab892d872525d4918a7a639a
+}
+```
+
+### <span id="HmacMd5WithBase64">HmacMd5WithBase64</span>
+
+<p>获取字符串md5 hmac base64字符串值。</p>
+
+<b>函数签名:</b>
+
+```go
+func HmacMd5WithBase64(str, key string) string
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/cryptor"
+)
+
+func main() {
+    str := "hello"
+    key := "12345"
+
+    hms := cryptor.HmacMd5WithBase64(str, key)
+    fmt.Println(hms)
+
+    // Output:
+    // 6DQwbquJLYclJdSRinpjmg==
 }
 ```
 ### <span id="HmacSha1">HmacSha1</span>

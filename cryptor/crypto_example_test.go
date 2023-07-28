@@ -328,6 +328,17 @@ func ExampleHmacMd5() {
 	// e834306eab892d872525d4918a7a639a
 }
 
+func ExampleHmacMd5WithBase64() {
+	str := "hello"
+	key := "12345"
+
+	hms := HmacMd5WithBase64(str, key)
+	fmt.Println(hms)
+
+	// Output:
+	// 6DQwbquJLYclJdSRinpjmg==
+}
+
 func ExampleHmacSha1() {
 	str := "hello"
 	key := "12345"
