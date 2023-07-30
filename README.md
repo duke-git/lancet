@@ -388,32 +388,50 @@ import "github.com/duke-git/lancet/v2/cryptor"
 -   **<big>HmacMd5</big>** : return the md5 hmac hash of string.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#HmacMd5)]
     [[play](https://go.dev/play/p/uef0q1fz53I)]
+-   **<big>HmacMd5WithBase64</big>** : return the md5 hmac hash of base64 string.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#HmacMd5WithBase64)]
 -   **<big>HmacSha1</big>** : return the hmac hash of string use sha1.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#HmacSha1)]
     [[play](https://go.dev/play/p/1UI4oQ4WXKM)]
+-   **<big>HmacSha1WithBase64</big>** : return the hmac hash of string use sha1 with base64.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#HmacSha1WithBase64)]
 -   **<big>HmacSha256</big>** : return the hmac hash of string use sha256.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#HmacSha256)]
     [[play](https://go.dev/play/p/HhpwXxFhhC0)]
+-   **<big>HmacSha256WithBase64</big>** : return the hmac hash of string use sha256 with base64.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#HmacSha256WithBase64)]
 -   **<big>HmacSha512</big>** : return the hmac hash of string use sha512.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#HmacSha512)]
     [[play](https://go.dev/play/p/59Od6m4A0Ud)]
+-   **<big>HmacSha512WithBase64</big>** : return the hmac hash of string use sha512 with base64.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#HmacSha512WithBase64)]
 -   **<big>Md5Byte</big>** : return the md5 string of byte slice.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#Md5Byte)]
     [[play](https://go.dev/play/p/suraalH8lyC)]
+-   **<big>Md5ByteWithBase64</big>** : return the md5 string of byte slice with base64.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#Md5ByteWithBase64)]
 -   **<big>Md5String</big>** : return the md5 value of string.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#Md5String)]
     [[play](https://go.dev/play/p/1bLcVetbTOI)]
+-   **<big>Md5StringWithBase64</big>** : return the md5 value of string with base64.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#Md5StringWithBase64)]
 -   **<big>Md5File</big>** : return the md5 value of file.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#Md5File)]
--   **<big>Sha1</big>** : return the sha1 value (SHA-1 hash algorithm) of string.
+-   **<big>Sha1</big>** : return the sha1 value (SHA-1 hash algorithm) of base64 string.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#Sha1)]
     [[play](https://go.dev/play/p/_m_uoD1deMT)]
+-   **<big>Sha1WithBase64</big>** : return the sha1 value (SHA-1 hash algorithm) of string.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#Sha1WithBase64)]
 -   **<big>Sha256</big>** : return the sha256 value (SHA-256 hash algorithm) of string.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#Sha256)]
     [[play](https://go.dev/play/p/tU9tfBMIAr1)]
+-   **<big>Sha256WithBase64</big>** : return the sha256 value (SHA256 hash algorithm) of base64 string.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#Sha256WithBase64)]
 -   **<big>Sha512</big>** : return the sha512 value (SHA-512 hash algorithm) of string.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#Sha512)]
     [[play](https://go.dev/play/p/3WsvLYZxsHa)]
+-   **<big>Sha512WithBase64</big>** : return the sha512 value (SHA-512 hash algorithm) of base64 string.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#Sha512WithBase64)]
 -   **<big>GenerateRsaKey</big>** : create rsa private and public pemo file.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#GenerateRsaKey)]
     [[play](https://go.dev/play/p/zutRHrDqs0X)]
@@ -543,6 +561,16 @@ import "github.com/duke-git/lancet/v2/datetime"
 -   **<big>IsWeekend</big>** : checks if passed time is weekend or not.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#IsWeekend)]
     [[play](https://go.dev/play/p/cupRM5aZOIY)]
+-   **<big>NowDateOrTime</big>** : returns current datetime with specific format and timezone.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#NowDateOrTime)]
+-   **<big>Timestamp</big>** : returns current second timestamp.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#Timestamp)]
+-   **<big>TimestampMilli</big>** : returns current mill second timestamp.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#TimestampMilli)]
+-   **<big>TimestampMicro</big>** : returns current micro second timestamp.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#TimestampMicro)]
+-   **<big>TimestampNano</big>** : returns current nano second timestamp.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#TimestampNano)]
 
 <h3 id="Datastructure"> 8. Datastructure package constains some common data structure. eg. list, linklist, stack, queue, set, tree, graph. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</span></h3>
 
@@ -796,6 +824,24 @@ import "github.com/duke-git/lancet/v2/maputil"
 -   **<big>IsDisjoint</big>** : check two map are disjoint if they have no keys in common.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil.md#IsDisjoint)]
     [[play](https://go.dev/play/p/N9qgYg_Ho6f)]
+-   **<big>HasKey</big>** : checks if map has key or not. 
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil.md#HasKey)]
+-   **<big>NewConcurrentMap</big>** : creates a ConcurrentMap with specific shard count.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil.md#NewConcurrentMap)]
+-   **<big>ConcurrentMap_Set</big>** : set the value for a key.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil.md#ConcurrentMap_Set)]
+-   **<big>ConcurrentMap_Get</big>** : get the value stored in the map for a key, or nil if no.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil.md#ConcurrentMap_Get)]
+-   **<big>ConcurrentMap_GetOrSet</big>** : returns the existing value for the key if present.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil.md#ConcurrentMap_GetOrSet)]
+-   **<big>ConcurrentMap_Delete</big>** : delete the value for a key.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil.md#ConcurrentMap_Delete)]
+-   **<big>ConcurrentMap_GetAndDelete</big>** :returns the existing value for the key if present and then delete the value for the key. 
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil.md#ConcurrentMap_GetAndDelete)]
+-   **<big>ConcurrentMap_Has</big>** : checks if map has the value for a key.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil.md#ConcurrentMap_Has)]
+-   **<big>ConcurrentMap_Range</big>** : calls iterator sequentially for each key and value present in each of the shards in the map.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil.md#ConcurrentMap_Range)]
 
 <h3 id="Mathutil"> 13. Mathutil package implements some functions for math calculation. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</span></h3>
 
@@ -1247,6 +1293,8 @@ import "github.com/duke-git/lancet/v2/slice"
 -   **<big>KeyBy</big>** : converts a slice to a map based on a callback function.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#KeyBy)]
     [[play](https://go.dev/play/p/uXod2LWD1Kg)]
+-   **<big>Join</big>** : join the slice item with specify separator.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Join)]
 
 <h3 id="Stream"> 19. Stream package implements a sequence of elements supporting sequential and operations. this package is an experiment to explore if stream in go can work as the way java does. its function is very limited. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 

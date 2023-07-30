@@ -387,32 +387,50 @@ import "github.com/duke-git/lancet/v2/cryptor"
 -   **<big>HmacMd5</big>** : 返回字符串 md5 hmac 值。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#HmacMd5)]
     [[play](https://go.dev/play/p/uef0q1fz53I)]
+-   **<big>HmacMd5WithBase64</big>** : 获取字符串 md5 hmac base64 字符串值。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#HmacMd5WithBase64)]
 -   **<big>HmacSha1</big>** : 返回字符串 sha1 hmac 值。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#HmacSha1)]
     [[play](https://go.dev/play/p/1UI4oQ4WXKM)]
+-   **<big>HmacSha1WithBase64</big>** : 获取字符串的 sha1 base64 值。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#HmacSha1WithBase64)]
 -   **<big>HmacSha256</big>** : 返回字符串 sha256 hmac 值。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#HmacSha256)]
     [[play](https://go.dev/play/p/HhpwXxFhhC0)]
+-   **<big>HmacSha256WithBase64</big>** : 获取字符串 sha256 hmac base64 值。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#HmacSha256WithBase64)]
 -   **<big>HmacSha512</big>** : 返回字符串 sha256 hmac 值。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#HmacSha512)]
     [[play](https://go.dev/play/p/59Od6m4A0Ud)]
--   **<big>Md5Byte</big>** : 返回byte slice的md5值.
+-   **<big>HmacSha512WithBase64</big>** : 获取字符串 sha512 hmac base64 值。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#HmacSha512WithBase64)]
+-   **<big>Md5Byte</big>** : 返回 byte slice 的 md5 值.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#Md5Byte)]
     [[play](https://go.dev/play/p/suraalH8lyC)]
+-   **<big>Md5ByteWithBase64</big>** : 获取 byte slice 的 md5 base64 值。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#Md5ByteWithBase64)]
 -   **<big>Md5String</big>** : 返回字符串 md5 值。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#Md5String)]
     [[play](https://go.dev/play/p/1bLcVetbTOI)]
+-   **<big>Md5StringWithBase64</big>** : 获取字符串 md5 base64 值。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#Md5StringWithBase64)]
 -   **<big>Md5File</big>** : 返回文件 md5 值。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#Md5File)]
 -   **<big>Sha1</big>** : 返回字符串 sha1 哈希值。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#Sha1)]
     [[play](https://go.dev/play/p/_m_uoD1deMT)]
+-   **<big>Sha1WithBase64</big>** : 获取字符串 sha1 base64 值。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#Sha1WithBase64)]
 -   **<big>Sha256</big>** :返回字符串 sha256 哈希值。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#Sha256)]
     [[play](https://go.dev/play/p/tU9tfBMIAr1)]
+-   **<big>Sha256WithBase64</big>** : 获取字符串 sha256 base64 值。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#Sha256WithBase64)]
 -   **<big>Sha512</big>** : 返回字符串 sha512 哈希值。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#Sha512)]
     [[play](https://go.dev/play/p/3WsvLYZxsHa)]
+-   **<big>Sha512WithBase64</big>** : 获取字符串 sha512 base64 值。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#Sha512WithBase64)]
 -   **<big>GenerateRsaKey</big>** : 在当前目录下创建 rsa 私钥文件和公钥文件。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#GenerateRsaKey)]
     [[play](https://go.dev/play/p/zutRHrDqs0X)]
@@ -545,6 +563,16 @@ import "github.com/duke-git/lancet/v2/datetime"
 -   **<big>IsWeekend</big>** : 判断日期是否是周末。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#IsWeekend)]
     [[play](https://go.dev/play/p/cupRM5aZOIY)]
+-   **<big>NowDateOrTime</big>** : 根据指定的格式和时区返回当前时间字符串。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#NowDateOrTime)]
+-   **<big>Timestamp</big>** : 返回当前秒级时间戳。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#Timestamp)]
+-   **<big>TimestampMilli</big>** : 返回当前毫秒级时间戳。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#TimestampMilli)]
+-   **<big>TimestampMicro</big>** : 返回当前微秒级时间戳。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#TimestampMicro)]
+-   **<big>TimestampNano</big>** : 返回当前纳秒级时间戳。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#TimestampNano)]
 
 <h3 id="Datastructure"> 8. datastructure 包含一些普通的数据结构实现。例如：list, linklist, stack, queue, set, tree, graph。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 
@@ -778,26 +806,44 @@ import "github.com/duke-git/lancet/v2/maputil"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#Values)]
     [[play](https://go.dev/play/p/CBKdUc5FTW6)]
 -   **<big>ValuesBy</big>** : 创建一个切片，其元素是每个 map 的 value 调用 mapper 函数的结果。
-    [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN#ValuesBy)]
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#ValuesBy)]
     [[play](https://go.dev/play/p/sg9-oRidh8f)]
 -   **<big>MapKeys</big>** : 操作 map 的每个 key，然后转为新的 map。
-    [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN#MapKeys)]
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#MapKeys)]
     [[play](https://go.dev/play/p/8scDxWeBDKd)]
 -   **<big>MapValues</big>** : 操作 map 的每个 value，然后转为新的 map。
-    [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN#MapValues)]
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#MapValues)]
     [[play](https://go.dev/play/p/g92aY3fc7Iw)]
 -   **<big>Entries</big>** : 将 map 转换为键/值对切片。
-    [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN#Entries)]
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#Entries)]
     [[play](https://go.dev/play/p/Ltb11LNcElY)]
 -   **<big>FromEntries</big>** : 基于键/值对的切片创建 map。
-    [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN#FromEntries)]
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#FromEntries)]
     [[play](https://go.dev/play/p/fTdu4sCNjQO)]
 -   **<big>Transform</big>** : 将 map 转换为其他类型的 map。
-    [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN#Transform)]
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#Transform)]
     [[play](https://go.dev/play/p/P6ovfToM3zj)]
 -   **<big>IsDisjoint</big>** : 验证两个 map 是否具有不同的 key。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#IsDisjoint)]
     [[play](https://go.dev/play/p/N9qgYg_Ho6f)]
+-   **<big>HasKey</big>** : 检查map是否包含某个key。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#HasKey)]
+-   **<big>NewConcurrentMap</big>** : ConcurrentMap协程安全的map结构。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#NewConcurrentMap)]
+-   **<big>ConcurrentMap_Set</big>** : 在map中设置key和value。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#ConcurrentMap_Set)]
+-   **<big>ConcurrentMap_Get</big>** : 根据key获取value, 如果不存在key,返回零值。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#ConcurrentMap_Get)]
+-   **<big>ConcurrentMap_GetOrSet</big>** : 返回键的现有值（如果存在），否则，设置key并返回给定值。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#ConcurrentMap_GetOrSet)]
+-   **<big>ConcurrentMap_Delete</big>** : 删除key。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#ConcurrentMap_Delete)]
+-   **<big>ConcurrentMap_GetAndDelete</big>** :获取key，然后删除。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#ConcurrentMap_GetAndDelete)]
+-   **<big>ConcurrentMap_Has</big>** : 验证是否包含key。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#ConcurrentMap_Has)]
+-   **<big>ConcurrentMap_Range</big>** : 为map中每个键和值顺序调用迭代器。 如果iterator返回false，则停止迭代。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#ConcurrentMap_Range)]
 
 <h3 id="Mathutil"> 13. mathutil 包实现了一些数学计算的函数。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 
@@ -969,7 +1015,13 @@ import "github.com/duke-git/lancet/v2/pointer"
     [[play](https://go.dev/play/p/HFd70x4DrMj)]
 -   **<big>Unwrap</big>** : 返回传入指针指向的值。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/pointer_zh-CN.md#Unwrap)]
-    [[play](https://go.dev/play/p/cgeu3g7cjWb)]
+    [[play](https://go.dev/play/p/cgeu3g7cjWb)
+-   **<big>UnwarpOr</big>** : 返回指针的值，如果指针为零值，则返回 fallback。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/pointer_zh-CN.md#UnwrapOr)]
+    [[play](https://go.dev/play/p/mmNaLC38W8C)]
+-   **<big>UnwarpOrDefault</big>** : 返回指针的值，如果指针为零值，则返回相应零值。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/pointer_zh-CN.md#UnwrapOrDefault)]
+    [[play](https://go.dev/play/p/ZnGIHf8_o4E)]
 
 <h3 id="Random"> 16. random 随机数生成器包，可以生成随机[]bytes, int, string。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 
@@ -1243,6 +1295,8 @@ import "github.com/duke-git/lancet/v2/slice"
 -   **<big>KeyBy</big>** :将切片每个元素调用函数后转为 map。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#KeyBy)]
     [[play](https://go.dev/play/p/uXod2LWD1Kg)]
+-   **<big>Join</big>** : 用指定的分隔符链接切片元素。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Join)]
 
 <h3 id="Stream"> 19. stream 流，该包仅验证简单的 stream 实现，功能有限。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 
@@ -1538,7 +1592,7 @@ import "github.com/duke-git/lancet/v2/tuple"
 -   **<big>Zip2</big>** : 创建一个 Tuple2 元组切片, 其中元组的元素和传入切片元素相对应。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Zip2)]
     [[play](https://go.dev/play/p/4ncWJJ77Xio)]
--   **<big>Unzip2</big>** : 根据传入的Tuple2切片，创建一组和Tuple2元素相对应的切片。
+-   **<big>Unzip2</big>** : 根据传入的 Tuple2 切片，创建一组和 Tuple2 元素相对应的切片。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Unzip2)]
     [[play](https://go.dev/play/p/KBecr60feXb)]
 -   **<big>Tuple3</big>** : 3 元元组
@@ -1550,7 +1604,7 @@ import "github.com/duke-git/lancet/v2/tuple"
 -   **<big>Zip3</big>** : 创建一个 Tuple3 元组切片, 其中元组的元素和传入切片元素相对应。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Zip3)]
     [[play](https://go.dev/play/p/97NgmsTILfu)]
--   **<big>Unzip3</big>** : 根据传入的Tuple3切片，创建一组和Tuple3元素相对应的切片。
+-   **<big>Unzip3</big>** : 根据传入的 Tuple3 切片，创建一组和 Tuple3 元素相对应的切片。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Unzip3)]
     [[play](https://go.dev/play/p/bba4cpAa7KO)]
 -   **<big>Tuple4</big>** : 4 元元组
@@ -1562,7 +1616,7 @@ import "github.com/duke-git/lancet/v2/tuple"
 -   **<big>Zip4</big>** : 创建一个 Tuple4 元组切片, 其中元组的元素和传入切片元素相对应。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Zip4)]
     [[play](https://go.dev/play/p/PEmTYVK5hL4)]
--   **<big>Unzip4</big>** : 根据传入的Tuple4切片，创建一组和Tuple4元素相对应的切片。
+-   **<big>Unzip4</big>** : 根据传入的 Tuple4 切片，创建一组和 Tuple4 元素相对应的切片。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Unzip4)]
     [[play](https://go.dev/play/p/rb8z4gyYSRN)]
 -   **<big>Tuple5</big>** : 5 元元组
@@ -1574,7 +1628,7 @@ import "github.com/duke-git/lancet/v2/tuple"
 -   **<big>Zip5</big>** : 创建一个 Tuple5 元组切片, 其中元组的元素和传入切片元素相对应。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Zip5)]
     [[play](https://go.dev/play/p/fCAAJLMfBIP)]
--   **<big>Unzip5</big>** : 根据传入的Tuple5切片，创建一组和Tuple5元素相对应的切片。
+-   **<big>Unzip5</big>** : 根据传入的 Tuple5 切片，创建一组和 Tuple5 元素相对应的切片。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Unzip5)]
     [[play](https://go.dev/play/p/gyl6vKfhqPb)]
 -   **<big>Tuple6</big>** : 6 元元组
@@ -1586,7 +1640,7 @@ import "github.com/duke-git/lancet/v2/tuple"
 -   **<big>Zip6</big>** : 创建一个 Tuple6 元组切片, 其中元组的元素和传入切片元素相对应。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Zip6)]
     [[play](https://go.dev/play/p/oWPrnUYuFHo)]
--   **<big>Unzip6</big>** : 根据传入的Tuple6切片，创建一组和Tuple6元素相对应的切片。
+-   **<big>Unzip6</big>** : 根据传入的 Tuple6 切片，创建一组和 Tuple6 元素相对应的切片。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Unzip6)]
     [[play](https://go.dev/play/p/l41XFqCyh5E)]
 -   **<big>Tuple7</big>** : 7 元元组
@@ -1598,7 +1652,7 @@ import "github.com/duke-git/lancet/v2/tuple"
 -   **<big>Zip7</big>** : 创建一个 Tuple7 元组切片, 其中元组的元素和传入切片元素相对应。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Zip7)]
     [[play](https://go.dev/play/p/WUJuo897Egf)]
--   **<big>Unzip7</big>** : 根据传入的Tuple7切片，创建一组和Tuple7元素相对应的切片。
+-   **<big>Unzip7</big>** : 根据传入的 Tuple7 切片，创建一组和 Tuple7 元素相对应的切片。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Unzip7)]
     [[play](https://go.dev/play/p/hws_P1Fr2j3)]
 -   **<big>Tuple8</big>** : 8 元元组
@@ -1610,7 +1664,7 @@ import "github.com/duke-git/lancet/v2/tuple"
 -   **<big>Zip8</big>** : 创建一个 Tuple8 元组切片, 其中元组的元素和传入切片元素相对应。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Zip8)]
     [[play](https://go.dev/play/p/8V9jWkuJfaQ)]
--   **<big>Unzip8</big>** : 根据传入的Tuple8切片，创建一组和Tuple8元素相对应的切片。
+-   **<big>Unzip8</big>** : 根据传入的 Tuple8 切片，创建一组和 Tuple8 元素相对应的切片。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Unzip8)]
     [[play](https://go.dev/play/p/1SndOwGsZB4)]
 -   **<big>Tuple9</big>** : 9 元元组
@@ -1622,7 +1676,7 @@ import "github.com/duke-git/lancet/v2/tuple"
 -   **<big>Zip9</big>** : 创建一个 Tuple9 元组切片, 其中元组的元素和传入切片元素相对应。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Zip9)]
     [[play](https://go.dev/play/p/cgsL15QYnfz)]
--   **<big>Unzip9</big>** : 根据传入的Tuple9切片，创建一组和Tuple9元素相对应的切片。
+-   **<big>Unzip9</big>** : 根据传入的 Tuple9 切片，创建一组和 Tuple9 元素相对应的切片。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Unzip9)]
     [[play](https://go.dev/play/p/91-BU_KURSA)]
 -   **<big>Tuple10</big>** : 10 元元组
@@ -1634,10 +1688,9 @@ import "github.com/duke-git/lancet/v2/tuple"
 -   **<big>Zip10</big>** : 创建一个 Tuple10 元组切片, 其中元组的元素和传入切片元素相对应。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Zip10)]
     [[play](https://go.dev/play/p/YSR-2cXnrY4)]
--   **<big>Unzip10</big>** : 根据传入的Tuple10切片，创建一组和Tuple10元素相对应的切片。
+-   **<big>Unzip10</big>** : 根据传入的 Tuple10 切片，创建一组和 Tuple10 元素相对应的切片。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/tuple_zh-CN.md#Unzip10)]
     [[play](https://go.dev/play/p/-taQB6Wfre_z)]
-
 
 <h3 id="Validator"> 24. validator 验证器包，包含常用字符串格式验证函数。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 
