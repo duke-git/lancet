@@ -292,6 +292,7 @@ func DayOfYear(t time.Time) int {
 
 // IsWeekend checks if passed time is weekend or not.
 // Play: https://go.dev/play/p/cupRM5aZOIY
+// Deprecated Use '== Weekday' instead
 func IsWeekend(t time.Time) bool {
 	return time.Saturday == t.Weekday() || time.Sunday == t.Weekday()
 }
