@@ -59,7 +59,7 @@ import (
 -   [IsLeapYear](#IsLeapYear)
 -   [BetweenSeconds](#BetweenSeconds)
 -   [DayOfYear](#DayOfYear)
--   [IsWeekend](#IsWeekend)
+-   [IsWeekend<sup>deprecated</sup>](#IsWeekend)
 -   [NowDateOrTime](#NowDateOrTime)
 -   [Timestamp](#Timestamp)
 -   [TimestampMilli](#TimestampMilli)
@@ -1272,7 +1272,7 @@ func main() {
 }
 ```
 
-### <span id="IsWeekend">IsWeekend</span>
+### <span id="IsWeekend">IsWeekend(Deprecated, Use '== Weekday' instead)</span>
 
 <p>Checks if passed time is weekend or not.</p>
 

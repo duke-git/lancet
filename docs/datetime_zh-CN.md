@@ -58,7 +58,7 @@ import (
 -   [IsLeapYear](#IsLeapYear)
 -   [BetweenSeconds](#BetweenSeconds)
 -   [DayOfYear](#DayOfYear)
--   [IsWeekend](#IsWeekend)
+-   [IsWeekend<sup>deprecated</sup>](#IsWeekend)
 -   [NowDateOrTime](#NowDateOrTime)
 -   [Timestamp](#Timestamp)
 -   [TimestampMilli](#TimestampMilli)
@@ -1271,7 +1271,7 @@ func main() {
 }
 ```
 
-### <span id="IsWeekend">IsWeekend</span>
+### <span id="IsWeekend">IsWeekend（已废弃, 使用 '== Weekday'）</span>
 
 <p>判断日期是否是周末。</p>
 
