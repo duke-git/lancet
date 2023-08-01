@@ -19,6 +19,7 @@ type ConcurrentMap[K comparable, V any] struct {
 }
 
 // NewConcurrentMap create a ConcurrentMap with specific shard count.
+// Play: https://go.dev/play/p/3PenTPETJT0
 func NewConcurrentMap[K comparable, V any](shardCount int) *ConcurrentMap[K, V] {
 	if shardCount <= 0 {
 		shardCount = defaultShardCount
@@ -38,7 +39,7 @@ func NewConcurrentMap[K comparable, V any](shardCount int) *ConcurrentMap[K, V] 
 }
 
 // Set the value for a key.
-// Play: todo
+// Play: https://go.dev/play/p/3PenTPETJT0
 func (cm *ConcurrentMap[K, V]) Set(key K, value V) {
 	shard := cm.getShard(key)
 
@@ -49,7 +50,7 @@ func (cm *ConcurrentMap[K, V]) Set(key K, value V) {
 }
 
 // Get the value stored in the map for a key, or nil if no.
-// Play: todo
+// Play: https://go.dev/play/p/3PenTPETJT0
 func (cm *ConcurrentMap[K, V]) Get(key K) (V, bool) {
 	shard := cm.getShard(key)
 
@@ -62,7 +63,7 @@ func (cm *ConcurrentMap[K, V]) Get(key K) (V, bool) {
 
 // GetOrSet returns the existing value for the key if present.
 // Otherwise, it sets and returns the given value.
-// Play: todo
+// Play: https://go.dev/play/p/aDcDApOK01a
 func (cm *ConcurrentMap[K, V]) GetOrSet(key K, value V) (actual V, ok bool) {
 	shard := cm.getShard(key)
 
@@ -87,7 +88,7 @@ func (cm *ConcurrentMap[K, V]) GetOrSet(key K, value V) (actual V, ok bool) {
 }
 
 // Delete the value for a key.
-// Play: todo
+// Play: https://go.dev/play/p/uTIJZYhpVMS
 func (cm *ConcurrentMap[K, V]) Delete(key K) {
 	shard := cm.getShard(key)
 
@@ -98,7 +99,7 @@ func (cm *ConcurrentMap[K, V]) Delete(key K) {
 
 // GetAndDelete returns the existing value for the key if present and then delete the value for the key.
 // Otherwise, do nothing, just return false
-// Play: todo
+// Play: https://go.dev/play/p/ZyxeIXSZUiM
 func (cm *ConcurrentMap[K, V]) GetAndDelete(key K) (actual V, ok bool) {
 	shard := cm.getShard(key)
 
@@ -114,7 +115,7 @@ func (cm *ConcurrentMap[K, V]) GetAndDelete(key K) (actual V, ok bool) {
 }
 
 // Has checks if map has the value for a key.
-// Play: todo
+// Play: https://go.dev/play/p/C8L4ul9TVwf
 func (cm *ConcurrentMap[K, V]) Has(key K) bool {
 	_, ok := cm.Get(key)
 	return ok
@@ -122,6 +123,7 @@ func (cm *ConcurrentMap[K, V]) Has(key K) bool {
 
 // Range calls iterator sequentially for each key and value present in each of the shards in the map.
 // If iterator returns false, range stops the iteration.
+// Play: https://go.dev/play/p/iqcy7P8P0Pr
 func (cm *ConcurrentMap[K, V]) Range(iterator func(key K, value V) bool) {
 	for shard := range cm.locks {
 		cm.locks[shard].RLock()

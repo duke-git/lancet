@@ -298,7 +298,7 @@ func IsWeekend(t time.Time) bool {
 }
 
 // NowDateOrTime return current datetime with specific format and timezone.
-// Play: todo
+// Play: https://go.dev/play/p/EZ-begEjtT0
 func NowDateOrTime(format string, timezone ...string) string {
 	tf, ok := timeFormat[strings.ToLower(format)]
 	if !ok {
@@ -318,7 +318,7 @@ func NowDateOrTime(format string, timezone ...string) string {
 }
 
 // Timestamp return current second timestamp.
-// Play: todo
+// Play: https://go.dev/play/p/iU5b7Vvjx6x
 func Timestamp(timezone ...string) int64 {
 	t := time.Now()
 
@@ -335,7 +335,7 @@ func Timestamp(timezone ...string) int64 {
 }
 
 // TimestampMilli return current mill second timestamp.
-// Play: todo
+// Play: https://go.dev/play/p/4gvEusOTu1T
 func TimestampMilli(timezone ...string) int64 {
 	t := time.Now()
 
@@ -351,7 +351,7 @@ func TimestampMilli(timezone ...string) int64 {
 }
 
 // TimestampMicro return current micro second timestamp.
-// Play: todo
+// Play: https://go.dev/play/p/2maANglKHQE
 func TimestampMicro(timezone ...string) int64 {
 	t := time.Now()
 
@@ -367,7 +367,7 @@ func TimestampMicro(timezone ...string) int64 {
 }
 
 // TimestampNano return current nano second timestamp.
-// Play: todo
+// Play: https://go.dev/play/p/A9Oq_COrcCF
 func TimestampNano(timezone ...string) int64 {
 	t := time.Now()
 

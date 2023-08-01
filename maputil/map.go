@@ -298,7 +298,7 @@ func MapValues[K comparable, V any, T any](m map[K]V, iteratee func(key K, value
 //	   fmt.Println("map has key baz")
 //	}
 //
-// Play: todo
+// Play: https://go.dev/play/p/isZZHOsDhFc
 func HasKey[K comparable, V any](m map[K]V, key K) bool {
 	_, haskey := m[key]
 	return haskey

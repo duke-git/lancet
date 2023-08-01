@@ -1191,7 +1191,7 @@ func KeyBy[T any, U comparable](slice []T, iteratee func(item T) U) map[U]T {
 }
 
 // Join the slice item with specify separator.
-// Play: todo
+// Play: https://go.dev/play/p/huKzqwNDD7V
 func Join[T any](s []T, separator string) string {
 	str := Map(s, func(_ int, item T) string {
 		return fmt.Sprint(item)

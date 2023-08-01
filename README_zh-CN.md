@@ -389,31 +389,37 @@ import "github.com/duke-git/lancet/v2/cryptor"
     [[play](https://go.dev/play/p/uef0q1fz53I)]
 -   **<big>HmacMd5WithBase64</big>** : 获取字符串 md5 hmac base64 字符串值。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#HmacMd5WithBase64)]
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor.md#HmacMd5WithBase64)]
 -   **<big>HmacSha1</big>** : 返回字符串 sha1 hmac 值。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#HmacSha1)]
     [[play](https://go.dev/play/p/1UI4oQ4WXKM)]
 -   **<big>HmacSha1WithBase64</big>** : 获取字符串的 sha1 base64 值。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#HmacSha1WithBase64)]
+    [[play](https://go.dev/play/p/47JmmGrnF7B)]
 -   **<big>HmacSha256</big>** : 返回字符串 sha256 hmac 值。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#HmacSha256)]
     [[play](https://go.dev/play/p/HhpwXxFhhC0)]
 -   **<big>HmacSha256WithBase64</big>** : 获取字符串 sha256 hmac base64 值。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#HmacSha256WithBase64)]
+    [[play](https://go.dev/play/p/EKbkUvPTLwO)]
 -   **<big>HmacSha512</big>** : 返回字符串 sha256 hmac 值。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#HmacSha512)]
     [[play](https://go.dev/play/p/59Od6m4A0Ud)]
 -   **<big>HmacSha512WithBase64</big>** : 获取字符串 sha512 hmac base64 值。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#HmacSha512WithBase64)]
+    [[play](https://go.dev/play/p/c6dSe3E2ydU)]
 -   **<big>Md5Byte</big>** : 返回 byte slice 的 md5 值.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#Md5Byte)]
     [[play](https://go.dev/play/p/suraalH8lyC)]
 -   **<big>Md5ByteWithBase64</big>** : 获取 byte slice 的 md5 base64 值。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#Md5ByteWithBase64)]
+    [[play](https://go.dev/play/p/Tcb-Z7LN2ax)]
 -   **<big>Md5String</big>** : 返回字符串 md5 值。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#Md5String)]
     [[play](https://go.dev/play/p/1bLcVetbTOI)]
 -   **<big>Md5StringWithBase64</big>** : 获取字符串 md5 base64 值。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#Md5StringWithBase64)]
+    [[play](https://go.dev/play/p/Lx4gH7Vdr5_y)]
 -   **<big>Md5File</big>** : 返回文件 md5 值。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#Md5File)]
 -   **<big>Sha1</big>** : 返回字符串 sha1 哈希值。
@@ -421,16 +427,19 @@ import "github.com/duke-git/lancet/v2/cryptor"
     [[play](https://go.dev/play/p/_m_uoD1deMT)]
 -   **<big>Sha1WithBase64</big>** : 获取字符串 sha1 base64 值。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#Sha1WithBase64)]
+    [[play](https://go.dev/play/p/fSyx-Gl2l2-)]
 -   **<big>Sha256</big>** :返回字符串 sha256 哈希值。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#Sha256)]
     [[play](https://go.dev/play/p/tU9tfBMIAr1)]
 -   **<big>Sha256WithBase64</big>** : 获取字符串 sha256 base64 值。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#Sha256WithBase64)]
+    [[play](https://go.dev/play/p/85IXJHIal1k)]
 -   **<big>Sha512</big>** : 返回字符串 sha512 哈希值。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#Sha512)]
     [[play](https://go.dev/play/p/3WsvLYZxsHa)]
 -   **<big>Sha512WithBase64</big>** : 获取字符串 sha512 base64 值。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#Sha512WithBase64)]
+    [[play](https://go.dev/play/p/q_fY2rA-k5I)]
 -   **<big>GenerateRsaKey</big>** : 在当前目录下创建 rsa 私钥文件和公钥文件。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/cryptor_zh-CN.md#GenerateRsaKey)]
     [[play](https://go.dev/play/p/zutRHrDqs0X)]
@@ -565,14 +574,20 @@ import "github.com/duke-git/lancet/v2/datetime"
     [[play](https://go.dev/play/p/cupRM5aZOIY)]
 -   **<big>NowDateOrTime</big>** : 根据指定的格式和时区返回当前时间字符串。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#NowDateOrTime)]
+    [[play](https://go.dev/play/p/EZ-begEjtT0)]
 -   **<big>Timestamp</big>** : 返回当前秒级时间戳。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#Timestamp)]
+    [[play](https://go.dev/play/p/iU5b7Vvjx6x)]
 -   **<big>TimestampMilli</big>** : 返回当前毫秒级时间戳。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#TimestampMilli)]
+    [[play](https://go.dev/play/p/4gvEusOTu1T)]
 -   **<big>TimestampMicro</big>** : 返回当前微秒级时间戳。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#TimestampMicro)]
+    [[play](https://go.dev/play/p/2maANglKHQE)]
 -   **<big>TimestampNano</big>** : 返回当前纳秒级时间戳。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime_zh-CN.md#TimestampNano)]
+    [[play](https://go.dev/play/p/A9Oq_COrcCF)]
+
 
 <h3 id="Datastructure"> 8. datastructure 包含一些普通的数据结构实现。例如：list, linklist, stack, queue, set, tree, graph。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 
@@ -828,22 +843,32 @@ import "github.com/duke-git/lancet/v2/maputil"
     [[play](https://go.dev/play/p/N9qgYg_Ho6f)]
 -   **<big>HasKey</big>** : 检查map是否包含某个key。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#HasKey)]
+    [[play](https://go.dev/play/p/isZZHOsDhFc)]
 -   **<big>NewConcurrentMap</big>** : ConcurrentMap协程安全的map结构。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#NewConcurrentMap)]
+    [[play](https://go.dev/play/p/3PenTPETJT0)]
 -   **<big>ConcurrentMap_Set</big>** : 在map中设置key和value。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#ConcurrentMap_Set)]
+    [[play](https://go.dev/play/p/3PenTPETJT0)]
 -   **<big>ConcurrentMap_Get</big>** : 根据key获取value, 如果不存在key,返回零值。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#ConcurrentMap_Get)]
+    [[play](https://go.dev/play/p/3PenTPETJT0)]
 -   **<big>ConcurrentMap_GetOrSet</big>** : 返回键的现有值（如果存在），否则，设置key并返回给定值。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#ConcurrentMap_GetOrSet)]
+    [[play](https://go.dev/play/p/aDcDApOK01a)]
 -   **<big>ConcurrentMap_Delete</big>** : 删除key。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#ConcurrentMap_Delete)]
+    [[play](https://go.dev/play/p/uTIJZYhpVMS)]
 -   **<big>ConcurrentMap_GetAndDelete</big>** :获取key，然后删除。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#ConcurrentMap_GetAndDelete)]
+    [[play](https://go.dev/play/p/ZyxeIXSZUiM)]
 -   **<big>ConcurrentMap_Has</big>** : 验证是否包含key。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#ConcurrentMap_Has)]
+    [[play](https://go.dev/play/p/C8L4ul9TVwf)]
 -   **<big>ConcurrentMap_Range</big>** : 为map中每个键和值顺序调用迭代器。 如果iterator返回false，则停止迭代。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil_zh-CN.md#ConcurrentMap_Range)]
+    [[play](https://go.dev/play/p/iqcy7P8P0Pr)]
+
 
 <h3 id="Mathutil"> 13. mathutil 包实现了一些数学计算的函数。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 
@@ -1297,6 +1322,8 @@ import "github.com/duke-git/lancet/v2/slice"
     [[play](https://go.dev/play/p/uXod2LWD1Kg)]
 -   **<big>Join</big>** : 用指定的分隔符链接切片元素。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice_zh-CN.md#Join)]
+    [[play](https://go.dev/play/p/huKzqwNDD7V)]
+
 
 <h3 id="Stream"> 19. stream 流，该包仅验证简单的 stream 实现，功能有限。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 

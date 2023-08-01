@@ -980,8 +980,8 @@ func main() {
         "b": 2,
     }
 
-    result1 := HasKey(m, "a")
-    result2 := HasKey(m, "c")
+    result1 := maputil.HasKey(m, "a")
+    result2 := maputil.HasKey(m, "c")
 
     fmt.Println(result1)
     fmt.Println(result2)
@@ -1054,12 +1054,16 @@ func main() {
     wg1.Wait()
 
 
-    for j := 0; j < 5; j++ {
-        go func(n int) {
-            val, ok := cm.Get(fmt.Sprintf("%d", n))
-            fmt.Println(val, ok)
-        }(j)
-    }
+    var wg2 sync.WaitGroup
+	wg2.Add(5)
+	for j := 0; j < 5; j++ {
+		go func(n int) {
+			val, ok := cm.Get(fmt.Sprintf("%d", n))
+			fmt.Println(val, ok)
+			wg2.Done()
+		}(j)
+	}
+	wg2.Wait()
 
     // output: (order may change)
     // 1 true
@@ -1105,12 +1109,16 @@ func main() {
     wg1.Wait()
 
 
-    for j := 0; j < 5; j++ {
-        go func(n int) {
-            val, ok := cm.Get(fmt.Sprintf("%d", n))
-            fmt.Println(val, ok)
-        }(j)
-    }
+    var wg2 sync.WaitGroup
+	wg2.Add(5)
+	for j := 0; j < 5; j++ {
+		go func(n int) {
+			val, ok := cm.Get(fmt.Sprintf("%d", n))
+			fmt.Println(val, ok)
+			wg2.Done()
+		}(j)
+	}
+	wg2.Wait()
 
     // output: (order may change)
     // 1 true
@@ -1199,13 +1207,16 @@ func main() {
     }
     wg1.Wait()
 
-
+    var wg2 sync.WaitGroup
+	wg2.Add(5)
     for j := 0; j < 5; j++ {
         go func(n int) {
             cm.Delete(fmt.Sprintf("%d", n))
             wg2.Done()
-        }(i)
+        }(j)
     }
+
+    wg2.Wait()
 }
 ```
 
@@ -1244,7 +1255,8 @@ func main() {
     }
     wg1.Wait()
 
-
+    var wg2 sync.WaitGroup
+	wg2.Add(5)
     for j := 0; j < 5; j++ {
         go func(n int) {
             val, ok := cm.GetAndDelete(fmt.Sprintf("%d", n))
@@ -1252,8 +1264,12 @@ func main() {
 
             _, ok = cm.Get(fmt.Sprintf("%d", n))
             fmt.Println(val, ok) //false
+            
+            wg2.Done()
         }(j)
     }
+
+    wg2.Wait()
 }
 ```
 
@@ -1292,13 +1308,16 @@ func main() {
     }
     wg1.Wait()
 
-
+    var wg2 sync.WaitGroup
+	wg2.Add(5)
     for j := 0; j < 5; j++ {
         go func(n int) {
             ok := cm.Has(fmt.Sprintf("%d", n))
             fmt.Println(ok) // true
+            wg2.Done()
         }(j)
     }
+    wg2.Wait()
 }
 ```
 
@@ -1337,7 +1356,7 @@ func main() {
     }
     wg1.Wait()
 
-
+    
     cm.Range(func(key string, value int) bool {
         fmt.Println(value)
         return true

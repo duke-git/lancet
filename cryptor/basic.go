@@ -57,7 +57,7 @@ func Md5Byte(data []byte) string {
 }
 
 // Md5ByteWithBase64 return the md5 string of byte slice with base64.
-// Play: https://go.dev/play/p/CkN9hYKGeAy
+// Play: https://go.dev/play/p/Tcb-Z7LN2ax
 func Md5ByteWithBase64(data []byte) string {
 	h := md5.New()
 	h.Write(data)
@@ -153,7 +153,7 @@ func HmacSha512(str, key string) string {
 }
 
 // HmacSha512WithBase64 return the hmac hash of string use sha512 with base64.
-// Play: https://go.dev/play/p/61wBBOKO-GH
+// Play: https://go.dev/play/p/c6dSe3E2ydU
 func HmacSha512WithBase64(str, key string) string {
 	h := hmac.New(sha512.New, []byte(key))
 	h.Write([]byte(str))
@@ -169,7 +169,7 @@ func Sha1(str string) string {
 }
 
 // Sha1WithBase64 return the sha1 value (SHA-1 hash algorithm) of base64 string.
-// Play: todo
+// Play: https://go.dev/play/p/fSyx-Gl2l2-
 func Sha1WithBase64(str string) string {
 	sha1 := sha1.New()
 	sha1.Write([]byte(str))

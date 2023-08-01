@@ -977,8 +977,8 @@ func main() {
         "b": 2,
     }
 
-    result1 := HasKey(m, "a")
-    result2 := HasKey(m, "c")
+    result1 := maputil.HasKey(m, "a")
+    result2 := maputil.HasKey(m, "c")
 
     fmt.Println(result1)
     fmt.Println(result2)
@@ -1050,13 +1050,16 @@ func main() {
     }
     wg1.Wait()
 
-
+    var wg2 sync.WaitGroup
+	wg2.Add(5)
     for j := 0; j < 5; j++ {
         go func(n int) {
             val, ok := cm.Get(fmt.Sprintf("%d", n))
             fmt.Println(val, ok)
+			wg2.Done()
         }(j)
     }
+	wg2.Wait()
 
     // output: (order may change)
     // 1 true
@@ -1101,13 +1104,16 @@ func main() {
     }
     wg1.Wait()
 
-
+    var wg2 sync.WaitGroup
+	wg2.Add(5)
     for j := 0; j < 5; j++ {
         go func(n int) {
             val, ok := cm.Get(fmt.Sprintf("%d", n))
             fmt.Println(val, ok)
+			wg2.Done()
         }(j)
     }
+	wg2.Wait()
 
     // output: (order may change)
     // 1 true
@@ -1196,13 +1202,15 @@ func main() {
     }
     wg1.Wait()
 
-
+    var wg2 sync.WaitGroup
+	wg2.Add(5)
     for j := 0; j < 5; j++ {
         go func(n int) {
             cm.Delete(fmt.Sprintf("%d", n))
             wg2.Done()
         }(i)
     }
+    wg2.Wait()
 }
 ```
 
@@ -1241,7 +1249,8 @@ func main() {
     }
     wg1.Wait()
 
-
+    var wg2 sync.WaitGroup
+	wg2.Add(5)
     for j := 0; j < 5; j++ {
         go func(n int) {
             val, ok := cm.GetAndDelete(fmt.Sprintf("%d", n))
@@ -1249,8 +1258,11 @@ func main() {
 
             _, ok = cm.Get(fmt.Sprintf("%d", n))
             fmt.Println(val, ok) //false
+
+            wg2.Done()
         }(j)
     }
+    wg2.Wait()
 }
 ```
 
@@ -1280,7 +1292,6 @@ func main() {
 
     var wg1 sync.WaitGroup
     wg1.Add(5)
-
     for i := 0; i < 5; i++ {
         go func(n int) {
             cm.Set(fmt.Sprintf("%d", n), n)
@@ -1289,13 +1300,18 @@ func main() {
     }
     wg1.Wait()
 
+    var wg2 sync.WaitGroup
+	wg2.Add(5)
 
     for j := 0; j < 5; j++ {
         go func(n int) {
             ok := cm.Has(fmt.Sprintf("%d", n))
             fmt.Println(ok) // true
+
+            wg2.Done()
         }(j)
     }
+    wg2.Wait()
 }
 ```
 
