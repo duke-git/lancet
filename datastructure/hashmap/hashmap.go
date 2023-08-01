@@ -7,6 +7,7 @@ package datastructure
 import (
 	"fmt"
 	"hash/fnv"
+	"reflect"
 )
 
 var defaultMapCapacity uint64 = 1 << 10
@@ -46,7 +47,7 @@ func (hm *HashMap) Get(key any) any {
 	hashValue := hm.hash(key)
 	node := hm.table[hashValue]
 	for node != nil {
-		if node.key == key {
+		if reflect.DeepEqual(node.key, key) {
 			return node.value
 		}
 		node = node.next
@@ -102,7 +103,7 @@ func (hm *HashMap) Delete(key any) {
 func (hm *HashMap) Contains(key any) bool {
 	node := hm.table[hm.hash(key)]
 	for node != nil {
-		if node.key == key {
+		if reflect.DeepEqual(node.key, key) {
 			return true
 		}
 		node = node.next
