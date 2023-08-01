@@ -92,3 +92,9 @@ func TestCopyOnWriteList_RemoveRange(t *testing.T) {
 	list.RemoveRange(1, 3)
 	assert.Equal([]int{1, 4, 5}, list.getList())
 }
+
+func TestCopyOnWriteList_LastIndexOf(t *testing.T) {
+	list := NewCopyOnWriteList([]int{1, 2, 3, 4, 5, 3})
+	assert := internal.NewAssert(t, "CopyOnWriteList_LastIndexOf")
+	assert.Equal(5, list.LastIndexOf(3))
+}
