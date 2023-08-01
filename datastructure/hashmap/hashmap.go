@@ -45,11 +45,22 @@ func NewHashMapWithCapacity(size, capacity uint64) *HashMap {
 func (hm *HashMap) Get(key any) any {
 	hashValue := hm.hash(key)
 	node := hm.table[hashValue]
-	if node != nil {
-		return node.value
+	for node != nil {
+		if node.key == key {
+			return node.value
+		}
+		node = node.next
 	}
-
 	return nil
+}
+
+// GetOrDefault return the value of given key in hashmap, if not found return default value
+func (hm *HashMap) GetOrDefault(key any, defaultValue any) any {
+	value := hm.Get(key)
+	if value == nil {
+		return defaultValue
+	}
+	return value
 }
 
 // Put new key value in hashmap
@@ -90,7 +101,13 @@ func (hm *HashMap) Delete(key any) {
 // Contains checks if given key is in hashmap or not
 func (hm *HashMap) Contains(key any) bool {
 	node := hm.table[hm.hash(key)]
-	return node != nil
+	for node != nil {
+		if node.key == key {
+			return true
+		}
+		node = node.next
+	}
+	return false
 }
 
 // Iterate executes iteratee funcation for every key and value pair of hashmap (random order)
