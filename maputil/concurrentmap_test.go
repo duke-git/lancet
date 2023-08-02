@@ -100,12 +100,18 @@ func TestConcurrentMap_GetAndDelete(t *testing.T) {
 
 	cm := NewConcurrentMap[string, int](100)
 
+	var wg1 sync.WaitGroup
+	wg1.Add(10)
 	for i := 0; i < 10; i++ {
 		go func(n int) {
 			cm.Set(fmt.Sprintf("%d", n), n)
+			wg1.Done()
 		}(i)
 	}
+	wg1.Wait()
 
+	var wg2 sync.WaitGroup
+	wg2.Add(10)
 	for j := 0; j < 10; j++ {
 		go func(n int) {
 			val, ok := cm.GetAndDelete(fmt.Sprintf("%d", n))
@@ -114,8 +120,11 @@ func TestConcurrentMap_GetAndDelete(t *testing.T) {
 
 			_, ok = cm.Get(fmt.Sprintf("%d", n))
 			assert.Equal(false, ok)
+			wg2.Done()
 		}(j)
 	}
+
+	wg2.Wait()
 }
 
 func TestConcurrentMap_Has(t *testing.T) {
