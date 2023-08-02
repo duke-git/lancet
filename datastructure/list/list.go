@@ -271,7 +271,7 @@ func (l *List[T]) Reverse() {
 	}
 }
 
-// Unique remove duplicate items in list.
+// Unique delete duplicate items in list.
 func (l *List[T]) Unique() {
 	data := l.data
 	size := len(data)
@@ -294,7 +294,7 @@ func (l *List[T]) Unique() {
 	l.data = uniqueData
 }
 
-// Union creates a new list contain all element in list l and other, remove duplicate element.
+// Union creates a new list contain all element in list l and other, delete duplicate element.
 func (l *List[T]) Union(other *List[T]) *List[T] {
 	result := NewList([]T{})
 

@@ -74,3 +74,34 @@ func TestHashMap_KeysValues(t *testing.T) {
 	assert.Equal(3, len(values))
 	assert.Equal(3, len(keys))
 }
+
+func TestHashMap_Keys(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestHashMap_Keys")
+
+	hm := NewHashMap()
+
+	hm.Put("a", 1)
+	hm.Put("b", 2)
+	hm.Put("c", 3)
+
+	keys := hm.Keys()
+
+	assert.Equal(3, len(keys))
+}
+
+func TestHashMap_GetOrDefault(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestHashMap_GetOrDefault")
+
+	hm := NewHashMap()
+
+	hm.Put("a", 1)
+	hm.Put("b", 2)
+	hm.Put("c", 3)
+
+	assert.Equal(1, hm.GetOrDefault("a", 5))
+	assert.Equal(5, hm.GetOrDefault("d", 5))
+}

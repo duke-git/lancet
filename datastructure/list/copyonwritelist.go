@@ -22,26 +22,35 @@ func (c *CopyOnWriteList[T]) setList(data []T) {
 	c.data = data
 }
 
-// size returns the number of elements in this list.
-func (c *CopyOnWriteList[T]) size() int {
+// Size returns the number of elements in this list.
+func (c *CopyOnWriteList[T]) Size() int {
 	return len(c.getList())
 }
 
 // IsEmpty returns true if this list contains no elements.
 func (c *CopyOnWriteList[T]) IsEmpty() bool {
-	return c.size() == 0
+	return c.Size() == 0
 }
 
-// Contains returns true if this list contains the specified element.
-func (c *CopyOnWriteList[T]) Contains(e T) bool {
+// Contain returns true if this list contains the specified element.
+func (c *CopyOnWriteList[T]) Contain(e T) bool {
 	list := c.getList()
-	return indexOf(e, list, 0, c.size()) >= 0
+	return indexOf(e, list, 0, c.Size()) >= 0
+}
+
+// ValueOf returns the index of the first occurrence of the specified element in this list, or -1 if this list does not contain the element.
+func (c *CopyOnWriteList[T]) ValueOf(index int) (*T, bool) {
+	list := c.getList()
+	if index < 0 || index >= len(c.data) {
+		return nil, false
+	}
+	return get(list, index), true
 }
 
 // IndexOf returns the index of the first occurrence of the specified element in this list, or -1 if this list does not contain the element.
 func (c *CopyOnWriteList[T]) IndexOf(e T) int {
 	list := c.getList()
-	return indexOf(e, list, 0, c.size())
+	return indexOf(e, list, 0, c.Size())
 }
 
 // indexOf returns the index of the first occurrence of the specified element in this list, or -1 if this list does not contain the element.
@@ -62,7 +71,7 @@ func indexOf[T any](o T, e []T, start int, end int) int {
 // LastIndexOf returns the index of the last occurrence of the specified element in this list, or -1 if this list does not contain the element.
 func (c *CopyOnWriteList[T]) LastIndexOf(e T) int {
 	list := c.getList()
-	return lastIndexOf(e, list, 0, c.size())
+	return lastIndexOf(e, list, 0, c.Size())
 }
 
 // lastIndexOf returns the index of the last occurrence of the specified element in this list, or -1 if this list does not contain the element.
@@ -81,21 +90,20 @@ func lastIndexOf[T any](o T, e []T, start int, end int) int {
 }
 
 // get returns the element at the specified position in this list.
-func get[T any](o []T, index int) T {
-	return o[index]
+func get[T any](o []T, index int) *T {
+	return &o[index]
 }
 
 // Get returns the element at the specified position in this list.
-func (c *CopyOnWriteList[T]) Get(index int) (T, bool) {
+func (c *CopyOnWriteList[T]) Get(index int) (*T, bool) {
 	list := c.getList()
-	var o T
 	if index < 0 || index >= len(list) {
-		return o, false
+		return nil, false
 	}
 	return get(list, index), true
 }
 
-func (c *CopyOnWriteList[T]) set(index int, e T) (oldValue T) {
+func (c *CopyOnWriteList[T]) set(index int, e T) (oldValue *T) {
 	lock := c.lock
 	lock.Lock()
 	defer lock.Unlock()
@@ -115,7 +123,7 @@ func (c *CopyOnWriteList[T]) set(index int, e T) (oldValue T) {
 }
 
 // Set replaces the element at the specified position in this list with the specified element.
-func (c *CopyOnWriteList[T]) Set(index int, e T) (oldValue T, ok bool) {
+func (c *CopyOnWriteList[T]) Set(index int, e T) (oldValue *T, ok bool) {
 	list := c.getList()
 	if index < 0 || index >= len(list) {
 		return oldValue, false
@@ -177,8 +185,8 @@ func (c *CopyOnWriteList[T]) AddByIndex(index int, e T) bool {
 	return true
 }
 
-// remove removes the element at the specified position in this list.
-func (c *CopyOnWriteList[T]) remove(index int) T {
+// delete removes the element at the specified position in this list.
+func (c *CopyOnWriteList[T]) delete(index int) *T {
 	lock := c.lock
 	lock.Lock()
 	defer lock.Unlock()
@@ -202,30 +210,28 @@ func (c *CopyOnWriteList[T]) remove(index int) T {
 	return oldValue
 }
 
-// RemoveByIndex removes the element at the specified position in this list.
-func (c *CopyOnWriteList[T]) RemoveByIndex(index int) (T, bool) {
-	var o T
+// DeleteAt removes the element at the specified position in this list.
+func (c *CopyOnWriteList[T]) DeleteAt(index int) (*T, bool) {
 	list := c.getList()
 	if index < 0 || index >= len(list) {
-		return o, false
+		return nil, false
 	}
-	return c.remove(index), true
+	return c.delete(index), true
 }
 
-// RemoveByValue removes the first occurrence of the specified element from this list, if it is present.
-func (c *CopyOnWriteList[T]) RemoveByValue(o T) (T, bool) {
-	var oldValue T
+// DeleteBy removes the first occurrence of the specified element from this list, if it is present.
+func (c *CopyOnWriteList[T]) DeleteBy(o T) (*T, bool) {
 	list := c.getList()
 	index := indexOf(o, list, 0, len(list))
 	if index == -1 {
-		return oldValue, false
+		return nil, false
 	}
-	return c.remove(index), true
+	return c.delete(index), true
 }
 
-// RemoveRange removes from this list all the elements whose index is between fromIndex, inclusive, and toIndex, exclusive.
+// DeleteRange removes from this list all the elements whose index is between fromIndex, inclusive, and toIndex, exclusive.
 // left close and right open
-func (c *CopyOnWriteList[T]) RemoveRange(start int, end int) {
+func (c *CopyOnWriteList[T]) DeleteRange(start int, end int) {
 	lock := c.lock
 	lock.Lock()
 	defer lock.Unlock()
@@ -246,4 +252,39 @@ func (c *CopyOnWriteList[T]) RemoveRange(start int, end int) {
 		copy(newList[start:], list[end:])
 	}
 	c.setList(newList)
+}
+
+// DeleteIf removes all the elements of this collection that satisfy the given predicate.
+func (c *CopyOnWriteList[T]) DeleteIf(f func(T) bool) {
+	lock := c.lock
+	lock.Lock()
+	defer lock.Unlock()
+
+	list := c.getList()
+	length := len(list)
+	var newList []T
+	for i := 0; i < length; i++ {
+		if !f(list[i]) {
+			newList = append(newList, list[i])
+		}
+	}
+	c.setList(newList)
+}
+
+// Equal returns true if the specified object is equal to this list.
+func (c *CopyOnWriteList[T]) Equal(other *[]T) bool {
+	if other == nil {
+		return false
+	}
+	if c.Size() != len(*other) {
+		return false
+	}
+	list := c.getList()
+	otherList := NewCopyOnWriteList(*other).getList()
+	for i := 0; i < len(list); i++ {
+		if !reflect.DeepEqual(list[i], otherList[i]) {
+			return false
+		}
+	}
+	return true
 }
