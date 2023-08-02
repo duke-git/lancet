@@ -197,54 +197,58 @@ func IsZipFile(filepath string) bool {
 	return bytes.Equal(buf, []byte("PK\x03\x04"))
 }
 
-// Zip create zip file, fpath could be a single file or a directory.
+// Zip create zip file, fpath should be a directory.
 // Play: https://go.dev/play/p/j-3sWBp8ik_P
 func Zip(fpath string, destPath string) error {
-	zipFile, err := os.Create(destPath)
+	outFile, err := os.Create(destPath)
 	if err != nil {
 		return err
 	}
-	defer zipFile.Close()
+	defer outFile.Close()
 
-	archive := zip.NewWriter(zipFile)
-	defer archive.Close()
+	w := zip.NewWriter(outFile)
 
-	return addFileToArchive(fpath, archive)
+	err = addFileToArchive(w, fpath, "")
+	if err != nil {
+		return err
+	}
+
+	err = w.Close()
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
-func addFileToArchive(fpath string, archive *zip.Writer) error {
-	err := filepath.Walk(fpath, func(path string, info os.FileInfo, err error) error {
-		if err != nil {
-			return err
-		}
+func addFileToArchive(w *zip.Writer, basePath, baseInZip string) error {
+	files, err := os.ReadDir(basePath)
+	if err != nil {
+		return err
+	}
 
-		header, err := zip.FileInfoHeader(info)
-		if err != nil {
-			return err
-		}
-
-		header.Name = strings.TrimPrefix(path, filepath.Dir(fpath)+"/")
-
-		if info.IsDir() {
-			header.Name += "/"
-		} else {
-			header.Method = zip.Deflate
-			writer, err := archive.CreateHeader(header)
+	for _, file := range files {
+		if !file.IsDir() {
+			dat, err := os.ReadFile(basePath + file.Name())
 			if err != nil {
 				return err
 			}
-			file, err := os.Open(path)
+
+			f, err := w.Create(baseInZip + file.Name())
 			if err != nil {
 				return err
 			}
-			defer file.Close()
-			if _, err := io.Copy(writer, file); err != nil {
+			_, err = f.Write(dat)
+			if err != nil {
 				return err
 			}
+		} else if file.IsDir() {
+			newBase := basePath + file.Name() + "/"
+			addFiles(w, newBase, baseInZip+file.Name()+"/")
 		}
-		return nil
-	})
-	return err
+	}
+
+	return nil
 }
 
 // UnZip unzip the file and save it to destPath.
