@@ -9,9 +9,8 @@ func TestCopyOnWriteList_ValueOf(t *testing.T) {
 	list := NewCopyOnWriteList([]int{1, 2, 3, 4, 5})
 
 	assert := internal.NewAssert(t, "CopyOnWriteList_IndexOf")
-	of, ok := list.ValueOf(3)
+	of := list.ValueOf(3)
 	assert.Equal(4, *of)
-	assert.Equal(true, ok)
 }
 
 func TestCopyOnWriteList_Contains(t *testing.T) {
@@ -41,8 +40,8 @@ func TestCopyOnWriteList_GetList(t *testing.T) {
 func TestCopyOnWriteList_Get(t *testing.T) {
 	list := NewCopyOnWriteList([]int{1, 2, 3, 4, 5})
 	assert := internal.NewAssert(t, "CopyOnWriteList_Get")
-	i, _ := list.Get(2)
-	assert.Equal(3, i)
+	i := list.Get(2)
+	assert.Equal(3, *i)
 }
 
 func TestCopyOnWriteList_Set(t *testing.T) {
@@ -73,7 +72,7 @@ func TestCopyOnWriteList_AddByIndex(t *testing.T) {
 	assert.Equal([]int{1, 2, 6, 3, 4, 5}, list.getList())
 }
 
-func TestCopyOnWriteList_RemoveByIndex(t *testing.T) {
+func TestCopyOnWriteList_DeleteAt2(t *testing.T) {
 	list := NewCopyOnWriteList([]int{1, 2, 3, 4, 5})
 	assert := internal.NewAssert(t, "CopyOnWriteList_RemoveByIndex")
 	list.DeleteAt(2)

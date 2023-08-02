@@ -38,13 +38,13 @@ func (c *CopyOnWriteList[T]) Contain(e T) bool {
 	return indexOf(e, list, 0, c.Size()) >= 0
 }
 
-// ValueOf returns the index of the first occurrence of the specified element in this list, or -1 if this list does not contain the element.
-func (c *CopyOnWriteList[T]) ValueOf(index int) (*T, bool) {
+// ValueOf returns the index of the first occurrence of the specified element in this list, or null if this list does not contain the element.
+func (c *CopyOnWriteList[T]) ValueOf(index int) *T {
 	list := c.getList()
 	if index < 0 || index >= len(c.data) {
-		return nil, false
+		return nil
 	}
-	return get(list, index), true
+	return get(list, index)
 }
 
 // IndexOf returns the index of the first occurrence of the specified element in this list, or -1 if this list does not contain the element.
@@ -95,12 +95,12 @@ func get[T any](o []T, index int) *T {
 }
 
 // Get returns the element at the specified position in this list.
-func (c *CopyOnWriteList[T]) Get(index int) (*T, bool) {
+func (c *CopyOnWriteList[T]) Get(index int) *T {
 	list := c.getList()
 	if index < 0 || index >= len(list) {
-		return nil, false
+		return nil
 	}
-	return get(list, index), true
+	return get(list, index)
 }
 
 func (c *CopyOnWriteList[T]) set(index int, e T) (oldValue *T) {
@@ -145,7 +145,7 @@ func (c *CopyOnWriteList[T]) Add(e T) bool {
 	return true
 }
 
-// AddAll appends all the elements in the specified collection to the end of this list, in the order that they are returned by the specified collection's iterator.
+// AddAll appends all the elements in the specified collection to the end of this list
 func (c *CopyOnWriteList[T]) AddAll(e []T) bool {
 	lock := c.lock
 	lock.Lock()
