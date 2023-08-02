@@ -1,15 +1,18 @@
 # CopyOnWriteList
-CopyOnWriteList 是一个线程安全的List实现，底层使用go 切片
+
+CopyOnWriteList 是一个线程安全的 List 实现，底层使用 go 切片
 .在写入时，会复制一份新的切片，写入完成后，再将新的切片赋值给原来的切片.
 在读取时，直接读取原来的切片
 
 ## 源码
-- [https://github.com/duke-git/lancet/blob/main/datastructure/list/copyonwritelist.go](https://github.com/duke-git/lancet/blob/main/datastructure/list/copyonwritelist.go)
+
+-   [https://github.com/duke-git/lancet/blob/main/datastructure/list/copyonwritelist.go](https://github.com/duke-git/lancet/blob/main/datastructure/list/copyonwritelist.go)
 
 ## 用法
+
 ```go
 import (
-"github.com/duke-git/lancet/datastructure/list"
+    "github.com/duke-git/lancet/datastructure/list"
 )
 
 ```
@@ -17,30 +20,32 @@ import (
 <div STYLE="page-break-after: always;"></div>
 
 ## 目录
-- [NewCopyOnWriteList](#NewCopyOnWriteList)
-- [Size](#Size)
-- [Get](#Get)
-- [Set](#Set)
-- [Remove](#Remove)
-- [IndexOf](#IndexOf)
-- [LastIndexOf](#LastIndexOf)
-- [IsEmpty](#IsEmpty)
-- [Contain](#Contain)
-- [ValueOf](#ValueOf)
-- [Add](#Add)
-- [AddAll](#AddAll)
-- [AddByIndex](#AddByIndex)
-- [DeleteAt](#DeleteAt)
-- [DeleteIf](#DeleteIf)
-- [DeleteBy](#DeleteBy)
-- [DeleteRange](#DeleteRange)
-- [Equal](#Equal)
 
+-   [NewCopyOnWriteList](#NewCopyOnWriteList)
+-   [Size](#Size)
+-   [Get](#Get)
+-   [Set](#Set)
+-   [Remove](#Remove)
+-   [IndexOf](#IndexOf)
+-   [LastIndexOf](#LastIndexOf)
+-   [IsEmpty](#IsEmpty)
+-   [Contain](#Contain)
+-   [ValueOf](#ValueOf)
+-   [Add](#Add)
+-   [AddAll](#AddAll)
+-   [AddByIndex](#AddByIndex)
+-   [DeleteAt](#DeleteAt)
+-   [DeleteIf](#DeleteIf)
+-   [DeleteBy](#DeleteBy)
+-   [DeleteRange](#DeleteRange)
+-   [Equal](#Equal)
 
 ## 文档
 
 ### NewCopyOnWriteList
-返回一个具有空切片的CopyOnWriteList
+
+返回一个具有空切片的 CopyOnWriteList。
+
 ```go
 type CopyOnWriteList[T any] struct {
     data []T
@@ -50,7 +55,9 @@ type CopyOnWriteList[T any] struct {
 func NewCopyOnWriteList() *CopyOnWriteList
 
 ```
+
 #### 示例
+
 ```go
 package main
 
@@ -65,12 +72,17 @@ func main()  {
 }
 
 ```
-### Size 
-返回CopyOnWriteList的长度
+
+### Size
+
+返回 CopyOnWriteList 的长度。
+
 ```go
 func (l *CopyOnWriteList[T]) Size() int
 ```
+
 #### 示例
+
 ```go
 package main
 
@@ -87,12 +99,15 @@ func main() {
 ```
 
 ### Get
+
 返回列表中指定位置的元素
+
 ```go
 func (c *CopyOnWriteList[T]) Get(index int) *T
 ```
 
 #### 示例
+
 ```go
 package main
 
@@ -108,14 +123,16 @@ func main()  {
 
 ```
 
-
 ### Set
+
 将此列表中指定位置的元素替换为指定元素。
+
 ```go
 func (c *CopyOnWriteList[T]) Set(index int, e T) (oldValue *T, ok bool)
 ```
 
 #### 示例
+
 ```go
 package main
 
@@ -130,14 +147,19 @@ func main()  {
 }
 
 ```
+
 ### Remove
 
 ### IndexOf
-返回列表中值的索引，如果没有找到返回-1
+
+返回列表中值的索引，如果没有找到返回-1。
+
 ```go
 func (c *CopyOnWriteList[T]) IndexOf(e T) int
 ```
+
 #### 示例
+
 ```go
 package main
 
@@ -154,13 +176,15 @@ func main() {
 ```
 
 ### LastIndexOf
-返回指定元素在此列表中最后出现的索引，如果此列表不包含该元素，则返回-1
+
+返回指定元素在此列表中最后出现的索引，如果此列表不包含该元素，则返回-1。
 
 ```go
 func (c *CopyOnWriteList[T]) LastIndexOf(e T) int
 ```
 
 #### 示例
+
 ```go
 package main
 
@@ -177,12 +201,15 @@ func main()  {
 ```
 
 ### IsEmpty
-如果此列表不包含任何元素，则返回true。
+
+如果此列表不包含任何元素，则返回 true。
+
 ```go
 func (c *CopyOnWriteList[T]) IsEmpty() bool
 ```
 
 #### 示例
+
 ```go
 package main
 
@@ -197,14 +224,16 @@ func main()  {
 }
 ```
 
-
-
 ### Contain
-判断CopyOnWriteList是否包含某个元素
+
+判断 CopyOnWriteList 是否包含某个元素
+
 ```go
-func (c *CopyOnWriteList[T]) Contain(e T) bool 
+func (c *CopyOnWriteList[T]) Contain(e T) bool
 ```
+
 #### 示例
+
 ```go
 package main
 
@@ -219,14 +248,16 @@ func main() {
 }
 ```
 
-
 ### ValueOf
+
 返回列表中索引处的值指针
+
 ```go
 func (c *CopyOnWriteList[T]) ValueOf(index int) []T
 ```
 
 #### 示例
+
 ```go
 package main
 
@@ -243,12 +274,15 @@ func main() {
 ```
 
 ### Add
+
 将指定的元素追加到此列表的末尾。
+
 ```go
 func (c *CopyOnWriteList[T]) Add(e T) bool
 ```
 
 #### 示例
+
 ```go
 
 package main
@@ -267,12 +301,15 @@ func main()  {
 ```
 
 ### AddAll
+
 将指定集合中的所有元素追加到此列表的末尾
+
 ```go
 func (c *CopyOnWriteList[T]) AddAll(e []T) bool
 ```
 
 #### 示例
+
 ```go
 package main
 
@@ -290,12 +327,15 @@ func main()  {
 ```
 
 ### AddByIndex
-将指定元素插入此列表中的指定位置
+
+将指定元素插入此列表中的指定位置。
 
 ```go
 func (c *CopyOnWriteList[T]) AddByIndex(index int, e T) bool
 ```
+
 #### 示例
+
 ```go
 package main
 import (
@@ -311,11 +351,15 @@ func main()  {
 ```
 
 ### DeleteAt
+
 移除此列表中指定位置的元素。
+
 ```go
 func (c *CopyOnWriteList[T]) DeleteAt(index int) (oldValue *T, ok bool)
 ```
+
 #### 示例
+
 ```go
 package main
 import (
@@ -331,11 +375,15 @@ func main()  {
 ```
 
 ### DeleteIf
+
 从此列表中删除第一个出现的指定元素(如果该元素存在)。
+
 ```go
 func (c *CopyOnWriteList[T]) DeleteIf(f func(T) bool) (oldValue *T, ok bool)
 ```
+
 #### 示例
+
 ```go
 package main
 import (
@@ -353,11 +401,15 @@ func main()  {
 ```
 
 ### DeleteBy
+
 从此列表中删除第一个出现的指定元素(如果该元素存在)。
+
 ```go
 func (c *CopyOnWriteList[T]) DeleteBy(e T) (*T bool)
 ```
+
 #### 示例
+
 ```go
 package main
 import (
@@ -372,14 +424,17 @@ func main()  {
 }
 ```
 
-
 ### DeleteRange
-从该列表中删除索引介于fromIndex(包含)和toIndex(不包含)之间的所有元素。
-(左闭右开)
+
+从该列表中删除索引介于 fromIndex(包含)和 toIndex(不包含)之间的所有元素。
+(左闭右开)。
+
 ```go
-func (c *CopyOnWriteList[T]) DeleteRange(start int, end int) 
+func (c *CopyOnWriteList[T]) DeleteRange(start int, end int)
 ```
+
 #### 示例
+
 ```go
 package main
 import (
@@ -395,12 +450,15 @@ func main() {
 ```
 
 ### Equal
-如果指定的对象等于此列表，则返回true
+
+如果指定的对象等于此列表，则返回 true。
 
 ```go
 func (c *CopyOnWriteList[T]) Equal(e []T) bool
 ```
+
 #### 示例
+
 ```go
 package main
 import (
