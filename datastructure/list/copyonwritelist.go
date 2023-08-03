@@ -7,21 +7,19 @@ import (
 )
 
 type CopyOnWriteList[T any] struct {
-	data     []T
-	lock     sync.Locker
-	modCount int
+	data []T
+	lock sync.Locker
 }
 
 // NewCopyOnWriteList Creates an empty list.
 func NewCopyOnWriteList[T any](data []T) *CopyOnWriteList[T] {
-	return &CopyOnWriteList[T]{data: data, lock: &sync.RWMutex{}, modCount: 0}
+	return &CopyOnWriteList[T]{data: data, lock: &sync.RWMutex{}}
 }
 
 func (c *CopyOnWriteList[T]) getList() []T {
 	return c.data
 }
 func (c *CopyOnWriteList[T]) setList(data []T) {
-	c.modCount++
 	c.data = data
 }
 
@@ -107,7 +105,6 @@ func (c *CopyOnWriteList[T]) Get(index int) *T {
 }
 
 func (c *CopyOnWriteList[T]) set(index int, e T) (oldValue *T) {
-	c.modCount++
 	lock := c.lock
 	lock.Lock()
 	defer lock.Unlock()
@@ -294,7 +291,6 @@ func (c *CopyOnWriteList[T]) Equal(other *[]T) bool {
 
 // Clear removes all the elements from this list.
 func (c *CopyOnWriteList[T]) Clear() {
-	c.modCount++
 	lock := c.lock
 	lock.Lock()
 	defer lock.Unlock()
@@ -306,7 +302,6 @@ func (c *CopyOnWriteList[T]) Clear() {
 
 // Merge a tow list to one, change the list
 func (c *CopyOnWriteList[T]) Merge(other []T) {
-	c.modCount++
 	lock := c.lock
 	lock.Lock()
 	defer lock.Unlock()
@@ -319,26 +314,15 @@ func (c *CopyOnWriteList[T]) Merge(other []T) {
 // ForEach performs the given action for each element of the Iterable until all elements have been processed
 // or the action throws an exception.
 func (c *CopyOnWriteList[T]) ForEach(f func(T)) {
-	var oldModCount = c.modCount
 	list := c.getList()
-	defer func() {
-		if err := recover(); err != nil {
-			c.setList(list)
-		}
-	}()
-	for i := 0; oldModCount == c.modCount && i < len(list); i++ {
+	for i := 0; i < len(list); i++ {
 		f(list[i])
-	}
-	// if the list changed, panic ConcurrentModificationException
-	if oldModCount != c.modCount {
-		panic("ConcurrentModificationException")
 	}
 
 }
 
 // Sort sorts this list according to the order induced by the specified Comparator.
 func (c *CopyOnWriteList[T]) Sort(compare func(o1 T, o2 T) bool) {
-	c.modCount++
 	lock := c.lock
 	lock.Lock()
 	list := c.getList()
@@ -348,4 +332,19 @@ func (c *CopyOnWriteList[T]) Sort(compare func(o1 T, o2 T) bool) {
 	})
 
 	c.setList(list)
+}
+
+func (c *CopyOnWriteList[T]) SubList(start int, end int) (newList []T) {
+	lock := c.lock
+	lock.Lock()
+	list := c.getList()
+	length := len(list)
+	defer lock.Unlock()
+	if start < 0 || end > length || start > end {
+		return []T{}
+	}
+	newList = make([]T, end-start)
+	copy(newList, list[start:end])
+	c.setList(newList)
+	return
 }
