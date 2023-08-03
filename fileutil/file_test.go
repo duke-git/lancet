@@ -241,6 +241,19 @@ func TestZipAppendEntry(t *testing.T) {
 	os.RemoveAll(unZipPath)
 }
 
+func TestZipFolder(t *testing.T) {
+	assert := internal.NewAssert(t, "TestZipFolder")
+
+	toZipFolder := "./tempdir/a/b"
+	zipFolder := "./tempdir/a/b.zip"
+
+	err := Zip(toZipFolder, zipFolder)
+	assert.IsNil(err)
+	assert.Equal(true, IsExist(zipFolder))
+
+	os.Remove(zipFolder)
+}
+
 func TestFileMode(t *testing.T) {
 	assert := internal.NewAssert(t, "TestFileMode")
 

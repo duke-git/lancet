@@ -197,9 +197,30 @@ func IsZipFile(filepath string) bool {
 	return bytes.Equal(buf, []byte("PK\x03\x04"))
 }
 
-// Zip create zip file, fpath should be a directory.
+// Zip create zip file, fpath could be a single file or a directory.
 // Play: https://go.dev/play/p/j-3sWBp8ik_P
-func Zip(fpath string, destPath string) error {
+func Zip(path string, destPath string) error {
+	if IsDir(path) {
+		return zipFolder(path, destPath)
+	}
+
+	return zipFile(path, destPath)
+}
+
+func zipFile(filePath string, destPath string) error {
+	zipFile, err := os.Create(destPath)
+	if err != nil {
+		return err
+	}
+	defer zipFile.Close()
+
+	archive := zip.NewWriter(zipFile)
+	defer archive.Close()
+
+	return addFileToArchive1(filePath, archive)
+}
+
+func zipFolder(folderPath string, destPath string) error {
 	outFile, err := os.Create(destPath)
 	if err != nil {
 		return err
@@ -208,7 +229,7 @@ func Zip(fpath string, destPath string) error {
 
 	w := zip.NewWriter(outFile)
 
-	err = addFileToArchive(w, fpath, "")
+	err = addFileToArchive2(w, folderPath, "")
 	if err != nil {
 		return err
 	}
@@ -221,10 +242,48 @@ func Zip(fpath string, destPath string) error {
 	return nil
 }
 
-func addFileToArchive(w *zip.Writer, basePath, baseInZip string) error {
+func addFileToArchive1(fpath string, archive *zip.Writer) error {
+	err := filepath.Walk(fpath, func(path string, info os.FileInfo, err error) error {
+		if err != nil {
+			return err
+		}
+
+		header, err := zip.FileInfoHeader(info)
+		if err != nil {
+			return err
+		}
+
+		header.Name = strings.TrimPrefix(path, filepath.Dir(fpath)+"/")
+
+		if info.IsDir() {
+			header.Name += "/"
+		} else {
+			header.Method = zip.Deflate
+			writer, err := archive.CreateHeader(header)
+			if err != nil {
+				return err
+			}
+			file, err := os.Open(path)
+			if err != nil {
+				return err
+			}
+			defer file.Close()
+			if _, err := io.Copy(writer, file); err != nil {
+				return err
+			}
+		}
+		return nil
+	})
+	return err
+}
+
+func addFileToArchive2(w *zip.Writer, basePath, baseInZip string) error {
 	files, err := os.ReadDir(basePath)
 	if err != nil {
 		return err
+	}
+	if !strings.HasSuffix(basePath, "/") {
+		basePath = basePath + "/"
 	}
 
 	for _, file := range files {
@@ -244,7 +303,7 @@ func addFileToArchive(w *zip.Writer, basePath, baseInZip string) error {
 			}
 		} else if file.IsDir() {
 			newBase := basePath + file.Name() + "/"
-			addFiles(w, newBase, baseInZip+file.Name()+"/")
+			addFileToArchive2(w, newBase, baseInZip+file.Name()+"/")
 		}
 	}
 
@@ -254,7 +313,6 @@ func addFileToArchive(w *zip.Writer, basePath, baseInZip string) error {
 // UnZip unzip the file and save it to destPath.
 // Play: https://go.dev/play/p/g0w34kS7B8m
 func UnZip(zipFile string, destPath string) error {
-
 	zipReader, err := zip.OpenReader(zipFile)
 	if err != nil {
 		return err
@@ -337,7 +395,7 @@ func ZipAppendEntry(fpath string, destPath string) error {
 		}
 	}
 
-	err = addFileToArchive(fpath, archive)
+	err = addFileToArchive1(fpath, archive)
 
 	if err != nil {
 		return err

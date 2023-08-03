@@ -6,6 +6,7 @@ fileutil/*.txt
 fileutil/*.zip
 fileutil/*.link
 fileutil/unzip/*
+fileutil/tempdir/*
 slice/testdata/*
 cryptor/*.pem
 test
