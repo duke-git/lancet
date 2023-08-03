@@ -2,6 +2,7 @@ package datastructure
 
 import (
 	"reflect"
+	"sort"
 	"sync"
 )
 
@@ -39,12 +40,12 @@ func (c *CopyOnWriteList[T]) Contain(e T) bool {
 }
 
 // ValueOf returns the index of the first occurrence of the specified element in this list, or null if this list does not contain the element.
-func (c *CopyOnWriteList[T]) ValueOf(index int) *T {
+func (c *CopyOnWriteList[T]) ValueOf(index int) (*T, bool) {
 	list := c.getList()
 	if index < 0 || index >= len(c.data) {
-		return nil
+		return nil, false
 	}
-	return get(list, index)
+	return get(list, index), true
 }
 
 // IndexOf returns the index of the first occurrence of the specified element in this list, or -1 if this list does not contain the element.
@@ -107,7 +108,6 @@ func (c *CopyOnWriteList[T]) set(index int, e T) (oldValue *T) {
 	lock := c.lock
 	lock.Lock()
 	defer lock.Unlock()
-
 	list := c.getList()
 	oldValue = get(list, index)
 
@@ -287,4 +287,64 @@ func (c *CopyOnWriteList[T]) Equal(other *[]T) bool {
 		}
 	}
 	return true
+}
+
+// Clear removes all the elements from this list.
+func (c *CopyOnWriteList[T]) Clear() {
+	lock := c.lock
+	lock.Lock()
+	defer lock.Unlock()
+
+	list := c.getList()
+	list = make([]T, 0)
+	c.setList(list)
+}
+
+// Merge a tow list to one, change the list
+func (c *CopyOnWriteList[T]) Merge(other []T) {
+	lock := c.lock
+	lock.Lock()
+	defer lock.Unlock()
+
+	list := c.getList()
+	list = append(list, other...)
+	c.setList(list)
+}
+
+// ForEach performs the given action for each element of the Iterable until all elements have been processed
+// or the action throws an exception.
+func (c *CopyOnWriteList[T]) ForEach(f func(T)) {
+	list := c.getList()
+	for i := 0; i < len(list); i++ {
+		f(list[i])
+	}
+
+}
+
+// Sort sorts this list according to the order induced by the specified Comparator.
+func (c *CopyOnWriteList[T]) Sort(compare func(o1 T, o2 T) bool) {
+	lock := c.lock
+	lock.Lock()
+	list := c.getList()
+
+	sort.Slice(list, func(i, j int) bool {
+		return compare(list[i], list[j])
+	})
+
+	c.setList(list)
+}
+
+func (c *CopyOnWriteList[T]) SubList(start int, end int) (newList []T) {
+	lock := c.lock
+	lock.Lock()
+	list := c.getList()
+	length := len(list)
+	defer lock.Unlock()
+	if start < 0 || end > length || start > end {
+		return []T{}
+	}
+	newList = make([]T, end-start)
+	copy(newList, list[start:end])
+	c.setList(newList)
+	return
 }
