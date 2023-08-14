@@ -10,6 +10,8 @@ import (
 	"time"
 
 	"github.com/duke-git/lancet/v2/convertor"
+	"github.com/duke-git/lancet/v2/mathutil"
+	"golang.org/x/exp/constraints"
 )
 
 // operator type
@@ -61,4 +63,9 @@ func LessOrEqual(left, right any) bool {
 // Play: https://go.dev/play/p/vx8mP0U8DFk
 func GreaterOrEqual(left, right any) bool {
 	return compareValue(greaterOrEqual, left, right)
+}
+
+// InDelta checks if two values are equal or not within a delta.
+func InDelta[T constraints.Integer | constraints.Float](left, right T, delta float64) bool {
+	return float64(mathutil.Abs(left-right)) <= delta
 }
