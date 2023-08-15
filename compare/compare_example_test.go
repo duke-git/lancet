@@ -168,3 +168,29 @@ func ExampleGreaterOrEqual() {
 	// false
 	// false
 }
+
+func ExampleInDelta() {
+	result1 := InDelta(1, 1, 0)
+	result2 := InDelta(1, 2, 0)
+
+	result3 := InDelta(2.0/3.0, 0.66667, 0.001)
+	result4 := InDelta(2.0/3.0, 0.0, 0.001)
+
+	result5 := InDelta(float64(74.96)-float64(20.48), 54.48, 0)
+	result6 := InDelta(float64(74.96)-float64(20.48), 54.48, 1e-14)
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+	fmt.Println(result4)
+	fmt.Println(result5)
+	fmt.Println(result6)
+
+	// Output:
+	// true
+	// false
+	// true
+	// false
+	// false
+	// true
+}
