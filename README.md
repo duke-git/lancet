@@ -172,6 +172,8 @@ import "github.com/duke-git/lancet/v2/compare"
 -   **<big>GreaterOrEqual</big>** : Checks if value `left` less greater or equal than value `right`.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/compare.md#GreaterOrEqual)]
     [[play](https://go.dev/play/p/vx8mP0U8DFk)]
+-   **<big>InDelta</big>** : Checks if two values are equal or not within a delta.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/compare.md#InDelta)]
 
 <h3 id="Concurrency"> 3. Concurrency package contain some functions to support concurrent programming. eg, goroutine, channel, async. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</span> </h3>
 

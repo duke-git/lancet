@@ -171,6 +171,8 @@ import "github.com/duke-git/lancet/v2/compare"
 -   **<big>GreaterOrEqual</big>** : 验证参数`left`的值是否大于或等于参数`right`的值。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/compare_zh-CN.md#GreaterOrEqual)]
     [[play](https://go.dev/play/p/vx8mP0U8DFk)]
+-   **<big>InDelta</big>** : 检查增量内两个值是否相等。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/compare_zh-CN.md#InDelta)]
 
 <h3 id="Concurrency"> 3. concurrency 包含一些支持并发编程的功能。例如：goroutine, channel, async 等。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 

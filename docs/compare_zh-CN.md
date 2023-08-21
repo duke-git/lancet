@@ -30,6 +30,8 @@ import (
 -   [GreaterThan](#GreaterThan)
 -   [LessOrEqual](#LessOrEqual)
 -   [GreaterOrEqual](#GreaterOrEqual)
+-   [InDelta](#InDelta)
+
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -322,5 +324,52 @@ func main() {
     // false
     // false
     // false
+}
+```
+
+### <span id="InDelta">InDelta</span>
+
+<p>检查增量内两个值是否相等。</p>
+
+<b>函数签名:</b>
+
+```go
+func InDelta[T constraints.Integer | constraints.Float](left, right T, delta float64) bool
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/compare"
+)
+
+func main() {
+    result1 := InDelta(1, 1, 0)
+    result2 := InDelta(1, 2, 0)
+
+    result3 := InDelta(2.0/3.0, 0.66667, 0.001)
+    result4 := InDelta(2.0/3.0, 0.0, 0.001)
+
+    result5 := InDelta(float64(74.96)-float64(20.48), 54.48, 0)
+    result6 := InDelta(float64(74.96)-float64(20.48), 54.48, 1e-14)
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
+    fmt.Println(result5)
+    fmt.Println(result6)
+
+    // Output:
+    // true
+    // false
+    // true
+    // false
+    // false
+    // true
 }
 ```
