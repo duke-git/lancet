@@ -138,3 +138,19 @@ func TestGreaterOrEqual(t *testing.T) {
 	assert.Equal(false, GreaterOrEqual(int64(2), 1))
 	assert.Equal(false, GreaterOrEqual("b", "c"))
 }
+
+func TestInDelta(t *testing.T) {
+	t.Parallel()
+	assert := internal.NewAssert(t, "TestInDelta")
+
+	assert.Equal(true, InDelta(1, 1, 0))
+	assert.Equal(false, InDelta(1, 2, 0))
+
+	assert.Equal(true, InDelta(2.0/3.0, 0.66667, 0.001))
+	assert.Equal(false, InDelta(2.0/3.0, 0.0, 0.001))
+
+	assert.Equal(false, InDelta(float64(74.96)-float64(20.48), 54.48, 0))
+	assert.Equal(true, InDelta(float64(74.96)-float64(20.48), 54.48, 1e-14))
+	assert.Equal(false, InDelta(float64(float32(80.45)), float64(80.45), 0))
+	assert.Equal(true, InDelta(float64(float32(80.45)), float64(80.45), 1e-5))
+}
