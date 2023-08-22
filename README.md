@@ -75,7 +75,7 @@ func main() {
 
 ### <span id="index">Index<span>
 
--   [Algorithm](#Algorithm)
+-   [Algorithm](#user-content-algorithm)
 -   [Compare](#Compare)
 -   [Concurrency](#Concurrency)
 -   [Condition](#Condition)
@@ -101,7 +101,8 @@ func main() {
 -   [Validator](#Validator)
 -   [Xerror](#Xerror)
 
-<h3 id="Algorithm"> 1. Algorithm package implements some basic algorithm. eg. sort, search. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</span> </h3>
+
+<h3 id="Algorithm">1. Algorithm package implements some basic algorithm. eg. sort, search. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
 ```go
 import "github.com/duke-git/lancet/v2/algorithm"
@@ -146,7 +147,7 @@ import "github.com/duke-git/lancet/v2/algorithm"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/algorithm.md#LRUCache)]
     [[play](https://go.dev/play/p/-EZjgOURufP)]
 
-<h3 id="Compare"> 2. Compare package provides a lightweight comparison function on any type. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</span> </h3>
+<h3 id="Compare"> 2. Compare package provides a lightweight comparison function on any type. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a> </h3>
 
 ```go
 import "github.com/duke-git/lancet/v2/compare"
@@ -175,7 +176,7 @@ import "github.com/duke-git/lancet/v2/compare"
 -   **<big>InDelta</big>** : Checks if two values are equal or not within a delta.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/compare.md#InDelta)]
 
-<h3 id="Concurrency"> 3. Concurrency package contain some functions to support concurrent programming. eg, goroutine, channel, async. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</span> </h3>
+<h3 id="Concurrency"> 3. Concurrency package contain some functions to support concurrent programming. eg, goroutine, channel, async. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a> </h3>
 
 ```go
 import "github.com/duke-git/lancet/v2/concurrency"
