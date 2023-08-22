@@ -1,7 +1,6 @@
 # CopyOnWriteList
 
-CopyOnWriteList is a thread-safe list implementation that uses go slicing as its base.
-. When writing, a new slice is copied and assigned to the original slice when writing is complete.When reading, the original slice is read directly.
+CopyOnWriteList is a thread-safe list implementation that uses go slicing as its base. When writing, a new slice is copied and assigned to the original slice when writing is complete. When reading, the original slice is read directly.
 
 ## 源码
 
