@@ -99,7 +99,7 @@ func main() {
 -   [System](#user-content-system)
 -   [Tuple](#user-content-tuple)
 -   [Validator](#user-content-validator)
--   [Xerror](#user-content-eerror)
+-   [Xerror](#user-content-xerror)
 
 
 <h3 id="algorithm">1. Algorithm package implements some basic algorithm. eg. sort, search. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
