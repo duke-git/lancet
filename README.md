@@ -591,6 +591,7 @@ import "github.com/duke-git/lancet/v2/datetime"
 
 ```go
 import list "github.com/duke-git/lancet/v2/datastructure/list"
+import copyonwritelist "github.com/duke-git/lancet/v2/datastructure/copyonwritelist"
 import link "github.com/duke-git/lancet/v2/datastructure/link"
 import stack "github.com/duke-git/lancet/v2/datastructure/stack"
 import queue "github.com/duke-git/lancet/v2/datastructure/queue"
@@ -604,6 +605,8 @@ import hashmap "github.com/duke-git/lancet/v2/datastructure/hashmap"
 
 -   **<big>List</big>** : a linear table, implemented with slice.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/datastructure/list.md)]
+-   **<big>CopyOnWriteList</big>** : a thread-safe list implementation that uses go slicing as its base.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datastructure/copyonwritelist.md)]
 -   **<big>Link</big>** : link list structure, contains singly link and doubly link.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/datastructure/link.md)]
 -   **<big>Stack</big>** : stack structure(fifo), contains array stack and link stack.

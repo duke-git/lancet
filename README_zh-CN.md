@@ -595,6 +595,7 @@ import "github.com/duke-git/lancet/v2/datetime"
 
 ```go
 import list "github.com/duke-git/lancet/v2/datastructure/list"
+import copyonwritelist "github.com/duke-git/lancet/v2/datastructure/copyonwritelist"
 import link "github.com/duke-git/lancet/v2/datastructure/link"
 import stack "github.com/duke-git/lancet/v2/datastructure/stack"
 import queue "github.com/duke-git/lancet/v2/datastructure/queue"
@@ -608,6 +609,8 @@ import hashmap "github.com/duke-git/lancet/v2/datastructure/hashmap"
 
 -   **<big>List</big>** : 线性表结构, 用切片实现。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/datastructure/list_zh-CN.md)]
+-   **<big>CopyOnWriteList</big>** : 是一个线程安全的List实现，底层使用go切片。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/datastructure/copyonwritelist_zh-CN.md)]
 -   **<big>Link</big>** : 链表解构, 包括单链表和双向链表。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/datastructure/link_zh-CN.md)]
 -   **<big>Stack</big>** : 栈结构(fifo), 包括数组栈和链表栈。
