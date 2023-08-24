@@ -393,9 +393,7 @@ func TestWriteStringToFile(t *testing.T) {
 		t.Fail()
 	}
 
-	defer file.Close()
-
-	err = WriteStringToFile(filepath, "hello", false)
+	err = WriteStringToFile(filepath, "hello world", false)
 	if err != nil {
 		t.Fail()
 	}
@@ -405,20 +403,32 @@ func TestWriteStringToFile(t *testing.T) {
 		t.Fail()
 	}
 
+	err = WriteStringToFile(filepath, "hello", false)
+	if err != nil {
+		t.Fail()
+	}
+
+	content2, err := ReadFileToString(filepath)
+	if err != nil {
+		t.Fail()
+	}
+
 	err = WriteStringToFile(filepath, " world", true)
 	if err != nil {
 		t.Fail()
 	}
 
-	content2, err := os.ReadFile(filepath)
+	content3, err := os.ReadFile(filepath)
 	if err != nil {
 		t.Fail()
 	}
 
-	assert.Equal("hello", content1)
-	assert.Equal("hello world", string(content2))
+	assert.Equal("hello world", content1)
+	assert.Equal("hello", content2)
+	assert.Equal("hello world", string(content3))
 
-	os.Remove(filepath)
+	_ = file.Close()
+	_ = os.Remove(filepath)
 }
 
 func TestWriteBytesToFile(t *testing.T) {
