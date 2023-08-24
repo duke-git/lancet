@@ -18,7 +18,7 @@ import (
 
 <div STYLE="page-break-after: always;"></div>
 
-## Index
+## 目录
 
 - [Bool](#Bool)
 - [And](#And)
@@ -31,7 +31,9 @@ import (
 
 <div STYLE="page-break-after: always;"></div>
 
-## 目录
+<link rel="stylesheet" type="text/css" href="../api_doc.css">
+
+## 文档
 
 ### <span id="Bool">Bool</span>
 <p>返回传入参数的bool值.<br/>

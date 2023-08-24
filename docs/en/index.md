@@ -34,3 +34,10 @@ features:
     icon: 👏
     details: Well structure, test for every exported function.
 ---
+
+<p style="position:relative; top: -316px;left: 560px;">
+  <img style="display: inline-block;margin-right:10px;" src="https://img.shields.io/github/stars/duke-git/lancet?style=social" alt="">
+
+<img style="display: inline-block" src="https://img.shields.io/github/forks/duke-git/lancet?style=social" alt="">
+
+</p>

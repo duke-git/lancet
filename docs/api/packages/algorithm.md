@@ -39,6 +39,8 @@ import (
 
 <div STYLE="page-break-after: always;"></div>
 
+<link rel="stylesheet" type="text/css" href="../api_doc.css">
+
 ## 文档
 
 ### <span id="BubbleSort">BubbleSort</span>
@@ -51,7 +53,7 @@ import (
 func BubbleSort[T any](slice []T, comparator lancetconstraints.Comparator)
 ```
 
-<b>示例:<span style="display:inline-block;float:right;">[运行](https://go.dev/play/p/GNdv7Jg2Taj)</span></b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/GNdv7Jg2Taj)</span></b>
 
 ```go
 package main
@@ -99,7 +101,7 @@ func main() {
 func InsertionSort[T any](slice []T, comparator lancetconstraints.Comparator)
 ```
 
-<b>示例:<span style="display:inline-block;float:right;">[运行](https://go.dev/play/p/G5LJiWgJJW6)</span></b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/G5LJiWgJJW6)</span></b>
 
 ```go
 package main
@@ -162,7 +164,7 @@ func main() {
 func SelectionSort[T any](slice []T, comparator lancetconstraints.Comparator)
 ```
 
-<b>示例:<span style="display:inline-block;float:right;">[运行](https://go.dev/play/p/oXovbkekayS)</span></b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/oXovbkekayS)</span></b>
 
 ```go
 package main
@@ -210,7 +212,7 @@ func main() {
 func ShellSort[T any](slice []T, comparator lancetconstraints.Comparator)
 ```
 
-<b>示例:<span style="display:inline-block;float:right;">[运行](https://go.dev/play/p/3ibkszpJEu3)</span></b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/3ibkszpJEu3)</span></b>
 
 ```go
 package main
@@ -258,7 +260,7 @@ func main() {
 func QuickSort[T any](slice []T comparator lancetconstraints.Comparator)
 ```
 
-<b>示例:<span style="display:inline-block;float:right;">[运行](https://go.dev/play/p/7Y7c1Elk3ax)</span></b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/7Y7c1Elk3ax)</span></b>
 
 ```go
 package main
@@ -306,7 +308,7 @@ func main() {
 func HeapSort[T any](slice []T, comparator lancetconstraints.Comparator)
 ```
 
-<b>示例:<span style="display:inline-block;float:right;">[运行](https://go.dev/play/p/u6Iwa1VZS_f)</span></b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/u6Iwa1VZS_f)</span></b>
 
 ```go
 package main
@@ -354,7 +356,7 @@ func main() {
 func MergeSort[T any](slice []T, comparator lancetconstraints.Comparator)
 ```
 
-<b>示例:<span style="display:inline-block;float:right;">[运行](https://go.dev/play/p/ydinn9YzUJn)</span></b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/ydinn9YzUJn)</span></b>
 
 ```go
 package main
@@ -402,7 +404,7 @@ func main() {
 func CountSort[T any](slice []T, comparator lancetconstraints.Comparator) []T
 ```
 
-<b>示例:<span style="display:inline-block;float:right;">[运行](https://go.dev/play/p/tB-Umgm0DrP)</span></b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/tB-Umgm0DrP)</span></b>
 
 ```go
 package main
@@ -451,7 +453,7 @@ func main() {
 func BinarySearch[T any](sortedSlice []T, target T, lowIndex, highIndex int, comparator lancetconstraints.Comparator) int
 ```
 
-<b>示例: <span style="display:inline-block;float:right;">[运行](https://go.dev/play/p/t6MeGiUSN47)</span></b>
+<b>示例: <span class="run-container">[运行](https://go.dev/play/p/t6MeGiUSN47)</span></b>
 
 ```go
 package main
@@ -502,7 +504,7 @@ func main() {
 func BinaryIterativeSearch[T any](sortedSlice []T, target T, lowIndex, highIndex int, comparator lancetconstraints.Comparator) int
 ```
 
-<b>示例: <span style="display:inline-block;float:right;">[运行](https://go.dev/play/p/Anozfr8ZLH3)</span></b>
+<b>示例: <span class="run-container">[运行](https://go.dev/play/p/Anozfr8ZLH3)</span></b>
 
 ```go
 package main
@@ -553,7 +555,7 @@ func main() {
 func LinearSearch[T any](slice []T, target T, equal func(a, b T) bool) int
 ```
 
-<b>示例: <span style="display:inline-block;float:right;">[运行](https://go.dev/play/p/IsS7rgn5s3x)</span></b>
+<b>示例: <span class="run-container">[运行](https://go.dev/play/p/IsS7rgn5s3x)</span></b>
 
 ```go
 package main
@@ -596,7 +598,7 @@ func (l *LRUCache[K, V]) Delete(key K) bool
 func (l *LRUCache[K, V]) Len() int
 ```
 
-<b>示例:<span style="display:inline-block;float:right;">[运行](https://go.dev/play/p/-EZjgOURufP)</span></b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/-EZjgOURufP)</span></b>
 
 ```go
 package main

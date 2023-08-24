@@ -33,8 +33,9 @@ import (
 
 <div STYLE="page-break-after: always;"></div>
 
-## Documentation
+<link rel="stylesheet" type="text/css" href="../api_doc.css">
 
+## Documentation
 
 ## Channel
 ### <span id="NewChannel">NewChannel</span>
@@ -46,7 +47,7 @@ import (
 type Channel[T any] struct
 func NewChannel[T any]() *Channel[T]
 ```
-<b>Example:</b>
+<b>Example: <span class="run-container">[运行](https://go.dev/play/p/7aB4KyMMp9A)</b>
 
 ```go
 package main
@@ -70,7 +71,7 @@ func main() {
 ```go
 func (c *Channel[T]) Bridge(ctx context.Context, chanStream <-chan <-chan T) <-chan T
 ```
-<b>Example:</b>
+<b>Example: <span class="run-container">[运行](https://go.dev/play/p/qmWSy1NVF-Y)</b>
 
 ```go
 package main
@@ -122,7 +123,7 @@ func main() {
 ```go
 func (c *Channel[T]) FanIn(ctx context.Context, channels ...<-chan T) <-chan T
 ```
-<b>Example:</b>
+<b>Example: <span class="run-container">[运行](https://go.dev/play/p/2VYFMexEvTm)</b>
 
 ```go
 package main
@@ -156,7 +157,7 @@ func main() {
 
 <p>Create channel, put values into the channel repeatly until cancel the context.</p>
 
-<b>Signature:</b>
+<b>Signature: <span class="run-container">[运行](https://go.dev/play/p/k5N_ALVmYjE)</b>
 
 ```go
 func (c *Channel[T]) Repeat(ctx context.Context, values ...T) <-chan T
@@ -200,7 +201,7 @@ func main() {
 ```go
 func (c *Channel[T]) Generate(ctx context.Context, values ...T) <-chan T
 ```
-<b>Example:</b>
+<b>Example: <span class="run-container">[运行](https://go.dev/play/p/7aB4KyMMp9A)</b>
 
 ```go
 package main
@@ -233,7 +234,7 @@ func main() {
 
 <p>Create a channel, excutes fn repeatly, and put the result into the channel, until close context.</p>
 
-<b>Signature:</b>
+<b>Signature: <span class="run-container">[运行](https://go.dev/play/p/4J1zAWttP85)</b>
 
 ```go
 func (c *Channel[T]) RepeatFn(ctx context.Context, fn func() T) <-chan T
@@ -275,7 +276,7 @@ func main() {
 
 <p>Read one or more channels into one channel, will close when any readin channel is closed.</p>
 
-<b>Signature:</b>
+<b>Signature: <span class="run-container">[运行](https://go.dev/play/p/Wqz9rwioPww)</b>
 
 ```go
 func (c *Channel[T]) Or(channels ...<-chan T) <-chan T
@@ -318,7 +319,7 @@ func main() {
 
 <p>Read a channel into another channel, will close until cancel context.</p>
 
-<b>Signature:</b>
+<b>Signature: <span class="run-container">[运行](https://go.dev/play/p/lm_GoS6aDjo)</b>
 
 ```go
 func (c *Channel[T]) OrDone(ctx context.Context, channel <-chan T) <-chan T
@@ -356,7 +357,7 @@ func main() {
 
 <p>Create a channel whose values are taken from another channel with limit number.</p>
 
-<b>Signature:</b>
+<b>Signature: <span class="run-container">[运行](https://go.dev/play/p/9Utt-1pDr2J)</b>
 
 ```go
 func (c *Channel[T]) Take(ctx context.Context, valueStream <-chan T, number int) <-chan T
@@ -402,7 +403,7 @@ func main() {
 
 <p>Split one chanel into two channels, until cancel the context.</p>
 
-<b>Signature:</b>
+<b>Signature: <span class="run-container">[运行](https://go.dev/play/p/3TQPKnCirrP)</b>
 
 ```go
 func (c *Channel[T]) Tee(ctx context.Context, in <-chan T) (<-chan T, <-chan T)
