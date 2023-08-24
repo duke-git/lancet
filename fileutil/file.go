@@ -594,9 +594,11 @@ func WriteCsvFile(filepath string, records [][]string, append bool) error {
 // WriteStringToFile write string to target file.
 // Play: https://go.dev/play/p/GhLS6d8lH_g
 func WriteStringToFile(filepath string, content string, append bool) error {
-	flag := os.O_RDWR | os.O_CREATE
+	var flag int
 	if append {
-		flag = flag | os.O_APPEND
+		flag = os.O_RDWR | os.O_CREATE | os.O_APPEND
+	} else {
+		flag = os.O_RDWR | os.O_CREATE | os.O_TRUNC
 	}
 
 	f, err := os.OpenFile(filepath, flag, 0644)
