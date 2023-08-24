@@ -33,13 +33,15 @@ import (
 
 <div STYLE="page-break-after: always;"></div>
 
-<link rel="stylesheet" type="text/css" href="../api_doc.css">
+<link rel="stylesheet" type="text/css" href="/styles/api_doc.css">
 
 ## 文档
 
 
 ### Channel
+
 ### <span id="NewChannel">NewChannel</span>
+
 <p>返回一个Channel指针实例</p>
 
 <b>函数签名:</b>
@@ -48,7 +50,7 @@ import (
 type Channel[T any] struct
 func NewChannel[T any]() *Channel[T]
 ```
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/7aB4KyMMp9A)</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/7aB4KyMMp9A)</span></b>
 
 ```go
 package main
@@ -67,12 +69,12 @@ func main() {
 
 <p>将多个channel链接到一个channel，直到取消上下文。</p>
 
-<b>函数签名:</span></b>
+<b>函数签名:</b>
 
 ```go
 func (c *Channel[T]) Bridge(ctx context.Context, chanStream <-chan <-chan T) <-chan T
 ```
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/qmWSy1NVF-Y)</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/qmWSy1NVF-Y)</span></b>
 
 ```go
 package main
@@ -124,7 +126,7 @@ func main() {
 ```go
 func (c *Channel[T]) FanIn(ctx context.Context, channels ...<-chan T) <-chan T
 ```
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/2VYFMexEvTm)</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/2VYFMexEvTm)</span></b>
 
 ```go
 package main
@@ -163,7 +165,7 @@ func main() {
 ```go
 func (c *Channel[T]) Generate(ctx context.Context, values ...T) <-chan T
 ```
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/7aB4KyMMp9A)</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/7aB4KyMMp9A)</span></b>
 
 ```go
 package main
@@ -201,7 +203,7 @@ func main() {
 ```go
 func (c *Channel[T]) Repeat(ctx context.Context, values ...T) <-chan T
 ```
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/k5N_ALVmYjE)</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/k5N_ALVmYjE)</span></b>
 
 ```go
 package main
@@ -240,7 +242,7 @@ func main() {
 ```go
 func (c *Channel[T]) RepeatFn(ctx context.Context, fn func() T) <-chan T
 ```
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/4J1zAWttP85)</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/4J1zAWttP85)</span></b>
 
 ```go
 package main
@@ -281,7 +283,7 @@ func main() {
 ```go
 func (c *Channel[T]) Or(channels ...<-chan T) <-chan T
 ```
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/Wqz9rwioPww)</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/Wqz9rwioPww)</span></b>
 
 ```go
 package main
@@ -324,7 +326,7 @@ func main() {
 ```go
 func (c *Channel[T]) OrDone(ctx context.Context, channel <-chan T) <-chan T
 ```
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/lm_GoS6aDjo)</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/lm_GoS6aDjo)</span></b>
 
 ```go
 package main
@@ -362,7 +364,7 @@ func main() {
 ```go
 func (c *Channel[T]) Take(ctx context.Context, valueStream <-chan T, number int) <-chan T
 ```
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/9Utt-1pDr2J)</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/9Utt-1pDr2J)</span></b>
 
 ```go
 package main
@@ -408,7 +410,7 @@ func main() {
 ```go
 func (c *Channel[T]) Tee(ctx context.Context, in <-chan T) (<-chan T, <-chan T)
 ```
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/3TQPKnCirrP)</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/3TQPKnCirrP)</span></b>
 
 ```go
 package main

@@ -12,7 +12,7 @@ Package algorithm implements some basic algorithm. eg. sort, search.
 
 <div STYLE="page-break-after: always;"></div>
 
-<link rel="stylesheet" type="text/css" href="../api_doc.css">
+<link rel="stylesheet" type="text/css" href="/styles/api_doc.css">
 
 ## Usage
 
