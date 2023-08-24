@@ -10,3 +10,5 @@ fileutil/tempdir/*
 slice/testdata/*
 cryptor/*.pem
 test
+docs/node_modules
+docs/.vitepress/cache
