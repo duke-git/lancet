@@ -1,16 +1,18 @@
 # Cryptor
-cryptor加密包支持数据加密和解密，获取md5，hash值。支持base64, md5, hmac, aes, des, rsa。
+Package cryptor contains some functions for data encryption and decryption. Support base64, md5, hmac, aes, des, rsa.
 
 <div STYLE="page-break-after: always;"></div>
 
-## 源码:
+## Source:
 
 - [https://github.com/duke-git/lancet/blob/main/cryptor/basic.go](https://github.com/duke-git/lancet/blob/main/cryptor/basic.go)
 - [https://github.com/duke-git/lancet/blob/main/cryptor/crypto.go](https://github.com/duke-git/lancet/blob/main/cryptor/crypto.go)
 
+
+
 <div STYLE="page-break-after: always;"></div>
 
-## 用法:
+## Usage:
 ```go
 import (
     "github.com/duke-git/lancet/v2/cryptor"
@@ -19,7 +21,8 @@ import (
 
 <div STYLE="page-break-after: always;"></div>
 
-## 目录
+## Index
+
 - [AesEcbEncrypt](#AesEcbEncrypt)
 - [AesEcbDecrypt](#AesEcbDecrypt)
 - [AesCbcEncrypt](#AesCbcEncrypt)
@@ -66,20 +69,20 @@ import (
 
 <div STYLE="page-break-after: always;"></div>
 
-## 文档
+<link rel="stylesheet" type="text/css" href="/styles/api_doc.css">
 
-
+## Documentation
 
 ### <span id="AesEcbEncrypt">AesEcbEncrypt</span>
 
-<p>使用AES ECB算法模式加密数据. 参数`key`的长度是16, 24 or 32。</p>
+<p>Encrypt data with key use AES ECB algorithm. Length of `key` param should be 16, 24 or 32.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func AesEcbEncrypt(data, key []byte) []byte
 ```
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/zI6xsmuQRbn)</span></b>
 
 ```go
 package main
@@ -105,14 +108,14 @@ func main() {
 
 ### <span id="AesEcbDecrypt">AesEcbDecrypt</span>
 
-<p>使用AES ECB算法模式解密数据，参数`key`的长度是16, 24 or 32。</p>
+<p>Decrypt data with key use AES ECB algorithm. Length of `key` param should be 16, 24 or 32.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func AesEcbDecrypt(encrypted, key []byte) []byte
 ```
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/zI6xsmuQRbn)</span></b>
 
 ```go
 package main
@@ -138,14 +141,14 @@ func main() {
 
 ### <span id="AesCbcEncrypt">AesCbcEncrypt</span>
 
-<p>使用AES CBC算法模式加密数据，参数`key`的长度是16, 24 or 32。</p>
+<p>Encrypt data with key use AES CBC algorithm. Length of `key` param should be 16, 24 or 32.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func AesCbcEncrypt(data, key []byte) []byte
 ```
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/IOq_g8_lKZD)</span></b>
 
 ```go
 package main
@@ -171,15 +174,15 @@ func main() {
 
 ### <span id="AesCbcDecrypt">AesCbcDecrypt</span>
 
-<p>使用AES CBC算法模式解密数据，参数`key`的长度是16, 24 or 32。</p>
+<p>Decrypt data with key use AES CBC algorithm. Length of `key` param should be 16, 24 or 32.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func AesCbcDecrypt(encrypted, key []byte) []byte
 ```
 
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/IOq_g8_lKZD)</span></b>
 
 ```go
 package main
@@ -205,15 +208,15 @@ func main() {
 
 ### <span id="AesCtrCrypt">AesCtrCrypt</span>
 
-<p>使用AES CTR算法模式加密/解密数据，参数`key`的长度是16, 24 or 32。</p>
+<p>Encrypt or decrypt data with key use AES CTR algorithm. Length of `key` param should be 16, 24 or 32.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func AesCtrCrypt(data, key []byte) []byte
 ```
 
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/SpaZO0-5Nsp)</span></b>
 
 ```go
 package main
@@ -239,15 +242,15 @@ func main() {
 
 ### <span id="AesCfbEncrypt">AesCfbEncrypt</span>
 
-<p>使用AES CFB算法模式加密数据，参数`key`的长度是16, 24 or 32。</p>
+<p>Encrypt data with key use AES CFB algorithm. Length of `key` param should be 16, 24 or 32.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func AesCfbEncrypt(data, key []byte) []byte
 ```
 
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/tfkF10B13kH)</span></b>
 
 ```go
 package main
@@ -273,15 +276,15 @@ func main() {
 
 ### <span id="AesCfbDecrypt">AesCfbDecrypt</span>
 
-<p>使用AES CFB算法模式解密数据，参数`key`的长度是16, 24 or 32。</p>
+<p>Decrypt data with key use AES CBC algorithm. Length of `key` param should be 16, 24 or 32.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func AesCfbDecrypt(encrypted, key []byte) []byte
 ```
 
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/tfkF10B13kH)</span></b>
 
 ```go
 package main
@@ -307,15 +310,15 @@ func main() {
 
 ### <span id="AesOfbEncrypt">AesOfbEncrypt</span>
 
-<p>使用AES OFB算法模式加密数据，参数`key`的长度是16, 24 or 32。</p>
+<p>Enecrypt data with key use AES OFB algorithm. Length of `key` param should be 16, 24 or 32.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func AesOfbEncrypt(data, key []byte) []byte
 ```
 
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/VtHxtkUj-3F)</span></b>
 
 ```go
 package main
@@ -340,15 +343,15 @@ func main() {
 ```
 ### <span id="AesCfbDecrypt">AesOfbDecrypt</span>
 
-<p>使用AES OFB算法模式解密数据，参数`key`的长度是16, 24 or 32。</p>
+<p>Decrypt data with key use AES OFB algorithm. Length of `key` param should be 16, 24 or 32.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func AesOfbDecrypt(encrypted, key []byte) []byte
 ```
 
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/VtHxtkUj-3F)</span></b>
 
 ```go
 package main
@@ -374,14 +377,14 @@ func main() {
 
 ### <span id="Base64StdEncode">Base64StdEncode</span>
 
-<p>将字符串base64编码。</p>
+<p>Encode string with base64 encoding.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func Base64StdEncode(s string) string
 ```
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/VOaUyQUreoK)</span></b>
 
 ```go
 package main
@@ -401,15 +404,15 @@ func main() {
 ```
 ### <span id="Base64StdDecode">Base64StdDecode</span>
 
-<p>解码base64字符串。</p>
+<p>Decode a base64 encoded string.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func Base64StdDecode(s string) string
 ```
 
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/RWQylnJVgIe)</span></b>
 
 ```go
 package main
@@ -430,15 +433,15 @@ func main() {
 
 ### <span id="DesEcbEncrypt">DesEcbEncrypt</span>
 
-<p>使用DES ECB算法模式加密数据，参数`key`的长度是8。</p>
+<p>Encrypt data with key use DES ECB algorithm. Length of `key` param should be 8.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func DesEcbEncrypt(data, key []byte) []byte
 ```
 
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/8qivmPeZy4P)</span></b>
 
 ```go
 package main
@@ -464,15 +467,15 @@ func main() {
 ```
 ### <span id="DesEcbDecrypt">DesEcbDecrypt</span>
 
-<p>使用DES ECB算法模式解决密数据，参数`key`的长度是8。</p>
+<p>Decrypt data with key use DES ECB algorithm. Length of `key` param should be 8.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func DesEcbDecrypt(encrypted, key []byte) []byte
 ```
 
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/8qivmPeZy4P)</span></b>
 
 ```go
 package main
@@ -499,15 +502,15 @@ func main() {
 
 ### <span id="DesCbcEncrypt">DesCbcEncrypt</span>
 
-<p>使用DES CBC算法模式加密数据，参数`key`的长度是8。</p>
+<p>Encrypt data with key use DES CBC algorithm. Length of `key` param should be 8.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func DesCbcEncrypt(data, key []byte) []byte
 ```
 
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/4cC4QvWfe3_1)</span></b>
 
 ```go
 package main
@@ -533,15 +536,15 @@ func main() {
 
 ### <span id="DesCbcDecrypt">DesCbcDecrypt</span>
 
-<p>使用DES CBC算法模式解密数据，参数`key`的长度是8。</p>
+<p>Decrypt data with key use DES CBC algorithm. Length of `key` param should be 8.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func DesCbcDecrypt(encrypted, key []byte) []byte
 ```
 
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/4cC4QvWfe3_1)</span></b>
 
 ```go
 package main
@@ -566,15 +569,15 @@ func main() {
 ```
 ### <span id="DesCtrCrypt">DesCtrCrypt</span>
 
-<p>使用DES CTR算法模式加密/解密数据，参数`key`的长度是8</p>
+<p>Encrypt or decrypt data with key use DES CTR algorithm. Length of `key` param should be 8.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func DesCtrCrypt(data, key []byte) []byte
 ```
 
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/9-T6OjKpcdw)</span></b>
 
 ```go
 package main
@@ -600,15 +603,15 @@ func main() {
 
 ### <span id="DesCfbEncrypt">DesCfbEncrypt</span>
 
-<p>使用DES CFB算法模式加密数据，参数`key`的长度是8。</p>
+<p>Encrypt data with key use DES CFB algorithm. Length of `key` param should be 8.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func DesCfbEncrypt(data, key []byte) []byte
 ```
 
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/y-eNxcFBlxL)</span></b>
 
 ```go
 package main
@@ -633,15 +636,15 @@ func main() {
 ```
 ### <span id="DesCfbDecrypt">DesCfbDecrypt</span>
 
-<p>使用DES CFB算法模式解决密数据，参数`key`的长度是8。</p>
+<p>Decrypt data with key use DES CBC algorithm. Length of `key` param should be 8.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func DesCfbDecrypt(encrypted, key []byte) []byte
 ```
 
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/y-eNxcFBlxL)</span></b>
 
 ```go
 package main
@@ -666,15 +669,15 @@ func main() {
 ```
 ### <span id="DesOfbEncrypt">DesOfbEncrypt</span>
 
-<p>使用DES OFB算法模式加密数据，参数`key`的长度是8。</p>
+<p>Enecrypt data with key use DES OFB algorithm. Length of `key` param should be 8.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func DesOfbEncrypt(data, key []byte) []byte
 ```
 
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/74KmNadjN1J)</span></b>
 
 ```go
 package main
@@ -699,15 +702,15 @@ func main() {
 ```
 ### <span id="DesOfbDecrypt">DesOfbDecrypt</span>
 
-<p>使用DES OFB算法模式解密数据，参数`key`的长度是8。</p>
+<p>Decrypt data with key use DES OFB algorithm. Length of `key` param should be 8.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func DesOfbDecrypt(encrypted, key []byte) []byte
 ```
 
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/74KmNadjN1J)</span></b>
 
 ```go
 package main
@@ -733,15 +736,15 @@ func main() {
 
 ### <span id="HmacMd5">HmacMd5</span>
 
-<p>获取字符串md5 hmac值。</p>
+<p>Get the md5 hmac hash of string.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func HmacMd5(str, key string) string
 ```
 
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/uef0q1fz53I)</span></b>
 
 ```go
 package main
@@ -765,15 +768,15 @@ func main() {
 
 ### <span id="HmacMd5WithBase64">HmacMd5WithBase64</span>
 
-<p>获取字符串md5 hmac base64字符串值。</p>
+<p>Get the md5 hmac hash of base64 string.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func HmacMd5WithBase64(str, key string) string
 ```
 
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/UY0ng2AefFC)</span></b>
 
 ```go
 package main
@@ -794,17 +797,18 @@ func main() {
     // 6DQwbquJLYclJdSRinpjmg==
 }
 ```
+
 ### <span id="HmacSha1">HmacSha1</span>
 
-<p>获取字符串的sha1 hmac值。</p>
+<p>Get the sha1 hmac hash of string.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func HmacSha1(str, key string) string
 ```
 
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/1UI4oQ4WXKM)</span></b>
 
 ```go
 package main
@@ -828,15 +832,15 @@ func main() {
 
 ### <span id="HmacSha1WithBase64">HmacSha1WithBase64</span>
 
-<p>获取字符串的sha1 base64值。</p>
+<p>Return the hmac hash of string use sha1 with base64.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func HmacSha1WithBase64(str, key string) string
 ```
 
-<b>实例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/47JmmGrnF7B)</span></b>
 
 ```go
 package main
@@ -858,18 +862,17 @@ func main() {
 }
 ```
 
-
 ### <span id="HmacSha256">HmacSha256</span>
 
-<p>获取字符串sha256 hmac值。</p>
+<p>Get the sha256 hmac hash of string</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func HmacSha256(str, key string) string
 ```
 
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/HhpwXxFhhC0)</span></b>
 
 ```go
 package main
@@ -893,15 +896,15 @@ func main() {
 
 ### <span id="HmacSha256WithBase64">HmacSha256WithBase64</span>
 
-<p>获取字符串sha256 hmac base64值。</p>
+<p>Return the hmac hash of string use sha256 with base64.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func HmacSha256WithBase64(str, key string) string
 ```
 
-<b>实例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/EKbkUvPTLwO)</span></b>
 
 ```go
 package main
@@ -925,15 +928,15 @@ func main() {
 
 ### <span id="HmacSha512">HmacSha512</span>
 
-<p>获取字符串sha512 hmac值。</p>
+<p>Get the sha512 hmac hash of string.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func HmacSha512(str, key string) string
 ```
 
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/59Od6m4A0Ud)</span></b>
 
 ```go
 package main
@@ -957,15 +960,15 @@ func main() {
 
 ### <span id="HmacSha512WithBase64">HmacSha512WithBase64</span>
 
-<p>获取字符串sha512 hmac base64值。</p>
+<p>Return the hmac hash of string use sha512 with base64.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func HmacSha512WithBase64(str, key string) string
 ```
 
-<b>实例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/c6dSe3E2ydU)</span></b>
 
 ```go
 package main
@@ -990,15 +993,15 @@ func main() {
 
 ### <span id="Md5String">Md5String</span>
 
-<p>获取字符串md5值。</p>
+<p>Get the md5 value of string.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
-func Md5String(str string) string
+func Md5String(s string) string
 ```
 
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/1bLcVetbTOI)</span></b>
 
 ```go
 package main
@@ -1021,15 +1024,15 @@ func main() {
 
 ### <span id="Md5StringWithBase64">Md5StringWithBase64</span>
 
-<p>获取字符串md5 base64值。</p>
+<p>Return the md5 value of string with base64.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func Md5StringWithBase64(s string) string
 ```
 
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/Tcb-Z7LN2ax)</span></b>
 
 ```go
 package main
@@ -1050,15 +1053,15 @@ func main() {
 
 ### <span id="Md5Byte">Md5Byte</span>
 
-<p>获取byte slice的md5值。</p>
+<p>Return the md5 string of byte slice.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func Md5Byte(data []byte) string
 ```
 
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/suraalH8lyC)</span></b>
 
 ```go
 package main
@@ -1079,15 +1082,15 @@ func main() {
 
 ### <span id="Md5ByteWithBase64">Md5ByteWithBase64</span>
 
-<p>获取byte slice的md5 base64值。</p>
+<p>Return the md5 string of byte slice with base64.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func Md5ByteWithBase64(data []byte) string
 ```
 
-<b>实例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/Lx4gH7Vdr5_y)</span></b>
 
 ```go
 package main
@@ -1108,15 +1111,15 @@ func main() {
 
 ### <span id="Md5File">Md5File</span>
 
-<p>获取文件md5值。</p>
+<p>Get the md5 value of file.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func Md5File(filepath string) (string, error)
 ```
 
-<b>示例:</b>
+<b>Example:</b>
 
 ```go
 package main
@@ -1134,15 +1137,15 @@ func main() {
 
 ### <span id="Sha1">Sha1</span>
 
-<p>获取字符串sha1值。</p>
+<p>Get the sha1 value of string.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func Sha1(str string) string
 ```
 
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/_m_uoD1deMT)</span></b>
 
 ```go
 package main
@@ -1165,15 +1168,15 @@ func main() {
 
 ### <span id="Sha1WithBase64">Sha1WithBase64</span>
 
-<p>获取字符串sha1 base64值。</p>
+<p>Return the sha1 value (SHA-1 hash algorithm) of base64 string.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func Sha1WithBase64(str string) string
 ```
 
-<b>实例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/fSyx-Gl2l2-)</span></b>
 
 ```go
 package main
@@ -1194,15 +1197,15 @@ func main() {
 
 ### <span id="Sha256">Sha256</span>
 
-<p>获取字符串sha256值。</p>
+<p>Get the sha256 value of string.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func Sha256(str string) string
 ```
 
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/tU9tfBMIAr1)</span></b>
 
 ```go
 package main
@@ -1225,15 +1228,15 @@ func main() {
 
 ### <span id="Sha256WithBase64">Sha256WithBase64</span>
 
-<p>获取字符串sha256 base64值。</p>
+<p>Return the sha256 value (SHA256 hash algorithm) of base64 string.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func Sha256WithBase64(str string) string
 ```
 
-<b>实例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/85IXJHIal1k)</span></b>
 
 ```go
 package main
@@ -1254,15 +1257,15 @@ func main() {
 
 ### <span id="Sha512">Sha512</span>
 
-<p>获取字符串sha512值。</p>
+<p>Get the sha512 value of string.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func Sha512(str string) string
 ```
 
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/3WsvLYZxsHa)</span></b>
 
 ```go
 package main
@@ -1285,15 +1288,15 @@ func main() {
 
 ### <span id="Sha512WithBase64">Sha512WithBase64</span>
 
-<p>获取字符串sha512 base64值。</p>
+<p>Get the sha512 value of string with base64.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func Sha512WithBase64(str string) string
 ```
 
-<b>实例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/q_fY2rA-k5I)</span></b>
 
 ```go
 package main
@@ -1314,15 +1317,15 @@ func main() {
 
 ### <span id="GenerateRsaKey">GenerateRsaKey</span>
 
-<p>在当前目录下创建rsa私钥文件和公钥文件。</p>
+<p>Create the rsa public and private key file in current directory.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func GenerateRsaKey(keySize int, priKeyFile, pubKeyFile string) error
 ```
 
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/zutRHrDqs0X)</span></b>
 
 ```go
 package main
@@ -1342,15 +1345,15 @@ func main() {
 
 ### <span id="RsaEncrypt">RsaEncrypt</span>
 
-<p>用公钥文件ras加密数据。</p>
+<p>Encrypt data with public key file useing ras algorithm.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func RsaEncrypt(data []byte, pubKeyFileName string) []byte
 ```
 
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/uef0q1fz53I)</span></b>
 
 ```go
 package main
@@ -1380,15 +1383,15 @@ func main() {
 
 ### <span id="RsaDecrypt">RsaDecrypt</span>
 
-<p>用私钥文件rsa解密数据。</p>
+<p>Decrypt data with private key file useing ras algorithm.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func RsaDecrypt(data []byte, privateKeyFileName string) []byte
 ```
 
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/uef0q1fz53I)</span></b>
 
 ```go
 package main
@@ -1414,3 +1417,6 @@ func main() {
     // hello
 }
 ```
+
+
+

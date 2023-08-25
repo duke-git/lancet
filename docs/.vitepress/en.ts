@@ -67,6 +67,8 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
                         { text: 'compare', link: '/en/api/packages/compare' },
                         { text: 'concurrency', link: '/en/api/packages/concurrency' },
                         { text: 'condition', link: '/en/api/packages/condition' },
+                        { text: 'convertor', link: '/en/api/packages/convertor' },
+                        { text: 'cryptor', link: '/en/api/packages/cryptor' },
                     ],
                 },
             ],

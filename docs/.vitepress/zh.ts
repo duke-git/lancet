@@ -77,6 +77,8 @@ export const zhConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
                         { text: '比较器', link: '/api/packages/compare' },
                         { text: '并发处理', link: '/api/packages/concurrency' },
                         { text: '条件判断', link: '/api/packages/condition' },
+                        { text: '类型转换', link: '/api/packages/convertor' },
+                        { text: '加密&解密', link: '/api/packages/cryptor' },
                     ],
                 },
             ],

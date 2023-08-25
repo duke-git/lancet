@@ -23,7 +23,7 @@ hero:
 features:
   - title: Powerful
     icon: 💪
-    details: support 600+ go util functions. eg. string, slice, datetime, net, crypto, concurrency...
+    details: support 600+ go util functions. inclueds string, slice, datetime, net, crypto, concurrency, etc.
   - title: Modular by design
     icon: 🏗
     details: Each module is designed as a package with no coupling between modules.
