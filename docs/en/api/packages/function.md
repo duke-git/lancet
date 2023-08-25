@@ -1,17 +1,17 @@
 # Function
 
-function 函数包控制函数执行流程，包含部分函数式编程。
+Package function can control the flow of function execution and support part of functional programming.
 
 <div STYLE="page-break-after: always;"></div>
 
-## 源码:
+## Source:
 
 -   [https://github.com/duke-git/lancet/blob/main/function/function.go](https://github.com/duke-git/lancet/blob/main/function/function.go)
 -   [https://github.com/duke-git/lancet/blob/main/function/watcher.go](https://github.com/duke-git/lancet/blob/main/function/watcher.go)
 
 <div STYLE="page-break-after: always;"></div>
 
-## 用法:
+## Usage:
 
 ```go
 import (
@@ -21,7 +21,7 @@ import (
 
 <div STYLE="page-break-after: always;"></div>
 
-## 目录
+## Index
 
 -   [After](#After)
 -   [Before](#Before)
@@ -35,19 +35,20 @@ import (
 
 <div STYLE="page-break-after: always;"></div>
 
-## 文档
+<link rel="stylesheet" type="text/css" href="/styles/api_doc.css">
+## Documentation
 
 ### <span id="After">After</span>
 
-<p>创建一个函数，当他被调用n或更多次之后将马上触发fn</p>
+<p>Creates a function that invokes given func once it's called n or more times.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func After(n int, fn any) func(args ...any) []reflect.Value
 ```
 
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/eRD5k2vzUVX)</span></b>
 
 ```go
 package main
@@ -72,15 +73,15 @@ func main() {
 
 ### <span id="Before">Before</span>
 
-<p>创建一个函数，调用次数不超过n次，之后再调用这个函数，将返回一次最后调用fn的结果</p>
+<p>creates a function that invokes func once it's called less than n times.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func Before(n int, fn any) func(args ...any) []reflect.Value
 ```
 
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/0HqUDIFZ3IL)</span></b>
 
 ```go
 package main
@@ -88,7 +89,6 @@ package main
 import (
     "fmt"
     "github.com/duke-git/lancet/v2/function"
-    "github.com/duke-git/lancet/v2/internal"
 )
 
 func main() {
@@ -109,16 +109,16 @@ func main() {
 
 ### <span id="CurryFn">CurryFn</span>
 
-<p>创建柯里化函数</p>
+<p>Make curry function.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 type CurryFn[T any] func(...T) T
 func (cf CurryFn[T]) New(val T) func(...T) T
 ```
 
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/5HopfDwANKX)</span></b>
 
 ```go
 package main
@@ -149,15 +149,15 @@ func main() {
 
 ### <span id="Compose">Compose</span>
 
-<p>从右至左组合函数列表fnList，返回组合后的函数</p>
+<p>Compose the function list from right to left, then return the composed function.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func Compose[T any](fnList ...func(...T) T) func(...T) T
 ```
 
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/KKfugD4PKYF)</span></b>
 
 ```go
 package main
@@ -187,15 +187,15 @@ func main() {
 
 ### <span id="Debounced">Debounced</span>
 
-<p>创建一个debounced函数，该函数延迟调用fn直到自上次调用debounced函数后等待持续时间过去。</p>
+<p>Creates a debounced function that delays invoking fn until after wait duration have elapsed since the last time the debounced function was invoked.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func Debounced(fn func(), duration time.Duration) func()
 ```
 
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/absuEGB_GN7)</span></b>
 
 ```go
 package main
@@ -237,15 +237,15 @@ func main() {
 
 ### <span id="Delay">Delay</span>
 
-<p>延迟delay时间后调用函数</p>
+<p>Invoke function after delayed time.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func Delay(delay time.Duration, fn any, args ...any)
 ```
 
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/Ivtc2ZE-Tye)</span></b>
 
 ```go
 package main
@@ -269,15 +269,15 @@ func main() {
 
 ### <span id="Schedule">Schedule</span>
 
-<p>每次持续时间调用函数，直到关闭返回的 bool chan</p>
+<p>Invoke function every duration time, until close the returned bool chan.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func Schedule(d time.Duration, fn any, args ...any) chan bool
 ```
 
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/hbON-Xeyn5N)</span></b>
 
 ```go
 package main
@@ -308,15 +308,16 @@ func main() {
 
 ### <span id="Pipeline">Pipeline</span>
 
-<p>执行函数pipeline.</p>
+<p>Pipeline takes a list of functions and returns a function whose param will be passed into
+the functions one by one.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func Pipeline[T any](funcs ...func(T) T) func(T) T
 ```
 
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/mPdUVvj6HD6)</span></b>
 
 ```go
 package main
@@ -350,9 +351,9 @@ func main() {
 
 ### <span id="Watcher">Watcher</span>
 
-<p>Watcher用于记录代码执行时间。可以启动/停止/重置手表定时器。获取函数执行的时间。</p>
+<p>Watcher is used for record code excution time. can start/stop/reset the watch timer. get the elapsed time of function execution.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 type Watcher struct {
@@ -367,7 +368,7 @@ func (w *Watcher) Reset() //reset the watcher
 func (w *Watcher) GetElapsedTime() time.Duration //get the elapsed time of function execution
 ```
 
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/l2yrOpCLd1I)</span></b>
 
 ```go
 package main
@@ -393,7 +394,6 @@ func main() {
     fmt.Println(eapsedTime)
 
     w.Reset()
-
 }
 
 func longRunningTask() {

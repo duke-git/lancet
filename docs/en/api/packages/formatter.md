@@ -1,17 +1,17 @@
 # Formatter
 
-formatter 格式化器包含一些数据格式化处理方法。
+formatter contains some functions for data formatting.
 
 <div STYLE="page-break-after: always;"></div>
 
-## 源码:
+## Source:
 
 -   [https://github.com/duke-git/lancet/blob/main/formatter/formatter.go](https://github.com/duke-git/lancet/blob/main/formatter/formatter.go)
 -   [https://github.com/duke-git/lancet/blob/main/formatter/byte.go](https://github.com/duke-git/lancet/blob/main/formatter/byte.go)
 
 <div STYLE="page-break-after: always;"></div>
 
-## 用法:
+## Usage:
 
 ```go
 import (
@@ -21,7 +21,7 @@ import (
 
 <div STYLE="page-break-after: always;"></div>
 
-## 目录
+## Index
 
 -   [Comma](#Comma)
 -   [Pretty](#Pretty)
@@ -33,19 +33,21 @@ import (
 
 <div STYLE="page-break-after: always;"></div>
 
-## 文档
+<link rel="stylesheet" type="text/css" href="/styles/api_doc.css">
+
+## Documentation
 
 ### <span id="Comma">Comma</span>
 
-<p>用逗号每隔3位分割数字/字符串，支持前缀添加符号。参数value必须是数字或者可以转为数字的字符串, 否则返回空字符串</p>
+<p>Add comma to a number value by every 3 numbers from right to left. ahead by symbol char. if value is a invalid number string like "aa", return empty string.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func Comma[T constraints.Float | constraints.Integer | string](value T, symbol string) string
 ```
 
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/eRD5k2vzUVX)</span></b>
 
 ```go
 package main
@@ -73,15 +75,15 @@ func main() {
 
 ### <span id="Pretty">Pretty</span>
 
-<p>返回pretty JSON字符串.</p>
+<p>Pretty data to JSON string.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func Pretty(v any) (string, error)
 ```
 
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/YsciGj3FH2x)</span></b>
 
 ```go
 package main
@@ -112,15 +114,15 @@ func main() {
 
 ### <span id="PrettyToWriter">PrettyToWriter</span>
 
-<p>Pretty encode数据到writer。</p>
+<p>Pretty encode data to writer.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func PrettyToWriter(v any, out io.Writer) error
 ```
 
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/LPLZ3lDi5ma)</span></b>
 
 ```go
 package main
@@ -155,15 +157,15 @@ func main() {
 
 ### <span id="DecimalBytes">DecimalBytes</span>
 
-<p>返回十进制标准（以1000为基数）下的可读字节单位字符串。precision参数指定小数点后的位数，默认为4。</p>
+<p>Returns a human readable byte size under decimal standard (base 1000). The precision parameter specifies the number of digits after the decimal point, which is 4 for default.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func DecimalBytes(size float64, precision ...int) string
 ```
 
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/FPXs1suwRcs)</span></b>
 
 ```go
 package main
@@ -194,15 +196,15 @@ func main() {
 
 ### <span id="BinaryBytes">BinaryBytes</span>
 
-<p>返回binary标准（以1024为基数）下的可读字节单位字符串。precision参数指定小数点后的位数，默认为4。</p>
+<p>Returns a human readable byte size under binary standard (base 1024). The precision parameter specifies the number of digits after the decimal point, which is 4 for default.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func BinaryBytes(size float64, precision ...int) string
 ```
 
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/G9oHHMCAZxP)</span></b>
 
 ```go
 package main
@@ -233,15 +235,15 @@ func main() {
 
 ### <span id="ParseDecimalBytes">ParseDecimalBytes</span>
 
-<p>将字节单位字符串转换成其所表示的字节数（以1000为基数）。</p>
+<p>Returns the human readable bytes size string into the amount it represents(base 1000).</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func ParseDecimalBytes(size string) (uint64, error)
 ```
 
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/Am98ybWjvjj)</span></b>
 
 ```go
 package main
@@ -272,15 +274,15 @@ func main() {
 
 ### <span id="ParseBinaryBytes">ParseBinaryBytes</span>
 
-<p>将字节单位字符串转换成其所表示的字节数（以1024为基数）。</p>
+<p>Returns the human readable bytes size string into the amount it represents(base 1024).</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func ParseBinaryBytes(size string) (uint64, error)
 ```
 
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/69v1tTT62x8)</span></b>
 
 ```go
 package main

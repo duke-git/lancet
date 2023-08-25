@@ -1,16 +1,16 @@
 # Fileutil
 
-Package fileutil implements some basic functions for file operations.
+fileutil 包支持文件基本操作。
 
 <div STYLE="page-break-after: always;"></div>
 
-## Source:
+## 源码:
 
 -   [https://github.com/duke-git/lancet/blob/main/fileutil/file.go](https://github.com/duke-git/lancet/blob/main/fileutil/file.go)
 
 <div STYLE="page-break-after: always;"></div>
 
-## Usage:
+## 用法:
 
 ```go
 import (
@@ -20,7 +20,7 @@ import (
 
 <div STYLE="page-break-after: always;"></div>
 
-## Index
+## 目录
 
 -   [ClearFile](#ClearFile)
 -   [CreateFile](#CreateFile)
@@ -50,19 +50,21 @@ import (
 
 <div STYLE="page-break-after: always;"></div>
 
-## Documentation
+<link rel="stylesheet" type="text/css" href="/styles/api_doc.css">
+
+## 文档
 
 ### <span id="ClearFile">ClearFile</span>
 
-<p>Clear the file content, write empty string to the file.</p>
+<p>清空文件内容</p>
 
-<b>Signature:</b>
+<b>函数签名:</b>
 
 ```go
 func ClearFile(path string) error
 ```
 
-<b>Example:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/NRZ0ZT-G94H)</span></b>
 
 ```go
 package main
@@ -82,15 +84,15 @@ func main() {
 
 ### <span id="CreateFile">CreateFile</span>
 
-<p>Create file in path. return true if create succeed.</p>
+<p>创建文件，创建成功返回true, 否则返回false</p>
 
-<b>Signature:</b>
+<b>函数签名:</b>
 
 ```go
 func CreateFile(path string) bool
 ```
 
-<b>Example:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/lDt8PEsTNKI)</span></b>
 
 ```go
 package main
@@ -108,15 +110,15 @@ func main() {
 
 ### <span id="CreateDir">CreateDir</span>
 
-<p>Create directory in absolute path. param `absPath` like /a, /a/b.</p>
+<p>使用绝对路径创建嵌套目录，例如/a/, /a/b</p>
 
-<b>Signature:</b>
+<b>函数签名:</b>
 
 ```go
 func CreateDir(absPath string) error
 ```
 
-<b>Example:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/qUuCe1OGQnM)</span></b>
 
 ```go
 package main
@@ -134,15 +136,15 @@ func main() {
 
 ### <span id="CopyFile">CopyFile</span>
 
-<p>Copy src file to dest file. If dest file exist will overwrite it.</p>
+<p>拷贝文件，会覆盖原有的文件</p>
 
-<b>Signature:</b>
+<b>函数签名:</b>
 
 ```go
 func CopyFile(srcPath string, dstPath string) error
 ```
 
-<b>Example:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/Jg9AMJMLrJi)</span></b>
 
 ```go
 package main
@@ -162,15 +164,15 @@ func main() {
 
 ### <span id="CurrentPath">CurrentPath</span>
 
-<p>return current absolute path.</p>
+<p>返回当前位置的绝对路径。</p>
 
-<b>Signature:</b>
+<b>函数签名:</b>
 
 ```go
 func CurrentPath() string
 ```
 
-<b>Example:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/s74a9iBGcSw)</span></b>
 
 ```go
 package main
@@ -188,15 +190,15 @@ func main() {
 
 ### <span id="FileMode">FileMode</span>
 
-<p>Return file mode infomation.</p>
+<p>获取文件mode信息</p>
 
-<b>Signature:</b>
+<b>函数签名:</b>
 
 ```go
 func FileMode(path string) (fs.FileMode, error)
 ```
 
-<b>Example:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/2l2hI42fA3p)</span></b>
 
 ```go
 package main
@@ -217,15 +219,15 @@ func main() {
 
 ### <span id="MiMeType">MiMeType</span>
 
-<p>Get file mime type, 'file' param's type should be string or *os.File.</p>
+<p>获取文件mime类型, 'file'参数的类型必须是string或者*os.File</p>
 
-<b>Signature:</b>
+<b>函数签名:</b>
 
 ```go
 func MiMeType(file any) string
 ```
 
-<b>Example:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/bd5sevSUZNu)</span></b>
 
 ```go
 package main
@@ -248,15 +250,15 @@ func main() {
 
 ### <span id="IsExist">IsExist</span>
 
-<p>Checks if a file or directory exists.</p>
+<p>判断文件或目录是否存在</p>
 
-<b>Signature:</b>
+<b>函数签名:</b>
 
 ```go
 func IsExist(path string) bool
 ```
 
-<b>Example:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/nKKXt8ZQbmh)</span></b>
 
 ```go
 package main
@@ -275,15 +277,15 @@ func main() {
 
 ### <span id="IsLink">IsLink</span>
 
-<p>Checks if a file is symbol link or not.</p>
+<p>判断文件是否是符号链接</p>
 
-<b>Signature:</b>
+<b>函数签名:</b>
 
 ```go
 func IsLink(path string) bool
 ```
 
-<b>Example:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/TL-b-Kzvf44)</span></b>
 
 ```go
 package main
@@ -301,15 +303,15 @@ func main() {
 
 ### <span id="IsDir">IsDir</span>
 
-<p>Checks if the path is directy or not.</p>
+<p>判断参数是否是目录</p>
 
-<b>Signature:</b>
+<b>函数签名:</b>
 
 ```go
 func IsDir(path string) bool
 ```
 
-<b>Example:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/WkVwEKqtOWk)</span></b>
 
 ```go
 package main
@@ -330,15 +332,15 @@ func main() {
 
 ### <span id="ListFileNames">ListFileNames</span>
 
-<p>List all file names in given path.</p>
+<p>返回目录下所有文件名</p>
 
-<b>Signature:</b>
+<b>函数签名:</b>
 
 ```go
 func ListFileNames(path string) ([]string, error)
 ```
 
-<b>Example:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/Tjd7Y07rejl)</span></b>
 
 ```go
 package main
@@ -356,15 +358,15 @@ func main() {
 
 ### <span id="RemoveFile">RemoveFile</span>
 
-<p>Remove the file of path.</p>
+<p>删除文件</p>
 
-<b>Signature:</b>
+<b>函数签名:</b>
 
 ```go
 func RemoveFile(path string) error
 ```
 
-<b>Example:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/P2y0XW8a1SH)</span></b>
 
 ```go
 package main
@@ -384,15 +386,15 @@ func main() {
 
 ### <span id="ReadFileToString">ReadFileToString</span>
 
-<p>Return string of file content.</p>
+<p>读取文件内容并返回字符串</p>
 
-<b>Signature:</b>
+<b>函数签名:</b>
 
 ```go
 func ReadFileToString(path string) (string, error)
 ```
 
-<b>Example:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/cmfwp_5SQTp)</span></b>
 
 ```go
 package main
@@ -417,15 +419,15 @@ func main() {
 
 ### <span id="ReadFileByLine">ReadFileByLine</span>
 
-<p>Read file line by line, and return slice of lines</p>
+<p>按行读取文件内容，返回字符串切片包含每一行</p>
 
-<b>Signature:</b>
+<b>函数签名:</b>
 
 ```go
 func ReadFileByLine(path string)([]string, error)
 ```
 
-<b>Example:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/svJP_7ZrBrD)</span></b>
 
 ```go
 package main
@@ -451,15 +453,15 @@ func main() {
 
 ### <span id="Zip">Zip</span>
 
-<p>Create a zip file of fpath, fpath could be a file or a directory.</p>
+<p>zip压缩文件, fpath参数可以是文件或目录</p>
 
-<b>Signature:</b>
+<b>函数签名:</b>
 
 ```go
 func Zip(fpath string, destPath string) error
 ```
 
-<b>Example:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/j-3sWBp8ik_P)</span></b>
 
 ```go
 package main
@@ -479,15 +481,15 @@ func main() {
 
 ### <span id="ZipAppendEntry">ZipAppendEntry</span>
 
-<p>Append a single file or directory by fpath to an existing zip file.</p>
+<p>通过将单个文件或目录追加到现有的zip文件</p>
 
-<b>Signature:</b>
+<b>函数签名:</b>
 
 ```go
 func ZipAppendEntry(fpath string, destPath string) error
 ```
 
-<b>Example:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/cxvaT8TRNQp)</span></b>
 
 ```go
 package main
@@ -507,15 +509,15 @@ func main() {
 
 ### <span id="UnZip">UnZip</span>
 
-<p>Unzip the file and save it to dest path.</p>
+<p>zip解压缩文件并保存在目录中</p>
 
-<b>Signature:</b>
+<b>函数签名:</b>
 
 ```go
 func UnZip(zipFile string, destPath string) error
 ```
 
-<b>Example:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/g0w34kS7B8m)</span></b>
 
 ```go
 package main
@@ -535,15 +537,15 @@ func main() {
 
 ### <span id="IsZipFile">IsZipFile</span>
 
-<p>Checks if file is zip file or not.</p>
+<p>判断文件是否是zip压缩文件。</p>
 
-<b>Signature:</b>
+<b>函数签名:</b>
 
 ```go
 func IsZipFile(filepath string) bool
 ```
 
-<b>Example:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/9M0g2j_uF_e)</span></b>
 
 ```go
 package main
@@ -561,15 +563,15 @@ func main() {
 
 ### <span id="FileSize">FileSize</span>
 
-<p>Returns file size in bytes.</p>
+<p>返回文件字节大小。</p>
 
-<b>Signature:</b>
+<b>函数签名:</b>
 
 ```go
 func FileSize(path string) (int64, error)
 ```
 
-<b>Example:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/H9Z05uD-Jjc)</span></b>
 
 ```go
 package main
@@ -593,15 +595,15 @@ func main() {
 
 ### <span id="MTime">MTime</span>
 
-<p>Returns file modified time(unix timestamp).</p>
+<p>返回文件修改时间(unix timestamp).</p>
 
-<b>Signature:</b>
+<b>函数签名:</b>
 
 ```go
 func MTime(filepath string) (int64, error)
 ```
 
-<b>Example:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/s_Tl7lZoAaY)</span></b>
 
 ```go
 package main
@@ -625,15 +627,15 @@ func main() {
 
 ### <span id="Sha">Sha</span>
 
-<p>returns file sha value, param `shaType` should be 1, 256 or 512.</p>
+<p>返回文件sha值，参数`shaType` 应传值为: 1, 256，512.</p>
 
-<b>Signature:</b>
+<b>函数签名:</b>
 
 ```go
 func Sha(filepath string, shaType ...int) (string, error)
 ```
 
-<b>Example:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/VfEEcO2MJYf)</span></b>
 
 ```go
 package main
@@ -663,15 +665,15 @@ func main() {
 
 ### <span id="ReadCsvFile">ReadCsvFile</span>
 
-<p>Reads file content into slice.</p>
+<p>读取csv文件内容到切片</p>
 
-<b>Signature:</b>
+<b>函数签名:</b>
 
 ```go
 func ReadCsvFile(filepath string) ([][]string, error)
 ```
 
-<b>Example:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/OExTkhGEd3_u)</span></b>
 
 ```go
 package main
@@ -695,15 +697,15 @@ func main() {
 
 ### <span id="WriteCsvFile">WriteCsvFile</span>
 
-<p>Write content to target csv file.</p>
+<p>向csv文件写入内容。</p>
 
-<b>Signature:</b>
+<b>函数签名:</b>
 
 ```go
 func WriteCsvFile(filepath string, records [][]string, append bool) error
 ```
 
-<b>Example:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/dAXm58Q5U1o)</span></b>
 
 ```go
 package main
@@ -744,15 +746,15 @@ func main() {
 
 ### <span id="WriteBytesToFile">WriteBytesToFile</span>
 
-<p>Writes bytes to target file.</p>
+<p>将bytes写入文件。</p>
 
-<b>Signature:</b>
+<b>函数签名:</b>
 
 ```go
 func WriteBytesToFile(filepath string, content []byte) error
 ```
 
-<b>Example:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/s7QlDxMj3P8)</span></b>
 
 ```go
 package main
@@ -793,15 +795,15 @@ func main() {
 
 ### <span id="WriteStringToFile">WriteStringToFile</span>
 
-<p>Writes string to target file.</p>
+<p>将字符串写入文件。</p>
 
-<b>Signature:</b>
+<b>函数签名:</b>
 
 ```go
 func WriteStringToFile(filepath string, content string, append bool) error
 ```
 
-<b>Example:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/GhLS6d8lH_g)</span></b>
 
 ```go
 package main

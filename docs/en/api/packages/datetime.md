@@ -68,6 +68,8 @@ import (
 
 <div STYLE="page-break-after: always;"></div>
 
+<link rel="stylesheet" type="text/css" href="/styles/api_doc.css">
+
 ## Documentation
 
 ## Note:
@@ -107,7 +109,7 @@ import (
 func AddDay(t time.Time, day int64) time.Time
 ```
 
-<b>Example:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/dIGbs_uTdFa)</span></b>
 
 ```go
 package main
@@ -146,7 +148,7 @@ func main() {
 func AddHour(t time.Time, hour int64) time.Time
 ```
 
-<b>Example:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/rcMjd7OCsi5)</span></b>
 
 ```go
 package main
@@ -185,7 +187,7 @@ func main() {
 func AddMinute(t time.Time, minute int64) time.Time
 ```
 
-<b>Example:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/nT1heB1KUUK)</span></b>
 
 ```go
 package main
@@ -224,7 +226,7 @@ func main() {
 func AddYear(t time.Time, year int64) time.Time
 ```
 
-<b>Example:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/MqW2ujnBx10)</span></b>
 
 ```go
 package main
@@ -263,7 +265,7 @@ func main() {
 func BeginOfMinute(t time.Time) time.Time
 ```
 
-<b>Example:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/ieOLVJ9CiFT)</span></b>
 
 ```go
 package main
@@ -295,7 +297,7 @@ func main() {
 func BeginOfHour(t time.Time) time.Time
 ```
 
-<b>Example:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/GhdGFnDWpYs)</span></b>
 
 ```go
 package main
@@ -327,7 +329,7 @@ func main() {
 func BeginOfDay(t time.Time) time.Time
 ```
 
-<b>Example:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/94m_UT6cWs9)</span></b>
 
 ```go
 package main
@@ -359,7 +361,7 @@ func main() {
 func BeginOfWeek(t time.Time, beginFrom ...time.Weekday) time.Time
 ```
 
-<b>Example:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/ynjoJPz7VNV)</span></b>
 
 ```go
 package main
@@ -391,7 +393,7 @@ func main() {
 func BeginOfMonth(t time.Time) time.Time
 ```
 
-<b>Example:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/bWXVFsmmzwL)</span></b>
 
 ```go
 package main
@@ -423,7 +425,7 @@ func main() {
 func BeginOfYear(t time.Time) time.Time
 ```
 
-<b>Example:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/i326DSwLnV8)</span></b>
 
 ```go
 package main
@@ -455,7 +457,7 @@ func main() {
 func EndOfMinute(t time.Time) time.Time
 ```
 
-<b>Example:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/yrL5wGzPj4z)</span></b>
 
 ```go
 package main
@@ -487,7 +489,7 @@ func main() {
 func EndOfHour(t time.Time) time.Time
 ```
 
-<b>Example:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/6ce3j_6cVqN)</span></b>
 
 ```go
 package main
@@ -519,7 +521,7 @@ func main() {
 func EndOfDay(t time.Time) time.Time
 ```
 
-<b>Example:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/eMBOvmq5Ih1)</span></b>
 
 ```go
 package main
@@ -551,7 +553,7 @@ func main() {
 func EndOfWeek(t time.Time, endWith ...time.Weekday) time.Time
 ```
 
-<b>Example:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/i08qKXD9flf)</span></b>
 
 ```go
 package main
@@ -583,7 +585,7 @@ func main() {
 func EndOfMonth(t time.Time) time.Time
 ```
 
-<b>Example:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/_GWh10B3Nqi)</span></b>
 
 ```go
 package main
@@ -615,7 +617,7 @@ func main() {
 func EndOfYear(t time.Time) time.Time
 ```
 
-<b>Example:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/G01cKlMCvNm)</span></b>
 
 ```go
 package main
@@ -647,7 +649,7 @@ func main() {
 func GetNowDate() string
 ```
 
-<b>Example:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/PvfkPpcpBBf)</span></b>
 
 ```go
 package main
@@ -676,7 +678,7 @@ func main() {
 func GetNowTime() string
 ```
 
-<b>Example:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/l7BNxCkTmJS)</span></b>
 
 ```go
 package main
@@ -705,7 +707,7 @@ func main() {
 func GetNowDateTime() string
 ```
 
-<b>Example:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/pI4AqngD0al)</span></b>
 
 ```go
 package main
@@ -734,7 +736,7 @@ func main() {
 func GetTodayStartTime() string
 ```
 
-<b>Example:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/84siyYF7t99)</span></b>
 
 ```go
 package main
@@ -763,7 +765,7 @@ func main() {
 func GetTodayEndTime() string
 ```
 
-<b>Example:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/jjrLnfoqgn3)</span></b>
 
 ```go
 package main
@@ -792,7 +794,7 @@ func main() {
 func GetZeroHourTimestamp() int64
 ```
 
-<b>Example:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/QmL2oIaGE3q)</span></b>
 
 ```go
 package main
@@ -821,7 +823,7 @@ func main() {
 func GetNightTimestamp() int64
 ```
 
-<b>Example:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/UolysR3MYP1)</span></b>
 
 ```go
 package main
@@ -850,7 +852,7 @@ func main() {
 func FormatTimeToStr(t time.Time, format string, timezone ...string) string
 ```
 
-<b>Example:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/_Ia7M8H_OvE)</span></b>
 
 ```go
 package main
@@ -889,7 +891,7 @@ func main() {
 func FormatStrToTime(str, format string, timezone ...string) (time.Time, error)
 ```
 
-<b>Example:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/1h9FwdU8ql4)</span></b>
 
 ```go
 package main
@@ -928,7 +930,7 @@ type theTime struct {
 func NewUnixNow() *theTime
 ```
 
-<b>Example:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/U4PPx-9D0oz)</span></b>
 
 ```go
 package main
@@ -960,7 +962,7 @@ type theTime struct {
 func NewUnix(unix int64) *theTime
 ```
 
-<b>Example:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/psoSuh_kLRt)</span></b>
 
 ```go
 package main
@@ -992,7 +994,7 @@ type theTime struct {
 func NewFormat(t string) (*theTime, error)
 ```
 
-<b>Example:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/VkW08ZOaXPZ)</span></b>
 
 ```go
 package main
@@ -1024,7 +1026,7 @@ type theTime struct {
 func NewISO8601(iso8601 string) (*theTime, error)
 ```
 
-<b>Example:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/mkhOHQkdeA2)</span></b>
 
 ```go
 package main
@@ -1053,7 +1055,7 @@ func main() {
 func (t *theTime) ToUnix() int64
 ```
 
-<b>Example:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/_LUiwAdocjy)</span></b>
 
 ```go
 package main
@@ -1082,7 +1084,7 @@ func main() {
 func (t *theTime) ToFormat() string
 ```
 
-<b>Example:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/VkW08ZOaXPZ)</span></b>
 
 ```go
 package main
@@ -1111,7 +1113,7 @@ func main() {
 func (t *theTime) ToFormatForTpl(tpl string) string
 ```
 
-<b>Example:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/nyXxXcQJ8L5)</span></b>
 
 ```go
 package main
@@ -1141,7 +1143,7 @@ func main() {
 func (t *theTime) ToIso8601() string
 ```
 
-<b>Example:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/mkhOHQkdeA2)</span></b>
 
 ```go
 package main
@@ -1171,7 +1173,7 @@ func main() {
 func IsLeapYear(year int) bool
 ```
 
-<b>Example:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/xS1eS2ejGew)</span></b>
 
 ```go
 package main
@@ -1204,7 +1206,7 @@ func main() {
 func BetweenSeconds(t1 time.Time, t2 time.Time) int64
 ```
 
-<b>Example:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/n3YDRyfyXJu)</span></b>
 
 ```go
 package main
@@ -1241,7 +1243,7 @@ func main() {
 func DayOfYear(t time.Time) int
 ```
 
-<b>Example:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/0hjqhTwFNlH)</span></b>
 
 ```go
 package main
@@ -1282,7 +1284,7 @@ func main() {
 func IsWeekend(t time.Time) bool
 ```
 
-<b>Example:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/cupRM5aZOIY)</span></b>
 
 ```go
 package main
@@ -1322,7 +1324,7 @@ func main() {
 func NowDateOrTime(format string, timezone ...string) string
 ```
 
-<b>Example:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/EZ-begEjtT0)</span></b>
 
 ```go
 package main
@@ -1356,7 +1358,7 @@ func main() {
 func Timestamp(timezone ...string) int64
 ```
 
-<b>Example:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/iU5b7Vvjx6x)</span></b>
 
 ```go
 package main
@@ -1387,7 +1389,7 @@ func main() {
 func TimestampMilli(timezone ...string) int64
 ```
 
-<b>Example:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/4gvEusOTu1T)</span></b>
 
 ```go
 package main
@@ -1417,7 +1419,7 @@ func main() {
 func TimestampMicro(timezone ...string) int64
 ```
 
-<b>Example:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/2maANglKHQE)</span></b>
 
 ```go
 package main
@@ -1447,7 +1449,7 @@ func main() {
 func TimestampNano(timezone ...string) int64
 ```
 
-<b>Example:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/A9Oq_COrcCF)</span></b>
 
 ```go
 package main

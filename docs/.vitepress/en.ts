@@ -43,6 +43,7 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
             '/en/': [
                 {
                     text: 'Introduction',
+                    collapsed: false,
                     items: [
                         {
                             text: 'What is Lancet？',
@@ -62,6 +63,7 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
                 },
                 {
                     text: 'packages',
+                    collapsed: false,
                     items: [
                         { text: 'algorithm', link: '/en/api/packages/algorithm' },
                         { text: 'compare', link: '/en/api/packages/compare' },
@@ -71,6 +73,7 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
                         { text: 'cryptor', link: '/en/api/packages/cryptor' },
                         {
                             text: 'datastructure',
+                            collapsed: true,
                             items: [
                                 { text: 'list', link: '/en/api/packages/datastructure/list' },
                                 { text: 'safelist', link: '/en/api/packages/datastructure/copyonwritelist' },
@@ -81,8 +84,12 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
                                 { text: 'tree', link: '/en/api/packages/datastructure/tree' },
                                 { text: 'set', link: '/en/api/packages/datastructure/set' },
                                 { text: 'hashmap', link: '/en/api/packages/datastructure/hashmap' },
-                            ]
+                            ],
                         },
+                        { text: 'datetime', link: '/en/api/packages/datetime' },
+                        { text: 'fileutil', link: '/en/api/packages/fileutil' },
+                        { text: 'formatter', link: '/en/api/packages/formatter' },
+                        { text: 'function', link: '/en/api/packages/function' },
                     ],
                 },
             ],
