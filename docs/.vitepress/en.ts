@@ -69,6 +69,20 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
                         { text: 'condition', link: '/en/api/packages/condition' },
                         { text: 'convertor', link: '/en/api/packages/convertor' },
                         { text: 'cryptor', link: '/en/api/packages/cryptor' },
+                        {
+                            text: 'datastructure',
+                            items: [
+                                { text: 'list', link: '/en/api/packages/datastructure/list' },
+                                { text: 'safelist', link: '/en/api/packages/datastructure/copyonwritelist' },
+                                { text: 'link', link: '/en/api/packages/datastructure/link' },
+                                { text: 'stack', link: '/en/api/packages/datastructure/stack' },
+                                { text: 'queue', link: '/en/api/packages/datastructure/queue' },
+                                { text: 'heap', link: '/en/api/packages/datastructure/heap' },
+                                { text: 'tree', link: '/en/api/packages/datastructure/tree' },
+                                { text: 'set', link: '/en/api/packages/datastructure/set' },
+                                { text: 'hashmap', link: '/en/api/packages/datastructure/hashmap' },
+                            ]
+                        },
                     ],
                 },
             ],

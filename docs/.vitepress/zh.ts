@@ -79,6 +79,20 @@ export const zhConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
                         { text: '条件判断', link: '/api/packages/condition' },
                         { text: '类型转换', link: '/api/packages/convertor' },
                         { text: '加密&解密', link: '/api/packages/cryptor' },
+                        {
+                            text: '数据结构',
+                            items: [
+                                { text: '线性表', link: '/api/packages/datastructure/list' },
+                                { text: '线性表(线程安全)', link: '/api/packages/datastructure/copyonwritelist' },
+                                { text: '链表', link: '/api/packages/datastructure/link' },
+                                { text: '栈', link: '/api/packages/datastructure/stack' },
+                                { text: '队列', link: '/api/packages/datastructure/queue' },
+                                { text: '堆', link: '/api/packages/datastructure/heap' },
+                                { text: '树', link: '/api/packages/datastructure/tree' },
+                                { text: '集合', link: '/api/packages/datastructure/set' },
+                                { text: 'HashMap', link: '/api/packages/datastructure/hashmap' },
+                            ]
+                        },
                     ],
                 },
             ],
