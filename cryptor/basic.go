@@ -105,7 +105,7 @@ func HmacMd5(str, key string) string {
 }
 
 // HmacMd5WithBase64 return the hmac hash of string use md5 with base64.
-// todo
+// https://go.dev/play/p/UY0ng2AefFC
 func HmacMd5WithBase64(data, key string) string {
 	h := hmac.New(md5.New, []byte(key))
 	h.Write([]byte(data))

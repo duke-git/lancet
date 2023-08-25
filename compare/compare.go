@@ -66,6 +66,7 @@ func GreaterOrEqual(left, right any) bool {
 }
 
 // InDelta checks if two values are equal or not within a delta.
+// Play: https://go.dev/play/p/TuDdcNtMkjo
 func InDelta[T constraints.Integer | constraints.Float](left, right T, delta float64) bool {
 	return float64(mathutil.Abs(left-right)) <= delta
 }
