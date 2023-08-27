@@ -101,7 +101,6 @@ func main() {
 -   [Validator](#user-content-validator)
 -   [Xerror](#user-content-xerror)
 
-
 <h3 id="algorithm">1. Algorithm package implements some basic algorithm. eg. sort, search. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
 ```go
@@ -587,7 +586,6 @@ import "github.com/duke-git/lancet/v2/datetime"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/datetime.md#TimestampNano)]
     [[play](https://go.dev/play/p/A9Oq_COrcCF)]
 
-
 <h3 id="datastructure"> 8. Datastructure package constains some common data structure. eg. list, linklist, stack, queue, set, tree, graph. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
 ```go
@@ -843,7 +841,7 @@ import "github.com/duke-git/lancet/v2/maputil"
 -   **<big>IsDisjoint</big>** : check two map are disjoint if they have no keys in common.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil.md#IsDisjoint)]
     [[play](https://go.dev/play/p/N9qgYg_Ho6f)]
--   **<big>HasKey</big>** : checks if map has key or not. 
+-   **<big>HasKey</big>** : checks if map has key or not.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil.md#HasKey)]
     [[play](https://go.dev/play/p/isZZHOsDhFc)]
 -   **<big>NewConcurrentMap</big>** : creates a ConcurrentMap with specific shard count.
@@ -861,7 +859,7 @@ import "github.com/duke-git/lancet/v2/maputil"
 -   **<big>ConcurrentMap_Delete</big>** : delete the value for a key.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil.md#ConcurrentMap_Delete)]
     [[play](https://go.dev/play/p/uTIJZYhpVMS)]
--   **<big>ConcurrentMap_GetAndDelete</big>** :returns the existing value for the key if present and then delete the value for the key. 
+-   **<big>ConcurrentMap_GetAndDelete</big>** :returns the existing value for the key if present and then delete the value for the key.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil.md#ConcurrentMap_GetAndDelete)]
     [[play](https://go.dev/play/p/ZyxeIXSZUiM)]
 -   **<big>ConcurrentMap_Has</big>** : checks if map has the value for a key.
@@ -870,7 +868,6 @@ import "github.com/duke-git/lancet/v2/maputil"
 -   **<big>ConcurrentMap_Range</big>** : calls iterator sequentially for each key and value present in each of the shards in the map.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/maputil.md#ConcurrentMap_Range)]
     [[play](https://go.dev/play/p/iqcy7P8P0Pr)]
-
 
 <h3 id="mathutil"> 13. Mathutil package implements some functions for math calculation. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
@@ -952,6 +949,9 @@ import "github.com/duke-git/lancet/v2/mathutil"
 -   **<big>Sum</big>** : return sum of passed numbers.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#Sum)]
     [[play](https://go.dev/play/p/1To2ImAMJA7)]
+-   **<big>Abs</big>** : returns the absolute value of param nubmer.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil.md#Sum)]
+    [[play](https://go.dev/play/p/fsyBh1Os-1d)]
 
 <h3 id="netutil"> 14. Netutil package contains functions to get net information and send http request. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
@@ -1325,7 +1325,6 @@ import "github.com/duke-git/lancet/v2/slice"
 -   **<big>Join</big>** : join the slice item with specify separator.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/slice.md#Join)]
     [[play](https://go.dev/play/p/huKzqwNDD7V)]
-
 
 <h3 id="stream"> 19. Stream package implements a sequence of elements supporting sequential and operations. this package is an experiment to explore if stream in go can work as the way java does. its function is very limited. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 

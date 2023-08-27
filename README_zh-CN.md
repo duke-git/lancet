@@ -953,6 +953,9 @@ import "github.com/duke-git/lancet/v2/mathutil"
 -   **<big>Sum</big>** : 求传入参数之和。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#Sum)]
     [[play](https://go.dev/play/p/1To2ImAMJA7)]
+-   **<big>Abs</big>** : 求绝对值。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/mathutil_zh-CN.md#Sum)]
+    [[play](https://go.dev/play/p/fsyBh1Os-1d)]
 
 <h3 id="netutil"> 14. netutil 网络包支持获取 ip 地址，发送 http 请求。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 
