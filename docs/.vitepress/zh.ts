@@ -86,7 +86,10 @@ export const zhConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
                             collapsed: true,
                             items: [
                                 { text: '线性表', link: '/api/packages/datastructure/list' },
-                                { text: '线性表(线程安全)', link: '/api/packages/datastructure/copyonwritelist' },
+                                {
+                                    text: '线性表(线程安全)',
+                                    link: '/api/packages/datastructure/copyonwritelist',
+                                },
                                 { text: '链表', link: '/api/packages/datastructure/link' },
                                 { text: '栈', link: '/api/packages/datastructure/stack' },
                                 { text: '队列', link: '/api/packages/datastructure/queue' },
@@ -100,6 +103,10 @@ export const zhConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
                         { text: '文件', link: '/api/packages/fileutil' },
                         { text: '格式化工具', link: '/api/packages/formatter' },
                         { text: '函数', link: '/api/packages/function' },
+                        { text: '数学工具', link: '/api/packages/mathutil' },
+                        { text: 'Map', link: '/api/packages/maputil' },
+                        { text: '网络', link: '/api/packages/netutil' },
+                        { text: '指针', link: '/api/packages/pointer' },
                     ],
                 },
             ],

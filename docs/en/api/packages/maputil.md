@@ -1,16 +1,16 @@
 # Maputil
 
-maputil 包包括一些操作 map 的函数。
+Package maputil includes some functions to manipulate map.
 
 <div STYLE="page-break-after: always;"></div>
 
-## 源码:
+## Source:
 
 -   [https://github.com/duke-git/lancet/blob/main/maputil/map.go](https://github.com/duke-git/lancet/blob/main/maputil/map.go)
 
 <div STYLE="page-break-after: always;"></div>
 
-## 用法:
+## Example:
 
 ```go
 import (
@@ -20,7 +20,7 @@ import (
 
 <div STYLE="page-break-after: always;"></div>
 
-## 目录:
+## Index
 
 -   [MapTo](#MapTo)
 -   [ForEach](#ForEach)
@@ -53,22 +53,23 @@ import (
 -   [ConcurrentMap_Has](#ConcurrentMap_Has)
 -   [ConcurrentMap_Range](#ConcurrentMap_Range)
 
-
 <div STYLE="page-break-after: always;"></div>
 
-## API 文档:
+<link rel="stylesheet" type="text/css" href="../../styles/api_doc.css">
+
+## Documentation
 
 ### <span id="MapTo">MapTo</span>
 
-<p>快速将map或者其他类型映射到结构体或者指定类型。</p>
+<p>Rry to map any interface to struct or base type.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func MapTo(src any, dst any) error
 ```
 
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/4K7KBEPgS5M)</span></b>
 
 ```go
 package main
@@ -117,15 +118,15 @@ func main() {
 
 ### <span id="ForEach">ForEach</span>
 
-<p>对map中的每对key和value执行iteratee函数</p>
+<p>Executes iteratee funcation for every key and value pair in map.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func ForEach[K comparable, V any](m map[K]V, iteratee func(key K, value V))
 ```
 
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/OaThj6iNVXK)</span></b>
 
 ```go
 package main
@@ -158,15 +159,15 @@ func main() {
 
 ### <span id="Filter">Filter</span>
 
-<p>迭代map中的每对key和value, 返回符合predicate函数的key, value。</p>
+<p>Iterates over map, return a new map contains all key and value pairs pass the predicate function.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func Filter[K comparable, V any](m map[K]V, predicate func(key K, value V) bool) map[K]V
 ```
 
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/fSvF3wxuNG7)</span></b>
 
 ```go
 package main
@@ -192,7 +193,7 @@ func main() {
         sum += value
     })
 
-    result := Filter(m, isEven)
+    result := maputil.Filter(m, isEven)
 
     fmt.Println(result)
 
@@ -203,15 +204,15 @@ func main() {
 
 ### <span id="FilterByKeys">FilterByKeys</span>
 
-<p>迭代map, 返回一个新map，其key都是给定的key值。</p>
+<p>Iterates over map, return a new map whose keys are all given keys.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func FilterByKeys[K comparable, V any](m map[K]V, keys []K) map[K]V
 ```
 
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/7ov6BJHbVqh)</span></b>
 
 ```go
 package main
@@ -241,15 +242,15 @@ func main() {
 
 ### <span id="FilterByValues">FilterByValues</span>
 
-<p>迭代map, 返回一个新map，其value都是给定的value值。</p>
+<p>Iterates over map, return a new map whose values are all given values.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func FilterByValues[K comparable, V comparable](m map[K]V, values []V) map[K]V
 ```
 
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/P3-9MdcXegR)</span></b>
 
 ```go
 package main
@@ -279,15 +280,15 @@ func main() {
 
 ### <span id="OmitBy">OmitBy</span>
 
-<p>Filter的反向操作, 迭代map中的每对key和value, 删除符合predicate函数的key, value, 返回新map。</p>
+<p>OmitBy is the opposite of Filter, removes all the map elements for which the predicate function returns true.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func OmitBy[K comparable, V any](m map[K]V, predicate func(key K, value V) bool) map[K]V
 ```
 
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/YJM4Hj5hNwm)</span></b>
 
 ```go
 package main
@@ -320,15 +321,15 @@ func main() {
 
 ### <span id="OmitByKeys">OmitByKeys</span>
 
-<p>FilterByKeys的反向操作, 迭代map, 返回一个新map，其key不包括给定的key值。</p>
+<p>The opposite of FilterByKeys, extracts all the map elements which keys are not omitted.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func OmitByKeys[K comparable, V any](m map[K]V, keys []K) map[K]V
 ```
 
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/jXGrWDBfSRp)</span></b>
 
 ```go
 package main
@@ -358,15 +359,15 @@ func main() {
 
 ### <span id="OmitByValues">OmitByValues</span>
 
-<p>FilterByValues的反向操作, 迭代map, 返回一个新map，其value不包括给定的value值。</p>
+<p>The opposite of FilterByValues. remov all elements whose value are in the give slice.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func OmitByValues[K comparable, V comparable](m map[K]V, values []V) map[K]V
 ```
 
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/XB7Y10uw20_U)</span></b>
 
 ```go
 package main
@@ -396,15 +397,15 @@ func main() {
 
 ### <span id="Intersect">Intersect</span>
 
-<p>多个map的交集操作</p>
+<p>Iterates over maps, return a new map of key and value pairs in all given maps.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func Intersect[K comparable, V any](maps ...map[K]V) map[K]V
 ```
 
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/Zld0oj3sjcC)</span></b>
 
 ```go
 package main
@@ -451,21 +452,22 @@ func main() {
 
 ### <span id="Keys">Keys</span>
 
-<p>返回map中所有key的切片</p>
+<p>Returns a slice of the map's keys.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func Keys[K comparable, V any](m map[K]V) []K
 ```
 
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/xNB5bTb97Wd)</span></b>
 
 ```go
 package main
 
 import (
     "fmt"
+    "sort"
     "github.com/duke-git/lancet/v2/maputil"
 )
 
@@ -490,15 +492,15 @@ func main() {
 
 ### <span id="Merge">Merge</span>
 
-<p>合并多个maps, 相同的key会被后来的key覆盖</p>
+<p>Merge maps, next key will overwrite previous key.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func Merge[K comparable, V any](maps ...map[K]V) map[K]V
 ```
 
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/H95LENF1uB-)</span></b>
 
 ```go
 package main
@@ -529,15 +531,15 @@ func main() {
 
 ### <span id="Minus">Minus</span>
 
-<p>返回一个map，其中的key存在于mapA，不存在于mapB.</p>
+<p>Creates an map of whose key in mapA but not in mapB.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func Minus[K comparable, V any](mapA, mapB map[K]V) map[K]V
 ```
 
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/3u5U9K7YZ9m)</span></b>
 
 ```go
 package main
@@ -571,21 +573,22 @@ func main() {
 
 ### <span id="Values">Values</span>
 
-<p>返回map中所有value的切片</p>
+<p>Returns a slice of the map's values.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func Values[K comparable, V any](m map[K]V) []V
 ```
 
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/CBKdUc5FTW6)</span></b>
 
 ```go
 package main
 
 import (
     "fmt"
+    "sort"
     "github.com/duke-git/lancet/v2/maputil"
 )
 
@@ -601,6 +604,8 @@ func main() {
     values := maputil.Values(m)
     sort.Strings(values)
 
+    fmt.Println(values)
+
     // Output:
     // [a a b c d]
 }
@@ -608,15 +613,15 @@ func main() {
 
 ### <span id="KeysBy">KeysBy</span>
 
-<p>创建一个切片，其元素是每个map的key调用mapper函数的结果。</p>
+<p>Creates a slice whose element is the result of function mapper invoked by every map's key.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func KeysBy[K comparable, V any, T any](m map[K]V, mapper func(item K) T) []T
 ```
 
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/hI371iB8Up8)</span></b>
 
 ```go
 package main
@@ -649,15 +654,15 @@ func main() {
 
 ### <span id="ValuesBy">ValuesBy</span>
 
-<p>创建一个切片，其元素是每个map的value调用mapper函数的结果。</p>
+<p>Creates a slice whose element is the result of function mapper invoked by every map's value.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func ValuesBy[K comparable, V any, T any](m map[K]V, mapper func(item V) T) []T
 ```
 
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/sg9-oRidh8f)</span></b>
 
 ```go
 package main
@@ -698,15 +703,15 @@ func main() {
 
 ### <span id="MapKeys">MapKeys</span>
 
-<p>操作map的每个key，然后转为新的map。</p>
+<p>Transforms a map to other type map by manipulating it's keys.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func MapKeys[K comparable, V any, T comparable](m map[K]V, iteratee func(key K, value V) T) map[T]V
 ```
 
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/8scDxWeBDKd)</span></b>
 
 ```go
 package main
@@ -737,15 +742,15 @@ func main() {
 
 ### <span id="MapValues">MapValues</span>
 
-<p>操作map的每个value，然后转为新的map。</p>
+<p>Transforms a map to other type map by manipulating it's values.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func MapValues[K comparable, V any, T any](m map[K]V, iteratee func(key K, value V) T) map[K]T
 ```
 
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/g92aY3fc7Iw)</span></b>
 
 ```go
 package main
@@ -776,9 +781,9 @@ func main() {
 
 ### <span id="Entry">Entry</span>
 
-<p>将map转换为键/值对切片。</p>
+<p>Transforms a map into array of key/value pairs.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 type Entry[K comparable, V any] struct {
@@ -788,7 +793,7 @@ type Entry[K comparable, V any] struct {
 func Entries[K comparable, V any](m map[K]V) []Entry[K, V]
 ```
 
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/Ltb11LNcElY)</span></b>
 
 ```go
 package main
@@ -821,9 +826,9 @@ func main() {
 
 ### <span id="FromEntries">FromEntries</span>
 
-<p>基于键/值对的切片创建map。</p>
+<p>Creates a map based on a slice of key/value pairs.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 type Entry[K comparable, V any] struct {
@@ -833,7 +838,7 @@ type Entry[K comparable, V any] struct {
 func FromEntries[K comparable, V any](entries []Entry[K, V]) map[K]V
 ```
 
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/fTdu4sCNjQO)</span></b>
 
 ```go
 package main
@@ -859,15 +864,15 @@ func main() {
 
 ### <span id="Transform">Transform</span>
 
-<p>将map转换为其他类型的map。</p>
+<p>Transform a map to another type map.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func Transform[K1 comparable, V1 any, K2 comparable, V2 any](m map[K1]V1, iteratee func(key K1, value V1) (K2, V2)) map[K2]V2
 ```
 
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/P6ovfToM3zj)</span></b>
 
 ```go
 package main
@@ -898,15 +903,15 @@ func main() {
 
 ### <span id="IsDisjoint">IsDisjoint</span>
 
-<p>验证两个map是否具有不同的key</p>
+<p>Checks two maps are disjoint if they have no keys in common.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func IsDisjoint[K comparable, V any](mapA, mapB map[K]V) bool
 ```
 
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/N9qgYg_Ho6f)</span></b>
 
 ```go
 package main
@@ -945,7 +950,7 @@ func main() {
 
 ### <span id="HasKey">HasKey</span>
 
-<p>检查map是否包含某个key。用于代替以下样板代码:</p>
+<p>Checks if map has key or not. This function is used to replace the following boilerplate code:</p>
 
 ```go
 _, haskey := amap["baz"];
@@ -955,13 +960,13 @@ if haskey {
 }
 ```
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func HasKey[K comparable, V any](m map[K]V, key K) bool
 ```
 
-<b>示例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/isZZHOsDhFc)</span></b>
 
 ```go
 package main
@@ -991,16 +996,16 @@ func main() {
 
 ### <span id="NewConcurrentMap">NewConcurrentMap</span>
 
-<p>ConcurrentMap协程安全的map结构。</p>
+<p>ConcurrentMap is like map, but is safe for concurrent use by multiple goroutines.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 // NewConcurrentMap create a ConcurrentMap with specific shard count.
 func NewConcurrentMap[K comparable, V any](shardCount int) *ConcurrentMap[K, V]
 ```
 
-<b>实例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/3PenTPETJT0)</span></b>
 
 ```go
 package main
@@ -1018,15 +1023,15 @@ func main() {
 
 ### <span id="ConcurrentMap_Set">ConcurrentMap_Set</span>
 
-<p>在map中设置key和value。</p>
+<p>Set the value for a key.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func (cm *ConcurrentMap[K, V]) Set(key K, value V)
 ```
 
-<b>实例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/3PenTPETJT0)</span></b>
 
 ```go
 package main
@@ -1050,15 +1055,16 @@ func main() {
     }
     wg1.Wait()
 
+
     var wg2 sync.WaitGroup
 	wg2.Add(5)
-    for j := 0; j < 5; j++ {
-        go func(n int) {
-            val, ok := cm.Get(fmt.Sprintf("%d", n))
-            fmt.Println(val, ok)
+	for j := 0; j < 5; j++ {
+		go func(n int) {
+			val, ok := cm.Get(fmt.Sprintf("%d", n))
+			fmt.Println(val, ok)
 			wg2.Done()
-        }(j)
-    }
+		}(j)
+	}
 	wg2.Wait()
 
     // output: (order may change)
@@ -1072,15 +1078,15 @@ func main() {
 
 ### <span id="ConcurrentMap_Get">ConcurrentMap_Get</span>
 
-<p>根据key获取value, 如果不存在key,返回零值。</p>
+<p>Get the value stored in the map for a key, or nil if no.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func (cm *ConcurrentMap[K, V]) Get(key K) (V, bool)
 ```
 
-<b>实例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/3PenTPETJT0)</span></b>
 
 ```go
 package main
@@ -1104,15 +1110,16 @@ func main() {
     }
     wg1.Wait()
 
+
     var wg2 sync.WaitGroup
 	wg2.Add(5)
-    for j := 0; j < 5; j++ {
-        go func(n int) {
-            val, ok := cm.Get(fmt.Sprintf("%d", n))
-            fmt.Println(val, ok)
+	for j := 0; j < 5; j++ {
+		go func(n int) {
+			val, ok := cm.Get(fmt.Sprintf("%d", n))
+			fmt.Println(val, ok)
 			wg2.Done()
-        }(j)
-    }
+		}(j)
+	}
 	wg2.Wait()
 
     // output: (order may change)
@@ -1126,15 +1133,15 @@ func main() {
 
 ### <span id="ConcurrentMap_GetOrSet">ConcurrentMap_GetOrSet</span>
 
-<p>返回键的现有值（如果存在），否则，设置key并返回给定值。</p>
+<p>Returns the existing value for the key if present. Otherwise, it sets and returns the given value.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func (cm *ConcurrentMap[K, V]) GetOrSet(key K, value V) (actual V, ok bool)
 ```
 
-<b>实例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/aDcDApOK01a)</span></b>
 
 ```go
 package main
@@ -1170,15 +1177,15 @@ func main() {
 
 ### <span id="ConcurrentMap_Delete">ConcurrentMap_Delete</span>
 
-<p>删除key。</p>
+<p>Delete the value for a key.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func (cm *ConcurrentMap[K, V]) Delete(key K)
 ```
 
-<b>实例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/uTIJZYhpVMS)</span></b>
 
 ```go
 package main
@@ -1208,24 +1215,24 @@ func main() {
         go func(n int) {
             cm.Delete(fmt.Sprintf("%d", n))
             wg2.Done()
-        }(i)
+        }(j)
     }
+
     wg2.Wait()
 }
 ```
 
-
 ### <span id="ConcurrentMap_GetAndDelete">ConcurrentMap_GetAndDelete</span>
 
-<p>获取key，然后删除。</p>
+<p>Returns the existing value for the key if present and then delete the value for the key. Otherwise, do nothing, just return false.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func (cm *ConcurrentMap[K, V]) GetAndDelete(key K) (actual V, ok bool)
 ```
 
-<b>实例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/ZyxeIXSZUiM)</span></b>
 
 ```go
 package main
@@ -1262,22 +1269,22 @@ func main() {
             wg2.Done()
         }(j)
     }
+
     wg2.Wait()
 }
 ```
 
-
 ### <span id="ConcurrentMap_Has">ConcurrentMap_Has</span>
 
-<p>验证是否包含key。</p>
+<p>Checks if map has the value for a key.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func (cm *ConcurrentMap[K, V]) Has(key K) bool
 ```
 
-<b>实例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/C8L4ul9TVwf)</span></b>
 
 ```go
 package main
@@ -1292,6 +1299,7 @@ func main() {
 
     var wg1 sync.WaitGroup
     wg1.Add(5)
+
     for i := 0; i < 5; i++ {
         go func(n int) {
             cm.Set(fmt.Sprintf("%d", n), n)
@@ -1302,12 +1310,10 @@ func main() {
 
     var wg2 sync.WaitGroup
 	wg2.Add(5)
-
     for j := 0; j < 5; j++ {
         go func(n int) {
             ok := cm.Has(fmt.Sprintf("%d", n))
             fmt.Println(ok) // true
-
             wg2.Done()
         }(j)
     }
@@ -1315,18 +1321,17 @@ func main() {
 }
 ```
 
-
 ### <span id="ConcurrentMap_Range">ConcurrentMap_Range</span>
 
-<p>为map中每个键和值顺序调用迭代器。 如果iterator返回false，则停止迭代。</p>
+<p>Calls iterator sequentially for each key and value present in each of the shards in the map. If iterator returns false, range stops the iteration.</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func (cm *ConcurrentMap[K, V]) Range(iterator func(key K, value V) bool)
 ```
 
-<b>实例:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/iqcy7P8P0Pr)</span></b>
 
 ```go
 package main
@@ -1357,4 +1362,3 @@ func main() {
     })
 }
 ```
-

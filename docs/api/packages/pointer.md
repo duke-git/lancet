@@ -30,6 +30,8 @@ import (
 
 <div STYLE="page-break-after: always;"></div>
 
+<link rel="stylesheet" type="text/css" href="../../styles/api_doc.css">
+
 ## 文档
 
 ### <span id="Of">Of</span>
@@ -42,7 +44,7 @@ import (
 func Of[T any](v T) *T
 ```
 
-<b>示例:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/HFd70x4DrMj)</span></b>
 
 ```go
 package main
@@ -75,7 +77,7 @@ func main() {
 func Unwrap[T any](p *T) T
 ```
 
-<b>示例:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/cgeu3g7cjWb)</span></b>
 
 ```go
 package main
@@ -111,7 +113,7 @@ func main() {
 func ExtractPointer(value any) any
 ```
 
-<b>示例:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/D7HFjeWU2ZP)</span></b>
 
 ```go
 package main
@@ -146,7 +148,7 @@ func main() {
 UnwarpOr[T any](p *T, fallback T) T
 ```
 
-<b>示例:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/mmNaLC38W8C)</span></b>
 
 ```go
 package main
@@ -191,7 +193,7 @@ func main() {
 UnwarpOrDefault[T any](p *T) T
 ```
 
-<b>示例:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/ZnGIHf8_o4E)</span></b>
 
 ```go
 package main

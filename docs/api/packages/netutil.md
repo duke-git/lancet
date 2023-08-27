@@ -51,6 +51,8 @@ import (
 
 <div STYLE="page-break-after: always;"></div>
 
+<link rel="stylesheet" type="text/css" href="../../styles/api_doc.css">
+
 ## 文档
 
 ### <span id="ConvertMapToQueryString">ConvertMapToQueryString</span>
@@ -63,7 +65,7 @@ import (
 func ConvertMapToQueryString(param map[string]any) string
 ```
 
-<b>示例:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/jnNt_qoSnRi)</span></b>
 
 ```go
 package main
@@ -98,7 +100,7 @@ func main() {
 func EncodeUrl(urlStr string) (string, error)
 ```
 
-<b>示例:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/bsZ6BRC4uKI)</span></b>
 
 ```go
 package main
@@ -133,7 +135,7 @@ func main() {
 func GetInternalIp() string
 ```
 
-<b>示例:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/fxnna_LLD9u)</span></b>
 
 ```go
 package main
@@ -165,7 +167,7 @@ func main() {
 func GetIps() []string
 ```
 
-<b>示例:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/NUFfcEmukx1)</span></b>
 
 ```go
 package main
@@ -195,7 +197,7 @@ func main() {
 func GetMacAddrs() []string {
 ```
 
-<b>示例:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/Rq9UUBS_Xp1)</span></b>
 
 ```go
 package main
@@ -239,7 +241,7 @@ type PublicIpInfo struct {
 }
 ```
 
-<b>示例:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/YDxIfozsRHR)</span></b>
 
 ```go
 package main
@@ -269,7 +271,7 @@ func main() {
 func GetRequestPublicIp(req *http.Request) string
 ```
 
-<b>示例:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/kxU-YDc_eBo)</span></b>
 
 ```go
 package main
@@ -307,7 +309,7 @@ func main() {
 func IsPublicIP(IP net.IP) bool
 ```
 
-<b>示例:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/nmktSQpJZnn)</span></b>
 
 ```go
 package main
@@ -344,7 +346,7 @@ func main() {
 func IsInternalIP(IP net.IP) bool
 ```
 
-<b>示例:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/sYGhXbgO4Cb)</span></b>
 
 ```go
 package main
@@ -388,7 +390,7 @@ type HttpRequest struct {
 }
 ```
 
-<b>示例:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/jUSgynekH7G)</span></b>
 
 ```go
 package main
@@ -445,7 +447,7 @@ func NewHttpClientWithConfig(config *HttpClientConfig) *HttpClient
 
 ```
 
-<b>示例:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/jUSgynekH7G)</span></b>
 
 ```go
 package main
@@ -476,7 +478,7 @@ func main() {
 func (client *HttpClient) SendRequest(request *HttpRequest) (*http.Response, error)
 ```
 
-<b>示例:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/jUSgynekH7G)</span></b>
 
 ```go
 package main
@@ -530,7 +532,7 @@ func main() {
 func (client *HttpClient) DecodeResponse(resp *http.Response, target any) error
 ```
 
-<b>示例:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/jUSgynekH7G)</span></b>
 
 ```go
 package main
@@ -584,7 +586,7 @@ func main() {
 func StructToUrlValues(targetStruct any) url.Values
 ```
 
-<b>示例:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/pFqMkM40w9z)</span></b>
 
 ```go
 package main
@@ -966,7 +968,7 @@ func main() {
 func IsPingConnected(host string) bool
 ```
 
-<b>示例:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/q8OzTijsA87)</span></b>
 
 ```go
 package main
@@ -999,7 +1001,7 @@ func main() {
 func IsTelnetConnected(host string, port string) bool
 ```
 
-<b>示例:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/yiLCGtQv_ZG)</span></b>
 
 ```go
 package main

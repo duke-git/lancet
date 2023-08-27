@@ -51,6 +51,8 @@ import (
 
 <div STYLE="page-break-after: always;"></div>
 
+<link rel="stylesheet" type="text/css" href="../../styles/api_doc.css">
+
 ## Documentation
 
 ### <span id="ConvertMapToQueryString">ConvertMapToQueryString</span>
@@ -63,7 +65,7 @@ import (
 func ConvertMapToQueryString(param map[string]any) string
 ```
 
-<b>Example:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/jnNt_qoSnRi)</span></b>
 
 ```go
 package main
@@ -96,7 +98,7 @@ func main() {
 func EncodeUrl(urlStr string) (string, error)
 ```
 
-<b>Example:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/bsZ6BRC4uKI)</span></b>
 
 ```go
 package main
@@ -131,7 +133,7 @@ func main() {
 func GetInternalIp() string
 ```
 
-<b>Example:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/5mbu-gFp7ei)</span></b>
 
 ```go
 package main
@@ -163,7 +165,7 @@ func main() {
 func GetIps() []string
 ```
 
-<b>Example:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/NUFfcEmukx1)</span></b>
 
 ```go
 package main
@@ -193,7 +195,7 @@ func main() {
 func GetMacAddrs() []string {
 ```
 
-<b>Example:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/Rq9UUBS_Xp1)</span></b>
 
 ```go
 package main
@@ -237,7 +239,7 @@ type PublicIpInfo struct {
 }
 ```
 
-<b>Example:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/YDxIfozsRHR)</span></b>
 
 ```go
 package main
@@ -267,7 +269,7 @@ func main() {
 func GetRequestPublicIp(req *http.Request) string
 ```
 
-<b>Example:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/kxU-YDc_eBo)</span></b>
 
 ```go
 package main
@@ -305,7 +307,7 @@ func main() {
 func IsPublicIP(IP net.IP) bool
 ```
 
-<b>Example:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/nmktSQpJZnn)</span></b>
 
 ```go
 package main
@@ -342,7 +344,7 @@ func main() {
 func IsInternalIP(IP net.IP) bool
 ```
 
-<b>Example:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/sYGhXbgO4Cb)</span></b>
 
 ```go
 package main
@@ -386,7 +388,7 @@ type HttpRequest struct {
 }
 ```
 
-<b>Example:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/jUSgynekH7G)</span></b>
 
 ```go
 package main
@@ -443,7 +445,7 @@ func NewHttpClientWithConfig(config *HttpClientConfig) *HttpClient
 
 ```
 
-<b>Example:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/jUSgynekH7G)</span></b>
 
 ```go
 package main
@@ -474,7 +476,7 @@ func main() {
 func (client *HttpClient) SendRequest(request *HttpRequest) (*http.Response, error)
 ```
 
-<b>Example:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/jUSgynekH7G)</span></b>
 
 ```go
 package main
@@ -528,7 +530,7 @@ func main() {
 func (client *HttpClient) DecodeResponse(resp *http.Response, target any) error
 ```
 
-<b>Example:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/jUSgynekH7G)</span></b>
 
 ```go
 package main
@@ -582,7 +584,7 @@ func main() {
 func StructToUrlValues(targetStruct any) url.Values
 ```
 
-<b>Example:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/pFqMkM40w9z)</span></b>
 
 ```go
 package main
@@ -964,7 +966,7 @@ func main() {
 func IsPingConnected(host string) bool
 ```
 
-<b>Example:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/q8OzTijsA87)</span></b>
 
 ```go
 package main
@@ -997,7 +999,7 @@ func main() {
 func IsTelnetConnected(host string, port string) bool
 ```
 
-<b>Example:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/yiLCGtQv_ZG)</span></b>
 
 ```go
 package main

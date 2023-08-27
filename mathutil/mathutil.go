@@ -343,7 +343,7 @@ func Log(n, base float64) float64 {
 }
 
 // Abs returns the absolute value of x.
-// Play: todo
+// Play: https://go.dev/play/p/fsyBh1Os-1d
 func Abs[T constraints.Integer | constraints.Float](x T) T {
 	if x < 0 {
 		return (-x)

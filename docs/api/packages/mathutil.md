@@ -50,7 +50,9 @@ import (
 
 <div STYLE="page-break-after: always;"></div>
 
-## Documentation
+<link rel="stylesheet" type="text/css" href="../../styles/api_doc.css">
+
+## 文档
 
 ### <span id="Average">Average</span>
 
@@ -97,7 +99,7 @@ func main() {
 func Exponent(x, n int64) int64
 ```
 
-<b>示例:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/Vv7LBwER-pz)</span></b>
 
 ```go
 package main
@@ -133,7 +135,7 @@ func main() {
 func Fibonacci(first, second, n int) int
 ```
 
-<b>示例:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/IscseUNMuUc)</span></b>
 
 ```go
 package main
@@ -169,7 +171,7 @@ func main() {
 func Factorial(x uint) uint
 ```
 
-<b>示例:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/tt6LdOK67Nx)</span></b>
 
 ```go
 package main
@@ -205,7 +207,7 @@ func main() {
 func Max[T constraints.Integer | constraints.Float](numbers ...T) T
 ```
 
-<b>示例:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/cN8DHI0rTkH)</span></b>
 
 ```go
 package main
@@ -238,7 +240,7 @@ func main() {
 func MaxBy[T any](slice []T, comparator func(T, T) bool) T
 ```
 
-<b>示例:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/pbe2MT-7DV2)</span></b>
 
 ```go
 package main
@@ -282,7 +284,7 @@ func main() {
 func Min[T constraints.Integer | constraints.Float](numbers ...T) T
 ```
 
-<b>示例:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/pbe2MT-7DV2)</span></b>
 
 ```go
 package main
@@ -315,7 +317,7 @@ func main() {
 func MinBy[T any](slice []T, comparator func(T, T) bool) T
 ```
 
-<b>示例:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/N9qgYg_Ho6f)</span></b>
 
 ```go
 package main
@@ -359,7 +361,7 @@ func main() {
 func Percent(val, total float64, n int) float64
 ```
 
-<b>示例:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/s0NdFCtwuyd)</span></b>
 
 ```go
 package main
@@ -395,7 +397,7 @@ func main() {
 func RoundToFloat(x float64, n int) float64
 ```
 
-<b>示例:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/ghyb528JRJL)</span></b>
 
 ```go
 package main
@@ -431,7 +433,7 @@ func main() {
 func RoundToString(x float64, n int) string
 ```
 
-<b>示例:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/kZwpBRAcllO)</span></b>
 
 ```go
 package main
@@ -467,7 +469,7 @@ func main() {
 func TruncRound(x float64, n int) float64
 ```
 
-<b>示例:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/aumarSHIGzP)</span></b>
 
 ```go
 package main
@@ -503,7 +505,7 @@ func main() {
 func Range[T constraints.Integer | constraints.Float](start T, count int) []T
 ```
 
-<b>示例:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/9ke2opxa8ZP)</span></b>
 
 ```go
 package main
@@ -542,7 +544,7 @@ func main() {
 func RangeWithStep[T constraints.Integer | constraints.Float](start, end, step T) []T
 ```
 
-<b>示例:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/akLWz0EqOSM)</span></b>
 
 ```go
 package main
@@ -581,7 +583,7 @@ func main() {
 func AngleToRadian(angle float64) float64
 ```
 
-<b>示例:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/CIvlICqrHql)</span></b>
 
 ```go
 package main
@@ -617,7 +619,7 @@ func main() {
 func RadianToAngle(radian float64) float64
 ```
 
-<b>示例:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/dQtmOTUOMgi)</span></b>
 
 ```go
 package main
@@ -653,7 +655,7 @@ func main() {
 func PointDistance(x1, y1, x2, y2 float64) float64
 ```
 
-<b>示例:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/RrG4JIaziM8)</span></b>
 
 ```go
 package main
@@ -683,7 +685,7 @@ func main() {
 func IsPrime(n int) bool
 ```
 
-<b>示例:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/Rdd8UTHZJ7u)</span></b>
 
 ```go
 package main
@@ -722,7 +724,7 @@ func main() {
 func GCD[T constraints.Integer](integers ...T) T
 ```
 
-<b>示例:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/CiEceLSoAKB)</span></b>
 
 ```go
 package main
@@ -764,7 +766,7 @@ func main() {
 func LCM[T constraints.Integer](integers ...T) T
 ```
 
-<b>示例:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/EjcZxfY7G_g)</span></b>
 
 ```go
 package main
@@ -800,7 +802,7 @@ func main() {
 func Cos(radian float64, precision ...int) float64
 ```
 
-<b>示例:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/Sm89LoIfvFq)</span></b>
 
 ```go
 package main
@@ -842,7 +844,7 @@ func main() {
 func Sin(radian float64, precision ...int) float64
 ```
 
-<b>示例:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/TWMQlMywDsP)</span></b>
 
 ```go
 package main
@@ -884,7 +886,7 @@ func main() {
 func Log(n, base float64) float64
 ```
 
-<b>示例:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/_d4bi8oyhat)</span></b>
 
 ```go
 package main
@@ -920,7 +922,7 @@ func main() {
 func Sum[T constraints.Integer | constraints.Float](numbers ...T) T
 ```
 
-<b>示例:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/1To2ImAMJA7)</span></b>
 
 ```go
 package main
@@ -953,7 +955,7 @@ func main() {
 func Abs[T constraints.Integer | constraints.Float](x T) T
 ```
 
-<b>示例:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/fsyBh1Os-1d)</span></b>
 
 ```go
 package main
