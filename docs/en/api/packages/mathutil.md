@@ -50,7 +50,7 @@ import (
 
 <div STYLE="page-break-after: always;"></div>
 
-<link rel="stylesheet" type="text/css" href="../../styles/api_doc.css">
+<link rel="stylesheet" type="text/css" href="/styles/api_doc.css">
 
 ## Documentation
 

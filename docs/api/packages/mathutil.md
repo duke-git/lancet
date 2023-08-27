@@ -64,7 +64,7 @@ import (
 func Average[T constraints.Integer | constraints.Float](numbers ...T) T
 ```
 
-<b>示例:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/HFd70x4DrMj)</span></b>
 
 ```go
 package main
