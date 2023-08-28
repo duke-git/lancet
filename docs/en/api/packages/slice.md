@@ -108,7 +108,7 @@ import (
 func AppendIfAbsent[T comparable](slice []T, item T) []T
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/xnAOOXv9GkS)</span></b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/GNdv7Jg2Taj)</span></b>
 
 ```go
 import (
@@ -139,7 +139,7 @@ func main() {
 func Contain[T comparable](slice []T, target T) bool
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/xnAOOXv9GkS)</span></b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/_454yEHcNjf)</span></b>
 
 ```go
 import (
@@ -170,7 +170,7 @@ func main() {
 func ContainBy[T any](slice []T, predicate func(item T) bool) bool
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/xnAOOXv9GkS)</span></b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/49tkHfX4GNc)</span></b>
 
 ```go
 import (
