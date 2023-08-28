@@ -34,6 +34,8 @@ import (
 
 <div STYLE="page-break-after: always;"></div>
 
+<link rel="stylesheet" type="text/css" href="/styles/api_doc.css">
+
 ## Documentation
 
 ### <span id="RandBytes">RandBytes</span>
@@ -46,7 +48,7 @@ import (
 func RandBytes(length int) []byte
 ```
 
-<b>Example:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/EkiLESeXf8d)</span></b>
 
 ```go
 package main
@@ -72,7 +74,7 @@ func main() {
 func RandInt(min, max int) int
 ```
 
-<b>Example:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/pXyyAAI5YxD)</span></b>
 
 ```go
 package main
@@ -98,7 +100,7 @@ func main() {
 func RandString(length int) string
 ```
 
-<b>Example:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/W2xvRUXA7Mi)</span></b>
 
 ```go
 package main
@@ -124,7 +126,7 @@ func main() {
 func RandUpper(length int) string
 ```
 
-<b>Example:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/29QfOh0DVuh)</span></b>
 
 ```go
 package main
@@ -150,7 +152,7 @@ func main() {
 func RandLower(length int) string
 ```
 
-<b>Example:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/XJtZ471cmtI)</span></b>
 
 ```go
 package main
@@ -176,7 +178,7 @@ func main() {
 func RandNumeral(length int) string
 ```
 
-<b>Example:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/g4JWVpHsJcf)</span></b>
 
 ```go
 package main
@@ -202,7 +204,7 @@ func main() {
 func RandNumeralOrLetter(length int) string
 ```
 
-<b>Example:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/19CEQvpx2jD)</span></b>
 
 ```go
 package main
@@ -228,7 +230,7 @@ func main() {
 func UUIdV4() (string, error)
 ```
 
-<b>Example:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/_Z9SFmr28ft)</span></b>
 
 ```go
 package main
@@ -258,7 +260,7 @@ func main() {
 func RandUniqueIntSlice(n, min, max int) []int
 ```
 
-<b>Example:</b>
+<b>Example:<span class="run-container">[Run](https://go.dev/play/p/uBkRSOz73Ec)</span></b>
 
 ```go
 package main

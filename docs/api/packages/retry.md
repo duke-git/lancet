@@ -1,16 +1,16 @@
 # Retry
 
-Package retry is for executing a function repeatedly until it was successful or canceled by the context.
+retry 重试执行函数直到函数运行成功或被 context cancel。
 
 <div STYLE="page-break-after: always;"></div>
 
-## Source:
+## 源码:
 
 -   [https://github.com/duke-git/lancet/blob/main/retry/retry.go](https://github.com/duke-git/lancet/blob/main/retry/retry.go)
 
 <div STYLE="page-break-after: always;"></div>
 
-## Usage:
+## 用法:
 
 ```go
 import (
@@ -20,7 +20,7 @@ import (
 
 <div STYLE="page-break-after: always;"></div>
 
-## Index
+## 目录
 
 -   [Context](#Context)
 -   [Retry](#Retry)
@@ -30,26 +30,28 @@ import (
 
 <div STYLE="page-break-after: always;"></div>
 
-## Documentation
+<link rel="stylesheet" type="text/css" href="/styles/api_doc.css">
+
+## 文档
 
 ### <span id="Context">Context</span>
 
-<p>Set retry context config, can cancel the retry with context.</p>
+<p>设置重试context参数</p>
 
-<b>Signature:</b>
+<b>函数签名:</b>
 
 ```go
 func Context(ctx context.Context)
 ```
 
-<b>Example:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/xnAOOXv9GkS)</span></b>
 
 ```go
 import (
     "context"
     "errors"
     "fmt"
-    "github.com/duke-git/lancet/v2/retry"
+    "lancet-demo/retry"
     "time"
 )
 
@@ -81,15 +83,15 @@ func main() {
 
 ### <span id="RetryFunc">RetryFunc</span>
 
-<p>Function that retry executes.</p>
+<p>被重试执行的函数</p>
 
-<b>Signature:</b>
+<b>函数签名:</b>
 
 ```go
 type RetryFunc func() error
 ```
 
-<b>Example:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/nk2XRmagfVF)</span></b>
 
 ```go
 package main
@@ -127,15 +129,15 @@ func main() {
 
 ### <span id="RetryTimes">RetryTimes</span>
 
-<p>Set times of retry. Default times is 5.</p>
+<p>设置重试次数，默认5</p>
 
-<b>Signature:</b>
+<b>函数签名:</b>
 
 ```go
 func RetryTimes(n uint)
 ```
 
-<b>Example:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/ssfVeU2SwLO)</span></b>
 
 ```go
 package main
@@ -170,15 +172,15 @@ func main() {
 
 ### <span id="RetryDuration">RetryDuration</span>
 
-<p>Set duration of retries. Default duration is 3 second.</p>
+<p>设置重试间隔时间，默认3秒</p>
 
-<b>Signature:</b>
+<b>函数签名:</b>
 
 ```go
 func RetryDuration(d time.Duration)
 ```
 
-<b>Example:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/nk2XRmagfVF)</span></b>
 
 ```go
 package main
@@ -216,15 +218,15 @@ func main() {
 
 ### <span id="Retry">Retry</span>
 
-<p>Executes the retryFunc repeatedly until it was successful or canceled by the context.</p>
+<p>重试执行函数retryFunc，直到函数运行成功，或被context停止</p>
 
-<b>Signature:</b>
+<b>函数签名:</b>
 
 ```go
 func Retry(retryFunc RetryFunc, opts ...Option) error
 ```
 
-<b>Example:</b>
+<b>示例:<span class="run-container">[运行](https://go.dev/play/p/nk2XRmagfVF)</span></b>
 
 ```go
 package main
