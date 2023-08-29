@@ -1563,6 +1563,8 @@ import "github.com/duke-git/lancet/v2/strutil"
     [[play](https://go.dev/play/p/pzbaIVCTreZ)]
 -   **<big>RemoveWhiteSpace</big>** : remove whitespace characters from a string.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil.md#RemoveWhiteSpace)]
+    [[play](https://go.dev/play/p/HzLC9vsTwkf)]
+
 
 <h3 id="system"> 22. System package contain some functions about os, runtime, shell command. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 

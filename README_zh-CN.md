@@ -1570,6 +1570,8 @@ import "github.com/duke-git/lancet/v2/strutil"
     [[play](https://go.dev/play/p/pzbaIVCTreZ)]
 -   **<big>RemoveWhiteSpace</big>** : 删除字符串中的空格。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/strutil_zh-CN.md#RemoveWhiteSpace)]
+    [[play](https://go.dev/play/p/HzLC9vsTwkf)]
+
 
 <h3 id="system"> 22. system 包含 os, runtime, shell command 的相关函数。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 
