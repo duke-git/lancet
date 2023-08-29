@@ -47,4 +47,4 @@ func main() {
 
 ## More
 
-Check out the [APIs]([API](https://lancet.go.dev/api/overview.html)) for details.
+Check out the [APIs](https://github.com/duke-git/lancet) for details.
