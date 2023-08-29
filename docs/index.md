@@ -33,7 +33,7 @@ features:
       details: 结构良好，测试每个导出的函数。
 ---
 
-<p style="position:relative; top: -316px;left: 540px;">
+<p style="position:relative;display: inline-block;top: -316px;left: 32%">
   <img style="display: inline-block;margin-right:10px;" src="https://img.shields.io/github/stars/duke-git/lancet?style=social" alt="">
 
 <img style="display: inline-block" src="https://img.shields.io/github/forks/duke-git/lancet?style=social" alt="">
