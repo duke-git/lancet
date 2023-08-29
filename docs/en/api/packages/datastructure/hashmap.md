@@ -39,7 +39,7 @@ import (
 
 ### <span id="NewHashMap">NewHashMap</span>
 
-<p>Make a HashMap instance with default capacity is 1 << 10.</p>
+<p>Make a HashMap instance with default capacity is 1 &lt&lt 10.</p>
 
 <b>Signature:</b>
 

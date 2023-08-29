@@ -38,7 +38,7 @@ import (
 
 ### <span id="NewHashMap">NewHashMap</span>
 
-<p>新建默认容量（1 << 10）的HashMap指针实例</p>
+<p>新建默认容量（1 &lt&lt 10）的HashMap指针实例</p>
 
 <b>函数签名:</b>
 

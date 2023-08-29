@@ -880,7 +880,7 @@ func main() {
 
 ### <span id="FindBy">FindBy</span>
 
-<p>Iterates over elements of slice, returning the first one that passes a truth test on predicate function.If return T is nil or zero value then no items matched the predicate func. In contrast to Find or FindLast, its return value no longer requires dereferencing</p>
+<p>Iterates over elements of slice, returning the first one that passes a truth test on predicate function.If return T is nil or zero value then no items matched the predicate func. In contrast to Find or FindLast, its return value no longer requires dereferencing.</p>
 
 <b>Signature:</b>
 
@@ -952,7 +952,7 @@ func main() {
 
 ### <span id="FindLastBy">FindLastBy</span>
 
-<p>FindLastBy iterates over elements of slice, returning the last one that passes a truth test on predicate function. If return T is nil or zero value then no items matched the predicate func. In contrast to Find or FindLast, its return value no longer requires dereferencing</p>
+<p>FindLastBy iterates over elements of slice, returning the last one that passes a truth test on predicate function. If return T is nil or zero value then no items matched the predicate func. In contrast to Find or FindLast, its return value no longer requires dereferencing.</p>
 
 <b>Signature:</b>
 
@@ -1920,8 +1920,7 @@ func main() {
 
 ### <span id="Sort">Sort</span>
 
-<p>Sorts a slice of any ordered type(number or string), use quick sort algrithm. Default sort order is ascending (asc), if want descending order, set param `sortOrder` to `desc`. Ordered type: number(all ints uints floats) or string.
-</p>
+<p>Sorts a slice of any ordered type(number or string), use quick sort algrithm. Default sort order is ascending (asc), if want descending order, set param `sortOrder` to `desc`. Ordered type: number(all ints uints floats) or string.</p>
 
 <b>Signature:</b>
 
@@ -1958,7 +1957,7 @@ func main() {
 
 ### <span id="SortBy">SortBy</span>
 
-<p>Sorts the slice in ascending order as determined by the less function. This sort is not guaranteed to be stable.<p>
+<p>Sorts the slice in ascending order as determined by the less function. This sort is not guaranteed to be stable.</p>
 
 <b>Signature:</b>
 
@@ -2005,7 +2004,7 @@ func main() {
 
 ### <span id="SortByField">SortByField (Deprecated: use Sort and SortBy for replacement)</span>
 
-<p>Sort struct slice by field. Slice element should be struct, field type should be int, uint, string, or bool. Default sort type is ascending (asc), if descending order, set sortType to desc</p>
+<p>Sort struct slice by field. Slice element should be struct, field type should be int, uint, string, or bool. Default sort type is ascending (asc), if descending order, set sortType to desc.</p>
 
 <b>Signature:</b>
 
@@ -2365,7 +2364,7 @@ func main() {
 
 ### <span id="Without">Without</span>
 
-<p>Creates a slice excluding all given items. </p>
+<p>Creates a slice excluding all given items.</p>
 
 <b>Signature:</b>
 
