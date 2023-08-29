@@ -38,8 +38,4 @@ features:
 
 <img style="display: inline-block" src="https://img.shields.io/github/forks/duke-git/lancet?style=social" alt="">
 
-  <!-- [![](https://img.shields.io/github/stars/duke-git/lancet?style=social)](https://github.com/duke-git/lancet)
-
-  [![](https://img.shields.io/github/forks/duke-git/lancet?style=social)](https://github.com/duke-git/lancet) -->
-
 </p>
