@@ -1877,10 +1877,4 @@ import "github.com/duke-git/lancet/v2/xerror"
 
 ## How to Contribute
 
-I really appreciate any code commits which make lancet lib powerful. Please follow the rules below to create your pull request.
-
-1. Fork the repository.
-2. Create your feature branch.
-3. Commit your changes.
-4. Push to the branch
-5. Create new pull request.
+#### [Contributing Guide](./CONTRIBUTING.en-US.md)

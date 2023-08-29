@@ -1884,10 +1884,5 @@ import "github.com/duke-git/lancet/v2/xerror"
 
 ## 如何贡献代码
 
-非常感激任何的代码提交以使 lancet 的功能越来越强大。创建 pull request 时请遵守以下规则。
+#### [贡献代码指南](./CONTRIBUTING.zh-CN.md)
 
-1. Fork lancet 仓库。
-2. 创建自己的特性分支。
-3. 提交变更。
-4. Push 分支。
-5. 创建新的 pull request。
