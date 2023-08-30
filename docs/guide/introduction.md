@@ -4,7 +4,7 @@ outline: deep
 
 # lancet是什么?
 
-<b>lancet（柳叶刀）是一个强大、全面、高效、可复用的go语言工具函数库。lancet受到了java apache common包和lodash.js的启发。 </b>
+<b>lancet（柳叶刀）是一个功能强大、全面、高效、可复用的go语言工具函数库。lancet受到了java apache common包和lodash.js的启发。 </b>
 
 
 ## 为什么选择lancet?

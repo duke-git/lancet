@@ -1853,7 +1853,7 @@ import "github.com/duke-git/lancet/v2/xerror"
     [[play](https://go.dev/play/p/LKMLep723tu)]
 -   **<big>XError_Wrap</big>** : 创建新的 XError 对象并将消息和 id 复制到新的对象中。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/xerror_zh-CN.md#XError_Wrap)]
-    [[play](https://go.dev/play/p/5385qT2dCi4)]
+    [[play](https://go.dev/play/p/RpjJ5u5sc97)]
 -   **<big>XError_Unwrap</big>** : 解构 XEerror 为 error 对象。适配 github.com/pkg/errors。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/xerror_zh-CN.md#XError_Unwrap)]
     [[play](https://go.dev/play/p/VUXJ8BST4c6)]

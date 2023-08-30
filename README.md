@@ -1846,7 +1846,7 @@ import "github.com/duke-git/lancet/v2/xerror"
     [[play](https://go.dev/play/p/LKMLep723tu)]
 -   **<big>XError_Wrap</big>** : creates a new XError and copy message and id to new one.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/xerror.md#XError_Wrap)]
-    [[play](https://go.dev/play/p/5385qT2dCi4)]
+    [[play](https://go.dev/play/p/RpjJ5u5sc97)]
 -   **<big>XError_Unwrap</big>** : Compatible with github.com/pkg/errors.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/xerror.md#XError_Unwrap)]
     [[play](https://go.dev/play/p/VUXJ8BST4c6)]
