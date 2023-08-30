@@ -46,8 +46,6 @@ import (
 
 <div STYLE="page-break-after: always;"></div>
 
-<link rel="stylesheet" type="text/css" href="/styles/api_doc.css">
-
 ## 文档
 
 ### <span id="ColorHexToRGB">ColorHexToRGB</span>
@@ -60,7 +58,7 @@ import (
 func ColorHexToRGB(colorHex string) (red, green, blue int)
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/o7_ft-JCJBV)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/o7_ft-JCJBV)</span></b>
 
 ```go
 package main
@@ -91,7 +89,7 @@ func main() {
 func ColorRGBToHex(red, green, blue int) string
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/nzKS2Ro87J1)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/nzKS2Ro87J1)</span></b>
 
 ```go
 package main
@@ -124,7 +122,7 @@ func main() {
 func ToBool(s string) (bool, error)
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/ARht2WnGdIN)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/ARht2WnGdIN)</span></b>
 
 ```go
 package main
@@ -165,7 +163,7 @@ func main() {
 func ToBytes(data any) ([]byte, error)
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/fAMXYFDvOvr)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/fAMXYFDvOvr)</span></b>
 
 ```go
 package main
@@ -198,7 +196,7 @@ func main() {
 func ToChar(s string) []string
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/JJ1SvbFkVdM)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/JJ1SvbFkVdM)</span></b>
 
 ```go
 package main
@@ -234,7 +232,7 @@ func main() {
 func ToChannel[T any](array []T) <-chan T
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/hOx_oYZbAnL)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/hOx_oYZbAnL)</span></b>
 
 ```go
 package main
@@ -271,7 +269,7 @@ func main() {
 func ToFloat(value any) (float64, error)
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/4YTmPCibqHJ)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/4YTmPCibqHJ)</span></b>
 
 ```go
 package main
@@ -316,7 +314,7 @@ func main() {
 func ToInt(value any) (int64, error)
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/9_h9vIt-QZ_b)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/9_h9vIt-QZ_b)</span></b>
 
 ```go
 package main
@@ -358,7 +356,7 @@ func main() {
 func ToJson(value any) (string, error)
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/2rLIkMmXWvR)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/2rLIkMmXWvR)</span></b>
 
 ```go
 package main
@@ -393,7 +391,7 @@ func main() {
 func ToMap[T any, K comparable, V any](array []T, iteratee func(T) (K, V)) map[K]V
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/tVFy7E-t24l)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/tVFy7E-t24l)</span></b>
 
 ```go
 package main
@@ -434,7 +432,7 @@ func main() {
 func ToPointer[T any](value T) *T
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/ASf_etHNlw1)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/ASf_etHNlw1)</span></b>
 
 ```go
 package main
@@ -463,7 +461,7 @@ func main() {
 func ToString(value any) string
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/nF1zOOslpQq)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/nF1zOOslpQq)</span></b>
 
 ```go
 package main
@@ -511,7 +509,7 @@ func main() {
 func StructToMap(value any) (map[string]any, error)
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/KYGYJqNUBOI)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/KYGYJqNUBOI)</span></b>
 
 ```go
 package main
@@ -549,7 +547,7 @@ func main() {
 func MapToSlice[T any, K comparable, V any](aMap map[K]V, iteratee func(K, V) T) []T
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/dmX4Ix5V6Wl)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/dmX4Ix5V6Wl)</span></b>
 
 ```go
 package main
@@ -579,7 +577,7 @@ func main() {
 func EncodeByte(data any) ([]byte, error)
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/DVmM1G5JfuP)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/DVmM1G5JfuP)</span></b>
 
 ```go
 package main
@@ -608,7 +606,7 @@ func main() {
 func DecodeByte(data []byte, target any) error
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/zI6xsmuQRbn)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/zI6xsmuQRbn)</span></b>
 
 ```go
 package main
@@ -644,7 +642,7 @@ func main() {
 func DeepClone[T any](src T) T
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/j4DP5dquxnk)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/j4DP5dquxnk)</span></b>
 
 ```go
 package main
@@ -708,7 +706,7 @@ func main() {
 func CopyProperties[T, U any](dst T, src U) (err error)
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/oZujoB5Sgg5)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/oZujoB5Sgg5)</span></b>
 
 ```go
 package main
@@ -787,7 +785,7 @@ func main() {
 func ToInterface(v reflect.Value) (value interface{}, ok bool)
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/syqw0-WG7Xd)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/syqw0-WG7Xd)</span></b>
 
 ```go
 package main
@@ -822,7 +820,7 @@ func main() {
 func Utf8ToGbk(bs []byte) ([]byte, error)
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/9FlIaFLArIL)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/9FlIaFLArIL)</span></b>
 
 ```go
 package main
@@ -856,7 +854,7 @@ func main() {
 func GbkToUtf8(bs []byte) ([]byte, error)
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/OphmHCN_9u8)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/OphmHCN_9u8)</span></b>
 
 ```go
 package main

@@ -68,8 +68,6 @@ import (
 
 <div STYLE="page-break-after: always;"></div>
 
-<link rel="stylesheet" type="text/css" href="/styles/api_doc.css">
-
 ## 文档
 
 ### <span id="AesEcbEncrypt">AesEcbEncrypt</span>
@@ -82,7 +80,7 @@ import (
 func AesEcbEncrypt(data, key []byte) []byte
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/zI6xsmuQRbn)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/zI6xsmuQRbn)</span></b>
 
 ```go
 package main
@@ -116,7 +114,7 @@ func main() {
 func AesEcbDecrypt(encrypted, key []byte) []byte
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/zI6xsmuQRbn)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/zI6xsmuQRbn)</span></b>
 
 ```go
 package main
@@ -150,7 +148,7 @@ func main() {
 func AesCbcEncrypt(data, key []byte) []byte
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/IOq_g8_lKZD)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/IOq_g8_lKZD)</span></b>
 
 ```go
 package main
@@ -184,7 +182,7 @@ func main() {
 func AesCbcDecrypt(encrypted, key []byte) []byte
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/IOq_g8_lKZD)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/IOq_g8_lKZD)</span></b>
 
 ```go
 package main
@@ -218,7 +216,7 @@ func main() {
 func AesCtrCrypt(data, key []byte) []byte
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/SpaZO0-5Nsp)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/SpaZO0-5Nsp)</span></b>
 
 ```go
 package main
@@ -252,7 +250,7 @@ func main() {
 func AesCfbEncrypt(data, key []byte) []byte
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/tfkF10B13kH)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/tfkF10B13kH)</span></b>
 
 ```go
 package main
@@ -286,7 +284,7 @@ func main() {
 func AesCfbDecrypt(encrypted, key []byte) []byte
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/tfkF10B13kH)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/tfkF10B13kH)</span></b>
 
 ```go
 package main
@@ -320,7 +318,7 @@ func main() {
 func AesOfbEncrypt(data, key []byte) []byte
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/VtHxtkUj-3F)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/VtHxtkUj-3F)</span></b>
 
 ```go
 package main
@@ -354,7 +352,7 @@ func main() {
 func AesOfbDecrypt(encrypted, key []byte) []byte
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/VtHxtkUj-3F)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/VtHxtkUj-3F)</span></b>
 
 ```go
 package main
@@ -388,7 +386,7 @@ func main() {
 func Base64StdEncode(s string) string
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/VOaUyQUreoK)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/VOaUyQUreoK)</span></b>
 
 ```go
 package main
@@ -417,7 +415,7 @@ func main() {
 func Base64StdDecode(s string) string
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/RWQylnJVgIe)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/RWQylnJVgIe)</span></b>
 
 ```go
 package main
@@ -446,7 +444,7 @@ func main() {
 func DesEcbEncrypt(data, key []byte) []byte
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/8qivmPeZy4P)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/8qivmPeZy4P)</span></b>
 
 ```go
 package main
@@ -481,7 +479,7 @@ func main() {
 func DesEcbDecrypt(encrypted, key []byte) []byte
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/8qivmPeZy4P)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/8qivmPeZy4P)</span></b>
 
 ```go
 package main
@@ -516,7 +514,7 @@ func main() {
 func DesCbcEncrypt(data, key []byte) []byte
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/4cC4QvWfe3_1)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/4cC4QvWfe3_1)</span></b>
 
 ```go
 package main
@@ -550,7 +548,7 @@ func main() {
 func DesCbcDecrypt(encrypted, key []byte) []byte
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/4cC4QvWfe3_1)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/4cC4QvWfe3_1)</span></b>
 
 ```go
 package main
@@ -584,7 +582,7 @@ func main() {
 func DesCtrCrypt(data, key []byte) []byte
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/9-T6OjKpcdw)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/9-T6OjKpcdw)</span></b>
 
 ```go
 package main
@@ -618,7 +616,7 @@ func main() {
 func DesCfbEncrypt(data, key []byte) []byte
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/y-eNxcFBlxL)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/y-eNxcFBlxL)</span></b>
 
 ```go
 package main
@@ -652,7 +650,7 @@ func main() {
 func DesCfbDecrypt(encrypted, key []byte) []byte
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/y-eNxcFBlxL)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/y-eNxcFBlxL)</span></b>
 
 ```go
 package main
@@ -686,7 +684,7 @@ func main() {
 func DesOfbEncrypt(data, key []byte) []byte
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/74KmNadjN1J)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/74KmNadjN1J)</span></b>
 
 ```go
 package main
@@ -720,7 +718,7 @@ func main() {
 func DesOfbDecrypt(encrypted, key []byte) []byte
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/74KmNadjN1J)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/74KmNadjN1J)</span></b>
 
 ```go
 package main
@@ -754,7 +752,7 @@ func main() {
 func HmacMd5(str, key string) string
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/uef0q1fz53I)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/uef0q1fz53I)</span></b>
 
 ```go
 package main
@@ -786,7 +784,7 @@ func main() {
 func HmacMd5WithBase64(str, key string) string
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/UY0ng2AefFC)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/UY0ng2AefFC)</span></b>
 
 ```go
 package main
@@ -818,7 +816,7 @@ func main() {
 func HmacSha1(str, key string) string
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/1UI4oQ4WXKM)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/1UI4oQ4WXKM)</span></b>
 
 ```go
 package main
@@ -850,7 +848,7 @@ func main() {
 func HmacSha1WithBase64(str, key string) string
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/47JmmGrnF7B)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/47JmmGrnF7B)</span></b>
 
 ```go
 package main
@@ -882,7 +880,7 @@ func main() {
 func HmacSha256(str, key string) string
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/HhpwXxFhhC0)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/HhpwXxFhhC0)</span></b>
 
 ```go
 package main
@@ -914,7 +912,7 @@ func main() {
 func HmacSha256WithBase64(str, key string) string
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/EKbkUvPTLwO)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/EKbkUvPTLwO)</span></b>
 
 ```go
 package main
@@ -946,7 +944,7 @@ func main() {
 func HmacSha512(str, key string) string
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/59Od6m4A0Ud)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/59Od6m4A0Ud)</span></b>
 
 ```go
 package main
@@ -978,7 +976,7 @@ func main() {
 func HmacSha512WithBase64(str, key string) string
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/c6dSe3E2ydU)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/c6dSe3E2ydU)</span></b>
 
 ```go
 package main
@@ -1010,7 +1008,7 @@ func main() {
 func Md5String(str string) string
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/1bLcVetbTOI)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/1bLcVetbTOI)</span></b>
 
 ```go
 package main
@@ -1041,7 +1039,7 @@ func main() {
 func Md5StringWithBase64(s string) string
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/Tcb-Z7LN2ax)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/Tcb-Z7LN2ax)</span></b>
 
 ```go
 package main
@@ -1070,7 +1068,7 @@ func main() {
 func Md5Byte(data []byte) string
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/suraalH8lyC)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/suraalH8lyC)</span></b>
 
 ```go
 package main
@@ -1099,7 +1097,7 @@ func main() {
 func Md5ByteWithBase64(data []byte) string
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/Lx4gH7Vdr5_y)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/Lx4gH7Vdr5_y)</span></b>
 
 ```go
 package main
@@ -1154,7 +1152,7 @@ func main() {
 func Sha1(str string) string
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/_m_uoD1deMT)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/_m_uoD1deMT)</span></b>
 
 ```go
 package main
@@ -1185,7 +1183,7 @@ func main() {
 func Sha1WithBase64(str string) string
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/fSyx-Gl2l2-)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/fSyx-Gl2l2-)</span></b>
 
 ```go
 package main
@@ -1214,7 +1212,7 @@ func main() {
 func Sha256(str string) string
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/tU9tfBMIAr1)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/tU9tfBMIAr1)</span></b>
 
 ```go
 package main
@@ -1245,7 +1243,7 @@ func main() {
 func Sha256WithBase64(str string) string
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/85IXJHIal1k)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/85IXJHIal1k)</span></b>
 
 ```go
 package main
@@ -1274,7 +1272,7 @@ func main() {
 func Sha512(str string) string
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/3WsvLYZxsHa)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/3WsvLYZxsHa)</span></b>
 
 ```go
 package main
@@ -1305,7 +1303,7 @@ func main() {
 func Sha512WithBase64(str string) string
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/q_fY2rA-k5I)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/q_fY2rA-k5I)</span></b>
 
 ```go
 package main
@@ -1334,7 +1332,7 @@ func main() {
 func GenerateRsaKey(keySize int, priKeyFile, pubKeyFile string) error
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/zutRHrDqs0X)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/zutRHrDqs0X)</span></b>
 
 ```go
 package main
@@ -1362,7 +1360,7 @@ func main() {
 func RsaEncrypt(data []byte, pubKeyFileName string) []byte
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/uef0q1fz53I)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/uef0q1fz53I)</span></b>
 
 ```go
 package main
@@ -1399,7 +1397,7 @@ func main() {
 func RsaDecrypt(data []byte, privateKeyFileName string) []byte
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/uef0q1fz53I)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/uef0q1fz53I)</span></b>
 
 ```go
 package main

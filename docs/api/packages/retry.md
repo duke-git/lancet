@@ -30,7 +30,6 @@ import (
 
 <div STYLE="page-break-after: always;"></div>
 
-<link rel="stylesheet" type="text/css" href="/styles/api_doc.css">
 
 ## 文档
 
@@ -44,7 +43,7 @@ import (
 func Context(ctx context.Context)
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/xnAOOXv9GkS)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/xnAOOXv9GkS)</span></b>
 
 ```go
 import (
@@ -91,7 +90,7 @@ func main() {
 type RetryFunc func() error
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/nk2XRmagfVF)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/nk2XRmagfVF)</span></b>
 
 ```go
 package main
@@ -137,7 +136,7 @@ func main() {
 func RetryTimes(n uint)
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/ssfVeU2SwLO)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/ssfVeU2SwLO)</span></b>
 
 ```go
 package main
@@ -180,7 +179,7 @@ func main() {
 func RetryDuration(d time.Duration)
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/nk2XRmagfVF)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/nk2XRmagfVF)</span></b>
 
 ```go
 package main
@@ -226,7 +225,7 @@ func main() {
 func Retry(retryFunc RetryFunc, opts ...Option) error
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/nk2XRmagfVF)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/nk2XRmagfVF)</span></b>
 
 ```go
 package main

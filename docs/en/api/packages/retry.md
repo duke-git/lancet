@@ -30,8 +30,6 @@ import (
 
 <div STYLE="page-break-after: always;"></div>
 
-<link rel="stylesheet" type="text/css" href="/styles/api_doc.css">
-
 ## Documentation
 
 ### <span id="Context">Context</span>
@@ -44,7 +42,7 @@ import (
 func Context(ctx context.Context)
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/xnAOOXv9GkS)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/xnAOOXv9GkS)</span></b>
 
 ```go
 import (
@@ -91,7 +89,7 @@ func main() {
 type RetryFunc func() error
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/nk2XRmagfVF)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/nk2XRmagfVF)</span></b>
 
 ```go
 package main
@@ -137,7 +135,7 @@ func main() {
 func RetryTimes(n uint)
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/ssfVeU2SwLO)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/ssfVeU2SwLO)</span></b>
 
 ```go
 package main
@@ -180,7 +178,7 @@ func main() {
 func RetryDuration(d time.Duration)
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/nk2XRmagfVF)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/nk2XRmagfVF)</span></b>
 
 ```go
 package main
@@ -226,7 +224,7 @@ func main() {
 func Retry(retryFunc RetryFunc, opts ...Option) error
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/nk2XRmagfVF)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/nk2XRmagfVF)</span></b>
 
 ```go
 package main

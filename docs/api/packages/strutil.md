@@ -62,8 +62,6 @@ import (
 
 <div STYLE="page-break-after: always;"></div>
 
-<link rel="stylesheet" type="text/css" href="/styles/api_doc.css">
-
 ## 文档
 
 ### <span id="After">After</span>
@@ -76,7 +74,7 @@ import (
 func After(s, char string) string
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/RbCOQqCDA7m)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/RbCOQqCDA7m)</span></b>
 
 ```go
 import (
@@ -116,7 +114,7 @@ func main() {
 func AfterLast(s, char string) string
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/1TegARrb8Yn)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/1TegARrb8Yn)</span></b>
 
 ```go
 import (
@@ -156,7 +154,7 @@ func main() {
 func Before(s, char string) string
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/JAWTZDS4F5w)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/JAWTZDS4F5w)</span></b>
 
 ```go
 import (
@@ -193,7 +191,7 @@ func main() {
 func BeforeLast(s, char string) string
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/pJfXXAoG_Te)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/pJfXXAoG_Te)</span></b>
 
 ```go
 import (
@@ -230,7 +228,7 @@ func main() {
 func CamelCase(s string) string
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/9eXP3tn2tUy)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/9eXP3tn2tUy)</span></b>
 
 ```go
 import (
@@ -265,7 +263,7 @@ func main() {
 func KebabCase(s string) string
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/dcZM9Oahw-Y)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/dcZM9Oahw-Y)</span></b>
 
 ```go
 import (
@@ -300,7 +298,7 @@ func main() {
 func UpperKebabCase(s string) string
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/zDyKNneyQXk)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/zDyKNneyQXk)</span></b>
 
 ```go
 import (
@@ -335,7 +333,7 @@ func main() {
 func Capitalize(s string) string
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/2OAjgbmAqHZ)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/2OAjgbmAqHZ)</span></b>
 
 ```go
 import (
@@ -370,7 +368,7 @@ func main() {
 func IsString(v any) bool
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/IOgq7oF9ERm)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/IOgq7oF9ERm)</span></b>
 
 ```go
 import (
@@ -410,7 +408,7 @@ func main() {
 func LowerFirst(s string) string
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/CbzAyZmtJwL)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/CbzAyZmtJwL)</span></b>
 
 ```go
 import (
@@ -444,7 +442,7 @@ func main() {
 func UpperFirst(s string) string
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/sBbBxRbs8MM)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/sBbBxRbs8MM)</span></b>
 
 ```go
 import (
@@ -478,7 +476,7 @@ func main() {
 func Pad(source string, size int, padStr string) string
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/NzImQq-VF8q)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/NzImQq-VF8q)</span></b>
 
 ```go
 import (
@@ -523,7 +521,7 @@ func main() {
 func PadEnd(source string, size int, padStr string) string
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/9xP8rN0vz--)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/9xP8rN0vz--)</span></b>
 
 ```go
 import (
@@ -569,7 +567,7 @@ func main() {
 func PadStart(source string, size int, padStr string) string
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/xpTfzArDfvT)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/xpTfzArDfvT)</span></b>
 
 ```go
 import (
@@ -615,7 +613,7 @@ func main() {
 func Reverse(s string) string
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/adfwalJiecD)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/adfwalJiecD)</span></b>
 
 ```go
 import (
@@ -646,7 +644,7 @@ func main() {
 func SnakeCase(s string) string
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/tgzQG11qBuN)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/tgzQG11qBuN)</span></b>
 
 ```go
 import (
@@ -681,7 +679,7 @@ func main() {
 func UpperSnakeCase(s string) string
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/4COPHpnLx38)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/4COPHpnLx38)</span></b>
 
 ```go
 import (
@@ -716,7 +714,7 @@ func main() {
 func SplitEx(s, sep string, removeEmptyString bool) []string
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/Us-ySSbWh-3)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/Us-ySSbWh-3)</span></b>
 
 ```go
 import (
@@ -757,7 +755,7 @@ func main() {
 func Substring(s string, offset int, length uint) string
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/q3sM6ehnPDp)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/q3sM6ehnPDp)</span></b>
 
 ```go
 import (
@@ -800,7 +798,7 @@ func main() {
 func Wrap(str string, wrapWith string) string
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/KoZOlZDDt9y)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/KoZOlZDDt9y)</span></b>
 
 ```go
 import (
@@ -837,7 +835,7 @@ func main() {
 func Unwrap(str string, wrapToken string) string
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/Ec2q4BzCpG-)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/Ec2q4BzCpG-)</span></b>
 
 ```go
 import (
@@ -877,7 +875,7 @@ func main() {
 func SplitWords(s string) []string
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/KLiX4WiysMM)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/KLiX4WiysMM)</span></b>
 
 ```go
 import (
@@ -920,7 +918,7 @@ func main() {
 func WordCount(s string) int
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/bj7_odx3vRf)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/bj7_odx3vRf)</span></b>
 
 ```go
 import (
@@ -963,7 +961,7 @@ func main() {
 func RemoveNonPrintable(str string) string
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/og47F5x_jTZ)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/og47F5x_jTZ)</span></b>
 
 ```go
 import (
@@ -994,7 +992,7 @@ func main() {
 func StringToBytes(str string) (b []byte)
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/7OyFBrf9AxA)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/7OyFBrf9AxA)</span></b>
 
 ```go
 import (
@@ -1024,7 +1022,7 @@ func main() {
 func BytesToString(bytes []byte) string
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/6c68HRvJecH)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/6c68HRvJecH)</span></b>
 
 ```go
 import (
@@ -1053,7 +1051,7 @@ func main() {
 func IsBlank(str string) bool
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/6zXRH_c0Qd3)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/6zXRH_c0Qd3)</span></b>
 
 ```go
 import (
@@ -1087,7 +1085,7 @@ func main() {
 func HasPrefixAny(str string, prefixes []string) bool
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/8UUTl2C5slo)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/8UUTl2C5slo)</span></b>
 
 ```go
 import (
@@ -1118,7 +1116,7 @@ func main() {
 func HasSuffixAny(str string, suffixes []string) bool
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/sKWpCQdOVkx)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/sKWpCQdOVkx)</span></b>
 
 ```go
 import (
@@ -1149,7 +1147,7 @@ func main() {
 func IndexOffset(str string, substr string, idxFrom int) int
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/qZo4lV2fomB)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/qZo4lV2fomB)</span></b>
 
 ```go
 import (
@@ -1191,7 +1189,7 @@ func main() {
 func ReplaceWithMap(str string, replaces map[string]string) string
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/h3t7CNj2Vvu)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/h3t7CNj2Vvu)</span></b>
 
 ```go
 import (
@@ -1224,7 +1222,7 @@ func main() {
 func Trim(str string, characterMask ...string) string
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/Y0ilP0NRV3j)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/Y0ilP0NRV3j)</span></b>
 
 ```go
 import (
@@ -1261,7 +1259,7 @@ func main() {
 func SplitAndTrim(str, delimiter string, characterMask ...string) []string
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/ZNL6o4SkYQ7)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/ZNL6o4SkYQ7)</span></b>
 
 ```go
 import (
@@ -1294,7 +1292,7 @@ func main() {
 func HideString(origin string, start, end int, replaceChar string) string
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/pzbaIVCTreZ)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/pzbaIVCTreZ)</span></b>
 
 ```go
 import (
@@ -1333,7 +1331,7 @@ func main() {
 func ContainsAll(str string, substrs []string) bool
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/KECtK2Os4zq)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/KECtK2Os4zq)</span></b>
 
 ```go
 import (
@@ -1366,7 +1364,7 @@ func main() {
 func ContainsAny(str string, substrs []string) bool
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/dZGSSMB3LXE)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/dZGSSMB3LXE)</span></b>
 
 ```go
 import (
@@ -1402,7 +1400,7 @@ func main() {
 func RemoveWhiteSpace(str string, repalceAll bool) string
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/HzLC9vsTwkf)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/HzLC9vsTwkf)</span></b>
 
 ```go
 import (

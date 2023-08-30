@@ -37,8 +37,6 @@ import (
 
 ## 文档
 
-<link rel="stylesheet" type="text/css" href="/styles/api_doc.css">
-
 ### <span id="After">After</span>
 
 <p>创建一个函数，当他被调用n或更多次之后将马上触发fn</p>
@@ -49,7 +47,7 @@ import (
 func After(n int, fn any) func(args ...any) []reflect.Value
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/eRD5k2vzUVX)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/eRD5k2vzUVX)</span></b>
 
 ```go
 package main
@@ -82,7 +80,7 @@ func main() {
 func Before(n int, fn any) func(args ...any) []reflect.Value
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/0HqUDIFZ3IL)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/0HqUDIFZ3IL)</span></b>
 
 ```go
 package main
@@ -119,7 +117,7 @@ type CurryFn[T any] func(...T) T
 func (cf CurryFn[T]) New(val T) func(...T) T
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/5HopfDwANKX)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/5HopfDwANKX)</span></b>
 
 ```go
 package main
@@ -158,7 +156,7 @@ func main() {
 func Compose[T any](fnList ...func(...T) T) func(...T) T
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/KKfugD4PKYF)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/KKfugD4PKYF)</span></b>
 
 ```go
 package main
@@ -196,7 +194,7 @@ func main() {
 func Debounced(fn func(), duration time.Duration) func()
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/absuEGB_GN7)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/absuEGB_GN7)</span></b>
 
 ```go
 package main
@@ -246,7 +244,7 @@ func main() {
 func Delay(delay time.Duration, fn any, args ...any)
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/Ivtc2ZE-Tye)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/Ivtc2ZE-Tye)</span></b>
 
 ```go
 package main
@@ -278,7 +276,7 @@ func main() {
 func Schedule(d time.Duration, fn any, args ...any) chan bool
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/hbON-Xeyn5N)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/hbON-Xeyn5N)</span></b>
 
 ```go
 package main
@@ -317,7 +315,7 @@ func main() {
 func Pipeline[T any](funcs ...func(T) T) func(T) T
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/mPdUVvj6HD6)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/mPdUVvj6HD6)</span></b>
 
 ```go
 package main
@@ -369,7 +367,7 @@ func (w *Watcher) GetElapsedTime() time.Duration
 
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/l2yrOpCLd1I)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/l2yrOpCLd1I)</span></b>
 
 ```go
 package main

@@ -34,15 +34,13 @@ import (
 
 <div STYLE="page-break-after: always;"></div>
 
-<link rel="stylesheet" type="text/css" href="/styles/api_doc.css">
-
 ## Documentation
 
 ### <span id="Equal">Equal</span>
 
 <p>Checks if two values are equal or not. (check both type and value)</p>
 
-<b>Signature: <span class="run-container">[Run](https://go.dev/play/p/wmVxR-to4lz)</span></b>
+<b>Signature: <span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/wmVxR-to4lz)</span></b>
 
 ```go
 func Equal(left, right any) bool
@@ -91,7 +89,7 @@ func main() {
 
 <p>Checks if two values are equal or not. (check value only)</p>
 
-<b>Signature: <span class="run-container">[Run](https://go.dev/play/p/fxnna_LLD9u)</span></b>
+<b>Signature: <span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/fxnna_LLD9u)</span></b>
 
 ```go
 func EqualValue(left, right any) bool
@@ -130,7 +128,7 @@ func main() {
 
 <p>Checks if value `left` less than value `right`.</p>
 
-<b>Signature: <span class="run-container">[Run](https://go.dev/play/p/cYh7FQQj0ne)</span></b>
+<b>Signature: <span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/cYh7FQQj0ne)</span></b>
 
 ```go
 func LessThan(left, right any) bool
@@ -185,7 +183,7 @@ func main() {
 func GreaterThan(left, right any) bool
 ```
 
-<b>Example: <span class="run-container">[Run](https://go.dev/play/p/9-NYDFZmIMp)</span></b>
+<b>Example: <span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/9-NYDFZmIMp)</span></b>
 
 ```go
 package main
@@ -237,7 +235,7 @@ func main() {
 func LessOrEqual(left, right any) bool
 ```
 
-<b>Example: <span class="run-container">[Run](https://go.dev/play/p/e4T_scwoQzp)</span></b>
+<b>Example: <span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/e4T_scwoQzp)</span></b>
 
 ```go
 package main
@@ -280,7 +278,7 @@ func main() {
 
 <p>Checks if value `left` less greater or equal than value `right`.</p>
 
-<b>Signature: <span class="run-container">[Run](https://go.dev/play/p/vx8mP0U8DFk)</span></b>
+<b>Signature: <span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/vx8mP0U8DFk)</span></b>
 
 ```go
 func GreaterOrEqual(left, right any) bool
@@ -332,7 +330,7 @@ func main() {
 
 <p>Checks if two values are equal or not within a delta.</p>
 
-<b>Signature: <span class="run-container">[Run](https://go.dev/play/p/TuDdcNtMkjo)</span></b>
+<b>Signature: <span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/TuDdcNtMkjo)</span></b>
 
 ```go
 func InDelta[T constraints.Integer | constraints.Float](left, right T, delta float64) bool

@@ -58,7 +58,7 @@ type XError struct {
 func New(format string, args ...any) *XError
 ```
 
-<b>Example:<span style="float:right;display:inline-block">[Run](https://go.dev/play/p/w4oWZts7q7f)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/w4oWZts7q7f)</span></b>
 
 ```go
 package main
@@ -87,7 +87,7 @@ func main() {
 func Wrap(cause error, message ...any) *XError
 ```
 
-<b>Example:<span style="float:right;display:inline-block">[Run](https://go.dev/play/p/5385qT2dCi4)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/5385qT2dCi4)</span></b>
 
 ```go
 package main
@@ -118,7 +118,7 @@ func main() {
 func Unwrap(err error) *XError
 ```
 
-<b>Example:<span style="float:right;display:inline-block">[Run](https://go.dev/play/p/LKMLep723tu)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/LKMLep723tu)</span></b>
 
 ```go
 package main
@@ -153,7 +153,7 @@ func main() {
 func (e *XError) Wrap(cause error) *XError
 ```
 
-<b>Example:<span style="float:right;display:inline-block">[Run](https://go.dev/play/p/RpjJ5u5sc97)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/RpjJ5u5sc97)</span></b>
 
 ```go
 package main
@@ -185,7 +185,7 @@ func main() {
 func (e *XError) Unwrap() error
 ```
 
-<b>Example:<span style="float:right;display:inline-block">[Run](https://go.dev/play/p/VUXJ8BST4c6)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/VUXJ8BST4c6)</span></b>
 
 ```go
 package main
@@ -218,7 +218,7 @@ func main() {
 func (e *XError) With(key string, value any) *XError
 ```
 
-<b>Example:<span style="float:right;display:inline-block">[Run](https://go.dev/play/p/ow8UISXX_Dp)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/ow8UISXX_Dp)</span></b>
 
 ```go
 package main
@@ -250,7 +250,7 @@ func main() {
 func (e *XError) Id(id string) *XError
 ```
 
-<b>Example:<span style="float:right;display:inline-block">[Run](https://go.dev/play/p/X6HBlsy58U9)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/X6HBlsy58U9)</span></b>
 
 ```go
 package main
@@ -287,7 +287,7 @@ func main() {
 func (e *XError) Is(target error) bool
 ```
 
-<b>Example:<span style="float:right;display:inline-block">[Run](https://go.dev/play/p/X6HBlsy58U9)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/X6HBlsy58U9)</span></b>
 
 ```go
 package main
@@ -324,7 +324,7 @@ func main() {
 func (e *XError) Values() map[string]any
 ```
 
-<b>Example:<span style="float:right;display:inline-block">[Run](https://go.dev/play/p/ow8UISXX_Dp)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/ow8UISXX_Dp)</span></b>
 
 ```go
 package main
@@ -357,7 +357,7 @@ func main() {
 func (e *XError) StackTrace() StackTrace
 ```
 
-<b>Example:<span style="float:right;display:inline-block">[Run](https://go.dev/play/p/6FAvSQpa7pc)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/6FAvSQpa7pc)</span></b>
 
 ```go
 package main
@@ -391,7 +391,7 @@ func main() {
 func (e *XError) Info() *errInfo
 ```
 
-<b>Example:<span style="float:right;display:inline-block">[Run](https://go.dev/play/p/1ZX0ME1F-Jb)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/1ZX0ME1F-Jb)</span></b>
 
 ```go
 package main
@@ -431,7 +431,7 @@ func main() {
 func (e *XError) Error() string
 ```
 
-<b>Example:<span style="float:right;display:inline-block">[Run](https://go.dev/play/p/w4oWZts7q7f)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/w4oWZts7q7f)</span></b>
 
 ```go
 package main
@@ -459,7 +459,7 @@ func main() {
 func TryUnwrap[T any](val T, err error) T
 ```
 
-<b>Example:<span style="float:right;display:inline-block">[Run](https://go.dev/play/p/acyZVkNZEeW)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/acyZVkNZEeW)</span></b>
 
 ```go
 package main

@@ -55,8 +55,6 @@ import (
 
 <div STYLE="page-break-after: always;"></div>
 
-<link rel="stylesheet" type="text/css" href="/styles/api_doc.css">
-
 ## Documentation
 
 ### <span id="MapTo">MapTo</span>
@@ -69,7 +67,7 @@ import (
 func MapTo(src any, dst any) error
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/4K7KBEPgS5M)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/4K7KBEPgS5M)</span></b>
 
 ```go
 package main
@@ -126,7 +124,7 @@ func main() {
 func ForEach[K comparable, V any](m map[K]V, iteratee func(key K, value V))
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/OaThj6iNVXK)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/OaThj6iNVXK)</span></b>
 
 ```go
 package main
@@ -167,7 +165,7 @@ func main() {
 func Filter[K comparable, V any](m map[K]V, predicate func(key K, value V) bool) map[K]V
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/fSvF3wxuNG7)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/fSvF3wxuNG7)</span></b>
 
 ```go
 package main
@@ -212,7 +210,7 @@ func main() {
 func FilterByKeys[K comparable, V any](m map[K]V, keys []K) map[K]V
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/7ov6BJHbVqh)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/7ov6BJHbVqh)</span></b>
 
 ```go
 package main
@@ -250,7 +248,7 @@ func main() {
 func FilterByValues[K comparable, V comparable](m map[K]V, values []V) map[K]V
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/P3-9MdcXegR)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/P3-9MdcXegR)</span></b>
 
 ```go
 package main
@@ -288,7 +286,7 @@ func main() {
 func OmitBy[K comparable, V any](m map[K]V, predicate func(key K, value V) bool) map[K]V
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/YJM4Hj5hNwm)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/YJM4Hj5hNwm)</span></b>
 
 ```go
 package main
@@ -329,7 +327,7 @@ func main() {
 func OmitByKeys[K comparable, V any](m map[K]V, keys []K) map[K]V
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/jXGrWDBfSRp)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/jXGrWDBfSRp)</span></b>
 
 ```go
 package main
@@ -367,7 +365,7 @@ func main() {
 func OmitByValues[K comparable, V comparable](m map[K]V, values []V) map[K]V
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/XB7Y10uw20_U)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/XB7Y10uw20_U)</span></b>
 
 ```go
 package main
@@ -405,7 +403,7 @@ func main() {
 func Intersect[K comparable, V any](maps ...map[K]V) map[K]V
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/Zld0oj3sjcC)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/Zld0oj3sjcC)</span></b>
 
 ```go
 package main
@@ -460,7 +458,7 @@ func main() {
 func Keys[K comparable, V any](m map[K]V) []K
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/xNB5bTb97Wd)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/xNB5bTb97Wd)</span></b>
 
 ```go
 package main
@@ -500,7 +498,7 @@ func main() {
 func Merge[K comparable, V any](maps ...map[K]V) map[K]V
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/H95LENF1uB-)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/H95LENF1uB-)</span></b>
 
 ```go
 package main
@@ -539,7 +537,7 @@ func main() {
 func Minus[K comparable, V any](mapA, mapB map[K]V) map[K]V
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/3u5U9K7YZ9m)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/3u5U9K7YZ9m)</span></b>
 
 ```go
 package main
@@ -581,7 +579,7 @@ func main() {
 func Values[K comparable, V any](m map[K]V) []V
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/CBKdUc5FTW6)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/CBKdUc5FTW6)</span></b>
 
 ```go
 package main
@@ -621,7 +619,7 @@ func main() {
 func KeysBy[K comparable, V any, T any](m map[K]V, mapper func(item K) T) []T
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/hI371iB8Up8)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/hI371iB8Up8)</span></b>
 
 ```go
 package main
@@ -662,7 +660,7 @@ func main() {
 func ValuesBy[K comparable, V any, T any](m map[K]V, mapper func(item V) T) []T
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/sg9-oRidh8f)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/sg9-oRidh8f)</span></b>
 
 ```go
 package main
@@ -711,7 +709,7 @@ func main() {
 func MapKeys[K comparable, V any, T comparable](m map[K]V, iteratee func(key K, value V) T) map[T]V
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/8scDxWeBDKd)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/8scDxWeBDKd)</span></b>
 
 ```go
 package main
@@ -750,7 +748,7 @@ func main() {
 func MapValues[K comparable, V any, T any](m map[K]V, iteratee func(key K, value V) T) map[K]T
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/g92aY3fc7Iw)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/g92aY3fc7Iw)</span></b>
 
 ```go
 package main
@@ -793,7 +791,7 @@ type Entry[K comparable, V any] struct {
 func Entries[K comparable, V any](m map[K]V) []Entry[K, V]
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/Ltb11LNcElY)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/Ltb11LNcElY)</span></b>
 
 ```go
 package main
@@ -838,7 +836,7 @@ type Entry[K comparable, V any] struct {
 func FromEntries[K comparable, V any](entries []Entry[K, V]) map[K]V
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/fTdu4sCNjQO)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/fTdu4sCNjQO)</span></b>
 
 ```go
 package main
@@ -872,7 +870,7 @@ func main() {
 func Transform[K1 comparable, V1 any, K2 comparable, V2 any](m map[K1]V1, iteratee func(key K1, value V1) (K2, V2)) map[K2]V2
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/P6ovfToM3zj)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/P6ovfToM3zj)</span></b>
 
 ```go
 package main
@@ -911,7 +909,7 @@ func main() {
 func IsDisjoint[K comparable, V any](mapA, mapB map[K]V) bool
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/N9qgYg_Ho6f)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/N9qgYg_Ho6f)</span></b>
 
 ```go
 package main
@@ -966,7 +964,7 @@ if haskey {
 func HasKey[K comparable, V any](m map[K]V, key K) bool
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/isZZHOsDhFc)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/isZZHOsDhFc)</span></b>
 
 ```go
 package main
@@ -1005,7 +1003,7 @@ func main() {
 func NewConcurrentMap[K comparable, V any](shardCount int) *ConcurrentMap[K, V]
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/3PenTPETJT0)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/3PenTPETJT0)</span></b>
 
 ```go
 package main
@@ -1031,7 +1029,7 @@ func main() {
 func (cm *ConcurrentMap[K, V]) Set(key K, value V)
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/3PenTPETJT0)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/3PenTPETJT0)</span></b>
 
 ```go
 package main
@@ -1086,7 +1084,7 @@ func main() {
 func (cm *ConcurrentMap[K, V]) Get(key K) (V, bool)
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/3PenTPETJT0)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/3PenTPETJT0)</span></b>
 
 ```go
 package main
@@ -1141,7 +1139,7 @@ func main() {
 func (cm *ConcurrentMap[K, V]) GetOrSet(key K, value V) (actual V, ok bool)
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/aDcDApOK01a)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/aDcDApOK01a)</span></b>
 
 ```go
 package main
@@ -1185,7 +1183,7 @@ func main() {
 func (cm *ConcurrentMap[K, V]) Delete(key K)
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/uTIJZYhpVMS)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/uTIJZYhpVMS)</span></b>
 
 ```go
 package main
@@ -1232,7 +1230,7 @@ func main() {
 func (cm *ConcurrentMap[K, V]) GetAndDelete(key K) (actual V, ok bool)
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/ZyxeIXSZUiM)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/ZyxeIXSZUiM)</span></b>
 
 ```go
 package main
@@ -1284,7 +1282,7 @@ func main() {
 func (cm *ConcurrentMap[K, V]) Has(key K) bool
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/C8L4ul9TVwf)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/C8L4ul9TVwf)</span></b>
 
 ```go
 package main
@@ -1331,7 +1329,7 @@ func main() {
 func (cm *ConcurrentMap[K, V]) Range(iterator func(key K, value V) bool)
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/iqcy7P8P0Pr)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/iqcy7P8P0Pr)</span></b>
 
 ```go
 package main

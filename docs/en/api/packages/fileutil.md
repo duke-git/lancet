@@ -50,8 +50,6 @@ import (
 
 <div STYLE="page-break-after: always;"></div>
 
-<link rel="stylesheet" type="text/css" href="/styles/api_doc.css">
-
 ## Documentation
 
 ### <span id="ClearFile">ClearFile</span>
@@ -64,7 +62,7 @@ import (
 func ClearFile(path string) error
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/NRZ0ZT-G94H)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/NRZ0ZT-G94H)</span></b>
 
 ```go
 package main
@@ -92,7 +90,7 @@ func main() {
 func CreateFile(path string) bool
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/lDt8PEsTNKI)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/lDt8PEsTNKI)</span></b>
 
 ```go
 package main
@@ -118,7 +116,7 @@ func main() {
 func CreateDir(absPath string) error
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/qUuCe1OGQnM)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/qUuCe1OGQnM)</span></b>
 
 ```go
 package main
@@ -144,7 +142,7 @@ func main() {
 func CopyFile(srcPath string, dstPath string) error
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/Jg9AMJMLrJi)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/Jg9AMJMLrJi)</span></b>
 
 ```go
 package main
@@ -172,7 +170,7 @@ func main() {
 func CurrentPath() string
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/s74a9iBGcSw)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/s74a9iBGcSw)</span></b>
 
 ```go
 package main
@@ -198,7 +196,7 @@ func main() {
 func FileMode(path string) (fs.FileMode, error)
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/2l2hI42fA3p)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/2l2hI42fA3p)</span></b>
 
 ```go
 package main
@@ -227,7 +225,7 @@ func main() {
 func MiMeType(file any) string
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/bd5sevSUZNu)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/bd5sevSUZNu)</span></b>
 
 ```go
 package main
@@ -258,7 +256,7 @@ func main() {
 func IsExist(path string) bool
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/nKKXt8ZQbmh)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/nKKXt8ZQbmh)</span></b>
 
 ```go
 package main
@@ -285,7 +283,7 @@ func main() {
 func IsLink(path string) bool
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/TL-b-Kzvf44)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/TL-b-Kzvf44)</span></b>
 
 ```go
 package main
@@ -311,7 +309,7 @@ func main() {
 func IsDir(path string) bool
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/WkVwEKqtOWk)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/WkVwEKqtOWk)</span></b>
 
 ```go
 package main
@@ -340,7 +338,7 @@ func main() {
 func ListFileNames(path string) ([]string, error)
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/Tjd7Y07rejl)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/Tjd7Y07rejl)</span></b>
 
 ```go
 package main
@@ -366,7 +364,7 @@ func main() {
 func RemoveFile(path string) error
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/P2y0XW8a1SH)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/P2y0XW8a1SH)</span></b>
 
 ```go
 package main
@@ -394,7 +392,7 @@ func main() {
 func ReadFileToString(path string) (string, error)
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/cmfwp_5SQTp)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/cmfwp_5SQTp)</span></b>
 
 ```go
 package main
@@ -427,7 +425,7 @@ func main() {
 func ReadFileByLine(path string)([]string, error)
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/svJP_7ZrBrD)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/svJP_7ZrBrD)</span></b>
 
 ```go
 package main
@@ -461,7 +459,7 @@ func main() {
 func Zip(fpath string, destPath string) error
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/j-3sWBp8ik_P)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/j-3sWBp8ik_P)</span></b>
 
 ```go
 package main
@@ -489,7 +487,7 @@ func main() {
 func ZipAppendEntry(fpath string, destPath string) error
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/cxvaT8TRNQp)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/cxvaT8TRNQp)</span></b>
 
 ```go
 package main
@@ -517,7 +515,7 @@ func main() {
 func UnZip(zipFile string, destPath string) error
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/g0w34kS7B8m)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/g0w34kS7B8m)</span></b>
 
 ```go
 package main
@@ -545,7 +543,7 @@ func main() {
 func IsZipFile(filepath string) bool
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/9M0g2j_uF_e)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/9M0g2j_uF_e)</span></b>
 
 ```go
 package main
@@ -571,7 +569,7 @@ func main() {
 func FileSize(path string) (int64, error)
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/H9Z05uD-Jjc)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/H9Z05uD-Jjc)</span></b>
 
 ```go
 package main
@@ -603,7 +601,7 @@ func main() {
 func MTime(filepath string) (int64, error)
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/s_Tl7lZoAaY)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/s_Tl7lZoAaY)</span></b>
 
 ```go
 package main
@@ -635,7 +633,7 @@ func main() {
 func Sha(filepath string, shaType ...int) (string, error)
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/VfEEcO2MJYf)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/VfEEcO2MJYf)</span></b>
 
 ```go
 package main
@@ -673,7 +671,7 @@ func main() {
 func ReadCsvFile(filepath string) ([][]string, error)
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/OExTkhGEd3_u)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/OExTkhGEd3_u)</span></b>
 
 ```go
 package main
@@ -705,7 +703,7 @@ func main() {
 func WriteCsvFile(filepath string, records [][]string, append bool) error
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/dAXm58Q5U1o)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/dAXm58Q5U1o)</span></b>
 
 ```go
 package main
@@ -754,7 +752,7 @@ func main() {
 func WriteBytesToFile(filepath string, content []byte) error
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/s7QlDxMj3P8)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/s7QlDxMj3P8)</span></b>
 
 ```go
 package main
@@ -803,7 +801,7 @@ func main() {
 func WriteStringToFile(filepath string, content string, append bool) error
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/GhLS6d8lH_g)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/GhLS6d8lH_g)</span></b>
 
 ```go
 package main

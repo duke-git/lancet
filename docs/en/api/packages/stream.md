@@ -51,7 +51,6 @@ import (
 
 <div STYLE="page-break-after: always;"></div>
 
-<link rel="stylesheet" type="text/css" href="/styles/api_doc.css">
 
 ## Documentation
 
@@ -65,7 +64,7 @@ import (
 func Of[T any](elems ...T) stream[T]
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/jI6_iZZuVFE)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/jI6_iZZuVFE)</span></b>
 
 ```go
 import (
@@ -95,7 +94,7 @@ func main() {
 func FromSlice[T any](source []T) stream[T]
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/wywTO0XZtI4)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/wywTO0XZtI4)</span></b>
 
 ```go
 import (
@@ -125,7 +124,7 @@ func main() {
 func FromChannel[T any](source <-chan T) stream[T]
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/9TZYugGMhXZ)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/9TZYugGMhXZ)</span></b>
 
 ```go
 import (
@@ -163,7 +162,7 @@ func main() {
 func FromRange[T constraints.Integer | constraints.Float](start, end, step T) stream[T]
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/9Ex1-zcg-B-)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/9Ex1-zcg-B-)</span></b>
 
 ```go
 import (
@@ -192,7 +191,7 @@ func main() {
 func Generate[T any](generator func() func() (item T, ok bool)) stream[T]
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/rkOWL1yA3j9)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/rkOWL1yA3j9)</span></b>
 
 ```go
 import (
@@ -232,7 +231,7 @@ func main() {
 func Concat[T any](a, b stream[T]) stream[T]
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/HM4OlYk_OUC)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/HM4OlYk_OUC)</span></b>
 
 ```go
 import (
@@ -265,7 +264,7 @@ func main() {
 func (s stream[T]) Distinct() stream[T]
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/eGkOSrm64cB)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/eGkOSrm64cB)</span></b>
 
 ```go
 import (
@@ -299,7 +298,7 @@ func main() {
 func (s stream[T]) Filter(predicate func(item T) bool) stream[T]
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/MFlSANo-buc)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/MFlSANo-buc)</span></b>
 
 ```go
 import (
@@ -333,7 +332,7 @@ func main() {
 func (s stream[T]) Map(mapper func(item T) T) stream[T]
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/OtNQUImdYko)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/OtNQUImdYko)</span></b>
 
 ```go
 import (
@@ -367,7 +366,7 @@ func main() {
 func (s stream[T]) Peek(consumer func(item T)) stream[T]
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/u1VNzHs6cb2)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/u1VNzHs6cb2)</span></b>
 
 ```go
 import (
@@ -404,7 +403,7 @@ func main() {
 func (s stream[T]) Skip(n int) stream[T]
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/fNdHbqjahum)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/fNdHbqjahum)</span></b>
 
 ```go
 import (
@@ -443,7 +442,7 @@ func main() {
 func (s stream[T]) Limit(maxSize int) stream[T]
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/qsO4aniDcGf)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/qsO4aniDcGf)</span></b>
 
 ```go
 import (
@@ -482,7 +481,7 @@ func main() {
 func (s stream[T]) Reverse() stream[T]
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/A8_zkJnLHm4)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/A8_zkJnLHm4)</span></b>
 
 ```go
 import (
@@ -512,7 +511,7 @@ func main() {
 func (s stream[T]) Range(start, end int) stream[T]
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/indZY5V2f4j)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/indZY5V2f4j)</span></b>
 
 ```go
 import (
@@ -551,7 +550,7 @@ func main() {
 func (s stream[T]) Sorted(less func(a, b T) bool) stream[T]
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/XXtng5uonFj)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/XXtng5uonFj)</span></b>
 
 ```go
 import (
@@ -583,7 +582,7 @@ func main() {
 func (s stream[T]) ForEach(action func(item T))
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/Dsm0fPqcidk)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/Dsm0fPqcidk)</span></b>
 
 ```go
 import (
@@ -616,7 +615,7 @@ func main() {
 func (s stream[T]) Reduce(initial T, accumulator func(a, b T) T) T
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/6uzZjq_DJLU)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/6uzZjq_DJLU)</span></b>
 
 ```go
 import (
@@ -648,7 +647,7 @@ func main() {
 func (s stream[T]) FindFirst() (T, bool)
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/9xEf0-6C1e3)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/9xEf0-6C1e3)</span></b>
 
 ```go
 import (
@@ -680,7 +679,7 @@ func main() {
 func (s stream[T]) FindLast() (T, bool)
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/WZD2rDAW-2h)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/WZD2rDAW-2h)</span></b>
 
 ```go
 import (
@@ -712,7 +711,7 @@ func main() {
 func (s stream[T]) Max(less func(a, b T) bool) (T, bool)
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/fm-1KOPtGzn)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/fm-1KOPtGzn)</span></b>
 
 ```go
 import (
@@ -744,7 +743,7 @@ func main() {
 func (s stream[T]) Min(less func(a, b T) bool) (T, bool)
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/vZfIDgGNRe_0)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/vZfIDgGNRe_0)</span></b>
 
 ```go
 import (
@@ -776,7 +775,7 @@ func main() {
 func (s stream[T]) AllMatch(predicate func(item T) bool) bool
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/V5TBpVRs-Cx)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/V5TBpVRs-Cx)</span></b>
 
 ```go
 import (
@@ -814,7 +813,7 @@ func main() {
 func (s stream[T]) AnyMatch(predicate func(item T) bool) bool
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/PTCnWn4OxSn)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/PTCnWn4OxSn)</span></b>
 
 ```go
 import (
@@ -852,7 +851,7 @@ func main() {
 func (s stream[T]) NoneMatch(predicate func(item T) bool) bool
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/iWS64pL1oo3)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/iWS64pL1oo3)</span></b>
 
 ```go
 import (
@@ -890,7 +889,7 @@ func main() {
 func (s stream[T]) Count() int
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/r3koY6y_Xo-)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/r3koY6y_Xo-)</span></b>
 
 ```go
 import (
@@ -921,7 +920,7 @@ func main() {
 func (s stream[T]) ToSlice() []T
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/jI6_iZZuVFE)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/jI6_iZZuVFE)</span></b>
 
 ```go
 import (

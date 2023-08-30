@@ -31,8 +31,6 @@ import (
 
 <div STYLE="page-break-after: always;"></div>
 
-<link rel="stylesheet" type="text/css" href="/styles/api_doc.css">
-
 ## Documentation
 
 
@@ -48,7 +46,7 @@ All other types are truthy if they are not their zero value.</p>
 ```go
 func Bool[T any](value T) bool
 ```
-<b>Example:<span class="run-container">[运行](https://go.dev/play/p/ETzeDJRSvhm)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/ETzeDJRSvhm)</span></b>
 
 ```go
 package main
@@ -113,7 +111,7 @@ func main() {
 ```go
 func And[T, U any](a T, b U) bool
 ```
-<b>Example:<span class="run-container">[运行](https://go.dev/play/p/W1SSUmt6pvr)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/W1SSUmt6pvr)</span></b>
 
 ```go
 package main
@@ -141,7 +139,7 @@ func main() {
 ```go
 func Or[T, U any](a T, b U) bool
 ```
-<b>Example:<span class="run-container">[运行](https://go.dev/play/p/UlQTxHaeEkq)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/UlQTxHaeEkq)</span></b>
 
 ```go
 package main
@@ -169,7 +167,7 @@ func main() {
 ```go
 func Xor[T, U any](a T, b U) bool
 ```
-<b>Example:<span class="run-container">[运行](https://go.dev/play/p/gObZrW7ZbG8)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/gObZrW7ZbG8)</span></b>
 
 ```go
 package main
@@ -197,7 +195,7 @@ func main() {
 ```go
 func Nor[T, U any](a T, b U) bool
 ```
-<b>Example:<span class="run-container">[运行](https://go.dev/play/p/g2j08F_zZky)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/g2j08F_zZky)</span></b>
 
 ```go
 package main
@@ -224,7 +222,7 @@ func main() {
 ```go
 func Xnor[T, U any](a T, b U) bool
 ```
-<b>Example:<span class="run-container">[运行](https://go.dev/play/p/OuDB9g51643)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/OuDB9g51643)</span></b>
 
 ```go
 package main
@@ -251,7 +249,7 @@ func main() {
 ```go
 func Nand[T, U any](a T, b U) bool
 ```
-<b>Example:<span class="run-container">[运行](https://go.dev/play/p/vSRMLxLIbq8)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/vSRMLxLIbq8)</span></b>
 
 ```go
 package main
@@ -279,7 +277,7 @@ func main() {
 ```go
 func TernaryOperator[T, U any](isTrue T, ifValue U, elseValue U) U
 ```
-<b>Example:<span class="run-container">[运行](https://go.dev/play/p/ElllPZY0guT)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/ElllPZY0guT)</span></b>
 
 ```go
 package main

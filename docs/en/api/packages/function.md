@@ -35,7 +35,6 @@ import (
 
 <div STYLE="page-break-after: always;"></div>
 
-<link rel="stylesheet" type="text/css" href="/styles/api_doc.css">
 ## Documentation
 
 ### <span id="After">After</span>
@@ -48,7 +47,7 @@ import (
 func After(n int, fn any) func(args ...any) []reflect.Value
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/eRD5k2vzUVX)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/eRD5k2vzUVX)</span></b>
 
 ```go
 package main
@@ -81,7 +80,7 @@ func main() {
 func Before(n int, fn any) func(args ...any) []reflect.Value
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/0HqUDIFZ3IL)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/0HqUDIFZ3IL)</span></b>
 
 ```go
 package main
@@ -118,7 +117,7 @@ type CurryFn[T any] func(...T) T
 func (cf CurryFn[T]) New(val T) func(...T) T
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/5HopfDwANKX)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/5HopfDwANKX)</span></b>
 
 ```go
 package main
@@ -157,7 +156,7 @@ func main() {
 func Compose[T any](fnList ...func(...T) T) func(...T) T
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/KKfugD4PKYF)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/KKfugD4PKYF)</span></b>
 
 ```go
 package main
@@ -195,7 +194,7 @@ func main() {
 func Debounced(fn func(), duration time.Duration) func()
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/absuEGB_GN7)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/absuEGB_GN7)</span></b>
 
 ```go
 package main
@@ -245,7 +244,7 @@ func main() {
 func Delay(delay time.Duration, fn any, args ...any)
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/Ivtc2ZE-Tye)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/Ivtc2ZE-Tye)</span></b>
 
 ```go
 package main
@@ -277,7 +276,7 @@ func main() {
 func Schedule(d time.Duration, fn any, args ...any) chan bool
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/hbON-Xeyn5N)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/hbON-Xeyn5N)</span></b>
 
 ```go
 package main
@@ -317,7 +316,7 @@ the functions one by one.</p>
 func Pipeline[T any](funcs ...func(T) T) func(T) T
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/mPdUVvj6HD6)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/mPdUVvj6HD6)</span></b>
 
 ```go
 package main
@@ -368,7 +367,7 @@ func (w *Watcher) Reset() //reset the watcher
 func (w *Watcher) GetElapsedTime() time.Duration //get the elapsed time of function execution
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/l2yrOpCLd1I)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/l2yrOpCLd1I)</span></b>
 
 ```go
 package main

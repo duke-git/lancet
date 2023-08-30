@@ -33,8 +33,6 @@ import (
 
 <div STYLE="page-break-after: always;"></div>
 
-<link rel="stylesheet" type="text/css" href="/styles/api_doc.css">
-
 ## 文档
 
 ### <span id="Comma">Comma</span>
@@ -47,7 +45,7 @@ import (
 func Comma[T constraints.Float | constraints.Integer | string](value T, symbol string) string
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/eRD5k2vzUVX)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/eRD5k2vzUVX)</span></b>
 
 ```go
 package main
@@ -83,7 +81,7 @@ func main() {
 func Pretty(v any) (string, error)
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/YsciGj3FH2x)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/YsciGj3FH2x)</span></b>
 
 ```go
 package main
@@ -122,7 +120,7 @@ func main() {
 func PrettyToWriter(v any, out io.Writer) error
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/LPLZ3lDi5ma)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/LPLZ3lDi5ma)</span></b>
 
 ```go
 package main
@@ -165,7 +163,7 @@ func main() {
 func DecimalBytes(size float64, precision ...int) string
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/FPXs1suwRcs)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/FPXs1suwRcs)</span></b>
 
 ```go
 package main
@@ -204,7 +202,7 @@ func main() {
 func BinaryBytes(size float64, precision ...int) string
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/G9oHHMCAZxP)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/G9oHHMCAZxP)</span></b>
 
 ```go
 package main
@@ -243,7 +241,7 @@ func main() {
 func ParseDecimalBytes(size string) (uint64, error)
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/Am98ybWjvjj)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/Am98ybWjvjj)</span></b>
 
 ```go
 package main
@@ -282,7 +280,7 @@ func main() {
 func ParseBinaryBytes(size string) (uint64, error)
 ```
 
-<b>示例:<span class="run-container">[运行](https://go.dev/play/p/69v1tTT62x8)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/69v1tTT62x8)</span></b>
 
 ```go
 package main

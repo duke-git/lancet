@@ -94,8 +94,6 @@ import (
 
 <div STYLE="page-break-after: always;"></div>
 
-<link rel="stylesheet" type="text/css" href="/styles/api_doc.css">
-
 ## Documentation
 
 ### <span id="AppendIfAbsent">AppendIfAbsent</span>
@@ -108,7 +106,7 @@ import (
 func AppendIfAbsent[T comparable](slice []T, item T) []T
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/GNdv7Jg2Taj)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/GNdv7Jg2Taj)</span></b>
 
 ```go
 import (
@@ -139,7 +137,7 @@ func main() {
 func Contain[T comparable](slice []T, target T) bool
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/_454yEHcNjf)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/_454yEHcNjf)</span></b>
 
 ```go
 import (
@@ -170,7 +168,7 @@ func main() {
 func ContainBy[T any](slice []T, predicate func(item T) bool) bool
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/49tkHfX4GNc)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/49tkHfX4GNc)</span></b>
 
 ```go
 import (
@@ -215,7 +213,7 @@ func main() {
 func ContainSubSlice[T comparable](slice, subSlice []T) bool
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/bcuQ3UT6Sev)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/bcuQ3UT6Sev)</span></b>
 
 ```go
 import (
@@ -246,7 +244,7 @@ func main() {
 func Chunk[T any](slice []T, size int) [][]T
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/b4Pou5j2L_C)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/b4Pou5j2L_C)</span></b>
 
 ```go
 import (
@@ -288,7 +286,7 @@ func main() {
 func Compact[T comparable](slice []T) []T
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/pO5AnxEr3TK)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/pO5AnxEr3TK)</span></b>
 
 ```go
 import (
@@ -325,7 +323,7 @@ func main() {
 func Concat[T any](slice []T, slices ...[]T) []T
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/gPt-q7zr5mk)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/gPt-q7zr5mk)</span></b>
 
 ```go
 import (
@@ -356,7 +354,7 @@ func main() {
 func Count[T comparable](slice []T, item T) int
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/Mj4oiEnQvRJ)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/Mj4oiEnQvRJ)</span></b>
 
 ```go
 import (
@@ -389,7 +387,7 @@ func main() {
 func CountBy[T any](slice []T, predicate func(index int, item T) bool) int
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/tHOccTMDZCC)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/tHOccTMDZCC)</span></b>
 
 ```go
 import (
@@ -423,7 +421,7 @@ func main() {
 func Difference[T comparable](slice, comparedSlice []T) []T
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/VXvadzLzhDa)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/VXvadzLzhDa)</span></b>
 
 ```go
 import (
@@ -454,7 +452,7 @@ func main() {
 func DifferenceBy[T comparable](slice []T, comparedSlice []T, iteratee func(index int, item T) T) []T
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/DiivgwM5OnC)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/DiivgwM5OnC)</span></b>
 
 ```go
 import (
@@ -489,7 +487,7 @@ func main() {
 func DifferenceWith[T any](slice []T, comparedSlice []T, comparator func(value, otherValue T) bool) []T
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/v2U2deugKuV)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/v2U2deugKuV)</span></b>
 
 ```go
 import (
@@ -524,7 +522,7 @@ func main() {
 func DeleteAt[T any](slice []T, start int, end ...int)
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/pJ-d6MUWcvK)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/pJ-d6MUWcvK)</span></b>
 
 ```go
 import (
@@ -558,7 +556,7 @@ func main() {
 func Drop[T any](slice []T, n int) []T
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/jnPO2yQsT8H)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/jnPO2yQsT8H)</span></b>
 
 ```go
 import (
@@ -595,7 +593,7 @@ func main() {
 func DropRight[T any](slice []T, n int) []T
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/8bcXvywZezG)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/8bcXvywZezG)</span></b>
 
 ```go
 import (
@@ -632,7 +630,7 @@ func main() {
 func DropWhile[T any](slice []T, predicate func(item T) bool) []T
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/4rt252UV_qs)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/4rt252UV_qs)</span></b>
 
 ```go
 import (
@@ -672,7 +670,7 @@ func main() {
 func DropRightWhile[T any](slice []T, predicate func(item T) bool) []T
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/6wyK3zMY56e)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/6wyK3zMY56e)</span></b>
 
 ```go
 import (
@@ -714,7 +712,7 @@ func main() {
 func Equal[T comparable](slice1, slice2 []T) bool
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/WcRQJ37ifPa)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/WcRQJ37ifPa)</span></b>
 
 ```go
 import (
@@ -749,7 +747,7 @@ func main() {
 func EqualWith[T, U any](slice1 []T, slice2 []U, comparator func(T, U) bool) bool
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/b9iygtgsHI1)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/b9iygtgsHI1)</span></b>
 
 ```go
 import (
@@ -784,7 +782,7 @@ func main() {
 func Every[T any](slice []T, predicate func(index int, item T) bool) bool
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/R8U6Sl-j8cD)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/R8U6Sl-j8cD)</span></b>
 
 ```go
 import (
@@ -818,7 +816,7 @@ func main() {
 func Filter[T any](slice []T, predicate func(index int, item T) bool) []T
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/SdPna-7qK4T)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/SdPna-7qK4T)</span></b>
 
 ```go
 import (
@@ -852,7 +850,7 @@ func main() {
 func Find[T any](slice []T, predicate func(index int, item T) bool) (*T, bool)
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/CBKeBoHVLgq)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/CBKeBoHVLgq)</span></b>
 
 ```go
 import (
@@ -888,7 +886,7 @@ func main() {
 func FindBy[T any](slice []T, predicate func(index int, item T) bool) (v T, ok bool)
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/n1lysBYl-GB)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/n1lysBYl-GB)</span></b>
 
 ```go
 import (
@@ -924,7 +922,7 @@ func main() {
 func FindLast[T any](slice []T, predicate func(index int, item T) bool) (*T, bool)
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/FFDPV_j7URd)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/FFDPV_j7URd)</span></b>
 
 ```go
 import (
@@ -960,7 +958,7 @@ func main() {
 func FindLastBy[T any](slice []T, predicate func(index int, item T) bool) (v T, ok bool)
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/8iqomzyCl_s)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/8iqomzyCl_s)</span></b>
 
 ```go
 import (
@@ -996,7 +994,7 @@ func main() {
 func Flatten(slice any) any
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/hYa3cBEevtm)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/hYa3cBEevtm)</span></b>
 
 ```go
 import (
@@ -1026,7 +1024,7 @@ func main() {
 func FlattenDeep(slice any) any
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/yjYNHPyCFaF)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/yjYNHPyCFaF)</span></b>
 
 ```go
 import (
@@ -1056,7 +1054,7 @@ func main() {
 func ForEach[T any](slice []T, iteratee func(index int, item T))
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/DrPaa4YsHRF)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/DrPaa4YsHRF)</span></b>
 
 ```go
 import (
@@ -1091,7 +1089,7 @@ func main() {
 func ForEachWithBreak[T any](slice []T, iteratee func(index int, item T) bool)
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/qScs39f3D9W)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/qScs39f3D9W)</span></b>
 
 ```go
 import (
@@ -1129,7 +1127,7 @@ func main() {
 func GroupBy[T any](slice []T, groupFn func(index int, item T) bool) ([]T, []T)
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/QVkPxzPR0iA)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/QVkPxzPR0iA)</span></b>
 
 ```go
 import (
@@ -1165,7 +1163,7 @@ func main() {
 func GroupWith[T any, U comparable](slice []T, iteratee func(T) U) map[U][]T
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/ApCvMNTLO8a)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/ApCvMNTLO8a)</span></b>
 
 ```go
 import (
@@ -1199,7 +1197,7 @@ func main() {
 func IntSlice(slice any) []int
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/UQDj-on9TGN)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/UQDj-on9TGN)</span></b>
 
 ```go
 import (
@@ -1228,7 +1226,7 @@ func main() {
 func InterfaceSlice(slice any) []any
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/FdQXF0Vvqs-)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/FdQXF0Vvqs-)</span></b>
 
 ```go
 import (
@@ -1257,7 +1255,7 @@ func main() {
 func Intersection[T comparable](slices ...[]T) []T
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/anJXfB5wq_t)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/anJXfB5wq_t)</span></b>
 
 ```go
 import (
@@ -1288,7 +1286,7 @@ func main() {
 func InsertAt[T any](slice []T, index int, value any) []T
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/hMLNxPEGJVE)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/hMLNxPEGJVE)</span></b>
 
 ```go
 import (
@@ -1328,7 +1326,7 @@ func main() {
 func IndexOf[T comparable](slice []T, item T) int
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/MRN1f0FpABb)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/MRN1f0FpABb)</span></b>
 
 ```go
 import (
@@ -1361,7 +1359,7 @@ func main() {
 func LastIndexOf[T comparable](slice []T, item T) int
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/DokM4cf1IKH)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/DokM4cf1IKH)</span></b>
 
 ```go
 import (
@@ -1394,7 +1392,7 @@ func main() {
 func Map[T any, U any](slice []T, iteratee func(index int, item T) U) []U
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/biaTefqPquw)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/biaTefqPquw)</span></b>
 
 ```go
 import (
@@ -1428,7 +1426,7 @@ func main() {
 func FilterMap[T any, U any](slice []T, iteratee func(index int, item T) (U, bool)) []U
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/J94SZ_9MiIe)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/J94SZ_9MiIe)</span></b>
 
 ```go
 import (
@@ -1465,7 +1463,7 @@ func main() {
 func FlatMap[T any, U any](slice []T, iteratee func(index int, item T) []U) []U
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/_QARWlWs1N_F)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/_QARWlWs1N_F)</span></b>
 
 ```go
 import (
@@ -1498,7 +1496,7 @@ func main() {
 func Merge[T any](slices ...[]T) []T
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/lbjFp784r9N)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/lbjFp784r9N)</span></b>
 
 ```go
 import (
@@ -1529,7 +1527,7 @@ func main() {
 func Reverse[T any](slice []T)
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/8uI8f1lwNrQ)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/8uI8f1lwNrQ)</span></b>
 
 ```go
 import (
@@ -1559,7 +1557,7 @@ func main() {
 func Reduce[T any](slice []T, iteratee func(index int, item1, item2 T) T, initial T) T
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/_RfXJJWIsIm)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/_RfXJJWIsIm)</span></b>
 
 ```go
 import (
@@ -1593,7 +1591,7 @@ func main() {
 func ReduceBy[T any, U any](slice []T, initial U, reducer func(index int, item T, agg U) U) U
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/YKDpLi7gtee)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/YKDpLi7gtee)</span></b>
 
 ```go
 import (
@@ -1629,7 +1627,7 @@ func main() {
 func ReduceRight[T any, U any](slice []T, initial U, reducer func(index int, item T, agg U) U) U
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/qT9dZC03A1K)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/qT9dZC03A1K)</span></b>
 
 ```go
 import (
@@ -1659,7 +1657,7 @@ func main() {
 func Replace[T comparable](slice []T, old T, new T, n int) []T
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/P5mZp7IhOFo)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/P5mZp7IhOFo)</span></b>
 
 ```go
 import (
@@ -1701,7 +1699,7 @@ func main() {
 func ReplaceAll[T comparable](slice []T, old T, new T) []T
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/CzqXMsuYUrx)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/CzqXMsuYUrx)</span></b>
 
 ```go
 import (
@@ -1729,7 +1727,7 @@ func main() {
 func Repeat[T any](item T, n int) []T
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/1CbOmtgILUU)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/1CbOmtgILUU)</span></b>
 
 ```go
 import (
@@ -1757,7 +1755,7 @@ func main() {
 func Shuffle[T any](slice []T) []T
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/YHvhnWGU3Ge)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/YHvhnWGU3Ge)</span></b>
 
 ```go
 import (
@@ -1786,7 +1784,7 @@ func main() {
 func IsAscending[T constraints.Ordered](slice []T) bool
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/9CtsFjet4SH)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/9CtsFjet4SH)</span></b>
 
 ```go
 import (
@@ -1820,7 +1818,7 @@ func main() {
 func IsDescending[T constraints.Ordered](slice []T) bool
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/U_LljFXma14)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/U_LljFXma14)</span></b>
 
 ```go
 import (
@@ -1854,7 +1852,7 @@ func main() {
 func IsSorted[T constraints.Ordered](slice []T) bool
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/nCE8wPLwSA-)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/nCE8wPLwSA-)</span></b>
 
 ```go
 import (
@@ -1888,7 +1886,7 @@ func main() {
 func IsSortedByKey[T any, K constraints.Ordered](slice []T, iteratee func(item T) K) bool
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/tUoGB7DOHI4)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/tUoGB7DOHI4)</span></b>
 
 ```go
 import (
@@ -1928,7 +1926,7 @@ func main() {
 func Sort[T constraints.Ordered](slice []T, sortOrder ...string)
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/V9AVjzf_4Fk)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/V9AVjzf_4Fk)</span></b>
 
 ```go
 import (
@@ -1965,7 +1963,7 @@ func main() {
 func SortBy[T any](slice []T, less func(a, b T) bool)
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/DAhLQSZEumm)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/DAhLQSZEumm)</span></b>
 
 ```go
 import (
@@ -2012,7 +2010,7 @@ func main() {
 func SortByField(slice any, field string, sortType ...string) error
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/fU1prOBP9p1)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/fU1prOBP9p1)</span></b>
 
 ```go
 import (
@@ -2053,7 +2051,7 @@ func main() {
 func Some[T any](slice []T, predicate func(index int, item T) bool) bool
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/4pO9Xf9NDGS)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/4pO9Xf9NDGS)</span></b>
 
 ```go
 import (
@@ -2087,7 +2085,7 @@ func main() {
 func StringSlice(slice any) []string
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/W0TZDWCPFcI)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/W0TZDWCPFcI)</span></b>
 
 ```go
 import (
@@ -2116,7 +2114,7 @@ func main() {
 func SymmetricDifference[T comparable](slices ...[]T) []T
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/1CbOmtgILUU)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/1CbOmtgILUU)</span></b>
 
 ```go
 import (
@@ -2147,7 +2145,7 @@ func main() {
 func ToSlice[T any](items ...T) []T
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/YzbzVq5kscN)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/YzbzVq5kscN)</span></b>
 
 ```go
 import (
@@ -2175,7 +2173,7 @@ func main() {
 func ToSlicePointer[T any](items ...T) []*T
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/gx4tr6_VXSF)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/gx4tr6_VXSF)</span></b>
 
 ```go
 import (
@@ -2210,7 +2208,7 @@ func main() {
 func Unique[T comparable](slice []T) []T
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/AXw0R3ZTE6a)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/AXw0R3ZTE6a)</span></b>
 
 ```go
 import (
@@ -2237,7 +2235,7 @@ func main() {
 func UniqueBy[T comparable](slice []T, iteratee func(item T) T) []T
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/UR323iZLDpv)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/UR323iZLDpv)</span></b>
 
 ```go
 import (
@@ -2268,7 +2266,7 @@ func main() {
 func Union[T comparable](slices ...[]T) []T
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/hfXV1iRIZOf)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/hfXV1iRIZOf)</span></b>
 
 ```go
 import (
@@ -2299,7 +2297,7 @@ func main() {
 func UnionBy[T any, V comparable](predicate func(item T) V, slices ...[]T) []T
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/HGKHfxKQsFi)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/HGKHfxKQsFi)</span></b>
 
 ```go
 import (
@@ -2332,7 +2330,7 @@ func main() {
 func UpdateAt[T any](slice []T, index int, value T) []T
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/f3mh2KloWVm)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/f3mh2KloWVm)</span></b>
 
 ```go
 import (
@@ -2372,7 +2370,7 @@ func main() {
 func Without[T comparable](slice []T, items ...T) []T
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/bwhEXEypThg)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/bwhEXEypThg)</span></b>
 
 ```go
 import (
@@ -2400,7 +2398,7 @@ func main() {
 func KeyBy[T any, U comparable](slice []T, iteratee func(item T) U) map[U]T
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/uXod2LWD1Kg)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/uXod2LWD1Kg)</span></b>
 
 ```go
 import (
@@ -2430,7 +2428,7 @@ func main() {
 func Join[T any](s []T, separator string) string
 ```
 
-<b>Example:<span class="run-container">[Run](https://go.dev/play/p/huKzqwNDD7V)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/huKzqwNDD7V)</span></b>
 
 ```go
 import (
