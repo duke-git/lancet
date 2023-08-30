@@ -1,6 +1,6 @@
 import type { DefaultTheme, LocaleSpecificConfig } from 'vitepress'
 
-export const META_URL = 'https://golancet.dev'
+export const META_URL = 'https://golancet.cn'
 export const META_TITLE = 'Lancet'
 export const META_DESCRIPTION = 'A powerful util function library of Go'
 
@@ -10,12 +10,13 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
     head: [
         ['meta', { property: 'og:url', content: META_URL }],
         ['meta', { property: 'og:description', content: META_DESCRIPTION }],
-        ['meta', { property: 'twitter:url', content: META_URL }],
-        ['meta', { property: 'twitter:title', content: META_TITLE }],
-        ['meta', { property: 'twitter:description', content: META_DESCRIPTION }],
     ],
 
     themeConfig: {
+        editLink: {
+            pattern: 'https://github.com/duke-git/lancet/edit/v2/docs/:path',
+            text: 'Suggest changes to this page',
+        },
         nav: [
             {
                 text: 'Home',
@@ -32,8 +33,16 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
                 text: 'Links',
                 items: [
                     {
-                        text: 'Releaselog',
+                        text: 'Discussion',
+                        link: 'https://github.com/duke-git/lancet/discussions',
+                    },
+                    {
+                        text: 'Changelog',
                         link: 'https://github.com/duke-git/lancet/releases',
+                    },
+                    {
+                        text: 'Contribution',
+                        link: 'https://github.com/duke-git/lancet/blob/main/CONTRIBUTING.en-US.md',
                     },
                 ],
             },

@@ -1,6 +1,6 @@
 import type { DefaultTheme, LocaleSpecificConfig } from 'vitepress'
 
-export const META_URL = 'https://lancet.dev'
+export const META_URL = 'https://golancet.cn'
 export const META_TITLE = 'Lancet'
 export const META_DESCRIPTION = '一个强大的Go语言工具函数库'
 
@@ -10,12 +10,13 @@ export const zhConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
     head: [
         ['meta', { property: 'og:url', content: META_URL }],
         ['meta', { property: 'og:description', content: META_DESCRIPTION }],
-        ['meta', { property: 'twitter:url', content: META_URL }],
-        ['meta', { property: 'twitter:title', content: META_TITLE }],
-        ['meta', { property: 'twitter:description', content: META_DESCRIPTION }],
     ],
 
     themeConfig: {
+        editLink: {
+            pattern: 'https://github.com/duke-git/lancet/edit/v2/docs/:path',
+            text: '对本页提出修改建议',
+        },
         outline: {
             label: '本页内容',
         },
@@ -41,8 +42,16 @@ export const zhConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
                 text: '相关链接',
                 items: [
                     {
+                        text: '论坛',
+                        link: 'https://github.com/duke-git/lancet/discussions',
+                    },
+                    {
                         text: '更新日志',
                         link: 'https://github.com/duke-git/lancet/releases',
+                    },
+                    {
+                        text: '参与贡献',
+                        link: 'https://github.com/duke-git/lancet/blob/main/CONTRIBUTING.zh-CN.md',
                     },
                 ],
             },

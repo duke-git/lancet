@@ -21,7 +21,7 @@ hero:
 features:
     - title: 全面
       icon: 💪
-      details: 特性丰富，支持600+ go util函数。字符串、切片、日期时间、网络、加密、并发...
+      details: 功能全面，支持600+ go util函数。字符串、切片、日期时间、网络、加密、并发...
     - title: 模块化设计
       icon: 🏗
       details: 每个模块设计成一个包，模块之间无耦合。
