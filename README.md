@@ -1882,7 +1882,7 @@ import "github.com/duke-git/lancet/v2/xerror"
 
 ## Sponsor
 
-<b>Hello, I am a software developer and have been engaged in development work for 13 years. Love open source software. And be willing to put in the energy for it. I am the creator of project lancet. Since Lancet was released as open source two years ago, it has been used by more than 1,000 internal and external projects. lancet will always be free for all users. Your support is a powerful encouragement for me to continue my struggle. Thanks! You can use WeChat to scans the following QR code or clicks the following sponsor button to initiate sponsorship.</b>
+Hello, I am a software developer and have been engaged in development work for 13 years. Love open source software. And be willing to put in the energy for it. I am the creator of project lancet. Since Lancet was released as open source two years ago, it has been used by more than 1,000 internal and external projects. lancet will always be free for all users. Your support is a powerful encouragement for me to continue my struggle. Thanks! You can use WeChat to scans the following QR code or clicks the following sponsor button to initiate sponsorship.
 
 <div style="position: relative;display: inline-block;">
     <img src="./docs/public/wechat_pay.png" width="260" height="260" style="display: inline-block;float: right;"/>
