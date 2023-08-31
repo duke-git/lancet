@@ -1886,10 +1886,24 @@ Hello, I am a software developer and have been engaged in development work for 1
 
 <div style="position: relative;display: inline-block;">
     <img src="./docs/public/wechat_pay.png" width="260" height="260"/>
-    <a href="https://en.liberapay.com/Duke_Du/donate" target="\_blank"><img src="./docs/public/sponsor_btn.png" width="230" height="80"/></a>
+    <a href="https://en.liberapay.com/Duke_Du/donate" target="\_blank"><img src="./docs/public/sponsor_btn.png" width="220" height="60"/></a>
 </div>
 
 <br/>
 <br/>
 
 *Donated funds will be used to maintain this website and pay for cloud server costs. Or just buy me a cup of ☕️ when I'm sleepy writing code.*
+
+
+## Contributors
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+Thank you to all the people who contributed to lancet!
