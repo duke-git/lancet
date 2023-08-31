@@ -1906,4 +1906,6 @@ Hello, I am a software developer and have been engaged in development work for 1
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
+[![All Contributors](https://img.shields.io/github/all-contributors/duke-git/lancet?color=ee8449&style=flat-square)](#contributors)
+
 Thank you to all the people who contributed to lancet!
