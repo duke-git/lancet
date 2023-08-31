@@ -34,4 +34,4 @@ We are excited that you are interested in contributing to lancet. Before submitt
 
 - If your PR fixes a bug, please provide a description about the related bug.
 
-- Merging a PR takes two maintainers: one approves the changes after reviewing, and then the other reviews and merges.
+- If the PR is for a new feature, make sure to complete the relevant documentation (/lancet/docs/en/api/packages).

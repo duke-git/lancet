@@ -34,4 +34,4 @@ Lancet 的成长离不开大家的支持，如果你愿意为 Lancet 贡献代�
 
 - 如果是修复 bug，请在 PR 中给出描述信息。
 
-- 合并代码需要两名维护人员参与：一人进行 review 后 approve，另一人再次 review，通过后即可合并。
+- 如果PR是新功能，确保完成相关文档(/lancet/docs/api/packages)。
