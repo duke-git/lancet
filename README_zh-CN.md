@@ -1901,15 +1901,10 @@ import "github.com/duke-git/lancet/v2/xerror"
 *捐赠的资金将用于后续lancet官网的维护和云服务器的费用支付。或者当我写代码困倦时，给我买杯 ☕️。*
 
 
-## Contributors
+## 贡献者
 
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
+感谢所有为lancet贡献过代码的人！
 
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
-
-<!-- ALL-CONTRIBUTORS-LIST:END -->
-
-Thank you to all the people who contributed to lancet!
+<a href="https://github.com/duke-git/lancet/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=duke-git/lancet" />
+</a>

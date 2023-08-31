@@ -1896,16 +1896,8 @@ Hello, I am a software developer and have been engaged in development work for 1
 
 
 ## Contributors
-
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
-
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
-
-<!-- ALL-CONTRIBUTORS-LIST:END -->
-
-[![All Contributors](https://img.shields.io/github/all-contributors/duke-git/lancet?color=ee8449&style=flat-square)](#contributors)
-
 Thank you to all the people who contributed to lancet!
+
+<a href="https://github.com/duke-git/lancet/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=duke-git/lancet" />
+</a>
