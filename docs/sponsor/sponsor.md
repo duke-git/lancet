@@ -29,10 +29,10 @@
     }
 </style>
 <div class="sponsor-ctn"> 
-<img src="/public/wechat_pay.png" width="260" height="260" class="sponsor-pay"/>
+<img src="../public/wechat_pay.png" width="260" height="260" class="sponsor-pay"/>
 
 <a class="sponsor-btn" style="color: #fff;font-weight: 600;" href="https://liberapay.com/Duke_Du/donate" target="\_blank">赞助</a>
 
 </div>
 
-_捐赠的资金将用于 lancet官网的维护和云服务器的费用支付。或者当我写代码困倦时，给我买杯 ☕️。_
+*捐赠的资金将用于 lancet官网的维护和云服务器的费用支付。或者当我写代码困倦时，给我买杯 ☕️。*

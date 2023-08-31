@@ -38,5 +38,4 @@
 
 </div>
 
-
 *Donated funds will be used to maintain this website and pay for cloud server costs. Or just buy me a cup of ☕️ when I'm sleepy writing code.*
