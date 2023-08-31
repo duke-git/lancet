@@ -41,13 +41,13 @@ features:
 <a style="border-color: #4565d8;
     color: #fff;
     background-color: #4565d8;
-    border-radius: 20px;
+    border-radius: 30px;
     padding: 0 20px;
-    line-height: 40px;
+    line-height: 50px;
     font-size: 16px;
     display: block;
     border: 1px solid transparent;
     text-align: center;
     font-weight: 600;
     margin: 0 auto;
-    width: 140px;" href="/en/sponsor/sponsor.html">Sponsor</a>
+    width: 200px;" href="/en/sponsor/sponsor.html">Become a sponsor</a>
