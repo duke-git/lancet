@@ -1,6 +1,6 @@
 import type { DefaultTheme, LocaleSpecificConfig } from 'vitepress'
 
-export const META_URL = 'https://golancet.cn'
+export const META_URL = 'https://www.golancet.cn/en/'
 export const META_TITLE = 'Lancet'
 export const META_DESCRIPTION = 'A powerful util function library of Go'
 

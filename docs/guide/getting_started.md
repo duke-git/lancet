@@ -43,6 +43,6 @@ func main() {
 }
 ```
 
-## More
+## 更多
 
-其他特性请参考[API](https://lancet.go.dev/api/overview.html).
+更多特性请参考[API](https://www.golancet.cn/api/overview.html).

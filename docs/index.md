@@ -50,4 +50,4 @@ features:
     text-align: center;
     font-weight: 600;
     margin: 0 auto;
-    width: 140px;" href="/sponsor/sponsor.html">Sponsor</a>
+    width: 140px;" href="/sponsor/sponsor.html">赞助</a>
