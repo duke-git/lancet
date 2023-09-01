@@ -49,7 +49,7 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
         ],
 
         sidebar: {
-            '/en/': [
+            '/en/guide/': [
                 {
                     text: 'Introduction',
                     collapsed: false,
@@ -59,19 +59,37 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
                             link: '/en/guide/introduction',
                         },
                         {
-                            text: 'getting started',
+                            text: 'Getting started',
                             link: '/en/guide/getting_started',
                         },
                     ],
                 },
+                {
+                    text: 'Contribute Code',
+                    collapsed: false,
+                    items: [
+                        {
+                            text: 'Contribution guide',
+                            link: '/en/guide/contribution_guide',
+                        },
+                        {
+                            text: 'Contributors',
+                            link: '/en/guide/contributors',
+                        },
+                    ],
+                },
+                {
+                    text: 'API Reference',
+                    link: '/en/api/overview'
+                },
             ],
             '/en/api/': [
                 {
-                    text: 'overview',
-                    items: [{ text: 'overview of API', link: '/en/api/overview' }],
+                    text: 'Overview',
+                    items: [{ text: 'API overview', link: '/en/api/overview' }],
                 },
                 {
-                    text: 'packages',
+                    text: 'Packages',
                     collapsed: false,
                     items: [
                         { text: 'algorithm', link: '/en/api/packages/algorithm' },

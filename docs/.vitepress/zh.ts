@@ -58,10 +58,10 @@ export const zhConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
         ],
 
         sidebar: {
-            '/': [
+            '/guide/': [
                 {
                     text: '介绍',
-                    collapsed: true,
+                    collapsed: false,
                     items: [
                         {
                             text: 'Lancet是什么？',
@@ -72,6 +72,24 @@ export const zhConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
                             link: '/guide/getting_started',
                         },
                     ],
+                },
+                {
+                    text: '贡献代码',
+                    collapsed: false,
+                    items: [
+                        {
+                            text: '贡献指南',
+                            link: '/guide/contribution_guide',
+                        },
+                        {
+                            text: '贡献者',
+                            link: '/guide/contributors',
+                        },
+                    ],
+                },
+                {
+                    text: 'API手册',
+                    link: '/api/overview'
                 },
             ],
 

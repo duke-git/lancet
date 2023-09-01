@@ -50,4 +50,4 @@ features:
     text-align: center;
     font-weight: 600;
     margin: 0 auto;
-    width: 140px;" href="/en/sponsor/sponsor.html">Become a sponsor</a>
+    width: 200px;" href="/en/sponsor/sponsor.html">Become a sponsor</a>

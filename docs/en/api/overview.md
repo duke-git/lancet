@@ -37,7 +37,7 @@ outline: deep
 </style>
 
 <div>
-    <p class="package-title">lancet function module</p>
+    <p class="package-title">Lancet function module</p>
     <div class="package-container">
         <div class="package-cell">algorithm</div>
         <div class="package-cell">compare</div>
