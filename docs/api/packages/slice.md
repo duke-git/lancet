@@ -91,6 +91,7 @@ import (
 -   [Without](#Without)
 -   [KeyBy](#KeyBy)
 -   [Join](#Join)
+-   [Partition](#Partition)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -2450,5 +2451,41 @@ func main() {
     // Output:
     // 1,2,3,4,5
     // 1-2-3-4-5
+}
+```
+
+### <span id="Partition">Partition</span>
+
+<p>根据给定的predicate判断函数分组切片元素。</p>
+
+<b>函数签名:</b>
+
+```go
+func Partition[T any](slice []T, predicates ...func(item T) bool) [][]T
+```
+
+<b>示例:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+    nums := []int{1, 2, 3, 4, 5}
+
+	result1 := slice.Partition(nums)
+	result2 := slice.Partition(nums, func(n int) bool { return n%2 == 0 })
+	result3 := slice.Partition(nums, func(n int) bool { return n == 1 || n == 2 }, func(n int) bool { return n == 2 || n == 3 || n == 4 })
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+
+	// Output:
+	// [[1 2 3 4 5]]
+	// [[2 4] [1 3 5]]
+	// [[1 2] [3 4] [5]]
 }
 ```

@@ -2450,3 +2450,39 @@ func main() {
     // 1-2-3-4-5
 }
 ```
+
+### <span id="Partition">Partition</span>
+
+<p>Partition all slice elements with the evaluation of the given predicate functions. </p>
+
+<b>Signature:</b>
+
+```go
+func Partition[T any](slice []T, predicates ...func(item T) bool) [][]T
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+    nums := []int{1, 2, 3, 4, 5}
+
+	result1 := slice.Partition(nums)
+	result2 := slice.Partition(nums, func(n int) bool { return n%2 == 0 })
+	result3 := slice.Partition(nums, func(n int) bool { return n == 1 || n == 2 }, func(n int) bool { return n == 2 || n == 3 || n == 4 })
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+
+	// Output:
+	// [[1 2 3 4 5]]
+	// [[2 4] [1 3 5]]
+	// [[1 2] [3 4] [5]]
+}
+```
