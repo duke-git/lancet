@@ -77,7 +77,7 @@ import (
 -   [IsSortedByKey](#IsSortedByKey)
 -   [Sort](#Sort)
 -   [SortBy](#SortBy)
--   [SortByField<sup>deprecated</sup>](#SortByField)
+-   [SortByField](#SortByField)
 -   [Some](#Some)
 -   [StringSlice<sup>deprecated</sup>](#StringSlice)
 -   [SymmetricDifference](#SymmetricDifference)
@@ -2002,9 +2002,9 @@ func main() {
 }
 ```
 
-### <span id="SortByField">SortByField (已弃用: 请使用 Sort 或 SortBy 代替该方法)</span>
+### <span id="SortByField">SortByField</span>
 
-<p>按字段对结构切片进行排序。slice元素应为struct，字段类型应为int、uint、string或bool。 默认排序类型是升序（asc），如果是降序，设置 sortType 为 desc</p>
+<p>按字段对结构体切片进行排序。slice元素应为struct，排序字段field类型应为int、uint、string或bool。 默认排序类型是升序（asc），如果是降序，设置 sortType 为 desc</p>
 
 <b>函数签名:</b>
 

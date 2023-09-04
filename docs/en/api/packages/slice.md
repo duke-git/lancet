@@ -77,7 +77,7 @@ import (
 -   [IsSortedByKey](#IsSortedByKey)
 -   [Sort](#Sort)
 -   [SortBy](#SortBy)
--   [SortByField<sup>deprecated</sup>](#SortByField)
+-   [SortByField](#SortByField)
 -   [Some](#Some)
 -   [StringSlice<sup>deprecated</sup>](#StringSlice)
 -   [SymmetricDifference](#SymmetricDifference)
@@ -2000,9 +2000,9 @@ func main() {
 }
 ```
 
-### <span id="SortByField">SortByField (Deprecated: use Sort and SortBy for replacement)</span>
+### <span id="SortByField">SortByField</span>
 
-<p>Sort struct slice by field. Slice element should be struct, field type should be int, uint, string, or bool. Default sort type is ascending (asc), if descending order, set sortType to desc.</p>
+<p>Sort struct slice by field. Slice element should be struct, `field` param type should be int, uint, string, or bool. Default sort type is ascending (asc), if descending order, set `sortType` param to desc.</p>
 
 <b>Signature:</b>
 

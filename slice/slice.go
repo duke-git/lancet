@@ -1008,7 +1008,7 @@ func SortBy[T any](slice []T, less func(a, b T) bool) {
 // default sortType is ascending (asc), if descending order, set sortType to desc
 // This function is deprecated, use Sort and SortBy for replacement.
 // Play: https://go.dev/play/p/fU1prOBP9p1
-func SortByField(slice any, field string, sortType ...string) error {
+func SortByField[T any](slice []T, field string, sortType ...string) error {
 	sv := sliceValue(slice)
 	t := sv.Type().Elem()
 
