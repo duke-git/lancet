@@ -1046,3 +1046,20 @@ func ExampleJoin() {
 	// 1,2,3,4,5
 	// 1-2-3-4-5
 }
+
+func ExamplePartition() {
+	nums := []int{1, 2, 3, 4, 5}
+
+	result1 := Partition(nums)
+	result2 := Partition(nums, func(n int) bool { return n%2 == 0 })
+	result3 := Partition(nums, func(n int) bool { return n == 1 || n == 2 }, func(n int) bool { return n == 2 || n == 3 || n == 4 })
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+
+	// Output:
+	// [[1 2 3 4 5]]
+	// [[2 4] [1 3 5]]
+	// [[1 2] [3 4] [5]]
+}
