@@ -594,3 +594,43 @@ func TestIsJWT(t *testing.T) {
 	assert.Equal(true, IsJWT("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibWVzc2FnZSI6IlB1dGluIGlzIGFic29sdXRlIHNoaXQiLCJpYXQiOjE1MTYyMzkwMjJ9.wkLWA5GtCpWdxNOrRse8yHZgORDgf8TpJp73WUQb910"))
 	assert.Equal(false, IsJWT("abc"))
 }
+
+func TestIsVisa(t *testing.T) {
+	t.Parallel()
+	assert := internal.NewAssert(t, "TestIsVisa")
+
+	assert.Equal(true, IsVisa("4111111111111111"))
+	assert.Equal(false, IsVisa("123"))
+}
+
+func TestIsMasterCard(t *testing.T) {
+	t.Parallel()
+	assert := internal.NewAssert(t, "TestIsMasterCard")
+
+	assert.Equal(true, IsMasterCard("5425233430109903"))
+	assert.Equal(false, IsMasterCard("4111111111111111"))
+}
+
+func TestIsAmericanExpress(t *testing.T) {
+	t.Parallel()
+	assert := internal.NewAssert(t, "TestIsAmericanExpress")
+
+	assert.Equal(true, IsAmericanExpress("342883359122187"))
+	assert.Equal(false, IsAmericanExpress("3782822463100007"))
+}
+
+func TestIsUnionPay(t *testing.T) {
+	t.Parallel()
+	assert := internal.NewAssert(t, "TestIsUnionPay")
+
+	assert.Equal(true, IsUnionPay("6221263430109903"))
+	assert.Equal(false, IsUnionPay("3782822463100007"))
+}
+
+func TestIsChinaUnionPay(t *testing.T) {
+	t.Parallel()
+	assert := internal.NewAssert(t, "TestIsChinaUnionPay")
+
+	assert.Equal(true, IsChinaUnionPay("6250941006528599"))
+	assert.Equal(false, IsChinaUnionPay("3782822463100007"))
+}
