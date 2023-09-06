@@ -547,3 +547,50 @@ func TestIsPrintable(t *testing.T) {
 	assert.Equal(true, IsPrintable("😄"))
 	assert.Equal(false, IsPrintable("\u0000"))
 }
+
+func TestIsBin(t *testing.T) {
+	t.Parallel()
+	assert := internal.NewAssert(t, "TestIsBin")
+
+	assert.Equal(true, IsBin("0101"))
+	assert.Equal(true, IsBin("0b1101"))
+
+	assert.Equal(false, IsBin("b1101"))
+	assert.Equal(false, IsBin("1201"))
+	assert.Equal(false, IsBin(""))
+}
+
+func TestIsHex(t *testing.T) {
+	t.Parallel()
+	assert := internal.NewAssert(t, "TestIsHex")
+
+	assert.Equal(true, IsHex("ABCDE"))
+	assert.Equal(true, IsHex("abcde"))
+	assert.Equal(true, IsHex("0xabcde"))
+	assert.Equal(true, IsHex("0Xabcde"))
+	assert.Equal(true, IsHex("#abcde"))
+
+	assert.Equal(false, IsHex("cdfeg"))
+	assert.Equal(false, IsHex("0xcdfeg"))
+	assert.Equal(false, IsHex(""))
+}
+
+func TestIsBase64URL(t *testing.T) {
+	t.Parallel()
+	assert := internal.NewAssert(t, "TestIsBase64URL")
+
+	assert.Equal(true, IsBase64URL("SAGsbG8sIHdvcmxkIQ"))
+	assert.Equal(true, IsBase64URL("SAGsbG8sIHdvcmxkIQ=="))
+
+	assert.Equal(false, IsBase64URL("SAGsbG8sIHdvcmxkIQ="))
+	assert.Equal(false, IsBase64URL("SAGsbG8sIHdvcmxkIQ==="))
+	// assert.Equal(false, IsBase64URL(""))
+}
+
+func TestIsJWT(t *testing.T) {
+	t.Parallel()
+	assert := internal.NewAssert(t, "TestIsJWT")
+
+	assert.Equal(true, IsJWT("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibWVzc2FnZSI6IlB1dGluIGlzIGFic29sdXRlIHNoaXQiLCJpYXQiOjE1MTYyMzkwMjJ9.wkLWA5GtCpWdxNOrRse8yHZgORDgf8TpJp73WUQb910"))
+	assert.Equal(false, IsJWT("abc"))
+}

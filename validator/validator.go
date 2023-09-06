@@ -29,6 +29,10 @@ var (
 	chinesePhoneMatcher  *regexp.Regexp = regexp.MustCompile(`\d{3}-\d{8}|\d{4}-\d{7}|\d{4}-\d{8}`)
 	creditCardMatcher    *regexp.Regexp = regexp.MustCompile(`^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|(222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)[0-9]{12}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\\d{3})\\d{11}|6[27][0-9]{14})$`)
 	base64Matcher        *regexp.Regexp = regexp.MustCompile(`^(?:[A-Za-z0-9+\\/]{4})*(?:[A-Za-z0-9+\\/]{2}==|[A-Za-z0-9+\\/]{3}=|[A-Za-z0-9+\\/]{4})$`)
+	base64URLMatcher     *regexp.Regexp = regexp.MustCompile(`^([A-Za-z0-9_-]{4})*([A-Za-z0-9_-]{2}(==)?|[A-Za-z0-9_-]{3}=?)?$`)
+
+	binMatcher *regexp.Regexp = regexp.MustCompile(`^(0b)?[01]+$`)
+	hexMatcher *regexp.Regexp = regexp.MustCompile(`^(#|0x|0X)?[0-9a-fA-F]+$`)
 )
 
 // IsAlpha checks if the string contains only letters (a-zA-Z).
@@ -400,4 +404,39 @@ func IsInt(v any) bool {
 		return true
 	}
 	return false
+}
+
+// IsBin check if a give string is a valid binary value or not.
+// Play: todo
+func IsBin(v string) bool {
+	return binMatcher.MatchString(v)
+}
+
+// IsHex check if a give string is a valid hexadecimal value or not.
+// Play: todo
+func IsHex(v string) bool {
+	return hexMatcher.MatchString(v)
+}
+
+// IsBase64URL check if a give string is a valid URL-safe Base64 encoded string.
+// Play: todo
+func IsBase64URL(v string) bool {
+	return base64URLMatcher.MatchString(v)
+}
+
+// IsJWT check if a give string is is a valid JSON Web Token (JWT).
+// Play: todo
+func IsJWT(v string) bool {
+	strings := strings.Split(v, ".")
+	if len(strings) != 3 {
+		return false
+	}
+
+	for _, s := range strings {
+		if !IsBase64URL(s) {
+			return false
+		}
+	}
+
+	return true
 }
