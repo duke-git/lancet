@@ -99,7 +99,7 @@ func (c *cloner) cloneArray(v reflect.Value) reflect.Value {
 	for i := 0; i < v.Len(); i++ {
 		val := c.clone(v.Index(i))
 
-		if val.IsValid() {
+		if !val.IsValid() {
 			continue
 		}
 

@@ -337,6 +337,7 @@ func TestDeepClone(t *testing.T) {
 			Nil:   nil,
 			// unexported: "can't be cloned",
 		},
+		[]interface{}{1, &Struct{Str: "test"}, Struct{Str: "test2"}},
 	}
 
 	for i, item := range cases {
