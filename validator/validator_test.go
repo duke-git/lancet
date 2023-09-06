@@ -231,7 +231,12 @@ func TestIsIpV4(t *testing.T) {
 	assert := internal.NewAssert(t, "TestIsIpV4")
 
 	assert.Equal(true, IsIpV4("127.0.0.1"))
+
 	assert.Equal(false, IsIpV4("::0:0:0:0:0:0:1"))
+	assert.Equal(false, IsIpV4("127.0.0.1.1"))
+	assert.Equal(false, IsIpV4("256.0.0.1"))
+	assert.Equal(false, IsIpV4("127.0.0.a"))
+	assert.Equal(false, IsIpV4(""))
 }
 
 func TestIsIpV6(t *testing.T) {
@@ -239,8 +244,14 @@ func TestIsIpV6(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestIsIpV6")
 
-	assert.Equal(false, IsIpV6("127.0.0.1"))
 	assert.Equal(true, IsIpV6("::0:0:0:0:0:0:1"))
+	assert.Equal(true, IsIpV6("::1"))
+	assert.Equal(true, IsIpV6("::"))
+
+	assert.Equal(false, IsIpV6("127.0.0.1"))
+	assert.Equal(false, IsIpV6("2001:db8::8a2e:37023:7334"))
+	assert.Equal(false, IsIpV6("2001::25de::cade"))
+	assert.Equal(false, IsIpV6(""))
 }
 
 func TestIsUrl(t *testing.T) {
