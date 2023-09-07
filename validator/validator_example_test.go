@@ -587,3 +587,63 @@ func ExampleIsJWT() {
 	// true
 	// false
 }
+
+func ExampleIsVisa() {
+	result1 := IsVisa("4111111111111111")
+	result2 := IsVisa("123")
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+
+	// Output:
+	// true
+	// false
+}
+
+func ExampleIsMasterCard() {
+	result1 := IsMasterCard("5425233430109903")
+	result2 := IsMasterCard("4111111111111111")
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+
+	// Output:
+	// true
+	// false
+}
+
+func ExampleIsAmericanExpress() {
+	result1 := IsAmericanExpress("342883359122187")
+	result2 := IsAmericanExpress("3782822463100007")
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+
+	// Output:
+	// true
+	// false
+}
+
+func ExampleIsUnionPay() {
+	result1 := IsUnionPay("6221263430109903")
+	result2 := IsUnionPay("3782822463100007")
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+
+	// Output:
+	// true
+	// false
+}
+
+func ExampleIsChinaUnionPay() {
+	result1 := IsChinaUnionPay("6250941006528599")
+	result2 := IsChinaUnionPay("3782822463100007")
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+
+	// Output:
+	// true
+	// false
+}
