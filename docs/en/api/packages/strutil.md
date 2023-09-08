@@ -671,7 +671,7 @@ func main() {
 
 ### <span id="UpperSnakeCase">UpperSnakeCase</span>
 
-<p>Coverts string to upper KEBAB-CASE, non letters and numbers will be ignored.</p>
+<p>Coverts string to upper snake_case, non letters and numbers will be ignored.</p>
 
 <b>Signature:</b>
 
