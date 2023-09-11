@@ -1898,7 +1898,7 @@ import "github.com/duke-git/lancet/v2/xerror"
 <br/>
 <br/>
 
-*捐赠的资金将用于后续lancet官网的维护和云服务器的费用支付。或者当我写代码困倦时，给我买杯 ☕️。*
+*捐赠的资金将用于后续[lancet](https://www.golancet.cn/)官网的维护和云服务器的费用支付。或者当我写代码困倦时，给我买杯 ☕️。*
 
 
 ## 贡献者

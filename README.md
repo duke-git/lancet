@@ -1892,7 +1892,7 @@ Hello, I am a software developer and have been engaged in development work for 1
 <br/>
 <br/>
 
-*Donated funds will be used to maintain this website and pay for cloud server costs. Or just buy me a cup of ☕️ when I'm sleepy writing code.*
+*Donated funds will be used to maintain [lancet](https://www.golancet.cn/en/) website and pay for cloud server costs. Or just buy me a cup of ☕️ when I'm sleepy writing code.*
 
 
 ## Contributors
