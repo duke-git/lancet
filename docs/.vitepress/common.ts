@@ -39,7 +39,7 @@ export const slugify = (str: string): string =>
 
 export const commonConfig = defineConfig({
     title: 'Lancet',
-    appearance: 'dark',
+    appearance: true,
 
     markdown: {
         theme: {
@@ -83,7 +83,7 @@ export const commonConfig = defineConfig({
 
         footer: {
             copyright: 'Copyright © 2023-present Duke Du',
-            message: 'Released under the MIT License.',
+            message: '备案号: 京ICP备2023022770号',
         },
     },
 })
