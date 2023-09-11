@@ -1201,7 +1201,7 @@ func Join[T any](slice []T, separator string) string {
 }
 
 // Partition all slice elements with the evaluation of the given predicate functions.
-// todo
+// Play: https://go.dev/play/p/lkQ3Ri2NQhV
 func Partition[T any](slice []T, predicates ...func(item T) bool) [][]T {
 	l := len(predicates)
 

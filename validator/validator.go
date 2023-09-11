@@ -411,25 +411,25 @@ func IsInt(v any) bool {
 }
 
 // IsBin check if a give string is a valid binary value or not.
-// Play: todo
+// Play: https://go.dev/play/p/ogPeg2XJH4P
 func IsBin(v string) bool {
 	return binMatcher.MatchString(v)
 }
 
 // IsHex check if a give string is a valid hexadecimal value or not.
-// Play: todo
+// Play: https://go.dev/play/p/M2qpHbEwmm7
 func IsHex(v string) bool {
 	return hexMatcher.MatchString(v)
 }
 
 // IsBase64URL check if a give string is a valid URL-safe Base64 encoded string.
-// Play: todo
+// Play: https://go.dev/play/p/vhl4mr8GZ6S
 func IsBase64URL(v string) bool {
 	return base64URLMatcher.MatchString(v)
 }
 
-// IsJWT check if a give string is is a valid JSON Web Token (JWT).
-// Play: todo
+// IsJWT check if a give string is a valid JSON Web Token (JWT).
+// Play: https://go.dev/play/p/R6Op7heJbKI
 func IsJWT(v string) bool {
 	strings := strings.Split(v, ".")
 	if len(strings) != 3 {
@@ -446,31 +446,31 @@ func IsJWT(v string) bool {
 }
 
 // IsVisa check if a give string is a valid visa card nubmer or not.
-// Play: todo
+// Play: https://go.dev/play/p/SdS2keOyJsl
 func IsVisa(v string) bool {
 	return visaMatcher.MatchString(v)
 }
 
 // IsMasterCard check if a give string is a valid master card nubmer or not.
-// Play: todo
+// Play: https://go.dev/play/p/CwWBFRrG27b
 func IsMasterCard(v string) bool {
 	return masterCardMatcher.MatchString(v)
 }
 
 // IsAmericanExpress check if a give string is a valid american expression card nubmer or not.
-// Play: todo
+// Play: https://go.dev/play/p/HIDFpcOdpkd
 func IsAmericanExpress(v string) bool {
 	return americanExpressMatcher.MatchString(v)
 }
 
 // IsUnionPay check if a give string is a valid union pay nubmer or not.
-// Play: todo
+// Play: https://go.dev/play/p/CUHPEwEITDf
 func IsUnionPay(v string) bool {
 	return unionPay.MatchString(v)
 }
 
 // IsChinaUnionPay check if a give string is a valid china union pay nubmer or not.
-// Play: todo
+// Play: https://go.dev/play/p/yafpdxLiymu
 func IsChinaUnionPay(v string) bool {
 	return chinaUnionPay.MatchString(v)
 }

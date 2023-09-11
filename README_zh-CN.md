@@ -18,7 +18,7 @@
     lancet（柳叶刀）是一个全面、高效、可复用的go语言工具函数库。 lancet受到了java apache common包和lodash.js的启发。
 </p>
 
-## <a href="https://www.golancet.cn/" target="_blank">官网</a> | [English](./README.md) 
+## <a href="https://www.golancet.cn/" target="_blank">官网</a> | [English](./README.md)
 
 ## 特性
 
@@ -1329,6 +1329,9 @@ import "github.com/duke-git/lancet/v2/slice"
 -   **<big>Join</big>** : 用指定的分隔符链接切片元素。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/slice.md#Join)]
     [[play](https://go.dev/play/p/huKzqwNDD7V)]
+-   **<big>Partition</big>** : 根据给定的predicate判断函数分组切片元素。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/slice.md#Partition)]
+    [[play](https://go.dev/play/p/lkQ3Ri2NQhV)]
 
 <h3 id="stream"> 19. stream 流，该包仅验证简单的 stream 实现，功能有限。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 
@@ -1571,7 +1574,6 @@ import "github.com/duke-git/lancet/v2/strutil"
 -   **<big>RemoveWhiteSpace</big>** : 删除字符串中的空格。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/strutil.md#RemoveWhiteSpace)]
     [[play](https://go.dev/play/p/HzLC9vsTwkf)]
-
 
 <h3 id="system"> 22. system 包含 os, runtime, shell command 的相关函数。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 
@@ -1833,6 +1835,33 @@ import "github.com/duke-git/lancet/v2/validator"
 -   **<big>IsPrintable</big>** : 检查字符串是否全部为可打印字符。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/validator.md#IsPrintable)]
     [[play](https://go.dev/play/p/Pe1FE2gdtTP)]
+-   **<big>IsBin</big>** : 检查字符串是否是有效的二进制数。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/validator.md#IsBin)]
+    [[play](https://go.dev/play/p/ogPeg2XJH4P)]
+-   **<big>IsHex</big>** : 检查字符串是否是有效的十六进制数。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/validator.md#IsHex)]
+    [[play](https://go.dev/play/p/M2qpHbEwmm7)]
+-   **<big>IsBase64URL</big>** : 检查字符串是否是有效的 base64 url。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/validator.md#IsBase64URL)]
+    [[play](https://go.dev/play/p/vhl4mr8GZ6S)]
+-   **<big>IsJWT</big>** : 检查字符串是否是有效的 JSON Web Token (JWT)。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/validator.md#IsJWT)]
+    [[play](https://go.dev/play/p/R6Op7heJbKI)]
+-   **<big>IsVisa</big>** : 检查字符串是否是有效的 visa 卡号。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/validator.md#IsVisa)]
+    [[play](https://go.dev/play/p/SdS2keOyJsl)]
+-   **<big>IsMasterCard</big>** : 检查字符串是否是有效的 MasterCard 卡号。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/validator.md#IsMasterCard)]
+    [[play](https://go.dev/play/p/CwWBFRrG27b)]
+-   **<big>IsAmericanExpress</big>** : 检查字符串是否是有效的 American Express 卡号。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/validator.md#IsAmericanExpress)]
+    [[play](https://go.dev/play/p/HIDFpcOdpkd)]
+-   **<big>IsUnionPay</big>** : 检查字符串是否是有效的美国银联卡号。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/validator.md#IsUnionPay)]
+    [[play](https://go.dev/play/p/CUHPEwEITDf)]
+-   **<big>IsChinaUnionPay</big>** : 检查字符串是否是有效的中国银联卡号。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/validator.md#IsChinaUnionPay)]
+    [[play](https://go.dev/play/p/yafpdxLiymu)]
 
 <h3 id="xerror"> 25. xerror 包实现一些错误处理函数。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 
@@ -1855,7 +1884,7 @@ import "github.com/duke-git/lancet/v2/xerror"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/xerror.md#XError_Wrap)]
     [[play](https://go.dev/play/p/RpjJ5u5sc97)]
 -   **<big>XError_Unwrap</big>** : 解构 XEerror 为 error 对象。适配 github.com/pkg/errors。
-    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/xerror.md#XError_Unwrap)]
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/xerror.md#XError_Unwrap)
     [[play](https://go.dev/play/p/VUXJ8BST4c6)]
 -   **<big>XError_With</big>** : 添加与 XError 对象的键和值。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/xerror.md#XError_With)]
@@ -1888,7 +1917,7 @@ import "github.com/duke-git/lancet/v2/xerror"
 
 ## 赞助
 
-您好，我是一名软件开发者，从事开发工作 13 年。热爱软件开源。并愿意为此付出精力。是开源项目lancet的作者。Lancet 自两年前开源发布以来，已有超过 1000 个内外部项目使用。lancet一直会对所有用户免费。您的支持是对我继续奋斗的有力鼓励。谢谢! 微信扫描以下二维码或点击以下赞助按钮发起赞助。
+您好，我是一名软件开发者，从事开发工作 13 年。热爱软件开源。并愿意为此付出精力。是开源项目 lancet 的作者。Lancet 自两年前开源发布以来，已有超过 1000 个内外部项目使用。lancet 一直会对所有用户免费。您的支持是对我继续奋斗的有力鼓励。谢谢! 微信扫描以下二维码或点击以下赞助按钮发起赞助。
 
 <div style="position: relative;display: inline-block;">
     <img src="./docs/public/wechat_pay.png" width="260" height="260"/>
@@ -1898,12 +1927,11 @@ import "github.com/duke-git/lancet/v2/xerror"
 <br/>
 <br/>
 
-*捐赠的资金将用于后续[lancet](https://www.golancet.cn/)官网的维护和云服务器的费用支付。或者当我写代码困倦时，给我买杯 ☕️。*
-
+_捐赠的资金将用于后续[lancet](https://www.golancet.cn/)官网的维护和云服务器的费用支付。或者当我写代码困倦时，给我买杯 ☕️。_
 
 ## 贡献者
 
-感谢所有为lancet贡献过代码的人！
+感谢所有为 lancet 贡献过代码的人！
 
 <a href="https://github.com/duke-git/lancet/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=duke-git/lancet" />

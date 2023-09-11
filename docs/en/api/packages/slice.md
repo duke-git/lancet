@@ -91,6 +91,7 @@ import (
 -   [Without](#Without)
 -   [KeyBy](#KeyBy)
 -   [Join](#Join)
+-   [Partition](#Partition)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -2461,7 +2462,7 @@ func main() {
 func Partition[T any](slice []T, predicates ...func(item T) bool) [][]T
 ```
 
-<b>Example:</b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/lkQ3Ri2NQhV)</span></b>
 
 ```go
 import (

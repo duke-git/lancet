@@ -2464,7 +2464,7 @@ func main() {
 func Partition[T any](slice []T, predicates ...func(item T) bool) [][]T
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/lkQ3Ri2NQhV)</span></b>
 
 ```go
 import (

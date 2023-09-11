@@ -67,7 +67,6 @@ import (
 
 <div STYLE="page-break-after: always;"></div>
 
-
 ## 文档
 
 ### <span id="ContainChinese">ContainChinese</span>
@@ -80,7 +79,7 @@ import (
 func ContainChinese(s string) bool
 ```
 
-<b>示例:<span style="float:right;display:inline-block">[Run](https://go.dev/play/p/7DpU0uElYeM)</span></b>
+<b>示例:<span style="float:right;display:inline-block">[运行](https://go.dev/play/p/7DpU0uElYeM)</span></b>
 
 ```go
 import (
@@ -114,7 +113,7 @@ func main() {
 func ContainLetter(str string) bool
 ```
 
-<b>示例:<span style="float:right;display:inline-block">[Run](https://go.dev/play/p/lqFD04Yyewp)</span></b>
+<b>示例:<span style="float:right;display:inline-block">[运行](https://go.dev/play/p/lqFD04Yyewp)</span></b>
 
 ```go
 import (
@@ -148,7 +147,7 @@ func main() {
 func ContainLower(str string) bool
 ```
 
-<b>示例:<span style="float:right;display:inline-block">[Run](https://go.dev/play/p/Srqi1ItvnAA)</span></b>
+<b>示例:<span style="float:right;display:inline-block">[运行](https://go.dev/play/p/Srqi1ItvnAA)</span></b>
 
 ```go
 import (
@@ -182,7 +181,7 @@ func main() {
 func ContainUpper(str string) bool
 ```
 
-<b>示例:<span style="float:right;display:inline-block">[Run](https://go.dev/play/p/CmWeBEk27-z)</span></b>
+<b>示例:<span style="float:right;display:inline-block">[运行](https://go.dev/play/p/CmWeBEk27-z)</span></b>
 
 ```go
 import (
@@ -216,7 +215,7 @@ func main() {
 func IsAlpha(s string) bool
 ```
 
-<b>示例:<span style="float:right;display:inline-block">[Run](https://go.dev/play/p/7Q5sGOz2izQ)</span></b>
+<b>示例:<span style="float:right;display:inline-block">[运行](https://go.dev/play/p/7Q5sGOz2izQ)</span></b>
 
 ```go
 import (
@@ -250,7 +249,7 @@ func main() {
 func IsAllUpper(str string) bool
 ```
 
-<b>示例:<span style="float:right;display:inline-block">[Run](https://go.dev/play/p/ZHctgeK1n4Z)</span></b>
+<b>示例:<span style="float:right;display:inline-block">[运行](https://go.dev/play/p/ZHctgeK1n4Z)</span></b>
 
 ```go
 import (
@@ -284,7 +283,7 @@ func main() {
 func IsAllLower(str string) bool
 ```
 
-<b>示例:<span style="float:right;display:inline-block">[Run](https://go.dev/play/p/GjqCnOfV6cM)</span></b>
+<b>示例:<span style="float:right;display:inline-block">[运行](https://go.dev/play/p/GjqCnOfV6cM)</span></b>
 
 ```go
 import (
@@ -318,7 +317,7 @@ func main() {
 func IsASCII(str string) bool
 ```
 
-<b>示例:<span style="float:right;display:inline-block">[Run](https://go.dev/play/p/hfQNPLX0jNa)</span></b>
+<b>示例:<span style="float:right;display:inline-block">[运行](https://go.dev/play/p/hfQNPLX0jNa)</span></b>
 
 ```go
 import (
@@ -358,7 +357,7 @@ func main() {
 func IsBase64(base64 string) bool
 ```
 
-<b>示例:<span style="float:right;display:inline-block">[Run](https://go.dev/play/p/sWHEySAt6hl)</span></b>
+<b>示例:<span style="float:right;display:inline-block">[运行](https://go.dev/play/p/sWHEySAt6hl)</span></b>
 
 ```go
 import (
@@ -389,7 +388,7 @@ func main() {
 func IsChineseMobile(mobileNum string) bool
 ```
 
-<b>示例:<span style="float:right;display:inline-block">[Run](https://go.dev/play/p/GPYUlGTOqe3)</span></b>
+<b>示例:<span style="float:right;display:inline-block">[运行](https://go.dev/play/p/GPYUlGTOqe3)</span></b>
 
 ```go
 import (
@@ -420,7 +419,7 @@ func main() {
 func IsChineseIdNum(id string) bool
 ```
 
-<b>示例:<span style="float:right;display:inline-block">[Run](https://go.dev/play/p/d8EWhl2UGDF)</span></b>
+<b>示例:<span style="float:right;display:inline-block">[运行](https://go.dev/play/p/d8EWhl2UGDF)</span></b>
 
 ```go
 import (
@@ -451,7 +450,7 @@ func main() {
 func IsChinesePhone(phone string) bool
 ```
 
-<b>示例:<span style="float:right;display:inline-block">[Run](https://go.dev/play/p/RUD_-7YZJ3I)</span></b>
+<b>示例:<span style="float:right;display:inline-block">[运行](https://go.dev/play/p/RUD_-7YZJ3I)</span></b>
 
 ```go
 import (
@@ -482,7 +481,7 @@ func main() {
 func IsCreditCard(creditCart string) bool
 ```
 
-<b>示例:<span style="float:right;display:inline-block">[Run](https://go.dev/play/p/sNwwL6B0-v4)</span></b>
+<b>示例:<span style="float:right;display:inline-block">[运行](https://go.dev/play/p/sNwwL6B0-v4)</span></b>
 
 ```go
 import (
@@ -513,7 +512,7 @@ func main() {
 func IsDns(dns string) bool
 ```
 
-<b>示例:<span style="float:right;display:inline-block">[Run](https://go.dev/play/p/jlYApVLLGTZ)</span></b>
+<b>示例:<span style="float:right;display:inline-block">[运行](https://go.dev/play/p/jlYApVLLGTZ)</span></b>
 
 ```go
 import (
@@ -547,7 +546,7 @@ func main() {
 func IsEmail(email string) bool
 ```
 
-<b>示例:<span style="float:right;display:inline-block">[Run](https://go.dev/play/p/Os9VaFlT33G)</span></b>
+<b>示例:<span style="float:right;display:inline-block">[运行](https://go.dev/play/p/Os9VaFlT33G)</span></b>
 
 ```go
 import (
@@ -578,7 +577,7 @@ func main() {
 func IsEmptyString(s string) bool
 ```
 
-<b>示例:<span style="float:right;display:inline-block">[Run](https://go.dev/play/p/dpzgUjFnBCX)</span></b>
+<b>示例:<span style="float:right;display:inline-block">[运行](https://go.dev/play/p/dpzgUjFnBCX)</span></b>
 
 ```go
 import (
@@ -612,7 +611,7 @@ func main() {
 func IsInt(v any) bool
 ```
 
-<b>示例:<span style="float:right;display:inline-block">[Run](https://go.dev/play/p/eFoIHbgzl-z)</span></b>
+<b>示例:<span style="float:right;display:inline-block">[运行](https://go.dev/play/p/eFoIHbgzl-z)</span></b>
 
 ```go
 import (
@@ -649,7 +648,7 @@ func main() {
 func IsFloat(v any) bool
 ```
 
-<b>示例:<span style="float:right;display:inline-block">[Run](https://go.dev/play/p/vsyG-sxr99_Z)</span></b>
+<b>示例:<span style="float:right;display:inline-block">[运行](https://go.dev/play/p/vsyG-sxr99_Z)</span></b>
 
 ```go
 import (
@@ -686,7 +685,7 @@ func main() {
 func IsNumber(v any) bool
 ```
 
-<b>示例:<span style="float:right;display:inline-block">[Run](https://go.dev/play/p/mdJHOAvtsvF)</span></b>
+<b>示例:<span style="float:right;display:inline-block">[运行](https://go.dev/play/p/mdJHOAvtsvF)</span></b>
 
 ```go
 import (
@@ -713,7 +712,6 @@ func main() {
 }
 ```
 
-
 ### <span id="IsIntStr">IsIntStr</span>
 
 <p>验证字符串是否是可以转换为整数。</p>
@@ -724,7 +722,7 @@ func main() {
 func IsIntStr(s string) bool
 ```
 
-<b>示例:<span style="float:right;display:inline-block">[Run](https://go.dev/play/p/jQRtFv-a0Rk)</span></b>
+<b>示例:<span style="float:right;display:inline-block">[运行](https://go.dev/play/p/jQRtFv-a0Rk)</span></b>
 
 ```go
 import (
@@ -761,7 +759,7 @@ func main() {
 func IsFloatStr(s string) bool
 ```
 
-<b>示例:<span style="float:right;display:inline-block">[Run](https://go.dev/play/p/LOYwS_Oyl7U)</span></b>
+<b>示例:<span style="float:right;display:inline-block">[运行](https://go.dev/play/p/LOYwS_Oyl7U)</span></b>
 
 ```go
 import (
@@ -798,7 +796,7 @@ func main() {
 func IsNumberStr(s string) bool
 ```
 
-<b>示例:<span style="float:right;display:inline-block">[Run](https://go.dev/play/p/LzaKocSV79u)</span></b>
+<b>示例:<span style="float:right;display:inline-block">[运行](https://go.dev/play/p/LzaKocSV79u)</span></b>
 
 ```go
 import (
@@ -835,7 +833,7 @@ func main() {
 func IsJSON(str string) bool
 ```
 
-<b>示例:<span style="float:right;display:inline-block">[Run](https://go.dev/play/p/8Kip1Itjiil)</span></b>
+<b>示例:<span style="float:right;display:inline-block">[运行](https://go.dev/play/p/8Kip1Itjiil)</span></b>
 
 ```go
 import (
@@ -872,7 +870,7 @@ func main() {
 func IsRegexMatch(s, regex string) bool
 ```
 
-<b>示例:<span style="float:right;display:inline-block">[Run](https://go.dev/play/p/z_XeZo_litG)</span></b>
+<b>示例:<span style="float:right;display:inline-block">[运行](https://go.dev/play/p/z_XeZo_litG)</span></b>
 
 ```go
 import (
@@ -893,8 +891,6 @@ func main() {
 }
 ```
 
-
-
 ### <span id="IsIp">IsIp</span>
 
 <p>验证字符串是否是ip地址。</p>
@@ -905,7 +901,7 @@ func main() {
 func IsIp(ipstr string) bool
 ```
 
-<b>示例:<span style="float:right;display:inline-block">[Run](https://go.dev/play/p/FgcplDvmxoD)</span></b>
+<b>示例:<span style="float:right;display:inline-block">[运行](https://go.dev/play/p/FgcplDvmxoD)</span></b>
 
 ```go
 import (
@@ -942,7 +938,7 @@ func main() {
 func IsIpV4(ipstr string) bool
 ```
 
-<b>示例:<span style="float:right;display:inline-block">[Run](https://go.dev/play/p/zBGT99EjaIu)</span></b>
+<b>示例:<span style="float:right;display:inline-block">[运行](https://go.dev/play/p/zBGT99EjaIu)</span></b>
 
 ```go
 import (
@@ -973,7 +969,7 @@ func main() {
 func IsIpV6(ipstr string) bool
 ```
 
-<b>示例:<span style="float:right;display:inline-block">[Run](https://go.dev/play/p/AHA0r0AzIdC)</span></b>
+<b>示例:<span style="float:right;display:inline-block">[运行](https://go.dev/play/p/AHA0r0AzIdC)</span></b>
 
 ```go
 import (
@@ -1004,7 +1000,7 @@ func main() {
 func IsStrongPassword(password string, length int) bool
 ```
 
-<b>示例:<span style="float:right;display:inline-block">[Run](https://go.dev/play/p/QHdVcSQ3uDg)</span></b>
+<b>示例:<span style="float:right;display:inline-block">[运行](https://go.dev/play/p/QHdVcSQ3uDg)</span></b>
 
 ```go
 import (
@@ -1035,7 +1031,7 @@ func main() {
 func IsUrl(str string) bool
 ```
 
-<b>示例:<span style="float:right;display:inline-block">[Run](https://go.dev/play/p/pbJGa7F98Ka)</span></b>
+<b>示例:<span style="float:right;display:inline-block">[运行](https://go.dev/play/p/pbJGa7F98Ka)</span></b>
 
 ```go
 import (
@@ -1070,7 +1066,7 @@ func main() {
 func IsWeakPassword(password string, length int) bool
 ```
 
-<b>示例:<span style="float:right;display:inline-block">[Run](https://go.dev/play/p/wqakscZH5gH)</span></b>
+<b>示例:<span style="float:right;display:inline-block">[运行](https://go.dev/play/p/wqakscZH5gH)</span></b>
 
 ```go
 import (
@@ -1101,7 +1097,7 @@ func main() {
 func IsZeroValue(value any) bool
 ```
 
-<b>示例:<span style="float:right;display:inline-block">[Run](https://go.dev/play/p/UMrwaDCi_t4)</span></b>
+<b>示例:<span style="float:right;display:inline-block">[运行](https://go.dev/play/p/UMrwaDCi_t4)</span></b>
 
 ```go
 import (
@@ -1138,7 +1134,7 @@ func main() {
 func IsGBK(data []byte) bool
 ```
 
-<b>示例:<span style="float:right;display:inline-block">[Run](https://go.dev/play/p/E2nt3unlmzP)</span></b>
+<b>示例:<span style="float:right;display:inline-block">[运行](https://go.dev/play/p/E2nt3unlmzP)</span></b>
 
 ```go
 import (
@@ -1160,7 +1156,6 @@ func main() {
 }
 ```
 
-
 ### <span id="IsPrintable">IsPrintable</span>
 
 <p>检查字符串是否全部为可打印字符。</p>
@@ -1171,7 +1166,7 @@ func main() {
 func IsPrintable(str string) bool
 ```
 
-<b>示例:<span style="float:right;display:inline-block">[Run](https://go.dev/play/p/Pe1FE2gdtTP)</span></b>
+<b>示例:<span style="float:right;display:inline-block">[运行](https://go.dev/play/p/Pe1FE2gdtTP)</span></b>
 
 ```go
 import (
@@ -1211,7 +1206,7 @@ func main() {
 func IsBin(v string) bool
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block">[运行](https://go.dev/play/p/ogPeg2XJH4P)</span></b>
 
 ```go
 import (
@@ -1248,7 +1243,7 @@ func main() {
 func IsHex(v string) bool
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block">[运行](https://go.dev/play/p/M2qpHbEwmm7)</span></b>
 
 ```go
 import (
@@ -1285,7 +1280,7 @@ func main() {
 func IsBase64URL(v string) bool
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block">[运行](https://go.dev/play/p/vhl4mr8GZ6S)</span></b>
 
 ```go
 import (
@@ -1322,7 +1317,7 @@ func main() {
 func IsJWT(v string) bool
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block">[运行](https://go.dev/play/p/R6Op7heJbKI)</span></b>
 
 ```go
 import (
@@ -1353,7 +1348,7 @@ func main() {
 func IsVisa(v string) bool
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block">[运行](https://go.dev/play/p/SdS2keOyJsl)</span></b>
 
 ```go
 import (
@@ -1384,7 +1379,7 @@ func main() {
 func IsMasterCard(v string) bool
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block">[运行](https://go.dev/play/p/CwWBFRrG27b)</span></b>
 
 ```go
 import (
@@ -1415,7 +1410,7 @@ func main() {
 func IsAmericanExpress(v string) bool
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block">[运行](https://go.dev/play/p/HIDFpcOdpkd)</span></b>
 
 ```go
 import (
@@ -1436,7 +1431,7 @@ func main() {
 }
 ```
 
-### <span id="IsUnionPay">IsVisa</span>
+### <span id="IsUnionPay">IsUnionPay</span>
 
 <p>检查字符串是否是有效的美国银联卡号。</p>
 
@@ -1446,7 +1441,7 @@ func main() {
 func IsUnionPay(v string) bool
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block">[运行](https://go.dev/play/p/CUHPEwEITDf)</span></b>
 
 ```go
 import (
@@ -1477,7 +1472,7 @@ func main() {
 func IsChinaUnionPay(v string) bool
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block">[运行](https://go.dev/play/p/yafpdxLiymu)</span></b>
 
 ```go
 import (

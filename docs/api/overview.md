@@ -27,7 +27,7 @@ outline: deep
     display: inline-block;
     vertical-align: middle;
     line-height: 40px;
-    background: #ecefff;
+    background: #10b981;
     border: 1px solid;
     margin-right: 10px;
     margin-bottom: 10px;

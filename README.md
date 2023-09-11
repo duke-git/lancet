@@ -1325,6 +1325,9 @@ import "github.com/duke-git/lancet/v2/slice"
 -   **<big>Join</big>** : join the slice item with specify separator.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#Join)]
     [[play](https://go.dev/play/p/huKzqwNDD7V)]
+-   **<big>Partition</big>** : partition all slice elements with the evaluation of the given predicate functions.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#Partition)]
+    [[play](https://go.dev/play/p/lkQ3Ri2NQhV)]
 
 <h3 id="stream"> 19. Stream package implements a sequence of elements supporting sequential and operations. this package is an experiment to explore if stream in go can work as the way java does. its function is very limited. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
@@ -1826,6 +1829,33 @@ import "github.com/duke-git/lancet/v2/validator"
 -   **<big>IsPrintable</big>** : checks if string is all printable chars.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/validator.md#IsPrintable)]
     [[play](https://go.dev/play/p/Pe1FE2gdtTP)]
+-   **<big>IsBin</big>** : check if a give string is a valid binary value or not.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/validator.md#IsBin)]
+    [[play](https://go.dev/play/p/ogPeg2XJH4P)]
+-   **<big>IsHex</big>** : check if a give string is a valid hexadecimal value or not.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/validator.md#IsHex)]
+    [[play](https://go.dev/play/p/M2qpHbEwmm7)]
+-   **<big>IsBase64URL</big>** : check if a give string is a valid URL-safe Base64 encoded string.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/validator.md#IsBase64URL)]
+    [[play](https://go.dev/play/p/vhl4mr8GZ6S)]
+-   **<big>IsJWT</big>** : check if a give string is a valid JSON Web Token (JWT).
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/validator.md#IsJWT)]
+    [[play](https://go.dev/play/p/R6Op7heJbKI)]
+-   **<big>IsVisa</big>** : check if a give string is a valid visa card nubmer or not.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/validator.md#IsVisa)]
+    [[play](https://go.dev/play/p/SdS2keOyJsl)]
+-   **<big>IsMasterCard</big>** : check if a give string is a valid master card nubmer or not.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/validator.md#IsMasterCard)]
+    [[play](https://go.dev/play/p/CwWBFRrG27b)]
+-   **<big>IsAmericanExpress</big>** : check if a give string is a valid american expression card nubmer or not.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/validator.md#IsAmericanExpress)]
+    [[play](https://go.dev/play/p/HIDFpcOdpkd)]
+-   **<big>IsUnionPay</big>** : check if a give string is a valid union pay nubmer or not.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/validator.md#IsUnionPay)]
+    [[play](https://go.dev/play/p/CUHPEwEITDf)]
+-   **<big>IsChinaUnionPay</big>** : check if a give string is a valid china union pay nubmer or not.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/validator.md#IsChinaUnionPay)]
+    [[play](https://go.dev/play/p/yafpdxLiymu)]
 
 <h3 id="xerror"> 25. Xerror package implements helpers for errors. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
