@@ -49,6 +49,7 @@ import (
 -   [StringToBytes](#StringToBytes)
 -   [BytesToString](#BytesToString)
 -   [IsBlank](#IsBlank)
+-   [IsNotBlank](#IsNotBlank)
 -   [HasPrefixAny](#HasPrefixAny)
 -   [HasSuffixAny](#HasSuffixAny)
 -   [IndexOffset](#IndexOffset)
@@ -1072,6 +1073,45 @@ func main() {
     // true
     // true
     // false
+}
+```
+
+### <span id="IsNotBlank">IsNotBlank</span>
+
+<p>Checks if a string is not whitespace or not empty.</p>
+
+<b>Signature:</b>
+
+```go
+func IsNotBlank(str string) bool
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    result1 := IsNotBlank("")
+    result2 := IsNotBlank("	")
+    result3 := IsNotBlank("\t\v\f\n")
+    result4 := IsNotBlank(" 中文")
+    result5 := IsNotBlank(" 	world	")
+    
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
+    fmt.Println(result5)
+    // Output:
+    // false
+    // false
+    // false
+    // true
+    // true
 }
 ```
 
