@@ -1543,6 +1543,8 @@ import "github.com/duke-git/lancet/v2/strutil"
 -   **<big>IsBlank</big>** : checks if a string is whitespace or empty.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/strutil.md#IsBlank)]
     [[play](https://go.dev/play/p/6zXRH_c0Qd3)]
+-   **<big>IsNotBlank</big>** : checks if a string is not whitespace or not empty.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/strutil.md#IsNotBlank)]
 -   **<big>HasPrefixAny</big>** : checks if a string starts with any of an array of specified strings.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/strutil.md#HasPrefixAny)]
     [[play](https://go.dev/play/p/8UUTl2C5slo)]

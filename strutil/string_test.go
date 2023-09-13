@@ -427,6 +427,18 @@ func TestIsBlank(t *testing.T) {
 	assert.Equal(IsBlank(" 中文"), false)
 }
 
+func TestIsNotBlank(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestIsBlank")
+	assert.Equal(IsNotBlank(""), false)
+	assert.Equal(IsNotBlank("			"), false)
+	assert.Equal(IsNotBlank("\t\v\f\n"), false)
+
+	assert.Equal(IsNotBlank(" 中文"), true)
+	assert.Equal(IsNotBlank(" 	world	"), true)
+}
+
 func TestHasPrefixAny(t *testing.T) {
 	t.Parallel()
 

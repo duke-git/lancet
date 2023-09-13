@@ -479,6 +479,26 @@ func ExampleIsBlank() {
 	// false
 }
 
+func ExampleIsNotBlank() {
+	result1 := IsNotBlank("")
+	result2 := IsNotBlank("			")
+	result3 := IsNotBlank("\t\v\f\n")
+	result4 := IsNotBlank(" 中文")
+	result5 := IsNotBlank(" 	world	")
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+	fmt.Println(result4)
+	fmt.Println(result5)
+	// Output:
+	// false
+	// false
+	// false
+	// true
+	// true
+}
+
 func ExampleHasPrefixAny() {
 	result1 := HasPrefixAny("foo bar", []string{"fo", "xyz", "hello"})
 	result2 := HasPrefixAny("foo bar", []string{"oom", "world"})

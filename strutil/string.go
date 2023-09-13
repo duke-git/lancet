@@ -408,6 +408,11 @@ func IsBlank(str string) bool {
 	return true
 }
 
+// IsNotBlank checks if a string is not whitespace, not empty.
+func IsNotBlank(str string) bool {
+	return !IsBlank(str)
+}
+
 // HasPrefixAny check if a string starts with any of a slice of specified strings.
 // Play: https://go.dev/play/p/8UUTl2C5slo
 func HasPrefixAny(str string, prefixes []string) bool {
