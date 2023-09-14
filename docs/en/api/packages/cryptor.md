@@ -1,18 +1,18 @@
 # Cryptor
+
 Package cryptor contains some functions for data encryption and decryption. Support base64, md5, hmac, aes, des, rsa.
 
 <div STYLE="page-break-after: always;"></div>
 
 ## Source:
 
-- [https://github.com/duke-git/lancet/blob/main/cryptor/basic.go](https://github.com/duke-git/lancet/blob/main/cryptor/basic.go)
-- [https://github.com/duke-git/lancet/blob/main/cryptor/crypto.go](https://github.com/duke-git/lancet/blob/main/cryptor/crypto.go)
-
-
+-   [https://github.com/duke-git/lancet/blob/main/cryptor/basic.go](https://github.com/duke-git/lancet/blob/main/cryptor/basic.go)
+-   [https://github.com/duke-git/lancet/blob/main/cryptor/crypto.go](https://github.com/duke-git/lancet/blob/main/cryptor/crypto.go)
 
 <div STYLE="page-break-after: always;"></div>
 
 ## Usage:
+
 ```go
 import (
     "github.com/duke-git/lancet/v2/cryptor"
@@ -23,49 +23,48 @@ import (
 
 ## Index
 
-- [AesEcbEncrypt](#AesEcbEncrypt)
-- [AesEcbDecrypt](#AesEcbDecrypt)
-- [AesCbcEncrypt](#AesCbcEncrypt)
-- [AesCbcDecrypt](#AesCbcDecrypt)
-- [AesCtrCrypt](#AesCtrCrypt)
-- [AesCfbEncrypt](#AesCfbEncrypt)
-- [AesCfbDecrypt](#AesCfbDecrypt)
-- [AesOfbEncrypt](#AesOfbEncrypt)
-- [AesOfbDecrypt](#AesOfbDecrypt)
-- [Base64StdEncode](#Base64StdEncode)
-- [Base64StdDecode](#Base64StdDecode)
-- [DesEcbEncrypt](#DesEcbEncrypt)
-- [DesEcbDecrypt](#DesEcbDecrypt)
-- [DesCbcEncrypt](#DesCbcEncrypt)
-- [DesCbcDecrypt](#DesCbcDecrypt)
-- [DesCtrCrypt](#DesCtrCrypt)
-- [DesCfbEncrypt](#DesCfbEncrypt)
-- [DesCfbDecrypt](#DesCfbDecrypt)
-- [DesOfbEncrypt](#DesOfbEncrypt)
-- [DesOfbDecrypt](#DesOfbDecrypt)
-- [HmacMd5](#HmacMd5)
-- [HmacMd5WithBase64](#HmacMd5WithBase64)
-- [HmacSha1](#HmacSha1)
-- [HmacSha1WithBase64](#HmacSha1WithBase64)
-- [HmacSha256](#HmacSha256)
-- [HmacSha256WithBase64](#HmacSha256WithBase64)
-- [HmacSha512](#HmacSha512)
-- [HmacSha512WithBase64](#HmacSha512WithBase64)
-- [Md5String](#Md5String)
-- [Md5StringWithBase64](#Md5StringWithBase64)
-- [Md5Byte](#Md5Byte)
-- [Md5ByteWithBase64](#Md5ByteWithBase64)
-- [Md5File](#Md5File)
-- [Sha1](#Sha1)
-- [Sha1WithBase64](#Sha1WithBase64)
-- [Sha256](#Sha256)
-- [Sha256WithBase64](#Sha256WithBase64)
-- [Sha512](#Sha512)
-- [Sha512WithBase64](#Sha512WithBase64)
-- [GenerateRsaKey](#GenerateRsaKey)
-- [RsaEncrypt](#RsaEncrypt)
-- [RsaDecrypt](#RsaDecrypt)
-
+-   [AesEcbEncrypt](#AesEcbEncrypt)
+-   [AesEcbDecrypt](#AesEcbDecrypt)
+-   [AesCbcEncrypt](#AesCbcEncrypt)
+-   [AesCbcDecrypt](#AesCbcDecrypt)
+-   [AesCtrCrypt](#AesCtrCrypt)
+-   [AesCfbEncrypt](#AesCfbEncrypt)
+-   [AesCfbDecrypt](#AesCfbDecrypt)
+-   [AesOfbEncrypt](#AesOfbEncrypt)
+-   [AesOfbDecrypt](#AesOfbDecrypt)
+-   [Base64StdEncode](#Base64StdEncode)
+-   [Base64StdDecode](#Base64StdDecode)
+-   [DesEcbEncrypt](#DesEcbEncrypt)
+-   [DesEcbDecrypt](#DesEcbDecrypt)
+-   [DesCbcEncrypt](#DesCbcEncrypt)
+-   [DesCbcDecrypt](#DesCbcDecrypt)
+-   [DesCtrCrypt](#DesCtrCrypt)
+-   [DesCfbEncrypt](#DesCfbEncrypt)
+-   [DesCfbDecrypt](#DesCfbDecrypt)
+-   [DesOfbEncrypt](#DesOfbEncrypt)
+-   [DesOfbDecrypt](#DesOfbDecrypt)
+-   [HmacMd5](#HmacMd5)
+-   [HmacMd5WithBase64](#HmacMd5WithBase64)
+-   [HmacSha1](#HmacSha1)
+-   [HmacSha1WithBase64](#HmacSha1WithBase64)
+-   [HmacSha256](#HmacSha256)
+-   [HmacSha256WithBase64](#HmacSha256WithBase64)
+-   [HmacSha512](#HmacSha512)
+-   [HmacSha512WithBase64](#HmacSha512WithBase64)
+-   [Md5String](#Md5String)
+-   [Md5StringWithBase64](#Md5StringWithBase64)
+-   [Md5Byte](#Md5Byte)
+-   [Md5ByteWithBase64](#Md5ByteWithBase64)
+-   [Md5File](#Md5File)
+-   [Sha1](#Sha1)
+-   [Sha1WithBase64](#Sha1WithBase64)
+-   [Sha256](#Sha256)
+-   [Sha256WithBase64](#Sha256WithBase64)
+-   [Sha512](#Sha512)
+-   [Sha512WithBase64](#Sha512WithBase64)
+-   [GenerateRsaKey](#GenerateRsaKey)
+-   [RsaEncrypt](#RsaEncrypt)
+-   [RsaDecrypt](#RsaDecrypt)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -80,6 +79,7 @@ import (
 ```go
 func AesEcbEncrypt(data, key []byte) []byte
 ```
+
 <b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/zI6xsmuQRbn)</span></b>
 
 ```go
@@ -113,6 +113,7 @@ func main() {
 ```go
 func AesEcbDecrypt(encrypted, key []byte) []byte
 ```
+
 <b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/zI6xsmuQRbn)</span></b>
 
 ```go
@@ -146,6 +147,7 @@ func main() {
 ```go
 func AesCbcEncrypt(data, key []byte) []byte
 ```
+
 <b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/IOq_g8_lKZD)</span></b>
 
 ```go
@@ -339,6 +341,7 @@ func main() {
     // hello
 }
 ```
+
 ### <span id="AesCfbDecrypt">AesOfbDecrypt</span>
 
 <p>Decrypt data with key use AES OFB algorithm. Length of `key` param should be 16, 24 or 32.</p>
@@ -382,6 +385,7 @@ func main() {
 ```go
 func Base64StdEncode(s string) string
 ```
+
 <b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/VOaUyQUreoK)</span></b>
 
 ```go
@@ -400,6 +404,7 @@ func main() {
     // aGVsbG8=
 }
 ```
+
 ### <span id="Base64StdDecode">Base64StdDecode</span>
 
 <p>Decode a base64 encoded string.</p>
@@ -463,6 +468,7 @@ func main() {
     // hello
 }
 ```
+
 ### <span id="DesEcbDecrypt">DesEcbDecrypt</span>
 
 <p>Decrypt data with key use DES ECB algorithm. Length of `key` param should be 8.</p>
@@ -565,6 +571,7 @@ func main() {
     // hello
 }
 ```
+
 ### <span id="DesCtrCrypt">DesCtrCrypt</span>
 
 <p>Encrypt or decrypt data with key use DES CTR algorithm. Length of `key` param should be 8.</p>
@@ -632,6 +639,7 @@ func main() {
     // hello
 }
 ```
+
 ### <span id="DesCfbDecrypt">DesCfbDecrypt</span>
 
 <p>Decrypt data with key use DES CBC algorithm. Length of `key` param should be 8.</p>
@@ -665,6 +673,7 @@ func main() {
     // hello
 }
 ```
+
 ### <span id="DesOfbEncrypt">DesOfbEncrypt</span>
 
 <p>Enecrypt data with key use DES OFB algorithm. Length of `key` param should be 8.</p>
@@ -698,6 +707,7 @@ func main() {
     // hello
 }
 ```
+
 ### <span id="DesOfbDecrypt">DesOfbDecrypt</span>
 
 <p>Decrypt data with key use DES OFB algorithm. Length of `key` param should be 8.</p>
@@ -987,7 +997,6 @@ func main() {
 	// 3Y8SkKndI9NU4lJtmi6c6M///dN8syCADRxsE9Lvw2Mog3ahlsVFja9T+OGqa0Wm2FYwPVwKIGS/+XhYYdSM/A==
 }
 ```
-
 
 ### <span id="Md5String">Md5String</span>
 
@@ -1366,18 +1375,17 @@ func main() {
     if err != nil {
         return
     }
-      
+
     data := []byte("hello")
     encrypted := cryptor.RsaEncrypt(data, "rsa_public.pem")
     decrypted := cryptor.RsaDecrypt(encrypted, "rsa_private.pem")
-      
+
     fmt.Println(string(decrypted))
 
     // Output:
     // hello
 }
 ```
-
 
 ### <span id="RsaDecrypt">RsaDecrypt</span>
 
@@ -1404,11 +1412,11 @@ func main() {
     if err != nil {
         return
     }
-      
+
     data := []byte("hello")
     encrypted := cryptor.RsaEncrypt(data, "rsa_public.pem")
     decrypted := cryptor.RsaDecrypt(encrypted, "rsa_private.pem")
-      
+
     fmt.Println(string(decrypted))
 
     // Output:
@@ -1416,5 +1424,113 @@ func main() {
 }
 ```
 
+### <span id="GenerateRsaKeyPair">GenerateRsaKeyPair</span>
 
+<p>Creates rsa private and public key.</p>
 
+<b>Signature:</b>
+
+```go
+func GenerateRsaKeyPair(keySize int) (*rsa.PrivateKey, *rsa.PublicKey)
+```
+
+<b>Example:></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/cryptor"
+)
+
+func main() {
+    pri, pub := cryptor.GenerateRsaKeyPair(1024)
+}
+```
+
+### <span id="RsaEncryptOAEP">RsaEncryptOAEP</span>
+
+<p>Encrypts the given data with RSA-OAEP.</p>
+
+<b>Signature:</b>
+
+```go
+func RsaEncryptOAEP(data []byte, label []byte, key rsa.PublicKey) ([]byte, error)
+```
+
+<b>Example:></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/cryptor"
+)
+
+func main() {
+    pri, pub := cryptor.GenerateRsaKeyPair(1024)
+
+    data := []byte("hello world")
+    label := []byte("123456")
+
+    encrypted, err := cryptor.RsaEncryptOAEP(data, label, *pub)
+    if err != nil {
+        return
+    }
+
+    decrypted, err := cryptor.RsaDecryptOAEP([]byte(encrypted), label, *pri)
+    if err != nil {
+        return
+    }
+
+    fmt.Println(string(decrypted))
+
+    // Output:
+    // hello world
+}
+```
+
+### <span id="RsaDecryptOAEP">RsaDecryptOAEP</span>
+
+<p>Decrypts the data with RSA-OAEP.</p>
+
+<b>Signature:</b>
+
+```go
+func RsaDecryptOAEP(ciphertext []byte, label []byte, key rsa.PrivateKey) ([]byte, error)
+```
+
+<b>Example:></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/cryptor"
+)
+
+func main() {
+    pri, pub := cryptor.GenerateRsaKeyPair(1024)
+
+    data := []byte("hello world")
+    label := []byte("123456")
+
+    encrypted, err := cryptor.RsaEncryptOAEP(data, label, *pub)
+    if err != nil {
+        return
+    }
+
+    decrypted, err := cryptor.RsaDecryptOAEP([]byte(encrypted), label, *pri)
+    if err != nil {
+        return
+    }
+
+    fmt.Println(string(decrypted))
+
+    // Output:
+    // hello world
+}
+```
