@@ -13,6 +13,7 @@ import (
 	"crypto/des"
 	"crypto/rand"
 	"crypto/rsa"
+	"crypto/sha256"
 	"crypto/x509"
 	"encoding/pem"
 	"io"
@@ -504,4 +505,33 @@ func RsaDecrypt(data []byte, privateKeyFileName string) []byte {
 		panic(err)
 	}
 	return plainText
+}
+
+// GenerateRsaKeyPair create rsa private and public key.
+// Play: todo
+func GenerateRsaKeyPair(keySize int) (*rsa.PrivateKey, *rsa.PublicKey) {
+	privateKey, _ := rsa.GenerateKey(rand.Reader, keySize)
+	return privateKey, &privateKey.PublicKey
+}
+
+// RsaEncryptOAEP encrypts the given data with RSA-OAEP.
+// Play: todo
+func RsaEncryptOAEP(data []byte, label []byte, key rsa.PublicKey) ([]byte, error) {
+	encryptedBytes, err := rsa.EncryptOAEP(sha256.New(), rand.Reader, &key, data, label)
+	if err != nil {
+		return nil, err
+	}
+
+	return encryptedBytes, nil
+}
+
+// RsaDecryptOAEP decrypts the data with RSA-OAEP.
+// Play: todo
+func RsaDecryptOAEP(ciphertext []byte, label []byte, key rsa.PrivateKey) ([]byte, error) {
+	decryptedBytes, err := rsa.DecryptOAEP(sha256.New(), rand.Reader, &key, ciphertext, label)
+	if err != nil {
+		return nil, err
+	}
+
+	return decryptedBytes, nil
 }

@@ -150,3 +150,21 @@ func TestRsaEncrypt(t *testing.T) {
 	assert := internal.NewAssert(t, "TestRsaEncrypt")
 	assert.Equal(string(data), string(decrypted))
 }
+
+func TestRsaEncryptOAEP(t *testing.T) {
+	assert := internal.NewAssert(t, "TestRsaEncrypt")
+	t.Parallel()
+
+	pri, pub := GenerateRsaKeyPair(1024)
+
+	data := []byte("hello world")
+	label := []byte("123456")
+
+	encrypted, err := RsaEncryptOAEP(data, label, *pub)
+	assert.IsNil(err)
+
+	decrypted, err := RsaDecryptOAEP([]byte(encrypted), label, *pri)
+
+	assert.IsNil(err)
+	assert.Equal("hello world", string(decrypted))
+}

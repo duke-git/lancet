@@ -1,6 +1,8 @@
 package cryptor
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func ExampleAesEcbEncrypt() {
 	data := "hello"
@@ -483,4 +485,26 @@ func ExampleSha512WithBase64() {
 
 	// Output:
 	// m3HSJL1i83hdltRq0+o9czGb+8KJDKra4t/3JRlnPKcjI8PZm6XBHXx6zG4UuMXaDEZjR1wuXDre9G9zvN7AQw==
+}
+
+func ExampleRsaEncryptOAEP() {
+	pri, pub := GenerateRsaKeyPair(1024)
+
+	data := []byte("hello world")
+	label := []byte("123456")
+
+	encrypted, err := RsaEncryptOAEP(data, label, *pub)
+	if err != nil {
+		return
+	}
+
+	decrypted, err := RsaDecryptOAEP([]byte(encrypted), label, *pri)
+	if err != nil {
+		return
+	}
+
+	fmt.Println(string(decrypted))
+
+	// Output:
+	// hello world
 }
