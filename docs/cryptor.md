@@ -65,6 +65,9 @@ import (
 -   [GenerateRsaKey](#GenerateRsaKey)
 -   [RsaEncrypt](#RsaEncrypt)
 -   [RsaDecrypt](#RsaDecrypt)
+-   [GenerateRsaKeyPair](#GenerateRsaKeyPair)
+-   [RsaEncryptOAEP](#RsaEncryptOAEP)
+-   [RsaDecryptOAEP](#RsaDecryptOAEP)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -723,6 +726,7 @@ func main() {
     fmt.Println(s) //3826f812255d8683f051ee97346d1359234d5dbd
 }
 ```
+
 ### <span id="HmacSha1WithBase64">HmacSha1WithBase64</span>
 
 <p>Return the hmac hash of string use sha1 with base64.</p>
@@ -1268,5 +1272,116 @@ func main() {
     decrypted := cryptor.RsaDecrypt(encrypted, "rsa_private.pem")
 
     fmt.Println(string(decrypted)) //hello world
+}
+```
+
+### <span id="GenerateRsaKeyPair">GenerateRsaKeyPair</span>
+
+<p>Creates rsa private and public key.</p>
+
+<b>Signature:</b>
+
+```go
+func GenerateRsaKeyPair(keySize int) (*rsa.PrivateKey, *rsa.PublicKey)
+```
+
+<b>Example:></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/cryptor"
+)
+
+func main() {
+    pri, pub := cryptor.GenerateRsaKeyPair(1024)
+}
+```
+
+### <span id="RsaEncryptOAEP">RsaEncryptOAEP</span>
+
+<p>Encrypts the given data with RSA-OAEP.</p>
+
+<b>Signature:</b>
+
+```go
+func RsaEncryptOAEP(data []byte, label []byte, key rsa.PublicKey) ([]byte, error)
+```
+
+<b>Example:></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/cryptor"
+)
+
+func main() {
+    pri, pub := cryptor.GenerateRsaKeyPair(1024)
+
+    data := []byte("hello world")
+    label := []byte("123456")
+
+    encrypted, err := cryptor.RsaEncryptOAEP(data, label, *pub)
+    if err != nil {
+        return
+    }
+
+    decrypted, err := cryptor.RsaDecryptOAEP([]byte(encrypted), label, *pri)
+    if err != nil {
+        return
+    }
+
+    fmt.Println(string(decrypted))
+
+    // Output:
+    // hello world
+}
+```
+
+### <span id="RsaDecryptOAEP">RsaDecryptOAEP</span>
+
+<p>Decrypts the data with RSA-OAEP.</p>
+
+<b>Signature:</b>
+
+```go
+func RsaDecryptOAEP(ciphertext []byte, label []byte, key rsa.PrivateKey) ([]byte, error)
+```
+
+<b>Example:></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/cryptor"
+)
+
+func main() {
+    pri, pub := cryptor.GenerateRsaKeyPair(1024)
+
+    data := []byte("hello world")
+    label := []byte("123456")
+
+    encrypted, err := cryptor.RsaEncryptOAEP(data, label, *pub)
+    if err != nil {
+        return
+    }
+
+    decrypted, err := cryptor.RsaDecryptOAEP([]byte(encrypted), label, *pri)
+    if err != nil {
+        return
+    }
+
+    fmt.Println(string(decrypted))
+
+    // Output:
+    // hello world
 }
 ```
