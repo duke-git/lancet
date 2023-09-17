@@ -65,6 +65,9 @@ import (
 -   [GenerateRsaKey](#GenerateRsaKey)
 -   [RsaEncrypt](#RsaEncrypt)
 -   [RsaDecrypt](#RsaDecrypt)
+-   [GenerateRsaKeyPair](#GenerateRsaKeyPair)
+-   [RsaEncryptOAEP](#RsaEncryptOAEP)
+-   [RsaDecryptOAEP](#RsaDecryptOAEP)
 
 <div STYLE="page-break-after: always;"></div>
 
