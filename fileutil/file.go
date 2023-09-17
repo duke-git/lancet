@@ -168,7 +168,15 @@ func ListFileNames(path string) ([]string, error) {
 }
 
 // Zip create zip file, fpath could be a single file or a directory
-func Zip(fpath string, destPath string) error {
+func Zip(path string, destPath string) error {
+	if IsDir(path) {
+		return zipFolder(path, destPath)
+	}
+
+	return zipFile(path, destPath)
+}
+
+func zipFile(filePath string, destPath string) error {
 	zipFile, err := os.Create(destPath)
 	if err != nil {
 		return err
@@ -178,7 +186,97 @@ func Zip(fpath string, destPath string) error {
 	archive := zip.NewWriter(zipFile)
 	defer archive.Close()
 
-	return addFileToArchive(fpath, archive)
+	return addFileToArchive1(filePath, archive)
+}
+
+func zipFolder(folderPath string, destPath string) error {
+	outFile, err := os.Create(destPath)
+	if err != nil {
+		return err
+	}
+	defer outFile.Close()
+
+	w := zip.NewWriter(outFile)
+
+	err = addFileToArchive2(w, folderPath, "")
+	if err != nil {
+		return err
+	}
+
+	err = w.Close()
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func addFileToArchive1(fpath string, archive *zip.Writer) error {
+	err := filepath.Walk(fpath, func(path string, info os.FileInfo, err error) error {
+		if err != nil {
+			return err
+		}
+
+		header, err := zip.FileInfoHeader(info)
+		if err != nil {
+			return err
+		}
+
+		header.Name = strings.TrimPrefix(path, filepath.Dir(fpath)+"/")
+
+		if info.IsDir() {
+			header.Name += "/"
+		} else {
+			header.Method = zip.Deflate
+			writer, err := archive.CreateHeader(header)
+			if err != nil {
+				return err
+			}
+			file, err := os.Open(path)
+			if err != nil {
+				return err
+			}
+			defer file.Close()
+			if _, err := io.Copy(writer, file); err != nil {
+				return err
+			}
+		}
+		return nil
+	})
+	return err
+}
+
+func addFileToArchive2(w *zip.Writer, basePath, baseInZip string) error {
+	files, err := os.ReadDir(basePath)
+	if err != nil {
+		return err
+	}
+	if !strings.HasSuffix(basePath, "/") {
+		basePath = basePath + "/"
+	}
+
+	for _, file := range files {
+		if !file.IsDir() {
+			dat, err := os.ReadFile(basePath + file.Name())
+			if err != nil {
+				return err
+			}
+
+			f, err := w.Create(baseInZip + file.Name())
+			if err != nil {
+				return err
+			}
+			_, err = f.Write(dat)
+			if err != nil {
+				return err
+			}
+		} else if file.IsDir() {
+			newBase := basePath + file.Name() + "/"
+			addFileToArchive2(w, newBase, baseInZip+file.Name()+"/")
+		}
+	}
+
+	return nil
 }
 
 // UnZip unzip the file and save it to destPath
@@ -259,7 +357,7 @@ func ZipAppendEntry(fpath string, destPath string) error {
 		}
 	}
 
-	err = addFileToArchive(fpath, archive)
+	err = addFileToArchive1(fpath, archive)
 
 	if err != nil {
 		return err
@@ -279,41 +377,6 @@ func ZipAppendEntry(fpath string, destPath string) error {
 	}
 
 	return CopyFile(tempFile.Name(), destPath)
-}
-
-func addFileToArchive(fpath string, archive *zip.Writer) error {
-	err := filepath.Walk(fpath, func(path string, info os.FileInfo, err error) error {
-		if err != nil {
-			return err
-		}
-
-		header, err := zip.FileInfoHeader(info)
-		if err != nil {
-			return err
-		}
-
-		header.Name = strings.TrimPrefix(path, filepath.Dir(fpath)+"/")
-
-		if info.IsDir() {
-			header.Name += "/"
-		} else {
-			header.Method = zip.Deflate
-			writer, err := archive.CreateHeader(header)
-			if err != nil {
-				return err
-			}
-			file, err := os.Open(path)
-			if err != nil {
-				return err
-			}
-			defer file.Close()
-			if _, err := io.Copy(writer, file); err != nil {
-				return err
-			}
-		}
-		return nil
-	})
-	return err
 }
 
 func safeFilepathJoin(path1, path2 string) (string, error) {

@@ -55,6 +55,15 @@ import (
 -   [IsGBK](#IsGBK)
 -   [IsASCII](#IsASCII)
 -   [IsAIsPrintableSCII](#IsPrintable)
+-   [IsBin](#IsBin)
+-   [IsHex](#IsHex)
+-   [IsBase64URL](#IsBase64URL)
+-   [IsJWT](#IsJWT)
+-   [IsVisa](#IsVisa)
+-   [IsMasterCard](#IsMasterCard)
+-   [IsAmericanExpress](#IsAmericanExpress)
+-   [IsUnionPay](#IsUnionPay)
+-   [IsChinaUnionPay](#IsChinaUnionPay)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -1023,6 +1032,303 @@ func main() {
     // true
     // true
     // true
+    // true
+    // false
+}
+```
+
+### <span id="IsBin">IsBin</span>
+
+<p>Checks if a give string is a valid binary value or not.</p>
+
+<b>Signature:</b>
+
+```go
+func IsBin(v string) bool
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/validator"
+)
+
+func main() {
+    result1 := validator.IsBin("0101")
+    result2 := validator.IsBin("0b1101")
+    result3 := validator.IsBin("b1101")
+    result4 := validator.IsBin("1201")
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
+
+    // Output:
+    // true
+    // true
+    // false
+    // false
+}
+```
+
+### <span id="IsHex">IsHex</span>
+
+<p>Checks if a give string is a valid hexadecimal value or not.</p>
+
+<b>Signature:</b>
+
+```go
+func IsHex(v string) bool
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/validator"
+)
+
+func main() {
+    result1 := validator.IsHex("0xabcde")
+    result2 := validator.IsHex("0XABCDE")
+    result3 := validator.IsHex("cdfeg")
+    result4 := validator.IsHex("0xcdfeg")
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
+
+    // Output:
+    // true
+    // true
+    // false
+    // false
+}
+```
+
+### <span id="IsBase64URL">IsBase64URL</span>
+
+<p>Checks if a give string is a valid URL-safe Base64 encoded string.</p>
+
+<b>Signature:</b>
+
+```go
+func IsBase64URL(v string) bool
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/validator"
+)
+
+func main() {
+    result1 := validator.IsBase64URL("SAGsbG8sIHdvcmxkIQ")
+    result2 := validator.IsBase64URL("SAGsbG8sIHdvcmxkIQ==")
+    result3 := validator.IsBase64URL("SAGsbG8sIHdvcmxkIQ=")
+    result4 := validator.IsBase64URL("SAGsbG8sIHdvcmxkIQ===")
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
+
+    // Output:
+    // true
+    // true
+    // false
+    // false
+}
+```
+
+### <span id="IsJWT">IsJWT</span>
+
+<p>Checks if a give string is is a valid JSON Web Token (JWT).</p>
+
+<b>Signature:</b>
+
+```go
+func IsJWT(v string) bool
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/validator"
+)
+
+func main() {
+    result1 := validator.IsJWT("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibWVzc2FnZSI6IlB1dGluIGlzIGFic29sdXRlIHNoaXQiLCJpYXQiOjE1MTYyMzkwMjJ9.wkLWA5GtCpWdxNOrRse8yHZgORDgf8TpJp73WUQb910")
+    result2 := validator.IsJWT("abc")
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+
+    // Output:
+    // true
+    // false
+}
+```
+
+### <span id="IsVisa">IsVisa</span>
+
+<p>Checks if a give string is a valid visa card nubmer or not.</p>
+
+<b>Signature:</b>
+
+```go
+func IsVisa(v string) bool
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/validator"
+)
+
+func main() {
+    result1 := validator.IsVisa("4111111111111111")
+    result2 := validator.IsVisa("123")
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+
+    // Output:
+    // true
+    // false
+}
+```
+
+### <span id="IsMasterCard">IsMasterCard</span>
+
+<p>Checks if a give string is a valid mastercard nubmer or not.</p>
+
+<b>Signature:</b>
+
+```go
+func IsMasterCard(v string) bool
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/validator"
+)
+
+func main() {
+    result1 := validator.IsMasterCard("5425233430109903")
+    result2 := validator.IsMasterCard("4111111111111111")
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+
+    // Output:
+    // true
+    // false
+}
+```
+
+### <span id="IsAmericanExpress">IsAmericanExpress</span>
+
+<p>Checks if a give string is a valid american express nubmer or not.</p>
+
+<b>Signature:</b>
+
+```go
+func IsAmericanExpress(v string) bool
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/validator"
+)
+
+func main() {
+    result1 := validator.IsAmericanExpress("342883359122187")
+    result2 := validator.IsAmericanExpress("3782822463100007")
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+
+    // Output:
+    // true
+    // false
+}
+```
+
+### <span id="IsUnionPay">IsVisa</span>
+
+<p>Checks if a give string is a valid union pay nubmer or not.</p>
+
+<b>Signature:</b>
+
+```go
+func IsUnionPay(v string) bool
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/validator"
+)
+
+func main() {
+    result1 := validator.IsUnionPay("6221263430109903")
+    result2 := validator.IsUnionPay("3782822463100007")
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+
+    // Output:
+    // true
+    // false
+}
+```
+
+### <span id="IsChinaUnionPay">IsChinaUnionPay</span>
+
+<p>Checks if a give string is a valid china union pay nubmer or not.</p>
+
+<b>Signature:</b>
+
+```go
+func IsChinaUnionPay(v string) bool
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/validator"
+)
+
+func main() {
+    result1 := validator.IsChinaUnionPay("6250941006528599")
+    result2 := validator.IsChinaUnionPay("3782822463100007")
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+
+    // Output:
     // true
     // false
 }
