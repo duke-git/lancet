@@ -18,7 +18,6 @@ import (
 	"io/fs"
 	"net/http"
 	"os"
-	"path"
 	"path/filepath"
 	"runtime"
 	"strings"
@@ -491,7 +490,7 @@ func CurrentPath() string {
 	var absPath string
 	_, filename, _, ok := runtime.Caller(1)
 	if ok {
-		absPath = path.Dir(filename)
+		absPath = filepath.Dir(filename)
 	}
 
 	return absPath
