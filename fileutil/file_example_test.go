@@ -2,6 +2,7 @@ package fileutil
 
 import (
 	"fmt"
+	"io"
 	"os"
 )
 
@@ -384,4 +385,21 @@ func ExampleWriteBytesToFile() {
 
 	// Output:
 	// hello
+}
+
+func ExampleReadFile() {
+	reader, fn, err := ReadFile("https://httpbin.org/robots.txt")
+	if err != nil {
+		return
+	}
+	defer fn()
+
+	dat, err := io.ReadAll(reader)
+	if err != nil {
+		return
+	}
+	fmt.Println(string(dat))
+	// Output:
+	// User-agent: *
+	// Disallow: /deny
 }
