@@ -1,6 +1,7 @@
 package fileutil
 
 import (
+	"io"
 	"os"
 	"testing"
 
@@ -456,4 +457,22 @@ func TestWriteBytesToFile(t *testing.T) {
 	assert.Equal("hello", string(content))
 
 	os.Remove(filepath)
+}
+
+func TestReadFile(t *testing.T) {
+	reader, close, err := ReadFile("https://httpbin.org/robots.txt")
+	if err != nil {
+		t.Fail()
+	}
+	defer close()
+
+	dat, err := io.ReadAll(reader)
+	if err != nil {
+		t.Fail()
+	}
+
+	want := `User-agent: *
+Disallow: /deny
+`
+	internal.NewAssert(t, "TestReadFile").Equal(want, string(dat))
 }
