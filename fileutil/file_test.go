@@ -1,6 +1,7 @@
 package fileutil
 
 import (
+	"io"
 	"os"
 	"testing"
 
@@ -294,7 +295,11 @@ func TestSha(t *testing.T) {
 	assert := internal.NewAssert(t, "TestSha")
 
 	sha1, err := Sha("./testdata/test.txt", 1)
+	assert.IsNil(err)
+
 	sha256, err := Sha("./testdata/test.txt", 256)
+	assert.IsNil(err)
+
 	sha512, err := Sha("./testdata/test.txt", 512)
 
 	assert.IsNil(err)
@@ -400,4 +405,22 @@ func TestWriteBytesToFile(t *testing.T) {
 	assert.Equal("hello", string(content))
 
 	os.Remove(filepath)
+}
+
+func TestReadFile(t *testing.T) {
+	reader, close, err := ReadFile("https://httpbin.org/robots.txt")
+	if err != nil {
+		t.Fail()
+	}
+	defer close()
+
+	dat, err := io.ReadAll(reader)
+	if err != nil {
+		t.Fail()
+	}
+
+	want := `User-agent: *
+Disallow: /deny
+`
+	internal.NewAssert(t, "TestReadFile").Equal(want, string(dat))
 }
