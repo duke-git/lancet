@@ -5,6 +5,7 @@ cryptor/*.txt
 fileutil/*.txt
 fileutil/*.zip
 fileutil/*.link
+fileutil/tempdir
 fileutil/unzip/*
 slice/testdata/*
 cryptor/*.pem
