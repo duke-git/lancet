@@ -47,6 +47,7 @@ import (
 -   [WriteCsvFile](#WriteCsvFile)
 -   [WriteStringToFile](#WriteStringToFile)
 -   [WriteBytesToFile](#WriteBytesToFile)
+-   [ReadFile](#ReadFile)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -837,5 +838,43 @@ func main() {
 
     // Output:
     // hello
+}
+```
+
+### <span id="ReadFile">ReadFile</span>
+
+<p>读取文件或者URL</p>
+
+<b>函数签名:</b>
+
+```go
+func ReadFile(path string) (reader io.ReadCloser, closeFn func(), err error) 
+```
+
+<b>示例:<span style="float:right;display:inline-block;"></span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/fileutil"
+)
+
+func main() {
+   reader, fn, err := ReadFile("https://httpbin.org/robots.txt")
+	if err != nil {
+		return
+	}
+	defer fn()
+
+	dat, err := io.ReadAll(reader)
+	if err != nil {
+		return
+	}
+	fmt.Println(string(dat))
+	// Output:
+	// User-agent: *
+	// Disallow: /deny
 }
 ```

@@ -18,10 +18,11 @@ import (
 	"io/fs"
 	"net/http"
 	"os"
-	"path"
 	"path/filepath"
 	"runtime"
 	"strings"
+
+	"github.com/duke-git/lancet/v2/validator"
 )
 
 // IsExist checks if a file or directory exists.
@@ -491,7 +492,7 @@ func CurrentPath() string {
 	var absPath string
 	_, filename, _, ok := runtime.Caller(1)
 	if ok {
-		absPath = path.Dir(filename)
+		absPath = filepath.Dir(filename)
 	}
 
 	return absPath
@@ -623,4 +624,25 @@ func WriteBytesToFile(filepath string, content []byte) error {
 
 	_, err = f.Write(content)
 	return err
+}
+
+// ReadFile get file reader by a url or a local file
+// Play: todo
+func ReadFile(path string) (reader io.ReadCloser, closeFn func(), err error) {
+	switch {
+	case validator.IsUrl(path):
+		resp, err := http.Get(path)
+		if err != nil {
+			return nil, func() {}, err
+		}
+		return resp.Body, func() { resp.Body.Close() }, nil
+	case IsExist(path):
+		reader, err := os.Open(path)
+		if err != nil {
+			return nil, func() {}, err
+		}
+		return reader, func() { reader.Close() }, nil
+	default:
+		return nil, func() {}, errors.New("unknown file type")
+	}
 }
