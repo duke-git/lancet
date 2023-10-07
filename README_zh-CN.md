@@ -153,6 +153,10 @@ md#HmacSha256WithBase64)
 -   [GenerateRsaKey](https://github.com/duke-git/lancet/blob/v1/docs/cryptor_zh-CN.md#GenerateRsaKey)
 -   [RsaEncrypt](https://github.com/duke-git/lancet/blob/v1/docs/cryptor_zh-CN.md#RsaEncrypt)
 -   [RsaDecrypt](https://github.com/duke-git/lancet/blob/v1/docs/cryptor_zh-CN.md#RsaDecrypt)
+-   [GenerateRsaKeyPair](https://github.com/duke-git/lancet/blob/v1/docs/cryptor_zh-CN.md#GenerateRsaKeyPair)
+-   [RsaEncryptOAEP](https://github.com/duke-git/lancet/blob/v1/docs/cryptor_zh-CN.md#RsaEncryptOAEP)
+-   [RsaDecryptOAEP](https://github.com/duke-git/lancet/blob/v1/docs/cryptor_zh-CN.md#RsaDecryptOAEP)
+
 
 ### 4. datetime 日期时间处理包，格式化日期，比较日期。
 
@@ -236,6 +240,7 @@ import "github.com/duke-git/lancet/fileutil"
 -   [WriteCsvFile](https://github.com/duke-git/lancet/blob/v1/docs/fileutil_zh-CN.md#WriteCsvFile)
 -   [WriteStringToFile](https://github.com/duke-git/lancet/blob/v1/docs/fileutil_zh-CN.md#WriteStringToFile)
 -   [WriteBytesToFile](https://github.com/duke-git/lancet/blob/v1/docs/fileutil_zh-CN.md#WriteBytesToFile)
+-   [ReadFile](https://github.com/duke-git/lancet/blob/v1/docs/fileutil_zh-CN.md#ReadFile)
 
 ### 6. formatter 格式化器包含一些数据格式化处理方法。
 
@@ -509,6 +514,15 @@ import "github.com/duke-git/lancet/validator"
 -   [IsGBK](https://github.com/duke-git/lancet/blob/v1/docs/validator_zh-CN.md#IsGBK)
 -   [IsASCII](https://github.com/duke-git/lancet/blob/v1/docs/validator_zh-CN.md#IsASCII)
 -   [IsPrintable](https://github.com/duke-git/lancet/blob/v1/docs/validator_zh-CN.md#IsPrintable)
+-   [IsBin](https://github.com/duke-git/lancet/blob/v1/docs/validator_zh-CN.md#IsBin)
+-   [IsHex](https://github.com/duke-git/lancet/blob/v1/docs/validator_zh-CN.md#IsHex)
+-   [IsBase64URL](https://github.com/duke-git/lancet/blob/v1/docs/validator_zh-CN.md#IsBase64URL)
+-   [IsJWT](https://github.com/duke-git/lancet/blob/v1/docs/validator_zh-CN.md#IsJWT)
+-   [IsVisa](https://github.com/duke-git/lancet/blob/v1/docs/validator_zh-CN.md#IsVisa)
+-   [IsMasterCard](https://github.com/duke-git/lancet/blob/v1/docs/validator_zh-CN.md#IsMasterCard)
+-   [IsAmericanExpress](https://github.com/duke-git/lancet/blob/v1/docs/validator_zh-CN.md#IsAmericanExpress)
+-   [IsUnionPay](https://github.com/duke-git/lancet/blob/v1/docs/validator_zh-CN.md#IsUnionPay)
+-   [IsChinaUnionPay](https://github.com/duke-git/lancet/blob/v1/docs/validator_zh-CN.md#IsChinaUnionPay)
 
 ## 如何贡献代码
 

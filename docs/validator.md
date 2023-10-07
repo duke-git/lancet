@@ -54,7 +54,7 @@ import (
 -   [IsZeroValue](#IsZeroValue)
 -   [IsGBK](#IsGBK)
 -   [IsASCII](#IsASCII)
--   [IsAIsPrintableSCII](#IsPrintable)
+-   [IsPrintable](#IsPrintable)
 -   [IsBin](#IsBin)
 -   [IsHex](#IsHex)
 -   [IsBase64URL](#IsBase64URL)

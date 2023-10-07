@@ -154,7 +154,9 @@ import "github.com/duke-git/lancet/cryptor"
 -   [GenerateRsaKey](https://github.com/duke-git/lancet/blob/v1/docs/cryptor.md#GenerateRsaKey)
 -   [RsaEncrypt](https://github.com/duke-git/lancet/blob/v1/docs/cryptor.md#RsaEncrypt)
 -   [RsaDecrypt](https://github.com/duke-git/lancet/blob/v1/docs/cryptor.md#RsaDecrypt)
-
+-   [GenerateRsaKeyPair](https://github.com/duke-git/lancet/blob/v1/docs/cryptor.md#GenerateRsaKeyPair)
+-   [RsaEncryptOAEP](https://github.com/duke-git/lancet/blob/v1/docs/cryptor.md#RsaEncryptOAEP)
+-   [RsaDecryptOAEP](https://github.com/duke-git/lancet/blob/v1/docs/cryptor.md#RsaDecryptOAEP)
 ### 4. Datetime package supports date and time format and compare.
 
 ```go
@@ -237,6 +239,7 @@ import "github.com/duke-git/lancet/fileutil"
 -   [WriteCsvFile](https://github.com/duke-git/lancet/blob/v1/docs/fileutil.md#WriteCsvFile)
 -   [WriteStringToFile](https://github.com/duke-git/lancet/blob/v1/docs/fileutil.md#WriteStringToFile)
 -   [WriteBytesToFile](https://github.com/duke-git/lancet/blob/v1/docs/fileutil.md#WriteBytesToFile)
+-   [ReadFile](https://github.com/duke-git/lancet/blob/v1/docs/fileutil.md#ReadFile)
 
 ### 6. Formatter contains some functions for data formatting.
 
@@ -510,6 +513,16 @@ import "github.com/duke-git/lancet/validator"
 -   [IsGBK](https://github.com/duke-git/lancet/blob/v1/docs/validator.md#IsGBK)
 -   [IsASCII](https://github.com/duke-git/lancet/blob/v1/docs/validator.md#IsASCII)
 -   [IsPrintable](https://github.com/duke-git/lancet/blob/v1/docs/validator.md#IsPrintable)
+-   [IsBin](https://github.com/duke-git/lancet/blob/v1/docs/validator.md#IsBin)
+-   [IsHex](https://github.com/duke-git/lancet/blob/v1/docs/validator.md#IsHex)
+-   [IsBase64URL](https://github.com/duke-git/lancet/blob/v1/docs/validator.md#IsBase64URL)
+-   [IsJWT](https://github.com/duke-git/lancet/blob/v1/docs/validator.md#IsJWT)
+-   [IsVisa](https://github.com/duke-git/lancet/blob/v1/docs/validator.md#IsVisa)
+-   [IsMasterCard](https://github.com/duke-git/lancet/blob/v1/docs/validator.md#IsMasterCard)
+-   [IsAmericanExpress](https://github.com/duke-git/lancet/blob/v1/docs/validator.md#IsAmericanExpress)
+-   [IsUnionPay](https://github.com/duke-git/lancet/blob/v1/docs/validator.md#IsUnionPay)
+-   [IsChinaUnionPay](https://github.com/duke-git/lancet/blob/v1/docs/validator.md#IsChinaUnionPay)
+
 
 ## How to Contribute
 
