@@ -4,7 +4,7 @@
 <br/>
 
 ![Go version](https://img.shields.io/badge/go-%3E%3Dv1.18-9cf)
-[![Release](https://img.shields.io/badge/release-2.2.6-green.svg)](https://github.com/duke-git/lancet/releases)
+[![Release](https://img.shields.io/badge/release-2.2.7-green.svg)](https://github.com/duke-git/lancet/releases)
 [![GoDoc](https://godoc.org/github.com/duke-git/lancet/v2?status.svg)](https://pkg.go.dev/github.com/duke-git/lancet/v2)
 [![Go Report Card](https://goreportcard.com/badge/github.com/duke-git/lancet/v2)](https://goreportcard.com/report/github.com/duke-git/lancet/v2)
 [![test](https://github.com/duke-git/lancet/actions/workflows/codecov.yml/badge.svg?branch=main&event=push)](https://github.com/duke-git/lancet/actions/workflows/codecov.yml)
@@ -37,7 +37,7 @@
 go get github.com/duke-git/lancet/v2 //安装v2最新版本v2.x.x
 ```
 
-2. <b>使用 go1.18 以下版本的用户，必须安装 v1.x.x。目前最新的 v1 版本是 v1.4.1。</b>
+2. <b>使用 go1.18 以下版本的用户，必须安装 v1.x.x。目前最新的 v1 版本是 v1.4.2。</b>
 
 ```go
 go get github.com/duke-git/lancet// 使用go1.18以下版本, 必须安装v1.x.x版本
@@ -1558,6 +1558,8 @@ import "github.com/duke-git/lancet/v2/strutil"
 -   **<big>IsBlank</big>** : 检查字符串是否为空格或空。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/strutil.md#IsBlank)]
     [[play](https://go.dev/play/p/6zXRH_c0Qd3)]
+-   **<big>IsNotBlank</big>** : 检查字符串是否不为空。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/strutil.md#IsNotBlank)]
 -   **<big>HasPrefixAny</big>** : 检查字符串是否以指定字符串数组中的任何一个开头。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/strutil.md#HasPrefixAny)]
     [[play](https://go.dev/play/p/8UUTl2C5slo)]
