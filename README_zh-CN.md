@@ -451,6 +451,12 @@ import "github.com/duke-git/lancet/v2/cryptor"
 -   **<big>RsaDecrypt</big>** : 用私钥文件 rsa 解密数据。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/cryptor.md#RsaDecrypt)]
     [[play](https://go.dev/play/p/uef0q1fz53I)]
+-   **<big>GenerateRsaKeyPair</big>** : 创建rsa公钥私钥和key。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/cryptor.md#GenerateRsaKeyPair)]
+-   **<big>RsaEncryptOAEP</big>** : rsa OAEP加密。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/cryptor.md#RsaEncryptOAEP)]
+-   **<big>RsaDecryptOAEP</big>** : rsa OAEP解密。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/cryptor.md#RsaDecryptOAEP)]
 
 <h3 id="datetime"> 7. datetime 日期时间处理包，格式化日期，比较日期。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 
@@ -707,6 +713,8 @@ import "github.com/duke-git/lancet/v2/fileutil"
 -   **<big>WriteStringToFile</big>** : 将字符串写入文件。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/fileutil.md#WriteStringToFile)]
     [[play](https://go.dev/play/p/GhLS6d8lH_g)]
+-   **<big>ReadFile</big>** : 读取文件或者URL。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/fileutil.md#ReadFile)]
 
 <h3 id="formatter"> 10. formatter 格式化器包含一些数据格式化处理方法。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 

@@ -451,6 +451,12 @@ import "github.com/duke-git/lancet/v2/cryptor"
 -   **<big>RsaDecrypt</big>** : decrypt data with ras algorithm.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/cryptor.md#RsaDecrypt)]
     [[play](https://go.dev/play/p/uef0q1fz53I)]
+-   **<big>GenerateRsaKeyPair</big>** : creates rsa private and public key.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/cryptor.md#GenerateRsaKeyPair)]
+-   **<big>RsaEncryptOAEP</big>** : encrypts the given data with RSA-OAEP.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/cryptor.md#RsaEncryptOAEP)]
+-   **<big>RsaDecryptOAEP</big>** : decrypts the data with RSA-OAEP
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/cryptor.md#RsaDecryptOAEP)]
 
 <h3 id="datetime"> 7. Datetime package supports date and time format and compare. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
@@ -703,6 +709,8 @@ import "github.com/duke-git/lancet/v2/fileutil"
 -   **<big>WriteStringToFile</big>** : write string to target file.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/fileutil.md#WriteStringToFile)]
     [[play](https://go.dev/play/p/GhLS6d8lH_g)]
+-   **<big>ReadFile</big>** : read file or url.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/fileutil.md#ReadFile)]
 
 <h3 id="formatter"> 10. Formatter contains some functions for data formatting. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
