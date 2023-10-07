@@ -11,7 +11,7 @@ func TestArrayQueue_Enqueue(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestArrayQueue_Enqueue")
 
-	queue := NewArrayQueue[int](5)
+	queue := NewArrayQueue[int](2)
 	queue.Enqueue(1)
 	queue.Enqueue(2)
 	queue.Enqueue(3)

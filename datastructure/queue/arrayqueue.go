@@ -12,7 +12,7 @@ import (
 
 // ArrayQueue implements queue with slice
 type ArrayQueue[T any] struct {
-	items    []T
+	data     []T
 	head     int
 	tail     int
 	capacity int
@@ -21,7 +21,7 @@ type ArrayQueue[T any] struct {
 
 func NewArrayQueue[T any](capacity int) *ArrayQueue[T] {
 	return &ArrayQueue[T]{
-		items:    make([]T, 0, capacity),
+		data:     make([]T, 0, capacity),
 		head:     0,
 		tail:     0,
 		capacity: capacity,
@@ -33,7 +33,7 @@ func NewArrayQueue[T any](capacity int) *ArrayQueue[T] {
 func (q *ArrayQueue[T]) Data() []T {
 	items := []T{}
 	for i := q.head; i < q.tail; i++ {
-		items = append(items, q.items[i])
+		items = append(items, q.data[i])
 	}
 	return items
 }
@@ -55,40 +55,71 @@ func (q *ArrayQueue[T]) IsFull() bool {
 
 // Front return front value of queue
 func (q *ArrayQueue[T]) Front() T {
-	return q.items[0]
+	return q.data[0]
 }
 
 // Back return back value of queue
 func (q *ArrayQueue[T]) Back() T {
-	return q.items[q.size-1]
+	return q.data[q.size-1]
 }
 
 // EnQueue put element into queue
 func (q *ArrayQueue[T]) Enqueue(item T) bool {
-	if q.head == 0 && q.tail == q.capacity {
-		return false
-	} else if q.head != 0 && q.tail == q.capacity {
-		for i := q.head; i < q.tail; i++ {
-			q.items[i-q.head] = q.items[i]
+	if q.tail < q.capacity {
+		q.data = append(q.data, item)
+		// q.tail++
+		q.data[q.tail] = item
+	} else {
+		//upgrade
+		if q.head > 0 {
+			for i := 0; i < q.tail-q.head; i++ {
+				q.data[i] = q.data[i+q.head]
+			}
+			q.tail -= q.head
+			q.head = 0
+		} else {
+			if q.capacity < 65536 {
+				if q.capacity == 0 {
+					q.capacity = 1
+				}
+				q.capacity *= 2
+			} else {
+				q.capacity += 2 ^ 16
+			}
+
+			tmp := make([]T, q.capacity, q.capacity)
+			copy(tmp, q.data)
+			q.data = tmp
 		}
-		q.tail = q.tail - q.head
-		q.head = 0
+
+		q.data[q.tail] = item
 	}
 
-	q.items = append(q.items, item)
 	q.tail++
 	q.size++
+
 	return true
 }
 
 // DeQueue remove head element of queue and return it, if queue is empty, return nil and error
 func (q *ArrayQueue[T]) Dequeue() (T, bool) {
 	var item T
-	if q.head == q.tail {
+	if q.size == 0 {
 		return item, false
 	}
-	item = q.items[q.head]
+
+	item = q.data[q.head]
 	q.head++
+
+	if q.head >= 1024 || q.head*2 > q.tail {
+		q.capacity -= q.head
+		q.tail -= q.head
+		tmp := make([]T, q.capacity, q.capacity)
+		copy(tmp, q.data[q.head:])
+		q.data = tmp
+		q.head = 0
+	}
+
 	q.size--
 	return item, true
 }
@@ -96,7 +127,7 @@ func (q *ArrayQueue[T]) Dequeue() (T, bool) {
 // Clear the queue data
 func (q *ArrayQueue[T]) Clear() {
 	capacity := q.capacity
-	q.items = make([]T, 0, capacity)
+	q.data = make([]T, 0, capacity)
 	q.head = 0
 	q.tail = 0
 	q.size = 0
@@ -105,7 +136,7 @@ func (q *ArrayQueue[T]) Clear() {
 
 // Contain checks if the value is in queue or not
 func (q *ArrayQueue[T]) Contain(value T) bool {
-	for _, v := range q.items {
+	for _, v := range q.data {
 		if reflect.DeepEqual(v, value) {
 			return true
 		}
@@ -117,7 +148,7 @@ func (q *ArrayQueue[T]) Contain(value T) bool {
 func (q *ArrayQueue[T]) Print() {
 	info := "["
 	for i := q.head; i < q.tail; i++ {
-		info += fmt.Sprintf("%+v, ", q.items[i])
+		info += fmt.Sprintf("%+v, ", q.data[i])
 	}
 	info += "]"
 	fmt.Println(info)
