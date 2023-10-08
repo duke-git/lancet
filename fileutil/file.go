@@ -627,7 +627,7 @@ func WriteBytesToFile(filepath string, content []byte) error {
 }
 
 // ReadFile get file reader by a url or a local file
-// Play: todo
+// Play: https://go.dev/play/p/uNep3Tr8fqF
 func ReadFile(path string) (reader io.ReadCloser, closeFn func(), err error) {
 	switch {
 	case validator.IsUrl(path):

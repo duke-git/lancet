@@ -453,10 +453,14 @@ import "github.com/duke-git/lancet/v2/cryptor"
     [[play](https://go.dev/play/p/uef0q1fz53I)]
 -   **<big>GenerateRsaKeyPair</big>** : 创建rsa公钥私钥和key。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/cryptor.md#GenerateRsaKeyPair)]
+    [[play](https://go.dev/play/p/sSVmkfENKMz)]
 -   **<big>RsaEncryptOAEP</big>** : rsa OAEP加密。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/cryptor.md#RsaEncryptOAEP)]
+    [[play](https://go.dev/play/p/sSVmkfENKMz)]
 -   **<big>RsaDecryptOAEP</big>** : rsa OAEP解密。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/cryptor.md#RsaDecryptOAEP)]
+    [[play](https://go.dev/play/p/sSVmkfENKMz)]
+
 
 <h3 id="datetime"> 7. datetime 日期时间处理包，格式化日期，比较日期。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 
@@ -1560,6 +1564,7 @@ import "github.com/duke-git/lancet/v2/strutil"
     [[play](https://go.dev/play/p/6zXRH_c0Qd3)]
 -   **<big>IsNotBlank</big>** : 检查字符串是否不为空。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/strutil.md#IsNotBlank)]
+    [[play](https://go.dev/play/p/e_oJW0RAquA)]
 -   **<big>HasPrefixAny</big>** : 检查字符串是否以指定字符串数组中的任何一个开头。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/strutil.md#HasPrefixAny)]
     [[play](https://go.dev/play/p/8UUTl2C5slo)]

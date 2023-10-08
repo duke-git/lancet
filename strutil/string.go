@@ -409,6 +409,7 @@ func IsBlank(str string) bool {
 }
 
 // IsNotBlank checks if a string is not whitespace, not empty.
+// Play: https://go.dev/play/p/e_oJW0RAquA
 func IsNotBlank(str string) bool {
 	return !IsBlank(str)
 }

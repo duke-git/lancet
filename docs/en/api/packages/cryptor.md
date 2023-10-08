@@ -1437,7 +1437,7 @@ func main() {
 func GenerateRsaKeyPair(keySize int) (*rsa.PrivateKey, *rsa.PublicKey)
 ```
 
-<b>Example:></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/sSVmkfENKMz)</span></b>
 
 ```go
 package main
@@ -1462,7 +1462,7 @@ func main() {
 func RsaEncryptOAEP(data []byte, label []byte, key rsa.PublicKey) ([]byte, error)
 ```
 
-<b>Example:></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/sSVmkfENKMz)</span></b>
 
 ```go
 package main
@@ -1505,7 +1505,7 @@ func main() {
 func RsaDecryptOAEP(ciphertext []byte, label []byte, key rsa.PrivateKey) ([]byte, error)
 ```
 
-<b>Example:></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/sSVmkfENKMz)</span></b>
 
 ```go
 package main

@@ -843,7 +843,7 @@ func main() {
 
 ### <span id="ReadFile">ReadFile</span>
 
-<p>Read File/URL</p>
+<p>Read File or URL.</p>
 
 <b>Signature:</b>
 
@@ -851,7 +851,7 @@ func main() {
 func ReadFile(path string) (reader io.ReadCloser, closeFn func(), err error) 
 ```
 
-<b>Example:<span style="float:right;display:inline-block;"> </span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/uNep3Tr8fqF)</span></b>
 
 ```go
 package main
@@ -862,19 +862,19 @@ import (
 )
 
 func main() {
-   reader, fn, err := ReadFile("https://httpbin.org/robots.txt")
-	if err != nil {
-		return
-	}
-	defer fn()
+    reader, fn, err := fileutil.ReadFile("https://httpbin.org/robots.txt")
+    if err != nil {
+        return
+    }
+    defer fn()
 
-	dat, err := io.ReadAll(reader)
-	if err != nil {
-		return
-	}
-	fmt.Println(string(dat))
-	// Output:
-	// User-agent: *
-	// Disallow: /deny
+    dat, err := io.ReadAll(reader)
+    if err != nil {
+        return
+    }
+    fmt.Println(string(dat))
+    // Output:
+    // User-agent: *
+    // Disallow: /deny
 }
 ```

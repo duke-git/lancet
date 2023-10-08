@@ -453,10 +453,14 @@ import "github.com/duke-git/lancet/v2/cryptor"
     [[play](https://go.dev/play/p/uef0q1fz53I)]
 -   **<big>GenerateRsaKeyPair</big>** : creates rsa private and public key.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/cryptor.md#GenerateRsaKeyPair)]
+    [[play](https://go.dev/play/p/sSVmkfENKMz)]
 -   **<big>RsaEncryptOAEP</big>** : encrypts the given data with RSA-OAEP.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/cryptor.md#RsaEncryptOAEP)]
+    [[play](https://go.dev/play/p/sSVmkfENKMz)]
 -   **<big>RsaDecryptOAEP</big>** : decrypts the data with RSA-OAEP
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/cryptor.md#RsaDecryptOAEP)]
+    [[play](https://go.dev/play/p/sSVmkfENKMz)]
+
 
 <h3 id="datetime"> 7. Datetime package supports date and time format and compare. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
@@ -1553,6 +1557,7 @@ import "github.com/duke-git/lancet/v2/strutil"
     [[play](https://go.dev/play/p/6zXRH_c0Qd3)]
 -   **<big>IsNotBlank</big>** : checks if a string is not whitespace or not empty.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/strutil.md#IsNotBlank)]
+    [[play](https://go.dev/play/p/e_oJW0RAquA)]
 -   **<big>HasPrefixAny</big>** : checks if a string starts with any of an array of specified strings.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/strutil.md#HasPrefixAny)]
     [[play](https://go.dev/play/p/8UUTl2C5slo)]

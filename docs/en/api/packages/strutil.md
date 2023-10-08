@@ -1087,7 +1087,7 @@ func main() {
 func IsNotBlank(str string) bool
 ```
 
-<b>Example:</b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/e_oJW0RAquA)</span></b>
 
 ```go
 import (
@@ -1096,11 +1096,11 @@ import (
 )
 
 func main() {
-    result1 := IsNotBlank("")
-    result2 := IsNotBlank("	")
-    result3 := IsNotBlank("\t\v\f\n")
-    result4 := IsNotBlank(" 中文")
-    result5 := IsNotBlank(" 	world	")
+    result1 := strutil.IsNotBlank("")
+    result2 := strutil.IsNotBlank("	")
+    result3 := strutil.IsNotBlank("\t\v\f\n")
+    result4 := strutil.IsNotBlank(" 中文")
+    result5 := strutil.IsNotBlank(" 	world	")
     
     fmt.Println(result1)
     fmt.Println(result2)
