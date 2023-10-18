@@ -14,6 +14,7 @@ package netutil
 
 import (
 	"bytes"
+	"context"
 	"crypto/tls"
 	"encoding/json"
 	"errors"
@@ -110,22 +111,23 @@ type HttpClientConfig struct {
 	Verbose          bool
 }
 
-// defaultHttpClientConfig defalut client config
+// defaultHttpClientConfig defalut client config.
 var defaultHttpClientConfig = &HttpClientConfig{
 	Compressed:       false,
 	HandshakeTimeout: 20 * time.Second,
 	ResponseTimeout:  40 * time.Second,
 }
 
-// HttpClient is used for sending http request
+// HttpClient is used for sending http request.
 type HttpClient struct {
 	*http.Client
 	TLS     *tls.Config
 	Request *http.Request
 	Config  HttpClientConfig
+	Context context.Context
 }
 
-// NewHttpClient make a HttpClient instance
+// NewHttpClient make a HttpClient instance.
 func NewHttpClient() *HttpClient {
 	client := &HttpClient{
 		Client: &http.Client{
@@ -141,7 +143,7 @@ func NewHttpClient() *HttpClient {
 	return client
 }
 
-// NewHttpClientWithConfig make a HttpClient instance with pass config
+// NewHttpClientWithConfig make a HttpClient instance with pass config.
 func NewHttpClientWithConfig(config *HttpClientConfig) *HttpClient {
 	if config == nil {
 		config = defaultHttpClientConfig
@@ -176,6 +178,11 @@ func (client *HttpClient) SendRequest(request *HttpRequest) (*http.Response, err
 	rawUrl := request.RawURL
 
 	req, err := http.NewRequest(request.Method, rawUrl, bytes.NewBuffer(request.Body))
+
+	if client.Context != nil {
+		req, err = http.NewRequestWithContext(client.Context, request.Method, rawUrl, bytes.NewBuffer(request.Body))
+	}
+
 	if err != nil {
 		return nil, err
 	}
