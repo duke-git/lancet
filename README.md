@@ -21,7 +21,7 @@
 
 ## <a href="https://www.golancet.cn/en/" target="_blank"> Website</a> | [简体中文](./README_zh-CN.md)
 
-## Feature
+## Features
 
 -   👏 Comprehensive, efficient and reusable.
 -   💪 600+ go util functions, support string, slice, datetime, net, crypt...
