@@ -32,8 +32,10 @@ func splitIntoStrings(s string, upperCase bool) []string {
 
 	for i := 0; i < len(runes)-1; i++ {
 		if isUpper(runes[i][0]) && isLower(runes[i+1][0]) {
-			runes[i+1] = append([]rune{runes[i][len(runes[i])-1]}, runes[i+1]...)
-			runes[i] = runes[i][:len(runes[i])-1]
+			length := len(runes[i]) - 1
+			temp := runes[i][length]
+			runes[i+1] = append([]rune{temp}, runes[i+1]...)
+			runes[i] = runes[i][:length]
 		}
 	}
 
