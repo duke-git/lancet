@@ -70,7 +70,7 @@ func compareRefValue(operator string, leftObj, rightObj any, kind reflect.Kind) 
 
 			switch operator {
 			case equal:
-				if bytes.Compare(bytesObj1, bytesObj2) == 0 {
+				if bytes.Equal(bytesObj1, bytesObj2) {
 					return true
 				}
 			case lessThan:
