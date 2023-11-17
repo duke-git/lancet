@@ -8,6 +8,7 @@ import (
 	"errors"
 	"fmt"
 	"sync"
+	"sync/atomic"
 
 	"github.com/duke-git/lancet/v2/internal"
 )
@@ -16,14 +17,15 @@ import (
 // ref : chebyrash/promise (https://github.com/chebyrash/promise)
 // see js promise: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
 type Promise[T any] struct {
+	*p_[T]
+}
+
+type p_[T any] struct {
 	runnable func(resolve func(T), reject func(error))
 	result   T
 	err      error
-
-	pending bool
-
-	mu *sync.Mutex
-	wg *sync.WaitGroup
+	wait     sync.WaitGroup
+	pending  atomic.Bool
 }
 
 // New create a new promise instance.
@@ -32,12 +34,13 @@ func New[T any](runnable func(resolve func(T), reject func(error))) *Promise[T] 
 		panic("runnable function should not be nil")
 	}
 
-	p := &Promise[T]{
+	p := &Promise[T]{&p_[T]{
 		runnable: runnable,
-		pending:  true,
-		mu:       &sync.Mutex{},
-		wg:       &sync.WaitGroup{},
-	}
+		wait:     sync.WaitGroup{},
+		pending:  atomic.Bool{},
+	}}
+
+	p.pending.Store(true)
 
 	defer p.run()
 
@@ -45,11 +48,11 @@ func New[T any](runnable func(resolve func(T), reject func(error))) *Promise[T] 
 }
 
 func (p *Promise[T]) run() {
-	p.wg.Add(1)
+	p.p_.wait.Add(1)
 
 	go func() {
 		defer func() {
-			if !p.pending {
+			if !p.pending.Load() {
 				return
 			}
 
@@ -64,50 +67,42 @@ func (p *Promise[T]) run() {
 
 // Resolve returns a Promise that has been resolved with a given value.
 func Resolve[T any](resolution T) *Promise[T] {
-	return &Promise[T]{
+	return &Promise[T]{&p_[T]{
 		result:  resolution,
-		pending: false,
-		mu:      &sync.Mutex{},
-		wg:      &sync.WaitGroup{},
-	}
+		wait:    sync.WaitGroup{},
+		pending: atomic.Bool{},
+	}}
 }
 
 func (p *Promise[T]) resolve(value T) {
-	p.mu.Lock()
-	defer p.mu.Unlock()
-
-	if !p.pending {
+	if !p.pending.Load() {
 		return
 	}
 
 	p.result = value
-	p.pending = false
+	p.pending.Store(false)
 
-	p.wg.Done()
+	p.wait.Done()
 }
 
 // Reject returns a Promise that has been rejected with a given error.
 func Reject[T any](err error) *Promise[T] {
-	return &Promise[T]{
+	return &Promise[T]{&p_[T]{
 		err:     err,
-		pending: false,
-		mu:      &sync.Mutex{},
-		wg:      &sync.WaitGroup{},
-	}
+		wait:    sync.WaitGroup{},
+		pending: atomic.Bool{},
+	}}
 }
 
 func (p *Promise[T]) reject(err error) {
-	p.mu.Lock()
-	defer p.mu.Unlock()
-
-	if !p.pending {
+	if !p.pending.Load() {
 		return
 	}
 
 	p.err = err
-	p.pending = false
+	p.pending.Store(false)
 
-	p.wg.Done()
+	p.wait.Done()
 }
 
 // Then allows chain calls to other promise methods.
@@ -149,18 +144,18 @@ func Catch[T any](promise *Promise[T], rejection func(err error) error) *Promise
 // Catch chain an existing promise with an intermediate reject function.
 func (p *Promise[T]) Catch(reject func(error) error) *Promise[T] {
 	return New(func(resolve func(T), rej func(error)) {
-		resutl, err := p.Await()
+		result, err := p.Await()
 		if err != nil {
 			rej(reject(err))
 			return
 		}
-		resolve(resutl)
+		resolve(result)
 	})
 }
 
 // Await blocks until the 'runable' to finish execution.
 func (p *Promise[T]) Await() (T, error) {
-	p.wg.Wait()
+	p.wait.Wait()
 	return p.result, p.err
 }
 
