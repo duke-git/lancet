@@ -16,7 +16,7 @@ func TestResolve(t *testing.T) {
 	p := Resolve("abc")
 
 	assert.Equal("abc", p.result)
-	assert.Equal(false, p.pending)
+	assert.Equal(false, p.pending.Load())
 }
 
 func TestReject(t *testing.T) {
@@ -28,7 +28,7 @@ func TestReject(t *testing.T) {
 	p := Reject[string](err)
 
 	assert.Equal("error", p.err.Error())
-	assert.Equal(false, p.pending)
+	assert.Equal(false, p.pending.Load())
 }
 
 func TestThen(t *testing.T) {
