@@ -2487,3 +2487,33 @@ func main() {
 	// [[1 2] [3 4] [5]]
 }
 ```
+
+### <span id="Random">Random</span>
+
+<p>Random get a random item of slice, return idx=-1 when slice is empty. </p>
+
+<b>Signature:</b>
+
+```go
+func Random[T any](slice []T) (val T, idx int)
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](TODO)</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+	nums := []int{1, 2, 3, 4, 5}
+
+	val, idx := slice.Random(nums)
+	if idx >= 0 && idx < len(nums) && slice.Contain(nums, val) {
+		fmt.Println("okk")
+	}
+	// Output:
+	// okk
+}
+```

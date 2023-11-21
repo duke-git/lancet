@@ -1185,3 +1185,28 @@ func TestPartition(t *testing.T) {
 	assert.Equal([][]int{{2, 4}, {1, 3, 5}}, Partition([]int{1, 2, 3, 4, 5}, func(n int) bool { return n%2 == 0 }))
 	assert.Equal([][]int{{1, 2}, {3, 4}, {5}}, Partition([]int{1, 2, 3, 4, 5}, func(n int) bool { return n == 1 || n == 2 }, func(n int) bool { return n == 2 || n == 3 || n == 4 }))
 }
+
+func TestRandom(t *testing.T) {
+	t.Parallel()
+	assert := internal.NewAssert(t, "TestRandom")
+
+	var arr []int
+	var val, idx int
+
+	_, idx = Random(arr)
+	assert.Equal(-1, idx)
+
+	arr = []int{}
+	_, idx = Random(arr)
+	assert.Equal(-1, idx)
+
+	arr = []int{1}
+	val, idx = Random(arr)
+	assert.Equal(0, idx)
+	assert.Equal(arr[idx], val)
+
+	arr = []int{1, 2, 3}
+	val, idx = Random(arr)
+	assert.Greater(len(arr), idx)
+	assert.Equal(arr[idx], val)
+}
