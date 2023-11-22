@@ -12,6 +12,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/duke-git/lancet/v2/random"
 	"golang.org/x/exp/constraints"
 )
 
@@ -1228,4 +1229,15 @@ func Partition[T any](slice []T, predicates ...func(item T) bool) [][]T {
 	}
 
 	return result
+}
+
+// Random get a random item of slice, return idx=-1 when slice is empty
+// Play: todo
+func Random[T any](slice []T) (val T, idx int) {
+	if len(slice) == 0 {
+		return val, -1
+	}
+
+	idx = random.RandInt(0, len(slice))
+	return slice[idx], idx
 }

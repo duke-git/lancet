@@ -1063,3 +1063,14 @@ func ExamplePartition() {
 	// [[2 4] [1 3 5]]
 	// [[1 2] [3 4] [5]]
 }
+
+func ExampleRandom() {
+	nums := []int{1, 2, 3, 4, 5}
+
+	val, idx := Random(nums)
+	if idx >= 0 && idx < len(nums) && Contain(nums, val) {
+		fmt.Println("okk")
+	}
+	// Output:
+	// okk
+}
