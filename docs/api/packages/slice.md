@@ -2489,3 +2489,34 @@ func main() {
 	// [[1 2] [3 4] [5]]
 }
 ```
+
+
+### <span id="Random">Random</span>
+
+<p>随机返回切片中元素以及下标, 当切片长度为0时返回下标-1</p>
+
+<b>函数签名:</b>
+
+```go
+func Random[T any](slice []T) (val T, idx int)
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](TODO)</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+	nums := []int{1, 2, 3, 4, 5}
+
+	val, idx := slice.Random(nums)
+	if idx >= 0 && idx < len(nums) && slice.Contain(nums, val) {
+		fmt.Println("okk")
+	}
+	// Output:
+	// okk
+}
+```
