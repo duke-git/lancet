@@ -572,9 +572,6 @@ import "github.com/duke-git/lancet/v2/datetime"
 -   **<big>IsLeapYear</big>** :验证是否是闰年。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/datetime.md#IsLeapYear)]
     [[play](https://go.dev/play/p/xS1eS2ejGew)]
--   **<big>IsLeapYear</big>** : check if param `year` is leap year or not.
-    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/datetime.md#IsLeapYear)]
-    [[play](https://go.dev/play/p/xS1eS2ejGew)]
 -   **<big>BetweenSeconds</big>** : 返回两个时间的间隔秒数。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/datetime.md#BetweenSeconds)]
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/datetime.md#BetweenSeconds)]
@@ -1126,7 +1123,7 @@ import "github.com/duke-git/lancet/v2/retry"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/retry.md#RetryTimes)]
     [[play](https://go.dev/play/p/ssfVeU2SwLO)]
 
-<h3 id="slice"> 18. slice 包含操作切片的方法集合。&nbsp; &nbsp; &nbsp; &nbsp; [回到目录](#index)
+<h3 id="slice"> 18. slice 包含操作切片的方法集合。&nbsp; &nbsp; &nbsp; &nbsp; <a href="#index">回到目录</a></h3>
 
 ```go
 import "github.com/duke-git/lancet/v2/slice"
