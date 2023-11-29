@@ -572,9 +572,6 @@ import "github.com/duke-git/lancet/v2/datetime"
 -   **<big>IsLeapYear</big>** :验证是否是闰年。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/datetime.md#IsLeapYear)]
     [[play](https://go.dev/play/p/xS1eS2ejGew)]
--   **<big>IsLeapYear</big>** : check if param `year` is leap year or not.
-    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/datetime.md#IsLeapYear)]
-    [[play](https://go.dev/play/p/xS1eS2ejGew)]
 -   **<big>BetweenSeconds</big>** : 返回两个时间的间隔秒数。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/datetime.md#BetweenSeconds)]
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/datetime.md#BetweenSeconds)]
