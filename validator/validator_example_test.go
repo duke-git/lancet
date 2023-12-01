@@ -154,7 +154,7 @@ func ExampleIsChineseMobile() {
 }
 
 func ExampleIsChineseIdNum() {
-	result1 := IsChineseIdNum("210911192105130715")
+	result1 := IsChineseIdNum("210911192105130714")
 	result2 := IsChineseIdNum("123456")
 
 	fmt.Println(result1)

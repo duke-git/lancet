@@ -6,12 +6,14 @@ package validator
 
 import (
 	"encoding/json"
+	"fmt"
 	"net"
 	"net/url"
 	"reflect"
 	"regexp"
 	"strconv"
 	"strings"
+	"time"
 	"unicode"
 )
 
@@ -24,7 +26,7 @@ var (
 	dnsMatcher             *regexp.Regexp = regexp.MustCompile(`^[a-zA-Z]([a-zA-Z0-9\-]+[\.]?)*[a-zA-Z0-9]$`)
 	emailMatcher           *regexp.Regexp = regexp.MustCompile(`\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*`)
 	chineseMobileMatcher   *regexp.Regexp = regexp.MustCompile(`^1(?:3\d|4[4-9]|5[0-35-9]|6[67]|7[013-8]|8\d|9\d)\d{8}$`)
-	chineseIdMatcher       *regexp.Regexp = regexp.MustCompile(`^[1-9]\d{5}(18|19|20|21|22)\d{2}((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$`)
+	chineseIdMatcher       *regexp.Regexp = regexp.MustCompile(`^(\d{17})([0-9]|X|x)$`)
 	chineseMatcher         *regexp.Regexp = regexp.MustCompile("[\u4e00-\u9fa5]")
 	chinesePhoneMatcher    *regexp.Regexp = regexp.MustCompile(`\d{3}-\d{8}|\d{4}-\d{7}|\d{4}-\d{8}`)
 	creditCardMatcher      *regexp.Regexp = regexp.MustCompile(`^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|(222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)[0-9]{12}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\\d{3})\\d{11}|6[27][0-9]{14})$`)
@@ -37,6 +39,52 @@ var (
 	americanExpressMatcher *regexp.Regexp = regexp.MustCompile(`^3[47][0-9]{13}$`)
 	unionPay               *regexp.Regexp = regexp.MustCompile("^62[0-5]\\d{13,16}$")
 	chinaUnionPay          *regexp.Regexp = regexp.MustCompile(`^62[0-9]{14,17}$`)
+)
+
+var (
+	// Identity card formula
+	factor = [17]int{7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2}
+	// ID verification bit
+	verifyStr = [11]string{"1", "0", "X", "9", "8", "7", "6", "5", "4", "3", "2"}
+	// Starting year of ID card
+	birthStartYear = 1900
+	// Province code
+	provinceKv = map[string]struct{}{
+		"11": {},
+		"12": {},
+		"13": {},
+		"14": {},
+		"15": {},
+		"21": {},
+		"22": {},
+		"23": {},
+		"31": {},
+		"32": {},
+		"33": {},
+		"34": {},
+		"35": {},
+		"36": {},
+		"37": {},
+		"41": {},
+		"42": {},
+		"43": {},
+		"44": {},
+		"45": {},
+		"46": {},
+		"50": {},
+		"51": {},
+		"52": {},
+		"53": {},
+		"54": {},
+		"61": {},
+		"62": {},
+		"63": {},
+		"64": {},
+		"65": {},
+		//"71": {},
+		//"81": {},
+		//"82": {},
+	}
 )
 
 // IsAlpha checks if the string contains only letters (a-zA-Z).
@@ -120,7 +168,7 @@ func ContainLetter(str string) bool {
 	return letterRegexMatcher.MatchString(str)
 }
 
-// ContainLetter check if the string contain at least one number.
+// ContainNumber check if the string contain at least one number.
 func ContainNumber(input string) bool {
 	return numberRegexMatcher.MatchString(input)
 }
@@ -228,7 +276,32 @@ func IsChineseMobile(mobileNum string) bool {
 // IsChineseIdNum check if the string is chinese id card.
 // Play: https://go.dev/play/p/d8EWhl2UGDF
 func IsChineseIdNum(id string) bool {
-	return chineseIdMatcher.MatchString(id)
+	// All characters should be numbers, and the last digit can be either x or X
+	if !chineseIdMatcher.MatchString(id) {
+		return false
+	}
+
+	// Verify province codes and complete all province codes according to GB/T2260
+	_, ok := provinceKv[id[0:2]]
+	if !ok {
+		return false
+	}
+
+	// Verify birthday, must be greater than birthStartYear and less than the current year
+	birthStr := fmt.Sprintf("%s-%s-%s", id[6:10], id[10:12], id[12:14])
+	birthday, err := time.Parse("2006-01-02", birthStr)
+	if err != nil || birthday.After(time.Now()) || birthday.Year() < birthStartYear {
+		return false
+	}
+
+	// Verification code
+	sum := 0
+	for i, c := range id[:17] {
+		v, _ := strconv.Atoi(string(c))
+		sum += v * factor[i]
+	}
+
+	return verifyStr[sum%11] == strings.ToUpper(id[17:18])
 }
 
 // ContainChinese check if the string contain mandarin chinese.
@@ -384,7 +457,7 @@ func IsGBK(data []byte) bool {
 	return true
 }
 
-// IsNumberStr check if the value is number(integer, float) or not.
+// IsNumber check if the value is number(integer, float) or not.
 // Play: https://go.dev/play/p/mdJHOAvtsvF
 func IsNumber(v any) bool {
 	return IsInt(v) || IsFloat(v)

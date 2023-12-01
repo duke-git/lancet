@@ -320,10 +320,13 @@ func TestIsChineseIdNum(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestIsChineseIdNum")
 
-	assert.Equal(true, IsChineseIdNum("210911192105130715"))
-	assert.Equal(true, IsChineseIdNum("21091119210513071X"))
-	assert.Equal(true, IsChineseIdNum("21091119210513071x"))
+	assert.Equal(true, IsChineseIdNum("210911192105130714"))
+	assert.Equal(true, IsChineseIdNum("11010519491231002X"))
+	assert.Equal(true, IsChineseIdNum("11010519491231002x"))
 	assert.Equal(false, IsChineseIdNum("123456"))
+	assert.Equal(false, IsChineseIdNum("990911192105130714"))
+	assert.Equal(false, IsChineseIdNum("990911189905130714"))
+	assert.Equal(false, IsChineseIdNum("210911222205130714"))
 }
 
 func TestIsCreditCard(t *testing.T) {
