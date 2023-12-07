@@ -167,3 +167,31 @@ func TestRandSymbolChar(t *testing.T) {
 	assert.Equal(10, len(symbolChars))
 	assert.Equal(true, reg.MatchString(symbolChars))
 }
+
+func TestRandFloat(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestRandFloat")
+
+	r1 := RandFloat(1.1, 10.1, 2)
+	t.Log(r1)
+	assert.GreaterOrEqual(r1, 5.0)
+	assert.Less(r1, 10.1)
+
+	r2 := RandFloat(1.1, 1.1, 2)
+	assert.Equal(1.1, r2)
+
+	r3 := RandFloat(10.1, 1.1, 2)
+	assert.GreaterOrEqual(r1, 1.1)
+	assert.Less(r3, 10.1)
+}
+
+func TestRandFloats(t *testing.T) {
+	t.Parallel()
+	assert := internal.NewAssert(t, "TestRandFloats")
+
+	result := RandFloats(5, 1.0, 5.0, 2)
+	t.Log("TestRandFloats result: ", result)
+
+	assert.Equal(len(result), 5)
+}

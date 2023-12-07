@@ -10,6 +10,8 @@ import (
 	"io"
 	"math/rand"
 	"time"
+
+	"github.com/duke-git/lancet/v2/mathutil"
 )
 
 const (
@@ -24,7 +26,7 @@ func init() {
 	rand.Seed(time.Now().UnixNano())
 }
 
-// RandInt generate random int between min and max, maybe min,  not be max.
+// RandInt generate random int between [min, max).
 // Play: https://go.dev/play/p/pXyyAAI5YxD
 func RandInt(min, max int) int {
 	if min == max {
@@ -36,6 +38,22 @@ func RandInt(min, max int) int {
 	}
 
 	return rand.Intn(max-min) + min
+}
+
+// RandFloat generate random float64 number between [min, max) with specific precision.
+// Play: todo
+func RandFloat(min, max float64, precision int) float64 {
+	if min == max {
+		return min
+	}
+
+	if max < min {
+		min, max = max, min
+	}
+
+	n := rand.Float64()*(max-min) + min
+
+	return mathutil.RoundToFloat(n, precision)
 }
 
 // RandBytes generate random byte slice.
@@ -134,6 +152,24 @@ func RandUniqueIntSlice(n, min, max int) []int {
 	used := make(map[int]struct{}, n)
 	for i := 0; i < n; {
 		r := RandInt(min, max)
+		if _, use := used[r]; use {
+			continue
+		}
+		used[r] = struct{}{}
+		nums[i] = r
+		i++
+	}
+
+	return nums
+}
+
+// RandFloats generate a slice of random float64 of length n that do not repeat.
+// Play: https://go.dev/play/p/uBkRSOz73Ec
+func RandFloats(n int, min, max float64, precision int) []float64 {
+	nums := make([]float64, n)
+	used := make(map[float64]struct{}, n)
+	for i := 0; i < n; {
+		r := RandFloat(min, max, precision)
 		if _, use := used[r]; use {
 			continue
 		}
