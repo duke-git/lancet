@@ -29,6 +29,7 @@ import (
 -   [RandLower](#RandLower)
 -   [RandNumeral](#RandNumeral)
 -   [RandNumeralOrLetter](#RandNumeralOrLetter)
+-   [RandSymbolChar](#RandSymbolChar)
 -   [UUIdV4](#UUIdV4)
 -   [RandUniqueIntSlice](#RandUniqueIntSlice)
 
@@ -215,6 +216,32 @@ import (
 func main() {
     randStr := random.RandNumeralOrLetter(6)
     fmt.Println(randStr) //0aW7cQ
+}
+```
+
+### <span id="RandSymbolChar">RandSymbolChar</span>
+
+<p>Generate a random symbol char of specified length. Symbol chars: !@#$%^&*()_+-=[]{}|;':\",./<>?.</p>
+
+<b>Signature:</b>
+
+```go
+func RandSymbolChar(length int) string
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/random"
+)
+
+func main() {
+    randStr := random.RandSymbolChar(6)
+    fmt.Println(randStr) //@#(_")
 }
 ```
 

@@ -218,6 +218,32 @@ func main() {
 }
 ```
 
+### <span id="RandSymbolChar">RandSymbolChar</span>
+
+<p>生成给定长度的随机符号字符串. 符号字符包括: !@#$%^&*()_+-=[]{}|;':\",./<>?。</p>
+
+<b>函数签名:</b>
+
+```go
+func RandSymbolChar(length int) string
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/random"
+)
+
+func main() {
+    randStr := random.RandSymbolChar(6)
+    fmt.Println(randStr) //@#(_")
+}
+```
+
 ### <span id="UUIdV4">UUIdV4</span>
 
 <p>生成UUID v4字符串</p>

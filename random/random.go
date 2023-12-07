@@ -53,19 +53,19 @@ func RandBytes(length int) []byte {
 	return b
 }
 
-// RandString generate random string of specified length.
+// RandString generate random alpha string of specified length.
 // Play: https://go.dev/play/p/W2xvRUXA7Mi
 func RandString(length int) string {
 	return random(Letters, length)
 }
 
-// RandUpper generate a random upper case string.
+// RandUpper generate a random upper case string of specified length.
 // Play: https://go.dev/play/p/29QfOh0DVuh
 func RandUpper(length int) string {
 	return random(UpperLetters, length)
 }
 
-// RandLower generate a random lower case string.
+// RandLower generate a random lower case string of specified length.
 // Play: https://go.dev/play/p/XJtZ471cmtI
 func RandLower(length int) string {
 	return random(LowwerLetters, length)
@@ -77,13 +77,14 @@ func RandNumeral(length int) string {
 	return random(Numeral, length)
 }
 
-// RandNumeralOrLetter generate a random numeral or letter string.
+// RandNumeralOrLetter generate a random numeral or alpha string of specified length.
 // Play: https://go.dev/play/p/19CEQvpx2jD
 func RandNumeralOrLetter(length int) string {
 	return random(Numeral+Letters, length)
 }
 
-// RandSymbolChar generate a random symbol char(!@#$%^&*()_+-=[]{}|;':\",./<>?).
+// RandSymbolChar generate a random symbol char of specified length.
+// symbol chars: !@#$%^&*()_+-=[]{}|;':\",./<>?.
 // Play: todo
 func RandSymbolChar(length int) string {
 	return random(SymbolChars, length)
