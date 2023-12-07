@@ -17,6 +17,7 @@ const (
 	LowwerLetters = "abcdefghijklmnopqrstuvwxyz"
 	UpperLetters  = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 	Letters       = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	SymbolChars   = "!@#$%^&*()_+-=[]{}|;':\",./<>?"
 )
 
 func init() {
@@ -80,6 +81,12 @@ func RandNumeral(length int) string {
 // Play: https://go.dev/play/p/19CEQvpx2jD
 func RandNumeralOrLetter(length int) string {
 	return random(Numeral+Letters, length)
+}
+
+// RandSymbolChar generate a random symbol char(!@#$%^&*()_+-=[]{}|;':\",./<>?).
+// Play: todo
+func RandSymbolChar(length int) string {
+	return random(SymbolChars, length)
 }
 
 // random generate a random string based on given string range.

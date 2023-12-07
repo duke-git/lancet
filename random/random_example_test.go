@@ -134,3 +134,20 @@ func ExampleRandUniqueIntSlice() {
 	// Output:
 	// ok
 }
+
+func ExampleRandSymbolChar() {
+	pattern := `^[\W|_]+$`
+	reg := regexp.MustCompile(pattern)
+
+	s := RandSymbolChar(6)
+
+	result1 := reg.MatchString(s)
+	result2 := len(s)
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+
+	// Output:
+	// true
+	// 6
+}

@@ -154,3 +154,16 @@ func hasDuplicate(arr []int) bool {
 	}
 	return false
 }
+
+func TestRandSymbolChar(t *testing.T) {
+	t.Parallel()
+
+	pattern := `^[\W|_]+$`
+	reg := regexp.MustCompile(pattern)
+
+	symbolChars := RandSymbolChar(10)
+
+	assert := internal.NewAssert(t, "TestRandSymbolChar")
+	assert.Equal(10, len(symbolChars))
+	assert.Equal(true, reg.MatchString(symbolChars))
+}
