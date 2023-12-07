@@ -271,7 +271,11 @@ func TestIsDns(t *testing.T) {
 	assert := internal.NewAssert(t, "TestIsDns")
 
 	assert.Equal(true, IsDns("abc.com"))
-	assert.Equal(false, IsDns("a.b.com"))
+	assert.Equal(true, IsDns("123.cn"))
+	assert.Equal(true, IsDns("a.b.com"))
+
+	assert.Equal(false, IsDns("a.b.c"))
+	assert.Equal(false, IsDns("a@b.com"))
 	assert.Equal(false, IsDns("http://abc.com"))
 }
 
