@@ -32,6 +32,8 @@ import (
 -   [RandSymbolChar](#RandSymbolChar)
 -   [UUIdV4](#UUIdV4)
 -   [RandUniqueIntSlice](#RandUniqueIntSlice)
+-   [RandFloat](#RandFloat)
+-   [RandFloats](#RandFloats)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -298,5 +300,57 @@ import (
 func main() {
     result := random.RandUniqueIntSlice(5, 0, 10)
     fmt.Println(result) //[0 4 7 1 5] (random)
+}
+```
+
+### <span id="RandFloat">RandFloat</span>
+
+<p>Generate random float64 number between [min, max) with specific precision.</p>
+
+<b>Signature:</b>
+
+```go
+func RandFloat(min, max float64, precision int) float64
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/random"
+)
+
+func main() {
+    floatNumber := random.RandFloat(1.0, 5.0, 2)
+    fmt.Println(floatNumber) //2.14 (random number)
+}
+```
+
+### <span id="RandFloats">RandFloats</span>
+
+<p>Generate a slice of random float64 numbers of length n that do not repeat.</p>
+
+<b>Signature:</b>
+
+```go
+func RandFloats(n int, min, max float64, precision int) []float64
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/random"
+)
+
+func main() {
+    floatNumbers := random.RandFloats(5, 1.0, 5.0, 2)
+    fmt.Println(floatNumber) //[3.42 3.99 1.3 2.38 4.23] (random)
 }
 ```

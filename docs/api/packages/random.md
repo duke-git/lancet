@@ -31,6 +31,8 @@ import (
 -   [RandNumeralOrLetter](#RandNumeralOrLetter)
 -   [UUIdV4](#UUIdV4)
 -   [RandUniqueIntSlice](#RandUniqueIntSlice)
+-   [RandFloat](#RandFloat)
+-   [RandFloats](#RandFloats)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -296,5 +298,57 @@ import (
 func main() {
     result := random.RandUniqueIntSlice(5, 0, 10)
     fmt.Println(result) //[0 4 7 1 5] (random)
+}
+```
+
+### <span id="RandFloat">RandFloat</span>
+
+<p>生成随机float64数字，可以指定范围和精度</p>
+
+<b>函数签名:</b>
+
+```go
+func RandFloat(min, max float64, precision int) float64
+```
+
+<b>实例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/random"
+)
+
+func main() {
+    floatNumber := random.RandFloat(1.0, 5.0, 2)
+    fmt.Println(floatNumber) //2.14 (random number)
+}
+```
+
+### <span id="RandFloats">RandFloats</span>
+
+<p>生成随机float64数字切片，指定长度，范围和精度.</p>
+
+<b>函数签名:</b>
+
+```go
+func RandFloats(n int, min, max float64, precision int) []float64
+```
+
+<b>实例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/random"
+)
+
+func main() {
+    floatNumbers := random.RandFloats(5, 1.0, 5.0, 2)
+    fmt.Println(floatNumber) //[3.42 3.99 1.3 2.38 4.23] (random)
 }
 ```

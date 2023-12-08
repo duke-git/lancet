@@ -163,8 +163,8 @@ func RandUniqueIntSlice(n, min, max int) []int {
 	return nums
 }
 
-// RandFloats generate a slice of random float64 of length n that do not repeat.
-// Play: https://go.dev/play/p/uBkRSOz73Ec
+// RandFloats generate a slice of random float64 numbers of length n that do not repeat.
+// Play: todo
 func RandFloats(n int, min, max float64, precision int) []float64 {
 	nums := make([]float64, n)
 	used := make(map[float64]struct{}, n)

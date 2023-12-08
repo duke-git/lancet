@@ -3,6 +3,7 @@ package random
 import (
 	"fmt"
 	"regexp"
+	"strconv"
 )
 
 func ExampleRandInt() {
@@ -150,4 +151,38 @@ func ExampleRandSymbolChar() {
 	// Output:
 	// true
 	// 6
+}
+
+func ExampleRandFloat() {
+	pattern := `^[\d{1}.\d{2}]+$`
+	reg := regexp.MustCompile(pattern)
+
+	num := RandFloat(1.0, 5.0, 2)
+
+	// check num is a random float in [1.0, 5.0)
+	result1 := num >= 1.0 && num < 5.0
+	result2 := reg.MatchString(strconv.FormatFloat(num, 'f', -1, 64))
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+
+	// Output:
+	// true
+	// true
+}
+
+func ExampleRandFloats() {
+	isInRange := true
+	numbers := RandFloats(5, 1.0, 5.0, 2)
+	for _, n := range numbers {
+		isInRange = (n >= 1.0 && n < 5.0)
+	}
+
+	fmt.Println(isInRange)
+	fmt.Println(numbers)
+	fmt.Println(len(numbers))
+
+	// Output:
+	// true
+	// 5
 }
