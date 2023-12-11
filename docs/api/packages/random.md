@@ -29,6 +29,7 @@ import (
 -   [RandLower](#RandLower)
 -   [RandNumeral](#RandNumeral)
 -   [RandNumeralOrLetter](#RandNumeralOrLetter)
+-   [RandSymbolChar](#RandSymbolChar)
 -   [UUIdV4](#UUIdV4)
 -   [RandUniqueIntSlice](#RandUniqueIntSlice)
 -   [RandFloat](#RandFloat)
@@ -303,7 +304,7 @@ func main() {
 
 ### <span id="RandFloat">RandFloat</span>
 
-<p>生成随机float64数字，可以指定范围和精度</p>
+<p>生成随机float64数字，可以指定范围和精度。</p>
 
 <b>函数签名:</b>
 

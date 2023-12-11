@@ -305,7 +305,7 @@ func main() {
 
 ### <span id="RandFloat">RandFloat</span>
 
-<p>Generate random float64 number between [min, max) with specific precision.</p>
+<p>Generate a random float64 number between [min, max) with specific precision.</p>
 
 <b>Signature:</b>
 
