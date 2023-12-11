@@ -179,7 +179,6 @@ func ExampleRandFloats() {
 	}
 
 	fmt.Println(isInRange)
-	fmt.Println(numbers)
 	fmt.Println(len(numbers))
 
 	// Output:

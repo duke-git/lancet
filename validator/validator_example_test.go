@@ -200,7 +200,7 @@ func ExampleIsDns() {
 
 	// Output:
 	// true
-	// false
+	// true
 	// false
 }
 

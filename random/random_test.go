@@ -174,7 +174,7 @@ func TestRandFloat(t *testing.T) {
 	assert := internal.NewAssert(t, "TestRandFloat")
 
 	r1 := RandFloat(1.1, 10.1, 2)
-	assert.GreaterOrEqual(r1, 5.0)
+	assert.GreaterOrEqual(r1, 1.1)
 	assert.Less(r1, 10.1)
 
 	r2 := RandFloat(1.1, 1.1, 2)
