@@ -14,12 +14,6 @@ func TestTryUnwrap(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestTryUnwrap")
 	assert.Equal(42, TryUnwrap(strconv.Atoi("42")))
-}
-
-func TestTryUnwrapFail(t *testing.T) {
-	t.Parallel()
-
-	assert := internal.NewAssert(t, "TestTryUnwrapFail")
 
 	_, err := strconv.Atoi("4o2")
 	defer func() {
@@ -76,8 +70,6 @@ func TestXError_Unwrap(t *testing.T) {
 }
 
 func TestXError_StackTrace(t *testing.T) {
-	// t.Parallel()
-
 	assert := internal.NewAssert(t, "TestXError_StackTrace")
 
 	err := New("error")
@@ -86,7 +78,7 @@ func TestXError_StackTrace(t *testing.T) {
 
 	assert.Equal(3, len(stacks))
 	assert.Equal("github.com/duke-git/lancet/v2/xerror.TestXError_StackTrace", stacks[0].Func)
-	assert.Equal(83, stacks[0].Line)
+	assert.Equal(75, stacks[0].Line)
 	assert.Equal(true, strings.Contains(stacks[0].File, "xerror_test.go"))
 }
 

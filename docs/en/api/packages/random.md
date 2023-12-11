@@ -223,7 +223,7 @@ func main() {
 
 ### <span id="RandSymbolChar">RandSymbolChar</span>
 
-<p>Generate a random symbol char of specified length. Symbol chars: !@#$%^&*()_+-=[]{}|;':\",./<>?.</p>
+<p>Generate a random symbol char of specified length.</p>
 
 <b>Signature:</b>
 

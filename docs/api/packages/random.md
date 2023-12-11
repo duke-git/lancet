@@ -223,7 +223,7 @@ func main() {
 
 ### <span id="RandSymbolChar">RandSymbolChar</span>
 
-<p>生成给定长度的随机符号字符串. 符号字符包括: !@#$%^&*()_+-=[]{}|;':\",./<>?。</p>
+<p>生成给定长度的随机符号字符串。</p>
 
 <b>函数签名:</b>
 
@@ -231,7 +231,7 @@ func main() {
 func RandSymbolChar(length int) string
 ```
 
-<b>示例:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/Im6ZJxAykOm)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/Im6ZJxAykOm)</span></b>
 
 ```go
 package main
@@ -338,7 +338,7 @@ func main() {
 func RandFloats(n int, min, max float64, precision int) []float64
 ```
 
-<b>实例:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/I3yndUQ-rhh)</span></b>
+<b>实例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/I3yndUQ-rhh)</span></b>
 
 ```go
 package main

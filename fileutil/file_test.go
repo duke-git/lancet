@@ -27,7 +27,7 @@ func TestCreateFile(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestCreateFile")
 
-	f := "./text.txt"
+	f := "./testdata/text.txt"
 	if CreateFile(f) {
 		file, err := os.Open(f)
 		assert.IsNil(err)
