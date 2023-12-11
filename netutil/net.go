@@ -230,7 +230,6 @@ func UploadFile(filepath string, server string) (bool, error) {
 }
 
 // DownloadFile will download the file exist in url to a local file.
-// Play: todo
 func DownloadFile(filepath string, url string) error {
 	resp, err := http.Get(url)
 	if err != nil {

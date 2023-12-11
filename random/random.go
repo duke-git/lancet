@@ -41,7 +41,7 @@ func RandInt(min, max int) int {
 }
 
 // RandFloat generate random float64 number between [min, max) with specific precision.
-// Play: todo
+// Play: https://go.dev/play/p/zbD_tuobJtr
 func RandFloat(min, max float64, precision int) float64 {
 	if min == max {
 		return min
@@ -103,7 +103,7 @@ func RandNumeralOrLetter(length int) string {
 
 // RandSymbolChar generate a random symbol char of specified length.
 // symbol chars: !@#$%^&*()_+-=[]{}|;':\",./<>?.
-// Play: todo
+// Play: https://go.dev/play/p/Im6ZJxAykOm
 func RandSymbolChar(length int) string {
 	return random(SymbolChars, length)
 }
@@ -164,7 +164,7 @@ func RandUniqueIntSlice(n, min, max int) []int {
 }
 
 // RandFloats generate a slice of random float64 numbers of length n that do not repeat.
-// Play: todo
+// Play: https://go.dev/play/p/I3yndUQ-rhh
 func RandFloats(n int, min, max float64, precision int) []float64 {
 	nums := make([]float64, n)
 	used := make(map[float64]struct{}, n)

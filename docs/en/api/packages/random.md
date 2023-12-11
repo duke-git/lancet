@@ -231,7 +231,7 @@ func main() {
 func RandSymbolChar(length int) string
 ```
 
-<b>Example:</b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/Im6ZJxAykOm)</span></b>
 
 ```go
 package main
@@ -243,7 +243,7 @@ import (
 
 func main() {
     randStr := random.RandSymbolChar(6)
-    fmt.Println(randStr) //@#(_")
+    fmt.Println(randStr) // random string like: @#(_")
 }
 ```
 
@@ -313,7 +313,7 @@ func main() {
 func RandFloat(min, max float64, precision int) float64
 ```
 
-<b>Example:</b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/zbD_tuobJtr)</span></b>
 
 ```go
 package main
@@ -339,7 +339,7 @@ func main() {
 func RandFloats(n int, min, max float64, precision int) []float64
 ```
 
-<b>Example:</b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/I3yndUQ-rhh)</span></b>
 
 ```go
 package main
@@ -351,6 +351,6 @@ import (
 
 func main() {
     floatNumbers := random.RandFloats(5, 1.0, 5.0, 2)
-    fmt.Println(floatNumber) //[3.42 3.99 1.3 2.38 4.23] (random)
+    fmt.Println(floatNumbers) //[3.42 3.99 1.3 2.38 4.23] (random)
 }
 ```

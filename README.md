@@ -1099,10 +1099,16 @@ import "github.com/duke-git/lancet/v2/random"
     [[play](https://go.dev/play/p/uBkRSOz73Ec)]
 -   **<big>RandSymbolChar</big>** : Generate a random symbol char of specified length.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/random.md#RandSymbolChar)]
+    [[play](https://go.dev/play/p/Im6ZJxAykOm)]
+
 -   **<big>RandFloat</big>** : Generate a random float64 number between [min, max) with specific precision.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/random.md#RandFloat)]
+    [[play](https://go.dev/play/p/zbD_tuobJtr)]
+
 -   **<big>RandFloats</big>** : Generate a slice of random float64 numbers of length n that do not repeat.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/random.md#RandFloats)]
+    [[play](https://go.dev/play/p/I3yndUQ-rhh)]
+
 
 <h3 id="retry"> 17. Retry package is for executing a function repeatedly until it was successful or canceled by the context. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
@@ -1348,6 +1354,8 @@ import "github.com/duke-git/lancet/v2/slice"
     [[play](https://go.dev/play/p/lkQ3Ri2NQhV)]
 -   **<big>Random</big>** : get a random item of slice, return its index, when slice is empty, return -1. 
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#Random)]
+    [[play](https://go.dev/play/p/UzpGQptWppw)]
+
 
 <h3 id="stream"> 19. Stream package implements a sequence of elements supporting sequential and operations. this package is an experiment to explore if stream in go can work as the way java does. its function is very limited. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 

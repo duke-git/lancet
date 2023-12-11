@@ -1232,7 +1232,7 @@ func Partition[T any](slice []T, predicates ...func(item T) bool) [][]T {
 }
 
 // Random get a random item of slice, return idx=-1 when slice is empty
-// Play: todo
+// Play: https://go.dev/play/p/UzpGQptWppw
 func Random[T any](slice []T) (val T, idx int) {
 	if len(slice) == 0 {
 		return val, -1

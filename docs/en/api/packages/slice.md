@@ -2498,7 +2498,7 @@ func main() {
 func Random[T any](slice []T) (val T, idx int)
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](TODO)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/UzpGQptWppw)</span></b>
 
 ```go
 import (

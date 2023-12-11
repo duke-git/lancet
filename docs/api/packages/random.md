@@ -231,7 +231,7 @@ func main() {
 func RandSymbolChar(length int) string
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/Im6ZJxAykOm)</span></b>
 
 ```go
 package main
@@ -243,7 +243,7 @@ import (
 
 func main() {
     randStr := random.RandSymbolChar(6)
-    fmt.Println(randStr) //@#(_")
+    fmt.Println(randStr) // 随机特殊字符字符串，例如: @#(_")
 }
 ```
 
@@ -312,7 +312,7 @@ func main() {
 func RandFloat(min, max float64, precision int) float64
 ```
 
-<b>实例:</b>
+<b>实例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/zbD_tuobJtr)</span></b>
 
 ```go
 package main
@@ -338,7 +338,7 @@ func main() {
 func RandFloats(n int, min, max float64, precision int) []float64
 ```
 
-<b>实例:</b>
+<b>实例:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/I3yndUQ-rhh)</span></b>
 
 ```go
 package main

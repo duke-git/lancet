@@ -1100,12 +1100,14 @@ import "github.com/duke-git/lancet/v2/random"
     [[play](https://go.dev/play/p/uBkRSOz73Ec)]
 -   **<big>RandSymbolChar</big>** : 生成给定长度的随机符号字符串。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/random.md#RandSymbolChar)]
-    [[play](https://go.dev/play/p/uBkRSOz73Ec)]
+    [[play](https://go.dev/play/p/Im6ZJxAykOm)]
 -   **<big>RandFloat</big>** : 生成随机float64数字，可以指定范围和精度。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/random.md#RandFloat)]
-    [[play](https://go.dev/play/p/uBkRSOz73Ec)]
+    [[play](https://go.dev/play/p/zbD_tuobJtr)]
 -   **<big>RandFloats</big>** : 生成随机float64数字切片，可以指定长度，范围和精度.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/random.md#RandFloats)]
+    [[play](https://go.dev/play/p/uBkRSOz73Ec)]
+
 
 <h3 id="retry"> 17. retry 重试执行函数直到函数运行成功或被 context cancel。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 
@@ -1340,7 +1342,6 @@ import "github.com/duke-git/lancet/v2/slice"
 -   **<big>Without</big>** : 创建一个不包括所有给定值的切片。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/slice.md#Without)]
     [[play](https://go.dev/play/p/bwhEXEypThg)]
--   **<big>KeyBy</big>** :将切片每个元素调用函数后转为 map。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/slice.md#KeyBy)]
     [[play](https://go.dev/play/p/uXod2LWD1Kg)]
 -   **<big>Join</big>** : 用指定的分隔符链接切片元素。
@@ -1351,6 +1352,8 @@ import "github.com/duke-git/lancet/v2/slice"
     [[play](https://go.dev/play/p/lkQ3Ri2NQhV)]
 -   **<big>Random</big>** : 随机返回切片中元素以及下标, 当切片长度为0时返回下标-1。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/slice.md#Random)]
+    [[play](https://go.dev/play/p/UzpGQptWppw)]
+
 
 
 <h3 id="stream"> 19. stream 流，该包仅验证简单的 stream 实现，功能有限。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
