@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"math"
 
+	"github.com/duke-git/lancet/v2/constraints"
 	"github.com/duke-git/lancet/v2/datastructure"
-	"github.com/duke-git/lancet/v2/lancetconstraints"
 )
 
 func preOrderTraverse[T any](node *datastructure.TreeNode[T]) []T {
@@ -86,7 +86,7 @@ func levelOrderTraverse[T any](root *datastructure.TreeNode[T], traversal *[]T) 
 	}
 }
 
-func insertTreeNode[T any](rootNode, newNode *datastructure.TreeNode[T], comparator lancetconstraints.Comparator) {
+func insertTreeNode[T any](rootNode, newNode *datastructure.TreeNode[T], comparator constraints.Comparator) {
 	if comparator.Compare(newNode.Value, rootNode.Value) == -1 {
 		if rootNode.Left == nil {
 			rootNode.Left = newNode
@@ -103,7 +103,7 @@ func insertTreeNode[T any](rootNode, newNode *datastructure.TreeNode[T], compara
 }
 
 // todo, delete root node failed
-func deleteTreeNode[T any](node *datastructure.TreeNode[T], data T, comparator lancetconstraints.Comparator) *datastructure.TreeNode[T] {
+func deleteTreeNode[T any](node *datastructure.TreeNode[T], data T, comparator constraints.Comparator) *datastructure.TreeNode[T] {
 	if node == nil {
 		return nil
 	}
@@ -216,7 +216,7 @@ func calculateDepth[T any](node *datastructure.TreeNode[T], depth int) int {
 	return max(calculateDepth(node.Left, depth+1), calculateDepth(node.Right, depth+1))
 }
 
-func isSubTree[T any](superTreeRoot, subTreeRoot *datastructure.TreeNode[T], comparator lancetconstraints.Comparator) bool {
+func isSubTree[T any](superTreeRoot, subTreeRoot *datastructure.TreeNode[T], comparator constraints.Comparator) bool {
 	if subTreeRoot == nil {
 		return true
 	}

@@ -7,18 +7,18 @@ package datastructure
 import (
 	"fmt"
 
-	"github.com/duke-git/lancet/v2/lancetconstraints"
+	"github.com/duke-git/lancet/v2/constraints"
 )
 
 // MaxHeap implements a binary max heap
-// type T should implements Compare function in lancetconstraints.Comparator interface.
+// type T should implements Compare function in constraints.Comparator interface.
 type MaxHeap[T any] struct {
 	data       []T
-	comparator lancetconstraints.Comparator
+	comparator constraints.Comparator
 }
 
 // NewMaxHeap returns a MaxHeap instance with the given comparator.
-func NewMaxHeap[T any](comparator lancetconstraints.Comparator) *MaxHeap[T] {
+func NewMaxHeap[T any](comparator constraints.Comparator) *MaxHeap[T] {
 	return &MaxHeap[T]{
 		data:       make([]T, 0),
 		comparator: comparator,
@@ -26,7 +26,7 @@ func NewMaxHeap[T any](comparator lancetconstraints.Comparator) *MaxHeap[T] {
 }
 
 // BuildMaxHeap builds a MaxHeap instance with data and given comparator.
-func BuildMaxHeap[T any](data []T, comparator lancetconstraints.Comparator) *MaxHeap[T] {
+func BuildMaxHeap[T any](data []T, comparator constraints.Comparator) *MaxHeap[T] {
 	heap := &MaxHeap[T]{
 		data:       make([]T, 0, len(data)),
 		comparator: comparator,

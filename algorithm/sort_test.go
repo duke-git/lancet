@@ -16,7 +16,7 @@ type people struct {
 // PeopleAageComparator sort people slice by age field
 type peopleAgeComparator struct{}
 
-// Compare implements github.com/duke-git/lancet/v2/lancetconstraints/constraints.go/Comparator
+// Compare implements github.com/duke-git/lancet/v2/constraints/constraints.go/Comparator
 func (pc *peopleAgeComparator) Compare(v1 any, v2 any) int {
 	p1, _ := v1.(people)
 	p2, _ := v2.(people)

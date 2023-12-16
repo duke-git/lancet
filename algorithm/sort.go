@@ -3,11 +3,11 @@
 
 package algorithm
 
-import "github.com/duke-git/lancet/v2/lancetconstraints"
+import "github.com/duke-git/lancet/v2/constraints"
 
 // BubbleSort applys the bubble sort algorithm to sort the collection, will change the original collection data.
 // Play: https://go.dev/play/p/GNdv7Jg2Taj
-func BubbleSort[T any](slice []T, comparator lancetconstraints.Comparator) {
+func BubbleSort[T any](slice []T, comparator constraints.Comparator) {
 	for i := 0; i < len(slice); i++ {
 		for j := 0; j < len(slice)-1-i; j++ {
 			isCurrGreatThanNext := comparator.Compare(slice[j], slice[j+1]) == 1
@@ -20,7 +20,7 @@ func BubbleSort[T any](slice []T, comparator lancetconstraints.Comparator) {
 
 // InsertionSort applys the insertion sort algorithm to sort the collection, will change the original collection data.
 // Play: https://go.dev/play/p/G5LJiWgJJW6
-func InsertionSort[T any](slice []T, comparator lancetconstraints.Comparator) {
+func InsertionSort[T any](slice []T, comparator constraints.Comparator) {
 	for i := 0; i < len(slice); i++ {
 		for j := i; j > 0; j-- {
 			isPreLessThanCurrent := comparator.Compare(slice[j], slice[j-1]) == -1
@@ -35,7 +35,7 @@ func InsertionSort[T any](slice []T, comparator lancetconstraints.Comparator) {
 
 // SelectionSort applys the selection sort algorithm to sort the collection, will change the original collection data.
 // Play: https://go.dev/play/p/oXovbkekayS
-func SelectionSort[T any](slice []T, comparator lancetconstraints.Comparator) {
+func SelectionSort[T any](slice []T, comparator constraints.Comparator) {
 	for i := 0; i < len(slice); i++ {
 		min := i
 		for j := i + 1; j < len(slice); j++ {
@@ -49,7 +49,7 @@ func SelectionSort[T any](slice []T, comparator lancetconstraints.Comparator) {
 
 // ShellSort applys the shell sort algorithm to sort the collection, will change the original collection data.
 // Play: https://go.dev/play/p/3ibkszpJEu3
-func ShellSort[T any](slice []T, comparator lancetconstraints.Comparator) {
+func ShellSort[T any](slice []T, comparator constraints.Comparator) {
 	size := len(slice)
 
 	gap := 1
@@ -69,11 +69,11 @@ func ShellSort[T any](slice []T, comparator lancetconstraints.Comparator) {
 
 // QuickSort quick sorting for slice, lowIndex is 0 and highIndex is len(slice)-1.
 // Play: https://go.dev/play/p/7Y7c1Elk3ax
-func QuickSort[T any](slice []T, comparator lancetconstraints.Comparator) {
+func QuickSort[T any](slice []T, comparator constraints.Comparator) {
 	quickSort(slice, 0, len(slice)-1, comparator)
 }
 
-func quickSort[T any](slice []T, lowIndex, highIndex int, comparator lancetconstraints.Comparator) {
+func quickSort[T any](slice []T, lowIndex, highIndex int, comparator constraints.Comparator) {
 	if lowIndex < highIndex {
 		p := partition(slice, lowIndex, highIndex, comparator)
 		quickSort(slice, lowIndex, p-1, comparator)
@@ -82,7 +82,7 @@ func quickSort[T any](slice []T, lowIndex, highIndex int, comparator lancetconst
 }
 
 // partition split slice into two parts
-func partition[T any](slice []T, lowIndex, highIndex int, comparator lancetconstraints.Comparator) int {
+func partition[T any](slice []T, lowIndex, highIndex int, comparator constraints.Comparator) int {
 	p := slice[highIndex]
 	i := lowIndex
 	for j := lowIndex; j < highIndex; j++ {
@@ -99,7 +99,7 @@ func partition[T any](slice []T, lowIndex, highIndex int, comparator lancetconst
 
 // HeapSort applys the heap sort algorithm to sort the collection, will change the original collection data.
 // Play: https://go.dev/play/p/u6Iwa1VZS_f
-func HeapSort[T any](slice []T, comparator lancetconstraints.Comparator) {
+func HeapSort[T any](slice []T, comparator constraints.Comparator) {
 	size := len(slice)
 
 	for i := size/2 - 1; i >= 0; i-- {
@@ -111,7 +111,7 @@ func HeapSort[T any](slice []T, comparator lancetconstraints.Comparator) {
 	}
 }
 
-func sift[T any](slice []T, lowIndex, highIndex int, comparator lancetconstraints.Comparator) {
+func sift[T any](slice []T, lowIndex, highIndex int, comparator constraints.Comparator) {
 	i := lowIndex
 	j := 2*i + 1
 
@@ -133,11 +133,11 @@ func sift[T any](slice []T, lowIndex, highIndex int, comparator lancetconstraint
 
 // MergeSort applys the merge sort algorithm to sort the collection, will change the original collection data.
 // Play: https://go.dev/play/p/ydinn9YzUJn
-func MergeSort[T any](slice []T, comparator lancetconstraints.Comparator) {
+func MergeSort[T any](slice []T, comparator constraints.Comparator) {
 	mergeSort(slice, 0, len(slice)-1, comparator)
 }
 
-func mergeSort[T any](slice []T, lowIndex, highIndex int, comparator lancetconstraints.Comparator) {
+func mergeSort[T any](slice []T, lowIndex, highIndex int, comparator constraints.Comparator) {
 	if lowIndex < highIndex {
 		mid := (lowIndex + highIndex) / 2
 		mergeSort(slice, lowIndex, mid, comparator)
@@ -146,7 +146,7 @@ func mergeSort[T any](slice []T, lowIndex, highIndex int, comparator lancetconst
 	}
 }
 
-func merge[T any](slice []T, lowIndex, midIndex, highIndex int, comparator lancetconstraints.Comparator) {
+func merge[T any](slice []T, lowIndex, midIndex, highIndex int, comparator constraints.Comparator) {
 	i := lowIndex
 	j := midIndex + 1
 	temp := []T{}
@@ -175,7 +175,7 @@ func merge[T any](slice []T, lowIndex, midIndex, highIndex int, comparator lance
 
 // CountSort applys the count sort algorithm to sort the collection, don't change the original collection data.
 // Play: https://go.dev/play/p/tB-Umgm0DrP
-func CountSort[T any](slice []T, comparator lancetconstraints.Comparator) []T {
+func CountSort[T any](slice []T, comparator constraints.Comparator) []T {
 	size := len(slice)
 	out := make([]T, size)
 

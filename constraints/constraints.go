@@ -1,8 +1,8 @@
 // Copyright 2021 dudaodong@gmail.com. All rights reserved.
 // Use of this source code is governed by MIT license
 
-// Package lancetconstraints contain some comstomer constraints.
-package lancetconstraints
+// Package constraints contain some custom interface.
+package constraints
 
 // Comparator is for comparing two values
 type Comparator interface {

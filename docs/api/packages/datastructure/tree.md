@@ -41,7 +41,7 @@ import (
 ## 文档
 
 ## 1. BSTree
-BSTree是一种二叉搜索树数据结构，其中每个节点有两个孩子，分别称为左孩子和右孩子。 在 BSTree 中：leftNode < rootNode < rightNode。 T类型应该实现lancetconstraints.Comparator。
+BSTree是一种二叉搜索树数据结构，其中每个节点有两个孩子，分别称为左孩子和右孩子。 在 BSTree 中：leftNode < rootNode < rightNode。 T类型应该实现constraints.Comparator。
 
 ### <span id="NewBSTree">NewBSTree</span>
 <p>返回BSTree指针实例</p>
@@ -49,11 +49,11 @@ BSTree是一种二叉搜索树数据结构，其中每个节点有两个孩子�
 <b>函数签名:</b>
 
 ```go
-func NewBSTree[T any](rootData T, comparator lancetconstraints.Comparator) *BSTree[T]
+func NewBSTree[T any](rootData T, comparator constraints.Comparator) *BSTree[T]
 
 type BSTree[T any] struct {
 	root       *datastructure.TreeNode[T]
-	comparator lancetconstraints.Comparator
+	comparator constraints.Comparator
 }
 
 type TreeNode[T any] struct {

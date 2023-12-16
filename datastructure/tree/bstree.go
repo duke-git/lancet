@@ -7,22 +7,22 @@ package datastructure
 import (
 	"math"
 
+	"github.com/duke-git/lancet/v2/constraints"
 	"github.com/duke-git/lancet/v2/datastructure"
-	"github.com/duke-git/lancet/v2/lancetconstraints"
 )
 
 // BSTree is a binary search tree data structure in which each node has at most two children,
 // which are referred to as the left child and the right child.
 // In BSTree: leftNode < rootNode < rightNode
-// type T should implements Compare function in lancetconstraints.Comparator interface.
+// type T should implements Compare function in constraints.Comparator interface.
 type BSTree[T any] struct {
 	root       *datastructure.TreeNode[T]
-	comparator lancetconstraints.Comparator
+	comparator constraints.Comparator
 }
 
 // NewBSTree create a BSTree pointer
 // param `comparator` is used to compare values in the tree
-func NewBSTree[T any](rootData T, comparator lancetconstraints.Comparator) *BSTree[T] {
+func NewBSTree[T any](rootData T, comparator constraints.Comparator) *BSTree[T] {
 	root := datastructure.NewTreeNode(rootData)
 	return &BSTree[T]{root, comparator}
 }
@@ -87,7 +87,7 @@ func (t *BSTree[T]) HasSubTree(subTree *BSTree[T]) bool {
 }
 
 func hasSubTree[T any](superTreeRoot, subTreeRoot *datastructure.TreeNode[T],
-	comparator lancetconstraints.Comparator) bool {
+	comparator constraints.Comparator) bool {
 	result := false
 
 	if superTreeRoot != nil && subTreeRoot != nil {

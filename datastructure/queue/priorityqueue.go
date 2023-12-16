@@ -8,20 +8,20 @@ package datastructure
 import (
 	"errors"
 
-	"github.com/duke-git/lancet/v2/lancetconstraints"
+	"github.com/duke-git/lancet/v2/constraints"
 )
 
 // PriorityQueue is a priority queue implemented by binary heap tree
-// type T should implements Compare function in lancetconstraints.Comparator interface.
+// type T should implements Compare function in constraints.Comparator interface.
 type PriorityQueue[T any] struct {
 	items      []T
 	size       int
-	comparator lancetconstraints.Comparator
+	comparator constraints.Comparator
 }
 
 // NewPriorityQueue return a pointer of PriorityQueue
 // param `comparator` is used to compare values in the queue
-func NewPriorityQueue[T any](capacity int, comparator lancetconstraints.Comparator) *PriorityQueue[T] {
+func NewPriorityQueue[T any](capacity int, comparator constraints.Comparator) *PriorityQueue[T] {
 	return &PriorityQueue[T]{
 		items:      make([]T, capacity+1),
 		size:       0,

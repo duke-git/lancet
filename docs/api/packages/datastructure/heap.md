@@ -44,9 +44,9 @@ MaxHeap是通过slice实现的二叉堆树，根节点的key既大于等于左�
 ```go
 type MaxHeap[T any] struct {
 	data       []T
-	comparator lancetconstraints.Comparator
+	comparator constraints.Comparator
 }
-func NewMaxHeap[T any](comparator lancetconstraints.Comparator) *MaxHeap[T]
+func NewMaxHeap[T any](comparator constraints.Comparator) *MaxHeap[T]
 ```
 <b>示例:</b>
 

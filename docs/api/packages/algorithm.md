@@ -43,12 +43,12 @@ import (
 
 ### <span id="BubbleSort">BubbleSort</span>
 
-<p>冒泡排序，参数comparator需要实现包lancetconstraints.Comparator。</p>
+<p>冒泡排序，参数comparator需要实现包constraints.Comparator。</p>
 
 <b>函数签名:</b>
 
 ```go
-func BubbleSort[T any](slice []T, comparator lancetconstraints.Comparator)
+func BubbleSort[T any](slice []T, comparator constraints.Comparator)
 ```
 
 <b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/GNdv7Jg2Taj)</span></b>
@@ -91,12 +91,12 @@ func main() {
 
 ### <span id="InsertionSort">InsertionSort</span>
 
-<p>插入排序，参数comparator需要实现包lancetconstraints.Comparator。</p>
+<p>插入排序，参数comparator需要实现包constraints.Comparator。</p>
 
 <b>函数签名:</b>
 
 ```go
-func InsertionSort[T any](slice []T, comparator lancetconstraints.Comparator)
+func InsertionSort[T any](slice []T, comparator constraints.Comparator)
 ```
 
 <b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/G5LJiWgJJW6)</span></b>
@@ -117,7 +117,7 @@ type people struct {
 // PeopleAageComparator sort people slice by age field
 type peopleAgeComparator struct{}
 
-// Compare implements github.com/duke-git/lancet/lancetconstraints/constraints.go/Comparator
+// Compare implements github.com/duke-git/lancet/constraints/constraints.go/Comparator
 func (pc *peopleAgeComparator) Compare(v1 any, v2 any) int {
     p1, _ := v1.(people)
     p2, _ := v2.(people)
@@ -154,12 +154,12 @@ func main() {
 
 ### <span id="SelectionSort">SelectionSort</span>
 
-<p>选择排序，参数comparator需要实现包lancetconstraints.Comparator。</p>
+<p>选择排序，参数comparator需要实现包constraints.Comparator。</p>
 
 <b>函数签名:</b>
 
 ```go
-func SelectionSort[T any](slice []T, comparator lancetconstraints.Comparator)
+func SelectionSort[T any](slice []T, comparator constraints.Comparator)
 ```
 
 <b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/oXovbkekayS)</span></b>
@@ -202,12 +202,12 @@ func main() {
 
 ### <span id="ShellSort">ShellSort</span>
 
-<p>希尔排序，参数comparator需要实现包lancetconstraints.Comparator。</p>
+<p>希尔排序，参数comparator需要实现包constraints.Comparator。</p>
 
 <b>函数签名:</b>
 
 ```go
-func ShellSort[T any](slice []T, comparator lancetconstraints.Comparator)
+func ShellSort[T any](slice []T, comparator constraints.Comparator)
 ```
 
 <b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/3ibkszpJEu3)</span></b>
@@ -250,12 +250,12 @@ func main() {
 
 ### <span id="QuickSort">QuickSort</span>
 
-<p>快速排序，参数comparator需要实现包lancetconstraints.Comparator。</p>
+<p>快速排序，参数comparator需要实现包constraints.Comparator。</p>
 
 <b>函数签名:</b>
 
 ```go
-func QuickSort[T any](slice []T comparator lancetconstraints.Comparator)
+func QuickSort[T any](slice []T comparator constraints.Comparator)
 ```
 
 <b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/7Y7c1Elk3ax)</span></b>
@@ -298,12 +298,12 @@ func main() {
 
 ### <span id="HeapSort">HeapSort</span>
 
-<p>堆排序，参数comparator需要实现包lancetconstraints.Comparator。</p>
+<p>堆排序，参数comparator需要实现包constraints.Comparator。</p>
 
 <b>函数签名:</b>
 
 ```go
-func HeapSort[T any](slice []T, comparator lancetconstraints.Comparator)
+func HeapSort[T any](slice []T, comparator constraints.Comparator)
 ```
 
 <b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/u6Iwa1VZS_f)</span></b>
@@ -346,12 +346,12 @@ func main() {
 
 ### <span id="MergeSort">MergeSort</span>
 
-<p>归并排序，参数comparator需要实现包lancetconstraints.Comparator。</p>
+<p>归并排序，参数comparator需要实现包constraints.Comparator。</p>
 
 <b>函数签名:</b>
 
 ```go
-func MergeSort[T any](slice []T, comparator lancetconstraints.Comparator)
+func MergeSort[T any](slice []T, comparator constraints.Comparator)
 ```
 
 <b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/ydinn9YzUJn)</span></b>
@@ -394,12 +394,12 @@ func main() {
 
 ### <span id="CountSort">CountSort</span>
 
-<p>计数排序，参数comparator需要实现包lancetconstraints.Comparator。</p>
+<p>计数排序，参数comparator需要实现包constraints.Comparator。</p>
 
 <b>函数签名:</b>
 
 ```go
-func CountSort[T any](slice []T, comparator lancetconstraints.Comparator) []T
+func CountSort[T any](slice []T, comparator constraints.Comparator) []T
 ```
 
 <b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/tB-Umgm0DrP)</span></b>
@@ -443,12 +443,12 @@ func main() {
 
 ### <span id="BinarySearch">BinarySearch</span>
 
-<p>二分递归查找，返回元素索引，未找到元素返回-1，参数comparator需要实现包lancetconstraints.Comparator。</p>
+<p>二分递归查找，返回元素索引，未找到元素返回-1，参数comparator需要实现包constraints.Comparator。</p>
 
 <b>函数签名:</b>
 
 ```go
-func BinarySearch[T any](sortedSlice []T, target T, lowIndex, highIndex int, comparator lancetconstraints.Comparator) int
+func BinarySearch[T any](sortedSlice []T, target T, lowIndex, highIndex int, comparator constraints.Comparator) int
 ```
 
 <b>示例: <span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/t6MeGiUSN47)</span></b>
@@ -494,12 +494,12 @@ func main() {
 
 ### <span id="BinaryIterativeSearch">BinaryIterativeSearch</span>
 
-<p>二分迭代查找，返回元素索引，未找到元素返回-1，参数comparator需要实现包lancetconstraints.Comparator。</p>
+<p>二分迭代查找，返回元素索引，未找到元素返回-1，参数comparator需要实现包constraints.Comparator。</p>
 
 <b>函数签名:</b>
 
 ```go
-func BinaryIterativeSearch[T any](sortedSlice []T, target T, lowIndex, highIndex int, comparator lancetconstraints.Comparator) int
+func BinaryIterativeSearch[T any](sortedSlice []T, target T, lowIndex, highIndex int, comparator constraints.Comparator) int
 ```
 
 <b>示例: <span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/Anozfr8ZLH3)</span></b>

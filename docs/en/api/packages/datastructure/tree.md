@@ -41,7 +41,7 @@ import (
 ## Documentation
 
 ## 1. BSTree
-BSTree is a binary search tree data structure in which each node has at two children, which are referred to as the left child and the right child. In BSTree: leftNode < rootNode < rightNode. Type T should implements Compare function in lancetconstraints.Comparator interface.
+BSTree is a binary search tree data structure in which each node has at two children, which are referred to as the left child and the right child. In BSTree: leftNode < rootNode < rightNode. Type T should implements Compare function in constraints.Comparator interface.
 
 ### <span id="NewBSTree">NewBSTree</span>
 <p>Make a BSTree pointer instance</p>
@@ -49,11 +49,11 @@ BSTree is a binary search tree data structure in which each node has at two chil
 <b>Signature:</b>
 
 ```go
-func NewBSTree[T any](rootData T, comparator lancetconstraints.Comparator) *BSTree[T]
+func NewBSTree[T any](rootData T, comparator constraints.Comparator) *BSTree[T]
 
 type BSTree[T any] struct {
 	root       *datastructure.TreeNode[T]
-	comparator lancetconstraints.Comparator
+	comparator constraints.Comparator
 }
 
 type TreeNode[T any] struct {

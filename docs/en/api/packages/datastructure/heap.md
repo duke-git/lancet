@@ -44,9 +44,9 @@ MaxHeap is a binary heap tree implemented by slice, The key of the root node is 
 ```go
 type MaxHeap[T any] struct {
 	data       []T
-	comparator lancetconstraints.Comparator
+	comparator constraints.Comparator
 }
-func NewMaxHeap[T any](comparator lancetconstraints.Comparator) *MaxHeap[T]
+func NewMaxHeap[T any](comparator constraints.Comparator) *MaxHeap[T]
 ```
 <b>Example:</b>
 

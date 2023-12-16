@@ -4,7 +4,7 @@
 // Package algorithm contain some basic algorithm functions. eg. sort, search, list, linklist, stack, queue, tree, graph.
 package algorithm
 
-import "github.com/duke-git/lancet/v2/lancetconstraints"
+import "github.com/duke-git/lancet/v2/constraints"
 
 // Search algorithms see https://github.com/TheAlgorithms/Go/tree/master/search
 
@@ -23,7 +23,7 @@ func LinearSearch[T any](slice []T, target T, equal func(a, b T) bool) int {
 // BinarySearch return the index of target within a sorted slice, use binary search (recursive call itself).
 // If not found return -1.
 // Play: https://go.dev/play/p/t6MeGiUSN47
-func BinarySearch[T any](sortedSlice []T, target T, lowIndex, highIndex int, comparator lancetconstraints.Comparator) int {
+func BinarySearch[T any](sortedSlice []T, target T, lowIndex, highIndex int, comparator constraints.Comparator) int {
 	if highIndex < lowIndex || len(sortedSlice) == 0 {
 		return -1
 	}
@@ -44,7 +44,7 @@ func BinarySearch[T any](sortedSlice []T, target T, lowIndex, highIndex int, com
 // BinaryIterativeSearch return the index of target within a sorted slice, use binary search (no recursive).
 // If not found return -1.
 // Play: https://go.dev/play/p/Anozfr8ZLH3
-func BinaryIterativeSearch[T any](sortedSlice []T, target T, lowIndex, highIndex int, comparator lancetconstraints.Comparator) int {
+func BinaryIterativeSearch[T any](sortedSlice []T, target T, lowIndex, highIndex int, comparator constraints.Comparator) int {
 	startIndex := lowIndex
 	endIndex := highIndex
 

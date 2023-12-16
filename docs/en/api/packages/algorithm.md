@@ -43,12 +43,12 @@ import (
 
 ### <span id="BubbleSort">BubbleSort</span>
 
-<p>Sort slice with bubble sort algorithm. Param comparator should implements lancetconstraints.Comparator.</p>
+<p>Sort slice with bubble sort algorithm. Param comparator should implements constraints.Comparator.</p>
 
 <b>Signature:</b>
 
 ```go
-func BubbleSort[T any](slice []T, comparator lancetconstraints.Comparator)
+func BubbleSort[T any](slice []T, comparator constraints.Comparator)
 ```
 
 <b>Example: <span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/GNdv7Jg2Taj)</span></b>
@@ -91,12 +91,12 @@ func main() {
 
 ### <span id="InsertionSort">InsertionSort</span>
 
-<p>Sort slice with insertion sort algorithm. Param comparator should implements lancetconstraints.Comparator.</p>
+<p>Sort slice with insertion sort algorithm. Param comparator should implements constraints.Comparator.</p>
 
 <b>Signature:</b>
 
 ```go
-func InsertionSort[T any](slice []T, comparator lancetconstraints.Comparator)
+func InsertionSort[T any](slice []T, comparator constraints.Comparator)
 ```
 
 <b>Example: <span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/G5LJiWgJJW6)</span></b>
@@ -117,7 +117,7 @@ type people struct {
 // PeopleAageComparator sort people slice by age field
 type peopleAgeComparator struct{}
 
-// Compare implements github.com/duke-git/lancet/lancetconstraints/constraints.go/Comparator
+// Compare implements github.com/duke-git/lancet/constraints/constraints.go/Comparator
 func (pc *peopleAgeComparator) Compare(v1 any, v2 any) int {
     p1, _ := v1.(people)
     p2, _ := v2.(people)
@@ -154,12 +154,12 @@ func main() {
 
 ### <span id="SelectionSort">SelectionSort</span>
 
-<p>Sort slice with selection sort algorithm. Param comparator should implements lancetconstraints.Comparator.</p>
+<p>Sort slice with selection sort algorithm. Param comparator should implements constraints.Comparator.</p>
 
 <b>Signature:</b>
 
 ```go
-func SelectionSort[T any](slice []T, comparator lancetconstraints.Comparator)
+func SelectionSort[T any](slice []T, comparator constraints.Comparator)
 ```
 
 <b>Example: <span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/oXovbkekayS)</span></b>
@@ -202,12 +202,12 @@ func main() {
 
 ### <span id="ShellSort">ShellSort</span>
 
-<p>Sort slice with shell sort algorithm. Param comparator should implements lancetconstraints.Comparator.</p>
+<p>Sort slice with shell sort algorithm. Param comparator should implements constraints.Comparator.</p>
 
 <b>Signature:</b>
 
 ```go
-func ShellSort[T any](slice []T, comparator lancetconstraints.Comparator)
+func ShellSort[T any](slice []T, comparator constraints.Comparator)
 ```
 
 <b>Example: <span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/3ibkszpJEu3)</span></b>
@@ -250,12 +250,12 @@ func main() {
 
 ### <span id="QuickSort">QuickSort</span>
 
-<p>Sort slice with quick sort algorithm. Param comparator should implements lancetconstraints.Comparator.</p>
+<p>Sort slice with quick sort algorithm. Param comparator should implements constraints.Comparator.</p>
 
 <b>Signature:</b>
 
 ```go
-func QuickSort[T any](slice []T comparator lancetconstraints.Comparator)
+func QuickSort[T any](slice []T comparator constraints.Comparator)
 ```
 
 <b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/7Y7c1Elk3ax)</span></b>
@@ -298,12 +298,12 @@ func main() {
 
 ### <span id="HeapSort">HeapSort</span>
 
-<p>Sort slice with heap sort algorithm. Param comparator should implements lancetconstraints.Comparator.</p>
+<p>Sort slice with heap sort algorithm. Param comparator should implements constraints.Comparator.</p>
 
 <b>Signature:</b>
 
 ```go
-func HeapSort[T any](slice []T, comparator lancetconstraints.Comparator)
+func HeapSort[T any](slice []T, comparator constraints.Comparator)
 ```
 
 <b>Example: <span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/u6Iwa1VZS_f)</span></b>
@@ -346,12 +346,12 @@ func main() {
 
 ### <span id="MergeSort">MergeSort</span>
 
-<p>Sort slice with merge sort algorithm. Param comparator should implements lancetconstraints.Comparator.</p>
+<p>Sort slice with merge sort algorithm. Param comparator should implements constraints.Comparator.</p>
 
 <b>Signature:</b>
 
 ```go
-func MergeSort[T any](slice []T, comparator lancetconstraints.Comparator)
+func MergeSort[T any](slice []T, comparator constraints.Comparator)
 ```
 
 <b>Example: <span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/ydinn9YzUJn)</span></b>
@@ -394,12 +394,12 @@ func main() {
 
 ### <span id="CountSort">CountSort</span>
 
-<p>Sort slice with count sort algorithm. Param comparator should implements lancetconstraints.Comparator.</p>
+<p>Sort slice with count sort algorithm. Param comparator should implements constraints.Comparator.</p>
 
 <b>Signature:</b>
 
 ```go
-func CountSort[T any](slice []T, comparator lancetconstraints.Comparator) []T
+func CountSort[T any](slice []T, comparator constraints.Comparator) []T
 ```
 
 <b>Example: <span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/tB-Umgm0DrP)</span></b>
@@ -448,7 +448,7 @@ func main() {
 <b>Signature:</b>
 
 ```go
-func BinarySearch[T any](sortedSlice []T, target T, lowIndex, highIndex int, comparator lancetconstraints.Comparator) int
+func BinarySearch[T any](sortedSlice []T, target T, lowIndex, highIndex int, comparator constraints.Comparator) int
 ```
 
 <b>Example: <span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/t6MeGiUSN47)</span></b>
@@ -499,7 +499,7 @@ func main() {
 <b>Signature:</b>
 
 ```go
-func BinaryIterativeSearch[T any](sortedSlice []T, target T, lowIndex, highIndex int, comparator lancetconstraints.Comparator) int
+func BinaryIterativeSearch[T any](sortedSlice []T, target T, lowIndex, highIndex int, comparator constraints.Comparator) int
 ```
 
 <b>Example: <span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/Anozfr8ZLH3)</span></b>

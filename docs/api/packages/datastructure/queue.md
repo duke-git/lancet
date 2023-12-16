@@ -1100,12 +1100,12 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func NewPriorityQueue[T any](capacity int, comparator lancetconstraints.Comparator) *PriorityQueue[T]
+func NewPriorityQueue[T any](capacity int, comparator constraints.Comparator) *PriorityQueue[T]
 
 type PriorityQueue[T any] struct {
 	items      []T
 	size       int
-	comparator lancetconstraints.Comparator
+	comparator constraints.Comparator
 }
 ```
 <b>示例:</b>
