@@ -330,10 +330,10 @@ func Cos(radian float64, precision ...int) float64 {
 	return TruncRound(radian, 3)
 }
 
-// Cos returns the sine of the radian argument.
+// Sin returns the sine of the radian argument.
 // Play: https://go.dev/play/p/TWMQlMywDsP
 func Sin(radian float64, precision ...int) float64 {
-	return Cos((math.Pi / 2) - radian)
+	return Cos((math.Pi/2)-radian, precision...)
 }
 
 // Log returns the logarithm of base n.
