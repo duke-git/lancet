@@ -9,11 +9,16 @@ import "github.com/duke-git/lancet/v2/constraints"
 // Play: https://go.dev/play/p/GNdv7Jg2Taj
 func BubbleSort[T any](slice []T, comparator constraints.Comparator) {
 	for i := 0; i < len(slice); i++ {
+		breakTag := false
 		for j := 0; j < len(slice)-1-i; j++ {
 			isCurrGreatThanNext := comparator.Compare(slice[j], slice[j+1]) == 1
 			if isCurrGreatThanNext {
 				swap(slice, j, j+1)
+				breakTag = true
 			}
+		}
+		if !breakTag {
+			break
 		}
 	}
 }
