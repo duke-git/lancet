@@ -1452,33 +1452,33 @@ import "github.com/duke-git/lancet/v2/structs"
 #### 函数列表:
 
 -   **<big>New</big>** : `Struct`结构体的构造函数。
-    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/structs/struct.md#New)]
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/struct.md#New)]
 -   **<big>ToMap</big>** : 将一个合法的 struct 对象转换为 map[string]any。
-    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/structs/struct.md#ToMap)]
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/struct.md#ToMap)]
 -   **<big>Fields</big>** : 获取一个 struct 对象的属性列表。
-    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/structs/struct.md#Fields)]
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/struct.md#Fields)]
 -   **<big>Field</big>** : 根据属性名获取一个 struct 对象的属性。
-    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/structs/struct.md#Fields)]
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/struct.md#Fields)]
 -   **<big>IsStruct</big>** : 判断是否为一个合法的 struct 对象。
-    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/structs/struct.md#IsStruct)]
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/struct.md#IsStruct)]
 -   **<big>Tag</big>** : 获取`Field`的`Tag`，默认的 tag key 是 json。
-    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/structs/field.md#Tag)]
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/struct.md#Tag)]
 -   **<big>Name</big>** : 获取属性名。
-    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/structs/field.md#Name)]
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/struct.md#Name)]
 -   **<big>Value</big>** : 获取`Field`属性的值。
-    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/structs/field.md#Value)]
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/struct.md#Value)]
 -   **<big>Kind</big>** : 获取属性 Kind。
-    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/structs/field.md#Kind)]
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/struct.md#Kind)]
 -   **<big>IsEmbedded</big>** : 判断属性是否为嵌入。
-    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/structs/field.md#IsEmbedded)]
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/struct.md#IsEmbedded)]
 -   **<big>IsExported</big>** : 判断属性是否导出。
-    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/structs/field.md#IsExported)]
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/struct.md#IsExported)]
 -   **<big>IsZero</big>** : 判断属性是否为零值。
-    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/structs/field.md#IsZero)]
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/struct.md#IsZero)]
 -   **<big>IsSlice</big>** : 判断属性是否是切片。
-    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/structs/field.md#IsSlice)]
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/struct.md#IsSlice)]
 -   **<big>IsTargetType</big>** : 判断属性是否是目标类型。
-    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/structs/field.md#IsTargetType)]
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/struct.md#IsTargetType)]
 
 <h3 id="strutil"> 21. strutil 包含字符串处理的相关函数。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 
