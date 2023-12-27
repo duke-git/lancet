@@ -68,6 +68,11 @@ func (f *Field) IsSlice() bool {
 	return k == reflect.Slice
 }
 
+// IsTargetType check if a struct field type is target type or not
+func (f *Field) IsTargetType(targetType reflect.Kind) bool {
+	return f.rvalue.Kind() == targetType
+}
+
 // mapValue covert field value to map
 func (f *Field) mapValue(value any) any {
 	val := pointer.ExtractPointer(value)

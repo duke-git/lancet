@@ -1477,6 +1477,8 @@ import "github.com/duke-git/lancet/v2/structs"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/structs/field.md#IsZero)]
 -   **<big>IsSlice</big>** : 判断属性是否是切片。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/structs/field.md#IsSlice)]
+-   **<big>IsTargetType</big>** : 判断属性是否是目标类型。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/structs/field.md#IsTargetType)]
 
 <h3 id="strutil"> 21. strutil 包含字符串处理的相关函数。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 

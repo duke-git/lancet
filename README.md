@@ -1476,6 +1476,8 @@ import "github.com/duke-git/lancet/v2/structs"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/structs/field.md#IsZero)]
 -   **<big>IsSlice</big>** : check if the field is a slice
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/structs/field.md#IsSlice)]
+-   **<big>IsTargetType</big>** : check if the field is target type
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/structs/field.md#IsTargetType)]
 
 <h3 id="strutil"> 21. Strutil package contains some functions to manipulate string. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 

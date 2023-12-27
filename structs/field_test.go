@@ -154,6 +154,25 @@ func TestField_IsSlice(t *testing.T) {
 	assert.Equal(true, a.IsSlice())
 }
 
+func TestField_IsTargetType(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestField_IsTargetType")
+
+	type Parent struct {
+		Name string
+		arr  []int
+	}
+
+	p1 := &Parent{Name: "test", arr: []int{1, 2, 3}}
+	s := New(p1)
+	n, _ := s.Field("Name")
+	a, _ := s.Field("arr")
+
+	assert.Equal(true, n.IsTargetType(reflect.String))
+	assert.Equal(true, a.IsTargetType(reflect.Slice))
+}
+
 func TestField_MapValue(t *testing.T) {
 	t.Parallel()
 
