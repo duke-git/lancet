@@ -32,7 +32,7 @@
 
 ### Note:
 
-1. <b>For users who use go1.18 and above, it is recommended to install lancet v2.x.x. Cause in v2.x.x all functions was rewriten with generics of go1.18.</b>
+1. <b>For users who use go1.18 and above, it is recommended to install lancet v2.x.x. Cause in v2.x.x all functions were rewritten with generics of go1.18.</b>
 
 ```go
 go get github.com/duke-git/lancet/v2 // will install latest version of v2.x.x
@@ -201,10 +201,10 @@ import "github.com/duke-git/lancet/v2/concurrency"
 -   **<big>OrDone</big>** : read a channel into another channel, will close until cancel context.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/concurrency.md#OrDone)]
     [[play](https://go.dev/play/p/lm_GoS6aDjo)]
--   **<big>Repeat</big>** : create channel, put values into the channel repeatly until cancel the context.
+-   **<big>Repeat</big>** : create channel, put values into the channel repeatedly until cancel the context.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/concurrency.md#Repeat)]
     [[play](https://go.dev/play/p/k5N_ALVmYjE)]
--   **<big>RepeatFn</big>** : create a channel, excutes fn repeatly, and put the result into the channel, until close context.
+-   **<big>RepeatFn</big>** : create a channel, executes fn repeatedly, and put the result into the channel, until close context.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/concurrency.md#RepeatFn)]
     [[play](https://go.dev/play/p/4J1zAWttP85)]
 -   **<big>Take</big>** : create a channel whose values are taken from another channel with limit number.
@@ -247,7 +247,7 @@ import "github.com/duke-git/lancet/v2/condition"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/condition.md#TernaryOperator)]
     [[play](https://go.dev/play/p/ElllPZY0guT)]
 
-<h3 id="convertor"> 5. Convertor package contains some functions for data convertion. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a> </h3>
+<h3 id="convertor"> 5. Convertor package contains some functions for data conversion. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a> </h3>
 
 ```go
 import "github.com/duke-git/lancet/v2/convertor"
@@ -596,7 +596,7 @@ import "github.com/duke-git/lancet/v2/datetime"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/datetime.md#TimestampNano)]
     [[play](https://go.dev/play/p/A9Oq_COrcCF)]
 
-<h3 id="datastructure"> 8. Datastructure package constains some common data structure. eg. list, linklist, stack, queue, set, tree, graph. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
+<h3 id="datastructure"> 8. Datastructure package contains some common data structure. eg. list, linklist, stack, queue, set, tree, graph. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
 ```go
 import list "github.com/duke-git/lancet/v2/datastructure/list"
@@ -754,10 +754,10 @@ import "github.com/duke-git/lancet/v2/function"
 
 #### Function list:
 
--   **<big>After</big>** : return a function that invokes passed funcation once the returned function is called more than n times.
+-   **<big>After</big>** : return a function that invokes passed function once the returned function is called more than n times.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/function.md#After)]
     [[play](https://go.dev/play/p/eRD5k2vzUVX)]
--   **<big>Before</big>** : return a function that invokes passed funcation once the returned function is called less than n times
+-   **<big>Before</big>** : return a function that invokes passed function once the returned function is called less than n times
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/function.md#Before)]
     [[play](https://go.dev/play/p/0HqUDIFZ3IL)]
 -   **<big>CurryFn</big>** : make a curry function.
@@ -778,7 +778,7 @@ import "github.com/duke-git/lancet/v2/function"
 -   **<big>Pipeline</big>** : takes a list of functions and returns a function whose param will be passed into the functions one by one.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/function.md#Pipeline)]
     [[play](https://go.dev/play/p/mPdUVvj6HD6)]
--   **<big>Watcher</big>** : Watcher is used for record code excution time. can start/stop/reset the watch timer. get the elapsed time of function execution.
+-   **<big>Watcher</big>** : Watcher is used for record code execution time. can start/stop/reset the watch timer. get the elapsed time of function execution.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/function.md#Watcher)]
     [[play](https://go.dev/play/p/l2yrOpCLd1I)]
 
@@ -793,7 +793,7 @@ import "github.com/duke-git/lancet/v2/maputil"
 -   **<big>MapTo</big>** : quick map any value to struct or any base type.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/maputil.md#MapTo)]
     [[play](https://go.dev/play/p/4K7KBEPgS5M)]
--   **<big>ForEach</big>** : executes iteratee funcation for every key and value pair in map.
+-   **<big>ForEach</big>** : executes iteratee function for every key and value pair in map.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/maputil.md#ForEach)]
     [[play](https://go.dev/play/p/OaThj6iNVXK)]
 -   **<big>Filter</big>** : iterates over map, return a new map contains all key and value pairs pass the predicate function.
@@ -811,7 +811,7 @@ import "github.com/duke-git/lancet/v2/maputil"
 -   **<big>OmitByKeys</big>** : the opposite of FilterByKeys, extracts all the map elements which keys are not omitted.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/maputil.md#OmitByKeys)]
     [[play](https://go.dev/play/p/jXGrWDBfSRp)]
--   **<big>OmitByValues</big>** : the opposite of FilterByValues. remov all elements whose value are in the give slice.
+-   **<big>OmitByValues</big>** : the opposite of FilterByValues. remove all elements whose value are in the give slice.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/maputil.md#OmitByValues)]
     [[play](https://go.dev/play/p/XB7Y10uw20_U)]
 -   **<big>Intersect</big>** : iterates over maps, return a new map of key and value pairs in all given maps.
@@ -961,7 +961,7 @@ import "github.com/duke-git/lancet/v2/mathutil"
 -   **<big>Sum</big>** : return sum of passed numbers.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/mathutil.md#Sum)]
     [[play](https://go.dev/play/p/1To2ImAMJA7)]
--   **<big>Abs</big>** : returns the absolute value of param nubmer.
+-   **<big>Abs</big>** : returns the absolute value of param number.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/mathutil.md#Sum)]
     [[play](https://go.dev/play/p/fsyBh1Os-1d)]
 
@@ -1012,7 +1012,7 @@ import "github.com/duke-git/lancet/v2/netutil"
 -   **<big>DecodeResponse</big>** : decode http response into target object.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/netutil.md#DecodeResponse)]
     [[play](https://go.dev/play/p/jUSgynekH7G)]
--   **<big>StructToUrlValues</big>** : convert struct to url valuse.
+-   **<big>StructToUrlValues</big>** : convert struct to url values.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/netutil.md#StructToUrlValues)]
     [[play](https://go.dev/play/p/pFqMkM40w9z)]
 -   **<big>HttpGet<sup>deprecated</sup></big>** : send http get request.
@@ -1157,7 +1157,7 @@ import "github.com/duke-git/lancet/v2/slice"
 -   **<big>Chunk</big>** : creates a slice of elements split into groups the length of size.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#Chunk)]
     [[play](https://go.dev/play/p/b4Pou5j2L_C)]
--   **<big>Compact</big>** : creates an slice with all falsey values removed. The values false, nil, 0, and "" are falsey.
+-   **<big>Compact</big>** : creates an slice with all falsy values removed. The values false, nil, 0, and "" are falsy.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#Compact)]
     [[play](https://go.dev/play/p/pO5AnxEr3TK)]
 -   **<big>Concat</big>** : creates a new slice concatenating slice with any additional slices.
@@ -1238,7 +1238,7 @@ import "github.com/duke-git/lancet/v2/slice"
 -   **<big>GroupBy</big>** : iterate over elements of the slice, each element will be group by criteria, returns two slices.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#GroupBy)]
     [[play](https://go.dev/play/p/QVkPxzPR0iA)]
--   **<big>GroupWith</big>** : return a map composed of keys generated from the resultults of running each element of slice thru iteratee.
+-   **<big>GroupWith</big>** : return a map composed of keys generated from the results of running each element of slice thru iteratee.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#GroupWith)]
     [[play](https://go.dev/play/p/ApCvMNTLO8a)]
 -   **<big>IntSlice<sup>deprecated</sup></big>** : convert param to int slice.
@@ -1377,7 +1377,7 @@ import "github.com/duke-git/lancet/v2/stream"
 -   **<big>FromRange</big>** : creates a number stream from start to end. both start and end are included. [start, end]
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/stream.md#FromRange)]
     [[play](https://go.dev/play/p/9Ex1-zcg-B-)]
--   **<big>Generate</big>** : creates a stream where each element is generated by the provided generater function.
+-   **<big>Generate</big>** : creates a stream where each element is generated by the provided generator function.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/stream.md#Generate)]
     [[play](https://go.dev/play/p/rkOWL1yA3j9)]
 -   **<big>Concat</big>** : creates a lazily concatenated stream whose elements are all the elements of the first stream followed by all the elements of the second stream.
@@ -1422,10 +1422,10 @@ import "github.com/duke-git/lancet/v2/stream"
 -   **<big>FindLast</big>** : returns the last element of this stream and true, or zero value and false if the stream is empty.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/stream.md#FindLast)]
     [[play](https://go.dev/play/p/WZD2rDAW-2h)]
--   **<big>Max</big>** : returns the maximum element of this stream according to the provided less function. less fuction: a > b
+-   **<big>Max</big>** : returns the maximum element of this stream according to the provided less function. less function: a > b
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/stream.md#Max)]
     [[play](https://go.dev/play/p/fm-1KOPtGzn)]
--   **<big>Min</big>** : returns the minimum element of this stream according to the provided less function. less fuction: a < b
+-   **<big>Min</big>** : returns the minimum element of this stream according to the provided less function. less function: a < b
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/stream.md#Min)]
     [[play](https://go.dev/play/p/vZfIDgGNRe_0)]
 -   **<big>AllMatch</big>** : returns whether all elements of this stream match the provided predicate.
@@ -1470,7 +1470,7 @@ import "github.com/duke-git/lancet/v2/structs"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/structs/field.md#Kind)]
 -   **<big>IsEmbedded</big>** : check if the field is an embedded field.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/structs/field.md#IsEmbedded)]
--   **<big>IsExported</big>** : check if the field is exporte
+-   **<big>IsExported</big>** : check if the field is exported
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/structs/field.md#IsExported)]
 -   **<big>IsZero</big>** : check if the field is zero value
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/structs/field.md#IsZero)]
@@ -1644,7 +1644,7 @@ import "github.com/duke-git/lancet/v2/tuple"
 
 #### Function list:
 
--   **<big>Tuple2</big>** : represents a 2 elemnets tuple.
+-   **<big>Tuple2</big>** : represents a 2 elements tuple.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/tuple.md#Tuple2)]
     [[play](https://go.dev/play/p/3sHVqBQpLYN)]
 -   **<big>Tuple2_Unbox</big>** : returns values in Tuple2.
@@ -1656,7 +1656,7 @@ import "github.com/duke-git/lancet/v2/tuple"
 -   **<big>Unzip2</big>** : create a group of slice from a slice of Tuple2.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/tuple.md#Unzip2)]
     [[play](https://go.dev/play/p/KBecr60feXb)]
--   **<big>Tuple3</big>** : represents a 3 elemnets tuple.
+-   **<big>Tuple3</big>** : represents a 3 elements tuple.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/tuple.md#Tuple3)]
     [[play](https://go.dev/play/p/FtH2sdCLlCf)]
 -   **<big>Tuple3_Unbox</big>** : returns values in Tuple3.
@@ -1668,7 +1668,7 @@ import "github.com/duke-git/lancet/v2/tuple"
 -   **<big>Unzip3</big>** : create a group of slice from a slice of Tuple3.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/tuple.md#Unzip3)]
     [[play](https://go.dev/play/p/bba4cpAa7KO)]
--   **<big>Tuple4</big>** : represents a 4 elemnets tuple.
+-   **<big>Tuple4</big>** : represents a 4 elements tuple.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/tuple.md#Tuple4)]
     [[play](https://go.dev/play/p/D2EqDz096tk)]
 -   **<big>Tuple4_Unbox</big>** : returns values in Tuple4.
@@ -1680,7 +1680,7 @@ import "github.com/duke-git/lancet/v2/tuple"
 -   **<big>Unzip4</big>** : create a group of slice from a slice of Tuple4.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/tuple.md#Unzip4)]
     [[play](https://go.dev/play/p/rb8z4gyYSRN)]
--   **<big>Tuple5</big>** : represents a 5 elemnets tuple.
+-   **<big>Tuple5</big>** : represents a 5 elements tuple.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/tuple.md#Tuple5)]
     [[play](https://go.dev/play/p/2WndmVxPg-r)]
 -   **<big>Tuple5_Unbox</big>** : returns values in Tuple4.
@@ -1692,7 +1692,7 @@ import "github.com/duke-git/lancet/v2/tuple"
 -   **<big>Unzip5</big>** : create a group of slice from a slice of Tuple5.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/tuple.md#Unzip5)]
     [[play](https://go.dev/play/p/gyl6vKfhqPb)]
--   **<big>Tuple6</big>** : represents a 6 elemnets tuple.
+-   **<big>Tuple6</big>** : represents a 6 elements tuple.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/tuple.md#Tuple6)]
     [[play](https://go.dev/play/p/VjqcCwEJZbs)]
 -   **<big>Tuple6_Unbox</big>** : returns values in Tuple6.
@@ -1704,7 +1704,7 @@ import "github.com/duke-git/lancet/v2/tuple"
 -   **<big>Unzip6</big>** : create a group of slice from a slice of Tuple6.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/tuple.md#Unzip6)]
     [[play](https://go.dev/play/p/l41XFqCyh5E)]
--   **<big>Tuple7</big>** : represents a 7 elemnets tuple.
+-   **<big>Tuple7</big>** : represents a 7 elements tuple.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/tuple.md#Tuple7)]
     [[play](https://go.dev/play/p/dzAgv_Ezub9)]
 -   **<big>Tuple7_Unbox</big>** : returns values in Tuple7.
@@ -1716,7 +1716,7 @@ import "github.com/duke-git/lancet/v2/tuple"
 -   **<big>Unzip7</big>** : create a group of slice from a slice of Tuple7.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/tuple.md#Unzip7)]
     [[play](https://go.dev/play/p/hws_P1Fr2j3)]
--   **<big>Tuple8</big>** : represents a 8 elemnets tuple.
+-   **<big>Tuple8</big>** : represents a 8 elements tuple.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/tuple.md#Tuple8)]
     [[play](https://go.dev/play/p/YA9S0rz3dRz)]
 -   **<big>Tuple8_Unbox</big>** : returns values in Tuple8.
@@ -1728,7 +1728,7 @@ import "github.com/duke-git/lancet/v2/tuple"
 -   **<big>Unzip8</big>** : create a group of slice from a slice of Tuple8.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/tuple.md#Unzip8)]
     [[play](https://go.dev/play/p/1SndOwGsZB4)]
--   **<big>Tuple9</big>** : represents a 9 elemnets tuple.
+-   **<big>Tuple9</big>** : represents a 9 elements tuple.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/tuple.md#Tuple9)]
     [[play](https://go.dev/play/p/yS2NGGtZpQr)]
 -   **<big>Tuple9_Unbox</big>** : returns values in Tuple9.
@@ -1740,7 +1740,7 @@ import "github.com/duke-git/lancet/v2/tuple"
 -   **<big>Unzip9</big>** : create a group of slice from a slice of Tuple9.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/tuple.md#Unzip9)]
     [[play](https://go.dev/play/p/91-BU_KURSA)]
--   **<big>Tuple10</big>** : represents a 10 elemnets tuple.
+-   **<big>Tuple10</big>** : represents a 10 elements tuple.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/tuple.md#Tuple10)]
     [[play](https://go.dev/play/p/799qqZg0hUv)]
 -   **<big>Tuple10_Unbox</big>** : returns values in Tuple10.
@@ -1872,19 +1872,19 @@ import "github.com/duke-git/lancet/v2/validator"
 -   **<big>IsJWT</big>** : check if a give string is a valid JSON Web Token (JWT).
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/validator.md#IsJWT)]
     [[play](https://go.dev/play/p/R6Op7heJbKI)]
--   **<big>IsVisa</big>** : check if a give string is a valid visa card nubmer or not.
+-   **<big>IsVisa</big>** : check if a give string is a valid visa card number or not.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/validator.md#IsVisa)]
     [[play](https://go.dev/play/p/SdS2keOyJsl)]
--   **<big>IsMasterCard</big>** : check if a give string is a valid master card nubmer or not.
+-   **<big>IsMasterCard</big>** : check if a give string is a valid master card number or not.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/validator.md#IsMasterCard)]
     [[play](https://go.dev/play/p/CwWBFRrG27b)]
--   **<big>IsAmericanExpress</big>** : check if a give string is a valid american expression card nubmer or not.
+-   **<big>IsAmericanExpress</big>** : check if a give string is a valid american expression card number or not.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/validator.md#IsAmericanExpress)]
     [[play](https://go.dev/play/p/HIDFpcOdpkd)]
--   **<big>IsUnionPay</big>** : check if a give string is a valid union pay nubmer or not.
+-   **<big>IsUnionPay</big>** : check if a give string is a valid union pay number or not.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/validator.md#IsUnionPay)]
     [[play](https://go.dev/play/p/CUHPEwEITDf)]
--   **<big>IsChinaUnionPay</big>** : check if a give string is a valid china union pay nubmer or not.
+-   **<big>IsChinaUnionPay</big>** : check if a give string is a valid china union pay number or not.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/validator.md#IsChinaUnionPay)]
     [[play](https://go.dev/play/p/yafpdxLiymu)]
 
