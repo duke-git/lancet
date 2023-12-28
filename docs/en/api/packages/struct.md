@@ -37,6 +37,7 @@ import (
 -   [IsExported](#IsExported)
 -   [IsZero](#IsZero)
 -   [IsSlice](#IsSlice)
+-   [IsTargetType](#IsTargetType)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -530,6 +531,47 @@ func main() {
     fmt.Println(a.IsSlice())
 
     // Output:
+    // true
+}
+```
+
+### <span id="IsTargetType">IsTargetType</span>
+
+<p>check if a struct field type is target type or not</p>
+
+<b>Signature:</b>
+
+```go
+func (f *Field) IsTargetType(targetType reflect.Kind) bool
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "reflect"
+    "github.com/duke-git/lancet/v2/structs"
+)
+
+func main() {
+    type Parent struct {
+        Name string
+        arr  []int
+    }
+
+    p1 := &Parent{arr: []int{1, 2, 3}}
+    s := structs.New(p1)
+    n, _ := s.Field("Name")
+	a, _ := s.Field("arr")
+    
+    fmt.Println(n.IsTargetType(reflect.String))
+    fmt.Println(a.IsTargetType(reflect.Slice))
+    
+    // Output: 
+    // true
     // true
 }
 ```

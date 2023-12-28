@@ -1453,29 +1453,31 @@ import "github.com/duke-git/lancet/v2/structs"
 #### Function list:
 
 -   **<big>New</big>** : creates a `Struct` instance.
-    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/structs/struct.md#New)]
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/struct.md#New)]
 -   **<big>ToMap</big>** : converts a valid struct to a map.
-    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/structs/struct.md#ToMap)]
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/struct.md#ToMap)]
 -   **<big>Fields</big>** : get all fields of a given struct, that the fields are abstract struct field.
-    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/structs/struct.md#Fields)]
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/struct.md#Fields)]
 -   **<big>IsStruct</big>** : check if the struct is valid.
-    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/structs/struct.md#IsStruct)]
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/struct.md#IsStruct)]
 -   **<big>Tag</big>** : get a `Tag` of the `Field`, `Tag` is a abstract struct field tag
-    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/structs/field.md#Tag)]
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/struct.md#Tag)]
 -   **<big>Name</big>** : get the field name.
-    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/structs/field.md#Name)]
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/struct.md#Name)]
 -   **<big>Value</big>** : get the `Field` underlying value.
-    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/structs/field.md#Value)]
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/struct.md#Value)]
 -   **<big>Kind</big>** : get the field's kind
-    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/structs/field.md#Kind)]
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/struct.md#Kind)]
 -   **<big>IsEmbedded</big>** : check if the field is an embedded field.
-    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/structs/field.md#IsEmbedded)]
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/struct.md#IsEmbedded)]
 -   **<big>IsExported</big>** : check if the field is exporte
-    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/structs/field.md#IsExported)]
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/struct.md#IsExported)]
 -   **<big>IsZero</big>** : check if the field is zero value
-    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/structs/field.md#IsZero)]
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/struct.md#IsZero)]
 -   **<big>IsSlice</big>** : check if the field is a slice
-    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/structs/field.md#IsSlice)]
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/struct.md#IsSlice)]
+-   **<big>IsTargetType</big>** : check if the field is target type
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/struct.md#IsTargetType)]
 
 <h3 id="strutil"> 21. Strutil package contains some functions to manipulate string. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
