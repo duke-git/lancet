@@ -381,3 +381,12 @@ func TimestampNano(timezone ...string) int64 {
 
 	return t.UnixNano()
 }
+
+// TraceFuncTime: trace the func costed time,just call it at top of the func like `defer TraceFuncTime()()`
+func TraceFuncTime() func() {
+	pre := time.Now()
+	return func() {
+		elapsed := time.Since(pre)
+		fmt.Println("Costs Time:\t", elapsed)
+	}
+}
