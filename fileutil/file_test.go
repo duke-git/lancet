@@ -340,10 +340,14 @@ func TestSha(t *testing.T) {
 	assert := internal.NewAssert(t, "TestSha")
 
 	sha1, err := Sha("./testdata/test.txt", 1)
-	sha256, err := Sha("./testdata/test.txt", 256)
-	sha512, err := Sha("./testdata/test.txt", 512)
-
 	assert.IsNil(err)
+
+	sha256, err := Sha("./testdata/test.txt", 256)
+	assert.IsNil(err)
+
+	sha512, err := Sha("./testdata/test.txt", 512)
+	assert.IsNil(err)
+
 	assert.Equal("dda3cf10c5a6ff6c6659a497bf7261b287af2bc7", sha1)
 	assert.Equal("aa6d0a3fbc3442c228d606da09e0c1dc98c69a1cac3da1909199e0266171df35", sha256)
 	assert.Equal("d22aba2a1b7a2e2f512756255cc1c3708905646920cb1eb95e45b531ba74774dbbb89baebf1f716220eb9cf4908f1cfc5b2a01267704d9a59f59d77cab609870", sha512)

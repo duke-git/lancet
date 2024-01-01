@@ -610,7 +610,7 @@ func Sha(filepath string, shaType ...int) (string, error) {
 		} else if shaType[0] == 512 {
 			h = sha512.New()
 		} else {
-			return "", errors.New("param `shaType` should be 1, 256 or 512.")
+			return "", errors.New("param `shaType` should be 1, 256 or 512")
 		}
 	}
 
