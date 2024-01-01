@@ -563,6 +563,25 @@ func FileSize(path string) (int64, error) {
 	return f.Size(), nil
 }
 
+// DirSize walks the folder recursively and returns folder size in bytes.
+func DirSize(path string) (int64, error) {
+	var size int64
+	err := filepath.WalkDir(path, func(_ string, d os.DirEntry, err error) error {
+		if err != nil {
+			return err
+		}
+		if !d.IsDir() {
+			info, err := d.Info()
+			if err != nil {
+				return err
+			}
+			size += info.Size()
+		}
+		return err
+	})
+	return size, err
+}
+
 // MTime returns file modified time.
 // Play: https://go.dev/play/p/s_Tl7lZoAaY
 func MTime(filepath string) (int64, error) {
