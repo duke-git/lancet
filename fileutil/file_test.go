@@ -391,7 +391,7 @@ func TestWriteCsvFile(t *testing.T) {
 func TestWriteMapsToCsv(t *testing.T) {
 	assert := internal.NewAssert(t, "TestWriteMapsToCSV")
 
-	csvFilePath := "./testdata/test3.csv"
+	csvFilePath := "./testdata/test4.csv"
 	records := []map[string]string{
 		{"Name": "Lili", "Age": "22", "gender": "female"},
 		{"Name": "Jim", "Age": "21", "gender": "male"},
