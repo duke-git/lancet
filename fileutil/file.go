@@ -628,15 +628,19 @@ func Sha(filepath string, shaType ...int) (string, error) {
 
 // ReadCsvFile read file content into slice.
 // Play: https://go.dev/play/p/OExTkhGEd3_u
-func ReadCsvFile(filepath string) ([][]string, error) {
+func ReadCsvFile(filepath string, delimiter ...rune) ([][]string, error) {
 	f, err := os.Open(filepath)
 	if err != nil {
 		return nil, err
 	}
 	defer f.Close()
 
-	csvReader := csv.NewReader(f)
-	records, err := csvReader.ReadAll()
+	reader := csv.NewReader(f)
+	if len(delimiter) > 0 {
+		reader.Comma = delimiter[0]
+	}
+
+	records, err := reader.ReadAll()
 	if err != nil {
 		return nil, err
 	}
@@ -748,8 +752,9 @@ func escapeCSVField(field string, delimiter rune) string {
 	return escapedField
 }
 
-// map切片写入csv文件中
-func WriteMapsToCSV(filepath string, records []map[string]string, append_to_existing_file bool, delimiter ...rune) error {
+// WriteMapsToCsv write slice of map to csv file.
+// Play: todo
+func WriteMapsToCsv(filepath string, records []map[string]string, append_to_existing_file bool, delimiter ...rune) error {
 	var datas_to_write [][]string
 	// 标题（列名）
 	var headers []string

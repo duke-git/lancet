@@ -669,7 +669,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func ReadCsvFile(filepath string) ([][]string, error)
+func ReadCsvFile(filepath string, delimiter ...rune) ([][]string, error)
 ```
 
 <b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/OExTkhGEd3_u)</span></b>
@@ -701,7 +701,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func WriteCsvFile(filepath string, records [][]string, append bool) error
+func WriteCsvFile(filepath string, records [][]string, append bool, delimiter ...rune) error
 ```
 
 <b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/dAXm58Q5U1o)</span></b>
@@ -740,6 +740,53 @@ func main() {
 
     // Output:
     // [[Lili 22 female] [Jim 21 male]]
+}
+```
+
+### <span id="WriteMapsToCsv">WriteMapsToCsv</span>
+
+<p>将map切片写入csv文件中。</p>
+
+<b>函数签名:</b>
+
+```go
+func WriteMapsToCsv(filepath string, records []map[string]string, append_to_existing_file bool, delimiter ...rune) error
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/fileutil"
+)
+
+func main() {
+    fpath := "./test.csv"
+    fileutil.CreateFile(fpath)
+
+    f, _ := os.OpenFile(fpath, os.O_WRONLY|os.O_TRUNC, 0777)
+    defer f.Close()
+
+    records := []map[string]string{
+        {"Name": "Lili", "Age": "22", "gender": "female"},
+        {"Name": "Jim", "Age": "21", "gender": "male"},
+    }
+
+    err := WriteMapsToCsv(csvFilePath, records, false, ';')
+
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    content, err := ReadCsvFile(csvFilePath, ';')
+
+    fmt.Println(content)
+
+    // Output:
+    // [[Name Age gender] [Lili 22 female] [Jim 21 male]]
 }
 ```
 

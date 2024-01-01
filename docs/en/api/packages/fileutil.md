@@ -45,6 +45,7 @@ import (
 -   [Sha](#Sha)
 -   [ReadCsvFile](#ReadCsvFile)
 -   [WriteCsvFile](#WriteCsvFile)
+-   [WriteMapsToCsv](#WriteMapsToCsv)
 -   [WriteStringToFile](#WriteStringToFile)
 -   [WriteBytesToFile](#WriteBytesToFile)
 -   [ReadFile](#ReadFile)
@@ -669,7 +670,7 @@ func main() {
 <b>Signature:</b>
 
 ```go
-func ReadCsvFile(filepath string) ([][]string, error)
+func ReadCsvFile(filepath string, delimiter ...rune) ([][]string, error)
 ```
 
 <b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/OExTkhGEd3_u)</span></b>
@@ -701,7 +702,7 @@ func main() {
 <b>Signature:</b>
 
 ```go
-func WriteCsvFile(filepath string, records [][]string, append bool) error
+func WriteCsvFile(filepath string, records [][]string, append bool, delimiter ...rune) error
 ```
 
 <b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/dAXm58Q5U1o)</span></b>
@@ -740,6 +741,53 @@ func main() {
 
     // Output:
     // [[Lili 22 female] [Jim 21 male]]
+}
+```
+
+### <span id="WriteMapsToCsv">WriteMapsToCsv</span>
+
+<p>Write slice of map to csv file.</p>
+
+<b>Signature:</b>
+
+```go
+func WriteMapsToCsv(filepath string, records []map[string]string, append_to_existing_file bool, delimiter ...rune) error
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/fileutil"
+)
+
+func main() {
+    fpath := "./test.csv"
+    fileutil.CreateFile(fpath)
+
+    f, _ := os.OpenFile(fpath, os.O_WRONLY|os.O_TRUNC, 0777)
+    defer f.Close()
+
+    records := []map[string]string{
+        {"Name": "Lili", "Age": "22", "gender": "female"},
+        {"Name": "Jim", "Age": "21", "gender": "male"},
+    }
+
+    err := WriteMapsToCsv(csvFilePath, records, false, ';')
+
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    content, err := ReadCsvFile(csvFilePath, ';')
+
+    fmt.Println(content)
+
+    // Output:
+    // [[Name Age gender] [Lili 22 female] [Jim 21 male]]
 }
 ```
 

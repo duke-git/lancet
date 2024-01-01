@@ -3,6 +3,7 @@ package fileutil
 import (
 	"fmt"
 	"io"
+	"log"
 	"os"
 )
 
@@ -329,6 +330,27 @@ func ExampleWriteCsvFile() {
 	// Output:
 	// <nil>
 	// [[Lili 22 female] [Jim 21 male]]
+}
+
+func ExampleWriteMapsToCsv() {
+	csvFilePath := "./testdata/test3.csv"
+	records := []map[string]string{
+		{"Name": "Lili", "Age": "22", "gender": "female"},
+		{"Name": "Jim", "Age": "21", "gender": "male"},
+	}
+
+	err := WriteMapsToCsv(csvFilePath, records, false, ';')
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	content, err := ReadCsvFile(csvFilePath, ';')
+
+	fmt.Println(content)
+
+	// Output:
+	// [[Name Age gender] [Lili 22 female] [Jim 21 male]]
 }
 
 func ExampleWriteStringToFile() {
