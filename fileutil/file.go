@@ -645,8 +645,10 @@ func ReadCsvFile(filepath string) ([][]string, error) {
 }
 
 // WriteCsvFile write content to target csv file.
+// append: append to existing csv file
+// delimiter: specifies csv delimiter
 // Play: https://go.dev/play/p/dAXm58Q5U1o
-func WriteCsvFile(filepath string, records [][]string, append bool) error {
+func WriteCsvFile(filepath string, records [][]string, append bool, delimiter ...rune) error {
 	flag := os.O_RDWR | os.O_CREATE
 
 	if append {
@@ -661,7 +663,19 @@ func WriteCsvFile(filepath string, records [][]string, append bool) error {
 	defer f.Close()
 
 	writer := csv.NewWriter(f)
-	writer.Comma = ','
+	// 设置默认分隔符为逗号，除非另外指定
+	if len(delimiter) > 0 {
+		writer.Comma = delimiter[0]
+	} else {
+		writer.Comma = ','
+	}
+
+	// 遍历所有记录并处理包含分隔符或双引号的单元格
+	for i := range records {
+		for j := range records[i] {
+			records[i][j] = escapeCSVField(records[i][j], writer.Comma)
+		}
+	}
 
 	return writer.WriteAll(records)
 }
@@ -719,4 +733,49 @@ func ReadFile(path string) (reader io.ReadCloser, closeFn func(), err error) {
 	default:
 		return nil, func() {}, errors.New("unknown file type")
 	}
+}
+
+// escapeCSVField 处理单元格内容，如果包含分隔符，则用双引号包裹
+func escapeCSVField(field string, delimiter rune) string {
+	// 替换所有的双引号为两个双引号
+	escapedField := strings.ReplaceAll(field, "\"", "\"\"")
+
+	// 如果字段包含分隔符、双引号或换行符，用双引号包裹整个字段
+	if strings.ContainsAny(escapedField, string(delimiter)+"\"\n") {
+		escapedField = fmt.Sprintf("\"%s\"", escapedField)
+	}
+
+	return escapedField
+}
+
+// map切片写入csv文件中
+func WriteMapsToCSV(filepath string, records []map[string]string, append_to_existing_file bool, delimiter ...rune) error {
+	var datas_to_write [][]string
+	// 标题（列名）
+	var headers []string
+	if len(records) > 0 {
+		for key := range records[0] {
+			headers = append(headers, key)
+		}
+	}
+	// 追加模式不重复写字段名
+	if !append_to_existing_file {
+		datas_to_write = append(datas_to_write, headers)
+	}
+	// 写入数据行
+	for _, record := range records {
+		var row []string
+		for _, header := range headers {
+			row = append(row, record[header])
+		}
+		datas_to_write = append(datas_to_write, row)
+	}
+	// 提取自定义分隔符
+	var sep rune
+	if len(delimiter) > 0 {
+		sep = delimiter[0]
+	} else {
+		sep = ','
+	}
+	return WriteCsvFile(filepath, datas_to_write, append_to_existing_file, sep)
 }
