@@ -476,3 +476,42 @@ Disallow: /deny
 `
 	internal.NewAssert(t, "TestReadFile").Equal(want, string(dat))
 }
+
+func TestReadlineFile(t *testing.T) {
+	path := "./testdata/demo.csv"
+	reader, err := NewFileReader(path)
+	if err != nil {
+		t.Fail()
+	}
+	defer reader.Close()
+
+	indexMap := make(map[string]int64)
+	defer reader.Close()
+	for {
+		offset := reader.Offset()
+		line, err := reader.ReadLine()
+		if err == io.EOF {
+			break
+		}
+		indexMap[line] = offset
+	}
+
+	lines, err := ReadFileByLine(path)
+	if err != nil {
+		t.Fail()
+	}
+	for _, line := range lines {
+		offset, ok := indexMap[line]
+		if !ok {
+			t.Fail()
+		}
+		if err = reader.Seek(offset); err != nil {
+			t.Fail()
+		}
+		lineRead, err := reader.ReadLine()
+		if err == io.EOF {
+			break
+		}
+		internal.NewAssert(t, "TestReadlineFile").Equal(line, lineRead)
+	}
+}

@@ -25,6 +25,61 @@ import (
 	"github.com/duke-git/lancet/v2/validator"
 )
 
+// FileReader is a reader supporting offset seeking and reading one
+// line at a time, this is especially useful for large files
+type FileReader struct {
+	*bufio.Reader
+	file   *os.File
+	offset int64
+}
+
+// NewFileReader creates the FileReader struct for reading
+func NewFileReader(path string) (*FileReader, error) {
+	f, err := os.Open(path)
+	if err != nil {
+		return nil, err
+	}
+	return &FileReader{
+		file:   f,
+		Reader: bufio.NewReader(f),
+		offset: 0,
+	}, nil
+}
+
+// ReadLine reads and returns one line at a time excluding the trailing '\r' and '\n'
+func (f *FileReader) ReadLine() (string, error) {
+	data, err := f.Reader.ReadBytes('\n')
+	f.offset += int64(len(data))
+	if err == nil || err == io.EOF {
+		for len(data) > 0 && (data[len(data)-1] == '\r' || data[len(data)-1] == '\n') {
+			data = data[:len(data)-1]
+		}
+		return string(data), err
+	}
+	return "", err
+}
+
+// Offset returns the current offset of the file
+func (f *FileReader) Offset() int64 {
+	return f.offset
+}
+
+// Seek sets the current offset of the reading
+func (f *FileReader) Seek(offset int64) error {
+	_, err := f.file.Seek(offset, 0)
+	if err != nil {
+		return err
+	}
+	f.Reader = bufio.NewReader(f.file)
+	f.offset = offset
+	return nil
+}
+
+// Close takes care of the opened file
+func (f *FileReader) Close() error {
+	return f.file.Close()
+}
+
 // IsExist checks if a file or directory exists.
 // Play: https://go.dev/play/p/nKKXt8ZQbmh
 func IsExist(path string) bool {
