@@ -674,34 +674,61 @@ func escapeCSVField(field string, delimiter rune) string {
 	return escapedField
 }
 
-// map切片写入csv文件中
-func WriteMapsToCSV(filepath string, records []map[string]string, append_to_existing_file bool, delimiter ...rune) error {
-	var datas_to_write [][]string
-	// 标题（列名）
+// WriteMapsToCSV writes a slice of maps to a CSV file.
+// filepath: Path to the CSV file.
+// records: Slice of maps to be written.Be attention,the map value
+// appendToExistingFile: If true, data will be appended to the file if it exists.
+// delimiter: Delimiter to use in the CSV file.
+func WriteMapsToCSV(filepath string, records []map[string]interface{}, appendToExistingFile bool, delimiter ...rune) error {
+	// 检查是否所有值都是支持的基本类型
+	for _, record := range records {
+		for _, value := range record {
+			if !isSupportedType(value) {
+				return errors.New("unsupported value type detected; only basic types are supported: \nbool, rune, string, int, int64, float32, float64, uint, byte, complex128, complex64, uintptr")
+			}
+		}
+	}
+	var datasToWrite [][]string
+
+	// Headers (column names)
 	var headers []string
 	if len(records) > 0 {
 		for key := range records[0] {
 			headers = append(headers, key)
 		}
 	}
+
 	// 追加模式不重复写字段名
-	if !append_to_existing_file {
-		datas_to_write = append(datas_to_write, headers)
+	if !appendToExistingFile {
+		datasToWrite = append(datasToWrite, headers)
 	}
-	// 写入数据行
+
+	// 写数据行
 	for _, record := range records {
 		var row []string
 		for _, header := range headers {
-			row = append(row, record[header])
+			row = append(row, fmt.Sprintf("%v", record[header]))
 		}
-		datas_to_write = append(datas_to_write, row)
+		datasToWrite = append(datasToWrite, row)
 	}
-	// 提取自定义分隔符
+
+	// Extract custom delimiter
 	var sep rune
 	if len(delimiter) > 0 {
 		sep = delimiter[0]
 	} else {
 		sep = ','
 	}
-	return WriteCsvFile(filepath, datas_to_write, append_to_existing_file, sep)
+
+	return WriteCsvFile(filepath, datasToWrite, appendToExistingFile, sep)
+}
+
+// 检查是否为支持的基本类型
+func isSupportedType(v interface{}) bool {
+	switch v.(type) {
+	case bool, rune, string, int, int64, float32, float64, uint, byte, complex128, complex64, uintptr:
+		return true
+	default:
+		return false
+	}
 }
