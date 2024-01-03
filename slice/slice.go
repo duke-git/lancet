@@ -498,20 +498,13 @@ func FlatMap[T any, U any](slice []T, iteratee func(index int, item T) []U) []U 
 // Reduce creates an slice of values by running each element of slice thru iteratee function.
 // Play: https://go.dev/play/p/_RfXJJWIsIm
 func Reduce[T any](slice []T, iteratee func(index int, item1, item2 T) T, initial T) T {
-	if len(slice) == 0 {
-		return initial
+	accumulator := initial
+
+	for i, v := range slice {
+		accumulator = iteratee(i, v, accumulator)
 	}
 
-	result := iteratee(0, initial, slice[0])
-
-	tmp := make([]T, 2)
-	for i := 1; i < len(slice); i++ {
-		tmp[0] = result
-		tmp[1] = slice[i]
-		result = iteratee(i, tmp[0], tmp[1])
-	}
-
-	return result
+	return accumulator
 }
 
 // ReduceBy produces a value from slice by accumulating the result of each element as passed through the reducer function.
