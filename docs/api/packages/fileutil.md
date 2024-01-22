@@ -750,6 +750,10 @@ func main() {
 <b>函数签名:</b>
 
 ```go
+// filepath: CSV文件路径。
+// records: 写入文件的map切片。map值必须为基本类型。会以map键的字母顺序写入。
+// appendToExistingFile: 是否为追加写模式。
+// delimiter: CSV文件分割符。
 func WriteMapsToCsv(filepath string, records []map[string]string, append_to_existing_file bool, delimiter ...rune) error
 ```
 
@@ -770,23 +774,23 @@ func main() {
     f, _ := os.OpenFile(fpath, os.O_WRONLY|os.O_TRUNC, 0777)
     defer f.Close()
 
-    records := []map[string]string{
-        {"Name": "Lili", "Age": "22", "gender": "female"},
-        {"Name": "Jim", "Age": "21", "gender": "male"},
+    records := []map[string]any{
+        {"Name": "Lili", "Age": "22", "Gender": "female"},
+        {"Name": "Jim", "Age": "21", "Gender": "male"},
     }
 
-    err := WriteMapsToCsv(csvFilePath, records, false, ';')
+    err := fileutil.WriteMapsToCsv(csvFilePath, records, false, ';')
 
     if err != nil {
         log.Fatal(err)
     }
 
-    content, err := ReadCsvFile(csvFilePath, ';')
+    content, err := fileutil.ReadCsvFile(csvFilePath, ';')
 
     fmt.Println(content)
 
     // Output:
-    // [[Name Age gender] [Lili 22 female] [Jim 21 male]]
+    // [[Age Gender Name] [22 female Lili] [21 male Jim]]
 }
 ```
 

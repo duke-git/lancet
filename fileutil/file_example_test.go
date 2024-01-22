@@ -3,6 +3,7 @@ package fileutil
 import (
 	"fmt"
 	"io"
+	"log"
 	"os"
 )
 
@@ -331,26 +332,26 @@ func ExampleWriteCsvFile() {
 	// [[Lili 22 female] [Jim 21 male]]
 }
 
-// func ExampleWriteMapsToCsv() {
-// 	csvFilePath := "./testdata/test3.csv"
-// 	records := []map[string]string{
-// 		{"Name": "Lili", "Age": "22", "gender": "female"},
-// 		{"Name": "Jim", "Age": "21", "gender": "male"},
-// 	}
+func ExampleWriteMapsToCsv() {
+	csvFilePath := "./testdata/test3.csv"
+	records := []map[string]any{
+		{"Name": "Lili", "Age": "22", "Gender": "female"},
+		{"Name": "Jim", "Age": "21", "Gender": "male"},
+	}
 
-// 	err := WriteMapsToCsv(csvFilePath, records, false, ';')
+	err := WriteMapsToCsv(csvFilePath, records, false, ';')
 
-// 	if err != nil {
-// 		log.Fatal(err)
-// 	}
+	if err != nil {
+		log.Fatal(err)
+	}
 
-// 	content, err := ReadCsvFile(csvFilePath, ';')
+	content, err := ReadCsvFile(csvFilePath, ';')
 
-// 	fmt.Println(content) //顺序不固定
+	fmt.Println(content)
 
-// 	// Output:
-// 	// [[Name Age gender] [Lili 22 female] [Jim 21 male]]
-// }
+	// Output:
+	// [[Age Gender Name] [22 female Lili] [21 male Jim]]
+}
 
 func ExampleWriteStringToFile() {
 	filepath := "./test.txt"

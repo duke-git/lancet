@@ -20,6 +20,7 @@ import (
 	"os"
 	"path/filepath"
 	"runtime"
+	"sort"
 	"strings"
 
 	"github.com/duke-git/lancet/v2/validator"
@@ -754,8 +755,22 @@ func escapeCSVField(field string, delimiter rune) string {
 
 // WriteMapsToCsv write slice of map to csv file.
 // Play: todo
-func WriteMapsToCsv(filepath string, records []map[string]string, append_to_existing_file bool, delimiter ...rune) error {
-	var datas_to_write [][]string
+// filepath: Path to the CSV file.
+// records: Slice of maps to be written. the value of map should be basic type.
+// the maps will be sorted by key in alphabeta order, then be written into csv file.
+// appendToExistingFile: If true, data will be appended to the file if it exists.
+// delimiter: Delimiter to use in the CSV file.
+func WriteMapsToCsv(filepath string, records []map[string]any, appendToExistingFile bool, delimiter ...rune) error {
+	for _, record := range records {
+		for _, value := range record {
+			if !isCsvSupportedType(value) {
+				return errors.New("unsupported value type detected; only basic types are supported: \nbool, rune, string, int, int64, float32, float64, uint, byte, complex128, complex64, uintptr")
+			}
+		}
+	}
+
+	var datasToWrite [][]string
+
 	// 标题（列名）
 	var headers []string
 	if len(records) > 0 {
@@ -763,24 +778,44 @@ func WriteMapsToCsv(filepath string, records []map[string]string, append_to_exis
 			headers = append(headers, key)
 		}
 	}
+
+	// sort keys in alphabeta order
+	sort.Strings(headers)
+
 	// 追加模式不重复写字段名
-	if !append_to_existing_file {
-		datas_to_write = append(datas_to_write, headers)
+	if !appendToExistingFile {
+		datasToWrite = append(datasToWrite, headers)
 	}
-	// 写入数据行
+
 	for _, record := range records {
 		var row []string
 		for _, header := range headers {
-			row = append(row, record[header])
+			row = append(row, fmt.Sprintf("%v", record[header]))
 		}
-		datas_to_write = append(datas_to_write, row)
+		datasToWrite = append(datasToWrite, row)
 	}
-	// 提取自定义分隔符
+
 	var sep rune
 	if len(delimiter) > 0 {
 		sep = delimiter[0]
 	} else {
 		sep = ','
 	}
-	return WriteCsvFile(filepath, datas_to_write, append_to_existing_file, sep)
+
+	return WriteCsvFile(filepath, datasToWrite, appendToExistingFile, sep)
 }
+
+// check if the value of map which to be written into csv is basic type.
+func isCsvSupportedType(v interface{}) bool {
+	switch v.(type) {
+	case bool, rune, string, int, int64, float32, float64, uint, byte, complex128, complex64, uintptr:
+		return true
+	default:
+		return false
+	}
+}
+
+// sort map by key in alphabeta order.
+// func sortMap(records []map[string]any) []map[string]any {
+
+// }

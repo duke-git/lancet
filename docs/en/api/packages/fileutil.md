@@ -751,6 +751,10 @@ func main() {
 <b>Signature:</b>
 
 ```go
+// filepath: path of the CSV file.
+// records: slice of maps to be written. the value of map should be basic type. The maps will be sorted by key in alphabeta order, then be written into csv file.
+// appendToExistingFile: If true, data will be appended to the file if it exists.
+// delimiter: Delimiter to use in the CSV file.
 func WriteMapsToCsv(filepath string, records []map[string]string, append_to_existing_file bool, delimiter ...rune) error
 ```
 
@@ -771,23 +775,23 @@ func main() {
     f, _ := os.OpenFile(fpath, os.O_WRONLY|os.O_TRUNC, 0777)
     defer f.Close()
 
-    records := []map[string]string{
-        {"Name": "Lili", "Age": "22", "gender": "female"},
-        {"Name": "Jim", "Age": "21", "gender": "male"},
+    records := []map[string]any{
+        {"Name": "Lili", "Age": "22", "Gender": "female"},
+        {"Name": "Jim", "Age": "21", "Gender": "male"},
     }
 
-    err := WriteMapsToCsv(csvFilePath, records, false, ';')
+    err := fileutil.WriteMapsToCsv(csvFilePath, records, false, ';')
 
     if err != nil {
         log.Fatal(err)
     }
 
-    content, err := ReadCsvFile(csvFilePath, ';')
+    content, err := fileutil.ReadCsvFile(csvFilePath, ';')
 
     fmt.Println(content)
 
     // Output:
-    // [[Name Age gender] [Lili 22 female] [Jim 21 male]]
+    // [[Age Gender Name] [22 female Lili] [21 male Jim]]
 }
 ```
 
