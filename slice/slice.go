@@ -618,35 +618,34 @@ func IntSlice(slice any) []int {
 	return result
 }
 
-// DeleteAt delete the element of slice from start index to end index - 1.
+// DeleteAt delete the element of slice at index.
 // Play: https://go.dev/play/p/pJ-d6MUWcvK
-func DeleteAt[T any](slice []T, start int, end ...int) []T {
-	size := len(slice)
-
-	if start < 0 || start >= size {
-		return slice
+func DeleteAt[T any](slice []T, index int) []T {
+	if index >= len(slice) {
+		index = len(slice) - 1
 	}
 
-	if len(end) > 0 {
-		end := end[0]
-		if end <= start {
-			return slice
-		}
-		if end > size {
-			end = size
-		}
+	result := make([]T, len(slice)-1)
+	copy(result, slice[:index])
+	copy(result[index:], slice[index+1:])
 
-		slice = append(slice[:start], slice[end:]...)
-		return slice
+	return result
+}
+
+// DeleteRange delete the element of slice from start index to end index（exclude).
+// Play: todo
+func DeleteRange[T any](slice []T, start, end int) []T {
+	result := make([]T, 0, len(slice)-(end-start))
+
+	for i := 0; i < start; i++ {
+		result = append(result, slice[i])
 	}
 
-	if start == size-1 {
-		slice = slice[:start]
-	} else {
-		slice = append(slice[:start], slice[start+1:]...)
+	for i := end; i < len(slice); i++ {
+		result = append(result, slice[i])
 	}
 
-	return slice
+	return result
 }
 
 // Drop drop n elements from the start of a slice.

@@ -572,19 +572,27 @@ func TestDeleteAt(t *testing.T) {
 	t.Parallel()
 
 	assert := internal.NewAssert(t, "TestDeleteAt")
+	arr := []int{1, 2, 3, 4, 5}
 
-	assert.Equal([]string{"a", "b", "c"}, DeleteAt([]string{"a", "b", "c"}, -1))
-	assert.Equal([]string{"a", "b", "c"}, DeleteAt([]string{"a", "b", "c"}, 3))
-	assert.Equal([]string{"b", "c"}, DeleteAt([]string{"a", "b", "c"}, 0))
-	assert.Equal([]string{"a", "c"}, DeleteAt([]string{"a", "b", "c"}, 1))
-	assert.Equal([]string{"a", "b"}, DeleteAt([]string{"a", "b", "c"}, 2))
+	assert.Equal([]int{2, 3, 4, 5}, DeleteAt(arr, 0))
+	assert.Equal([]int{1, 2, 3, 4}, DeleteAt(arr, 4))
 
-	assert.Equal([]string{"b", "c"}, DeleteAt([]string{"a", "b", "c"}, 0, 1))
-	assert.Equal([]string{"c"}, DeleteAt([]string{"a", "b", "c"}, 0, 2))
-	assert.Equal([]string{}, DeleteAt([]string{"a", "b", "c"}, 0, 3))
-	assert.Equal([]string{}, DeleteAt([]string{"a", "b", "c"}, 0, 4))
-	assert.Equal([]string{"a"}, DeleteAt([]string{"a", "b", "c"}, 1, 3))
-	assert.Equal([]string{"a"}, DeleteAt([]string{"a", "b", "c"}, 1, 4))
+	assert.Equal([]int{1, 2, 3, 4}, DeleteAt(arr, 5))
+	assert.Equal([]int{1, 2, 3, 4}, DeleteAt(arr, 6))
+
+	assert.Equal([]int{1, 2, 3, 4, 5}, arr)
+}
+
+func TestDeleteRange(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestDeleteRange")
+
+	arr := []int{1, 2, 3, 4, 5}
+
+	assert.Equal([]int{1, 2, 3, 4, 5}, DeleteRange(arr, 0, 0))
+	assert.Equal([]int{2, 3, 4, 5}, DeleteRange(arr, 0, 1))
+	assert.Equal([]int{4, 5}, DeleteRange(arr, 0, 3))
 }
 
 func TestDrop(t *testing.T) {

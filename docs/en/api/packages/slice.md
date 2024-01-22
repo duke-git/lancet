@@ -35,6 +35,7 @@ import (
 -   [DifferenceBy](#DifferenceBy)
 -   [DifferenceWith](#DifferenceWith)
 -   [DeleteAt](#DeleteAt)
+-   [DeleteRange](#DeleteRange)
 -   [Drop](#Drop)
 -   [DropRight](#DropRight)
 -   [DropWhile](#DropWhile)
@@ -515,12 +516,12 @@ func main() {
 
 ### <span id="DeleteAt">DeleteAt</span>
 
-<p>Delete the element of slice from start index to end index - 1.</p>
+<p>Delete delete the element of slice at index.</p>
 
 <b>Signature:</b>
 
 ```go
-func DeleteAt[T any](slice []T, start int, end ...int)
+func DeleteAt[T any](slice []T, index int)
 ```
 
 <b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/pJ-d6MUWcvK)</span></b>
@@ -532,18 +533,66 @@ import (
 )
 
 func main() {
-    result1 := slice.DeleteAt([]string{"a", "b", "c"}, -1)
-    result2 := slice.DeleteAt([]string{"a", "b", "c"}, 0)
-    result3 := slice.DeleteAt([]string{"a", "b", "c"}, 0, 2)
+    chars := []string{"a", "b", "c", "d", "e"}
+
+    result1 := slice.DeleteAt(chars, 0)
+    result2 := slice.DeleteAt(chars, 4)
+    result3 := slice.DeleteAt(chars, 5)
+    result4 := slice.DeleteAt(chars, 6)
 
     fmt.Println(result1)
     fmt.Println(result2)
     fmt.Println(result3)
+    fmt.Println(result4)
 
     // Output:
-    // [a b c]
-    // [b c]
-    // [c]
+    // [b c d e]
+    // [a b c d]
+    // [a b c d]
+    // [a b c d]
+}
+```
+
+### <span id="DeleteRange">DeleteRange</span>
+
+<p>Delete the element of slice from start index to end index（exclude)</p>
+
+<b>Signature:</b>
+
+```go
+func DeleteRange[T any](slice []T, start, end int) []T 
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+    chars := []string{"a", "b", "c", "d", "e"}
+
+    result1 := DeleteRange(chars, 0, 0)
+    result2 := DeleteRange(chars, 0, 1)
+    result3 := DeleteRange(chars, 0, 3)
+    result4 := DeleteRange(chars, 0, 4)
+    result5 := DeleteRange(chars, 0, 5)
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
+    fmt.Println(result5)
+
+    // Output:
+    // [a b c d e]
+    // [b c d e]
+    // [d e]
+    // [e]
+    // []
+
 }
 ```
 
@@ -2473,18 +2522,18 @@ import (
 func main() {
     nums := []int{1, 2, 3, 4, 5}
 
-	result1 := slice.Partition(nums)
-	result2 := slice.Partition(nums, func(n int) bool { return n%2 == 0 })
-	result3 := slice.Partition(nums, func(n int) bool { return n == 1 || n == 2 }, func(n int) bool { return n == 2 || n == 3 || n == 4 })
+    result1 := slice.Partition(nums)
+    result2 := slice.Partition(nums, func(n int) bool { return n%2 == 0 })
+    result3 := slice.Partition(nums, func(n int) bool { return n == 1 || n == 2 }, func(n int) bool { return n == 2 || n == 3 || n == 4 })
 
-	fmt.Println(result1)
-	fmt.Println(result2)
-	fmt.Println(result3)
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
 
-	// Output:
-	// [[1 2 3 4 5]]
-	// [[2 4] [1 3 5]]
-	// [[1 2] [3 4] [5]]
+    // Output:
+    // [[1 2 3 4 5]]
+    // [[2 4] [1 3 5]]
+    // [[1 2] [3 4] [5]]
 }
 ```
 
@@ -2507,13 +2556,13 @@ import (
 )
 
 func main() {
-	nums := []int{1, 2, 3, 4, 5}
+    nums := []int{1, 2, 3, 4, 5}
 
-	val, idx := slice.Random(nums)
-	if idx >= 0 && idx < len(nums) && slice.Contain(nums, val) {
-		fmt.Println("okk")
-	}
-	// Output:
-	// okk
+    val, idx := slice.Random(nums)
+    if idx >= 0 && idx < len(nums) && slice.Contain(nums, val) {
+        fmt.Println("okk")
+    }
+    // Output:
+    // okk
 }
 ```

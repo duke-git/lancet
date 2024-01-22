@@ -594,18 +594,46 @@ func ExampleIntSlice() {
 }
 
 func ExampleDeleteAt() {
-	result1 := DeleteAt([]string{"a", "b", "c"}, -1)
-	result2 := DeleteAt([]string{"a", "b", "c"}, 0)
-	result3 := DeleteAt([]string{"a", "b", "c"}, 0, 2)
+	chars := []string{"a", "b", "c", "d", "e"}
+
+	result1 := DeleteAt(chars, 0)
+	result2 := DeleteAt(chars, 4)
+	result3 := DeleteAt(chars, 5)
+	result4 := DeleteAt(chars, 6)
 
 	fmt.Println(result1)
 	fmt.Println(result2)
 	fmt.Println(result3)
+	fmt.Println(result4)
 
 	// Output:
-	// [a b c]
-	// [b c]
-	// [c]
+	// [b c d e]
+	// [a b c d]
+	// [a b c d]
+	// [a b c d]
+}
+
+func ExampleDeleteRange() {
+	chars := []string{"a", "b", "c", "d", "e"}
+
+	result1 := DeleteRange(chars, 0, 0)
+	result2 := DeleteRange(chars, 0, 1)
+	result3 := DeleteRange(chars, 0, 3)
+	result4 := DeleteRange(chars, 0, 4)
+	result5 := DeleteRange(chars, 0, 5)
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+	fmt.Println(result4)
+	fmt.Println(result5)
+
+	// Output:
+	// [a b c d e]
+	// [b c d e]
+	// [d e]
+	// [e]
+	// []
 }
 
 func ExampleDrop() {
