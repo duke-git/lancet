@@ -1178,9 +1178,10 @@ import "github.com/duke-git/lancet/v2/slice"
 -   **<big>DifferenceWith</big>** : accepts comparator which is invoked to compare elements of slice to values.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#DifferenceWith)]
     [[play](https://go.dev/play/p/v2U2deugKuV)]
--   **<big>DeleteAt</big>** : delete the element of slice from specific start index to end index - 1.
+-   **<big>DeleteAt</big>** : delete the element of slice at index.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#DeleteAt)]
-    [[play](https://go.dev/play/p/pJ-d6MUWcvK)]
+-   **<big>DeleteRange</big>** : delete the element of slice from start index to end index（exclude).
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#DeleteRange)]
 -   **<big>Drop</big>** : drop n elements from the start of a slice.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#Drop)]
     [[play](https://go.dev/play/p/jnPO2yQsT8H)]

@@ -1177,9 +1177,10 @@ import "github.com/duke-git/lancet/v2/slice"
 -   **<big>DifferenceWith</big>** : 接受比较器函数，该比较器被调用以将切片的元素与值进行比较。 结果值的顺序和引用由第一个切片确定。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/slice.md#DifferenceWith)]
     [[play](https://go.dev/play/p/v2U2deugKuV)]
--   **<big>DeleteAt</big>** : 删除切片中指定开始索引到结束索引的元素。
+-   **<big>DeleteAt</big>** : 删除切片中指定索引到的元素。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/slice.md#DeleteAt)]
-    [[play](https://go.dev/play/p/pJ-d6MUWcvK)]
+-   **<big>DeleteRange</big>** : 删除切片中指定开始索引到结束索引的元素。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/slice.md#DeleteRange)]
 -   **<big>Drop</big>** : 从切片头部删除 n 个元素。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/slice.md#Drop)]
     [[play](https://go.dev/play/p/jnPO2yQsT8H)]
