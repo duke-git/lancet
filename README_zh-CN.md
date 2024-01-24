@@ -705,8 +705,10 @@ import "github.com/duke-git/lancet/v2/fileutil"
 -   **<big>ReadCsvFile</big>** : 读取 csv 文件内容到切片。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/fileutil.md#ReadCsvFile)]
     [[play](https://go.dev/play/p/OExTkhGEd3_u)]
--   **<big>WriteCsvFile</big>** : 向 csv 文件写入内容。
+-   **<big>WriteCsvFile</big>** : 向csv文件写入切片数据。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/fileutil.md#WriteCsvFile)]
+-   **<big>WriteMapsToCsv</big>** : 将map切片写入csv文件中。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/fileutil.md#WriteMapsToCsv)]
     [[play](https://go.dev/play/p/dAXm58Q5U1o)]
 -   **<big>WriteBytesToFile</big>** : 将 bytes 写入文件。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/fileutil.md#WriteBytesToFile)]

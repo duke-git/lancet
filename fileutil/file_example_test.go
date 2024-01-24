@@ -339,7 +339,8 @@ func ExampleWriteMapsToCsv() {
 		{"Name": "Jim", "Age": "21", "Gender": "male"},
 	}
 
-	err := WriteMapsToCsv(csvFilePath, records, false, ';')
+	headers := []string{"Name", "Age", "Gender"}
+	err := WriteMapsToCsv(csvFilePath, records, false, ';', headers)
 
 	if err != nil {
 		log.Fatal(err)
@@ -350,7 +351,7 @@ func ExampleWriteMapsToCsv() {
 	fmt.Println(content)
 
 	// Output:
-	// [[Age Gender Name] [22 female Lili] [21 male Jim]]
+	// [[Name Age Gender] [Lili 22 female] [Jim 21 male]]
 }
 
 func ExampleWriteStringToFile() {

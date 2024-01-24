@@ -397,7 +397,8 @@ func TestWriteMapsToCsv(t *testing.T) {
 		{"Name": "Jim", "Age": "21", "Gender": "male"},
 	}
 
-	err := WriteMapsToCsv(csvFilePath, records, false, ';')
+	headers := []string{"Name", "Age", "Gender"}
+	err := WriteMapsToCsv(csvFilePath, records, false, ';', headers)
 
 	assert.IsNil(err)
 
@@ -407,9 +408,9 @@ func TestWriteMapsToCsv(t *testing.T) {
 
 	assert.Equal(3, len(content))
 	assert.Equal(3, len(content[0]))
-	assert.Equal("22", content[1][0])
-	assert.Equal("female", content[1][1])
-	assert.Equal("Lili", content[1][2])
+	assert.Equal("Lili", content[1][0])
+	assert.Equal("22", content[1][1])
+	assert.Equal("female", content[1][2])
 }
 
 func TestWriteStringToFile(t *testing.T) {

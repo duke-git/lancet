@@ -760,7 +760,9 @@ func escapeCSVField(field string, delimiter rune) string {
 // the maps will be sorted by key in alphabeta order, then be written into csv file.
 // appendToExistingFile: If true, data will be appended to the file if it exists.
 // delimiter: Delimiter to use in the CSV file.
-func WriteMapsToCsv(filepath string, records []map[string]any, appendToExistingFile bool, delimiter ...rune) error {
+// headers: order of the csv column headers, needs to be consistent with the key of the map.
+func WriteMapsToCsv(filepath string, records []map[string]any, appendToExistingFile bool, delimiter rune,
+	headers ...[]string) error {
 	for _, record := range records {
 		for _, value := range record {
 			if !isCsvSupportedType(value) {
@@ -769,40 +771,31 @@ func WriteMapsToCsv(filepath string, records []map[string]any, appendToExistingF
 		}
 	}
 
-	var datasToWrite [][]string
-
-	// 标题（列名）
-	var headers []string
-	if len(records) > 0 {
+	var columnHeaders []string
+	if len(headers) > 0 {
+		columnHeaders = headers[0]
+	} else {
 		for key := range records[0] {
-			headers = append(headers, key)
+			columnHeaders = append(columnHeaders, key)
 		}
+		// sort keys in alphabeta order
+		sort.Strings(columnHeaders)
 	}
 
-	// sort keys in alphabeta order
-	sort.Strings(headers)
-
-	// 追加模式不重复写字段名
+	var datasToWrite [][]string
 	if !appendToExistingFile {
-		datasToWrite = append(datasToWrite, headers)
+		datasToWrite = append(datasToWrite, columnHeaders)
 	}
 
 	for _, record := range records {
 		var row []string
-		for _, header := range headers {
-			row = append(row, fmt.Sprintf("%v", record[header]))
+		for _, h := range columnHeaders {
+			row = append(row, fmt.Sprintf("%v", record[h]))
 		}
 		datasToWrite = append(datasToWrite, row)
 	}
 
-	var sep rune
-	if len(delimiter) > 0 {
-		sep = delimiter[0]
-	} else {
-		sep = ','
-	}
-
-	return WriteCsvFile(filepath, datasToWrite, appendToExistingFile, sep)
+	return WriteCsvFile(filepath, datasToWrite, appendToExistingFile, delimiter)
 }
 
 // check if the value of map which to be written into csv is basic type.
@@ -814,8 +807,3 @@ func isCsvSupportedType(v interface{}) bool {
 		return false
 	}
 }
-
-// sort map by key in alphabeta order.
-// func sortMap(records []map[string]any) []map[string]any {
-
-// }

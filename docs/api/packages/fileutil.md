@@ -45,6 +45,7 @@ import (
 -   [Sha](#Sha)
 -   [ReadCsvFile](#ReadCsvFile)
 -   [WriteCsvFile](#WriteCsvFile)
+-   [WriteMapsToCsv](#WriteMapsToCsv)
 -   [WriteStringToFile](#WriteStringToFile)
 -   [WriteBytesToFile](#WriteBytesToFile)
 -   [ReadFile](#ReadFile)
@@ -754,7 +755,8 @@ func main() {
 // records: 写入文件的map切片。map值必须为基本类型。会以map键的字母顺序写入。
 // appendToExistingFile: 是否为追加写模式。
 // delimiter: CSV文件分割符。
-func WriteMapsToCsv(filepath string, records []map[string]string, append_to_existing_file bool, delimiter ...rune) error
+// headers: CSV文件表头顺序（需要与map key保持一致)，不指定时按字母排序。
+func WriteMapsToCsv(filepath string, records []map[string]any, appendToExistingFile bool, delimiter rune, headers ...[]string) error
 ```
 
 <b>示例:</b>
@@ -779,7 +781,8 @@ func main() {
         {"Name": "Jim", "Age": "21", "Gender": "male"},
     }
 
-    err := fileutil.WriteMapsToCsv(csvFilePath, records, false, ';')
+    headers := []string{"Name", "Age", "Gender"}
+    err := WriteMapsToCsv(csvFilePath, records, false, ';', headers)
 
     if err != nil {
         log.Fatal(err)
@@ -790,7 +793,7 @@ func main() {
     fmt.Println(content)
 
     // Output:
-    // [[Age Gender Name] [22 female Lili] [21 male Jim]]
+    // [[Name Age Gender] [Lili 22 female] [Jim 21 male]]
 }
 ```
 

@@ -706,6 +706,8 @@ import "github.com/duke-git/lancet/v2/fileutil"
     [[play](https://go.dev/play/p/OExTkhGEd3_u)]
 -   **<big>WriteCsvFile</big>** : write content to target csv file.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/fileutil.md#WriteCsvFile)]
+-   **<big>WriteMapsToCsv</big>** : write slice of map to csv file.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/fileutil.md#WriteMapsToCsv)]
     [[play](https://go.dev/play/p/dAXm58Q5U1o)]
 -   **<big>WriteBytesToFile</big>** : write bytes to target file.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/fileutil.md#WriteBytesToFile)]

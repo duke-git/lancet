@@ -45,6 +45,7 @@ import (
 -   [Sha](#Sha)
 -   [ReadCsvFile](#ReadCsvFile)
 -   [WriteCsvFile](#WriteCsvFile)
+-   [WriteCsvFile](#WriteCsvFile)
 -   [WriteMapsToCsv](#WriteMapsToCsv)
 -   [WriteStringToFile](#WriteStringToFile)
 -   [WriteBytesToFile](#WriteBytesToFile)
@@ -755,7 +756,8 @@ func main() {
 // records: slice of maps to be written. the value of map should be basic type. The maps will be sorted by key in alphabeta order, then be written into csv file.
 // appendToExistingFile: If true, data will be appended to the file if it exists.
 // delimiter: Delimiter to use in the CSV file.
-func WriteMapsToCsv(filepath string, records []map[string]string, append_to_existing_file bool, delimiter ...rune) error
+// headers: order of the csv column headers, needs to be consistent with the key of the map.
+func WriteMapsToCsv(filepath string, records []map[string]any, appendToExistingFile bool, delimiter rune, headers ...[]string) error
 ```
 
 <b>Example:</b>
@@ -780,7 +782,8 @@ func main() {
         {"Name": "Jim", "Age": "21", "Gender": "male"},
     }
 
-    err := fileutil.WriteMapsToCsv(csvFilePath, records, false, ';')
+    headers := []string{"Name", "Age", "Gender"}
+    err := fileutil.WriteMapsToCsv(csvFilePath, records, false, ';', headers)
 
     if err != nil {
         log.Fatal(err)
@@ -791,7 +794,7 @@ func main() {
     fmt.Println(content)
 
     // Output:
-    // [[Age Gender Name] [22 female Lili] [21 male Jim]]
+    // [[Name Age Gender] [Lili 22 female] [Jim 21 male]]
 }
 ```
 
