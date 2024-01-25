@@ -6,12 +6,11 @@ package formatter
 
 import (
 	"encoding/json"
-	"fmt"
 	"io"
+	"strconv"
+	"strings"
 
 	"github.com/duke-git/lancet/v2/convertor"
-	"github.com/duke-git/lancet/v2/strutil"
-	"github.com/duke-git/lancet/v2/validator"
 	"golang.org/x/exp/constraints"
 )
 
@@ -20,31 +19,24 @@ import (
 // Comma("12345", "$") => "$12,345", Comma(12345, "$") => "$12,345"
 // Play: https://go.dev/play/p/eRD5k2vzUVX
 func Comma[T constraints.Float | constraints.Integer | string](value T, symbol string) string {
-	if validator.IsInt(value) {
-		v, err := convertor.ToInt(value)
-		if err != nil {
-			return ""
-		}
-		return symbol + commaInt(v)
-	}
+	numString := convertor.ToString(value)
 
-	if validator.IsFloat(value) {
-		v, err := convertor.ToFloat(value)
-		if err != nil {
-			return ""
-		}
-		return symbol + commaFloat(v)
-	}
-
-	if strutil.IsString(value) {
-		v := fmt.Sprintf("%v", value)
-		if validator.IsNumberStr(v) {
-			return symbol + commaStr(v)
-		}
+	_, err := strconv.ParseFloat(numString, 64)
+	if err != nil {
 		return ""
 	}
 
-	return ""
+	index := strings.Index(numString, ".")
+	if index == -1 {
+		index = len(numString)
+	}
+
+	for index > 3 {
+		index = index - 3
+		numString = numString[:index] + "," + numString[index:]
+	}
+
+	return symbol + numString
 }
 
 // Pretty data to JSON string.
