@@ -71,9 +71,15 @@ func (s *Struct) ToMap() (map[string]any, error) {
 		if !f.IsExported() || f.tag.IsEmpty() || f.tag.Name == "-" {
 			continue
 		}
+
 		if f.IsZero() && f.tag.HasOption("omitempty") {
 			continue
 		}
+
+		if f.IsNil() {
+			continue
+		}
+
 		result[f.tag.Name] = f.mapValue(f.Value())
 	}
 

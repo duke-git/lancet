@@ -65,6 +65,45 @@ func TestStruct_ToMap(t *testing.T) {
 	})
 }
 
+func Test_ToMap2(t *testing.T) {
+	t.Parallel()
+	assert := internal.NewAssert(t, "TestStruct_ToMap")
+
+	type M struct {
+		Name string `json:"name"`
+	}
+
+	type S struct {
+		ID int `json:"id"`
+		M  *M  `json:"m"`
+	}
+
+	s1 := &S{
+		ID: 1,
+	}
+	var expect1 = map[string]any{"id": 1}
+	map1, err := ToMap(s1)
+
+	assert.IsNil(err)
+	assert.Equal(expect1, map1)
+
+	s2 := &S{
+		ID: 1,
+		M: &M{
+			Name: "test",
+		},
+	}
+	var expect2 = map[string]any{
+		"id": 1,
+		"m": map[string]any{
+			"name": "test",
+		}}
+	map2, err := ToMap(s2)
+
+	assert.IsNil(err)
+	assert.Equal(expect2, map2)
+}
+
 func TestStruct_Fields(t *testing.T) {
 	t.Parallel()
 
