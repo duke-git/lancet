@@ -4,7 +4,6 @@
 package strutil
 
 import (
-	"reflect"
 	"regexp"
 	"strings"
 	"unicode"
@@ -380,10 +379,7 @@ func RemoveNonPrintable(str string) string {
 // StringToBytes converts a string to byte slice without a memory allocation.
 // Play: https://go.dev/play/p/7OyFBrf9AxA
 func StringToBytes(str string) (b []byte) {
-	sh := *(*reflect.StringHeader)(unsafe.Pointer(&str))
-	bh := (*reflect.SliceHeader)(unsafe.Pointer(&b))
-	bh.Data, bh.Len, bh.Cap = sh.Data, sh.Len, sh.Len
-	return b
+	return *(*[]byte)(unsafe.Pointer(&str))
 }
 
 // BytesToString converts a byte slice to string without a memory allocation.
