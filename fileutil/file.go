@@ -754,7 +754,7 @@ func escapeCSVField(field string, delimiter rune) string {
 }
 
 // WriteMapsToCsv write slice of map to csv file.
-// Play: todo
+// Play: https://go.dev/play/p/umAIomZFV1c
 // filepath: Path to the CSV file.
 // records: Slice of maps to be written. the value of map should be basic type.
 // the maps will be sorted by key in alphabeta order, then be written into csv file.

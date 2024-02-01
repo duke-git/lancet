@@ -619,7 +619,7 @@ func IntSlice(slice any) []int {
 }
 
 // DeleteAt delete the element of slice at index.
-// Play: https://go.dev/play/p/pJ-d6MUWcvK
+// Play: https://go.dev/play/p/800B1dPBYyd
 func DeleteAt[T any](slice []T, index int) []T {
 	if index >= len(slice) {
 		index = len(slice) - 1
@@ -633,7 +633,7 @@ func DeleteAt[T any](slice []T, index int) []T {
 }
 
 // DeleteRange delete the element of slice from start index to end index（exclude).
-// Play: todo
+// Play: https://go.dev/play/p/945HwiNrnle
 func DeleteRange[T any](slice []T, start, end int) []T {
 	result := make([]T, 0, len(slice)-(end-start))
 

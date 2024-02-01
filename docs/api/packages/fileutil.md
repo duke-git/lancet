@@ -759,7 +759,7 @@ func main() {
 func WriteMapsToCsv(filepath string, records []map[string]any, appendToExistingFile bool, delimiter rune, headers ...[]string) error
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/umAIomZFV1c)</span></b>
 
 ```go
 package main
@@ -782,7 +782,7 @@ func main() {
     }
 
     headers := []string{"Name", "Age", "Gender"}
-    err := WriteMapsToCsv(csvFilePath, records, false, ';', headers)
+    err := fileutil.WriteMapsToCsv(csvFilePath, records, false, ';', headers)
 
     if err != nil {
         log.Fatal(err)

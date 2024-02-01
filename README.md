@@ -708,7 +708,7 @@ import "github.com/duke-git/lancet/v2/fileutil"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/fileutil.md#WriteCsvFile)]
 -   **<big>WriteMapsToCsv</big>** : write slice of map to csv file.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/fileutil.md#WriteMapsToCsv)]
-    [[play](https://go.dev/play/p/dAXm58Q5U1o)]
+    [[play](https://go.dev/play/p/umAIomZFV1c)]
 -   **<big>WriteBytesToFile</big>** : write bytes to target file.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/fileutil.md#WriteBytesToFile)]
     [[play](https://go.dev/play/p/s7QlDxMj3P8)]
@@ -1182,8 +1182,10 @@ import "github.com/duke-git/lancet/v2/slice"
     [[play](https://go.dev/play/p/v2U2deugKuV)]
 -   **<big>DeleteAt</big>** : delete the element of slice at index.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#DeleteAt)]
+    [[play](https://go.dev/play/p/800B1dPBYyd)]
 -   **<big>DeleteRange</big>** : delete the element of slice from start index to end index（exclude).
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#DeleteRange)]
+    [[play](https://go.dev/play/p/945HwiNrnle)]
 -   **<big>Drop</big>** : drop n elements from the start of a slice.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#Drop)]
     [[play](https://go.dev/play/p/jnPO2yQsT8H)]

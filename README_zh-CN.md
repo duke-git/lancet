@@ -709,7 +709,7 @@ import "github.com/duke-git/lancet/v2/fileutil"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/fileutil.md#WriteCsvFile)]
 -   **<big>WriteMapsToCsv</big>** : 将map切片写入csv文件中。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/fileutil.md#WriteMapsToCsv)]
-    [[play](https://go.dev/play/p/dAXm58Q5U1o)]
+    [[play](https://go.dev/play/p/umAIomZFV1c)]
 -   **<big>WriteBytesToFile</big>** : 将 bytes 写入文件。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/fileutil.md#WriteBytesToFile)]
     [[play](https://go.dev/play/p/s7QlDxMj3P8)]
@@ -1181,8 +1181,10 @@ import "github.com/duke-git/lancet/v2/slice"
     [[play](https://go.dev/play/p/v2U2deugKuV)]
 -   **<big>DeleteAt</big>** : 删除切片中指定索引到的元素。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/slice.md#DeleteAt)]
+    [[play](https://go.dev/play/p/800B1dPBYyd)]
 -   **<big>DeleteRange</big>** : 删除切片中指定开始索引到结束索引的元素。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/slice.md#DeleteRange)]
+    [[play](https://go.dev/play/p/945HwiNrnle)]
 -   **<big>Drop</big>** : 从切片头部删除 n 个元素。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/slice.md#Drop)]
     [[play](https://go.dev/play/p/jnPO2yQsT8H)]

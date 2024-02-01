@@ -45,7 +45,6 @@ import (
 -   [Sha](#Sha)
 -   [ReadCsvFile](#ReadCsvFile)
 -   [WriteCsvFile](#WriteCsvFile)
--   [WriteCsvFile](#WriteCsvFile)
 -   [WriteMapsToCsv](#WriteMapsToCsv)
 -   [WriteStringToFile](#WriteStringToFile)
 -   [WriteBytesToFile](#WriteBytesToFile)
@@ -760,7 +759,7 @@ func main() {
 func WriteMapsToCsv(filepath string, records []map[string]any, appendToExistingFile bool, delimiter rune, headers ...[]string) error
 ```
 
-<b>Example:</b>
+<b>Example:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/umAIomZFV1c)</span></b>
 
 ```go
 package main

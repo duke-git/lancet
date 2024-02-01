@@ -525,7 +525,7 @@ func main() {
 func DeleteAt[T any](slice []T, index int) []T
 ```
 
-<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/pJ-d6MUWcvK)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/800B1dPBYyd)</span></b>
 
 ```go
 import (
@@ -565,7 +565,7 @@ func main() {
 func DeleteRange[T any](slice []T, start, end int) []T 
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/945HwiNrnle)</span></b>
 
 ```go
 import (
