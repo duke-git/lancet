@@ -342,6 +342,31 @@ func TestWriteCsvFile(t *testing.T) {
 	assert.Equal("Lili", content[0][0])
 }
 
+func TestWriteMapsToCsv(t *testing.T) {
+	assert := internal.NewAssert(t, "TestWriteMapsToCSV")
+
+	csvFilePath := "./testdata/test4.csv"
+	records := []map[string]interface{}{
+		{"Name": "Lili", "Age": "22", "Gender": "female"},
+		{"Name": "Jim", "Age": "21", "Gender": "male"},
+	}
+
+	headers := []string{"Name", "Age", "Gender"}
+	err := WriteMapsToCsv(csvFilePath, records, false, ';', headers)
+
+	assert.IsNil(err)
+
+	content, err := ReadCsvFile(csvFilePath, ';')
+
+	assert.IsNil(err)
+
+	assert.Equal(3, len(content))
+	assert.Equal(3, len(content[0]))
+	assert.Equal("Lili", content[1][0])
+	assert.Equal("22", content[1][1])
+	assert.Equal("female", content[1][2])
+}
+
 func TestWriteStringToFile(t *testing.T) {
 	assert := internal.NewAssert(t, "TestWriteStringToFile")
 

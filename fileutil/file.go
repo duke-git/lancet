@@ -21,6 +21,7 @@ import (
 	"os"
 	"path/filepath"
 	"runtime"
+	"sort"
 	"strings"
 
 	"github.com/duke-git/lancet/validator"
@@ -524,15 +525,19 @@ func Sha(filepath string, shaType ...int) (string, error) {
 }
 
 // ReadCsvFile read file content into slice.
-func ReadCsvFile(filepath string) ([][]string, error) {
+func ReadCsvFile(filepath string, delimiter ...rune) ([][]string, error) {
 	f, err := os.Open(filepath)
 	if err != nil {
 		return nil, err
 	}
 	defer f.Close()
 
-	csvReader := csv.NewReader(f)
-	records, err := csvReader.ReadAll()
+	reader := csv.NewReader(f)
+	if len(delimiter) > 0 {
+		reader.Comma = delimiter[0]
+	}
+
+	records, err := reader.ReadAll()
 	if err != nil {
 		return nil, err
 	}
@@ -541,7 +546,7 @@ func ReadCsvFile(filepath string) ([][]string, error) {
 }
 
 // WriteCsvFile write content to target csv file.
-func WriteCsvFile(filepath string, records [][]string, append bool) error {
+func WriteCsvFile(filepath string, records [][]string, append bool, delimiter ...rune) error {
 	flag := os.O_RDWR | os.O_CREATE
 
 	if append {
@@ -556,9 +561,89 @@ func WriteCsvFile(filepath string, records [][]string, append bool) error {
 	defer f.Close()
 
 	writer := csv.NewWriter(f)
-	writer.Comma = ','
+	// 设置默认分隔符为逗号，除非另外指定
+	if len(delimiter) > 0 {
+		writer.Comma = delimiter[0]
+	} else {
+		writer.Comma = ','
+	}
+
+	// 遍历所有记录并处理包含分隔符或双引号的单元格
+	for i := range records {
+		for j := range records[i] {
+			records[i][j] = escapeCSVField(records[i][j], writer.Comma)
+		}
+	}
 
 	return writer.WriteAll(records)
+}
+
+// escapeCSVField 处理单元格内容，如果包含分隔符，则用双引号包裹
+func escapeCSVField(field string, delimiter rune) string {
+	// 替换所有的双引号为两个双引号
+	escapedField := strings.ReplaceAll(field, "\"", "\"\"")
+
+	// 如果字段包含分隔符、双引号或换行符，用双引号包裹整个字段
+	if strings.ContainsAny(escapedField, string(delimiter)+"\"\n") {
+		escapedField = fmt.Sprintf("\"%s\"", escapedField)
+	}
+
+	return escapedField
+}
+
+// WriteMapsToCsv write slice of map to csv file.
+// Play: https://go.dev/play/p/umAIomZFV1c
+// filepath: Path to the CSV file.
+// records: Slice of maps to be written. the value of map should be basic type.
+// the maps will be sorted by key in alphabeta order, then be written into csv file.
+// appendToExistingFile: If true, data will be appended to the file if it exists.
+// delimiter: Delimiter to use in the CSV file.
+// headers: order of the csv column headers, needs to be consistent with the key of the map.
+func WriteMapsToCsv(filepath string, records []map[string]interface{}, appendToExistingFile bool, delimiter rune,
+	headers ...[]string) error {
+	for _, record := range records {
+		for _, value := range record {
+			if !isCsvSupportedType(value) {
+				return errors.New("unsupported value type detected; only basic types are supported: \nbool, rune, string, int, int64, float32, float64, uint, byte, complex128, complex64, uintptr")
+			}
+		}
+	}
+
+	var columnHeaders []string
+	if len(headers) > 0 {
+		columnHeaders = headers[0]
+	} else {
+		for key := range records[0] {
+			columnHeaders = append(columnHeaders, key)
+		}
+		// sort keys in alphabeta order
+		sort.Strings(columnHeaders)
+	}
+
+	var datasToWrite [][]string
+	if !appendToExistingFile {
+		datasToWrite = append(datasToWrite, columnHeaders)
+	}
+
+	for _, record := range records {
+		var row []string
+		for _, h := range columnHeaders {
+			row = append(row, fmt.Sprintf("%v", record[h]))
+		}
+		datasToWrite = append(datasToWrite, row)
+	}
+
+	return WriteCsvFile(filepath, datasToWrite, appendToExistingFile, delimiter)
+}
+
+// check if the value of map which to be written into csv is basic type.
+func isCsvSupportedType(v interface{}) bool {
+	switch v.(type) {
+	case bool, rune, string, int, int64, float32, float64, uint, byte, complex128, complex64, uintptr:
+		return true
+	default:
+		return false
+	}
 }
 
 // WriteStringToFile write string to target file.
