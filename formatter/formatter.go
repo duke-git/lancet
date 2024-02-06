@@ -8,41 +8,36 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"math"
+	"strconv"
+	"strings"
+	"unicode"
 
 	"github.com/duke-git/lancet/convertor"
-	"github.com/duke-git/lancet/strutil"
-	"github.com/duke-git/lancet/validator"
 )
 
 // Comma add comma to a number value by every 3 numbers from right. ahead by symbol char.
 // if value is invalid number string eg "aa", return empty string
 // Comma("12345", "$") => "$12,345", Comma(12345, "$") => "$12,345"
 func Comma(value interface{}, symbol string) string {
-	if validator.IsInt(value) {
-		v, err := convertor.ToInt(value)
-		if err != nil {
-			return ""
-		}
-		return symbol + commaInt(v)
-	}
+	numString := convertor.ToString(value)
 
-	if validator.IsFloat(value) {
-		v, err := convertor.ToFloat(value)
-		if err != nil {
-			return ""
-		}
-		return symbol + commaFloat(v)
-	}
-
-	if strutil.IsString(value) {
-		v := fmt.Sprintf("%v", value)
-		if validator.IsNumberStr(v) {
-			return symbol + commaStr(v)
-		}
+	_, err := strconv.ParseFloat(numString, 64)
+	if err != nil {
 		return ""
 	}
 
-	return ""
+	index := strings.Index(numString, ".")
+	if index == -1 {
+		index = len(numString)
+	}
+
+	for index > 3 {
+		index = index - 3
+		numString = numString[:index] + "," + numString[index:]
+	}
+
+	return symbol + numString
 }
 
 // Pretty data to JSON string.
@@ -176,4 +171,51 @@ func ParseDecimalBytes(size string) (uint64, error) {
 // ParseBinaryBytes("42 mib") -> 44040192, nil
 func ParseBinaryBytes(size string) (uint64, error) {
 	return parseBytes(size, "binary")
+}
+
+// see https://github.com/dustin/go-humanize/blob/master/bytes.go
+func parseBytes(s string, kind string) (uint64, error) {
+	lastDigit := 0
+	hasComma := false
+	for _, r := range s {
+		if !(unicode.IsDigit(r) || r == '.' || r == ',') {
+			break
+		}
+		if r == ',' {
+			hasComma = true
+		}
+		lastDigit++
+	}
+
+	num := s[:lastDigit]
+	if hasComma {
+		num = strings.Replace(num, ",", "", -1)
+	}
+
+	f, err := strconv.ParseFloat(num, 64)
+	if err != nil {
+		return 0, err
+	}
+
+	extra := strings.ToLower(strings.TrimSpace(s[lastDigit:]))
+
+	if kind == "decimal" {
+		if m, ok := decimalByteMap[extra]; ok {
+			f *= float64(m)
+			if f >= math.MaxUint64 {
+				return 0, fmt.Errorf("too large: %v", s)
+			}
+			return uint64(f), nil
+		}
+	} else {
+		if m, ok := binaryByteMap[extra]; ok {
+			f *= float64(m)
+			if f >= math.MaxUint64 {
+				return 0, fmt.Errorf("too large: %v", s)
+			}
+			return uint64(f), nil
+		}
+	}
+
+	return 0, fmt.Errorf("unhandled size name: %v", extra)
 }
