@@ -121,37 +121,45 @@ func UpperSnakeCase(s string) string {
 
 // Before create substring in source string before position when char first appear
 func Before(s, char string) string {
-	if s == "" || char == "" {
+	i := strings.Index(s, char)
+
+	if s == "" || char == "" || i == -1 {
 		return s
 	}
-	i := strings.Index(s, char)
+
 	return s[0:i]
 }
 
 // BeforeLast create substring in source string before position when char last appear
 func BeforeLast(s, char string) string {
-	if s == "" || char == "" {
+	i := strings.LastIndex(s, char)
+
+	if s == "" || char == "" || i == -1 {
 		return s
 	}
-	i := strings.LastIndex(s, char)
+
 	return s[0:i]
 }
 
 // After create substring in source string after position when char first appear
 func After(s, char string) string {
-	if s == "" || char == "" {
+	i := strings.Index(s, char)
+
+	if s == "" || char == "" || i == -1 {
 		return s
 	}
-	i := strings.Index(s, char)
+
 	return s[i+len(char):]
 }
 
 // AfterLast create substring in source string after position when char last appear
 func AfterLast(s, char string) string {
-	if s == "" || char == "" {
+	i := strings.LastIndex(s, char)
+
+	if s == "" || char == "" || i == -1 {
 		return s
 	}
-	i := strings.LastIndex(s, char)
+
 	return s[i+len(char):]
 }
 
@@ -521,4 +529,15 @@ func RemoveWhiteSpace(str string, repalceAll bool) string {
 	}
 
 	return strings.TrimSpace(str)
+}
+
+// SubInBetween return substring between the start and end position(excluded) of source string.
+func SubInBetween(str string, start string, end string) string {
+	if _, after, ok := strings.Cut(str, start); ok {
+		if before, _, ok := strings.Cut(after, end); ok {
+			return before
+		}
+	}
+
+	return ""
 }

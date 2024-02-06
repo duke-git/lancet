@@ -207,6 +207,7 @@ func TestBefore(t *testing.T) {
 	assert := internal.NewAssert(t, "TestBefore")
 
 	assert.Equal("lancet", Before("lancet", ""))
+	assert.Equal("lancet", Before("lancet", "abcdef"))
 	assert.Equal("github.com", Before("github.com/test/lancet", "/"))
 	assert.Equal("github.com/", Before("github.com/test/lancet", "test"))
 }
@@ -215,6 +216,7 @@ func TestBeforeLast(t *testing.T) {
 	assert := internal.NewAssert(t, "TestBeforeLast")
 
 	assert.Equal("lancet", BeforeLast("lancet", ""))
+	assert.Equal("lancet", BeforeLast("lancet", "abcdef"))
 	assert.Equal("github.com/test", BeforeLast("github.com/test/lancet", "/"))
 	assert.Equal("github.com/test/", BeforeLast("github.com/test/test/lancet", "test"))
 
@@ -225,6 +227,7 @@ func TestAfter(t *testing.T) {
 	assert := internal.NewAssert(t, "TestAfter")
 
 	assert.Equal("lancet", After("lancet", ""))
+	assert.Equal("lancet", After("lancet", "abcdef"))
 	assert.Equal("test/lancet", After("github.com/test/lancet", "/"))
 	assert.Equal("/lancet", After("github.com/test/lancet", "test"))
 }
@@ -233,6 +236,7 @@ func TestAfterLast(t *testing.T) {
 	assert := internal.NewAssert(t, "TestAfterLast")
 
 	assert.Equal("lancet", AfterLast("lancet", ""))
+	assert.Equal("lancet", AfterLast("lancet", "abcdef"))
 	assert.Equal("lancet", AfterLast("github.com/test/lancet", "/"))
 	assert.Equal("/lancet", AfterLast("github.com/test/lancet", "test"))
 	assert.Equal("/lancet", AfterLast("github.com/test/test/lancet", "test"))
@@ -464,4 +468,16 @@ func TestRemoveWhiteSpace(t *testing.T) {
 	assert.Equal("", RemoveWhiteSpace("", true))
 	assert.Equal("helloworld", RemoveWhiteSpace(str, true))
 	assert.Equal("hello world", RemoveWhiteSpace(str, false))
+}
+
+func TestSubInBetween(t *testing.T) {
+	assert := internal.NewAssert(t, "TestSubInBetween")
+
+	str := "abcde"
+
+	assert.Equal("", SubInBetween(str, "", ""))
+	assert.Equal("ab", SubInBetween(str, "", "c"))
+	assert.Equal("bc", SubInBetween(str, "a", "d"))
+	assert.Equal("", SubInBetween(str, "a", ""))
+	assert.Equal("", SubInBetween(str, "a", "f"))
 }
