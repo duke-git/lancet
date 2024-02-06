@@ -230,6 +230,8 @@ func TestBefore(t *testing.T) {
 
 	assert.Equal("lancet", Before("lancet", ""))
 	assert.Equal("", Before("lancet", "lancet"))
+	assert.Equal("lancet", Before("lancet", "abcdef"))
+
 	assert.Equal("github.com", Before("github.com/test/lancet", "/"))
 	assert.Equal("github.com/", Before("github.com/test/lancet", "test"))
 }
@@ -240,10 +242,10 @@ func TestBeforeLast(t *testing.T) {
 	assert := internal.NewAssert(t, "TestBeforeLast")
 
 	assert.Equal("lancet", BeforeLast("lancet", ""))
+	assert.Equal("lancet", BeforeLast("lancet", "abcdef"))
+
 	assert.Equal("github.com/test", BeforeLast("github.com/test/lancet", "/"))
 	assert.Equal("github.com/test/", BeforeLast("github.com/test/test/lancet", "test"))
-
-	assert.NotEqual("github.com/", BeforeLast("github.com/test/test/lancet", "test"))
 }
 
 func TestAfter(t *testing.T) {
@@ -255,6 +257,8 @@ func TestAfter(t *testing.T) {
 	assert.Equal("", After("lancet", "lancet"))
 	assert.Equal("test/lancet", After("github.com/test/lancet", "/"))
 	assert.Equal("/lancet", After("github.com/test/lancet", "test"))
+
+	assert.Equal("lancet", After("lancet", "abcdef"))
 }
 
 func TestAfterLast(t *testing.T) {
@@ -266,8 +270,7 @@ func TestAfterLast(t *testing.T) {
 	assert.Equal("lancet", AfterLast("github.com/test/lancet", "/"))
 	assert.Equal("/lancet", AfterLast("github.com/test/lancet", "test"))
 	assert.Equal("/lancet", AfterLast("github.com/test/test/lancet", "test"))
-
-	assert.NotEqual("/test/lancet", AfterLast("github.com/test/test/lancet", "test"))
+	assert.Equal("lancet", AfterLast("lancet", "abcdef"))
 }
 
 func TestIsString(t *testing.T) {

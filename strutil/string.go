@@ -121,40 +121,48 @@ func UpperSnakeCase(s string) string {
 // Before returns the substring of the source string up to the first occurrence of the specified string.
 // Play: https://go.dev/play/p/JAWTZDS4F5w
 func Before(s, char string) string {
-	if s == "" || char == "" {
+	i := strings.Index(s, char)
+
+	if s == "" || char == "" || i == -1 {
 		return s
 	}
-	i := strings.Index(s, char)
+
 	return s[0:i]
 }
 
 // BeforeLast returns the substring of the source string up to the last occurrence of the specified string.
 // Play: https://go.dev/play/p/pJfXXAoG_Te
 func BeforeLast(s, char string) string {
-	if s == "" || char == "" {
+	i := strings.LastIndex(s, char)
+
+	if s == "" || char == "" || i == -1 {
 		return s
 	}
-	i := strings.LastIndex(s, char)
+
 	return s[0:i]
 }
 
 // After returns the substring after the first occurrence of a specified string in the source string.
 // Play: https://go.dev/play/p/RbCOQqCDA7m
 func After(s, char string) string {
-	if s == "" || char == "" {
+	i := strings.Index(s, char)
+
+	if s == "" || char == "" || i == -1 {
 		return s
 	}
-	i := strings.Index(s, char)
+
 	return s[i+len(char):]
 }
 
 // AfterLast returns the substring after the last occurrence of a specified string in the source string.
 // Play: https://go.dev/play/p/1TegARrb8Yn
 func AfterLast(s, char string) string {
-	if s == "" || char == "" {
+	i := strings.LastIndex(s, char)
+
+	if s == "" || char == "" || i == -1 {
 		return s
 	}
-	i := strings.LastIndex(s, char)
+
 	return s[i+len(char):]
 }
 
