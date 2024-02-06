@@ -216,6 +216,7 @@ func TestBeforeLast(t *testing.T) {
 	assert := internal.NewAssert(t, "TestBeforeLast")
 
 	assert.Equal("lancet", BeforeLast("lancet", ""))
+
 	assert.Equal("lancet", BeforeLast("lancet", "abcdef"))
 	assert.Equal("github.com/test", BeforeLast("github.com/test/lancet", "/"))
 	assert.Equal("github.com/test/", BeforeLast("github.com/test/test/lancet", "test"))
