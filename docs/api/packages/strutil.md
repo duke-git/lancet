@@ -60,6 +60,7 @@ import (
 -   [ContainsAll](#ContainsAll)
 -   [ContainsAny](#ContainsAny)
 -   [RemoveWhiteSpace](#RemoveWhiteSpace)
+-   [SubInBetween](#SubInBetween)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -1096,10 +1097,10 @@ import (
 
 func main() {
     result1 := strutil.IsNotBlank("")
-    result2 := strutil.IsNotBlank("	")
+    result2 := strutil.IsNotBlank("    ")
     result3 := strutil.IsNotBlank("\t\v\f\n")
     result4 := strutil.IsNotBlank(" 中文")
-    result5 := strutil.IsNotBlank(" 	world	")
+    result5 := strutil.IsNotBlank("     world    ")
     
     fmt.Println(result1)
     fmt.Println(result2)
@@ -1460,5 +1461,38 @@ func main() {
     // Output:
     // helloworld
     // hello world
+}
+```
+
+### <span id="SubInBetween">SubInBetween</span>
+
+<p>获取字符串中指定的起始字符串start和终止字符串end直接的子字符串。</p>
+
+<b>函数签名:</b>
+
+```go
+func SubInBetween(str string, start string, end string) string
+```
+
+<b>示例:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    str := "abcde"
+
+    result1 := strutil.SubInBetween(str, "", "de")
+    result2 := strutil.SubInBetween(str, "a", "d")
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+
+    // Output:
+    // abc
+    // bc
 }
 ```

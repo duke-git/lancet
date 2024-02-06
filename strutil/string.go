@@ -574,3 +574,15 @@ func RemoveWhiteSpace(str string, repalceAll bool) string {
 
 	return strings.TrimSpace(str)
 }
+
+// SubInBetween return substring between the start and end position(excluded) of source string.
+// Play: todo
+func SubInBetween(str string, start string, end string) string {
+	if _, after, ok := strings.Cut(str, start); ok {
+		if before, _, ok := strings.Cut(after, end); ok {
+			return before
+		}
+	}
+
+	return ""
+}

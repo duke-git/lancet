@@ -653,3 +653,17 @@ func ExampleRemoveWhiteSpace() {
 	// helloworld
 	// hello world
 }
+
+func ExampleSubInBetween() {
+	str := "abcde"
+
+	result1 := SubInBetween(str, "", "de")
+	result2 := SubInBetween(str, "a", "d")
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+
+	// Output:
+	// abc
+	// bc
+}

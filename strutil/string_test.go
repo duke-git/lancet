@@ -566,3 +566,15 @@ func TestRemoveWhiteSpace(t *testing.T) {
 	assert.Equal("helloworld", RemoveWhiteSpace(str, true))
 	assert.Equal("hello world", RemoveWhiteSpace(str, false))
 }
+
+func TestSubInBetween(t *testing.T) {
+	assert := internal.NewAssert(t, "TestSubInBetween")
+
+	str := "abcde"
+
+	assert.Equal("", SubInBetween(str, "", ""))
+	assert.Equal("ab", SubInBetween(str, "", "c"))
+	assert.Equal("bc", SubInBetween(str, "a", "d"))
+	assert.Equal("", SubInBetween(str, "a", ""))
+	assert.Equal("", SubInBetween(str, "a", "f"))
+}
