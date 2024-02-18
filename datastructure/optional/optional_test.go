@@ -113,3 +113,30 @@ func TestIfPresentOrElse(t *testing.T) {
 
 	assert.ShouldBeTrue(calledWithEmpty)
 }
+
+func TestGetWithPanicStandard(t *testing.T) {
+	assert := internal.NewAssert(t, "TestGetWithPanicStandard")
+
+	// Test when value is present
+	optWithValue := Of(42)
+	func() {
+		defer func() {
+			r := recover()
+			assert.IsNil(r)
+		}()
+		val := optWithValue.Get()
+		if val != 42 {
+			t.Errorf("Expected Get to return 42, got %v", val)
+		}
+	}()
+
+	// Test when value is not present
+	optEmpty := Empty[int]()
+	func() {
+		defer func() {
+			r := recover()
+			assert.IsNotNil(r)
+		}()
+		_ = optEmpty.Get()
+	}()
+}

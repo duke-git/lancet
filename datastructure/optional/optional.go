@@ -7,7 +7,7 @@ import (
 // Optional is a type that may or may not contain a non-nil value.
 type Optional[T any] struct {
 	value *T
-	mu    sync.RWMutex 
+	mu    sync.RWMutex
 }
 
 // Empty returns an empty Optional instance.
