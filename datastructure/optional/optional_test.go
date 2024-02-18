@@ -50,6 +50,15 @@ func TestOrElse(t *testing.T) {
 	assert.Equal(val, 42)
 }
 
+func TestOrElseGetHappyPath(t *testing.T) {
+	assert := internal.NewAssert(t, "TestOrElseGetHappyPath")
+	optWithValue := Of(42)
+	supplier := func() int { return 100 }
+
+	val := optWithValue.OrElseGet(supplier)
+	assert.Equal(val, 42)
+}
+
 func TestOrElseGet(t *testing.T) {
 	assert := internal.NewAssert(t, "TestOrElseGet")
 	optEmpty := Empty[int]()
