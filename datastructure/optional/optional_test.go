@@ -11,7 +11,7 @@ func TestEmpty(t *testing.T) {
 	assert := internal.NewAssert(t, "TestEmpty")
 	opt := Empty[int]()
 
-	assert.ShouldBeFalse(opt.IsPresent())
+	assert.ShouldBeTrue(opt.IsEmpty())
 }
 
 func TestOf(t *testing.T) {
@@ -88,4 +88,28 @@ func TestIfPresent(t *testing.T) {
 	optWithValue.IfPresent(action)
 
 	assert.ShouldBeTrue(called)
+}
+
+func TestIfPresentOrElse(t *testing.T) {
+	assert := internal.NewAssert(t, "TestIfPresentOrElse")
+
+	// Test when value is present
+	calledWithValue := false
+	valueAction := func(value int) { calledWithValue = true }
+	emptyAction := func() { t.Errorf("Empty action should not be called when value is present") }
+
+	optWithValue := Of(42)
+	optWithValue.IfPresentOrElse(valueAction, emptyAction)
+
+	assert.ShouldBeTrue(calledWithValue)
+
+	// Test when value is not present
+	calledWithEmpty := false
+	valueAction = func(value int) { t.Errorf("Value action should not be called when value is not present") }
+	emptyAction = func() { calledWithEmpty = true }
+
+	optEmpty := Empty[int]()
+	optEmpty.IfPresentOrElse(valueAction, emptyAction)
+
+	assert.ShouldBeTrue(calledWithEmpty)
 }
