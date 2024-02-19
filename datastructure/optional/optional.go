@@ -7,17 +7,17 @@ import (
 // Optional is a type that may or may not contain a non-nil value.
 type Optional[T any] struct {
 	value *T
-	mu    sync.RWMutex
+	mu    *sync.RWMutex
 }
 
 // Empty returns an empty Optional instance.
 func Empty[T any]() Optional[T] {
-	return Optional[T]{}
+	return Optional[T]{mu: &sync.RWMutex{}}
 }
 
 // Of returns an Optional with a non-nil value.
 func Of[T any](value T) Optional[T] {
-	return Optional[T]{value: &value}
+	return Optional[T]{value: &value, mu: &sync.RWMutex{}}
 }
 
 // OfNullable returns an Optional for a given value, which may be nil.
@@ -25,7 +25,7 @@ func OfNullable[T any](value *T) Optional[T] {
 	if value == nil {
 		return Empty[T]()
 	}
-	return Optional[T]{value: value}
+	return Optional[T]{value: value, mu: &sync.RWMutex{}}
 }
 
 // IsPresent checks if there is a value present.
