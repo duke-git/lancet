@@ -121,6 +121,9 @@ func convertSlice(src reflect.Value, dst reflect.Value) error {
 
 func convertMap(src reflect.Value, dst reflect.Value) error {
 	if src.Kind() != reflect.Map || dst.Kind() != reflect.Struct {
+		// if src.Kind() == reflect.Map {
+		// 	return convertMap(src, dst)
+		// } else
 		if src.Kind() == reflect.Interface {
 			return convertMap(src.Elem(), dst)
 		} else {

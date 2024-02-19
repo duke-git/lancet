@@ -20,5 +20,7 @@ jobs:
           go-version: "1.18"
       - name: Run coverage
         run: go test -v ./... -coverprofile=coverage.txt -covermode=atomic
+      - name: Run govet
+        run: go vet -v ./...
       - name: Upload coverage to Codecov
         run: bash <(curl -s https://codecov.io/bash)
