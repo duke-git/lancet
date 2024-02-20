@@ -65,8 +65,8 @@ func (f *FileReader) Offset() int64 {
 	return f.offset
 }
 
-// Seek sets the current offset of the reading
-func (f *FileReader) Seek(offset int64) error {
+// SeekOffset sets the current offset of the reading
+func (f *FileReader) SeekOffset(offset int64) error {
 	_, err := f.file.Seek(offset, 0)
 	if err != nil {
 		return err

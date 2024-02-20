@@ -534,7 +534,7 @@ func TestReadlineFile(t *testing.T) {
 		if !ok {
 			t.Fail()
 		}
-		if err = reader.Seek(offset); err != nil {
+		if err = reader.SeekOffset(offset); err != nil {
 			t.Fail()
 		}
 		lineRead, err := reader.ReadLine()
