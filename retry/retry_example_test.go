@@ -20,7 +20,7 @@ func ExampleContext() {
 	}
 
 	Retry(increaseNumber,
-		RetryDuration(time.Microsecond*50),
+		RetryWithLinearBackoff(time.Microsecond*50),
 		Context(ctx),
 	)
 
@@ -30,7 +30,7 @@ func ExampleContext() {
 	// 4
 }
 
-func ExampleRetryDuration() {
+func ExampleRetryWithLinearBackoff() {
 	number := 0
 	increaseNumber := func() error {
 		number++
@@ -40,7 +40,7 @@ func ExampleRetryDuration() {
 		return errors.New("error occurs")
 	}
 
-	err := Retry(increaseNumber, RetryDuration(time.Microsecond*50))
+	err := Retry(increaseNumber, RetryWithLinearBackoff(time.Microsecond*50))
 	if err != nil {
 		return
 	}
@@ -81,7 +81,7 @@ func ExampleRetry() {
 		return errors.New("error occurs")
 	}
 
-	err := Retry(increaseNumber, RetryDuration(time.Microsecond*50))
+	err := Retry(increaseNumber, RetryWithLinearBackoff(time.Microsecond*50))
 	if err != nil {
 		return
 	}
