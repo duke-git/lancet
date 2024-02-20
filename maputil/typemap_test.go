@@ -8,10 +8,10 @@ import (
 
 type (
 	Person struct {
-		Name    string  `json:"name"`
-		Age     int     `json:"age"`
-		Phone   string  `json:"phone"`
-		Address Address `json:"address"`
+		Name    string   `json:"name"`
+		Age     int      `json:"age"`
+		Phone   string   `json:"phone"`
+		Address *Address `json:"address"`
 	}
 
 	Address struct {
@@ -38,6 +38,7 @@ func TestStructType(t *testing.T) {
 	var p Person
 	err := MapTo(src, &p)
 	assert.IsNil(err)
+
 	assert.Equal(src["name"], p.Name)
 	assert.Equal(src["age"], p.Age)
 	assert.Equal(src["phone"], p.Phone)

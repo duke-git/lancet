@@ -307,8 +307,7 @@ func HasKey[K comparable, V any](m map[K]V, key K) bool {
 
 // MapToStruct converts map to struct
 // Play: todo
-func MapToStruct(m map[string]interface{}, structObj interface{}) error {
-
+func MapToStruct(m map[string]any, structObj any) error {
 	for k, v := range m {
 		err := setStructField(structObj, k, v)
 		if err != nil {
@@ -341,7 +340,12 @@ func setStructField(structObj any, fieldName string, fieldValue any) error {
 
 	if fieldVal.Type() != val.Type() {
 
-		if m, ok := fieldValue.(map[string]interface{}); ok {
+		if val.CanConvert(fieldVal.Type()) {
+			fieldVal.Set(val.Convert(fieldVal.Type()))
+			return nil
+		}
+
+		if m, ok := fieldValue.(map[string]any); ok {
 
 			if fieldVal.Kind() == reflect.Struct {
 				return MapToStruct(m, fieldVal.Addr().Interface())
