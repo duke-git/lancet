@@ -18,14 +18,14 @@ const (
 	// DefaultRetryTimes times of retry
 	DefaultRetryTimes = 5
 	// DefaultRetryDuration time duration of two retries
-	DefaultRetryDuration = time.Second * 3
+	DefaultRetryLinearInterval = time.Second * 3
 )
 
 // RetryConfig is config for retry
 type RetryConfig struct {
-	context       context.Context
-	retryTimes    uint
-	retryDuration time.Duration
+	context         context.Context
+	retryTimes      uint
+	backoffStrategy BackoffStrategy
 }
 
 // RetryFunc is function that retry executes
@@ -42,11 +42,17 @@ func RetryTimes(n uint) Option {
 	}
 }
 
-// RetryDuration set duration of retries.
-// Play: https://go.dev/play/p/nk2XRmagfVF
-func RetryDuration(d time.Duration) Option {
+// RetryWithLinearBackoff set linear strategy backoff
+// todo: Add playground link
+func RetryWithLinearBackoff(interval time.Duration) Option {
+	if interval <= 0 {
+		panic("programming error: retry interval should not be lower or equal to 0")
+	}
+
 	return func(rc *RetryConfig) {
-		rc.retryDuration = d
+		rc.backoffStrategy = &linear{
+			interval: interval,
+		}
 	}
 }
 
@@ -63,13 +69,18 @@ func Context(ctx context.Context) Option {
 // Play: https://go.dev/play/p/nk2XRmagfVF
 func Retry(retryFunc RetryFunc, opts ...Option) error {
 	config := &RetryConfig{
-		retryTimes:    DefaultRetryTimes,
-		retryDuration: DefaultRetryDuration,
-		context:       context.TODO(),
+		retryTimes: DefaultRetryTimes,
+		context:    context.TODO(),
 	}
 
 	for _, opt := range opts {
 		opt(config)
+	}
+
+	if config.backoffStrategy == nil {
+		config.backoffStrategy = &linear{
+			interval: DefaultRetryLinearInterval,
+		}
 	}
 
 	var i uint
@@ -77,7 +88,7 @@ func Retry(retryFunc RetryFunc, opts ...Option) error {
 		err := retryFunc()
 		if err != nil {
 			select {
-			case <-time.After(config.retryDuration):
+			case <-time.After(config.backoffStrategy.CalculateInterval()):
 			case <-config.context.Done():
 				return errors.New("retry is cancelled")
 			}
@@ -92,4 +103,22 @@ func Retry(retryFunc RetryFunc, opts ...Option) error {
 	funcName := funcPath[lastSlash+1:]
 
 	return fmt.Errorf("function %s run failed after %d times retry", funcName, i)
+}
+
+// BackoffStrategy is an interface that defines a method for calculating backoff intervals.
+type BackoffStrategy interface {
+	// CalculateInterval returns the time.Duration after which the next retry attempt should be made.
+	CalculateInterval() time.Duration
+}
+
+// linear is a struct that implements the BackoffStrategy interface using a linear backoff strategy.
+type linear struct {
+	// interval specifies the fixed duration to wait between retry attempts.
+	interval time.Duration
+}
+
+// CalculateInterval is the method implementation for the linear struct.
+// It returns the fixed interval defined in the linear struct.
+func (l *linear) CalculateInterval() time.Duration {
+	return l.interval
 }

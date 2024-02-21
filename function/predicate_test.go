@@ -54,6 +54,26 @@ func TestPredicatesAndPure(t *testing.T) {
 	assert.ShouldBeFalse(isNumericAndLength5("abcde"))
 }
 
+func TestPredicatesNorPure(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestPredicatesNorPure")
+
+	match := Nor(
+		func(s string) bool { return strings.ContainsAny(s, "0123456789") },
+		func(s string) bool { return len(s) == 5 },
+	)
+
+	assert.ShouldBeTrue(match("dbcdckkeee"))
+
+	match = Nor(
+		func(s string) bool { return strings.ContainsAny(s, "0123456789") },
+		func(s string) bool { return len(s) == 5 },
+	)
+
+	assert.ShouldBeFalse(match("0123456789"))
+}
+
 func TestPredicatesMix(t *testing.T) {
 	t.Parallel()
 
@@ -71,5 +91,8 @@ func TestPredicatesMix(t *testing.T) {
 
 	c := Negate(And(a, b))
 
+	assert.ShouldBeFalse(c("hello!"))
+
+	c = Nor(a, b)
 	assert.ShouldBeFalse(c("hello!"))
 }
