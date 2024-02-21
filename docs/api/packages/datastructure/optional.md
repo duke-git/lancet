@@ -13,7 +13,7 @@ Optional类型代表一个可选的值，它要么包含一个实际值，要么
 ## 用法
 ```go
 import (
-    optional "github.com/duke-git/lancet/v2/datastructure/optional"
+    "github.com/duke-git/lancet/v2/datastructure/optional"
 )
 ```
 
@@ -54,7 +54,7 @@ package main
 
 import (
     "fmt"
-    optional "github.com/duke-git/lancet/v2/datastructure/optional"
+    "github.com/duke-git/lancet/v2/datastructure/optional"
 )
 
 func main() {
@@ -84,7 +84,7 @@ package main
 
 import (
     "fmt"
-    optional "github.com/duke-git/lancet/v2/datastructure/optional"
+    "github.com/duke-git/lancet/v2/datastructure/optional"
 )
 
 func main() {
@@ -123,7 +123,7 @@ package main
 
 import (
     "fmt"
-    optional "github.com/duke-git/lancet/v2/datastructure/optional"
+    "github.com/duke-git/lancet/v2/datastructure/optional"
 )
 
 func main() {
@@ -152,7 +152,7 @@ package main
 
 import (
     "fmt"
-    optional "github.com/duke-git/lancet/v2/datastructure/optional"
+    "github.com/duke-git/lancet/v2/datastructure/optional"
 )
 
 func main() {
@@ -261,7 +261,7 @@ package main
 
 import (
     "fmt"
-    optional "github.com/duke-git/lancet/v2/datastructure/optional"
+    "github.com/duke-git/lancet/v2/datastructure/optional"
 )
 
 func main() {
@@ -304,7 +304,7 @@ package main
 
 import (
     "fmt"
-    optional "github.com/duke-git/lancet/v2/datastructure/optional"
+    "github.com/duke-git/lancet/v2/datastructure/optional"
 )
 
 func main() {
@@ -334,7 +334,7 @@ package main
 
 import (
     "fmt"
-    optional "github.com/duke-git/lancet/v2/datastructure/optional"
+    "github.com/duke-git/lancet/v2/datastructure/optional"
 )
 
 func main() {
@@ -368,7 +368,7 @@ package main
 
 import (
     "fmt"
-    optional "github.com/duke-git/lancet/v2/datastructure/optional"
+    "github.com/duke-git/lancet/v2/datastructure/optional"
 )
 
 func main() {
@@ -399,7 +399,7 @@ package main
 
 import (
     "fmt"
-    optional "github.com/duke-git/lancet/v2/datastructure/optional"
+    "github.com/duke-git/lancet/v2/datastructure/optional"
 )
 
 func main() {

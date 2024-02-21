@@ -13,7 +13,7 @@ Optional is a type that may or may not contain a non-nil value.
 ## Usage
 ```go
 import (
-    optional "github.com/duke-git/lancet/v2/datastructure/optional"
+    "github.com/duke-git/lancet/v2/datastructure/optional"
 )
 ```
 
@@ -54,7 +54,7 @@ package main
 
 import (
     "fmt"
-    optional "github.com/duke-git/lancet/v2/datastructure/optional"
+    "github.com/duke-git/lancet/v2/datastructure/optional"
 )
 
 func main() {
@@ -83,7 +83,7 @@ package main
 
 import (
     "fmt"
-    optional "github.com/duke-git/lancet/v2/datastructure/optional"
+    "github.com/duke-git/lancet/v2/datastructure/optional"
 )
 
 func main() {
@@ -121,7 +121,7 @@ package main
 
 import (
     "fmt"
-    optional "github.com/duke-git/lancet/v2/datastructure/optional"
+    "github.com/duke-git/lancet/v2/datastructure/optional"
 )
 
 func main() {
@@ -149,7 +149,7 @@ package main
 
 import (
     "fmt"
-    optional "github.com/duke-git/lancet/v2/datastructure/optional"
+    "github.com/duke-git/lancet/v2/datastructure/optional"
 )
 
 func main() {
@@ -177,7 +177,7 @@ package main
 
 import (
     "fmt"
-    optional "github.com/duke-git/lancet/v2/datastructure/optional"
+    "github.com/duke-git/lancet/v2/datastructure/optional"
 )
 
 func main() {
@@ -215,7 +215,7 @@ package main
 
 import (
     "fmt"
-    optional "github.com/duke-git/lancet/v2/datastructure/optional"
+     "github.com/duke-git/lancet/v2/datastructure/optional"
 )
 
 func main() {
@@ -255,7 +255,7 @@ package main
 
 import (
     "fmt"
-    optional "github.com/duke-git/lancet/v2/datastructure/optional"
+    "github.com/duke-git/lancet/v2/datastructure/optional"
 )
 
 func main() {
@@ -298,7 +298,7 @@ package main
 
 import (
     "fmt"
-    optional "github.com/duke-git/lancet/v2/datastructure/optional"
+    "github.com/duke-git/lancet/v2/datastructure/optional"
 )
 
 func main() {
@@ -328,7 +328,7 @@ package main
 
 import (
     "fmt"
-    optional "github.com/duke-git/lancet/v2/datastructure/optional"
+    "github.com/duke-git/lancet/v2/datastructure/optional"
 )
 
 func main() {
@@ -362,7 +362,7 @@ package main
 
 import (
     "fmt"
-    optional "github.com/duke-git/lancet/v2/datastructure/optional"
+    "github.com/duke-git/lancet/v2/datastructure/optional"
 )
 
 func main() {
@@ -393,7 +393,7 @@ package main
 
 import (
     "fmt"
-    optional "github.com/duke-git/lancet/v2/datastructure/optional"
+    "github.com/duke-git/lancet/v2/datastructure/optional"
 )
 
 func main() {
