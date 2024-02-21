@@ -524,7 +524,7 @@ func main() {
 
 ### <span id="Nor">Nor</span>
 
-<p>Returns a composed predicate that represents the logical NOR of a list of predicates. It evaluates to true only if all predicates evaluate to false for the given value.</p>
+<p>返回一个组合谓词函数，表示给定值上所有谓词逻辑非或 (nor) 的结果。只有当所有谓词函数对给定值都返回false时，该组合谓词函数才返回true。</p>
 
 <b>函数签名:</b>
 
