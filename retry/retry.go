@@ -8,6 +8,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"math"
 	"math/rand"
 	"reflect"
 	"runtime"
@@ -68,11 +69,12 @@ func RetryWithExponentialWithJitterBackoff(interval time.Duration, base uint64, 
 		panic("programming error: retry maxJitter should not be lower to 0")
 	}
 
-	if base == 2 {
+	if base%2 == 0 {
 		return func(rc *RetryConfig) {
 			rc.backoffStrategy = &shiftExponentialWithJitter{
 				interval:  interval,
 				maxJitter: maxJitter,
+				shifter:   uint64(math.Log2(float64(base))),
 			}
 		}
 	}
@@ -170,13 +172,14 @@ func (e *exponentialWithJitter) CalculateInterval() time.Duration {
 type shiftExponentialWithJitter struct {
 	interval  time.Duration // interval is the current backoff interval, which will be adjusted over time.
 	maxJitter time.Duration // maxJitter is the maximum amount of jitter to apply to the backoff interval.
+	shifter   uint64        // shift by n faster than multiplication
 }
 
 // CalculateInterval calculates the next backoff interval with jitter and updates the interval.
 // Uses shift instead of multiplication
 func (e *shiftExponentialWithJitter) CalculateInterval() time.Duration {
 	current := e.interval
-	e.interval = e.interval << 1
+	e.interval = e.interval << e.shifter
 	return current + jitter(e.maxJitter)
 }
 

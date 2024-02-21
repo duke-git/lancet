@@ -94,7 +94,7 @@ func TestRetryWithExponentialShiftSucceeded(t *testing.T) {
 		return errors.New("error occurs")
 	}
 
-	err := Retry(increaseNumber, RetryWithExponentialWithJitterBackoff(time.Microsecond*50, 2, time.Microsecond*25))
+	err := Retry(increaseNumber, RetryWithExponentialWithJitterBackoff(time.Microsecond*50, 4, time.Microsecond*25))
 
 	assert.IsNil(err)
 	assert.Equal(DefaultRetryTimes, number)
