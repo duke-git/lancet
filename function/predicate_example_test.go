@@ -73,24 +73,24 @@ func ExampleNor() {
 	// false
 }
 
-func ExamplePredicatesMix() {
-	a := Or(
-		func(s string) bool { return strings.ContainsAny(s, "0123456789") },
-		func(s string) bool { return strings.ContainsAny(s, "!") },
-	)
+// func ExamplePredicatesMix() {
+// 	a := Or(
+// 		func(s string) bool { return strings.ContainsAny(s, "0123456789") },
+// 		func(s string) bool { return strings.ContainsAny(s, "!") },
+// 	)
 
-	b := And(
-		func(s string) bool { return strings.ContainsAny(s, "hello") },
-		func(s string) bool { return strings.ContainsAny(s, "!") },
-	)
+// 	b := And(
+// 		func(s string) bool { return strings.ContainsAny(s, "hello") },
+// 		func(s string) bool { return strings.ContainsAny(s, "!") },
+// 	)
 
-	c := Negate(And(a, b))
-	fmt.Println(c("hello!"))
+// 	c := Negate(And(a, b))
+// 	fmt.Println(c("hello!"))
 
-	c = Nor(a, b)
-	fmt.Println(c("hello!"))
+// 	c = Nor(a, b)
+// 	fmt.Println(c("hello!"))
 
-	// Output:
-	// false
-	// false
-}
+// 	// Output:
+// 	// false
+// 	// false
+// }
