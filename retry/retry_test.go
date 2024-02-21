@@ -20,7 +20,7 @@ func TestRetryFailed(t *testing.T) {
 		return errors.New("error occurs")
 	}
 
-	err := Retry(increaseNumber, RetryDuration(time.Microsecond*50))
+	err := Retry(increaseNumber, RetryWithLinearBackoff(time.Microsecond*50))
 
 	assert.IsNotNil(err)
 	assert.Equal(DefaultRetryTimes, number)
@@ -40,7 +40,7 @@ func TestRetrySucceeded(t *testing.T) {
 		return errors.New("error occurs")
 	}
 
-	err := Retry(increaseNumber, RetryDuration(time.Microsecond*50))
+	err := Retry(increaseNumber, RetryWithLinearBackoff(time.Microsecond*50))
 
 	assert.IsNil(err)
 	assert.Equal(DefaultRetryTimes, number)
@@ -57,7 +57,7 @@ func TestSetRetryTimes(t *testing.T) {
 		return errors.New("error occurs")
 	}
 
-	err := Retry(increaseNumber, RetryDuration(time.Microsecond*50), RetryTimes(3))
+	err := Retry(increaseNumber, RetryWithLinearBackoff(time.Microsecond*50), RetryTimes(3))
 
 	assert.IsNotNil(err)
 	assert.Equal(3, number)
@@ -79,7 +79,7 @@ func TestCancelRetry(t *testing.T) {
 	}
 
 	err := Retry(increaseNumber,
-		RetryDuration(time.Microsecond*50),
+		RetryWithLinearBackoff(time.Microsecond*50),
 		Context(ctx),
 	)
 
