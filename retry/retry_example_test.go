@@ -51,6 +51,27 @@ func ExampleRetryWithLinearBackoff() {
 	// 3
 }
 
+func ExampleRetryWithExponentialWithJitterBackoff() {
+	number := 0
+	increaseNumber := func() error {
+		number++
+		if number == 3 {
+			return nil
+		}
+		return errors.New("error occurs")
+	}
+
+	err := Retry(increaseNumber, RetryWithExponentialWithJitterBackoff(time.Microsecond*50, 2, time.Microsecond*25))
+	if err != nil {
+		return
+	}
+
+	fmt.Println(number)
+
+	// Output:
+	// 3
+}
+
 func ExampleRetryTimes() {
 	number := 0
 
