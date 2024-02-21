@@ -32,3 +32,16 @@ func Or[T any](predicates ...func(T) bool) func(T) bool {
 		return false // False if all predicates are false
 	}
 }
+
+// Nor returns a composed predicate that represents the logical NOR of a list of predicates.
+// It evaluates to true only if all predicates evaluate to false for the given value.
+func Nor[T any](predicates ...func(T) bool) func(T) bool {
+	return func(value T) bool {
+		for _, predicate := range predicates {
+			if predicate(value) {
+				return false // If any predicate evaluates to true, the NOR result is false
+			}
+		}
+		return true // Only returns true if all predicates evaluate to false
+	}
+}
