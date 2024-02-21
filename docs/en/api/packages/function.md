@@ -7,6 +7,7 @@ Package function can control the flow of function execution and support part of 
 ## Source:
 
 -   [https://github.com/duke-git/lancet/blob/main/function/function.go](https://github.com/duke-git/lancet/blob/main/function/function.go)
+-   [https://github.com/duke-git/lancet/blob/main/function/predicate.go](https://github.com/duke-git/lancet/blob/main/function/predicate.go)
 -   [https://github.com/duke-git/lancet/blob/main/function/watcher.go](https://github.com/duke-git/lancet/blob/main/function/watcher.go)
 
 <div STYLE="page-break-after: always;"></div>
@@ -32,6 +33,10 @@ import (
 -   [Schedule](#Schedule)
 -   [Pipeline](#Pipeline)
 -   [Watcher](#Watcher)
+-   [And](#And)
+-   [Or](#Or)
+-   [Negate](#Negate)
+-   [Nor](#Nor)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -402,4 +407,159 @@ func longRunningTask() {
     }
 }
 
+```
+
+
+### <span id="And">And</span>
+
+<p>Returns a composed predicate that represents the logical AND of a list of predicates. It evaluates to true only if all predicates evaluate to true for the given value.</p>
+
+<b>Signature:</b>
+
+```go
+func And[T any](predicates ...func(T) bool) func(T) bool
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/function"
+)
+
+func main() {
+    isNumericAndLength5 := function.And(
+        func(s string) bool { return strings.ContainsAny(s, "0123456789") },
+        func(s string) bool { return len(s) == 5 },
+    )
+
+    fmt.Println(isNumericAndLength5("12345"))
+    fmt.Println(isNumericAndLength5("1234"))
+    fmt.Println(isNumericAndLength5("abcde"))
+
+    // Output:
+    // true
+    // false
+    // false
+}
+```
+
+### <span id="Or">Or</span>
+
+<p>Returns a composed predicate that represents the logical OR of a list of predicates. It evaluates to true if at least one of the predicates evaluates to true for the given value.</p>
+
+<b>Signature:</b>
+
+```go
+func Or[T any](predicates ...func(T) bool) func(T) bool
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/function"
+)
+
+func main() {
+    containsDigitOrSpecialChar := function.Or(
+        func(s string) bool { return strings.ContainsAny(s, "0123456789") },
+        func(s string) bool { return strings.ContainsAny(s, "!@#$%") },
+    )
+
+    fmt.Println(containsDigitOrSpecialChar("hello!"))
+    fmt.Println(containsDigitOrSpecialChar("hello"))
+
+    // Output:
+    // true
+    // false
+}
+```
+
+### <span id="Negate">Negate</span>
+
+<p>Returns a predicate that represents the logical negation of this predicate.</p>
+
+<b>Signature:</b>
+
+```go
+func Negate[T any](predicate func(T) bool) func(T) bool
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/function"
+)
+
+func main() {
+    // Define some simple predicates for demonstration
+    isUpperCase := func(s string) bool {
+        return strings.ToUpper(s) == s
+    }
+    isLowerCase := func(s string) bool {
+        return strings.ToLower(s) == s
+    }
+    isMixedCase := function.Negate(function.Or(isUpperCase, isLowerCase))
+
+    fmt.Println(isMixedCase("ABC"))
+    fmt.Println(isMixedCase("AbC"))
+
+    // Output:
+    // false
+    // true
+}
+```
+
+
+### <span id="Nor">Nor</span>
+
+<p>Returns a composed predicate that represents the logical NOR of a list of predicates. It evaluates to true only if all predicates evaluate to false for the given value.</p>
+
+<b>Signature:</b>
+
+```go
+func Nor[T any](predicates ...func(T) bool) func(T) bool
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/function"
+)
+
+func main() {
+    match := function.Nor(
+        func(s string) bool { return strings.ContainsAny(s, "0123456789") },
+        func(s string) bool { return len(s) == 5 },
+    )
+
+    fmt.Println(match("dbcdckkeee"))
+
+
+    match = function.Nor(
+        func(s string) bool { return strings.ContainsAny(s, "0123456789") },
+        func(s string) bool { return len(s) == 5 },
+    )
+
+    fmt.Println(match("0123456789"))
+
+    // Output:
+    // true
+    // false
+}
 ```
