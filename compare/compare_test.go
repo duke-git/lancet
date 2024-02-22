@@ -1,6 +1,7 @@
 package compare
 
 import (
+	"encoding/json"
 	"testing"
 	"time"
 
@@ -11,6 +12,7 @@ func TestEqual(t *testing.T) {
 	t.Parallel()
 	assert := internal.NewAssert(t, "TestEqual")
 
+	// basic type
 	assert.Equal(true, Equal(1, 1))
 	assert.Equal(true, Equal(int64(1), int64(1)))
 	assert.Equal(true, Equal("a", "a"))
@@ -25,6 +27,7 @@ func TestEqual(t *testing.T) {
 	assert.Equal(false, Equal([]int{1, 2}, []int{1, 2, 3}))
 	assert.Equal(false, Equal(map[int]string{1: "a", 2: "b"}, map[int]string{1: "a"}))
 
+	// time
 	time1 := time.Now()
 	time2 := time1.Add(time.Second)
 	time3 := time1.Add(time.Second)
@@ -32,6 +35,7 @@ func TestEqual(t *testing.T) {
 	assert.Equal(false, Equal(time1, time2))
 	assert.Equal(true, Equal(time2, time3))
 
+	// struct
 	st1 := struct {
 		A string
 		B string
@@ -58,6 +62,19 @@ func TestEqual(t *testing.T) {
 
 	assert.Equal(true, Equal(st1, st2))
 	assert.Equal(false, Equal(st1, st3))
+
+	//byte slice
+	bs1 := []byte("hello")
+	bs2 := []byte("hello")
+	assert.Equal(true, Equal(bs1, bs2))
+
+	// json.Number
+	var jsonNumber1, jsonNumber2 json.Number
+	json.Unmarshal([]byte(`123`), &jsonNumber1)
+	json.Unmarshal([]byte(`123`), &jsonNumber2)
+
+	assert.Equal(true, Equal(jsonNumber1, jsonNumber2))
+
 }
 
 func TestEqualValue(t *testing.T) {
@@ -69,6 +86,13 @@ func TestEqualValue(t *testing.T) {
 	assert.Equal(true, EqualValue(1, "1"))
 
 	assert.Equal(false, EqualValue(1, "2"))
+
+	// json.Number
+	var jsonNumber1, jsonNumber2 json.Number
+	json.Unmarshal([]byte(`123`), &jsonNumber1)
+	json.Unmarshal([]byte(`123`), &jsonNumber2)
+
+	assert.Equal(true, EqualValue(jsonNumber1, 123))
 }
 
 func TestLessThan(t *testing.T) {
@@ -85,6 +109,17 @@ func TestLessThan(t *testing.T) {
 
 	assert.Equal(false, LessThan(1, 1))
 	assert.Equal(false, LessThan(1, int64(1)))
+
+	bs1 := []byte("hello1")
+	bs2 := []byte("hello2")
+	assert.Equal(true, LessThan(bs1, bs2))
+
+	// json.Number
+	var jsonNumber1, jsonNumber2 json.Number
+	json.Unmarshal([]byte(`123`), &jsonNumber1)
+	json.Unmarshal([]byte(`124`), &jsonNumber2)
+
+	assert.Equal(true, LessThan(jsonNumber1, jsonNumber2))
 }
 
 func TestGreaterThan(t *testing.T) {
@@ -102,6 +137,17 @@ func TestGreaterThan(t *testing.T) {
 	assert.Equal(false, GreaterThan(1, 2))
 	assert.Equal(false, GreaterThan(int64(2), 1))
 	assert.Equal(false, GreaterThan("b", "c"))
+
+	bs1 := []byte("hello1")
+	bs2 := []byte("hello2")
+	assert.Equal(true, GreaterThan(bs2, bs1))
+
+	// json.Number
+	var jsonNumber1, jsonNumber2 json.Number
+	json.Unmarshal([]byte(`123`), &jsonNumber1)
+	json.Unmarshal([]byte(`124`), &jsonNumber2)
+
+	assert.Equal(true, GreaterThan(jsonNumber2, jsonNumber1))
 }
 
 func TestLessOrEqual(t *testing.T) {
@@ -119,6 +165,17 @@ func TestLessOrEqual(t *testing.T) {
 
 	assert.Equal(false, LessOrEqual(2, 1))
 	assert.Equal(false, LessOrEqual(1, int64(2)))
+
+	bs1 := []byte("hello1")
+	bs2 := []byte("hello2")
+	assert.Equal(true, LessOrEqual(bs1, bs2))
+
+	// json.Number
+	var jsonNumber1, jsonNumber2 json.Number
+	json.Unmarshal([]byte(`123`), &jsonNumber1)
+	json.Unmarshal([]byte(`124`), &jsonNumber2)
+
+	assert.Equal(true, LessOrEqual(jsonNumber1, jsonNumber2))
 }
 
 func TestGreaterOrEqual(t *testing.T) {
@@ -137,6 +194,17 @@ func TestGreaterOrEqual(t *testing.T) {
 	assert.Equal(false, GreaterOrEqual(1, 2))
 	assert.Equal(false, GreaterOrEqual(int64(2), 1))
 	assert.Equal(false, GreaterOrEqual("b", "c"))
+
+	bs1 := []byte("hello1")
+	bs2 := []byte("hello2")
+	assert.Equal(true, GreaterOrEqual(bs2, bs1))
+
+	// json.Number
+	var jsonNumber1, jsonNumber2 json.Number
+	json.Unmarshal([]byte(`123`), &jsonNumber1)
+	json.Unmarshal([]byte(`124`), &jsonNumber2)
+
+	assert.Equal(true, GreaterOrEqual(jsonNumber2, jsonNumber1))
 }
 
 func TestInDelta(t *testing.T) {
