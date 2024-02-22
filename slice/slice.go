@@ -10,6 +10,7 @@ import (
 	"reflect"
 	"sort"
 	"strings"
+	"sync"
 	"time"
 
 	"github.com/duke-git/lancet/v2/random"
@@ -21,6 +22,7 @@ import (
 var (
 	memoryHashMap     = make(map[string]map[any]int)
 	memoryHashCounter = make(map[string]int)
+	mutex             = &sync.Mutex{}
 )
 
 // Contain check if the target value is in the slice or not.
@@ -1095,14 +1097,18 @@ func IndexOf[T comparable](arr []T, val T) int {
 	key := fmt.Sprintf("%p", arr)
 	// determines whether the hash table is empty. If so, the hash table is created.
 	if memoryHashMap[key] == nil {
+		mutex.Lock()
 		memoryHashMap[key] = make(map[any]int)
+		mutex.Unlock()
 		// iterate through the array, adding the value and index of each element to the hash table.
 		for i := len(arr) - 1; i >= 0; i-- {
 			memoryHashMap[key][arr[i]] = i
 		}
 	}
 	// update the hash table counter.
+	mutex.Lock()
 	memoryHashCounter[key]++
+	mutex.Unlock()
 
 	// use the hash table to find the specified value. If found, the index is returned.
 	if index, ok := memoryHashMap[key][val]; ok {
@@ -1121,8 +1127,10 @@ func IndexOf[T comparable](arr []T, val T) int {
 					minVal = v
 				}
 			}
+			mutex.Lock()
 			delete(memoryHashMap, minKey)
 			delete(memoryHashCounter, minKey)
+			mutex.Unlock()
 		}
 		return index
 	}
