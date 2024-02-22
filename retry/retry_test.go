@@ -26,6 +26,80 @@ func TestRetryFailed(t *testing.T) {
 	assert.Equal(DefaultRetryTimes, number)
 }
 
+func TestRetryShiftExponentialWithJitterFailed(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestRetryShiftExponentialWithJitterFailed")
+
+	var number int
+	increaseNumber := func() error {
+		number++
+		return errors.New("error occurs")
+	}
+
+	err := Retry(increaseNumber, RetryWithExponentialWithJitterBackoff(time.Microsecond*50, 2, time.Microsecond*25))
+
+	assert.IsNotNil(err)
+	assert.Equal(DefaultRetryTimes, number)
+}
+
+func TestRetryExponentialWithJitterFailed(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestRetryExponentialWithJitterFailed")
+
+	var number int
+	increaseNumber := func() error {
+		number++
+		return errors.New("error occurs")
+	}
+
+	err := Retry(increaseNumber, RetryWithExponentialWithJitterBackoff(time.Microsecond*50, 3, time.Microsecond*25))
+
+	assert.IsNotNil(err)
+	assert.Equal(DefaultRetryTimes, number)
+}
+
+func TestRetryWithExponentialSucceeded(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestRetryWithExponentialSucceeded")
+
+	var number int
+	increaseNumber := func() error {
+		number++
+		if number == DefaultRetryTimes {
+			return nil
+		}
+		return errors.New("error occurs")
+	}
+
+	err := Retry(increaseNumber, RetryWithExponentialWithJitterBackoff(time.Microsecond*50, 3, time.Microsecond*25))
+
+	assert.IsNil(err)
+	assert.Equal(DefaultRetryTimes, number)
+}
+
+func TestRetryWithExponentialShiftSucceeded(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestRetryWithExponentialShiftSucceeded")
+
+	var number int
+	increaseNumber := func() error {
+		number++
+		if number == DefaultRetryTimes {
+			return nil
+		}
+		return errors.New("error occurs")
+	}
+
+	err := Retry(increaseNumber, RetryWithExponentialWithJitterBackoff(time.Microsecond*50, 4, time.Microsecond*25))
+
+	assert.IsNil(err)
+	assert.Equal(DefaultRetryTimes, number)
+}
+
 func TestRetrySucceeded(t *testing.T) {
 	t.Parallel()
 
@@ -44,6 +118,74 @@ func TestRetrySucceeded(t *testing.T) {
 
 	assert.IsNil(err)
 	assert.Equal(DefaultRetryTimes, number)
+}
+
+func TestRetryOneShotSucceeded(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestRetryOneShotSucceeded")
+
+	var number int
+	increaseNumber := func() error {
+		number++
+		return nil
+	}
+
+	err := Retry(increaseNumber, RetryWithLinearBackoff(time.Microsecond*50))
+
+	assert.IsNil(err)
+	assert.Equal(1, number)
+}
+
+func TestRetryWithExponentialWithJitterBackoffShiftOneShotSucceeded(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestRetryWithExponentialWithJitterBackoffShiftOneShotSucceeded")
+
+	var number int
+	increaseNumber := func() error {
+		number++
+		return nil
+	}
+
+	err := Retry(increaseNumber, RetryWithExponentialWithJitterBackoff(time.Microsecond*50, 2, time.Microsecond*25))
+
+	assert.IsNil(err)
+	assert.Equal(1, number)
+}
+
+func TestRetryWithExponentialWithJitterBackoffOneShotSucceeded(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestRetryWithExponentialWithJitterBackoffOneShotSucceeded")
+
+	var number int
+	increaseNumber := func() error {
+		number++
+		return nil
+	}
+
+	err := Retry(increaseNumber, RetryWithExponentialWithJitterBackoff(time.Microsecond*50, 3, time.Microsecond*25))
+
+	assert.IsNil(err)
+	assert.Equal(1, number)
+}
+
+func TestRetryWithExponentialWithJitterBackoffNoJitterOneShotSucceeded(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestRetryWithExponentialWithJitterBackoffNoJitterOneShotSucceeded")
+
+	var number int
+	increaseNumber := func() error {
+		number++
+		return nil
+	}
+
+	err := Retry(increaseNumber, RetryWithExponentialWithJitterBackoff(time.Microsecond*50, 3, 0))
+
+	assert.IsNil(err)
+	assert.Equal(1, number)
 }
 
 func TestSetRetryTimes(t *testing.T) {
