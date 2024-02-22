@@ -44,6 +44,18 @@ func RetryTimes(n uint) Option {
 	}
 }
 
+// RetryWithCustomBackoff set abitary custom backoff strategy
+// todo: Add playground link
+func RetryWithCustomBackoff(backoffStrategy BackoffStrategy) Option {
+	if backoffStrategy == nil {
+		panic("programming error: backoffStrategy must be not nil")
+	}
+
+	return func(rc *RetryConfig) {
+		rc.backoffStrategy = backoffStrategy
+	}
+}
+
 // RetryWithLinearBackoff set linear strategy backoff
 // todo: Add playground link
 func RetryWithLinearBackoff(interval time.Duration) Option {
