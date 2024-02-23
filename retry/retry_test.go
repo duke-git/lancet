@@ -137,6 +137,34 @@ func TestRetryOneShotSucceeded(t *testing.T) {
 	assert.Equal(1, number)
 }
 
+func TestRetryWitCustomBackoffOneShotSucceeded(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestRetryWitCustomBackoffOneShotSucceeded")
+
+	var number int
+	increaseNumber := func() error {
+		number++
+		if number == DefaultRetryTimes {
+			return nil
+		}
+		return errors.New("error occurs")
+	}
+
+	err := Retry(increaseNumber, RetryWithCustomBackoff(&TestCustomBackoffStrategy{interval: time.Microsecond * 50}))
+
+	assert.IsNil(err)
+	assert.Equal(5, number)
+}
+
+type TestCustomBackoffStrategy struct {
+	interval time.Duration
+}
+
+func (c *TestCustomBackoffStrategy) CalculateInterval() time.Duration {
+	return c.interval + 1
+}
+
 func TestRetryWithExponentialWithJitterBackoffShiftOneShotSucceeded(t *testing.T) {
 	t.Parallel()
 
