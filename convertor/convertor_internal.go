@@ -4,7 +4,10 @@
 // Package convertor implements some functions to convert data.
 package convertor
 
-import "reflect"
+import (
+	"fmt"
+	"reflect"
+)
 
 type cloner struct {
 	ptrs map[reflect.Type]map[uintptr]reflect.Value
@@ -213,4 +216,71 @@ func (c *cloner) cloneStruct(v reflect.Value) reflect.Value {
 	}
 
 	return clonedStruct
+}
+
+func setStructField(structObj interface{}, fieldName string, fieldValue interface{}) error {
+	structVal := reflect.ValueOf(structObj).Elem()
+
+	fName := getFieldNameByJsonTag(structObj, fieldName)
+	if fName == "" {
+		return fmt.Errorf("Struct field json tag don't match map key : %s in obj", fieldName)
+	}
+
+	fieldVal := structVal.FieldByName(fName)
+
+	if !fieldVal.IsValid() {
+		return fmt.Errorf("No such field: %s in obj", fieldName)
+	}
+
+	if !fieldVal.CanSet() {
+		return fmt.Errorf("Cannot set %s field value", fieldName)
+	}
+
+	val := reflect.ValueOf(fieldValue)
+
+	if fieldVal.Type() != val.Type() {
+
+		if val.CanConvert(fieldVal.Type()) {
+			fieldVal.Set(val.Convert(fieldVal.Type()))
+			return nil
+		}
+
+		if m, ok := fieldValue.(map[string]interface{}); ok {
+
+			if fieldVal.Kind() == reflect.Struct {
+				return MapToStruct(m, fieldVal.Addr().Interface())
+			}
+
+			if fieldVal.Kind() == reflect.Ptr && fieldVal.Type().Elem().Kind() == reflect.Struct {
+				if fieldVal.IsNil() {
+					fieldVal.Set(reflect.New(fieldVal.Type().Elem()))
+				}
+
+				return MapToStruct(m, fieldVal.Interface())
+			}
+
+		}
+
+		return fmt.Errorf("Map value type don't match struct field type")
+	}
+
+	fieldVal.Set(val)
+
+	return nil
+}
+
+func getFieldNameByJsonTag(structObj interface{}, jsonTag string) string {
+	s := reflect.TypeOf(structObj).Elem()
+
+	for i := 0; i < s.NumField(); i++ {
+		field := s.Field(i)
+		tag := field.Tag
+		name := tag.Get("json")
+
+		if name == jsonTag {
+			return field.Name
+		}
+	}
+
+	return ""
 }

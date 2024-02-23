@@ -363,3 +363,40 @@ func TestGbkToUtf8(t *testing.T) {
 	assert.Equal(true, utf8.Valid(utf8Data))
 	assert.Equal("hello", string(utf8Data))
 }
+
+func TestMapToStruct(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestMapToStruct")
+
+	type Address struct {
+		Street string `json:"street"`
+		Number int    `json:"number"`
+	}
+
+	type Person struct {
+		Name  string   `json:"name"`
+		Age   int      `json:"age"`
+		Phone string   `json:"phone"`
+		Addr  *Address `json:"address"`
+	}
+
+	m := map[string]interface{}{
+		"name":  "Nothin",
+		"age":   28,
+		"phone": "123456789",
+		"address": map[string]interface{}{
+			"street": "test",
+			"number": 1,
+		},
+	}
+
+	var p Person
+	err := MapToStruct(m, &p)
+	assert.IsNil(err)
+	assert.Equal(m["name"], p.Name)
+	assert.Equal(m["age"], p.Age)
+	assert.Equal(m["phone"], p.Phone)
+	assert.Equal("test", p.Addr.Street)
+	assert.Equal(1, p.Addr.Number)
+}

@@ -33,6 +33,7 @@ import (
 -   [ToJson](#ToJson)
 -   [ToString](#ToString)
 -   [StructToMap](#StructToMap)
+-   [MapToStruct](#MapToStruct)
 -   [EncodeByte](#EncodeByte)
 -   [DecodeByte](#DecodeByte)
 -   [DeepClone](#DeepClone)
@@ -385,6 +386,59 @@ func main() {
     pm, _ := convertor.StructToMap(p)
 
     fmt.Printf("type: %T, value: %s", pm, pm) //type: map[string]interface {}, value: map[name:test]
+}
+```
+
+### <span id="MapToStruct">MapToStruct</span>
+
+<p>将map转成struct，struct中导出字段需要设置json tag标记</p>
+
+<b>函数签名:</b>
+
+```go
+func MapToStruct(m map[string]interface{}, structObj interface{}) error
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/convertor"
+)
+
+func main() {
+    type Address struct {
+        Street string `json:"street"`
+        Number int    `json:"number"`
+    }
+
+    type Person struct {
+        Name  string   `json:"name"`
+        Age   int      `json:"age"`
+        Phone string   `json:"phone"`
+        Addr  *Address `json:"address"`
+    }
+
+    m := map[string]interface{}{
+        "name":  "Nothin",
+        "age":   28,
+        "phone": "123456789",
+        "address": map[string]interface{}{
+            "street": "test",
+            "number": 1,
+        },
+    }
+
+    var p Person
+    err := MapToStruct(m, &p)
+    if err != nil {
+        return
+    }
+
+    fmt.Printf("p.Addr.Street: %s", p.Addr.Street) //test
 }
 ```
 
