@@ -27,7 +27,7 @@ import (
 - [IsNotNil](#IsNotNil)
 - [IsNil](#IsNil)
 - [IsNotNil](#IsNotNil)
-- [IfNotNilOrElse](#IfPresentOrElse)
+- [IfNotNilOrElse](#IfNotNilOrElse)
 - [Umwarp](#Umwarp)
 - [OrElse](#OrElse)
 - [OrElseGet](#OrElseGet)
