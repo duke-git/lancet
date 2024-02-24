@@ -608,6 +608,7 @@ import set "github.com/duke-git/lancet/v2/datastructure/set"
 import tree "github.com/duke-git/lancet/v2/datastructure/tree"
 import heap "github.com/duke-git/lancet/v2/datastructure/heap"
 import hashmap "github.com/duke-git/lancet/v2/datastructure/hashmap"
+import optional "github.com/duke-git/lancet/v2/datastructure/optional"
 ```
 
 #### Structure list:
@@ -630,6 +631,9 @@ import hashmap "github.com/duke-git/lancet/v2/datastructure/hashmap"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/datastructure/heap.md)]
 -   **<big>Hashmap</big>** : hash map structure.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/datastructure/hashmap.md)]
+-   **<big>Optional</big>** : Optional container.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/datastructure/optional.md)]
+      
 
 <h3 id="fileutil"> 9. Fileutil package implements some basic functions for file operations. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
