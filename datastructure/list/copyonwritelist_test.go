@@ -1,8 +1,9 @@
 package datastructure
 
 import (
-	"github.com/duke-git/lancet/v2/internal"
 	"testing"
+
+	"github.com/duke-git/lancet/v2/internal"
 )
 
 func TestCopyOnWriteList_ValueOf(t *testing.T) {
@@ -232,4 +233,36 @@ func TestCopyOnWriteList_SubList(t *testing.T) {
 	list = NewCopyOnWriteList([]int{1, 3, 5, 7, 9, 2, 4, 6, 8, 10})
 	subList = list.SubList(11, 1)
 	assert.Equal([]int{}, subList)
+}
+
+func TestCopyOnWriteListIndexOfFunc(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestIndexOfFunc")
+
+	list := NewCopyOnWriteList([]int{1, 2, 3})
+	i := list.IndexOfFunc(func(a int) bool { return a == 1 })
+	assert.Equal(0, i)
+
+	i = list.IndexOfFunc(func(a int) bool { return a == 4 })
+	assert.Equal(-1, i)
+}
+
+func TestNewCopyOnWriteListLastIndexOfFunc(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestLastIndexOfFunc")
+
+	list := NewCopyOnWriteList([]int{1, 2, 3, 3, 3, 3, 4, 5, 6, 9})
+	i := list.LastIndexOfFunc(func(a int) bool { return a == 3 })
+	assert.Equal(5, i)
+
+	i = list.LastIndexOfFunc(func(a int) bool { return a == 10 })
+	assert.Equal(-1, i)
+
+	i = list.LastIndexOfFunc(func(a int) bool { return a == 4 })
+	assert.Equal(6, i)
+
+	i = list.LastIndexOfFunc(func(a int) bool { return a == 1 })
+	assert.Equal(0, i)
 }
