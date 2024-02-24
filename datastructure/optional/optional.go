@@ -10,8 +10,8 @@ type Optional[T any] struct {
 	mu    *sync.RWMutex
 }
 
-// Empty returns an empty Optional instance.
-func Empty[T any]() Optional[T] {
+// Default returns an default Optional instance.
+func Default[T any]() Optional[T] {
 	return Optional[T]{mu: &sync.RWMutex{}}
 }
 
@@ -20,29 +20,29 @@ func Of[T any](value T) Optional[T] {
 	return Optional[T]{value: &value, mu: &sync.RWMutex{}}
 }
 
-// OfNullable returns an Optional for a given value, which may be nil.
-func OfNullable[T any](value *T) Optional[T] {
+// FromNillable returns an Optional for a given value, which may be nil.
+func FromNillable[T any](value *T) Optional[T] {
 	if value == nil {
-		return Empty[T]()
+		return Default[T]()
 	}
 	return Optional[T]{value: value, mu: &sync.RWMutex{}}
 }
 
-// IsPresent checks if there is a value present.
-func (o Optional[T]) IsPresent() bool {
+// IsNotNil checks if there is a value present.
+func (o Optional[T]) IsNotNil() bool {
 	o.mu.RLock()
 	defer o.mu.RUnlock()
 
 	return o.value != nil
 }
 
-// IsEmpty checks if the Optional is empty.
-func (o Optional[T]) IsEmpty() bool {
-	return !o.IsPresent()
+// IsNil checks if the Optional is nil.
+func (o Optional[T]) IsNil() bool {
+	return !o.IsNotNil()
 }
 
-// IfPresent performs the given action with the value if a value is present.
-func (o Optional[T]) IfPresent(action func(value T)) {
+// IfNotNil performs the given action with the value if a value is not nil.
+func (o Optional[T]) IfNotNil(action func(value T)) {
 	o.mu.RLock()
 	defer o.mu.RUnlock()
 
@@ -51,20 +51,20 @@ func (o Optional[T]) IfPresent(action func(value T)) {
 	}
 }
 
-// IfPresentOrElse performs the action with the value if present, otherwise performs the empty-based action.
-func (o Optional[T]) IfPresentOrElse(action func(value T), emptyAction func()) {
+// IfNotNilOrElse performs the action with the value if present, otherwise performs the fallback action.
+func (o Optional[T]) IfNotNilOrElse(action func(value T), fallbackAction func()) {
 	o.mu.RLock()
 	defer o.mu.RUnlock()
 
 	if o.value != nil {
 		action(*o.value)
 	} else {
-		emptyAction()
+		fallbackAction()
 	}
 }
 
-// Get returns the value if present, otherwise panics.
-func (o Optional[T]) Get() T {
+// Unwarp returns the value if not nil, otherwise panics.
+func (o Optional[T]) Unwarp() T {
 	o.mu.RLock()
 	defer o.mu.RUnlock()
 
@@ -74,7 +74,7 @@ func (o Optional[T]) Get() T {
 	return *o.value
 }
 
-// OrElse returns the value if present, otherwise returns other.
+// OrElse returns the value if is not nil, otherwise returns other.
 func (o Optional[T]) OrElse(other T) T {
 	o.mu.RLock()
 	defer o.mu.RUnlock()
@@ -85,24 +85,24 @@ func (o Optional[T]) OrElse(other T) T {
 	return other
 }
 
-// OrElseGet returns the value if present, otherwise invokes supplier and returns the result.
-func (o Optional[T]) OrElseGet(supplier func() T) T {
+// OrElseGet returns the value if is not nil, otherwise invokes action and returns the result.
+func (o Optional[T]) OrElseGet(action func() T) T {
 	o.mu.RLock()
 	defer o.mu.RUnlock()
 
 	if o.value != nil {
 		return *o.value
 	}
-	return supplier()
+	return action()
 }
 
-// OrElseThrow returns the value if present, otherwise returns an error.
-func (o Optional[T]) OrElseThrow(errorSupplier func() error) (T, error) {
+// OrElseTrigger returns the value if present, otherwise returns an error.
+func (o Optional[T]) OrElseTrigger(errorHandler func() error) (T, error) {
 	o.mu.RLock()
 	defer o.mu.RUnlock()
 
 	if o.value == nil {
-		return *new(T), errorSupplier()
+		return *new(T), errorHandler()
 	}
 	return *o.value, nil
 }

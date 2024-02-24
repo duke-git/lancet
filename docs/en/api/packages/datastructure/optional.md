@@ -22,16 +22,16 @@ import (
 ## Index
 
 - [Of](#Of)
-- [OfNullable](#OfNullable)
-- [Empty](#Empty)
-- [IsPresent](#IsPresent)
-- [IsEmpty](#IsEmpty)
-- [IfPresent](#IfPresent)
-- [IfPresentOrElse](#IfPresentOrElse)
-- [Get](#Get)
+- [FromNillable](#FromNillable)
+- [Default](#Default)
+- [IsNotNil](#IsNotNil)
+- [IsNil](#IsNil)
+- [IsNotNil](#IsNotNil)
+- [IfNotNilOrElse](#IfPresentOrElse)
+- [Umwarp](#Umwarp)
 - [OrElse](#OrElse)
 - [OrElseGet](#OrElseGet)
-- [OrElseThrow](#OrElseThrow)
+- [OrElseTrigger](#OrElseTrigger)
 
 
 
@@ -68,13 +68,13 @@ func main() {
 }
 ```
 
-### <span id="OfNullable">OfNullable</span>
+### <span id="FromNillable">FromNillable</span>
 <p>Returns an Optional for a given value, which may be nil.</p>
 
 <b>Signature:</b>
 
 ```go
-func OfNullable[T any](value *T) Optional[T]
+func FromNillable[T any](value *T) Optional[T]
 ```
 <b>Example:</b>
 
@@ -88,15 +88,15 @@ import (
 
 func main() {
     var value *int = nil
-    opt := optional.OfNullable(value)
+    opt := optional.FromNillable(value)
 
-    fmt.Println(opt.IsPresent())
+    fmt.Println(opt.IsNotNil())
 
     value = new(int)
     *value = 42
-    opt = optional.OfNullable(value)
+    opt = optional.FromNillable(value)
 
-    fmt.Println(opt.IsPresent())
+    fmt.Println(opt.IsNotNil())
 
 
     // Output:
@@ -106,13 +106,13 @@ func main() {
 ```
 
 
-### <span id="Empty">Empty</span>
-<p>Returns an empty Optional instance.</p>
+### <span id="Default">Default</span>
+<p>Returns an default Optional instance.</p>
 
 <b>Signature:</b>
 
 ```go
-func Empty[T any]() Optional[T]
+func Default[T any]() Optional[T]
 ```
 <b>Example:</b>
 
@@ -125,8 +125,8 @@ import (
 )
 
 func main() {
-    optEmpty := OfNullable.Empty[int]()
-    fmt.Println(optEmpty.IsEmpty())
+    optDefault := optional.Default[int]()
+    fmt.Println(optDefault.IsNil())
 
     // Output:
     // true
@@ -134,13 +134,13 @@ func main() {
 ```
 
 
-### <span id="IsEmpty">IsEmpty</span>
-<p>Checks if the Optional is empty.</p>
+### <span id="IsNil">IsNil</span>
+<p>Checks if the Optional is nil.</p>
 
 <b>Signature:</b>
 
 ```go
-func (o Optional[T]) IsEmpty() bool
+func (o Optional[T]) IsNil() bool
 ```
 <b>Example:</b>
 
@@ -153,8 +153,8 @@ import (
 )
 
 func main() {
-    optEmpty := OfNullable.Empty[int]()
-    fmt.Println(optEmpty.IsEmpty())
+    optDefault := optional.Default[int]()
+    fmt.Println(optDefault.IsNil())
 
     // Output:
     // true
@@ -162,13 +162,13 @@ func main() {
 ```
 
 
-### <span id="IsPresent">IsPresent</span>
-<p>Checks if there is a value present.</p>
+### <span id="IsNotNil">IsNotNil</span>
+<p>Checks if there is a value not nil.</p>
 
 <b>Signature:</b>
 
 ```go
-func (o Optional[T]) IsPresent() bool
+func (o Optional[T]) IsNotNil() bool
 ```
 <b>Example:</b>
 
@@ -182,15 +182,15 @@ import (
 
 func main() {
     var value *int = nil
-    opt := optional.OfNullable(value)
+    opt := optional.FromNillable(value)
 
-    fmt.Println(opt.IsPresent())
+    fmt.Println(opt.IsNotNil())
 
     value = new(int)
     *value = 42
-    opt = optional.OfNullable(value)
+    opt = optional.FromNillable(value)
 
-    fmt.Println(opt.IsPresent())
+    fmt.Println(opt.IsNotNil())
 
 
     // Output:
@@ -200,13 +200,13 @@ func main() {
 ```
 
 
-### <span id="IfPresent">IfPresent</span>
+### <span id="IfNotNil">IfNotNil</span>
 <p>Performs the given action with the value if a value is present.</p>
 
 <b>Signature:</b>
 
 ```go
-func (o Optional[T]) IfPresent(action func(value T))
+func (o Optional[T]) IfNotNil(action func(value T))
 ```
 <b>Example:</b>
 
@@ -222,16 +222,16 @@ func main() {
     called := false
     action := func(value int) { called = true }
 
-    optEmpty := optional.Empty[int]()
-    optEmpty.IfPresent(action)
+    optDefault := optional.Default[int]()
+    optDefault.IfNotNil(action)
 
     fmt.Println(called)
 
     called = false // Reset for next test
     optWithValue := optional.Of(42)
-    optWithValue.IfPresent(action)
+    optWithValue.IfNotNil(action)
 
-    fmt.Println(optWithValue.IsPresent())
+    fmt.Println(optWithValue.IsNotNil())
 
     // Output:
     // false
@@ -240,13 +240,13 @@ func main() {
 ```
 
 
-### <span id="IfPresentOrElse">IfPresentOrElse</span>
-<p>Performs the action with the value if present, otherwise performs the empty-based action.</p>
+### <span id="IfNotNilOrElse">IfNotNilOrElse</span>
+<p>Performs the action with the value if not nil, otherwise performs the fallback action.</p>
 
 <b>Signature:</b>
 
 ```go
-func (o Optional[T]) IfPresentOrElse(action func(value T), emptyAction func())
+func (o Optional[T]) IfNotNilOrElse(action func(value T), fallbackAction func())
 ```
 <b>Example:</b>
 
@@ -264,7 +264,7 @@ func main() {
     emptyAction := func() { t.Errorf("Empty action should not be called when value is present") }
 
     optWithValue := optional.Of(42)
-    optWithValue.IfPresentOrElse(valueAction, emptyAction)
+    optWithValue.IfNotNilOrElse(valueAction, emptyAction)
 
     fmt.Println(calledWithValue)
 
@@ -272,8 +272,8 @@ func main() {
     valueAction = func(value int) { t.Errorf("Value action should not be called when value is not present") }
     emptyAction = func() { calledWithEmpty = true }
 
-    optEmpty := optional.Empty[int]()
-    optEmpty.IfPresentOrElse(valueAction, emptyAction)
+    optDefault := optional.Default[int]()
+    optDefault.IfNotNilOrElse(valueAction, emptyAction)
 
     fmt.Println(calledWithEmpty)
 
@@ -283,13 +283,13 @@ func main() {
 }
 ```
 
-### <span id="Get">Get</span>
-<p>Returns the value if present, otherwise panics.</p>
+### <span id="Unwrap">Unwrap</span>
+<p>Returns the value if not nil, otherwise panics.</p>
 
 <b>Signature:</b>
 
 ```go
-func (o Optional[T]) Get() T
+func (o Optional[T]) Unwrap() T
 ```
 <b>Example:</b>
 
@@ -305,7 +305,7 @@ func main() {
     value := 42
     opt := optional.Of(value)
 
-    fmt.Println(opt.Get())
+    fmt.Println(opt.Unwrap())
 
     // Output:
     // 42
@@ -314,7 +314,7 @@ func main() {
 
 
 ### <span id="OrElse">OrElse</span>
-<p>Returns the value if present, otherwise returns other.</p>
+<p>Returns the value if not nill, otherwise returns other.</p>
 
 <b>Signature:</b>
 
@@ -332,8 +332,8 @@ import (
 )
 
 func main() {
-    optEmpty := optional.Empty[int]()
-    val := optEmpty.OrElse(100)
+    optDefault := optional.Default[int]()
+    val := optDefault.OrElse(100)
     fmt.Println(val)
 
     optWithValue := optional.Of(42)
@@ -348,12 +348,12 @@ func main() {
 
 
 ### <span id="OrElseGet">OrElseGet</span>
-<p>Returns the value if present, otherwise invokes supplier and returns the result.</p>
+<p>Returns the value if not nil, otherwise invokes action and returns the result.</p>
 
 <b>Signature:</b>
 
 ```go
-func (o Optional[T]) OrElseGet(supplier func() T) T
+func (o Optional[T]) OrElseGet(action func() T) T
 ```
 <b>Example:</b>
 
@@ -366,10 +366,10 @@ import (
 )
 
 func main() {
-    optEmpty := optional.Empty[int]()
-    supplier := func() int { return 100 }
+    optDefault := optional.Default[int]()
+    action := func() int { return 100 }
 
-    val := optEmpty.OrElseGet(supplier)
+    val := optDefault.OrElseGet(action)
     fmt.Println(val)
 
     // Output:
@@ -378,13 +378,13 @@ func main() {
 ```
 
 
-### <span id="OrElseThrow">OrElseThrow</span>
+### <span id="OrElseTrigger">OrElseTrigger</span>
 <p>Returns the value if present, otherwise returns an error.</p>
 
 <b>Signature:</b>
 
 ```go
-func (o Optional[T]) OrElseThrow(errorSupplier func() error) (T, error)
+ OrElseTrigger(errorHandler func() error) (T, error)
 ```
 <b>Example:</b>
 
@@ -397,13 +397,13 @@ import (
 )
 
 func main() {
-    optEmpty := optional.Empty[int]()
-    _, err := optEmpty.OrElseThrow(func() error { return errors.New("no value") })
+    optDefault := optional.Default[int]()
+    _, err := optDefault.OrElseTrigger(func() error { return errors.New("no value") })
     
     fmt.Println(err.Error())
 
     optWithValue := optional.Of(42)
-    val, err := optWithValue.OrElseThrow(func() error { return errors.New("no value") })
+    val, err := optWithValue.OrElseTrigger(func() error { return errors.New("no value") })
 
     fmt.Println(val)
     fmt.Println(err)

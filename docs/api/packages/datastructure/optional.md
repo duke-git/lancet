@@ -22,17 +22,16 @@ import (
 ## 目录
 
 - [Of](#Of)
-- [OfNullable](#OfNullable)
-- [Empty](#Empty)
-- [IsPresent](#IsPresent)
-- [IsEmpty](#IsEmpty)
-- [IfPresent](#IfPresent)
-- [IfPresentOrElse](#IfPresentOrElse)
-- [Get](#Get)
+- [FromNillable](#FromNillable)
+- [Default](#Default)
+- [IsNotNil](#IsNotNil)
+- [IsNil](#IsNil)
+- [IsNotNil](#IsNotNil)
+- [IfNotNilOrElse](#IfPresentOrElse)
+- [Umwarp](#Umwarp)
 - [OrElse](#OrElse)
 - [OrElseGet](#OrElseGet)
-- [OrElseThrow](#OrElseThrow)
-
+- [OrElseTrigger](#OrElseTrigger)
 
 
 <div STYLE="page-break-after: always;"></div>
@@ -68,14 +67,13 @@ func main() {
 }
 ```
 
-### <span id="OfNullable">OfNullable</span>
-
+### <span id="FromNillable">FromNillable</span>
 <p>返回一个包含给定值的Optional，该值可能为空 (nil)。</p>
 
 <b>函数签名:</b>
 
 ```go
-func OfNullable[T any](value *T) Optional[T]
+func FromNillable[T any](value *T) Optional[T]
 ```
 <b>示例:</b>
 
@@ -89,15 +87,15 @@ import (
 
 func main() {
     var value *int = nil
-    opt := optional.OfNullable(value)
+    opt := optional.FromNillable(value)
 
-    fmt.Println(opt.IsPresent())
+    fmt.Println(opt.IsNotNil())
 
     value = new(int)
     *value = 42
-    opt = optional.OfNullable(value)
+    opt = optional.FromNillable(value)
 
-    fmt.Println(opt.IsPresent())
+    fmt.Println(opt.IsNotNil())
 
 
     // Output:
@@ -107,14 +105,13 @@ func main() {
 ```
 
 
-### <span id="Empty">Empty</span>
-
+### <span id="Default">Default</span>
 <p>返回一个空Optional实例。</p>
 
 <b>函数签名:</b>
 
 ```go
-func Empty[T any]() Optional[T]
+func Default[T any]() Optional[T]
 ```
 <b>示例:</b>
 
@@ -127,8 +124,8 @@ import (
 )
 
 func main() {
-    optEmpty := OfNullable.Empty[int]()
-    fmt.Println(optEmpty.IsEmpty())
+    optDefault := optional.Default[int]()
+    fmt.Println(optDefault.IsNil())
 
     // Output:
     // true
@@ -136,14 +133,13 @@ func main() {
 ```
 
 
-### <span id="IsEmpty">IsEmpty</span>
-
+### <span id="IsNil">IsNil</span>
 <p>验证Optional是否为空。</p>
 
 <b>函数签名:</b>
 
 ```go
-func (o Optional[T]) IsEmpty() bool
+func (o Optional[T]) IsNil() bool
 ```
 <b>示例:</b>
 
@@ -156,23 +152,21 @@ import (
 )
 
 func main() {
-    optEmpty := OfNullable.Empty[int]()
-    fmt.Println(optEmpty.IsEmpty())
+    optDefault := optional.Default[int]()
+    fmt.Println(optDefault.IsNil())
 
     // Output:
     // true
 }
 ```
 
-
-### <span id="IsPresent">IsPresent</span>
-
+### <span id="IsNotNil">IsNotNil</span>
 <p>检查当前Optional内是否存在值。</p>
 
 <b>函数签名:</b>
 
 ```go
-func (o Optional[T]) IsPresent() bool
+func (o Optional[T]) IsNotNil() bool
 ```
 <b>示例:</b>
 
@@ -181,20 +175,20 @@ package main
 
 import (
     "fmt"
-    optional "github.com/duke-git/lancet/v2/datastructure/optional"
+    "github.com/duke-git/lancet/v2/datastructure/optional"
 )
 
 func main() {
     var value *int = nil
-    opt := optional.OfNullable(value)
+    opt := optional.FromNillable(value)
 
-    fmt.Println(opt.IsPresent())
+    fmt.Println(opt.IsNotNil())
 
     value = new(int)
     *value = 42
-    opt = optional.OfNullable(value)
+    opt = optional.FromNillable(value)
 
-    fmt.Println(opt.IsPresent())
+    fmt.Println(opt.IsNotNil())
 
 
     // Output:
@@ -203,15 +197,13 @@ func main() {
 }
 ```
 
-
-### <span id="IfPresent">IfPresent</span>
-
+### <span id="IfNotNil">IfNotNil</span>
 <p>如果值存在，则使用action方法执行给定的操作。</p>
 
 <b>函数签名:</b>
 
 ```go
-func (o Optional[T]) IfPresent(action func(value T))
+func (o Optional[T]) IfNotNil(action func(value T))
 ```
 <b>示例:</b>
 
@@ -220,23 +212,23 @@ package main
 
 import (
     "fmt"
-    optional "github.com/duke-git/lancet/v2/datastructure/optional"
+     "github.com/duke-git/lancet/v2/datastructure/optional"
 )
 
 func main() {
     called := false
     action := func(value int) { called = true }
 
-    optEmpty := optional.Empty[int]()
-    optEmpty.IfPresent(action)
+    optDefault := optional.Default[int]()
+    optDefault.IfNotNil(action)
 
     fmt.Println(called)
 
     called = false // Reset for next test
     optWithValue := optional.Of(42)
-    optWithValue.IfPresent(action)
+    optWithValue.IfNotNil(action)
 
-    fmt.Println(optWithValue.IsPresent())
+    fmt.Println(optWithValue.IsNotNil())
 
     // Output:
     // false
@@ -245,14 +237,13 @@ func main() {
 ```
 
 
-### <span id="IfPresentOrElse">IfPresentOrElse</span>
-
+### <span id="IfNotNilOrElse">IfNotNilOrElse</span>
 <p>根据是否存在值执行相应的操作：有值则执行指定操作，没有值则执行默认操作。</p>
 
 <b>函数签名:</b>
 
 ```go
-func (o Optional[T]) IfPresentOrElse(action func(value T), emptyAction func())
+func (o Optional[T]) IfNotNilOrElse(action func(value T), fallbackAction func())
 ```
 <b>示例:</b>
 
@@ -270,7 +261,7 @@ func main() {
     emptyAction := func() { t.Errorf("Empty action should not be called when value is present") }
 
     optWithValue := optional.Of(42)
-    optWithValue.IfPresentOrElse(valueAction, emptyAction)
+    optWithValue.IfNotNilOrElse(valueAction, emptyAction)
 
     fmt.Println(calledWithValue)
 
@@ -278,8 +269,8 @@ func main() {
     valueAction = func(value int) { t.Errorf("Value action should not be called when value is not present") }
     emptyAction = func() { calledWithEmpty = true }
 
-    optEmpty := optional.Empty[int]()
-    optEmpty.IfPresentOrElse(valueAction, emptyAction)
+    optDefault := optional.Default[int]()
+    optDefault.IfNotNilOrElse(valueAction, emptyAction)
 
     fmt.Println(calledWithEmpty)
 
@@ -289,13 +280,13 @@ func main() {
 }
 ```
 
-### <span id="Get">Get</span>
+### <span id="Unwrap">Unwrap</span>
 <p>如果存在，返回该值，否则引发panic。</p>
 
 <b>函数签名:</b>
 
 ```go
-func (o Optional[T]) Get() T
+func (o Optional[T]) Unwrap() T
 ```
 <b>示例:</b>
 
@@ -311,7 +302,7 @@ func main() {
     value := 42
     opt := optional.Of(value)
 
-    fmt.Println(opt.Get())
+    fmt.Println(opt.Unwrap())
 
     // Output:
     // 42
@@ -338,8 +329,8 @@ import (
 )
 
 func main() {
-    optEmpty := optional.Empty[int]()
-    val := optEmpty.OrElse(100)
+    optDefault := optional.Empty[int]()
+    val := optDefault.OrElse(100)
     fmt.Println(val)
 
     optWithValue := optional.Of(42)
@@ -359,7 +350,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func (o Optional[T]) OrElseGet(supplier func() T) T
+func (o Optional[T]) OrElseGet(action func() T) T
 ```
 <b>示例:</b>
 
@@ -372,10 +363,10 @@ import (
 )
 
 func main() {
-    optEmpty := optional.Empty[int]()
-    supplier := func() int { return 100 }
+    optDefault := optional.Default[int]()
+    action := func() int { return 100 }
 
-    val := optEmpty.OrElseGet(supplier)
+    val := optDefault.OrElseGet(action)
     fmt.Println(val)
 
     // Output:
@@ -383,14 +374,13 @@ func main() {
 }
 ```
 
-
-### <span id="OrElseThrow">OrElseThrow</span>
+### <span id="OrElseTrigger">OrElseTrigger</span>
 <p>检查Optional值是否存在，如果存在，则直接返回该值，否则返回错误。</p>
 
 <b>函数签名:</b>
 
 ```go
-func (o Optional[T]) OrElseThrow(errorSupplier func() error) (T, error)
+ OrElseTrigger(errorHandler func() error) (T, error)
 ```
 <b>示例:</b>
 
@@ -403,13 +393,13 @@ import (
 )
 
 func main() {
-    optEmpty := optional.Empty[int]()
-    _, err := optEmpty.OrElseThrow(func() error { return errors.New("no value") })
+    optDefault := optional.Default[int]()
+    _, err := optDefault.OrElseTrigger(func() error { return errors.New("no value") })
     
     fmt.Println(err.Error())
 
     optWithValue := optional.Of(42)
-    val, err := optWithValue.OrElseThrow(func() error { return errors.New("no value") })
+    val, err := optWithValue.OrElseTrigger(func() error { return errors.New("no value") })
 
     fmt.Println(val)
     fmt.Println(err)

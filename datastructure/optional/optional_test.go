@@ -7,11 +7,11 @@ import (
 	"github.com/duke-git/lancet/v2/internal"
 )
 
-func TestEmpty(t *testing.T) {
+func TestDefault(t *testing.T) {
 	assert := internal.NewAssert(t, "TestEmpty")
-	opt := Empty[int]()
+	opt := Default[int]()
 
-	assert.ShouldBeTrue(opt.IsEmpty())
+	assert.ShouldBeTrue(opt.IsNil())
 }
 
 func TestOf(t *testing.T) {
@@ -19,30 +19,30 @@ func TestOf(t *testing.T) {
 	value := 42
 	opt := Of(value)
 
-	assert.ShouldBeTrue(opt.IsPresent())
-	assert.Equal(opt.Get(), value)
+	assert.ShouldBeTrue(opt.IsNotNil())
+	assert.Equal(opt.Unwarp(), value)
 }
 
-func TestOfNullable(t *testing.T) {
+func TestFromNillable(t *testing.T) {
 	assert := internal.NewAssert(t, "TestOfNullable")
 	var value *int = nil
-	opt := OfNullable(value)
+	opt := FromNillable(value)
 
-	assert.ShouldBeFalse(opt.IsPresent())
+	assert.ShouldBeFalse(opt.IsNotNil())
 
 	value = new(int)
 	*value = 42
-	opt = OfNullable(value)
+	opt = FromNillable(value)
 
-	assert.ShouldBeTrue(opt.IsPresent())
+	assert.ShouldBeTrue(opt.IsNotNil())
 }
 
 func TestOrElse(t *testing.T) {
 	assert := internal.NewAssert(t, "TestOrElse")
-	optEmpty := Empty[int]()
+	optDefault := Default[int]()
 	defaultValue := 100
 
-	val := optEmpty.OrElse(defaultValue)
+	val := optDefault.OrElse(defaultValue)
 	assert.Equal(val, defaultValue)
 
 	optWithValue := Of(42)
@@ -53,72 +53,72 @@ func TestOrElse(t *testing.T) {
 func TestOrElseGetHappyPath(t *testing.T) {
 	assert := internal.NewAssert(t, "TestOrElseGetHappyPath")
 	optWithValue := Of(42)
-	supplier := func() int { return 100 }
+	action := func() int { return 100 }
 
-	val := optWithValue.OrElseGet(supplier)
+	val := optWithValue.OrElseGet(action)
 	assert.Equal(val, 42)
 }
 
 func TestOrElseGet(t *testing.T) {
 	assert := internal.NewAssert(t, "TestOrElseGet")
-	optEmpty := Empty[int]()
-	supplier := func() int { return 100 }
+	optDefault := Default[int]()
+	action := func() int { return 100 }
 
-	val := optEmpty.OrElseGet(supplier)
-	assert.Equal(val, supplier())
+	val := optDefault.OrElseGet(action)
+	assert.Equal(val, action())
 }
 
-func TestOrElseThrow(t *testing.T) {
-	assert := internal.NewAssert(t, "TestOrElseThrow")
-	optEmpty := Empty[int]()
-	_, err := optEmpty.OrElseThrow(func() error { return errors.New("no value") })
+func TestOrElseTrigger(t *testing.T) {
+	assert := internal.NewAssert(t, "OrElseTrigger")
+	optDefault := Default[int]()
+	_, err := optDefault.OrElseTrigger(func() error { return errors.New("no value") })
 
 	assert.Equal(err.Error(), "no value")
 
 	optWithValue := Of(42)
-	val, err := optWithValue.OrElseThrow(func() error { return errors.New("no value") })
+	val, err := optWithValue.OrElseTrigger(func() error { return errors.New("no value") })
 
 	assert.IsNil(err)
 	assert.Equal(val, 42)
 }
 
-func TestIfPresent(t *testing.T) {
-	assert := internal.NewAssert(t, "TestIfPresent")
+func TestIfNotNil(t *testing.T) {
+	assert := internal.NewAssert(t, "IfNotNil")
 	called := false
 	action := func(value int) { called = true }
 
-	optEmpty := Empty[int]()
-	optEmpty.IfPresent(action)
+	optDefault := Default[int]()
+	optDefault.IfNotNil(action)
 
 	assert.ShouldBeFalse(called)
 
 	called = false // Reset for next test
 	optWithValue := Of(42)
-	optWithValue.IfPresent(action)
+	optWithValue.IfNotNil(action)
 
 	assert.ShouldBeTrue(called)
 }
 
-func TestIfPresentOrElse(t *testing.T) {
-	assert := internal.NewAssert(t, "TestIfPresentOrElse")
+func TestIfNotNilOrElse(t *testing.T) {
+	assert := internal.NewAssert(t, "TestIfNotNilOrElse")
 
 	// Test when value is present
 	calledWithValue := false
 	valueAction := func(value int) { calledWithValue = true }
-	emptyAction := func() { t.Errorf("Empty action should not be called when value is present") }
+	fallbackAction := func() { t.Errorf("Empty action should not be called when value is present") }
 
 	optWithValue := Of(42)
-	optWithValue.IfPresentOrElse(valueAction, emptyAction)
+	optWithValue.IfNotNilOrElse(valueAction, fallbackAction)
 
 	assert.ShouldBeTrue(calledWithValue)
 
 	// Test when value is not present
 	calledWithEmpty := false
 	valueAction = func(value int) { t.Errorf("Value action should not be called when value is not present") }
-	emptyAction = func() { calledWithEmpty = true }
+	fallbackAction = func() { calledWithEmpty = true }
 
-	optEmpty := Empty[int]()
-	optEmpty.IfPresentOrElse(valueAction, emptyAction)
+	optDefault := Default[int]()
+	optDefault.IfNotNilOrElse(valueAction, fallbackAction)
 
 	assert.ShouldBeTrue(calledWithEmpty)
 }
@@ -133,19 +133,19 @@ func TestGetWithPanicStandard(t *testing.T) {
 			r := recover()
 			assert.IsNil(r)
 		}()
-		val := optWithValue.Get()
+		val := optWithValue.Unwarp()
 		if val != 42 {
-			t.Errorf("Expected Get to return 42, got %v", val)
+			t.Errorf("Expected Unwarp to return 42, got %v", val)
 		}
 	}()
 
 	// Test when value is not present
-	optEmpty := Empty[int]()
+	optDefault := Default[int]()
 	func() {
 		defer func() {
 			r := recover()
 			assert.IsNotNil(r)
 		}()
-		_ = optEmpty.Get()
+		_ = optDefault.Unwarp()
 	}()
 }
