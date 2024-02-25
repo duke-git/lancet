@@ -53,6 +53,22 @@ func ExampleAnd() {
 	// false
 }
 
+func ExampleNand() {
+	isNumericAndLength5 := Nand(
+		func(s string) bool { return strings.ContainsAny(s, "0123456789") },
+		func(s string) bool { return len(s) == 5 },
+	)
+
+	fmt.Println(isNumericAndLength5("12345"))
+	fmt.Println(isNumericAndLength5("1234"))
+	fmt.Println(isNumericAndLength5("abcdef"))
+
+	// Output:
+	// false
+	// false
+	// true
+}
+
 func ExampleNor() {
 	match := Nor(
 		func(s string) bool { return strings.ContainsAny(s, "0123456789") },
