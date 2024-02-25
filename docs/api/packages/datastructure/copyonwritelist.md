@@ -201,7 +201,7 @@ func main()  {
 ```
 
 ### <span id="IndexOfFunc">IndexOfFunc</span>
-<p>返回第一个符合函数条件的元素的索引。如果未找到，则返回-1</p>
+<p>返回第一个满足判断函数f(v)的元素的索引，如果找不到则返回-1。</p>
 
 <b>函数签名:</b>
 
@@ -227,7 +227,7 @@ func main() {
 ```
 
 ### <span id="LastIndexOfFunc">LastIndexOfFunc</span>
-<p>返回最后一个符合函数条件的元素的索引。如果未找到，则返回-1</p>
+<p>返回最后一个满足判断函数f(v)的元素的索引，如果找不到则返回-1。</p>
 
 <b>函数签名:</b>
 
