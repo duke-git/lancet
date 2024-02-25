@@ -113,6 +113,68 @@ func CreateDir(absPath string) error {
 	return os.MkdirAll(absPath, os.ModePerm)
 }
 
+// CopyDir copy	src directory to dst directory, it will copy all files and directories recursively.
+// the access permission will be the same as the source directory.
+// if dstPath exists, it will return an error.
+// Play: https://go.dev/play/p/YAyFTA_UuPb
+func CopyDir(srcPath string, dstPath string) error {
+	if !IsDir(srcPath) {
+		return errors.New("source path is not a directory")
+	}
+	var err error
+	srcPath, err = filepath.Abs(srcPath)
+	if err != nil {
+		return err
+	}
+	if IsExist(dstPath) {
+		return errors.New("destination path already exists")
+	}
+	dstPath, err = filepath.Abs(dstPath)
+	if err != nil {
+		return err
+	}
+
+	// get srcPath's file info
+	srcFileInfo, err := os.Stat(srcPath)
+	if err != nil {
+		return err
+	}
+
+	// create dstPath with srcPath's mode
+	err = os.MkdirAll(dstPath, srcFileInfo.Mode())
+	if err != nil {
+		return err
+	}
+
+	err = filepath.Walk(srcPath, func(path string, info os.FileInfo, err error) error {
+		if srcPath == path {
+			return nil
+		}
+		if err != nil {
+			return err
+		}
+		curDstPath := filepath.Join(dstPath, filepath.Base(path))
+		if info.IsDir() {
+			err = CopyDir(path, curDstPath)
+			if err != nil {
+				return err
+			}
+		} else {
+			err = CopyFile(path, curDstPath)
+			if err != nil {
+				return err
+			}
+			err = os.Chmod(curDstPath, info.Mode())
+			if err != nil {
+				return err
+			}
+		}
+		return err
+	})
+
+	return err
+}
+
 // IsDir checks if the path is directory or not.
 // Play: https://go.dev/play/p/WkVwEKqtOWk
 func IsDir(path string) bool {
@@ -377,7 +439,7 @@ func UnZip(zipFile string, destPath string) error {
 	defer zipReader.Close()
 
 	for _, f := range zipReader.File {
-		//issue#62: fix ZipSlip bug
+		// issue#62: fix ZipSlip bug
 		path, err := safeFilepathJoin(destPath, f.Name)
 		if err != nil {
 			return err
