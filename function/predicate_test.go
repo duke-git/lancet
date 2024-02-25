@@ -74,6 +74,21 @@ func TestPredicatesNorPure(t *testing.T) {
 	assert.ShouldBeFalse(match("0123456789"))
 }
 
+func TestPredicatesXnorPure(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestPredicatesXnorPure")
+
+	isEven := func(i int) bool { return i%2 == 0 }
+	isPositive := func(i int) bool { return i > 0 }
+
+	match := Xnor(isEven, isPositive)
+
+	assert.ShouldBeTrue(match(2))
+	assert.ShouldBeTrue(match(-3))
+	assert.ShouldBeFalse(match(3))
+}
+
 func TestPredicatesMix(t *testing.T) {
 	t.Parallel()
 
@@ -95,4 +110,7 @@ func TestPredicatesMix(t *testing.T) {
 
 	c = Nor(a, b)
 	assert.ShouldBeFalse(c("hello!"))
+
+	c = Xnor(a, b)
+	assert.ShouldBeTrue(c("hello!"))
 }

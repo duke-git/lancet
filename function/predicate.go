@@ -3,6 +3,9 @@ package function
 // And returns a composed predicate that represents the logical AND of a list of predicates.
 // It evaluates to true only if all predicates evaluate to true for the given value.
 func And[T any](predicates ...func(T) bool) func(T) bool {
+	if len(predicates) < 2 {
+		panic("programming error: predicates count must be at least 2")
+	}
 	return func(value T) bool {
 		for _, predicate := range predicates {
 			if !predicate(value) {
@@ -23,6 +26,9 @@ func Negate[T any](predicate func(T) bool) func(T) bool {
 // Or returns a composed predicate that represents the logical OR of a list of predicates.
 // It evaluates to true if at least one of the predicates evaluates to true for the given value.
 func Or[T any](predicates ...func(T) bool) func(T) bool {
+	if len(predicates) < 2 {
+		panic("programming error: predicates count must be at least 2")
+	}
 	return func(value T) bool {
 		for _, predicate := range predicates {
 			if predicate(value) {
@@ -36,6 +42,9 @@ func Or[T any](predicates ...func(T) bool) func(T) bool {
 // Nor returns a composed predicate that represents the logical NOR of a list of predicates.
 // It evaluates to true only if all predicates evaluate to false for the given value.
 func Nor[T any](predicates ...func(T) bool) func(T) bool {
+	if len(predicates) < 2 {
+		panic("programming error: predicates count must be at least 2")
+	}
 	return func(value T) bool {
 		for _, predicate := range predicates {
 			if predicate(value) {
@@ -43,5 +52,24 @@ func Nor[T any](predicates ...func(T) bool) func(T) bool {
 			}
 		}
 		return true // Only returns true if all predicates evaluate to false
+	}
+}
+
+// Xnor returns a composed predicate that represents the logical XNOR of a list of predicates.
+// It evaluates to true only if all predicates evaluate to true or false for the given value.
+func Xnor[T any](predicates ...func(T) bool) func(T) bool {
+	if len(predicates) < 2 {
+		panic("programming error: predicates count must be at least 2")
+	}
+	return func(value T) bool {
+		trueCount := 0
+		for _, predicate := range predicates {
+			if predicate(value) {
+				trueCount++
+			}
+		}
+		// XNOR is true if either all predicates are true or all are false
+		// This is the same as saying trueCount is 0 (all false) or trueCount is len(predicates) (all true)
+		return trueCount == 0 || trueCount == len(predicates)
 	}
 }
