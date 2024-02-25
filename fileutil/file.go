@@ -150,9 +150,6 @@ func CopyDir(srcPath string, dstPath string) error {
 		if srcPath == path {
 			return nil
 		}
-		if err != nil {
-			return err
-		}
 		curDstPath := filepath.Join(dstPath, filepath.Base(path))
 		if info.IsDir() {
 			err = CopyDir(path, curDstPath)
