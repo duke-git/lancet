@@ -26,6 +26,7 @@ import (
 -   [CreateFile](#CreateFile)
 -   [CreateDir](#CreateDir)
 -   [CopyFile](#CopyFile)
+-   [CopyDir](#CopyDir)
 -   [CurrentPath](#CurrentPath)
 -   [FileMode](#FileMode)
 -   [MiMeType](#MiMeType)
@@ -156,6 +157,34 @@ import (
 
 func main() {
     err := fileutil.CopyFile("./test.txt", "./test_copy.txt")
+    if err != nil {
+        fmt.Println(err)
+    }
+}
+```
+
+### <span id="CopyDir">CopyDir</span>
+
+<p>copy	src directory to dst directory, it will copy all files and directories recursively. the access permission will be the same as the source directory. if dstPath exists, it will return an error.</p>
+
+<b>Signature:</b>
+
+```go
+func CopyDir(srcPath string, dstPath string) error
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/YAyFTA_UuPb)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/fileutil"
+)
+
+func main() {
+    err := fileutil.CopyFile("./test_src", "./test_dest")
     if err != nil {
         fmt.Println(err)
     }
