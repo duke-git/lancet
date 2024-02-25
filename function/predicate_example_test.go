@@ -73,6 +73,22 @@ func ExampleNor() {
 	// false
 }
 
+func ExampleXnor() {
+	isEven := func(i int) bool { return i%2 == 0 }
+	isPositive := func(i int) bool { return i > 0 }
+
+	match := Xnor(isEven, isPositive)
+
+	fmt.Println(match(2))
+	fmt.Println(match(-3))
+	fmt.Println(match(3))
+
+	// Output:
+	// true
+	// true
+	// false
+}
+
 // func ExamplePredicatesMix() {
 // 	a := Or(
 // 		func(s string) bool { return strings.ContainsAny(s, "0123456789") },
