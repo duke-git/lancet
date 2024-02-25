@@ -7,15 +7,15 @@ package datastructure
 // Set is a data container, like slice, but element of set is not duplicate.
 type Set[T comparable] map[T]struct{}
 
-// NewSet return a instance of set
-func NewSet[T comparable](items ...T) Set[T] {
+// New create a instance of set from given values.
+func New[T comparable](items ...T) Set[T] {
 	set := make(Set[T])
 	set.Add(items...)
 	return set
 }
 
-// NewSetFromSlice create a set from slice
-func NewSetFromSlice[T comparable](items []T) Set[T] {
+// FromSlice create a set from given slice.
+func FromSlice[T comparable](items []T) Set[T] {
 	set := make(Set[T])
 	for _, item := range items {
 		set.Add(item)
@@ -77,7 +77,7 @@ func (s Set[T]) ContainAll(other Set[T]) bool {
 
 // Clone return a copy of set
 func (s Set[T]) Clone() Set[T] {
-	set := NewSet[T]()
+	set := New[T]()
 	set.Add(s.Values()...)
 	return set
 }
@@ -135,7 +135,7 @@ func (s Set[T]) Union(other Set[T]) Set[T] {
 
 // Intersection creates a new set whose element both be contained in set s and other
 func (s Set[T]) Intersection(other Set[T]) Set[T] {
-	set := NewSet[T]()
+	set := New[T]()
 	s.Iterate(func(value T) {
 		if other.Contain(value) {
 			set.Add(value)
@@ -147,7 +147,7 @@ func (s Set[T]) Intersection(other Set[T]) Set[T] {
 
 // SymmetricDifference creates a new set whose element is in set1 or set2, but not in both sets
 func (s Set[T]) SymmetricDifference(other Set[T]) Set[T] {
-	set := NewSet[T]()
+	set := New[T]()
 	s.Iterate(func(value T) {
 		if !other.Contain(value) {
 			set.Add(value)
@@ -165,7 +165,7 @@ func (s Set[T]) SymmetricDifference(other Set[T]) Set[T] {
 
 // Minus creates an set of whose element in origin set but not in compared set
 func (s Set[T]) Minus(comparedSet Set[T]) Set[T] {
-	set := NewSet[T]()
+	set := New[T]()
 
 	s.Iterate(func(value T) {
 		if !comparedSet.Contain(value) {
