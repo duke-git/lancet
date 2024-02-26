@@ -37,6 +37,8 @@ import (
 -   [Or](#Or)
 -   [Negate](#Negate)
 -   [Nor](#Nor)
+-   [Xnor](#Xnor)
+-   [Nand](#Nand)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -559,6 +561,80 @@ func main() {
     fmt.Println(match("0123456789"))
 
     // Output:
+    // true
+    // false
+}
+```
+
+### <span id="Nand">Nand</span>
+
+<p>Returns a composed predicate that represents the logical NAND of a list of predicates. It evaluates to true only if all predicates evaluate to false for the given value.</p>
+
+<b>Signature:</b>
+
+```go
+func Nand[T any](predicates ...func(T) bool) func(T) bool
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/function"
+)
+
+func main() {
+    isNumericAndLength5 := function.Nand(
+        func(s string) bool { return strings.ContainsAny(s, "0123456789") },
+        func(s string) bool { return len(s) == 5 },
+    )
+
+    fmt.Println(isNumericAndLength5("12345"))
+    fmt.Println(isNumericAndLength5("1234"))
+    fmt.Println(isNumericAndLength5("abcdef"))
+
+    // Output:
+    // false
+    // false
+    // true
+}
+```
+
+### <span id="Xnor">Xnor</span>
+
+<p>Returns a composed predicate that represents the logical XNOR of a list of predicates. It evaluates to true only if all predicates evaluate to true or false for the given value.</p>
+
+<b>Signature:</b>
+
+```go
+func Xnor[T any](predicates ...func(T) bool) func(T) bool
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/function"
+)
+
+func main() {
+    isEven := func(i int) bool { return i%2 == 0 }
+    isPositive := func(i int) bool { return i > 0 }
+
+    match := function.Xnor(isEven, isPositive)
+
+    fmt.Println(match(2))
+    fmt.Println(match(-3))
+    fmt.Println(match(3))
+
+    // Output:
+    // true
     // true
     // false
 }

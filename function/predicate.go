@@ -16,7 +16,7 @@ func And[T any](predicates ...func(T) bool) func(T) bool {
 	}
 }
 
-// And returns a composed predicate that represents the logical NAND of a list of predicates.
+// Nand returns a composed predicate that represents the logical NAND of a list of predicates.
 // It evaluates to true only if all predicates evaluate to false for the given value.
 func Nand[T any](predicates ...func(T) bool) func(T) bool {
 	if len(predicates) < 2 {
