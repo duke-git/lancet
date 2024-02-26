@@ -123,6 +123,25 @@ func (hm *HashMap) Iterate(iteratee func(key, value any)) {
 	}
 }
 
+// FilterByValue returns a filtered HashMap.
+// If any value is not matching the perdicate function then it returns nil
+// otherwise it returns the HashMap with selected values.
+func (hm *HashMap) FilterByValue(perdicate func(value any) bool) *HashMap {
+	var filteredHM *HashMap
+	if hm.size > 0 {
+		for i := 0; i < len(hm.table); i++ {
+			item := hm.table[i]
+			if item != nil && perdicate(item.value) {
+				if filteredHM == nil {
+					filteredHM = NewHashMap()
+				}
+				filteredHM.Put(item.key, item.value)
+			}
+		}
+	}
+	return filteredHM
+}
+
 // Keys returns a slice of the hashmap's keys (random order)
 func (hm *HashMap) Keys() []any {
 	keys := make([]any, int(hm.size))
@@ -166,6 +185,11 @@ func (hm *HashMap) resize() {
 
 		hm.table[hm.hash(node.key)] = node
 	}
+}
+
+// Size returns current size of Hashmap
+func (hm *HashMap) Size() uint64 {
+	return hm.size
 }
 
 func (hm *HashMap) hash(key any) uint64 {
