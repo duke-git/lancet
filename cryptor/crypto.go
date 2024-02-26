@@ -76,6 +76,11 @@ func AesEcbDecrypt(encrypted, key []byte) []byte {
 // len(key) should be 16, 24 or 32.
 // Play: https://go.dev/play/p/IOq_g8_lKZD
 func AesCbcEncrypt(data, key []byte) []byte {
+	size := len(key)
+	if size != 16 && size != 24 && size != 32 {
+		panic("key length shoud be 16 or 24 or 32")
+	}
+
 	block, _ := aes.NewCipher(key)
 	data = pkcs7Padding(data, block.BlockSize())
 
@@ -95,6 +100,11 @@ func AesCbcEncrypt(data, key []byte) []byte {
 // len(key) should be 16, 24 or 32.
 // Play: https://go.dev/play/p/IOq_g8_lKZD
 func AesCbcDecrypt(encrypted, key []byte) []byte {
+	size := len(key)
+	if size != 16 && size != 24 && size != 32 {
+		panic("key length shoud be 16 or 24 or 32")
+	}
+
 	block, _ := aes.NewCipher(key)
 
 	iv := encrypted[:aes.BlockSize]
@@ -111,6 +121,11 @@ func AesCbcDecrypt(encrypted, key []byte) []byte {
 // len(key) should be 16, 24 or 32.
 // Play: https://go.dev/play/p/SpaZO0-5Nsp
 func AesCtrCrypt(data, key []byte) []byte {
+	size := len(key)
+	if size != 16 && size != 24 && size != 32 {
+		panic("key length shoud be 16 or 24 or 32")
+	}
+
 	block, _ := aes.NewCipher(key)
 
 	iv := bytes.Repeat([]byte("1"), block.BlockSize())
@@ -126,6 +141,11 @@ func AesCtrCrypt(data, key []byte) []byte {
 // len(key) should be 16, 24 or 32.
 // Play: https://go.dev/play/p/tfkF10B13kH
 func AesCfbEncrypt(data, key []byte) []byte {
+	size := len(key)
+	if size != 16 && size != 24 && size != 32 {
+		panic("key length shoud be 16 or 24 or 32")
+	}
+
 	block, err := aes.NewCipher(key)
 	if err != nil {
 		panic(err)
@@ -148,6 +168,11 @@ func AesCfbEncrypt(data, key []byte) []byte {
 // len(encrypted) should be great than 16, len(key) should be 16, 24 or 32.
 // Play: https://go.dev/play/p/tfkF10B13kH
 func AesCfbDecrypt(encrypted, key []byte) []byte {
+	size := len(key)
+	if size != 16 && size != 24 && size != 32 {
+		panic("key length shoud be 16 or 24 or 32")
+	}
+
 	if len(encrypted) < aes.BlockSize {
 		panic("encrypted data is too short")
 	}
@@ -167,6 +192,11 @@ func AesCfbDecrypt(encrypted, key []byte) []byte {
 // len(key) should be 16, 24 or 32.
 // Play: https://go.dev/play/p/VtHxtkUj-3F
 func AesOfbEncrypt(data, key []byte) []byte {
+	size := len(key)
+	if size != 16 && size != 24 && size != 32 {
+		panic("key length shoud be 16 or 24 or 32")
+	}
+
 	block, err := aes.NewCipher(key)
 	if err != nil {
 		panic(err)
@@ -189,6 +219,11 @@ func AesOfbEncrypt(data, key []byte) []byte {
 // len(key) should be 16, 24 or 32.
 // Play: https://go.dev/play/p/VtHxtkUj-3F
 func AesOfbDecrypt(data, key []byte) []byte {
+	size := len(key)
+	if size != 16 && size != 24 && size != 32 {
+		panic("key length shoud be 16 or 24 or 32")
+	}
+
 	block, err := aes.NewCipher(key)
 	if err != nil {
 		panic(err)
@@ -255,6 +290,11 @@ func DesEcbDecrypt(encrypted, key []byte) []byte {
 // len(key) should be 8.
 // Play: https://go.dev/play/p/4cC4QvWfe3_1
 func DesCbcEncrypt(data, key []byte) []byte {
+	size := len(key)
+	if size != 8 {
+		panic("key length shoud be 8")
+	}
+
 	block, _ := des.NewCipher(key)
 	data = pkcs7Padding(data, block.BlockSize())
 
@@ -275,6 +315,11 @@ func DesCbcEncrypt(data, key []byte) []byte {
 // len(key) should be 8.
 // Play: https://go.dev/play/p/4cC4QvWfe3_1
 func DesCbcDecrypt(encrypted, key []byte) []byte {
+	size := len(key)
+	if size != 8 {
+		panic("key length shoud be 8")
+	}
+
 	block, _ := des.NewCipher(key)
 
 	iv := encrypted[:des.BlockSize]
@@ -291,6 +336,11 @@ func DesCbcDecrypt(encrypted, key []byte) []byte {
 // len(key) should be 8.
 // Play: https://go.dev/play/p/9-T6OjKpcdw
 func DesCtrCrypt(data, key []byte) []byte {
+	size := len(key)
+	if size != 8 {
+		panic("key length shoud be 8")
+	}
+
 	block, _ := des.NewCipher(key)
 
 	iv := bytes.Repeat([]byte("1"), block.BlockSize())
@@ -306,6 +356,11 @@ func DesCtrCrypt(data, key []byte) []byte {
 // len(key) should be 8.
 // Play: https://go.dev/play/p/y-eNxcFBlxL
 func DesCfbEncrypt(data, key []byte) []byte {
+	size := len(key)
+	if size != 8 {
+		panic("key length shoud be 8")
+	}
+
 	block, err := des.NewCipher(key)
 	if err != nil {
 		panic(err)
@@ -327,6 +382,11 @@ func DesCfbEncrypt(data, key []byte) []byte {
 // len(encrypted) should be great than 16, len(key) should be 8.
 // Play: https://go.dev/play/p/y-eNxcFBlxL
 func DesCfbDecrypt(encrypted, key []byte) []byte {
+	size := len(key)
+	if size != 8 {
+		panic("key length shoud be 8")
+	}
+
 	block, _ := des.NewCipher(key)
 	if len(encrypted) < des.BlockSize {
 		panic("encrypted data is too short")
@@ -341,9 +401,14 @@ func DesCfbDecrypt(encrypted, key []byte) []byte {
 }
 
 // DesOfbEncrypt encrypt data with key use DES OFB algorithm
-// len(key) should be 16, 24 or 32.
+// len(key) should be 8.
 // Play: https://go.dev/play/p/74KmNadjN1J
 func DesOfbEncrypt(data, key []byte) []byte {
+	size := len(key)
+	if size != 8 {
+		panic("key length shoud be 8")
+	}
+
 	block, err := des.NewCipher(key)
 	if err != nil {
 		panic(err)
@@ -365,6 +430,11 @@ func DesOfbEncrypt(data, key []byte) []byte {
 // len(key) should be 8.
 // Play: https://go.dev/play/p/74KmNadjN1J
 func DesOfbDecrypt(data, key []byte) []byte {
+	size := len(key)
+	if size != 8 {
+		panic("key length shoud be 8")
+	}
+
 	block, err := des.NewCipher(key)
 	if err != nil {
 		panic(err)
