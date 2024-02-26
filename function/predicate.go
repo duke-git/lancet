@@ -16,6 +16,22 @@ func And[T any](predicates ...func(T) bool) func(T) bool {
 	}
 }
 
+// And returns a composed predicate that represents the logical NAND of a list of predicates.
+// It evaluates to true only if all predicates evaluate to false for the given value.
+func Nand[T any](predicates ...func(T) bool) func(T) bool {
+	if len(predicates) < 2 {
+		panic("programming error: predicates count must be at least 2")
+	}
+	return func(value T) bool {
+		for _, predicate := range predicates {
+			if predicate(value) {
+				return false // Short-circuit on the first true predicate
+			}
+		}
+		return true // True if all predicates are false
+	}
+}
+
 // Negate returns a predicate that represents the logical negation of this predicate.
 func Negate[T any](predicate func(T) bool) func(T) bool {
 	return func(value T) bool {
