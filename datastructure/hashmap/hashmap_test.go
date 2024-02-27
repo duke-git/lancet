@@ -105,3 +105,24 @@ func TestHashMap_GetOrDefault(t *testing.T) {
 	assert.Equal(1, hm.GetOrDefault("a", 5))
 	assert.Equal(5, hm.GetOrDefault("d", 5))
 }
+
+func TestHashMap_FilterByValue(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestHashMap_FilterByValue")
+
+	hm := NewHashMap()
+
+	hm.Put("a", 1)
+	hm.Put("b", 2)
+	hm.Put("c", 3)
+	hm.Put("d", 4)
+	hm.Put("e", 5)
+	hm.Put("f", 6)
+
+	filteredHM := hm.FilterByValue(func(value any) bool {
+		return value.(int) == 1 || value.(int) == 3
+	})
+
+	assert.Equal(uint64(2), filteredHM.Size())
+}
