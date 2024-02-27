@@ -40,6 +40,7 @@ import (
 -   [Intersection](#Intersection)
 -   [SymmetricDifference](#SymmetricDifference)
 -   [Minus](#Minus)
+-   [ToSlice](#ToSlice)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -52,7 +53,7 @@ import (
 <b>函数签名:</b>
 
 ```go
-type Set[T comparable] map[T]bool
+type Set[T comparable] map[T]struct{}
 func New[T comparable](items ...T) Set[T]
 ```
 
@@ -645,5 +646,33 @@ func main() {
 
     fmt.Println(val) // 3
     fmt.Println(ok) // true
+}
+```
+
+### <span id="ToSlice">ToSlice</span>
+
+<p>将集合转化为切片（无序）</p>
+
+<b>函数签名:</b>
+
+```go
+func (s Set[T]) ToSlice() []T
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    set "github.com/duke-git/lancet/v2/datastructure/set"
+)
+
+func main() {
+    s := set.New(1, 2, 3, 4, 5)
+
+    val := s.ToSlice()
+    fmt.Println(val) // [2 3 4 5 1]
 }
 ```

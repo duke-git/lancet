@@ -16,7 +16,7 @@ func New[T comparable](items ...T) Set[T] {
 
 // FromSlice create a set from given slice.
 func FromSlice[T comparable](items []T) Set[T] {
-	set := make(Set[T])
+	set := make(Set[T], len(items))
 	for _, item := range items {
 		set.Add(item)
 	}
@@ -196,4 +196,17 @@ func (s Set[T]) Pop() (v T, ok bool) {
 	}
 
 	return v, false
+}
+
+// ToSlice convert set to slice
+func (s Set[T]) ToSlice() []T {
+	if s.IsEmpty() {
+		return []T{}
+	}
+
+	res := make([]T, 0, s.Size())
+	for v := range s {
+		res = append(res, v)
+	}
+	return res
 }
