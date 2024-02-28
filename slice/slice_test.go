@@ -3,6 +3,7 @@ package slice
 import (
 	"fmt"
 	"math"
+	"reflect"
 	"strconv"
 	"testing"
 
@@ -1217,4 +1218,142 @@ func TestRandom(t *testing.T) {
 	val, idx = Random(arr)
 	assert.Greater(len(arr), idx)
 	assert.Equal(arr[idx], val)
+}
+
+func TestSetToDefaultIf(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "SetToDefaultIf")
+
+	// Subtest for strings
+	t.Run("strings", func(t *testing.T) {
+		strs := []string{"a", "b", "a", "c", "d", "a"}
+		actualStrs, count := SetToDefaultIf(strs, func(s string) bool { return "a" == s })
+		assert.Equal([]string{"", "b", "", "c", "d", ""}, actualStrs)
+		assert.Equal(3, count)
+	})
+
+	// Subtest for integers
+	t.Run("integers", func(t *testing.T) {
+		ints := []int{1, 2, 3, 2, 4, 2}
+		actualInts, count := SetToDefaultIf(ints, func(i int) bool { return i == 2 })
+		assert.Equal([]int{1, 0, 3, 0, 4, 0}, actualInts)
+		assert.Equal(3, count)
+	})
+
+	// Subtest for floating-point numbers
+	t.Run("floats", func(t *testing.T) {
+		floats := []float64{1.1, 2.2, 3.3, 2.2, 4.4, 2.2}
+		actualFloats, count := SetToDefaultIf(floats, func(f float64) bool { return f == 2.2 })
+		assert.Equal([]float64{1.1, 0, 3.3, 0, 4.4, 0}, actualFloats)
+		assert.Equal(3, count)
+	})
+
+	// Subtest for booleans
+	t.Run("booleans", func(t *testing.T) {
+		bools := []bool{true, false, true, true, false}
+		actualBools, count := SetToDefaultIf(bools, func(b bool) bool { return b })
+		assert.Equal([]bool{false, false, false, false, false}, actualBools)
+		assert.Equal(3, count)
+	})
+
+	// Subtest for a custom type
+	type customType struct {
+		field string
+	}
+	t.Run("customType", func(t *testing.T) {
+		customs := []customType{{"a"}, {"b"}, {"a"}, {"c"}}
+		actualCustoms, count := SetToDefaultIf(customs, func(c customType) bool { return c.field == "a" })
+		expected := []customType{{""}, {"b"}, {""}, {"c"}}
+		assert.Equal(expected, actualCustoms)
+		assert.Equal(2, count)
+	})
+
+	// Subtest for slice of integers
+	t.Run("sliceOfInts", func(t *testing.T) {
+		sliceOfInts := [][]int{{1, 2}, {3, 4}, {5, 6}, {1, 2}}
+		actualSlice, count := SetToDefaultIf(sliceOfInts, func(s []int) bool { return reflect.DeepEqual(s, []int{1, 2}) })
+		expected := [][]int{nil, {3, 4}, {5, 6}, nil}
+		assert.Equal(expected, actualSlice)
+		assert.Equal(2, count)
+	})
+
+	// Subtest for maps (simple use case)
+	t.Run("mapOfStringToInts", func(t *testing.T) {
+		maps := []map[string]int{{"a": 1}, {"b": 2}, {"a": 1}, {"c": 3}}
+		actualMaps, count := SetToDefaultIf(maps, func(m map[string]int) bool { _, ok := m["a"]; return ok })
+		expected := []map[string]int{nil, {"b": 2}, nil, {"c": 3}}
+		assert.Equal(expected, actualMaps)
+		assert.Equal(2, count)
+	})
+
+	// Subtest for pointers to integers
+	t.Run("pointersToInts", func(t *testing.T) {
+		one, two, three := 1, 2, 3
+		pointers := []*int{&one, &two, &one, &three}
+		actualPointers, count := SetToDefaultIf(pointers, func(p *int) bool { return p != nil && *p == 1 })
+		expected := []*int{nil, &two, nil, &three}
+		assert.Equal(expected, actualPointers)
+		assert.Equal(2, count)
+	})
+
+	// Subtest for channels
+	t.Run("channels", func(t *testing.T) {
+		ch1, ch2 := make(chan int), make(chan int)
+		channels := []chan int{ch1, ch2, ch1}
+		actualChannels, count := SetToDefaultIf(channels, func(ch chan int) bool { return ch == ch1 })
+		expected := []chan int{nil, ch2, nil}
+		assert.Equal(expected, actualChannels)
+		assert.Equal(2, count)
+	})
+
+	// Subtest for interfaces
+	t.Run("interfaces", func(t *testing.T) {
+		var i1, i2 interface{} = "hello", 42
+		interfaces := []interface{}{i1, i2, i1}
+		actualInterfaces, count := SetToDefaultIf(interfaces, func(i interface{}) bool { _, ok := i.(string); return ok })
+		expected := []interface{}{nil, 42, nil}
+		assert.Equal(expected, actualInterfaces)
+		assert.Equal(2, count)
+	})
+
+	// Subtest for complex structs
+	t.Run("complexStructs", func(t *testing.T) {
+		type ComplexStruct struct {
+			Name  string
+			Value int
+			Data  []byte
+		}
+		cs1, cs2 := ComplexStruct{Name: "Test", Value: 1, Data: []byte{1, 2, 3}}, ComplexStruct{Name: "Another", Value: 2, Data: []byte{4, 5, 6}}
+		complexStructs := []ComplexStruct{cs1, cs2, cs1}
+		actualComplexStructs, count := SetToDefaultIf(complexStructs, func(cs ComplexStruct) bool { return cs.Name == "Test" })
+		expected := []ComplexStruct{{}, cs2, {}}
+		assert.Equal(expected, actualComplexStructs)
+		assert.Equal(2, count)
+	})
+
+	// Subtest for uints
+	t.Run("uints", func(t *testing.T) {
+		uints := []uint{1, 2, 3, 2, 4, 2}
+		actualUints, count := SetToDefaultIf(uints, func(u uint) bool { return u == 2 })
+		assert.Equal([]uint{1, 0, 3, 0, 4, 0}, actualUints)
+		assert.Equal(3, count)
+	})
+
+	// Subtest for float32
+	t.Run("float32s", func(t *testing.T) {
+		floats := []float32{1.1, 2.2, 3.3, 2.2, 4.4, 2.2}
+		actualFloats, count := SetToDefaultIf(floats, func(f float32) bool { return f == 2.2 })
+		assert.Equal([]float32{1.1, 0, 3.3, 0, 4.4, 0}, actualFloats)
+		assert.Equal(3, count)
+	})
+
+	// Subtest for []byte
+	t.Run("byteSlices", func(t *testing.T) {
+		bytes := [][]byte{{'a', 'b'}, {'c', 'd'}, {'a', 'b'}}
+		actualBytes, count := SetToDefaultIf(bytes, func(b []byte) bool { return string(b) == "ab" })
+		expected := [][]byte{nil, {'c', 'd'}, nil}
+		assert.Equal(expected, actualBytes)
+		assert.Equal(2, count)
+	})
 }
