@@ -40,6 +40,9 @@ import (
 -   [Intersection](#Intersection)
 -   [SymmetricDifference](#SymmetricDifference)
 -   [Minus](#Minus)
+-   [Pop](#Pop)
+-   [ToSlice](#ToSlice)
+-   [ToSortedSlice](#ToSortedSlice)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -52,7 +55,7 @@ import (
 <b>函数签名:</b>
 
 ```go
-type Set[T comparable] map[T]bool
+type Set[T comparable] map[T]struct{}
 func New[T comparable](items ...T) Set[T]
 ```
 
@@ -98,9 +101,10 @@ func main() {
 }
 ```
 
-### <span id="Values">Values</span>
+### <span id="Values">Values<sup>deprecated</sup></span>
 
-<p>获取集合中所有元素的切片</p>
+<p>获取集合中所有元素的切片<br>
+<a href='#ToSlice'>ToSlice()</a> 方法提供与 Values 方法相同的功能</p>
 
 <b>函数签名:</b>
 
@@ -645,5 +649,60 @@ func main() {
 
     fmt.Println(val) // 3
     fmt.Println(ok) // true
+}
+```
+
+### <span id="ToSlice">ToSlice</span>
+
+<p>以切片的形式返回集合中所有的元素（无序）</p>
+
+<b>函数签名:</b>
+
+```go
+func (s Set[T]) ToSlice() (v T, ok bool)
+```
+
+<b>示例:</b>
+
+```go
+func main() {
+    s := set.New(1, 2, 3, 4, 5)
+
+    val := s.ToSlice()
+    fmt.Println(val) // [2 3 4 5 1]
+}
+```
+
+### <span id="ToSortedSlice">ToSortedSlice</span>
+
+<p>以切片的形式返回集合中所有的元素（按给定的规则排序）</p>
+
+<b>函数签名:</b>
+
+```go
+func (s Set[T]) ToSortedSlice() (v T, ok bool)
+```
+
+<b>示例:</b>
+
+```go
+func main() {
+    s1 := set.New(1, 2, 3, 4, 5)
+    type Person struct {
+		Name string
+		Age  int
+	}
+	s2 := FromSlice([]Person{{"Tom", 20}, {"Jerry", 18}, {"Spike", 25}})
+
+    res1 := s1.ToSortedSlice(func(v1, v2 int) bool {
+		return v1 < v2
+	})
+    
+    res2 := s2.ToSortedSlice(func(v1, v2 Person) bool {
+		return v1.Age < v2.Age
+	})
+    
+    fmt.Println(res1) // [1 2 3 4 5]
+    fmt.Println(res2) // [{Jerry 18} {Tom 20} {Spike 25}]
 }
 ```

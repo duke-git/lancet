@@ -1,6 +1,8 @@
 package datastructure
 
 import (
+	"reflect"
+	"sort"
 	"testing"
 
 	"github.com/duke-git/lancet/v2/internal"
@@ -260,3 +262,65 @@ func TestEachWithBreak(t *testing.T) {
 // 	assert.Equal(3, val)
 // 	assert.Equal(true, ok)
 // }
+
+func TestSet_ToSlice(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestSet_ToSlice")
+
+	set1 := FromSlice([]int{6, 3, 1, 5, 6, 7, 1})
+	set2 := FromSlice([]float64{-2.65, 4.25, 4.25 - 3.14, 0})
+	set3 := New[string]()
+
+	slice1 := set1.ToSlice()
+	slice2 := set2.ToSlice()
+	slice3 := set3.ToSlice()
+
+	sort.Ints(slice1)
+	sort.Float64s(slice2)
+
+	assert.Equal(5, len(slice1))
+	assert.Equal(4, len(slice2))
+	assert.Equal(0, len(slice3))
+
+	assert.Equal(true, reflect.DeepEqual(slice1, []int{1, 3, 5, 6, 7}))
+	assert.Equal(true, reflect.DeepEqual(slice2, []float64{-2.65, 0, 1.11, 4.25}))
+	assert.Equal("[]string", reflect.TypeOf(slice3).String())
+}
+
+func TestSet_ToSortedSlice(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestSet_ToSortedSlice")
+
+	set1 := FromSlice([]int{6, 3, 1, 5, 6, 7, 1})
+	set2 := FromSlice([]float64{-2.65, 4.25, 4.25 - 3.14, 0})
+
+	type Person struct {
+		Name string
+		Age  int
+	}
+	set3 := FromSlice([]Person{{"Tom", 20}, {"Jerry", 18}, {"Spike", 25}})
+
+	slice1 := set1.ToSortedSlice(func(v1, v2 int) bool {
+		return v1 < v2
+	})
+	slice2 := set2.ToSortedSlice(func(v1, v2 float64) bool {
+		return v2 < v1
+	})
+	slice3 := set3.ToSortedSlice(func(v1, v2 Person) bool {
+		return v1.Age < v2.Age
+	})
+
+	assert.Equal(5, len(slice1))
+	assert.Equal(4, len(slice2))
+	assert.Equal(3, len(slice3))
+
+	assert.Equal(true, reflect.DeepEqual(slice1, []int{1, 3, 5, 6, 7}))
+	assert.Equal(true, reflect.DeepEqual(slice2, []float64{4.25, 1.11, 0, -2.65}))
+	assert.Equal(true, reflect.DeepEqual(slice3, []Person{
+		{"Jerry", 18},
+		{"Tom", 20},
+		{"Spike", 25},
+	}))
+}
