@@ -1170,6 +1170,21 @@ func AppendIfAbsent[T comparable](slice []T, item T) []T {
 	return slice
 }
 
+// SetToDefaultIf sets elements to their default value if they match the given predicate.
+// It retains the positions of the elements in the slice.
+// It returns slice of T and the count of modified slice items
+func SetToDefaultIf[T any](slice []T, predicate func(T) bool) ([]T, int) {
+	var count int
+	for i := 0; i < len(slice); i++ {
+		if predicate(slice[i]) {
+			var zeroValue T
+			slice[i] = zeroValue
+			count++
+		}
+	}
+	return slice, count
+}
+
 // KeyBy converts a slice to a map based on a callback function.
 // Play: https://go.dev/play/p/uXod2LWD1Kg
 func KeyBy[T any, U comparable](slice []T, iteratee func(item T) U) map[U]T {
