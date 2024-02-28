@@ -41,6 +41,9 @@ import (
 -   [Intersection](#Intersection)
 -   [SymmetricDifference](#SymmetricDifference)
 -   [Minus](#Minus)
+-   [Pop](#Pop)
+-   [ToSlice](#ToSlice)
+-   [ToSortedSlice](#ToSortedSlice)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -53,7 +56,7 @@ import (
 <b>Signature:</b>
 
 ```go
-type Set[T comparable] map[T]bool
+type Set[T comparable] map[T]struct{}
 func New[T comparable](items ...T) Set[T]
 ```
 
@@ -99,9 +102,10 @@ func main() {
 }
 ```
 
-### <span id="Values">Values</span>
+### <span id="Values">Values<sup>deprecated</sup></span>
 
-<p>Return slice of all set data</p>
+<p>Return slice of all set data.<br>
+    The <a href='#ToSlice'>ToSlice()</a> function provides the same functionality as Values and returns a slice containing all values of the set.</p>
 
 <b>Signature:</b>
 
@@ -646,5 +650,60 @@ func main() {
 
     fmt.Println(val) // 3
     fmt.Println(ok) // true
+}
+```
+
+### <span id="ToSlice">ToSlice</span>
+
+<p>returns a slice containing all values of the set.</p>
+
+<b>Signature:</b>
+
+```go
+func (s Set[T]) ToSlice() (v T, ok bool)
+```
+
+<b>Example:</b>
+
+```go
+func main() {
+    s := set.New(1, 2, 3, 4, 5)
+
+    val := s.ToSlice()
+    fmt.Println(val) // [2 3 4 5 1]
+}
+```
+
+### <span id="ToSortedSlice">ToSortedSlice</span>
+
+<p>returns a sorted slice containing all values of the set</p>
+
+<b>Signature:</b>
+
+```go
+func (s Set[T]) ToSortedSlice() (v T, ok bool)
+```
+
+<b>Example:</b>
+
+```go
+func main() {
+    s1 := set.New(1, 2, 3, 4, 5)
+    type Person struct {
+		Name string
+		Age  int
+	}
+	s2 := FromSlice([]Person{{"Tom", 20}, {"Jerry", 18}, {"Spike", 25}})
+
+    res1 := s1.ToSortedSlice(func(v1, v2 int) bool {
+		return v1 < v2
+	})
+    
+    res2 := s2.ToSortedSlice(func(v1, v2 Person) bool {
+		return v1.Age < v2.Age
+	})
+    
+    fmt.Println(res1) // [1 2 3 4 5]
+    fmt.Println(res2) // [{Jerry 18} {Tom 20} {Spike 25}]
 }
 ```
