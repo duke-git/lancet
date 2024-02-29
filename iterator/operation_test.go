@@ -21,7 +21,7 @@ func TestMapIterator(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestMapIterator")
 
-	iter := FromSlice([]int{1, 2, 3, 4})
+	var iter Iterator[int] = FromSlice([]int{1, 2, 3, 4})
 
 	iter = Map(iter, func(n int) int { return n / 2 })
 
@@ -34,7 +34,7 @@ func TestFilterIterator(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestFilterIterator")
 
-	iter := FromSlice([]int{1, 2, 3, 4})
+	var iter Iterator[int] = FromSlice([]int{1, 2, 3, 4})
 
 	iter = Filter(iter, func(n int) bool { return n < 3 })
 
@@ -47,10 +47,10 @@ func TestJoinIterator(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestJoinIterator")
 
-	iter1 := FromSlice([]int{1, 2})
-	iter2 := FromSlice([]int{3, 4})
+	var iter1 Iterator[int] = FromSlice([]int{1, 2})
+	var iter2 Iterator[int] = FromSlice([]int{3, 4})
 
-	iter := Join(iter1, iter2)
+	var iter Iterator[int] = Join(iter1, iter2)
 
 	item, ok := iter.Next()
 	assert.Equal(1, item)
@@ -64,7 +64,7 @@ func TestReduce(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestReduce")
 
-	iter := FromSlice([]int{1, 2, 3, 4})
+	var iter Iterator[int] = FromSlice([]int{1, 2, 3, 4})
 	sum := Reduce(iter, 0, func(a, b int) int { return a + b })
 	assert.Equal(10, sum)
 }
@@ -74,7 +74,7 @@ func TestTakeIterator(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestTakeIterator")
 
-	iter := FromSlice([]int{1, 2, 3, 4, 5})
+	var iter Iterator[int] = FromSlice([]int{1, 2, 3, 4, 5})
 
 	iter = Take(iter, 3)
 
