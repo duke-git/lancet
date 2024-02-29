@@ -30,7 +30,7 @@ We are excited that you are interested in contributing to lancet. Before submitt
 
 - Before submitting a PR, please execute the unit test command: `go test -v ./...` to ensure that all unit test tasks should pass.
 
-- Make sure PRs are created to `v2` branch instead of `master` branch.
+- Make sure PRs are created to `rc` branch instead of `master` branch.
 
 - If your PR fixes a bug, please provide a description about the related bug.
 
