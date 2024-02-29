@@ -50,15 +50,36 @@ func TestSliceIterator(t *testing.T) {
 		assert.Equal(false, ok)
 	})
 
+	// Reset
+	t.Run("slice iterator Reset: ", func(t *testing.T) {
+		iter1 := FromSlice([]int{1, 2, 3, 4})
+		for i := 0; i < 4; i++ {
+			item, ok := iter1.Next()
+			if !ok {
+				break
+			}
+			assert.Equal(i+1, item)
+		}
+
+		iter1.Reset()
+
+		for i := 0; i < 4; i++ {
+			item, ok := iter1.Next()
+			if !ok {
+				break
+			}
+			assert.Equal(i+1, item)
+		}
+	})
+
 	t.Run("slice iterator ToSlice: ", func(t *testing.T) {
 		iter := FromSlice([]int{1, 2, 3, 4})
 		item, _ := iter.Next()
 		assert.Equal(1, item)
 
-		data := ToSlice(iter)
+		data := ToSlice[int](iter)
 		assert.Equal([]int{2, 3, 4}, data)
 	})
-
 }
 
 func TestRangeIterator(t *testing.T) {
@@ -84,6 +105,54 @@ func TestRangeIterator(t *testing.T) {
 		_, ok = iter.Next()
 		assert.Equal(false, ok)
 		assert.Equal(false, iter.HasNext())
+
+		iter.Reset()
+
+		item, ok = iter.Next()
+		assert.Equal(1, item)
+		assert.Equal(true, ok)
+
+		item, ok = iter.Next()
+		assert.Equal(2, item)
+		assert.Equal(true, ok)
+
+		item, ok = iter.Next()
+		assert.Equal(3, item)
+		assert.Equal(true, ok)
+
+		_, ok = iter.Next()
+		assert.Equal(false, ok)
+		assert.Equal(false, iter.HasNext())
+	})
+
+	t.Run("range iterator reset: ", func(t *testing.T) {
+		iter := FromRange(1, 4, 1)
+
+		item, ok := iter.Next()
+		assert.Equal(1, item)
+		assert.Equal(true, ok)
+
+		item, ok = iter.Next()
+		assert.Equal(2, item)
+		assert.Equal(true, ok)
+
+		iter.Reset()
+
+		item, ok = iter.Next()
+		assert.Equal(1, item)
+		assert.Equal(true, ok)
+
+		item, ok = iter.Next()
+		assert.Equal(2, item)
+		assert.Equal(true, ok)
+
+		item, ok = iter.Next()
+		assert.Equal(3, item)
+		assert.Equal(true, ok)
+
+		_, ok = iter.Next()
+		assert.Equal(false, ok)
+		assert.Equal(false, iter.HasNext())
 	})
 
 }
@@ -93,7 +162,7 @@ func TestChannelIterator(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestRangeIterator")
 
-	iter := FromSlice([]int{1, 2, 3, 4})
+	var iter Iterator[int] = FromSlice([]int{1, 2, 3, 4})
 
 	ctx, cancel := context.WithCancel(context.Background())
 	iter = FromChannel(ToChannel(ctx, iter, 0))
