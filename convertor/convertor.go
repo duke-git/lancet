@@ -6,6 +6,7 @@ package convertor
 
 import (
 	"bytes"
+	"encoding/base64"
 	"encoding/binary"
 	"encoding/gob"
 	"encoding/json"
@@ -393,4 +394,88 @@ func GbkToUtf8(bs []byte) ([]byte, error) {
 	r := transform.NewReader(bytes.NewReader(bs), simplifiedchinese.GBK.NewDecoder())
 	b, err := io.ReadAll(r)
 	return b, err
+}
+
+// ToStdBase64 convert data to standard base64 encoding.
+func ToStdBase64(value any) string {
+	if value == nil || (reflect.ValueOf(value).Kind() == reflect.Ptr && reflect.ValueOf(value).IsNil()) {
+		return ""
+	}
+	switch value.(type) {
+	case []byte:
+		return base64.StdEncoding.EncodeToString(value.([]byte))
+	case string:
+		return base64.StdEncoding.EncodeToString([]byte(value.(string)))
+	case error:
+		return base64.StdEncoding.EncodeToString([]byte(value.(error).Error()))
+	default:
+		marshal, err := json.Marshal(value)
+		if err != nil {
+			return ""
+		}
+		return base64.StdEncoding.EncodeToString(marshal)
+	}
+}
+
+// ToUrlBase64 convert data to URL base64 encoding.
+func ToUrlBase64(value any) string {
+	if value == nil || (reflect.ValueOf(value).Kind() == reflect.Ptr && reflect.ValueOf(value).IsNil()) {
+		return ""
+	}
+	switch value.(type) {
+	case []byte:
+		return base64.URLEncoding.EncodeToString(value.([]byte))
+	case string:
+		return base64.URLEncoding.EncodeToString([]byte(value.(string)))
+	case error:
+		return base64.URLEncoding.EncodeToString([]byte(value.(error).Error()))
+	default:
+		marshal, err := json.Marshal(value)
+		if err != nil {
+			return ""
+		}
+		return base64.URLEncoding.EncodeToString(marshal)
+	}
+}
+
+// ToRawStdBase64 convert data to raw standard base64 encoding.
+func ToRawStdBase64(value any) string {
+	if value == nil || (reflect.ValueOf(value).Kind() == reflect.Ptr && reflect.ValueOf(value).IsNil()) {
+		return ""
+	}
+	switch value.(type) {
+	case []byte:
+		return base64.RawStdEncoding.EncodeToString(value.([]byte))
+	case string:
+		return base64.RawStdEncoding.EncodeToString([]byte(value.(string)))
+	case error:
+		return base64.RawStdEncoding.EncodeToString([]byte(value.(error).Error()))
+	default:
+		marshal, err := json.Marshal(value)
+		if err != nil {
+			return ""
+		}
+		return base64.RawStdEncoding.EncodeToString(marshal)
+	}
+}
+
+// ToRawUrlBase64 convert data to raw URL base64 encoding.
+func ToRawUrlBase64(value any) string {
+	if value == nil || (reflect.ValueOf(value).Kind() == reflect.Ptr && reflect.ValueOf(value).IsNil()) {
+		return ""
+	}
+	switch value.(type) {
+	case []byte:
+		return base64.RawURLEncoding.EncodeToString(value.([]byte))
+	case string:
+		return base64.RawURLEncoding.EncodeToString([]byte(value.(string)))
+	case error:
+		return base64.RawURLEncoding.EncodeToString([]byte(value.(error).Error()))
+	default:
+		marshal, err := json.Marshal(value)
+		if err != nil {
+			return ""
+		}
+		return base64.RawURLEncoding.EncodeToString(marshal)
+	}
 }
