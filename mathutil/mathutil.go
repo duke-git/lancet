@@ -68,26 +68,26 @@ func Percent(val, total float64, n int) float64 {
 
 // RoundToString round up to n decimal places.
 // Play: https://go.dev/play/p/kZwpBRAcllO
-func RoundToString(x float64, n int) string {
+func RoundToString[T constraints.Float | constraints.Integer](x T, n int) string {
 	tmp := math.Pow(10.0, float64(n))
-	x *= tmp
-	x = math.Round(x)
-	result := strconv.FormatFloat(x/tmp, 'f', n, 64)
+	x *= T(tmp)
+	r := math.Round(float64(x))
+	result := strconv.FormatFloat(r/tmp, 'f', n, 64)
 	return result
 }
 
 // RoundToFloat round up to n decimal places.
 // Play: https://go.dev/play/p/ghyb528JRJL
-func RoundToFloat(x float64, n int) float64 {
+func RoundToFloat[T constraints.Float | constraints.Integer](x T, n int) float64 {
 	tmp := math.Pow(10.0, float64(n))
-	x *= tmp
-	x = math.Round(x)
-	return x / tmp
+	x *= T(tmp)
+	r := math.Round(float64(x))
+	return r / tmp
 }
 
 // TruncRound round off n decimal places.
 // Play: https://go.dev/play/p/aumarSHIGzP
-func TruncRound(x float64, n int) float64 {
+func TruncRound[T constraints.Float | constraints.Integer](x T, n int) T {
 	floatStr := fmt.Sprintf("%."+strconv.Itoa(n+1)+"f", x)
 	temp := strings.Split(floatStr, ".")
 	var newFloat string
@@ -97,7 +97,7 @@ func TruncRound(x float64, n int) float64 {
 		newFloat = temp[0] + "." + temp[1][:n]
 	}
 	result, _ := strconv.ParseFloat(newFloat, 64)
-	return result
+	return T(result)
 }
 
 // Max return max value of numbers.
