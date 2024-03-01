@@ -47,7 +47,7 @@ func TestBefore(t *testing.T) {
 
 	var res []int64
 	type cb func(args ...any) []reflect.Value
-	appendStr := func(i int, s string, fn cb) {
+	appendStr := func(i int, _ string, fn cb) {
 		v := fn(i)
 		res = append(res, v[0].Int())
 	}
