@@ -392,7 +392,7 @@ func main() {
 <b>Signature:</b>
 
 ```go
-func RoundToFloat(x float64, n int) float64
+func RoundToFloat[T constraints.Float | constraints.Integer](x T, n int) float64
 ```
 
 <b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/ghyb528JRJL)</span></b>
@@ -428,7 +428,7 @@ func main() {
 <b>Signature:</b>
 
 ```go
-func RoundToString(x float64, n int) string
+func RoundToString[T constraints.Float | constraints.Integer](x T, n int) string
 ```
 
 <b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/kZwpBRAcllO)</span></b>
@@ -464,7 +464,7 @@ func main() {
 <b>Signature:</b>
 
 ```go
-func TruncRound(x float64, n int) float64
+func TruncRound[T constraints.Float | constraints.Integer](x T, n int) T 
 ```
 
 <b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/aumarSHIGzP)</span></b>
