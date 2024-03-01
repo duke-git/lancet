@@ -93,6 +93,7 @@ import (
 -   [KeyBy](#KeyBy)
 -   [Join](#Join)
 -   [Partition](#Partition)
+-   [SetToDefaultIf](#SetToDefaultIf)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -2567,5 +2568,36 @@ func main() {
     }
     // Output:
     // okk
+}
+```
+
+### <span id="SetToDefaultIf">SetToDefaultIf</span>
+
+<p>根据给定给定的predicate判定函数来修改切片中的元素。对于满足的元素，将其替换为指定的默认值，同时保持元素在切片中的位置不变。函数返回修改后的切片以及被修改的元素个数。</p>
+
+<b>函数签名:</b>
+
+```go
+func SetToDefaultIf[T any](slice []T, predicate func(T) bool) ([]T, int)
+```
+
+<b>示例:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+    strs := []string{"a", "b", "a", "c", "d", "a"}
+	modifiedStrs, count := slice.SetToDefaultIf(strs, func(s string) bool { return "a" == s })
+	
+    fmt.Println(modifiedStrs)
+	fmt.Println(count)
+	
+    // Output:
+	// [ b  c d ]
+	// 3
 }
 ```

@@ -317,6 +317,15 @@ import "github.com/duke-git/lancet/v2/convertor"
 -   **<big>GbkToUtf8</big>** : GBK 编码转 utf8 编码。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/convertor.md#GbkToUtf8)]
     [[play](https://go.dev/play/p/OphmHCN_9u8)]
+-   **<big>ToStdBase64</big>** : 将值转换为StdBase64编码的字符串。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/convertor.md#ToStdBase64)]
+-   **<big>ToUrlBase64</big>** : 将值转换为url Base64编码的字符串。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/convertor.md#ToUrlBase64)]
+-   **<big>ToRawStdBase64</big>** : 将值转换为RawStdBase64编码的字符串。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/convertor.md#ToRawStdBase64)]
+-   **<big>ToRawUrlBase64</big>** : 将值转换为RawUrlBase64编码的字符串。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/convertor.md#ToRawUrlBase64)]
+
 
 <h3 id="cryptor"> 6. cryptor 加密包支持数据加密和解密，获取 md5，hash 值。支持 base64, md5, hmac, aes, des, rsa。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 
@@ -1358,6 +1367,8 @@ import "github.com/duke-git/lancet/v2/slice"
 -   **<big>Random</big>** : 随机返回切片中元素以及下标, 当切片长度为0时返回下标-1。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/slice.md#Random)]
     [[play](https://go.dev/play/p/UzpGQptWppw)]
+-   **<big>SetToDefaultIf</big>** : 根据给定给定的predicate判定函数来修改切片中的元素。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/slice.md#SetToDefaultIf)]
 
 
 
@@ -1607,6 +1618,9 @@ import "github.com/duke-git/lancet/v2/strutil"
 -   **<big>RemoveWhiteSpace</big>** : 删除字符串中的空格。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/strutil.md#RemoveWhiteSpace)]
     [[play](https://go.dev/play/p/HzLC9vsTwkf)]
+-   **<big>SubInBetween</big>** : 获取字符串中指定的起始字符串start和终止字符串end直接的子字符串。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/strutil.md#SubInBetween)]
+
 
 <h3 id="system"> 22. system 包含 os, runtime, shell command 的相关函数。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 

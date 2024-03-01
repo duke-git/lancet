@@ -955,7 +955,7 @@ func main() {
 
 ### <span id="ToUrlBase64">ToUrlBase64</span>
 
-<p>Convert a value to a string encoded in Url Base64. Error data of type "error" will also be encoded, and complex structures will be converted to a JSON-formatted string.</p>
+<p>Convert a value to a string encoded in url Base64. Error data of type "error" will also be encoded, and complex structures will be converted to a JSON-formatted string.</p>
 
 <b>Signature:</b>
 

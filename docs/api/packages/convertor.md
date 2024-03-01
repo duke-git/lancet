@@ -883,7 +883,7 @@ func main() {
 
 ### <span id="ToStdBase64">ToStdBase64</span>
 
-<p>值转换为 StdBase64 编码的字符串。error 类型的数据也会把 error 的原因进行编码，复杂的结构会转为 JSON 格式的字符串</p>
+<p>将值转换为StdBase64编码的字符串。error类型的数据也会把error的原因进行编码，复杂的结构会转为JSON格式的字符串</p>
 
 <b>函数签名:</b>
 
