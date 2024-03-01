@@ -4,7 +4,7 @@
 <br/>
 
 ![Go version](https://img.shields.io/badge/go-%3E%3Dv1.18-9cf)
-[![Release](https://img.shields.io/badge/release-2.2.8-green.svg)](https://github.com/duke-git/lancet/releases)
+[![Release](https://img.shields.io/badge/release-2.2.9-green.svg)](https://github.com/duke-git/lancet/releases)
 [![GoDoc](https://godoc.org/github.com/duke-git/lancet/v2?status.svg)](https://pkg.go.dev/github.com/duke-git/lancet/v2)
 [![Go Report Card](https://goreportcard.com/badge/github.com/duke-git/lancet/v2)](https://goreportcard.com/report/github.com/duke-git/lancet/v2)
 [![test](https://github.com/duke-git/lancet/actions/workflows/codecov.yml/badge.svg?branch=main&event=push)](https://github.com/duke-git/lancet/actions/workflows/codecov.yml)
@@ -608,6 +608,7 @@ import set "github.com/duke-git/lancet/v2/datastructure/set"
 import tree "github.com/duke-git/lancet/v2/datastructure/tree"
 import heap "github.com/duke-git/lancet/v2/datastructure/heap"
 import hashmap "github.com/duke-git/lancet/v2/datastructure/hashmap"
+import optional "github.com/duke-git/lancet/v2/datastructure/optional"
 ```
 
 #### Structure list:
@@ -630,6 +631,9 @@ import hashmap "github.com/duke-git/lancet/v2/datastructure/hashmap"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/datastructure/heap.md)]
 -   **<big>Hashmap</big>** : hash map structure.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/datastructure/hashmap.md)]
+-   **<big>Optional</big>** : Optional container.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/datastructure/optional.md)]
+      
 
 <h3 id="fileutil"> 9. Fileutil package implements some basic functions for file operations. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
@@ -708,7 +712,7 @@ import "github.com/duke-git/lancet/v2/fileutil"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/fileutil.md#WriteCsvFile)]
 -   **<big>WriteMapsToCsv</big>** : write slice of map to csv file.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/fileutil.md#WriteMapsToCsv)]
-    [[play](https://go.dev/play/p/dAXm58Q5U1o)]
+    [[play](https://go.dev/play/p/umAIomZFV1c)]
 -   **<big>WriteBytesToFile</big>** : write bytes to target file.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/fileutil.md#WriteBytesToFile)]
     [[play](https://go.dev/play/p/s7QlDxMj3P8)]
@@ -1182,8 +1186,10 @@ import "github.com/duke-git/lancet/v2/slice"
     [[play](https://go.dev/play/p/v2U2deugKuV)]
 -   **<big>DeleteAt</big>** : delete the element of slice at index.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#DeleteAt)]
+    [[play](https://go.dev/play/p/800B1dPBYyd)]
 -   **<big>DeleteRange</big>** : delete the element of slice from start index to end index（exclude).
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#DeleteRange)]
+    [[play](https://go.dev/play/p/945HwiNrnle)]
 -   **<big>Drop</big>** : drop n elements from the start of a slice.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#Drop)]
     [[play](https://go.dev/play/p/jnPO2yQsT8H)]
@@ -1944,22 +1950,6 @@ import "github.com/duke-git/lancet/v2/xerror"
 ## How to Contribute
 
 #### [Contributing Guide](./CONTRIBUTING.en-US.md)
-
-
-## Sponsor
-
-Hello, I am a software developer and have been engaged in development work for 13 years. Love open source software. And be willing to put in the energy for it. I am the creator of project lancet. Since Lancet was released as open source two years ago, it has been used by more than 1,000 internal and external projects. lancet will always be free for all users. Your support is a powerful encouragement for me to continue my struggle. Thanks! You can use WeChat to scans the following QR code or clicks the following sponsor button to initiate sponsorship.
-
-<div style="position: relative;display: inline-block;">
-    <img src="./docs/public/wechat_pay.png" width="260" height="260"/>
-    <a href="https://en.liberapay.com/Duke_Du/donate" target="\_blank"><img src="./docs/public/sponsor_btn.png" width="220" height="60"/></a>
-</div>
-
-<br/>
-<br/>
-
-*Donated funds will be used to maintain [lancet](https://www.golancet.cn/en/) website and pay for cloud server costs. Or just buy me a cup of ☕️ when I'm sleepy writing code.*
-
 
 ## Contributors
 Thank you to all the people who contributed to lancet!

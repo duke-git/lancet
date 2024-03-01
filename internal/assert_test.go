@@ -6,10 +6,11 @@ import (
 
 func TestAssert(t *testing.T) {
 	assert := NewAssert(t, "TestAssert")
+
 	assert.Equal(0, 0)
 	assert.NotEqual(1, 0)
-
 	assert.NotEqual("1", 1)
+
 	var uInt1 uint
 	var uInt2 uint
 	var uInt8 uint8
@@ -47,4 +48,11 @@ func TestAssert(t *testing.T) {
 	assert.IsNil(nil)
 	assert.IsNotNil("abc")
 
+	var valA int = 1
+	var valB int64 = 1
+	assert.NotEqual(valA, valB)
+	assert.EqualValues(valA, valB)
+
+	assert.ShouldBeFalse(false)
+	assert.ShouldBeTrue(true)
 }

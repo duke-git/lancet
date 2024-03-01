@@ -26,6 +26,7 @@ import (
 -   [CreateFile](#CreateFile)
 -   [CreateDir](#CreateDir)
 -   [CopyFile](#CopyFile)
+-   [CopyDir](#CopyDir)
 -   [CurrentPath](#CurrentPath)
 -   [FileMode](#FileMode)
 -   [MiMeType](#MiMeType)
@@ -156,6 +157,34 @@ import (
 
 func main() {
     err := fileutil.CopyFile("./test.txt", "./test_copy.txt")
+    if err != nil {
+        fmt.Println(err)
+    }
+}
+```
+
+### <span id="CopyDir">CopyDir</span>
+
+<p>拷贝文件夹到目标路径，会递归复制文件夹下所有的文件及文件夹，并且访问权限也与源文件夹保持一致。当dstPath存在时会返回error</p>
+
+<b>函数签名:</b>
+
+```go
+func CopyDir(srcPath string, dstPath string) error
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/YAyFTA_UuPb)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/fileutil"
+)
+
+func main() {
+    err := fileutil.CopyFile("./test_src", "./test_dest")
     if err != nil {
         fmt.Println(err)
     }
@@ -759,7 +788,7 @@ func main() {
 func WriteMapsToCsv(filepath string, records []map[string]any, appendToExistingFile bool, delimiter rune, headers ...[]string) error
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/umAIomZFV1c)</span></b>
 
 ```go
 package main
@@ -782,7 +811,7 @@ func main() {
     }
 
     headers := []string{"Name", "Age", "Gender"}
-    err := WriteMapsToCsv(csvFilePath, records, false, ';', headers)
+    err := fileutil.WriteMapsToCsv(csvFilePath, records, false, ';', headers)
 
     if err != nil {
         log.Fatal(err)

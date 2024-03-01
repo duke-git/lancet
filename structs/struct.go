@@ -2,6 +2,7 @@
 package structs
 
 import (
+	"fmt"
 	"reflect"
 
 	"github.com/duke-git/lancet/v2/pointer"
@@ -61,7 +62,7 @@ func New(value any, tagName ...string) *Struct {
 // ToMap convert the exported fields of a struct to map.
 func (s *Struct) ToMap() (map[string]any, error) {
 	if !s.IsStruct() {
-		return nil, errInvalidStruct(s)
+		return nil, fmt.Errorf("invalid struct %v", s)
 	}
 
 	result := make(map[string]any)
@@ -70,9 +71,15 @@ func (s *Struct) ToMap() (map[string]any, error) {
 		if !f.IsExported() || f.tag.IsEmpty() || f.tag.Name == "-" {
 			continue
 		}
+
 		if f.IsZero() && f.tag.HasOption("omitempty") {
 			continue
 		}
+
+		if f.IsNil() {
+			continue
+		}
+
 		result[f.tag.Name] = f.mapValue(f.Value())
 	}
 

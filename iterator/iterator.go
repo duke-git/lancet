@@ -27,7 +27,15 @@ type Iterator[T any] interface {
 	Next() (item T, ok bool)
 }
 
-// StopIterator is an  interface for stopping Iterator.
+// ResettableIterator supports to reset the iterator
+type ResettableIterator[T any] interface {
+	Iterator[T]
+	// Reset allows for the iteration process over a sequence to be restarted from the beginning.
+	// It enables reusing the iterator for multiple traversals without needing to recreate it.
+	Reset()
+}
+
+// StopIterator is an interface for stopping Iterator.
 type StopIterator[T any] interface {
 	Iterator[T]
 
@@ -81,8 +89,8 @@ type PrevIterator[T any] interface {
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // FromSlice returns an iterator over a slice of data.
-func FromSlice[T any](slice []T) Iterator[T] {
-	return &sliceIterator[T]{slice: slice, index: -1}
+func FromSlice[T any](slice []T) *SliceIterator[T] {
+	return &SliceIterator[T]{slice: slice, index: -1}
 }
 
 func ToSlice[T any](iter Iterator[T]) []T {
@@ -93,16 +101,16 @@ func ToSlice[T any](iter Iterator[T]) []T {
 	return result
 }
 
-type sliceIterator[T any] struct {
+type SliceIterator[T any] struct {
 	slice []T
 	index int
 }
 
-func (iter *sliceIterator[T]) HasNext() bool {
+func (iter *SliceIterator[T]) HasNext() bool {
 	return iter.index < len(iter.slice)-1
 }
 
-func (iter *sliceIterator[T]) Next() (T, bool) {
+func (iter *SliceIterator[T]) Next() (T, bool) {
 	iter.index++
 
 	ok := iter.index >= 0 && iter.index < len(iter.slice)
@@ -116,7 +124,7 @@ func (iter *sliceIterator[T]) Next() (T, bool) {
 }
 
 // Prev implements PrevIterator.
-func (iter *sliceIterator[T]) Prev() {
+func (iter *SliceIterator[T]) Prev() {
 	if iter.index == -1 {
 		panic("Next function should be called Prev")
 	}
@@ -128,7 +136,7 @@ func (iter *sliceIterator[T]) Prev() {
 }
 
 // Set implements SetIterator.
-func (iter *sliceIterator[T]) Set(value T) {
+func (iter *SliceIterator[T]) Set(value T) {
 	if iter.index == -1 {
 		panic("Next function should be called Set")
 	}
@@ -138,52 +146,60 @@ func (iter *sliceIterator[T]) Set(value T) {
 	iter.slice[iter.index] = value
 }
 
+func (iter *SliceIterator[T]) Reset() {
+	iter.index = -1
+}
+
 // FromRange creates a iterator which returns the numeric range between start inclusive and end
 // exclusive by the step size. start should be less than end, step shoud be positive.
-func FromRange[T constraints.Integer | constraints.Float](start, end, step T) Iterator[T] {
+func FromRange[T constraints.Integer | constraints.Float](start, end, step T) *RangeIterator[T] {
 	if end < start {
 		panic("RangeIterator: start should be before end")
 	} else if step <= 0 {
 		panic("RangeIterator: step should be positive")
 	}
 
-	return &rangeIterator[T]{start: start, end: end, step: step}
+	return &RangeIterator[T]{start: start, end: end, step: step, current: start}
 }
 
-type rangeIterator[T constraints.Integer | constraints.Float] struct {
-	start, end, step T
+type RangeIterator[T constraints.Integer | constraints.Float] struct {
+	start, end, step, current T
 }
 
-func (iter *rangeIterator[T]) HasNext() bool {
-	return iter.start < iter.end
+func (iter *RangeIterator[T]) HasNext() bool {
+	return iter.current < iter.end
 }
 
-func (iter *rangeIterator[T]) Next() (T, bool) {
-	if iter.start >= iter.end {
+func (iter *RangeIterator[T]) Next() (T, bool) {
+	if iter.current >= iter.end {
 		var zero T
 		return zero, false
 	}
-	num := iter.start
-	iter.start += iter.step
+	num := iter.current
+	iter.current += iter.step
 	return num, true
 }
 
-// FromRange creates a iterator which returns the numeric range between start inclusive and end
-// exclusive by the step size. start should be less than end, step shoud be positive.
-func FromChannel[T any](channel <-chan T) Iterator[T] {
-	return &channelIterator[T]{channel: channel}
+func (iter *RangeIterator[T]) Reset() {
+	iter.current = iter.start
 }
 
-type channelIterator[T any] struct {
+// FromChannel creates an iterator which returns items received from the provided channel.
+// The iteration continues until the channel is closed.
+func FromChannel[T any](channel <-chan T) *ChannelIterator[T] {
+	return &ChannelIterator[T]{channel: channel}
+}
+
+type ChannelIterator[T any] struct {
 	channel <-chan T
 }
 
-func (iter *channelIterator[T]) Next() (T, bool) {
+func (iter *ChannelIterator[T]) Next() (T, bool) {
 	item, ok := <-iter.channel
 	return item, ok
 }
 
-func (iter *channelIterator[T]) HasNext() bool {
+func (iter *ChannelIterator[T]) HasNext() bool {
 	return len(iter.channel) == 0
 }
 

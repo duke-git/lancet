@@ -4,7 +4,6 @@
 package strutil
 
 import (
-	"reflect"
 	"regexp"
 	"strings"
 	"unicode"
@@ -122,40 +121,48 @@ func UpperSnakeCase(s string) string {
 // Before returns the substring of the source string up to the first occurrence of the specified string.
 // Play: https://go.dev/play/p/JAWTZDS4F5w
 func Before(s, char string) string {
-	if s == "" || char == "" {
+	i := strings.Index(s, char)
+
+	if s == "" || char == "" || i == -1 {
 		return s
 	}
-	i := strings.Index(s, char)
+
 	return s[0:i]
 }
 
 // BeforeLast returns the substring of the source string up to the last occurrence of the specified string.
 // Play: https://go.dev/play/p/pJfXXAoG_Te
 func BeforeLast(s, char string) string {
-	if s == "" || char == "" {
+	i := strings.LastIndex(s, char)
+
+	if s == "" || char == "" || i == -1 {
 		return s
 	}
-	i := strings.LastIndex(s, char)
+
 	return s[0:i]
 }
 
 // After returns the substring after the first occurrence of a specified string in the source string.
 // Play: https://go.dev/play/p/RbCOQqCDA7m
 func After(s, char string) string {
-	if s == "" || char == "" {
+	i := strings.Index(s, char)
+
+	if s == "" || char == "" || i == -1 {
 		return s
 	}
-	i := strings.Index(s, char)
+
 	return s[i+len(char):]
 }
 
 // AfterLast returns the substring after the last occurrence of a specified string in the source string.
 // Play: https://go.dev/play/p/1TegARrb8Yn
 func AfterLast(s, char string) string {
-	if s == "" || char == "" {
+	i := strings.LastIndex(s, char)
+
+	if s == "" || char == "" || i == -1 {
 		return s
 	}
-	i := strings.LastIndex(s, char)
+
 	return s[i+len(char):]
 }
 
@@ -380,10 +387,7 @@ func RemoveNonPrintable(str string) string {
 // StringToBytes converts a string to byte slice without a memory allocation.
 // Play: https://go.dev/play/p/7OyFBrf9AxA
 func StringToBytes(str string) (b []byte) {
-	sh := *(*reflect.StringHeader)(unsafe.Pointer(&str))
-	bh := (*reflect.SliceHeader)(unsafe.Pointer(&b))
-	bh.Data, bh.Len, bh.Cap = sh.Data, sh.Len, sh.Len
-	return b
+	return *(*[]byte)(unsafe.Pointer(&str))
 }
 
 // BytesToString converts a byte slice to string without a memory allocation.
@@ -577,4 +581,16 @@ func RemoveWhiteSpace(str string, repalceAll bool) string {
 	}
 
 	return strings.TrimSpace(str)
+}
+
+// SubInBetween return substring between the start and end position(excluded) of source string.
+// Play: todo
+func SubInBetween(str string, start string, end string) string {
+	if _, after, ok := strings.Cut(str, start); ok {
+		if before, _, ok := strings.Cut(after, end); ok {
+			return before
+		}
+	}
+
+	return ""
 }

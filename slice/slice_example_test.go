@@ -1102,3 +1102,13 @@ func ExampleRandom() {
 	// Output:
 	// okk
 }
+
+func ExampleSetToDefaultIf() {
+	strs := []string{"a", "b", "a", "c", "d", "a"}
+	modifiedStrs, count := SetToDefaultIf(strs, func(s string) bool { return "a" == s })
+	fmt.Println(modifiedStrs)
+	fmt.Println(count)
+	// Output:
+	// [ b  c d ]
+	// 3
+}

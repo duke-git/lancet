@@ -22,8 +22,8 @@ import (
 
 ## Index
 
--   [NewSet](#NewSet)
--   [NewSetFromSlice](#NewSetFromSlice)
+-   [New](#New)
+-   [FromSlice](#FromSlice)
 -   [Values](#Values)
 -   [Add](#Add)
 -   [AddIfNotExist](#AddIfNotExist)
@@ -41,20 +41,23 @@ import (
 -   [Intersection](#Intersection)
 -   [SymmetricDifference](#SymmetricDifference)
 -   [Minus](#Minus)
+-   [Pop](#Pop)
+-   [ToSlice](#ToSlice)
+-   [ToSortedSlice](#ToSortedSlice)
 
 <div STYLE="page-break-after: always;"></div>
 
 ## Documentation
 
-### <span id="NewSet">NewSet</span>
+### <span id="New">New</span>
 
 <p>Create a set instance</p>
 
 <b>Signature:</b>
 
 ```go
-type Set[T comparable] map[T]bool
-func NewSet[T comparable](items ...T) Set[T]
+type Set[T comparable] map[T]struct{}
+func New[T comparable](items ...T) Set[T]
 ```
 
 <b>Example:</b>
@@ -68,19 +71,19 @@ import (
 )
 
 func main() {
-    st := set.NewSet[int](1,2,2,3)
+    st := set.New[int](1,2,2,3)
     fmt.Println(st.Values()) //1,2,3
 }
 ```
 
-### <span id="NewSetFromSlice">NewSetFromSlice</span>
+### <span id="FromSlice">FromSlice</span>
 
 <p>Create a set from slice</p>
 
 <b>Signature:</b>
 
 ```go
-func NewSetFromSlice[T comparable](items []T) Set[T]
+func FromSlice[T comparable](items []T) Set[T]
 ```
 
 <b>Example:</b>
@@ -94,14 +97,15 @@ import (
 )
 
 func main() {
-    st := set.NewSetFromSlice([]int{1, 2, 2, 3})
+    st := set.FromSlice([]int{1, 2, 2, 3})
     fmt.Println(st.Values()) //1,2,3
 }
 ```
 
-### <span id="Values">Values</span>
+### <span id="Values">Values<sup>deprecated</sup></span>
 
-<p>Return slice of all set data</p>
+<p>Return slice of all set data.<br>
+    The <a href='#ToSlice'>ToSlice()</a> function provides the same functionality as Values and returns a slice containing all values of the set.</p>
 
 <b>Signature:</b>
 
@@ -120,7 +124,7 @@ import (
 )
 
 func main() {
-    st := set.NewSet[int](1,2,2,3)
+    st := set.New[int](1,2,2,3)
     fmt.Println(st.Values()) //1,2,3
 }
 ```
@@ -146,7 +150,7 @@ import (
 )
 
 func main() {
-    st := set.NewSet[int]()
+    st := set.New[int]()
     st.Add(1, 2, 3)
 
     fmt.Println(st.Values()) //1,2,3
@@ -174,7 +178,7 @@ import (
 )
 
 func main() {
-    st := set.NewSet[int]()
+    st := set.New[int]()
     st.Add(1, 2, 3)
 
     r1 := st.AddIfNotExist(1)
@@ -207,7 +211,7 @@ import (
 )
 
 func main() {
-    st := set.NewSet[int]()
+    st := set.New[int]()
     st.Add(1, 2)
 
     ok := st.AddIfNotExistBy(3, func(val int) bool {
@@ -246,7 +250,7 @@ import (
 )
 
 func main() {
-    st := set.NewSet[int]()
+    st := set.New[int]()
     st.Add(1, 2, 3)
 
     set.Delete(3)
@@ -275,7 +279,7 @@ import (
 )
 
 func main() {
-    st := set.NewSet[int]()
+    st := set.New[int]()
     st.Add(1, 2, 3)
 
     fmt.Println(st.Contain(1)) //true
@@ -304,9 +308,9 @@ import (
 )
 
 func main() {
-    set1 := set.NewSet(1, 2, 3)
-    set2 := set.NewSet(1, 2)
-    set3 := set.NewSet(1, 2, 3, 4)
+    set1 := set.New(1, 2, 3)
+    set2 := set.New(1, 2)
+    set3 := set.New(1, 2, 3, 4)
 
     fmt.Println(set1.ContainAll(set2)) //true
     fmt.Println(set1.ContainAll(set3)) //false
@@ -334,7 +338,7 @@ import (
 )
 
 func main() {
-    set1 := set.NewSet(1, 2, 3)
+    set1 := set.New(1, 2, 3)
 
     fmt.Println(set1.Size()) //3
 }
@@ -361,7 +365,7 @@ import (
 )
 
 func main() {
-    set1 := set.NewSet(1, 2, 3)
+    set1 := set.New(1, 2, 3)
     set2 := set1.Clone()
 
     fmt.Println(set1.Size() == set2.Size()) //true
@@ -390,9 +394,9 @@ import (
 )
 
 func main() {
-    set1 := set.NewSet(1, 2, 3)
-    set2 := set.NewSet(1, 2, 3)
-    set3 := set.NewSet(1, 2, 3, 4)
+    set1 := set.New(1, 2, 3)
+    set2 := set.New(1, 2, 3)
+    set3 := set.New(1, 2, 3, 4)
 
     fmt.Println(set1.Equal(set2)) //true
     fmt.Println(set1.Equal(set3)) //false
@@ -420,7 +424,7 @@ import (
 )
 
 func main() {
-    set1 := set.NewSet(1, 2, 3)
+    set1 := set.New(1, 2, 3)
     arr := []int{}
     set.Iterate(func(item int) {
         arr = append(arr, item)
@@ -451,7 +455,7 @@ import (
 )
 
 func main() {
-    s := set.NewSet(1, 2, 3, 4, 5)
+    s := set.New(1, 2, 3, 4, 5)
 
     var sum int
 
@@ -488,8 +492,8 @@ import (
 )
 
 func main() {
-    set1 := set.NewSet(1, 2, 3)
-    set2 := set.NewSet()
+    set1 := set.New(1, 2, 3)
+    set2 := set.New()
 
     fmt.Println(set1.IsEmpty()) //false
     fmt.Println(set2.IsEmpty()) //true
@@ -517,8 +521,8 @@ import (
 )
 
 func main() {
-    set1 := set.NewSet(1, 2, 3)
-    set2 := set.NewSet(2, 3, 4, 5)
+    set1 := set.New(1, 2, 3)
+    set2 := set.New(2, 3, 4, 5)
     set3 := set1.Union(set2)
 
     fmt.Println(set3.Values()) //1,2,3,4,5
@@ -546,8 +550,8 @@ import (
 )
 
 func main() {
-    set1 := set.NewSet(1, 2, 3)
-    set2 := set.NewSet(2, 3, 4, 5)
+    set1 := set.New(1, 2, 3)
+    set2 := set.New(2, 3, 4, 5)
     set3 := set1.Intersection(set2)
 
     fmt.Println(set3.Values()) //2,3
@@ -575,8 +579,8 @@ import (
 )
 
 func main() {
-    set1 := set.NewSet(1, 2, 3)
-    set2 := set.NewSet(2, 3, 4, 5)
+    set1 := set.New(1, 2, 3)
+    set2 := set.New(2, 3, 4, 5)
     set3 := set1.SymmetricDifference(set2)
 
     fmt.Println(set3.Values()) //1,4,5
@@ -604,9 +608,9 @@ import (
 )
 
 func main() {
-    set1 := set.NewSet(1, 2, 3)
-    set2 := set.NewSet(2, 3, 4, 5)
-    set3 := set.NewSet(2, 3)
+    set1 := set.New(1, 2, 3)
+    set2 := set.New(2, 3, 4, 5)
+    set3 := set.New(2, 3)
 
     res1 := set1.Minus(set2)
     fmt.Println(res1.Values()) //1
@@ -637,7 +641,7 @@ import (
 )
 
 func main() {
-    s := set.NewSet[int]()
+    s := set.New[int]()
     s.Add(1)
     s.Add(2)
     s.Add(3)
@@ -646,5 +650,60 @@ func main() {
 
     fmt.Println(val) // 3
     fmt.Println(ok) // true
+}
+```
+
+### <span id="ToSlice">ToSlice</span>
+
+<p>returns a slice containing all values of the set.</p>
+
+<b>Signature:</b>
+
+```go
+func (s Set[T]) ToSlice() (v T, ok bool)
+```
+
+<b>Example:</b>
+
+```go
+func main() {
+    s := set.New(1, 2, 3, 4, 5)
+
+    val := s.ToSlice()
+    fmt.Println(val) // [2 3 4 5 1]
+}
+```
+
+### <span id="ToSortedSlice">ToSortedSlice</span>
+
+<p>returns a sorted slice containing all values of the set</p>
+
+<b>Signature:</b>
+
+```go
+func (s Set[T]) ToSortedSlice() (v T, ok bool)
+```
+
+<b>Example:</b>
+
+```go
+func main() {
+    s1 := set.New(1, 2, 3, 4, 5)
+    type Person struct {
+		Name string
+		Age  int
+	}
+	s2 := FromSlice([]Person{{"Tom", 20}, {"Jerry", 18}, {"Spike", 25}})
+
+    res1 := s1.ToSortedSlice(func(v1, v2 int) bool {
+		return v1 < v2
+	})
+    
+    res2 := s2.ToSortedSlice(func(v1, v2 Person) bool {
+		return v1.Age < v2.Age
+	})
+    
+    fmt.Println(res1) // [1 2 3 4 5]
+    fmt.Println(res2) // [{Jerry 18} {Tom 20} {Spike 25}]
 }
 ```

@@ -4,7 +4,7 @@
 <br/>
 
 ![Go version](https://img.shields.io/badge/go-%3E%3Dv1.18-9cf)
-[![Release](https://img.shields.io/badge/release-2.2.8-green.svg)](https://github.com/duke-git/lancet/releases)
+[![Release](https://img.shields.io/badge/release-2.2.9-green.svg)](https://github.com/duke-git/lancet/releases)
 [![GoDoc](https://godoc.org/github.com/duke-git/lancet/v2?status.svg)](https://pkg.go.dev/github.com/duke-git/lancet/v2)
 [![Go Report Card](https://goreportcard.com/badge/github.com/duke-git/lancet/v2)](https://goreportcard.com/report/github.com/duke-git/lancet/v2)
 [![test](https://github.com/duke-git/lancet/actions/workflows/codecov.yml/badge.svg?branch=main&event=push)](https://github.com/duke-git/lancet/actions/workflows/codecov.yml)
@@ -709,7 +709,7 @@ import "github.com/duke-git/lancet/v2/fileutil"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/fileutil.md#WriteCsvFile)]
 -   **<big>WriteMapsToCsv</big>** : 将map切片写入csv文件中。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/fileutil.md#WriteMapsToCsv)]
-    [[play](https://go.dev/play/p/dAXm58Q5U1o)]
+    [[play](https://go.dev/play/p/umAIomZFV1c)]
 -   **<big>WriteBytesToFile</big>** : 将 bytes 写入文件。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/fileutil.md#WriteBytesToFile)]
     [[play](https://go.dev/play/p/s7QlDxMj3P8)]
@@ -1181,8 +1181,10 @@ import "github.com/duke-git/lancet/v2/slice"
     [[play](https://go.dev/play/p/v2U2deugKuV)]
 -   **<big>DeleteAt</big>** : 删除切片中指定索引到的元素。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/slice.md#DeleteAt)]
+    [[play](https://go.dev/play/p/800B1dPBYyd)]
 -   **<big>DeleteRange</big>** : 删除切片中指定开始索引到结束索引的元素。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/slice.md#DeleteRange)]
+    [[play](https://go.dev/play/p/945HwiNrnle)]
 -   **<big>Drop</big>** : 从切片头部删除 n 个元素。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/slice.md#Drop)]
     [[play](https://go.dev/play/p/jnPO2yQsT8H)]
@@ -1946,23 +1948,9 @@ import "github.com/duke-git/lancet/v2/xerror"
 
 #### [贡献代码指南](./CONTRIBUTING.zh-CN.md)
 
-## 赞助
-
-您好，我是一名软件开发者，从事开发工作 13 年。热爱软件开源。并愿意为此付出精力。是开源项目 lancet 的作者。Lancet 自两年前开源发布以来，已有超过 1000 个内外部项目使用。lancet 一直会对所有用户免费。您的支持是对我继续奋斗的有力鼓励。谢谢! 微信扫描以下二维码或点击以下赞助按钮发起赞助。
-
-<div style="position: relative;display: inline-block;">
-    <img src="./docs/public/wechat_pay.png" width="260" height="260"/>
-    <a href="https://liberapay.com/Duke_Du/donate" target="\_blank"><img src="./docs/public/sponsor_btn.png" width="220" height="60"/></a>
-</div>
-
-<br/>
-<br/>
-
-_捐赠的资金将用于后续[lancet](https://www.golancet.cn/)官网的维护和云服务器的费用支付。或者当我写代码困倦时，给我买杯 ☕️。_
-
 ## 贡献者
 
-感谢所有为 lancet 贡献过代码的人！
+感谢所有为lancet贡献过代码的人！
 
 <a href="https://github.com/duke-git/lancet/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=duke-git/lancet" />

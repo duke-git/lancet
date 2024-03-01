@@ -619,7 +619,7 @@ func IntSlice(slice any) []int {
 }
 
 // DeleteAt delete the element of slice at index.
-// Play: https://go.dev/play/p/pJ-d6MUWcvK
+// Play: https://go.dev/play/p/800B1dPBYyd
 func DeleteAt[T any](slice []T, index int) []T {
 	if index >= len(slice) {
 		index = len(slice) - 1
@@ -633,7 +633,7 @@ func DeleteAt[T any](slice []T, index int) []T {
 }
 
 // DeleteRange delete the element of slice from start index to end index（exclude).
-// Play: todo
+// Play: https://go.dev/play/p/945HwiNrnle
 func DeleteRange[T any](slice []T, start, end int) []T {
 	result := make([]T, 0, len(slice)-(end-start))
 
@@ -1168,6 +1168,21 @@ func AppendIfAbsent[T comparable](slice []T, item T) []T {
 		slice = append(slice, item)
 	}
 	return slice
+}
+
+// SetToDefaultIf sets elements to their default value if they match the given predicate.
+// It retains the positions of the elements in the slice.
+// It returns slice of T and the count of modified slice items
+func SetToDefaultIf[T any](slice []T, predicate func(T) bool) ([]T, int) {
+	var count int
+	for i := 0; i < len(slice); i++ {
+		if predicate(slice[i]) {
+			var zeroValue T
+			slice[i] = zeroValue
+			count++
+		}
+	}
+	return slice, count
 }
 
 // KeyBy converts a slice to a map based on a callback function.

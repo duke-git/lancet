@@ -20,7 +20,7 @@ func ExampleContext() {
 	}
 
 	Retry(increaseNumber,
-		RetryDuration(time.Microsecond*50),
+		RetryWithLinearBackoff(time.Microsecond*50),
 		Context(ctx),
 	)
 
@@ -30,7 +30,7 @@ func ExampleContext() {
 	// 4
 }
 
-func ExampleRetryDuration() {
+func ExampleRetryWithLinearBackoff() {
 	number := 0
 	increaseNumber := func() error {
 		number++
@@ -40,7 +40,57 @@ func ExampleRetryDuration() {
 		return errors.New("error occurs")
 	}
 
-	err := Retry(increaseNumber, RetryDuration(time.Microsecond*50))
+	err := Retry(increaseNumber, RetryWithLinearBackoff(time.Microsecond*50))
+	if err != nil {
+		return
+	}
+
+	fmt.Println(number)
+
+	// Output:
+	// 3
+}
+
+type ExampleCustomBackoffStrategy struct {
+	interval time.Duration
+}
+
+func (c *ExampleCustomBackoffStrategy) CalculateInterval() time.Duration {
+	return c.interval + 1
+}
+
+func ExampleRetryWithCustomBackoff() {
+	number := 0
+	increaseNumber := func() error {
+		number++
+		if number == 3 {
+			return nil
+		}
+		return errors.New("error occurs")
+	}
+
+	err := Retry(increaseNumber, RetryWithCustomBackoff(&ExampleCustomBackoffStrategy{interval: time.Microsecond * 50}))
+	if err != nil {
+		return
+	}
+
+	fmt.Println(number)
+
+	// Output:
+	// 3
+}
+
+func ExampleRetryWithExponentialWithJitterBackoff() {
+	number := 0
+	increaseNumber := func() error {
+		number++
+		if number == 3 {
+			return nil
+		}
+		return errors.New("error occurs")
+	}
+
+	err := Retry(increaseNumber, RetryWithExponentialWithJitterBackoff(time.Microsecond*50, 2, time.Microsecond*25))
 	if err != nil {
 		return
 	}
@@ -81,7 +131,7 @@ func ExampleRetry() {
 		return errors.New("error occurs")
 	}
 
-	err := Retry(increaseNumber, RetryDuration(time.Microsecond*50))
+	err := Retry(increaseNumber, RetryWithLinearBackoff(time.Microsecond*50))
 	if err != nil {
 		return
 	}

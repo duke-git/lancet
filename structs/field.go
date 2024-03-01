@@ -52,6 +52,16 @@ func (f *Field) IsZero() bool {
 	return reflect.DeepEqual(z, v)
 }
 
+// IsNil returns true if the given field is nil value.
+func (f *Field) IsNil() bool {
+	v := f.Value()
+	if v == nil || (reflect.ValueOf(v)).Kind() == reflect.Ptr && reflect.ValueOf(v).IsNil() {
+		return true
+	}
+
+	return false
+}
+
 // Name returns the name of the given field
 func (f *Field) Name() string {
 	return f.field.Name
@@ -111,7 +121,9 @@ func (f *Field) mapValue(value any) any {
 			ret = v.Interface()
 		}
 	default:
-		ret = v.Interface()
+		if v.Kind().String() != "invalid" {
+			ret = v.Interface()
+		}
 	}
 	return ret
 }

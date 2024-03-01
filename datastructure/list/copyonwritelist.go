@@ -90,6 +90,35 @@ func lastIndexOf[T any](o T, e []T, start int, end int) int {
 	return -1
 }
 
+// LastIndexOfFunc returns the index of the last occurrence of the value in this list satisfying the
+// functional predicate f(T) bool
+// if not found return -1.
+func (l *CopyOnWriteList[T]) LastIndexOfFunc(f func(T) bool) int {
+	index := -1
+	data := l.getList()
+	for i := len(data) - 1; i >= 0; i-- {
+		if f(data[i]) {
+			index = i
+			break
+		}
+	}
+	return index
+}
+
+// IndexOfFunc returns the first index satisfying the functional predicate f(v) bool
+// if not found return -1.
+func (l *CopyOnWriteList[T]) IndexOfFunc(f func(T) bool) int {
+	index := -1
+	data := l.getList()
+	for i, v := range data {
+		if f(v) {
+			index = i
+			break
+		}
+	}
+	return index
+}
+
 // get returns the element at the specified position in this list.
 func get[T any](o []T, index int) *T {
 	return &o[index]

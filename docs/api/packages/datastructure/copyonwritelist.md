@@ -26,6 +26,8 @@ import (
 -   [Remove](#Remove)
 -   [IndexOf](#IndexOf)
 -   [LastIndexOf](#LastIndexOf)
+-   [IndexOfFunc](#IndexOfFunc)
+-   [LastIndexOfFunc](#LastIndexOfFunc)
 -   [IsEmpty](#IsEmpty)
 -   [Contain](#Contain)
 -   [ValueOf](#ValueOf)
@@ -196,6 +198,58 @@ func main()  {
 	fmt.Println(l.LastIndexOf(1))
 }
 
+```
+
+### <span id="IndexOfFunc">IndexOfFunc</span>
+<p>返回第一个满足判断函数f(v)的元素的索引，如果找不到则返回-1。</p>
+
+<b>函数签名:</b>
+
+```go
+func (l *CopyOnWriteList[T]) IndexOfFunc(f func(T) bool) int 
+```
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/datastructure/list"
+)
+
+func main() {
+    l := list.NewCopyOnWriteList([]int{1, 2, 3})
+
+    fmt.Println(l.IndexOfFunc(func(a int) bool { return a == 1 })) //0
+    fmt.Println(l.IndexOfFunc(func(a int) bool { return a == 0 })) //-1
+}
+```
+
+### <span id="LastIndexOfFunc">LastIndexOfFunc</span>
+<p>返回最后一个满足判断函数f(v)的元素的索引，如果找不到则返回-1。</p>
+
+<b>函数签名:</b>
+
+```go
+func (l *CopyOnWriteList[T]) LastIndexOfFunc(f func(T) bool) int
+```
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/datastructure/list"
+)
+
+func main() {
+    l := list.NewCopyOnWriteList([]int{1, 2, 3, 1})
+
+    fmt.Println(l.LastIndexOfFunc(func(a int) bool { return a == 1 })) // 3
+    fmt.Println(l.LastIndexOfFunc(func(a int) bool { return a == 0 })) //-1
+}
 ```
 
 ### IsEmpty

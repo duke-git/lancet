@@ -4,19 +4,21 @@
 // Package datastructure contains some data structure. Set is a data container, like slice, but element of set is not duplicate.
 package datastructure
 
+import "sort"
+
 // Set is a data container, like slice, but element of set is not duplicate.
 type Set[T comparable] map[T]struct{}
 
-// NewSet return a instance of set
-func NewSet[T comparable](items ...T) Set[T] {
-	set := make(Set[T])
+// New create a instance of set from given values.
+func New[T comparable](items ...T) Set[T] {
+	set := make(Set[T], len(items))
 	set.Add(items...)
 	return set
 }
 
-// NewSetFromSlice create a set from slice
-func NewSetFromSlice[T comparable](items []T) Set[T] {
-	set := make(Set[T])
+// FromSlice create a set from given slice.
+func FromSlice[T comparable](items []T) Set[T] {
+	set := make(Set[T], len(items))
 	for _, item := range items {
 		set.Add(item)
 	}
@@ -77,8 +79,7 @@ func (s Set[T]) ContainAll(other Set[T]) bool {
 
 // Clone return a copy of set
 func (s Set[T]) Clone() Set[T] {
-	set := NewSet[T]()
-	set.Add(s.Values()...)
+	set := FromSlice(s.ToSlice())
 	return set
 }
 
@@ -116,14 +117,11 @@ func (s Set[T]) Size() int {
 }
 
 // Values return all values of set
+// Deprecated: Values function is deprecated and will be removed in future versions. Please use ToSlice() function instead.
+//
+// The ToSlice() function provides the same functionality as Values and returns a slice containing all values of the set.
 func (s Set[T]) Values() []T {
-	result := make([]T, 0, len(s))
-
-	s.Iterate(func(value T) {
-		result = append(result, value)
-	})
-
-	return result
+	return s.ToSlice()
 }
 
 // Union creates a new set contain all element of set s and other
@@ -135,7 +133,7 @@ func (s Set[T]) Union(other Set[T]) Set[T] {
 
 // Intersection creates a new set whose element both be contained in set s and other
 func (s Set[T]) Intersection(other Set[T]) Set[T] {
-	set := NewSet[T]()
+	set := New[T]()
 	s.Iterate(func(value T) {
 		if other.Contain(value) {
 			set.Add(value)
@@ -147,7 +145,7 @@ func (s Set[T]) Intersection(other Set[T]) Set[T] {
 
 // SymmetricDifference creates a new set whose element is in set1 or set2, but not in both sets
 func (s Set[T]) SymmetricDifference(other Set[T]) Set[T] {
-	set := NewSet[T]()
+	set := New[T]()
 	s.Iterate(func(value T) {
 		if !other.Contain(value) {
 			set.Add(value)
@@ -163,9 +161,9 @@ func (s Set[T]) SymmetricDifference(other Set[T]) Set[T] {
 	return set
 }
 
-// Minus creates an set of whose element in origin set but not in compared set
+// Minus creates a set of whose element in origin set but not in compared set
 func (s Set[T]) Minus(comparedSet Set[T]) Set[T] {
-	set := NewSet[T]()
+	set := New[T]()
 
 	s.Iterate(func(value T) {
 		if !comparedSet.Contain(value) {
@@ -196,4 +194,26 @@ func (s Set[T]) Pop() (v T, ok bool) {
 	}
 
 	return v, false
+}
+
+// ToSlice returns a slice containing all values of the set.
+func (s Set[T]) ToSlice() []T {
+	if s.IsEmpty() {
+		return []T{}
+	}
+	result := make([]T, 0, s.Size())
+	s.Iterate(func(value T) {
+		result = append(result, value)
+	})
+
+	return result
+}
+
+// ToSortedSlice returns a sorted slice containing all values of the set.
+func (s Set[T]) ToSortedSlice(less func(v1, v2 T) bool) []T {
+	result := s.ToSlice()
+	sort.Slice(result, func(i, j int) bool {
+		return less(result[i], result[j])
+	})
+	return result
 }

@@ -7,6 +7,7 @@ function 函数包控制函数执行流程，包含部分函数式编程。
 ## 源码:
 
 -   [https://github.com/duke-git/lancet/blob/main/function/function.go](https://github.com/duke-git/lancet/blob/main/function/function.go)
+-   [https://github.com/duke-git/lancet/blob/main/function/predicate.go](https://github.com/duke-git/lancet/blob/main/function/predicate.go)
 -   [https://github.com/duke-git/lancet/blob/main/function/watcher.go](https://github.com/duke-git/lancet/blob/main/function/watcher.go)
 
 <div STYLE="page-break-after: always;"></div>
@@ -32,6 +33,12 @@ import (
 -   [Schedule](#Schedule)
 -   [Pipeline](#Pipeline)
 -   [Watcher](#Watcher)
+-   [And](#And)
+-   [Or](#Or)
+-   [Negate](#Negate)
+-   [Nor](#Nor)
+-   [Xnor](#Xnor)
+-   [Nand](#Nand)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -403,4 +410,232 @@ func longRunningTask() {
     }
 }
 
+```
+
+### <span id="And">And</span>
+
+<p>返回一个复合谓词判断函数，该判断函数表示一组谓词的逻辑and操作。只有当所有谓词判断函数对于给定的值都返回true时，返回true, 否则返回false。</p>
+
+<b>函数签名:</b>
+
+```go
+func And[T any](predicates ...func(T) bool) func(T) bool
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/function"
+)
+
+func main() {
+    isNumericAndLength5 := function.And(
+        func(s string) bool { return strings.ContainsAny(s, "0123456789") },
+        func(s string) bool { return len(s) == 5 },
+    )
+
+    fmt.Println(isNumericAndLength5("12345"))
+    fmt.Println(isNumericAndLength5("1234"))
+    fmt.Println(isNumericAndLength5("abcde"))
+
+    // Output:
+    // true
+    // false
+    // false
+}
+```
+
+### <span id="Or">Or</span>
+
+<p>返回一个复合谓词判断函数，该判断函数表示一组谓词的逻辑or操作。只有当所有谓词判断函数对于给定的值都返回false时，返回false, 否则返回true。</p>
+
+<b>函数签名:</b>
+
+```go
+func Or[T any](predicates ...func(T) bool) func(T) bool
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/function"
+)
+
+func main() {
+    containsDigitOrSpecialChar := function.Or(
+        func(s string) bool { return strings.ContainsAny(s, "0123456789") },
+        func(s string) bool { return strings.ContainsAny(s, "!@#$%") },
+    )
+
+    fmt.Println(containsDigitOrSpecialChar("hello!"))
+    fmt.Println(containsDigitOrSpecialChar("hello"))
+
+    // Output:
+    // true
+    // false
+}
+```
+
+### <span id="Negate">Negate</span>
+
+<p>返回一个谓词函数，该谓词函数表示当前谓词的逻辑否定。</p>
+
+<b>函数签名:</b>
+
+```go
+func Negate[T any](predicate func(T) bool) func(T) bool
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/function"
+)
+
+func main() {
+    // Define some simple predicates for demonstration
+    isUpperCase := func(s string) bool {
+        return strings.ToUpper(s) == s
+    }
+    isLowerCase := func(s string) bool {
+        return strings.ToLower(s) == s
+    }
+    isMixedCase := function.Negate(function.Or(isUpperCase, isLowerCase))
+
+    fmt.Println(isMixedCase("ABC"))
+    fmt.Println(isMixedCase("AbC"))
+
+    // Output:
+    // false
+    // true
+}
+```
+
+
+### <span id="Nor">Nor</span>
+
+<p>返回一个组合谓词函数，表示给定值上所有谓词逻辑非或 (nor) 的结果。只有当所有谓词函数对给定值都返回false时，该组合谓词函数才返回true。</p>
+
+<b>函数签名:</b>
+
+```go
+func Nor[T any](predicates ...func(T) bool) func(T) bool
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/function"
+)
+
+func main() {
+    match := function.Nor(
+        func(s string) bool { return strings.ContainsAny(s, "0123456789") },
+        func(s string) bool { return len(s) == 5 },
+    )
+
+    fmt.Println(match("dbcdckkeee"))
+
+
+    match = function.Nor(
+        func(s string) bool { return strings.ContainsAny(s, "0123456789") },
+        func(s string) bool { return len(s) == 5 },
+    )
+
+    fmt.Println(match("0123456789"))
+
+    // Output:
+    // true
+    // false
+}
+```
+
+### <span id="Nand">Nand</span>
+
+<p>返回一个复合谓词函数，表示给定谓词函数列表的逻辑非与 (NAND)。仅当列表中所有函数对给定参数返回false时，才返回true，否则返回false。</p>
+
+<b>函数签名:</b>
+
+```go
+func Nand[T any](predicates ...func(T) bool) func(T) bool
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/function"
+)
+
+func main() {
+    isNumericAndLength5 := function.Nand(
+        func(s string) bool { return strings.ContainsAny(s, "0123456789") },
+        func(s string) bool { return len(s) == 5 },
+    )
+
+    fmt.Println(isNumericAndLength5("12345"))
+    fmt.Println(isNumericAndLength5("1234"))
+    fmt.Println(isNumericAndLength5("abcdef"))
+
+    // Output:
+    // false
+    // false
+    // true
+}
+```
+
+### <span id="Xnor">Xnor</span>
+
+<p>返回一个复合谓词函数，表示给定一组谓词函数的逻辑异或 (XNOR)。只有当所有 谓词函数对给参数都返回true或false时，该谓词函数才返回true。</p>
+
+<b>函数签名:</b>
+
+```go
+func Xnor[T any](predicates ...func(T) bool) func(T) bool
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/function"
+)
+
+func main() {
+    isEven := func(i int) bool { return i%2 == 0 }
+    isPositive := func(i int) bool { return i > 0 }
+
+    match := function.Xnor(isEven, isPositive)
+
+    fmt.Println(match(2))
+    fmt.Println(match(-3))
+    fmt.Println(match(3))
+
+    // Output:
+    // true
+    // true
+    // false
+}
 ```

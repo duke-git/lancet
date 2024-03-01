@@ -524,7 +524,7 @@ func main() {
 func DeleteAt[T any](slice []T, index int)
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/pJ-d6MUWcvK)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/800B1dPBYyd)</span></b>
 
 ```go
 import (
@@ -563,7 +563,7 @@ func main() {
 func DeleteRange[T any](slice []T, start, end int) []T 
 ```
 
-<b>Example:</b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/945HwiNrnle)</span></b>
 
 ```go
 import (
@@ -574,11 +574,11 @@ import (
 func main() {
     chars := []string{"a", "b", "c", "d", "e"}
 
-    result1 := DeleteRange(chars, 0, 0)
-    result2 := DeleteRange(chars, 0, 1)
-    result3 := DeleteRange(chars, 0, 3)
-    result4 := DeleteRange(chars, 0, 4)
-    result5 := DeleteRange(chars, 0, 5)
+    result1 := slice.DeleteRange(chars, 0, 0)
+    result2 := slice.DeleteRange(chars, 0, 1)
+    result3 := slice.DeleteRange(chars, 0, 3)
+    result4 := slice.DeleteRange(chars, 0, 4)
+    result5 := slice.DeleteRange(chars, 0, 5)
 
     fmt.Println(result1)
     fmt.Println(result2)

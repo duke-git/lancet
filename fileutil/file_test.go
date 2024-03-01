@@ -3,6 +3,8 @@ package fileutil
 import (
 	"io"
 	"os"
+	"path/filepath"
+	"strings"
 	"testing"
 
 	"github.com/duke-git/lancet/v2/internal"
@@ -534,7 +536,7 @@ func TestReadlineFile(t *testing.T) {
 		if !ok {
 			t.Fail()
 		}
-		if err = reader.Seek(offset); err != nil {
+		if err = reader.SeekOffset(offset); err != nil {
 			t.Fail()
 		}
 		lineRead, err := reader.ReadLine()
@@ -543,4 +545,24 @@ func TestReadlineFile(t *testing.T) {
 		}
 		internal.NewAssert(t, "TestReadlineFile").Equal(line, lineRead)
 	}
+}
+
+func TestCopyDir(t *testing.T) {
+	assert := internal.NewAssert(t, "TestCopyDir")
+
+	src := "./testdata"
+	dest := "./testdata_copy"
+
+	err := CopyDir(src, dest)
+	assert.IsNil(err)
+
+	assert.Equal(true, IsExist(dest))
+
+	filepath.Walk(src, func(path string, info os.FileInfo, err error) error {
+		destPath := strings.Replace(path, src, dest, 1)
+		assert.Equal(true, IsExist(destPath))
+		return nil
+	})
+
+	os.RemoveAll(dest)
 }

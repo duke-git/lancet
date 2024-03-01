@@ -26,6 +26,8 @@ import (
 -   [Remove](#Remove)
 -   [IndexOf](#IndexOf)
 -   [LastIndexOf](#LastIndexOf)
+-   [IndexOfFunc](#IndexOfFunc)
+-   [LastIndexOfFunc](#LastIndexOfFunc)
 -   [IsEmpty](#IsEmpty)
 -   [Contain](#Contain)
 -   [ValueOf](#ValueOf)
@@ -195,6 +197,59 @@ func main() {
     fmt.Println(l.LastIndexOf(1))
 }
 
+```
+
+
+### <span id="IndexOfFunc">IndexOfFunc</span>
+<p> IndexOfFunc returns the first index satisfying the functional predicate f(v) bool. if not found return -1.</p>
+
+<b>Signature:</b>
+
+```go
+func (l *CopyOnWriteList[T]) IndexOfFunc(f func(T) bool) int 
+```
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/datastructure/list"
+)
+
+func main() {
+    l := list.NewCopyOnWriteList([]int{1, 2, 3})
+
+    fmt.Println(l.IndexOfFunc(func(a int) bool { return a == 1 })) //0
+    fmt.Println(l.IndexOfFunc(func(a int) bool { return a == 0 })) //-1
+}
+```
+
+### <span id="LastIndexOfFunc">LastIndexOfFunc</span>
+<p>LastIndexOfFunc returns the index of the last occurrence of the value in this list satisfying the functional predicate f(T) bool. if not found return -1.</p>
+
+<b>Signature:</b>
+
+```go
+func (l *CopyOnWriteList[T]) LastIndexOfFunc(f func(T) bool) int
+```
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/datastructure/list"
+)
+
+func main() {
+    l := list.NewCopyOnWriteList([]int{1, 2, 3, 1})
+
+    fmt.Println(l.LastIndexOfFunc(func(a int) bool { return a == 1 })) // 3
+    fmt.Println(l.LastIndexOfFunc(func(a int) bool { return a == 0 })) //-1
+}
 ```
 
 ### IsEmpty
