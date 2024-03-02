@@ -667,3 +667,16 @@ func ExampleSubInBetween() {
 	// abc
 	// bc
 }
+
+func ExampleHammingDistance() {
+
+	result, _ := HammingDistance("abc", "def")
+	fmt.Println(result)
+
+	result, _ = HammingDistance("name", "namf")
+	fmt.Println(result)
+
+	// Output:
+	// 3
+	// 1
+}
