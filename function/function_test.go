@@ -162,3 +162,63 @@ func TestPipeline(t *testing.T) {
 
 	assert.Equal(36, f(2))
 }
+
+func TestAcceptIf(t *testing.T) {
+	assert := internal.NewAssert(t, "AcceptIf")
+
+	adder := AcceptIf(
+		And(
+			func(x int) bool {
+				return x > 10
+			}, func(x int) bool {
+				return x%2 == 0
+			}),
+		func(x int) int {
+			return x + 1
+		},
+	)
+
+	result, ok := adder(20)
+	assert.Equal(21, result)
+	assert.Equal(true, ok)
+
+	result, ok = adder(21)
+	assert.Equal(0, result)
+	assert.Equal(false, ok)
+}
+
+func TestAcceptIfPanicMissingPredicate(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestAcceptIfPanicMissingPredicate")
+
+	defer func() {
+		v := recover()
+		assert.Equal("programming error: predicate must be not nil", v)
+	}()
+
+	AcceptIf(
+		nil,
+		func(x int) int {
+			return x
+		},
+	)
+}
+
+func TestAcceptIfPanicMissingApply(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestAcceptIfPanicMissingApply")
+
+	defer func() {
+		v := recover()
+		assert.Equal("programming error: apply must be not nil", v)
+	}()
+
+	AcceptIf(
+		func(i int) bool {
+			return false
+		},
+		nil,
+	)
+}
