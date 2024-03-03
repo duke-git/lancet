@@ -61,6 +61,7 @@ import (
 -   [ContainsAny](#ContainsAny)
 -   [RemoveWhiteSpace](#RemoveWhiteSpace)
 -   [SubInBetween](#SubInBetween)
+-   [HammingDistance](#HammingDistance)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -1494,5 +1495,37 @@ func main() {
     // Output:
     // abc
     // bc
+}
+```
+
+### <span id="HammingDistance">HammingDistance</span>
+
+<p>TBD</p>
+
+<b>函数签名:</b>
+
+```go
+HammingDistance(a, b string) (int, error)
+```
+
+<b>示例:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+
+    result1, _ := strutil.HammingDistance("de", "de")
+    result2, _ := strutil.HammingDistance("a", "d")
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+
+    // Output:
+    // 0
+    // 1
 }
 ```
