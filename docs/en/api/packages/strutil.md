@@ -1502,7 +1502,7 @@ func main() {
 
 ### <span id="HammingDistance">HammingDistance</span>
 
-<p>HammingDistance calculates the Hamming distance between two strings. The Hamming distance is the number of positions at which the corresponding symbols are different</p>
+<p>HammingDistance calculates the Hamming distance between two strings. The Hamming distance is the number of positions at which the corresponding symbols are different.</p>
 
 <b>Signature:</b>
 

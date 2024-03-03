@@ -1620,7 +1620,8 @@ import "github.com/duke-git/lancet/v2/strutil"
     [[play](https://go.dev/play/p/HzLC9vsTwkf)]
 -   **<big>SubInBetween</big>** : 获取字符串中指定的起始字符串start和终止字符串end直接的子字符串。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/strutil.md#SubInBetween)]
-
+-   **<big>HammingDistance</big>** : 计算两个字符串之间的汉明距离。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/strutil.md#HammingDistance)]
 
 <h3 id="system"> 22. system 包含 os, runtime, shell command 的相关函数。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 

@@ -1500,7 +1500,7 @@ func main() {
 
 ### <span id="HammingDistance">HammingDistance</span>
 
-<p>TBD</p>
+<p>计算两个字符串之间的汉明距离。汉明距离是指对应符号不同的位置数。</p>
 
 <b>函数签名:</b>
 
