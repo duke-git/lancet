@@ -466,12 +466,6 @@ func TestGbkToUtf8(t *testing.T) {
 	assert.Equal("hello", string(utf8Data))
 }
 
-func decodeBase64(data []byte) ([]byte, error) {
-	buf := make([]byte, base64.StdEncoding.DecodedLen(len(data)))
-	n, err := base64.StdEncoding.Decode(buf, data)
-	return buf[:n], err
-}
-
 func TestToStdBase64(t *testing.T) {
 	t.Parallel()
 	assert := internal.NewAssert(t, "TestToStdBase64")

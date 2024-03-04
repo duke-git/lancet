@@ -599,6 +599,7 @@ func SubInBetween(str string, start string, end string) string {
 // HammingDistance calculates the Hamming distance between two strings.
 // The Hamming distance is the number of positions at which the corresponding symbols are different.
 // This func returns an error if the input strings are of unequal lengths.
+// Play: todo
 func HammingDistance(a, b string) (int, error) {
 	if len(a) != len(b) {
 		return -1, errors.New("a length and b length are unequal")
