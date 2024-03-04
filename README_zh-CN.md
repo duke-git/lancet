@@ -952,6 +952,14 @@ import "github.com/duke-git/lancet/v2/mathutil"
 -   **<big>TruncRound</big>** : 截短 n 位小数（不进行四舍五入）。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/mathutil.md#TruncRound)]
     [[play](https://go.dev/play/p/aumarSHIGzP)]
+-   **<big>CeilToFloat</big>** : 向上舍入（进一法），保留n位小数。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/mathutil.md#CeilToFloat)]
+-   **<big>CeilToString</big>** : 向上舍入（进一法），保留n位小数，返回字符串。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/mathutil.md#CeilToString)]
+-   **<big>FloorToFloat</big>** : 向下舍入（去尾法），保留n位小数。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/mathutil.md#FloorToFloat)]
+-   **<big>FloorToString</big>** : 向下舍入（去尾法），保留n位小数，返回字符串。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/mathutil.md#FloorToString)]
 -   **<big>Range</big>** : 根据指定的起始值和数量，创建一个数字切片。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/mathutil.md#Range)]
     [[play](https://go.dev/play/p/9ke2opxa8ZP)]
@@ -991,6 +999,10 @@ import "github.com/duke-git/lancet/v2/mathutil"
 -   **<big>Abs</big>** : 求绝对值。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/mathutil.md#Sum)]
     [[play](https://go.dev/play/p/fsyBh1Os-1d)]
+-   **<big>Div</big>** : 除法运算。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/mathutil.md#Div)]
+
+
 
 <h3 id="netutil"> 14. netutil 网络包支持获取 ip 地址，发送 http 请求。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 

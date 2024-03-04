@@ -953,6 +953,14 @@ import "github.com/duke-git/lancet/v2/mathutil"
 -   **<big>TruncRound</big>** : round off n decimal places for int64.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/mathutil.md#TruncRound)]
     [[play](https://go.dev/play/p/aumarSHIGzP)]
+-   **<big>CeilToFloat</big>** : round float up n decimal places.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/mathutil.md#CeilToFloat)]
+-   **<big>CeilToString</big>** : round float up n decimal places, then conver to string.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/mathutil.md#CeilToString)]
+-   **<big>FloorToFloat</big>** : round float down n decimal places.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/mathutil.md#FloorToFloat)]
+-   **<big>FloorToString</big>** : round float down n decimal places, then conver to string.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/mathutil.md#FloorToString)]
 -   **<big>Range</big>** : Creates a slice of numbers from start with specified count, element step is 1.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/mathutil.md#Range)]
     [[play](https://go.dev/play/p/9ke2opxa8ZP)]
@@ -992,6 +1000,9 @@ import "github.com/duke-git/lancet/v2/mathutil"
 -   **<big>Abs</big>** : returns the absolute value of param number.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/mathutil.md#Sum)]
     [[play](https://go.dev/play/p/fsyBh1Os-1d)]
+-   **<big>Div</big>** : returns the result of x divided by y.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/mathutil.md#Div)]
+
 
 <h3 id="netutil"> 14. Netutil package contains functions to get net information and send http request. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 

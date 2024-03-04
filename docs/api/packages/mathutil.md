@@ -500,7 +500,7 @@ func main() {
 
 ### <span id="CeilToFloat">CeilToFloat</span>
 
-<p>向上舍入（进一法），保留 n 位小数</p>
+<p>向上舍入（进一法），保留n位小数。</p>
 
 <b>函数签名:</b>
 
@@ -536,7 +536,7 @@ func main() {
 
 ### <span id="CeilToString">CeilToString</span>
 
-<p>向上舍入（进一法），保留 n 位小数，返回字符串</p>
+<p>向上舍入（进一法），保留n位小数，返回字符串。</p>
 
 <b>函数签名:</b>
 
@@ -572,7 +572,7 @@ func main() {
 
 ### <span id="FloorToFloat">FloorToFloat</span>
 
-<p>向下舍入（去尾法），保留 n 位小数</p>
+<p>向下舍入（去尾法），保留n位小数。</p>
 
 <b>函数签名:</b>
 
@@ -608,7 +608,7 @@ func main() {
 
 ### <span id="FloorToString">FloorToString</span>
 
-<p>向下舍入（去尾法），保留 n 位小数，返回字符串</p>
+<p>向下舍入（去尾法），保留n位小数，返回字符串。</p>
 
 <b>函数签名:</b>
 
@@ -1125,5 +1125,40 @@ func main() {
 	// 1
 	// 0.1
 	// 0.2
+}
+```
+
+### <span id="Div">Div</span>
+
+<p>除法运算.</p>
+
+<b>函数签名:</b>
+
+```go
+func Div[T constraints.Float | constraints.Integer](x T, y T) float64
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/mathutil"
+)
+
+func main() {
+	result1 := mathutil.Div(9, 4)
+	result2 := mathutil.Div(1, 2)
+	result3 := mathutil.Div(0, 666)
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+	// Output:
+	// 2.25
+	// 0.5
+	// 0
 }
 ```
