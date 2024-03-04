@@ -791,10 +791,24 @@ import "github.com/duke-git/lancet/v2/function"
     [[play](https://go.dev/play/p/hbON-Xeyn5N)]
 -   **<big>Pipeline</big>** : takes a list of functions and returns a function whose param will be passed into the functions one by one.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/function.md#Pipeline)]
-    [[play](https://go.dev/play/p/mPdUVvj6HD6)]
+-   **<big>AcceptIf</big>** : returns another function of the same signature as the apply function but also includes a bool value to indicate success or failure.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/function.md#AcceptIf)]
+-   **<big>And</big>** : returns a composed predicate that represents the logical AND of a list of predicates.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/function.md#And)]
+-   **<big>Or</big>** : returns a composed predicate that represents the logical OR of a list of predicates.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/function.md#Or)]
+-   **<big>Negate</big>** : returns a predicate that represents the logical negation of this predicate.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/function.md#Negate)]
+-   **<big>Nor</big>** : returns a composed predicate that represents the logical NOR of a list of predicates.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/function.md#Nor)]
+-   **<big>Nand</big>** : returns a composed predicate that represents the logical Nand of a list of predicates.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/function.md#Nand)]
+-   **<big>Xnor</big>** : returns a composed predicate that represents the logical XNOR of a list of predicates.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/function.md#Xnor)]
 -   **<big>Watcher</big>** : Watcher is used for record code execution time. can start/stop/reset the watch timer. get the elapsed time of function execution.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/function.md#Watcher)]
     [[play](https://go.dev/play/p/l2yrOpCLd1I)]
+
 
 <h3 id="maputil"> 12. Maputil package includes some functions to manipulate map.&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 

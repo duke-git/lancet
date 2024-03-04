@@ -665,31 +665,31 @@ import (
 
 func main() {
 
-	adder := AcceptIf(
-		And(
-			func(x int) bool {
-				return x > 10
-			}, func(x int) bool {
-				return x%2 == 0
-			}),
-		func(x int) int {
-			return x + 1
-		},
-	)
+    adder := AcceptIf(
+        And(
+            func(x int) bool {
+                return x > 10
+            }, func(x int) bool {
+                return x%2 == 0
+            }),
+        func(x int) int {
+            return x + 1
+        },
+    )
 
-	result, ok := adder(20)
-	fmt.Println(result)
-	fmt.Println(ok)
+    result, ok := adder(20)
+    fmt.Println(result)
+    fmt.Println(ok)
 
-	result, ok = adder(21)
-	fmt.Println(result)
-	fmt.Println(ok)
+    result, ok = adder(21)
+    fmt.Println(result)
+    fmt.Println(ok)
 
-	// Output:
-	// 21
-	// true
-	// 0
-	// false
+    // Output:
+    // 21
+    // true
+    // 0
+    // false
 }
 
 ```

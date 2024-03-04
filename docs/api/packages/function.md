@@ -644,7 +644,7 @@ func main() {
 
 ### <span id="AcceptIf">AcceptIf</span>
 
-<p>TBD</p>
+<p>AcceptIf函数会返回另一个函数，该函数的签名与 apply 函数相同，但同时还会包含一个布尔值来表示成功或失败。</p>
 
 <b>函数签名:</b>
 
@@ -664,31 +664,31 @@ import (
 
 func main() {
 
-	adder := AcceptIf(
-		And(
-			func(x int) bool {
-				return x > 10
-			}, func(x int) bool {
-				return x%2 == 0
-			}),
-		func(x int) int {
-			return x + 1
-		},
-	)
+    adder := AcceptIf(
+        And(
+            func(x int) bool {
+                return x > 10
+            }, func(x int) bool {
+                return x%2 == 0
+            }),
+        func(x int) int {
+            return x + 1
+        },
+    )
 
-	result, ok := adder(20)
-	fmt.Println(result)
-	fmt.Println(ok)
+    result, ok := adder(20)
+    fmt.Println(result)
+    fmt.Println(ok)
 
-	result, ok = adder(21)
-	fmt.Println(result)
-	fmt.Println(ok)
+    result, ok = adder(21)
+    fmt.Println(result)
+    fmt.Println(ok)
 
-	// Output:
-	// 21
-	// true
-	// 0
-	// false
+    // Output:
+    // 21
+    // true
+    // 0
+    // false
 }
 
 ```
