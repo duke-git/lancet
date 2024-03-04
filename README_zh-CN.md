@@ -100,6 +100,7 @@ func main() {
 -   [Validator](#user-content-validator)
 -   [Xerror](#user-content-xerror)
 
+
 <h3 id="algorithm"> 1. algorithm 包实现一些基本查找和排序算法。 &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 
 ```go
