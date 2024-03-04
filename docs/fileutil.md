@@ -45,6 +45,7 @@ import (
 -   [Sha](#Sha)
 -   [ReadCsvFile](#ReadCsvFile)
 -   [WriteCsvFile](#WriteCsvFile)
+-   [WriteMapsToCsv](#WriteMapsToCsv)
 -   [WriteStringToFile](#WriteStringToFile)
 -   [WriteBytesToFile](#WriteBytesToFile)
 -   [ReadFile](#ReadFile)
@@ -694,6 +695,7 @@ func main() {
 }
 ```
 
+
 ### <span id="WriteCsvFile">WriteCsvFile</span>
 
 <p>Write content to target csv file.</p>
@@ -728,6 +730,60 @@ func main() {
     // Output:
     // <nil>
     // [[Lili 22 female] [Jim 21 male]]
+}
+```
+
+
+### <span id="WriteMapsToCsv">WriteMapsToCsv</span>
+
+<p>write slice of map to csv file.</p>
+
+<b>Signature:</b>
+
+```go
+// filepath: path of the CSV file.
+// records: slice of maps to be written. the value of map should be basic type. The maps will be sorted by key in alphabeta order, then be written into csv file.
+// appendToExistingFile: If true, data will be appended to the file if it exists.
+// delimiter: Delimiter to use in the CSV file.
+// headers: order of the csv column headers, needs to be consistent with the key of the map.
+func WriteMapsToCsv(filepath string, records []map[string]interface{}, appendToExistingFile bool, delimiter rune, headers ...[]string) error
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/fileutil"
+)
+
+func main() {
+    fpath := "./test.csv"
+    fileutil.CreateFile(fpath)
+
+    f, _ := os.OpenFile(fpath, os.O_WRONLY|os.O_TRUNC, 0777)
+    defer f.Close()
+
+    records := []map[string]interface{}{
+        {"Name": "Lili", "Age": "22", "Gender": "female"},
+        {"Name": "Jim", "Age": "21", "Gender": "male"},
+    }
+
+    headers := []string{"Name", "Age", "Gender"}
+    err := fileutil.WriteMapsToCsv(csvFilePath, records, false, ';', headers)
+
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    content, err := fileutil.ReadCsvFile(csvFilePath, ';')
+
+    fmt.Println(content)
+
+    // Output:
+    // [[Name Age Gender] [Lili 22 female] [Jim 21 male]]
 }
 ```
 

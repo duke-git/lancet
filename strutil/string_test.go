@@ -224,6 +224,29 @@ func TestBeforeLast(t *testing.T) {
 	assert.NotEqual("github.com/", BeforeLast("github.com/test/test/lancet", "test"))
 }
 
+func TestHammingDistance(t *testing.T) {
+	assert := internal.NewAssert(t, "HammingDistance")
+
+	hd := func(a, b string) int {
+		c, _ := HammingDistance(a, b)
+		return c
+	}
+
+	assert.Equal(0, hd(" ", " "))
+	assert.Equal(1, hd(" ", "c"))
+	assert.Equal(1, hd("a", "d"))
+	assert.Equal(1, hd("a", " "))
+	assert.Equal(1, hd("a", "f"))
+
+	assert.Equal(0, hd("", ""))
+	assert.Equal(-1, hd("abc", "ab"))
+	assert.Equal(3, hd("abc", "def"))
+	assert.Equal(-1, hd("kitten", "sitting"))
+	assert.Equal(1, hd("ö", "ü"))
+	assert.Equal(0, hd("日本語", "日本語"))
+	assert.Equal(3, hd("日本語", "語日本"))
+}
+
 func TestAfter(t *testing.T) {
 	assert := internal.NewAssert(t, "TestAfter")
 

@@ -1,10 +1,14 @@
 package convertor
 
 import (
+	"encoding/base64"
+	"errors"
 	"fmt"
+	"io"
 	"reflect"
 	"testing"
 	"unicode/utf8"
+	"unsafe"
 
 	"github.com/duke-git/lancet/internal"
 	"github.com/duke-git/lancet/validator"
@@ -399,4 +403,280 @@ func TestMapToStruct(t *testing.T) {
 	assert.Equal(m["phone"], p.Phone)
 	assert.Equal("test", p.Addr.Street)
 	assert.Equal(1, p.Addr.Number)
+}
+
+func TestToStdBase64(t *testing.T) {
+	t.Parallel()
+	assert := internal.NewAssert(t, "TestToStdBase64")
+
+	r1 := ToStdBase64("abc")
+	d1, _ := base64.StdEncoding.DecodeString(r1)
+	assert.Equal("abc", string(d1))
+
+	r2 := ToStdBase64([]byte("abc"))
+	d2, _ := base64.StdEncoding.DecodeString(r2)
+	assert.Equal("abc", string(d2))
+
+	r3 := ToStdBase64(123)
+	d3, _ := base64.StdEncoding.DecodeString(r3)
+	assert.Equal("123", string(d3))
+
+	r4 := ToStdBase64(11.11)
+	d4, _ := base64.StdEncoding.DecodeString(r4)
+	assert.Equal("11.11", string(d4))
+
+	r5 := ToStdBase64(map[string]interface{}{"name": "duke", "quantity": 1})
+	d5, _ := base64.StdEncoding.DecodeString(r5)
+	assert.Equal("{\"name\":\"duke\",\"quantity\":1}", string(d5))
+
+	r6 := ToStdBase64([]int64{7, 5, 9, 4, 23})
+	d6, _ := base64.StdEncoding.DecodeString(r6)
+	assert.Equal("[7,5,9,4,23]", string(d6))
+
+	r7 := ToStdBase64([]string{"7", "5", "9", "4", "23"})
+	d7, _ := base64.StdEncoding.DecodeString(r7)
+	assert.Equal("[\"7\",\"5\",\"9\",\"4\",\"23\"]", string(d7))
+
+	r8 := ToStdBase64(nil)
+	d8, _ := base64.StdEncoding.DecodeString(r8)
+	assert.Equal("", string(d8))
+
+	ch := make(chan int, 3)
+	ch <- 1
+	ch <- 2
+	r9 := ToStdBase64(ch)
+	d9, _ := base64.StdEncoding.DecodeString(r9)
+	assert.Equal("", string(d9))
+
+	r10 := ToStdBase64(io.EOF)
+	d10, _ := base64.StdEncoding.DecodeString(r10)
+	assert.Equal("EOF", string(d10))
+
+	r11 := ToStdBase64(errors.New("test"))
+	d11, _ := base64.StdEncoding.DecodeString(r11)
+	assert.Equal("test", string(d11))
+
+	typedNil := (*int)(nil)
+	r12 := ToStdBase64(typedNil)
+	d12, _ := base64.StdEncoding.DecodeString(r12)
+	assert.Equal("", string(d12))
+
+	type nilInterface interface {
+	}
+	var nI nilInterface = nil
+	d13, _ := base64.StdEncoding.DecodeString(ToStdBase64(nI))
+	assert.Equal("", string(d13))
+
+	var p unsafe.Pointer
+	d14, _ := base64.StdEncoding.DecodeString(ToStdBase64(p))
+	assert.Equal("", string(d14))
+}
+
+func TestToUrlBase64(t *testing.T) {
+	t.Parallel()
+	assert := internal.NewAssert(t, "TestToUrlBase64")
+
+	r1 := ToUrlBase64("abc")
+	d1, _ := base64.URLEncoding.DecodeString(r1)
+	assert.Equal("abc", string(d1))
+
+	r2 := ToUrlBase64([]byte("abc"))
+	d2, _ := base64.URLEncoding.DecodeString(r2)
+	assert.Equal("abc", string(d2))
+
+	r3 := ToUrlBase64(123)
+	d3, _ := base64.URLEncoding.DecodeString(r3)
+	assert.Equal("123", string(d3))
+
+	r4 := ToUrlBase64(11.11)
+	d4, _ := base64.URLEncoding.DecodeString(r4)
+	assert.Equal("11.11", string(d4))
+
+	r5 := ToUrlBase64(map[string]interface{}{"name": "duke", "quantity": 1})
+	d5, _ := base64.URLEncoding.DecodeString(r5)
+	assert.Equal("{\"name\":\"duke\",\"quantity\":1}", string(d5))
+
+	r6 := ToUrlBase64([]int64{7, 5, 9, 4, 23})
+	d6, _ := base64.URLEncoding.DecodeString(r6)
+	assert.Equal("[7,5,9,4,23]", string(d6))
+
+	r7 := ToUrlBase64([]string{"7", "5", "9", "4", "23"})
+	d7, _ := base64.URLEncoding.DecodeString(r7)
+	assert.Equal("[\"7\",\"5\",\"9\",\"4\",\"23\"]", string(d7))
+
+	r8 := ToUrlBase64(nil)
+	d8, _ := base64.URLEncoding.DecodeString(r8)
+	assert.Equal("", string(d8))
+
+	ch := make(chan int, 3)
+	ch <- 1
+	ch <- 2
+	r9 := ToUrlBase64(ch)
+	d9, _ := base64.URLEncoding.DecodeString(r9)
+	assert.Equal("", string(d9))
+
+	r10 := ToUrlBase64(io.EOF)
+	d10, _ := base64.URLEncoding.DecodeString(r10)
+	assert.Equal("EOF", string(d10))
+
+	r11 := ToUrlBase64(errors.New("test"))
+	d11, _ := base64.URLEncoding.DecodeString(r11)
+	assert.Equal("test", string(d11))
+
+	typedNil := (*int)(nil)
+	r12 := ToUrlBase64(typedNil)
+	d12, _ := base64.URLEncoding.DecodeString(r12)
+	assert.Equal("", string(d12))
+
+	type nilInterface interface {
+	}
+	var nI nilInterface = nil
+	d13, _ := base64.URLEncoding.DecodeString(ToUrlBase64(nI))
+	assert.Equal("", string(d13))
+
+	var p unsafe.Pointer
+	d14, _ := base64.URLEncoding.DecodeString(ToUrlBase64(p))
+	assert.Equal("", string(d14))
+
+	r15 := ToUrlBase64("4+3/4?=")
+	d15, _ := base64.URLEncoding.DecodeString(r15)
+	assert.Equal("4+3/4?=", string(d15))
+}
+
+func TestToRawStdBase64(t *testing.T) {
+	t.Parallel()
+	assert := internal.NewAssert(t, "TestToRawStdBase64")
+
+	r1 := ToRawStdBase64("abc")
+	d1, _ := base64.RawStdEncoding.DecodeString(r1)
+	assert.Equal("abc", string(d1))
+
+	r2 := ToRawStdBase64([]byte("abc"))
+	d2, _ := base64.RawStdEncoding.DecodeString(r2)
+	assert.Equal("abc", string(d2))
+
+	r3 := ToRawStdBase64(123)
+	d3, _ := base64.RawStdEncoding.DecodeString(r3)
+	assert.Equal("123", string(d3))
+
+	r4 := ToRawStdBase64(11.11)
+	d4, _ := base64.RawStdEncoding.DecodeString(r4)
+	assert.Equal("11.11", string(d4))
+
+	r5 := ToRawStdBase64(map[string]interface{}{"name": "duke", "quantity": 1})
+	d5, _ := base64.RawStdEncoding.DecodeString(r5)
+	assert.Equal("{\"name\":\"duke\",\"quantity\":1}", string(d5))
+
+	r6 := ToRawStdBase64([]int64{7, 5, 9, 4, 23})
+	d6, _ := base64.RawStdEncoding.DecodeString(r6)
+	assert.Equal("[7,5,9,4,23]", string(d6))
+
+	r7 := ToRawStdBase64([]string{"7", "5", "9", "4", "23"})
+	d7, _ := base64.RawStdEncoding.DecodeString(r7)
+	assert.Equal("[\"7\",\"5\",\"9\",\"4\",\"23\"]", string(d7))
+
+	r8 := ToRawStdBase64(nil)
+	d8, _ := base64.RawStdEncoding.DecodeString(r8)
+	assert.Equal("", string(d8))
+
+	ch := make(chan int, 3)
+	ch <- 1
+	ch <- 2
+	r9 := ToRawStdBase64(ch)
+	d9, _ := base64.RawStdEncoding.DecodeString(r9)
+	assert.Equal("", string(d9))
+
+	r10 := ToRawStdBase64(io.EOF)
+	d10, _ := base64.RawStdEncoding.DecodeString(r10)
+	assert.Equal("EOF", string(d10))
+
+	r11 := ToRawStdBase64(errors.New("test"))
+	d11, _ := base64.RawStdEncoding.DecodeString(r11)
+	assert.Equal("test", string(d11))
+
+	typedNil := (*int)(nil)
+	r12 := ToRawStdBase64(typedNil)
+	d12, _ := base64.RawStdEncoding.DecodeString(r12)
+	assert.Equal("", string(d12))
+
+	type nilInterface interface {
+	}
+	var nI nilInterface = nil
+	d13, _ := base64.RawStdEncoding.DecodeString(ToRawStdBase64(nI))
+	assert.Equal("", string(d13))
+
+	var p unsafe.Pointer
+	d14, _ := base64.RawStdEncoding.DecodeString(ToRawStdBase64(p))
+	assert.Equal("", string(d14))
+}
+
+func TestToRawUrlBase64(t *testing.T) {
+	t.Parallel()
+	assert := internal.NewAssert(t, "TestToRawUrlBase64")
+
+	r1 := ToRawUrlBase64("abc")
+	d1, _ := base64.RawURLEncoding.DecodeString(r1)
+	assert.Equal("abc", string(d1))
+
+	r2 := ToRawUrlBase64([]byte("abc"))
+	d2, _ := base64.RawURLEncoding.DecodeString(r2)
+	assert.Equal("abc", string(d2))
+
+	r3 := ToRawUrlBase64(123)
+	d3, _ := base64.RawURLEncoding.DecodeString(r3)
+	assert.Equal("123", string(d3))
+
+	r4 := ToRawUrlBase64(11.11)
+	d4, _ := base64.RawURLEncoding.DecodeString(r4)
+	assert.Equal("11.11", string(d4))
+
+	r5 := ToRawUrlBase64(map[string]interface{}{"name": "duke", "quantity": 1})
+	d5, _ := base64.RawURLEncoding.DecodeString(r5)
+	assert.Equal("{\"name\":\"duke\",\"quantity\":1}", string(d5))
+
+	r6 := ToRawUrlBase64([]int64{7, 5, 9, 4, 23})
+	d6, _ := base64.RawURLEncoding.DecodeString(r6)
+	assert.Equal("[7,5,9,4,23]", string(d6))
+
+	r7 := ToRawUrlBase64([]string{"7", "5", "9", "4", "23"})
+	d7, _ := base64.RawURLEncoding.DecodeString(r7)
+	assert.Equal("[\"7\",\"5\",\"9\",\"4\",\"23\"]", string(d7))
+
+	r8 := ToRawUrlBase64(nil)
+	d8, _ := base64.RawURLEncoding.DecodeString(r8)
+	assert.Equal("", string(d8))
+
+	ch := make(chan int, 3)
+	ch <- 1
+	ch <- 2
+	r9 := ToRawUrlBase64(ch)
+	d9, _ := base64.RawURLEncoding.DecodeString(r9)
+	assert.Equal("", string(d9))
+
+	r10 := ToRawUrlBase64(io.EOF)
+	d10, _ := base64.RawURLEncoding.DecodeString(r10)
+	assert.Equal("EOF", string(d10))
+
+	r11 := ToRawUrlBase64(errors.New("test"))
+	d11, _ := base64.RawURLEncoding.DecodeString(r11)
+	assert.Equal("test", string(d11))
+
+	typedNil := (*int)(nil)
+	r12 := ToRawUrlBase64(typedNil)
+	d12, _ := base64.RawURLEncoding.DecodeString(r12)
+	assert.Equal("", string(d12))
+
+	type nilInterface interface {
+	}
+	var nI nilInterface = nil
+	d13, _ := base64.RawURLEncoding.DecodeString(ToRawUrlBase64(nI))
+	assert.Equal("", string(d13))
+
+	var p unsafe.Pointer
+	d14, _ := base64.RawURLEncoding.DecodeString(ToRawUrlBase64(p))
+	assert.Equal("", string(d14))
+
+	r15 := ToRawUrlBase64("4+3/4?=")
+	d15, _ := base64.RawURLEncoding.DecodeString(r15)
+	assert.Equal("4+3/4?=", string(d15))
 }

@@ -41,7 +41,10 @@ import (
 -   [ToInterface](#ToInterface)
 -   [Utf8ToGbk](#Utf8ToGbk)
 -   [GbkToUtf8](#GbkToUtf8)
--   [GbkToUtf8](#GbkToUtf8)
+-   [ToStdBase64](#ToStdBase64)
+-   [ToUrlBase64](#ToUrlBase64)
+-   [ToRawStdBase64](#ToRawStdBase64)
+-   [ToRawUrlBase64](#ToRawUrlBase64)
 
 
 <div STYLE="page-break-after: always;"></div>
@@ -740,5 +743,274 @@ func main() {
     // Output:
     // true
     // hello   
+}
+```
+
+### <span id="ToStdBase64">ToStdBase64</span>
+
+<p>Convert a value to a string encoded in standard Base64. Error data of type "error" will also be encoded, and complex structures will be converted to a JSON-formatted string.</p>
+
+<b>Signature:</b>
+
+```go
+func ToStdBase64(value any) string
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/convertor"
+)
+
+func main() {
+    afterEncode := convertor.ToStdBase64(nil)
+    fmt.Println(afterEncode)
+
+    afterEncode = convertor.ToStdBase64("")
+    fmt.Println(afterEncode)
+
+    stringVal := "hello"
+    afterEncode = convertor.ToStdBase64(stringVal)
+    fmt.Println(afterEncode)
+
+    byteSliceVal := []byte("hello")
+    afterEncode = convertor.ToStdBase64(byteSliceVal)
+    fmt.Println(afterEncode)
+
+    intVal := 123
+    afterEncode = convertor.ToStdBase64(intVal)
+    fmt.Println(afterEncode)
+
+    mapVal := map[string]any{"a": "hi", "b": 2, "c": struct {
+        A string
+        B int
+    }{"hello", 3}}
+    afterEncode = convertor.ToStdBase64(mapVal)
+    fmt.Println(afterEncode)
+
+    floatVal := 123.456
+    afterEncode = convertor.ToStdBase64(floatVal)
+    fmt.Println(afterEncode)
+
+    boolVal := true
+    afterEncode = convertor.ToStdBase64(boolVal)
+    fmt.Println(afterEncode)
+
+    errVal := errors.New("err")
+    afterEncode = convertor.ToStdBase64(errVal)
+    fmt.Println(afterEncode)
+
+    // Output:
+    //
+    //
+    // aGVsbG8=
+    // aGVsbG8=
+    // MTIz
+    // eyJhIjoiaGkiLCJiIjoyLCJjIjp7IkEiOiJoZWxsbyIsIkIiOjN9fQ==
+    // MTIzLjQ1Ng==
+    // dHJ1ZQ==
+    // ZXJy
+}
+
+```
+
+### <span id="ToUrlBase64">ToUrlBase64</span>
+
+<p>Convert a value to a string encoded in url Base64. Error data of type "error" will also be encoded, and complex structures will be converted to a JSON-formatted string.</p>
+
+<b>Signature:</b>
+
+```go
+func ToUrlBase64(value any) string
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/convertor"
+)
+
+func main() {
+    afterEncode := convertor.ToUrlBase64(nil)
+    fmt.Println(afterEncode)
+
+
+    stringVal := "hello"
+    afterEncode = convertor.ToUrlBase64(stringVal)
+    fmt.Println(afterEncode)
+
+    byteSliceVal := []byte("hello")
+    afterEncode = convertor.ToUrlBase64(byteSliceVal)
+    fmt.Println(afterEncode)
+
+    intVal := 123
+    afterEncode = convertor.ToUrlBase64(intVal)
+    fmt.Println(afterEncode)
+
+    mapVal := map[string]any{"a": "hi", "b": 2, "c": struct {
+        A string
+        B int
+    }{"hello", 3}}
+    afterEncode = convertor.ToUrlBase64(mapVal)
+    fmt.Println(afterEncode)
+
+    floatVal := 123.456
+    afterEncode = convertor.ToUrlBase64(floatVal)
+    fmt.Println(afterEncode)
+
+    boolVal := true
+    afterEncode = convertor.ToUrlBase64(boolVal)
+    fmt.Println(afterEncode)
+
+    errVal := errors.New("err")
+    afterEncode = convertor.ToUrlBase64(errVal)
+    fmt.Println(afterEncode)
+
+    // Output:
+    //
+    // aGVsbG8=
+    // aGVsbG8=
+    // MTIz
+    // eyJhIjoiaGkiLCJiIjoyLCJjIjp7IkEiOiJoZWxsbyIsIkIiOjN9fQ==
+    // MTIzLjQ1Ng==
+    // dHJ1ZQ==
+    // ZXJy
+}
+
+```
+
+### <span id="ToRawStdBase64">ToRawStdBase64</span>
+
+<p>Convert a value to a string encoded in raw standard Base64. Error data of type "error" will also be encoded, and complex structures will be converted to a JSON-formatted string.</p>
+
+<b>Signature:</b>
+
+```go
+func ToRawStdBase64(value any) string
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/convertor"
+)
+
+func main() {
+
+    stringVal := "hello"
+    afterEncode = convertor.ToRawStdBase64(stringVal)
+    fmt.Println(afterEncode)
+
+    byteSliceVal := []byte("hello")
+    afterEncode = convertor.ToRawStdBase64(byteSliceVal)
+    fmt.Println(afterEncode)
+
+    intVal := 123
+    afterEncode = convertor.ToRawStdBase64(intVal)
+    fmt.Println(afterEncode)
+
+    mapVal := map[string]any{"a": "hi", "b": 2, "c": struct {
+        A string
+        B int
+    }{"hello", 3}}
+    afterEncode = convertor.ToRawStdBase64(mapVal)
+    fmt.Println(afterEncode)
+
+    floatVal := 123.456
+    afterEncode = convertor.ToRawStdBase64(floatVal)
+    fmt.Println(afterEncode)
+
+    boolVal := true
+    afterEncode = convertor.ToRawStdBase64(boolVal)
+    fmt.Println(afterEncode)
+
+    errVal := errors.New("err")
+    afterEncode = convertor.ToRawStdBase64(errVal)
+    fmt.Println(afterEncode)
+
+    // Output:
+    // aGVsbG8
+    // aGVsbG8
+    // MTIz
+    // eyJhIjoiaGkiLCJiIjoyLCJjIjp7IkEiOiJoZWxsbyIsIkIiOjN9fQ
+    // MTIzLjQ1Ng
+    // dHJ1ZQ
+    // ZXJy
+}
+```
+
+### <span id="ToRawUrlBase64">ToRawUrlBase64</span>
+
+<p> Convert a value to a string encoded in raw url Base64. Error data of type "error" will also be encoded, and complex structures will be converted to a JSON-formatted string.</p>
+
+<b>Signature:</b>
+
+```go
+func ToRawUrlBase64(value any) string
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/convertor"
+)
+
+func main() {
+
+    stringVal := "hello"
+    afterEncode = convertor.ToRawUrlBase64(stringVal)
+    fmt.Println(afterEncode)
+
+    byteSliceVal := []byte("hello")
+    afterEncode = convertor.ToRawUrlBase64(byteSliceVal)
+    fmt.Println(afterEncode)
+
+    intVal := 123
+    afterEncode = convertor.ToRawUrlBase64(intVal)
+    fmt.Println(afterEncode)
+
+    mapVal := map[string]any{"a": "hi", "b": 2, "c": struct {
+        A string
+        B int
+    }{"hello", 3}}
+    afterEncode = convertor.ToRawUrlBase64(mapVal)
+    fmt.Println(afterEncode)
+
+    floatVal := 123.456
+    afterEncode = convertor.ToRawUrlBase64(floatVal)
+    fmt.Println(afterEncode)
+
+    boolVal := true
+    afterEncode = convertor.ToRawStdBase64(boolVal)
+    fmt.Println(afterEncode)
+
+    errVal := errors.New("err")
+    afterEncode = convertor.ToRawStdBase64(errVal)
+    fmt.Println(afterEncode)
+
+    // Output:
+    // aGVsbG8
+    // aGVsbG8
+    // MTIz
+    // eyJhIjoiaGkiLCJiIjoyLCJjIjp7IkEiOiJoZWxsbyIsIkIiOjN9fQ
+    // MTIzLjQ1Ng
+    // dHJ1ZQ
+    // ZXJy
 }
 ```

@@ -45,6 +45,7 @@ import (
 -   [Sha](#Sha)
 -   [ReadCsvFile](#ReadCsvFile)
 -   [WriteCsvFile](#WriteCsvFile)
+-   [WriteMapsToCsv](#WriteMapsToCsv)
 -   [WriteStringToFile](#WriteStringToFile)
 -   [WriteBytesToFile](#WriteBytesToFile)
 -   [ReadFile](#ReadFile)
@@ -728,6 +729,59 @@ func main() {
     // Output:
     // <nil>
     // [[Lili 22 female] [Jim 21 male]]
+}
+```
+
+### <span id="WriteMapsToCsv">WriteMapsToCsv</span>
+
+<p>将map切片写入csv文件中。</p>
+
+<b>函数签名:</b>
+
+```go
+// filepath: CSV文件路径。
+// records: 写入文件的map切片。map值必须为基本类型。会以map键的字母顺序写入。
+// appendToExistingFile: 是否为追加写模式。
+// delimiter: CSV文件分割符。
+// headers: CSV文件表头顺序（需要与map key保持一致)，不指定时按字母排序。
+func WriteMapsToCsv(filepath string, records []map[string]interface{}, appendToExistingFile bool, delimiter rune, headers ...[]string) error
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/fileutil"
+)
+
+func main() {
+    fpath := "./test.csv"
+    fileutil.CreateFile(fpath)
+
+    f, _ := os.OpenFile(fpath, os.O_WRONLY|os.O_TRUNC, 0777)
+    defer f.Close()
+
+    records := []map[string]interface{}{
+        {"Name": "Lili", "Age": "22", "Gender": "female"},
+        {"Name": "Jim", "Age": "21", "Gender": "male"},
+    }
+
+    headers := []string{"Name", "Age", "Gender"}
+    err := fileutil.WriteMapsToCsv(csvFilePath, records, false, ';', headers)
+
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    content, err := fileutil.ReadCsvFile(csvFilePath, ';')
+
+    fmt.Println(content)
+
+    // Output:
+    // [[Name Age Gender] [Lili 22 female] [Jim 21 male]]
 }
 ```
 

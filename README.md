@@ -96,6 +96,7 @@ import "github.com/duke-git/lancet/convertor"
 -   [ToJson](https://github.com/duke-git/lancet/blob/v1/docs/convertor.md#ToJson)
 -   [ToString](https://github.com/duke-git/lancet/blob/v1/docs/convertor.md#ToString)
 -   [StructToMap](https://github.com/duke-git/lancet/blob/v1/docs/convertor.md#StructToMap)
+-   [MapToStruct](https://github.com/duke-git/lancet/blob/v1/docs/convertor.md#MapToStruct)
 -   [EncodeByte](https://github.com/duke-git/lancet/blob/v1/docs/convertor.md#EncodeByte)
 -   [DecodeByte](https://github.com/duke-git/lancet/blob/v1/docs/convertor.md#DecodeByte)
 -   [DeepClone](https://github.com/duke-git/lancet/blob/v1/docs/convertor.md#DeepClone)
@@ -103,6 +104,10 @@ import "github.com/duke-git/lancet/convertor"
 -   [ToInterface](https://github.com/duke-git/lancet/blob/v1/docs/convertor.md#ToInterface)
 -   [Utf8ToGbk](https://github.com/duke-git/lancet/blob/v1/docs/convertor.md#Utf8ToGbk)
 -   [GbkToUtf8](https://github.com/duke-git/lancet/blob/v1/docs/convertor.md#GbkToUtf8)
+-   [ToStdBase64](https://github.com/duke-git/lancet/blob/v1/docs/convertor.md#ToStdBase64)
+-   [ToUrlBase64](https://github.com/duke-git/lancet/blob/v1/docs/convertor.md#ToUrlBase64)
+-   [ToRawStdBase64](https://github.com/duke-git/lancet/blob/v1/docs/convertor.md#ToRawStdBase64)
+-   [ToRawUrlBase64](https://github.com/duke-git/lancet/blob/v1/docs/convertor.md#ToRawUrlBase64)
 
 ### 3. Cryptor package is for data encryption and decryption.
 
@@ -237,6 +242,7 @@ import "github.com/duke-git/lancet/fileutil"
 -   [Sha](https://github.com/duke-git/lancet/blob/v1/docs/fileutil.md#Sha)
 -   [ReadCsvFile](https://github.com/duke-git/lancet/blob/v1/docs/fileutil.md#ReadCsvFile)
 -   [WriteCsvFile](https://github.com/duke-git/lancet/blob/v1/docs/fileutil.md#WriteCsvFile)
+-   [WriteMapsToCsv](https://github.com/duke-git/lancet/blob/v1/docs/fileutil.md#WriteMapsToCsv)
 -   [WriteStringToFile](https://github.com/duke-git/lancet/blob/v1/docs/fileutil.md#WriteStringToFile)
 -   [WriteBytesToFile](https://github.com/duke-git/lancet/blob/v1/docs/fileutil.md#WriteBytesToFile)
 -   [ReadFile](https://github.com/duke-git/lancet/blob/v1/docs/fileutil.md#ReadFile)
@@ -454,6 +460,10 @@ import "github.com/duke-git/lancet/strutil"
 -   [SplitAndTrim](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#SplitAndTrim)
 -   [HideString](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#HideString)
 -   [RemoveWhiteSpace](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#RemoveWhiteSpace)
+-   [SubInBetween](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#SubInBetween)
+-   [HammingDistance](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#HammingDistance)
+
+
 ### 14. System package contain some functions about os, runtime, shell command.
 
 ```go

@@ -95,6 +95,7 @@ import "github.com/duke-git/lancet/convertor"
 -   [ToJson](https://github.com/duke-git/lancet/blob/v1/docs/convertor_zh-CN.md#ToJson)
 -   [ToString](https://github.com/duke-git/lancet/blob/v1/docs/convertor_zh-CN.md#ToString)
 -   [StructToMap](https://github.com/duke-git/lancet/blob/v1/docs/convertor_zh-CN.md#StructToMap)
+-   [MapToStruct](https://github.com/duke-git/lancet/blob/v1/docs/convertor_zh-CN.md#MapToStruct)
 -   [EncodeByte](https://github.com/duke-git/lancet/blob/v1/docs/convertor_zh-CN.md#EncodeByte)
 -   [DecodeByte](https://github.com/duke-git/lancet/blob/v1/docs/convertor_zh-CN.md#DecodeByte)
 -   [DeepClone](https://github.com/duke-git/lancet/blob/v1/docs/convertor_zh-CN.md#DeepClone)
@@ -102,6 +103,12 @@ import "github.com/duke-git/lancet/convertor"
 -   [ToInterface](https://github.com/duke-git/lancet/blob/v1/docs/convertor_zh-CN.md#ToInterface)
 -   [Utf8ToGbk](https://github.com/duke-git/lancet/blob/v1/docs/convertor_zh-CN.md#Utf8ToGbk)
 -   [GbkToUtf8](https://github.com/duke-git/lancet/blob/v1/docs/convertor_zh-CN.md#GbkToUtf8)
+-   [ToStdBase64](https://github.com/duke-git/lancet/blob/v1/docs/convertor_zh-CN.md#ToStdBase64)
+-   [ToUrlBase64](https://github.com/duke-git/lancet/blob/v1/docs/convertor_zh-CN.md#ToUrlBase64)
+-   [ToRawStdBase64](https://github.com/duke-git/lancet/blob/v1/docs/convertor_zh-CN.md#ToRawStdBase64)
+-   [ToRawUrlBase64](https://github.com/duke-git/lancet/blob/v1/docs/convertor_zh-CN.md#ToRawUrlBase64)
+
+
 ### 3. cryptor 加密包支持数据加密和解密，获取 md5，hash 值。支持 base64, md5, hmac, aes, des, rsa。
 
 ```go
@@ -238,6 +245,7 @@ import "github.com/duke-git/lancet/fileutil"
 -   [Sha](https://github.com/duke-git/lancet/blob/v1/docs/fileutil_zh-CN.md#Sha)
 -   [ReadCsvFile](https://github.com/duke-git/lancet/blob/v1/docs/fileutil_zh-CN.md#ReadCsvFile)
 -   [WriteCsvFile](https://github.com/duke-git/lancet/blob/v1/docs/fileutil_zh-CN.md#WriteCsvFile)
+-   [WriteMapsToCsv](https://github.com/duke-git/lancet/blob/v1/docs/fileutil_zh-CN.md#WriteMapsToCsv)
 -   [WriteStringToFile](https://github.com/duke-git/lancet/blob/v1/docs/fileutil_zh-CN.md#WriteStringToFile)
 -   [WriteBytesToFile](https://github.com/duke-git/lancet/blob/v1/docs/fileutil_zh-CN.md#WriteBytesToFile)
 -   [ReadFile](https://github.com/duke-git/lancet/blob/v1/docs/fileutil_zh-CN.md#ReadFile)
@@ -454,6 +462,8 @@ import "github.com/duke-git/lancet/strutil"
 -   [SplitAndTrim](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#SplitAndTrim)
 -   [HideString](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#HideString)
 -   [RemoveWhiteSpace](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#RemoveWhiteSpace)
+-   [SubInBetween](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#SubInBetween)
+-   [HammingDistance](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#HammingDistance)
 
 ### 14. system 包含 os, runtime, shell command 相关函数。
 
