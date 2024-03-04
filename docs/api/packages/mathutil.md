@@ -34,6 +34,10 @@ import (
 -   [RoundToFloat](#RoundToFloat)
 -   [RoundToString](#RoundToString)
 -   [TruncRound](#TruncRound)
+-   [CeilToFloat](#CeilToFloat)
+-   [CeilToString](#CeilToString)
+-   [FloorToFloat](#FloorToFloat)
+-   [FloorToString](#FloorToString)
 -   [Range](#Range)
 -   [RangeWithStep](#RangeWithStep)
 -   [AngleToRadian](#AngleToRadian)
@@ -47,6 +51,7 @@ import (
 -   [Log](#Log)
 -   [Sum](#Sum)
 -   [Abs](#Abs)
+-   [Div](#Div)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -490,6 +495,150 @@ func main() {
     // 0.12
     // 0.12
     // 0.125
+}
+```
+
+### <span id="CeilToFloat">CeilToFloat</span>
+
+<p>向上舍入（进一法），保留 n 位小数</p>
+
+<b>函数签名:</b>
+
+```go
+func CeilToFloat[T constraints.Float | constraints.Integer](x T, n int) float64
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/mathutil"
+)
+
+func main() {
+	result1 := mathutil.CeilToFloat(3.14159, 1)
+	result2 := mathutil.CeilToFloat(3.14159, 2)
+	result3 := mathutil.CeilToFloat(5, 4)
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+
+	// Output:
+	// 3.2
+	// 3.15
+	// 5
+}
+```
+
+### <span id="CeilToString">CeilToString</span>
+
+<p>向上舍入（进一法），保留 n 位小数，返回字符串</p>
+
+<b>函数签名:</b>
+
+```go
+func CeilToString[T constraints.Float | constraints.Integer](x T, n int) string
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/mathutil"
+)
+
+func main() {
+	result1 := mathutil.CeilToString(3.14159, 1)
+	result2 := mathutil.CeilToString(3.14159, 2)
+	result3 := mathutil.CeilToString(5, 4)
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+
+	// Output:
+	// 3.2
+	// 3.15
+	// 5.0000
+}
+```
+
+### <span id="FloorToFloat">FloorToFloat</span>
+
+<p>向下舍入（去尾法），保留 n 位小数</p>
+
+<b>函数签名:</b>
+
+```go
+func CeilToString[T constraints.Float | constraints.Integer](x T, n int) string
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/mathutil"
+)
+
+func main() {
+	result1 := mathutil.FloorToFloat(3.14159, 1)
+	result2 := mathutil.FloorToFloat(3.14159, 2)
+	result3 := mathutil.FloorToFloat(5, 4)
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+
+	// Output:
+	// 3.1
+	// 3.14
+	// 5
+}
+```
+
+### <span id="FloorToString">FloorToString</span>
+
+<p>向下舍入（去尾法），保留 n 位小数，返回字符串</p>
+
+<b>函数签名:</b>
+
+```go
+func CeilToString[T constraints.Float | constraints.Integer](x T, n int) string
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/mathutil"
+)
+
+func main() {
+	result1 := mathutil.FloorToString(3.14159, 1)
+	result2 := mathutil.FloorToString(3.14159, 2)
+	result3 := mathutil.FloorToString(5, 4)
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+
+	// Output:
+	// 3.1
+	// 3.14
+	// 5.0000
 }
 ```
 

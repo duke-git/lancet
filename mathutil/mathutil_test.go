@@ -72,8 +72,8 @@ func TestRoundToString(t *testing.T) {
 	assert.Equal("0.12", RoundToString(0.124, 2))
 	assert.Equal("0.13", RoundToString(0.125, 2))
 	assert.Equal("0.125", RoundToString(0.125, 3))
-	//assert.Equal("54.321", RoundToString(54.321, 3))
-	//assert.Equal("17.000", RoundToString(17, 3))
+	assert.Equal("54.321", RoundToString(54.321, 3))
+	assert.Equal("17.000", RoundToString(17, 3))
 }
 
 func TestTruncRound(t *testing.T) {
@@ -91,6 +91,51 @@ func TestTruncRound(t *testing.T) {
 	assert.Equal(0.12, TruncRound(0.125, 2))
 	assert.Equal(0.125, TruncRound(0.125, 3))
 	assert.Equal(33.33, TruncRound(33.33333, 2))
+}
+
+func TestFloorToFloat(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestFloorToFloat")
+
+	assert.Equal(3.14, FloorToFloat(3.14159, 2))
+	assert.Equal(3.141, FloorToFloat(3.14159, 3))
+	assert.Equal(5.0, FloorToFloat(5, 4))
+	assert.Equal(2.0, FloorToFloat(9/4, 2))
+}
+
+func TestFloorToString(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestFloorToString")
+
+	assert.Equal("3.14", FloorToString(3.14159, 2))
+	assert.Equal("3.141", FloorToString(3.14159, 3))
+	assert.Equal("5.0000", FloorToString(5, 4))
+}
+
+func TestCeilToFloat(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestCeilToFloat")
+
+	assert.Equal(3.15, CeilToFloat(3.14159, 2))
+	assert.Equal(3.142, CeilToFloat(3.14159, 3))
+	assert.Equal(5.0, CeilToFloat(5, 4))
+	assert.Equal(2.25, CeilToFloat(float32(9)/float32(4), 2))
+	assert.Equal(0.15, CeilToFloat(float64(1)/float64(7), 2))
+}
+
+func TestCeilToString(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestCeilToFloat")
+
+	assert.Equal("3.15", CeilToString(3.14159, 2))
+	assert.Equal("3.142", CeilToString(3.14159, 3))
+	assert.Equal("5.0000", CeilToString(5, 4))
+	assert.Equal("2.25", CeilToString(float32(9)/float32(4), 2))
+	assert.Equal("0.15", CeilToString(float64(1)/float64(7), 2))
 }
 
 func TestAverage(t *testing.T) {
@@ -352,4 +397,19 @@ func TestAbs(t *testing.T) {
 
 	assert.Equal(int64(1), Abs(int64(-1)))
 	assert.Equal(float32(1), Abs(float32(-1)))
+	assert.Equal(math.Inf(1), Abs(math.Inf(-1)))
+}
+
+func TestDiv(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestDiv")
+
+	assert.Equal(float64(2), Div(4, 2))
+	assert.Equal(2.5, Div(5, 2))
+	assert.Equal(0.5, Div(1, 2))
+	assert.Equal(0.5, Div(1, 2))
+	assert.Equal(math.Inf(1), Div(8, 0))
+	assert.Equal(math.Inf(-1), Div(-8, 0))
+	assert.Equal(true, math.IsNaN(Div(0, 0)))
 }

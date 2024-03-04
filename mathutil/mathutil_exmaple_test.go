@@ -110,6 +110,66 @@ func ExampleTruncRound() {
 	// 0.125
 }
 
+func ExampleCeilToFloat() {
+	result1 := CeilToFloat(3.14159, 1)
+	result2 := CeilToFloat(3.14159, 2)
+	result3 := CeilToFloat(5, 4)
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+
+	// Output:
+	// 3.2
+	// 3.15
+	// 5
+}
+
+func ExampleCeilToString() {
+	result1 := CeilToString(3.14159, 1)
+	result2 := CeilToString(3.14159, 2)
+	result3 := CeilToString(5, 4)
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+
+	// Output:
+	// 3.2
+	// 3.15
+	// 5.0000
+}
+
+func ExampleFloorToFloat() {
+	result1 := FloorToFloat(3.14159, 1)
+	result2 := FloorToFloat(3.14159, 2)
+	result3 := FloorToFloat(5, 4)
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+
+	// Output:
+	// 3.1
+	// 3.14
+	// 5
+}
+
+func ExampleFloorToString() {
+	result1 := FloorToString(3.14159, 1)
+	result2 := FloorToString(3.14159, 2)
+	result3 := FloorToString(5, 4)
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+
+	// Output:
+	// 3.1
+	// 3.14
+	// 5.0000
+}
+
 func ExampleAverage() {
 	result1 := Average(1, 2)
 	result2 := RoundToFloat(Average(1.2, 1.4), 1)
@@ -403,4 +463,18 @@ func ExampleAbs() {
 	// 1
 	// 0.1
 	// 0.2
+}
+
+func ExampleDiv() {
+	result1 := Div(9, 4)
+	result2 := Div(1, 2)
+	result3 := Div(0, 666)
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+	// Output:
+	// 2.25
+	// 0.5
+	// 0
 }
