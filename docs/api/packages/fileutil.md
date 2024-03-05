@@ -50,6 +50,8 @@ import (
 -   [WriteStringToFile](#WriteStringToFile)
 -   [WriteBytesToFile](#WriteBytesToFile)
 -   [ReadFile](#ReadFile)
+-   [ChunkRead](#ChunkRead)
+-   [ParallelChunkRead](#ParallelChunkRead)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -955,9 +957,123 @@ func main() {
     if err != nil {
         return
     }
+    
     fmt.Println(string(dat))
+    
     // Output:
     // User-agent: *
     // Disallow: /deny
+}
+```
+
+### <span id="ChunkRead">ChunkRead</span>
+
+<p>从文件的指定偏移读取块并返回块内所有行。</p>
+
+<b>函数签名:</b>
+
+```go
+func ChunkRead(file *os.File, offset int64, size int, bufPool *sync.Pool) ([]string, error)
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/fileutil"
+)
+
+func main() {
+    const mb = 1024 * 1024
+    const defaultChunkSizeMB = 100 
+
+    // test1.csv file content:
+    // Lili,22,female
+    // Jim,21,male
+    filePath := "./testdata/test1.csv" // 替换为你的文件路径
+    f, err := os.Open(filePath)
+    if err != nil {
+        return
+    }
+
+    defer f.Close()
+
+    var bufPool = sync.Pool{
+        New: func() interface{} {
+            return make([]byte, 0, defaultChunkSizeMB*mb)
+        },
+    }
+
+    lines, err := fileutil.ChunkRead(f, 0, 100, &bufPool)
+    if err != nil {
+        return
+    }
+
+    fmt.Println(lines[0])
+    fmt.Println(lines[1])
+
+    // Output:
+    // Lili,22,female
+    // Jim,21,male
+}
+```
+
+### <span id="ParallelChunkRead">ParallelChunkRead</span>
+
+<p>并行读取文件并将每个块的行发送到指定通道。</p>
+
+<b>函数签名:</b>
+
+```go
+// filePath:文件路径
+// chunkSizeMB: 分块的大小（单位MB，设置为0时使用默认100MB）,设置过大反而不利，视情调整
+// maxGoroutine: 并发读取分块的数量，设置为0时使用CPU核心数
+// linesCh: 用于接收返回结果的通道。
+func ParallelChunkRead(filePath string, linesCh chan<- []string, chunkSizeMB, maxGoroutine int) error
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/fileutil"
+)
+
+func main() {
+    const mb = 1024 * 1024
+    const defaultChunkSizeMB = 100 // 默认值
+
+    numParsers := runtime.NumCPU()
+
+    linesCh := make(chan []string, numParsers)
+    
+    // test1.csv file content:
+    // Lili,22,female
+    // Jim,21,male
+    filePath := "./testdata/test1.csv"
+
+    go fileutil.ParallelChunkRead(filePath, linesCh, defaultChunkSizeMB, numParsers)
+
+    var totalLines int
+    for lines := range linesCh {
+        totalLines += len(lines)
+
+        for _, line := range lines {
+            fmt.Println(line)
+        }
+    }
+
+    fmt.Println(totalLines)
+
+    // Output:
+    // Lili,22,female
+    // Jim,21,male
+    // 2
 }
 ```

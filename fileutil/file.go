@@ -16,7 +16,6 @@ import (
 	"fmt"
 	"io"
 	"io/fs"
-	"log"
 	"net/http"
 	"os"
 	"path/filepath"
@@ -869,12 +868,13 @@ func isCsvSupportedType(v interface{}) bool {
 	}
 }
 
-// ChunkRead 从文件的指定偏移读取块并返回块内所有行
-func ChunkRead(f *os.File, offset int64, size int, bufPool *sync.Pool) []string {
+// ChunkRead reads a block from the file at the specified offset and returns all lines within the block
+// Play: todo
+func ChunkRead(file *os.File, offset int64, size int, bufPool *sync.Pool) ([]string, error) {
 	buf := bufPool.Get().([]byte)[:size] // 从Pool获取缓冲区并调整大小
-	n, err := f.ReadAt(buf, offset)      // 从指定偏移读取数据到缓冲区
+	n, err := file.ReadAt(buf, offset)   // 从指定偏移读取数据到缓冲区
 	if err != nil && err != io.EOF {
-		log.Fatal(err)
+		return nil, err
 	}
 	buf = buf[:n] // 调整切片以匹配实际读取的字节数
 
@@ -893,58 +893,64 @@ func ChunkRead(f *os.File, offset int64, size int, bufPool *sync.Pool) []string 
 		lines = append(lines, line)
 	}
 	bufPool.Put(buf) // 读取完成后，将缓冲区放回Pool
-	return lines
+	return lines, nil
 }
 
-// 并行读取文件并将每个块的行发送到指定通道
+// ParallelChunkRead reads the file in parallel and send each chunk of lines to the specified channel.
 // filePath 文件路径
-// ChunkSizeMB 分块的大小（单位MB，设置为0时使用默认100MB）,设置过大反而不利，视情调整
-// MaxGoroutine 并发读取分块的数量，设置为0时使用CPU核心数
+// chunkSizeMB 分块的大小（单位MB，设置为0时使用默认100MB）,设置过大反而不利，视情调整
+// maxGoroutine 并发读取分块的数量，设置为0时使用CPU核心数
 // linesCh用于接收返回结果的通道。
-func ParallelChunkRead(filePath string, linesCh chan<- []string, ChunkSizeMB, MaxGoroutine int) {
-	if ChunkSizeMB == 0 {
-		ChunkSizeMB = 100
+// Play: todo
+func ParallelChunkRead(filePath string, linesCh chan<- []string, chunkSizeMB, maxGoroutine int) error {
+	if chunkSizeMB == 0 {
+		chunkSizeMB = 100
 	}
-	ChunkSize := ChunkSizeMB * 1024 * 1024
+	chunkSize := chunkSizeMB * 1024 * 1024
 	// 内存复用
 	bufPool := sync.Pool{
 		New: func() interface{} {
-			return make([]byte, 0, ChunkSize)
+			return make([]byte, 0, chunkSize)
 		},
 	}
 
-	if MaxGoroutine == 0 {
-		MaxGoroutine = runtime.NumCPU() // 设置为0时使用CPU核心数
+	if maxGoroutine == 0 {
+		maxGoroutine = runtime.NumCPU() // 设置为0时使用CPU核心数
 	}
 
 	f, err := os.Open(filePath)
 	if err != nil {
-		log.Fatalf("failed to open file: %v", err)
+		return err
 	}
+
 	defer f.Close()
 
 	info, err := f.Stat()
 	if err != nil {
-		log.Fatalf("failed to get file info: %v", err)
+		return err
 	}
 
 	wg := sync.WaitGroup{}
-	chunkOffsetCh := make(chan int64, MaxGoroutine)
+	chunkOffsetCh := make(chan int64, maxGoroutine)
 
 	// 分配工作
 	go func() {
-		for i := int64(0); i < info.Size(); i += int64(ChunkSize) {
+		for i := int64(0); i < info.Size(); i += int64(chunkSize) {
 			chunkOffsetCh <- i
 		}
 		close(chunkOffsetCh)
 	}()
 
 	// 启动工作协程
-	for i := 0; i < MaxGoroutine; i++ {
+	for i := 0; i < maxGoroutine; i++ {
 		wg.Add(1)
 		go func() {
 			for chunkOffset := range chunkOffsetCh {
-				linesCh <- ChunkRead(f, chunkOffset, ChunkSize, &bufPool)
+				chunk, err := ChunkRead(f, chunkOffset, chunkSize, &bufPool)
+				if err == nil {
+					linesCh <- chunk
+				}
+
 			}
 			wg.Done()
 		}()
@@ -953,4 +959,6 @@ func ParallelChunkRead(filePath string, linesCh chan<- []string, ChunkSizeMB, Ma
 	// 等待所有解析完成后关闭行通道
 	wg.Wait()
 	close(linesCh)
+
+	return nil
 }

@@ -729,6 +729,10 @@ import "github.com/duke-git/lancet/v2/fileutil"
     [[play](https://go.dev/play/p/GhLS6d8lH_g)]
 -   **<big>ReadFile</big>** : read file or url.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/fileutil.md#ReadFile)]
+-   **<big>ChunkRead</big>** : reads a block from the file at the specified offset and returns all lines within the block.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/fileutil.md#ChunkRead)]
+-   **<big>ParallelChunkRead</big>** : reads the file in parallel and send each chunk of lines to the specified channel.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/fileutil.md#ParallelChunkRead)]    
 
 <h3 id="formatter"> 10. Formatter contains some functions for data formatting. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 

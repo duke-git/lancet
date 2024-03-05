@@ -728,6 +728,12 @@ import "github.com/duke-git/lancet/v2/fileutil"
     [[play](https://go.dev/play/p/GhLS6d8lH_g)]
 -   **<big>ReadFile</big>** : 读取文件或者URL。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/fileutil.md#ReadFile)]
+-   **<big>ChunkRead</big>** : 从文件的指定偏移读取块并返回块内所有行。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/fileutil.md#ChunkRead)]
+-   **<big>ParallelChunkRead</big>** : 并行读取文件并将每个块的行发送到指定通道。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/fileutil.md#ParallelChunkRead)]
+
+
 
 <h3 id="formatter"> 10. formatter 格式化器包含一些数据格式化处理方法。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 

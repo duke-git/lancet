@@ -4,7 +4,9 @@ import (
 	"io"
 	"os"
 	"path/filepath"
+	"runtime"
 	"strings"
+	"sync"
 	"testing"
 
 	"github.com/duke-git/lancet/v2/internal"
@@ -565,4 +567,55 @@ func TestCopyDir(t *testing.T) {
 	})
 
 	os.RemoveAll(dest)
+}
+
+func TestParallelChunkRead(t *testing.T) {
+	assert := internal.NewAssert(t, "TestParallelChunkRead")
+
+	const mb = 1024 * 1024
+	const defaultChunkSizeMB = 100 // 默认值
+
+	numParsers := runtime.NumCPU()
+
+	linesCh := make(chan []string, numParsers)
+	filePath := "./testdata/test1.csv" // 替换为你的文件路径
+
+	go ParallelChunkRead(filePath, linesCh, defaultChunkSizeMB, numParsers)
+
+	var totalLines int
+	for lines := range linesCh {
+		totalLines += len(lines)
+
+		assert.Equal("Lili,22,female", lines[0])
+		assert.Equal("Jim,21,male", lines[1])
+	}
+
+	assert.Equal(2, totalLines)
+}
+
+func TestChunkRead(t *testing.T) {
+	assert := internal.NewAssert(t, "TestChunkRead")
+
+	const mb = 1024 * 1024
+	const defaultChunkSizeMB = 100 // 默认值
+
+	filePath := "./testdata/test1.csv" // 替换为你的文件路径
+	f, err := os.Open(filePath)
+	if err != nil {
+		return
+	}
+
+	defer f.Close()
+
+	var bufPool = sync.Pool{
+		New: func() interface{} {
+			return make([]byte, 0, defaultChunkSizeMB*mb)
+		},
+	}
+
+	lines, err := ChunkRead(f, 0, 100, &bufPool)
+
+	assert.Equal("Lili,22,female", lines[0])
+	assert.Equal("Jim,21,male", lines[1])
+
 }
