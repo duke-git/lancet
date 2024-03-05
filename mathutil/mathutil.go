@@ -91,6 +91,34 @@ func TruncRound(x float64, n int) float64 {
 	return res
 }
 
+// FloorToFloat round down to n decimal places.
+func FloorToFloat(x float64, n int) float64 {
+	return math.Floor(x*math.Pow(10, float64(n))) / math.Pow(10.0, float64(n))
+}
+
+// FloorToString round down to n decimal places.
+func FloorToString(x float64, n int) string {
+	tmp := math.Pow(10.0, float64(n))
+	x *= tmp
+	x = math.Floor(x)
+	res := strconv.FormatFloat(x/tmp, 'f', n, 64)
+	return res
+}
+
+// CeilToFloat round up to n decimal places.
+func CeilToFloat(x float64, n int) float64 {
+	pow10n := math.Pow10(n)
+	return math.Ceil(x*pow10n) / pow10n
+}
+
+// CeilToString round up to n decimal places.
+func CeilToString(x float64, n int) string {
+	multiplier := math.Pow(10, float64(n))
+	rounded := math.Ceil(x*multiplier) / multiplier
+
+	return fmt.Sprintf("%.*f", n, rounded)
+}
+
 // AngleToRadian converts angle value to radian value.
 func AngleToRadian(angle float64) float64 {
 	radian := angle * (math.Pi / 180)
