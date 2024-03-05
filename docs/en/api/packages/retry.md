@@ -27,6 +27,10 @@ import (
 -   [RetryFunc](#RetryFunc)
 -   [RetryDuration](#RetryDuration)
 -   [RetryTimes](#RetryTimes)
+-   [BackoffStrategy](#BackoffStrategy)
+-   [RetryWithCustomBackoff](#RetryWithCustomBackoff)
+-   [RetryWithLinearBackoff](#RetryWithLinearBackoff)
+-   [RetryWithExponentialWithJitterBackoff](#RetryWithExponentialWithJitterBackoff)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -249,6 +253,205 @@ func main() {
     duration := retry.RetryDuration(time.Microsecond*50)
 
     err := retry.Retry(increaseNumber, duration)
+    if err != nil {
+        return
+    }
+
+    fmt.Println(number)
+
+    // Output:
+    // 3
+}
+```
+
+
+### <span id="BackoffStrategy">BackoffStrategy</span>
+
+<p>An interface that defines a method for calculating backoff intervals.</p>
+
+<b>Signature:</b>
+
+```go
+// BackoffStrategy is an interface that defines a method for calculating backoff intervals.
+type BackoffStrategy interface {
+    // CalculateInterval returns the time.Duration after which the next retry attempt should be made.
+    CalculateInterval() time.Duration
+}
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "errors"
+    "log"
+    "github.com/duke-git/lancet/v2/retry"
+)
+
+type ExampleCustomBackoffStrategy struct {
+    interval time.Duration
+}
+
+func (c *ExampleCustomBackoffStrategy) CalculateInterval() time.Duration {
+    return c.interval + 1
+}
+
+func main() {
+    number := 0
+    increaseNumber := func() error {
+        number++
+        if number == 3 {
+            return nil
+        }
+        return errors.New("error occurs")
+    }
+
+    err := retry,Retry(increaseNumber, retry.RetryWithCustomBackoff(&ExampleCustomBackoffStrategy{interval: time.Microsecond * 50}))
+    if err != nil {
+        return
+    }
+
+    fmt.Println(number)
+
+    // Output:
+    // 3
+}
+```
+
+### <span id="RetryWithCustomBackoff">RetryWithCustomBackoff</span>
+
+<p>Set abitary custom backoff strategy.</p>
+
+<b>Signature:</b>
+
+```go
+func RetryWithCustomBackoff(backoffStrategy BackoffStrategy) Option 
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "errors"
+    "log"
+    "github.com/duke-git/lancet/v2/retry"
+)
+
+type ExampleCustomBackoffStrategy struct {
+    interval time.Duration
+}
+
+func (c *ExampleCustomBackoffStrategy) CalculateInterval() time.Duration {
+    return c.interval + 1
+}
+
+func main() {
+    number := 0
+    increaseNumber := func() error {
+        number++
+        if number == 3 {
+            return nil
+        }
+        return errors.New("error occurs")
+    }
+
+    err := retry,Retry(increaseNumber, retry.RetryWithCustomBackoff(&ExampleCustomBackoffStrategy{interval: time.Microsecond * 50}))
+    if err != nil {
+        return
+    }
+
+    fmt.Println(number)
+
+    // Output:
+    // 3
+}
+```
+
+
+### <span id="RetryWithLinearBackoff">RetryWithLinearBackoff</span>
+
+<p>Set linear strategy backoff.</p>
+
+<b>Signature:</b>
+
+```go
+func RetryWithLinearBackoff(interval time.Duration) Option
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "errors"
+    "log"
+    "github.com/duke-git/lancet/v2/retry"
+)
+
+func main() {
+    number := 0
+    increaseNumber := func() error {
+        number++
+        if number == 3 {
+            return nil
+        }
+        return errors.New("error occurs")
+    }
+
+    err := retry.Retry(increaseNumber, retry.RetryWithLinearBackoff(time.Microsecond*50))
+    if err != nil {
+        return
+    }
+
+    fmt.Println(number)
+
+    // Output:
+    // 3
+}
+```
+
+
+### <span id="RetryWithExponentialWithJitterBackoff">RetryWithExponentialWithJitterBackoff</span>
+
+<p>Set exponential strategy backoff.</p>
+
+<b>Signature:</b>
+
+```go
+func RetryWithExponentialWithJitterBackoff(interval time.Duration, base uint64, maxJitter time.Duration) Option
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "errors"
+    "log"
+    "github.com/duke-git/lancet/v2/retry"
+)
+
+func main() {
+    number := 0
+    increaseNumber := func() error {
+        number++
+        if number == 3 {
+            return nil
+        }
+        return errors.New("error occurs")
+    }
+
+    err := retry.Retry(increaseNumber, retry.RetryWithExponentialWithJitterBackoff(time.Microsecond*50, 2, time.Microsecond*25))
     if err != nil {
         return
     }

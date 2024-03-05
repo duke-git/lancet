@@ -1176,6 +1176,16 @@ import "github.com/duke-git/lancet/v2/retry"
 -   **<big>RetryTimes</big>** : set times of retry.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/retry.md#RetryTimes)]
     [[play](https://go.dev/play/p/ssfVeU2SwLO)]
+-   **<big>BackoffStrategy</big>** : An interface that defines a method for calculating backoff intervals.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/retry.md#BackoffStrategy)]
+-   **<big>RetryWithCustomBackoff</big>** : set abitary custom backoff strategy.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/retry.md#RetryWithCustomBackoff)]
+-   **<big>RetryWithLinearBackoff</big>** : set linear strategy backoff.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/retry.md#RetryWithLinearBackoff)]
+-   **<big>RetryWithExponentialWithJitterBackoff</big>** : set exponential strategy backoff.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/retry.md#RetryWithExponentialWithJitterBackoff)]
+
+   
 
 <h3 id="slice"> 18. Slice contains some functions to manipulate slice. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 

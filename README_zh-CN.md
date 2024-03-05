@@ -1176,6 +1176,16 @@ import "github.com/duke-git/lancet/v2/retry"
 -   **<big>RetryTimes</big>** : 设置重试次数，默认 5。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/retry.md#RetryTimes)]
     [[play](https://go.dev/play/p/ssfVeU2SwLO)]
+-   **<big>BackoffStrategy</big>** : 定义计算退避间隔的方法的接口。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/retry.md#BackoffStrategy)]
+-   **<big>RetryWithCustomBackoff</big>** : 设置自定义退避策略。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/retry.md#RetryWithCustomBackoff)]
+-   **<big>RetryWithLinearBackoff</big>** : 设置线性策略退避。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/retry.md#RetryWithLinearBackoff)]
+-   **<big>RetryWithExponentialWithJitterBackoff</big>** : 设置指数策略退避。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/retry.md#RetryWithExponentialWithJitterBackoff)]
+
+
 
 <h3 id="slice"> 18. slice 包含操作切片的方法集合。&nbsp; &nbsp; &nbsp; &nbsp; <a href="#index">回到目录</a></h3>
 

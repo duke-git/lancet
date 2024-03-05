@@ -27,6 +27,10 @@ import (
 -   [RetryFunc](#RetryFunc)
 -   [RetryDuration](#RetryDuration)
 -   [RetryTimes](#RetryTimes)
+-   [BackoffStrategy](#BackoffStrategy)
+-   [RetryWithCustomBackoff](#RetryWithCustomBackoff)
+-   [RetryWithLinearBackoff](#RetryWithLinearBackoff)
+-   [RetryWithExponentialWithJitterBackoff](#RetryWithExponentialWithJitterBackoff)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -250,6 +254,204 @@ func main() {
     duration := retry.RetryDuration(time.Microsecond*50)
 
     err := retry.Retry(increaseNumber, duration)
+    if err != nil {
+        return
+    }
+
+    fmt.Println(number)
+
+    // Output:
+    // 3
+}
+```
+
+### <span id="BackoffStrategy">BackoffStrategy</span>
+
+<p>定义计算退避间隔的方法的接口。</p>
+
+<b>函数签名:</b>
+
+```go
+// BackoffStrategy is an interface that defines a method for calculating backoff intervals.
+type BackoffStrategy interface {
+    // CalculateInterval returns the time.Duration after which the next retry attempt should be made.
+    CalculateInterval() time.Duration
+}
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "errors"
+    "log"
+    "github.com/duke-git/lancet/v2/retry"
+)
+
+type ExampleCustomBackoffStrategy struct {
+    interval time.Duration
+}
+
+func (c *ExampleCustomBackoffStrategy) CalculateInterval() time.Duration {
+    return c.interval + 1
+}
+
+func main() {
+    number := 0
+    increaseNumber := func() error {
+        number++
+        if number == 3 {
+            return nil
+        }
+        return errors.New("error occurs")
+    }
+
+    err := retry,Retry(increaseNumber, retry.RetryWithCustomBackoff(&示例CustomBackoffStrategy{interval: time.Microsecond * 50}))
+    if err != nil {
+        return
+    }
+
+    fmt.Println(number)
+
+    // Output:
+    // 3
+}
+```
+
+### <span id="RetryWithCustomBackoff">RetryWithCustomBackoff</span>
+
+<p>设置自定义退避策略。</p>
+
+<b>函数签名:</b>
+
+```go
+func RetryWithCustomBackoff(backoffStrategy BackoffStrategy) Option 
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "errors"
+    "log"
+    "github.com/duke-git/lancet/v2/retry"
+)
+
+type ExampleCustomBackoffStrategy struct {
+    interval time.Duration
+}
+
+func (c *ExampleCustomBackoffStrategy) CalculateInterval() time.Duration {
+    return c.interval + 1
+}
+
+func main() {
+    number := 0
+    increaseNumber := func() error {
+        number++
+        if number == 3 {
+            return nil
+        }
+        return errors.New("error occurs")
+    }
+
+    err := retry,Retry(increaseNumber, retry.RetryWithCustomBackoff(&示例CustomBackoffStrategy{interval: time.Microsecond * 50}))
+    if err != nil {
+        return
+    }
+
+    fmt.Println(number)
+
+    // Output:
+    // 3
+}
+```
+
+
+### <span id="RetryWithLinearBackoff">RetryWithLinearBackoff</span>
+
+<p>设置线性策略退避。</p>
+
+<b>函数签名:</b>
+
+```go
+func RetryWithLinearBackoff(interval time.Duration) Option
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "errors"
+    "log"
+    "github.com/duke-git/lancet/v2/retry"
+)
+
+func main() {
+    number := 0
+    increaseNumber := func() error {
+        number++
+        if number == 3 {
+            return nil
+        }
+        return errors.New("error occurs")
+    }
+
+    err := retry.Retry(increaseNumber, retry.RetryWithLinearBackoff(time.Microsecond*50))
+    if err != nil {
+        return
+    }
+
+    fmt.Println(number)
+
+    // Output:
+    // 3
+}
+```
+
+
+### <span id="RetryWithExponentialWithJitterBackoff">RetryWithExponentialWithJitterBackoff</span>
+
+<p>设置指数策略退避。</p>
+
+<b>函数签名:</b>
+
+```go
+func RetryWithExponentialWithJitterBackoff(interval time.Duration, base uint64, maxJitter time.Duration) Option
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "errors"
+    "log"
+    "github.com/duke-git/lancet/v2/retry"
+)
+
+func main() {
+    number := 0
+    increaseNumber := func() error {
+        number++
+        if number == 3 {
+            return nil
+        }
+        return errors.New("error occurs")
+    }
+
+    err := retry.Retry(increaseNumber, retry.RetryWithExponentialWithJitterBackoff(time.Microsecond*50, 2, time.Microsecond*25))
     if err != nil {
         return
     }
