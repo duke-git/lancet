@@ -1173,6 +1173,7 @@ func AppendIfAbsent[T comparable](slice []T, item T) []T {
 // SetToDefaultIf sets elements to their default value if they match the given predicate.
 // It retains the positions of the elements in the slice.
 // It returns slice of T and the count of modified slice items
+// Play: todo
 func SetToDefaultIf[T any](slice []T, predicate func(T) bool) ([]T, int) {
 	var count int
 	for i := 0; i < len(slice); i++ {

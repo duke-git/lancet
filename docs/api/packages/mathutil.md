@@ -519,18 +519,18 @@ import (
 )
 
 func main() {
-	result1 := mathutil.CeilToFloat(3.14159, 1)
-	result2 := mathutil.CeilToFloat(3.14159, 2)
-	result3 := mathutil.CeilToFloat(5, 4)
+    result1 := mathutil.CeilToFloat(3.14159, 1)
+    result2 := mathutil.CeilToFloat(3.14159, 2)
+    result3 := mathutil.CeilToFloat(5, 4)
 
-	fmt.Println(result1)
-	fmt.Println(result2)
-	fmt.Println(result3)
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
 
-	// Output:
-	// 3.2
-	// 3.15
-	// 5
+    // Output:
+    // 3.2
+    // 3.15
+    // 5
 }
 ```
 
@@ -555,18 +555,18 @@ import (
 )
 
 func main() {
-	result1 := mathutil.CeilToString(3.14159, 1)
-	result2 := mathutil.CeilToString(3.14159, 2)
-	result3 := mathutil.CeilToString(5, 4)
+    result1 := mathutil.CeilToString(3.14159, 1)
+    result2 := mathutil.CeilToString(3.14159, 2)
+    result3 := mathutil.CeilToString(5, 4)
 
-	fmt.Println(result1)
-	fmt.Println(result2)
-	fmt.Println(result3)
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
 
-	// Output:
-	// 3.2
-	// 3.15
-	// 5.0000
+    // Output:
+    // 3.2
+    // 3.15
+    // 5.0000
 }
 ```
 
@@ -591,18 +591,18 @@ import (
 )
 
 func main() {
-	result1 := mathutil.FloorToFloat(3.14159, 1)
-	result2 := mathutil.FloorToFloat(3.14159, 2)
-	result3 := mathutil.FloorToFloat(5, 4)
+    result1 := mathutil.FloorToFloat(3.14159, 1)
+    result2 := mathutil.FloorToFloat(3.14159, 2)
+    result3 := mathutil.FloorToFloat(5, 4)
 
-	fmt.Println(result1)
-	fmt.Println(result2)
-	fmt.Println(result3)
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
 
-	// Output:
-	// 3.1
-	// 3.14
-	// 5
+    // Output:
+    // 3.1
+    // 3.14
+    // 5
 }
 ```
 
@@ -627,18 +627,18 @@ import (
 )
 
 func main() {
-	result1 := mathutil.FloorToString(3.14159, 1)
-	result2 := mathutil.FloorToString(3.14159, 2)
-	result3 := mathutil.FloorToString(5, 4)
+    result1 := mathutil.FloorToString(3.14159, 1)
+    result2 := mathutil.FloorToString(3.14159, 2)
+    result3 := mathutil.FloorToString(5, 4)
 
-	fmt.Println(result1)
-	fmt.Println(result2)
-	fmt.Println(result3)
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
 
-	// Output:
-	// 3.1
-	// 3.14
-	// 5.0000
+    // Output:
+    // 3.1
+    // 3.14
+    // 5.0000
 }
 ```
 
@@ -1114,17 +1114,17 @@ import (
 
 func main() {
     result1 := Abs(-1)
-	result2 := Abs(-0.1)
-	result3 := Abs(float32(0.2))
+    result2 := Abs(-0.1)
+    result3 := Abs(float32(0.2))
 
-	fmt.Println(result1)
-	fmt.Println(result2)
-	fmt.Println(result3)
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
 
-	// Output:
-	// 1
-	// 0.1
-	// 0.2
+    // Output:
+    // 1
+    // 0.1
+    // 0.2
 }
 ```
 
@@ -1149,16 +1149,16 @@ import (
 )
 
 func main() {
-	result1 := mathutil.Div(9, 4)
-	result2 := mathutil.Div(1, 2)
-	result3 := mathutil.Div(0, 666)
+    result1 := mathutil.Div(9, 4)
+    result2 := mathutil.Div(1, 2)
+    result3 := mathutil.Div(0, 666)
 
-	fmt.Println(result1)
-	fmt.Println(result2)
-	fmt.Println(result3)
-	// Output:
-	// 2.25
-	// 0.5
-	// 0
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    // Output:
+    // 2.25
+    // 0.5
+    // 0
 }
 ```
