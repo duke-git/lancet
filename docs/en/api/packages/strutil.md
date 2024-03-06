@@ -1477,7 +1477,7 @@ func main() {
 func SubInBetween(str string, start string, end string) string
 ```
 
-<b>Example:</b>
+<b>Example:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/EDbaRvjeNsv)</span></b>
 
 ```go
 import (
@@ -1507,10 +1507,10 @@ func main() {
 <b>Signature:</b>
 
 ```go
-HammingDistance(a, b string) (int, error)
+func HammingDistance(a, b string) (int, error)
 ```
 
-<b>Example:</b>
+<b>Example:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/glNdQEA9HUi)</span></b>
 
 ```go
 import (

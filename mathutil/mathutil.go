@@ -101,7 +101,7 @@ func TruncRound[T constraints.Float | constraints.Integer](x T, n int) T {
 }
 
 // FloorToFloat round down to n decimal places.
-// Play: todo
+// Play: https://go.dev/play/p/vbCBrQHZEED
 func FloorToFloat[T constraints.Float | constraints.Integer](x T, n int) float64 {
 	tmp := math.Pow(10.0, float64(n))
 	x *= T(tmp)
@@ -110,7 +110,7 @@ func FloorToFloat[T constraints.Float | constraints.Integer](x T, n int) float64
 }
 
 // FloorToString round down to n decimal places.
-// Play: todo
+// Play: https://go.dev/play/p/Qk9KPd2IdDb
 func FloorToString[T constraints.Float | constraints.Integer](x T, n int) string {
 	tmp := math.Pow(10.0, float64(n))
 	x *= T(tmp)
@@ -120,7 +120,7 @@ func FloorToString[T constraints.Float | constraints.Integer](x T, n int) string
 }
 
 // CeilToFloat round up to n decimal places.
-// Play: todo
+// Play: https://go.dev/play/p/8hOeSADZPCo
 func CeilToFloat[T constraints.Float | constraints.Integer](x T, n int) float64 {
 	tmp := math.Pow(10.0, float64(n))
 	x *= T(tmp)
@@ -129,7 +129,7 @@ func CeilToFloat[T constraints.Float | constraints.Integer](x T, n int) float64 
 }
 
 // CeilToString round up to n decimal places.
-// Play: todo
+// Play: https://go.dev/play/p/wy5bYEyUKKG
 func CeilToString[T constraints.Float | constraints.Integer](x T, n int) string {
 	tmp := math.Pow(10.0, float64(n))
 	x *= T(tmp)
@@ -391,7 +391,7 @@ func Abs[T constraints.Integer | constraints.Float](x T) T {
 }
 
 // Div returns the result of x divided by y.
-// Play: todo
+// Play: https://go.dev/play/p/WLxDdGXXYat
 func Div[T constraints.Float | constraints.Integer](x T, y T) float64 {
 	return float64(x) / float64(y)
 }

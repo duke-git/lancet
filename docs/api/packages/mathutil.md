@@ -508,7 +508,7 @@ func main() {
 func CeilToFloat[T constraints.Float | constraints.Integer](x T, n int) float64
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/8hOeSADZPCo)</span></b>
 
 ```go
 package main
@@ -544,7 +544,7 @@ func main() {
 func CeilToString[T constraints.Float | constraints.Integer](x T, n int) string
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/wy5bYEyUKKG)</span></b>
 
 ```go
 package main
@@ -577,10 +577,10 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func CeilToString[T constraints.Float | constraints.Integer](x T, n int) string
+func FloorToFloat[T constraints.Float | constraints.Integer](x T, n int) float64
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/vbCBrQHZEED)</span></b>
 
 ```go
 package main
@@ -613,10 +613,10 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func CeilToString[T constraints.Float | constraints.Integer](x T, n int) string
+func FloorToString[T constraints.Float | constraints.Integer](x T, n int) string
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/Qk9KPd2IdDb)</span></b>
 
 ```go
 package main
@@ -1130,7 +1130,7 @@ func main() {
 
 ### <span id="Div">Div</span>
 
-<p>除法运算.</p>
+<p>除法运算。</p>
 
 <b>函数签名:</b>
 
@@ -1138,7 +1138,7 @@ func main() {
 func Div[T constraints.Float | constraints.Integer](x T, y T) float64
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/WLxDdGXXYat)</span></b>
 
 ```go
 package main
@@ -1156,6 +1156,7 @@ func main() {
     fmt.Println(result1)
     fmt.Println(result2)
     fmt.Println(result3)
+
     // Output:
     // 2.25
     // 0.5

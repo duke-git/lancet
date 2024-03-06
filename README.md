@@ -660,9 +660,12 @@ import "github.com/duke-git/lancet/v2/fileutil"
 -   **<big>CreateDir</big>** : create directory in absolute path.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/fileutil.md#CreateDir)]
     [[play](https://go.dev/play/p/qUuCe1OGQnM)]
--   **<big>CopyFile</big>** :copy src file to dest file.
+-   **<big>CopyFile</big>** : copy src file to dest file.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/fileutil.md#CopyFile)]
     [[play](https://go.dev/play/p/Jg9AMJMLrJi)]
+-   **<big>CopyDir</big>** : copy src directory to dest directory.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/fileutil.md#CopyDir)]
+    [[play](https://go.dev/play/p/YAyFTA_UuPb)]
 -   **<big>FileMode</big>** : return file's mode and permission.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/fileutil.md#FileMode)]
     [[play](https://go.dev/play/p/2l2hI42fA3p)]
@@ -731,8 +734,10 @@ import "github.com/duke-git/lancet/v2/fileutil"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/fileutil.md#ReadFile)]
 -   **<big>ChunkRead</big>** : reads a block from the file at the specified offset and returns all lines within the block.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/fileutil.md#ChunkRead)]
+    [[play](https://go.dev/play/p/r0hPmKWhsgf)]
 -   **<big>ParallelChunkRead</big>** : reads the file in parallel and send each chunk of lines to the specified channel.
-    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/fileutil.md#ParallelChunkRead)]    
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/fileutil.md#ParallelChunkRead)]  
+    [[play](https://go.dev/play/p/teMXnCsdSEw)]
 
 <h3 id="formatter"> 10. Formatter contains some functions for data formatting. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
@@ -959,12 +964,16 @@ import "github.com/duke-git/lancet/v2/mathutil"
     [[play](https://go.dev/play/p/aumarSHIGzP)]
 -   **<big>CeilToFloat</big>** : round float up n decimal places.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/mathutil.md#CeilToFloat)]
+    [[play](https://go.dev/play/p/8hOeSADZPCo)]
 -   **<big>CeilToString</big>** : round float up n decimal places, then conver to string.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/mathutil.md#CeilToString)]
+    [[play](https://go.dev/play/p/wy5bYEyUKKG)]
 -   **<big>FloorToFloat</big>** : round float down n decimal places.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/mathutil.md#FloorToFloat)]
+    [[play](https://go.dev/play/p/vbCBrQHZEED)]
 -   **<big>FloorToString</big>** : round float down n decimal places, then conver to string.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/mathutil.md#FloorToString)]
+    [[play](https://go.dev/play/p/Qk9KPd2IdDb)]
 -   **<big>Range</big>** : Creates a slice of numbers from start with specified count, element step is 1.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/mathutil.md#Range)]
     [[play](https://go.dev/play/p/9ke2opxa8ZP)]
@@ -1006,6 +1015,7 @@ import "github.com/duke-git/lancet/v2/mathutil"
     [[play](https://go.dev/play/p/fsyBh1Os-1d)]
 -   **<big>Div</big>** : returns the result of x divided by y.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/mathutil.md#Div)]
+    [[play](https://go.dev/play/p/WLxDdGXXYat)]
 
 
 <h3 id="netutil"> 14. Netutil package contains functions to get net information and send http request. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
@@ -1660,8 +1670,11 @@ import "github.com/duke-git/lancet/v2/strutil"
     [[play](https://go.dev/play/p/HzLC9vsTwkf)]
 -   **<big>SubInBetween</big>** : return substring between the start and end position(excluded) of source string.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/strutil.md#SubInBetween)]
+    [[play](https://go.dev/play/p/EDbaRvjeNsv)]
 -   **<big>HammingDistance</big>** : calculates the Hamming distance between two strings.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/strutil.md#HammingDistance)]
+    [[play](https://go.dev/play/p/glNdQEA9HUi)]
+
 
 <h3 id="system"> 22. System package contain some functions about os, runtime, shell command. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 

@@ -976,7 +976,7 @@ func main() {
 func ChunkRead(file *os.File, offset int64, size int, bufPool *sync.Pool) ([]string, error)
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/r0hPmKWhsgf)</span></b>
 
 ```go
 package main
@@ -1035,7 +1035,7 @@ func main() {
 func ParallelChunkRead(filePath string, linesCh chan<- []string, chunkSizeMB, maxGoroutine int) error
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/teMXnCsdSEw)</span></b>
 
 ```go
 package main

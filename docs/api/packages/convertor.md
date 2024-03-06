@@ -891,7 +891,7 @@ func main() {
 func ToStdBase64(value any) string
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/_fLJqJD3NMo)</span></b>
 
 ```go
 package main
@@ -963,7 +963,7 @@ func main() {
 func ToUrlBase64(value any) string
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/C_d0GlvEeUR)</span></b>
 
 ```go
 package main
@@ -1032,7 +1032,7 @@ func main() {
 func ToRawStdBase64(value any) string
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/wSAr3sfkDcv)</span></b>
 
 ```go
 package main
@@ -1064,7 +1064,7 @@ func main() {
     fmt.Println(afterEncode)
 
     floatVal := 123.456
-    afterEncode = convertor.ToRawStdBase64(floatVal)
+    afterEncode := convertor.ToRawStdBase64(floatVal)
     fmt.Println(afterEncode)
 
     boolVal := true
@@ -1090,7 +1090,7 @@ func main() {
 
 <p>值转换为 ToRawUrlBase64 编码的字符串。error 类型的数据也会把 error 的原因进行编码，复杂的结构会转为 JSON 格式的字符串</p>
 
-<b>函数签名:</b>
+<b>函数签名:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/HwdDPFcza1O)</span></b>
 
 ```go
 func ToRawUrlBase64(value any) string
@@ -1109,7 +1109,7 @@ import (
 func main() {
 
     stringVal := "hello"
-    afterEncode = convertor.ToRawUrlBase64(stringVal)
+    afterEncode := convertor.ToRawUrlBase64(stringVal)
     fmt.Println(afterEncode)
 
     byteSliceVal := []byte("hello")
@@ -1132,11 +1132,11 @@ func main() {
     fmt.Println(afterEncode)
 
     boolVal := true
-    afterEncode = convertor.ToRawStdBase64(boolVal)
+    afterEncode = convertor.ToRawUrlBase64(boolVal)
     fmt.Println(afterEncode)
 
     errVal := errors.New("err")
-    afterEncode = convertor.ToRawStdBase64(errVal)
+    afterEncode = convertor.ToRawUrlBase64(errVal)
     fmt.Println(afterEncode)
 
     // Output:

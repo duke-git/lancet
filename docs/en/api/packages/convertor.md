@@ -891,7 +891,7 @@ func main() {
 func ToStdBase64(value any) string
 ```
 
-<b>Example:</b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/_fLJqJD3NMo)</span></b>
 
 ```go
 package main
@@ -963,7 +963,7 @@ func main() {
 func ToUrlBase64(value any) string
 ```
 
-<b>Example:</b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/C_d0GlvEeUR)</span></b>
 
 ```go
 package main
@@ -1032,7 +1032,7 @@ func main() {
 func ToRawStdBase64(value any) string
 ```
 
-<b>Example:</b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/wSAr3sfkDcv)</span></b>
 
 ```go
 package main
@@ -1045,7 +1045,7 @@ import (
 func main() {
 
     stringVal := "hello"
-    afterEncode = convertor.ToRawStdBase64(stringVal)
+    afterEncode := convertor.ToRawStdBase64(stringVal)
     fmt.Println(afterEncode)
 
     byteSliceVal := []byte("hello")
@@ -1096,7 +1096,7 @@ func main() {
 func ToRawUrlBase64(value any) string
 ```
 
-<b>Example:</b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/HwdDPFcza1O)</span></b>
 
 ```go
 package main
@@ -1109,7 +1109,7 @@ import (
 func main() {
 
     stringVal := "hello"
-    afterEncode = convertor.ToRawUrlBase64(stringVal)
+    afterEncode := convertor.ToRawUrlBase64(stringVal)
     fmt.Println(afterEncode)
 
     byteSliceVal := []byte("hello")
@@ -1132,11 +1132,11 @@ func main() {
     fmt.Println(afterEncode)
 
     boolVal := true
-    afterEncode = convertor.ToRawStdBase64(boolVal)
+    afterEncode = convertor.ToRawUrlBase64(boolVal)
     fmt.Println(afterEncode)
 
     errVal := errors.New("err")
-    afterEncode = convertor.ToRawStdBase64(errVal)
+    afterEncode = convertor.ToRawUrlBase64(errVal)
     fmt.Println(afterEncode)
 
     // Output:

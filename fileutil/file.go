@@ -869,7 +869,7 @@ func isCsvSupportedType(v interface{}) bool {
 }
 
 // ChunkRead reads a block from the file at the specified offset and returns all lines within the block
-// Play: todo
+// Play: https://go.dev/play/p/r0hPmKWhsgf
 func ChunkRead(file *os.File, offset int64, size int, bufPool *sync.Pool) ([]string, error) {
 	buf := bufPool.Get().([]byte)[:size] // 从Pool获取缓冲区并调整大小
 	n, err := file.ReadAt(buf, offset)   // 从指定偏移读取数据到缓冲区
@@ -901,7 +901,7 @@ func ChunkRead(file *os.File, offset int64, size int, bufPool *sync.Pool) ([]str
 // chunkSizeMB 分块的大小（单位MB，设置为0时使用默认100MB）,设置过大反而不利，视情调整
 // maxGoroutine 并发读取分块的数量，设置为0时使用CPU核心数
 // linesCh用于接收返回结果的通道。
-// Play: todo
+// Play: https://go.dev/play/p/teMXnCsdSEw
 func ParallelChunkRead(filePath string, linesCh chan<- []string, chunkSizeMB, maxGoroutine int) error {
 	if chunkSizeMB == 0 {
 		chunkSizeMB = 100

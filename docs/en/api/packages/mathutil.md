@@ -508,7 +508,7 @@ func main() {
 func CeilToFloat[T constraints.Float | constraints.Integer](x T, n int) float64
 ```
 
-<b>Example:</b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/8hOeSADZPCo)</span></b>
 
 ```go
 package main
@@ -544,7 +544,7 @@ func main() {
 func CeilToString[T constraints.Float | constraints.Integer](x T, n int) string
 ```
 
-<b>Example:</b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/wy5bYEyUKKG)</span></b>
 
 ```go
 package main
@@ -577,10 +577,10 @@ func main() {
 <b>Signature:</b>
 
 ```go
-func CeilToString[T constraints.Float | constraints.Integer](x T, n int) string
+func FloorToFloat[T constraints.Float | constraints.Integer](x T, n int) float64
 ```
 
-<b>Example:</b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/vbCBrQHZEED)</span></b>
 
 ```go
 package main
@@ -613,10 +613,10 @@ func main() {
 <b>Signature:</b>
 
 ```go
-func CeilToString[T constraints.Float | constraints.Integer](x T, n int) string
+func FloorToString[T constraints.Float | constraints.Integer](x T, n int) string
 ```
 
-<b>Example:</b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/Qk9KPd2IdDb)</span></b>
 
 ```go
 package main
@@ -1130,7 +1130,7 @@ func main() {
 
 ### <span id="Div">Div</span>
 
-<p>returns the result of x divided by y.</p>
+<p>Returns the result of x divided by y.</p>
 
 <b>Signature:</b>
 
@@ -1138,7 +1138,7 @@ func main() {
 func Div[T constraints.Float | constraints.Integer](x T, y T) float64
 ```
 
-<b>Example:</b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/WLxDdGXXYat)</span></b>
 
 ```go
 package main

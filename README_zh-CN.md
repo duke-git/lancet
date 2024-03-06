@@ -659,9 +659,12 @@ import "github.com/duke-git/lancet/v2/fileutil"
 -   **<big>CreateDir</big>** : 创建嵌套目录，例如/a/, /a/b/。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/fileutil.md#CreateDir)]
     [[play](https://go.dev/play/p/qUuCe1OGQnM)]
--   **<big>CopyFile</big>** :拷贝文件，会覆盖原有的文件。
+-   **<big>CopyFile</big>** : 拷贝文件，会覆盖原有的文件。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/fileutil.md#CopyFile)]
     [[play](https://go.dev/play/p/Jg9AMJMLrJi)]
+-   **<big>CopyDir</big>** : 拷贝目录。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/fileutil.md#CopyDir)]
+    [[play](https://go.dev/play/p/YAyFTA_UuPb)]
 -   **<big>FileMode</big>** : 获取文件 mode 信息。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/fileutil.md#FileMode)]
     [[play](https://go.dev/play/p/2l2hI42fA3p)]
@@ -730,8 +733,10 @@ import "github.com/duke-git/lancet/v2/fileutil"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/fileutil.md#ReadFile)]
 -   **<big>ChunkRead</big>** : 从文件的指定偏移读取块并返回块内所有行。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/fileutil.md#ChunkRead)]
+    [[play](https://go.dev/play/p/r0hPmKWhsgf)]
 -   **<big>ParallelChunkRead</big>** : 并行读取文件并将每个块的行发送到指定通道。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/fileutil.md#ParallelChunkRead)]
+    [[play](https://go.dev/play/p/teMXnCsdSEw)]
 
 
 
@@ -960,12 +965,16 @@ import "github.com/duke-git/lancet/v2/mathutil"
     [[play](https://go.dev/play/p/aumarSHIGzP)]
 -   **<big>CeilToFloat</big>** : 向上舍入（进一法），保留n位小数。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/mathutil.md#CeilToFloat)]
+    [[play](https://go.dev/play/p/8hOeSADZPCo)]
 -   **<big>CeilToString</big>** : 向上舍入（进一法），保留n位小数，返回字符串。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/mathutil.md#CeilToString)]
+    [[play](https://go.dev/play/p/wy5bYEyUKKG)]
 -   **<big>FloorToFloat</big>** : 向下舍入（去尾法），保留n位小数。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/mathutil.md#FloorToFloat)]
+    [[play](https://go.dev/play/p/vbCBrQHZEED)]
 -   **<big>FloorToString</big>** : 向下舍入（去尾法），保留n位小数，返回字符串。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/mathutil.md#FloorToString)]
+    [[play](https://go.dev/play/p/Qk9KPd2IdDb)]
 -   **<big>Range</big>** : 根据指定的起始值和数量，创建一个数字切片。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/mathutil.md#Range)]
     [[play](https://go.dev/play/p/9ke2opxa8ZP)]
@@ -1007,7 +1016,7 @@ import "github.com/duke-git/lancet/v2/mathutil"
     [[play](https://go.dev/play/p/fsyBh1Os-1d)]
 -   **<big>Div</big>** : 除法运算。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/mathutil.md#Div)]
-
+    [[play](https://go.dev/play/p/WLxDdGXXYat)]
 
 
 <h3 id="netutil"> 14. netutil 网络包支持获取 ip 地址，发送 http 请求。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
@@ -1663,8 +1672,11 @@ import "github.com/duke-git/lancet/v2/strutil"
     [[play](https://go.dev/play/p/HzLC9vsTwkf)]
 -   **<big>SubInBetween</big>** : 获取字符串中指定的起始字符串start和终止字符串end直接的子字符串。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/strutil.md#SubInBetween)]
+    [[play](https://go.dev/play/p/EDbaRvjeNsv)]
 -   **<big>HammingDistance</big>** : 计算两个字符串之间的汉明距离。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/strutil.md#HammingDistance)]
+    [[play](https://go.dev/play/p/glNdQEA9HUi)]
+
 
 <h3 id="system"> 22. system 包含 os, runtime, shell command 的相关函数。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 

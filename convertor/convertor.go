@@ -397,6 +397,7 @@ func GbkToUtf8(bs []byte) ([]byte, error) {
 }
 
 // ToStdBase64 convert data to standard base64 encoding.
+// Play: https://go.dev/play/p/_fLJqJD3NMo
 func ToStdBase64(value any) string {
 	if value == nil || (reflect.ValueOf(value).Kind() == reflect.Ptr && reflect.ValueOf(value).IsNil()) {
 		return ""
@@ -418,6 +419,7 @@ func ToStdBase64(value any) string {
 }
 
 // ToUrlBase64 convert data to URL base64 encoding.
+// Play: https://go.dev/play/p/C_d0GlvEeUR
 func ToUrlBase64(value any) string {
 	if value == nil || (reflect.ValueOf(value).Kind() == reflect.Ptr && reflect.ValueOf(value).IsNil()) {
 		return ""
@@ -439,6 +441,7 @@ func ToUrlBase64(value any) string {
 }
 
 // ToRawStdBase64 convert data to raw standard base64 encoding.
+// Play: https://go.dev/play/p/wSAr3sfkDcv
 func ToRawStdBase64(value any) string {
 	if value == nil || (reflect.ValueOf(value).Kind() == reflect.Ptr && reflect.ValueOf(value).IsNil()) {
 		return ""
@@ -460,6 +463,7 @@ func ToRawStdBase64(value any) string {
 }
 
 // ToRawUrlBase64 convert data to raw URL base64 encoding.
+// Play: https://go.dev/play/p/HwdDPFcza1O
 func ToRawUrlBase64(value any) string {
 	if value == nil || (reflect.ValueOf(value).Kind() == reflect.Ptr && reflect.ValueOf(value).IsNil()) {
 		return ""
