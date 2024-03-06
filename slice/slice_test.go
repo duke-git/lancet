@@ -1357,3 +1357,42 @@ func TestSetToDefaultIf(t *testing.T) {
 		assert.Equal(2, count)
 	})
 }
+
+func TestBreak(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestBreak")
+
+	// Test with integers
+	nums := []int{1, 2, 3, 4, 5}
+	even := func(n int) bool { return n%2 == 0 }
+
+	resultEven, resultAfterFirstEven := Break(nums, even)
+	assert.Equal([]int{1}, resultEven)
+	assert.Equal([]int{2, 3, 4, 5}, resultAfterFirstEven)
+
+	// Test with strings
+	strings := []string{"apple", "banana", "cherry", "date", "elderberry"}
+	startsWithA := func(s string) bool { return s[0] == 'a' }
+
+	resultStartsWithA, resultAfterFirstStartsWithA := Break(strings, startsWithA)
+	assert.Equal([]string{}, resultStartsWithA)
+	assert.Equal([]string{"apple", "banana", "cherry", "date", "elderberry"}, resultAfterFirstStartsWithA)
+
+	// Test with empty slice
+	emptySlice := []int{}
+	resultEmpty, _ := Break(emptySlice, even)
+	assert.Equal([]int{}, resultEmpty)
+
+	// Test with all elements satisfying the predicate
+	allEven := []int{2, 4, 6, 8, 10}
+	emptyResult, resultAllEven := Break(allEven, even)
+	assert.Equal([]int{2, 4, 6, 8, 10}, resultAllEven)
+	assert.Equal([]int{}, emptyResult)
+
+	// Test with no elements satisfying the predicate
+	allOdd := []int{1, 3, 5, 7, 9}
+	resultAllOdd, emptyResult := Break(allOdd, even)
+	assert.Equal([]int{1, 3, 5, 7, 9}, resultAllOdd)
+	assert.Equal([]int{}, emptyResult)
+}

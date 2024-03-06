@@ -1239,6 +1239,30 @@ func Partition[T any](slice []T, predicates ...func(item T) bool) [][]T {
 	return result
 }
 
+// Breaks a list into two parts at the point where the predicate for the first time is true.
+// Play: Todo
+func Break[T any](values []T, predicate func(T) bool) ([]T, []T) {
+	a := make([]T, 0)
+	b := make([]T, 0)
+	if len(values) == 0 {
+		return a, b
+	}
+	matched := false
+	for _, value := range values {
+
+		if !matched && predicate(value) {
+			matched = true
+		}
+
+		if matched {
+			b = append(b, value)
+		} else {
+			a = append(a, value)
+		}
+	}
+	return a, b
+}
+
 // Random get a random item of slice, return idx=-1 when slice is empty
 // Play: https://go.dev/play/p/UzpGQptWppw
 func Random[T any](slice []T) (val T, idx int) {

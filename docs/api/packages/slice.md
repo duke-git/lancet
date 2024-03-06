@@ -94,6 +94,7 @@ import (
 -   [Join](#Join)
 -   [Partition](#Partition)
 -   [SetToDefaultIf](#SetToDefaultIf)
+-   [Break](#Break)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -2599,5 +2600,38 @@ func main() {
     // Output:
 	// [ b  c d ]
 	// 3
+}
+```
+
+<span id="Break">Break</span>
+
+<p>TBD</p>
+
+<b>示例:</b>
+
+```go
+func Break[T any](values []T, predicate func(T) bool) ([]T, []T)
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+    nums := []int{1, 2, 3, 4, 5}
+    even := func(n int) bool { return n%2 == 0 }
+
+    resultEven, resultAfterFirstEven := Break(nums, even)
+    
+    fmt.Println(resultEven)
+    fmt.Println(resultAfterFirstEven)
+    
+    // Output:
+    // [1]
+    // [2 3 4 5]
 }
 ```
