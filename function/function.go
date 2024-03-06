@@ -139,6 +139,7 @@ func Pipeline[T any](funcs ...func(T) T) func(T) T {
 // AcceptIf returns another function of the same signature as the apply function but also includes a bool value to indicate success or failure.
 // A predicate function that takes an argument of type T and returns a bool.
 // An apply function that also takes an argument of type T and returns a modified value of the same type.
+// Play: https://go.dev/play/p/XlXHHtzCf7d
 func AcceptIf[T any](predicate func(T) bool, apply func(T) T) func(T) (T, bool) {
 	if predicate == nil {
 		panic("programming error: predicate must be not nil")

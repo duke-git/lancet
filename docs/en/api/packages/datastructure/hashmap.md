@@ -32,6 +32,7 @@ import (
 - [Iterate](#Iterate)
 - [Keys](#Keys)
 - [Values](#Values)
+- [FilterByValue](#FilterByValue)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -308,6 +309,44 @@ func main() {
 
     values := hm.Values()
     fmt.Println(values) //[]interface{2, 1, 3}
+}
+```
+
+### <span id="FilterByValue">FilterByValue</span>
+
+<p>Returns a filtered HashMap.</p>
+
+<b>Signature:</b>
+
+```go
+func (hm *HashMap) FilterByValue(perdicate func(value any) bool) *HashMap
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    hashmap "github.com/duke-git/lancet/v2/datastructure/hashmap"
+)
+
+func main() {
+    hm := hashmap.NewHashMap()
+
+    hm.Put("a", 1)
+    hm.Put("b", 2)
+    hm.Put("c", 3)
+    hm.Put("d", 4)
+    hm.Put("e", 5)
+    hm.Put("f", 6)
+
+    filteredHM := hm.FilterByValue(func(value any) bool {
+        return value.(int) == 1 || value.(int) == 3
+    })
+
+    fmt.Println(filteredHM.Size()) //2
 }
 ```
 

@@ -804,21 +804,30 @@ import "github.com/duke-git/lancet/v2/function"
     [[play](https://go.dev/play/p/mPdUVvj6HD6)]
 -   **<big>AcceptIf</big>** : AcceptIf函数会返回另一个函数，该函数的签名与apply函数相同，但同时还会包含一个布尔值来表示成功或失败。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/function.md#AcceptIf)]
+    [[play](https://go.dev/play/p/XlXHHtzCf7d)]
 -   **<big>And</big>** : 返回一个复合谓词判断函数，该判断函数表示一组谓词的逻辑and操作。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/function.md#And)]
+    [[play](https://go.dev/play/p/dTBHJMQ0zD2)]
 -   **<big>Or</big>** : 返回一个复合谓词判断函数，该判断函数表示一组谓词的逻辑or操作。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/function.md#Or)]
+    [[play](https://go.dev/play/p/LitCIsDFNDA)]
 -   **<big>Negate</big>** : 返回一个谓词函数，该谓词函数表示当前谓词的逻辑否定。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/function.md#Negate)]
+    [[play](https://go.dev/play/p/jbI8BtgFnVE)]
 -   **<big>Nor</big>** : 返回一个复合谓词判断函数，该判断函数表示一组谓词的逻辑非或nor的操作。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/function.md#Nor)]
+    [[play](https://go.dev/play/p/2KdCoBEOq84)]
 -   **<big>Nand</big>** : 返回一个复合谓词判断函数，该判断函数表示一组谓词的逻辑非与nand的操作。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/function.md#Nand)]
+    [[play](https://go.dev/play/p/Rb-FdNGpgSO)]
 -   **<big>Xnor</big>** : 返回一个复合谓词判断函数，该判断函数表示一组谓词的逻辑异或xnor的操作。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/function.md#Xnor)]
+    [[play](https://go.dev/play/p/FJxko8SFbqc)]
 -   **<big>Watcher</big>** : Watcher 用于记录代码执行时间。可以启动/停止/重置手表定时器。获取函数执行的时间。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/function.md#Watcher)]
     [[play](https://go.dev/play/p/l2yrOpCLd1I)]
+
+
 
 <h3 id="maputil"> 12. maputil 包括一些操作 map 的函数。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 
@@ -1421,6 +1430,7 @@ import "github.com/duke-git/lancet/v2/slice"
     [[play](https://go.dev/play/p/UzpGQptWppw)]
 -   **<big>SetToDefaultIf</big>** : 根据给定给定的predicate判定函数来修改切片中的元素。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/slice.md#SetToDefaultIf)]
+    [[play](https://go.dev/play/p/9AXGlPRC0-A)]
 
 
 

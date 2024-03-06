@@ -800,20 +800,28 @@ import "github.com/duke-git/lancet/v2/function"
     [[play](https://go.dev/play/p/hbON-Xeyn5N)]
 -   **<big>Pipeline</big>** : takes a list of functions and returns a function whose param will be passed into the functions one by one.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/function.md#Pipeline)]
+    [[play](https://go.dev/play/p/mPdUVvj6HD6)]
 -   **<big>AcceptIf</big>** : returns another function of the same signature as the apply function but also includes a bool value to indicate success or failure.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/function.md#AcceptIf)]
+    [[play](https://go.dev/play/p/XlXHHtzCf7d)]
 -   **<big>And</big>** : returns a composed predicate that represents the logical AND of a list of predicates.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/function.md#And)]
+    [[play](https://go.dev/play/p/dTBHJMQ0zD2)]
 -   **<big>Or</big>** : returns a composed predicate that represents the logical OR of a list of predicates.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/function.md#Or)]
+    [[play](https://go.dev/play/p/LitCIsDFNDA)]
 -   **<big>Negate</big>** : returns a predicate that represents the logical negation of this predicate.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/function.md#Negate)]
+    [[play](https://go.dev/play/p/jbI8BtgFnVE)]
 -   **<big>Nor</big>** : returns a composed predicate that represents the logical NOR of a list of predicates.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/function.md#Nor)]
+    [[play](https://go.dev/play/p/2KdCoBEOq84)]
 -   **<big>Nand</big>** : returns a composed predicate that represents the logical Nand of a list of predicates.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/function.md#Nand)]
+    [[play](https://go.dev/play/p/Rb-FdNGpgSO)]
 -   **<big>Xnor</big>** : returns a composed predicate that represents the logical XNOR of a list of predicates.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/function.md#Xnor)]
+    [[play](https://go.dev/play/p/FJxko8SFbqc)]
 -   **<big>Watcher</big>** : Watcher is used for record code execution time. can start/stop/reset the watch timer. get the elapsed time of function execution.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/function.md#Watcher)]
     [[play](https://go.dev/play/p/l2yrOpCLd1I)]
@@ -1423,6 +1431,8 @@ import "github.com/duke-git/lancet/v2/slice"
     [[play](https://go.dev/play/p/UzpGQptWppw)]
 -   **<big>SetToDefaultIf</big>** : set elements to their default value if they match the given predicate.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#SetToDefaultIf)]
+    [[play](https://go.dev/play/p/9AXGlPRC0-A)]
+
 
 
 <h3 id="stream"> 19. Stream package implements a sequence of elements supporting sequential and operations. this package is an experiment to explore if stream in go can work as the way java does. its function is very limited. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>

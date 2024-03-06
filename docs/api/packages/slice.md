@@ -2581,7 +2581,7 @@ func main() {
 func SetToDefaultIf[T any](slice []T, predicate func(T) bool) ([]T, int)
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/9AXGlPRC0-A)</span></b>
 
 ```go
 import (

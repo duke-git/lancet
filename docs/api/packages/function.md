@@ -424,7 +424,7 @@ func longRunningTask() {
 func And[T any](predicates ...func(T) bool) func(T) bool
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/dTBHJMQ0zD2)</span></b>
 
 ```go
 package main
@@ -461,7 +461,7 @@ func main() {
 func Or[T any](predicates ...func(T) bool) func(T) bool
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/LitCIsDFNDA)</span></b>
 
 ```go
 package main
@@ -496,7 +496,7 @@ func main() {
 func Negate[T any](predicate func(T) bool) func(T) bool
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/jbI8BtgFnVE)</span></b>
 
 ```go
 package main
@@ -536,7 +536,7 @@ func main() {
 func Nor[T any](predicates ...func(T) bool) func(T) bool
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/2KdCoBEOq84)</span></b>
 
 ```go
 package main
@@ -578,7 +578,7 @@ func main() {
 func Nand[T any](predicates ...func(T) bool) func(T) bool
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/Rb-FdNGpgSO)</span></b>
 
 ```go
 package main
@@ -615,7 +615,7 @@ func main() {
 func Xnor[T any](predicates ...func(T) bool) func(T) bool
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/FJxko8SFbqc)</span></b>
 
 ```go
 package main
@@ -652,7 +652,7 @@ func main() {
 func AcceptIf[T any](predicate func(T) bool, apply func(T) T) func(T) (T, bool)
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/XlXHHtzCf7d)</span></b>
 
 ```go
 package main
@@ -663,9 +663,8 @@ import (
 )
 
 func main() {
-
-    adder := AcceptIf(
-        And(
+    adder := function.AcceptIf(
+        function.And(
             func(x int) bool {
                 return x > 10
             }, func(x int) bool {
