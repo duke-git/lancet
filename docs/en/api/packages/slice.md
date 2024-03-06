@@ -93,6 +93,7 @@ import (
 -   [KeyBy](#KeyBy)
 -   [Join](#Join)
 -   [Partition](#Partition)
+-   [SetToDefaultIf](#SetToDefaultIf)
 
 <div STYLE="page-break-after: always;"></div>
 

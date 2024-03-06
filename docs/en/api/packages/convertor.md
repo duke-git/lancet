@@ -571,6 +571,7 @@ func main() {
 }
 ```
 
+
 ### <span id="EncodeByte">EncodeByte</span>
 
 <p>Encode data to byte slice.</p>
@@ -610,7 +611,7 @@ func main() {
 func DecodeByte(data []byte, target any) error
 ```
 
-<b>Example:<span style="float:right;display:inline-block;"></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/zI6xsmuQRbn)</span></b>
 
 ```go
 package main
@@ -636,69 +637,6 @@ func main() {
 }
 ```
 
-### <span id="DeepClone">DeepClone</span>
-
-<p>Creates a deep copy of passed item, can't clone unexported field of struct.</p>
-
-<b>Signature:</b>
-
-```go
-func DeepClone[T any](src T) T
-```
-
-<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/j4DP5dquxnk)</span></b>
-
-```go
-package main
-
-import (
-    "fmt"
-    "github.com/duke-git/lancet/v2/convertor"
-)
-
-func main() {
-    type Struct struct {
-        Str        string
-        Int        int
-        Float      float64
-        Bool       bool
-        Nil        interface{}
-        unexported string
-    }
-
-    cases := []interface{}{
-        true,
-        1,
-        0.1,
-        map[string]int{
-            "a": 1,
-            "b": 2,
-        },
-        &Struct{
-            Str:   "test",
-            Int:   1,
-            Float: 0.1,
-            Bool:  true,
-            Nil:   nil,
-            // unexported: "can't be cloned",
-        },
-    }
-
-    for _, item := range cases {
-        cloned := convertor.DeepClone(item)
-
-        isPointerEqual := &cloned == &item
-        fmt.Println(cloned, isPointerEqual)
-    }
-
-    // Output:
-    // true false
-    // 1 false
-    // 0.1 false
-    // map[a:1 b:2] false
-    // &{test 1 0.1 true <nil> } false
-}
-```
 
 ### <span id="CopyProperties">CopyProperties</span>
 
@@ -779,41 +717,6 @@ func main() {
 }
 ```
 
-### <span id="ToInterface">ToInterface</span>
-
-<p>Converts reflect value to its interface type.</p>
-
-<b>Signature:</b>
-
-```go
-func ToInterface(v reflect.Value) (value interface{}, ok bool)
-```
-
-<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/syqw0-WG7Xd)</span></b>
-
-```go
-package main
-
-import (
-    "fmt"
-    "github.com/duke-git/lancet/v2/convertor"
-)
-
-func main() {
-    val := reflect.ValueOf("abc")
-    iVal, ok := convertor.ToInterface(val)
-
-    fmt.Printf("%T\n", iVal)
-    fmt.Printf("%v\n", iVal)
-    fmt.Println(ok)
-
-    // Output:
-    // string
-    // abc
-    // true    
-}
-```
-
 ### <span id="Utf8ToGbk">Utf8ToGbk</span>
 
 <p>Converts utf8 encoding data to GBK encoding data.</p>
@@ -883,7 +786,7 @@ func main() {
 
 ### <span id="ToStdBase64">ToStdBase64</span>
 
-<p>Convert a value to a string encoded in standard Base64. Error data of type "error" will also be encoded, and complex structures will be converted to a JSON-formatted string.</p>
+<p>Convert a value to a string encoded in standard Base64. Error data of type "error" will also be encoded, and complex structures will be converted to a JSON formatted string.</p>
 
 <b>Signature:</b>
 
@@ -953,9 +856,11 @@ func main() {
 
 ```
 
+
+
 ### <span id="ToUrlBase64">ToUrlBase64</span>
 
-<p>Convert a value to a string encoded in url Base64. Error data of type "error" will also be encoded, and complex structures will be converted to a JSON-formatted string.</p>
+<p>Convert a value to a string encoded in url Base64. Error data of type "error" will also be encoded, and complex structures will be converted to a JSON formatted string.</p>
 
 <b>Signature:</b>
 
@@ -1024,7 +929,7 @@ func main() {
 
 ### <span id="ToRawStdBase64">ToRawStdBase64</span>
 
-<p>Convert a value to a string encoded in raw standard Base64. Error data of type "error" will also be encoded, and complex structures will be converted to a JSON-formatted string.</p>
+<p>Convert a value to a string encoded in raw standard Base64. Error data of type "error" will also be encoded, and complex structures will be converted to a JSON formatted string.</p>
 
 <b>Signature:</b>
 
@@ -1088,7 +993,7 @@ func main() {
 
 ### <span id="ToRawUrlBase64">ToRawUrlBase64</span>
 
-<p> Convert a value to a string encoded in raw url Base64. Error data of type "error" will also be encoded, and complex structures will be converted to a JSON-formatted string.</p>
+<p> Convert a value to a string encoded in raw url Base64. Error data of type "error" will also be encoded, and complex structures will be converted to a JSON formatted string.</p>
 
 <b>Signature:</b>
 
@@ -1147,5 +1052,68 @@ func main() {
     // MTIzLjQ1Ng
     // dHJ1ZQ
     // ZXJy
+}
+```
+
+### <span id="DeepClone">DeepClone</span>
+
+<p>Creates a deep copy of passed item, can't clone unexported field of struct.</p>
+
+<b>Signature:</b>
+
+```go
+func DeepClone[T any](src T) T
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/j4DP5dquxnk)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/convertor"
+)
+
+func main() {
+    type Struct struct {
+        Str        string
+        Int        int
+        Float      float64
+        Bool       bool
+        Nil        interface{}
+        unexported string
+    }
+
+    cases := []interface{}{
+        true,
+        1,
+        0.1,
+        map[string]int{
+            "a": 1,
+            "b": 2,
+        },
+        &Struct{
+            Str:   "test",
+            Int:   1,
+            Float: 0.1,
+            Bool:  true,
+            Nil:   nil,
+        },
+    }
+
+    for _, item := range cases {
+        cloned := convertor.DeepClone(item)
+
+        isPointerEqual := &cloned == &item
+        fmt.Println(cloned, isPointerEqual)
+    }
+
+    // Output:
+    // true false
+    // 1 false
+    // 0.1 false
+    // map[a:1 b:2] false
+    // &{test 1 0.1 true <nil> } false
 }
 ```

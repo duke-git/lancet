@@ -351,3 +351,38 @@ func main() {
 ```
 
 
+
+### <span id="ToInterface">ToInterface</span>
+
+<p>Converts reflect value to its interface type.</p>
+
+<b>Signature:</b>
+
+```go
+func ToInterface(v reflect.Value) (value interface{}, ok bool)
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/syqw0-WG7Xd)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/convertor"
+)
+
+func main() {
+    val := reflect.ValueOf("abc")
+    iVal, ok := convertor.ToInterface(val)
+
+    fmt.Printf("%T\n", iVal)
+    fmt.Printf("%v\n", iVal)
+    fmt.Println(ok)
+
+    // Output:
+    // string
+    // abc
+    // true    
+}
+```
