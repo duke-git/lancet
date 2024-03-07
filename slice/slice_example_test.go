@@ -1112,3 +1112,16 @@ func ExampleSetToDefaultIf() {
 	// [ b  c d ]
 	// 3
 }
+
+func ExampleBreak() {
+	nums := []int{1, 2, 3, 4, 5}
+	even := func(n int) bool { return n%2 == 0 }
+
+	resultEven, resultAfterFirstEven := Break(nums, even)
+	fmt.Println(resultEven)
+	fmt.Println(resultAfterFirstEven)
+
+	// Output:
+	// [1]
+	// [2 3 4 5]
+}
