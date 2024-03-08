@@ -2603,9 +2603,9 @@ func main() {
 }
 ```
 
-<span id="Break">Break</span>
+### <span id="Break">Break</span>
 
-<p>TBD</p>
+<p>根据判断函数将切片分成两部分。它开始附加到与函数匹配的第一个元素之后的第二个切片。第一个匹配之后的所有元素都包含在第二个切片中，无论它们是否与函数匹配。</p>
 
 <b>示例:</b>
 
@@ -2625,7 +2625,7 @@ func main() {
     nums := []int{1, 2, 3, 4, 5}
     even := func(n int) bool { return n%2 == 0 }
 
-    resultEven, resultAfterFirstEven := Break(nums, even)
+    resultEven, resultAfterFirstEven := slice.Break(nums, even)
     
     fmt.Println(resultEven)
     fmt.Println(resultAfterFirstEven)
