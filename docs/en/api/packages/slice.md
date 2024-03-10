@@ -95,6 +95,8 @@ import (
 -   [Partition](#Partition)
 -   [SetToDefaultIf](#SetToDefaultIf)
 -   [Break](#Break)
+-   [RightPadding](#RightPadding)
+-   [LeftPadding](#LeftPadding)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -2630,5 +2632,59 @@ func main() {
     // Output:
     // [1]
     // [2 3 4 5]
+}
+```
+
+<span id="c">RightPadding</span>
+
+<p>RightPadding adds padding to the right end of a slice.</p>
+
+<b>Signature:</b>
+
+```go
+func RightPadding[T any](slice []T, paddingValue T, paddingLength int) []T
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+  	nums := []int{1, 2, 3, 4, 5}
+	padded := RightPadding(nums, 0, 3)
+	fmt.Println(padded)
+	// Output:
+	// [1 2 3 4 5 0 0 0]
+}
+```
+
+<span id="LeftPadding">LeftPadding</span>
+
+<p>LeftPadding adds padding to the left begin of a slice.</p>
+
+<b>Signature:</b>
+
+```go
+func LeftPadding[T any](slice []T, paddingValue T, paddingLength int) []T
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+  	nums := []int{1, 2, 3, 4, 5}
+	padded := LeftPadding(nums, 0, 3)
+	fmt.Println(padded)
+	// Output:
+	// [0 0 0 1 2 3 4 5]
 }
 ```

@@ -1125,3 +1125,19 @@ func ExampleBreak() {
 	// [1]
 	// [2 3 4 5]
 }
+
+func ExampleRightPadding() {
+	nums := []int{1, 2, 3, 4, 5}
+	padded := RightPadding(nums, 0, 3)
+	fmt.Println(padded)
+	// Output:
+	// [1 2 3 4 5 0 0 0]
+}
+
+func ExampleLeftPadding() {
+	nums := []int{1, 2, 3, 4, 5}
+	padded := LeftPadding(nums, 0, 3)
+	fmt.Println(padded)
+	// Output:
+	// [0 0 0 1 2 3 4 5]
+}

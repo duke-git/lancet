@@ -1396,3 +1396,15 @@ func TestBreak(t *testing.T) {
 	assert.Equal([]int{1, 3, 5, 7, 9}, resultAllOdd)
 	assert.Equal([]int{}, emptyResult)
 }
+
+func TestRightPaddingAndLeftPadding(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "RightPaddingAndLeftPadding")
+
+	// Test with integers
+	nums := []int{1, 2, 3, 4, 5}
+
+	padded := LeftPadding(RightPadding(nums, 0, 3), 0, 3)
+	assert.Equal([]int{0, 0, 0, 1, 2, 3, 4, 5, 0, 0, 0}, padded)
+}

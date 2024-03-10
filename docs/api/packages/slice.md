@@ -95,6 +95,8 @@ import (
 -   [Partition](#Partition)
 -   [SetToDefaultIf](#SetToDefaultIf)
 -   [Break](#Break)
+-   [RightPadding](#RightPadding)
+-   [LeftPadding](#LeftPadding)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -2607,13 +2609,13 @@ func main() {
 
 <p>根据判断函数将切片分成两部分。它开始附加到与函数匹配的第一个元素之后的第二个切片。第一个匹配之后的所有元素都包含在第二个切片中，无论它们是否与函数匹配。</p>
 
-<b>示例:</b>
+<b>函数签名:</b>
 
 ```go
 func Break[T any](values []T, predicate func(T) bool) ([]T, []T)
 ```
 
-<b>Example:</b>
+<b>示例:</b>
 
 ```go
 import (
@@ -2633,5 +2635,59 @@ func main() {
     // Output:
     // [1]
     // [2 3 4 5]
+}
+```
+
+<span id="RightPadding">RightPadding</span>
+
+<p>TBD</p>
+
+<b>函数签名:</b>
+
+```go
+func RightPadding[T any](slice []T, paddingValue T, paddingLength int) []T
+```
+
+<b>示例:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+  	nums := []int{1, 2, 3, 4, 5}
+	padded := slice.RightPadding(nums, 0, 3)
+	fmt.Println(padded)
+	// Output:
+	// [1 2 3 4 5 0 0 0]
+}
+```
+
+<span id="LeftPadding">LeftPadding</span>
+
+<p>TBD</p>
+
+<b>函数签名:</b>
+
+```go
+func LeftPadding[T any](slice []T, paddingValue T, paddingLength int) []T
+```
+
+<b>示例:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+  	nums := []int{1, 2, 3, 4, 5}
+	padded := slice.LeftPadding(nums, 0, 3)
+	fmt.Println(padded)
+	// Output:
+	// [0 0 0 1 2 3 4 5]
 }
 ```

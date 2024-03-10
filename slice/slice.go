@@ -1273,3 +1273,35 @@ func Random[T any](slice []T) (val T, idx int) {
 	idx = random.RandInt(0, len(slice))
 	return slice[idx], idx
 }
+
+// RightPadding adds padding to the right end of a slice.
+// Play: Todo
+func RightPadding[T any](slice []T, paddingValue T, paddingLength int) []T {
+	if paddingLength == 0 {
+		return slice
+	}
+	for i := 0; i < paddingLength; i++ {
+		slice = append(slice, paddingValue)
+	}
+	return slice
+}
+
+// LeftPadding adds padding to the left begin of a slice.
+// Play: Todo
+func LeftPadding[T any](slice []T, paddingValue T, paddingLength int) []T {
+	if paddingLength == 0 {
+		return slice
+	}
+
+	paddedSlice := make([]T, len(slice)+paddingLength)
+	i := 0
+	for ; i < paddingLength; i++ {
+		paddedSlice[i] = paddingValue
+	}
+	for j := 0; j < len(slice); j++ {
+		paddedSlice[i] = slice[j]
+		i++
+	}
+
+	return paddedSlice
+}
