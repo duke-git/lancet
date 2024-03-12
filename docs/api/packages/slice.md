@@ -2640,7 +2640,7 @@ func main() {
 
 <span id="RightPadding">RightPadding</span>
 
-<p>TBD</p>
+<p>在切片的右部添加元素。</p>
 
 <b>函数签名:</b>
 
@@ -2667,7 +2667,7 @@ func main() {
 
 <span id="LeftPadding">LeftPadding</span>
 
-<p>TBD</p>
+<p>在切片的左部添加元素。</p>
 
 <b>函数签名:</b>
 
