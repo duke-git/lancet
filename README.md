@@ -2024,7 +2024,7 @@ import "github.com/duke-git/lancet/v2/xerror"
 
 ## How to Contribute
 
-#### [Contributing Guide](./CONTRIBUTING.en-US.md)
+#### [Contributing Guide](./CONTRIBUTING.md)
 
 ## Contributors
 Thank you to all the people who contributed to lancet!
