@@ -243,25 +243,34 @@ func TestEachWithBreak(t *testing.T) {
 	// assert.Equal(6, sum)
 }
 
-// func TestPop(t *testing.T) {
-// 	assert := internal.NewAssert(t, "TestPop")
+func TestPop(t *testing.T) {
+	t.Parallel()
+	assert := internal.NewAssert(t, "TestSet_Pop")
 
-// 	s := New[int]()
+	s := New[int]()
 
-// 	val, ok := s.Pop()
-// 	assert.Equal(0, val)
-// 	assert.Equal(false, ok)
+	val, ok := s.Pop()
+	assert.Equal(0, val)
+	assert.Equal(false, ok)
 
-// 	s.Add(1)
-// 	s.Add(2)
-// 	s.Add(3)
+	s = New(1, 2, 3, 4, 5)
+	sl := s.ToSlice()
 
-// 	// s = New(1, 2, 3, 4, 5)
+	val, ok = s.Pop()
+	assert.Equal(false, s.Contain(val))
+	assert.Equal(true, ok)
+	assert.Equal(len(sl)-1, s.Size())
 
-// 	val, ok = s.Pop()
-// 	assert.Equal(3, val)
-// 	assert.Equal(true, ok)
-// }
+	var found bool
+
+	for _, v := range sl {
+		if v == val {
+			found = true
+		}
+	}
+
+	assert.Equal(true, found)
+}
 
 func TestSet_ToSlice(t *testing.T) {
 	t.Parallel()
