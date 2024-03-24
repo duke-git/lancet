@@ -561,6 +561,7 @@ func TestContainsAny(t *testing.T) {
 }
 
 func TestRemoveWhiteSpace(t *testing.T) {
+	t.Parallel()
 	assert := internal.NewAssert(t, "TestRemoveWhiteSpace")
 
 	str := " hello   \r\n	\t   world"
@@ -571,6 +572,7 @@ func TestRemoveWhiteSpace(t *testing.T) {
 }
 
 func TestSubInBetween(t *testing.T) {
+	t.Parallel()
 	assert := internal.NewAssert(t, "TestSubInBetween")
 
 	str := "abcde"
@@ -583,6 +585,7 @@ func TestSubInBetween(t *testing.T) {
 }
 
 func TestHammingDistance(t *testing.T) {
+	t.Parallel()
 	assert := internal.NewAssert(t, "HammingDistance")
 
 	hd := func(a, b string) int {
@@ -603,4 +606,17 @@ func TestHammingDistance(t *testing.T) {
 	assert.Equal(1, hd("ö", "ü"))
 	assert.Equal(0, hd("日本語", "日本語"))
 	assert.Equal(3, hd("日本語", "語日本"))
+}
+
+func TestConcat(t *testing.T) {
+	t.Parallel()
+	assert := internal.NewAssert(t, "TestConcat")
+
+	assert.Equal("", Concat(0))
+	assert.Equal("a", Concat(1, "a"))
+	assert.Equal("ab", Concat(2, "a", "b"))
+	assert.Equal("abc", Concat(3, "a", "b", "c"))
+	assert.Equal("abc", Concat(3, "a", "", "b", "c", ""))
+	assert.Equal("你好，世界！", Concat(0, "你好", "，", "", "世界！", ""))
+	assert.Equal("Hello World!", Concat(0, "Hello", " Wo", "r", "ld!", ""))
 }

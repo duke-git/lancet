@@ -1477,7 +1477,7 @@ func main() {
 func SubInBetween(str string, start string, end string) string
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/EDbaRvjeNsv)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/EDbaRvjeNsv)</span></b>
 
 ```go
 import (
@@ -1510,7 +1510,7 @@ func main() {
 func HammingDistance(a, b string) (int, error)
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/glNdQEA9HUi)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/glNdQEA9HUi)</span></b>
 
 ```go
 import (
@@ -1529,5 +1529,40 @@ func main() {
     // Output:
     // 0
     // 1
+}
+```
+
+
+### <span id="Concat">Concat</span>
+
+<p>Concatenates strings. <b>length</b> is the length of the concatenated string. If unsure, pass 0 or a negative number.</p>
+
+<b>Signature:</b>
+
+```go
+func Concat(length int, str ...string) string
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run]()</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+
+ 	result1 := strutil.Concat(12, "Hello", " ", "World", "!")
+	result2 := strutil.Concat(11, "Go", " ", "Language")
+	result3 := strutil.Concat(0, "An apple a ", "day，", "keeps the", " doctor away")
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+
+	// Output:
+	// Hello World!
+	// Go Language
+	// An apple a day，keeps the doctor away
 }
 ```
