@@ -62,6 +62,7 @@ import (
 -   [RemoveWhiteSpace](#RemoveWhiteSpace)
 -   [SubInBetween](#SubInBetween)
 -   [HammingDistance](#HammingDistance)
+-   [Concat](#Concat)
 
 <div STYLE="page-break-after: always;"></div>
 
