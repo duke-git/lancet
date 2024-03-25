@@ -62,6 +62,7 @@ import (
 -   [RemoveWhiteSpace](#RemoveWhiteSpace)
 -   [SubInBetween](#SubInBetween)
 -   [HammingDistance](#HammingDistance)
+-   [Concat](#Concat)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -1527,5 +1528,39 @@ func main() {
     // Output:
     // 0
     // 1
+}
+
+```
+### <span id="Concat">Concat</span>
+
+<p>拼接字符串。length是拼接后字符串的长度，如果不确定则传0或负数。</p>
+
+<b>函数签名:</b>
+
+```go
+func Concat(length int, str ...string) string
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行]()</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+
+ 	result1 := strutil.Concat(12, "Hello", " ", "World", "!")
+	result2 := strutil.Concat(11, "Go", " ", "Language")
+	result3 := strutil.Concat(0, "An apple a ", "day，", "keeps the", " doctor away")
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+
+	// Output:
+	// Hello World!
+	// Go Language
+	// An apple a day，keeps the doctor away
 }
 ```

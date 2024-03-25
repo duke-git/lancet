@@ -680,3 +680,17 @@ func ExampleHammingDistance() {
 	// 3
 	// 1
 }
+
+func ExampleConcat() {
+	result1 := Concat(12, "Hello", " ", "World", "!")
+	result2 := Concat(11, "Go", " ", "Language")
+	result3 := Concat(0, "An apple a ", "day，", "keeps the", " doctor away")
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+
+	// Output:
+	// Hello World!
+	// Go Language
+	// An apple a day，keeps the doctor away
+}

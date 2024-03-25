@@ -617,3 +617,24 @@ func HammingDistance(a, b string) (int, error) {
 
 	return distance, nil
 }
+
+// Concat uses the strings.Builder to concatenate the input strings.
+//   - `length` is the expected length of the concatenated string.
+//   - if you are unsure about the length of the string to be concatenated, please pass 0 or a negative number.
+func Concat(length int, str ...string) string {
+	if len(str) == 0 {
+		return ""
+	}
+
+	sb := strings.Builder{}
+	if length <= 0 {
+		sb.Grow(len(str[0]) * len(str))
+	} else {
+		sb.Grow(length)
+	}
+
+	for _, s := range str {
+		sb.WriteString(s)
+	}
+	return sb.String()
+}
