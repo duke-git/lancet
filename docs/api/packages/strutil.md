@@ -61,6 +61,7 @@ import (
 -   [ContainsAny](#ContainsAny)
 -   [RemoveWhiteSpace](#RemoveWhiteSpace)
 -   [SubInBetween](#SubInBetween)
+-   [HammingDistance](#HammingDistance)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -1474,7 +1475,7 @@ func main() {
 func SubInBetween(str string, start string, end string) string
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/EDbaRvjeNsv)</span></b>
 
 ```go
 import (
@@ -1494,5 +1495,37 @@ func main() {
     // Output:
     // abc
     // bc
+}
+```
+
+### <span id="HammingDistance">HammingDistance</span>
+
+<p>计算两个字符串之间的汉明距离。汉明距离是指对应符号不同的位置数。</p>
+
+<b>函数签名:</b>
+
+```go
+func HammingDistance(a, b string) (int, error)
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/glNdQEA9HUi)</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+
+    result1, _ := strutil.HammingDistance("de", "de")
+    result2, _ := strutil.HammingDistance("a", "d")
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+
+    // Output:
+    // 0
+    // 1
 }
 ```

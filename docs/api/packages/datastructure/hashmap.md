@@ -31,6 +31,7 @@ import (
 - [Iterate](#Iterate)
 - [Keys](#Keys)
 - [Values](#Values)
+- [FilterByValue](#FilterByValue)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -276,7 +277,7 @@ func main() {
 
 ### <span id="Values">Values</span>
 
-<p>返回hashmap所有值的切片 (随机顺序).</p>
+<p>返回hashmap所有值的切片 (随机顺序)。</p>
 
 <b>函数签名:</b>
 
@@ -306,3 +307,40 @@ func main() {
 ```
 
 
+### <span id="FilterByValue">FilterByValue</span>
+
+<p>返回一个过滤后的HashMap。 如果任何值与 perdicate 函数不匹配，则返回 nil，否则返回包含选定值的 HashMap。</p>
+
+<b>函数签名:</b>
+
+```go
+func (hm *HashMap) FilterByValue(perdicate func(value any) bool) *HashMap
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    hashmap "github.com/duke-git/lancet/v2/datastructure/hashmap"
+)
+
+func main() {
+    hm := hashmap.NewHashMap()
+
+    hm.Put("a", 1)
+    hm.Put("b", 2)
+    hm.Put("c", 3)
+    hm.Put("d", 4)
+    hm.Put("e", 5)
+    hm.Put("f", 6)
+
+    filteredHM := hm.FilterByValue(func(value any) bool {
+        return value.(int) == 1 || value.(int) == 3
+    })
+
+    fmt.Println(filteredHM.Size()) //2
+}
+```

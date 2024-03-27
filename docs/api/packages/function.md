@@ -39,6 +39,8 @@ import (
 -   [Nor](#Nor)
 -   [Xnor](#Xnor)
 -   [Nand](#Nand)
+-   [AcceptIf](#AcceptIf)
+
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -422,7 +424,7 @@ func longRunningTask() {
 func And[T any](predicates ...func(T) bool) func(T) bool
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/dTBHJMQ0zD2)</span></b>
 
 ```go
 package main
@@ -459,7 +461,7 @@ func main() {
 func Or[T any](predicates ...func(T) bool) func(T) bool
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/LitCIsDFNDA)</span></b>
 
 ```go
 package main
@@ -494,7 +496,7 @@ func main() {
 func Negate[T any](predicate func(T) bool) func(T) bool
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/jbI8BtgFnVE)</span></b>
 
 ```go
 package main
@@ -534,7 +536,7 @@ func main() {
 func Nor[T any](predicates ...func(T) bool) func(T) bool
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/2KdCoBEOq84)</span></b>
 
 ```go
 package main
@@ -576,7 +578,7 @@ func main() {
 func Nand[T any](predicates ...func(T) bool) func(T) bool
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/Rb-FdNGpgSO)</span></b>
 
 ```go
 package main
@@ -613,7 +615,7 @@ func main() {
 func Xnor[T any](predicates ...func(T) bool) func(T) bool
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/FJxko8SFbqc)</span></b>
 
 ```go
 package main
@@ -638,4 +640,54 @@ func main() {
     // true
     // false
 }
+```
+
+### <span id="AcceptIf">AcceptIf</span>
+
+<p>AcceptIf函数会返回另一个函数，该函数的签名与 apply 函数相同，但同时还会包含一个布尔值来表示成功或失败。</p>
+
+<b>函数签名:</b>
+
+```go
+func AcceptIf[T any](predicate func(T) bool, apply func(T) T) func(T) (T, bool)
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/XlXHHtzCf7d)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/function"
+)
+
+func main() {
+    adder := function.AcceptIf(
+        function.And(
+            func(x int) bool {
+                return x > 10
+            }, func(x int) bool {
+                return x%2 == 0
+            }),
+        func(x int) int {
+            return x + 1
+        },
+    )
+
+    result, ok := adder(20)
+    fmt.Println(result)
+    fmt.Println(ok)
+
+    result, ok = adder(21)
+    fmt.Println(result)
+    fmt.Println(ok)
+
+    // Output:
+    // 21
+    // true
+    // 0
+    // false
+}
+
 ```

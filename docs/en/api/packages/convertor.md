@@ -43,6 +43,10 @@ import (
 -   [ToInterface](#ToInterface)
 -   [Utf8ToGbk](#Utf8ToGbk)
 -   [GbkToUtf8](#GbkToUtf8)
+-   [ToStdBase64](#ToStdBase64)
+-   [ToUrlBase64](#ToUrlBase64)
+-   [ToRawStdBase64](#ToRawStdBase64)
+-   [ToRawUrlBase64](#ToRawUrlBase64)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -567,6 +571,7 @@ func main() {
 }
 ```
 
+
 ### <span id="EncodeByte">EncodeByte</span>
 
 <p>Encode data to byte slice.</p>
@@ -632,69 +637,6 @@ func main() {
 }
 ```
 
-### <span id="DeepClone">DeepClone</span>
-
-<p>Creates a deep copy of passed item, can't clone unexported field of struct.</p>
-
-<b>Signature:</b>
-
-```go
-func DeepClone[T any](src T) T
-```
-
-<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/j4DP5dquxnk)</span></b>
-
-```go
-package main
-
-import (
-    "fmt"
-    "github.com/duke-git/lancet/v2/convertor"
-)
-
-func main() {
-    type Struct struct {
-        Str        string
-        Int        int
-        Float      float64
-        Bool       bool
-        Nil        interface{}
-        unexported string
-    }
-
-    cases := []interface{}{
-        true,
-        1,
-        0.1,
-        map[string]int{
-            "a": 1,
-            "b": 2,
-        },
-        &Struct{
-            Str:   "test",
-            Int:   1,
-            Float: 0.1,
-            Bool:  true,
-            Nil:   nil,
-            // unexported: "can't be cloned",
-        },
-    }
-
-    for _, item := range cases {
-        cloned := convertor.DeepClone(item)
-
-        isPointerEqual := &cloned == &item
-        fmt.Println(cloned, isPointerEqual)
-    }
-
-    // Output:
-    // true false
-    // 1 false
-    // 0.1 false
-    // map[a:1 b:2] false
-    // &{test 1 0.1 true <nil> } false
-}
-```
 
 ### <span id="CopyProperties">CopyProperties</span>
 
@@ -775,41 +717,6 @@ func main() {
 }
 ```
 
-### <span id="ToInterface">ToInterface</span>
-
-<p>Converts reflect value to its interface type.</p>
-
-<b>Signature:</b>
-
-```go
-func ToInterface(v reflect.Value) (value interface{}, ok bool)
-```
-
-<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/syqw0-WG7Xd)</span></b>
-
-```go
-package main
-
-import (
-    "fmt"
-    "github.com/duke-git/lancet/v2/convertor"
-)
-
-func main() {
-    val := reflect.ValueOf("abc")
-    iVal, ok := convertor.ToInterface(val)
-
-    fmt.Printf("%T\n", iVal)
-    fmt.Printf("%v\n", iVal)
-    fmt.Println(ok)
-
-    // Output:
-    // string
-    // abc
-    // true    
-}
-```
-
 ### <span id="Utf8ToGbk">Utf8ToGbk</span>
 
 <p>Converts utf8 encoding data to GBK encoding data.</p>
@@ -874,5 +781,339 @@ func main() {
     // Output:
     // true
     // hello   
+}
+```
+
+### <span id="ToStdBase64">ToStdBase64</span>
+
+<p>Convert a value to a string encoded in standard Base64. Error data of type "error" will also be encoded, and complex structures will be converted to a JSON formatted string.</p>
+
+<b>Signature:</b>
+
+```go
+func ToStdBase64(value any) string
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/_fLJqJD3NMo)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/convertor"
+)
+
+func main() {
+    afterEncode := convertor.ToStdBase64(nil)
+    fmt.Println(afterEncode)
+
+    afterEncode = convertor.ToStdBase64("")
+    fmt.Println(afterEncode)
+
+    stringVal := "hello"
+    afterEncode = convertor.ToStdBase64(stringVal)
+    fmt.Println(afterEncode)
+
+    byteSliceVal := []byte("hello")
+    afterEncode = convertor.ToStdBase64(byteSliceVal)
+    fmt.Println(afterEncode)
+
+    intVal := 123
+    afterEncode = convertor.ToStdBase64(intVal)
+    fmt.Println(afterEncode)
+
+    mapVal := map[string]any{"a": "hi", "b": 2, "c": struct {
+        A string
+        B int
+    }{"hello", 3}}
+    afterEncode = convertor.ToStdBase64(mapVal)
+    fmt.Println(afterEncode)
+
+    floatVal := 123.456
+    afterEncode = convertor.ToStdBase64(floatVal)
+    fmt.Println(afterEncode)
+
+    boolVal := true
+    afterEncode = convertor.ToStdBase64(boolVal)
+    fmt.Println(afterEncode)
+
+    errVal := errors.New("err")
+    afterEncode = convertor.ToStdBase64(errVal)
+    fmt.Println(afterEncode)
+
+    // Output:
+    //
+    //
+    // aGVsbG8=
+    // aGVsbG8=
+    // MTIz
+    // eyJhIjoiaGkiLCJiIjoyLCJjIjp7IkEiOiJoZWxsbyIsIkIiOjN9fQ==
+    // MTIzLjQ1Ng==
+    // dHJ1ZQ==
+    // ZXJy
+}
+
+```
+
+
+
+### <span id="ToUrlBase64">ToUrlBase64</span>
+
+<p>Convert a value to a string encoded in url Base64. Error data of type "error" will also be encoded, and complex structures will be converted to a JSON formatted string.</p>
+
+<b>Signature:</b>
+
+```go
+func ToUrlBase64(value any) string
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/C_d0GlvEeUR)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/convertor"
+)
+
+func main() {
+    afterEncode := convertor.ToUrlBase64(nil)
+    fmt.Println(afterEncode)
+
+
+    stringVal := "hello"
+    afterEncode = convertor.ToUrlBase64(stringVal)
+    fmt.Println(afterEncode)
+
+    byteSliceVal := []byte("hello")
+    afterEncode = convertor.ToUrlBase64(byteSliceVal)
+    fmt.Println(afterEncode)
+
+    intVal := 123
+    afterEncode = convertor.ToUrlBase64(intVal)
+    fmt.Println(afterEncode)
+
+    mapVal := map[string]any{"a": "hi", "b": 2, "c": struct {
+        A string
+        B int
+    }{"hello", 3}}
+    afterEncode = convertor.ToUrlBase64(mapVal)
+    fmt.Println(afterEncode)
+
+    floatVal := 123.456
+    afterEncode = convertor.ToUrlBase64(floatVal)
+    fmt.Println(afterEncode)
+
+    boolVal := true
+    afterEncode = convertor.ToUrlBase64(boolVal)
+    fmt.Println(afterEncode)
+
+    errVal := errors.New("err")
+    afterEncode = convertor.ToUrlBase64(errVal)
+    fmt.Println(afterEncode)
+
+    // Output:
+    //
+    // aGVsbG8=
+    // aGVsbG8=
+    // MTIz
+    // eyJhIjoiaGkiLCJiIjoyLCJjIjp7IkEiOiJoZWxsbyIsIkIiOjN9fQ==
+    // MTIzLjQ1Ng==
+    // dHJ1ZQ==
+    // ZXJy
+}
+
+```
+
+### <span id="ToRawStdBase64">ToRawStdBase64</span>
+
+<p>Convert a value to a string encoded in raw standard Base64. Error data of type "error" will also be encoded, and complex structures will be converted to a JSON formatted string.</p>
+
+<b>Signature:</b>
+
+```go
+func ToRawStdBase64(value any) string
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/wSAr3sfkDcv)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/convertor"
+)
+
+func main() {
+
+    stringVal := "hello"
+    afterEncode := convertor.ToRawStdBase64(stringVal)
+    fmt.Println(afterEncode)
+
+    byteSliceVal := []byte("hello")
+    afterEncode = convertor.ToRawStdBase64(byteSliceVal)
+    fmt.Println(afterEncode)
+
+    intVal := 123
+    afterEncode = convertor.ToRawStdBase64(intVal)
+    fmt.Println(afterEncode)
+
+    mapVal := map[string]any{"a": "hi", "b": 2, "c": struct {
+        A string
+        B int
+    }{"hello", 3}}
+    afterEncode = convertor.ToRawStdBase64(mapVal)
+    fmt.Println(afterEncode)
+
+    floatVal := 123.456
+    afterEncode = convertor.ToRawStdBase64(floatVal)
+    fmt.Println(afterEncode)
+
+    boolVal := true
+    afterEncode = convertor.ToRawStdBase64(boolVal)
+    fmt.Println(afterEncode)
+
+    errVal := errors.New("err")
+    afterEncode = convertor.ToRawStdBase64(errVal)
+    fmt.Println(afterEncode)
+
+    // Output:
+    // aGVsbG8
+    // aGVsbG8
+    // MTIz
+    // eyJhIjoiaGkiLCJiIjoyLCJjIjp7IkEiOiJoZWxsbyIsIkIiOjN9fQ
+    // MTIzLjQ1Ng
+    // dHJ1ZQ
+    // ZXJy
+}
+```
+
+### <span id="ToRawUrlBase64">ToRawUrlBase64</span>
+
+<p> Convert a value to a string encoded in raw url Base64. Error data of type "error" will also be encoded, and complex structures will be converted to a JSON formatted string.</p>
+
+<b>Signature:</b>
+
+```go
+func ToRawUrlBase64(value any) string
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/HwdDPFcza1O)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/convertor"
+)
+
+func main() {
+
+    stringVal := "hello"
+    afterEncode := convertor.ToRawUrlBase64(stringVal)
+    fmt.Println(afterEncode)
+
+    byteSliceVal := []byte("hello")
+    afterEncode = convertor.ToRawUrlBase64(byteSliceVal)
+    fmt.Println(afterEncode)
+
+    intVal := 123
+    afterEncode = convertor.ToRawUrlBase64(intVal)
+    fmt.Println(afterEncode)
+
+    mapVal := map[string]any{"a": "hi", "b": 2, "c": struct {
+        A string
+        B int
+    }{"hello", 3}}
+    afterEncode = convertor.ToRawUrlBase64(mapVal)
+    fmt.Println(afterEncode)
+
+    floatVal := 123.456
+    afterEncode = convertor.ToRawUrlBase64(floatVal)
+    fmt.Println(afterEncode)
+
+    boolVal := true
+    afterEncode = convertor.ToRawUrlBase64(boolVal)
+    fmt.Println(afterEncode)
+
+    errVal := errors.New("err")
+    afterEncode = convertor.ToRawUrlBase64(errVal)
+    fmt.Println(afterEncode)
+
+    // Output:
+    // aGVsbG8
+    // aGVsbG8
+    // MTIz
+    // eyJhIjoiaGkiLCJiIjoyLCJjIjp7IkEiOiJoZWxsbyIsIkIiOjN9fQ
+    // MTIzLjQ1Ng
+    // dHJ1ZQ
+    // ZXJy
+}
+```
+
+### <span id="DeepClone">DeepClone</span>
+
+<p>Creates a deep copy of passed item, can't clone unexported field of struct.</p>
+
+<b>Signature:</b>
+
+```go
+func DeepClone[T any](src T) T
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/j4DP5dquxnk)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/convertor"
+)
+
+func main() {
+    type Struct struct {
+        Str        string
+        Int        int
+        Float      float64
+        Bool       bool
+        Nil        interface{}
+        unexported string
+    }
+
+    cases := []interface{}{
+        true,
+        1,
+        0.1,
+        map[string]int{
+            "a": 1,
+            "b": 2,
+        },
+        &Struct{
+            Str:   "test",
+            Int:   1,
+            Float: 0.1,
+            Bool:  true,
+            Nil:   nil,
+        },
+    }
+
+    for _, item := range cases {
+        cloned := convertor.DeepClone(item)
+
+        isPointerEqual := &cloned == &item
+        fmt.Println(cloned, isPointerEqual)
+    }
+
+    // Output:
+    // true false
+    // 1 false
+    // 0.1 false
+    // map[a:1 b:2] false
+    // &{test 1 0.1 true <nil> } false
 }
 ```

@@ -5,6 +5,8 @@ import (
 	"io"
 	"log"
 	"os"
+	"runtime"
+	"sync"
 )
 
 func ExampleIsExist() {
@@ -421,8 +423,69 @@ func ExampleReadFile() {
 	if err != nil {
 		return
 	}
+
 	fmt.Println(string(dat))
+
 	// Output:
 	// User-agent: *
 	// Disallow: /deny
+}
+
+func ExampleChunkRead() {
+	const mb = 1024 * 1024
+	const defaultChunkSizeMB = 100
+
+	filePath := "./testdata/test1.csv"
+	f, err := os.Open(filePath)
+	if err != nil {
+		return
+	}
+
+	defer f.Close()
+
+	var bufPool = sync.Pool{
+		New: func() interface{} {
+			return make([]byte, 0, defaultChunkSizeMB*mb)
+		},
+	}
+
+	lines, err := ChunkRead(f, 0, 100, &bufPool)
+	if err != nil {
+		return
+	}
+
+	fmt.Println(lines[0])
+	fmt.Println(lines[1])
+
+	// Output:
+	// Lili,22,female
+	// Jim,21,male
+}
+
+func ExampleParallelChunkRead() {
+	const mb = 1024 * 1024
+	const defaultChunkSizeMB = 100 // 默认值
+
+	numParsers := runtime.NumCPU()
+
+	linesCh := make(chan []string, numParsers)
+	filePath := "./testdata/test1.csv"
+
+	go ParallelChunkRead(filePath, linesCh, defaultChunkSizeMB, numParsers)
+
+	var totalLines int
+	for lines := range linesCh {
+		totalLines += len(lines)
+
+		for _, line := range lines {
+			fmt.Println(line)
+		}
+	}
+
+	fmt.Println(totalLines)
+
+	// Output:
+	// Lili,22,female
+	// Jim,21,male
+	// 2
 }

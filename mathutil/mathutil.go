@@ -66,28 +66,28 @@ func Percent(val, total float64, n int) float64 {
 	return result
 }
 
-// RoundToString round up to n decimal places.
+// RoundToString round off to n decimal places.
 // Play: https://go.dev/play/p/kZwpBRAcllO
-func RoundToString(x float64, n int) string {
+func RoundToString[T constraints.Float | constraints.Integer](x T, n int) string {
 	tmp := math.Pow(10.0, float64(n))
-	x *= tmp
-	x = math.Round(x)
-	result := strconv.FormatFloat(x/tmp, 'f', n, 64)
+	x *= T(tmp)
+	r := math.Round(float64(x))
+	result := strconv.FormatFloat(r/tmp, 'f', n, 64)
 	return result
 }
 
-// RoundToFloat round up to n decimal places.
+// RoundToFloat round off to n decimal places.
 // Play: https://go.dev/play/p/ghyb528JRJL
-func RoundToFloat(x float64, n int) float64 {
+func RoundToFloat[T constraints.Float | constraints.Integer](x T, n int) float64 {
 	tmp := math.Pow(10.0, float64(n))
-	x *= tmp
-	x = math.Round(x)
-	return x / tmp
+	x *= T(tmp)
+	r := math.Round(float64(x))
+	return r / tmp
 }
 
 // TruncRound round off n decimal places.
 // Play: https://go.dev/play/p/aumarSHIGzP
-func TruncRound(x float64, n int) float64 {
+func TruncRound[T constraints.Float | constraints.Integer](x T, n int) T {
 	floatStr := fmt.Sprintf("%."+strconv.Itoa(n+1)+"f", x)
 	temp := strings.Split(floatStr, ".")
 	var newFloat string
@@ -97,6 +97,44 @@ func TruncRound(x float64, n int) float64 {
 		newFloat = temp[0] + "." + temp[1][:n]
 	}
 	result, _ := strconv.ParseFloat(newFloat, 64)
+	return T(result)
+}
+
+// FloorToFloat round down to n decimal places.
+// Play: https://go.dev/play/p/vbCBrQHZEED
+func FloorToFloat[T constraints.Float | constraints.Integer](x T, n int) float64 {
+	tmp := math.Pow(10.0, float64(n))
+	x *= T(tmp)
+	r := math.Floor(float64(x))
+	return r / tmp
+}
+
+// FloorToString round down to n decimal places.
+// Play: https://go.dev/play/p/Qk9KPd2IdDb
+func FloorToString[T constraints.Float | constraints.Integer](x T, n int) string {
+	tmp := math.Pow(10.0, float64(n))
+	x *= T(tmp)
+	r := math.Floor(float64(x))
+	result := strconv.FormatFloat(r/tmp, 'f', n, 64)
+	return result
+}
+
+// CeilToFloat round up to n decimal places.
+// Play: https://go.dev/play/p/8hOeSADZPCo
+func CeilToFloat[T constraints.Float | constraints.Integer](x T, n int) float64 {
+	tmp := math.Pow(10.0, float64(n))
+	x *= T(tmp)
+	r := math.Ceil(float64(x))
+	return r / tmp
+}
+
+// CeilToString round up to n decimal places.
+// Play: https://go.dev/play/p/wy5bYEyUKKG
+func CeilToString[T constraints.Float | constraints.Integer](x T, n int) string {
+	tmp := math.Pow(10.0, float64(n))
+	x *= T(tmp)
+	r := math.Ceil(float64(x))
+	result := strconv.FormatFloat(r/tmp, 'f', n, 64)
 	return result
 }
 
@@ -253,7 +291,7 @@ func PointDistance(x1, y1, x2, y2 float64) float64 {
 	return math.Sqrt(c)
 }
 
-// IsPrimes checks if number is prime number.
+// IsPrime checks if number is prime number.
 // Play: https://go.dev/play/p/Rdd8UTHZJ7u
 func IsPrime(n int) bool {
 	if n < 2 {
@@ -350,4 +388,10 @@ func Abs[T constraints.Integer | constraints.Float](x T) T {
 	}
 
 	return x
+}
+
+// Div returns the result of x divided by y.
+// Play: https://go.dev/play/p/WLxDdGXXYat
+func Div[T constraints.Float | constraints.Integer](x T, y T) float64 {
+	return float64(x) / float64(y)
 }

@@ -93,6 +93,7 @@ import (
 -   [KeyBy](#KeyBy)
 -   [Join](#Join)
 -   [Partition](#Partition)
+-   [SetToDefaultIf](#SetToDefaultIf)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -2564,5 +2565,36 @@ func main() {
     }
     // Output:
     // okk
+}
+```
+
+### <span id="SetToDefaultIf">SetToDefaultIf</span>
+
+<p>Sets elements to their default value if they match the given predicate. It retains the positions of the elements in the slice. It returns slice of T and the count of modified slice items</p>
+
+<b>Signature:</b>
+
+```go
+func SetToDefaultIf[T any](slice []T, predicate func(T) bool) ([]T, int)
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/9AXGlPRC0-A)</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+    strs := []string{"a", "b", "a", "c", "d", "a"}
+	modifiedStrs, count := slice.SetToDefaultIf(strs, func(s string) bool { return "a" == s })
+	
+    fmt.Println(modifiedStrs)
+	fmt.Println(count)
+	
+    // Output:
+	// [ b  c d ]
+	// 3
 }
 ```

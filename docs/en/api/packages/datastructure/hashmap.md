@@ -32,6 +32,7 @@ import (
 - [Iterate](#Iterate)
 - [Keys](#Keys)
 - [Values](#Values)
+- [FilterByValue](#FilterByValue)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -311,4 +312,77 @@ func main() {
 }
 ```
 
+### <span id="FilterByValue">FilterByValue</span>
 
+<p>Returns a filtered HashMap.</p>
+
+<b>Signature:</b>
+
+```go
+func (hm *HashMap) FilterByValue(perdicate func(value any) bool) *HashMap
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    hashmap "github.com/duke-git/lancet/v2/datastructure/hashmap"
+)
+
+func main() {
+    hm := hashmap.NewHashMap()
+
+    hm.Put("a", 1)
+    hm.Put("b", 2)
+    hm.Put("c", 3)
+    hm.Put("d", 4)
+    hm.Put("e", 5)
+    hm.Put("f", 6)
+
+    filteredHM := hm.FilterByValue(func(value any) bool {
+        return value.(int) == 1 || value.(int) == 3
+    })
+
+    fmt.Println(filteredHM.Size()) //2
+}
+```
+
+
+
+### <span id="ToInterface">ToInterface</span>
+
+<p>Converts reflect value to its interface type.</p>
+
+<b>Signature:</b>
+
+```go
+func ToInterface(v reflect.Value) (value interface{}, ok bool)
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/syqw0-WG7Xd)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/convertor"
+)
+
+func main() {
+    val := reflect.ValueOf("abc")
+    iVal, ok := convertor.ToInterface(val)
+
+    fmt.Printf("%T\n", iVal)
+    fmt.Printf("%v\n", iVal)
+    fmt.Println(ok)
+
+    // Output:
+    // string
+    // abc
+    // true    
+}
+```

@@ -1,6 +1,7 @@
 package convertor
 
 import (
+	"errors"
 	"fmt"
 	"reflect"
 	"strconv"
@@ -390,4 +391,183 @@ func ExampleGbkToUtf8() {
 	// Output:
 	// true
 	// hello
+}
+
+func ExampleToStdBase64() {
+	// if you want to see the result, please use 'base64.StdEncoding.DecodeString()' to decode the result
+
+	afterEncode := ToStdBase64(nil)
+	fmt.Println(afterEncode)
+
+	stringVal := "hello"
+	afterEncode = ToStdBase64(stringVal)
+	fmt.Println(afterEncode)
+
+	byteSliceVal := []byte("hello")
+	afterEncode = ToStdBase64(byteSliceVal)
+	fmt.Println(afterEncode)
+
+	intVal := 123
+	afterEncode = ToStdBase64(intVal)
+	fmt.Println(afterEncode)
+
+	mapVal := map[string]any{"a": "hi", "b": 2, "c": struct {
+		A string
+		B int
+	}{"hello", 3}}
+	afterEncode = ToStdBase64(mapVal)
+	fmt.Println(afterEncode)
+
+	floatVal := 123.456
+	afterEncode = ToStdBase64(floatVal)
+	fmt.Println(afterEncode)
+
+	boolVal := true
+	afterEncode = ToStdBase64(boolVal)
+	fmt.Println(afterEncode)
+
+	errVal := errors.New("err")
+	afterEncode = ToStdBase64(errVal)
+	fmt.Println(afterEncode)
+
+	// Output:
+	//
+	// aGVsbG8=
+	// aGVsbG8=
+	// MTIz
+	// eyJhIjoiaGkiLCJiIjoyLCJjIjp7IkEiOiJoZWxsbyIsIkIiOjN9fQ==
+	// MTIzLjQ1Ng==
+	// dHJ1ZQ==
+	// ZXJy
+}
+
+func ExampleToUrlBase64() {
+	// if you want to see the result, please use 'base64.URLEncoding.DecodeString()' to decode the result
+
+	stringVal := "hello"
+	afterEncode := ToUrlBase64(stringVal)
+	fmt.Println(afterEncode)
+
+	byteSliceVal := []byte("hello")
+	afterEncode = ToUrlBase64(byteSliceVal)
+	fmt.Println(afterEncode)
+
+	intVal := 123
+	afterEncode = ToUrlBase64(intVal)
+	fmt.Println(afterEncode)
+
+	mapVal := map[string]any{"a": "hi", "b": 2, "c": struct {
+		A string
+		B int
+	}{"hello", 3}}
+	afterEncode = ToUrlBase64(mapVal)
+	fmt.Println(afterEncode)
+
+	floatVal := 123.456
+	afterEncode = ToUrlBase64(floatVal)
+	fmt.Println(afterEncode)
+
+	boolVal := true
+	afterEncode = ToUrlBase64(boolVal)
+	fmt.Println(afterEncode)
+
+	errVal := errors.New("err")
+	afterEncode = ToUrlBase64(errVal)
+	fmt.Println(afterEncode)
+
+	// Output:
+	// aGVsbG8=
+	// aGVsbG8=
+	// MTIz
+	// eyJhIjoiaGkiLCJiIjoyLCJjIjp7IkEiOiJoZWxsbyIsIkIiOjN9fQ==
+	// MTIzLjQ1Ng==
+	// dHJ1ZQ==
+	// ZXJy
+}
+
+func ExampleToRawStdBase64() {
+	// if you want to see the result, please use 'base64.RawStdEncoding.DecodeString()' to decode the result
+	stringVal := "hello"
+	afterEncode := ToRawStdBase64(stringVal)
+	fmt.Println(afterEncode)
+
+	byteSliceVal := []byte("hello")
+	afterEncode = ToRawStdBase64(byteSliceVal)
+	fmt.Println(afterEncode)
+
+	intVal := 123
+	afterEncode = ToRawStdBase64(intVal)
+	fmt.Println(afterEncode)
+
+	mapVal := map[string]any{"a": "hi", "b": 2, "c": struct {
+		A string
+		B int
+	}{"hello", 3}}
+	afterEncode = ToRawStdBase64(mapVal)
+	fmt.Println(afterEncode)
+
+	floatVal := 123.456
+	afterEncode = ToRawStdBase64(floatVal)
+	fmt.Println(afterEncode)
+
+	boolVal := true
+	afterEncode = ToRawStdBase64(boolVal)
+	fmt.Println(afterEncode)
+
+	errVal := errors.New("err")
+	afterEncode = ToRawStdBase64(errVal)
+	fmt.Println(afterEncode)
+
+	// Output:
+	// aGVsbG8
+	// aGVsbG8
+	// MTIz
+	// eyJhIjoiaGkiLCJiIjoyLCJjIjp7IkEiOiJoZWxsbyIsIkIiOjN9fQ
+	// MTIzLjQ1Ng
+	// dHJ1ZQ
+	// ZXJy
+}
+
+func ExampleToRawUrlBase64() {
+	// if you want to see the result, please use 'base64.RawURLEncoding.DecodeString()' to decode the result
+
+	stringVal := "hello"
+	afterEncode := ToRawUrlBase64(stringVal)
+	fmt.Println(afterEncode)
+
+	byteSliceVal := []byte("hello")
+	afterEncode = ToRawUrlBase64(byteSliceVal)
+	fmt.Println(afterEncode)
+
+	intVal := 123
+	afterEncode = ToRawUrlBase64(intVal)
+	fmt.Println(afterEncode)
+
+	mapVal := map[string]any{"a": "hi", "b": 2, "c": struct {
+		A string
+		B int
+	}{"hello", 3}}
+	afterEncode = ToRawUrlBase64(mapVal)
+	fmt.Println(afterEncode)
+
+	floatVal := 123.456
+	afterEncode = ToRawUrlBase64(floatVal)
+	fmt.Println(afterEncode)
+
+	boolVal := true
+	afterEncode = ToRawUrlBase64(boolVal)
+	fmt.Println(afterEncode)
+
+	errVal := errors.New("err")
+	afterEncode = ToRawUrlBase64(errVal)
+	fmt.Println(afterEncode)
+
+	// Output:
+	// aGVsbG8
+	// aGVsbG8
+	// MTIz
+	// eyJhIjoiaGkiLCJiIjoyLCJjIjp7IkEiOiJoZWxsbyIsIkIiOjN9fQ
+	// MTIzLjQ1Ng
+	// dHJ1ZQ
+	// ZXJy
 }

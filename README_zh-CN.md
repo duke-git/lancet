@@ -4,7 +4,7 @@
 <br/>
 
 ![Go version](https://img.shields.io/badge/go-%3E%3Dv1.18-9cf)
-[![Release](https://img.shields.io/badge/release-2.2.9-green.svg)](https://github.com/duke-git/lancet/releases)
+[![Release](https://img.shields.io/badge/release-2.3.0-green.svg)](https://github.com/duke-git/lancet/releases)
 [![GoDoc](https://godoc.org/github.com/duke-git/lancet/v2?status.svg)](https://pkg.go.dev/github.com/duke-git/lancet/v2)
 [![Go Report Card](https://goreportcard.com/badge/github.com/duke-git/lancet/v2)](https://goreportcard.com/report/github.com/duke-git/lancet/v2)
 [![test](https://github.com/duke-git/lancet/actions/workflows/codecov.yml/badge.svg?branch=main&event=push)](https://github.com/duke-git/lancet/actions/workflows/codecov.yml)
@@ -37,7 +37,7 @@
 go get github.com/duke-git/lancet/v2 //安装v2最新版本v2.x.x
 ```
 
-2. <b>使用 go1.18 以下版本的用户，必须安装 v1.x.x。目前最新的 v1 版本是 v1.4.2。</b>
+2. <b>使用 go1.18 以下版本的用户，必须安装 v1.x.x。目前最新的 v1 版本是 v1.4.3。</b>
 
 ```go
 go get github.com/duke-git/lancet// 使用go1.18以下版本, 必须安装v1.x.x版本
@@ -99,6 +99,7 @@ func main() {
 -   [Tuple](#user-content-tuple)
 -   [Validator](#user-content-validator)
 -   [Xerror](#user-content-xerror)
+
 
 <h3 id="algorithm"> 1. algorithm 包实现一些基本查找和排序算法。 &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 
@@ -317,6 +318,15 @@ import "github.com/duke-git/lancet/v2/convertor"
 -   **<big>GbkToUtf8</big>** : GBK 编码转 utf8 编码。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/convertor.md#GbkToUtf8)]
     [[play](https://go.dev/play/p/OphmHCN_9u8)]
+-   **<big>ToStdBase64</big>** : 将值转换为StdBase64编码的字符串。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/convertor.md#ToStdBase64)]
+-   **<big>ToUrlBase64</big>** : 将值转换为url Base64编码的字符串。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/convertor.md#ToUrlBase64)]
+-   **<big>ToRawStdBase64</big>** : 将值转换为RawStdBase64编码的字符串。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/convertor.md#ToRawStdBase64)]
+-   **<big>ToRawUrlBase64</big>** : 将值转换为RawUrlBase64编码的字符串。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/convertor.md#ToRawUrlBase64)]
+
 
 <h3 id="cryptor"> 6. cryptor 加密包支持数据加密和解密，获取 md5，hash 值。支持 base64, md5, hmac, aes, des, rsa。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 
@@ -649,9 +659,12 @@ import "github.com/duke-git/lancet/v2/fileutil"
 -   **<big>CreateDir</big>** : 创建嵌套目录，例如/a/, /a/b/。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/fileutil.md#CreateDir)]
     [[play](https://go.dev/play/p/qUuCe1OGQnM)]
--   **<big>CopyFile</big>** :拷贝文件，会覆盖原有的文件。
+-   **<big>CopyFile</big>** : 拷贝文件，会覆盖原有的文件。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/fileutil.md#CopyFile)]
     [[play](https://go.dev/play/p/Jg9AMJMLrJi)]
+-   **<big>CopyDir</big>** : 拷贝目录。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/fileutil.md#CopyDir)]
+    [[play](https://go.dev/play/p/YAyFTA_UuPb)]
 -   **<big>FileMode</big>** : 获取文件 mode 信息。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/fileutil.md#FileMode)]
     [[play](https://go.dev/play/p/2l2hI42fA3p)]
@@ -718,6 +731,14 @@ import "github.com/duke-git/lancet/v2/fileutil"
     [[play](https://go.dev/play/p/GhLS6d8lH_g)]
 -   **<big>ReadFile</big>** : 读取文件或者URL。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/fileutil.md#ReadFile)]
+-   **<big>ChunkRead</big>** : 从文件的指定偏移读取块并返回块内所有行。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/fileutil.md#ChunkRead)]
+    [[play](https://go.dev/play/p/r0hPmKWhsgf)]
+-   **<big>ParallelChunkRead</big>** : 并行读取文件并将每个块的行发送到指定通道。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/fileutil.md#ParallelChunkRead)]
+    [[play](https://go.dev/play/p/teMXnCsdSEw)]
+
+
 
 <h3 id="formatter"> 10. formatter 格式化器包含一些数据格式化处理方法。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 
@@ -781,9 +802,32 @@ import "github.com/duke-git/lancet/v2/function"
 -   **<big>Pipeline</big>** : 从右至左执行函数列表。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/function.md#Pipeline)]
     [[play](https://go.dev/play/p/mPdUVvj6HD6)]
+-   **<big>AcceptIf</big>** : AcceptIf函数会返回另一个函数，该函数的签名与apply函数相同，但同时还会包含一个布尔值来表示成功或失败。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/function.md#AcceptIf)]
+    [[play](https://go.dev/play/p/XlXHHtzCf7d)]
+-   **<big>And</big>** : 返回一个复合谓词判断函数，该判断函数表示一组谓词的逻辑and操作。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/function.md#And)]
+    [[play](https://go.dev/play/p/dTBHJMQ0zD2)]
+-   **<big>Or</big>** : 返回一个复合谓词判断函数，该判断函数表示一组谓词的逻辑or操作。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/function.md#Or)]
+    [[play](https://go.dev/play/p/LitCIsDFNDA)]
+-   **<big>Negate</big>** : 返回一个谓词函数，该谓词函数表示当前谓词的逻辑否定。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/function.md#Negate)]
+    [[play](https://go.dev/play/p/jbI8BtgFnVE)]
+-   **<big>Nor</big>** : 返回一个复合谓词判断函数，该判断函数表示一组谓词的逻辑非或nor的操作。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/function.md#Nor)]
+    [[play](https://go.dev/play/p/2KdCoBEOq84)]
+-   **<big>Nand</big>** : 返回一个复合谓词判断函数，该判断函数表示一组谓词的逻辑非与nand的操作。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/function.md#Nand)]
+    [[play](https://go.dev/play/p/Rb-FdNGpgSO)]
+-   **<big>Xnor</big>** : 返回一个复合谓词判断函数，该判断函数表示一组谓词的逻辑异或xnor的操作。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/function.md#Xnor)]
+    [[play](https://go.dev/play/p/FJxko8SFbqc)]
 -   **<big>Watcher</big>** : Watcher 用于记录代码执行时间。可以启动/停止/重置手表定时器。获取函数执行的时间。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/function.md#Watcher)]
     [[play](https://go.dev/play/p/l2yrOpCLd1I)]
+
+
 
 <h3 id="maputil"> 12. maputil 包括一些操作 map 的函数。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 
@@ -928,6 +972,18 @@ import "github.com/duke-git/lancet/v2/mathutil"
 -   **<big>TruncRound</big>** : 截短 n 位小数（不进行四舍五入）。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/mathutil.md#TruncRound)]
     [[play](https://go.dev/play/p/aumarSHIGzP)]
+-   **<big>CeilToFloat</big>** : 向上舍入（进一法），保留n位小数。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/mathutil.md#CeilToFloat)]
+    [[play](https://go.dev/play/p/8hOeSADZPCo)]
+-   **<big>CeilToString</big>** : 向上舍入（进一法），保留n位小数，返回字符串。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/mathutil.md#CeilToString)]
+    [[play](https://go.dev/play/p/wy5bYEyUKKG)]
+-   **<big>FloorToFloat</big>** : 向下舍入（去尾法），保留n位小数。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/mathutil.md#FloorToFloat)]
+    [[play](https://go.dev/play/p/vbCBrQHZEED)]
+-   **<big>FloorToString</big>** : 向下舍入（去尾法），保留n位小数，返回字符串。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/mathutil.md#FloorToString)]
+    [[play](https://go.dev/play/p/Qk9KPd2IdDb)]
 -   **<big>Range</big>** : 根据指定的起始值和数量，创建一个数字切片。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/mathutil.md#Range)]
     [[play](https://go.dev/play/p/9ke2opxa8ZP)]
@@ -967,6 +1023,10 @@ import "github.com/duke-git/lancet/v2/mathutil"
 -   **<big>Abs</big>** : 求绝对值。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/mathutil.md#Sum)]
     [[play](https://go.dev/play/p/fsyBh1Os-1d)]
+-   **<big>Div</big>** : 除法运算。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/mathutil.md#Div)]
+    [[play](https://go.dev/play/p/WLxDdGXXYat)]
+
 
 <h3 id="netutil"> 14. netutil 网络包支持获取 ip 地址，发送 http 请求。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 
@@ -1134,6 +1194,16 @@ import "github.com/duke-git/lancet/v2/retry"
 -   **<big>RetryTimes</big>** : 设置重试次数，默认 5。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/retry.md#RetryTimes)]
     [[play](https://go.dev/play/p/ssfVeU2SwLO)]
+-   **<big>BackoffStrategy</big>** : 定义计算退避间隔的方法的接口。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/retry.md#BackoffStrategy)]
+-   **<big>RetryWithCustomBackoff</big>** : 设置自定义退避策略。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/retry.md#RetryWithCustomBackoff)]
+-   **<big>RetryWithLinearBackoff</big>** : 设置线性策略退避。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/retry.md#RetryWithLinearBackoff)]
+-   **<big>RetryWithExponentialWithJitterBackoff</big>** : 设置指数策略退避。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/retry.md#RetryWithExponentialWithJitterBackoff)]
+
+
 
 <h3 id="slice"> 18. slice 包含操作切片的方法集合。&nbsp; &nbsp; &nbsp; &nbsp; <a href="#index">回到目录</a></h3>
 
@@ -1358,6 +1428,9 @@ import "github.com/duke-git/lancet/v2/slice"
 -   **<big>Random</big>** : 随机返回切片中元素以及下标, 当切片长度为0时返回下标-1。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/slice.md#Random)]
     [[play](https://go.dev/play/p/UzpGQptWppw)]
+-   **<big>SetToDefaultIf</big>** : 根据给定给定的predicate判定函数来修改切片中的元素。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/slice.md#SetToDefaultIf)]
+    [[play](https://go.dev/play/p/9AXGlPRC0-A)]
 
 
 
@@ -1607,6 +1680,13 @@ import "github.com/duke-git/lancet/v2/strutil"
 -   **<big>RemoveWhiteSpace</big>** : 删除字符串中的空格。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/strutil.md#RemoveWhiteSpace)]
     [[play](https://go.dev/play/p/HzLC9vsTwkf)]
+-   **<big>SubInBetween</big>** : 获取字符串中指定的起始字符串start和终止字符串end直接的子字符串。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/strutil.md#SubInBetween)]
+    [[play](https://go.dev/play/p/EDbaRvjeNsv)]
+-   **<big>HammingDistance</big>** : 计算两个字符串之间的汉明距离。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/strutil.md#HammingDistance)]
+    [[play](https://go.dev/play/p/glNdQEA9HUi)]
+
 
 <h3 id="system"> 22. system 包含 os, runtime, shell command 的相关函数。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 

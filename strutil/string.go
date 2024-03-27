@@ -4,6 +4,7 @@
 package strutil
 
 import (
+	"errors"
 	"regexp"
 	"strings"
 	"unicode"
@@ -584,7 +585,7 @@ func RemoveWhiteSpace(str string, repalceAll bool) string {
 }
 
 // SubInBetween return substring between the start and end position(excluded) of source string.
-// Play: todo
+// Play: https://go.dev/play/p/EDbaRvjeNsv
 func SubInBetween(str string, start string, end string) string {
 	if _, after, ok := strings.Cut(str, start); ok {
 		if before, _, ok := strings.Cut(after, end); ok {
@@ -593,4 +594,26 @@ func SubInBetween(str string, start string, end string) string {
 	}
 
 	return ""
+}
+
+// HammingDistance calculates the Hamming distance between two strings.
+// The Hamming distance is the number of positions at which the corresponding symbols are different.
+// This func returns an error if the input strings are of unequal lengths.
+// Play: https://go.dev/play/p/glNdQEA9HUi
+func HammingDistance(a, b string) (int, error) {
+	if len(a) != len(b) {
+		return -1, errors.New("a length and b length are unequal")
+	}
+
+	ar := []rune(a)
+	br := []rune(b)
+
+	var distance int
+	for i, codepoint := range ar {
+		if codepoint != br[i] {
+			distance++
+		}
+	}
+
+	return distance, nil
 }

@@ -39,6 +39,7 @@ import (
 -   [Nor](#Nor)
 -   [Xnor](#Xnor)
 -   [Nand](#Nand)
+-   [AcceptIf](#AcceptIf)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -422,7 +423,7 @@ func longRunningTask() {
 func And[T any](predicates ...func(T) bool) func(T) bool
 ```
 
-<b>Example:</b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/dTBHJMQ0zD2)</span></b>
 
 ```go
 package main
@@ -459,7 +460,7 @@ func main() {
 func Or[T any](predicates ...func(T) bool) func(T) bool
 ```
 
-<b>Example:</b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/LitCIsDFNDA)</span></b>
 
 ```go
 package main
@@ -494,7 +495,7 @@ func main() {
 func Negate[T any](predicate func(T) bool) func(T) bool
 ```
 
-<b>Example:</b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/jbI8BtgFnVE)</span></b>
 
 ```go
 package main
@@ -534,7 +535,7 @@ func main() {
 func Nor[T any](predicates ...func(T) bool) func(T) bool
 ```
 
-<b>Example:</b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/2KdCoBEOq84)</span></b>
 
 ```go
 package main
@@ -576,7 +577,7 @@ func main() {
 func Nand[T any](predicates ...func(T) bool) func(T) bool
 ```
 
-<b>Example:</b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/Rb-FdNGpgSO)</span></b>
 
 ```go
 package main
@@ -613,7 +614,7 @@ func main() {
 func Xnor[T any](predicates ...func(T) bool) func(T) bool
 ```
 
-<b>Example:</b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/FJxko8SFbqc)</span></b>
 
 ```go
 package main
@@ -638,4 +639,55 @@ func main() {
     // true
     // false
 }
+```
+
+### <span id="AcceptIf">AcceptIf</span>
+
+<p>AcceptIf returns another function of the same signature as the apply function but also includes a bool value to indicate success or failure. A predicate function that takes an argument of type T and returns a bool. An apply function that also takes an argument of type T and returns a modified value of the same type.</p>
+
+<b>Signature:</b>
+
+```go
+func AcceptIf[T any](predicate func(T) bool, apply func(T) T) func(T) (T, bool)
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/XlXHHtzCf7d)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/function"
+)
+
+func main() {
+
+    adder := function.AcceptIf(
+        function.And(
+            func(x int) bool {
+                return x > 10
+            }, func(x int) bool {
+                return x%2 == 0
+            }),
+        func(x int) int {
+            return x + 1
+        },
+    )
+
+    result, ok := adder(20)
+    fmt.Println(result)
+    fmt.Println(ok)
+
+    result, ok = adder(21)
+    fmt.Println(result)
+    fmt.Println(ok)
+
+    // Output:
+    // 21
+    // true
+    // 0
+    // false
+}
+
 ```

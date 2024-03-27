@@ -4,7 +4,7 @@
 <br/>
 
 ![Go version](https://img.shields.io/badge/go-%3E%3Dv1.18-9cf)
-[![Release](https://img.shields.io/badge/release-2.2.9-green.svg)](https://github.com/duke-git/lancet/releases)
+[![Release](https://img.shields.io/badge/release-2.3.0-green.svg)](https://github.com/duke-git/lancet/releases)
 [![GoDoc](https://godoc.org/github.com/duke-git/lancet/v2?status.svg)](https://pkg.go.dev/github.com/duke-git/lancet/v2)
 [![Go Report Card](https://goreportcard.com/badge/github.com/duke-git/lancet/v2)](https://goreportcard.com/report/github.com/duke-git/lancet/v2)
 [![test](https://github.com/duke-git/lancet/actions/workflows/codecov.yml/badge.svg?branch=main&event=push)](https://github.com/duke-git/lancet/actions/workflows/codecov.yml)
@@ -38,7 +38,7 @@
 go get github.com/duke-git/lancet/v2 // will install latest version of v2.x.x
 ```
 
-2. <b>For users who use version below go1.18, you should install v1.x.x. The latest of v1.x.x is v1.4.2. </b>
+2. <b>For users who use version below go1.18, you should install v1.x.x. The latest of v1.x.x is v1.4.3. </b>
 
 ```go
 go get github.com/duke-git/lancet // below go1.18, install latest version of v1.x.x
@@ -318,6 +318,14 @@ import "github.com/duke-git/lancet/v2/convertor"
 -   **<big>GbkToUtf8</big>** : converts GBK encoding data to utf8 encoding data.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/convertor.md#GbkToUtf8)]
     [[play](https://go.dev/play/p/OphmHCN_9u8)]
+-   **<big>ToStdBase64</big>** : converts a value to a string encoded in standard Base64.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/convertor.md#ToStdBase64)]
+-   **<big>ToUrlBase64</big>** : converts a value to a string encoded in url Base64.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/convertor.md#ToUrlBase64)]
+-   **<big>ToRawStdBase64</big>** : converts a value to a string encoded in raw standard Base64.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/convertor.md#ToRawStdBase64)]
+-   **<big>ToRawUrlBase64</big>** : converts a value to a string encoded in raw url Base64.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/convertor.md#ToRawUrlBase64)]
 
 <h3 id="cryptor"> 6. Cryptor package is for data encryption and decryption.&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
@@ -652,9 +660,12 @@ import "github.com/duke-git/lancet/v2/fileutil"
 -   **<big>CreateDir</big>** : create directory in absolute path.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/fileutil.md#CreateDir)]
     [[play](https://go.dev/play/p/qUuCe1OGQnM)]
--   **<big>CopyFile</big>** :copy src file to dest file.
+-   **<big>CopyFile</big>** : copy src file to dest file.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/fileutil.md#CopyFile)]
     [[play](https://go.dev/play/p/Jg9AMJMLrJi)]
+-   **<big>CopyDir</big>** : copy src directory to dest directory.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/fileutil.md#CopyDir)]
+    [[play](https://go.dev/play/p/YAyFTA_UuPb)]
 -   **<big>FileMode</big>** : return file's mode and permission.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/fileutil.md#FileMode)]
     [[play](https://go.dev/play/p/2l2hI42fA3p)]
@@ -721,6 +732,12 @@ import "github.com/duke-git/lancet/v2/fileutil"
     [[play](https://go.dev/play/p/GhLS6d8lH_g)]
 -   **<big>ReadFile</big>** : read file or url.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/fileutil.md#ReadFile)]
+-   **<big>ChunkRead</big>** : reads a block from the file at the specified offset and returns all lines within the block.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/fileutil.md#ChunkRead)]
+    [[play](https://go.dev/play/p/r0hPmKWhsgf)]
+-   **<big>ParallelChunkRead</big>** : reads the file in parallel and send each chunk of lines to the specified channel.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/fileutil.md#ParallelChunkRead)]  
+    [[play](https://go.dev/play/p/teMXnCsdSEw)]
 
 <h3 id="formatter"> 10. Formatter contains some functions for data formatting. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
@@ -784,9 +801,31 @@ import "github.com/duke-git/lancet/v2/function"
 -   **<big>Pipeline</big>** : takes a list of functions and returns a function whose param will be passed into the functions one by one.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/function.md#Pipeline)]
     [[play](https://go.dev/play/p/mPdUVvj6HD6)]
+-   **<big>AcceptIf</big>** : returns another function of the same signature as the apply function but also includes a bool value to indicate success or failure.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/function.md#AcceptIf)]
+    [[play](https://go.dev/play/p/XlXHHtzCf7d)]
+-   **<big>And</big>** : returns a composed predicate that represents the logical AND of a list of predicates.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/function.md#And)]
+    [[play](https://go.dev/play/p/dTBHJMQ0zD2)]
+-   **<big>Or</big>** : returns a composed predicate that represents the logical OR of a list of predicates.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/function.md#Or)]
+    [[play](https://go.dev/play/p/LitCIsDFNDA)]
+-   **<big>Negate</big>** : returns a predicate that represents the logical negation of this predicate.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/function.md#Negate)]
+    [[play](https://go.dev/play/p/jbI8BtgFnVE)]
+-   **<big>Nor</big>** : returns a composed predicate that represents the logical NOR of a list of predicates.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/function.md#Nor)]
+    [[play](https://go.dev/play/p/2KdCoBEOq84)]
+-   **<big>Nand</big>** : returns a composed predicate that represents the logical Nand of a list of predicates.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/function.md#Nand)]
+    [[play](https://go.dev/play/p/Rb-FdNGpgSO)]
+-   **<big>Xnor</big>** : returns a composed predicate that represents the logical XNOR of a list of predicates.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/function.md#Xnor)]
+    [[play](https://go.dev/play/p/FJxko8SFbqc)]
 -   **<big>Watcher</big>** : Watcher is used for record code execution time. can start/stop/reset the watch timer. get the elapsed time of function execution.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/function.md#Watcher)]
     [[play](https://go.dev/play/p/l2yrOpCLd1I)]
+
 
 <h3 id="maputil"> 12. Maputil package includes some functions to manipulate map.&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
@@ -931,6 +970,18 @@ import "github.com/duke-git/lancet/v2/mathutil"
 -   **<big>TruncRound</big>** : round off n decimal places for int64.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/mathutil.md#TruncRound)]
     [[play](https://go.dev/play/p/aumarSHIGzP)]
+-   **<big>CeilToFloat</big>** : round float up n decimal places.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/mathutil.md#CeilToFloat)]
+    [[play](https://go.dev/play/p/8hOeSADZPCo)]
+-   **<big>CeilToString</big>** : round float up n decimal places, then conver to string.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/mathutil.md#CeilToString)]
+    [[play](https://go.dev/play/p/wy5bYEyUKKG)]
+-   **<big>FloorToFloat</big>** : round float down n decimal places.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/mathutil.md#FloorToFloat)]
+    [[play](https://go.dev/play/p/vbCBrQHZEED)]
+-   **<big>FloorToString</big>** : round float down n decimal places, then conver to string.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/mathutil.md#FloorToString)]
+    [[play](https://go.dev/play/p/Qk9KPd2IdDb)]
 -   **<big>Range</big>** : Creates a slice of numbers from start with specified count, element step is 1.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/mathutil.md#Range)]
     [[play](https://go.dev/play/p/9ke2opxa8ZP)]
@@ -970,6 +1021,10 @@ import "github.com/duke-git/lancet/v2/mathutil"
 -   **<big>Abs</big>** : returns the absolute value of param number.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/mathutil.md#Sum)]
     [[play](https://go.dev/play/p/fsyBh1Os-1d)]
+-   **<big>Div</big>** : returns the result of x divided by y.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/mathutil.md#Div)]
+    [[play](https://go.dev/play/p/WLxDdGXXYat)]
+
 
 <h3 id="netutil"> 14. Netutil package contains functions to get net information and send http request. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
@@ -1139,6 +1194,16 @@ import "github.com/duke-git/lancet/v2/retry"
 -   **<big>RetryTimes</big>** : set times of retry.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/retry.md#RetryTimes)]
     [[play](https://go.dev/play/p/ssfVeU2SwLO)]
+-   **<big>BackoffStrategy</big>** : An interface that defines a method for calculating backoff intervals.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/retry.md#BackoffStrategy)]
+-   **<big>RetryWithCustomBackoff</big>** : set abitary custom backoff strategy.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/retry.md#RetryWithCustomBackoff)]
+-   **<big>RetryWithLinearBackoff</big>** : set linear strategy backoff.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/retry.md#RetryWithLinearBackoff)]
+-   **<big>RetryWithExponentialWithJitterBackoff</big>** : set exponential strategy backoff.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/retry.md#RetryWithExponentialWithJitterBackoff)]
+
+   
 
 <h3 id="slice"> 18. Slice contains some functions to manipulate slice. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
@@ -1364,6 +1429,10 @@ import "github.com/duke-git/lancet/v2/slice"
 -   **<big>Random</big>** : get a random item of slice, return its index, when slice is empty, return -1. 
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#Random)]
     [[play](https://go.dev/play/p/UzpGQptWppw)]
+-   **<big>SetToDefaultIf</big>** : set elements to their default value if they match the given predicate.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#SetToDefaultIf)]
+    [[play](https://go.dev/play/p/9AXGlPRC0-A)]
+
 
 
 <h3 id="stream"> 19. Stream package implements a sequence of elements supporting sequential and operations. this package is an experiment to explore if stream in go can work as the way java does. its function is very limited. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
@@ -1609,6 +1678,12 @@ import "github.com/duke-git/lancet/v2/strutil"
 -   **<big>RemoveWhiteSpace</big>** : remove whitespace characters from a string.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/strutil.md#RemoveWhiteSpace)]
     [[play](https://go.dev/play/p/HzLC9vsTwkf)]
+-   **<big>SubInBetween</big>** : return substring between the start and end position(excluded) of source string.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/strutil.md#SubInBetween)]
+    [[play](https://go.dev/play/p/EDbaRvjeNsv)]
+-   **<big>HammingDistance</big>** : calculates the Hamming distance between two strings.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/strutil.md#HammingDistance)]
+    [[play](https://go.dev/play/p/glNdQEA9HUi)]
 
 
 <h3 id="system"> 22. System package contain some functions about os, runtime, shell command. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>

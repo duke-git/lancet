@@ -50,6 +50,8 @@ import (
 -   [WriteStringToFile](#WriteStringToFile)
 -   [WriteBytesToFile](#WriteBytesToFile)
 -   [ReadFile](#ReadFile)
+-   [ChunkRead](#ChunkRead)
+-   [ParallelChunkRead](#ParallelChunkRead)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -165,7 +167,7 @@ func main() {
 
 ### <span id="CopyDir">CopyDir</span>
 
-<p>copy	src directory to dst directory, it will copy all files and directories recursively. the access permission will be the same as the source directory. if dstPath exists, it will return an error.</p>
+<p>Copy	src directory to dst directory, it will copy all files and directories recursively. the access permission will be the same as the source directory. if dstPath exists, it will return an error.</p>
 
 <b>Signature:</b>
 
@@ -959,5 +961,117 @@ func main() {
     // Output:
     // User-agent: *
     // Disallow: /deny
+}
+```
+
+### <span id="ChunkRead">ChunkRead</span>
+
+<p>reads a block from the file at the specified offset and returns all lines within the block.</p>
+
+<b>Signature :</b>
+
+```go
+func ChunkRead(file *os.File, offset int64, size int, bufPool *sync.Pool) ([]string, error)
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/r0hPmKWhsgf)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/fileutil"
+)
+
+func main() {
+    const mb = 1024 * 1024
+    const defaultChunkSizeMB = 100 
+
+    // test1.csv file content:
+    // Lili,22,female
+    // Jim,21,male
+    filePath := "./testdata/test1.csv"
+    f, err := os.Open(filePath)
+    if err != nil {
+        return
+    }
+
+    defer f.Close()
+
+    var bufPool = sync.Pool{
+        New: func() interface{} {
+            return make([]byte, 0, defaultChunkSizeMB*mb)
+        },
+    }
+
+    lines, err := fileutil.ChunkRead(f, 0, 100, &bufPool)
+    if err != nil {
+        return
+    }
+
+    fmt.Println(lines[0])
+    fmt.Println(lines[1])
+
+    // Output:
+    // Lili,22,female
+    // Jim,21,male
+}
+```
+
+### <span id="ParallelChunkRead">ParallelChunkRead</span>
+
+<p>Reads the file in parallel and send each chunk of lines to the specified channel.</p>
+
+<b>Signature :</b>
+
+```go
+// filePath: file path.
+// chunkSizeMB: The size of the block (in MB, the default is 100MB when set to 0). Setting it too large will be detrimental. Adjust it as appropriate.
+// maxGoroutine: The number of concurrent read chunks, the number of CPU cores used when set to 0.
+// linesCh: The channel used to receive the returned results.
+func ParallelChunkRead(filePath string, linesCh chan<- []string, chunkSizeMB, maxGoroutine int) error
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/teMXnCsdSEw)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/fileutil"
+)
+
+func main() {
+    const mb = 1024 * 1024
+    const defaultChunkSizeMB = 100 // 默认值
+
+    numParsers := runtime.NumCPU()
+
+    linesCh := make(chan []string, numParsers)
+    
+    // test1.csv file content:
+    // Lili,22,female
+    // Jim,21,male
+    filePath := "./testdata/test1.csv"
+
+    go fileutil.ParallelChunkRead(filePath, linesCh, defaultChunkSizeMB, numParsers)
+
+    var totalLines int
+    for lines := range linesCh {
+        totalLines += len(lines)
+
+        for _, line := range lines {
+            fmt.Println(line)
+        }
+    }
+
+    fmt.Println(totalLines)
+
+    // Output:
+    // Lili,22,female
+    // Jim,21,male
+    // 2
 }
 ```
