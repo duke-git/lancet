@@ -6,6 +6,8 @@ package mathutil
 
 import (
 	"fmt"
+	"github.com/duke-git/lancet/v2/convertor"
+	"github.com/shopspring/decimal"
 	"math"
 	"strconv"
 	"strings"
@@ -69,20 +71,16 @@ func Percent(val, total float64, n int) float64 {
 // RoundToString round off to n decimal places.
 // Play: https://go.dev/play/p/kZwpBRAcllO
 func RoundToString[T constraints.Float | constraints.Integer](x T, n int) string {
-	tmp := math.Pow(10.0, float64(n))
-	x *= T(tmp)
-	r := math.Round(float64(x))
-	result := strconv.FormatFloat(r/tmp, 'f', n, 64)
-	return result
+	d, _ := decimal.NewFromString(convertor.ToString(x))
+	f, _ := d.Round(int32(n)).Float64()
+	return strconv.FormatFloat(f, 'f', n, 64)
 }
 
 // RoundToFloat round off to n decimal places.
 // Play: https://go.dev/play/p/ghyb528JRJL
 func RoundToFloat[T constraints.Float | constraints.Integer](x T, n int) float64 {
-	tmp := math.Pow(10.0, float64(n))
-	x *= T(tmp)
-	r := math.Round(float64(x))
-	return r / tmp
+	float, _ := convertor.ToFloat(RoundToString(x, n))
+	return float
 }
 
 // TruncRound round off n decimal places.

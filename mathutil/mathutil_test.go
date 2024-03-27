@@ -60,6 +60,9 @@ func TestRoundToFloat(t *testing.T) {
 	assert.Equal(0.13, RoundToFloat(0.125, 2))
 	assert.Equal(0.125, RoundToFloat(0.125, 3))
 	assert.Equal(33.33, RoundToFloat(33.33333, 2))
+	assert.Equal(0.59, RoundToFloat(0.585, 2))
+	assert.Equal(63.59, RoundToFloat(63.585, 2))
+	assert.Equal(64.59, RoundToFloat(64.585, 2))
 }
 
 func TestRoundToString(t *testing.T) {
@@ -74,6 +77,9 @@ func TestRoundToString(t *testing.T) {
 	assert.Equal("0.125", RoundToString(0.125, 3))
 	assert.Equal("54.321", RoundToString(54.321, 3))
 	assert.Equal("17.000", RoundToString(17, 3))
+	assert.Equal("0.59", RoundToString(0.585, 2))
+	assert.Equal("63.59", RoundToString(63.585, 2))
+	assert.Equal("64.59", RoundToString(64.585, 2))
 }
 
 func TestTruncRound(t *testing.T) {
