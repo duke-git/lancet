@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"sort"
 	"strconv"
+	"time"
 )
 
 func ExampleKeys() {
@@ -449,4 +450,77 @@ func ExampleHasKey() {
 	// Output:
 	// true
 	// false
+}
+
+func ExampleMapToStruct() {
+
+	personReqMap := map[string]any{
+		"name":     "Nothin",
+		"max_age":  35,
+		"page":     1,
+		"pageSize": 10,
+	}
+
+	type PersonReq struct {
+		Name     string `json:"name"`
+		MaxAge   int    `json:"max_age"`
+		Page     int    `json:"page"`
+		PageSize int    `json:"pageSize"`
+	}
+	var personReq PersonReq
+	_ = MapToStruct(personReqMap, &personReq)
+	fmt.Println(personReq)
+
+	// Output:
+	// {Nothin 35 1 10}
+}
+
+func ExampleToSortedSlicesDefault() {
+	m := map[int]string{
+		1: "a",
+		3: "c",
+		2: "b",
+	}
+
+	keys, values := ToSortedSlicesDefault(m)
+
+	fmt.Println(keys)
+	fmt.Println(values)
+
+	// Output:
+	// [1 2 3]
+	// [a b c]
+}
+
+func ExampleToSortedSlicesWithComparator() {
+	m1 := map[time.Time]string{
+		time.Date(2024, 3, 31, 0, 0, 0, 0, time.UTC): "today",
+		time.Date(2024, 3, 30, 0, 0, 0, 0, time.UTC): "yesterday",
+		time.Date(2024, 4, 1, 0, 0, 0, 0, time.UTC):  "tomorrow",
+	}
+
+	keys1, values1 := ToSortedSlicesWithComparator(m1, func(a, b time.Time) bool {
+		return a.Before(b)
+	})
+
+	m2 := map[int]string{
+		1: "a",
+		3: "c",
+		2: "b",
+	}
+	keys2, values2 := ToSortedSlicesWithComparator(m2, func(a, b int) bool {
+		return a > b
+	})
+
+	fmt.Println(keys1)
+	fmt.Println(values1)
+
+	fmt.Println(keys2)
+	fmt.Println(values2)
+
+	// Output:
+	// [2024-03-30 00:00:00 +0000 UTC 2024-03-31 00:00:00 +0000 UTC 2024-04-01 00:00:00 +0000 UTC]
+	// [yesterday today tomorrow]
+	// [3 2 1]
+	// [c b a]
 }

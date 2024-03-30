@@ -44,6 +44,8 @@ import (
 -   [Minus](#Minus)
 -   [IsDisjoint](#IsDisjoint)
 -   [HasKey](#HasKey)
+-   [ToSortedSlicesDefault](#ToSortedSlicesDefault)
+-   [ToSortedSlicesWithComparator](#ToSortedSlicesWithComparator)
 -   [NewConcurrentMap](#NewConcurrentMap)
 -   [ConcurrentMap_Get](#ConcurrentMap_Get)
 -   [ConcurrentMap_Set](#ConcurrentMap_Set)
@@ -989,6 +991,101 @@ func main() {
     // Output:
     // true
     // false
+}
+```
+
+### <span id="ToSortedSlicesDefault">ToSortedSlicesDefault</span>
+
+<p>
+Translate the key and value of the map into two slices that are sorted in ascending order according to the key’s value, with the position of the elements in the value slice corresponding to the key.</p>
+
+<b>Signature:</b>
+
+```go
+func ToSortedSlicesDefault[K constraints.Ordered, V any](m map[K]V) ([]K, []V)
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](Todo)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/maputil"
+)
+
+func main() {
+    m := map[int]string{
+		1: "a",
+		3: "c",
+		2: "b",
+	}
+
+	keys, values := ToSortedSlicesDefault(m)
+
+	fmt.Println(keys)
+	fmt.Println(values)
+
+	// Output:
+	// [1 2 3]
+	// [a b c]
+}
+```
+
+### <span id="ToSortedSlicesWithComparator">ToSortedSlicesWithComparator</span>
+
+<p>
+Translate the key and value of the map into two slices that are sorted according to a custom sorting rule defined by a comparator function based on the key's value, with the position of the elements in the value slice corresponding to the key.
+</p>
+
+<b>Signature:</b>
+
+```go
+func ToSortedSlicesWithComparator[K comparable, V any](m map[K]V, comparator func(a, b K) bool) ([]K, []V) 
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](Todo)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/maputil"
+)
+
+func main() {
+    m1 := map[time.Time]string{
+		time.Date(2024, 3, 31, 0, 0, 0, 0, time.UTC): "today",
+		time.Date(2024, 3, 30, 0, 0, 0, 0, time.UTC): "yesterday",
+		time.Date(2024, 4, 1, 0, 0, 0, 0, time.UTC):  "tomorrow",
+	}
+
+	keys1, values1 := ToSortedSlicesWithComparator(m1, func(a, b time.Time) bool {
+		return a.Before(b)
+	})
+
+	m2 := map[int]string{
+		1: "a",
+		3: "c",
+		2: "b",
+	}
+	keys2, values2 := ToSortedSlicesWithComparator(m2, func(a, b int) bool {
+		return a > b
+	})
+
+	fmt.Println(keys2)
+	fmt.Println(values2)
+
+	fmt.Println(keys1)
+	fmt.Println(values1)
+
+	// Output:
+	// [2024-03-30 00:00:00 +0000 UTC 2024-03-31 00:00:00 +0000 UTC 2024-04-01 00:00:00 +0000 UTC]
+	// [yesterday today tomorrow]
+	// [3 2 1]
+	// [c b a]
 }
 ```
 

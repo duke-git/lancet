@@ -1,9 +1,11 @@
 package maputil
 
 import (
+	"math/cmplx"
 	"sort"
 	"strconv"
 	"testing"
+	"time"
 
 	"github.com/duke-git/lancet/v2/internal"
 )
@@ -510,4 +512,182 @@ func TestMapToStruct(t *testing.T) {
 	assert.Equal(m["phone"], p.Phone)
 	assert.Equal("test", p.Addr.Street)
 	assert.Equal(1, p.Addr.Number)
+}
+
+func TestToSortedSlicesDefault(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestToSortedSlicesDefault")
+
+	testCases1 := []struct {
+		name      string
+		inputMap  map[string]any
+		expKeys   []string
+		expValues []any
+	}{
+		{
+			name:      "Empty Map",
+			inputMap:  map[string]any{},
+			expKeys:   []string{},
+			expValues: []any{},
+		},
+		{
+			name:      "Unsorted Map",
+			inputMap:  map[string]any{"c": 3, "a": 1.6, "b": 2},
+			expKeys:   []string{"a", "b", "c"},
+			expValues: []any{1.6, 2, 3},
+		},
+	}
+
+	for _, tc := range testCases1 {
+		t.Run(tc.name, func(t *testing.T) {
+			keys, values := ToSortedSlicesDefault(tc.inputMap)
+			assert.Equal(tc.expKeys, keys)
+			assert.Equal(tc.expValues, values)
+		})
+	}
+
+	testCases2 := map[int64]string{
+		7: "seven",
+		3: "three",
+		5: "five",
+	}
+	actualK2, actualV2 := ToSortedSlicesDefault(testCases2)
+	case2Keys := []int64{3, 5, 7}
+	case2Values := []string{"three", "five", "seven"}
+	assert.Equal(case2Keys, actualK2)
+	assert.Equal(case2Values, actualV2)
+}
+
+func TestToSortedSlicesWithComparator(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestToSortedSlicesWithComparator")
+
+	type Account struct {
+		ID                 int
+		Name               string
+		CreateTime         time.Time
+		FavorComplexNumber complex128
+		Signal             chan struct{}
+	}
+
+	type testCase struct {
+		name      string
+		inputMap  map[Account]any
+		lessFunc  func(a, b Account) bool
+		expKeys   []Account
+		expValues []any
+	}
+
+	now := time.Now()
+	tomorrow := now.AddDate(0, 0, 1)
+	yesterday := now.AddDate(0, 0, -1)
+
+	account1 := Account{ID: 1, Name: "cya", CreateTime: now, FavorComplexNumber: complex(1.2, 3),
+		Signal: make(chan struct{}, 10)}
+	account2 := Account{ID: 2, Name: "Cannian", CreateTime: tomorrow, FavorComplexNumber: complex(1.2, 2),
+		Signal: make(chan struct{}, 7)}
+	account3 := Account{ID: 3, Name: "Clauviou", CreateTime: yesterday, FavorComplexNumber: complex(3, 4),
+		Signal: make(chan struct{}, 3)}
+	account1.Signal <- struct{}{}
+	account2.Signal <- struct{}{}
+	account2.Signal <- struct{}{}
+
+	testCases := []testCase{
+		{
+			name: "Sorted by Account ID",
+			inputMap: map[Account]any{
+				account1: 100,
+				account2: 200,
+				account3: 300,
+			},
+			lessFunc:  func(a, b Account) bool { return a.ID < b.ID },
+			expKeys:   []Account{account1, account2, account3},
+			expValues: []any{100, 200, 300},
+		},
+		{
+			name: "Reverse Sorted by Account ID",
+			inputMap: map[Account]any{
+				account1: 100,
+				account2: 200,
+				account3: 300,
+			},
+			lessFunc:  func(a, b Account) bool { return a.ID > b.ID },
+			expKeys:   []Account{account3, account2, account1},
+			expValues: []any{300, 200, 100},
+		},
+		{
+			name: "Sorted by Account Name",
+			inputMap: map[Account]any{
+				account1: 100,
+				account2: 200,
+				account3: 300,
+			},
+			lessFunc:  func(a, b Account) bool { return a.Name < b.Name },
+			expKeys:   []Account{account2, account3, account1},
+			expValues: []any{200, 300, 100},
+		},
+		{
+			name:      "Empty Map",
+			inputMap:  map[Account]any{},
+			lessFunc:  func(a, b Account) bool { return a.ID < b.ID },
+			expKeys:   []Account{},
+			expValues: []any{},
+		},
+		{
+			name: "Sorted by Account CreateTime",
+			inputMap: map[Account]any{
+				account1: "now",
+				account2: "tomorrow",
+				account3: "yesterday",
+			},
+			lessFunc:  func(a, b Account) bool { return a.CreateTime.Before(b.CreateTime) },
+			expKeys:   []Account{account3, account1, account2},
+			expValues: []any{"yesterday", "now", "tomorrow"},
+		},
+		{
+			name: "Sorted by Account FavorComplexNumber",
+			inputMap: map[Account]any{
+				account1: "1.2+3i",
+				account2: "1.2+2i",
+				account3: "3+4i",
+			},
+			lessFunc:  func(a, b Account) bool { return cmplx.Abs(a.FavorComplexNumber) < cmplx.Abs(b.FavorComplexNumber) },
+			expKeys:   []Account{account2, account1, account3},
+			expValues: []any{"1.2+2i", "1.2+3i", "3+4i"},
+		},
+		{
+			name: "Sort by the buffer capacity of the channel",
+			inputMap: map[Account]any{
+				account1: 10,
+				account2: 7,
+				account3: 3,
+			},
+			lessFunc: func(a, b Account) bool {
+				return cap(a.Signal) < cap(b.Signal)
+			},
+			expKeys:   []Account{account3, account2, account1},
+			expValues: []any{3, 7, 10},
+		},
+		{
+			name: "Sort by the number of elements in the channel",
+			inputMap: map[Account]any{
+				account1: 1,
+				account2: 2,
+				account3: 0,
+			},
+			lessFunc:  func(a, b Account) bool { return len(a.Signal) < len(b.Signal) },
+			expKeys:   []Account{account3, account1, account2},
+			expValues: []any{0, 1, 2},
+		},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.name, func(t *testing.T) {
+			keys, values := ToSortedSlicesWithComparator(tc.inputMap, tc.lessFunc)
+			assert.Equal(tc.expKeys, keys)
+			assert.Equal(tc.expValues, values)
+		})
+	}
 }
