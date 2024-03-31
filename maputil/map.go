@@ -6,7 +6,9 @@ package maputil
 
 import (
 	"fmt"
+	"golang.org/x/exp/constraints"
 	"reflect"
+	"sort"
 
 	"github.com/duke-git/lancet/v2/slice"
 )
@@ -383,4 +385,51 @@ func getFieldNameByJsonTag(structObj any, jsonTag string) string {
 	}
 
 	return ""
+}
+
+// ToSortedSlicesDefault converts a map to two slices sorted by key: one for the keys and another for the values.
+func ToSortedSlicesDefault[K constraints.Ordered, V any](m map[K]V) ([]K, []V) {
+	keys := make([]K, 0, len(m))
+
+	// store the map’s keys into a slice
+	for k := range m {
+		keys = append(keys, k)
+	}
+
+	// sort the slice of keys
+	sort.Slice(keys, func(i, j int) bool {
+		return keys[i] < keys[j]
+	})
+
+	// adjust the order of values according to the sorted keys
+	sortedValues := make([]V, len(keys))
+	for i, k := range keys {
+		sortedValues[i] = m[k]
+	}
+
+	return keys, sortedValues
+}
+
+// ToSortedSlicesWithComparator converts a map to two slices sorted by key and using a custom comparison function:
+// one for the keys and another for the values.
+func ToSortedSlicesWithComparator[K comparable, V any](m map[K]V, comparator func(a, b K) bool) ([]K, []V) {
+	keys := make([]K, 0, len(m))
+
+	// store the map’s keys into a slice
+	for k := range m {
+		keys = append(keys, k)
+	}
+
+	// sort the key slice using the provided comparison function
+	sort.Slice(keys, func(i, j int) bool {
+		return comparator(keys[i], keys[j])
+	})
+
+	// adjust the order of values according to the sorted keys
+	sortedValues := make([]V, len(keys))
+	for i, k := range keys {
+		sortedValues[i] = m[k]
+	}
+
+	return keys, sortedValues
 }

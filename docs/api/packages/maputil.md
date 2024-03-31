@@ -44,6 +44,8 @@ import (
 -   [Minus](#Minus)
 -   [IsDisjoint](#IsDisjoint)
 -   [HasKey](#HasKey)
+-   [ToSortedSlicesDefault](#ToSortedSlicesDefault)
+-   [ToSortedSlicesWithComparator](#ToSortedSlicesWithComparator)
 -   [NewConcurrentMap](#NewConcurrentMap)
 -   [ConcurrentMap_Get](#ConcurrentMap_Get)
 -   [ConcurrentMap_Set](#ConcurrentMap_Set)
@@ -985,6 +987,98 @@ func main() {
     // Output:
     // true
     // false
+}
+```
+
+### <span id="ToSortedSlicesDefault">ToSortedSlicesDefault</span>
+
+<p>将map的key和value转化成两个根据key的值从小到大排序的切片，value切片中元素的位置与key对应。</p>
+
+<b>函数签名:</b>
+
+```go
+func ToSortedSlicesDefault[K constraints.Ordered, V any](m map[K]V) ([]K, []V)
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](todo)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/maputil"
+)
+
+func main() {
+    m := map[int]string{
+		1: "a",
+		3: "c",
+		2: "b",
+	}
+
+	keys, values := ToSortedSlicesDefault(m)
+
+	fmt.Println(keys)
+	fmt.Println(values)
+
+	// Output:
+	// [1 2 3]
+	// [a b c]
+}
+```
+
+### <span id="ToSortedSlicesWithComparator">ToSortedSlicesWithComparator</span>
+
+<p>将map的key和value转化成两个使用比较器函数根据key的值自定义排序规则的切片，value切片中元素的位置与key对应。</p>
+
+<b>函数签名:</b>
+
+```go
+func ToSortedSlicesWithComparator[K comparable, V any](m map[K]V, comparator func(a, b K) bool) ([]K, []V) 
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](todo)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/maputil"
+)
+
+func main() {
+    m1 := map[time.Time]string{
+		time.Date(2024, 3, 31, 0, 0, 0, 0, time.UTC): "today",
+		time.Date(2024, 3, 30, 0, 0, 0, 0, time.UTC): "yesterday",
+		time.Date(2024, 4, 1, 0, 0, 0, 0, time.UTC):  "tomorrow",
+	}
+
+	keys1, values1 := ToSortedSlicesWithComparator(m1, func(a, b time.Time) bool {
+		return a.Before(b)
+	})
+
+	m2 := map[int]string{
+		1: "a",
+		3: "c",
+		2: "b",
+	}
+	keys2, values2 := ToSortedSlicesWithComparator(m2, func(a, b int) bool {
+		return a > b
+	})
+
+	fmt.Println(keys2)
+	fmt.Println(values2)
+
+	fmt.Println(keys1)
+	fmt.Println(values1)
+
+	// Output:
+	// [2024-03-30 00:00:00 +0000 UTC 2024-03-31 00:00:00 +0000 UTC 2024-04-01 00:00:00 +0000 UTC]
+	// [yesterday today tomorrow]
+	// [3 2 1]
+	// [c b a]
 }
 ```
 
