@@ -227,16 +227,25 @@ func TestStructToUrlValues(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestStructToUrlValues")
 
+	type CommReq struct {
+		Version string `json:"version"`
+	}
+
 	type TodoQuery struct {
-		Id     int    `json:"id"`
-		UserId int    `json:"userId"`
-		Name   string `json:"name,omitempty"`
+		Id      int    `json:"id"`
+		UserId  int    `json:"userId"`
+		Name    string `json:"name,omitempty"`
+		CommReq `json:",inline"`
 	}
 	item1 := TodoQuery{
 		Id:     1,
 		UserId: 123,
 		Name:   "",
+		CommReq: CommReq{
+			Version: "1.0",
+		},
 	}
+
 	todoValues, err := StructToUrlValues(item1)
 	if err != nil {
 		t.Errorf("params is invalid: %v", err)
@@ -245,19 +254,10 @@ func TestStructToUrlValues(t *testing.T) {
 	assert.Equal("1", todoValues.Get("id"))
 	assert.Equal("123", todoValues.Get("userId"))
 	assert.Equal("", todoValues.Get("name"))
-
-	item2 := TodoQuery{
-		Id:     2,
-		UserId: 456,
-	}
-	queryValues2, _ := StructToUrlValues(item2)
-
-	assert.Equal("2", queryValues2.Get("id"))
-	assert.Equal("456", queryValues2.Get("userId"))
-	assert.Equal("", queryValues2.Get("name"))
+	assert.Equal("1.0", todoValues.Get("version"))
 }
 
-func handleFileRequest(t *testing.T, w http.ResponseWriter, r *http.Request) {
+func handleFileRequest(t *testing.T, _ http.ResponseWriter, r *http.Request) {
 	err := r.ParseMultipartForm(1024)
 	if err != nil {
 		t.Fatal(err)

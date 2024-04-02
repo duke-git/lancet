@@ -28,7 +28,6 @@ import (
 	"strings"
 	"time"
 
-	"github.com/duke-git/lancet/v2/convertor"
 	"github.com/duke-git/lancet/v2/slice"
 )
 
@@ -363,11 +362,20 @@ func validateRequest(req *HttpRequest) error {
 // Play: https://go.dev/play/p/pFqMkM40w9z
 func StructToUrlValues(targetStruct any) (url.Values, error) {
 	result := url.Values{}
-	s, err := convertor.StructToMap(targetStruct)
+
+	var m map[string]interface{}
+
+	jsonBytes, err := json.Marshal(targetStruct)
 	if err != nil {
 		return nil, err
 	}
-	for k, v := range s {
+
+	err = json.Unmarshal(jsonBytes, &m)
+	if err != nil {
+		return nil, err
+	}
+
+	for k, v := range m {
 		result.Add(k, fmt.Sprintf("%v", v))
 	}
 
