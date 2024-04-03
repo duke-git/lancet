@@ -367,10 +367,11 @@ func TestProxy(t *testing.T) {
 	config := &HttpClientConfig{
 		HandshakeTimeout: 20 * time.Second,
 		ResponseTimeout:  40 * time.Second,
-		Proxy: &url.URL{
-			Scheme: "http",
-			Host:   "46.17.63.166:18888",
-		},
+		// Use the proxy ip to add it here
+		//Proxy: &url.URL{
+		//	Scheme: "http",
+		//	Host:   "46.17.63.166:18888",
+		//},
 	}
 	httpClient := NewHttpClientWithConfig(config)
 	resp, err := httpClient.Get("https://www.ipplus360.com/getLocation")
