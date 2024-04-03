@@ -109,6 +109,7 @@ type HttpClientConfig struct {
 	HandshakeTimeout time.Duration
 	ResponseTimeout  time.Duration
 	Verbose          bool
+	Proxy            *url.URL
 }
 
 // defaultHttpClientConfig defalut client config.
@@ -162,6 +163,11 @@ func NewHttpClientWithConfig(config *HttpClientConfig) *HttpClient {
 
 	if config.SSLEnabled {
 		client.TLS = config.TLSConfig
+	}
+
+	if config.Proxy != nil {
+		transport := client.Client.Transport.(*http.Transport)
+		transport.Proxy = http.ProxyURL(config.Proxy)
 	}
 
 	return client
