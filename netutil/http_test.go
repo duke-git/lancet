@@ -11,6 +11,7 @@ import (
 	"net/url"
 	"os"
 	"testing"
+	"time"
 
 	"github.com/duke-git/lancet/v2/internal"
 )
@@ -357,6 +358,26 @@ func TestSendRequestWithFilePath(t *testing.T) {
 	}
 	defer resp.Body.Close()
 
+	if resp.StatusCode != http.StatusOK {
+		t.Fatalf("expected %d, got %d", http.StatusOK, resp.StatusCode)
+	}
+}
+
+func TestProxy(t *testing.T) {
+	config := &HttpClientConfig{
+		HandshakeTimeout: 20 * time.Second,
+		ResponseTimeout:  40 * time.Second,
+		// Use the proxy ip to add it here
+		//Proxy: &url.URL{
+		//	Scheme: "http",
+		//	Host:   "46.17.63.166:18888",
+		//},
+	}
+	httpClient := NewHttpClientWithConfig(config)
+	resp, err := httpClient.Get("https://www.ipplus360.com/getLocation")
+	if err != nil {
+		t.Fatal(err)
+	}
 	if resp.StatusCode != http.StatusOK {
 		t.Fatalf("expected %d, got %d", http.StatusOK, resp.StatusCode)
 	}
