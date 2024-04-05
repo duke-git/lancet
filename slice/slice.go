@@ -50,12 +50,23 @@ func ContainBy[T any](slice []T, predicate func(item T) bool) bool {
 // ContainSubSlice check if the slice contain a given subslice or not.
 // Play: https://go.dev/play/p/bcuQ3UT6Sev
 func ContainSubSlice[T comparable](slice, subSlice []T) bool {
-	for _, v := range subSlice {
-		if !Contain(slice, v) {
+	if len(subSlice) == 0 {
+		return true
+	}
+	if len(slice) == 0 {
+		return false
+	}
+
+	elementMap := make(map[T]struct{}, len(slice))
+	for _, item := range slice {
+		elementMap[item] = struct{}{}
+	}
+
+	for _, item := range subSlice {
+		if _, ok := elementMap[item]; !ok {
 			return false
 		}
 	}
-
 	return true
 }
 
@@ -81,35 +92,41 @@ func Chunk[T any](slice []T, size int) [][]T {
 	return result
 }
 
-// Compact creates an slice with all falsey values removed. The values false, nil, 0, and "" are falsey.
+// Compact creates a slice with all falsey values removed. The values false, nil, 0, and "" are falsey.
 // Play: https://go.dev/play/p/pO5AnxEr3TK
 func Compact[T comparable](slice []T) []T {
 	var zero T
 
-	result := []T{}
+	result := make([]T, 0, len(slice))
 
 	for _, v := range slice {
 		if v != zero {
 			result = append(result, v)
 		}
 	}
-
-	return result
+	return result[:len(result):len(result)]
 }
 
 // Concat creates a new slice concatenating slice with any additional slices.
 // Play: https://go.dev/play/p/gPt-q7zr5mk
 func Concat[T any](slice []T, slices ...[]T) []T {
-	result := append([]T{}, slice...)
+	totalLen := len(slice)
 
 	for _, v := range slices {
-		result = append(result, v...)
+		totalLen += len(v)
+	}
+
+	result := make([]T, 0, totalLen)
+
+	result = append(result, slice...)
+	for _, s := range slices {
+		result = append(result, s...)
 	}
 
 	return result
 }
 
-// Difference creates an slice of whose element in slice but not in comparedSlice.
+// Difference creates a slice of whose element in slice but not in comparedSlice.
 // Play: https://go.dev/play/p/VXvadzLzhDa
 func Difference[T comparable](slice, comparedSlice []T) []T {
 	result := []T{}
@@ -826,7 +843,11 @@ func UnionBy[T any, V comparable](predicate func(item T) V, slices ...[]T) []T {
 // Merge all given slices into one slice.
 // Play: https://go.dev/play/p/lbjFp784r9N
 func Merge[T any](slices ...[]T) []T {
-	result := make([]T, 0)
+	totalLen := 0
+	for _, v := range slices {
+		totalLen += len(v)
+	}
+	result := make([]T, 0, totalLen)
 
 	for _, v := range slices {
 		result = append(result, v...)
