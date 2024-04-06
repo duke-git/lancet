@@ -2,12 +2,11 @@ package slice
 
 import (
 	"fmt"
+	"github.com/duke-git/lancet/v2/internal"
 	"math"
 	"reflect"
 	"strconv"
 	"testing"
-
-	"github.com/duke-git/lancet/v2/internal"
 )
 
 func TestContain(t *testing.T) {
@@ -107,6 +106,19 @@ func TestConcat(t *testing.T) {
 
 	assert.Equal([]int{1, 2, 3, 4, 5}, Concat([]int{1, 2, 3}, []int{4, 5}))
 	assert.Equal([]int{1, 2, 3, 4, 5}, Concat([]int{1, 2, 3}, []int{4}, []int{5}))
+}
+
+func BenchmarkConcat(b *testing.B) {
+	slice1 := []int{1, 2, 3}
+	slice2 := []int{4, 5, 6}
+	slice3 := []int{7, 8, 9}
+
+	for i := 0; i < b.N; i++ {
+		result := Concat(slice1, slice2, slice3)
+		if len(result) == 0 {
+			b.Fatal("unexpected empty result")
+		}
+	}
 }
 
 func TestEqual(t *testing.T) {
