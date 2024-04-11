@@ -621,6 +621,8 @@ func HammingDistance(a, b string) (int, error) {
 // Concat uses the strings.Builder to concatenate the input strings.
 //   - `length` is the expected length of the concatenated string.
 //   - if you are unsure about the length of the string to be concatenated, please pass 0 or a negative number.
+//
+// Play: todo
 func Concat(length int, str ...string) string {
 	if len(str) == 0 {
 		return ""

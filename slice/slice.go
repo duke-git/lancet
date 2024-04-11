@@ -97,30 +97,27 @@ func Chunk[T any](slice []T, size int) [][]T {
 func Compact[T comparable](slice []T) []T {
 	var zero T
 
-	result := make([]T, 0, len(slice))
-
+	i := 0
 	for _, v := range slice {
 		if v != zero {
-			result = append(result, v)
+			slice[i] = v
+			i++
 		}
 	}
-	return result[:len(result):len(result)]
+	return slice[:i]
 }
 
 // Concat creates a new slice concatenating slice with any additional slices.
 // Play: https://go.dev/play/p/gPt-q7zr5mk
-func Concat[T any](slice []T, slices ...[]T) []T {
-	totalLen := len(slice)
-
+func Concat[T any](slices ...[]T) []T {
+	totalLen := 0
 	for _, v := range slices {
 		totalLen += len(v)
 	}
-
 	result := make([]T, 0, totalLen)
 
-	result = append(result, slice...)
-	for _, s := range slices {
-		result = append(result, s...)
+	for _, v := range slices {
+		result = append(result, v...)
 	}
 
 	return result
@@ -695,10 +692,7 @@ func DropRight[T any](slice []T, n int) []T {
 	if n <= 0 {
 		return slice
 	}
-
-	result := make([]T, 0, size-n)
-
-	return append(result, slice[:size-n]...)
+	return slice[:size-n]
 }
 
 // DropWhile drop n elements from the start of a slice while predicate function returns true.
@@ -840,20 +834,11 @@ func UnionBy[T any, V comparable](predicate func(item T) V, slices ...[]T) []T {
 	return result
 }
 
+// Deprecated: use Concat instead.
 // Merge all given slices into one slice.
 // Play: https://go.dev/play/p/lbjFp784r9N
 func Merge[T any](slices ...[]T) []T {
-	totalLen := 0
-	for _, v := range slices {
-		totalLen += len(v)
-	}
-	result := make([]T, 0, totalLen)
-
-	for _, v := range slices {
-		result = append(result, v...)
-	}
-
-	return result
+	return Concat(slices...)
 }
 
 // Intersection creates a slice of unique elements that included by all slices.
@@ -1017,7 +1002,7 @@ func SortBy[T any](slice []T, less func(a, b T) bool) {
 	quickSortBy(slice, 0, len(slice)-1, less)
 }
 
-// SortByField return sorted slice by field
+// Deprecated: SortByField return sorted slice by field
 // slice element should be struct, field type should be int, uint, string, or bool
 // default sortType is ascending (asc), if descending order, set sortType to desc
 // This function is deprecated, use Sort and SortBy for replacement.
