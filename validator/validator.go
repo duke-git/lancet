@@ -8,6 +8,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net"
+	"net/mail"
 	"net/url"
 	"reflect"
 	"regexp"
@@ -24,7 +25,7 @@ var (
 	intStrMatcher          *regexp.Regexp = regexp.MustCompile(`^[\+-]?\d+$`)
 	urlMatcher             *regexp.Regexp = regexp.MustCompile(`^((ftp|http|https?):\/\/)?(\S+(:\S*)?@)?((([1-9]\d?|1\d\d|2[01]\d|22[0-3])(\.(1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.([0-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(([a-zA-Z0-9]+([-\.][a-zA-Z0-9]+)*)|((www\.)?))?(([a-z\x{00a1}-\x{ffff}0-9]+-?-?)*[a-z\x{00a1}-\x{ffff}0-9]+)(?:\.([a-z\x{00a1}-\x{ffff}]{2,}))?))(:(\d{1,5}))?((\/|\?|#)[^\s]*)?$`)
 	dnsMatcher             *regexp.Regexp = regexp.MustCompile(`^(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,}$`)
-	emailMatcher           *regexp.Regexp = regexp.MustCompile(`\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*`)
+	emailMatcher           *regexp.Regexp = regexp.MustCompile(`^[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,4}$`)
 	chineseMobileMatcher   *regexp.Regexp = regexp.MustCompile(`^1(?:3\d|4[4-9]|5[0-35-9]|6[67]|7[013-8]|8\d|9\d)\d{8}$`)
 	chineseIdMatcher       *regexp.Regexp = regexp.MustCompile(`^(\d{17})([0-9]|X|x)$`)
 	chineseMatcher         *regexp.Regexp = regexp.MustCompile("[\u4e00-\u9fa5]")
@@ -264,7 +265,10 @@ func IsDns(dns string) bool {
 // IsEmail check if the string is a email address.
 // Play: https://go.dev/play/p/Os9VaFlT33G
 func IsEmail(email string) bool {
-	return emailMatcher.MatchString(email)
+	_, err := mail.ParseAddress(email)
+	return err == nil
+
+	// return emailMatcher.MatchString(email)
 }
 
 // IsChineseMobile check if the string is chinese mobile number.

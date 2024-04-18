@@ -285,6 +285,7 @@ func TestIsEmail(t *testing.T) {
 	assert := internal.NewAssert(t, "TestIsEmail")
 
 	assert.Equal(true, IsEmail("abc@xyz.com"))
+	assert.Equal(false, IsEmail("@abc@xyz.com"))
 	assert.Equal(false, IsEmail("a.b@@com"))
 }
 
