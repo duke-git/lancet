@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"io"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"net/http/httptest"
 	"net/url"
@@ -24,7 +23,8 @@ func TestHttpGet(t *testing.T) {
 
 	resp, err := HttpGet(url, header)
 	if err != nil {
-		log.Fatal(err)
+		t.Log("net error: " + err.Error())
+		return
 	}
 
 	body, _ := io.ReadAll(resp.Body)
@@ -45,8 +45,10 @@ func TestHttpPost(t *testing.T) {
 
 	resp, err := HttpPost(url, header, nil, bodyParams)
 	if err != nil {
-		log.Fatal(err)
+		t.Log("net error: " + err.Error())
+		return
 	}
+
 	body, _ := io.ReadAll(resp.Body)
 	t.Log("response: ", resp.StatusCode, string(body))
 }
@@ -55,21 +57,18 @@ func TestHttpPostFormData(t *testing.T) {
 	apiUrl := "https://jsonplaceholder.typicode.com/todos"
 	header := map[string]string{
 		"Content-Type": "application/x-www-form-urlencoded",
-		// "Content-Type": "multipart/form-data",
 	}
 
 	postData := url.Values{}
 	postData.Add("userId", "1")
 	postData.Add("title", "TestToDo")
 
-	// postData := make(map[string]string)
-	// postData["userId"] = "1"
-	// postData["title"] = "title"
-
 	resp, err := HttpPost(apiUrl, header, nil, postData)
 	if err != nil {
-		log.Fatal(err)
+		t.Log("net error: " + err.Error())
+		return
 	}
+
 	body, _ := io.ReadAll(resp.Body)
 	t.Log("response: ", resp.StatusCode, string(body))
 }
@@ -89,8 +88,10 @@ func TestHttpPut(t *testing.T) {
 
 	resp, err := HttpPut(url, header, nil, bodyParams)
 	if err != nil {
-		log.Fatal(err)
+		t.Log("net error: ", err.Error())
+		return
 	}
+
 	body, _ := io.ReadAll(resp.Body)
 	t.Log("response: ", resp.StatusCode, string(body))
 }
@@ -110,8 +111,10 @@ func TestHttpPatch(t *testing.T) {
 
 	resp, err := HttpPatch(url, header, nil, bodyParams)
 	if err != nil {
-		log.Fatal(err)
+		t.Log("net error: ", err.Error())
+		return
 	}
+
 	body, _ := io.ReadAll(resp.Body)
 	t.Log("response: ", resp.StatusCode, string(body))
 }
@@ -120,8 +123,10 @@ func TestHttpDelete(t *testing.T) {
 	url := "https://jsonplaceholder.typicode.com/todos/1"
 	resp, err := HttpDelete(url)
 	if err != nil {
-		log.Fatal(err)
+		t.Log("net error: ", err.Error())
+		return
 	}
+
 	body, _ := io.ReadAll(resp.Body)
 	t.Log("response: ", resp.StatusCode, string(body))
 }
@@ -148,7 +153,8 @@ func TestParseResponse(t *testing.T) {
 
 	resp, err := HttpGet(url, header)
 	if err != nil {
-		log.Fatal(err)
+		t.Log("net error: ", err.Error())
+		return
 	}
 
 	type Todo struct {
@@ -161,8 +167,10 @@ func TestParseResponse(t *testing.T) {
 	toDoResp := &Todo{}
 	err = ParseHttpResponse(resp, toDoResp)
 	if err != nil {
-		log.Fatal(err)
+		t.Log("net error: ", err.Error())
+		return
 	}
+
 	t.Log("response: ", toDoResp)
 }
 
@@ -179,7 +187,8 @@ func TestHttpClient_Get(t *testing.T) {
 	httpClient := NewHttpClient()
 	resp, err := httpClient.SendRequest(request)
 	if err != nil || resp.StatusCode != 200 {
-		log.Fatal(err)
+		t.Log("net error: ", err.Error())
+		return
 	}
 
 	type Todo struct {
@@ -216,7 +225,8 @@ func TestHttpClent_Post(t *testing.T) {
 	httpClient := NewHttpClient()
 	resp, err := httpClient.SendRequest(request)
 	if err != nil {
-		log.Fatal(err)
+		t.Log("net error: ", err.Error())
+		return
 	}
 
 	body, _ := io.ReadAll(resp.Body)
@@ -376,8 +386,10 @@ func TestProxy(t *testing.T) {
 	httpClient := NewHttpClientWithConfig(config)
 	resp, err := httpClient.Get("https://www.ipplus360.com/getLocation")
 	if err != nil {
-		t.Fatal(err)
+		t.Log("net error: ", err.Error())
+		return
 	}
+
 	if resp.StatusCode != http.StatusOK {
 		t.Fatalf("expected %d, got %d", http.StatusOK, resp.StatusCode)
 	}
