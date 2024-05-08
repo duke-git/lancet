@@ -772,21 +772,14 @@ func UpdateAt[T any](slice []T, index int, value T) []T {
 // Play: https://go.dev/play/p/AXw0R3ZTE6a
 func Unique[T comparable](slice []T) []T {
 	result := []T{}
-
-	for i := 0; i < len(slice); i++ {
-		v := slice[i]
-		skip := true
-		for j := range result {
-			if v == result[j] {
-				skip = false
-				break
-			}
+	exists := map[T]bool{}
+	for _, t := range slice {
+		if exists[t] {
+			continue
 		}
-		if skip {
-			result = append(result, v)
-		}
+		exists[t] = true
+		result = append(result, t)
 	}
-
 	return result
 }
 
