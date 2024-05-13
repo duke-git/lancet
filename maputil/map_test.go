@@ -485,7 +485,7 @@ func TestMapToStruct(t *testing.T) {
 			Name  string   `json:"name"`
 			Age   int      `json:"age"`
 			Phone string   `json:"phone"`
-			Addr  *Address `json:"address"`
+			Addr  *Address `json:"address,omitempty"`
 		}
 
 		Address struct {

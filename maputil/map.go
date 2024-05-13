@@ -6,9 +6,11 @@ package maputil
 
 import (
 	"fmt"
-	"golang.org/x/exp/constraints"
 	"reflect"
 	"sort"
+	"strings"
+
+	"golang.org/x/exp/constraints"
 
 	"github.com/duke-git/lancet/v2/slice"
 )
@@ -377,8 +379,7 @@ func getFieldNameByJsonTag(structObj any, jsonTag string) string {
 	for i := 0; i < s.NumField(); i++ {
 		field := s.Field(i)
 		tag := field.Tag
-		name := tag.Get("json")
-
+		name, _, _ := strings.Cut(tag.Get("json"), ",")
 		if name == jsonTag {
 			return field.Name
 		}
