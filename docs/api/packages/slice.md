@@ -2615,7 +2615,7 @@ func main() {
 func Break[T any](values []T, predicate func(T) bool) ([]T, []T)
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/yLYcBTyeQIz)</span></b>
 
 ```go
 import (
@@ -2648,7 +2648,7 @@ func main() {
 func RightPadding[T any](slice []T, paddingValue T, paddingLength int) []T
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/0_2rlLEMBXL)</span></b>
 
 ```go
 import (
@@ -2675,7 +2675,7 @@ func main() {
 func LeftPadding[T any](slice []T, paddingValue T, paddingLength int) []T
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/jlQVoelLl2k)</span></b>
 
 ```go
 import (

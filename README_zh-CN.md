@@ -903,10 +903,15 @@ import "github.com/duke-git/lancet/v2/maputil"
 -   **<big>HasKey</big>** : 检查 map 是否包含某个 key。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/maputil.md#HasKey)]
     [[play](https://go.dev/play/p/isZZHOsDhFc)]
+-   **<big>MapToStruct</big>** : 将map转成struct。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/maputil.md#MapToStruct)]
+    [[play](https://go.dev/play/p/7wYyVfX38Dp)]
 -   **<big>ToSortedSlicesDefault</big>** : 将map的key和value转化成两个根据key的值从小到大排序的切片，value切片中元素的位置与key对应。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/maputil.md#ToSortedSlicesDefault)]
+    [[play](https://go.dev/play/p/43gEM2po-qy)]
 -   **<big>ToSortedSlicesWithComparator</big>** : 将map的key和value转化成两个使用比较器函数根据key的值自定义排序规则的切片，value切片中元素的位置与key对应。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/maputil.md#ToSortedSlicesWithComparator)]
+    [[play](https://go.dev/play/p/0nlPo6YLdt3)]
 -   **<big>NewConcurrentMap</big>** : ConcurrentMap 协程安全的 map 结构。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/maputil.md#NewConcurrentMap)]
     [[play](https://go.dev/play/p/3PenTPETJT0)]
@@ -1439,8 +1444,11 @@ import "github.com/duke-git/lancet/v2/slice"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/slice.md#Break)]
 -   **<big>RightPadding</big>** : 在切片的右部添加元素。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/slice.md#RightPadding)]
+    [[play](https://go.dev/play/p/0_2rlLEMBXL)]
 -   **<big>LeftPadding</big>** : 在切片的左部添加元素。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/slice.md#LeftPadding)]
+    [[play](https://go.dev/play/p/jlQVoelLl2k)]
+
 
 
 <h3 id="stream"> 19. stream 流，该包仅验证简单的 stream 实现，功能有限。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>

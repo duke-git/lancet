@@ -1254,7 +1254,7 @@ func Partition[T any](slice []T, predicates ...func(item T) bool) [][]T {
 }
 
 // Breaks a list into two parts at the point where the predicate for the first time is true.
-// Play: Todo
+// Play: https://go.dev/play/p/yLYcBTyeQIz
 func Break[T any](values []T, predicate func(T) bool) ([]T, []T) {
 	a := make([]T, 0)
 	b := make([]T, 0)
@@ -1289,7 +1289,7 @@ func Random[T any](slice []T) (val T, idx int) {
 }
 
 // RightPadding adds padding to the right end of a slice.
-// Play: Todo
+// Play: https://go.dev/play/p/0_2rlLEMBXL
 func RightPadding[T any](slice []T, paddingValue T, paddingLength int) []T {
 	if paddingLength == 0 {
 		return slice
@@ -1301,7 +1301,7 @@ func RightPadding[T any](slice []T, paddingValue T, paddingLength int) []T {
 }
 
 // LeftPadding adds padding to the left begin of a slice.
-// Play: Todo
+// Play: https://go.dev/play/p/jlQVoelLl2k
 func LeftPadding[T any](slice []T, paddingValue T, paddingLength int) []T {
 	if paddingLength == 0 {
 		return slice

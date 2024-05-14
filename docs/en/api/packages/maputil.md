@@ -44,6 +44,7 @@ import (
 -   [Minus](#Minus)
 -   [IsDisjoint](#IsDisjoint)
 -   [HasKey](#HasKey)
+-   [MapToStruct](#MapToStruct)
 -   [ToSortedSlicesDefault](#ToSortedSlicesDefault)
 -   [ToSortedSlicesWithComparator](#ToSortedSlicesWithComparator)
 -   [NewConcurrentMap](#NewConcurrentMap)
@@ -994,6 +995,49 @@ func main() {
 }
 ```
 
+### <span id="MapToStruct">MapToStruct</span>
+
+<p>Converts map to struct</p>
+
+<b>Signature:</b>
+
+```go
+func MapToStruct(m map[string]any, structObj any) error
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/7wYyVfX38Dp)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/maputil"
+)
+
+func main() {
+    personReqMap := map[string]any{
+        "name":     "Nothin",
+        "max_age":  35,
+        "page":     1,
+        "pageSize": 10,
+    }
+
+    type PersonReq struct {
+        Name     string `json:"name"`
+        MaxAge   int    `json:"max_age"`
+        Page     int    `json:"page"`
+        PageSize int    `json:"pageSize"`
+    }
+    var personReq PersonReq
+    _ = maputil.MapToStruct(personReqMap, &personReq)
+    fmt.Println(personReq)
+
+    // Output:
+    // {Nothin 35 1 10}
+}
+```
+
 ### <span id="ToSortedSlicesDefault">ToSortedSlicesDefault</span>
 
 <p>
@@ -1005,7 +1049,7 @@ Translate the key and value of the map into two slices that are sorted in ascend
 func ToSortedSlicesDefault[K constraints.Ordered, V any](m map[K]V) ([]K, []V)
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](Todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/43gEM2po-qy)</span></b>
 
 ```go
 package main
@@ -1017,19 +1061,19 @@ import (
 
 func main() {
     m := map[int]string{
-		1: "a",
-		3: "c",
-		2: "b",
-	}
+        1: "a",
+        3: "c",
+        2: "b",
+    }
 
-	keys, values := ToSortedSlicesDefault(m)
+    keys, values := maputil.ToSortedSlicesDefault(m)
 
-	fmt.Println(keys)
-	fmt.Println(values)
+    fmt.Println(keys)
+    fmt.Println(values)
 
-	// Output:
-	// [1 2 3]
-	// [a b c]
+    // Output:
+    // [1 2 3]
+    // [a b c]
 }
 ```
 
@@ -1045,7 +1089,7 @@ Translate the key and value of the map into two slices that are sorted according
 func ToSortedSlicesWithComparator[K comparable, V any](m map[K]V, comparator func(a, b K) bool) ([]K, []V) 
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](Todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/0nlPo6YLdt3)</span></b>
 
 ```go
 package main
@@ -1057,35 +1101,35 @@ import (
 
 func main() {
     m1 := map[time.Time]string{
-		time.Date(2024, 3, 31, 0, 0, 0, 0, time.UTC): "today",
-		time.Date(2024, 3, 30, 0, 0, 0, 0, time.UTC): "yesterday",
-		time.Date(2024, 4, 1, 0, 0, 0, 0, time.UTC):  "tomorrow",
-	}
+        time.Date(2024, 3, 31, 0, 0, 0, 0, time.UTC): "today",
+        time.Date(2024, 3, 30, 0, 0, 0, 0, time.UTC): "yesterday",
+        time.Date(2024, 4, 1, 0, 0, 0, 0, time.UTC):  "tomorrow",
+    }
 
-	keys1, values1 := ToSortedSlicesWithComparator(m1, func(a, b time.Time) bool {
-		return a.Before(b)
-	})
+    keys1, values1 := maputil.ToSortedSlicesWithComparator(m1, func(a, b time.Time) bool {
+        return a.Before(b)
+    })
 
-	m2 := map[int]string{
-		1: "a",
-		3: "c",
-		2: "b",
-	}
-	keys2, values2 := ToSortedSlicesWithComparator(m2, func(a, b int) bool {
-		return a > b
-	})
+    m2 := map[int]string{
+        1: "a",
+        3: "c",
+        2: "b",
+    }
+    keys2, values2 := maputil.ToSortedSlicesWithComparator(m2, func(a, b int) bool {
+        return a > b
+    })
 
-	fmt.Println(keys2)
-	fmt.Println(values2)
+    fmt.Println(keys2)
+    fmt.Println(values2)
 
-	fmt.Println(keys1)
-	fmt.Println(values1)
+    fmt.Println(keys1)
+    fmt.Println(values1)
 
-	// Output:
-	// [2024-03-30 00:00:00 +0000 UTC 2024-03-31 00:00:00 +0000 UTC 2024-04-01 00:00:00 +0000 UTC]
-	// [yesterday today tomorrow]
+    // Output:
 	// [3 2 1]
 	// [c b a]
+	// [2024-03-30 00:00:00 +0000 UTC 2024-03-31 00:00:00 +0000 UTC 2024-04-01 00:00:00 +0000 UTC]
+	// [yesterday today tomorrow]
 }
 ```
 
@@ -1152,15 +1196,15 @@ func main() {
 
 
     var wg2 sync.WaitGroup
-	wg2.Add(5)
-	for j := 0; j < 5; j++ {
-		go func(n int) {
-			val, ok := cm.Get(fmt.Sprintf("%d", n))
-			fmt.Println(val, ok)
-			wg2.Done()
-		}(j)
-	}
-	wg2.Wait()
+    wg2.Add(5)
+    for j := 0; j < 5; j++ {
+        go func(n int) {
+            val, ok := cm.Get(fmt.Sprintf("%d", n))
+            fmt.Println(val, ok)
+            wg2.Done()
+        }(j)
+    }
+    wg2.Wait()
 
     // output: (order may change)
     // 1 true
@@ -1207,15 +1251,15 @@ func main() {
 
 
     var wg2 sync.WaitGroup
-	wg2.Add(5)
-	for j := 0; j < 5; j++ {
-		go func(n int) {
-			val, ok := cm.Get(fmt.Sprintf("%d", n))
-			fmt.Println(val, ok)
-			wg2.Done()
-		}(j)
-	}
-	wg2.Wait()
+    wg2.Add(5)
+    for j := 0; j < 5; j++ {
+        go func(n int) {
+            val, ok := cm.Get(fmt.Sprintf("%d", n))
+            fmt.Println(val, ok)
+            wg2.Done()
+        }(j)
+    }
+    wg2.Wait()
 
     // output: (order may change)
     // 1 true
@@ -1305,7 +1349,7 @@ func main() {
     wg1.Wait()
 
     var wg2 sync.WaitGroup
-	wg2.Add(5)
+    wg2.Add(5)
     for j := 0; j < 5; j++ {
         go func(n int) {
             cm.Delete(fmt.Sprintf("%d", n))
@@ -1352,7 +1396,7 @@ func main() {
     wg1.Wait()
 
     var wg2 sync.WaitGroup
-	wg2.Add(5)
+    wg2.Add(5)
     for j := 0; j < 5; j++ {
         go func(n int) {
             val, ok := cm.GetAndDelete(fmt.Sprintf("%d", n))
@@ -1404,7 +1448,7 @@ func main() {
     wg1.Wait()
 
     var wg2 sync.WaitGroup
-	wg2.Add(5)
+    wg2.Add(5)
     for j := 0; j < 5; j++ {
         go func(n int) {
             ok := cm.Has(fmt.Sprintf("%d", n))

@@ -2612,7 +2612,7 @@ func main() {
 func Break[T any](values []T, predicate func(T) bool) ([]T, []T)
 ```
 
-<b>Example:</b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/yLYcBTyeQIz)</span></b>
 
 ```go
 import (
@@ -2645,7 +2645,7 @@ func main() {
 func RightPadding[T any](slice []T, paddingValue T, paddingLength int) []T
 ```
 
-<b>Example:</b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/0_2rlLEMBXL)</span></b>
 
 ```go
 import (
@@ -2655,7 +2655,7 @@ import (
 
 func main() {
   	nums := []int{1, 2, 3, 4, 5}
-	padded := RightPadding(nums, 0, 3)
+	padded := slice.RightPadding(nums, 0, 3)
 	fmt.Println(padded)
 	// Output:
 	// [1 2 3 4 5 0 0 0]
@@ -2672,7 +2672,7 @@ func main() {
 func LeftPadding[T any](slice []T, paddingValue T, paddingLength int) []T
 ```
 
-<b>Example:</b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/jlQVoelLl2k)</span></b>
 
 ```go
 import (
@@ -2682,7 +2682,7 @@ import (
 
 func main() {
   	nums := []int{1, 2, 3, 4, 5}
-	padded := LeftPadding(nums, 0, 3)
+	padded := slice.LeftPadding(nums, 0, 3)
 	fmt.Println(padded)
 	// Output:
 	// [0 0 0 1 2 3 4 5]

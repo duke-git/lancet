@@ -901,10 +901,15 @@ import "github.com/duke-git/lancet/v2/maputil"
 -   **<big>HasKey</big>** : checks if map has key or not.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/maputil.md#HasKey)]
     [[play](https://go.dev/play/p/isZZHOsDhFc)]
+-   **<big>MapToStruct</big>** : converts map to struct.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/maputil.md#MapToStruct)]
+    [[play](https://go.dev/play/p/7wYyVfX38Dp)]
 -   **<big>ToSortedSlicesDefault</big>** : converts a map to two slices sorted by key: one for the keys and another for the values.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/maputil.md#ToSortedSlicesDefault)]
+    [[play](https://go.dev/play/p/43gEM2po-qy)]
 -   **<big>ToSortedSlicesWithComparator</big>** : converts a map to two slices sorted by key and using a custom comparison function: one for the keys and another for the values.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/maputil.md#ToSortedSlicesWithComparator)]
+    [[play](https://go.dev/play/p/0nlPo6YLdt3)]
 -   **<big>NewConcurrentMap</big>** : creates a ConcurrentMap with specific shard count.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/maputil.md#NewConcurrentMap)]
     [[play](https://go.dev/play/p/3PenTPETJT0)]
@@ -1440,9 +1445,10 @@ import "github.com/duke-git/lancet/v2/slice"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#Break)]
 -   **<big>RightPadding</big>** : adds padding to the right end of a slice.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#RightPadding)]
+    [[play](https://go.dev/play/p/0_2rlLEMBXL)]
 -   **<big>LeftPadding</big>** : adds padding to the left begin of a slice.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#LeftPadding)]
-
+    [[play](https://go.dev/play/p/jlQVoelLl2k)]
 
 
 <h3 id="stream"> 19. Stream package implements a sequence of elements supporting sequential and operations. this package is an experiment to explore if stream in go can work as the way java does. its function is very limited. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>

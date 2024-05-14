@@ -310,7 +310,7 @@ func HasKey[K comparable, V any](m map[K]V, key K) bool {
 }
 
 // MapToStruct converts map to struct
-// Play: todo
+// Play: https://go.dev/play/p/7wYyVfX38Dp
 func MapToStruct(m map[string]any, structObj any) error {
 	for k, v := range m {
 		err := setStructField(structObj, k, v)
@@ -389,6 +389,7 @@ func getFieldNameByJsonTag(structObj any, jsonTag string) string {
 }
 
 // ToSortedSlicesDefault converts a map to two slices sorted by key: one for the keys and another for the values.
+// Play: https://go.dev/play/p/43gEM2po-qy
 func ToSortedSlicesDefault[K constraints.Ordered, V any](m map[K]V) ([]K, []V) {
 	keys := make([]K, 0, len(m))
 
@@ -413,6 +414,7 @@ func ToSortedSlicesDefault[K constraints.Ordered, V any](m map[K]V) ([]K, []V) {
 
 // ToSortedSlicesWithComparator converts a map to two slices sorted by key and using a custom comparison function:
 // one for the keys and another for the values.
+// Play: https://go.dev/play/p/0nlPo6YLdt3
 func ToSortedSlicesWithComparator[K comparable, V any](m map[K]V, comparator func(a, b K) bool) ([]K, []V) {
 	keys := make([]K, 0, len(m))
 
