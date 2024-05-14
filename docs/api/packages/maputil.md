@@ -44,6 +44,7 @@ import (
 -   [Minus](#Minus)
 -   [IsDisjoint](#IsDisjoint)
 -   [HasKey](#HasKey)
+-   [MapToStruct](#MapToStruct)
 -   [ToSortedSlicesDefault](#ToSortedSlicesDefault)
 -   [ToSortedSlicesWithComparator](#ToSortedSlicesWithComparator)
 -   [NewConcurrentMap](#NewConcurrentMap)
