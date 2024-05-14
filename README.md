@@ -4,7 +4,7 @@
 <br/>
 
 ![Go version](https://img.shields.io/badge/go-%3E%3Dv1.18-9cf)
-[![Release](https://img.shields.io/badge/release-2.3.0-green.svg)](https://github.com/duke-git/lancet/releases)
+[![Release](https://img.shields.io/badge/release-2.3.1-green.svg)](https://github.com/duke-git/lancet/releases)
 [![GoDoc](https://godoc.org/github.com/duke-git/lancet/v2?status.svg)](https://pkg.go.dev/github.com/duke-git/lancet/v2)
 [![Go Report Card](https://goreportcard.com/badge/github.com/duke-git/lancet/v2)](https://goreportcard.com/report/github.com/duke-git/lancet/v2)
 [![test](https://github.com/duke-git/lancet/actions/workflows/codecov.yml/badge.svg?branch=main&event=push)](https://github.com/duke-git/lancet/actions/workflows/codecov.yml)
@@ -901,6 +901,10 @@ import "github.com/duke-git/lancet/v2/maputil"
 -   **<big>HasKey</big>** : checks if map has key or not.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/maputil.md#HasKey)]
     [[play](https://go.dev/play/p/isZZHOsDhFc)]
+-   **<big>ToSortedSlicesDefault</big>** : converts a map to two slices sorted by key: one for the keys and another for the values.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/maputil.md#ToSortedSlicesDefault)]
+-   **<big>ToSortedSlicesWithComparator</big>** : converts a map to two slices sorted by key and using a custom comparison function: one for the keys and another for the values.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/maputil.md#ToSortedSlicesWithComparator)]
 -   **<big>NewConcurrentMap</big>** : creates a ConcurrentMap with specific shard count.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/maputil.md#NewConcurrentMap)]
     [[play](https://go.dev/play/p/3PenTPETJT0)]
@@ -1432,6 +1436,12 @@ import "github.com/duke-git/lancet/v2/slice"
 -   **<big>SetToDefaultIf</big>** : set elements to their default value if they match the given predicate.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#SetToDefaultIf)]
     [[play](https://go.dev/play/p/9AXGlPRC0-A)]
+-   **<big>Break</big>** : breaks a list into two parts at the point where the predicate for the first time is true.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#Break)]
+-   **<big>RightPadding</big>** : adds padding to the right end of a slice.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#RightPadding)]
+-   **<big>LeftPadding</big>** : adds padding to the left begin of a slice.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#LeftPadding)]
 
 
 

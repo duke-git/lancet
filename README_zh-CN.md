@@ -4,7 +4,7 @@
 <br/>
 
 ![Go version](https://img.shields.io/badge/go-%3E%3Dv1.18-9cf)
-[![Release](https://img.shields.io/badge/release-2.3.0-green.svg)](https://github.com/duke-git/lancet/releases)
+[![Release](https://img.shields.io/badge/release-2.3.1-green.svg)](https://github.com/duke-git/lancet/releases)
 [![GoDoc](https://godoc.org/github.com/duke-git/lancet/v2?status.svg)](https://pkg.go.dev/github.com/duke-git/lancet/v2)
 [![Go Report Card](https://goreportcard.com/badge/github.com/duke-git/lancet/v2)](https://goreportcard.com/report/github.com/duke-git/lancet/v2)
 [![test](https://github.com/duke-git/lancet/actions/workflows/codecov.yml/badge.svg?branch=main&event=push)](https://github.com/duke-git/lancet/actions/workflows/codecov.yml)
@@ -903,6 +903,10 @@ import "github.com/duke-git/lancet/v2/maputil"
 -   **<big>HasKey</big>** : 检查 map 是否包含某个 key。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/maputil.md#HasKey)]
     [[play](https://go.dev/play/p/isZZHOsDhFc)]
+-   **<big>ToSortedSlicesDefault</big>** : 将map的key和value转化成两个根据key的值从小到大排序的切片，value切片中元素的位置与key对应。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/maputil.md#ToSortedSlicesDefault)]
+-   **<big>ToSortedSlicesWithComparator</big>** : 将map的key和value转化成两个使用比较器函数根据key的值自定义排序规则的切片，value切片中元素的位置与key对应。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/maputil.md#ToSortedSlicesWithComparator)]
 -   **<big>NewConcurrentMap</big>** : ConcurrentMap 协程安全的 map 结构。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/maputil.md#NewConcurrentMap)]
     [[play](https://go.dev/play/p/3PenTPETJT0)]
@@ -1431,7 +1435,12 @@ import "github.com/duke-git/lancet/v2/slice"
 -   **<big>SetToDefaultIf</big>** : 根据给定给定的predicate判定函数来修改切片中的元素。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/slice.md#SetToDefaultIf)]
     [[play](https://go.dev/play/p/9AXGlPRC0-A)]
-
+-   **<big>Break</big>** : 根据判断函数将切片分成两部分。它开始附加到与函数匹配的第一个元素之后的第二个切片。第一个匹配之后的所有元素都包含在第二个切片中，无论它们是否与函数匹配。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/slice.md#Break)]
+-   **<big>RightPadding</big>** : 在切片的右部添加元素。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/slice.md#RightPadding)]
+-   **<big>LeftPadding</big>** : 在切片的左部添加元素。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/slice.md#LeftPadding)]
 
 
 <h3 id="stream"> 19. stream 流，该包仅验证简单的 stream 实现，功能有限。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
@@ -1520,6 +1529,7 @@ import "github.com/duke-git/lancet/v2/stream"
 -   **<big>ToSlice</big>** : 返回 stream 中的元素切片。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/stream.md#ToSlice)]
     [[play](https://go.dev/play/p/jI6_iZZuVFE)]
+
 
 <h3 id="structs"> 20. structs 提供操作 struct, tag, field 的相关函数。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 
