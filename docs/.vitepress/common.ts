@@ -40,6 +40,7 @@ export const slugify = (str: string): string =>
 export const commonConfig = defineConfig({
     title: 'Lancet',
     appearance: true,
+    ignoreDeadLinks: true,
 
     markdown: {
         theme: {
