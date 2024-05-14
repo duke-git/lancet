@@ -8,7 +8,6 @@ import (
 	"fmt"
 	"reflect"
 	"sort"
-	"strings"
 
 	"golang.org/x/exp/constraints"
 
@@ -381,7 +380,7 @@ func getFieldNameByJsonTag(structObj any, jsonTag string) string {
 		tag := field.Tag
 		name := tag.Get("json")
 
-		if strings.Contains(name, jsonTag) {
+		if name == jsonTag {
 			return field.Name
 		}
 	}
