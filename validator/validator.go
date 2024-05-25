@@ -214,7 +214,7 @@ func IsIpV4(ipstr string) bool {
 	if ip == nil {
 		return false
 	}
-	return strings.Contains(ipstr, ".")
+	return ip.To4() != nil
 }
 
 // IsIpV6 check if the string is a ipv6 address.
@@ -224,7 +224,7 @@ func IsIpV6(ipstr string) bool {
 	if ip == nil {
 		return false
 	}
-	return strings.Contains(ipstr, ":")
+	return ip.To4() == nil && len(ip) == net.IPv6len
 }
 
 // IsPort check if the string is a valid net port.
