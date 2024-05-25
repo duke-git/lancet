@@ -156,13 +156,17 @@ func TestStructToMap(t *testing.T) {
 		Name string `json:"name"`
 		age  int
 	}
-	p := People{
+	p := &People{
 		"test",
 		100,
 	}
 	pm, _ := StructToMap(p)
-	var expected = map[string]interface{}{"name": "test"}
+	data, _ := StructToMap(p)
+	var expected = map[string]interface{}{
+		"name": "test",
+	}
 	assert.Equal(expected, pm)
+	assert.Equal(expected, data)
 }
 
 func TestColorHexToRGB(t *testing.T) {

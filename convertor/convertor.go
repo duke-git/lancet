@@ -197,6 +197,7 @@ func StructToMap(value interface{}) (map[string]interface{}, error) {
 
 	if t.Kind() == reflect.Ptr {
 		t = t.Elem()
+		v = v.Elem()
 	}
 	if t.Kind() != reflect.Struct {
 		return nil, fmt.Errorf("data type %T not support, shuld be struct or pointer to struct", value)
