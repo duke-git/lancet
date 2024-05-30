@@ -321,12 +321,12 @@ func main() {
 
 ### <span id="Concat">Concat</span>
 
-<p>Creates a new slice concatenating slice with any additional slices.</p>
+<p>Concat creates a new slice concatenating slice with any additional slices.</p>
 
 <b>Signature:</b>
 
 ```go
-func Concat[T any](slice []T, slices ...[]T) []T
+func Concat[T any](slices ...[]T) []T
 ```
 
 <b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/gPt-q7zr5mk)</span></b>
@@ -1540,7 +1540,7 @@ func main() {
 }
 ```
 
-### <span id="Merge">Merge</span>
+### <span id="Merge">Merge(deprecated: use Concat)</span>
 
 <p>Merge all given slices into one slice.</p>
 
