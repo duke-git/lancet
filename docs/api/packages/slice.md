@@ -322,12 +322,12 @@ func main() {
 
 ### <span id="Concat">Concat</span>
 
-<p>合并多个slices到slice中</p>
+<p>创建一个新的切片，将传入的切片拼接起来返回。</p>
 
 <b>函数签名:</b>
 
 ```go
-func Concat[T any](slice []T, slices ...[]T) []T
+func Concat[T any](slices ...[]T) []T
 ```
 
 <b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/gPt-q7zr5mk)</span></b>
@@ -1542,7 +1542,7 @@ func main() {
 }
 ```
 
-### <span id="Merge">Merge</span>
+### <span id="Merge">Merge（废弃：使用Concat）</span>
 
 <p>合并多个切片（不会消除重复元素).</p>
 

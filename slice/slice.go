@@ -109,18 +109,18 @@ func Compact[T comparable](slice []T) []T {
 
 // Concat creates a new slice concatenating slice with any additional slices.
 // Play: https://go.dev/play/p/gPt-q7zr5mk
-func Concat[T any](slice []T, slices ...[]T) []T {
-	totalLen := len(slice)
-
+func Concat[T any](slices ...[]T) []T {
+	totalLen := 0
 	for _, v := range slices {
 		totalLen += len(v)
+		if totalLen < 0 {
+			panic("len out of range")
+		}
 	}
-
 	result := make([]T, 0, totalLen)
 
-	result = append(result, slice...)
-	for _, s := range slices {
-		result = append(result, s...)
+	for _, v := range slices {
+		result = append(result, v...)
 	}
 
 	return result
@@ -833,20 +833,11 @@ func UnionBy[T any, V comparable](predicate func(item T) V, slices ...[]T) []T {
 	return result
 }
 
+// Deprecated:  Please use Concat() function instead.
 // Merge all given slices into one slice.
 // Play: https://go.dev/play/p/lbjFp784r9N
 func Merge[T any](slices ...[]T) []T {
-	totalLen := 0
-	for _, v := range slices {
-		totalLen += len(v)
-	}
-	result := make([]T, 0, totalLen)
-
-	for _, v := range slices {
-		result = append(result, v...)
-	}
-
-	return result
+	return Concat(slices...)
 }
 
 // Intersection creates a slice of unique elements that included by all slices.
