@@ -102,6 +102,7 @@ type HttpRequest struct {
 
 // HttpClientConfig contains some configurations for http client
 type HttpClientConfig struct {
+	Timeout          time.Duration
 	SSLEnabled       bool
 	TLSConfig        *tls.Config
 	Compressed       bool
@@ -113,9 +114,10 @@ type HttpClientConfig struct {
 
 // defaultHttpClientConfig defalut client config.
 var defaultHttpClientConfig = &HttpClientConfig{
+	Timeout:          50 * time.Second,
 	Compressed:       false,
-	HandshakeTimeout: 20 * time.Second,
-	ResponseTimeout:  40 * time.Second,
+	HandshakeTimeout: 10 * time.Second,
+	ResponseTimeout:  10 * time.Second,
 }
 
 // HttpClient is used for sending http request.
@@ -131,6 +133,7 @@ type HttpClient struct {
 func NewHttpClient() *HttpClient {
 	client := &HttpClient{
 		Client: &http.Client{
+			Timeout: defaultHttpClientConfig.Timeout,
 			Transport: &http.Transport{
 				TLSHandshakeTimeout:   defaultHttpClientConfig.HandshakeTimeout,
 				ResponseHeaderTimeout: defaultHttpClientConfig.ResponseTimeout,
