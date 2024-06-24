@@ -796,6 +796,46 @@ func UniqueBy[T comparable](slice []T, iteratee func(item T) T) []T {
 	return Unique(result)
 }
 
+// UniqueByField remove duplicate elements in struct slice by struct field.
+// Play: todo
+func UniqueByField[T any](slice []T, field string) ([]T, error) {
+	seen := map[any]struct{}{}
+
+	var result []T
+	for _, item := range slice {
+		val, err := getField(item, field)
+		if err != nil {
+			return nil, fmt.Errorf("get field %s failed: %v", field, err)
+		}
+		if _, ok := seen[val]; !ok {
+			seen[val] = struct{}{}
+			result = append(result, item)
+		}
+	}
+
+	return result, nil
+}
+
+func getField[T any](item T, field string) (interface{}, error) {
+	v := reflect.ValueOf(item)
+	t := reflect.TypeOf(item)
+
+	if t.Kind() == reflect.Ptr {
+		t = t.Elem()
+		v = v.Elem()
+	}
+	if v.Kind() != reflect.Struct {
+		return nil, fmt.Errorf("data type %T not support, shuld be struct or pointer to struct", item)
+	}
+
+	f := v.FieldByName(field)
+	if !f.IsValid() {
+		return nil, fmt.Errorf("field name %s not found", field)
+	}
+
+	return v.FieldByName(field).Interface(), nil
+}
+
 // Union creates a slice of unique elements, in order, from all given slices.
 // Play: https://go.dev/play/p/hfXV1iRIZOf
 func Union[T comparable](slices ...[]T) []T {

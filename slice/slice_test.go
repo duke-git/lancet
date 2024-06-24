@@ -2,11 +2,12 @@ package slice
 
 import (
 	"fmt"
-	"github.com/duke-git/lancet/v2/internal"
 	"math"
 	"reflect"
 	"strconv"
 	"testing"
+
+	"github.com/duke-git/lancet/v2/internal"
 )
 
 func TestContain(t *testing.T) {
@@ -733,6 +734,33 @@ func TestUniqueBy(t *testing.T) {
 		return val % 4
 	})
 	assert.Equal([]int{1, 2, 3, 0}, actual)
+}
+
+func TestUniqueByField(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestUniqueByField")
+
+	type User struct {
+		ID   int    `json:"id"`
+		Name string `json:"name"`
+	}
+
+	users := []User{
+		{ID: 1, Name: "a"},
+		{ID: 2, Name: "b"},
+		{ID: 1, Name: "c"},
+	}
+
+	uniqueUsers, err := UniqueByField(users, "ID")
+	if err != nil {
+		t.Error(err)
+	}
+
+	assert.Equal([]User{
+		{ID: 1, Name: "a"},
+		{ID: 2, Name: "b"},
+	}, uniqueUsers)
 }
 
 func TestUnion(t *testing.T) {

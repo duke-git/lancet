@@ -780,6 +780,28 @@ func ExampleUniqueBy() {
 	// [1 2 0]
 }
 
+func ExampleUniqueByField() {
+	type User struct {
+		ID   int    `json:"id"`
+		Name string `json:"name"`
+	}
+
+	users := []User{
+		{ID: 1, Name: "a"},
+		{ID: 2, Name: "b"},
+		{ID: 1, Name: "c"},
+	}
+
+	result, err := UniqueByField(users, "ID")
+	if err != nil {
+	}
+
+	fmt.Println(result)
+
+	// Output:
+	// [{1 a} {2 b}]
+}
+
 func ExampleUnion() {
 	nums1 := []int{1, 3, 4, 6}
 	nums2 := []int{1, 2, 5, 6}
