@@ -436,3 +436,15 @@ func ToSortedSlicesWithComparator[K comparable, V any](m map[K]V, comparator fun
 
 	return keys, sortedValues
 }
+
+// GetOrSet returns value of the given key or set the given value value if not present
+// Play: todo
+func GetOrSet[K comparable, V any](m map[K]V, key K, value V) V {
+	if v, ok := m[key]; ok {
+		return v
+	}
+
+	m[key] = value
+
+	return value
+}

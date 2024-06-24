@@ -691,3 +691,19 @@ func TestToSortedSlicesWithComparator(t *testing.T) {
 		})
 	}
 }
+
+func TestGetOrSet(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestGetOrSet")
+
+	m := map[int]string{
+		1: "a",
+	}
+
+	result1 := GetOrSet(m, 1, "1")
+	result2 := GetOrSet(m, 2, "b")
+
+	assert.Equal("a", result1)
+	assert.Equal("b", result2)
+}

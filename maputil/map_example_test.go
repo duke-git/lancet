@@ -524,3 +524,19 @@ func ExampleToSortedSlicesWithComparator() {
 	// [3 2 1]
 	// [c b a]
 }
+
+func ExampleGetOrSet() {
+	m := map[int]string{
+		1: "a",
+	}
+
+	result1 := GetOrSet(m, 1, "1")
+	result2 := GetOrSet(m, 2, "b")
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+
+	// Output:
+	// a
+	// b
+}

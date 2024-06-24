@@ -55,6 +55,7 @@ import (
 -   [ConcurrentMap_GetAndDelete](#ConcurrentMap_GetAndDelete)
 -   [ConcurrentMap_Has](#ConcurrentMap_Has)
 -   [ConcurrentMap_Range](#ConcurrentMap_Range)
+-   [GetOrSet](#GetOrSet)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -1499,5 +1500,42 @@ func main() {
         fmt.Println(value)
         return true
     })
+}
+```
+
+### <span id="GetOrSet">GetOrSet</span>
+
+<p>Returns value of the given key or set the given value value if not present.</p>
+
+<b>Signature:</b>
+
+```go
+func GetOrSet[K comparable, V any](m map[K]V, key K, value V) V
+```
+
+<b>Example:<span style="float:right;display:inline-block;"></span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/maputil"
+)
+
+func main() {
+    m := map[int]string{
+        1: "a",
+    }
+
+    result1 := maputil.GetOrSet(m, 1, "1")
+    result2 := maputil.GetOrSet(m, 2, "b")
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+
+    // Output:
+    // a
+    // b
 }
 ```
