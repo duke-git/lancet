@@ -86,6 +86,7 @@ import (
 -   [ToSlicePointer](#ToSlicePointer)
 -   [Unique](#Unique)
 -   [UniqueBy](#UniqueBy)
+-   [UniqueByField](#UniqueByField)
 -   [Union](#Union)
 -   [UnionBy](#UnionBy)
 -   [UpdateAt](#UpdateAt)
@@ -2307,6 +2308,47 @@ func main() {
 
     // Output:
     // [1 2 0]
+}
+```
+
+### <span id="UniqueByField">UniqueByField</span>
+
+<p>Remove duplicate elements in struct slice by struct field.</p>
+
+<b>Signature:</b>
+
+```go
+func UniqueByField[T any](slice []T, field string) ([]T, error)
+```
+
+<b>Example:<span style="float:right;display:inline-block;"></span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/slice"
+)
+
+func main() {
+    type User struct {
+        ID   int    `json:"id"`
+        Name string `json:"name"`
+    }
+
+    users := []User{
+        {ID: 1, Name: "a"},
+        {ID: 2, Name: "b"},
+        {ID: 1, Name: "c"},
+    }
+
+    result, err := slice.UniqueByField(users, "ID")
+    if err != nil {
+    }
+
+    fmt.Println(result)
+
+    // Output:
+    // [{1 a} {2 b}]
 }
 ```
 

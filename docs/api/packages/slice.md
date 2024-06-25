@@ -86,6 +86,7 @@ import (
 -   [ToSlicePointer](#ToSlicePointer)
 -   [Unique](#Unique)
 -   [UniqueBy](#UniqueBy)
+-   [UniqueByField](#UniqueByField)
 -   [Union](#Union)
 -   [UnionBy](#UnionBy)
 -   [UpdateAt](#UpdateAt)
@@ -2312,6 +2313,47 @@ func main() {
 }
 ```
 
+### <span id="UniqueByField">UniqueByField</span>
+
+<p>根据struct字段对struct切片去重复。</p>
+
+<b>函数签名:</b>
+
+```go
+func UniqueByField[T any](slice []T, field string) ([]T, error)
+```
+
+<b>示例:<span style="float:right;display:inline-block;"></span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/slice"
+)
+
+func main() {
+    type User struct {
+        ID   int    `json:"id"`
+        Name string `json:"name"`
+    }
+
+    users := []User{
+        {ID: 1, Name: "a"},
+        {ID: 2, Name: "b"},
+        {ID: 1, Name: "c"},
+    }
+
+    result, err := slice.UniqueByField(users, "ID")
+    if err != nil {
+    }
+
+    fmt.Println(result)
+
+    // Output:
+    // [{1 a} {2 b}]
+}
+```
+
 ### <span id="Union">Union</span>
 
 <p>合并多个切片</p>
@@ -2594,14 +2636,14 @@ import (
 
 func main() {
     strs := []string{"a", "b", "a", "c", "d", "a"}
-	modifiedStrs, count := slice.SetToDefaultIf(strs, func(s string) bool { return "a" == s })
-	
+    modifiedStrs, count := slice.SetToDefaultIf(strs, func(s string) bool { return "a" == s })
+    
     fmt.Println(modifiedStrs)
-	fmt.Println(count)
-	
+    fmt.Println(count)
+    
     // Output:
-	// [ b  c d ]
-	// 3
+    // [ b  c d ]
+    // 3
 }
 ```
 
@@ -2657,11 +2699,11 @@ import (
 )
 
 func main() {
-  	nums := []int{1, 2, 3, 4, 5}
-	padded := slice.RightPadding(nums, 0, 3)
-	fmt.Println(padded)
-	// Output:
-	// [1 2 3 4 5 0 0 0]
+      nums := []int{1, 2, 3, 4, 5}
+    padded := slice.RightPadding(nums, 0, 3)
+    fmt.Println(padded)
+    // Output:
+    // [1 2 3 4 5 0 0 0]
 }
 ```
 
@@ -2684,10 +2726,10 @@ import (
 )
 
 func main() {
-  	nums := []int{1, 2, 3, 4, 5}
-	padded := slice.LeftPadding(nums, 0, 3)
-	fmt.Println(padded)
-	// Output:
-	// [0 0 0 1 2 3 4 5]
+      nums := []int{1, 2, 3, 4, 5}
+    padded := slice.LeftPadding(nums, 0, 3)
+    fmt.Println(padded)
+    // Output:
+    // [0 0 0 1 2 3 4 5]
 }
 ```
