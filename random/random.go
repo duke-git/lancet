@@ -42,7 +42,7 @@ func RandInt(min, max int) int {
 		min, max = max, min
 	}
 
-	return rand.Intn(max-min) + min
+	return rand.Intn(max+1-min) + min
 }
 
 // RandFloat generate random float64 number between [min, max) with specific precision.
