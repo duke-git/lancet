@@ -1497,7 +1497,7 @@ func main() {
 func GetOrSet[K comparable, V any](m map[K]V, key K, value V) V
 ```
 
-<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/IVQwO1OkEJC)</span></span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/IVQwO1OkEJC)</span></b>
 
 ```go
 package main
