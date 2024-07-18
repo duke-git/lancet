@@ -331,7 +331,7 @@ func main() {
 func RetryWithCustomBackoff(backoffStrategy BackoffStrategy) Option 
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/jIm_o2vb5Y4)</span></b>
 
 ```go
 package main
@@ -384,7 +384,7 @@ func main() {
 func RetryWithLinearBackoff(interval time.Duration) Option
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/PDet2ZQZwcB)</span></b>
 
 ```go
 package main
@@ -429,7 +429,7 @@ func main() {
 func RetryWithExponentialWithJitterBackoff(interval time.Duration, base uint64, maxJitter time.Duration) Option
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/xp1avQmn16X)</span></b>
 
 ```go
 package main

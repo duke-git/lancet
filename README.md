@@ -903,6 +903,7 @@ import "github.com/duke-git/lancet/v2/maputil"
     [[play](https://go.dev/play/p/isZZHOsDhFc)]
 -   **<big>GetOrSet</big>** : returns value of the given key or set the given value value if not present.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/maputil.md#GetOrSet)]
+    [[play](https://go.dev/play/p/IVQwO1OkEJC)]
 -   **<big>MapToStruct</big>** : converts map to struct.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/maputil.md#MapToStruct)]
     [[play](https://go.dev/play/p/7wYyVfX38Dp)]
@@ -1209,11 +1210,13 @@ import "github.com/duke-git/lancet/v2/retry"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/retry.md#BackoffStrategy)]
 -   **<big>RetryWithCustomBackoff</big>** : set abitary custom backoff strategy.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/retry.md#RetryWithCustomBackoff)]
+    [[play](https://go.dev/play/p/jIm_o2vb5Y4)]
 -   **<big>RetryWithLinearBackoff</big>** : set linear strategy backoff.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/retry.md#RetryWithLinearBackoff)]
+    [[play](https://go.dev/play/p/PDet2ZQZwcB)]
 -   **<big>RetryWithExponentialWithJitterBackoff</big>** : set exponential strategy backoff.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/retry.md#RetryWithExponentialWithJitterBackoff)]
-
+    [[play](https://go.dev/play/p/xp1avQmn16X)]
    
 
 <h3 id="slice"> 18. Slice contains some functions to manipulate slice. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
@@ -1418,6 +1421,7 @@ import "github.com/duke-git/lancet/v2/slice"
     [[play](https://go.dev/play/p/UR323iZLDpv)]
 -   **<big>UniqueByField</big>** : remove duplicate elements in struct slice by struct field.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#UniqueByField)]
+    [[play](https://go.dev/play/p/6cifcZSPIGu)]
 -   **<big>Union</big>** : creates a slice of unique elements, in order, from all given slices.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#Union)]
     [[play](https://go.dev/play/p/hfXV1iRIZOf)]

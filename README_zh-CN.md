@@ -902,9 +902,10 @@ import "github.com/duke-git/lancet/v2/maputil"
     [[play](https://go.dev/play/p/N9qgYg_Ho6f)]
 -   **<big>HasKey</big>** : 检查 map 是否包含某个 key。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/maputil.md#HasKey)]
+    [[play](https://go.dev/play/p/isZZHOsDhFc)]
 -   **<big>GetOrSet</big>** : 返回给定键的值，如果不存在则设置该值。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/maputil.md#GetOrSet)]
-    [[play](https://go.dev/play/p/isZZHOsDhFc)]
+    [[play](https://go.dev/play/p/IVQwO1OkEJC)]
 -   **<big>MapToStruct</big>** : 将map转成struct。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/maputil.md#MapToStruct)]
     [[play](https://go.dev/play/p/7wYyVfX38Dp)]
@@ -1209,10 +1210,13 @@ import "github.com/duke-git/lancet/v2/retry"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/retry.md#BackoffStrategy)]
 -   **<big>RetryWithCustomBackoff</big>** : 设置自定义退避策略。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/retry.md#RetryWithCustomBackoff)]
+    [[play](https://go.dev/play/p/jIm_o2vb5Y4)]
 -   **<big>RetryWithLinearBackoff</big>** : 设置线性策略退避。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/retry.md#RetryWithLinearBackoff)]
+    [[play](https://go.dev/play/p/PDet2ZQZwcB)]
 -   **<big>RetryWithExponentialWithJitterBackoff</big>** : 设置指数策略退避。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/retry.md#RetryWithExponentialWithJitterBackoff)]
+    [[play](https://go.dev/play/p/xp1avQmn16X)]
 
 
 
@@ -1416,8 +1420,9 @@ import "github.com/duke-git/lancet/v2/slice"
 -   **<big>UniqueBy</big>** : 对切片的每个元素调用 iteratee 函数，然后删除重复元素。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/slice.md#UniqueBy)]
     [[play](https://go.dev/play/p/UR323iZLDpv)]
--   **<big>UniqueByField</big>** : 根据struct字段对struct切片去重复
+-   **<big>UniqueByField</big>** : 根据struct字段对struct切片去重复。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/slice.md#UniqueByField)]
+    [[play](https://go.dev/play/p/6cifcZSPIGu)]
 -   **<big>Union</big>** : 合并多个切片。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/slice.md#Union)]
     [[play](https://go.dev/play/p/hfXV1iRIZOf)]

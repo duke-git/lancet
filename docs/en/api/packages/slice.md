@@ -2321,7 +2321,7 @@ func main() {
 func UniqueByField[T any](slice []T, field string) ([]T, error)
 ```
 
-<b>Example:<span style="float:right;display:inline-block;"></span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Runs](https://go.dev/play/p/6cifcZSPIGu)</span></b>
 
 ```go
 import (

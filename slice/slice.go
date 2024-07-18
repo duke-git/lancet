@@ -797,7 +797,7 @@ func UniqueBy[T comparable](slice []T, iteratee func(item T) T) []T {
 }
 
 // UniqueByField remove duplicate elements in struct slice by struct field.
-// Play: todo
+// Play: https://go.dev/play/p/6cifcZSPIGu
 func UniqueByField[T any](slice []T, field string) ([]T, error) {
 	seen := map[any]struct{}{}
 

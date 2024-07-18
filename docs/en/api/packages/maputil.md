@@ -1513,7 +1513,7 @@ func main() {
 func GetOrSet[K comparable, V any](m map[K]V, key K, value V) V
 ```
 
-<b>Example:<span style="float:right;display:inline-block;"></span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/IVQwO1OkEJC)</span></b>
 
 ```go
 package main

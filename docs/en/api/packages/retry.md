@@ -331,7 +331,7 @@ func main() {
 func RetryWithCustomBackoff(backoffStrategy BackoffStrategy) Option 
 ```
 
-<b>Example:</b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/jIm_o2vb5Y4)</span></b>
 
 ```go
 package main
@@ -361,7 +361,7 @@ func main() {
         return errors.New("error occurs")
     }
 
-    err := retry,Retry(increaseNumber, retry.RetryWithCustomBackoff(&ExampleCustomBackoffStrategy{interval: time.Microsecond * 50}))
+    err := retry.Retry(increaseNumber, retry.RetryWithCustomBackoff(&ExampleCustomBackoffStrategy{interval: time.Microsecond * 50}))
     if err != nil {
         return
     }
@@ -384,7 +384,7 @@ func main() {
 func RetryWithLinearBackoff(interval time.Duration) Option
 ```
 
-<b>Example:</b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/nk2XRmagfVF)</span></b>
 
 ```go
 package main
@@ -429,7 +429,7 @@ func main() {
 func RetryWithExponentialWithJitterBackoff(interval time.Duration, base uint64, maxJitter time.Duration) Option
 ```
 
-<b>Example:</b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/xp1avQmn16X)</span></b>
 
 ```go
 package main

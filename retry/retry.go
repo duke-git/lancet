@@ -45,7 +45,7 @@ func RetryTimes(n uint) Option {
 }
 
 // RetryWithCustomBackoff set abitary custom backoff strategy
-// Play: todo
+// Play: https://go.dev/play/p/jIm_o2vb5Y4
 func RetryWithCustomBackoff(backoffStrategy BackoffStrategy) Option {
 	if backoffStrategy == nil {
 		panic("programming error: backoffStrategy must be not nil")
@@ -57,7 +57,7 @@ func RetryWithCustomBackoff(backoffStrategy BackoffStrategy) Option {
 }
 
 // RetryWithLinearBackoff set linear strategy backoff
-// Play: todo
+// Play: https://go.dev/play/p/PDet2ZQZwcB
 func RetryWithLinearBackoff(interval time.Duration) Option {
 	if interval <= 0 {
 		panic("programming error: retry interval should not be lower or equal to 0")
@@ -71,7 +71,7 @@ func RetryWithLinearBackoff(interval time.Duration) Option {
 }
 
 // RetryWithExponentialWithJitterBackoff set exponential strategy backoff
-// Play: todo
+// Play: https://go.dev/play/p/xp1avQmn16X
 func RetryWithExponentialWithJitterBackoff(interval time.Duration, base uint64, maxJitter time.Duration) Option {
 	if interval <= 0 {
 		panic("programming error: retry interval should not be lower or equal to 0")
