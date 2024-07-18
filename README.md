@@ -1125,7 +1125,7 @@ import "github.com/duke-git/lancet/v2/pointer"
 -   **<big>Unwrap</big>** : return the value from the pointer.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/pointer.md#Unwrap)]
     [[play](https://go.dev/play/p/cgeu3g7cjWb)]
--   **<big>UnwarpOr</big>** : UnwarpOr returns the value from the pointer or fallback if the pointer is nil.
+-   **<big>UnwrapOr</big>** : UnwrapOr returns the value from the pointer or fallback if the pointer is nil.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/pointer.md#UnwrapOr)]
     [[play](https://go.dev/play/p/mmNaLC38W8C)]
 -   **<big>UnwarpOrDefault</big>** : UnwarpOrDefault returns the value from the pointer or the default value if the pointer is nil.

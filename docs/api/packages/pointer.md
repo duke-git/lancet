@@ -25,8 +25,8 @@ import (
 -   [Of](#Of)
 -   [Unwrap](#Unwrap)
 -   [ExtractPointer](#ExtractPointer)
--   [UnwarpOr](#UnwarpOr)
--   [UnwarpOrDefault](#UnwarpOrDefault)
+-   [UnwrapOr](#UnwrapOr)
+-   [UnwrapOrDefault](#UnwrapOrDefault)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -136,14 +136,14 @@ func main() {
 }
 ```
 
-### <span id="UnwarpOr">UnwarpOr</span>
+### <span id="UnwrapOr">UnwrapOr</span>
 
 <p>返回指针的值，如果指针为零值，则返回fallback。</p>
 
 <b>函数签名:</b>
 
 ```go
-UnwarpOr[T any](p *T, fallback T) T
+UnwrapOr[T any](p *T, fallback T) T
 ```
 
 <b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/mmNaLC38W8C)</span></b>
@@ -163,10 +163,10 @@ func main() {
 	var c *int
 	var d *string
 
-	result1 := pointer.UnwarpOr(&a, 456)
-	result2 := pointer.UnwarpOr(&b, "abc")
-	result3 := pointer.UnwarpOr(c, 456)
-	result4 := pointer.UnwarpOr(d, "def")
+	result1 := pointer.UnwrapOr(&a, 456)
+	result2 := pointer.UnwrapOr(&b, "abc")
+	result3 := pointer.UnwrapOr(c, 456)
+	result4 := pointer.UnwrapOr(d, "def")
 
 	fmt.Println(result1)
 	fmt.Println(result2)
@@ -181,14 +181,14 @@ func main() {
 }
 ```
 
-### <span id="UnwarpOrDefault">UnwarpOrDefault</span>
+### <span id="UnwrapOrDefault">UnwrapOrDefault</span>
 
 <p>返回指针的值，如果指针为零值，则返回相应零值。</p>
 
 <b>函数签名:</b>
 
 ```go
-UnwarpOrDefault[T any](p *T) T
+UnwrapOrDefault[T any](p *T) T
 ```
 
 <b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/ZnGIHf8_o4E)</span></b>
@@ -208,10 +208,10 @@ func main() {
 	var c *int
 	var d *string
 
-	result1 := pointer.UnwarpOrDefault(&a)
-	result2 := pointer.UnwarpOrDefault(&b)
-	result3 := pointer.UnwarpOrDefault(c)
-	result4 := pointer.UnwarpOrDefault(d)
+	result1 := pointer.UnwrapOrDefault(&a)
+	result2 := pointer.UnwrapOrDefault(&b)
+	result3 := pointer.UnwrapOrDefault(c)
+	result4 := pointer.UnwrapOrDefault(d)
 
 	fmt.Println(result1)
 	fmt.Println(result2)
