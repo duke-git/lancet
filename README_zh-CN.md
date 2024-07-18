@@ -902,6 +902,8 @@ import "github.com/duke-git/lancet/v2/maputil"
     [[play](https://go.dev/play/p/N9qgYg_Ho6f)]
 -   **<big>HasKey</big>** : 检查 map 是否包含某个 key。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/maputil.md#HasKey)]
+-   **<big>GetOrSet</big>** : 返回给定键的值，如果不存在则设置该值。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/maputil.md#GetOrSet)]
     [[play](https://go.dev/play/p/isZZHOsDhFc)]
 -   **<big>MapToStruct</big>** : 将map转成struct。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/maputil.md#MapToStruct)]
@@ -1414,6 +1416,8 @@ import "github.com/duke-git/lancet/v2/slice"
 -   **<big>UniqueBy</big>** : 对切片的每个元素调用 iteratee 函数，然后删除重复元素。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/slice.md#UniqueBy)]
     [[play](https://go.dev/play/p/UR323iZLDpv)]
+-   **<big>UniqueByField</big>** : 根据struct字段对struct切片去重复
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/slice.md#UniqueByField)]
 -   **<big>Union</big>** : 合并多个切片。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/slice.md#Union)]
     [[play](https://go.dev/play/p/hfXV1iRIZOf)]

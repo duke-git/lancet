@@ -901,6 +901,8 @@ import "github.com/duke-git/lancet/v2/maputil"
 -   **<big>HasKey</big>** : checks if map has key or not.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/maputil.md#HasKey)]
     [[play](https://go.dev/play/p/isZZHOsDhFc)]
+-   **<big>GetOrSet</big>** : returns value of the given key or set the given value value if not present.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/maputil.md#GetOrSet)]
 -   **<big>MapToStruct</big>** : converts map to struct.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/maputil.md#MapToStruct)]
     [[play](https://go.dev/play/p/7wYyVfX38Dp)]
@@ -1414,6 +1416,8 @@ import "github.com/duke-git/lancet/v2/slice"
 -   **<big>UniqueBy</big>** : call iteratee func with every item of slice, then remove duplicated.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#UniqueBy)]
     [[play](https://go.dev/play/p/UR323iZLDpv)]
+-   **<big>UniqueByField</big>** : remove duplicate elements in struct slice by struct field.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#UniqueByField)]
 -   **<big>Union</big>** : creates a slice of unique elements, in order, from all given slices.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#Union)]
     [[play](https://go.dev/play/p/hfXV1iRIZOf)]
