@@ -84,13 +84,26 @@ var (
 // The precision parameter specifies the number of digits after the decimal point, which defaults to 4.
 // Play: https://go.dev/play/p/FPXs1suwRcs
 func DecimalBytes(size float64, precision ...int) string {
-	p := 5
+	pointPosition := 4
 	if len(precision) > 0 {
-		p = precision[0] + 1
+		pointPosition = precision[0]
 	}
+
 	size, unit := calculateByteSize(size, 1000.0, decimalByteUnits)
 
-	return fmt.Sprintf("%.*g%s", p, size, unit)
+	format := fmt.Sprintf("%%.%df", pointPosition)
+	result := fmt.Sprintf(format, size)
+
+	for i := len(result); i > 0; i-- {
+		s := result[i-1]
+		if s == '0' || s == '.' {
+			result = result[:i-1]
+		} else {
+			break
+		}
+	}
+
+	return result + unit
 }
 
 // BinaryBytes returns a human-readable byte size under binary standard (base 1024)
