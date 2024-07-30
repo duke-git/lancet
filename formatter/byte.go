@@ -92,18 +92,18 @@ func DecimalBytes(size float64, precision ...int) string {
 	size, unit := calculateByteSize(size, 1000.0, decimalByteUnits)
 
 	format := fmt.Sprintf("%%.%df", pointPosition)
-	result := fmt.Sprintf(format, size)
+	bytes := fmt.Sprintf(format, size)
 
-	for i := len(result); i > 0; i-- {
-		s := result[i-1]
-		if s == '0' || s == '.' {
-			result = result[:i-1]
-		} else {
+	for i := len(bytes); i > 0; i-- {
+		s := bytes[i-1]
+		if s != '0' && s != '.' {
 			break
 		}
+
+		bytes = bytes[:i-1]
 	}
 
-	return result + unit
+	return bytes + unit
 }
 
 // BinaryBytes returns a human-readable byte size under binary standard (base 1024)
