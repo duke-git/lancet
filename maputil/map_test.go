@@ -107,14 +107,14 @@ func TestMerge(t *testing.T) {
 		2: "b",
 	}
 	m2 := map[int]string{
-		1: "1",
-		3: "2",
+		2: "c",
+		3: "d",
 	}
 
 	expected := map[int]string{
-		1: "1",
-		2: "b",
-		3: "2",
+		1: "a",
+		2: "c",
+		3: "d",
 	}
 	acturl := Merge(m1, m2)
 

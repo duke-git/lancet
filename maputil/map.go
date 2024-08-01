@@ -70,7 +70,12 @@ func ValuesBy[K comparable, V any, T any](m map[K]V, mapper func(item V) T) []T 
 // Merge maps, next key will overwrite previous key.
 // Play: https://go.dev/play/p/H95LENF1uB-
 func Merge[K comparable, V any](maps ...map[K]V) map[K]V {
-	result := make(map[K]V, 0)
+	size := 0
+	for i := range maps {
+		size += len(maps[i])
+	}
+
+	result := make(map[K]V, size)
 
 	for _, m := range maps {
 		for k, v := range m {
