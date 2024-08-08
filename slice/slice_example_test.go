@@ -1163,3 +1163,15 @@ func ExampleLeftPadding() {
 	// Output:
 	// [0 0 0 1 2 3 4 5]
 }
+
+func ExampleUniqueByParallel() {
+	nums := []int{1, 2, 3, 1, 2, 4, 5, 6, 4, 7}
+	numOfThreads := 4
+	comparator := func(item int, other int) bool { return item == other }
+
+	result := UniqueByParallel(nums, numOfThreads, comparator)
+
+	fmt.Println(result)
+	// Output:
+	// [1 2 3 4 5 6 7]
+}
