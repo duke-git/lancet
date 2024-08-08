@@ -79,6 +79,32 @@ func ExampleDelay() {
 	// hello
 }
 
+func ExampleDebounce() {
+	callCount := 0
+	fn := func() {
+		callCount++
+	}
+
+	debouncedFn, _ := Debounce(fn, 500*time.Millisecond)
+
+	for i := 0; i < 10; i++ {
+		debouncedFn()
+		time.Sleep(50 * time.Millisecond)
+	}
+
+	time.Sleep(1 * time.Second)
+	fmt.Println(callCount)
+
+	debouncedFn()
+
+	time.Sleep(1 * time.Second)
+	fmt.Println(callCount)
+
+	// Output:
+	// 1
+	// 2
+}
+
 func ExampleDebounced() {
 	count := 0
 	add := func() {

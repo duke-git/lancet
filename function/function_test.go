@@ -125,6 +125,80 @@ func TestDebounced(t *testing.T) {
 	assert.Equal(2, count)
 }
 
+func TestDebounce(t *testing.T) {
+	assert := internal.NewAssert(t, "TestDebounce")
+
+	t.Run("Single call", func(t *testing.T) {
+		callCount := 0
+		fn := func() {
+			callCount++
+		}
+
+		debouncedFn, _ := Debounce(fn, 500*time.Millisecond)
+		debouncedFn()
+
+		time.Sleep(1 * time.Second)
+
+		assert.Equal(1, callCount)
+	})
+
+	t.Run("Multiple calls within debounce interval", func(t *testing.T) {
+		callCount := 0
+		fn := func() {
+			callCount++
+		}
+
+		debouncedFn, _ := Debounce(fn, 1*time.Second)
+
+		for i := 0; i < 5; i++ {
+			go func(index int) {
+				time.Sleep(time.Duration(index) * 200 * time.Millisecond)
+				debouncedFn()
+			}(i)
+		}
+
+		time.Sleep(2 * time.Second)
+
+		assert.Equal(1, callCount)
+	})
+
+	t.Run("Immediate consecutive calls", func(t *testing.T) {
+		callCount := 0
+		fn := func() {
+			callCount++
+		}
+
+		debouncedFn, _ := Debounce(fn, 500*time.Millisecond)
+
+		for i := 0; i < 10; i++ {
+			debouncedFn()
+			time.Sleep(50 * time.Millisecond)
+		}
+
+		time.Sleep(1 * time.Second)
+
+		assert.Equal(1, callCount)
+	})
+
+	t.Run("Cancel calls", func(t *testing.T) {
+		callCount := 0
+		fn := func() {
+			callCount++
+		}
+
+		debouncedFn, cancelFn := Debounce(fn, 500*time.Millisecond)
+
+		debouncedFn()
+
+		cancelFn()
+
+		time.Sleep(1 * time.Second)
+
+		assert.Equal(0, callCount)
+	})
+
+}
+
 func TestSchedule(t *testing.T) {
 	// assert := internal.NewAssert(t, "TestSchedule")
 
