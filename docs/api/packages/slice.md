@@ -2284,12 +2284,12 @@ func main() {
 
 ### <span id="UniqueBy">UniqueBy</span>
 
-<p>对切片的每个元素调用iteratee函数，然后删除重复元素</p>
+<p>根据迭代函数返回的值，从输入切片中移除重复元素。此函数保持元素的顺序。</p>
 
 <b>函数签名:</b>
 
 ```go
-func UniqueBy[T comparable](slice []T, iteratee func(item T) T) []T
+func UniqueBy[T any, U comparable](slice []T, iteratee func(item T) U) []T
 ```
 
 <b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/UR323iZLDpv)</span></b>
@@ -2309,7 +2309,7 @@ func main() {
     fmt.Println(result)
 
     // Output:
-    // [1 2 0]
+    // [1 2 3]
 }
 ```
 

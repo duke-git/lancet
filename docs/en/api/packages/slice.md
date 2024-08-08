@@ -2282,12 +2282,12 @@ func main() {
 
 ### <span id="UniqueBy">UniqueBy</span>
 
-<p>Call iteratee func with every item of slice, then remove duplicated.</p>
+<p>Removes duplicate elements from the input slice based on the values returned by the iteratee function. this function maintains the order of the elements.</p>
 
 <b>Signature:</b>
 
 ```go
-func UniqueBy[T comparable](slice []T, iteratee func(item T) T) []T
+func UniqueBy[T any, U comparable](slice []T, iteratee func(item T) U) []T
 ```
 
 <b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/UR323iZLDpv)</span></b>
@@ -2307,7 +2307,7 @@ func main() {
     fmt.Println(result)
 
     // Output:
-    // [1 2 0]
+    // [1 2 3]
 }
 ```
 

@@ -733,7 +733,8 @@ func TestUniqueBy(t *testing.T) {
 	actual := UniqueBy([]int{1, 2, 3, 4, 5, 6}, func(val int) int {
 		return val % 4
 	})
-	assert.Equal([]int{1, 2, 3, 0}, actual)
+
+	assert.Equal([]int{1, 2, 3, 4}, actual)
 }
 
 func TestUniqueByField(t *testing.T) {

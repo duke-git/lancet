@@ -1417,7 +1417,7 @@ import "github.com/duke-git/lancet/v2/slice"
 -   **<big>Unique</big>** : 删除切片中的重复元素。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/slice.md#Unique)]
     [[play](https://go.dev/play/p/AXw0R3ZTE6a)]
--   **<big>UniqueBy</big>** : 对切片的每个元素调用 iteratee 函数，然后删除重复元素。
+-   **<big>UniqueBy</big>** : 根据迭代函数返回的值，从输入切片中移除重复元素。此函数保持元素的顺序。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/slice.md#UniqueBy)]
     [[play](https://go.dev/play/p/UR323iZLDpv)]
 -   **<big>UniqueByField</big>** : 根据struct字段对struct切片去重复。

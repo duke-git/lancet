@@ -1416,7 +1416,7 @@ import "github.com/duke-git/lancet/v2/slice"
 -   **<big>Unique</big>** : remove duplicate elements in slice.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#Unique)]
     [[play](https://go.dev/play/p/AXw0R3ZTE6a)]
--   **<big>UniqueBy</big>** : call iteratee func with every item of slice, then remove duplicated.
+-   **<big>UniqueBy</big>** : remove duplicate elements from the input slice based on the values returned by the iteratee function.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#UniqueBy)]
     [[play](https://go.dev/play/p/UR323iZLDpv)]
 -   **<big>UniqueByField</big>** : remove duplicate elements in struct slice by struct field.
