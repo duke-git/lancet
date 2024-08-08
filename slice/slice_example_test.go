@@ -5,6 +5,7 @@ import (
 	"math"
 	"reflect"
 	"strconv"
+	"strings"
 )
 
 func ExampleContain() {
@@ -778,6 +779,23 @@ func ExampleUniqueBy() {
 
 	// Output:
 	// [1 2 3]
+}
+
+func ExampleUniqueByComparator() {
+	uniqueNums := UniqueByComparator([]int{1, 2, 3, 1, 2, 4, 5, 6, 4}, func(item int, other int) bool {
+		return item == other
+	})
+
+	caseInsensitiveStrings := UniqueByComparator([]string{"apple", "banana", "Apple", "cherry", "Banana", "date"}, func(item string, other string) bool {
+		return strings.ToLower(item) == strings.ToLower(other)
+	})
+
+	fmt.Println(uniqueNums)
+	fmt.Println(caseInsensitiveStrings)
+
+	// Output:
+	// [1 2 3 4 5 6]
+	// [apple banana cherry date]
 }
 
 func ExampleUniqueByField() {

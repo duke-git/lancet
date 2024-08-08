@@ -808,6 +808,30 @@ func UniqueBy[T any, U comparable](slice []T, iteratee func(item T) U) []T {
 	return result
 }
 
+// UniqueByComparator removes duplicate elements from the input slice using the provided comparator function.
+// The function maintains the order of the elements.
+// Play: todo
+func UniqueByComparator[T comparable](slice []T, comparator func(item T, other T) bool) []T {
+	result := make([]T, 0, len(slice))
+	seen := make([]T, 0, len(slice))
+
+	for _, item := range slice {
+		duplicate := false
+		for _, seenItem := range seen {
+			if comparator(item, seenItem) {
+				duplicate = true
+				break
+			}
+		}
+		if !duplicate {
+			seen = append(seen, item)
+			result = append(result, item)
+		}
+	}
+
+	return result
+}
+
 // UniqueByField remove duplicate elements in struct slice by struct field.
 // Play: https://go.dev/play/p/6cifcZSPIGu
 func UniqueByField[T any](slice []T, field string) ([]T, error) {

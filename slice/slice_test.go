@@ -5,6 +5,7 @@ import (
 	"math"
 	"reflect"
 	"strconv"
+	"strings"
 	"testing"
 
 	"github.com/duke-git/lancet/v2/internal"
@@ -762,6 +763,58 @@ func TestUniqueByField(t *testing.T) {
 		{ID: 1, Name: "a"},
 		{ID: 2, Name: "b"},
 	}, uniqueUsers)
+}
+
+func TestUniqueByComparator(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestUniqueByComparator")
+
+	t.Run("equal comparison", func(t *testing.T) {
+		nums := []int{1, 2, 3, 1, 2, 4, 5, 6, 4, 7}
+		comparator := func(item int, other int) bool {
+			return item == other
+		}
+		result := UniqueByComparator(nums, comparator)
+
+		assert.Equal([]int{1, 2, 3, 4, 5, 6, 7}, result)
+	})
+
+	t.Run("unique struct slice by field", func(t *testing.T) {
+		type student struct {
+			Name string
+			Age  int
+		}
+
+		students := []student{
+			{Name: "a", Age: 11},
+			{Name: "b", Age: 12},
+			{Name: "a", Age: 13},
+			{Name: "c", Age: 14},
+		}
+
+		comparator := func(item, other student) bool { return item.Name == other.Name }
+
+		result := UniqueByComparator(students, comparator)
+
+		assert.Equal([]student{
+			{Name: "a", Age: 11},
+			{Name: "b", Age: 12},
+			{Name: "c", Age: 14},
+		}, result)
+	})
+
+	t.Run("case-insensitive string comparison", func(t *testing.T) {
+		stringSlice := []string{"apple", "banana", "Apple", "cherry", "Banana", "date"}
+		caseInsensitiveComparator := func(item, other string) bool {
+			return strings.ToLower(item) == strings.ToLower(other)
+		}
+
+		result := UniqueByComparator(stringSlice, caseInsensitiveComparator)
+
+		assert.Equal([]string{"apple", "banana", "cherry", "date"}, result)
+	})
+
 }
 
 func TestUnion(t *testing.T) {
