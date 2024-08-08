@@ -897,9 +897,11 @@ func main() {
 }
 ```
 
-### <span id="Find">Find (废弃：使用 FindBy)</span>
+### <span id="Find">Find</span>
 
 <p>遍历slice的元素，返回第一个通过predicate函数真值测试的元素</p>
+
+> ⚠️ 本函数已弃用，使用`FindBy`代替。
 
 <b>函数签名:</b>
 
@@ -969,9 +971,11 @@ func main() {
 }
 ```
 
-### <span id="FindLast">FindLast(废弃：使用 FindLastBy)</span>
+### <span id="FindLast">FindLast</span>
 
 <p>遍历slice的元素，返回最后一个通过predicate函数真值测试的元素。</p>
+
+> ⚠️ 本函数已弃用，使用`FindLastBy`代替。
 
 <b>函数签名:</b>
 
@@ -1244,9 +1248,11 @@ func main() {
 }
 ```
 
-### <span id="IntSlice">IntSlice (已弃用: 使用 go1.18+泛型代替)</span>
+### <span id="IntSlice">IntSlice</span>
 
 <p>将接口切片转换为int切片</p>
+
+> ⚠️ 本函数已弃用，使用go1.18+泛型代替。
 
 <b>函数签名:</b>
 
@@ -1273,9 +1279,11 @@ func main() {
 }
 ```
 
-### <span id="InterfaceSlice">InterfaceSlice(已弃用: 使用 go1.18+泛型代替)</span>
+### <span id="InterfaceSlice">InterfaceSlice</span>
 
 <p>将值转换为接口切片</p>
+
+> ⚠️ 本函数已弃用，使用go1.18+泛型代替。
 
 <b>函数签名:</b>
 
@@ -1543,9 +1551,11 @@ func main() {
 }
 ```
 
-### <span id="Merge">Merge（废弃：使用Concat）</span>
+### <span id="Merge">Merge</span>
 
 <p>合并多个切片（不会消除重复元素).</p>
+
+> ⚠️ 本函数已弃用，使用`Concat`代替。
 
 <b>函数签名:</b>
 
@@ -1606,7 +1616,9 @@ func main() {
 
 ### <span id="Reduce">Reduce</span>
 
-<p>将切片中的元素依次运行iteratee函数，返回运行结果(废弃：建议使用ReduceBy)</p>
+<p>将切片中的元素依次运行iteratee函数，返回运行结果。</p>
+
+> ⚠️ 本函数已弃用，使用`ReduceBy`代替。
 
 <b>函数签名:</b>
 
@@ -2132,9 +2144,11 @@ func main() {
 }
 ```
 
-### <span id="StringSlice">StringSlice(已弃用: 使用 go1.18+泛型代替)</span>
+### <span id="StringSlice">StringSlice</span>
 
 <p>将接口切片转换为字符串切片</p>
+
+> ⚠️ 本函数已弃用，使用go1.18+泛型代替。
 
 <b>函数签名:</b>
 

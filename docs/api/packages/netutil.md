@@ -624,7 +624,9 @@ func main() {
 
 ### <span id="HttpGet">HttpGet</span>
 
-<p>发送http get请求。(已废弃:使用SendRequest)</p>
+<p>发送http get请求。</p>
+
+> ⚠️ 本函数已弃用，使用`SendRequest`代替。
 
 <b>函数签名:</b>
 
@@ -666,7 +668,9 @@ func main() {
 
 ### <span id="HttpPost">HttpPost</span>
 
-<p>发送http post请求。(已废弃:使用SendRequest)</p>
+<p>发送http post请求。</p>
+
+> ⚠️ 本函数已弃用，使用`SendRequest`代替。
 
 <b>函数签名:</b>
 
@@ -713,7 +717,9 @@ func main() {
 
 ### <span id="HttpPut">HttpPut</span>
 
-<p>发送http put请求。(已废弃:使用SendRequest)</p>
+<p>发送http put请求。</p>
+
+> ⚠️ 本函数已弃用，使用`SendRequest`代替。
 
 <b>函数签名:</b>
 
@@ -763,7 +769,9 @@ func main() {
 
 ### <span id="HttpDelete">HttpDelete</span>
 
-<p>发送http delete请求。(已废弃:使用SendRequest)</p>
+<p>发送http delete请求。</p>
+
+> ⚠️ 本函数已弃用，使用`SendRequest`代替。
 
 <b>函数签名:</b>
 
@@ -802,7 +810,9 @@ func main() {
 
 ### <span id="HttpPatch">HttpPatch</span>
 
-<p>发送http patch请求。(已废弃:使用SendRequest)</p>
+<p>发送http patch请求。</p>
+
+> ⚠️ 本函数已弃用，使用`SendRequest`代替。
 
 <b>函数签名:</b>
 

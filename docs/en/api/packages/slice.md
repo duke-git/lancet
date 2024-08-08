@@ -895,9 +895,11 @@ func main() {
 }
 ```
 
-### <span id="Find">Find(deprecated: use FindBy)</span>
+### <span id="Find">Find</span>
 
 <p>Iterates over elements of slice, returning the first one that passes a truth test on function.</p>
+
+> ⚠️ This function is deprecated. use `FindBy` instead.
 
 <b>Signature:</b>
 
@@ -967,9 +969,11 @@ func main() {
 }
 ```
 
-### <span id="FindLast">FindLast(deprecated: use FindLastBy)</span>
+### <span id="FindLast">FindLast</span>
 
 <p>iterates over elements of slice from end to begin, returning the last one that passes a truth test on function.</p>
+
+> ⚠️ This function is deprecated. use `FindLastBy` instead.
 
 <b>Signature:</b>
 
@@ -1242,9 +1246,11 @@ func main() {
 }
 ```
 
-### <span id="IntSlice">IntSlice (Deprecated: use generic feature of go1.18+ for replacement)</span>
+### <span id="IntSlice">IntSlice</span>
 
 <p>Convert interface slice to int slice.</p>
+
+> ⚠️ This function is deprecated. Use generic feature of go1.18+ for replacement.
 
 <b>Signature:</b>
 
@@ -1271,9 +1277,11 @@ func main() {
 }
 ```
 
-### <span id="InterfaceSlice">InterfaceSlice (Deprecated: use generic feature of go1.18+ for replacement)</span>
+### <span id="InterfaceSlice">InterfaceSlice</span>
 
 <p>Convert value to interface slice.</p>
+
+> ⚠️ This function is deprecated. Use generic feature of go1.18+ for replacement.
 
 <b>Signature:</b>
 
@@ -1541,9 +1549,11 @@ func main() {
 }
 ```
 
-### <span id="Merge">Merge(deprecated: use Concat)</span>
+### <span id="Merge">Merge</span>
 
 <p>Merge all given slices into one slice.</p>
+
+> ⚠️ This function is deprecated. use `Concat` instead.
 
 <b>Signature:</b>
 
@@ -1604,7 +1614,9 @@ func main() {
 
 ### <span id="Reduce">Reduce</span>
 
-<p>Reduce slice.(Deprecated: use ReduceBy)</p>
+<p>Reduce slice.</p>
+
+> ⚠️ This function is deprecated. use `ReduceBy` instead.
 
 <b>Signature:</b>
 
@@ -2130,9 +2142,11 @@ func main() {
 }
 ```
 
-### <span id="StringSlice">StringSlice (Deprecated: use generic feature of go1.18+ for replacement)</span>
+### <span id="StringSlice">StringSlice</span>
 
 <p>Convert interface slice to string slice.</p>
+
+> ⚠️ This function is deprecated. use generic feature of go1.18+ for replacement
 
 <b>Signature:</b>
 

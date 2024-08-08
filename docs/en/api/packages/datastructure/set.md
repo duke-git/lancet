@@ -24,7 +24,7 @@ import (
 
 -   [New](#New)
 -   [FromSlice](#FromSlice)
--   [Values](#Values)
+-   [Values<sup>deprecated</sup>](#Values)
 -   [Add](#Add)
 -   [AddIfNotExist](#AddIfNotExist)
 -   [AddIfNotExistBy](#AddIfNotExistBy)
@@ -102,10 +102,11 @@ func main() {
 }
 ```
 
-### <span id="Values">Values<sup>deprecated</sup></span>
+### <span id="Values">Values</span>
 
-<p>Return slice of all set data.<br>
-    The <a href='#ToSlice'>ToSlice()</a> function provides the same functionality as Values and returns a slice containing all values of the set.</p>
+<p>Return slice of all set data.</p>
+
+> ⚠️ This function is deprecated. use `ToSlice` instead.
 
 <b>Signature:</b>
 

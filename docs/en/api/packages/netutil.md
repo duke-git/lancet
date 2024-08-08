@@ -624,7 +624,9 @@ func main() {
 
 ### <span id="HttpGet">HttpGet</span>
 
-<p>Send http get request. (Deprecated: use SendRequest for replacement)</p>
+<p>Send http get request.</p>
+
+> ⚠️ This function is deprecated. use `SendRequest` instead.
 
 <b>Signature:</b>
 
@@ -666,7 +668,9 @@ func main() {
 
 ### <span id="HttpPost">HttpPost</span>
 
-<p>Send http post request.(Deprecated: use SendRequest for replacement)</p>
+<p>Send http post request.</p>
+
+> ⚠️ This function is deprecated. use `SendRequest` instead.
 
 <b>Signature:</b>
 
@@ -713,7 +717,9 @@ func main() {
 
 ### <span id="HttpPut">HttpPut</span>
 
-<p>Send http put request. (Deprecated: use SendRequest for replacement)</p>
+<p>Send http put request.</p>
+
+> ⚠️ This function is deprecated. use `SendRequest` instead.
 
 <b>Signature:</b>
 
@@ -763,7 +769,9 @@ func main() {
 
 ### <span id="HttpDelete">HttpDelete</span>
 
-<p>Send http delete request. (Deprecated: use SendRequest for replacement)</p>
+<p>Send http delete request.</p>
+
+> ⚠️ This function is deprecated. use `SendRequest` instead.
 
 <b>Signature:</b>
 
@@ -802,7 +810,9 @@ func main() {
 
 ### <span id="HttpPatch">HttpPatch</span>
 
-<p>Send http patch request. (Deprecated: use SendRequest for replacement)</p>
+<p>Send http patch request.</p>
+
+> ⚠️ This function is deprecated. use `SendRequest` instead.
 
 <b>Signature:</b>
 
