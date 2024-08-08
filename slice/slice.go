@@ -771,15 +771,19 @@ func UpdateAt[T any](slice []T, index int, value T) []T {
 // Unique remove duplicate elements in slice.
 // Play: https://go.dev/play/p/AXw0R3ZTE6a
 func Unique[T comparable](slice []T) []T {
-	result := []T{}
-	exists := map[T]bool{}
-	for _, t := range slice {
-		if exists[t] {
+	result := make([]T, 0, len(slice))
+	seen := make(map[T]struct{}, len(slice))
+
+	for i := range slice {
+		if _, ok := seen[slice[i]]; ok {
 			continue
 		}
-		exists[t] = true
-		result = append(result, t)
+
+		seen[slice[i]] = struct{}{}
+
+		result = append(result, slice[i])
 	}
+
 	return result
 }
 
