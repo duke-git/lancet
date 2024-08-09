@@ -164,16 +164,18 @@ func Throttle(fn func(), interval time.Duration) func() {
 
 // Schedule invoke function every duration time, util close the returned bool channel.
 // Play: https://go.dev/play/p/hbON-Xeyn5N
-func Schedule(d time.Duration, fn any, args ...any) chan bool {
+func Schedule(duration time.Duration, fn any, args ...any) chan bool {
 	// Catch programming error while constructing the closure
 	mustBeFunction(fn)
 
 	quit := make(chan bool)
+
 	go func() {
 		for {
 			unsafeInvokeFunc(fn, args...)
+
 			select {
-			case <-time.After(d):
+			case <-time.After(duration):
 			case <-quit:
 				return
 			}

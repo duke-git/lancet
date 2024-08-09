@@ -268,23 +268,35 @@ func TestThrottle(t *testing.T) {
 }
 
 func TestSchedule(t *testing.T) {
-	// assert := internal.NewAssert(t, "TestSchedule")
+	assert := internal.NewAssert(t, "TestSchedule")
 
-	var res []string
-	appendStr := func(s string) {
-		res = append(res, s)
-	}
+	t.Run("Single call", func(t *testing.T) {
+		res := []string{}
+		appendStr := func(s string) {
+			res = append(res, s)
+		}
+		stop := Schedule(200*time.Millisecond, appendStr, "*")
+		close(stop)
 
-	stop := Schedule(1*time.Second, appendStr, "*")
-	time.Sleep(5 * time.Second)
-	close(stop)
+		time.Sleep(400 * time.Millisecond)
 
-	t.Log(res)
+		assert.Equal([]string{"*"}, res)
+	})
 
-	// todo: in github action, for now, this test is not working sometimes
-	// res maybe [* * * * *] or [* * * * * *]
-	// expected := []string{"*", "*", "*", "*", "*"}
-	// assert.Equal(expected, res)
+	t.Run("Multiple calls", func(t *testing.T) {
+		res := []string{}
+		appendStr := func(s string) {
+			res = append(res, s)
+		}
+		stop := Schedule(200*time.Millisecond, appendStr, "*")
+
+		time.Sleep(800 * time.Millisecond)
+
+		close(stop)
+
+		assert.Equal([]string{"*", "*", "*", "*"}, res)
+	})
+
 }
 
 func TestPipeline(t *testing.T) {
