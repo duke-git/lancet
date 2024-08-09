@@ -31,6 +31,7 @@ import (
 -   [RandNumeralOrLetter](#RandNumeralOrLetter)
 -   [RandSymbolChar](#RandSymbolChar)
 -   [UUIdV4](#UUIdV4)
+-   [RandIntSlice](#RandIntSlice)
 -   [RandUniqueIntSlice](#RandUniqueIntSlice)
 -   [RandFloat](#RandFloat)
 -   [RandFloats](#RandFloats)
@@ -276,15 +277,41 @@ func main() {
 }
 ```
 
+### <span id="RandIntSlice">RandIntSlice</span>
 
-### <span id="RandUniqueIntSlice">RandUniqueIntSlice</span>
-
-<p>Generate a slice of random int of length n that do not repeat.</p>
+<p>Generate a slice of random int. Number range in [min, max)</p>
 
 <b>Signature:</b>
 
 ```go
-func RandUniqueIntSlice(n, min, max int) []int
+func RandIntSlice(length, min, max int) []int
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/random"
+)
+
+func main() {
+    result := random.RandIntSlice(5, 0, 10)
+    fmt.Println(result) //[1 4 7 1 5] (random)
+}
+```
+
+
+### <span id="RandUniqueIntSlice">RandUniqueIntSlice</span>
+
+<p>Generate a slice of random int of length that do not repeat. Number range in [min, max)</p>
+
+<b>Signature:</b>
+
+```go
+func RandUniqueIntSlice(length, min, max int) []int
 ```
 
 <b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/uBkRSOz73Ec)</span></b>
@@ -331,12 +358,12 @@ func main() {
 
 ### <span id="RandFloats">RandFloats</span>
 
-<p>Generate a slice of random float64 numbers of length n that do not repeat.</p>
+<p>Generate a slice of random float64 numbers of length n that do not repeat. Number range in [min, max)</p>
 
 <b>Signature:</b>
 
 ```go
-func RandFloats(n int, min, max float64, precision int) []float64
+func RandFloats(length int, min, max float64, precision int) []float64
 ```
 
 <b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/I3yndUQ-rhh)</span></b>

@@ -1167,7 +1167,7 @@ import "github.com/duke-git/lancet/v2/random"
 -   **<big>UUIdV4</big>** : generate a random UUID of version 4 according to RFC 4122.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/random.md#UUIdV4)]
     [[play](https://go.dev/play/p/_Z9SFmr28ft)]
--   **<big>RandUniqueIntSlice</big>** : generate a slice of random int of length n that do not repeat.
+-   **<big>RandUniqueIntSlice</big>** : generate a slice of random int that do not repeat.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/random.md#RandUniqueIntSlice)]
     [[play](https://go.dev/play/p/uBkRSOz73Ec)]
 -   **<big>RandSymbolChar</big>** : Generate a random symbol char of specified length.
@@ -1178,7 +1178,7 @@ import "github.com/duke-git/lancet/v2/random"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/random.md#RandFloat)]
     [[play](https://go.dev/play/p/zbD_tuobJtr)]
 
--   **<big>RandFloats</big>** : Generate a slice of random float64 numbers of length n that do not repeat.
+-   **<big>RandFloats</big>** : Generate a slice of random float64 numbers that do not repeat.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/random.md#RandFloats)]
     [[play](https://go.dev/play/p/I3yndUQ-rhh)]
 

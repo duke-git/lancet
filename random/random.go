@@ -42,6 +42,10 @@ func RandInt(min, max int) int {
 		min, max = max, min
 	}
 
+	if min == 0 && max == math.MaxInt {
+		return rand.Int()
+	}
+
 	return rand.Intn(max-min) + min
 }
 
@@ -186,19 +190,35 @@ func UUIdV4() (string, error) {
 	return fmt.Sprintf("%x-%x-%x-%x-%x", uuid[0:4], uuid[4:6], uuid[6:8], uuid[8:10], uuid[10:]), nil
 }
 
-// RandUniqueIntSlice generate a slice of random int of length n that do not repeat.
+// RandIntSlice generates a slice of random integers.
+// The generated integers are between min and max (exclusive).
+// Play: todo
+func RandIntSlice(length, min, max int) []int {
+	if length <= 0 || min > max {
+		return []int{}
+	}
+
+	result := make([]int, length)
+	for i := range result {
+		result[i] = RandInt(min, max)
+	}
+
+	return result
+}
+
+// RandUniqueIntSlice generate a slice of random int of length that do not repeat.
 // Play: https://go.dev/play/p/uBkRSOz73Ec
-func RandUniqueIntSlice(n, min, max int) []int {
+func RandUniqueIntSlice(length, min, max int) []int {
 	if min > max {
 		return []int{}
 	}
-	if n > max-min {
-		n = max - min
+	if length > max-min {
+		length = max - min
 	}
 
-	nums := make([]int, n)
-	used := make(map[int]struct{}, n)
-	for i := 0; i < n; {
+	nums := make([]int, length)
+	used := make(map[int]struct{}, length)
+	for i := 0; i < length; {
 		r := RandInt(min, max)
 		if _, use := used[r]; use {
 			continue
@@ -211,12 +231,12 @@ func RandUniqueIntSlice(n, min, max int) []int {
 	return nums
 }
 
-// RandFloats generate a slice of random float64 numbers of length n that do not repeat.
+// RandFloats generate a slice of random float64 numbers of length that do not repeat.
 // Play: https://go.dev/play/p/I3yndUQ-rhh
-func RandFloats(n int, min, max float64, precision int) []float64 {
-	nums := make([]float64, n)
-	used := make(map[float64]struct{}, n)
-	for i := 0; i < n; {
+func RandFloats(length int, min, max float64, precision int) []float64 {
+	nums := make([]float64, length)
+	used := make(map[float64]struct{}, length)
+	for i := 0; i < length; {
 		r := RandFloat(min, max, precision)
 		if _, use := used[r]; use {
 			continue

@@ -31,6 +31,7 @@ import (
 -   [RandNumeralOrLetter](#RandNumeralOrLetter)
 -   [RandSymbolChar](#RandSymbolChar)
 -   [UUIdV4](#UUIdV4)
+-   [RandIntSlice](#RandIntSlice)
 -   [RandUniqueIntSlice](#RandUniqueIntSlice)
 -   [RandFloat](#RandFloat)
 -   [RandFloats](#RandFloats)
@@ -276,14 +277,40 @@ func main() {
 }
 ```
 
-### <span id="RandUniqueIntSlice">RandUniqueIntSlice</span>
+### <span id="RandIntSlice">RandIntSlice</span>
 
-<p>生成一个不重复的长度为n的随机int切片。</p>
+<p>生成一个特定长度的随机int切片，数值范围[min, max)。</p>
 
 <b>函数签名:</b>
 
 ```go
-func RandUniqueIntSlice(n, min, max int) []int
+func RandIntSlice(length, min, max int) []int
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/random"
+)
+
+func main() {
+    result := random.RandIntSlice(5, 0, 10)
+    fmt.Println(result) //[1 2 7 1 5] (random)
+}
+```
+
+### <span id="RandUniqueIntSlice">RandUniqueIntSlice</span>
+
+<p>生成一个特定长度的，数值不重复的随机int切片，数值范围[min, max)。</p>
+
+<b>函数签名:</b>
+
+```go
+func RandUniqueIntSlice(length, min, max int) []int
 ```
 
 <b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/uBkRSOz73Ec)</span></b>
@@ -304,7 +331,7 @@ func main() {
 
 ### <span id="RandFloat">RandFloat</span>
 
-<p>生成随机float64数字，可以指定范围和精度。</p>
+<p>生成一个随机float64数值，可以指定精度。数值范围[min, max)。</p>
 
 <b>函数签名:</b>
 
@@ -330,7 +357,7 @@ func main() {
 
 ### <span id="RandFloats">RandFloats</span>
 
-<p>生成随机float64数字切片，指定长度，范围和精度.</p>
+<p>生成一个特定长度的随机float64切片，可以指定数值精度。数值范围[min, max)。</p>
 
 <b>函数签名:</b>
 

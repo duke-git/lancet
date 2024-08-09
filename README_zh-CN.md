@@ -1169,7 +1169,7 @@ import "github.com/duke-git/lancet/v2/random"
 -   **<big>UUIdV4</big>** : 生成 UUID v4 字符串。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/random.md#UUIdV4)]
     [[play](https://go.dev/play/p/_Z9SFmr28ft)]
--   **<big>RandUniqueIntSlice</big>** : 生成一个不重复的长度为 n 的随机 int 切片。
+-   **<big>RandUniqueIntSlice</big>** : 生成一个不重复的随机int切片。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/random.md#RandUniqueIntSlice)]
     [[play](https://go.dev/play/p/uBkRSOz73Ec)]
 -   **<big>RandSymbolChar</big>** : 生成给定长度的随机符号字符串。

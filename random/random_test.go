@@ -196,3 +196,27 @@ func TestRandFloats(t *testing.T) {
 
 	assert.Equal(len(numbers), 5)
 }
+
+func TestRandIntSlice(t *testing.T) {
+	t.Parallel()
+	assert := internal.NewAssert(t, "TestRandIntSlice")
+
+	t.Run("empty slice", func(t *testing.T) {
+		numbers := RandIntSlice(-1, 1, 5)
+		assert.Equal([]int{}, numbers)
+
+		numbers = RandIntSlice(0, 1, 5)
+		assert.Equal([]int{}, numbers)
+
+		numbers = RandIntSlice(3, 5, 1)
+		assert.Equal([]int{}, numbers)
+	})
+
+	t.Run("random int slice", func(t *testing.T) {
+		numbers := RandIntSlice(5, 1, 1)
+		assert.Equal([]int{1, 1, 1, 1, 1}, numbers)
+
+		numbers = RandIntSlice(5, 1, 5)
+		assert.Equal(5, len(numbers))
+	})
+}
