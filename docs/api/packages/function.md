@@ -41,6 +41,7 @@ import (
 -   [Xnor](#Xnor)
 -   [Nand](#Nand)
 -   [AcceptIf](#AcceptIf)
+-   [Throttle](#Throttle)
 
 
 <div STYLE="page-break-after: always;"></div>
@@ -740,4 +741,46 @@ func main() {
     // false
 }
 
+```
+
+### <span id="Throttle">Throttle</span>
+
+<p>创建一个函数的节流版本。返回的函数保证在每个时间间隔内最多只会被调用一次。</p>
+
+<b>函数签名:</b>
+
+```go
+func Throttle(fn func(), interval time.Duration) func()
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/function"
+)
+
+func main() {
+    callCount := 0
+
+    fn := func() {
+        callCount++
+    }
+
+    throttledFn := function.Throttle(fn, 1*time.Second)
+
+    for i := 0; i < 5; i++ {
+        throttledFn()
+    }
+
+    time.Sleep(1 * time.Second)
+
+    fmt.Println(callCount)
+
+    // Output:
+    // 1
+}
 ```

@@ -200,3 +200,24 @@ func ExampleAcceptIf() {
 	// 0
 	// false
 }
+
+func ExampleThrottle() {
+	callCount := 0
+
+	fn := func() {
+		callCount++
+	}
+
+	throttledFn := Throttle(fn, 1*time.Second)
+
+	for i := 0; i < 5; i++ {
+		throttledFn()
+	}
+
+	time.Sleep(1 * time.Second)
+
+	fmt.Println(callCount)
+
+	// Output:
+	// 1
+}

@@ -125,6 +125,43 @@ func Debounce(fn func(), delay time.Duration) (debouncedFn func(), cancelFn func
 	return debouncedFn, cancelFn
 }
 
+// Throttle creates a throttled version of the provided function.
+// The returned function guarantees that it will only be invoked at most once per interval.
+// Play: todo
+func Throttle(fn func(), interval time.Duration) func() {
+	var (
+		timer   *time.Timer
+		lastRun time.Time
+		mu      sync.Mutex
+	)
+
+	return func() {
+		mu.Lock()
+		defer mu.Unlock()
+
+		now := time.Now()
+		if now.Sub(lastRun) >= interval {
+			fn()
+			lastRun = now
+			if timer != nil {
+				timer.Stop()
+				timer = nil
+			}
+		} else if timer == nil {
+			delay := interval - now.Sub(lastRun)
+
+			timer = time.AfterFunc(delay, func() {
+				mu.Lock()
+				defer mu.Unlock()
+
+				fn()
+				lastRun = time.Now()
+				timer = nil
+			})
+		}
+	}
+}
+
 // Schedule invoke function every duration time, util close the returned bool channel.
 // Play: https://go.dev/play/p/hbON-Xeyn5N
 func Schedule(d time.Duration, fn any, args ...any) chan bool {

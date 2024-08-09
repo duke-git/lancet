@@ -130,11 +130,11 @@ func TestDebounce(t *testing.T) {
 
 	t.Run("Single call", func(t *testing.T) {
 		callCount := 0
-		fn := func() {
-			callCount++
-		}
 
-		debouncedFn, _ := Debounce(fn, 500*time.Millisecond)
+		debouncedFn, _ := Debounce(func() {
+			callCount++
+		}, 500*time.Millisecond)
+
 		debouncedFn()
 
 		time.Sleep(1 * time.Second)
@@ -144,11 +144,10 @@ func TestDebounce(t *testing.T) {
 
 	t.Run("Multiple calls within debounce interval", func(t *testing.T) {
 		callCount := 0
-		fn := func() {
-			callCount++
-		}
 
-		debouncedFn, _ := Debounce(fn, 1*time.Second)
+		debouncedFn, _ := Debounce(func() {
+			callCount++
+		}, 1*time.Second)
 
 		for i := 0; i < 5; i++ {
 			go func(index int) {
@@ -164,11 +163,10 @@ func TestDebounce(t *testing.T) {
 
 	t.Run("Immediate consecutive calls", func(t *testing.T) {
 		callCount := 0
-		fn := func() {
-			callCount++
-		}
 
-		debouncedFn, _ := Debounce(fn, 500*time.Millisecond)
+		debouncedFn, _ := Debounce(func() {
+			callCount++
+		}, 500*time.Millisecond)
 
 		for i := 0; i < 10; i++ {
 			debouncedFn()
@@ -182,11 +180,10 @@ func TestDebounce(t *testing.T) {
 
 	t.Run("Cancel calls", func(t *testing.T) {
 		callCount := 0
-		fn := func() {
-			callCount++
-		}
 
-		debouncedFn, cancelFn := Debounce(fn, 500*time.Millisecond)
+		debouncedFn, cancelFn := Debounce(func() {
+			callCount++
+		}, 500*time.Millisecond)
 
 		debouncedFn()
 
@@ -195,6 +192,77 @@ func TestDebounce(t *testing.T) {
 		time.Sleep(1 * time.Second)
 
 		assert.Equal(0, callCount)
+	})
+
+}
+
+func TestThrottle(t *testing.T) {
+	assert := internal.NewAssert(t, "TestThrottle")
+
+	t.Run("Single call", func(t *testing.T) {
+		callCount := 0
+
+		throttledFn := Throttle(func() {
+			callCount++
+		}, 1*time.Second)
+
+		throttledFn()
+
+		time.Sleep(100 * time.Millisecond)
+
+		assert.Equal(1, callCount)
+	})
+
+	t.Run("Multiple calls within throttle interval", func(t *testing.T) {
+		callCount := 0
+
+		throttledFn := Throttle(func() {
+			callCount++
+		}, 1*time.Second)
+
+		for i := 0; i < 5; i++ {
+			throttledFn()
+		}
+
+		time.Sleep(1 * time.Second)
+
+		assert.Equal(1, callCount)
+	})
+
+	t.Run("Mutiple calls space out throttle interval", func(t *testing.T) {
+		callCount := 0
+
+		throttledFn := Throttle(func() {
+			callCount++
+		}, 500*time.Millisecond)
+
+		throttledFn()
+		time.Sleep(600 * time.Millisecond)
+
+		throttledFn()
+		time.Sleep(600 * time.Millisecond)
+
+		throttledFn()
+
+		time.Sleep(1 * time.Second)
+
+		assert.Equal(3, callCount)
+	})
+
+	t.Run("Call function near the end of the interval", func(t *testing.T) {
+		callCount := 0
+
+		throttledFn := Throttle(func() {
+			callCount++
+		}, 1*time.Second)
+
+		throttledFn()
+		time.Sleep(900 * time.Millisecond)
+
+		throttledFn()
+		time.Sleep(200 * time.Millisecond)
+
+		assert.Equal(2, callCount)
 	})
 
 }

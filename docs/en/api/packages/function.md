@@ -41,6 +41,8 @@ import (
 -   [Xnor](#Xnor)
 -   [Nand](#Nand)
 -   [AcceptIf](#AcceptIf)
+-   [Throttle](#Throttle)
+
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -738,5 +740,46 @@ func main() {
     // 0
     // false
 }
+```
 
+### <span id="Throttle">Throttle</span>
+
+<p>Throttle creates a throttled version of the provided function. The returned function guarantees that it will only be invoked at most once per interval.</p>
+
+<b>Signature:</b>
+
+```go
+func Throttle(fn func(), interval time.Duration) func()
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/function"
+)
+
+func main() {
+    callCount := 0
+
+    fn := func() {
+        callCount++
+    }
+
+    throttledFn := function.Throttle(fn, 1*time.Second)
+
+    for i := 0; i < 5; i++ {
+        throttledFn()
+    }
+
+    time.Sleep(1 * time.Second)
+
+    fmt.Println(callCount)
+
+    // Output:
+    // 1
+}
 ```
