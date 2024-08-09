@@ -36,6 +36,8 @@ import (
 -   [RandFloat](#RandFloat)
 -   [RandFloats](#RandFloats)
 -   [RandStringSlice](#RandStringSlice)
+-   [RandBool](#RandBool)
+-   [RandBoolSlice](#RandBoolSlice)
 
 
 <div STYLE="page-break-after: always;"></div>
