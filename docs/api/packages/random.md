@@ -35,6 +35,8 @@ import (
 -   [RandUniqueIntSlice](#RandUniqueIntSlice)
 -   [RandFloat](#RandFloat)
 -   [RandFloats](#RandFloats)
+-   [RandStringSlice](#RandStringSlice)
+
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -378,5 +380,86 @@ import (
 func main() {
     floatNumbers := random.RandFloats(5, 1.0, 5.0, 2)
     fmt.Println(floatNumber) //[3.42 3.99 1.3 2.38 4.23] (random)
+}
+```
+
+### <span id="RandStringSlice">RandStringSlice</span>
+
+<p>生成随机字符串slice. 字符串类型需要是以下几种或者它们的组合: random.Numeral, random.LowwerLetters, random.UpperLetters random.Letters, random.SymbolChars, random.AllChars。</p>
+
+<b>函数签名:</b>
+
+```go
+func RandStringSlice(charset string, sliceLen, strLen int) []string
+```
+
+<b>实例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/random"
+)
+
+func main() {
+    strs := random.RandStringSlice(random.Letters, 4, 6)
+    fmt.Println(strs)
+
+    // output random string slice like below:
+    //[CooSMq RUFjDz FAeMPf heRyGv]
+}
+```
+
+### <span id="RandBool">RandBool</span>
+
+<p>生成随机bool值(true or false)。</p>
+
+<b>函数签名:</b>
+
+```go
+func RandBool() bool
+```
+
+<b>实例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/random"
+)
+
+func main() {
+    result := random.RandBool()
+    fmt.Println(result) // true or false (random)
+}
+```
+
+### <span id="RandBoolSlice">RandBoolSlice</span>
+
+<p>生成特定长度的随机bool slice。</p>
+
+<b>函数签名:</b>
+
+```go
+func RandBoolSlice(length int) []bool
+```
+
+<b>实例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/random"
+)
+
+func main() {
+    result := random.RandBoolSlice(2)
+    fmt.Println(result) // [true false] (random)
 }
 ```

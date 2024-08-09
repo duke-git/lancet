@@ -6,6 +6,7 @@ import (
 	"testing"
 
 	"github.com/duke-git/lancet/v2/internal"
+	"github.com/duke-git/lancet/v2/validator"
 )
 
 func TestRandString(t *testing.T) {
@@ -218,5 +219,82 @@ func TestRandIntSlice(t *testing.T) {
 
 		numbers = RandIntSlice(5, 1, 5)
 		assert.Equal(5, len(numbers))
+	})
+}
+
+func TestRandStringSlice(t *testing.T) {
+	t.Parallel()
+	assert := internal.NewAssert(t, "TestRandStringSlice")
+
+	t.Run("empty slice", func(t *testing.T) {
+		strs := RandStringSlice(Letters, -1, -1)
+		assert.Equal([]string{}, strs)
+
+		strs = RandStringSlice(Letters, 0, 0)
+		assert.Equal([]string{}, strs)
+
+		strs = RandStringSlice(Letters, -1, 0)
+		assert.Equal([]string{}, strs)
+
+		strs = RandStringSlice(Letters, 0, -1)
+		assert.Equal([]string{}, strs)
+
+		strs = RandStringSlice(Letters, 1, 0)
+		assert.Equal([]string{}, strs)
+
+		strs = RandStringSlice(Letters, 0, 1)
+		assert.Equal([]string{}, strs)
+	})
+
+	t.Run("random string slice", func(t *testing.T) {
+		strs := RandStringSlice(Letters, 4, 6)
+		assert.Equal(4, len(strs))
+
+		for _, s := range strs {
+			assert.Equal(true, validator.IsAlpha(s))
+			assert.Equal(6, len(s))
+		}
+	})
+
+	// fail test: chinese character is not supported for now
+	// t.Run("random string slice of chinese ", func(t *testing.T) {
+	// 	strs := RandStringSlice("你好你好你好你好你好你好你好你好你好", 4, 6)
+	// 	t.Log(strs)
+
+	// 	assert.Equal(4, len(strs))
+	// 	for _, s := range strs {
+	// 		assert.Equal(true, validator.ContainChinese(s))
+	// 		assert.Equal(6, len(s))
+	// 	}
+	// })
+}
+
+func TestRandBool(t *testing.T) {
+	t.Parallel()
+	assert := internal.NewAssert(t, "TestRandBool")
+
+	result := RandBool()
+	assert.Equal(true, result == true || result == false)
+}
+
+func TestRandBoolSlice(t *testing.T) {
+	t.Parallel()
+	assert := internal.NewAssert(t, "TestRandBoolSlice")
+
+	t.Run("empty slice", func(t *testing.T) {
+		bools := RandBoolSlice(-1)
+		assert.Equal([]bool{}, bools)
+
+		bools = RandBoolSlice(0)
+		assert.Equal([]bool{}, bools)
+	})
+
+	t.Run("random bool slice", func(t *testing.T) {
+		bools := RandBoolSlice(6)
+		assert.Equal(6, len(bools))
+
+		for _, b := range bools {
+			assert.Equal(true, b == true || b == false)
+		}
 	})
 }

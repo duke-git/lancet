@@ -35,6 +35,9 @@ import (
 -   [RandUniqueIntSlice](#RandUniqueIntSlice)
 -   [RandFloat](#RandFloat)
 -   [RandFloats](#RandFloats)
+-   [RandStringSlice](#RandStringSlice)
+-   [RandBool](#RandBool)
+-   [RandBoolSlice](#RandBoolSlice)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -379,5 +382,87 @@ import (
 func main() {
     floatNumbers := random.RandFloats(5, 1.0, 5.0, 2)
     fmt.Println(floatNumbers) //[3.42 3.99 1.3 2.38 4.23] (random)
+}
+```
+
+
+### <span id="RandStringSlice">RandStringSlice</span>
+
+<p>Generate a slice of random string of length strLen based on charset. chartset should be one of the following: random.Numeral, random.LowwerLetters, random.UpperLetters random.Letters, random.SymbolChars, random.AllChars. or a combination of them.</p>
+
+<b>Signature:</b>
+
+```go
+func RandStringSlice(charset string, sliceLen, strLen int) []string
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/random"
+)
+
+func main() {
+    strs := random.RandStringSlice(random.Letters, 4, 6)
+    fmt.Println(strs)
+
+    // output random string slice like below:
+    //[CooSMq RUFjDz FAeMPf heRyGv]
+}
+```
+
+### <span id="RandBool">RandBool</span>
+
+<p>Generate a random boolean value (true or false).</p>
+
+<b>Signature:</b>
+
+```go
+func RandBool() bool
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/random"
+)
+
+func main() {
+    result := random.RandBool()
+    fmt.Println(result) // true or false (random)
+}
+```
+
+### <span id="RandBoolSlice">RandBoolSlice</span>
+
+<p>Generates a random boolean slice of specified length.</p>
+
+<b>Signature:</b>
+
+```go
+func RandBoolSlice(length int) []bool
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/random"
+)
+
+func main() {
+    result := random.RandBoolSlice(2)
+    fmt.Println(result) // [true false] (random)
 }
 ```

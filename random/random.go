@@ -23,12 +23,34 @@ const (
 	UpperLetters    = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 	Letters         = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 	SymbolChars     = "!@#$%^&*()_+-=[]{}|;':\",./<>?"
+	AllChars        = Numeral + LowwerLetters + UpperLetters + SymbolChars
 )
 
 var rn = rand.NewSource(time.Now().UnixNano())
 
 func init() {
 	rand.Seed(time.Now().UnixNano())
+}
+
+// RandBool generates a random boolean value (true or false).
+// Play: todo
+func RandBool() bool {
+	return rand.Intn(2) == 1
+}
+
+// RandBoolSlice generates a random boolean slice of specified length.
+// Play: todo
+func RandBoolSlice(length int) []bool {
+	if length <= 0 {
+		return []bool{}
+	}
+
+	result := make([]bool, length)
+	for i := range result {
+		result[i] = RandBool()
+	}
+
+	return result
 }
 
 // RandInt generate random int between [min, max).
@@ -49,6 +71,47 @@ func RandInt(min, max int) int {
 	return rand.Intn(max-min) + min
 }
 
+// RandIntSlice generates a slice of random integers.
+// The generated integers are between min and max (exclusive).
+// Play: todo
+func RandIntSlice(length, min, max int) []int {
+	if length <= 0 || min > max {
+		return []int{}
+	}
+
+	result := make([]int, length)
+	for i := range result {
+		result[i] = RandInt(min, max)
+	}
+
+	return result
+}
+
+// RandUniqueIntSlice generate a slice of random int of length that do not repeat.
+// Play: https://go.dev/play/p/uBkRSOz73Ec
+func RandUniqueIntSlice(length, min, max int) []int {
+	if min > max {
+		return []int{}
+	}
+	if length > max-min {
+		length = max - min
+	}
+
+	nums := make([]int, length)
+	used := make(map[int]struct{}, length)
+	for i := 0; i < length; {
+		r := RandInt(min, max)
+		if _, use := used[r]; use {
+			continue
+		}
+		used[r] = struct{}{}
+		nums[i] = r
+		i++
+	}
+
+	return nums
+}
+
 // RandFloat generate random float64 number between [min, max) with specific precision.
 // Play: https://go.dev/play/p/zbD_tuobJtr
 func RandFloat(min, max float64, precision int) float64 {
@@ -63,6 +126,24 @@ func RandFloat(min, max float64, precision int) float64 {
 	n := rand.Float64()*(max-min) + min
 
 	return mathutil.RoundToFloat(n, precision)
+}
+
+// RandFloats generate a slice of random float64 numbers of length that do not repeat.
+// Play: https://go.dev/play/p/I3yndUQ-rhh
+func RandFloats(length int, min, max float64, precision int) []float64 {
+	nums := make([]float64, length)
+	used := make(map[float64]struct{}, length)
+	for i := 0; i < length; {
+		r := RandFloat(min, max, precision)
+		if _, use := used[r]; use {
+			continue
+		}
+		used[r] = struct{}{}
+		nums[i] = r
+		i++
+	}
+
+	return nums
 }
 
 // RandBytes generate random byte slice.
@@ -80,10 +161,28 @@ func RandBytes(length int) []byte {
 	return b
 }
 
-// RandString generate random alpha string of specified length.
+// RandString generate random alphabeta string of specified length.
 // Play: https://go.dev/play/p/W2xvRUXA7Mi
 func RandString(length int) string {
 	return random(Letters, length)
+}
+
+// RandString generate a slice of random string of length strLen based on charset.
+// chartset should be one of the following: random.Numeral, random.LowwerLetters, random.UpperLetters
+// random.Letters, random.SymbolChars, random.AllChars. or a combination of them.
+// Play: todo
+func RandStringSlice(charset string, sliceLen, strLen int) []string {
+	if sliceLen <= 0 || strLen <= 0 {
+		return []string{}
+	}
+
+	result := make([]string, sliceLen)
+
+	for i := range result {
+		result[i] = random(charset, strLen)
+	}
+
+	return result
 }
 
 // RandUpper generate a random upper case string of specified length.
@@ -188,63 +287,4 @@ func UUIdV4() (string, error) {
 	uuid[6] = uuid[6]&^0xf0 | 0x40
 
 	return fmt.Sprintf("%x-%x-%x-%x-%x", uuid[0:4], uuid[4:6], uuid[6:8], uuid[8:10], uuid[10:]), nil
-}
-
-// RandIntSlice generates a slice of random integers.
-// The generated integers are between min and max (exclusive).
-// Play: todo
-func RandIntSlice(length, min, max int) []int {
-	if length <= 0 || min > max {
-		return []int{}
-	}
-
-	result := make([]int, length)
-	for i := range result {
-		result[i] = RandInt(min, max)
-	}
-
-	return result
-}
-
-// RandUniqueIntSlice generate a slice of random int of length that do not repeat.
-// Play: https://go.dev/play/p/uBkRSOz73Ec
-func RandUniqueIntSlice(length, min, max int) []int {
-	if min > max {
-		return []int{}
-	}
-	if length > max-min {
-		length = max - min
-	}
-
-	nums := make([]int, length)
-	used := make(map[int]struct{}, length)
-	for i := 0; i < length; {
-		r := RandInt(min, max)
-		if _, use := used[r]; use {
-			continue
-		}
-		used[r] = struct{}{}
-		nums[i] = r
-		i++
-	}
-
-	return nums
-}
-
-// RandFloats generate a slice of random float64 numbers of length that do not repeat.
-// Play: https://go.dev/play/p/I3yndUQ-rhh
-func RandFloats(length int, min, max float64, precision int) []float64 {
-	nums := make([]float64, length)
-	used := make(map[float64]struct{}, length)
-	for i := 0; i < length; {
-		r := RandFloat(min, max, precision)
-		if _, use := used[r]; use {
-			continue
-		}
-		used[r] = struct{}{}
-		nums[i] = r
-		i++
-	}
-
-	return nums
 }
