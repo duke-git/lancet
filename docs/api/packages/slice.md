@@ -86,7 +86,9 @@ import (
 -   [ToSlicePointer](#ToSlicePointer)
 -   [Unique](#Unique)
 -   [UniqueBy](#UniqueBy)
+-   [UniqueByComparator](#UniqueByComparator)
 -   [UniqueByField](#UniqueByField)
+-   [UniqueByParallel](#UniqueByParallel)
 -   [Union](#Union)
 -   [UnionBy](#UnionBy)
 -   [UpdateAt](#UpdateAt)
@@ -2324,6 +2326,73 @@ func main() {
 
     // Output:
     // [1 2 3]
+}
+```
+
+### <span id="UniqueByComparator">UniqueByComparator</span>
+
+<p>使用提供的比较器函数从输入切片中移除重复元素。此函数保持元素的顺序。</p>
+
+<b>函数签名:</b>
+
+```go
+func UniqueByComparator[T comparable](slice []T, comparator func(item T, other T) bool) []T
+```
+
+<b>示例:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/slice"
+)
+
+func main() {
+    uniqueNums := slice.UniqueByComparator([]int{1, 2, 3, 1, 2, 4, 5, 6, 4}, func(item int, other int) bool {
+        return item == other
+    })
+
+    caseInsensitiveStrings := slice.UniqueByComparator([]string{"apple", "banana", "Apple", "cherry", "Banana", "date"}, func(item string, other string) bool {
+        return strings.ToLower(item) == strings.ToLower(other)
+    })
+
+    fmt.Println(uniqueNums)
+    fmt.Println(caseInsensitiveStrings)
+
+    // Output:
+    // [1 2 3 4 5 6]
+    // [apple banana cherry date]
+}
+```
+
+### <span id="UniqueByParallel">UniqueByParallel</span>
+
+<p>并发的从输入切片中移除重复元素，结果保持元素的顺序。</p>
+
+<b>函数签名:</b>
+
+```go
+func UniqueByParallel[T comparable](slice []T, numOfThreads int, comparator func(item T, other T) bool) []T
+```
+
+<b>示例:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/slice"
+)
+
+func main() {
+    nums := []int{1, 2, 3, 1, 2, 4, 5, 6, 4, 7}
+    numOfThreads := 4
+    comparator := func(item int, other int) bool { return item == other }
+
+    result := slice.UniqueByParallel(nums, numOfThreads, comparator)
+
+    fmt.Println(result)
+    // Output:
+    // [1 2 3 4 5 6 7]
 }
 ```
 

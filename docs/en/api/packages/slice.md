@@ -86,7 +86,9 @@ import (
 -   [ToSlicePointer](#ToSlicePointer)
 -   [Unique](#Unique)
 -   [UniqueBy](#UniqueBy)
+-   [UniqueByComparator](#UniqueByComparator)
 -   [UniqueByField](#UniqueByField)
+-   [UniqueByParallel](#UniqueByParallel)
 -   [Union](#Union)
 -   [UnionBy](#UnionBy)
 -   [UpdateAt](#UpdateAt)
@@ -2325,6 +2327,73 @@ func main() {
 }
 ```
 
+### <span id="UniqueByComparator">UniqueByComparator</span>
+
+<p>Removes duplicate elements from the input slice using the provided comparator function. The function maintains the order of the elements.</p>
+
+<b>Signature:</b>
+
+```go
+func UniqueByComparator[T comparable](slice []T, comparator func(item T, other T) bool) []T
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/slice"
+)
+
+func main() {
+    uniqueNums := slice.UniqueByComparator([]int{1, 2, 3, 1, 2, 4, 5, 6, 4}, func(item int, other int) bool {
+        return item == other
+    })
+
+    caseInsensitiveStrings := slice.UniqueByComparator([]string{"apple", "banana", "Apple", "cherry", "Banana", "date"}, func(item string, other string) bool {
+        return strings.ToLower(item) == strings.ToLower(other)
+    })
+
+    fmt.Println(uniqueNums)
+    fmt.Println(caseInsensitiveStrings)
+
+    // Output:
+    // [1 2 3 4 5 6]
+    // [apple banana cherry date]
+}
+```
+
+### <span id="UniqueByParallel">UniqueByParallel</span>
+
+<p>Removes duplicate elements from the slice by parallel.</p>
+
+<b>Signature:</b>
+
+```go
+func UniqueByParallel[T comparable](slice []T, numOfThreads int, comparator func(item T, other T) bool) []T
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/slice"
+)
+
+func main() {
+    nums := []int{1, 2, 3, 1, 2, 4, 5, 6, 4, 7}
+    numOfThreads := 4
+    comparator := func(item int, other int) bool { return item == other }
+
+    result := slice.UniqueByParallel(nums, numOfThreads, comparator)
+
+    fmt.Println(result)
+    // Output:
+    // [1 2 3 4 5 6 7]
+}
+```
+
 ### <span id="UniqueByField">UniqueByField</span>
 
 <p>Remove duplicate elements in struct slice by struct field.</p>
@@ -2647,14 +2716,14 @@ import (
 
 func main() {
     strs := []string{"a", "b", "a", "c", "d", "a"}
-	modifiedStrs, count := slice.SetToDefaultIf(strs, func(s string) bool { return "a" == s })
-	
+    modifiedStrs, count := slice.SetToDefaultIf(strs, func(s string) bool { return "a" == s })
+    
     fmt.Println(modifiedStrs)
-	fmt.Println(count)
-	
+    fmt.Println(count)
+    
     // Output:
-	// [ b  c d ]
-	// 3
+    // [ b  c d ]
+    // 3
 }
 ```
 
@@ -2710,11 +2779,11 @@ import (
 )
 
 func main() {
-  	nums := []int{1, 2, 3, 4, 5}
-	padded := slice.RightPadding(nums, 0, 3)
-	fmt.Println(padded)
-	// Output:
-	// [1 2 3 4 5 0 0 0]
+      nums := []int{1, 2, 3, 4, 5}
+    padded := slice.RightPadding(nums, 0, 3)
+    fmt.Println(padded)
+    // Output:
+    // [1 2 3 4 5 0 0 0]
 }
 ```
 
@@ -2737,10 +2806,10 @@ import (
 )
 
 func main() {
-  	nums := []int{1, 2, 3, 4, 5}
-	padded := slice.LeftPadding(nums, 0, 3)
-	fmt.Println(padded)
-	// Output:
-	// [0 0 0 1 2 3 4 5]
+      nums := []int{1, 2, 3, 4, 5}
+    padded := slice.LeftPadding(nums, 0, 3)
+    fmt.Println(padded)
+    // Output:
+    // [0 0 0 1 2 3 4 5]
 }
 ```

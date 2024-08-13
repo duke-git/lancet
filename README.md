@@ -1419,9 +1419,13 @@ import "github.com/duke-git/lancet/v2/slice"
 -   **<big>UniqueBy</big>** : remove duplicate elements from the input slice based on the values returned by the iteratee function.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#UniqueBy)]
     [[play](https://go.dev/play/p/UR323iZLDpv)]
+-   **<big>UniqueByComparator</big>** : remove duplicate elements from the input slice using the provided comparator function.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#UniqueByComparator)]
 -   **<big>UniqueByField</big>** : remove duplicate elements in struct slice by struct field.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#UniqueByField)]
     [[play](https://go.dev/play/p/6cifcZSPIGu)]
+-   **<big>UniqueByParallel</big>** : remove duplicate elements from the slice by parallel.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#UniqueByParallel)]
 -   **<big>Union</big>** : creates a slice of unique elements, in order, from all given slices.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#Union)]
     [[play](https://go.dev/play/p/hfXV1iRIZOf)]

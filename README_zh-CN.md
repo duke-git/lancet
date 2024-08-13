@@ -1420,9 +1420,13 @@ import "github.com/duke-git/lancet/v2/slice"
 -   **<big>UniqueBy</big>** : 根据迭代函数返回的值，从输入切片中移除重复元素。此函数保持元素的顺序。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/slice.md#UniqueBy)]
     [[play](https://go.dev/play/p/UR323iZLDpv)]
+-   **<big>UniqueByComparator</big>** : 使用提供的比较器函数从输入切片中移除重复元素。此函数保持元素的顺序。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/slice.md#UniqueByComparator)]
 -   **<big>UniqueByField</big>** : 根据struct字段对struct切片去重复。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/slice.md#UniqueByField)]
     [[play](https://go.dev/play/p/6cifcZSPIGu)]
+-   **<big>UniqueByParallel</big>** : 并发的从输入切片中移除重复元素，结果保持元素的顺序。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/slice.md#UniqueByParallel)]
 -   **<big>Union</big>** : 合并多个切片。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/slice.md#Union)]
     [[play](https://go.dev/play/p/hfXV1iRIZOf)]
