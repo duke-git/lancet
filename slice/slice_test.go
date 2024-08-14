@@ -1516,3 +1516,29 @@ func TestUniqueByParallel(t *testing.T) {
 
 	assert.Equal([]int{1, 2, 3, 4, 5, 6, 7}, result)
 }
+
+func TestMapConcurrent(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestMapConcurrent")
+
+	t.Run("empty slice", func(t *testing.T) {
+		actual := MapConcurrent([]int{}, 4, func(_, n int) int { return n * n })
+		assert.Equal([]int{}, actual)
+	})
+
+	t.Run("single thread", func(t *testing.T) {
+		nums := []int{1, 2, 3, 4, 5, 6}
+		expected := []int{1, 4, 9, 16, 25, 36}
+		actual := MapConcurrent(nums, 1, func(_, n int) int { return n * n })
+		assert.Equal(expected, actual)
+	})
+
+	t.Run("multiple threads", func(t *testing.T) {
+		nums := []int{1, 2, 3, 4, 5, 6}
+		expected := []int{1, 4, 9, 16, 25, 36}
+		actual := MapConcurrent(nums, 4, func(_, n int) int { return n * n })
+		assert.Equal(expected, actual)
+	})
+
+}

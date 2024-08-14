@@ -1451,7 +1451,7 @@ func main() {
 
 ### <span id="Map">Map</span>
 
-<p>对slice中的每个元素执行map函数以创建一个新切片</p>
+<p>对slice中的每个元素执行map函数以创建一个新切片。</p>
 
 <b>函数签名:</b>
 
@@ -1480,6 +1480,36 @@ func main() {
 
     // Output:
     // [2 3 4]
+}
+```
+
+### <span id="MapConcurrent">MapConcurrent</span>
+
+<p>对slice并发执行map操作。</p>
+
+<b>函数签名:</b>
+
+```go
+func MapConcurrent[T any, U any](slice []T, numOfThreads int, iteratee func(index int, item T) U) []U
+```
+
+<b>示例:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+    nums := []int{1, 2, 3, 4, 5, 6}
+	
+    result := slice.MapConcurrent(nums, 4, func(_, n int) int { return n * n })
+
+	fmt.Println(result)
+    
+	// Output:
+	// [1 4 9 16 25 36]
 }
 ```
 

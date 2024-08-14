@@ -1139,6 +1139,7 @@ func ExampleRandom() {
 	if idx >= 0 && idx < len(nums) && Contain(nums, val) {
 		fmt.Println("okk")
 	}
+
 	// Output:
 	// okk
 }
@@ -1148,6 +1149,7 @@ func ExampleSetToDefaultIf() {
 	modifiedStrs, count := SetToDefaultIf(strs, func(s string) bool { return "a" == s })
 	fmt.Println(modifiedStrs)
 	fmt.Println(count)
+
 	// Output:
 	// [ b  c d ]
 	// 3
@@ -1170,6 +1172,7 @@ func ExampleRightPadding() {
 	nums := []int{1, 2, 3, 4, 5}
 	padded := RightPadding(nums, 0, 3)
 	fmt.Println(padded)
+
 	// Output:
 	// [1 2 3 4 5 0 0 0]
 }
@@ -1178,6 +1181,7 @@ func ExampleLeftPadding() {
 	nums := []int{1, 2, 3, 4, 5}
 	padded := LeftPadding(nums, 0, 3)
 	fmt.Println(padded)
+
 	// Output:
 	// [0 0 0 1 2 3 4 5]
 }
@@ -1190,6 +1194,17 @@ func ExampleUniqueByParallel() {
 	result := UniqueByParallel(nums, numOfThreads, comparator)
 
 	fmt.Println(result)
+
 	// Output:
 	// [1 2 3 4 5 6 7]
+}
+
+func ExampleMapConcurrent() {
+	nums := []int{1, 2, 3, 4, 5, 6}
+	result := MapConcurrent(nums, 4, func(_, n int) int { return n * n })
+
+	fmt.Println(result)
+
+	// Output:
+	// [1 4 9 16 25 36]
 }

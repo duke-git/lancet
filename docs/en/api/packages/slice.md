@@ -61,6 +61,7 @@ import (
 -   [IndexOf](#IndexOf)
 -   [LastIndexOf](#LastIndexOf)
 -   [Map](#Map)
+-   [MapConcurrent](#MapConcurrent)
 -   [FilterMap](#FilterMap)
 -   [FlatMap](#FlatMap)
 -   [Merge](#Merge)
@@ -1478,6 +1479,36 @@ func main() {
 
     // Output:
     // [2 3 4]
+}
+```
+
+### <span id="MapConcurrent">MapConcurrent</span>
+
+<p>Applies the iteratee function to each item in the slice by concrrent.</p>
+
+<b>Signature:</b>
+
+```go
+func MapConcurrent[T any, U any](slice []T, numOfThreads int, iteratee func(index int, item T) U) []U
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+    nums := []int{1, 2, 3, 4, 5, 6}
+    
+    result := slice.MapConcurrent(nums, 4, func(_, n int) int { return n * n })
+
+    fmt.Println(result)
+    
+    // Output:
+    // [1 4 9 16 25 36]
 }
 ```
 

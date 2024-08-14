@@ -8,6 +8,33 @@ import (
 	"sync"
 )
 
+// MapConcurrent applies the iteratee function to each item in the slice by concrrent.
+// Play: todo
+func MapConcurrent[T any, U any](slice []T, numOfThreads int, iteratee func(index int, item T) U) []U {
+	result := make([]U, len(slice))
+	var wg sync.WaitGroup
+
+	workerChan := make(chan struct{}, numOfThreads)
+
+	for index, item := range slice {
+		wg.Add(1)
+
+		workerChan <- struct{}{}
+
+		go func(i int, v T) {
+			defer wg.Done()
+
+			result[i] = iteratee(i, v)
+
+			<-workerChan
+		}(index, item)
+	}
+
+	wg.Wait()
+
+	return result
+}
+
 // UniqueByParallel removes duplicate elements from the slice by parallel
 // The comparator function is used to compare the elements
 // The numOfThreads parameter specifies the number of threads to use
