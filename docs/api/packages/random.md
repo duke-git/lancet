@@ -81,7 +81,7 @@ func main() {
 func RandInt(min, max int) int
 ```
 
-<b>示例:<span style="float:right;display:inline-block;">[运行]()</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/pXyyAAI5YxD)</span></b>
 
 ```go
 package main
@@ -133,7 +133,7 @@ func main() {
 func RandFromGivenSlice[T any](slice []T) T
 ```
 
-<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/29QfOh0DVuh)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行]()</span></b>
 
 ```go
 package main
