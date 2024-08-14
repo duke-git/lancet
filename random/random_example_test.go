@@ -43,6 +43,24 @@ func ExampleRandString() {
 	// 6
 }
 
+func ExampleRandFromGivenSlice() {
+	goods := []string{"apple", "banana", "cherry", "elderberry", "fig", "grape", "honeydew", "kiwi", "lemon",
+		"mango", "nectarine", "orange"}
+
+	isInGoods := false
+	result := RandFromGivenSlice(goods)
+	for _, good := range goods {
+		if good == result {
+			isInGoods = true
+			break
+		}
+	}
+	fmt.Println(isInGoods)
+
+	// Output:
+	// true
+}
+
 func ExampleRandUpper() {
 	pattern := `^[A-Z]+$`
 	reg := regexp.MustCompile(pattern)

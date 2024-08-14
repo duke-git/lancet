@@ -185,6 +185,15 @@ func RandStringSlice(charset string, sliceLen, strLen int) []string {
 	return result
 }
 
+// RandFromGivenSlice generate a random element from given slice.
+func RandFromGivenSlice[T any](slice []T) T {
+	if len(slice) == 0 {
+		var zero T
+		return zero
+	}
+	return slice[rand.Intn(len(slice))]
+}
+
 // RandUpper generate a random upper case string of specified length.
 // Play: https://go.dev/play/p/29QfOh0DVuh
 func RandUpper(length int) string {
