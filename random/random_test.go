@@ -269,6 +269,29 @@ func TestRandStringSlice(t *testing.T) {
 	// })
 }
 
+func TestRandFromGivenSlice(t *testing.T) {
+	t.Parallel()
+	assert := internal.NewAssert(t, "TestRandFromGivenSlice")
+
+	randomSet := []any{"a", 8, "王", true, 1.1}
+	result := RandFromGivenSlice(randomSet)
+	find := false
+	for _, v := range randomSet {
+		if v == result {
+			find = true
+		}
+	}
+	assert.Equal(true, find)
+
+	emptyAnyRandomSet := []any{}
+	emptyAnyResult := RandFromGivenSlice(emptyAnyRandomSet)
+	assert.IsNil(emptyAnyResult)
+
+	emptyIntRandomSet := []int{}
+	emtpyIntResult := RandFromGivenSlice(emptyIntRandomSet)
+	assert.Equal(0, emtpyIntResult)
+}
+
 func TestRandBool(t *testing.T) {
 	t.Parallel()
 	assert := internal.NewAssert(t, "TestRandBool")
