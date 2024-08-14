@@ -6,7 +6,8 @@ Package slice implements some functions to manipulate slice.
 
 ## Source:
 
--   [https://github.com/duke-git/lancet/blob/main/slice/slice.go](https://github.com/duke-git/lancet/blob/main/slice/slice.go)
+- [https://github.com/duke-git/lancet/blob/main/slice/slice.go](https://github.com/duke-git/lancet/blob/main/slice/slice.go)
+- [https://github.com/duke-git/lancet/blob/main/slice/slice_concurrent.go](https://github.com/duke-git/lancet/blob/main/slice/slice_concurrent.go)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -89,7 +90,7 @@ import (
 -   [UniqueBy](#UniqueBy)
 -   [UniqueByComparator](#UniqueByComparator)
 -   [UniqueByField](#UniqueByField)
--   [UniqueByParallel](#UniqueByParallel)
+-   [UniqueByConcurrent](#UniqueByConcurrent)
 -   [Union](#Union)
 -   [UnionBy](#UnionBy)
 -   [UpdateAt](#UpdateAt)
@@ -1506,7 +1507,7 @@ func main() {
     result := slice.MapConcurrent(nums, 4, func(_, n int) int { return n * n })
 
     fmt.Println(result)
-    
+
     // Output:
     // [1 4 9 16 25 36]
 }
@@ -2394,14 +2395,14 @@ func main() {
 }
 ```
 
-### <span id="UniqueByParallel">UniqueByParallel</span>
+### <span id="UniqueByConcurrent">UniqueByConcurrent</span>
 
 <p>Removes duplicate elements from the slice by parallel.</p>
 
 <b>Signature:</b>
 
 ```go
-func UniqueByParallel[T comparable](slice []T, numOfThreads int, comparator func(item T, other T) bool) []T
+func UniqueByConcurrent[T comparable](slice []T, numOfThreads int, comparator func(item T, other T) bool) []T
 ```
 
 <b>Example:</b>
@@ -2417,7 +2418,7 @@ func main() {
     numOfThreads := 4
     comparator := func(item int, other int) bool { return item == other }
 
-    result := slice.UniqueByParallel(nums, numOfThreads, comparator)
+    result := slice.UniqueByConcurrent(nums, numOfThreads, comparator)
 
     fmt.Println(result)
     // Output:

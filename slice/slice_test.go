@@ -1503,16 +1503,16 @@ func TestRightPaddingAndLeftPadding(t *testing.T) {
 	assert.Equal([]int{0, 0, 0, 1, 2, 3, 4, 5, 0, 0, 0}, padded)
 }
 
-func TestUniqueByParallel(t *testing.T) {
+func TestUniqueByConcurrent(t *testing.T) {
 	t.Parallel()
 
-	assert := internal.NewAssert(t, "TestUniqueByParallel")
+	assert := internal.NewAssert(t, "TestUniqueByConcurrent")
 
 	nums := []int{1, 2, 3, 1, 2, 4, 5, 6, 4, 7}
 	numOfThreads := 4
 	comparator := func(item int, other int) bool { return item == other }
 
-	result := UniqueByParallel(nums, numOfThreads, comparator)
+	result := UniqueByConcurrent(nums, numOfThreads, comparator)
 
 	assert.Equal([]int{1, 2, 3, 4, 5, 6, 7}, result)
 }

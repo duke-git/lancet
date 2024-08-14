@@ -41,7 +41,7 @@ func MapConcurrent[T any, U any](slice []T, numOfThreads int, iteratee func(inde
 // If numOfThreads is less than or equal to 0, it will be set to 1
 // The comparator function should return true if the two elements are equal
 // Play: todo
-func UniqueByParallel[T comparable](slice []T, numOfThreads int, comparator func(item T, other T) bool) []T {
+func UniqueByConcurrent[T comparable](slice []T, numOfThreads int, comparator func(item T, other T) bool) []T {
 	if numOfThreads <= 0 {
 		numOfThreads = 1
 	} else if numOfThreads > len(slice) {
