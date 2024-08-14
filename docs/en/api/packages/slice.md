@@ -45,6 +45,7 @@ import (
 -   [EqualWith](#EqualWith)
 -   [Every](#Every)
 -   [Filter](#Filter)
+-   [FilterConcurrent](#FilterConcurrent)
 -   [Find<sup>deprecated</sup>](#Find)
 -   [FindBy](#FindBy)
 -   [FindLast<sup>deprecated</sup>](#FindLast)
@@ -891,6 +892,40 @@ func main() {
     }
 
     result := slice.Filter(nums, isEven)
+
+    fmt.Println(result)
+
+    // Output:
+    // [2 4]
+}
+```
+
+### <span id="FilterConcurrent">FilterConcurrent</span>
+
+<p>Applies the provided filter function `predicate` to each element of the input slice concurrently.</p>
+
+<b>Signature:</b>
+
+```go
+func FilterConcurrent[T any](slice []T, numOfThreads int, predicate func(index int, item T) bool) []T
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+    nums := []int{1, 2, 3, 4, 5}
+
+    isEven := func(i, num int) bool {
+        return num%2 == 0
+    }
+
+    result := slice.FilterConcurrent(nums, 2, isEven)
 
     fmt.Println(result)
 

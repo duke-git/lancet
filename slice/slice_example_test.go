@@ -247,6 +247,21 @@ func ExampleFilter() {
 	// [2 4]
 }
 
+func ExampleFilterConcurrent() {
+	nums := []int{1, 2, 3, 4, 5}
+
+	isEven := func(i, num int) bool {
+		return num%2 == 0
+	}
+
+	result := FilterConcurrent(nums, 2, isEven)
+
+	fmt.Println(result)
+
+	// Output:
+	// [2 4]
+}
+
 func ExampleCount() {
 	nums := []int{1, 2, 3, 3, 4}
 

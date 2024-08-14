@@ -8,7 +8,7 @@ import (
 	"sync"
 )
 
-// MapConcurrent applies the iteratee function to each item in the slice by concrrent.
+// MapConcurrent applies the iteratee function to each item in the slice concurrently.
 // Play: todo
 func MapConcurrent[T any, U any](slice []T, numOfThreads int, iteratee func(index int, item T) U) []U {
 	result := make([]U, len(slice))
@@ -25,6 +25,35 @@ func MapConcurrent[T any, U any](slice []T, numOfThreads int, iteratee func(inde
 			defer wg.Done()
 
 			result[i] = iteratee(i, v)
+
+			<-workerChan
+		}(index, item)
+	}
+
+	wg.Wait()
+
+	return result
+}
+
+// FilterConcurrent applies the provided filter function `predicate` to each element of the input slice concurrently.
+// Play: todo
+func FilterConcurrent[T any](slice []T, numOfThreads int, predicate func(index int, item T) bool) []T {
+	result := make([]T, 0)
+	var wg sync.WaitGroup
+
+	workerChan := make(chan struct{}, numOfThreads)
+
+	for index, item := range slice {
+		wg.Add(1)
+
+		workerChan <- struct{}{}
+
+		go func(i int, v T) {
+			defer wg.Done()
+
+			if predicate(i, v) {
+				result = append(result, v)
+			}
 
 			<-workerChan
 		}(index, item)

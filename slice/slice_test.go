@@ -1542,3 +1542,29 @@ func TestMapConcurrent(t *testing.T) {
 	})
 
 }
+
+func TestFilterConcurrent(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestFilterConcurrent")
+
+	t.Run("empty slice", func(t *testing.T) {
+		actual := FilterConcurrent([]int{}, 4, func(_, n int) bool { return n != 0 })
+		assert.Equal([]int{}, actual)
+	})
+
+	t.Run("single thread", func(t *testing.T) {
+		nums := []int{1, 2, 3, 4, 5, 6}
+		expected := []int{4, 5, 6}
+		actual := FilterConcurrent(nums, 1, func(_, n int) bool { return n > 3 })
+		assert.Equal(expected, actual)
+	})
+
+	t.Run("multiple threads", func(t *testing.T) {
+		nums := []int{1, 2, 3, 4, 5, 6}
+		expected := []int{4, 5, 6}
+		actual := FilterConcurrent(nums, 4, func(_, n int) bool { return n > 3 })
+		assert.Equal(expected, actual)
+	})
+
+}
