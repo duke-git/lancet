@@ -587,6 +587,44 @@ func TestReduce(t *testing.T) {
 	}
 }
 
+func TestReduceConcurrent(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestReduceConcurrent")
+
+	t.Run("basic", func(t *testing.T) {
+		nums := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+		result := ReduceConcurrent(nums, 0, func(_ int, item, agg int) int {
+			return agg + item
+		}, 4)
+		assert.Equal(55, result)
+	})
+
+	t.Run("empty slice", func(t *testing.T) {
+		nums := []int{}
+		result := ReduceConcurrent(nums, 0, func(_ int, item, agg int) int {
+			return agg + item
+		}, 4)
+		assert.Equal(0, result)
+	})
+
+	t.Run("single thread", func(t *testing.T) {
+		nums := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+		result := ReduceConcurrent(nums, 0, func(_ int, item, agg int) int {
+			return agg + item
+		}, 1)
+		assert.Equal(55, result)
+	})
+
+	t.Run("negative threads", func(t *testing.T) {
+		nums := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+		result := ReduceConcurrent(nums, 0, func(_ int, item, agg int) int {
+			return agg + item
+		}, -1)
+		assert.Equal(55, result)
+	})
+}
+
 func TestReduceBy(t *testing.T) {
 	t.Parallel()
 

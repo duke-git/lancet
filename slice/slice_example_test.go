@@ -527,6 +527,18 @@ func ExampleReduce() {
 	// 6
 }
 
+func ExampleReduceConcurrent() {
+	nums := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+	result := ReduceConcurrent(nums, 0, func(_ int, item, agg int) int {
+		return agg + item
+	}, 1)
+
+	fmt.Println(result)
+
+	// Output:
+	// 55
+}
+
 func ExampleReduceBy() {
 	result1 := ReduceBy([]int{1, 2, 3, 4}, 0, func(_ int, item int, agg int) int {
 		return agg + item

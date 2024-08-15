@@ -70,6 +70,7 @@ import (
 -   [Merge](#Merge)
 -   [Reverse](#Reverse)
 -   [Reduce<sup>deprecated</sup>](#Reduce)
+-   [ReduceConcurrent](#ReduceConcurrent)
 -   [ReduceBy](#ReduceBy)
 -   [ReduceRight](#ReduceRight)
 -   [Replace](#Replace)
@@ -1753,6 +1754,39 @@ func main() {
     // 6
 }
 ```
+
+### <span id="ReduceConcurrent">ReduceConcurrent</span>
+
+<p>Reduces the slice to a single value by applying the reducer function to each item in the slice concurrently.</p>
+
+<b>Signature:</b>
+
+```go
+func ReduceConcurrent[T any](slice []T, initial T, reducer func(index int, item T, agg T) T, numThreads int) T
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[运行]()</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+    nums := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+    
+    result := slice.ReduceConcurrent(nums, 0, func(_ int, item, agg int) int {
+        return agg + item
+    }, 1)
+
+    fmt.Println(result)
+
+    // Output:
+    // 55
+}
+```
+
 
 ### <span id="ReduceBy">ReduceBy</span>
 

@@ -76,6 +76,50 @@ func MapConcurrent[T any, U any](slice []T, iteratee func(index int, item T) U, 
 	return result
 }
 
+// ReduceConcurrent reduces the slice to a single value by applying the reducer function to each item in the slice concurrently.
+// Play: todo
+func ReduceConcurrent[T any](slice []T, initial T, reducer func(index int, item T, agg T) T, numThreads int) T {
+	if numThreads <= 0 {
+		numThreads = 1
+	}
+
+	var wg sync.WaitGroup
+	var mu sync.Mutex
+
+	sliceLen := len(slice)
+	chunkSize := (sliceLen + numThreads - 1) / numThreads
+	results := make([]T, numThreads)
+
+	for i := 0; i < numThreads; i++ {
+		start := i * chunkSize
+		end := start + chunkSize
+		if end > sliceLen {
+			end = sliceLen
+		}
+
+		wg.Add(1)
+		go func(i, start, end int) {
+			defer wg.Done()
+			tempResult := initial
+			for j := start; j < end; j++ {
+				tempResult = reducer(j, slice[j], tempResult)
+			}
+			mu.Lock()
+			results[i] = tempResult
+			mu.Unlock()
+		}(i, start, end)
+	}
+
+	wg.Wait()
+
+	result := initial
+	for i, r := range results {
+		result = reducer(i, result, r)
+	}
+
+	return result
+}
+
 // FilterConcurrent applies the provided filter function `predicate` to each element of the input slice concurrently.
 // Play: todo
 func FilterConcurrent[T any](slice []T, predicate func(index int, item T) bool, numThreads int) []T {

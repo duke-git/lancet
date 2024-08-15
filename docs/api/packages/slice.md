@@ -70,6 +70,7 @@ import (
 -   [Merge](#Merge)
 -   [Reverse](#Reverse)
 -   [Reduce<sup>deprecated</sup>](#Reduce)
+-   [ReduceConcurrent](#ReduceConcurrent)
 -   [ReduceBy](#ReduceBy)
 -   [ReduceRight](#ReduceRight)
 -   [Replace](#Replace)
@@ -1578,15 +1579,15 @@ import (
 
 func main() {
     nums := []int{1, 2, 3, 4, 5, 6}
-	
+    
     result := slice.MapConcurrent(nums, func(_, n int) int {     
         return n * n 
     }, 4)
 
-	fmt.Println(result)
+    fmt.Println(result)
 
-	// Output:
-	// [1 4 9 16 25 36]
+    // Output:
+    // [1 4 9 16 25 36]
 }
 ```
 
@@ -1756,6 +1757,38 @@ func main() {
 
     // Output:
     // 6
+}
+```
+
+### <span id="ReduceConcurrent">ReduceConcurrent</span>
+
+<p>对切片元素执行并发reduce操作。</p>
+
+<b>函数签名:</b>
+
+```go
+func ReduceConcurrent[T any](slice []T, initial T, reducer func(index int, item T, agg T) T, numThreads int) T
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行]()</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+    nums := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+    
+    result := slice.ReduceConcurrent(nums, 0, func(_ int, item, agg int) int {
+        return agg + item
+    }, 1)
+
+    fmt.Println(result)
+
+    // Output:
+    // 55
 }
 ```
 
