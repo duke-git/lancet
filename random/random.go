@@ -186,12 +186,42 @@ func RandStringSlice(charset string, sliceLen, strLen int) []string {
 }
 
 // RandFromGivenSlice generate a random element from given slice.
+// Play: todo
 func RandFromGivenSlice[T any](slice []T) T {
 	if len(slice) == 0 {
 		var zero T
 		return zero
 	}
 	return slice[rand.Intn(len(slice))]
+}
+
+// RandSliceFromGivenSlice generate a random slice of length num from given slice.
+//   - If repeatable is true, the generated slice may contain duplicate elements.
+//
+// Play: todo
+func RandSliceFromGivenSlice[T any](slice []T, num int, repeatable bool) []T {
+	if num <= 0 || len(slice) == 0 {
+		return slice
+	}
+
+	if !repeatable && num > len(slice) {
+		num = len(slice)
+	}
+
+	result := make([]T, num)
+	if repeatable {
+		for i := range result {
+			result[i] = slice[rand.Intn(len(slice))]
+		}
+	} else {
+		shuffled := make([]T, len(slice))
+		copy(shuffled, slice)
+		rand.Shuffle(len(shuffled), func(i, j int) {
+			shuffled[i], shuffled[j] = shuffled[j], shuffled[i]
+		})
+		result = shuffled[:num]
+	}
+	return result
 }
 
 // RandUpper generate a random upper case string of specified length.

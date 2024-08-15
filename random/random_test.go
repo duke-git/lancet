@@ -292,6 +292,46 @@ func TestRandFromGivenSlice(t *testing.T) {
 	assert.Equal(0, emtpyIntResult)
 }
 
+func TestRandSliceFromGivenSlice(t *testing.T) {
+	t.Parallel()
+	assert := internal.NewAssert(t, "TestRandSliceFromGivenSlice")
+
+	randomSet := []any{"a", 8, "王", true, 1.1}
+	repeatableResult := RandSliceFromGivenSlice(randomSet, 8, true)
+	assert.Equal(8, len(repeatableResult))
+	unrepeatableResult := RandSliceFromGivenSlice(randomSet, 8, false)
+	assert.Equal(len(randomSet), len(unrepeatableResult))
+
+	var findCount int
+	for _, v := range repeatableResult {
+		for _, vv := range randomSet {
+			if v == vv {
+				findCount++
+			}
+		}
+	}
+	assert.Equal(8, findCount)
+	findCount = 0
+
+	for _, v := range unrepeatableResult {
+		for _, vv := range randomSet {
+			if v == vv {
+				findCount++
+			}
+		}
+	}
+	assert.Equal(len(randomSet), findCount)
+
+	emptyAnyRandomSet := []any{}
+	emptyAnyResult := RandSliceFromGivenSlice(emptyAnyRandomSet, 3, true)
+	assert.Equal([]any{}, emptyAnyResult)
+
+	emptyIntRandomSet := []int{}
+	emtpyIntResult := RandSliceFromGivenSlice(emptyIntRandomSet, 3, true)
+	assert.Equal([]int{}, emtpyIntResult)
+
+}
+
 func TestRandBool(t *testing.T) {
 	t.Parallel()
 	assert := internal.NewAssert(t, "TestRandBool")

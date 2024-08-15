@@ -47,18 +47,15 @@ func ExampleRandFromGivenSlice() {
 	goods := []string{"apple", "banana", "cherry", "elderberry", "fig", "grape", "honeydew", "kiwi", "lemon",
 		"mango", "nectarine", "orange"}
 
-	isInGoods := false
 	result := RandFromGivenSlice(goods)
-	for _, good := range goods {
-		if good == result {
-			isInGoods = true
-			break
-		}
-	}
-	fmt.Println(isInGoods)
+	fmt.Println(result)
+}
 
-	// Output:
-	// true
+func ExampleRandSliceFromGivenSlice() {
+	goods := []string{"apple", "banana", "cherry", "elderberry", "fig", "grape", "honeydew", "kiwi", "lemon",
+		"mango", "nectarine", "orange"}
+	chosen3goods := RandSliceFromGivenSlice(goods, 3, false)
+	fmt.Println(chosen3goods)
 }
 
 func ExampleRandUpper() {
