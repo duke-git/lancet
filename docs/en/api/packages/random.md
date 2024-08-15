@@ -25,6 +25,8 @@ import (
 -   [RandBytes](#RandBytes)
 -   [RandInt](#RandInt)
 -   [RandString](#RandString)
+-   [RandFromGivenSlice](#RandFromGivenSlice)
+-   [RandSliceFromGivenSlice](#RandSliceFromGivenSlice)
 -   [RandUpper](#RandUpper)
 -   [RandLower](#RandLower)
 -   [RandNumeral](#RandNumeral)
@@ -118,6 +120,60 @@ import (
 func main() {
     randStr := random.RandString(6)
     fmt.Println(randStr) //pGWsze
+}
+```
+
+### <span id="RandFromGivenSlice">RandFromGivenSlice</span>
+
+<p>Generate a random element from given slice.</p>
+
+<b>Signature:</b>
+
+```go
+func RandFromGivenSlice[T any](slice []T) T
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run]()</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/random"
+)
+
+func main() {
+    randomSet := []any{"a", 8, "hello", true, 1.1}
+    randElm := random.RandFromGivenSlice(randomSet)
+    fmt.Println(randElm)
+}
+```
+
+### <span id="RandSliceFromGivenSlice">RandSliceFromGivenSlice</span>
+
+<p>Generate a random slice of length num from given slice.</p>
+
+<b>Signature:</b>
+
+```go
+func RandSliceFromGivenSlice[T any](slice []T, num int, repeatable bool) []T
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run]()</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/random"
+)
+
+func main() {
+    	goods := []string{"apple", "banana", "cherry", "elderberry", "fig", "grape", "honeydew", "kiwi", "lemon", "mango", "nectarine", "orange"}
+	chosen3goods := random.RandSliceFromGivenSlice(goods, 3, false)
+	fmt.Println(chosen3goods)
 }
 ```
 

@@ -25,6 +25,8 @@ import (
 -   [RandBytes](#RandBytes)
 -   [RandInt](#RandInt)
 -   [RandString](#RandString)
+-   [RandFromGivenSlice](#RandFromGivenSlice)
+-   [RandSliceFromGivenSlice](#RandSliceFromGivenSlice)
 -   [RandUpper](#RandUpper)
 -   [RandLower](#RandLower)
 -   [RandNumeral](#RandNumeral)
@@ -119,6 +121,60 @@ import (
 func main() {
     randStr := random.RandString(6)
     fmt.Println(randStr) //pGWsze
+}
+```
+
+### <span id="RandFromGivenSlice">RandFromGivenSlice</span>
+
+<p>从给定切片中随机生成元素</p>
+
+<b>函数签名:</b>
+
+```go
+func RandFromGivenSlice[T any](slice []T) T
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行]()</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/random"
+)
+
+func main() {
+    nicknames := []string{"张三", "李四", "王五", "赵六", "钱七"}
+    randElm := random.RandFromGivenSlice(nicknames)
+    fmt.Println(randElm)
+}
+```
+
+### <span id="RandSliceFromGivenSlice">RandSliceFromGivenSlice</span>
+
+<p>从给定切片中生成长度为 num 的随机切片</p>
+
+<b>函数签名:</b>
+
+```go
+func RandSliceFromGivenSlice[T any](slice []T, num int, repeatable bool) []T
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行]()</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/random"
+)
+
+func main() {
+    	goods := []string{"apple", "banana", "cherry", "elderberry", "fig", "grape", "honeydew", "kiwi", "lemon","mango", "nectarine", "orange"}
+	chosen3goods := random.RandSliceFromGivenSlice(goods, 3, false)
+	fmt.Println(chosen3goods)
 }
 ```
 
