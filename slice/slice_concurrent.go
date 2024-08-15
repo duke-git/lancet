@@ -8,6 +8,47 @@ import (
 	"sync"
 )
 
+// ForEachConcurrent applies the iteratee function to each item in the slice concurrently.
+// Play: todo
+func ForEachConcurrent[T any](slice []T, iteratee func(index int, item T), numThreads int) {
+	sliceLen := len(slice)
+	if sliceLen == 0 {
+		return
+	}
+
+	if numThreads <= 0 {
+		numThreads = 1
+	}
+
+	var wg sync.WaitGroup
+
+	chunkSize := (sliceLen + numThreads - 1) / numThreads
+
+	for i := 0; i < numThreads; i++ {
+		start := i * chunkSize
+		end := start + chunkSize
+
+		if start >= sliceLen {
+			break
+		}
+
+		if end > sliceLen {
+			end = sliceLen
+		}
+
+		wg.Add(1)
+		go func(start, end int) {
+			defer wg.Done()
+
+			for j := start; j < end; j++ {
+				iteratee(j, slice[j])
+			}
+		}(start, end)
+	}
+
+	wg.Wait()
+}
+
 // MapConcurrent applies the iteratee function to each item in the slice concurrently.
 // Play: todo
 func MapConcurrent[T any, U any](slice []T, iteratee func(index int, item T) U, numThreads int) []U {

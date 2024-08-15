@@ -53,6 +53,7 @@ import (
 -   [Flatten](#Flatten)
 -   [FlattenDeep](#FlattenDeep)
 -   [ForEach](#ForEach)
+-   [ForEachConcurrent](#ForEachConcurrent)
 -   [ForEachWithBreak](#ForEachWithBreak)
 -   [GroupBy](#GroupBy)
 -   [GroupWith](#GroupWith)
@@ -1174,6 +1175,42 @@ func main() {
 
     // Output:
     // [2 3 4]
+}
+```
+
+### <span id="ForEachConcurrent">ForEachConcurrent</span>
+
+<p>Applies the iteratee function to each item in the slice concurrently.</p>
+
+<b>Signature:</b>
+
+```go
+func ForEachConcurrent[T any](slice []T, iteratee func(index int, item T), numThreads int)
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run]()</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+    nums := []int{1, 2, 3, 4, 5, 6, 7, 8}
+
+    result := make([]int, len(nums))
+
+    addOne := func(index int, value int) {
+        result[index] = value + 1
+    }
+
+    slice.ForEachConcurrent(nums, addOne, 4)
+
+    fmt.Println(result)
+
+    // Output:
+    // [2 3 4 5 6 7 8 9]
 }
 ```
 

@@ -410,6 +410,73 @@ func TestForEach(t *testing.T) {
 	assert.Equal([]int{3, 4, 5, 6, 7}, result)
 }
 
+func TestForEachConcurrent(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestForEachConcurrent")
+
+	t.Run("single thread", func(t *testing.T) {
+		numbers := []int{1, 2, 3, 4, 5, 6, 7, 8, 9}
+		result := make([]int, len(numbers))
+
+		addOne := func(index int, value int) {
+			result[index] = value + 1
+		}
+
+		ForEachConcurrent(numbers, addOne, 1)
+
+		expected := []int{2, 3, 4, 5, 6, 7, 8, 9, 10}
+		assert.Equal(expected, result)
+	})
+
+	t.Run("normal", func(t *testing.T) {
+		numbers := []int{1, 2, 3, 4, 5, 6, 7, 8, 9}
+		result := make([]int, len(numbers))
+
+		addOne := func(index int, value int) {
+			result[index] = value + 1
+		}
+
+		ForEachConcurrent(numbers, addOne, 4)
+
+		expected := []int{2, 3, 4, 5, 6, 7, 8, 9, 10}
+		assert.Equal(expected, result)
+	})
+
+	t.Run("negative threads", func(t *testing.T) {
+		numbers := []int{1, 2, 3, 4, 5, 6, 7, 8, 9}
+		result := make([]int, len(numbers))
+
+		addOne := func(index int, value int) {
+			result[index] = value + 1
+		}
+
+		ForEachConcurrent(numbers, addOne, -4)
+
+		expected := []int{2, 3, 4, 5, 6, 7, 8, 9, 10}
+		assert.Equal(expected, result)
+	})
+
+	t.Run("high number threads", func(t *testing.T) {
+		numbers := make([]int, 1000)
+		for i := range numbers {
+			numbers[i] = i
+		}
+
+		result := make([]int, len(numbers))
+
+		addOne := func(index int, value int) {
+			result[index] = value + 1
+		}
+
+		ForEachConcurrent(numbers, addOne, 50)
+
+		for i, item := range numbers {
+			assert.Equal(item+1, result[i])
+		}
+	})
+}
+
 func TestForEachWithBreak(t *testing.T) {
 	t.Parallel()
 

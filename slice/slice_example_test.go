@@ -429,6 +429,23 @@ func ExampleForEach() {
 	// [2 3 4]
 }
 
+func ExampleForEachConcurrent() {
+	nums := []int{1, 2, 3, 4, 5, 6, 7, 8}
+
+	result := make([]int, len(nums))
+
+	addOne := func(index int, value int) {
+		result[index] = value + 1
+	}
+
+	ForEachConcurrent(nums, addOne, 4)
+
+	fmt.Println(result)
+
+	// Output:
+	// [2 3 4 5 6 7 8 9]
+}
+
 func ExampleForEachWithBreak() {
 	numbers := []int{1, 2, 3, 4, 5}
 
