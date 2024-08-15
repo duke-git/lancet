@@ -909,7 +909,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func FilterConcurrent[T any](slice []T, numOfThreads int, predicate func(index int, item T) bool) []T
+func FilterConcurrent[T any](slice []T, predicate func(index int, item T) bool, numThreads int) []T
 ```
 
 <b>示例:</b>
@@ -927,7 +927,7 @@ func main() {
         return num%2 == 0
     }
 
-    result := slice.FilterConcurrent(nums, 2, isEven)
+    result := slice.FilterConcurrent(nums, isEven, 2)
 
     fmt.Println(result)
 
@@ -1527,7 +1527,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func MapConcurrent[T any, U any](slice []T, numOfThreads int, iteratee func(index int, item T) U) []U
+func MapConcurrent[T any, U any](slice []T, iteratee func(index int, item T) U, numThreads int) []U
 ```
 
 <b>示例:</b>
@@ -1541,7 +1541,9 @@ import (
 func main() {
     nums := []int{1, 2, 3, 4, 5, 6}
 	
-    result := slice.MapConcurrent(nums, 4, func(_, n int) int { return n * n })
+    result := slice.MapConcurrent(nums, func(_, n int) int {     
+        return n * n 
+    }, 4)
 
 	fmt.Println(result)
 
@@ -2439,7 +2441,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func UniqueByConcurrent[T comparable](slice []T, numOfThreads int, comparator func(item T, other T) bool) []T
+func UniqueByConcurrent[T comparable](slice []T, comparator func(item T, other T) bool, numThreads int) []T
 ```
 
 <b>示例:</b>
@@ -2452,10 +2454,9 @@ import (
 
 func main() {
     nums := []int{1, 2, 3, 1, 2, 4, 5, 6, 4, 7}
-    numOfThreads := 4
     comparator := func(item int, other int) bool { return item == other }
 
-    result := slice.UniqueByConcurrent(nums, numOfThreads, comparator)
+    result := slice.UniqueByConcurrent(nums, comparator, 4)
 
     fmt.Println(result)
     // Output:

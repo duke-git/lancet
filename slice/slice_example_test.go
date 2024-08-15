@@ -254,7 +254,7 @@ func ExampleFilterConcurrent() {
 		return num%2 == 0
 	}
 
-	result := FilterConcurrent(nums, 2, isEven)
+	result := FilterConcurrent(nums, isEven, 2)
 
 	fmt.Println(result)
 
@@ -1203,10 +1203,9 @@ func ExampleLeftPadding() {
 
 func ExampleUniqueByConcurrent() {
 	nums := []int{1, 2, 3, 1, 2, 4, 5, 6, 4, 7}
-	numOfThreads := 4
 	comparator := func(item int, other int) bool { return item == other }
 
-	result := UniqueByConcurrent(nums, numOfThreads, comparator)
+	result := UniqueByConcurrent(nums, comparator, 4)
 
 	fmt.Println(result)
 
@@ -1216,7 +1215,7 @@ func ExampleUniqueByConcurrent() {
 
 func ExampleMapConcurrent() {
 	nums := []int{1, 2, 3, 4, 5, 6}
-	result := MapConcurrent(nums, 4, func(_, n int) int { return n * n })
+	result := MapConcurrent(nums, func(_, n int) int { return n * n }, 4)
 
 	fmt.Println(result)
 

@@ -10,11 +10,11 @@ import (
 
 // MapConcurrent applies the iteratee function to each item in the slice concurrently.
 // Play: todo
-func MapConcurrent[T any, U any](slice []T, numOfThreads int, iteratee func(index int, item T) U) []U {
+func MapConcurrent[T any, U any](slice []T, iteratee func(index int, item T) U, numThreads int) []U {
 	result := make([]U, len(slice))
 	var wg sync.WaitGroup
 
-	workerChan := make(chan struct{}, numOfThreads)
+	workerChan := make(chan struct{}, numThreads)
 
 	for index, item := range slice {
 		wg.Add(1)
@@ -37,11 +37,11 @@ func MapConcurrent[T any, U any](slice []T, numOfThreads int, iteratee func(inde
 
 // FilterConcurrent applies the provided filter function `predicate` to each element of the input slice concurrently.
 // Play: todo
-func FilterConcurrent[T any](slice []T, numOfThreads int, predicate func(index int, item T) bool) []T {
+func FilterConcurrent[T any](slice []T, predicate func(index int, item T) bool, numThreads int) []T {
 	result := make([]T, 0)
 	var wg sync.WaitGroup
 
-	workerChan := make(chan struct{}, numOfThreads)
+	workerChan := make(chan struct{}, numThreads)
 
 	for index, item := range slice {
 		wg.Add(1)
@@ -66,20 +66,20 @@ func FilterConcurrent[T any](slice []T, numOfThreads int, predicate func(index i
 
 // UniqueByParallel removes duplicate elements from the slice by parallel
 // The comparator function is used to compare the elements
-// The numOfThreads parameter specifies the number of threads to use
-// If numOfThreads is less than or equal to 0, it will be set to 1
+// The numThreads parameter specifies the number of threads to use
+// If numThreads is less than or equal to 0, it will be set to 1
 // The comparator function should return true if the two elements are equal
 // Play: todo
-func UniqueByConcurrent[T comparable](slice []T, numOfThreads int, comparator func(item T, other T) bool) []T {
-	if numOfThreads <= 0 {
-		numOfThreads = 1
-	} else if numOfThreads > len(slice) {
-		numOfThreads = len(slice)
+func UniqueByConcurrent[T comparable](slice []T, comparator func(item T, other T) bool, numThreads int) []T {
+	if numThreads <= 0 {
+		numThreads = 1
+	} else if numThreads > len(slice) {
+		numThreads = len(slice)
 	}
 
 	maxThreads := runtime.NumCPU()
-	if numOfThreads > maxThreads {
-		numOfThreads = maxThreads
+	if numThreads > maxThreads {
+		numThreads = maxThreads
 	}
 
 	removeDuplicate := func(items []T, comparator func(item T, other T) bool) []T {
@@ -99,9 +99,9 @@ func UniqueByConcurrent[T comparable](slice []T, numOfThreads int, comparator fu
 		return result
 	}
 
-	chunkSize := (len(slice) + numOfThreads - 1) / numOfThreads
+	chunkSize := (len(slice) + numThreads - 1) / numThreads
 
-	chunks := make([][]T, 0, numOfThreads)
+	chunks := make([][]T, 0, numThreads)
 	for i := 0; i < len(slice); i += chunkSize {
 		end := i + chunkSize
 		if end > len(slice) {
@@ -114,7 +114,7 @@ func UniqueByConcurrent[T comparable](slice []T, numOfThreads int, comparator fu
 		index int
 		data  []T
 	}
-	resultCh := make(chan resultChunk, numOfThreads)
+	resultCh := make(chan resultChunk, numThreads)
 	var wg sync.WaitGroup
 
 	for i, chunk := range chunks {
