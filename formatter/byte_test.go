@@ -25,6 +25,9 @@ func TestDecimalBytes(t *testing.T) {
 	assert.Equal("401MB", DecimalBytes(401000000))
 	assert.Equal("401MB", DecimalBytes(401000000, 0))
 	assert.Equal("4MB", DecimalBytes(4010000, 0))
+
+	assert.Equal("4MB", DecimalBytes(4000000, 0))
+	assert.Equal("4MB", DecimalBytes(4000000, 1))
 }
 
 func TestBinaryBytes(t *testing.T) {
@@ -36,6 +39,10 @@ func TestBinaryBytes(t *testing.T) {
 	assert.Equal("1MiB", BinaryBytes(1024*1024))
 	assert.Equal("1.1774MiB", BinaryBytes(1234567))
 	assert.Equal("1.18MiB", BinaryBytes(1234567, 2))
+
+	assert.Equal("10KiB", BinaryBytes(10240, 0))
+	assert.Equal("10KiB", BinaryBytes(10240, 1))
+	assert.Equal("10KiB", BinaryBytes(10240, 2))
 }
 
 func TestParseDecimalBytes(t *testing.T) {

@@ -6,6 +6,9 @@ import (
 	"strconv"
 	"strings"
 	"unicode"
+
+	"github.com/duke-git/lancet/v2/mathutil"
+	"github.com/duke-git/lancet/v2/strutil"
 )
 
 //
@@ -91,32 +94,21 @@ func DecimalBytes(size float64, precision ...int) string {
 
 	size, unit := calculateByteSize(size, 1000.0, decimalByteUnits)
 
-	format := fmt.Sprintf("%%.%df", pointPosition)
-	bytes := fmt.Sprintf(format, size)
-
-	for i := len(bytes); i > 0; i-- {
-		s := bytes[i-1]
-		if s != '0' && s != '.' {
-			break
-		}
-
-		bytes = bytes[:i-1]
-	}
-
-	return bytes + unit
+	return roundToToString(size, pointPosition) + unit
 }
 
 // BinaryBytes returns a human-readable byte size under binary standard (base 1024)
 // The precision parameter specifies the number of digits after the decimal point, which defaults to 4.
 // Play: https://go.dev/play/p/G9oHHMCAZxP
 func BinaryBytes(size float64, precision ...int) string {
-	p := 5
+	pointPosition := 4
 	if len(precision) > 0 {
-		p = precision[0] + 1
+		pointPosition = precision[0]
 	}
+
 	size, unit := calculateByteSize(size, 1024.0, binaryByteUnits)
 
-	return fmt.Sprintf("%.*g%s", p, size, unit)
+	return roundToToString(size, pointPosition) + unit
 }
 
 func calculateByteSize(size float64, base float64, byteUnits []string) (float64, string) {
@@ -127,6 +119,29 @@ func calculateByteSize(size float64, base float64, byteUnits []string) (float64,
 		i++
 	}
 	return size, byteUnits[i]
+}
+
+func roundToToString(x float64, max ...int) string {
+	pointPosition := 4
+	if len(max) > 0 {
+		pointPosition = max[0]
+	}
+	result := mathutil.RoundToString(x, pointPosition)
+
+	// 删除小数位结尾的0
+	decimal := strings.TrimRight(strutil.After(result, "."), "0")
+	if decimal == "" || pointPosition == 0 {
+		// 没有小数位直接返回整数
+		return strutil.Before(result, ".")
+	}
+
+	// 小数位大于想要设置的位数，按需要截断
+	if len(decimal) > pointPosition {
+		return strutil.Before(result, ".") + "." + decimal[:pointPosition]
+	}
+
+	// 小数位小于等于想要的位数，直接拼接返回
+	return strutil.Before(result, ".") + "." + decimal
 }
 
 // ParseDecimalBytes return the human readable bytes size string into the amount it represents(base 1000).
