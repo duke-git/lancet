@@ -2052,7 +2052,7 @@ import "github.com/duke-git/lancet/v2/xerror"
 
 ## How to Contribute
 
-#### [Contributing Guide](./CONTRIBUTING.md)
+#### [Contribution Guide](./CONTRIBUTION.md)
 
 ## Contributors
 Thank you to all the people who contributed to lancet!
@@ -2060,3 +2060,7 @@ Thank you to all the people who contributed to lancet!
 <a href="https://github.com/duke-git/lancet/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=duke-git/lancet" />
 </a>
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=duke-git/lancet&type=Date)](https://star-history.com/#duke-git/lancet&Date)
