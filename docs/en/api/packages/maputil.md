@@ -1539,3 +1539,40 @@ func main() {
     // b
 }
 ```
+
+### <span id="SortByKeys">SortByKeys</span>
+
+<p>Sorts the map by its keys and returns a new map with sorted keys.</p>
+
+<b>Signature:</b>
+
+```go
+func SortByKeys[K constraints.Ordered, V any](m map[K]V) (sortedKeysMap map[K]V)
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[运行]()</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/maputil"
+)
+
+func main() {
+    m := map[int]string{
+        3: "c",
+        1: "a",
+        4: "d",
+        2: "b",
+    }
+
+    result := maputil.SortByKeys(m)
+
+    fmt.Println(result)
+
+    // Output:
+    // map[1:a 2:b 3:c 4:d]
+}
+```

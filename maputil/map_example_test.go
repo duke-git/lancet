@@ -540,3 +540,19 @@ func ExampleGetOrSet() {
 	// a
 	// b
 }
+
+func ExampleSortByKeys() {
+	m := map[int]string{
+		3: "c",
+		1: "a",
+		4: "d",
+		2: "b",
+	}
+
+	result := SortByKeys(m)
+
+	fmt.Println(result)
+
+	// Output:
+	// map[1:a 2:b 3:c 4:d]
+}

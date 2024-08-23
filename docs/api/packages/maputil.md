@@ -56,6 +56,7 @@ import (
 -   [ConcurrentMap_Has](#ConcurrentMap_Has)
 -   [ConcurrentMap_Range](#ConcurrentMap_Range)
 -   [GetOrSet](#GetOrSet)
+-   [SortByKeys](#SortByKeys)
 
 
 <div STYLE="page-break-after: always;"></div>
@@ -1521,5 +1522,42 @@ func main() {
     // Output:
     // a
     // b
+}
+```
+
+### <span id="SortByKeys">SortByKeys</span>
+
+<p>对传入的map根据key进行排序，返回排序后的map。</p>
+
+<b>函数签名:</b>
+
+```go
+func SortByKeys[K constraints.Ordered, V any](m map[K]V) (sortedKeysMap map[K]V)
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行]()</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/maputil"
+)
+
+func main() {
+    m := map[int]string{
+        3: "c",
+        1: "a",
+        4: "d",
+        2: "b",
+    }
+
+    result := maputil.SortByKeys(m)
+
+    fmt.Println(result)
+
+    // Output:
+    // map[1:a 2:b 3:c 4:d]
 }
 ```
