@@ -18,63 +18,63 @@ import (
 // http://en.wikipedia.org/wiki/Binary_prefix
 const (
 	// Decimal
-	UnitB  = 1
-	UnitKB = 1000
-	UnitMB = 1000 * UnitKB
-	UnitGB = 1000 * UnitMB
-	UnitTB = 1000 * UnitGB
-	UnitPB = 1000 * UnitTB
-	UnitEB = 1000 * UnitPB
+	unitB  = 1
+	unitKB = 1000
+	unitMB = 1000 * unitKB
+	unitGB = 1000 * unitMB
+	unitTB = 1000 * unitGB
+	unitPB = 1000 * unitTB
+	unitEB = 1000 * unitPB
 
 	// Binary
-	UnitBiB = 1
-	UnitKiB = 1024
-	UnitMiB = 1024 * UnitKiB
-	UnitGiB = 1024 * UnitMiB
-	UnitTiB = 1024 * UnitGiB
-	UnitPiB = 1024 * UnitTiB
-	UnitEiB = 1024 * UnitPiB
+	unitBiB = 1
+	unitKiB = 1024
+	unitMiB = 1024 * unitKiB
+	unitGiB = 1024 * unitMiB
+	unitTiB = 1024 * unitGiB
+	unitPiB = 1024 * unitTiB
+	unitEiB = 1024 * unitPiB
 )
 
 // type byteUnitMap map[byte]int64
 
 var (
 	decimalByteMap = map[string]uint64{
-		"b":  UnitB,
-		"kb": UnitKB,
-		"mb": UnitMB,
-		"gb": UnitGB,
-		"tb": UnitTB,
-		"pb": UnitPB,
-		"eb": UnitEB,
+		"b":  unitB,
+		"kb": unitKB,
+		"mb": unitMB,
+		"gb": unitGB,
+		"tb": unitTB,
+		"pb": unitPB,
+		"eb": unitEB,
 
 		// Without suffix
-		"":  UnitB,
-		"k": UnitKB,
-		"m": UnitMB,
-		"g": UnitGB,
-		"t": UnitTB,
-		"p": UnitPB,
-		"e": UnitEB,
+		"":  unitB,
+		"k": unitKB,
+		"m": unitMB,
+		"g": unitGB,
+		"t": unitTB,
+		"p": unitPB,
+		"e": unitEB,
 	}
 
 	binaryByteMap = map[string]uint64{
-		"bi":  UnitBiB,
-		"kib": UnitKiB,
-		"mib": UnitMiB,
-		"gib": UnitGiB,
-		"tib": UnitTiB,
-		"pib": UnitPiB,
-		"eib": UnitEiB,
+		"bi":  unitBiB,
+		"kib": unitKiB,
+		"mib": unitMiB,
+		"gib": unitGiB,
+		"tib": unitTiB,
+		"pib": unitPiB,
+		"eib": unitEiB,
 
 		// Without suffix
-		"":   UnitBiB,
-		"ki": UnitKiB,
-		"mi": UnitMiB,
-		"gi": UnitGiB,
-		"ti": UnitTiB,
-		"pi": UnitPiB,
-		"ei": UnitEiB,
+		"":   unitBiB,
+		"ki": unitKiB,
+		"mi": unitMiB,
+		"gi": unitGiB,
+		"ti": unitTiB,
+		"pi": unitPiB,
+		"ei": unitEiB,
 	}
 )
 
