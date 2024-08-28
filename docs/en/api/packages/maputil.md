@@ -1540,14 +1540,14 @@ func main() {
 }
 ```
 
-### <span id="SortByKeys">SortByKeys</span>
+### <span id="SortByKey">SortByKey</span>
 
 <p>Sorts the map by its keys and returns a new map with sorted keys.</p>
 
 <b>Signature:</b>
 
 ```go
-func SortByKeys[K constraints.Ordered, V any](m map[K]V) (sortedKeysMap map[K]V)
+func SortByKey[K constraints.Ordered, V any](m map[K]V) (sortedKeysMap map[K]V)
 ```
 
 <b>Example:<span style="float:right;display:inline-block;">[运行]()</span></b>
@@ -1568,7 +1568,7 @@ func main() {
         2: "b",
     }
 
-    result := maputil.SortByKeys(m)
+    result := maputil.SortByKey(m)
 
     fmt.Println(result)
 

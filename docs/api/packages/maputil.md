@@ -56,7 +56,7 @@ import (
 -   [ConcurrentMap_Has](#ConcurrentMap_Has)
 -   [ConcurrentMap_Range](#ConcurrentMap_Range)
 -   [GetOrSet](#GetOrSet)
--   [SortByKeys](#SortByKeys)
+-   [SortByKey](#SortByKey)
 
 
 <div STYLE="page-break-after: always;"></div>
@@ -1525,14 +1525,14 @@ func main() {
 }
 ```
 
-### <span id="SortByKeys">SortByKeys</span>
+### <span id="SortByKey">SortByKey</span>
 
 <p>对传入的map根据key进行排序，返回排序后的map。</p>
 
 <b>函数签名:</b>
 
 ```go
-func SortByKeys[K constraints.Ordered, V any](m map[K]V) (sortedKeysMap map[K]V)
+func SortByKey[K constraints.Ordered, V any](m map[K]V) (sortedKeysMap map[K]V)
 ```
 
 <b>示例:<span style="float:right;display:inline-block;">[运行]()</span></b>
@@ -1553,7 +1553,7 @@ func main() {
         2: "b",
     }
 
-    result := maputil.SortByKeys(m)
+    result := maputil.SortByKey(m)
 
     fmt.Println(result)
 

@@ -541,7 +541,7 @@ func ExampleGetOrSet() {
 	// b
 }
 
-func ExampleSortByKeys() {
+func ExampleSortByKey() {
 	m := map[int]string{
 		3: "c",
 		1: "a",
@@ -549,7 +549,9 @@ func ExampleSortByKeys() {
 		2: "b",
 	}
 
-	result := SortByKeys(m)
+	result := SortByKey(m, func(a, b int) bool {
+		return a < b
+	})
 
 	fmt.Println(result)
 

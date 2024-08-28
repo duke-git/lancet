@@ -708,10 +708,10 @@ func TestGetOrSet(t *testing.T) {
 	assert.Equal("b", result2)
 }
 
-func TestSortByKeys(t *testing.T) {
+func TestSortByKey(t *testing.T) {
 	t.Parallel()
 
-	assert := internal.NewAssert(t, "TestSortByKeys")
+	assert := internal.NewAssert(t, "TestSortByKey")
 
 	m1 := map[int]string{
 		3: "c",
@@ -726,7 +726,9 @@ func TestSortByKeys(t *testing.T) {
 		4: "d",
 	}
 
-	result1 := SortByKeys(m1)
+	result1 := SortByKey(m1, func(a, b int) bool {
+		return a < b
+	})
 
 	assert.Equal(expected1, result1)
 
@@ -737,13 +739,15 @@ func TestSortByKeys(t *testing.T) {
 		"b": 2,
 	}
 	expected2 := map[string]int{
-		"a": 1,
-		"b": 2,
-		"c": 3,
 		"d": 4,
+		"c": 3,
+		"b": 2,
+		"a": 1,
 	}
 
-	result2 := SortByKeys(m2)
+	result2 := SortByKey(m2, func(a, b string) bool {
+		return a > b
+	})
 
 	assert.Equal(expected2, result2)
 }
