@@ -28,7 +28,7 @@ func NewOrderedMap[K comparable, V any]() *OrderedMap[K, V] {
 	}
 }
 
-// Get returns the value for the given key.
+// Sets the given key-value pair.
 // Play: todo
 func (om *OrderedMap[K, V]) Set(key K, value V) {
 	om.mu.Lock()

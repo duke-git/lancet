@@ -47,6 +47,24 @@ import (
 -   [MapToStruct](#MapToStruct)
 -   [ToSortedSlicesDefault](#ToSortedSlicesDefault)
 -   [ToSortedSlicesWithComparator](#ToSortedSlicesWithComparator)
+-   [NewOrderedMap](#NewOrderedMap)
+-   [OrderedMap_Set](#OrderedMap_Set)
+-   [OrderedMap_Get](#OrderedMap_Get)
+-   [OrderedMap_Front](#OrderedMap_Front)
+-   [OrderedMap_Back](#OrderedMap_Back)
+-   [OrderedMap_Delete](#OrderedMap_Delete)
+-   [OrderedMap_Clear](#OrderedMap_Clear)
+-   [OrderedMap_Len](#OrderedMap_Len)
+-   [OrderedMap_Keys](#OrderedMap_Keys)
+-   [OrderedMap_Values](#OrderedMap_Values)
+-   [OrderedMap_Contains](#OrderedMap_Contains)
+-   [OrderedMap_Range](#OrderedMap_Range)
+-   [OrderedMap_Elements](#OrderedMap_Elements)
+-   [OrderedMap_Iter](#OrderedMap_Iter)
+-   [OrderedMap_ReverseIter](#OrderedMap_ReverseIter)
+-   [OrderedMap_SortByKey](#OrderedMap_SortByKey)
+-   [OrderedMap_MarshalJSON](#OrderedMap_MarshalJSON)
+-   [OrderedMap_UnmarshalJSON](#OrderedMap_UnmarshalJSON)
 -   [NewConcurrentMap](#NewConcurrentMap)
 -   [ConcurrentMap_Get](#ConcurrentMap_Get)
 -   [ConcurrentMap_Set](#ConcurrentMap_Set)
@@ -1127,10 +1145,693 @@ func main() {
     fmt.Println(values1)
 
     // Output:
-	// [3 2 1]
-	// [c b a]
-	// [2024-03-30 00:00:00 +0000 UTC 2024-03-31 00:00:00 +0000 UTC 2024-04-01 00:00:00 +0000 UTC]
-	// [yesterday today tomorrow]
+    // [3 2 1]
+    // [c b a]
+    // [2024-03-30 00:00:00 +0000 UTC 2024-03-31 00:00:00 +0000 UTC 2024-04-01 00:00:00 +0000 UTC]
+    // [yesterday today tomorrow]
+}
+```
+
+### <span id="NewOrderedMap">NewOrderedMap</span>
+
+<p>Creates a new OrderedMap.</p>
+
+<b>Signature:</b>
+
+```go
+func NewOrderedMap[K comparable, V any]() *OrderedMap[K, V]
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run]()</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/maputil"
+)
+
+func main() {
+    om := maputil.NewOrderedMap[string, int]()
+
+    om.Set("a", 1)
+    om.Set("b", 2)
+    om.Set("c", 3)
+
+    val1, ok := om.Get("a")
+    fmt.Println(val1, ok)
+
+    val2, ok := om.Get("d")
+    fmt.Println(val2, ok)
+
+    // Output:
+    // 1 true
+    // 0 false
+}
+```
+
+### <span id="OrderedMap_Set">OrderedMap_Set</span>
+
+<p>Sets the given key-value pair.</p>
+
+<b>Signature:</b>
+
+```go
+func (om *OrderedMap[K, V]) Set(key K, value V)
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run]()</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/maputil"
+)
+
+func main() {
+    om := maputil.NewOrderedMap[string, int]()
+
+    om.Set("a", 1)
+    om.Set("b", 2)
+    om.Set("c", 3)
+
+    val1, ok := om.Get("a")
+    fmt.Println(val1, ok)
+
+    val2, ok := om.Get("d")
+    fmt.Println(val2, ok)
+
+    // Output:
+    // 1 true
+    // 0 false
+}
+```
+
+### <span id="OrderedMap_Get">OrderedMap_Get</span>
+
+<p>Returns the value for the given key.</p>
+
+<b>Signature:</b>
+
+```go
+func (om *OrderedMap[K, V]) Get(key K) (V, bool)
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run]()</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/maputil"
+)
+
+func main() {
+    om := maputil.NewOrderedMap[string, int]()
+
+    om.Set("a", 1)
+    om.Set("b", 2)
+    om.Set("c", 3)
+
+    val1, ok := om.Get("a")
+    fmt.Println(val1, ok)
+
+    val2, ok := om.Get("d")
+    fmt.Println(val2, ok)
+
+    // Output:
+    // 1 true
+    // 0 false
+}
+```
+
+
+### <span id="OrderedMap_Delete">OrderedMap_Delete</span>
+
+<p>Deletes the key-value pair for the given key.</p>
+
+<b>Signature:</b>
+
+```go
+func (om *OrderedMap[K, V]) Delete(key K)
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run]()</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/maputil"
+)
+
+func main() {
+    om := maputil.NewOrderedMap[string, int]()
+
+    om.Set("a", 1)
+    om.Set("b", 2)
+    om.Set("c", 3)
+
+    om.Delete("b")
+
+    fmt.Println(om.Keys())
+
+    // Output:
+    // [a c]
+}
+```
+
+### <span id="OrderedMap_Clear">OrderedMap_Clear</span>
+
+<p>Clears the map.</p>
+
+<b>Signature:</b>
+
+```go
+func (om *OrderedMap[K, V]) Clear()
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run]()</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/maputil"
+)
+
+func main() {
+    om := maputil.NewOrderedMap[string, int]()
+
+    om.Set("a", 1)
+    om.Set("b", 2)
+    om.Set("c", 3)
+
+    om.Clear()
+
+    fmt.Println(om.Keys())
+
+    // Output:
+    // []
+}
+```
+
+### <span id="OrderedMap_Front">OrderedMap_Front</span>
+
+<p>Returns the first key-value pair.</p>
+
+<b>Signature:</b>
+
+```go
+func (om *OrderedMap[K, V]) Front() (struct {
+    Key   K
+    Value V
+}, bool)
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run]()</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/maputil"
+)
+
+func main() {
+    om := maputil.NewOrderedMap[string, int]()
+
+    om.Set("a", 1)
+    om.Set("b", 2)
+    om.Set("c", 3)
+
+    frontElement, ok := om.Front()
+    fmt.Println(frontElement)
+    fmt.Println(ok)
+
+    // Output:
+    // {a 1}
+    // true
+}
+```
+
+### <span id="OrderedMap_Back">OrderedMap_Back</span>
+
+<p>Returns the last key-value pair.</p>
+
+<b>Signature:</b>
+
+```go
+func (om *OrderedMap[K, V]) Back() (struct {
+    Key   K
+    Value V
+}, bool)
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run]()</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/maputil"
+)
+
+func main() {
+    om := maputil.NewOrderedMap[string, int]()
+
+    om.Set("a", 1)
+    om.Set("b", 2)
+    om.Set("c", 3)
+
+    frontElement, ok := om.Front()
+    fmt.Println(frontElement)
+    fmt.Println(ok)
+
+    // Output:
+    // {a 1}
+    // true
+}
+```
+
+### <span id="OrderedMap_Range">OrderedMap_Range</span>
+
+<p>Calls the given function for each key-value pair.</p>
+
+<b>Signature:</b>
+
+```go
+func (om *OrderedMap[K, V]) Range(iteratee func(key K, value V) bool)
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run]()</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/maputil"
+)
+
+func main() {
+    om := maputil.NewOrderedMap[string, int]()
+
+    om.Set("a", 1)
+    om.Set("b", 2)
+    om.Set("c", 3)
+
+    om.Range(func(key string, value int) bool {
+        fmt.Println(key, value)
+        return true
+    })
+
+    // Output:
+    // a 1
+    // b 2
+    // c 3
+}
+```
+
+### <span id="OrderedMap_Keys">OrderedMap_Keys</span>
+
+<p>Returns the keys in order.</p>
+
+<b>Signature:</b>
+
+```go
+func (om *OrderedMap[K, V]) Keys() []K
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run]()</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/maputil"
+)
+
+func main() {
+    om := maputil.NewOrderedMap[string, int]()
+
+    om.Set("a", 1)
+    om.Set("b", 2)
+    om.Set("c", 3)
+
+    keys := om.Keys()
+
+    fmt.Println(keys)
+
+    // Output:
+    // [a b c]
+}
+```
+
+### <span id="OrderedMap_Values">OrderedMap_Values</span>
+
+<p>Returns the values in order.</p>
+
+<b>Signature:</b>
+
+```go
+func (om *OrderedMap[K, V]) Values() []V
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run]()</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/maputil"
+)
+
+func main() {
+    om := maputil.NewOrderedMap[string, int]()
+
+    om.Set("a", 1)
+    om.Set("b", 2)
+    om.Set("c", 3)
+
+    values := om.Values()
+
+    fmt.Println(values)
+
+    // Output:
+    // [1 2 3]
+}
+```
+
+### <span id="OrderedMap_Elements">OrderedMap_Elements</span>
+
+<p>Returns the key-value pairs in order.</p>
+
+<b>Signature:</b>
+
+```go
+func (om *OrderedMap[K, V]) Elements() []struct
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run]()</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/maputil"
+)
+
+func main() {
+    om := maputil.NewOrderedMap[string, int]()
+
+    om.Set("a", 1)
+    om.Set("b", 2)
+    om.Set("c", 3)
+
+    elements := om.Elements()
+
+    fmt.Println(elements)
+
+    // Output:
+    // [{a 1} {b 2} {c 3}]
+}
+```
+
+### <span id="OrderedMap_Len">OrderedMap_Len</span>
+
+<p>Returns the number of key-value pairs.</p>
+
+<b>Signature:</b>
+
+```go
+func (om *OrderedMap[K, V]) Len() int
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run]()</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/maputil"
+)
+
+func main() {
+    om := maputil.NewOrderedMap[string, int]()
+
+    om.Set("a", 1)
+    om.Set("b", 2)
+    om.Set("c", 3)
+
+    om.Len()
+
+    fmt.Println(om.Len())
+
+    // Output:
+    // 3
+}
+```
+
+### <span id="OrderedMap_Contains">OrderedMap_Contains</span>
+
+<p>Returns true if the given key exists.</p>
+
+<b>Signature:</b>
+
+```go
+func (om *OrderedMap[K, V]) Contains(key K) bool
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run]()</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/maputil"
+)
+
+func main() {
+    om := maputil.NewOrderedMap[string, int]()
+
+    om.Set("a", 1)
+    om.Set("b", 2)
+    om.Set("c", 3)
+
+    result1 := om.Contains("a")
+    result2 := om.Contains("d")
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+
+    // Output:
+    // true
+    // false
+}
+```
+
+### <span id="OrderedMap_Iter">OrderedMap_Iter</span>
+
+<p>Returns a channel that yields key-value pairs in order.</p>
+
+<b>Signature:</b>
+
+```go
+func (om *OrderedMap[K, V]) Iter() <-chan struct {
+    Key   K
+    Value V
+}
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run]()</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/maputil"
+)
+
+func main() {
+    om := maputil.NewOrderedMap[string, int]()
+
+    om.Set("a", 1)
+    om.Set("b", 2)
+    om.Set("c", 3)
+
+    for elem := range om.Iter() {
+        fmt.Println(elem)
+    }
+
+    // Output:
+    // {a 1}
+    // {b 2}
+    // {c 3}
+}
+```
+
+### <span id="OrderedMap_ReverseIter">OrderedMap_ReverseIter</span>
+
+<p>Returns a channel that yields key-value pairs in reverse order.</p>
+
+<b>Signature:</b>
+
+```go
+func (om *OrderedMap[K, V]) ReverseIter() <-chan struct {
+    Key   K
+    Value V
+}
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run]()</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/maputil"
+)
+
+func main() {
+    om := maputil.NewOrderedMap[string, int]()
+
+    om.Set("a", 1)
+    om.Set("b", 2)
+    om.Set("c", 3)
+
+    for elem := range om.ReverseIter() {
+        fmt.Println(elem)
+    }
+
+    // Output:
+    // {c 3}
+    // {b 2}
+    // {a 1}
+}
+```
+
+### <span id="OrderedMap_SortByKey">OrderedMap_SortByKey</span>
+
+<p>Sorts the map by key given less function.</p>
+
+<b>Signature:</b>
+
+```go
+func (om *OrderedMap[K, V]) SortByKey(less func(a, b K) bool)
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run]()</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/maputil"
+)
+
+func main() {
+    om := maputil.NewOrderedMap[string, int]()
+
+    om.Set(3, "c")
+    om.Set(1, "a")
+    om.Set(4, "d")
+    om.Set(2, "b")
+
+    om.SortByKey(func(a, b int) bool {
+        return a < b
+    })
+
+    fmt.Println(om.Elements())
+
+    // Output:
+    // [{1 a} {2 b} {3 c} {4 d}]
+}
+```
+
+### <span id="OrderedMap_MarshalJSON">OrderedMap_MarshalJSON</span>
+
+<p>Implements the json.Marshaler interface.</p>
+
+<b>Signature:</b>
+
+```go
+func (om *OrderedMap[K, V]) MarshalJSON() ([]byte, error)
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run]()</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/maputil"
+)
+
+func main() {
+    om := maputil.NewOrderedMap[string, int]()
+
+    om.Set(3, "c")
+    om.Set(1, "a")
+    om.Set(4, "d")
+    om.Set(2, "b")
+
+    b, _ := om.MarshalJSON()
+
+    fmt.Println(string(b))
+
+    // Output:
+    // {"a":1,"b":2,"c":3}
+}
+```
+
+### <span id="OrderedMap_UnmarshalJSON">OrderedMap_UnmarshalJSON</span>
+
+<p>Implements the json.Unmarshaler interface.</p>
+
+<b>Signature:</b>
+
+```go
+func (om *OrderedMap[K, V]) UnmarshalJSON(data []byte) error
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run]()</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/maputil"
+)
+
+func main() {
+    om := maputil.NewOrderedMap[string, int]()
+
+    data := []byte(`{"a":1,"b":2,"c":3}`)
+
+    om.UnmarshalJSON(data)
+
+    fmt.Println(om.Elements())
+
+    // Output:
 }
 ```
 
