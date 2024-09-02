@@ -242,7 +242,8 @@ func main() {
 
 ### <span id="ExecCommand">ExecCommand</span>
 
-<p>Execute shell command, return the stdout and stderr string of command, and error if error occur. param `command` is a complete command string, like, ls -a (linux), dir(windows), ping 127.0.0.1. In linux, use /bin/bash -c to execute command, In windows, use powershell.exe to execute command.</p>
+<p>Execute shell command, return the stdout and stderr string of command, and error if error occur. param `command` is a complete command string, like, ls -a (linux), dir(windows), ping 127.0.0.1. In linux, use /bin/bash -c to execute command, In windows, use powershell.exe to execute command.
+The second parameter of the function is the cmd option control parameter. The type is func(*exec.Cmd). You can set the cmd attribute through this parameter.</p>
 
 <b>Signature:</b>
 
@@ -263,7 +264,9 @@ import (
 
 func main() {
     // linux or mac
-    stdout, stderr, err := system.ExecCommand("ls")
+    stdout, stderr, err := system.ExecCommand("ls", func(cmd *exec.Cmd) {
+        cmd.Dir = "/tmp"
+    })
     fmt.Println("std out: ", stdout)
     fmt.Println("std err: ", stderr)
     assert.Equal("", stderr)
