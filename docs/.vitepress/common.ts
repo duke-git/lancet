@@ -84,7 +84,7 @@ export const commonConfig = defineConfig({
 
         footer: {
             copyright: 'Copyright © 2023-present Duke Du',
-            message: '备案号: 京ICP备2023022770号',
+            message: '<a href="https://beian.miit.gov.cn/" target="_blank">京ICP备2023022770号-1</a>',
         },
     },
 })
