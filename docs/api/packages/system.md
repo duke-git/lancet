@@ -241,7 +241,8 @@ func main() {
 
 ### <span id="ExecCommand">ExecCommand</span>
 
-<p>执行shell命令，返回命令的stdout和stderr字符串，如果出现错误，则返回错误。参数`command`是一个完整的命令字符串，如ls-a（linux），dir（windows），ping 127.0.0.1。在linux中，使用/bin/bash-c执行命令，在windows中，使用powershell.exe执行命令。</p>
+<p>执行shell命令，返回命令的stdout和stderr字符串，如果出现错误，则返回错误。参数`command`是一个完整的命令字符串，如ls-a（linux），dir（windows），ping 127.0.0.1。在linux中，使用/bin/bash-c执行命令，在windows中，使用powershell.exe执行命令。
+函数的第二个参数是cmd选项控制参数，类型是func(*exec.Cmd)，可以通过这个参数设置cmd属性。</p>
 
 <b>函数签名:</b>
 
@@ -262,7 +263,9 @@ import (
 
 func main() {
     // linux or mac
-    stdout, stderr, err := system.ExecCommand("ls")
+    stdout, stderr, err := system.ExecCommand("ls", func(cmd *exec.Cmd) {
+        cmd.Dir = "/tmp"
+    })
     fmt.Println("std out: ", stdout)
     fmt.Println("std err: ", stderr)
     assert.Equal("", stderr)

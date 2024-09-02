@@ -453,3 +453,23 @@ func GetOrSet[K comparable, V any](m map[K]V, key K, value V) V {
 
 	return value
 }
+
+// SortByKey sorts the map by its keys and returns a new map with sorted keys.
+// Play: todo
+func SortByKey[K constraints.Ordered, V any](m map[K]V, less func(a, b K) bool) (sortedKeysMap map[K]V) {
+	keys := make([]K, 0, len(m))
+	for k := range m {
+		keys = append(keys, k)
+	}
+
+	sort.Slice(keys, func(i, j int) bool {
+		return less(keys[i], keys[j])
+	})
+
+	sortedKeysMap = make(map[K]V, len(m))
+	for _, k := range keys {
+		sortedKeysMap[k] = m[k]
+	}
+
+	return
+}

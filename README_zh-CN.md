@@ -1200,9 +1200,6 @@ import "github.com/duke-git/lancet/v2/retry"
 -   **<big>RetryFunc</big>** : 重试执行的函数。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/retry.md#RetryFunc)]
     [[play](https://go.dev/play/p/nk2XRmagfVF)]
--   **<big>RetryDuration</big>** : 设置重试间隔时间，默认 3 秒。
-    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/retry.md#RetryDuration)]
-    [[play](https://go.dev/play/p/nk2XRmagfVF)]
 -   **<big>RetryTimes</big>** : 设置重试次数，默认 5。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/retry.md#RetryTimes)]
     [[play](https://go.dev/play/p/ssfVeU2SwLO)]

@@ -707,3 +707,47 @@ func TestGetOrSet(t *testing.T) {
 	assert.Equal("a", result1)
 	assert.Equal("b", result2)
 }
+
+func TestSortByKey(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestSortByKey")
+
+	m1 := map[int]string{
+		3: "c",
+		1: "a",
+		4: "d",
+		2: "b",
+	}
+	expected1 := map[int]string{
+		1: "a",
+		2: "b",
+		3: "c",
+		4: "d",
+	}
+
+	result1 := SortByKey(m1, func(a, b int) bool {
+		return a < b
+	})
+
+	assert.Equal(expected1, result1)
+
+	m2 := map[string]int{
+		"c": 3,
+		"a": 1,
+		"d": 4,
+		"b": 2,
+	}
+	expected2 := map[string]int{
+		"d": 4,
+		"c": 3,
+		"b": 2,
+		"a": 1,
+	}
+
+	result2 := SortByKey(m2, func(a, b string) bool {
+		return a > b
+	})
+
+	assert.Equal(expected2, result2)
+}
