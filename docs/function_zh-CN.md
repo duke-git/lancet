@@ -27,7 +27,9 @@ import (
 -   [Before](#Before)
 -   [Curry](#Curry)
 -   [Compose](#Compose)
--   [Debounced](#Debounced)
+-   [Debounce](#Debounce)
+-   [Debounced<sup>deprecated</sup>](#Debounced)
+-   [Throttle](#Throttle)
 -   [Delay](#Delay)
 -   [Pipeline](#Pipeline)
 -   [Schedule](#Schedule)
@@ -197,6 +199,53 @@ func main() {
 }
 ```
 
+### <span id="Debounce">Debounce</span>
+
+<p>创建一个函数的去抖动版本。该去抖动函数仅在上次调用后的指定延迟时间过去之后才会调用原始函数。支持取消去抖动。</p>
+
+<b>函数签名:</b>
+
+```go
+func Debounce(fn func(), delay time.Duration) (debouncedFn func(), cancelFn func())
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/function"
+)
+
+func main() {
+    callCount := 0
+    fn := func() {
+        callCount++
+    }
+
+    debouncedFn, _ := function.Debounce(fn, 500*time.Millisecond)
+
+    for i := 0; i < 10; i++ {
+        debouncedFn()
+        time.Sleep(50 * time.Millisecond)
+    }
+
+    time.Sleep(1 * time.Second)
+    fmt.Println(callCount)
+
+    debouncedFn()
+
+    time.Sleep(1 * time.Second)
+    fmt.Println(callCount)
+
+    // Output:
+    // 1
+    // 2
+}
+```
+
 ### <span id="Debounced">Debounced</span>
 
 <p>创建一个 debounced 函数，该函数延迟调用 fn 直到自上次调用 debounced 函数后等待持续时间过去。</p>
@@ -235,6 +284,48 @@ func main() {
     function.debouncedAdd()
     time.Sleep(100 * time.Millisecond)
     fmt.Println(count) //2
+}
+```
+
+### <span id="Throttle">Throttle</span>
+
+<p>创建一个函数的节流版本。返回的函数保证在每个时间间隔内最多只会被调用一次。</p>
+
+<b>函数签名:</b>
+
+```go
+func Throttle(fn func(), interval time.Duration) func()
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/function"
+)
+
+func main() {
+    callCount := 0
+
+    fn := func() {
+        callCount++
+    }
+
+    throttledFn := function.Throttle(fn, 1*time.Second)
+
+    for i := 0; i < 5; i++ {
+        throttledFn()
+    }
+
+    time.Sleep(1 * time.Second)
+
+    fmt.Println(callCount)
+
+    // Output:
+    // 1
 }
 ```
 

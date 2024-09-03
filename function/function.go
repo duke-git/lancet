@@ -6,6 +6,7 @@ package function
 
 import (
 	"reflect"
+	"sync"
 	"time"
 )
 
@@ -75,6 +76,7 @@ func Delay(delay time.Duration, fn interface{}, args ...interface{}) {
 }
 
 // Debounced creates a debounced function that delays invoking fn until after wait duration have elapsed since the last time the debounced function was invoked.
+// Deprecated: Use Debounce function instead.
 func Debounced(fn func(), duration time.Duration) func() {
 	// Catch programming error while constructing the closure
 	mustBeFunction(fn)
@@ -92,6 +94,74 @@ func Debounced(fn func(), duration time.Duration) func() {
 	}()
 
 	return func() { timer.Reset(duration) }
+}
+
+// Debounce creates a debounced version of the provided function.
+func Debounce(fn func(), delay time.Duration) (debouncedFn func(), cancelFn func()) {
+	var (
+		timer *time.Timer
+		mu    sync.Mutex
+	)
+
+	debouncedFn = func() {
+		mu.Lock()
+		defer mu.Unlock()
+
+		if timer != nil {
+			timer.Stop()
+		}
+
+		timer = time.AfterFunc(delay, func() {
+			fn()
+		})
+	}
+
+	cancelFn = func() {
+		mu.Lock()
+		defer mu.Unlock()
+
+		if timer != nil {
+			timer.Stop()
+		}
+	}
+
+	return debouncedFn, cancelFn
+}
+
+// Throttle creates a throttled version of the provided function.
+// The returned function guarantees that it will only be invoked at most once per interval.
+func Throttle(fn func(), interval time.Duration) func() {
+	var (
+		timer   *time.Timer
+		lastRun time.Time
+		mu      sync.Mutex
+	)
+
+	return func() {
+		mu.Lock()
+		defer mu.Unlock()
+
+		now := time.Now()
+		if now.Sub(lastRun) >= interval {
+			fn()
+			lastRun = now
+			if timer != nil {
+				timer.Stop()
+				timer = nil
+			}
+		} else if timer == nil {
+			delay := interval - now.Sub(lastRun)
+
+			timer = time.AfterFunc(delay, func() {
+				mu.Lock()
+				defer mu.Unlock()
+
+				fn()
+				lastRun = time.Now()
+				timer = nil
+			})
+		}
+	}
 }
 
 // Schedule invoke function every duration time, util close the returned bool chan

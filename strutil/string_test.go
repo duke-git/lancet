@@ -505,3 +505,79 @@ func TestSubInBetween(t *testing.T) {
 	assert.Equal("", SubInBetween(str, "a", ""))
 	assert.Equal("", SubInBetween(str, "a", "f"))
 }
+
+func TestConcat(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestConcat")
+
+	assert.Equal("", Concat(0))
+	assert.Equal("a", Concat(1, "a"))
+	assert.Equal("ab", Concat(2, "a", "b"))
+	assert.Equal("abc", Concat(3, "a", "b", "c"))
+	assert.Equal("abc", Concat(3, "a", "", "b", "c", ""))
+	assert.Equal("你好，世界！", Concat(0, "你好", "，", "", "世界！", ""))
+	assert.Equal("Hello World!", Concat(0, "Hello", " Wo", "r", "ld!", ""))
+}
+
+func TestEllipsis(t *testing.T) {
+	t.Parallel()
+	assert := internal.NewAssert(t, "TestEllipsis")
+
+	tests := []struct {
+		input    string
+		length   int
+		expected string
+	}{
+		{"", 0, ""},
+		{"hello world", 0, ""},
+		{"hello world", -1, ""},
+		{"hello world", 5, "hello..."},
+		{"hello world", 11, "hello world"},
+		{"你好，世界!", 2, "你好..."},
+		{"😀😃😄😁😆", 3, "😀😃😄..."},
+		{"This is a test.", 10, "This is a ..."},
+	}
+
+	for _, tt := range tests {
+		assert.Equal(tt.expected, Ellipsis(tt.input, tt.length))
+	}
+}
+
+func TestShuffle(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestShuffle")
+
+	assert.Equal("", Shuffle(""))
+	assert.Equal("a", Shuffle("a"))
+
+	str := "hello"
+	shuffledStr := Shuffle(str)
+	assert.Equal(5, len(shuffledStr))
+}
+
+func TestRotate(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestRotate")
+
+	tests := []struct {
+		input    string
+		shift    int
+		expected string
+	}{
+		{"", 1, ""},
+		{"a", 0, "a"},
+		{"a", 1, "a"},
+		{"a", -1, "a"},
+
+		{"Hello", -2, "lloHe"},
+		{"Hello", 1, "oHell"},
+		{"Hello, world!", 3, "ld!Hello, wor"},
+	}
+
+	for _, tt := range tests {
+		assert.Equal(tt.expected, Rotate(tt.input, tt.shift))
+	}
+}

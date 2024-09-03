@@ -27,7 +27,9 @@ import (
 -   [Before](#Before)
 -   [Curry](#Curry)
 -   [Compose](#Compose)
--   [Debounced](#Debounced)
+-   [Debounce](#Debounce)
+-   [Debounced<sup>deprecated</sup>](#Debounced)
+-   [Throttle](#Throttle)
 -   [Delay](#Delay)
 -   [Pipeline](#Pipeline)
 -   [Schedule](#Schedule)
@@ -199,7 +201,7 @@ func main() {
 
 ### <span id="Debounced">Debounced</span>
 
-<p>Creates a debounced function that delays invoking fn until after wait duration have elapsed since the last time the debounced function was invoked.</p>
+<p>Creates a debounced function that delays invoking fn until after wait duration have elapsed since the last time the debounced function was invoked. This function is deprecated. use Debounce instead.</p>
 
 <b>Signature:</b>
 
@@ -238,6 +240,53 @@ func main() {
 }
 ```
 
+### <span id="Debounce">Debounce</span>
+
+<p>Creates a debounced version of the provided function. The debounced function will only invoke the original function after the specified delay has passed since the last time it was invoked. It also supports canceling the debounce.</p>
+
+<b>Signature:</b>
+
+```go
+func Debounce(fn func(), delay time.Duration) (debouncedFn func(), cancelFn func())
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/function"
+)
+
+func main() {
+    callCount := 0
+    fn := func() {
+        callCount++
+    }
+
+    debouncedFn, _ := function.Debounce(fn, 500*time.Millisecond)
+
+    for i := 0; i < 10; i++ {
+        debouncedFn()
+        time.Sleep(50 * time.Millisecond)
+    }
+
+    time.Sleep(1 * time.Second)
+    fmt.Println(callCount)
+
+    debouncedFn()
+
+    time.Sleep(1 * time.Second)
+    fmt.Println(callCount)
+
+    // Output:
+    // 1
+    // 2
+}
+```
+
 ### <span id="Delay">Delay</span>
 
 <p>Invoke function after delayed time.</p>
@@ -263,6 +312,48 @@ func main() {
         fmt.Println(count) //test delay
     }
     function.Delay(2*time.Second, print, "test delay")
+}
+```
+
+### <span id="Throttle">Throttle</span>
+
+<p>Creates a throttled version of the provided function. The returned function guarantees that it will only be invoked at most once per interval.</p>
+
+<b>Signature:</b>
+
+```go
+func Throttle(fn func(), interval time.Duration) func()
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/function"
+)
+
+func main() {
+    callCount := 0
+
+    fn := func() {
+        callCount++
+    }
+
+    throttledFn := function.Throttle(fn, 1*time.Second)
+
+    for i := 0; i < 5; i++ {
+        throttledFn()
+    }
+
+    time.Sleep(1 * time.Second)
+
+    fmt.Println(callCount)
+
+    // Output:
+    // 1
 }
 ```
 
