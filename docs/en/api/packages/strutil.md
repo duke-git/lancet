@@ -63,6 +63,7 @@ import (
 -   [SubInBetween](#SubInBetween)
 -   [HammingDistance](#HammingDistance)
 -   [Concat](#Concat)
+-   [Ellipsis](#Ellipsis)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -1100,10 +1101,10 @@ import (
 
 func main() {
     result1 := strutil.IsNotBlank("")
-    result2 := strutil.IsNotBlank("	")
+    result2 := strutil.IsNotBlank("    ")
     result3 := strutil.IsNotBlank("\t\v\f\n")
     result4 := strutil.IsNotBlank(" 中文")
-    result5 := strutil.IsNotBlank(" 	world	")
+    result5 := strutil.IsNotBlank("    world    ")
     
     fmt.Println(result1)
     fmt.Println(result2)
@@ -1553,17 +1554,50 @@ import (
 )
 
 func main() {
+    result1 := strutil.Concat(12, "Hello", " ", "World", "!")
+    result2 := strutil.Concat(11, "Go", " ", "Language")
+    result3 := strutil.Concat(0, "An apple a ", "day，", "keeps the", " doctor away")
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
 
- 	result1 := strutil.Concat(12, "Hello", " ", "World", "!")
-	result2 := strutil.Concat(11, "Go", " ", "Language")
-	result3 := strutil.Concat(0, "An apple a ", "day，", "keeps the", " doctor away")
-	fmt.Println(result1)
-	fmt.Println(result2)
-	fmt.Println(result3)
+    // Output:
+    // Hello World!
+    // Go Language
+    // An apple a day，keeps the doctor away
+}
+```
 
-	// Output:
-	// Hello World!
-	// Go Language
-	// An apple a day，keeps the doctor away
+### <span id="Ellipsis">Ellipsis</span>
+
+<p>Truncates a string to a specified length and appends an ellipsis.</p>
+
+<b>Signature:</b>
+
+```go
+func Ellipsis(str string, length int) string
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run]()</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    result1 := strutil.Ellipsis("hello world", 5)
+    result2 := strutil.Ellipsis("你好，世界!", 2)
+    result3 := strutil.Ellipsis("😀😃😄😁😆", 3)
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+
+    // Output:
+    // hello...
+    // 你好...
+    // 😀😃😄...
 }
 ```

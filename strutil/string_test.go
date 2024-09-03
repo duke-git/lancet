@@ -620,3 +620,27 @@ func TestConcat(t *testing.T) {
 	assert.Equal("你好，世界！", Concat(0, "你好", "，", "", "世界！", ""))
 	assert.Equal("Hello World!", Concat(0, "Hello", " Wo", "r", "ld!", ""))
 }
+
+func TestEllipsis(t *testing.T) {
+	t.Parallel()
+	assert := internal.NewAssert(t, "TestEllipsis")
+
+	tests := []struct {
+		input  string
+		length int
+		want   string
+	}{
+		{"", 0, ""},
+		{"hello world", 0, ""},
+		{"hello world", -1, ""},
+		{"hello world", 5, "hello..."},
+		{"hello world", 11, "hello world"},
+		{"你好，世界!", 2, "你好..."},
+		{"😀😃😄😁😆", 3, "😀😃😄..."},
+		{"This is a test.", 10, "This is a ..."},
+	}
+
+	for _, tt := range tests {
+		assert.Equal(tt.want, Ellipsis(tt.input, tt.length))
+	}
+}

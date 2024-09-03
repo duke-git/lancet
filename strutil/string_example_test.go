@@ -694,3 +694,18 @@ func ExampleConcat() {
 	// Go Language
 	// An apple a day，keeps the doctor away
 }
+
+func ExampleEllipsis() {
+	result1 := Ellipsis("hello world", 5)
+	result2 := Ellipsis("你好，世界!", 2)
+	result3 := Ellipsis("😀😃😄😁😆", 3)
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+
+	// Output:
+	// hello...
+	// 你好...
+	// 😀😃😄...
+}

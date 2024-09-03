@@ -621,6 +621,8 @@ func HammingDistance(a, b string) (int, error) {
 // Concat uses the strings.Builder to concatenate the input strings.
 //   - `length` is the expected length of the concatenated string.
 //   - if you are unsure about the length of the string to be concatenated, please pass 0 or a negative number.
+//
+// Play: todo
 func Concat(length int, str ...string) string {
 	if len(str) == 0 {
 		return ""
@@ -637,4 +639,22 @@ func Concat(length int, str ...string) string {
 		sb.WriteString(s)
 	}
 	return sb.String()
+}
+
+// Ellipsis truncates a string to a specified length and appends an ellipsis.
+// Play: todo
+func Ellipsis(str string, length int) string {
+	str = strings.TrimSpace(str)
+
+	if length <= 0 {
+		return ""
+	}
+
+	runes := []rune(str)
+
+	if len(runes) <= length {
+		return str
+	}
+
+	return string(runes[:length]) + "..."
 }

@@ -63,6 +63,7 @@ import (
 -   [SubInBetween](#SubInBetween)
 -   [HammingDistance](#HammingDistance)
 -   [Concat](#Concat)
+-   [Ellipsis](#Ellipsis)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -1562,5 +1563,39 @@ func main() {
 	// Hello World!
 	// Go Language
 	// An apple a day，keeps the doctor away
+}
+```
+
+### <span id="Ellipsis">Ellipsis</span>
+
+<p>将字符串截断到指定长度，并在末尾添加省略号。</p>
+
+<b>函数签名:</b>
+
+```go
+func Ellipsis(str string, length int) string
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[Run]()</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    result1 := strutil.Ellipsis("hello world", 5)
+    result2 := strutil.Ellipsis("你好，世界!", 2)
+    result3 := strutil.Ellipsis("😀😃😄😁😆", 3)
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+
+    // Output:
+    // hello...
+    // 你好...
+    // 😀😃😄...
 }
 ```
