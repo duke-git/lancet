@@ -64,6 +64,7 @@ import (
 -   [HammingDistance](#HammingDistance)
 -   [Concat](#Concat)
 -   [Ellipsis](#Ellipsis)
+-   [Shuffle](#Shuffle)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -1599,5 +1600,29 @@ func main() {
     // hello...
     // 你好...
     // 😀😃😄...
+}
+```
+
+### <span id="Shuffle">Shuffle</span>
+
+<p>Shuffle the order of characters of given string.</p>
+
+<b>Signature:</b>
+
+```go
+func Shuffle(str string) string
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run]()</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    result := strutil.Shuffle("hello")
+    fmt.Println(result)  //olelh (random order)
 }
 ```

@@ -64,6 +64,7 @@ import (
 -   [HammingDistance](#HammingDistance)
 -   [Concat](#Concat)
 -   [Ellipsis](#Ellipsis)
+-   [Shuffle](#Shuffle)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -1576,7 +1577,7 @@ func main() {
 func Ellipsis(str string, length int) string
 ```
 
-<b>示例:<span style="float:right;display:inline-block;">[Run]()</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行]()</span></b>
 
 ```go
 import (
@@ -1597,5 +1598,29 @@ func main() {
     // hello...
     // 你好...
     // 😀😃😄...
+}
+```
+
+### <span id="Shuffle">Shuffle</span>
+
+<p>打乱给定字符串中的字符顺序。</p>
+
+<b>函数签名:</b>
+
+```go
+func Shuffle(str string) string
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行]()</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    result := strutil.Shuffle("hello")
+    fmt.Println(result)  //olelh (random order)
 }
 ```

@@ -728,3 +728,16 @@ func TestEllipsis(t *testing.T) {
 		assert.Equal(tt.want, Ellipsis(tt.input, tt.length))
 	}
 }
+
+func TestShuffle(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestShuffle")
+
+	assert.Equal("", Shuffle(""))
+	assert.Equal("a", Shuffle("a"))
+
+	str := "hello"
+	shuffledStr := Shuffle(str)
+	assert.Equal(5, len(shuffledStr))
+}

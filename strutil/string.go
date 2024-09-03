@@ -5,12 +5,17 @@ package strutil
 
 import (
 	"errors"
+	"math/rand"
 	"regexp"
 	"strings"
+	"time"
 	"unicode"
 	"unicode/utf8"
 	"unsafe"
 )
+
+// used in `Shuffle` function
+var rng = rand.New(rand.NewSource(int64(time.Now().UnixNano())))
 
 // CamelCase coverts string to camelCase string. Non letters and numbers will be ignored.
 // Play: https://go.dev/play/p/9eXP3tn2tUy
@@ -657,4 +662,17 @@ func Ellipsis(str string, length int) string {
 	}
 
 	return string(runes[:length]) + "..."
+}
+
+// Shuffle the order of characters of given string.
+// Play: todo
+func Shuffle(str string) string {
+	runes := []rune(str)
+
+	for i := len(runes) - 1; i > 0; i-- {
+		j := rng.Intn(i + 1)
+		runes[i], runes[j] = runes[j], runes[i]
+	}
+
+	return string(runes)
 }
