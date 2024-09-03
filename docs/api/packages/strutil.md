@@ -1628,7 +1628,7 @@ func main() {
 
 ### <span id="Rotate">Rotate</span>
 
-<p>打乱给定字符串中的字符顺序。</p>
+<p>按指定的字符数旋转字符串。</p>
 
 <b>函数签名:</b>
 
