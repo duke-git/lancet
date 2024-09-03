@@ -676,3 +676,31 @@ func Shuffle(str string) string {
 
 	return string(runes)
 }
+
+// Rotate rotates the string by the specified number of characters.
+// Play: todo
+func Rotate(str string, shift int) string {
+	if shift == 0 {
+		return str
+	}
+
+	runes := []rune(str)
+	length := len(runes)
+	if length == 0 {
+		return str
+	}
+
+	shift = shift % length
+
+	if shift < 0 {
+		shift = length + shift
+	}
+
+	var sb strings.Builder
+	sb.Grow(length)
+
+	sb.WriteString(string(runes[length-shift:]))
+	sb.WriteString(string(runes[:length-shift]))
+
+	return sb.String()
+}

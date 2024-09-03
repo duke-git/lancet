@@ -65,6 +65,7 @@ import (
 -   [Concat](#Concat)
 -   [Ellipsis](#Ellipsis)
 -   [Shuffle](#Shuffle)
+-   [Rotate](#Rotate)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -1553,17 +1554,17 @@ import (
 
 func main() {
 
- 	result1 := strutil.Concat(12, "Hello", " ", "World", "!")
-	result2 := strutil.Concat(11, "Go", " ", "Language")
-	result3 := strutil.Concat(0, "An apple a ", "day，", "keeps the", " doctor away")
-	fmt.Println(result1)
-	fmt.Println(result2)
-	fmt.Println(result3)
+     result1 := strutil.Concat(12, "Hello", " ", "World", "!")
+    result2 := strutil.Concat(11, "Go", " ", "Language")
+    result3 := strutil.Concat(0, "An apple a ", "day，", "keeps the", " doctor away")
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
 
-	// Output:
-	// Hello World!
-	// Go Language
-	// An apple a day，keeps the doctor away
+    // Output:
+    // Hello World!
+    // Go Language
+    // An apple a day，keeps the doctor away
 }
 ```
 
@@ -1622,5 +1623,39 @@ import (
 func main() {
     result := strutil.Shuffle("hello")
     fmt.Println(result)  //olelh (random order)
+}
+```
+
+### <span id="Rotate">Rotate</span>
+
+<p>打乱给定字符串中的字符顺序。</p>
+
+<b>函数签名:</b>
+
+```go
+func Rotate(str string, shift int) string
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行]()</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    result1 := Rotate("Hello", 0)
+    result2 := Rotate("Hello", 1)
+    result3 := Rotate("Hello", 2)
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+
+    // Output:
+    // Hello
+    // oHell
+    // loHel
 }
 ```

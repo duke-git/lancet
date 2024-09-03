@@ -709,3 +709,18 @@ func ExampleEllipsis() {
 	// 你好...
 	// 😀😃😄...
 }
+
+func ExampleRotate() {
+	result1 := Rotate("Hello", 0)
+	result2 := Rotate("Hello", 1)
+	result3 := Rotate("Hello", 2)
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+
+	// Output:
+	// Hello
+	// oHell
+	// loHel
+}

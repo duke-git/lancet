@@ -65,6 +65,7 @@ import (
 -   [Concat](#Concat)
 -   [Ellipsis](#Ellipsis)
 -   [Shuffle](#Shuffle)
+-   [Rotate](#Rotate)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -1626,3 +1627,36 @@ func main() {
     fmt.Println(result)  //olelh (random order)
 }
 ```
+
+### <span id="Rotate">Rotate</span>
+
+<p>Rotates the string by the specified number of characters.</p>
+
+<b>Signature:</b>
+
+```go
+func Rotate(str string, shift int) string
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run]()</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    result1 := Rotate("Hello", 0)
+    result2 := Rotate("Hello", 1)
+    result3 := Rotate("Hello", 2)
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+
+    // Output:
+    // Hello
+    // oHell
+    // loHel
+}

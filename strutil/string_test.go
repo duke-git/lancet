@@ -710,9 +710,9 @@ func TestEllipsis(t *testing.T) {
 	assert := internal.NewAssert(t, "TestEllipsis")
 
 	tests := []struct {
-		input  string
-		length int
-		want   string
+		input    string
+		length   int
+		expected string
 	}{
 		{"", 0, ""},
 		{"hello world", 0, ""},
@@ -725,7 +725,7 @@ func TestEllipsis(t *testing.T) {
 	}
 
 	for _, tt := range tests {
-		assert.Equal(tt.want, Ellipsis(tt.input, tt.length))
+		assert.Equal(tt.expected, Ellipsis(tt.input, tt.length))
 	}
 }
 
@@ -740,4 +740,29 @@ func TestShuffle(t *testing.T) {
 	str := "hello"
 	shuffledStr := Shuffle(str)
 	assert.Equal(5, len(shuffledStr))
+}
+
+func TestRotate(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestRotate")
+
+	tests := []struct {
+		input    string
+		shift    int
+		expected string
+	}{
+		{"", 1, ""},
+		{"a", 0, "a"},
+		{"a", 1, "a"},
+		{"a", -1, "a"},
+
+		{"Hello", -2, "lloHe"},
+		{"Hello", 1, "oHell"},
+		{"Hello, world!", 3, "ld!Hello, wor"},
+	}
+
+	for _, tt := range tests {
+		assert.Equal(tt.expected, Rotate(tt.input, tt.shift))
+	}
 }
