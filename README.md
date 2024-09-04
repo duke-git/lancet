@@ -276,6 +276,8 @@ import "github.com/duke-git/lancet/function"
 -   [Curry](https://github.com/duke-git/lancet/blob/v1/docs/function.md#Curry)
 -   [Compose](https://github.com/duke-git/lancet/blob/v1/docs/function.md#Compose)
 -   [Debounced](https://github.com/duke-git/lancet/blob/v1/docs/function.md#Debounced)
+-   [Debounce](https://github.com/duke-git/lancet/blob/v1/docs/function.md#Debounce)
+-   [Throttle](https://github.com/duke-git/lancet/blob/v1/docs/function.md#Throttle)
 -   [Delay](https://github.com/duke-git/lancet/blob/v1/docs/function.md#Delay)
 -   [Pipeline](https://github.com/duke-git/lancet/blob/v1/docs/function.md#Pipeline)
 -   [Schedule](https://github.com/duke-git/lancet/blob/v1/docs/function.md#Schedule)
@@ -346,9 +348,15 @@ import "github.com/duke-git/lancet/random"
 
 #### Function list:
 
+-   [RandBool](https://github.com/duke-git/lancet/blob/v1/docs/random.md#RandBool)
+-   [RandBoolSlice](https://github.com/duke-git/lancet/blob/v1/docs/random.md#RandBoolSlice)
 -   [RandBytes](https://github.com/duke-git/lancet/blob/v1/docs/random.md#RandBytes)
 -   [RandInt](https://github.com/duke-git/lancet/blob/v1/docs/random.md#RandInt)
+-   [RandIntSlice](https://github.com/duke-git/lancet/blob/v1/docs/random.md#RandIntSlice)
 -   [RandString](https://github.com/duke-git/lancet/blob/v1/docs/random.md#RandString)
+-   [RandStringSlice](https://github.com/duke-git/lancet/blob/v1/docs/random.md#RandStringSlice)
+-   [RandFloat](https://github.com/duke-git/lancet/blob/v1/docs/random.md#RandFloat)
+-   [RandFloats](https://github.com/duke-git/lancet/blob/v1/docs/random.md#RandFloats)
 -   [RandUpper](https://github.com/duke-git/lancet/blob/v1/docs/random.md#RandUpper)
 -   [RandLower](https://github.com/duke-git/lancet/blob/v1/docs/random.md#RandLower)
 -   [RandNumeral](https://github.com/duke-git/lancet/blob/v1/docs/random.md#RandNumeral)
@@ -466,6 +474,10 @@ import "github.com/duke-git/lancet/strutil"
 -   [RemoveWhiteSpace](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#RemoveWhiteSpace)
 -   [SubInBetween](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#SubInBetween)
 -   [HammingDistance](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#HammingDistance)
+-   [Concat](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#Concat)
+-   [Ellipsis](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#Ellipsis)
+-   [Shuffle](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#Shuffle)
+-   [Rotate](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#Rotate)
 
 
 ### 14. System package contain some functions about os, runtime, shell command.

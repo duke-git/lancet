@@ -279,6 +279,8 @@ import "github.com/duke-git/lancet/function"
 -   [Curry](https://github.com/duke-git/lancet/blob/v1/docs/function_zh-CN.md#Curry)
 -   [Compose](https://github.com/duke-git/lancet/blob/v1/docs/function_zh-CN.md#Compose)
 -   [Debounced](https://github.com/duke-git/lancet/blob/v1/docs/function_zh-CN.md#Debounced)
+-   [Debounce](https://github.com/duke-git/lancet/blob/v1/docs/function_zh-CN.md#Debounce)
+-   [Throttle](https://github.com/duke-git/lancet/blob/v1/docs/function_zh-CN.md#Throttle)
 -   [Delay](https://github.com/duke-git/lancet/blob/v1/docs/function_zh-CN.md#Delay)
 -   [Pipeline](https://github.com/duke-git/lancet/blob/v1/docs/function_zh-CN.md#Pipeline)
 -   [Schedule](https://github.com/duke-git/lancet/blob/v1/docs/function_zh-CN.md#Schedule)
@@ -348,9 +350,15 @@ import "github.com/duke-git/lancet/random"
 
 #### 函数列表:
 
+-   [RandBool](https://github.com/duke-git/lancet/blob/v1/docs/random_zh-CN.md#RandBool)
+-   [RandBoolSlice](https://github.com/duke-git/lancet/blob/v1/docs/random_zh-CN.md#RandBoolSlice)
 -   [RandBytes](https://github.com/duke-git/lancet/blob/v1/docs/random_zh-CN.md#RandBytes)
 -   [RandInt](https://github.com/duke-git/lancet/blob/v1/docs/random_zh-CN.md#RandInt)
+-   [RandIntSlice](https://github.com/duke-git/lancet/blob/v1/docs/random_zh-CN.md#RandIntSlice)
 -   [RandString](https://github.com/duke-git/lancet/blob/v1/docs/random_zh-CN.md#RandString)
+-   [RandStringSlice](https://github.com/duke-git/lancet/blob/v1/docs/random_zh-CN.md#RandStringSlice)
+-   [RandFloat](https://github.com/duke-git/lancet/blob/v1/docs/random_zh-CN.md#RandFloat)
+-   [RandFloats](https://github.com/duke-git/lancet/blob/v1/docs/random_zh-CN.md#RandFloats)
 -   [RandUpper](https://github.com/duke-git/lancet/blob/v1/docs/random_zh-CN.md#RandUpper)
 -   [RandLower](https://github.com/duke-git/lancet/blob/v1/docs/random_zh-CN.md#RandLower)
 -   [RandNumeral](https://github.com/duke-git/lancet/blob/v1/docs/random_zh-CN.md#RandNumeral)
@@ -468,6 +476,10 @@ import "github.com/duke-git/lancet/strutil"
 -   [RemoveWhiteSpace](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#RemoveWhiteSpace)
 -   [SubInBetween](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#SubInBetween)
 -   [HammingDistance](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#HammingDistance)
+-   [Concat](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#Concat)
+-   [Ellipsis](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#Ellipsis)
+-   [Shuffle](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#Shuffle)
+-   [Rotate](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#Rotate)
 
 ### 14. system 包含 os, runtime, shell command 相关函数。
 
