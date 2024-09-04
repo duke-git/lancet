@@ -30,7 +30,13 @@ import (
 -   [RandNumeral](#RandNumeral)
 -   [RandNumeralOrLetter](#RandNumeralOrLetter)
 -   [UUIdV4](#UUIdV4)
+-   [RandFloat](#RandFloat)
+-   [RandFloats](#RandFloats)
 -   [RandUniqueIntSlice](#RandUniqueIntSlice)
+-   [RandIntSlice](#RandIntSlice)
+-   [RandStringSlice](#RandStringSlice)
+-   [RandBool](#RandBool)
+-   [RandBoolSlice](#RandBoolSlice)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -247,6 +253,58 @@ func main() {
 }
 ```
 
+### <span id="RandFloat">RandFloat</span>
+
+<p>Generate a random float64 number between [min, max) with specific precision.</p>
+
+<b>Signature:</b>
+
+```go
+func RandFloat(min, max float64, precision int) float64
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/zbD_tuobJtr)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/random"
+)
+
+func main() {
+    floatNumber := random.RandFloat(1.0, 5.0, 2)
+    fmt.Println(floatNumber) //2.14 (random number)
+}
+```
+
+### <span id="RandFloats">RandFloats</span>
+
+<p>Generate a slice of random float64 numbers of length n that do not repeat. Number range in [min, max)</p>
+
+<b>Signature:</b>
+
+```go
+func RandFloats(length int, min, max float64, precision int) []float64
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/I3yndUQ-rhh)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/random"
+)
+
+func main() {
+    floatNumbers := random.RandFloats(5, 1.0, 5.0, 2)
+    fmt.Println(floatNumbers) //[3.42 3.99 1.3 2.38 4.23] (random)
+}
+```
+
 ### <span id="RandUniqueIntSlice">RandUniqueIntSlice</span>
 
 <p>生成一个不重复的长度为n的随机int切片。</p>
@@ -270,5 +328,112 @@ import (
 func main() {
     result := RandUniqueIntSlice(5, 0, 10)
     fmt.Println(result) //[0 4 7 1 5] (random)
+}
+```
+
+### <span id="RandIntSlice">RandIntSlice</span>
+
+<p>生成一个特定长度的随机int切片，数值范围[min, max)。</p>
+
+<b>函数签名:</b>
+
+```go
+func RandIntSlice(length, min, max int) []int
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/random"
+)
+
+func main() {
+    result := random.RandIntSlice(5, 0, 10)
+    fmt.Println(result) //[1 2 7 1 5] (random)
+}
+```
+
+### <span id="RandStringSlice">RandStringSlice</span>
+
+<p>生成随机字符串slice. 字符串类型需要是以下几种或者它们的组合: random.Numeral, random.LowwerLetters, random.UpperLetters random.Letters, random.SymbolChars, random.AllChars。</p>
+
+<b>函数签名:</b>
+
+```go
+func RandStringSlice(charset string, sliceLen, strLen int) []string
+```
+
+<b>实例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/random"
+)
+
+func main() {
+    strs := random.RandStringSlice(random.Letters, 4, 6)
+    fmt.Println(strs)
+
+    // output random string slice like below:
+    //[CooSMq RUFjDz FAeMPf heRyGv]
+}
+```
+
+### <span id="RandBool">RandBool</span>
+
+<p>生成随机bool值(true or false)。</p>
+
+<b>函数签名:</b>
+
+```go
+func RandBool() bool
+```
+
+<b>实例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/random"
+)
+
+func main() {
+    result := random.RandBool()
+    fmt.Println(result) // true or false (random)
+}
+```
+
+### <span id="RandBoolSlice">RandBoolSlice</span>
+
+<p>生成特定长度的随机bool slice。</p>
+
+<b>函数签名:</b>
+
+```go
+func RandBoolSlice(length int) []bool
+```
+
+<b>实例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/random"
+)
+
+func main() {
+    result := random.RandBoolSlice(2)
+    fmt.Println(result) // [true false] (random)
 }
 ```

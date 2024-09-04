@@ -60,6 +60,10 @@ import (
 -   [RemoveWhiteSpace](#RemoveWhiteSpace)
 -   [SubInBetween](#SubInBetween)
 -   [HammingDistance](#HammingDistance)
+-   [Concat](#Concat)
+-   [Ellipsis](#Ellipsis)
+-   [Shuffle](#Shuffle)
+-   [Rotate](#Rotate)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -1341,3 +1345,127 @@ func main() {
     // 1
 }
 ```
+
+### <span id="Concat">Concat</span>
+
+<p>Concatenates strings. <b>length</b> is the length of the concatenated string. If unsure, pass 0 or a negative number.</p>
+
+<b>Signature:</b>
+
+```go
+func Concat(length int, str ...string) string
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/strutil"
+)
+
+func main() {
+    result1 := strutil.Concat(12, "Hello", " ", "World", "!")
+    result2 := strutil.Concat(11, "Go", " ", "Language")
+    result3 := strutil.Concat(0, "An apple a ", "day，", "keeps the", " doctor away")
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+
+    // Output:
+    // Hello World!
+    // Go Language
+    // An apple a day，keeps the doctor away
+}
+```
+
+### <span id="Ellipsis">Ellipsis</span>
+
+<p>Truncates a string to a specified length and appends an ellipsis.</p>
+
+<b>Signature:</b>
+
+```go
+func Ellipsis(str string, length int) string
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/strutil"
+)
+
+func main() {
+    result1 := strutil.Ellipsis("hello world", 5)
+    result2 := strutil.Ellipsis("你好，世界!", 2)
+    result3 := strutil.Ellipsis("😀😃😄😁😆", 3)
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+
+    // Output:
+    // hello...
+    // 你好...
+    // 😀😃😄...
+}
+```
+
+### <span id="Shuffle">Shuffle</span>
+
+<p>Shuffle the order of characters of given string.</p>
+
+<b>Signature:</b>
+
+```go
+func Shuffle(str string) string
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/strutil"
+)
+
+func main() {
+    result := strutil.Shuffle("hello")
+    fmt.Println(result)  //olelh (random order)
+}
+```
+
+### <span id="Rotate">Rotate</span>
+
+<p>Rotates the string by the specified number of characters.</p>
+
+<b>Signature:</b>
+
+```go
+func Rotate(str string, shift int) string
+```
+
+<b>Example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/strutil"
+)
+
+func main() {
+    result1 := Rotate("Hello", 0)
+    result2 := Rotate("Hello", 1)
+    result3 := Rotate("Hello", 2)
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+
+    // Output:
+    // Hello
+    // oHell
+    // loHel
+}

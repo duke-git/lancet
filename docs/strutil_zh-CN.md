@@ -60,6 +60,10 @@ import (
 -   [RemoveWhiteSpace](#RemoveWhiteSpace)
 -   [SubInBetween](#SubInBetween)
 -   [HammingDistance](#HammingDistance)
+-   [Concat](#Concat)
+-   [Ellipsis](#Ellipsis)
+-   [Shuffle](#Shuffle)
+-   [Rotate](#Rotate)
 
 
 <div STYLE="page-break-after: always;"></div>
@@ -1372,5 +1376,131 @@ func main() {
     // Output:
     // 0
     // 1
+}
+```
+
+### <span id="Concat">Concat</span>
+
+<p>拼接字符串。length是拼接后字符串的长度，如果不确定则传0或负数。</p>
+
+<b>函数签名:</b>
+
+```go
+func Concat(length int, str ...string) string
+```
+
+<b>示例:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/strutil"
+)
+
+func main() {
+
+     result1 := strutil.Concat(12, "Hello", " ", "World", "!")
+    result2 := strutil.Concat(11, "Go", " ", "Language")
+    result3 := strutil.Concat(0, "An apple a ", "day，", "keeps the", " doctor away")
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+
+    // Output:
+    // Hello World!
+    // Go Language
+    // An apple a day，keeps the doctor away
+}
+```
+
+### <span id="Ellipsis">Ellipsis</span>
+
+<p>将字符串截断到指定长度，并在末尾添加省略号。</p>
+
+<b>函数签名:</b>
+
+```go
+func Ellipsis(str string, length int) string
+```
+
+<b>示例:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/strutil"
+)
+
+func main() {
+    result1 := strutil.Ellipsis("hello world", 5)
+    result2 := strutil.Ellipsis("你好，世界!", 2)
+    result3 := strutil.Ellipsis("😀😃😄😁😆", 3)
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+
+    // Output:
+    // hello...
+    // 你好...
+    // 😀😃😄...
+}
+```
+
+### <span id="Shuffle">Shuffle</span>
+
+<p>打乱给定字符串中的字符顺序。</p>
+
+<b>函数签名:</b>
+
+```go
+func Shuffle(str string) string
+```
+
+<b>示例:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/strutil"
+)
+
+func main() {
+    result := strutil.Shuffle("hello")
+    fmt.Println(result)  //olelh (random order)
+}
+```
+
+### <span id="Rotate">Rotate</span>
+
+<p>按指定的字符数旋转字符串。</p>
+
+<b>函数签名:</b>
+
+```go
+func Rotate(str string, shift int) string
+```
+
+<b>示例:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/strutil"
+)
+
+func main() {
+    result1 := Rotate("Hello", 0)
+    result2 := Rotate("Hello", 1)
+    result3 := Rotate("Hello", 2)
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+
+    // Output:
+    // Hello
+    // oHell
+    // loHel
 }
 ```

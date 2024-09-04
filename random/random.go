@@ -31,6 +31,25 @@ func init() {
 	rand.Seed(time.Now().UnixNano())
 }
 
+// RandBool generates a random boolean value (true or false).
+func RandBool() bool {
+	return rand.Intn(2) == 1
+}
+
+// RandBoolSlice generates a random boolean slice of specified length.
+func RandBoolSlice(length int) []bool {
+	if length <= 0 {
+		return []bool{}
+	}
+
+	result := make([]bool, length)
+	for i := range result {
+		result[i] = RandBool()
+	}
+
+	return result
+}
+
 // RandInt generate random int between [min, max).
 func RandInt(min, max int) int {
 	if min == max {
@@ -42,6 +61,45 @@ func RandInt(min, max int) int {
 	}
 
 	return rand.Intn(max-min) + min
+}
+
+// RandIntSlice generates a slice of random integers.
+// The generated integers are between min and max (exclusive).
+func RandIntSlice(length, min, max int) []int {
+	if length <= 0 || min > max {
+		return []int{}
+	}
+
+	result := make([]int, length)
+	for i := range result {
+		result[i] = RandInt(min, max)
+	}
+
+	return result
+}
+
+// RandUniqueIntSlice generate a slice of random int of length n that do not repeat.
+func RandUniqueIntSlice(n, min, max int) []int {
+	if min > max {
+		return []int{}
+	}
+	if n > max-min {
+		n = max - min
+	}
+
+	nums := make([]int, n)
+	used := make(map[int]struct{}, n)
+	for i := 0; i < n; {
+		r := RandInt(min, max)
+		if _, use := used[r]; use {
+			continue
+		}
+		used[r] = struct{}{}
+		nums[i] = r
+		i++
+	}
+
+	return nums
 }
 
 // RandFloat generate random float64 number between [min, max) with specific precision.
@@ -57,6 +115,23 @@ func RandFloat(min, max float64, precision int) float64 {
 	n := rand.Float64()*(max-min) + min
 
 	return mathutil.RoundToFloat(n, precision)
+}
+
+// RandFloats generate a slice of random float64 numbers of length n that do not repeat.
+func RandFloats(n int, min, max float64, precision int) []float64 {
+	nums := make([]float64, n)
+	used := make(map[float64]struct{}, n)
+	for i := 0; i < n; {
+		r := RandFloat(min, max, precision)
+		if _, use := used[r]; use {
+			continue
+		}
+		used[r] = struct{}{}
+		nums[i] = r
+		i++
+	}
+
+	return nums
 }
 
 // RandBytes generate random byte slice.
@@ -77,6 +152,23 @@ func RandBytes(length int) []byte {
 // RandString generate random alpha string of specified length.
 func RandString(length int) string {
 	return random(Letters, length)
+}
+
+// RandString generate a slice of random string of length strLen based on charset.
+// chartset should be one of the following: random.Numeral, random.LowwerLetters, random.UpperLetters
+// random.Letters, random.SymbolChars, random.AllChars. or a combination of them.
+func RandStringSlice(charset string, sliceLen, strLen int) []string {
+	if sliceLen <= 0 || strLen <= 0 {
+		return []string{}
+	}
+
+	result := make([]string, sliceLen)
+
+	for i := range result {
+		result[i] = random(charset, strLen)
+	}
+
+	return result
 }
 
 // RandUpper generate a random upper case string of specified length.
@@ -176,160 +268,3 @@ func UUIdV4() (string, error) {
 
 	return fmt.Sprintf("%x-%x-%x-%x-%x", uuid[0:4], uuid[4:6], uuid[6:8], uuid[8:10], uuid[10:]), nil
 }
-
-// RandUniqueIntSlice generate a slice of random int of length n that do not repeat.
-func RandUniqueIntSlice(n, min, max int) []int {
-	if min > max {
-		return []int{}
-	}
-	if n > max-min {
-		n = max - min
-	}
-
-	nums := make([]int, n)
-	used := make(map[int]struct{}, n)
-	for i := 0; i < n; {
-		r := RandInt(min, max)
-		if _, use := used[r]; use {
-			continue
-		}
-		used[r] = struct{}{}
-		nums[i] = r
-		i++
-	}
-
-	return nums
-}
-
-// RandFloats generate a slice of random float64 numbers of length n that do not repeat.
-func RandFloats(n int, min, max float64, precision int) []float64 {
-	nums := make([]float64, n)
-	used := make(map[float64]struct{}, n)
-	for i := 0; i < n; {
-		r := RandFloat(min, max, precision)
-		if _, use := used[r]; use {
-			continue
-		}
-		used[r] = struct{}{}
-		nums[i] = r
-		i++
-	}
-
-	return nums
-}
-
-// const (
-// 	NUMERAL       = "0123456789"
-// 	LOWER_LETTERS = "abcdefghijklmnopqrstuvwxyz"
-// 	UPPER_LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-// 	LETTERS       = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-// )
-
-// var rn = rand.NewSource(time.Now().UnixNano())
-
-// func init() {
-// 	rand.Seed(time.Now().UnixNano())
-// }
-
-// // RandInt generate random int between min and max, maybe min,  not be max
-// func RandInt(min, max int) int {
-// 	if min == max {
-// 		return min
-// 	}
-
-// 	if max < min {
-// 		min, max = max, min
-// 	}
-
-// 	return rand.Intn(max-min) + min
-// }
-
-// // RandBytes generate random byte slice
-// func RandBytes(length int) []byte {
-// 	if length < 1 {
-// 		return []byte{}
-// 	}
-// 	b := make([]byte, length)
-
-// 	if _, err := io.ReadFull(crand.Reader, b); err != nil {
-// 		return nil
-// 	}
-// 	return b
-// }
-
-// // RandString generate random string
-// func RandString(length int) string {
-// 	return random(LETTERS, length)
-// }
-
-// // RandUpper generate a random upper case string
-// func RandUpper(length int) string {
-// 	return random(UPPER_LETTERS, length)
-// }
-
-// // RandLower generate a random lower case string
-// func RandLower(length int) string {
-// 	return random(LOWER_LETTERS, length)
-// }
-
-// // RandNumeral generate a random numeral string
-// func RandNumeral(length int) string {
-// 	return random(NUMERAL, length)
-// }
-
-// // RandNumeralOrLetter generate a random numeral or letter string
-// func RandNumeralOrLetter(length int) string {
-// 	return random(NUMERAL+LETTERS, length)
-// }
-
-// // random generate a random string based on given string range
-// func random(s string, length int) string {
-// 	b := make([]byte, length)
-
-// 	// fix: https://github.com/duke-git/lancet/issues/75
-// 	// r := rand.New(rand.NewSource(time.Now().UnixNano()))
-
-// 	for i := range b {
-// 		b[i] = s[rand.Int63()%int64(len(s))]
-// 	}
-// 	return string(b)
-// }
-
-// // UUIdV4 generate a random UUID of version 4 according to RFC 4122
-// func UUIdV4() (string, error) {
-// 	uuid := make([]byte, 16)
-
-// 	n, err := io.ReadFull(crand.Reader, uuid)
-// 	if n != len(uuid) || err != nil {
-// 		return "", err
-// 	}
-
-// 	uuid[8] = uuid[8]&^0xc0 | 0x80
-// 	uuid[6] = uuid[6]&^0xf0 | 0x40
-
-// 	return fmt.Sprintf("%x-%x-%x-%x-%x", uuid[0:4], uuid[4:6], uuid[6:8], uuid[8:10], uuid[10:]), nil
-// }
-
-// // RandUniqueIntSlice generate a slice of random int of length n that do not repeat.
-// func RandUniqueIntSlice(n, min, max int) []int {
-// 	if min > max {
-// 		return []int{}
-// 	}
-// 	if n > max-min {
-// 		n = max - min
-// 	}
-
-// 	nums := make([]int, n)
-// 	used := make(map[int]struct{}, n)
-// 	for i := 0; i < n; {
-// 		r := RandInt(min, max)
-// 		if _, use := used[r]; use {
-// 			continue
-// 		}
-// 		used[r] = struct{}{}
-// 		nums[i] = r
-// 		i++
-// 	}
-
-// 	return nums
-// }

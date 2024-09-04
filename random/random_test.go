@@ -6,6 +6,7 @@ import (
 	"testing"
 
 	"github.com/duke-git/lancet/internal"
+	"github.com/duke-git/lancet/validator"
 )
 
 func TestRandString(t *testing.T) {
@@ -137,4 +138,93 @@ func hasDuplicate(arr []int) bool {
 		elements[v] = true
 	}
 	return false
+}
+
+func TestRandBool(t *testing.T) {
+	t.Parallel()
+	assert := internal.NewAssert(t, "TestRandBool")
+
+	result := RandBool()
+	assert.Equal(true, result == true || result == false)
+}
+
+func TestRandBoolSlice(t *testing.T) {
+	t.Parallel()
+	assert := internal.NewAssert(t, "TestRandBoolSlice")
+
+	t.Run("empty slice", func(t *testing.T) {
+		bools := RandBoolSlice(-1)
+		assert.Equal([]bool{}, bools)
+
+		bools = RandBoolSlice(0)
+		assert.Equal([]bool{}, bools)
+	})
+
+	t.Run("random bool slice", func(t *testing.T) {
+		bools := RandBoolSlice(6)
+		assert.Equal(6, len(bools))
+
+		for _, b := range bools {
+			assert.Equal(true, b == true || b == false)
+		}
+	})
+}
+
+func TestRandStringSlice(t *testing.T) {
+	t.Parallel()
+	assert := internal.NewAssert(t, "TestRandStringSlice")
+
+	t.Run("empty slice", func(t *testing.T) {
+		strs := RandStringSlice(Letters, -1, -1)
+		assert.Equal([]string{}, strs)
+
+		strs = RandStringSlice(Letters, 0, 0)
+		assert.Equal([]string{}, strs)
+
+		strs = RandStringSlice(Letters, -1, 0)
+		assert.Equal([]string{}, strs)
+
+		strs = RandStringSlice(Letters, 0, -1)
+		assert.Equal([]string{}, strs)
+
+		strs = RandStringSlice(Letters, 1, 0)
+		assert.Equal([]string{}, strs)
+
+		strs = RandStringSlice(Letters, 0, 1)
+		assert.Equal([]string{}, strs)
+	})
+
+	t.Run("random string slice", func(t *testing.T) {
+		strs := RandStringSlice(Letters, 4, 6)
+		assert.Equal(4, len(strs))
+
+		for _, s := range strs {
+			assert.Equal(true, validator.IsAlpha(s))
+			assert.Equal(6, len(s))
+		}
+	})
+}
+
+func TestRandIntSlice(t *testing.T) {
+	t.Parallel()
+	assert := internal.NewAssert(t, "TestRandIntSlice")
+
+	t.Run("empty slice", func(t *testing.T) {
+		numbers := RandIntSlice(-1, 1, 5)
+		assert.Equal([]int{}, numbers)
+
+		numbers = RandIntSlice(0, 1, 5)
+		assert.Equal([]int{}, numbers)
+
+		numbers = RandIntSlice(3, 5, 1)
+		assert.Equal([]int{}, numbers)
+	})
+
+	t.Run("random int slice", func(t *testing.T) {
+		numbers := RandIntSlice(5, 1, 1)
+		assert.Equal([]int{1, 1, 1, 1, 1}, numbers)
+
+		numbers = RandIntSlice(5, 1, 5)
+		assert.Equal(5, len(numbers))
+	})
 }
