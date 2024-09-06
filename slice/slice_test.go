@@ -1764,5 +1764,55 @@ func TestFilterConcurrent(t *testing.T) {
 		actual := FilterConcurrent(nums, func(_, n int) bool { return n > 3 }, 4)
 		assert.Equal(expected, actual)
 	})
+}
 
+func TestFrequency(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestFrequency")
+
+	t.Run("empty slice", func(t *testing.T) {
+		result := Frequency([]int{})
+		assert.Equal(map[int]int{}, result)
+	})
+
+	t.Run("int slice", func(t *testing.T) {
+		nums := []int{1, 2, 2, 3, 3, 3}
+		expected := map[int]int{1: 1, 2: 2, 3: 3}
+		result := Frequency(nums)
+
+		assert.Equal(expected, result)
+	})
+
+	t.Run("string slice", func(t *testing.T) {
+		strs := []string{"a", "b", "b", "c", "c", "c"}
+		expected := map[string]int{"a": 1, "b": 2, "c": 3}
+		result := Frequency(strs)
+
+		assert.Equal(expected, result)
+	})
+
+	t.Run("struct slice", func(t *testing.T) {
+		type student struct {
+			Name string
+			Age  int
+		}
+
+		students := []student{
+			{Name: "a", Age: 11},
+			{Name: "b", Age: 12},
+			{Name: "a", Age: 13},
+			{Name: "c", Age: 14},
+		}
+
+		expected := map[student]int{
+			{Name: "a", Age: 11}: 1,
+			{Name: "a", Age: 13}: 1,
+			{Name: "b", Age: 12}: 1,
+			{Name: "c", Age: 14}: 1,
+		}
+		result := Frequency(students)
+
+		assert.Equal(expected, result)
+	})
 }
