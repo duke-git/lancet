@@ -30,6 +30,7 @@ package datetime
 
 import (
 	"fmt"
+	"runtime"
 	"strings"
 	"time"
 )
@@ -382,11 +383,31 @@ func TimestampNano(timezone ...string) int64 {
 	return t.UnixNano()
 }
 
-// TraceFuncTime: trace the func costed time,just call it at top of the func like `defer TraceFuncTime()()`
-func TraceFuncTime() func() {
-	pre := time.Now()
+// TrackFuncTime track the time of function execution.
+// call it at top of the func like `defer TrackFuncTime(time.Now())()`
+// Play: todo
+func TrackFuncTime(pre time.Time) func() {
+	callerName := getCallerName()
 	return func() {
 		elapsed := time.Since(pre)
-		fmt.Println("Costs Time:\t", elapsed)
+		fmt.Printf("Function %s execution time:\t %v", callerName, elapsed)
 	}
+}
+
+func getCallerName() string {
+	pc, _, _, ok := runtime.Caller(2)
+	if !ok {
+		return "Unknown"
+	}
+	fn := runtime.FuncForPC(pc)
+	if fn == nil {
+		return "Unknown"
+	}
+
+	fullName := fn.Name()
+	if lastDot := strings.LastIndex(fullName, "."); lastDot != -1 {
+		return fullName[lastDot+1:]
+	}
+
+	return fullName
 }

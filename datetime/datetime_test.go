@@ -410,3 +410,12 @@ func TestTimestamp(t *testing.T) {
 	ts4 := TimestampNano()
 	t.Log(ts4)
 }
+
+func TestTrackFuncTime(t *testing.T) {
+	defer TrackFuncTime(time.Now())()
+
+	var n int
+	for i := 0; i < 5000000; i++ {
+		n++
+	}
+}

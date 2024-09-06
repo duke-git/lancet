@@ -408,3 +408,17 @@ func ExampleIsWeekend() {
 	// true
 	// false
 }
+
+// func ExampleTrackFuncTime() {
+// 	defer TrackFuncTime(time.Now())()
+
+// 	var n int
+// 	for i := 0; i < 5000000; i++ {
+// 		n++
+// 	}
+
+// 	fmt.Println(1)
+
+// 	// Output:
+// 	// 1
+// }

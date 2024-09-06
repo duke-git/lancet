@@ -64,6 +64,7 @@ import (
 -   [TimestampMilli](#TimestampMilli)
 -   [TimestampMicro](#TimestampMicro)
 -   [TimestampNano](#TimestampNano)
+-   [TrackFuncTime](#TrackFuncTime)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -1334,7 +1335,7 @@ import (
 func main() {
     result1 := datetime.NowDateOrTime("yyyy-mm-dd hh:mm:ss")
 
-	result2 := datetime.NowDateOrTime("yyyy-mm-dd hh:mm:ss", "EST")
+    result2 := datetime.NowDateOrTime("yyyy-mm-dd hh:mm:ss", "EST")
 
     fmt.Println(result1)
     fmt.Println(result2)
@@ -1463,5 +1464,37 @@ func main() {
 
     // Output:
     // 1690363051331788000
+}
+```
+
+### <span id="TrackFuncTime">TrackFuncTime</span>
+
+<p>测试函数执行时间。</p>
+
+<b>函数签名:</b>
+
+```go
+func TrackFuncTime(pre time.Time) func()
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行]()</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/datetime"
+)
+
+func main() {
+    defer datetime.TrackFuncTime(time.Now())()
+
+    var n int
+    for i := 0; i < 5000000; i++ {
+        n++
+    }
+
+    fmt.Println(1) // Function main execution time:     1.460287ms
 }
 ```

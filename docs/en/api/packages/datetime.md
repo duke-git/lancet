@@ -65,6 +65,7 @@ import (
 -   [TimestampMilli](#TimestampMilli)
 -   [TimestampMicro](#TimestampMicro)
 -   [TimestampNano](#TimestampNano)
+-   [TrackFuncTime](#TrackFuncTime)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -1463,5 +1464,37 @@ func main() {
 
     // Output:
     // 1690363051331788000
+}
+```
+
+### <span id="TrackFuncTime">TrackFuncTime</span>
+
+<p>Tracks function execution time.</p>
+
+<b>Signature:</b>
+
+```go
+func TrackFuncTime(pre time.Time) func()
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run]()</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/datetime"
+)
+
+func main() {
+    defer datetime.TrackFuncTime(time.Now())()
+
+    var n int
+    for i := 0; i < 5000000; i++ {
+        n++
+    }
+
+    fmt.Println(1) // Function main execution time:     1.460287ms
 }
 ```
