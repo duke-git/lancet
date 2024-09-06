@@ -727,3 +727,11 @@ func TemplateReplace(template string, data map[string]string) string {
 
 	return result
 }
+
+// RegexMatchAllGroups Matches all subgroups in a string using a regular expression and returns the result.
+// Play: todo
+func RegexMatchAllGroups(pattern, str string) [][]string {
+	re := regexp.MustCompile(pattern)
+	matches := re.FindAllStringSubmatch(str, -1)
+	return matches
+}

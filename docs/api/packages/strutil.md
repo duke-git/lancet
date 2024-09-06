@@ -66,6 +66,9 @@ import (
 -   [Ellipsis](#Ellipsis)
 -   [Shuffle](#Shuffle)
 -   [Rotate](#Rotate)
+-   [TemplateReplace](#TemplateReplace)
+-   [RegexMatchAllGroups](#RegexMatchAllGroups)
+
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -1691,5 +1694,38 @@ func main() {
 
     // Output:
     // Hello, my name is Bob, I'm 20 years old.
+}
+```
+
+### <span id="RegexMatchAllGroups">RegexMatchAllGroups</span>
+
+<p>使用正则表达式匹配字符串中的所有子组并返回结果。</p>
+
+<b>函数签名:</b>
+
+```go
+func RegexMatchAllGroups(pattern, str string) [][]string
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[Run]()</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    pattern := `(\w+\.+\w+)@(\w+)\.(\w+)`
+    str := "Emails: john.doe@example.com and jane.doe@example.com"
+
+    result := strutil.RegexMatchAllGroups(pattern, str)
+
+    fmt.Println(result[0])
+    fmt.Println(result[1])
+
+    // Output:
+    // [john.doe@example.com john.doe example com]
+    // [jane.doe@example.com jane.doe example com]
 }
 ```

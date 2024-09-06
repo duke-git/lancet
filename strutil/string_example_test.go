@@ -739,3 +739,17 @@ func ExampleTemplateReplace() {
 	// Output:
 	// Hello, my name is Bob, I'm 20 years old.
 }
+
+func ExampleRegexMatchAllGroups() {
+	pattern := `(\w+\.+\w+)@(\w+)\.(\w+)`
+	str := "Emails: john.doe@example.com and jane.doe@example.com"
+
+	result := RegexMatchAllGroups(pattern, str)
+
+	fmt.Println(result[0])
+	fmt.Println(result[1])
+
+	// Output:
+	// [john.doe@example.com john.doe example com]
+	// [jane.doe@example.com jane.doe example com]
+}

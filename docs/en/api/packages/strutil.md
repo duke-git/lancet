@@ -66,6 +66,8 @@ import (
 -   [Ellipsis](#Ellipsis)
 -   [Shuffle](#Shuffle)
 -   [Rotate](#Rotate)
+-   [TemplateReplace](#TemplateReplace)
+-   [RegexMatchAllGroups](#RegexMatchAllGroups)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -1665,13 +1667,13 @@ func main() {
 
 <p>Replaces the placeholders in the template string with the corresponding values in the data map.The placeholders are enclosed in curly braces, e.g. {key}. for example, the template string is "Hello, {name}!", and the data map is {"name": "world"}, the result will be "Hello, world!".</p>
 
-<b>函数签名:</b>
+<b>Signature:</b>
 
 ```go
 func TemplateReplace(template string, data map[string]string string
 ```
 
-<b>example:<span style="float:right;display:inline-block;">[运行]()</span></b>
+<b>example:<span style="float:right;display:inline-block;">[Run]()</span></b>
 
 ```go
 import (
@@ -1692,5 +1694,38 @@ func main() {
 
     // Output:
     // Hello, my name is Bob, I'm 20 years old.
+}
+```
+
+### <span id="RegexMatchAllGroups">RegexMatchAllGroups</span>
+
+<p>Matches all subgroups in a string using a regular expression and returns the result.</p>
+
+<b>Signature:</b>
+
+```go
+func RegexMatchAllGroups(pattern, str string) [][]string
+```
+
+<b>example:<span style="float:right;display:inline-block;">[Run]()</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    pattern := `(\w+\.+\w+)@(\w+)\.(\w+)`
+    str := "Emails: john.doe@example.com and jane.doe@example.com"
+
+    result := strutil.RegexMatchAllGroups(pattern, str)
+
+    fmt.Println(result[0])
+    fmt.Println(result[1])
+
+    // Output:
+    // [john.doe@example.com john.doe example com]
+    // [jane.doe@example.com jane.doe example com]
 }
 ```
