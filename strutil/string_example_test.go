@@ -724,3 +724,18 @@ func ExampleRotate() {
 	// oHell
 	// loHel
 }
+
+func ExampleTemplateReplace() {
+	template := `Hello, my name is {name}, I'm {age} years old.`
+	data := map[string]string{
+		"name": "Bob",
+		"age":  "20",
+	}
+
+	result := TemplateReplace(template, data)
+
+	fmt.Println(result)
+
+	// Output:
+	// Hello, my name is Bob, I'm 20 years old.
+}

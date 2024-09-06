@@ -766,3 +766,47 @@ func TestRotate(t *testing.T) {
 		assert.Equal(tt.expected, Rotate(tt.input, tt.shift))
 	}
 }
+
+func TestTemplateReplace(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestTemplateReplace")
+
+	t.Run("basic", func(t *testing.T) {
+		template := `Hello, my name is {name}, I'm {age} years old.`
+		data := map[string]string{
+			"name": "Bob",
+			"age":  "20",
+		}
+
+		expected := `Hello, my name is Bob, I'm 20 years old.`
+		result := TemplateReplace(template, data)
+
+		assert.Equal(expected, result)
+	})
+
+	t.Run("not found", func(t *testing.T) {
+		template := `Hello, my name is {name}, I'm {age} years old.`
+		data := map[string]string{
+			"name": "Bob",
+		}
+
+		expected := `Hello, my name is Bob, I'm {age} years old.`
+		result := TemplateReplace(template, data)
+
+		assert.Equal(expected, result)
+	})
+
+	t.Run("brackets", func(t *testing.T) {
+		template := `Hello, my name is {name}, I'm {{age}} years old.`
+		data := map[string]string{
+			"name": "Bob",
+			"age":  "20",
+		}
+
+		expected := `Hello, my name is Bob, I'm {20} years old.`
+		result := TemplateReplace(template, data)
+
+		assert.Equal(expected, result)
+	})
+}

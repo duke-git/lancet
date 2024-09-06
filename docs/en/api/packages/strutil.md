@@ -1660,3 +1660,37 @@ func main() {
     // oHell
     // loHel
 }
+```
+### <span id="TemplateReplace">TemplateReplace</span>
+
+<p>Replaces the placeholders in the template string with the corresponding values in the data map.The placeholders are enclosed in curly braces, e.g. {key}. for example, the template string is "Hello, {name}!", and the data map is {"name": "world"}, the result will be "Hello, world!".</p>
+
+<b>函数签名:</b>
+
+```go
+func TemplateReplace(template string, data map[string]string string
+```
+
+<b>example:<span style="float:right;display:inline-block;">[运行]()</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    template := `Hello, my name is {name}, I'm {age} years old.`
+    data := map[string]string{
+        "name": "Bob",
+        "age":  "20",
+    }
+
+    result := strutil.TemplateReplace(template, data)
+
+    fmt.Println(result)
+
+    // Output:
+    // Hello, my name is Bob, I'm 20 years old.
+}
+```

@@ -704,3 +704,26 @@ func Rotate(str string, shift int) string {
 
 	return sb.String()
 }
+
+// TemplateReplace replaces the placeholders in the template string with the corresponding values in the data map.
+// The placeholders are enclosed in curly braces, e.g. {key}.
+// for example, the template string is "Hello, {name}!", and the data map is {"name": "world"},
+// the result will be "Hello, world!".
+// Play: todo
+func TemplateReplace(template string, data map[string]string) string {
+	re := regexp.MustCompile(`\{(\w+)\}`)
+
+	result := re.ReplaceAllStringFunc(template, func(s string) string {
+		key := strings.Trim(s, "{}")
+		if val, ok := data[key]; ok {
+			return val
+		}
+
+		return s
+	})
+
+	result = strings.ReplaceAll(result, "{{", "{")
+	result = strings.ReplaceAll(result, "}}", "}")
+
+	return result
+}
