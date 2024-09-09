@@ -1532,3 +1532,41 @@ func main() {
     // 9
 }
 ```
+
+### <span id="GenerateDatetimesBetween">GenerateDatetimesBetween</span>
+
+<p>生成从start到end的所有日期时间的字符串列表。layout参数表示时间格式，例如"2006-01-02 15:04:05"，interval参数表示时间间隔，例如"1h"表示1小时，"30m"表示30分钟。</p>
+
+<b>函数签名:</b>
+
+```go
+func GenerateDatetimesBetween(start, end time.Time, layout string, interval string) ([]string, error)
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行]()</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/datetime"
+)
+
+func main() {
+    start := time.Date(2024, time.September, 1, 0, 0, 0, 0, time.UTC)
+    end := time.Date(2024, time.September, 1, 2, 0, 0, 0, time.UTC)
+
+    layout := "2006-01-02 15:04:05"
+    interval := "1h"
+
+    result, err := datetime.GenerateDatetimesBetween(start, end, layout, interval)
+
+    fmt.Println(result)
+    fmt.Println(err)
+
+    // Output:
+    // [2024-09-01 00:00:00 2024-09-01 01:00:00 2024-09-01 02:00:00]
+    // <nil>
+}
+```

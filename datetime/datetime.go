@@ -420,3 +420,26 @@ func DaysBetween(start, end time.Time) int {
 
 	return days
 }
+
+// GenerateDatetimesBetween returns a slice of strings between two times.
+// layout: the format of the datetime string
+// interval: the interval between two datetimes
+// Play: todo
+func GenerateDatetimesBetween(start, end time.Time, layout string, interval string) ([]string, error) {
+	var result []string
+
+	if start.After(end) {
+		start, end = end, start
+	}
+
+	duration, err := time.ParseDuration(interval)
+	if err != nil {
+		return nil, err
+	}
+
+	for current := start; !current.After(end); current = current.Add(duration) {
+		result = append(result, current.Format(layout))
+	}
+
+	return result, nil
+}
