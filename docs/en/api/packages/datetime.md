@@ -66,6 +66,7 @@ import (
 -   [TimestampMicro](#TimestampMicro)
 -   [TimestampNano](#TimestampNano)
 -   [TrackFuncTime](#TrackFuncTime)
+-   [DaysBetween](#DaysBetween)
 -   [GenerateDatetimesBetween](#GenerateDatetimesBetween)
 
 
