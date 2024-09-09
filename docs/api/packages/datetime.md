@@ -66,6 +66,7 @@ import (
 -   [TimestampNano](#TimestampNano)
 -   [TrackFuncTime](#TrackFuncTime)
 -   [DaysBetween](#DaysBetween)
+-   [GenerateDatetimesBetween](#GenerateDatetimesBetween)
 
 <div STYLE="page-break-after: always;"></div>
 
