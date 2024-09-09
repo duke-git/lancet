@@ -65,6 +65,7 @@ import (
 -   [TimestampMicro](#TimestampMicro)
 -   [TimestampNano](#TimestampNano)
 -   [TrackFuncTime](#TrackFuncTime)
+-   [DaysBetween](#DaysBetween)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -1496,5 +1497,38 @@ func main() {
     }
 
     fmt.Println(1) // Function main execution time:     1.460287ms
+}
+```
+
+### <span id="DaysBetween">DaysBetween</span>
+
+<p>返回两个日期之间的天数差。</p>
+
+<b>函数签名:</b>
+
+```go
+func DaysBetween(start, end time.Time) int
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行]()</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/datetime"
+)
+
+func main() {
+    start := time.Date(2024, time.September, 1, 0, 0, 0, 0, time.UTC)
+    end := time.Date(2024, time.September, 10, 0, 0, 0, 0, time.UTC)
+
+    result := datetime.DaysBetween(start, end)
+
+    fmt.Println(result)
+
+    // Output:
+    // 9
 }
 ```

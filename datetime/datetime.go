@@ -411,3 +411,12 @@ func getCallerName() string {
 
 	return fullName
 }
+
+// DaysBetween returns the number of days between two times.
+// Play: todo
+func DaysBetween(start, end time.Time) int {
+	duration := end.Sub(start)
+	days := int(duration.Hours() / 24)
+
+	return days
+}

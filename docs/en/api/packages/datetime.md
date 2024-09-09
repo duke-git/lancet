@@ -1498,3 +1498,36 @@ func main() {
     fmt.Println(1) // Function main execution time:     1.460287ms
 }
 ```
+
+### <span id="DaysBetween">DaysBetween</span>
+
+<p>Returns the number of days between two times.</p>
+
+<b>Signature:</b>
+
+```go
+func DaysBetween(start, end time.Time) int
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run]()</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/datetime"
+)
+
+func main() {
+    start := time.Date(2024, time.September, 1, 0, 0, 0, 0, time.UTC)
+    end := time.Date(2024, time.September, 10, 0, 0, 0, 0, time.UTC)
+
+    result := datetime.DaysBetween(start, end)
+
+    fmt.Println(result)
+
+    // Output:
+    // 9
+}
+```

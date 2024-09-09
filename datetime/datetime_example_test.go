@@ -409,16 +409,14 @@ func ExampleIsWeekend() {
 	// false
 }
 
-// func ExampleTrackFuncTime() {
-// 	defer TrackFuncTime(time.Now())()
+func ExampleDaysBetween() {
+	start := time.Date(2024, time.September, 1, 0, 0, 0, 0, time.UTC)
+	end := time.Date(2024, time.September, 10, 0, 0, 0, 0, time.UTC)
 
-// 	var n int
-// 	for i := 0; i < 5000000; i++ {
-// 		n++
-// 	}
+	result := DaysBetween(start, end)
 
-// 	fmt.Println(1)
+	fmt.Println(result)
 
-// 	// Output:
-// 	// 1
-// }
+	// Output:
+	// 9
+}

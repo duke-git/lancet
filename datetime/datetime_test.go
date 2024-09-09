@@ -419,3 +419,46 @@ func TestTrackFuncTime(t *testing.T) {
 		n++
 	}
 }
+
+func TestDaysBetween(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestDaysBetween")
+
+	tests := []struct {
+		start    time.Time
+		end      time.Time
+		expected int
+	}{
+		{
+			start:    time.Date(2024, time.September, 1, 0, 0, 0, 0, time.UTC),
+			end:      time.Date(2024, time.September, 10, 0, 0, 0, 0, time.UTC),
+			expected: 9,
+		},
+		{
+			start:    time.Date(2024, time.September, 10, 0, 0, 0, 0, time.UTC),
+			end:      time.Date(2024, time.September, 1, 0, 0, 0, 0, time.UTC),
+			expected: -9,
+		},
+		{
+			start:    time.Date(2024, time.September, 1, 0, 0, 0, 0, time.UTC),
+			end:      time.Date(2024, time.September, 1, 0, 0, 0, 0, time.UTC),
+			expected: 0,
+		},
+		{
+			start:    time.Date(2024, time.January, 1, 0, 0, 0, 0, time.UTC),
+			end:      time.Date(2024, time.December, 31, 0, 0, 0, 0, time.UTC),
+			expected: 365,
+		},
+		{
+			start:    time.Date(2024, time.March, 1, 0, 0, 0, 0, time.UTC),
+			end:      time.Date(2024, time.March, 31, 0, 0, 0, 0, time.UTC),
+			expected: 30,
+		},
+	}
+
+	for _, tt := range tests {
+		result := DaysBetween(tt.start, tt.end)
+		assert.Equal(tt.expected, result)
+	}
+}
