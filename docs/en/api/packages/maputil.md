@@ -9,7 +9,7 @@ Package maputil includes some functions to manipulate map.
 -   [https://github.com/duke-git/lancet/blob/main/maputil/map.go](https://github.com/duke-git/lancet/blob/main/maputil/map.go)
 -   [https://github.com/duke-git/lancet/blob/main/maputil/concurrentmap.go](https://github.com/duke-git/lancet/blob/main/maputil/concurrentmap.go)
 -   [https://github.com/duke-git/lancet/blob/main/maputil/orderedmap.go](https://github.com/duke-git/lancet/blob/main/maputil/orderedmap.go)
--   [https://github.com/duke-git/lancet/blob/main/maputil/typemap.go](https://github.com/duke-git/lancet/blob/main/maputil/typemap.go)
+
 
 <div STYLE="page-break-after: always;"></div>
 

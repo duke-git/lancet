@@ -7,6 +7,8 @@ maputil 包包括一些操作 map 的函数。
 ## 源码:
 
 -   [https://github.com/duke-git/lancet/blob/main/maputil/map.go](https://github.com/duke-git/lancet/blob/main/maputil/map.go)
+-   [https://github.com/duke-git/lancet/blob/main/maputil/concurrentmap.go](https://github.com/duke-git/lancet/blob/main/maputil/concurrentmap.go)
+-   [https://github.com/duke-git/lancet/blob/main/maputil/orderedmap.go](https://github.com/duke-git/lancet/blob/main/maputil/orderedmap.go)
 
 <div STYLE="page-break-after: always;"></div>
 
