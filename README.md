@@ -210,6 +210,9 @@ import "github.com/duke-git/lancet/datetime"
 -   [TimestampMilli](https://github.com/duke-git/lancet/blob/v1/docs/datetime.md#TimestampMilli)
 -   [TimestampMicro](https://github.com/duke-git/lancet/blob/v1/docs/datetime.md#TimestampMicro)
 -   [TimestampNano](https://github.com/duke-git/lancet/blob/v1/docs/datetime.md#TimestampNano)
+-   [TrackFuncTime](https://github.com/duke-git/lancet/blob/v1/docs/datetime.md#TrackFuncTime)
+-   [DaysBetween](https://github.com/duke-git/lancet/blob/v1/docs/datetime.md#DaysBetween)
+-   [GenerateDatetimesBetween](https://github.com/duke-git/lancet/blob/v1/docs/datetime.md#GenerateDatetimesBetween)
 
 ### 5. Fileutil package implements some basic functions for file operations.
 
@@ -478,6 +481,8 @@ import "github.com/duke-git/lancet/strutil"
 -   [Ellipsis](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#Ellipsis)
 -   [Shuffle](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#Shuffle)
 -   [Rotate](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#Rotate)
+-   [TemplateReplace](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#TemplateReplace)
+-   [RegexMatchAllGroups](https://github.com/duke-git/lancet/blob/v1/docs/strutil.md#RegexMatchAllGroups)
 
 
 ### 14. System package contain some functions about os, runtime, shell command.

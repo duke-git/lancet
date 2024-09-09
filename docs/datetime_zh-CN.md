@@ -62,6 +62,10 @@ import (
 -   [TimestampMilli](#TimestampMilli)
 -   [TimestampMicro](#TimestampMicro)
 -   [TimestampNano](#TimestampNano)
+-   [TrackFuncTime](#TrackFuncTime)
+-   [DaysBetween](#DaysBetween)
+-   [GenerateDatetimesBetween](#GenerateDatetimesBetween)
+
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -1278,5 +1282,109 @@ func main() {
 
     // Output:
     // 1690363051331788000
+}
+```
+
+### <span id="TrackFuncTime">TrackFuncTime</span>
+
+<p>返回两个日期之间的天数差。</p>
+
+<b>函数签名:</b>
+
+```go
+func TrackFuncTime(pre time.Time) func()
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/datetime"
+)
+
+func main() {
+    defer datetime.TrackFuncTime(time.Now())()
+
+	var n int
+	for i := 0; i < 5000000; i++ {
+		n++
+	}
+
+    // Output:
+    // Function main execution time:       1.608195ms
+}
+```
+
+### <span id="DaysBetween">DaysBetween</span>
+
+<p>返回两个日期之间的天数差。</p>
+
+<b>函数签名:</b>
+
+```go
+func DaysBetween(start, end time.Time) int
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/datetime"
+)
+
+func main() {
+    start := time.Date(2024, time.September, 1, 0, 0, 0, 0, time.UTC)
+    end := time.Date(2024, time.September, 10, 0, 0, 0, 0, time.UTC)
+
+    result := datetime.DaysBetween(start, end)
+
+    fmt.Println(result)
+
+    // Output:
+    // 9
+}
+```
+
+### <span id="GenerateDatetimesBetween">GenerateDatetimesBetween</span>
+
+<p>生成从start到end的所有日期时间的字符串列表。layout参数表示时间格式，例如"2006-01-02 15:04:05"，interval参数表示时间间隔，例如"1h"表示1小时，"30m"表示30分钟。</p>
+
+<b>函数签名:</b>
+
+```go
+func GenerateDatetimesBetween(start, end time.Time, layout string, interval string) ([]string, error)
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/datetime"
+)
+
+func main() {
+    start := time.Date(2024, time.September, 1, 0, 0, 0, 0, time.UTC)
+    end := time.Date(2024, time.September, 1, 2, 0, 0, 0, time.UTC)
+
+    layout := "2006-01-02 15:04:05"
+    interval := "1h"
+
+    result, err := datetime.GenerateDatetimesBetween(start, end, layout, interval)
+
+    fmt.Println(result)
+    fmt.Println(err)
+
+    // Output:
+    // [2024-09-01 00:00:00 2024-09-01 01:00:00 2024-09-01 02:00:00]
+    // <nil>
 }
 ```

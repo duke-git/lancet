@@ -581,3 +581,90 @@ func TestRotate(t *testing.T) {
 		assert.Equal(tt.expected, Rotate(tt.input, tt.shift))
 	}
 }
+
+func TestTemplateReplace(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestTemplateReplace")
+
+	t.Run("basic", func(t *testing.T) {
+		template := `Hello, my name is {name}, I'm {age} years old.`
+		data := map[string]string{
+			"name": "Bob",
+			"age":  "20",
+		}
+
+		expected := `Hello, my name is Bob, I'm 20 years old.`
+		result := TemplateReplace(template, data)
+
+		assert.Equal(expected, result)
+	})
+
+	t.Run("not found", func(t *testing.T) {
+		template := `Hello, my name is {name}, I'm {age} years old.`
+		data := map[string]string{
+			"name": "Bob",
+		}
+
+		expected := `Hello, my name is Bob, I'm {age} years old.`
+		result := TemplateReplace(template, data)
+
+		assert.Equal(expected, result)
+	})
+
+	t.Run("brackets", func(t *testing.T) {
+		template := `Hello, my name is {name}, I'm {{age}} years old.`
+		data := map[string]string{
+			"name": "Bob",
+			"age":  "20",
+		}
+
+		expected := `Hello, my name is Bob, I'm {20} years old.`
+		result := TemplateReplace(template, data)
+
+		assert.Equal(expected, result)
+	})
+}
+
+func TestRegexMatchAllGroups(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestRegexMatchAllGroups")
+
+	tests := []struct {
+		pattern  string
+		str      string
+		expected [][]string
+	}{
+		{
+			pattern:  `(\w+\.+\w+)@(\w+)\.(\w+)`,
+			str:      "Emails: john.doe@example.com and jane.doe@example.com",
+			expected: [][]string{{"john.doe@example.com", "john.doe", "example", "com"}, {"jane.doe@example.com", "jane.doe", "example", "com"}},
+		},
+		{
+			pattern:  `(\d+)`,
+			str:      "No numbers here!",
+			expected: nil,
+		},
+		{
+			pattern:  `(\d{3})-(\d{2})-(\d{4})`,
+			str:      "My number is 123-45-6789",
+			expected: [][]string{{"123-45-6789", "123", "45", "6789"}},
+		},
+		{
+			pattern:  `(\w+)\s(\d+)`,
+			str:      "Item A 123, Item B 456",
+			expected: [][]string{{"A 123", "A", "123"}, {"B 456", "B", "456"}},
+		},
+		{
+			pattern:  `(\d{2})-(\d{2})-(\d{4})`,
+			str:      "Dates: 01-01-2020, 12-31-1999",
+			expected: [][]string{{"01-01-2020", "01", "01", "2020"}, {"12-31-1999", "12", "31", "1999"}},
+		},
+	}
+
+	for _, tt := range tests {
+		result := RegexMatchAllGroups(tt.pattern, tt.str)
+		assert.Equal(tt.expected, result)
+	}
+}

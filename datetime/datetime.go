@@ -31,6 +31,7 @@ package datetime
 
 import (
 	"fmt"
+	"runtime"
 	"strings"
 	"time"
 )
@@ -320,4 +321,63 @@ func TimestampNano(timezone ...string) int64 {
 	}
 
 	return t.UnixNano()
+}
+
+// TrackFuncTime track the time of function execution.
+// call it at top of the func like `defer TrackFuncTime(time.Now())()`
+// Play: todo
+func TrackFuncTime(pre time.Time) func() {
+	callerName := getCallerName()
+	return func() {
+		elapsed := time.Since(pre)
+		fmt.Printf("Function %s execution time:\t %v", callerName, elapsed)
+	}
+}
+
+func getCallerName() string {
+	pc, _, _, ok := runtime.Caller(2)
+	if !ok {
+		return "Unknown"
+	}
+	fn := runtime.FuncForPC(pc)
+	if fn == nil {
+		return "Unknown"
+	}
+
+	fullName := fn.Name()
+	if lastDot := strings.LastIndex(fullName, "."); lastDot != -1 {
+		return fullName[lastDot+1:]
+	}
+
+	return fullName
+}
+
+// DaysBetween returns the number of days between two times.
+func DaysBetween(start, end time.Time) int {
+	duration := end.Sub(start)
+	days := int(duration.Hours() / 24)
+
+	return days
+}
+
+// GenerateDatetimesBetween returns a slice of strings between two times.
+// layout: the format of the datetime string
+// interval: the interval between two datetimes
+func GenerateDatetimesBetween(start, end time.Time, layout string, interval string) ([]string, error) {
+	var result []string
+
+	if start.After(end) {
+		start, end = end, start
+	}
+
+	duration, err := time.ParseDuration(interval)
+	if err != nil {
+		return nil, err
+	}
+
+	for current := start; !current.After(end); current = current.Add(duration) {
+		result = append(result, current.Format(layout))
+	}
+
+	return result, nil
 }

@@ -64,6 +64,8 @@ import (
 -   [Ellipsis](#Ellipsis)
 -   [Shuffle](#Shuffle)
 -   [Rotate](#Rotate)
+-   [TemplateReplace](#TemplateReplace)
+-   [RegexMatchAllGroups](#RegexMatchAllGroups)
 
 
 <div STYLE="page-break-after: always;"></div>
@@ -1502,5 +1504,72 @@ func main() {
     // Hello
     // oHell
     // loHel
+}
+```
+
+### <span id="TemplateReplace">TemplateReplace</span>
+
+<p>将模板字符串中的占位符替换为数据映射中的相应值。占位符括在花括号中，例如 {key}。例如，模板字符串为“Hello, {name}!”，数据映射为{"name": "world"}，结果将为“Hello, world!”。</p>
+
+<b>函数签名:</b>
+
+```go
+func TemplateReplace(template string, data map[string]string) string
+```
+
+<b>示例:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/strutil"
+)
+
+func main() {
+    template := `Hello, my name is {name}, I'm {age} years old.`
+    data := map[string]string{
+        "name": "Bob",
+        "age":  "20",
+    }
+
+    result := strutil.TemplateReplace(template, data)
+
+    fmt.Println(result)
+
+    // Output:
+    // Hello, my name is Bob, I'm 20 years old.
+}
+```
+
+### <span id="RegexMatchAllGroups">RegexMatchAllGroups</span>
+
+<p>使用正则表达式匹配字符串中的所有子组并返回结果。</p>
+
+<b>函数签名:</b>
+
+```go
+func RegexMatchAllGroups(pattern, str string) [][]string
+```
+
+<b>示例:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/strutil"
+)
+
+func main() {
+    pattern := `(\w+\.+\w+)@(\w+)\.(\w+)`
+    str := "Emails: john.doe@example.com and jane.doe@example.com"
+
+    result := strutil.RegexMatchAllGroups(pattern, str)
+
+    fmt.Println(result[0])
+    fmt.Println(result[1])
+
+    // Output:
+    // [john.doe@example.com john.doe example com]
+    // [jane.doe@example.com jane.doe example com]
 }
 ```

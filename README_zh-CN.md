@@ -213,6 +213,9 @@ import "github.com/duke-git/lancet/datetime"
 -   [TimestampMilli](https://github.com/duke-git/lancet/blob/v1/docs/datetime_zh-CN.md#TimestampMilli)
 -   [TimestampMicro](https://github.com/duke-git/lancet/blob/v1/docs/datetime_zh-CN.md#TimestampMicro)
 -   [TimestampNano](https://github.com/duke-git/lancet/blob/v1/docs/datetime_zh-CN.md#TimestampNano)
+-   [TrackFuncTime](https://github.com/duke-git/lancet/blob/v1/docs/datetime_zh-CN.md#TrackFuncTime)
+-   [DaysBetween](https://github.com/duke-git/lancet/blob/v1/docs/datetime_zh-CN.md#DaysBetween)
+-   [GenerateDatetimesBetween](https://github.com/duke-git/lancet/blob/v1/docs/datetime_zh-CN.md#GenerateDatetimesBetween)
 
 ### 5. fileutil 包支持文件基本操作。
 
@@ -480,6 +483,8 @@ import "github.com/duke-git/lancet/strutil"
 -   [Ellipsis](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#Ellipsis)
 -   [Shuffle](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#Shuffle)
 -   [Rotate](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#Rotate)
+-   [TemplateReplace](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#TemplateReplace)
+-   [RegexMatchAllGroups](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#RegexMatchAllGroups)
 
 ### 14. system 包含 os, runtime, shell command 相关函数。
 
