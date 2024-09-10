@@ -63,6 +63,11 @@ import (
 -   [SubInBetween](#SubInBetween)
 -   [HammingDistance](#HammingDistance)
 -   [Concat](#Concat)
+-   [Ellipsis](#Ellipsis)
+-   [Shuffle](#Shuffle)
+-   [Rotate](#Rotate)
+-   [TemplateReplace](#TemplateReplace)
+-   [RegexMatchAllGroups](#RegexMatchAllGroups)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -1100,10 +1105,10 @@ import (
 
 func main() {
     result1 := strutil.IsNotBlank("")
-    result2 := strutil.IsNotBlank("	")
+    result2 := strutil.IsNotBlank("    ")
     result3 := strutil.IsNotBlank("\t\v\f\n")
     result4 := strutil.IsNotBlank(" 中文")
-    result5 := strutil.IsNotBlank(" 	world	")
+    result5 := strutil.IsNotBlank("    world    ")
     
     fmt.Println(result1)
     fmt.Println(result2)
@@ -1553,17 +1558,174 @@ import (
 )
 
 func main() {
+    result1 := strutil.Concat(12, "Hello", " ", "World", "!")
+    result2 := strutil.Concat(11, "Go", " ", "Language")
+    result3 := strutil.Concat(0, "An apple a ", "day，", "keeps the", " doctor away")
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
 
- 	result1 := strutil.Concat(12, "Hello", " ", "World", "!")
-	result2 := strutil.Concat(11, "Go", " ", "Language")
-	result3 := strutil.Concat(0, "An apple a ", "day，", "keeps the", " doctor away")
-	fmt.Println(result1)
-	fmt.Println(result2)
-	fmt.Println(result3)
+    // Output:
+    // Hello World!
+    // Go Language
+    // An apple a day，keeps the doctor away
+}
+```
 
-	// Output:
-	// Hello World!
-	// Go Language
-	// An apple a day，keeps the doctor away
+### <span id="Ellipsis">Ellipsis</span>
+
+<p>Truncates a string to a specified length and appends an ellipsis.</p>
+
+<b>Signature:</b>
+
+```go
+func Ellipsis(str string, length int) string
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run]()</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    result1 := strutil.Ellipsis("hello world", 5)
+    result2 := strutil.Ellipsis("你好，世界!", 2)
+    result3 := strutil.Ellipsis("😀😃😄😁😆", 3)
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+
+    // Output:
+    // hello...
+    // 你好...
+    // 😀😃😄...
+}
+```
+
+### <span id="Shuffle">Shuffle</span>
+
+<p>Shuffle the order of characters of given string.</p>
+
+<b>Signature:</b>
+
+```go
+func Shuffle(str string) string
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run]()</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    result := strutil.Shuffle("hello")
+    fmt.Println(result)  //olelh (random order)
+}
+```
+
+### <span id="Rotate">Rotate</span>
+
+<p>Rotates the string by the specified number of characters.</p>
+
+<b>Signature:</b>
+
+```go
+func Rotate(str string, shift int) string
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run]()</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    result1 := Rotate("Hello", 0)
+    result2 := Rotate("Hello", 1)
+    result3 := Rotate("Hello", 2)
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+
+    // Output:
+    // Hello
+    // oHell
+    // loHel
+}
+```
+### <span id="TemplateReplace">TemplateReplace</span>
+
+<p>Replaces the placeholders in the template string with the corresponding values in the data map.The placeholders are enclosed in curly braces, e.g. {key}. for example, the template string is "Hello, {name}!", and the data map is {"name": "world"}, the result will be "Hello, world!".</p>
+
+<b>Signature:</b>
+
+```go
+func TemplateReplace(template string, data map[string]string string
+```
+
+<b>example:<span style="float:right;display:inline-block;">[Run]()</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    template := `Hello, my name is {name}, I'm {age} years old.`
+    data := map[string]string{
+        "name": "Bob",
+        "age":  "20",
+    }
+
+    result := strutil.TemplateReplace(template, data)
+
+    fmt.Println(result)
+
+    // Output:
+    // Hello, my name is Bob, I'm 20 years old.
+}
+```
+
+### <span id="RegexMatchAllGroups">RegexMatchAllGroups</span>
+
+<p>Matches all subgroups in a string using a regular expression and returns the result.</p>
+
+<b>Signature:</b>
+
+```go
+func RegexMatchAllGroups(pattern, str string) [][]string
+```
+
+<b>example:<span style="float:right;display:inline-block;">[Run]()</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    pattern := `(\w+\.+\w+)@(\w+)\.(\w+)`
+    str := "Emails: john.doe@example.com and jane.doe@example.com"
+
+    result := strutil.RegexMatchAllGroups(pattern, str)
+
+    fmt.Println(result[0])
+    fmt.Println(result[1])
+
+    // Output:
+    // [john.doe@example.com john.doe example com]
+    // [jane.doe@example.com jane.doe example com]
 }
 ```

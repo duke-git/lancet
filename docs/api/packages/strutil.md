@@ -63,6 +63,12 @@ import (
 -   [SubInBetween](#SubInBetween)
 -   [HammingDistance](#HammingDistance)
 -   [Concat](#Concat)
+-   [Ellipsis](#Ellipsis)
+-   [Shuffle](#Shuffle)
+-   [Rotate](#Rotate)
+-   [TemplateReplace](#TemplateReplace)
+-   [RegexMatchAllGroups](#RegexMatchAllGroups)
+
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -1551,16 +1557,175 @@ import (
 
 func main() {
 
- 	result1 := strutil.Concat(12, "Hello", " ", "World", "!")
-	result2 := strutil.Concat(11, "Go", " ", "Language")
-	result3 := strutil.Concat(0, "An apple a ", "day，", "keeps the", " doctor away")
-	fmt.Println(result1)
-	fmt.Println(result2)
-	fmt.Println(result3)
+     result1 := strutil.Concat(12, "Hello", " ", "World", "!")
+    result2 := strutil.Concat(11, "Go", " ", "Language")
+    result3 := strutil.Concat(0, "An apple a ", "day，", "keeps the", " doctor away")
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
 
-	// Output:
-	// Hello World!
-	// Go Language
-	// An apple a day，keeps the doctor away
+    // Output:
+    // Hello World!
+    // Go Language
+    // An apple a day，keeps the doctor away
+}
+```
+
+### <span id="Ellipsis">Ellipsis</span>
+
+<p>将字符串截断到指定长度，并在末尾添加省略号。</p>
+
+<b>函数签名:</b>
+
+```go
+func Ellipsis(str string, length int) string
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行]()</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    result1 := strutil.Ellipsis("hello world", 5)
+    result2 := strutil.Ellipsis("你好，世界!", 2)
+    result3 := strutil.Ellipsis("😀😃😄😁😆", 3)
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+
+    // Output:
+    // hello...
+    // 你好...
+    // 😀😃😄...
+}
+```
+
+### <span id="Shuffle">Shuffle</span>
+
+<p>打乱给定字符串中的字符顺序。</p>
+
+<b>函数签名:</b>
+
+```go
+func Shuffle(str string) string
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行]()</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    result := strutil.Shuffle("hello")
+    fmt.Println(result)  //olelh (random order)
+}
+```
+
+### <span id="Rotate">Rotate</span>
+
+<p>按指定的字符数旋转字符串。</p>
+
+<b>函数签名:</b>
+
+```go
+func Rotate(str string, shift int) string
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行]()</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    result1 := Rotate("Hello", 0)
+    result2 := Rotate("Hello", 1)
+    result3 := Rotate("Hello", 2)
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+
+    // Output:
+    // Hello
+    // oHell
+    // loHel
+}
+```
+
+### <span id="TemplateReplace">TemplateReplace</span>
+
+<p>将模板字符串中的占位符替换为数据映射中的相应值。占位符括在花括号中，例如 {key}。例如，模板字符串为“Hello, {name}!”，数据映射为{"name": "world"}，结果将为“Hello, world!”。</p>
+
+<b>函数签名:</b>
+
+```go
+func TemplateReplace(template string, data map[string]string) string
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行]()</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    template := `Hello, my name is {name}, I'm {age} years old.`
+    data := map[string]string{
+        "name": "Bob",
+        "age":  "20",
+    }
+
+    result := strutil.TemplateReplace(template, data)
+
+    fmt.Println(result)
+
+    // Output:
+    // Hello, my name is Bob, I'm 20 years old.
+}
+```
+
+### <span id="RegexMatchAllGroups">RegexMatchAllGroups</span>
+
+<p>使用正则表达式匹配字符串中的所有子组并返回结果。</p>
+
+<b>函数签名:</b>
+
+```go
+func RegexMatchAllGroups(pattern, str string) [][]string
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[Run]()</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    pattern := `(\w+\.+\w+)@(\w+)\.(\w+)`
+    str := "Emails: john.doe@example.com and jane.doe@example.com"
+
+    result := strutil.RegexMatchAllGroups(pattern, str)
+
+    fmt.Println(result[0])
+    fmt.Println(result[1])
+
+    // Output:
+    // [john.doe@example.com john.doe example com]
+    // [jane.doe@example.com jane.doe example com]
 }
 ```

@@ -1386,3 +1386,15 @@ func LeftPadding[T any](slice []T, paddingValue T, paddingLength int) []T {
 
 	return paddedSlice
 }
+
+// Frequency counts the frequency of each element in the slice.
+// Play: todo
+func Frequency[T comparable](slice []T) map[T]int {
+	result := make(map[T]int)
+
+	for _, v := range slice {
+		result[v]++
+	}
+
+	return result
+}

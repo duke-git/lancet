@@ -410,3 +410,114 @@ func TestTimestamp(t *testing.T) {
 	ts4 := TimestampNano()
 	t.Log(ts4)
 }
+
+func TestTrackFuncTime(t *testing.T) {
+	defer TrackFuncTime(time.Now())()
+
+	var n int
+	for i := 0; i < 5000000; i++ {
+		n++
+	}
+}
+
+func TestDaysBetween(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestDaysBetween")
+
+	tests := []struct {
+		start    time.Time
+		end      time.Time
+		expected int
+	}{
+		{
+			start:    time.Date(2024, time.September, 1, 0, 0, 0, 0, time.UTC),
+			end:      time.Date(2024, time.September, 10, 0, 0, 0, 0, time.UTC),
+			expected: 9,
+		},
+		{
+			start:    time.Date(2024, time.September, 10, 0, 0, 0, 0, time.UTC),
+			end:      time.Date(2024, time.September, 1, 0, 0, 0, 0, time.UTC),
+			expected: -9,
+		},
+		{
+			start:    time.Date(2024, time.September, 1, 0, 0, 0, 0, time.UTC),
+			end:      time.Date(2024, time.September, 1, 0, 0, 0, 0, time.UTC),
+			expected: 0,
+		},
+		{
+			start:    time.Date(2024, time.January, 1, 0, 0, 0, 0, time.UTC),
+			end:      time.Date(2024, time.December, 31, 0, 0, 0, 0, time.UTC),
+			expected: 365,
+		},
+		{
+			start:    time.Date(2024, time.March, 1, 0, 0, 0, 0, time.UTC),
+			end:      time.Date(2024, time.March, 31, 0, 0, 0, 0, time.UTC),
+			expected: 30,
+		},
+	}
+
+	for _, tt := range tests {
+		result := DaysBetween(tt.start, tt.end)
+		assert.Equal(tt.expected, result)
+	}
+}
+
+func TestGenerateDatetimesBetween(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestGenerateDatetimesBetween")
+
+	tests := []struct {
+		start    time.Time
+		end      time.Time
+		layout   string
+		interval string
+		expected []string
+	}{
+		{
+			start:    time.Date(2024, time.September, 1, 0, 0, 0, 0, time.UTC),
+			end:      time.Date(2024, time.September, 1, 2, 0, 0, 0, time.UTC),
+			layout:   "2006-01-02 15:04:05",
+			interval: "30m",
+			expected: []string{
+				"2024-09-01 00:00:00",
+				"2024-09-01 00:30:00",
+				"2024-09-01 01:00:00",
+				"2024-09-01 01:30:00",
+				"2024-09-01 02:00:00",
+			},
+		},
+		{
+			start:    time.Date(2024, time.September, 1, 0, 0, 0, 0, time.UTC),
+			end:      time.Date(2024, time.September, 1, 0, 0, 0, 0, time.UTC),
+			layout:   "2006-01-02 15:04:05",
+			interval: "1h",
+			expected: []string{"2024-09-01 00:00:00"},
+		},
+		{
+			start:    time.Date(2024, time.September, 1, 0, 0, 0, 0, time.UTC),
+			end:      time.Date(2024, time.September, 1, 3, 0, 0, 0, time.UTC),
+			layout:   "2006-01-02 15:04:05",
+			interval: "2h",
+			expected: []string{
+				"2024-09-01 00:00:00",
+				"2024-09-01 02:00:00",
+			},
+		},
+	}
+
+	for _, tt := range tests {
+		result, err := GenerateDatetimesBetween(tt.start, tt.end, tt.layout, tt.interval)
+
+		assert.Equal(tt.expected, result)
+		assert.IsNil(err)
+	}
+
+	t.Run("Invalid interval", func(t *testing.T) {
+		_, err := GenerateDatetimesBetween(time.Now(), time.Now(), "2006-01-02 15:04:05", "invalid")
+		if err == nil {
+			t.Fatal("Expected error, got nil")
+		}
+	})
+}

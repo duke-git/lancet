@@ -5,12 +5,17 @@ package strutil
 
 import (
 	"errors"
+	"math/rand"
 	"regexp"
 	"strings"
+	"time"
 	"unicode"
 	"unicode/utf8"
 	"unsafe"
 )
+
+// used in `Shuffle` function
+var rng = rand.New(rand.NewSource(int64(time.Now().UnixNano())))
 
 // CamelCase coverts string to camelCase string. Non letters and numbers will be ignored.
 // Play: https://go.dev/play/p/9eXP3tn2tUy
@@ -621,6 +626,8 @@ func HammingDistance(a, b string) (int, error) {
 // Concat uses the strings.Builder to concatenate the input strings.
 //   - `length` is the expected length of the concatenated string.
 //   - if you are unsure about the length of the string to be concatenated, please pass 0 or a negative number.
+//
+// Play: todo
 func Concat(length int, str ...string) string {
 	if len(str) == 0 {
 		return ""
@@ -637,4 +644,94 @@ func Concat(length int, str ...string) string {
 		sb.WriteString(s)
 	}
 	return sb.String()
+}
+
+// Ellipsis truncates a string to a specified length and appends an ellipsis.
+// Play: todo
+func Ellipsis(str string, length int) string {
+	str = strings.TrimSpace(str)
+
+	if length <= 0 {
+		return ""
+	}
+
+	runes := []rune(str)
+
+	if len(runes) <= length {
+		return str
+	}
+
+	return string(runes[:length]) + "..."
+}
+
+// Shuffle the order of characters of given string.
+// Play: todo
+func Shuffle(str string) string {
+	runes := []rune(str)
+
+	for i := len(runes) - 1; i > 0; i-- {
+		j := rng.Intn(i + 1)
+		runes[i], runes[j] = runes[j], runes[i]
+	}
+
+	return string(runes)
+}
+
+// Rotate rotates the string by the specified number of characters.
+// Play: todo
+func Rotate(str string, shift int) string {
+	if shift == 0 {
+		return str
+	}
+
+	runes := []rune(str)
+	length := len(runes)
+	if length == 0 {
+		return str
+	}
+
+	shift = shift % length
+
+	if shift < 0 {
+		shift = length + shift
+	}
+
+	var sb strings.Builder
+	sb.Grow(length)
+
+	sb.WriteString(string(runes[length-shift:]))
+	sb.WriteString(string(runes[:length-shift]))
+
+	return sb.String()
+}
+
+// TemplateReplace replaces the placeholders in the template string with the corresponding values in the data map.
+// The placeholders are enclosed in curly braces, e.g. {key}.
+// for example, the template string is "Hello, {name}!", and the data map is {"name": "world"},
+// the result will be "Hello, world!".
+// Play: todo
+func TemplateReplace(template string, data map[string]string) string {
+	re := regexp.MustCompile(`\{(\w+)\}`)
+
+	result := re.ReplaceAllStringFunc(template, func(s string) string {
+		key := strings.Trim(s, "{}")
+		if val, ok := data[key]; ok {
+			return val
+		}
+
+		return s
+	})
+
+	result = strings.ReplaceAll(result, "{{", "{")
+	result = strings.ReplaceAll(result, "}}", "}")
+
+	return result
+}
+
+// RegexMatchAllGroups Matches all subgroups in a string using a regular expression and returns the result.
+// Play: todo
+func RegexMatchAllGroups(pattern, str string) [][]string {
+	re := regexp.MustCompile(pattern)
+	matches := re.FindAllStringSubmatch(str, -1)
+	return matches
 }

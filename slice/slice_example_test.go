@@ -1251,3 +1251,13 @@ func ExampleMapConcurrent() {
 	// Output:
 	// [1 4 9 16 25 36]
 }
+
+func ExampleFrequency() {
+	strs := []string{"a", "b", "b", "c", "c", "c"}
+	result := Frequency(strs)
+
+	fmt.Println(result)
+
+	// Output:
+	// map[a:1 b:2 c:3]
+}

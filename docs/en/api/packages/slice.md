@@ -105,6 +105,7 @@ import (
 -   [Break](#Break)
 -   [RightPadding](#RightPadding)
 -   [LeftPadding](#LeftPadding)
+-   [Frequency](#Frequency)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -2897,7 +2898,7 @@ func main() {
 }
 ```
 
-<span id="c">RightPadding</span>
+### <span id="RightPadding">RightPadding</span>
 
 <p>RightPadding adds padding to the right end of a slice.</p>
 
@@ -2916,7 +2917,7 @@ import (
 )
 
 func main() {
-      nums := []int{1, 2, 3, 4, 5}
+    nums := []int{1, 2, 3, 4, 5}
     padded := slice.RightPadding(nums, 0, 3)
     fmt.Println(padded)
     // Output:
@@ -2924,7 +2925,7 @@ func main() {
 }
 ```
 
-<span id="LeftPadding">LeftPadding</span>
+### <span id="LeftPadding">LeftPadding</span>
 
 <p>LeftPadding adds padding to the left begin of a slice.</p>
 
@@ -2943,10 +2944,39 @@ import (
 )
 
 func main() {
-      nums := []int{1, 2, 3, 4, 5}
+    nums := []int{1, 2, 3, 4, 5}
     padded := slice.LeftPadding(nums, 0, 3)
     fmt.Println(padded)
     // Output:
     // [0 0 0 1 2 3 4 5]
+}
+```
+
+### <span id="Frequency">Frequency</span>
+
+<p>Counts the frequency of each element in the slice.</p>
+
+<b>Signature:</b>
+
+```go
+func Frequency[T comparable](slice []T) map[T]int
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run]()</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+    strs := []string{"a", "b", "b", "c", "c", "c"}
+    result := slice.Frequency(strs)
+
+    fmt.Println(result)
+
+    // Output:
+    // map[a:1 b:2 c:3]
 }
 ```

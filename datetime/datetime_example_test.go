@@ -408,3 +408,32 @@ func ExampleIsWeekend() {
 	// true
 	// false
 }
+
+func ExampleDaysBetween() {
+	start := time.Date(2024, time.September, 1, 0, 0, 0, 0, time.UTC)
+	end := time.Date(2024, time.September, 10, 0, 0, 0, 0, time.UTC)
+
+	result := DaysBetween(start, end)
+
+	fmt.Println(result)
+
+	// Output:
+	// 9
+}
+
+func ExampleGenerateDatetimesBetween() {
+	start := time.Date(2024, time.September, 1, 0, 0, 0, 0, time.UTC)
+	end := time.Date(2024, time.September, 1, 2, 0, 0, 0, time.UTC)
+
+	layout := "2006-01-02 15:04:05"
+	interval := "1h"
+
+	result, err := GenerateDatetimesBetween(start, end, layout, interval)
+
+	fmt.Println(result)
+	fmt.Println(err)
+
+	// Output:
+	// [2024-09-01 00:00:00 2024-09-01 01:00:00 2024-09-01 02:00:00]
+	// <nil>
+}

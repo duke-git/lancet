@@ -694,3 +694,62 @@ func ExampleConcat() {
 	// Go Language
 	// An apple a day，keeps the doctor away
 }
+
+func ExampleEllipsis() {
+	result1 := Ellipsis("hello world", 5)
+	result2 := Ellipsis("你好，世界!", 2)
+	result3 := Ellipsis("😀😃😄😁😆", 3)
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+
+	// Output:
+	// hello...
+	// 你好...
+	// 😀😃😄...
+}
+
+func ExampleRotate() {
+	result1 := Rotate("Hello", 0)
+	result2 := Rotate("Hello", 1)
+	result3 := Rotate("Hello", 2)
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+
+	// Output:
+	// Hello
+	// oHell
+	// loHel
+}
+
+func ExampleTemplateReplace() {
+	template := `Hello, my name is {name}, I'm {age} years old.`
+	data := map[string]string{
+		"name": "Bob",
+		"age":  "20",
+	}
+
+	result := TemplateReplace(template, data)
+
+	fmt.Println(result)
+
+	// Output:
+	// Hello, my name is Bob, I'm 20 years old.
+}
+
+func ExampleRegexMatchAllGroups() {
+	pattern := `(\w+\.+\w+)@(\w+)\.(\w+)`
+	str := "Emails: john.doe@example.com and jane.doe@example.com"
+
+	result := RegexMatchAllGroups(pattern, str)
+
+	fmt.Println(result[0])
+	fmt.Println(result[1])
+
+	// Output:
+	// [john.doe@example.com john.doe example com]
+	// [jane.doe@example.com jane.doe example com]
+}
