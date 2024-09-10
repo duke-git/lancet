@@ -869,3 +869,22 @@ func TestBaseType(t *testing.T) {
 	MapTo(tc["u64"], &number)
 	assert.EqualValues(64, number)
 }
+
+func TestGetOrDefault(t *testing.T) {
+
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "GetOrDefault")
+
+	m1 := map[int]string{
+		3: "c",
+		1: "a",
+		4: "d",
+		2: "b",
+	}
+	result1 := GetOrDefault(m1, 1, "123")
+	assert.Equal("a", result1)
+
+	result2 := GetOrDefault(m1, 5, "123")
+	assert.Equal("123", result2)
+}
