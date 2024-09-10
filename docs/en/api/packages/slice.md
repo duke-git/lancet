@@ -913,7 +913,7 @@ func main() {
 func FilterConcurrent[T any](slice []T, predicate func(index int, item T) bool, numThreads int) []T
 ```
 
-<b>Example:</b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
 
 ```go
 import (
@@ -1190,7 +1190,7 @@ func main() {
 func ForEachConcurrent[T any](slice []T, iteratee func(index int, item T), numThreads int)
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run]()</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
 
 ```go
 import (
@@ -1766,7 +1766,7 @@ func main() {
 func ReduceConcurrent[T any](slice []T, initial T, reducer func(index int, item T, agg T) T, numThreads int) T
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[运行]()</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[运行](todo)</span></b>
 
 ```go
 import (
@@ -2962,7 +2962,7 @@ func main() {
 func Frequency[T comparable](slice []T) map[T]int
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run]()</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
 
 ```go
 import (

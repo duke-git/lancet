@@ -1549,7 +1549,7 @@ func main() {
 func Concat(length int, str ...string) string
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run]()</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
 
 ```go
 import (
@@ -1582,7 +1582,7 @@ func main() {
 func Ellipsis(str string, length int) string
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run]()</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
 
 ```go
 import (
@@ -1616,7 +1616,7 @@ func main() {
 func Shuffle(str string) string
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run]()</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
 
 ```go
 import (
@@ -1640,7 +1640,7 @@ func main() {
 func Rotate(str string, shift int) string
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run]()</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
 
 ```go
 import (
@@ -1673,7 +1673,7 @@ func main() {
 func TemplateReplace(template string, data map[string]string string
 ```
 
-<b>example:<span style="float:right;display:inline-block;">[Run]()</span></b>
+<b>example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
 
 ```go
 import (
@@ -1707,7 +1707,7 @@ func main() {
 func RegexMatchAllGroups(pattern, str string) [][]string
 ```
 
-<b>example:<span style="float:right;display:inline-block;">[Run]()</span></b>
+<b>example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
 
 ```go
 import (

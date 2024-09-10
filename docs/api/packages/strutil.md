@@ -1547,7 +1547,7 @@ func main() {
 func Concat(length int, str ...string) string
 ```
 
-<b>示例:<span style="float:right;display:inline-block;">[运行]()</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](todo)</span></b>
 
 ```go
 import (
@@ -1581,7 +1581,7 @@ func main() {
 func Ellipsis(str string, length int) string
 ```
 
-<b>示例:<span style="float:right;display:inline-block;">[运行]()</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](todo)</span></b>
 
 ```go
 import (
@@ -1615,7 +1615,7 @@ func main() {
 func Shuffle(str string) string
 ```
 
-<b>示例:<span style="float:right;display:inline-block;">[运行]()</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](todo)</span></b>
 
 ```go
 import (
@@ -1639,7 +1639,7 @@ func main() {
 func Rotate(str string, shift int) string
 ```
 
-<b>示例:<span style="float:right;display:inline-block;">[运行]()</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](todo)</span></b>
 
 ```go
 import (
@@ -1665,7 +1665,7 @@ func main() {
 
 ### <span id="TemplateReplace">TemplateReplace</span>
 
-<p>将模板字符串中的占位符替换为数据映射中的相应值。占位符括在花括号中，例如 {key}。例如，模板字符串为“Hello, {name}!”，数据映射为{"name": "world"}，结果将为“Hello, world!”。</p>
+<p>将模板字符串中的占位符替换为map中的相应值。占位符括在花括号中，例如 {key}。例如，模板字符串为“Hello, {name}!”，map为{"name": "world"}，结果将为“Hello, world!”。</p>
 
 <b>函数签名:</b>
 
@@ -1707,7 +1707,7 @@ func main() {
 func RegexMatchAllGroups(pattern, str string) [][]string
 ```
 
-<b>示例:<span style="float:right;display:inline-block;">[Run]()</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
 
 ```go
 import (

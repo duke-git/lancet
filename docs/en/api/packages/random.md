@@ -133,7 +133,7 @@ func main() {
 func RandFromGivenSlice[T any](slice []T) T
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run]()</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
 
 ```go
 package main
@@ -160,7 +160,7 @@ func main() {
 func RandSliceFromGivenSlice[T any](slice []T, num int, repeatable bool) []T
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run]()</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
 
 ```go
 package main
@@ -346,7 +346,7 @@ func main() {
 func RandIntSlice(length, min, max int) []int
 ```
 
-<b>Example:</b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
 
 ```go
 package main
@@ -452,7 +452,7 @@ func main() {
 func RandStringSlice(charset string, sliceLen, strLen int) []string
 ```
 
-<b>Example:</b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
 
 ```go
 package main
@@ -481,7 +481,7 @@ func main() {
 func RandBool() bool
 ```
 
-<b>Example:</b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
 
 ```go
 package main
@@ -507,7 +507,7 @@ func main() {
 func RandBoolSlice(length int) []bool
 ```
 
-<b>Example:</b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
 
 ```go
 package main

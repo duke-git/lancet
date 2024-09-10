@@ -126,7 +126,7 @@ func main() {
 
 ### <span id="RandFromGivenSlice">RandFromGivenSlice</span>
 
-<p>从给定切片中随机生成元素</p>
+<p>从给定切片中随机生成元素。</p>
 
 <b>函数签名:</b>
 
@@ -134,7 +134,7 @@ func main() {
 func RandFromGivenSlice[T any](slice []T) T
 ```
 
-<b>示例:<span style="float:right;display:inline-block;">[运行]()</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](todo)</span></b>
 
 ```go
 package main
@@ -153,7 +153,7 @@ func main() {
 
 ### <span id="RandSliceFromGivenSlice">RandSliceFromGivenSlice</span>
 
-<p>从给定切片中生成长度为 num 的随机切片</p>
+<p>从给定切片中生成长度为 num 的随机切片。</p>
 
 <b>函数签名:</b>
 
@@ -161,7 +161,7 @@ func main() {
 func RandSliceFromGivenSlice[T any](slice []T, num int, repeatable bool) []T
 ```
 
-<b>示例:<span style="float:right;display:inline-block;">[运行]()</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](todo)</span></b>
 
 ```go
 package main
@@ -451,7 +451,7 @@ func main() {
 func RandStringSlice(charset string, sliceLen, strLen int) []string
 ```
 
-<b>实例:</b>
+<b>实例:<span style="float:right;display:inline-block;">[运行](todo)</span></b>
 
 ```go
 package main
@@ -480,7 +480,7 @@ func main() {
 func RandBool() bool
 ```
 
-<b>实例:</b>
+<b>实例:<span style="float:right;display:inline-block;">[运行](todo)</span></b>
 
 ```go
 package main
@@ -506,7 +506,7 @@ func main() {
 func RandBoolSlice(length int) []bool
 ```
 
-<b>实例:</b>
+<b>实例:<span style="float:right;display:inline-block;">[运行](todo)</span></b>
 
 ```go
 package main

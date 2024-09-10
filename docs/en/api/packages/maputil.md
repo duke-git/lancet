@@ -77,6 +77,8 @@ import (
 -   [ConcurrentMap_Has](#ConcurrentMap_Has)
 -   [ConcurrentMap_Range](#ConcurrentMap_Range)
 -   [GetOrSet](#GetOrSet)
+-   [SortByKey](#SortByKey)
+
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -1165,7 +1167,7 @@ func main() {
 func NewOrderedMap[K comparable, V any]() *OrderedMap[K, V]
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run]()</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
 
 ```go
 package main
@@ -1204,7 +1206,7 @@ func main() {
 func (om *OrderedMap[K, V]) Set(key K, value V)
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run]()</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
 
 ```go
 package main
@@ -1243,7 +1245,7 @@ func main() {
 func (om *OrderedMap[K, V]) Get(key K) (V, bool)
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run]()</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
 
 ```go
 package main
@@ -1283,7 +1285,7 @@ func main() {
 func (om *OrderedMap[K, V]) Delete(key K)
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run]()</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
 
 ```go
 package main
@@ -1319,7 +1321,7 @@ func main() {
 func (om *OrderedMap[K, V]) Clear()
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run]()</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
 
 ```go
 package main
@@ -1358,7 +1360,7 @@ func (om *OrderedMap[K, V]) Front() (struct {
 }, bool)
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run]()</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
 
 ```go
 package main
@@ -1398,7 +1400,7 @@ func (om *OrderedMap[K, V]) Back() (struct {
 }, bool)
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run]()</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
 
 ```go
 package main
@@ -1435,7 +1437,7 @@ func main() {
 func (om *OrderedMap[K, V]) Range(iteratee func(key K, value V) bool)
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run]()</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
 
 ```go
 package main
@@ -1474,7 +1476,7 @@ func main() {
 func (om *OrderedMap[K, V]) Keys() []K
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run]()</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
 
 ```go
 package main
@@ -1510,7 +1512,7 @@ func main() {
 func (om *OrderedMap[K, V]) Values() []V
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run]()</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
 
 ```go
 package main
@@ -1546,7 +1548,7 @@ func main() {
 func (om *OrderedMap[K, V]) Elements() []struct
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run]()</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
 
 ```go
 package main
@@ -1582,7 +1584,7 @@ func main() {
 func (om *OrderedMap[K, V]) Len() int
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run]()</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
 
 ```go
 package main
@@ -1618,7 +1620,7 @@ func main() {
 func (om *OrderedMap[K, V]) Contains(key K) bool
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run]()</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
 
 ```go
 package main
@@ -1660,7 +1662,7 @@ func (om *OrderedMap[K, V]) Iter() <-chan struct {
 }
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run]()</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
 
 ```go
 package main
@@ -1739,7 +1741,7 @@ func main() {
 func (om *OrderedMap[K, V]) SortByKey(less func(a, b K) bool)
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run]()</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
 
 ```go
 package main
@@ -1778,7 +1780,7 @@ func main() {
 func (om *OrderedMap[K, V]) MarshalJSON() ([]byte, error)
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run]()</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
 
 ```go
 package main
@@ -1815,7 +1817,7 @@ func main() {
 func (om *OrderedMap[K, V]) UnmarshalJSON(data []byte) error
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run]()</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
 
 ```go
 package main
@@ -2254,7 +2256,7 @@ func main() {
 func SortByKey[K constraints.Ordered, V any](m map[K]V) (sortedKeysMap map[K]V)
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[运行]()</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
 
 ```go
 package main

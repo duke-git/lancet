@@ -205,7 +205,7 @@ func main() {
 func Debounce(fn func(), delay time.Duration) (debouncedFn func(), cancelFn func())
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](todo)</span></b>
 
 ```go
 package main
@@ -753,7 +753,7 @@ func main() {
 func Throttle(fn func(), interval time.Duration) func()
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](todo)</span></b>
 
 ```go
 package main

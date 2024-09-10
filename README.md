@@ -24,7 +24,7 @@
 ## Features
 
 -   👏 Comprehensive, efficient and reusable.
--   💪 600+ go util functions, support string, slice, datetime, net, crypt...
+-   💪 700+ go util functions, support string, slice, datetime, net, crypt...
 -   💅 Only depends on two kinds of libraries: go standard library and golang.org/x.
 -   🌍 Unit test for every exported function.
 
@@ -362,6 +362,12 @@ import "github.com/duke-git/lancet/v2/cryptor"
 -   **<big>AesOfbDecrypt</big>** : decrypt byte slice data with key use AES OFB algorithm.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/cryptor.md#AesOfbDecrypt)]
     [[play](https://go.dev/play/p/VtHxtkUj-3F)]
+-   **<big>AesGcmEncrypt</big>** : encrypt byte slice data with key use AES GCM algorithm.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/cryptor.md#AesGcmEncrypt)]
+    [[play](todo)]
+-   **<big>AesGcmDecrypt</big>** : decrypt byte slice data with key use AES GCM algorithm.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/cryptor.md#AesGcmDecrypt)]
+    [[play](todo)]
 -   **<big>Base64StdEncode</big>** : encode string with base64 encoding.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/cryptor.md#Base64StdEncode)]
     [[play](https://go.dev/play/p/VOaUyQUreoK)]
@@ -603,6 +609,16 @@ import "github.com/duke-git/lancet/v2/datetime"
 -   **<big>TimestampNano</big>** : returns current nano second timestamp.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/datetime.md#TimestampNano)]
     [[play](https://go.dev/play/p/A9Oq_COrcCF)]
+-   **<big>TrackFuncTime</big>** : tracks function execution time.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/datetime.md#TrackFuncTime)]
+    [[play](todo)]
+-   **<big>DaysBetween</big>** : returns the number of days between two times.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/datetime.md#DaysBetween)]
+    [[play](todo)]
+-   **<big>GenerateDatetimesBetween</big>** : returns a slice of strings between two times.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/datetime.md#GenerateDatetimesBetween)]
+    [[play](todo)]
+
 
 <h3 id="datastructure"> 8. Datastructure package contains some common data structure. eg. list, linklist, stack, queue, set, tree, graph. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
@@ -792,9 +808,15 @@ import "github.com/duke-git/lancet/v2/function"
 -   **<big>Delay</big>** : call the function after delayed time.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/function.md#Delay)]
     [[play](https://go.dev/play/p/Ivtc2ZE-Tye)]
--   **<big>Debounced</big>** : creates a debounced function that delays invoking fn until after wait duration have elapsed since the last time the debounced function was invoked.
+-   **<big>Debounced<sup>deprecated</sup></big>** : creates a debounced function that delays invoking fn until after wait duration have elapsed since the last time the debounced function was invoked.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/function.md#Debounced)]
     [[play](https://go.dev/play/p/absuEGB_GN7)]
+-   **<big>Debounce</big>** : creates a debounced version of the provided function.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/function.md#Debounce)]
+    [[play](todo)]
+-   **<big>Throttle</big>** : creates a throttled version of the provided function.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/function.md#Throttle)]
+    [[play](todo)]
 -   **<big>Schedule</big>** : invoke function every duration time, util close the returned bool channel.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/function.md#Schedule)]
     [[play](https://go.dev/play/p/hbON-Xeyn5N)]
@@ -913,6 +935,60 @@ import "github.com/duke-git/lancet/v2/maputil"
 -   **<big>ToSortedSlicesWithComparator</big>** : converts a map to two slices sorted by key and using a custom comparison function: one for the keys and another for the values.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/maputil.md#ToSortedSlicesWithComparator)]
     [[play](https://go.dev/play/p/0nlPo6YLdt3)]
+-   **<big>NewOrderedMap</big>** : creates a new OrderedMap.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/maputil.md#NewOrderedMap)]
+    [[play](todo)]
+-   **<big>OrderedMap_Set</big>** : sets the given key-value pair for ordered map.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/maputil.md#OrderedMap_Set)]
+    [[play](todo)]
+-   **<big>OrderedMap_Get</big>** : returns the value for the given key.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/maputil.md#OrderedMap_Get)]
+    [[play](todo)]
+-   **<big>OrderedMap_Delete</big>** : deletes the key-value pair for the given key.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/maputil.md#OrderedMap_Delete)]
+    [[play](todo)]
+-   **<big>OrderedMap_Clear</big>** : clears the ordered map.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/maputil.md#OrderedMap_Clear)]
+    [[play](todo)]
+-   **<big>OrderedMap_Front</big>** : returns the first key-value pair.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/maputil.md#OrderedMap_Front)]
+    [[play](todo)]
+-   **<big>OrderedMap_Back</big>** : returns the last key-value pair.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/maputil.md#OrderedMap_Back)]
+    [[play](todo)]
+-   **<big>OrderedMap_Range</big>** : calls the given function for each key-value pair.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/maputil.md#OrderedMap_Range)]
+    [[play](todo)]
+-   **<big>OrderedMap_Keys</big>** : returns the keys in order.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/maputil.md#OrderedMap_Keys)]
+    [[play](todo)]
+-   **<big>OrderedMap_Values</big>** : returns the values in order.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/maputil.md#OrderedMap_Values)]
+    [[play](todo)]
+-   **<big>OrderedMap_Elements</big>** : returns the key-value pairs in order.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/maputil.md#OrderedMap_Elements)]
+    [[play](todo)]
+-   **<big>OrderedMap_Len</big>** : returns the number of key-value pairs.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/maputil.md#OrderedMap_Len)]
+    [[play](todo)]
+-   **<big>OrderedMap_Contains</big>** : returns true if the given key exists.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/maputil.md#OrderedMap_Contains)]
+    [[play](todo)]
+-   **<big>OrderedMap_Iter</big>** : returns a channel that yields key-value pairs in order.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/maputil.md#OrderedMap_Iter)]
+    [[play](todo)]
+-   **<big>OrderedMap_ReverseIter</big>** : returns a channel that yields key-value pairs in reverse order.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/maputil.md#OrderedMap_ReverseIter)]
+    [[play](todo)]
+-   **<big>OrderedMap_SortByKey</big>** : sorts the map by key given less function.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/maputil.md#OrderedMap_SortByKey)]
+    [[play](todo)]
+-   **<big>OrderedMap_MarshalJSON</big>** : implements the json.Marshaler interface.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/maputil.md#OrderedMap_MarshalJSON)]
+    [[play](todo)]
+-   **<big>OrderedMap_UnmarshalJSON</big>** : implements the json.Unmarshaler interface.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/maputil.md#OrderedMap_UnmarshalJSON)]
+    [[play](todo)]
 -   **<big>NewConcurrentMap</big>** : creates a ConcurrentMap with specific shard count.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/maputil.md#NewConcurrentMap)]
     [[play](https://go.dev/play/p/3PenTPETJT0)]
@@ -937,6 +1013,10 @@ import "github.com/duke-git/lancet/v2/maputil"
 -   **<big>ConcurrentMap_Range</big>** : calls iterator sequentially for each key and value present in each of the shards in the map.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/maputil.md#ConcurrentMap_Range)]
     [[play](https://go.dev/play/p/iqcy7P8P0Pr)]
+-   **<big>SortByKey</big>** : sorts the map by its keys and returns a new map with sorted keys.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/maputil.md#SortByKey)]
+    [[play](todo)]
+
 
 <h3 id="mathutil"> 13. Mathutil package implements some functions for math calculation. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
@@ -1170,17 +1250,33 @@ import "github.com/duke-git/lancet/v2/random"
 -   **<big>RandUniqueIntSlice</big>** : generate a slice of random int that do not repeat.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/random.md#RandUniqueIntSlice)]
     [[play](https://go.dev/play/p/uBkRSOz73Ec)]
--   **<big>RandSymbolChar</big>** : Generate a random symbol char of specified length.
+-   **<big>RandSymbolChar</big>** : generate a random symbol char of specified length.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/random.md#RandSymbolChar)]
     [[play](https://go.dev/play/p/Im6ZJxAykOm)]
-
--   **<big>RandFloat</big>** : Generate a random float64 number between [min, max) with specific precision.
+-   **<big>RandFloat</big>** : generate a random float64 number between [min, max) with specific precision.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/random.md#RandFloat)]
     [[play](https://go.dev/play/p/zbD_tuobJtr)]
-
--   **<big>RandFloats</big>** : Generate a slice of random float64 numbers that do not repeat.
+-   **<big>RandFloats</big>** : generate a slice of random float64 numbers that do not repeat.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/random.md#RandFloats)]
     [[play](https://go.dev/play/p/I3yndUQ-rhh)]
+-   **<big>RandStringSlice</big>** : generate a slice of random string of length strLen based on charset.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/random.md#RandStringSlice)]
+    [[play](todo)]
+-   **<big>RandBool</big>** : generate a random boolean value (true or false).
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/random.md#RandBool)]
+    [[play](todo)]
+-   **<big>RandBoolSlice</big>** : generate a random boolean slice of specified length.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/random.md#RandBoolSlice)]
+    [[play](todo)]
+-   **<big>RandIntSlice</big>** : generate a slice of random int. Number range in [min, max)
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/random.md#RandIntSlice)]
+    [[play](todo)]
+-   **<big>RandFromGivenSlice</big>** : generate a random element from given slice.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/random.md#RandFromGivenSlice)]
+    [[play](todo)]
+-   **<big>RandSliceFromGivenSlice</big>** : generate a random slice of length num from given slice.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/random.md#RandSliceFromGivenSlice)]
+    [[play](todo)]
 
 
 <h3 id="retry"> 17. Retry package is for executing a function repeatedly until it was successful or canceled by the context. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
@@ -1323,6 +1419,9 @@ import "github.com/duke-git/lancet/v2/slice"
 -   **<big>ForEachWithBreak</big>** : iterates over elements of slice and invokes function for each element, when iteratee return false, will break the for each loop.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#ForEachWithBreak)]
     [[play](https://go.dev/play/p/qScs39f3D9W)]
+-   **<big>ForEachConcurrent</big>** : applies the iteratee function to each item in the slice concurrently.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#ForEachConcurrent)]
+    [[play](todo)]
 -   **<big>GroupBy</big>** : iterate over elements of the slice, each element will be group by criteria, returns two slices.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#GroupBy)]
     [[play](https://go.dev/play/p/QVkPxzPR0iA)]
@@ -1350,6 +1449,9 @@ import "github.com/duke-git/lancet/v2/slice"
 -   **<big>Map</big>** : creates an slice of values by running each element of slice thru iteratee function.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#Map)]
     [[play](https://go.dev/play/p/biaTefqPquw)]
+-   **<big>MapConcurrent</big>** : applies the iteratee function to each item in the slice by concrrent.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#MapConcurrent)]
+    [[play](todo)]
 -   **<big>Merge</big>** : merge all given slices into one slice.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#Merge)]
     [[play](https://go.dev/play/p/lbjFp784r9N)]
@@ -1365,6 +1467,9 @@ import "github.com/duke-git/lancet/v2/slice"
 -   **<big>ReduceRight</big>** : ReduceRight is like ReduceBy, but it iterates over elements of slice from right to left.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#ReduceRight)]
     [[play](https://go.dev/play/p/qT9dZC03A1K)]
+-   **<big>ReduceConcurrent</big>** : reduces the slice to a single value by applying the reducer function to each item in the slice concurrently.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#ReduceConcurrent)]
+    [[play](todo)]
 -   **<big>Replace</big>** : returns a copy of the slice with the first n non-overlapping instances of old replaced by new.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#Replace)]
     [[play](https://go.dev/play/p/P5mZp7IhOFo)]
@@ -1421,11 +1526,13 @@ import "github.com/duke-git/lancet/v2/slice"
     [[play](https://go.dev/play/p/UR323iZLDpv)]
 -   **<big>UniqueByComparator</big>** : remove duplicate elements from the input slice using the provided comparator function.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#UniqueByComparator)]
+    [[play](todo)]
 -   **<big>UniqueByField</big>** : remove duplicate elements in struct slice by struct field.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#UniqueByField)]
     [[play](https://go.dev/play/p/6cifcZSPIGu)]
--   **<big>UniqueByParallel</big>** : remove duplicate elements from the slice by parallel.
-    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#UniqueByParallel)]
+-   **<big>UniqueByConcurrent</big>** : remove duplicate elements from the slice by concurrent.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#UniqueByConcurrent)]
+    [[play](todo)]
 -   **<big>Union</big>** : creates a slice of unique elements, in order, from all given slices.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#Union)]
     [[play](https://go.dev/play/p/hfXV1iRIZOf)]
@@ -1461,6 +1568,9 @@ import "github.com/duke-git/lancet/v2/slice"
 -   **<big>LeftPadding</big>** : adds padding to the left begin of a slice.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#LeftPadding)]
     [[play](https://go.dev/play/p/jlQVoelLl2k)]
+-   **<big>Frequency</big>** : counts the frequency of each element in the slice.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#Frequency)]
+    [[play](todo)]
 
 
 <h3 id="stream"> 19. Stream package implements a sequence of elements supporting sequential and operations. this package is an experiment to explore if stream in go can work as the way java does. its function is very limited. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
@@ -1495,6 +1605,9 @@ import "github.com/duke-git/lancet/v2/stream"
 -   **<big>Filter</big>** : returns a stream consisting of the elements of this stream that match the given predicate.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/stream.md#Filter)]
     [[play](https://go.dev/play/p/MFlSANo-buc)]
+-   **<big>FilterConcurrent</big>** : Applies the provided filter function `predicate` to each element of the input slice concurrently.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/stream.md#FilterConcurrent)]
+    [[play](todo)]
 -   **<big>Map</big>** : returns a stream consisting of the elements of this stream that apply the given function to elements of stream.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/stream.md#Map)]
     [[play](https://go.dev/play/p/OtNQUImdYko)]
@@ -1712,7 +1825,21 @@ import "github.com/duke-git/lancet/v2/strutil"
 -   **<big>HammingDistance</big>** : calculates the Hamming distance between two strings.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/strutil.md#HammingDistance)]
     [[play](https://go.dev/play/p/glNdQEA9HUi)]
-
+-   **<big>Concat</big>** : concatenates strings.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/strutil.md#Concat)]
+    [[play](todo)]
+-   **<big>Ellipsis</big>** : truncates a string to a specified length and appends an ellipsis.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/strutil.md#Ellipsis)]
+    [[play](todo)]
+-   **<big>Shuffle</big>** : shuffle the order of characters of given string.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/strutil.md#Shuffle)]
+    [[play](todo)]
+-   **<big>Rotate</big>** : rotates the string by the specified number of characters.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/strutil.md#Rotate)]
+    [[play](todo)]
+-   **<big>TemplateReplace</big>** : replaces the placeholders in the template string with the corresponding values in the data map.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/strutil.md#TemplateReplace)]
+    [[play](todo)]
 
 <h3 id="system"> 22. System package contain some functions about os, runtime, shell command. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 

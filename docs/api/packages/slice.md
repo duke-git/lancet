@@ -915,7 +915,7 @@ func main() {
 func FilterConcurrent[T any](slice []T, predicate func(index int, item T) bool, numThreads int) []T
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](todo)</span></b>
 
 ```go
 import (
@@ -1570,7 +1570,7 @@ func main() {
 func MapConcurrent[T any, U any](slice []T, iteratee func(index int, item T) U, numThreads int) []U
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](todo)</span></b>
 
 ```go
 import (
@@ -1771,7 +1771,7 @@ func main() {
 func ReduceConcurrent[T any](slice []T, initial T, reducer func(index int, item T, agg T) T, numThreads int) T
 ```
 
-<b>示例:<span style="float:right;display:inline-block;">[运行]()</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](todo)</span></b>
 
 ```go
 import (
