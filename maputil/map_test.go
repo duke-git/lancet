@@ -870,11 +870,11 @@ func TestBaseType(t *testing.T) {
 	assert.EqualValues(64, number)
 }
 
-func TestGetValue(t *testing.T) {
+func TestGetOrDefault(t *testing.T) {
 
 	t.Parallel()
 
-	assert := internal.NewAssert(t, "GetValue")
+	assert := internal.NewAssert(t, "GetOrDefault")
 
 	m1 := map[int]string{
 		3: "c",
@@ -882,9 +882,9 @@ func TestGetValue(t *testing.T) {
 		4: "d",
 		2: "b",
 	}
-	result1 := GetValue(m1, 1, "123")
+	result1 := GetOrDefault(m1, 1, "123")
 	assert.Equal("a", result1)
 
-	result2 := GetValue(m1, 5, "123")
+	result2 := GetOrDefault(m1, 5, "123")
 	assert.Equal("123", result2)
 }

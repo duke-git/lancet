@@ -77,7 +77,7 @@ import (
 -   [ConcurrentMap_Has](#ConcurrentMap_Has)
 -   [ConcurrentMap_Range](#ConcurrentMap_Range)
 -   [GetOrSet](#GetOrSet)
--   [GetValue](#GetValue)
+-   [GetOrDefault](#GetOrDefault)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -2282,17 +2282,17 @@ func main() {
 }
 ```
 
-### <span id="GetValue">GetValue</span>
+### <span id="GetOrDefault">GetOrDefault</span>
 
 <p>returns the value of the given key or a default value if the key is not present.</p>
 
 <b>Signature:</b>
 
 ```go
-func GetValue[K comparable, V any](m map[K]V, key K, defaultValue V) V 
+func GetOrDefault[K comparable, V any](m map[K]V, key K, defaultValue V) V 
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/dNo6YBqtLa0)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/99QjSYSBdiM)</span></b>
 
 ```go
 package main
@@ -2310,8 +2310,8 @@ func main() {
         2: "b",
     }
 
-    result1 := maputil.GetValue(m, 1, "default")
-    result2 := maputil.GetValue(m, 6, "default")
+    result1 := maputil.GetOrDefault(m, 1, "default")
+    result2 := maputil.GetOrDefault(m, 6, "default")
 
     fmt.Println(result1)
     fmt.Println(result2)
