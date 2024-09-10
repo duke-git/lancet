@@ -657,3 +657,12 @@ func convertMap(src reflect.Value, dst reflect.Value) error {
 
 	return nil
 }
+
+// GetOrDefault returns the value of the given key or a default value if the key is not present.
+// Play: todo
+func GetOrDefault[K comparable, V any](m map[K]V, key K, defaultValue V) V {
+	if v, ok := m[key]; ok {
+		return v
+	}
+	return defaultValue
+}

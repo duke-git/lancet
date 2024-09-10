@@ -1018,7 +1018,9 @@ import "github.com/duke-git/lancet/v2/maputil"
 -   **<big>SortByKey</big>** : 对传入的map根据key进行排序。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/maputil.md#SortByKey)]
     [[play](todo)]
-
+-   **<big>GetOrDefault</big>** : 返回给定键的值，如果键不存在，则返回默认值。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/maputil.md#GetOrDefault)]
+    [[play](todo)]
 
 <h3 id="mathutil"> 13. mathutil 包实现了一些数学计算的函数。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 

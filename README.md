@@ -1016,6 +1016,9 @@ import "github.com/duke-git/lancet/v2/maputil"
 -   **<big>SortByKey</big>** : sorts the map by its keys and returns a new map with sorted keys.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/maputil.md#SortByKey)]
     [[play](todo)]
+-   **<big>GetOrDefault</big>** : returns the value of the given key or a default value if the key is not present.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/maputil.md#GetOrDefault)]
+    [[play](todo)]
 
 
 <h3 id="mathutil"> 13. Mathutil package implements some functions for math calculation. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
