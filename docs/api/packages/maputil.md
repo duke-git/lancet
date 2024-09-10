@@ -75,6 +75,7 @@ import (
 -   [ConcurrentMap_Range](#ConcurrentMap_Range)
 -   [GetOrSet](#GetOrSet)
 -   [SortByKey](#SortByKey)
+-   [GetValues](#GetValues)
 
 
 <div STYLE="page-break-after: always;"></div>
@@ -2260,5 +2261,45 @@ func main() {
 
     // Output:
     // map[1:a 2:b 3:c 4:d]
+}
+```
+
+### <span id="GetValue">GetValue</span>
+
+<p>返回给定键的值，如果键不存在，则返回默认值。</p>
+
+<b>函数签名:</b>
+
+```go
+func GetValue[K comparable, V any](m map[K]V, key K, defaultValue V) V 
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/dNo6YBqtLa0)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/maputil"
+)
+
+func main() {
+    m := map[int]string{
+        3: "c",
+        1: "a",
+        4: "d",
+        2: "b",
+    }
+
+    result1 := maputil.GetValue(m, 1, "default")
+    result2 := maputil.GetValue(m, 6, "default")
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+
+    // Output:
+    // a
+    // default
 }
 ```

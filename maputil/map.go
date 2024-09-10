@@ -473,3 +473,12 @@ func SortByKey[K constraints.Ordered, V any](m map[K]V, less func(a, b K) bool) 
 
 	return
 }
+
+// GetValue returns the value of the given key or a default value if the key is not present.
+// Play: https://go.dev/play/p/dNo6YBqtLa0
+func GetValue[K comparable, V any](m map[K]V, key K, defaultValue V) V {
+	if v, ok := m[key]; ok {
+		return v
+	}
+	return defaultValue
+}

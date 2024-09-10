@@ -751,3 +751,22 @@ func TestSortByKey(t *testing.T) {
 
 	assert.Equal(expected2, result2)
 }
+
+func TestGetValue(t *testing.T) {
+
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "GetValue")
+
+	m1 := map[int]string{
+		3: "c",
+		1: "a",
+		4: "d",
+		2: "b",
+	}
+	result1 := GetValue(m1, 1, "123")
+	assert.Equal("a", result1)
+
+	result2 := GetValue(m1, 5, "123")
+	assert.Equal("123", result2)
+}
