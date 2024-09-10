@@ -168,3 +168,17 @@ func TestRsaEncryptOAEP(t *testing.T) {
 	assert.IsNil(err)
 	assert.Equal("hello world", string(decrypted))
 }
+
+func TestAesGcmEncrypt(t *testing.T) {
+
+	t.Parallel()
+
+	data := "hello world"
+	key := "abcdefghijklmnop"
+
+	encrypted := AesGcmEncrypt([]byte(data), []byte(key))
+	decrypted := AesGcmDecrypt(encrypted, []byte(key))
+
+	assert := internal.NewAssert(t, "TestAesGcmEncrypt")
+	assert.Equal(data, string(decrypted))
+}

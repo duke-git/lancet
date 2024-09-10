@@ -129,6 +129,34 @@ func ExampleAesOfbDecrypt() {
 	// hello
 }
 
+func ExampleAesGcmEncrypt() {
+	data := "hello"
+	key := "abcdefghijklmnop"
+
+	encrypted := AesGcmEncrypt([]byte(data), []byte(key))
+
+	decrypted := AesGcmDecrypt(encrypted, []byte(key))
+
+	fmt.Println(string(decrypted))
+
+	// Output:
+	// hello
+}
+
+func ExampleAesGcmDecrypt() {
+	data := "hello"
+	key := "abcdefghijklmnop"
+
+	encrypted := AesGcmEncrypt([]byte(data), []byte(key))
+
+	decrypted := AesGcmDecrypt(encrypted, []byte(key))
+
+	fmt.Println(string(decrypted))
+
+	// Output:
+	// hello
+}
+
 func ExampleDesEcbEncrypt() {
 	data := "hello"
 	key := "abcdefgh"

@@ -244,6 +244,56 @@ func AesOfbDecrypt(data, key []byte) []byte {
 	return decrypted
 }
 
+// AesGcmEncrypt encrypt data with key use AES GCM algorithm
+// Play: todo
+func AesGcmEncrypt(data, key []byte) []byte {
+	block, err := aes.NewCipher(key)
+	if err != nil {
+		panic(err)
+	}
+
+	gcm, err := cipher.NewGCM(block)
+	if err != nil {
+		panic(err)
+	}
+
+	nonce := make([]byte, gcm.NonceSize())
+	if _, err = io.ReadFull(rand.Reader, nonce); err != nil {
+		panic(err)
+	}
+
+	ciphertext := gcm.Seal(nonce, nonce, data, nil)
+
+	return ciphertext
+}
+
+// AesGcmDecrypt decrypt data with key use AES GCM algorithm
+// Play: todo
+func AesGcmDecrypt(data, key []byte) []byte {
+	block, err := aes.NewCipher(key)
+	if err != nil {
+		panic(err)
+	}
+
+	gcm, err := cipher.NewGCM(block)
+	if err != nil {
+		panic(err)
+	}
+
+	nonceSize := gcm.NonceSize()
+	if len(data) < nonceSize {
+		panic("ciphertext too short")
+	}
+
+	nonce, ciphertext := data[:nonceSize], data[nonceSize:]
+	plaintext, err := gcm.Open(nil, nonce, ciphertext, nil)
+	if err != nil {
+		panic(err)
+	}
+
+	return plaintext
+}
+
 // DesEcbEncrypt encrypt data with key use DES ECB algorithm
 // len(key) should be 8.
 // Play: https://go.dev/play/p/8qivmPeZy4P

@@ -32,6 +32,8 @@ import (
 -   [AesCfbDecrypt](#AesCfbDecrypt)
 -   [AesOfbEncrypt](#AesOfbEncrypt)
 -   [AesOfbDecrypt](#AesOfbDecrypt)
+-   [AesGcmEncrypt](#AesGcmEncrypt)
+-   [AesGcmDecrypt](#AesGcmDecrypt)
 -   [Base64StdEncode](#Base64StdEncode)
 -   [Base64StdDecode](#Base64StdDecode)
 -   [DesEcbEncrypt](#DesEcbEncrypt)
@@ -371,6 +373,74 @@ func main() {
 
     encrypted := cryptor.AesOfbEncrypt([]byte(data), []byte(key))
     decrypted := cryptor.AesCfbDecrypt(encrypted, []byte(key))
+
+    fmt.Println(string(decrypted))
+
+    // Output:
+    // hello
+}
+```
+
+### <span id="AesGcmEncrypt">AesGcmEncrypt</span>
+
+<p>Encrypt data with key use AES GCM algorithm.</p>
+
+<b>Signature:</b>
+
+```go
+func AesGcmEncrypt(data, key []byte) []byte
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run]()</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/cryptor"
+)
+
+func main() {
+    data := "hello"
+    key := "abcdefghijklmnop"
+
+    encrypted := cryptor.AesGcmEncrypt([]byte(data), []byte(key))
+    decrypted := cryptor.AesGcmDecrypt(encrypted, []byte(key))
+
+    fmt.Println(string(decrypted))
+
+    // Output:
+    // hello
+}
+```
+
+### <span id="AesGcmDecrypt">AesGcmDecrypt</span>
+
+<p>Decrypt data with key use AES GCM algorithm.</p>
+
+<b>Signature:</b>
+
+```go
+func AesGcmDecrypt(data, key []byte) []byte
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run]()</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/cryptor"
+)
+
+func main() {
+    data := "hello"
+    key := "abcdefghijklmnop"
+
+    encrypted := cryptor.AesGcmEncrypt([]byte(data), []byte(key))
+    decrypted := cryptor.AesGcmDecrypt(encrypted, []byte(key))
 
     fmt.Println(string(decrypted))
 

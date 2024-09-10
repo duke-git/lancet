@@ -32,6 +32,8 @@ import (
 -   [AesCfbDecrypt](#AesCfbDecrypt)
 -   [AesOfbEncrypt](#AesOfbEncrypt)
 -   [AesOfbDecrypt](#AesOfbDecrypt)
+-   [AesGcmEncrypt](#AesGcmEncrypt)
+-   [AesGcmDecrypt](#AesGcmDecrypt)
 -   [Base64StdEncode](#Base64StdEncode)
 -   [Base64StdDecode](#Base64StdDecode)
 -   [DesEcbEncrypt](#DesEcbEncrypt)
@@ -371,6 +373,74 @@ func main() {
 
     encrypted := cryptor.AesOfbEncrypt([]byte(data), []byte(key))
     decrypted := cryptor.AesCfbDecrypt(encrypted, []byte(key))
+
+    fmt.Println(string(decrypted))
+
+    // Output:
+    // hello
+}
+```
+
+### <span id="AesGcmEncrypt">AesGcmEncrypt</span>
+
+<p>使用AES GCM算法模式加密数据。</p>
+
+<b>函数签名:</b>
+
+```go
+func AesGcmEncrypt(data, key []byte) []byte
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行]()</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/cryptor"
+)
+
+func main() {
+    data := "hello"
+    key := "abcdefghijklmnop"
+
+    encrypted := cryptor.AesGcmEncrypt([]byte(data), []byte(key))
+    decrypted := cryptor.AesGcmDecrypt(encrypted, []byte(key))
+
+    fmt.Println(string(decrypted))
+
+    // Output:
+    // hello
+}
+```
+
+### <span id="AesGcmDecrypt">AesGcmDecrypt</span>
+
+<p>使用AES GCM算法解密数据。</p>
+
+<b>函数签名:</b>
+
+```go
+func AesGcmDecrypt(data, key []byte) []byte
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行]()</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/cryptor"
+)
+
+func main() {
+    data := "hello"
+    key := "abcdefghijklmnop"
+
+    encrypted := cryptor.AesGcmEncrypt([]byte(data), []byte(key))
+    decrypted := cryptor.AesGcmDecrypt(encrypted, []byte(key))
 
     fmt.Println(string(decrypted))
 
