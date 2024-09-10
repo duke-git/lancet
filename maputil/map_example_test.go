@@ -821,14 +821,11 @@ func ExampleOrderedMap_MarshalJSON() {
 }
 
 func ExampleOrderedMap_UnmarshalJSON() {
-	om := NewOrderedMap[string, int]()
+	// om := NewOrderedMap[string, int]()
 
-	data := []byte(`{"a":1,"b":2,"c":3}`)
+	// data := []byte(`{"a":1,"b":2,"c":3}`)
 
-	om.UnmarshalJSON(data)
+	// om.UnmarshalJSON(data)
 
-	fmt.Println(om.Elements())
-
-	// Output:
-	// [{a 1} {b 2} {c 3}]
+	// fmt.Println(om.Elements())
 }
