@@ -34,6 +34,8 @@ import (
 -   [StartProcess](#StartProcess)
 -   [StopProcess](#StopProcess)
 -   [KillProcess](#KillProcess)
+-   [GetProcessInfo](#GetProcessInfo)
+
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -406,5 +408,38 @@ func main() {
 
     // Output:
     // <nil>
+}
+```
+
+### <span id="GetProcessInfo">GetProcessInfo</span>
+
+<p>Retrieves detailed process information by pid.</p>
+
+<b>Signature:</b>
+
+```go
+func GetProcessInfo(pid int) (*ProcessInfo, error)
+```
+
+<b>Example:<span style="float:right;display:inline-block">[Run](todo)</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/system"
+)
+
+func main() {
+    pid, err := system.StartProcess("ls", "-a")
+    if err != nil {
+        return
+    }
+
+    processInfo, err := system.GetProcessInfo(pid)
+    if err != nil {
+        return
+    }
+
+    fmt.Println(processInfo)
 }
 ```

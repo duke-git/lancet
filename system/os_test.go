@@ -4,6 +4,7 @@ import (
 	"os/exec"
 	"strings"
 	"testing"
+	"time"
 
 	"github.com/duke-git/lancet/v2/internal"
 )
@@ -124,4 +125,20 @@ func TestStopProcess(t *testing.T) {
 
 	err = StopProcess(pid)
 	assert.IsNil(err)
+}
+
+func TestGetProcessInfo(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestGetProcessInfo")
+
+	pid, err := StartProcess("ls", "-a")
+	assert.IsNil(err)
+
+	time.Sleep(1 * time.Second)
+
+	processInfo, err := GetProcessInfo(pid)
+	assert.IsNil(err)
+
+	t.Log(processInfo)
 }

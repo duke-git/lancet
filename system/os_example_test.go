@@ -117,3 +117,17 @@ func ExampleKillProcess() {
 	// Output:
 	// <nil>
 }
+
+func ExampleGetProcessInfo() {
+	pid, err := StartProcess("ls", "-a")
+	if err != nil {
+		return
+	}
+
+	processInfo, err := GetProcessInfo(pid)
+	if err != nil {
+		return
+	}
+
+	fmt.Println(processInfo)
+}

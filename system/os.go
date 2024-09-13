@@ -6,9 +6,12 @@ package system
 
 import (
 	"bytes"
+	"fmt"
 	"os"
 	"os/exec"
 	"runtime"
+	"strconv"
+	"strings"
 	"unicode/utf8"
 
 	"github.com/duke-git/lancet/v2/validator"
@@ -165,4 +168,157 @@ func KillProcess(pid int) error {
 	}
 
 	return process.Kill()
+}
+
+// ProcessInfo contains detailed information about a process.
+type ProcessInfo struct {
+	PID                int
+	CPU                string
+	Memory             string
+	State              string
+	User               string
+	Cmd                string
+	Threads            []string
+	IOStats            string
+	StartTime          string
+	ParentPID          int
+	NetworkConnections string
+}
+
+// GetProcessInfo retrieves detailed process information by pid.
+// Play: todo
+func GetProcessInfo(pid int) (*ProcessInfo, error) {
+	var cmd *exec.Cmd
+
+	if runtime.GOOS == "windows" {
+		cmd = exec.Command("tasklist", "/FI", fmt.Sprintf("PID eq %d", pid), "/FO", "CSV", "/V")
+	} else {
+		cmd = exec.Command("ps", "-p", strconv.Itoa(pid), "-o", "pid,%cpu,%mem,state,user,comm")
+	}
+
+	output, err := cmd.Output()
+	if err != nil {
+		return nil, err
+	}
+
+	processInfo, err := parseProcessInfo(output, pid)
+	if err != nil {
+		return nil, err
+	}
+
+	if runtime.GOOS != "windows" {
+		processInfo.Threads, _ = getThreadsInfo(pid)
+		processInfo.IOStats, _ = getIOStats(pid)
+		processInfo.StartTime, _ = getProcessStartTime(pid)
+		processInfo.ParentPID, _ = getParentProcess(pid)
+		processInfo.NetworkConnections, _ = getNetworkConnections(pid)
+	}
+
+	return processInfo, nil
+}
+
+// parseProcessInfo parses the output of `ps` or `tasklist` to fill the ProcessInfo structure.
+func parseProcessInfo(output []byte, pid int) (*ProcessInfo, error) {
+	lines := strings.Split(string(output), "\n")
+
+	if len(lines) < 2 {
+		return nil, fmt.Errorf("no process found with PID %d", pid)
+	}
+
+	var processInfo ProcessInfo
+	if runtime.GOOS == "windows" {
+		fields := strings.Split(lines[1], "\",\"")
+		if len(fields) < 9 {
+			return nil, fmt.Errorf("unexpected tasklist output format")
+		}
+
+		processInfo = ProcessInfo{
+			PID:    pid,
+			CPU:    "N/A",
+			Memory: fields[4], // Memory usage in K
+			State:  fields[5],
+			User:   "N/A",
+			Cmd:    fields[8],
+		}
+	} else {
+		fields := strings.Fields(lines[1])
+		if len(fields) < 6 {
+			return nil, fmt.Errorf("unexpected ps output format")
+		}
+
+		processInfo = ProcessInfo{
+			PID:    pid,
+			CPU:    fields[1],
+			Memory: fields[2],
+			State:  fields[3],
+			User:   fields[4],
+			Cmd:    fields[5],
+		}
+	}
+
+	return &processInfo, nil
+}
+
+func getThreadsInfo(pid int) ([]string, error) {
+	cmd := exec.Command("ps", "-T", "-p", strconv.Itoa(pid))
+	output, err := cmd.Output()
+	if err != nil {
+		return nil, err
+	}
+
+	lines := strings.Split(string(output), "\n")
+
+	var threads []string
+	for _, line := range lines[1:] {
+		if strings.TrimSpace(line) != "" {
+			threads = append(threads, line)
+		}
+	}
+
+	return threads, nil
+}
+
+func getIOStats(pid int) (string, error) {
+	filePath := fmt.Sprintf("/proc/%d/io", pid)
+	data, err := os.ReadFile(filePath)
+	if err != nil {
+		return "", err
+	}
+
+	return string(data), nil
+}
+
+func getProcessStartTime(pid int) (string, error) {
+	cmd := exec.Command("ps", "-p", strconv.Itoa(pid), "-o", "lstart=")
+	output, err := cmd.Output()
+	if err != nil {
+		return "", err
+	}
+
+	return strings.TrimSpace(string(output)), nil
+}
+
+func getParentProcess(pid int) (int, error) {
+	cmd := exec.Command("ps", "-o", "ppid=", "-p", strconv.Itoa(pid))
+	output, err := cmd.Output()
+	if err != nil {
+		return 0, err
+	}
+
+	ppid, err := strconv.Atoi(strings.TrimSpace(string(output)))
+	if err != nil {
+		return 0, err
+	}
+
+	return ppid, nil
+}
+
+func getNetworkConnections(pid int) (string, error) {
+	cmd := exec.Command("lsof", "-p", strconv.Itoa(pid), "-i")
+	output, err := cmd.Output()
+	if err != nil {
+		return "", err
+	}
+
+	return string(output), nil
 }
