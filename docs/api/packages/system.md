@@ -1,6 +1,6 @@
 # System
 
-system 包含 os, runtime, shell command 相关函数。
+system 包含 os, 运行time, shell command 相关函数。
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -306,5 +306,101 @@ import (
 func main() {
     osBit := system.GetOsBits()
     fmt.Println(osBit) // 32 or 64
+}
+```
+
+### <span id="StartProcess">StartProcess</span>
+
+<p>创建进程。</p>
+
+<b>函数签名:</b>
+
+```go
+func StartProcess(command string, args ...string) (int, error)
+```
+
+<b>示例:<span style="float:right;display:inline-block">[运行](todo)</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/system"
+)
+
+func main() {
+    pid, err := system.StartProcess("sleep", "2")
+    if err != nil {
+        return
+    }
+
+    fmt.Println(pid)
+}
+```
+
+### <span id="StopProcess">StopProcess</span>
+
+<p>停止进程。</p>
+
+<b>函数签名:</b>
+
+```go
+func StopProcess(pid int) error
+```
+
+<b>示例:<span style="float:right;display:inline-block">[运行](todo)</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/system"
+)
+
+func main() {
+    pid, err := system.StartProcess("sleep", "10")
+    if err != nil {
+        return
+    }
+    time.Sleep(1 * time.Second)
+
+    err = system.StopProcess(pid)
+
+    fmt.Println(err)
+
+    // Output:
+    // <nil>
+}
+```
+
+### <span id="KillProcess">KillProcess</span>
+
+<p>杀掉进程。</p>
+
+<b>函数签名:</b>
+
+```go
+func KillProcess(pid int) error
+```
+
+<b>示例:<span style="float:right;display:inline-block">[运行](todo)</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/system"
+)
+
+func main() {
+    pid, err := system.StartProcess("sleep", "10")
+    if err != nil {
+        return
+    }
+    time.Sleep(1 * time.Second)
+
+    err = system.KillProcess(pid)
+
+    fmt.Println(err)
+
+    // Output:
+    // <nil>
 }
 ```

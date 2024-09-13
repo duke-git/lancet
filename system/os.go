@@ -132,3 +132,37 @@ func byteToString(data []byte, charset string) string {
 func GetOsBits() int {
 	return 32 << (^uint(0) >> 63)
 }
+
+// StartProcess start a new process with the specified name and arguments.
+// Play: todo
+func StartProcess(command string, args ...string) (int, error) {
+	cmd := exec.Command(command, args...)
+
+	if err := cmd.Start(); err != nil {
+		return 0, err
+	}
+
+	return cmd.Process.Pid, nil
+}
+
+// StopProcess stop a process by pid.
+// Play: todo
+func StopProcess(pid int) error {
+	process, err := os.FindProcess(pid)
+	if err != nil {
+		return err
+	}
+
+	return process.Signal(os.Kill)
+}
+
+// KillProcess kill a process by pid.
+// Play: todo
+func KillProcess(pid int) error {
+	process, err := os.FindProcess(pid)
+	if err != nil {
+		return err
+	}
+
+	return process.Kill()
+}
