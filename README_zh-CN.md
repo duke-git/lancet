@@ -1881,6 +1881,20 @@ import "github.com/duke-git/lancet/v2/system"
 -   **<big>GetOsBits</big>** : 获取当前操作系统位数(32/64)。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/system#GetOsBits)]
     [[play](https://go.dev/play/p/ml-_XH3gJbW)]
+-   **<big>StartProcess</big>** :创建进程。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/system.md#StartProcess)]
+    [[play](todo)]
+-   **<big>StopProcess</big>** : 停止进程。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/system.md#StopProcess)]
+    [[play](todo)]
+-   **<big>KillProcess</big>** : 杀掉进程。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/system.md#KillProcess)]
+    [[play](todo)]
+-   **<big>GetProcessInfo</big>** : 根据进程id获取进程信息。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/system.md#GetProcessInfo)]
+    [[play](todo)]
+
+
 
 <h3 id="tuple"> 23. Tuple 包实现一个元组数据类型。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 
