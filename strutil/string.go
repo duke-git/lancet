@@ -75,7 +75,7 @@ func LowerFirst(s string) string {
 	return string(r) + s[size:]
 }
 
-// PadStart pads string on the left and right side if it's shorter than size.
+// Pad pads string on the left and right side if it's shorter than size.
 // Padding characters are truncated if they exceed size.
 // Play: https://go.dev/play/p/NzImQq-VF8q
 func Pad(source string, size int, padStr string) string {
