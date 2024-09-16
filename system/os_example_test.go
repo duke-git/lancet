@@ -1,6 +1,9 @@
 package system
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+)
 
 func ExampleSetOsEnv() {
 	err := SetOsEnv("foo", "abc")
@@ -74,4 +77,57 @@ func ExampleGetOsBits() {
 	fmt.Println(osBits)
 	// Output:
 	// 64
+}
+
+func ExampleStartProcess() {
+	pid, err := StartProcess("sleep", "2")
+	if err != nil {
+		return
+	}
+
+	fmt.Println(pid)
+}
+
+func ExampleStopProcess() {
+	pid, err := StartProcess("sleep", "10")
+	if err != nil {
+		return
+	}
+	time.Sleep(1 * time.Second)
+
+	err = StopProcess(pid)
+
+	fmt.Println(err)
+
+	// Output:
+	// <nil>
+}
+
+func ExampleKillProcess() {
+	pid, err := StartProcess("sleep", "3")
+	if err != nil {
+		return
+	}
+	time.Sleep(1 * time.Second)
+
+	err = KillProcess(pid)
+
+	fmt.Println(err)
+
+	// Output:
+	// <nil>
+}
+
+func ExampleGetProcessInfo() {
+	pid, err := StartProcess("ls", "-a")
+	if err != nil {
+		return
+	}
+
+	processInfo, err := GetProcessInfo(pid)
+	if err != nil {
+		return
+	}
+
+	fmt.Println(processInfo)
 }

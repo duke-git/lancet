@@ -1,8 +1,10 @@
 package system
 
 import (
+	"os/exec"
 	"strings"
 	"testing"
+	"time"
 
 	"github.com/duke-git/lancet/v2/internal"
 )
@@ -53,7 +55,9 @@ func TestExecCommand(t *testing.T) {
 	assert := internal.NewAssert(t, "TestExecCommand")
 
 	// linux or mac
-	stdout, stderr, err := ExecCommand("ls")
+	stdout, stderr, err := ExecCommand("ls", func(cmd *exec.Cmd) {
+		cmd.Dir = "/"
+	})
 	t.Log("std out: ", stdout)
 	t.Log("std err: ", stderr)
 	assert.Equal("", stderr)
@@ -74,16 +78,6 @@ func TestExecCommand(t *testing.T) {
 	assert.IsNotNil(err)
 }
 
-// func TestExecCommandWithOption(t *testing.T) {
-// 	assert := internal.NewAssert(t, "TestExecCommandWithOption")
-
-// 	stdout, stderr, err := ExecCommand("ls", WithForeground())
-// 	t.Log("std out: ", stdout)
-// 	t.Log("std err: ", stderr)
-// 	assert.Equal("", stderr)
-// 	assert.IsNil(err)
-// }
-
 func TestGetOsBits(t *testing.T) {
 	t.Parallel()
 
@@ -94,4 +88,57 @@ func TestGetOsBits(t *testing.T) {
 	default:
 		t.Error("os is not 32 or 64 bits")
 	}
+}
+
+func TestStartProcess(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestStartProcess")
+
+	pid, err := StartProcess("ls", "-a")
+
+	assert.IsNil(err)
+	assert.Equal(true, pid > 0)
+}
+
+func TestKillProcess(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestKillProcess")
+
+	pid, err := StartProcess("ls")
+	assert.IsNil(err)
+	assert.Equal(true, pid > 0)
+
+	err = KillProcess(pid)
+	assert.IsNil(err)
+}
+
+func TestStopProcess(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestStopProcess")
+
+	pid, err := StartProcess("ls")
+	assert.IsNil(err)
+	assert.Equal(true, pid > 0)
+
+	err = StopProcess(pid)
+	assert.IsNil(err)
+}
+
+func TestGetProcessInfo(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestGetProcessInfo")
+
+	pid, err := StartProcess("ls", "-a")
+	assert.IsNil(err)
+
+	time.Sleep(1 * time.Second)
+
+	processInfo, err := GetProcessInfo(pid)
+	assert.IsNil(err)
+
+	t.Log(processInfo)
 }

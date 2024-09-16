@@ -1879,6 +1879,19 @@ import "github.com/duke-git/lancet/v2/system"
 -   **<big>GetOsBits</big>** : return current os bits (32 or 64).
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/system.md#GetOsBits)]
     [[play](https://go.dev/play/p/ml-_XH3gJbW)]
+-   **<big>StartProcess</big>** : start a new process with the specified name and arguments.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/system.md#StartProcess)]
+    [[play](todo)]
+-   **<big>StopProcess</big>** : stop a process by pid.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/system.md#StopProcess)]
+    [[play](todo)]
+-   **<big>KillProcess</big>** : kill a new process with the specified name and arguments.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/system.md#KillProcess)]
+    [[play](todo)]
+-   **<big>GetProcessInfo</big>** : retrieves detailed process information by pid.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/system.md#GetProcessInfo)]
+    [[play](todo)]
+
 
 <h3 id="tuple"> 23. Tuple package implements tuple data type and some operations on it. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 

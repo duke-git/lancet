@@ -31,6 +31,11 @@ import (
 -   [CompareOsEnv](#CompareOsEnv)
 -   [ExecCommand](#ExecCommand)
 -   [GetOsBits](#GetOsBits)
+-   [StartProcess](#StartProcess)
+-   [StopProcess](#StopProcess)
+-   [KillProcess](#KillProcess)
+-   [GetProcessInfo](#GetProcessInfo)
+
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -249,7 +254,7 @@ The second parameter of the function is the cmd option control parameter. The ty
 
 ```go
 type (
-	Option func(*exec.Cmd)
+    Option func(*exec.Cmd)
 )
 func ExecCommand(command string, opts ...Option) (stdout, stderr string, err error)
 ```
@@ -288,7 +293,7 @@ func main() {
 
 ### <span id="GetOsBits">GetOsBits</span>
 
-<p>Get current os bits, 32bit or 64bit. return 32 or 64</p>
+<p>Get current os bits, 32bit or 64bit. return 32 or 64.</p>
 
 <b>Signature:</b>
 
@@ -307,5 +312,134 @@ import (
 func main() {
     osBit := system.GetOsBits()
     fmt.Println(osBit) // 32 or 64
+}
+```
+
+### <span id="StartProcess">StartProcess</span>
+
+<p>Start a new process with the specified name and arguments.</p>
+
+<b>Signature:</b>
+
+```go
+func StartProcess(command string, args ...string) (int, error)
+```
+
+<b>Example:<span style="float:right;display:inline-block">[Run](todo)</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/system"
+)
+
+func main() {
+    pid, err := system.StartProcess("sleep", "2")
+    if err != nil {
+        return
+    }
+
+    fmt.Println(pid)
+}
+```
+
+### <span id="StopProcess">StopProcess</span>
+
+<p>Stop a process by pid.</p>
+
+<b>Signature:</b>
+
+```go
+func StopProcess(pid int) error
+```
+
+<b>Example:<span style="float:right;display:inline-block">[Run](todo)</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/system"
+)
+
+func main() {
+    pid, err := system.StartProcess("sleep", "10")
+    if err != nil {
+        return
+    }
+    time.Sleep(1 * time.Second)
+
+    err = system.StopProcess(pid)
+
+    fmt.Println(err)
+
+    // Output:
+    // <nil>
+}
+```
+
+### <span id="KillProcess">KillProcess</span>
+
+<p>Kill a process by pid.</p>
+
+<b>Signature:</b>
+
+```go
+func KillProcess(pid int) error
+```
+
+<b>Example:<span style="float:right;display:inline-block">[Run](todo)</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/system"
+)
+
+func main() {
+    pid, err := system.StartProcess("sleep", "10")
+    if err != nil {
+        return
+    }
+    time.Sleep(1 * time.Second)
+
+    err = system.KillProcess(pid)
+
+    fmt.Println(err)
+
+    // Output:
+    // <nil>
+}
+```
+
+### <span id="GetProcessInfo">GetProcessInfo</span>
+
+<p>Retrieves detailed process information by pid.</p>
+
+<b>Signature:</b>
+
+```go
+func GetProcessInfo(pid int) (*ProcessInfo, error)
+```
+
+<b>Example:<span style="float:right;display:inline-block">[Run](todo)</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/system"
+)
+
+func main() {
+    pid, err := system.StartProcess("ls", "-a")
+    if err != nil {
+        return
+    }
+
+    processInfo, err := system.GetProcessInfo(pid)
+    if err != nil {
+        return
+    }
+
+    fmt.Println(processInfo)
 }
 ```
