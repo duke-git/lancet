@@ -51,7 +51,7 @@ export const zhConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
                     },
                     {
                         text: '参与贡献',
-                        link: 'https://github.com/duke-git/lancet/blob/main/CONTRIBUTING.zh-CN.md',
+                        link: 'https://github.com/duke-git/lancet/blob/main/CONTRIBUTION.zh-CN.md',
                     },
                 ],
             },
