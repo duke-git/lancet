@@ -14,11 +14,11 @@ import (
 	"golang.org/x/exp/constraints"
 )
 
-// Comma add comma to a number value by every 3 numbers from right. ahead by symbol char.
+// Comma add comma to a number value by every 3 numbers from right. ahead by prefix symbol char.
 // if value is invalid number string eg "aa", return empty string
 // Comma("12345", "$") => "$12,345", Comma(12345, "$") => "$12,345"
 // Play: https://go.dev/play/p/eRD5k2vzUVX
-func Comma[T constraints.Float | constraints.Integer | string](value T, symbol string) string {
+func Comma[T constraints.Float | constraints.Integer | string](value T, prefixSymbol string) string {
 	numString := convertor.ToString(value)
 
 	_, err := strconv.ParseFloat(numString, 64)
@@ -45,7 +45,7 @@ func Comma[T constraints.Float | constraints.Integer | string](value T, symbol s
 		numString = "-" + numString
 	}
 
-	return symbol + numString
+	return prefixSymbol + numString
 }
 
 // Pretty data to JSON string.

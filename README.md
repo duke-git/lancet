@@ -763,7 +763,7 @@ import "github.com/duke-git/lancet/v2/formatter"
 
 #### Function list:
 
--   **<big>Comma</big>** : add comma to a number value by every 3 numbers from right, ahead by symbol char.
+-   **<big>Comma</big>** : add comma to a number value by every 3 numbers from right, ahead by a prefix symbol char.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/formatter.md#Comma)]
     [[play](https://go.dev/play/p/eRD5k2vzUVX)]
 -   **<big>Pretty</big>** : pretty print data to JSON string.

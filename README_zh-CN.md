@@ -764,7 +764,7 @@ import "github.com/duke-git/lancet/v2/formatter"
 
 #### 函数列表:
 
--   **<big>Comma</big>** : 用逗号每隔 3 位分割数字/字符串，支持前缀添加符号。
+-   **<big>Comma</big>** : 用逗号每隔 3 位分割数字/字符串，支持添加前缀符号。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/formatter.md#Comma)]
     [[play](https://go.dev/play/p/eRD5k2vzUVX)]
 -   **<big>Pretty</big>** : 返回 pretty JSON 字符串。
