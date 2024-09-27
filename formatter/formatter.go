@@ -26,14 +26,23 @@ func Comma[T constraints.Float | constraints.Integer | string](value T, symbol s
 		return ""
 	}
 
+	isNegative := strings.HasPrefix(numString, "-")
+	if isNegative {
+		numString = numString[1:]
+	}
+
 	index := strings.Index(numString, ".")
 	if index == -1 {
 		index = len(numString)
 	}
 
 	for index > 3 {
-		index = index - 3
+		index -= 3
 		numString = numString[:index] + "," + numString[index:]
+	}
+
+	if isNegative {
+		numString = "-" + numString
 	}
 
 	return symbol + numString
