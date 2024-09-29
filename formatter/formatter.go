@@ -16,15 +16,20 @@ import (
 	"github.com/duke-git/lancet/convertor"
 )
 
-// Comma add comma to a number value by every 3 numbers from right. ahead by symbol char.
+// Comma add comma to a number value by every 3 numbers from right. ahead by prefix symbol char.
 // if value is invalid number string eg "aa", return empty string
 // Comma("12345", "$") => "$12,345", Comma(12345, "$") => "$12,345"
-func Comma(value interface{}, symbol string) string {
+func Comma(value interface{}, prefixSymbol string) string {
 	numString := convertor.ToString(value)
 
 	_, err := strconv.ParseFloat(numString, 64)
 	if err != nil {
 		return ""
+	}
+
+	isNegative := strings.HasPrefix(numString, "-")
+	if isNegative {
+		numString = numString[1:]
 	}
 
 	index := strings.Index(numString, ".")
@@ -33,11 +38,15 @@ func Comma(value interface{}, symbol string) string {
 	}
 
 	for index > 3 {
-		index = index - 3
+		index -= 3
 		numString = numString[:index] + "," + numString[index:]
 	}
 
-	return symbol + numString
+	if isNegative {
+		numString = "-" + numString
+	}
+
+	return prefixSymbol + numString
 }
 
 // Pretty data to JSON string.

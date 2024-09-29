@@ -42,7 +42,7 @@ Param should be number or numberic string.</p>
 <b>Signature:</b>
 
 ```go
-func Comma(value interface{}, symbol string) string
+func Comma(value interface{}, prefixSymbol string) string
 ```
 
 <b>Example:</b>
