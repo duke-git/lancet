@@ -391,7 +391,7 @@ func main() {
 func AesGcmEncrypt(data, key []byte) []byte
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run]()</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/rUt0-DmsPCs)</span></b>
 
 ```go
 package main
@@ -425,7 +425,7 @@ func main() {
 func AesGcmDecrypt(data, key []byte) []byte
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run]()</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/rUt0-DmsPCs)</span></b>
 
 ```go
 package main

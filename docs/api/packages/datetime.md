@@ -1479,7 +1479,7 @@ func main() {
 func TrackFuncTime(pre time.Time) func()
 ```
 
-<b>示例:<span style="float:right;display:inline-block;">[运行](todo)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/QBSEdfXHPTp)</span></b>
 
 ```go
 package main
@@ -1511,7 +1511,7 @@ func main() {
 func DaysBetween(start, end time.Time) int
 ```
 
-<b>示例:<span style="float:right;display:inline-block;">[运行](todo)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/qD6qGb3TbOy)</span></b>
 
 ```go
 package main
@@ -1544,7 +1544,7 @@ func main() {
 func GenerateDatetimesBetween(start, end time.Time, layout string, interval string) ([]string, error)
 ```
 
-<b>示例:<span style="float:right;display:inline-block;">[运行](todo)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/6kHBpAxD9ZC)</span></b>
 
 ```go
 package main

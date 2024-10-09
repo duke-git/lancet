@@ -245,7 +245,7 @@ func AesOfbDecrypt(data, key []byte) []byte {
 }
 
 // AesGcmEncrypt encrypt data with key use AES GCM algorithm
-// Play: todo
+// Play: https://go.dev/play/p/rUt0-DmsPCs
 func AesGcmEncrypt(data, key []byte) []byte {
 	block, err := aes.NewCipher(key)
 	if err != nil {
@@ -268,7 +268,7 @@ func AesGcmEncrypt(data, key []byte) []byte {
 }
 
 // AesGcmDecrypt decrypt data with key use AES GCM algorithm
-// Play: todo
+// Play: https://go.dev/play/p/rUt0-DmsPCs
 func AesGcmDecrypt(data, key []byte) []byte {
 	block, err := aes.NewCipher(key)
 	if err != nil {

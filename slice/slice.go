@@ -789,7 +789,7 @@ func Unique[T comparable](slice []T) []T {
 
 // UniqueBy removes duplicate elements from the input slice based on the values returned by the iteratee function.
 // The function maintains the order of the elements.
-// Play: todo
+// Play: https://go.dev/play/p/GY7JE4yikrl
 func UniqueBy[T any, U comparable](slice []T, iteratee func(item T) U) []T {
 	result := make([]T, 0, len(slice))
 	seen := make(map[U]struct{}, len(slice))
@@ -810,7 +810,7 @@ func UniqueBy[T any, U comparable](slice []T, iteratee func(item T) U) []T {
 
 // UniqueByComparator removes duplicate elements from the input slice using the provided comparator function.
 // The function maintains the order of the elements.
-// Play: todo
+// Play: https://go.dev/play/p/rwSacr-ZHsR
 func UniqueByComparator[T comparable](slice []T, comparator func(item T, other T) bool) []T {
 	result := make([]T, 0, len(slice))
 	seen := make([]T, 0, len(slice))
@@ -1388,7 +1388,7 @@ func LeftPadding[T any](slice []T, paddingValue T, paddingLength int) []T {
 }
 
 // Frequency counts the frequency of each element in the slice.
-// Play: todo
+// Play: https://go.dev/play/p/CW3UVNdUZOq
 func Frequency[T comparable](slice []T) map[T]int {
 	result := make(map[T]int)
 

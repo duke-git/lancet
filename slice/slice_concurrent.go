@@ -9,7 +9,7 @@ import (
 )
 
 // ForEachConcurrent applies the iteratee function to each item in the slice concurrently.
-// Play: todo
+// Play: https://go.dev/play/p/kT4XW7DKVoV
 func ForEachConcurrent[T any](slice []T, iteratee func(index int, item T), numThreads int) {
 	sliceLen := len(slice)
 	if sliceLen == 0 {
@@ -50,7 +50,7 @@ func ForEachConcurrent[T any](slice []T, iteratee func(index int, item T), numTh
 }
 
 // MapConcurrent applies the iteratee function to each item in the slice concurrently.
-// Play: todo
+// Play: https://go.dev/play/p/H1ehfPkPen0
 func MapConcurrent[T any, U any](slice []T, iteratee func(index int, item T) U, numThreads int) []U {
 	result := make([]U, len(slice))
 	var wg sync.WaitGroup
@@ -77,7 +77,7 @@ func MapConcurrent[T any, U any](slice []T, iteratee func(index int, item T) U, 
 }
 
 // ReduceConcurrent reduces the slice to a single value by applying the reducer function to each item in the slice concurrently.
-// Play: todo
+// Play: https://go.dev/play/p/Tjwe6OtaG07
 func ReduceConcurrent[T any](slice []T, initial T, reducer func(index int, item T, agg T) T, numThreads int) T {
 	if numThreads <= 0 {
 		numThreads = 1
@@ -121,7 +121,7 @@ func ReduceConcurrent[T any](slice []T, initial T, reducer func(index int, item 
 }
 
 // FilterConcurrent applies the provided filter function `predicate` to each element of the input slice concurrently.
-// Play: todo
+// Play: https://go.dev/play/p/t_pkwerIRVx
 func FilterConcurrent[T any](slice []T, predicate func(index int, item T) bool, numThreads int) []T {
 	result := make([]T, 0)
 	var wg sync.WaitGroup
@@ -154,7 +154,7 @@ func FilterConcurrent[T any](slice []T, predicate func(index int, item T) bool, 
 // The numThreads parameter specifies the number of threads to use
 // If numThreads is less than or equal to 0, it will be set to 1
 // The comparator function should return true if the two elements are equal
-// Play: todo
+// Play: https://go.dev/play/p/wXZ7LcYRMGL
 func UniqueByConcurrent[T comparable](slice []T, comparator func(item T, other T) bool, numThreads int) []T {
 	if numThreads <= 0 {
 		numThreads = 1

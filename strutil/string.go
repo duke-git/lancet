@@ -627,7 +627,7 @@ func HammingDistance(a, b string) (int, error) {
 //   - `length` is the expected length of the concatenated string.
 //   - if you are unsure about the length of the string to be concatenated, please pass 0 or a negative number.
 //
-// Play: todo
+// Play: https://go.dev/play/p/gD52SZHr4Kp
 func Concat(length int, str ...string) string {
 	if len(str) == 0 {
 		return ""
@@ -647,7 +647,7 @@ func Concat(length int, str ...string) string {
 }
 
 // Ellipsis truncates a string to a specified length and appends an ellipsis.
-// Play: todo
+// Play: https://go.dev/play/p/i1vbdQiQVRR
 func Ellipsis(str string, length int) string {
 	str = strings.TrimSpace(str)
 
@@ -665,7 +665,7 @@ func Ellipsis(str string, length int) string {
 }
 
 // Shuffle the order of characters of given string.
-// Play: todo
+// Play: https://go.dev/play/p/iStFwBwyGY7
 func Shuffle(str string) string {
 	runes := []rune(str)
 
@@ -678,7 +678,7 @@ func Shuffle(str string) string {
 }
 
 // Rotate rotates the string by the specified number of characters.
-// Play: todo
+// Play: https://go.dev/play/p/Kf03iOeT5bd
 func Rotate(str string, shift int) string {
 	if shift == 0 {
 		return str
@@ -709,7 +709,7 @@ func Rotate(str string, shift int) string {
 // The placeholders are enclosed in curly braces, e.g. {key}.
 // for example, the template string is "Hello, {name}!", and the data map is {"name": "world"},
 // the result will be "Hello, world!".
-// Play: todo
+// Play: https://go.dev/play/p/cXSuFvyZqv9
 func TemplateReplace(template string, data map[string]string) string {
 	re := regexp.MustCompile(`\{(\w+)\}`)
 
@@ -729,7 +729,7 @@ func TemplateReplace(template string, data map[string]string) string {
 }
 
 // RegexMatchAllGroups Matches all subgroups in a string using a regular expression and returns the result.
-// Play: todo
+// Play: https://go.dev/play/p/JZiu0RXpgN-
 func RegexMatchAllGroups(pattern, str string) [][]string {
 	re := regexp.MustCompile(pattern)
 	matches := re.FindAllStringSubmatch(str, -1)

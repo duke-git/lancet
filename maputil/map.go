@@ -455,7 +455,7 @@ func GetOrSet[K comparable, V any](m map[K]V, key K, value V) V {
 }
 
 // SortByKey sorts the map by its keys and returns a new map with sorted keys.
-// Play: todo
+// Play: https://go.dev/play/p/PVdmBSnm6P_W
 func SortByKey[K constraints.Ordered, V any](m map[K]V, less func(a, b K) bool) (sortedKeysMap map[K]V) {
 	keys := make([]K, 0, len(m))
 	for k := range m {
@@ -659,7 +659,7 @@ func convertMap(src reflect.Value, dst reflect.Value) error {
 }
 
 // GetOrDefault returns the value of the given key or a default value if the key is not present.
-// Play: todo
+// Play: https://go.dev/play/p/99QjSYSBdiM
 func GetOrDefault[K comparable, V any](m map[K]V, key K, defaultValue V) V {
 	if v, ok := m[key]; ok {
 		return v

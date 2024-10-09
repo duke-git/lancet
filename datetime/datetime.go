@@ -385,7 +385,7 @@ func TimestampNano(timezone ...string) int64 {
 
 // TrackFuncTime track the time of function execution.
 // call it at top of the func like `defer TrackFuncTime(time.Now())()`
-// Play: todo
+// Play: https://go.dev/play/p/QBSEdfXHPTp
 func TrackFuncTime(pre time.Time) func() {
 	callerName := getCallerName()
 	return func() {
@@ -413,7 +413,7 @@ func getCallerName() string {
 }
 
 // DaysBetween returns the number of days between two times.
-// Play: todo
+// Play: https://go.dev/play/p/qD6qGb3TbOy
 func DaysBetween(start, end time.Time) int {
 	duration := end.Sub(start)
 	days := int(duration.Hours() / 24)
@@ -424,7 +424,7 @@ func DaysBetween(start, end time.Time) int {
 // GenerateDatetimesBetween returns a slice of strings between two times.
 // layout: the format of the datetime string
 // interval: the interval between two datetimes
-// Play: todo
+// Play: https://go.dev/play/p/6kHBpAxD9ZC
 func GenerateDatetimesBetween(start, end time.Time, layout string, interval string) ([]string, error) {
 	var result []string
 

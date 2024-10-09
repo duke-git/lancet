@@ -1480,7 +1480,7 @@ func main() {
 func TrackFuncTime(pre time.Time) func()
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/QBSEdfXHPTp)</span></b>
 
 ```go
 package main
@@ -1512,7 +1512,7 @@ func main() {
 func DaysBetween(start, end time.Time) int
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/qD6qGb3TbOy)</span></b>
 
 ```go
 package main
@@ -1545,7 +1545,7 @@ func main() {
 func GenerateDatetimesBetween(start, end time.Time, layout string, interval string) ([]string, error)
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/6kHBpAxD9ZC)</span></b>
 
 ```go
 package main

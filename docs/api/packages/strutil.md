@@ -1547,7 +1547,7 @@ func main() {
 func Concat(length int, str ...string) string
 ```
 
-<b>示例:<span style="float:right;display:inline-block;">[运行](todo)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/gD52SZHr4Kp)</span></b>
 
 ```go
 import (
@@ -1556,10 +1556,10 @@ import (
 )
 
 func main() {
-
-     result1 := strutil.Concat(12, "Hello", " ", "World", "!")
+    result1 := strutil.Concat(12, "Hello", " ", "World", "!")
     result2 := strutil.Concat(11, "Go", " ", "Language")
     result3 := strutil.Concat(0, "An apple a ", "day，", "keeps the", " doctor away")
+    
     fmt.Println(result1)
     fmt.Println(result2)
     fmt.Println(result3)
@@ -1581,7 +1581,7 @@ func main() {
 func Ellipsis(str string, length int) string
 ```
 
-<b>示例:<span style="float:right;display:inline-block;">[运行](todo)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/i1vbdQiQVRR)</span></b>
 
 ```go
 import (
@@ -1615,7 +1615,7 @@ func main() {
 func Shuffle(str string) string
 ```
 
-<b>示例:<span style="float:right;display:inline-block;">[运行](todo)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/iStFwBwyGY7)</span></b>
 
 ```go
 import (
@@ -1639,7 +1639,7 @@ func main() {
 func Rotate(str string, shift int) string
 ```
 
-<b>示例:<span style="float:right;display:inline-block;">[运行](todo)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/Kf03iOeT5bd)</span></b>
 
 ```go
 import (
@@ -1648,9 +1648,9 @@ import (
 )
 
 func main() {
-    result1 := Rotate("Hello", 0)
-    result2 := Rotate("Hello", 1)
-    result3 := Rotate("Hello", 2)
+    result1 := strutil.Rotate("Hello", 0)
+    result2 := strutil.Rotate("Hello", 1)
+    result3 := strutil.Rotate("Hello", 2)
 
     fmt.Println(result1)
     fmt.Println(result2)
@@ -1673,7 +1673,7 @@ func main() {
 func TemplateReplace(template string, data map[string]string) string
 ```
 
-<b>示例:<span style="float:right;display:inline-block;">[运行]()</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/cXSuFvyZqv9)</span></b>
 
 ```go
 import (
@@ -1707,7 +1707,7 @@ func main() {
 func RegexMatchAllGroups(pattern, str string) [][]string
 ```
 
-<b>示例:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/JZiu0RXpgN-)</span></b>
 
 ```go
 import (

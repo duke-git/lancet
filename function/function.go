@@ -93,7 +93,7 @@ func Debounced(fn func(), delay time.Duration) func() {
 }
 
 // Debounce creates a debounced version of the provided function.
-// Play: todo
+// Play: https://go.dev/play/p/-dGFrYn_1Zi
 func Debounce(fn func(), delay time.Duration) (debouncedFn func(), cancelFn func()) {
 	var (
 		timer *time.Timer
@@ -127,7 +127,7 @@ func Debounce(fn func(), delay time.Duration) (debouncedFn func(), cancelFn func
 
 // Throttle creates a throttled version of the provided function.
 // The returned function guarantees that it will only be invoked at most once per interval.
-// Play: todo
+// Play: https://go.dev/play/p/HpoMov-tJSN
 func Throttle(fn func(), interval time.Duration) func() {
 	var (
 		timer   *time.Timer

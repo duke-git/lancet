@@ -137,7 +137,7 @@ func GetOsBits() int {
 }
 
 // StartProcess start a new process with the specified name and arguments.
-// Play: todo
+// Play: https://go.dev/play/p/5GVol6ryS_X
 func StartProcess(command string, args ...string) (int, error) {
 	cmd := exec.Command(command, args...)
 
@@ -149,7 +149,7 @@ func StartProcess(command string, args ...string) (int, error) {
 }
 
 // StopProcess stop a process by pid.
-// Play: todo
+// Play: https://go.dev/play/p/jJZhRYGGcmD
 func StopProcess(pid int) error {
 	process, err := os.FindProcess(pid)
 	if err != nil {
@@ -160,7 +160,7 @@ func StopProcess(pid int) error {
 }
 
 // KillProcess kill a process by pid.
-// Play: todo
+// Play: https://go.dev/play/p/XKmvV-ExBWa
 func KillProcess(pid int) error {
 	process, err := os.FindProcess(pid)
 	if err != nil {
@@ -186,7 +186,7 @@ type ProcessInfo struct {
 }
 
 // GetProcessInfo retrieves detailed process information by pid.
-// Play: todo
+// Play: https://go.dev/play/p/NQDVywEYYx7
 func GetProcessInfo(pid int) (*ProcessInfo, error) {
 	var cmd *exec.Cmd
 

@@ -29,7 +29,7 @@ func NewOrderedMap[K comparable, V any]() *OrderedMap[K, V] {
 }
 
 // Sets the given key-value pair.
-// Play: todo
+// Play: https://go.dev/play/p/Y4ZJ_oOc1FU
 func (om *OrderedMap[K, V]) Set(key K, value V) {
 	om.mu.Lock()
 	defer om.mu.Unlock()
@@ -48,7 +48,7 @@ func (om *OrderedMap[K, V]) Set(key K, value V) {
 }
 
 // Get returns the value for the given key.
-// Play: todo
+// Play: https://go.dev/play/p/Y4ZJ_oOc1FU
 func (om *OrderedMap[K, V]) Get(key K) (V, bool) {
 	om.mu.RLock()
 	defer om.mu.RUnlock()
@@ -59,7 +59,7 @@ func (om *OrderedMap[K, V]) Get(key K) (V, bool) {
 }
 
 // Delete deletes the given key.
-// Play: todo
+// Play: https://go.dev/play/p/5bIi4yaZ3K-
 func (om *OrderedMap[K, V]) Delete(key K) {
 	om.mu.Lock()
 	defer om.mu.Unlock()
@@ -72,7 +72,7 @@ func (om *OrderedMap[K, V]) Delete(key K) {
 }
 
 // Clear clears the map.
-// Play: todo
+// Play: https://go.dev/play/p/8LwoJyEfuFr
 func (om *OrderedMap[K, V]) Clear() {
 	om.mu.Lock()
 	defer om.mu.Unlock()
@@ -83,7 +83,7 @@ func (om *OrderedMap[K, V]) Clear() {
 }
 
 // Front returns the first key-value pair.
-// Play: todo
+// Play: https://go.dev/play/p/ty57XSimpoe
 func (om *OrderedMap[K, V]) Front() (struct {
 	Key   K
 	Value V
@@ -111,7 +111,7 @@ func (om *OrderedMap[K, V]) Front() (struct {
 }
 
 // Back returns the last key-value pair.
-// Play: todo
+// Play: https://go.dev/play/p/rQMjp1yQmpa
 func (om *OrderedMap[K, V]) Back() (struct {
 	Key   K
 	Value V
@@ -139,7 +139,7 @@ func (om *OrderedMap[K, V]) Back() (struct {
 }
 
 // Range calls the given function for each key-value pair.
-// Play: todo
+// Play: https://go.dev/play/p/U-KpORhc7LZ
 func (om *OrderedMap[K, V]) Range(iteratee func(key K, value V) bool) {
 	om.mu.RLock()
 	defer om.mu.RUnlock()
@@ -155,7 +155,7 @@ func (om *OrderedMap[K, V]) Range(iteratee func(key K, value V) bool) {
 }
 
 // Keys returns the keys in order.
-// Play: todo
+// Play: https://go.dev/play/p/Vv_y9ExKclA
 func (om *OrderedMap[K, V]) Keys() []K {
 	om.mu.RLock()
 	defer om.mu.RUnlock()
@@ -170,7 +170,7 @@ func (om *OrderedMap[K, V]) Keys() []K {
 }
 
 // Values returns the values in order.
-// Play: todo
+// Play: https://go.dev/play/p/TWj5n1-PUfx
 func (om *OrderedMap[K, V]) Values() []V {
 	om.mu.RLock()
 	defer om.mu.RUnlock()
@@ -186,7 +186,7 @@ func (om *OrderedMap[K, V]) Values() []V {
 }
 
 // Len returns the number of key-value pairs.
-// Play: todo
+// Play: https://go.dev/play/p/cLe6z2VX5N-
 func (om *OrderedMap[K, V]) Len() int {
 	om.mu.RLock()
 	defer om.mu.RUnlock()
@@ -195,7 +195,7 @@ func (om *OrderedMap[K, V]) Len() int {
 }
 
 // Contains returns true if the given key exists.
-// Play: todo
+// Play: https://go.dev/play/p/QuwqqnzwDNX
 func (om *OrderedMap[K, V]) Contains(key K) bool {
 	om.mu.RLock()
 	defer om.mu.RUnlock()
@@ -206,7 +206,7 @@ func (om *OrderedMap[K, V]) Contains(key K) bool {
 }
 
 // Elements returns the key-value pairs in order.
-// Play: todo
+// Play: https://go.dev/play/p/4BHG4kKz6bB
 func (om *OrderedMap[K, V]) Elements() []struct {
 	Key   K
 	Value V
@@ -232,7 +232,7 @@ func (om *OrderedMap[K, V]) Elements() []struct {
 }
 
 // Iter returns a channel that yields key-value pairs in order.
-// Play: todo
+// Play: https://go.dev/play/p/tlq2tdvicPt
 func (om *OrderedMap[K, V]) Iter() <-chan struct {
 	Key   K
 	Value V
@@ -262,7 +262,7 @@ func (om *OrderedMap[K, V]) Iter() <-chan struct {
 }
 
 // ReverseIter returns a channel that yields key-value pairs in reverse order.
-// Play: todo
+// Play: https://go.dev/play/p/8Q0ssg6hZzO
 func (om *OrderedMap[K, V]) ReverseIter() <-chan struct {
 	Key   K
 	Value V
@@ -292,7 +292,7 @@ func (om *OrderedMap[K, V]) ReverseIter() <-chan struct {
 }
 
 // SortByValue sorts the map by key given less function.
-// Play: todo
+// Play: https://go.dev/play/p/N7hjD_alZPq
 func (om *OrderedMap[K, V]) SortByKey(less func(a, b K) bool) {
 	om.mu.Lock()
 	defer om.mu.Unlock()
@@ -315,7 +315,7 @@ func (om *OrderedMap[K, V]) SortByKey(less func(a, b K) bool) {
 }
 
 // MarshalJSON implements the json.Marshaler interface.
-// Play: todo
+// Play: https://go.dev/play/p/C-wAwydIAC7
 func (om *OrderedMap[K, V]) MarshalJSON() ([]byte, error) {
 	om.mu.RLock()
 	defer om.mu.RUnlock()
@@ -334,7 +334,7 @@ func (om *OrderedMap[K, V]) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON implements the json.Unmarshaler interface.
-// Play: todo
+// Play: https://go.dev/play/p/8C3MvJ3-mut
 func (om *OrderedMap[K, V]) UnmarshalJSON(data []byte) error {
 	om.mu.Lock()
 	defer om.mu.Unlock()

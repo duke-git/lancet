@@ -325,7 +325,7 @@ func main() {
 func StartProcess(command string, args ...string) (int, error)
 ```
 
-<b>Example:<span style="float:right;display:inline-block">[Run](todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block">[Run](https://go.dev/play/p/5GVol6ryS_X)</span></b>
 
 ```go
 import (
@@ -353,7 +353,7 @@ func main() {
 func StopProcess(pid int) error
 ```
 
-<b>Example:<span style="float:right;display:inline-block">[Run](todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block">[Run](https://go.dev/play/p/jJZhRYGGcmD)</span></b>
 
 ```go
 import (
@@ -387,7 +387,7 @@ func main() {
 func KillProcess(pid int) error
 ```
 
-<b>Example:<span style="float:right;display:inline-block">[Run](todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block">[Run](https://go.dev/play/p/XKmvV-ExBWa)</span></b>
 
 ```go
 import (
@@ -421,7 +421,7 @@ func main() {
 func GetProcessInfo(pid int) (*ProcessInfo, error)
 ```
 
-<b>Example:<span style="float:right;display:inline-block">[Run](todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block">[Run](https://go.dev/play/p/NQDVywEYYx7)</span></b>
 
 ```go
 import (

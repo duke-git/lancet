@@ -10,7 +10,7 @@ outline: deep
 go get github.com/duke-git/lancet/v2 // will install latest version of v2.x.x
 ```
 
-2. <b>For users who use version below go1.18, you should install v1.x.x. The latest of v1.x.x is v1.4.1. </b>
+2. <b>For users who use version below go1.18, you should install v1.x.x. The latest of v1.x.x is v1.4.4. </b>
 
 ```go
 go get github.com/duke-git/lancet // below go1.18, install latest version of v1.x.x

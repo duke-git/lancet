@@ -33,13 +33,13 @@ func init() {
 }
 
 // RandBool generates a random boolean value (true or false).
-// Play: todo
+// Play: https://go.dev/play/p/to6BLc26wBv
 func RandBool() bool {
 	return rand.Intn(2) == 1
 }
 
 // RandBoolSlice generates a random boolean slice of specified length.
-// Play: todo
+// Play: https://go.dev/play/p/o-VSjPjnILI
 func RandBoolSlice(length int) []bool {
 	if length <= 0 {
 		return []bool{}
@@ -73,7 +73,7 @@ func RandInt(min, max int) int {
 
 // RandIntSlice generates a slice of random integers.
 // The generated integers are between min and max (exclusive).
-// Play: todo
+// Play: https://go.dev/play/p/GATTQ5xTEG8
 func RandIntSlice(length, min, max int) []int {
 	if length <= 0 || min > max {
 		return []int{}
@@ -170,7 +170,7 @@ func RandString(length int) string {
 // RandString generate a slice of random string of length strLen based on charset.
 // chartset should be one of the following: random.Numeral, random.LowwerLetters, random.UpperLetters
 // random.Letters, random.SymbolChars, random.AllChars. or a combination of them.
-// Play: todo
+// Play: https://go.dev/play/p/2_-PiDv3tGn
 func RandStringSlice(charset string, sliceLen, strLen int) []string {
 	if sliceLen <= 0 || strLen <= 0 {
 		return []string{}
@@ -186,7 +186,7 @@ func RandStringSlice(charset string, sliceLen, strLen int) []string {
 }
 
 // RandFromGivenSlice generate a random element from given slice.
-// Play: todo
+// Play: https://go.dev/play/p/UrkWueF6yYo
 func RandFromGivenSlice[T any](slice []T) T {
 	if len(slice) == 0 {
 		var zero T
@@ -198,7 +198,7 @@ func RandFromGivenSlice[T any](slice []T) T {
 // RandSliceFromGivenSlice generate a random slice of length num from given slice.
 //   - If repeatable is true, the generated slice may contain duplicate elements.
 //
-// Play: todo
+// Play: https://go.dev/play/p/68UikN9d6VT
 func RandSliceFromGivenSlice[T any](slice []T, num int, repeatable bool) []T {
 	if num <= 0 || len(slice) == 0 {
 		return slice

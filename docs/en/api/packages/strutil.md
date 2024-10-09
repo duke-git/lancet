@@ -1549,7 +1549,7 @@ func main() {
 func Concat(length int, str ...string) string
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/gD52SZHr4Kp)</span></b>
 
 ```go
 import (
@@ -1561,6 +1561,7 @@ func main() {
     result1 := strutil.Concat(12, "Hello", " ", "World", "!")
     result2 := strutil.Concat(11, "Go", " ", "Language")
     result3 := strutil.Concat(0, "An apple a ", "day，", "keeps the", " doctor away")
+    
     fmt.Println(result1)
     fmt.Println(result2)
     fmt.Println(result3)
@@ -1582,7 +1583,7 @@ func main() {
 func Ellipsis(str string, length int) string
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/i1vbdQiQVRR)</span></b>
 
 ```go
 import (
@@ -1616,7 +1617,7 @@ func main() {
 func Shuffle(str string) string
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/iStFwBwyGY7)</span></b>
 
 ```go
 import (
@@ -1640,7 +1641,7 @@ func main() {
 func Rotate(str string, shift int) string
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/Kf03iOeT5bd)</span></b>
 
 ```go
 import (
@@ -1673,7 +1674,7 @@ func main() {
 func TemplateReplace(template string, data map[string]string string
 ```
 
-<b>example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
+<b>example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/cXSuFvyZqv9)</span></b>
 
 ```go
 import (
@@ -1707,7 +1708,7 @@ func main() {
 func RegexMatchAllGroups(pattern, str string) [][]string
 ```
 
-<b>example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
+<b>example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/JZiu0RXpgN-)</span></b>
 
 ```go
 import (

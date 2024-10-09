@@ -915,7 +915,7 @@ func main() {
 func FilterConcurrent[T any](slice []T, predicate func(index int, item T) bool, numThreads int) []T
 ```
 
-<b>示例:<span style="float:right;display:inline-block;">[运行](todo)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/t_pkwerIRVx)</span></b>
 
 ```go
 import (
@@ -1192,7 +1192,7 @@ func main() {
 func ForEachConcurrent[T any](slice []T, iteratee func(index int, item T), numThreads int)
 ```
 
-<b>示例:<span style="float:right;display:inline-block;">[运行]()</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/kT4XW7DKVoV)</span></b>
 
 ```go
 import (
@@ -1570,7 +1570,7 @@ func main() {
 func MapConcurrent[T any, U any](slice []T, iteratee func(index int, item T) U, numThreads int) []U
 ```
 
-<b>示例:<span style="float:right;display:inline-block;">[运行](todo)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/H1ehfPkPen0)</span></b>
 
 ```go
 import (
@@ -1771,7 +1771,7 @@ func main() {
 func ReduceConcurrent[T any](slice []T, initial T, reducer func(index int, item T, agg T) T, numThreads int) T
 ```
 
-<b>示例:<span style="float:right;display:inline-block;">[运行](todo)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/Tjwe6OtaG07)</span></b>
 
 ```go
 import (
@@ -2449,7 +2449,7 @@ func main() {
 func UniqueBy[T any, U comparable](slice []T, iteratee func(item T) U) []T
 ```
 
-<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/UR323iZLDpv)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/GY7JE4yikrl)</span></b>
 
 ```go
 import (
@@ -2480,7 +2480,7 @@ func main() {
 func UniqueByComparator[T comparable](slice []T, comparator func(item T, other T) bool) []T
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/rwSacr-ZHsR)</span></b>
 
 ```go
 import (
@@ -2516,7 +2516,7 @@ func main() {
 func UniqueByConcurrent[T comparable](slice []T, comparator func(item T, other T) bool, numThreads int) []T
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/wXZ7LcYRMGL)</span></b>
 
 ```go
 import (
@@ -2967,7 +2967,7 @@ func main() {
 func Frequency[T comparable](slice []T) map[T]int
 ```
 
-<b>示例:<span style="float:right;display:inline-block;">[运行]()</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/CW3UVNdUZOq)</span></b>
 
 ```go
 import (
