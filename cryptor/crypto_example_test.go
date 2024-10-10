@@ -1,6 +1,7 @@
 package cryptor
 
 import (
+	"crypto"
 	"fmt"
 )
 
@@ -535,4 +536,50 @@ func ExampleRsaEncryptOAEP() {
 
 	// Output:
 	// hello world
+}
+
+func ExampleRsaSign() {
+	data := []byte("This is a test data for RSA signing")
+	hash := crypto.SHA256
+
+	privateKey := "./rsa_private.pem"
+	publicKey := "./rsa_public.pem"
+
+	signature, err := RsaSign(hash, data, privateKey)
+	if err != nil {
+		return
+	}
+
+	err = RsaVerifySign(hash, data, signature, publicKey)
+	if err != nil {
+		return
+	}
+
+	fmt.Println("ok")
+
+	// Output:
+	// ok
+}
+
+func ExampleRsaVerifySign() {
+	data := []byte("This is a test data for RSA signing")
+	hash := crypto.SHA256
+
+	privateKey := "./rsa_private.pem"
+	publicKey := "./rsa_public.pem"
+
+	signature, err := RsaSign(hash, data, privateKey)
+	if err != nil {
+		return
+	}
+
+	err = RsaVerifySign(hash, data, signature, publicKey)
+	if err != nil {
+		return
+	}
+
+	fmt.Println("ok")
+
+	// Output:
+	// ok
 }
