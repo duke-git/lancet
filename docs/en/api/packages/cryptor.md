@@ -70,6 +70,8 @@ import (
 -   [GenerateRsaKeyPair](#GenerateRsaKeyPair)
 -   [RsaEncryptOAEP](#RsaEncryptOAEP)
 -   [RsaDecryptOAEP](#RsaDecryptOAEP)
+-   [RsaSign](#RsaSign)
+-   [RsaVerifySign](#RsaVerifySign)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -1061,13 +1063,13 @@ import (
 
 func main() {
     str := "hello"
-	key := "12345"
+    key := "12345"
 
-	hms := cryptor.HmacSha512WithBase64(str, key)
-	fmt.Println(hms)
+    hms := cryptor.HmacSha512WithBase64(str, key)
+    fmt.Println(hms)
 
-	// Output:
-	// 3Y8SkKndI9NU4lJtmi6c6M///dN8syCADRxsE9Lvw2Mog3ahlsVFja9T+OGqa0Wm2FYwPVwKIGS/+XhYYdSM/A==
+    // Output:
+    // 3Y8SkKndI9NU4lJtmi6c6M///dN8syCADRxsE9Lvw2Mog3ahlsVFja9T+OGqa0Wm2FYwPVwKIGS/+XhYYdSM/A==
 }
 ```
 
@@ -1124,10 +1126,10 @@ import (
 
 func main() {
     md5Str := cryptor.Md5StringWithBase64("hello")
-	fmt.Println(md5Str)
+    fmt.Println(md5Str)
 
-	// Output:
-	// XUFAKrxLKna5cZ2REBfFkg==
+    // Output:
+    // XUFAKrxLKna5cZ2REBfFkg==
 }
 ```
 
@@ -1153,10 +1155,10 @@ import (
 
 func main() {
     md5Str := cryptor.Md5Byte([]byte{'a'})
-	fmt.Println(md5Str)
+    fmt.Println(md5Str)
 
-	// Output:
-	// 0cc175b9c0f1b6a831c399e269772661
+    // Output:
+    // 0cc175b9c0f1b6a831c399e269772661
 }
 ```
 
@@ -1182,10 +1184,10 @@ import (
 
 func main() {
     md5Str := cryptor.Md5ByteWithBase64([]byte("hello"))
-	fmt.Println(md5Str)
+    fmt.Println(md5Str)
 
-	// Output:
-	// XUFAKrxLKna5cZ2REBfFkg==
+    // Output:
+    // XUFAKrxLKna5cZ2REBfFkg==
 }
 ```
 
@@ -1268,10 +1270,10 @@ import (
 
 func main() {
     result := cryptor.Sha1WithBase64("hello")
-	fmt.Println(result)
+    fmt.Println(result)
 
-	// Output:
-	// qvTGHdzF6KLavt4PO0gs2a6pQ00=
+    // Output:
+    // qvTGHdzF6KLavt4PO0gs2a6pQ00=
 }
 ```
 
@@ -1328,10 +1330,10 @@ import (
 
 func main() {
     result := cryptor.Sha256WithBase64("hello")
-	fmt.Println(result)
+    fmt.Println(result)
 
-	// Output:
-	// LPJNul+wow4m6DsqxbninhsWHlwfp0JecwQzYpOLmCQ=
+    // Output:
+    // LPJNul+wow4m6DsqxbninhsWHlwfp0JecwQzYpOLmCQ=
 }
 ```
 
@@ -1388,10 +1390,10 @@ import (
 
 func main() {
     result := cryptor.Sha512WithBase64("hello")
-	fmt.Println(result)
+    fmt.Println(result)
 
-	// Output:
-	// m3HSJL1i83hdltRq0+o9czGb+8KJDKra4t/3JRlnPKcjI8PZm6XBHXx6zG4UuMXaDEZjR1wuXDre9G9zvN7AQw==
+    // Output:
+    // m3HSJL1i83hdltRq0+o9czGb+8KJDKra4t/3JRlnPKcjI8PZm6XBHXx6zG4UuMXaDEZjR1wuXDre9G9zvN7AQw==
 }
 ```
 
@@ -1605,5 +1607,83 @@ func main() {
 
     // Output:
     // hello world
+}
+```
+
+### <span id="RsaSign">RsaSign</span>
+
+<p>Signs the data with RSA algorithm.</p>
+
+<b>Signature:</b>
+
+```go
+func RsaSign(hash crypto.Hash, data []byte, privateKeyFileName string) ([]byte, error)
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/cryptor"
+)
+
+func main() {
+    data := []byte("This is a test data for RSA signing")
+    hash := crypto.SHA256
+
+    privateKey := "./rsa_private.pem"
+    publicKey := "./rsa_public.pem"
+
+    signature, err := RsaSign(hash, data, privateKey)
+    if err != nil {
+        return
+    }
+
+    err = RsaVerifySign(hash, data, signature, publicKey)
+    if err != nil {
+        return
+    }
+}
+```
+
+### <span id="RsaVerifySign">RsaVerifySign</span>
+
+<p>Verifies the signature of the data with RSA algorithm.</p>
+
+<b>Signature:</b>
+
+```go
+func RsaVerifySign(hash crypto.Hash, data, signature []byte, pubKeyFileName string) error
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/cryptor"
+)
+
+func main() {
+    data := []byte("This is a test data for RSA signing")
+    hash := crypto.SHA256
+
+    privateKey := "./rsa_private.pem"
+    publicKey := "./rsa_public.pem"
+
+    signature, err := RsaSign(hash, data, privateKey)
+    if err != nil {
+        return
+    }
+
+    err = RsaVerifySign(hash, data, signature, publicKey)
+    if err != nil {
+        return
+    }
 }
 ```

@@ -70,6 +70,9 @@ import (
 -   [GenerateRsaKeyPair](#GenerateRsaKeyPair)
 -   [RsaEncryptOAEP](#RsaEncryptOAEP)
 -   [RsaDecryptOAEP](#RsaDecryptOAEP)
+-   [RsaSign](#RsaSign)
+-   [RsaVerifySign](#RsaVerifySign)
+
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -1605,5 +1608,83 @@ func main() {
 
     // Output:
     // hello world
+}
+```
+
+### <span id="RsaSign">RsaSign</span>
+
+<p>应用RSA算法签名数据。</p>
+
+<b>函数签名:</b>
+
+```go
+func RsaSign(hash crypto.Hash, data []byte, privateKeyFileName string) ([]byte, error)
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](todo)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/cryptor"
+)
+
+func main() {
+    data := []byte("This is a test data for RSA signing")
+    hash := crypto.SHA256
+
+    privateKey := "./rsa_private.pem"
+    publicKey := "./rsa_public.pem"
+
+    signature, err := RsaSign(hash, data, privateKey)
+    if err != nil {
+        return
+    }
+
+    err = RsaVerifySign(hash, data, signature, publicKey)
+    if err != nil {
+        return
+    }
+}
+```
+
+### <span id="RsaVerifySign">RsaVerifySign</span>
+
+<p>验证数据的签名是否符合RSA算法。</p>
+
+<b>函数签名:</b>
+
+```go
+func RsaVerifySign(hash crypto.Hash, data, signature []byte, pubKeyFileName string) error
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](todo)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/cryptor"
+)
+
+func main() {
+    data := []byte("This is a test data for RSA signing")
+    hash := crypto.SHA256
+
+    privateKey := "./rsa_private.pem"
+    publicKey := "./rsa_public.pem"
+
+    signature, err := RsaSign(hash, data, privateKey)
+    if err != nil {
+        return
+    }
+
+    err = RsaVerifySign(hash, data, signature, publicKey)
+    if err != nil {
+        return
+    }
 }
 ```
