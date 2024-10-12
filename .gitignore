@@ -8,7 +8,7 @@ fileutil/*.link
 fileutil/unzip/*
 fileutil/tempdir/*
 slice/testdata/*
-cryptor/*.pem
+# cryptor/*.pem
 test
 docs/node_modules
 docs/.vitepress/cache

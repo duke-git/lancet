@@ -140,13 +140,13 @@ func TestDesOfbEncrypt(t *testing.T) {
 func TestRsaEncrypt(t *testing.T) {
 	t.Parallel()
 
-	err := GenerateRsaKey(4096, "rsa_private.pem", "rsa_public.pem")
+	err := GenerateRsaKey(4096, "./rsa_private_example.pem", "./rsa_public_example.pem")
 	if err != nil {
 		t.FailNow()
 	}
 	data := []byte("hello world")
-	encrypted := RsaEncrypt(data, "rsa_public.pem")
-	decrypted := RsaDecrypt(encrypted, "rsa_private.pem")
+	encrypted := RsaEncrypt(data, "./rsa_public_example.pem")
+	decrypted := RsaDecrypt(encrypted, "./rsa_private_example.pem")
 
 	assert := internal.NewAssert(t, "TestRsaEncrypt")
 	assert.Equal(string(data), string(decrypted))
@@ -190,8 +190,8 @@ func TestRsaSignAndVerify(t *testing.T) {
 	hash := crypto.SHA256
 
 	t.Run("RSA Sign and Verify", func(t *testing.T) {
-		privateKey := "./rsa_private.pem"
-		publicKey := "./rsa_public.pem"
+		privateKey := "./rsa_private_example.pem"
+		publicKey := "./rsa_public_example.pem"
 
 		signature, err := RsaSign(hash, data, privateKey)
 		if err != nil {
@@ -205,7 +205,7 @@ func TestRsaSignAndVerify(t *testing.T) {
 	})
 
 	t.Run("RSA Sign and Verify Invalid Signature", func(t *testing.T) {
-		publicKey := "./rsa_public.pem"
+		publicKey := "./rsa_public_example.pem"
 
 		invalidSig := []byte("InvalidSignature")
 
@@ -216,8 +216,8 @@ func TestRsaSignAndVerify(t *testing.T) {
 	})
 
 	t.Run("RSA Sign and Verify With Different Hash", func(t *testing.T) {
-		publicKey := "./rsa_public.pem"
-		privateKey := "./rsa_private.pem"
+		publicKey := "./rsa_public_example.pem"
+		privateKey := "./rsa_private_example.pem"
 		hashSign := crypto.SHA256
 		hashVerify := crypto.SHA512
 
