@@ -35,7 +35,7 @@ func (om *OrderedMap[K, V]) Set(key K, value V) {
 	defer om.mu.Unlock()
 
 	if elem, ok := om.index[key]; ok {
-		elem.Value = value
+		om.data[key] = value
 		om.order.MoveToBack(elem)
 
 		return
