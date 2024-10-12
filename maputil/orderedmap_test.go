@@ -19,6 +19,10 @@ func TestOrderedMap_Set_Get(t *testing.T) {
 	assert.Equal(1, val)
 	assert.Equal(true, ok)
 
+	om.Set("a", 2)
+	val, _ = om.Get("a")
+	assert.Equal(2, val)
+
 	val, ok = om.Get("d")
 	assert.Equal(false, ok)
 	assert.Equal(0, val)
