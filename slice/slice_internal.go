@@ -7,6 +7,13 @@ import (
 	"golang.org/x/exp/constraints"
 )
 
+// resultChunk is used to store the intermediate results of UniqueByConcurrent.
+// It is defined separately to be compatible with versions of go up to 1.20.
+type resultChunk[T comparable] struct {
+	index int
+	data  []T
+}
+
 // sliceValue return the reflect value of a slice
 func sliceValue(slice any) reflect.Value {
 	v := reflect.ValueOf(slice)

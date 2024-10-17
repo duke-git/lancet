@@ -195,18 +195,14 @@ func UniqueByConcurrent[T comparable](slice []T, comparator func(item T, other T
 		chunks = append(chunks, slice[i:end])
 	}
 
-	type resultChunk struct {
-		index int
-		data  []T
-	}
-	resultCh := make(chan resultChunk, numThreads)
+	resultCh := make(chan resultChunk[T], numThreads)
 	var wg sync.WaitGroup
 
 	for i, chunk := range chunks {
 		wg.Add(1)
 		go func(index int, chunk []T) {
 			defer wg.Done()
-			resultCh <- resultChunk{index, removeDuplicate(chunk, comparator)}
+			resultCh <- resultChunk[T]{index, removeDuplicate(chunk, comparator)}
 		}(i, chunk)
 	}
 
