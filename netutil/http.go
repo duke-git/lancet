@@ -221,6 +221,22 @@ func (client *HttpClient) SendRequest(request *HttpRequest) (*http.Response, err
 	return resp, nil
 }
 
+// AsyncSendRequest send http request with goroutine, pop response and error to channels
+func (client *HttpClient) AsyncSendRequest(request *HttpRequest, respChan chan *http.Response, errChan chan error) {
+	go func() {
+		defer func() {
+			if err := recover(); err != nil {
+				errChan <- fmt.Errorf("%v", err)
+			}
+		}()
+		resp, err := client.SendRequest(request)
+		if err != nil {
+			errChan <- err
+		}
+		respChan <- resp
+	}()
+}
+
 // DecodeResponse decode response into target object.
 // Play: https://go.dev/play/p/jUSgynekH7G
 func (client *HttpClient) DecodeResponse(resp *http.Response, target any) error {
