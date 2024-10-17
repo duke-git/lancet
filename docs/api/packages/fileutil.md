@@ -52,7 +52,7 @@ import (
 -   [ReadFile](#ReadFile)
 -   [ChunkRead](#ChunkRead)
 -   [ParallelChunkRead](#ParallelChunkRead)
-
+-   [GetVersion](#Version)
 <div STYLE="page-break-after: always;"></div>
 
 ## 文档
