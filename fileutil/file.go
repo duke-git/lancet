@@ -18,7 +18,6 @@ import (
 	"golang.org/x/sys/windows"
 	"io"
 	"io/fs"
-	"log"
 	"net/http"
 	"os"
 	"path/filepath"
@@ -976,6 +975,5 @@ func GetExeDllVersion(filePath string) (string, error) {
 	minor := fixedInfo.FileVersionMS & 0xFFFF
 	build := fixedInfo.FileVersionLS >> 16
 	revision := fixedInfo.FileVersionLS & 0xFFFF
-	log.Println(fixedInfo.FileVersionMS)
 	return fmt.Sprintf("%d.%d.%d.%d", major, minor, build, revision), nil
 }
