@@ -14,6 +14,7 @@ import (
 	"encoding/csv"
 	"errors"
 	"fmt"
+	"github.com/duke-git/lancet/v2/validator"
 	"io"
 	"io/fs"
 	"net/http"
@@ -23,8 +24,6 @@ import (
 	"sort"
 	"strings"
 	"sync"
-
-	"github.com/duke-git/lancet/v2/validator"
 )
 
 // FileReader is a reader supporting offset seeking and reading one
