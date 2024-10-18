@@ -373,6 +373,45 @@ func TestSendRequestWithFilePath(t *testing.T) {
 	}
 }
 
+func TestHttpClient_AsyncSendRequest(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestHttpClient_Get")
+
+	request := &HttpRequest{
+		RawURL: "https://jsonplaceholder.typicode.com/todos/1",
+		Method: "GET",
+	}
+
+	httpClient := NewHttpClient()
+	respCh := make(chan *http.Response, 20)
+	errCh := make(chan error, 20)
+	for i := 0; i < 50; i++ {
+		httpClient.AsyncSendRequest(request, respCh, errCh)
+	}
+	for i := 0; i < 50; i++ {
+		select {
+		case resp := <-respCh:
+			type Todo struct {
+				UserId    int    `json:"userId"`
+				Id        int    `json:"id"`
+				Title     string `json:"title"`
+				Completed bool   `json:"completed"`
+			}
+			var todo Todo
+			err := httpClient.DecodeResponse(resp, &todo)
+			if err != nil {
+				t.FailNow()
+			}
+			assert.Equal(1, todo.Id)
+		case err := <-errCh:
+			if err != nil {
+				t.Log("net error: ", err.Error())
+			}
+		}
+	}
+}
+
 func TestProxy(t *testing.T) {
 	config := &HttpClientConfig{
 		HandshakeTimeout: 20 * time.Second,
