@@ -25,8 +25,9 @@ type tagVS_FIXEDFILEINFO struct {
 	FileDateLS       uint32
 }
 
-// GetExeDllVersion 获取exe或dll文件的版本信息
-func GetExeDllVersion(filePath string) (string, error) {
+// GetExeOrDllVersion get the version of exe or dll file on windows.
+// Play: todo
+func GetExeOrDllVersion(filePath string) (string, error) {
 	// 加载系统dll
 	versionDLL := syscall.NewLazyDLL("version.dll")
 	getFileVersionInfoSize := versionDLL.NewProc("GetFileVersionInfoSizeW")
@@ -77,5 +78,6 @@ func GetExeDllVersion(filePath string) (string, error) {
 	minor := fixedInfo.FileVersionMS & 0xFFFF
 	build := fixedInfo.FileVersionLS >> 16
 	revision := fixedInfo.FileVersionLS & 0xFFFF
+
 	return fmt.Sprintf("%d.%d.%d.%d", major, minor, build, revision), nil
 }

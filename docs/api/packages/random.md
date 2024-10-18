@@ -40,7 +40,7 @@ import (
 -   [RandStringSlice](#RandStringSlice)
 -   [RandBool](#RandBool)
 -   [RandBoolSlice](#RandBoolSlice)
--   [RandNumLen](#RandNumLen)
+-   [RandNumberOfLength](#RandNumberOfLength)
 
 
 <div STYLE="page-break-after: always;"></div>
@@ -524,17 +524,17 @@ func main() {
     fmt.Println(result) // [true false] (random)
 }
 ```
-### <span id="RandNumLen">RandNumLen</span>
+### <span id="RandNumberOfLength">RandNumberOfLength</span>
 
 <p>生成指定长度的随机数</p>
 
 <b>函数签名:</b>
 
 ```go
-func RandNumLen(len int) int
+func RandNumberOfLength(len int) int
 ```
 
-<b>实例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/o-VSjPjnILI)</span></b>
+<b>实例:<span style="float:right;display:inline-block;">[运行](todo)</span></b>
 
 ```go
 package main
@@ -545,7 +545,7 @@ import (
 )
 
 func main() {
-    i := random.RandNumLen(2)
-    fmt.Println(i)
+    i := random.RandNumberOfLength(2)
+    fmt.Println(i) // 21 (random number of length 2)
 }
 ```

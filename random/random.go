@@ -328,11 +328,12 @@ func UUIdV4() (string, error) {
 	return fmt.Sprintf("%x-%x-%x-%x-%x", uuid[0:4], uuid[4:6], uuid[6:8], uuid[8:10], uuid[10:]), nil
 }
 
-// RandNumLen 生成一个长度为len的随机数
-// Play: https://go.dev/play/p/jpIalcD5rMo
-func RandNumLen(len int) int {
+// RandNumberOfLength 生成一个长度为len的随机数
+// Play: todo
+func RandNumberOfLength(len int) int {
 	m := int(math.Pow10(len) - 1)
 	i := int(math.Pow10(len - 1))
 	ret := rand.Intn(m-i+1) + i
+
 	return ret
 }

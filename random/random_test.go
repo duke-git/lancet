@@ -362,9 +362,9 @@ func TestRandBoolSlice(t *testing.T) {
 		}
 	})
 }
-func TestRandNumLen(t *testing.T) {
+func TestRandNumberOfLength(t *testing.T) {
 	t.Parallel()
-	randi := RandNumLen(6)
-	assert := internal.NewAssert(t, "TestRandNumLen")
+	randi := RandNumberOfLength(6)
+	assert := internal.NewAssert(t, "TestRandNumberOfLength")
 	assert.Equal(6, len(strconv.Itoa(randi)))
 }

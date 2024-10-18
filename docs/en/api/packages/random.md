@@ -40,6 +40,7 @@ import (
 -   [RandStringSlice](#RandStringSlice)
 -   [RandBool](#RandBool)
 -   [RandBoolSlice](#RandBoolSlice)
+-   [RandNumberOfLength](#RandNumberOfLength)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -522,5 +523,31 @@ import (
 func main() {
     result := random.RandBoolSlice(2)
     fmt.Println(result) // [true false] (random)
+}
+```
+
+### <span id="RandNumberOfLength">RandNumberOfLength</span>
+
+<p>Generates a random int number of specified length.</p>
+
+<b>Signature:</b>
+
+```go
+func RandNumberOfLength(len int) int
+```
+
+<b>Signature:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/random"
+)
+
+func main() {
+    i := random.RandNumberOfLength(2)
+    fmt.Println(i) // 21 (random number of length 2)
 }
 ```

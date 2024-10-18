@@ -52,6 +52,7 @@ import (
 -   [ReadFile](#ReadFile)
 -   [ChunkRead](#ChunkRead)
 -   [ParallelChunkRead](#ParallelChunkRead)
+-   [GetExeOrDllVersion](#GetExeOrDllVersion)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -1073,5 +1074,38 @@ func main() {
     // Lili,22,female
     // Jim,21,male
     // 2
+}
+```
+
+### <span id="GetExeOrDllVersion">GetExeOrDllVersion</span>
+
+<p>Get the version of exe or dll file on windows.</p>
+
+<b>Signature:</b>
+
+```go
+func GetExeOrDllVersion(filePath string) (string, error)
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/fileutil"
+)
+
+func main() {
+    v, err := fileutil.GetExeOrDllVersion(`C:\Program Files\Tencent\WeChat\WeChat.exe`)
+	if err != nil {
+		panic(err)
+    }
+
+    fmt.Println(v)
+    
+    // Output:
+    // 3.9.10.19
 }
 ```

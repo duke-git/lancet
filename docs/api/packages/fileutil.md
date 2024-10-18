@@ -52,7 +52,8 @@ import (
 -   [ReadFile](#ReadFile)
 -   [ChunkRead](#ChunkRead)
 -   [ParallelChunkRead](#ParallelChunkRead)
--   [GetVersion](#Version)
+-   [GetExeOrDllVersion](#GetExeOrDllVersion)
+
 <div STYLE="page-break-after: always;"></div>
 
 ## 文档
@@ -1077,17 +1078,17 @@ func main() {
     // 2
 }
 ```
-### <span id="Version">GetExeDllVersion</span>
+### <span id="GetExeOrDllVersion">GetExeOrDllVersion</span>
 
 <p>返回exe,dll文件版本号(仅Window平台).</p>
 
 <b>函数签名:</b>
 
 ```go
-func GetExeDllVersion(filePath string) (string, error)
+func GetExeOrDllVersion(filePath string) (string, error)
 ```
 
-<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/s_Tl7lZoAaY)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](todo)</span></b>
 
 ```go
 package main
@@ -1098,7 +1099,7 @@ import (
 )
 
 func main() {
-    v, err := fileutil.GetExeDllVersion(`C:\Program Files\Tencent\WeChat\WeChat.exe`)
+    v, err := fileutil.GetExeOrDllVersion(`C:\Program Files\Tencent\WeChat\WeChat.exe`)
 	if err != nil {
 		panic(err)
     }
