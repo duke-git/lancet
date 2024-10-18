@@ -3,6 +3,7 @@ package random
 import (
 	"reflect"
 	"regexp"
+	"strconv"
 	"testing"
 
 	"github.com/duke-git/lancet/v2/internal"
@@ -360,4 +361,10 @@ func TestRandBoolSlice(t *testing.T) {
 			assert.Equal(true, b == true || b == false)
 		}
 	})
+}
+func TestRandNumLen(t *testing.T) {
+	t.Parallel()
+	randi := RandNumLen(6)
+	assert := internal.NewAssert(t, "TestRandNumLen")
+	assert.Equal(6, len(strconv.Itoa(randi)))
 }

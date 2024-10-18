@@ -329,6 +329,7 @@ func UUIdV4() (string, error) {
 }
 
 // RandNumLen 生成一个长度为len的随机数
+// Play: https://go.dev/play/p/jpIalcD5rMo
 func RandNumLen(len int) int {
 	m := int(math.Pow10(len) - 1)
 	i := int(math.Pow10(len - 1))
