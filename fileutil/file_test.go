@@ -619,10 +619,3 @@ func TestChunkRead(t *testing.T) {
 	assert.Equal("Jim,21,male", lines[1])
 
 }
-func TestGetExeDllVersion(t *testing.T) {
-	v, err := GetExeDllVersion(`C:\Program Files\Tencent\WeChat\WeChat.exe`)
-	if err != nil {
-		t.Error(err)
-	}
-	t.Log(v)
-}

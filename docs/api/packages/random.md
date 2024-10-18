@@ -40,6 +40,7 @@ import (
 -   [RandStringSlice](#RandStringSlice)
 -   [RandBool](#RandBool)
 -   [RandBoolSlice](#RandBoolSlice)
+-   [RandNumLen](#RandNumLen)
 
 
 <div STYLE="page-break-after: always;"></div>
@@ -521,5 +522,30 @@ import (
 func main() {
     result := random.RandBoolSlice(2)
     fmt.Println(result) // [true false] (random)
+}
+```
+### <span id="RandNumLen">RandNumLen</span>
+
+<p>生成指定长度的随机数</p>
+
+<b>函数签名:</b>
+
+```go
+func RandNumLen(len int) int
+```
+
+<b>实例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/o-VSjPjnILI)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/random"
+)
+
+func main() {
+    i := random.RandNumLen(2)
+    fmt.Println(i)
 }
 ```
