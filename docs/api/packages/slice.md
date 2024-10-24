@@ -107,6 +107,7 @@ import (
 -   [LeftPadding](#LeftPadding)
 -   [Frequency](#Frequency)
 -   [JoinFunc](#JoinFunc)
+-   [ConcatBy](#ConcatBy)
 
 
 <div STYLE="page-break-after: always;"></div>
@@ -3015,5 +3016,52 @@ func main() {
 
     // Output:
     // A, B, C
+}
+```
+
+### <span id="ConcatBy">ConcatBy</span>
+
+<p>将切片中的元素连接成一个值，使用指定的分隔符和连接器函数。</p>
+
+<b>函数签名:</b>
+
+```go
+func ConcatBy[T any](slice []T, sep T, connector func(T, T) T) T
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](todo)</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+    type Person struct {
+        Name string
+        Age  int
+    }
+
+    people := []Person{
+        {Name: "Alice", Age: 30},
+        {Name: "Bob", Age: 25},
+        {Name: "Charlie", Age: 35},
+    }
+
+    sep := Person{Name: " | ", Age: 0}
+
+    personConnector := func(a, b Person) Person {
+        return Person{Name: a.Name + b.Name, Age: a.Age + b.Age}
+    }
+
+    result := slice.ConcatBy(people, sep, personConnector)
+
+    fmt.Println(result.Name)
+    fmt.Println(result.Age)
+
+    // Output:
+    // Alice | Bob | Charlie
+    // 90
 }
 ```

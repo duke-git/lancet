@@ -1856,3 +1856,41 @@ func TestJoinFunc(t *testing.T) {
 		assert.Equal(expected, result)
 	})
 }
+
+func TestConcatBy(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestConcatBy")
+
+	t.Run("Join strings", func(t *testing.T) {
+		result := ConcatBy([]string{"Hello", "World"}, ", ", func(a, b string) string {
+			return a + b
+		})
+
+		expected := "Hello, World"
+		assert.Equal(expected, result)
+	})
+
+	t.Run("Join Person struct", func(t *testing.T) {
+		type Person struct {
+			Name string
+			Age  int
+		}
+
+		people := []Person{
+			{Name: "Alice", Age: 30},
+			{Name: "Bob", Age: 25},
+			{Name: "Charlie", Age: 35},
+		}
+		sep := Person{Name: " | ", Age: 0}
+
+		personConnector := func(a, b Person) Person {
+			return Person{Name: a.Name + b.Name, Age: a.Age + b.Age}
+		}
+
+		result := ConcatBy(people, sep, personConnector)
+
+		assert.Equal("Alice | Bob | Charlie", result.Name)
+		assert.Equal(90, result.Age)
+	})
+}

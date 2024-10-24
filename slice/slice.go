@@ -1411,3 +1411,22 @@ func JoinFunc[T any](slice []T, sep string, transform func(T) T) string {
 	}
 	return buf.String()
 }
+
+// ConcatBy concats the elements of a slice into a single value using the provided separator and connector function.
+// Play: todo
+func ConcatBy[T any](slice []T, sep T, connector func(T, T) T) T {
+	var result T
+
+	if len(slice) == 0 {
+		return result
+	}
+
+	for i, v := range slice {
+		result = connector(result, v)
+		if i < len(slice)-1 {
+			result = connector(result, sep)
+		}
+	}
+
+	return result
+}

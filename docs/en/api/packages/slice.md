@@ -106,6 +106,10 @@ import (
 -   [RightPadding](#RightPadding)
 -   [LeftPadding](#LeftPadding)
 -   [Frequency](#Frequency)
+-   [JoinFunc](#JoinFunc)
+-   [ConcatBy](#ConcatBy)
+
+
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -3008,5 +3012,52 @@ func main() {
 
     // Output:
     // A, B, C
+}
+```
+
+### <span id="ConcatBy">ConcatBy</span>
+
+<p>Concats the elements of a slice into a single value using the provided separator and connector function.</p>
+
+<b>Signature:</b>
+
+```go
+func ConcatBy[T any](slice []T, sep T, connector func(T, T) T) T
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+    type Person struct {
+        Name string
+        Age  int
+    }
+
+    people := []Person{
+        {Name: "Alice", Age: 30},
+        {Name: "Bob", Age: 25},
+        {Name: "Charlie", Age: 35},
+    }
+
+    sep := Person{Name: " | ", Age: 0}
+
+    personConnector := func(a, b Person) Person {
+        return Person{Name: a.Name + b.Name, Age: a.Age + b.Age}
+    }
+
+    result := slice.ConcatBy(people, sep, personConnector)
+
+    fmt.Println(result.Name)
+    fmt.Println(result.Age)
+
+    // Output:
+    // Alice | Bob | Charlie
+    // 90
 }
 ```

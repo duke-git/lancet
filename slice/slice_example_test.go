@@ -1272,3 +1272,31 @@ func ExampleJoinFunc() {
 	// Output:
 	// A, B, C
 }
+
+func ExampleConcatBy() {
+	type Person struct {
+		Name string
+		Age  int
+	}
+
+	people := []Person{
+		{Name: "Alice", Age: 30},
+		{Name: "Bob", Age: 25},
+		{Name: "Charlie", Age: 35},
+	}
+
+	sep := Person{Name: " | ", Age: 0}
+
+	personConnector := func(a, b Person) Person {
+		return Person{Name: a.Name + b.Name, Age: a.Age + b.Age}
+	}
+
+	result := ConcatBy(people, sep, personConnector)
+
+	fmt.Println(result.Name)
+	fmt.Println(result.Age)
+
+	// Output:
+	// Alice | Bob | Charlie
+	// 90
+}
