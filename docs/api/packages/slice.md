@@ -106,6 +106,8 @@ import (
 -   [RightPadding](#RightPadding)
 -   [LeftPadding](#LeftPadding)
 -   [Frequency](#Frequency)
+-   [JoinFunc](#JoinFunc)
+
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -2983,5 +2985,35 @@ func main() {
 
     // Output:
     // map[a:1 b:2 c:3]
+}
+```
+
+### <span id="JoinFunc">JoinFunc</span>
+
+<p>将切片元素用给定的分隔符连接成一个单一的字符串。</p>
+
+<b>函数签名:</b>
+
+```go
+func JoinFunc[T any](slice []T, sep string, transform func(T) T) string
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](todo)</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+    result := slice.JoinFunc([]string{"a", "b", "c"}, ", ", func(s string) string {
+        return strings.ToUpper(s)
+    })
+
+    fmt.Println(result)
+
+    // Output:
+    // A, B, C
 }
 ```

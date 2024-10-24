@@ -1261,3 +1261,14 @@ func ExampleFrequency() {
 	// Output:
 	// map[a:1 b:2 c:3]
 }
+
+func ExampleJoinFunc() {
+	result := JoinFunc([]string{"a", "b", "c"}, ", ", func(s string) string {
+		return strings.ToUpper(s)
+	})
+
+	fmt.Println(result)
+
+	// Output:
+	// A, B, C
+}

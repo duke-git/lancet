@@ -1398,3 +1398,16 @@ func Frequency[T comparable](slice []T) map[T]int {
 
 	return result
 }
+
+// JoinFunc joins the slice elements into a single string with the given separator.
+// Play: todo
+func JoinFunc[T any](slice []T, sep string, transform func(T) T) string {
+	var buf strings.Builder
+	for i, v := range slice {
+		if i > 0 {
+			buf.WriteString(sep)
+		}
+		buf.WriteString(fmt.Sprint(transform(v)))
+	}
+	return buf.String()
+}

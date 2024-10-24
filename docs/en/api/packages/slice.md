@@ -2980,3 +2980,33 @@ func main() {
     // map[a:1 b:2 c:3]
 }
 ```
+
+### <span id="JoinFunc">JoinFunc</span>
+
+<p>Joins the slice elements into a single string with the given separator.</p>
+
+<b>Signature:</b>
+
+```go
+func JoinFunc[T any](slice []T, sep string, transform func(T) T) string
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+    result := slice.JoinFunc([]string{"a", "b", "c"}, ", ", func(s string) string {
+        return strings.ToUpper(s)
+    })
+
+    fmt.Println(result)
+
+    // Output:
+    // A, B, C
+}
+```

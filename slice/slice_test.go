@@ -1816,3 +1816,43 @@ func TestFrequency(t *testing.T) {
 		assert.Equal(expected, result)
 	})
 }
+
+func TestJoinFunc(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestJoinFunc")
+
+	t.Run("basic case", func(t *testing.T) {
+		result := JoinFunc([]int{1, 2, 3}, ", ", func(i int) int {
+			return i * 2
+		})
+
+		expected := "2, 4, 6"
+		assert.Equal(expected, result)
+	})
+
+	t.Run("empty slice", func(t *testing.T) {
+		result := JoinFunc([]int{}, ", ", func(i int) int {
+			return i * 2
+		})
+
+		assert.Equal("", result)
+	})
+
+	t.Run("single element slice", func(t *testing.T) {
+		result := JoinFunc([]int{1}, ", ", func(i int) int {
+			return i * 2
+		})
+
+		assert.Equal("2", result)
+	})
+
+	t.Run("string slice", func(t *testing.T) {
+		result := JoinFunc([]string{"a", "b", "c"}, ", ", func(s string) string {
+			return strings.ToUpper(s)
+		})
+
+		expected := "A, B, C"
+		assert.Equal(expected, result)
+	})
+}
