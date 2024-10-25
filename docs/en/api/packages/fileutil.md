@@ -560,7 +560,7 @@ import (
 )
 
 func main() {
-    err := fileutil.Zip("./test.zip", "./unzip/test.txt")
+    err := fileutil.UnZip("./test.zip", "./test.txt")
     if err != nil {
         fmt.Println(err)
     }
