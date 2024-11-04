@@ -35,6 +35,7 @@ import (
 -   [XError_Info](#XError_Info)
 -   [XError_Error](#XError_Error)
 -   [TryUnwrap](#TryUnwrap)
+-   [TryCatch](#TryCatch)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -166,12 +167,12 @@ import (
 
 func main() {
     err1 := xerror.New("error").With("level", "high")
-	err2 := err1.Wrap(errors.New("invalid username"))
+    err2 := err1.Wrap(errors.New("invalid username"))
 
-	fmt.Println(err2.Error())
+    fmt.Println(err2.Error())
 
-	// Output:
-	// error: invalid username
+    // Output:
+    // error: invalid username
 }
 ```
 
@@ -484,6 +485,59 @@ func main() {
 
     // Output:
     // 42
+    // true
+}
+```
+
+### <span id="TryCatch">TryCatch</span>
+
+<p>Simple simulation of Java-style try-catch. It does not align with Go's error-handling philosophy. It is recommended to use it with caution.</p>
+
+<b>Signature:</b>
+
+```go
+func NewTryCatch(ctx context.Context) *TryCatch
+
+func (tc *TryCatch) Try(tryFunc func(ctx context.Context) error) *TryCatch
+
+func (tc *TryCatch) Catch(catchFunc func(ctx context.Context, err error)) *TryCatch
+
+func (tc *TryCatch) Finally(finallyFunc func(ctx context.Context)) *TryCatch
+
+func (tc *TryCatch) Do()
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/xerror"
+)
+
+func main() {
+    calledFinally := false
+    calledCatch := false
+
+    tc := xerror.NewTryCatch(context.Background())
+
+    tc.Try(func(ctx context.Context) error {
+        return errors.New("error message    ")
+    }).Catch(func(ctx context.Context, err error) {
+        calledCatch = true
+        // Error in try block at /path/xxx.go:{line_number} - Cause: error message
+		// fmt.Println(err.Error())
+    }).Finally(func(ctx context.Context) {
+        calledFinally = true
+    }).Do()
+
+    fmt.Println(calledCatch)
+    fmt.Println(calledFinally)
+
+    // Output:
+    // true
     // true
 }
 ```
