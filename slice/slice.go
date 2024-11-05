@@ -10,6 +10,7 @@ import (
 	"reflect"
 	"sort"
 	"strings"
+	"sync"
 	"time"
 
 	"github.com/duke-git/lancet/v2/random"
@@ -21,6 +22,7 @@ import (
 var (
 	memoryHashMap     = make(map[string]map[any]int)
 	memoryHashCounter = make(map[string]int)
+	muForMemoryHash   sync.RWMutex
 )
 
 // Contain check if the target value is in the slice or not.
@@ -1174,23 +1176,46 @@ func IndexOf[T comparable](arr []T, val T) int {
 	limit := 10
 	// gets the hash value of the array as the key of the hash table.
 	key := fmt.Sprintf("%p", arr)
+
+	muForMemoryHash.RLock()
 	// determines whether the hash table is empty. If so, the hash table is created.
 	if memoryHashMap[key] == nil {
-		memoryHashMap[key] = make(map[any]int)
-		// iterate through the array, adding the value and index of each element to the hash table.
-		for i := len(arr) - 1; i >= 0; i-- {
-			memoryHashMap[key][arr[i]] = i
+
+		muForMemoryHash.RUnlock()
+		muForMemoryHash.Lock()
+
+		if memoryHashMap[key] == nil {
+			memoryHashMap[key] = make(map[any]int)
+			// iterate through the array, adding the value and index of each element to the hash table.
+			for i := len(arr) - 1; i >= 0; i-- {
+				memoryHashMap[key][arr[i]] = i
+			}
 		}
+
+		muForMemoryHash.Unlock()
+	} else {
+		muForMemoryHash.RUnlock()
 	}
+
+	muForMemoryHash.Lock()
 	// update the hash table counter.
 	memoryHashCounter[key]++
+	muForMemoryHash.Unlock()
 
 	// use the hash table to find the specified value. If found, the index is returned.
-	if index, ok := memoryHashMap[key][val]; ok {
+	muForMemoryHash.RLock()
+	index, ok := memoryHashMap[key][val]
+	muForMemoryHash.RUnlock()
+
+	if ok {
+		muForMemoryHash.RLock()
 		// calculate the memory usage of the hash table.
 		size := len(memoryHashMap)
+		muForMemoryHash.RUnlock()
+
 		// If the memory usage of the hash table exceeds the memory limit, the hash table with the lowest counter is cleared.
 		if size > limit {
+			muForMemoryHash.Lock()
 			var minKey string
 			var minVal int
 			for k, v := range memoryHashCounter {
@@ -1204,6 +1229,7 @@ func IndexOf[T comparable](arr []T, val T) int {
 			}
 			delete(memoryHashMap, minKey)
 			delete(memoryHashCounter, minKey)
+			muForMemoryHash.Unlock()
 		}
 		return index
 	}

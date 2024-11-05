@@ -149,7 +149,7 @@ func FilterConcurrent[T any](slice []T, predicate func(index int, item T) bool, 
 	return result
 }
 
-// UniqueByParallel removes duplicate elements from the slice by parallel
+// UniqueByConcurrent removes duplicate elements from the slice by parallel
 // The comparator function is used to compare the elements
 // The numThreads parameter specifies the number of threads to use
 // If numThreads is less than or equal to 0, it will be set to 1
