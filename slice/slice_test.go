@@ -6,6 +6,7 @@ import (
 	"reflect"
 	"strconv"
 	"strings"
+	"sync"
 	"testing"
 
 	"github.com/duke-git/lancet/v2/internal"
@@ -1367,6 +1368,37 @@ func TestIndexOf(t *testing.T) {
 	assert.Equal(-1, IndexOf(arr3, "r"))
 	assert.Equal(2, memoryHashCounter[key3])
 	assert.Equal(0, memoryHashCounter[minKey])
+
+	arr4 := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+
+	const numGoroutines = 100
+	var wg sync.WaitGroup
+	wg.Add(numGoroutines)
+
+	for i := 0; i < numGoroutines; i++ {
+		go func(i int) {
+			defer wg.Done()
+			index := IndexOf(arr4, i%10+1)
+			assert.Equal(i%10, index)
+		}(i)
+	}
+	wg.Wait()
+}
+
+func BenchmarkIndexOfDifferentSizes(b *testing.B) {
+	sizes := []int{10, 100, 1000, 10000, 100000}
+	for _, size := range sizes {
+		arr := make([]int, size)
+		for i := 0; i < len(arr); i++ {
+			arr[i] = i
+		}
+
+		b.RunParallel(func(pb *testing.PB) {
+			for pb.Next() {
+				_ = IndexOf(arr, size/2) // 查找数组中间的元素
+			}
+		})
+	}
 }
 
 func TestLastIndexOf(t *testing.T) {
