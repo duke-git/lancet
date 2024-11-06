@@ -528,7 +528,7 @@ func main() {
     }).Catch(func(ctx context.Context, err error) {
         calledCatch = true
         // Error in try block at /path/xxx.go:{line_number} - Cause: error message
-		// fmt.Println(err.Error())
+        // fmt.Println(err.Error())
     }).Finally(func(ctx context.Context) {
         calledFinally = true
     }).Do()
