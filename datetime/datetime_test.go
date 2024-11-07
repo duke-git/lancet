@@ -521,3 +521,60 @@ func TestGenerateDatetimesBetween(t *testing.T) {
 		}
 	})
 }
+
+func TestMin(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestMin")
+
+	zeroTime := time.Time{}
+	now := time.Now()
+	oneMinuteAgo := now.Add(-time.Minute)
+	oneMinuteAfter := now.Add(time.Minute)
+
+	assert.Equal(zeroTime, Min(zeroTime, now, oneMinuteAgo, oneMinuteAfter))
+
+	assert.Equal(zeroTime, Min(now, zeroTime))
+
+	assert.Equal(oneMinuteAgo, Min(oneMinuteAgo, now, oneMinuteAfter))
+}
+
+func TestMax(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestMax")
+
+	zeroTime := time.Time{}
+	now := time.Now()
+	oneMinuteAgo := now.Add(-time.Minute)
+	oneMinuteAfter := now.Add(time.Minute)
+
+	assert.Equal(oneMinuteAfter, Max(zeroTime, now, oneMinuteAgo, oneMinuteAfter))
+
+	assert.Equal(now, Max(now, zeroTime))
+
+	assert.Equal(oneMinuteAfter, Max(oneMinuteAgo, now, oneMinuteAfter))
+}
+
+func TestMaxMin(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestMinMax")
+
+	zeroTime := time.Time{}
+	now := time.Now()
+	oneMinuteAgo := now.Add(-time.Minute)
+	oneMinuteAfter := now.Add(time.Minute)
+
+	max, min := MaxMin(zeroTime, now, oneMinuteAgo, oneMinuteAfter)
+	assert.Equal(zeroTime, min)
+	assert.Equal(oneMinuteAfter, max)
+
+	max, min = MaxMin(now, zeroTime)
+	assert.Equal(zeroTime, min)
+	assert.Equal(now, max)
+
+	max, min = MaxMin(oneMinuteAgo, now, oneMinuteAfter)
+	assert.Equal(oneMinuteAgo, min)
+	assert.Equal(oneMinuteAfter, max)
+}

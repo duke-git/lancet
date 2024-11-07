@@ -443,3 +443,50 @@ func GenerateDatetimesBetween(start, end time.Time, layout string, interval stri
 
 	return result, nil
 }
+
+// Min returns the earliest time among the given times.
+// Play: todo
+func Min(t1 time.Time, times ...time.Time) time.Time {
+	minTime := t1
+
+	for _, t := range times {
+		if t.Before(minTime) {
+			minTime = t
+		}
+	}
+
+	return minTime
+}
+
+// Max returns the latest time among the given times.
+// Play: todo
+func Max(t1 time.Time, times ...time.Time) time.Time {
+	maxTime := t1
+
+	for _, t := range times {
+		if t.After(maxTime) {
+			maxTime = t
+		}
+	}
+
+	return maxTime
+}
+
+// MaxMin returns the latest and earliest time among the given times.
+// Play: todo
+func MaxMin(t1 time.Time, times ...time.Time) (maxTime time.Time, minTime time.Time) {
+	maxTime = t1
+	minTime = t1
+
+	for _, t := range times {
+		if t.Before(minTime) {
+			minTime = t
+		}
+
+		if t.After(maxTime) {
+			maxTime = t
+		}
+	}
+
+	return maxTime, minTime
+}

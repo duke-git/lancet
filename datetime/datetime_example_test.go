@@ -437,3 +437,32 @@ func ExampleGenerateDatetimesBetween() {
 	// [2024-09-01 00:00:00 2024-09-01 01:00:00 2024-09-01 02:00:00]
 	// <nil>
 }
+
+func ExampleMin() {
+	result := Min(time.Date(2024, time.September, 1, 0, 0, 0, 0, time.UTC), time.Date(2024, time.September, 2, 0, 0, 0, 0, time.UTC))
+
+	fmt.Println(result)
+
+	// Output:
+	// 2024-09-01 00:00:00 +0000 UTC
+}
+
+func ExampleMax() {
+	result := Max(time.Date(2024, time.September, 1, 0, 0, 0, 0, time.UTC), time.Date(2024, time.September, 2, 0, 0, 0, 0, time.UTC))
+
+	fmt.Println(result)
+
+	// Output:
+	// 2024-09-02 00:00:00 +0000 UTC
+}
+
+func ExampleMaxMin() {
+	max, min := MaxMin(time.Date(2024, time.September, 1, 0, 0, 0, 0, time.UTC), time.Date(2024, time.September, 2, 0, 0, 0, 0, time.UTC), time.Date(2024, time.September, 3, 0, 0, 0, 0, time.UTC))
+
+	fmt.Println(max)
+	fmt.Println(min)
+
+	// Output:
+	// 2024-09-03 00:00:00 +0000 UTC
+	// 2024-09-01 00:00:00 +0000 UTC
+}
