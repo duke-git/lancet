@@ -67,6 +67,9 @@ import (
 -   [TrackFuncTime](#TrackFuncTime)
 -   [DaysBetween](#DaysBetween)
 -   [GenerateDatetimesBetween](#GenerateDatetimesBetween)
+-   [Min](#Min)
+-   [Max](#Max)
+-   [MaxMin](#MaxMin)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -1569,5 +1572,97 @@ func main() {
     // Output:
     // [2024-09-01 00:00:00 2024-09-01 01:00:00 2024-09-01 02:00:00]
     // <nil>
+}
+```
+
+### <span id="Min">Min</span>
+
+<p>返回最早时间。</p>
+
+<b>函数签名:</b>
+
+```go
+func Min(t1 time.Time, times ...time.Time) time.Time
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](todo)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/datetime"
+)
+
+func main() {
+    minTime := datetime.Min(time.Date(2024, time.September, 1, 0, 0, 0, 0, time.UTC), time.Date(2024, time.September, 2, 0, 0, 0, 0, time.UTC))
+
+	fmt.Println(minTime)
+
+	// Output:
+	// 2024-09-01 00:00:00 +0000 UTC
+}
+```
+
+### <span id="Max">Max</span>
+
+<p>返回最晚时间。</p>
+
+<b>函数签名:</b>
+
+```go
+func Max(t1 time.Time, times ...time.Time) time.Time
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](todo)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/datetime"
+)
+
+func main() {
+    maxTime := datetime.Min(time.Date(2024, time.September, 1, 0, 0, 0, 0, time.UTC), time.Date(2024, time.September, 2, 0, 0, 0, 0, time.UTC))
+
+	fmt.Println(maxTime)
+
+	// Output:
+	// 2024-09-02 00:00:00 +0000 UTC
+}
+```
+
+### <span id="MaxMin">MaxMin</span>
+
+<p>返回最早和最晚时间。</p>
+
+<b>函数签名:</b>
+
+```go
+func MaxMin(t1 time.Time, times ...time.Time) (maxTime time.Time, minTime time.Time)
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](todo)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/datetime"
+)
+
+func main() {
+    max, min := datetime.MaxMin(time.Date(2024, time.September, 1, 0, 0, 0, 0, time.UTC), time.Date(2024, time.September, 2, 0, 0, 0, 0, time.UTC), time.Date(2024, time.September, 3, 0, 0, 0, 0, time.UTC))
+
+	fmt.Println(max)
+	fmt.Println(min)
+
+	// Output:
+	// 2024-09-03 00:00:00 +0000 UTC
+	// 2024-09-01 00:00:00 +0000 UTC
 }
 ```
