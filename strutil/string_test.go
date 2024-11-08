@@ -853,3 +853,87 @@ func TestRegexMatchAllGroups(t *testing.T) {
 		assert.Equal(tt.expected, result)
 	}
 }
+
+func TestExtractContent(t *testing.T) {
+	t.Parallel()
+	assert := internal.NewAssert(t, "TestExtractContent")
+
+	tests := []struct {
+		name     string
+		input    string
+		start    string
+		end      string
+		expected []string
+	}{
+		{
+			name:     "Extract content between <tag> and </tag>",
+			input:    "This is <tag>content1</tag> and <tag>content2</tag> and <tag>content3</tag>",
+			start:    "<tag>",
+			end:      "</tag>",
+			expected: []string{"content1", "content2", "content3"},
+		},
+		{
+			name:     "No tags in the string",
+			input:    "This string has no tags",
+			start:    "<tag>",
+			end:      "</tag>",
+			expected: []string{},
+		},
+		{
+			name:     "Single tag pair",
+			input:    "<tag>onlyContent</tag>",
+			start:    "<tag>",
+			end:      "</tag>",
+			expected: []string{"onlyContent"},
+		},
+		{
+			name:     "Tags without end tag",
+			input:    "This <tag>content without end tag",
+			start:    "<tag>",
+			end:      "</tag>",
+			expected: []string{},
+		},
+		{
+			name:     "Tags with nested content",
+			input:    "<tag>content <nested>inner</nested> end</tag>",
+			start:    "<tag>",
+			end:      "</tag>",
+			expected: []string{"content <nested>inner</nested> end"},
+		},
+		{
+			name:     "Edge case with empty string",
+			input:    "",
+			start:    "<tag>",
+			end:      "</tag>",
+			expected: []string{},
+		},
+		{
+			name:     "Edge case with no start tag",
+			input:    "content without start tag",
+			start:    "<tag>",
+			end:      "</tag>",
+			expected: []string{},
+		},
+		{
+			name:     "Edge case with no end tag",
+			input:    "<tag>content without end tag",
+			start:    "<tag>",
+			end:      "</tag>",
+			expected: []string{},
+		},
+		{
+			name:     "Multiple consecutive tags",
+			input:    "<tag>content1</tag><tag>content2</tag><tag>content3</tag>",
+			start:    "<tag>",
+			end:      "</tag>",
+			expected: []string{"content1", "content2", "content3"},
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			result := ExtractContent(tt.input, tt.start, tt.end)
+			assert.Equal(tt.expected, result)
+		})
+	}
+}

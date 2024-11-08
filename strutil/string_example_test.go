@@ -753,3 +753,15 @@ func ExampleRegexMatchAllGroups() {
 	// [john.doe@example.com john.doe example com]
 	// [jane.doe@example.com jane.doe example com]
 }
+
+func ExampleExtractContent() {
+	html := `<span>content1</span>aa<span>content2</span>bb<span>content1</span>`
+
+	result := ExtractContent(html, "<span>", "</span>")
+
+	fmt.Println(result)
+
+	// Output:
+	// [content1 content2 content1]
+
+}

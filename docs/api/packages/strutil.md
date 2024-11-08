@@ -68,6 +68,7 @@ import (
 -   [Rotate](#Rotate)
 -   [TemplateReplace](#TemplateReplace)
 -   [RegexMatchAllGroups](#RegexMatchAllGroups)
+-   [ExtractContent](#ExtractContent)
 
 
 <div STYLE="page-break-after: always;"></div>
@@ -1727,5 +1728,35 @@ func main() {
     // Output:
     // [john.doe@example.com john.doe example com]
     // [jane.doe@example.com jane.doe example com]
+}
+```
+
+### <span id="ExtractContent">ExtractContent</span>
+
+<p>提取两个标记之间的内容。</p>
+
+<b>函数签名:</b>
+
+```go
+func ExtractContent(s, start, end string) []string
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    html := `<span>content1</span>aa<span>content2</span>bb<span>content1</span>`
+
+    result := strutil.ExtractContent(html, "<span>", "</span>")
+
+    fmt.Println(result)
+
+    // Output:
+    // [content1 content2 content1]
 }
 ```

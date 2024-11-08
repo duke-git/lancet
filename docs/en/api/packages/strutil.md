@@ -68,6 +68,8 @@ import (
 -   [Rotate](#Rotate)
 -   [TemplateReplace](#TemplateReplace)
 -   [RegexMatchAllGroups](#RegexMatchAllGroups)
+-   [ExtractContent](#RegexMatchAllGroups)
+
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -1708,7 +1710,7 @@ func main() {
 func RegexMatchAllGroups(pattern, str string) [][]string
 ```
 
-<b>example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/JZiu0RXpgN-)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/JZiu0RXpgN-)</span></b>
 
 ```go
 import (
@@ -1728,5 +1730,35 @@ func main() {
     // Output:
     // [john.doe@example.com john.doe example com]
     // [jane.doe@example.com jane.doe example com]
+}
+```
+
+### <span id="ExtractContent">ExtractContent</span>
+
+<p>Extracts the content between the start and end strings in the source string.</p>
+
+<b>Signature:</b>
+
+```go
+func ExtractContent(s, start, end string) []string
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    html := `<span>content1</span>aa<span>content2</span>bb<span>content1</span>`
+
+    result := strutil.ExtractContent(html, "<span>", "</span>")
+
+    fmt.Println(result)
+
+    // Output:
+    // [content1 content2 content1]
 }
 ```

@@ -735,3 +735,24 @@ func RegexMatchAllGroups(pattern, str string) [][]string {
 	matches := re.FindAllStringSubmatch(str, -1)
 	return matches
 }
+
+// ExtractContent extracts the content between the start and end strings in the source string.
+// Play: todo
+func ExtractContent(s, start, end string) []string {
+	result := []string{}
+
+	for {
+		if _, after, ok := strings.Cut(s, start); ok {
+			if before, _, ok := strings.Cut(after, end); ok {
+				result = append(result, before)
+				s = after
+			} else {
+				break
+			}
+		} else {
+			break
+		}
+	}
+
+	return result
+}
