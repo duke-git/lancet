@@ -72,10 +72,17 @@ func Nand[T, U any](a T, b U) bool {
 
 // TernaryOperator checks the value of param `isTrue`, if true return ifValue else return elseValue.
 // Play: https://go.dev/play/p/ElllPZY0guT
-func TernaryOperator[T, U any](isTrue T, ifValue U, elseValue U) U {
+func Ternary[T, U any](isTrue T, ifValue U, elseValue U) U {
 	if Bool(isTrue) {
 		return ifValue
 	} else {
 		return elseValue
 	}
+}
+
+// TernaryOperator checks the value of param `isTrue`, if true return ifValue else return elseValue.
+// Play: https://go.dev/play/p/ElllPZY0guT
+// Deprecated: Use Ternary instead.
+func TernaryOperator[T, U any](isTrue T, ifValue U, elseValue U) U {
+	return Ternary(isTrue, ifValue, elseValue)
 }

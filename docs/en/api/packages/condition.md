@@ -27,7 +27,8 @@ import (
 - [Nor](#Nor)
 - [Xnor](#Xnor)
 - [Nand](#Nand)
-- [TernaryOperator](#TernaryOperator)
+- [Ternary](#Ternary)
+- [TernaryOperator<sup>deprecated</sup>](#TernaryOperator)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -269,8 +270,44 @@ func main() {
 
 
 
+### <span id="Ternary">Ternary</span>
+<p>Checks the value of param `isTrue`, if true return ifValue else return elseValue</p>
+
+<b>Signature:</b>
+
+```go
+func Ternary[T, U any](isTrue T, ifValue U, elseValue U) U
+```
+<b>Example:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/ElllPZY0guT)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/condition"
+)
+
+func main() {
+    conditionTrue := 2 > 1
+    result1 := condition.Ternary(conditionTrue, 0, 1)
+
+    conditionFalse := 2 > 3
+    result2 := condition.Ternary(conditionFalse, 0, 1)
+    
+    fmt.Println(result1)
+    fmt.Println(result2)
+
+    // Output:
+    // 0
+    // 1
+}
+```
+
 ### <span id="TernaryOperator">TernaryOperator</span>
 <p>Checks the value of param `isTrue`, if true return ifValue else return elseValue</p>
+
+> ⚠️ This function is deprecated. use `Ternary` instead.
 
 <b>Signature:</b>
 
@@ -302,7 +339,6 @@ func main() {
     // 1
 }
 ```
-
 
 
 
