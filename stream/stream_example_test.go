@@ -384,3 +384,31 @@ func ExampleStream_Count() {
 	// 3
 	// 0
 }
+
+func ExampleStream_IndexOf() {
+	s := FromSlice([]int{1, 2, 3, 2})
+
+	result1 := s.IndexOf(0, func(a, b int) bool { return a == b })
+	result2 := s.IndexOf(2, func(a, b int) bool { return a == b })
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+
+	// Output:
+	// -1
+	// 1
+}
+
+func ExampleStream_LastIndexOf() {
+	s := FromSlice([]int{1, 2, 3, 2})
+
+	result1 := s.LastIndexOf(0, func(a, b int) bool { return a == b })
+	result2 := s.LastIndexOf(2, func(a, b int) bool { return a == b })
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+
+	// Output:
+	// -1
+	// 3
+}

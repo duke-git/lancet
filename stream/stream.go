@@ -393,6 +393,26 @@ func (s Stream[T]) Min(less func(a, b T) bool) (T, bool) {
 	return min, true
 }
 
+// IndexOf returns the index of the first occurrence of the specified element in this stream, or -1 if this stream does not contain the element.
+func (s Stream[T]) IndexOf(target T, equal func(a, b T) bool) int {
+	for i, v := range s.source {
+		if equal(v, target) {
+			return i
+		}
+	}
+	return -1
+}
+
+// LastIndexOf returns the index of the last occurrence of the specified element in this stream, or -1 if this stream does not contain the element.
+func (s Stream[T]) LastIndexOf(target T, equal func(a, b T) bool) int {
+	for i := len(s.source) - 1; i >= 0; i-- {
+		if equal(s.source[i], target) {
+			return i
+		}
+	}
+	return -1
+}
+
 // ToSlice return the elements in the stream.
 // Play: https://go.dev/play/p/jI6_iZZuVFE
 func (s Stream[T]) ToSlice() []T {

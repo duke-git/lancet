@@ -1,6 +1,6 @@
 # Stream
 
-Stream 流，该包仅验证简单 stream 实现，功能有限。
+Stream流，该包仅验证简单stream实现，功能有限。
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -48,6 +48,8 @@ import (
 -   [NoneMatch](#NoneMatch)
 -   [Count](#Count)
 -   [ToSlice](#ToSlice)
+-   [IndexOf](#IndexOf)
+-   [LastIndexOf](#LastIndexOf)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -936,5 +938,71 @@ func main() {
 
     // Output:
     // [1 2 3]
+}
+```
+
+### <span id="IndexOf">IndexOf</span>
+
+<p>返回在stream中找到值的第一个匹配项的索引，如果找不到值，则返回-1。</p>
+
+<b>函数签名:</b>
+
+```go
+func (s Stream[T]) IndexOf(target T, equal func(a, b T) bool) int
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](todo)</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/stream"
+)
+
+func main() {
+    s := stream.FromSlice([]int{1, 2, 3, 2})
+
+    result1 := s.IndexOf(0, func(a, b int) bool { return a == b })
+    result2 := s.IndexOf(2, func(a, b int) bool { return a == b })
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+
+    // Output:
+    // -1
+    // 1
+}
+```
+
+### <span id="LastIndexOf">LastIndexOf</span>
+
+<p>返回在stream中找到值的最后一个匹配项的索引，如果找不到值，则返回-1。</p>
+
+<b>函数签名:</b>
+
+```go
+func (s Stream[T]) LastIndexOf(target T, equal func(a, b T) bool) int
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](todo)</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/stream"
+)
+
+func main() {
+    s := stream.FromSlice([]int{1, 2, 3, 2})
+
+    result1 := s.LastIndexOf(0, func(a, b int) bool { return a == b })
+    result2 := s.LastIndexOf(2, func(a, b int) bool { return a == b })
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+
+    // Output:
+    // -1
+    // 3
 }
 ```

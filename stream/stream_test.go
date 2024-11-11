@@ -381,3 +381,22 @@ func TestStream_Min(t *testing.T) {
 	assert.Equal(1, max)
 	assert.Equal(true, ok)
 }
+
+func TestStream_IndexOf(t *testing.T) {
+	assert := internal.NewAssert(t, "TestStream_IndexOf")
+
+	s := FromSlice([]int{4, 2, 1, 3, 4})
+
+	assert.Equal(-1, s.IndexOf(0, func(a, b int) bool { return a == b }))
+	assert.Equal(0, s.IndexOf(4, func(a, b int) bool { return a == b }))
+	assert.Equal(3, s.IndexOf(3, func(a, b int) bool { return a == b }))
+}
+
+func TestStream_LastIndexOf(t *testing.T) {
+	assert := internal.NewAssert(t, "TestStream_LastIndexOf")
+
+	s := FromSlice([]int{4, 2, 1, 3, 2})
+
+	assert.Equal(-1, s.LastIndexOf(0, func(a, b int) bool { return a == b }))
+	assert.Equal(4, s.LastIndexOf(2, func(a, b int) bool { return a == b }))
+}
