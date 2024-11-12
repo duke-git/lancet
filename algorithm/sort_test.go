@@ -47,7 +47,7 @@ func (c *intComparator) Compare(v1 any, v2 any) int {
 
 func TestBubbleSortForStructSlice(t *testing.T) {
 	t.Parallel()
-	asssert := internal.NewAssert(t, "TestBubbleSortForStructSlice")
+	assert := internal.NewAssert(t, "TestBubbleSortForStructSlice")
 
 	peoples := []people{
 		{Name: "a", Age: 20},
@@ -62,23 +62,23 @@ func TestBubbleSortForStructSlice(t *testing.T) {
 	expected := "[{d 8} {b 10} {c 17} {a 20} {e 28}]"
 	actual := fmt.Sprintf("%v", peoples)
 
-	asssert.Equal(expected, actual)
+	assert.Equal(expected, actual)
 }
 
 func TestBubbleSortForIntSlice(t *testing.T) {
 	t.Parallel()
-	asssert := internal.NewAssert(t, "TestBubbleSortForIntSlice")
+	assert := internal.NewAssert(t, "TestBubbleSortForIntSlice")
 
 	numbers := []int{2, 1, 5, 3, 6, 4}
 	comparator := &intComparator{}
 	BubbleSort(numbers, comparator)
 
-	asssert.Equal([]int{1, 2, 3, 4, 5, 6}, numbers)
+	assert.Equal([]int{1, 2, 3, 4, 5, 6}, numbers)
 }
 
 func TestInsertionSort(t *testing.T) {
 	t.Parallel()
-	asssert := internal.NewAssert(t, "TestInsertionSort")
+	assert := internal.NewAssert(t, "TestInsertionSort")
 
 	peoples := []people{
 		{Name: "a", Age: 20},
@@ -93,12 +93,12 @@ func TestInsertionSort(t *testing.T) {
 	expected := "[{d 8} {b 10} {c 17} {a 20} {e 28}]"
 	actual := fmt.Sprintf("%v", peoples)
 
-	asssert.Equal(expected, actual)
+	assert.Equal(expected, actual)
 }
 
 func TestSelectionSort(t *testing.T) {
 	t.Parallel()
-	asssert := internal.NewAssert(t, "TestSelectionSort")
+	assert := internal.NewAssert(t, "TestSelectionSort")
 
 	peoples := []people{
 		{Name: "a", Age: 20},
@@ -113,12 +113,12 @@ func TestSelectionSort(t *testing.T) {
 	expected := "[{d 8} {b 10} {c 17} {a 20} {e 28}]"
 	actual := fmt.Sprintf("%v", peoples)
 
-	asssert.Equal(expected, actual)
+	assert.Equal(expected, actual)
 }
 
 func TestShellSort(t *testing.T) {
 	t.Parallel()
-	asssert := internal.NewAssert(t, "TestShellSort")
+	assert := internal.NewAssert(t, "TestShellSort")
 
 	peoples := []people{
 		{Name: "a", Age: 20},
@@ -133,12 +133,12 @@ func TestShellSort(t *testing.T) {
 	expected := "[{d 8} {b 10} {c 17} {a 20} {e 28}]"
 	actual := fmt.Sprintf("%v", peoples)
 
-	asssert.Equal(expected, actual)
+	assert.Equal(expected, actual)
 }
 
 func TestQuickSort(t *testing.T) {
 	t.Parallel()
-	asssert := internal.NewAssert(t, "TestQuickSort")
+	assert := internal.NewAssert(t, "TestQuickSort")
 
 	peoples := []people{
 		{Name: "a", Age: 20},
@@ -153,12 +153,12 @@ func TestQuickSort(t *testing.T) {
 	expected := "[{d 8} {b 10} {c 17} {a 20} {e 28}]"
 	actual := fmt.Sprintf("%v", peoples)
 
-	asssert.Equal(expected, actual)
+	assert.Equal(expected, actual)
 }
 
 func TestHeapSort(t *testing.T) {
 	t.Parallel()
-	asssert := internal.NewAssert(t, "TestHeapSort")
+	assert := internal.NewAssert(t, "TestHeapSort")
 
 	peoples := []people{
 		{Name: "a", Age: 20},
@@ -173,12 +173,12 @@ func TestHeapSort(t *testing.T) {
 	expected := "[{d 8} {b 10} {c 17} {a 20} {e 28}]"
 	actual := fmt.Sprintf("%v", peoples)
 
-	asssert.Equal(expected, actual)
+	assert.Equal(expected, actual)
 }
 
 func TestMergeSort(t *testing.T) {
 	t.Parallel()
-	asssert := internal.NewAssert(t, "TestMergeSort")
+	assert := internal.NewAssert(t, "TestMergeSort")
 
 	peoples := []people{
 		{Name: "a", Age: 20},
@@ -193,12 +193,12 @@ func TestMergeSort(t *testing.T) {
 	expected := "[{d 8} {b 10} {c 17} {a 20} {e 28}]"
 	actual := fmt.Sprintf("%v", peoples)
 
-	asssert.Equal(expected, actual)
+	assert.Equal(expected, actual)
 }
 
 func TestCountSort(t *testing.T) {
 	t.Parallel()
-	asssert := internal.NewAssert(t, "TestCountSort")
+	assert := internal.NewAssert(t, "TestCountSort")
 
 	peoples := []people{
 		{Name: "a", Age: 20},
@@ -213,5 +213,5 @@ func TestCountSort(t *testing.T) {
 	expected := "[{d 8} {b 10} {c 17} {a 20} {e 28}]"
 	actual := fmt.Sprintf("%v", sortedPeopleByAge)
 
-	asssert.Equal(expected, actual)
+	assert.Equal(expected, actual)
 }
