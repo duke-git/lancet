@@ -10,6 +10,7 @@ import (
 	"io"
 	"math"
 	"math/rand"
+	"os"
 	"time"
 	"unsafe"
 
@@ -274,7 +275,9 @@ func nearestPowerOfTwo(cap int) int {
 // random generate a random string based on given string range.
 func random(s string, length int) string {
 	// 确保随机数生成器的种子是动态的
-	rand.Seed(time.Now().UnixNano())
+	pid := os.Getpid()
+	timestamp := time.Now().UnixNano()
+	rand.Seed(int64(pid) + timestamp)
 
 	// 仿照strings.Builder
 	// 创建一个长度为 length 的字节切片
