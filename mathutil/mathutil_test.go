@@ -413,3 +413,36 @@ func TestDiv(t *testing.T) {
 	assert.Equal(math.Inf(-1), Div(-8, 0))
 	assert.Equal(true, math.IsNaN(Div(0, 0)))
 }
+
+func TestVariance(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestVariance")
+
+	testIntNumbers := []struct {
+		numbers  []int
+		expected float64
+	}{
+		{[]int{0}, 0},
+		{[]int{1, 1, 1}, 0},
+		{[]int{1, 2, 3, 4}, 1.5},
+		{[]int{1, 2, 3, 4, 5}, 2.0},
+	}
+
+	for _, tt := range testIntNumbers {
+		assert.Equal(tt.expected, TruncRound(Variance(tt.numbers), 2))
+	}
+
+	testFloatNumbers := []struct {
+		numbers  []float64
+		expected float64
+	}{
+		{[]float64{0}, 0},
+		{[]float64{1, 1, 1}, 0},
+		{[]float64{1.1, 2.2, 3.3, 4.4}, 1.51},
+	}
+
+	for _, tt := range testFloatNumbers {
+		assert.Equal(tt.expected, TruncRound(Variance(tt.numbers), 2))
+	}
+}

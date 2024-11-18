@@ -395,3 +395,21 @@ func Abs[T constraints.Integer | constraints.Float](x T) T {
 func Div[T constraints.Float | constraints.Integer](x T, y T) float64 {
 	return float64(x) / float64(y)
 }
+
+// Variance returns the variance of numbers.
+// Play: todo
+func Variance[T constraints.Float | constraints.Integer](numbers []T) float64 {
+	n := len(numbers)
+	if n == 0 {
+		return 0
+	}
+
+	avg := Average(numbers...)
+	var sum T
+
+	for _, v := range numbers {
+		sum += (v - avg) * (v - avg)
+	}
+
+	return float64(sum) / float64(n)
+}

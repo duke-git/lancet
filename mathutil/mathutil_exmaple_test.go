@@ -478,3 +478,15 @@ func ExampleDiv() {
 	// 0.5
 	// 0
 }
+
+func ExampleVariance() {
+	result1 := Variance([]int{1, 2, 3, 4, 5})
+	result2 := Variance([]float64{1.1, 2.2, 3.3, 4.4, 5.5})
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+
+	// Output:
+	// 2
+	// 2.42
+}

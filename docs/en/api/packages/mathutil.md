@@ -52,6 +52,7 @@ import (
 -   [Sum](#Sum)
 -   [Abs](#Abs)
 -   [Div](#Div)
+-   [Variance](#Variance)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -1160,5 +1161,38 @@ func main() {
     // 2.25
     // 0.5
     // 0
+}
+```
+
+### <span id="Variance">Variance</span>
+
+<p>Returns the variance of numbers.</p>
+
+<b>Signature:</b>
+
+```go
+func Variance[T constraints.Float | constraints.Integer](numbers []T) float64
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/mathutil"
+)
+
+func main() {
+    result1 := mathutil.Variance([]int{1, 2, 3, 4, 5})
+	result2 := mathutil.Variance([]float64{1.1, 2.2, 3.3, 4.4, 5.5})
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+
+	// Output:
+	// 2
+	// 2.42
 }
 ```

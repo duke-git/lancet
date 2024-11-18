@@ -1163,3 +1163,36 @@ func main() {
     // 0
 }
 ```
+
+### <span id="Variance">Variance</span>
+
+<p>计算方差</p>
+
+<b>函数签名:</b>
+
+```go
+func Variance[T constraints.Float | constraints.Integer](numbers []T) float64
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[示例](todo)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/mathutil"
+)
+
+func main() {
+    result1 := mathutil.Variance([]int{1, 2, 3, 4, 5})
+    result2 := mathutil.Variance([]float64{1.1, 2.2, 3.3, 4.4, 5.5})
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+
+    // Output:
+    // 2
+    // 2.42
+}
+```
