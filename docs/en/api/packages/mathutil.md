@@ -53,6 +53,7 @@ import (
 -   [Abs](#Abs)
 -   [Div](#Div)
 -   [Variance](#Variance)
+-   [StdDev](#StdDev)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -65,7 +66,7 @@ import (
 <b>Signature:</b>
 
 ```go
-func Average[T constraints.Integer | constraints.Float](numbers ...T) T
+func Average[T constraints.Integer | constraints.Float](numbers ...T) float64
 ```
 
 <b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/Vv7LBwER-pz)</span></b>
@@ -88,7 +89,7 @@ func main() {
     fmt.Println(result2)
 
     // Output:
-    // 1
+    // 1.5
     // 1.3
 }
 ```
@@ -1186,13 +1187,46 @@ import (
 
 func main() {
     result1 := mathutil.Variance([]int{1, 2, 3, 4, 5})
-	result2 := mathutil.Variance([]float64{1.1, 2.2, 3.3, 4.4, 5.5})
+    result2 := mathutil.Variance([]float64{1.1, 2.2, 3.3, 4.4, 5.5})
 
-	fmt.Println(result1)
-	fmt.Println(result2)
+    fmt.Println(result1)
+    fmt.Println(result2)
 
-	// Output:
-	// 2
-	// 2.42
+    // Output:
+    // 2
+    // 2.42
+}
+```
+
+### <span id="StdDev">StdDev</span>
+
+<p>Returns the standard deviation of numbers.</p>
+
+<b>Signature:</b>
+
+```go
+func StdDev[T constraints.Float | constraints.Integer](numbers []T) float64
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/mathutil"
+)
+
+func main() {
+    result1 := mathutil.TruncRound(mathutil.StdDev([]int{1, 2, 3, 4, 5}), 2)
+    result2 := mathutil.TruncRound(mathutil.StdDev([]float64{1.1, 2.2, 3.3, 4.4, 5.5}), 2)
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+
+    // Output:
+    // 1.41
+    // 1.55
 }
 ```

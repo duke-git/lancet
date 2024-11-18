@@ -178,7 +178,7 @@ func ExampleAverage() {
 	fmt.Println(result2)
 
 	// Output:
-	// 1
+	// 1.5
 	// 1.3
 }
 
@@ -489,4 +489,16 @@ func ExampleVariance() {
 	// Output:
 	// 2
 	// 2.42
+}
+
+func ExampleStdDev() {
+	result1 := TruncRound(StdDev([]int{1, 2, 3, 4, 5}), 2)
+	result2 := TruncRound(StdDev([]float64{1.1, 2.2, 3.3, 4.4, 5.5}), 2)
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+
+	// Output:
+	// 1.41
+	// 1.55
 }

@@ -224,14 +224,12 @@ func Sum[T constraints.Integer | constraints.Float](numbers ...T) T {
 
 // Average return average value of numbers.
 // Play: https://go.dev/play/p/Vv7LBwER-pz
-func Average[T constraints.Integer | constraints.Float](numbers ...T) T {
-	var sum T
-	n := T(len(numbers))
-
-	for _, v := range numbers {
-		sum += v
+func Average[T constraints.Integer | constraints.Float](numbers ...T) float64 {
+	var sum float64
+	for _, num := range numbers {
+		sum += float64(num)
 	}
-	return sum / n
+	return sum / float64(len(numbers))
 }
 
 // Range creates a slice of numbers from start with specified count, element step is 1.
@@ -405,11 +403,17 @@ func Variance[T constraints.Float | constraints.Integer](numbers []T) float64 {
 	}
 
 	avg := Average(numbers...)
-	var sum T
+	var sum float64
 
 	for _, v := range numbers {
-		sum += (v - avg) * (v - avg)
+		sum += (float64(v) - avg) * (float64(v) - avg)
 	}
 
-	return float64(sum) / float64(n)
+	return sum / float64(n)
+}
+
+// StdDev returns the standard deviation of numbers.
+// Play: todo
+func StdDev[T constraints.Float | constraints.Integer](numbers []T) float64 {
+	return math.Sqrt(Variance(numbers))
 }

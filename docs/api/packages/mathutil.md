@@ -52,6 +52,8 @@ import (
 -   [Sum](#Sum)
 -   [Abs](#Abs)
 -   [Div](#Div)
+-   [Variance](#Variance)
+-   [StdDev](#StdDev)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -64,7 +66,7 @@ import (
 <b>函数签名:</b>
 
 ```go
-func Average[T constraints.Integer | constraints.Float](numbers ...T) T
+func Average[T constraints.Integer | constraints.Float](numbers ...T) float64
 ```
 
 <b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/HFd70x4DrMj)</span></b>
@@ -87,7 +89,7 @@ func main() {
     fmt.Println(result2)
 
     // Output:
-    // 1
+    // 1.5
     // 1.3
 }
 ```
@@ -1166,7 +1168,7 @@ func main() {
 
 ### <span id="Variance">Variance</span>
 
-<p>计算方差</p>
+<p>计算方差。</p>
 
 <b>函数签名:</b>
 
@@ -1194,5 +1196,38 @@ func main() {
     // Output:
     // 2
     // 2.42
+}
+```
+
+### <span id="StdDev">StdDev</span>
+
+<p>计算标准差。</p>
+
+<b>函数签名:</b>
+
+```go
+func StdDev[T constraints.Float | constraints.Integer](numbers []T) float64
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/mathutil"
+)
+
+func main() {
+    result1 := mathutil.TruncRound(mathutil.StdDev([]int{1, 2, 3, 4, 5}), 2)
+    result2 := mathutil.TruncRound(mathutil.StdDev([]float64{1.1, 2.2, 3.3, 4.4, 5.5}), 2)
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+
+    // Output:
+    // 1.41
+    // 1.55
 }
 ```
