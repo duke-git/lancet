@@ -54,6 +54,8 @@ import (
 -   [Div](#Div)
 -   [Variance](#Variance)
 -   [StdDev](#StdDev)
+-   [Permutation](#Permutation)
+-   [Combination](#Combination)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -1228,5 +1230,71 @@ func main() {
     // Output:
     // 1.41
     // 1.55
+}
+```
+
+### <span id="Permutation">Permutation</span>
+
+<p>Calculates P(n, k).</p>
+
+<b>Signature:</b>
+
+```go
+func Permutation(n, k uint) uint
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/mathutil"
+)
+
+func main() {
+    result1 := mathutil.Permutation(5, 3)
+	result2 := mathutil.Permutation(5, 5)
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+
+	// Output:
+	// 60
+	// 120
+}
+```
+
+### <span id="Combination">Combination</span>
+
+<p>Calculates C(n, k).</p>
+
+<b>Signature:</b>
+
+```go
+func Combination(n, k uint) uint
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/mathutil"
+)
+
+func main() {
+    result1 := mathutil.Combination(5, 3)
+	result2 := mathutil.Combination(5, 5)
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+
+	// Output:
+	// 10
+	// 1
 }
 ```
