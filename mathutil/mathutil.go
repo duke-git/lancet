@@ -44,14 +44,19 @@ func Fibonacci(first, second, n int) int {
 	}
 }
 
-// Factorial calculate x!.
+// Factorial calculate n!.
 // Play: https://go.dev/play/p/tt6LdOK67Nx
-func Factorial(x uint) uint {
-	var f uint = 1
-	for ; x > 1; x-- {
-		f *= x
+func Factorial(n uint) uint {
+	if n == 0 || n == 1 {
+		return 1
 	}
-	return f
+
+	result := uint(1)
+	for i := uint(2); i <= n; i++ {
+		result *= i
+	}
+
+	return result
 }
 
 // Percent calculate the percentage of value to total.
@@ -416,4 +421,31 @@ func Variance[T constraints.Float | constraints.Integer](numbers []T) float64 {
 // Play: todo
 func StdDev[T constraints.Float | constraints.Integer](numbers []T) float64 {
 	return math.Sqrt(Variance(numbers))
+}
+
+// Permutation calculate P(n, k).
+// Play: todo
+func Permutation(n, k uint) uint {
+	if n < k {
+		return 0
+	}
+
+	nFactorial := Factorial(n)
+	nMinusKFactorial := Factorial(n - k)
+
+	return nFactorial / nMinusKFactorial
+}
+
+// Combination calculate C(n, k).
+// Play: todo
+func Combination(n, k uint) uint {
+	if n < k {
+		return 0
+	}
+
+	nFactorial := Factorial(n)
+	kFactorial := Factorial(k)
+	nMinusKFactorial := Factorial(n - k)
+
+	return nFactorial / (kFactorial * nMinusKFactorial)
 }

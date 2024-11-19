@@ -502,3 +502,27 @@ func ExampleStdDev() {
 	// 1.41
 	// 1.55
 }
+
+func ExamplePermutation() {
+	result1 := Permutation(5, 3)
+	result2 := Permutation(5, 5)
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+
+	// Output:
+	// 60
+	// 120
+}
+
+func ExampleCombination() {
+	result1 := Combination(5, 3)
+	result2 := Combination(5, 5)
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+
+	// Output:
+	// 10
+	// 1
+}

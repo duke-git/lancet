@@ -491,3 +491,49 @@ func TestStdDev(t *testing.T) {
 		assert.Equal(tt.expected, TruncRound(StdDev(tt.numbers), 3))
 	}
 }
+
+func TestPermutation(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestPermutation")
+
+	tests := []struct {
+		n        uint
+		k        uint
+		expected uint
+	}{
+		{1, 1, 1},
+		{1, 0, 1},
+		{0, 1, 0},
+		{0, 0, 1},
+		{3, 2, 6},
+		{4, 2, 12},
+	}
+
+	for _, tt := range tests {
+		assert.Equal(tt.expected, Permutation(tt.n, tt.k))
+	}
+}
+
+func TestCombination(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestCombination")
+
+	tests := []struct {
+		n        uint
+		k        uint
+		expected uint
+	}{
+		{1, 1, 1},
+		{1, 0, 1},
+		{0, 1, 0},
+		{0, 0, 1},
+		{3, 2, 3},
+		{4, 2, 6},
+	}
+
+	for _, tt := range tests {
+		assert.Equal(tt.expected, Combination(tt.n, tt.k))
+	}
+}
