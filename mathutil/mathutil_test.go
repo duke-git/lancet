@@ -143,11 +143,22 @@ func TestAverage(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestAverage")
 
-	assert.Equal(0, Average(0, 0))
-	assert.Equal(1, Average(1, 1))
+	tests := []struct {
+		numbers  []int
+		expected float64
+	}{
+		{[]int{0}, 0},
+		{[]int{1, 1, 1}, 1},
+		{[]int{1, 2, 3, 4}, 2.5},
+		{[]int{1, 2, 3, 4, 5}, 3},
+	}
 
-	avg := Average(1.2, 1.4)
-	assert.Equal(1.3, RoundToFloat(avg, 1))
+	for _, tt := range tests {
+		assert.Equal(tt.expected, Average(tt.numbers...))
+	}
+
+	avg := Average(1.1, 1.2, 1.3, 1.4)
+	assert.Equal(1.25, avg)
 }
 
 func TestSum(t *testing.T) {
@@ -412,4 +423,117 @@ func TestDiv(t *testing.T) {
 	assert.Equal(math.Inf(1), Div(8, 0))
 	assert.Equal(math.Inf(-1), Div(-8, 0))
 	assert.Equal(true, math.IsNaN(Div(0, 0)))
+}
+
+func TestVariance(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestVariance")
+
+	testIntNumbers := []struct {
+		numbers  []int
+		expected float64
+	}{
+		{[]int{0}, 0},
+		{[]int{1, 1, 1}, 0},
+		{[]int{1, 2, 3, 4}, 1.25},
+		{[]int{1, 2, 3, 4, 5}, 2.0},
+	}
+
+	for _, tt := range testIntNumbers {
+		assert.Equal(tt.expected, TruncRound(Variance(tt.numbers), 2))
+	}
+
+	testFloatNumbers := []struct {
+		numbers  []float64
+		expected float64
+	}{
+		{[]float64{0}, 0},
+		{[]float64{1, 1, 1}, 0},
+		{[]float64{1.1, 2.2, 3.3, 4.4}, 1.51},
+	}
+
+	for _, tt := range testFloatNumbers {
+		assert.Equal(tt.expected, TruncRound(Variance(tt.numbers), 2))
+	}
+}
+
+func TestStdDev(t *testing.T) {
+
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestStdDev")
+
+	testIntNumbers := []struct {
+		numbers  []int
+		expected float64
+	}{
+		{[]int{0}, 0},
+		{[]int{1, 1, 1}, 0},
+		{[]int{1, 2, 3, 4}, 1.118},
+		{[]int{1, 2, 3, 4, 5}, 1.414},
+	}
+
+	for _, tt := range testIntNumbers {
+		assert.Equal(tt.expected, TruncRound(StdDev(tt.numbers), 3))
+	}
+
+	testFloatNumbers := []struct {
+		numbers  []float64
+		expected float64
+	}{
+		{[]float64{0}, 0},
+		{[]float64{1, 1, 1}, 0},
+		{[]float64{1.1, 2.2, 3.3, 4.4}, 1.229},
+	}
+
+	for _, tt := range testFloatNumbers {
+		assert.Equal(tt.expected, TruncRound(StdDev(tt.numbers), 3))
+	}
+}
+
+func TestPermutation(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestPermutation")
+
+	tests := []struct {
+		n        uint
+		k        uint
+		expected uint
+	}{
+		{1, 1, 1},
+		{1, 0, 1},
+		{0, 1, 0},
+		{0, 0, 1},
+		{3, 2, 6},
+		{4, 2, 12},
+	}
+
+	for _, tt := range tests {
+		assert.Equal(tt.expected, Permutation(tt.n, tt.k))
+	}
+}
+
+func TestCombination(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestCombination")
+
+	tests := []struct {
+		n        uint
+		k        uint
+		expected uint
+	}{
+		{1, 1, 1},
+		{1, 0, 1},
+		{0, 1, 0},
+		{0, 0, 1},
+		{3, 2, 3},
+		{4, 2, 6},
+	}
+
+	for _, tt := range tests {
+		assert.Equal(tt.expected, Combination(tt.n, tt.k))
+	}
 }

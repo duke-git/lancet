@@ -44,14 +44,19 @@ func Fibonacci(first, second, n int) int {
 	}
 }
 
-// Factorial calculate x!.
+// Factorial calculate n!.
 // Play: https://go.dev/play/p/tt6LdOK67Nx
-func Factorial(x uint) uint {
-	var f uint = 1
-	for ; x > 1; x-- {
-		f *= x
+func Factorial(n uint) uint {
+	if n == 0 || n == 1 {
+		return 1
 	}
-	return f
+
+	result := uint(1)
+	for i := uint(2); i <= n; i++ {
+		result *= i
+	}
+
+	return result
 }
 
 // Percent calculate the percentage of value to total.
@@ -224,14 +229,12 @@ func Sum[T constraints.Integer | constraints.Float](numbers ...T) T {
 
 // Average return average value of numbers.
 // Play: https://go.dev/play/p/Vv7LBwER-pz
-func Average[T constraints.Integer | constraints.Float](numbers ...T) T {
-	var sum T
-	n := T(len(numbers))
-
-	for _, v := range numbers {
-		sum += v
+func Average[T constraints.Integer | constraints.Float](numbers ...T) float64 {
+	var sum float64
+	for _, num := range numbers {
+		sum += float64(num)
 	}
-	return sum / n
+	return sum / float64(len(numbers))
 }
 
 // Range creates a slice of numbers from start with specified count, element step is 1.
@@ -394,4 +397,55 @@ func Abs[T constraints.Integer | constraints.Float](x T) T {
 // Play: https://go.dev/play/p/WLxDdGXXYat
 func Div[T constraints.Float | constraints.Integer](x T, y T) float64 {
 	return float64(x) / float64(y)
+}
+
+// Variance returns the variance of numbers.
+// Play: todo
+func Variance[T constraints.Float | constraints.Integer](numbers []T) float64 {
+	n := len(numbers)
+	if n == 0 {
+		return 0
+	}
+
+	avg := Average(numbers...)
+	var sum float64
+
+	for _, v := range numbers {
+		sum += (float64(v) - avg) * (float64(v) - avg)
+	}
+
+	return sum / float64(n)
+}
+
+// StdDev returns the standard deviation of numbers.
+// Play: todo
+func StdDev[T constraints.Float | constraints.Integer](numbers []T) float64 {
+	return math.Sqrt(Variance(numbers))
+}
+
+// Permutation calculate P(n, k).
+// Play: todo
+func Permutation(n, k uint) uint {
+	if n < k {
+		return 0
+	}
+
+	nFactorial := Factorial(n)
+	nMinusKFactorial := Factorial(n - k)
+
+	return nFactorial / nMinusKFactorial
+}
+
+// Combination calculate C(n, k).
+// Play: todo
+func Combination(n, k uint) uint {
+	if n < k {
+		return 0
+	}
+
+	nFactorial := Factorial(n)
+	kFactorial := Factorial(k)
+	nMinusKFactorial := Factorial(n - k)
+
+	return nFactorial / (kFactorial * nMinusKFactorial)
 }
