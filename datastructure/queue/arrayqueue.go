@@ -31,7 +31,7 @@ func NewArrayQueue[T any](capacity int) *ArrayQueue[T] {
 
 // Data return slice of queue data
 func (q *ArrayQueue[T]) Data() []T {
-	items := []T{}
+	items := make([]T, 0, q.tail-q.head)
 	for i := q.head; i < q.tail; i++ {
 		items = append(items, q.data[i])
 	}

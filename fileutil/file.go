@@ -14,7 +14,6 @@ import (
 	"encoding/csv"
 	"errors"
 	"fmt"
-	"github.com/duke-git/lancet/v2/validator"
 	"io"
 	"io/fs"
 	"net/http"
@@ -24,6 +23,8 @@ import (
 	"sort"
 	"strings"
 	"sync"
+
+	"github.com/duke-git/lancet/v2/validator"
 )
 
 // FileReader is a reader supporting offset seeking and reading one
@@ -819,6 +820,7 @@ func WriteMapsToCsv(filepath string, records []map[string]any, appendToExistingF
 	if len(headers) > 0 {
 		columnHeaders = headers[0]
 	} else {
+		columnHeaders = make([]string, 0, len(records[0]))
 		for key := range records[0] {
 			columnHeaders = append(columnHeaders, key)
 		}
@@ -832,7 +834,7 @@ func WriteMapsToCsv(filepath string, records []map[string]any, appendToExistingF
 	}
 
 	for _, record := range records {
-		var row []string
+		row := make([]string, 0, len(columnHeaders))
 		for _, h := range columnHeaders {
 			row = append(row, fmt.Sprintf("%v", record[h]))
 		}

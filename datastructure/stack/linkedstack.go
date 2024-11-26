@@ -24,7 +24,7 @@ func NewLinkedStack[T any]() *LinkedStack[T] {
 
 // Data return stack data
 func (s *LinkedStack[T]) Data() []T {
-	res := []T{}
+	res := make([]T, 0, s.length)
 	current := s.top
 
 	for current != nil {

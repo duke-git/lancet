@@ -74,7 +74,7 @@ func ToBytes(value any) ([]byte, error) {
 // ToChar convert string to char slice.
 // Play: https://go.dev/play/p/JJ1SvbFkVdM
 func ToChar(s string) []string {
-	c := make([]string, 0)
+	c := make([]string, 0, len(s))
 	if len(s) == 0 {
 		c = append(c, "")
 	}

@@ -71,7 +71,7 @@ func ConvertMapToQueryString(param map[string]any) string {
 	if param == nil {
 		return ""
 	}
-	var keys []string
+	keys := make([]string, 0, len(param))
 	for key := range param {
 		keys = append(keys, key)
 	}
