@@ -202,6 +202,7 @@ func (s Stream[T]) Skip(n int) Stream[T] {
 		return FromSlice(source)
 	}
 
+	source = make([]T, 0, l-n)
 	for i := n; i < l; i++ {
 		source = append(source, s.source[i])
 	}

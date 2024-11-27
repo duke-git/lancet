@@ -27,7 +27,7 @@ func NewLinkedQueue[T any]() *LinkedQueue[T] {
 
 // Data return slice of queue data
 func (q *LinkedQueue[T]) Data() []T {
-	res := []T{}
+	res := make([]T, 0, q.length)
 	current := q.head
 
 	for current != nil {

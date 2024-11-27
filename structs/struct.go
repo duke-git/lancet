@@ -88,8 +88,8 @@ func (s *Struct) ToMap() (map[string]any, error) {
 
 // Fields returns all the struct fields within a slice
 func (s *Struct) Fields() []*Field {
-	var fields []*Field
 	fieldNum := s.rvalue.NumField()
+	fields := make([]*Field, 0, fieldNum)
 	for i := 0; i < fieldNum; i++ {
 		v := s.rvalue.Field(i)
 		sf := s.rtype.Field(i)

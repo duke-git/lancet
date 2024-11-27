@@ -147,7 +147,7 @@ func printTreeNodes[T any](nodes []*datastructure.TreeNode[T], level, maxLevel i
 
 	printSpaces(firstSpaces)
 
-	newNodes := []*datastructure.TreeNode[T]{}
+	newNodes := make([]*datastructure.TreeNode[T], 0, len(nodes)*2)
 	for _, node := range nodes {
 		if node != nil {
 			fmt.Printf("%v", node.Value)

@@ -209,7 +209,7 @@ func (dl *DoublyLink[T]) Size() int {
 
 // Values return slice of all doubly linklist node value
 func (dl *DoublyLink[T]) Values() []T {
-	result := []T{}
+	result := make([]T, 0, dl.length)
 	current := dl.Head
 	for current != nil {
 		result = append(result, current.Value)

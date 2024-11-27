@@ -34,7 +34,7 @@ func Wrap(cause error, message ...any) *XError {
 	err := newXError()
 
 	if len(message) > 0 {
-		var newMsgs []string
+		newMsgs := make([]string, 0, len(message))
 		for _, m := range message {
 			newMsgs = append(newMsgs, fmt.Sprintf("%v", m))
 		}
