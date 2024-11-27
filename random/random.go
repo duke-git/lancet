@@ -18,7 +18,7 @@ import (
 )
 
 const (
-	MaximumCapacity = math.MaxInt>>1 + 1
+	MaximumCapacity = math.MaxInt32>>1 + 1
 	Numeral         = "0123456789"
 	LowwerLetters   = "abcdefghijklmnopqrstuvwxyz"
 	UpperLetters    = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
