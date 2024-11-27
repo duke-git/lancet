@@ -212,7 +212,7 @@ func (sl *SinglyLink[T]) Size() int {
 
 // Values return slice of all singly linklist node value
 func (sl *SinglyLink[T]) Values() []T {
-	result := []T{}
+	result := make([]T, 0, sl.length)
 	current := sl.Head
 	for current != nil {
 		result = append(result, current.Value)
