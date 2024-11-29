@@ -921,36 +921,25 @@ func Merge[T any](slices ...[]T) []T {
 // Intersection creates a slice of unique elements that included by all slices.
 // Play: https://go.dev/play/p/anJXfB5wq_t
 func Intersection[T comparable](slices ...[]T) []T {
-	if len(slices) == 0 {
-		return []T{}
-	}
-	if len(slices) == 1 {
-		return Unique(slices[0])
-	}
+	result := []T{}
+	elementCount := make(map[T]int)
 
-	reducer := func(sliceA, sliceB []T) []T {
-		hashMap := make(map[T]int)
-		for _, v := range sliceA {
-			hashMap[v] = 1
-		}
+	for _, slice := range slices {
+		seen := make(map[T]bool)
 
-		out := make([]T, 0)
-		for _, val := range sliceB {
-			if v, ok := hashMap[val]; v == 1 && ok {
-				out = append(out, val)
-				hashMap[val]++
+		for _, item := range slice {
+			if !seen[item] {
+				seen[item] = true
+				elementCount[item]++
 			}
 		}
-		return out
 	}
 
-	result := reducer(slices[0], slices[1])
-
-	reduceSlice := make([][]T, 2)
-	for i := 2; i < len(slices); i++ {
-		reduceSlice[0] = result
-		reduceSlice[1] = slices[i]
-		result = reducer(reduceSlice[0], reduceSlice[1])
+	for _, item := range slices[0] {
+		if elementCount[item] == len(slices) {
+			result = append(result, item)
+			elementCount[item] = 0
+		}
 	}
 
 	return result
