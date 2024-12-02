@@ -1126,7 +1126,7 @@ func main() {
 <b>Signature:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
 
 ```go
-func ToBigInt[T constraints.Integer](v T) (*big.Int, error)
+func ToBigInt[T any](v T) (*big.Int, error)
 ```
 
 <b>Example:</b>

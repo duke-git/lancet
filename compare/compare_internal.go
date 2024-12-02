@@ -3,6 +3,7 @@ package compare
 import (
 	"bytes"
 	"encoding/json"
+	"math/big"
 	"reflect"
 	"time"
 
@@ -24,6 +25,13 @@ func compareValue(operator string, left, right any) bool {
 
 	case reflect.Struct, reflect.Slice, reflect.Map:
 		return compareRefValue(operator, left, right, leftType.Kind())
+
+	case reflect.Ptr:
+		if leftVal, ok := left.(*big.Int); ok {
+			if rightVal, ok := right.(*big.Int); ok {
+				return compareBigInt(operator, leftVal, rightVal)
+			}
+		}
 	}
 
 	return false
@@ -155,169 +163,129 @@ func compareBasicValue(operator string, leftValue, rightValue any) bool {
 	}
 
 	switch leftVal := leftValue.(type) {
-	case json.Number:
-		if left, err := leftVal.Float64(); err == nil {
-			switch rightVal := rightValue.(type) {
-			case json.Number:
-				if right, err := rightVal.Float64(); err == nil {
-					switch operator {
-					case equal:
-						if left == right {
-							return true
-						}
-					case lessThan:
-						if left < right {
-							return true
-						}
-					case greaterThan:
-						if left > right {
-							return true
-						}
-					case lessOrEqual:
-						if left <= right {
-							return true
-						}
-					case greaterOrEqual:
-						if left >= right {
-							return true
-						}
-					}
-
-				}
-
-			case float32, float64, int, uint, int8, uint8, int16, uint16, int32, uint32, int64, uint64:
-				right, err := convertor.ToFloat(rightValue)
-				if err != nil {
-					return false
-				}
-				switch operator {
-				case equal:
-					if left == right {
-						return true
-					}
-				case lessThan:
-					if left < right {
-						return true
-					}
-				case greaterThan:
-					if left > right {
-						return true
-					}
-				case lessOrEqual:
-					if left <= right {
-						return true
-					}
-				case greaterOrEqual:
-					if left >= right {
-						return true
-					}
-				}
-			}
-
+	case int, uint, int8, uint8, int16, uint16, int32, uint32, int64, uint64:
+		left, err := convertor.ToBigInt(leftValue)
+		if err != nil {
+			return false
 		}
 
-	case float32, float64, int, uint, int8, uint8, int16, uint16, int32, uint32, int64, uint64:
+		right, err := convertor.ToBigInt(rightValue)
+		if err != nil {
+			return false
+		}
+
+		return compareBigInt(operator, left, right)
+
+	case float32, float64:
 		left, err := convertor.ToFloat(leftValue)
 		if err != nil {
 			return false
 		}
-		switch rightVal := rightValue.(type) {
-		case json.Number:
-			if right, err := rightVal.Float64(); err == nil {
-				switch operator {
-				case equal:
-					if left == right {
-						return true
-					}
-				case lessThan:
-					if left < right {
-						return true
-					}
-				case greaterThan:
-					if left > right {
-						return true
-					}
-				case lessOrEqual:
-					if left <= right {
-						return true
-					}
-				case greaterOrEqual:
-					if left >= right {
-						return true
-					}
-				}
-			}
-		case float32, float64, int, uint, int8, uint8, int16, uint16, int32, uint32, int64, uint64:
-			right, err := convertor.ToFloat(rightValue)
-			if err != nil {
-				return false
-			}
-
-			switch operator {
-			case equal:
-				if left == right {
-					return true
-				}
-			case lessThan:
-				if left < right {
-					return true
-				}
-			case greaterThan:
-				if left > right {
-					return true
-				}
-			case lessOrEqual:
-				if left <= right {
-					return true
-				}
-			case greaterOrEqual:
-				if left >= right {
-					return true
-				}
-			}
+		right, err := convertor.ToFloat(rightValue)
+		if err != nil {
+			return false
 		}
+
+		return compareFloats(operator, left, right)
 
 	case string:
 		left := leftVal
 		switch right := rightValue.(type) {
 		case string:
-			switch operator {
-			case equal:
-				if left == right {
-					return true
-				}
-			case lessThan:
-				if left < right {
-					return true
-				}
-			case greaterThan:
-				if left > right {
-					return true
-				}
-			case lessOrEqual:
-				if left <= right {
-					return true
-				}
-			case greaterOrEqual:
-				if left >= right {
-					return true
-				}
-			}
+			return compareStrings(operator, left, right)
 		}
 
 	case bool:
 		left := leftVal
 		switch right := rightValue.(type) {
 		case bool:
-			switch operator {
-			case equal:
-				if left == right {
-					return true
-				}
-			}
+			return compareBools(operator, left, right)
 		}
 
+	case json.Number:
+		if left, err := leftVal.Float64(); err == nil {
+			switch rightVal := rightValue.(type) {
+			case json.Number:
+				if right, err := rightVal.Float64(); err == nil {
+					return compareFloats(operator, left, right)
+				}
+			case float32, float64:
+				right, err := convertor.ToFloat(rightValue)
+				if err != nil {
+					return false
+				}
+				return compareFloats(operator, left, right)
+
+			case int, uint, int8, uint8, int16, uint16, int32, uint32, int64, uint64:
+				right, err := convertor.ToBigInt(rightValue)
+				if err != nil {
+					return false
+				}
+				left, err := convertor.ToBigInt(left)
+				return compareBigInt(operator, left, right)
+			}
+		}
 	}
 
+	return false
+}
+
+// compareBigInt compares two big.Int values based on the operator
+func compareBigInt(operator string, left, right *big.Int) bool {
+	switch operator {
+	case equal:
+		return left.Cmp(right) == 0
+	case lessThan:
+		return left.Cmp(right) < 0
+	case greaterThan:
+		return left.Cmp(right) > 0
+	case lessOrEqual:
+		return left.Cmp(right) <= 0
+	case greaterOrEqual:
+		return left.Cmp(right) >= 0
+	}
+	return false
+}
+
+// compareFloats compares two float64 values based on the operator
+func compareFloats(operator string, left, right float64) bool {
+	switch operator {
+	case equal:
+		return left == right
+	case lessThan:
+		return left < right
+	case greaterThan:
+		return left > right
+	case lessOrEqual:
+		return left <= right
+	case greaterOrEqual:
+		return left >= right
+	}
+	return false
+}
+
+// compareStrings compares two string values based on the operator
+func compareStrings(operator string, left, right string) bool {
+	switch operator {
+	case equal:
+		return left == right
+	case lessThan:
+		return left < right
+	case greaterThan:
+		return left > right
+	case lessOrEqual:
+		return left <= right
+	case greaterOrEqual:
+		return left >= right
+	}
+	return false
+}
+
+// compareBools compares two boolean values based on the operator
+func compareBools(operator string, left, right bool) bool {
+	switch operator {
+	case equal:
+		return left == right
+	}
 	return false
 }

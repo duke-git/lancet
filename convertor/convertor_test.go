@@ -748,9 +748,10 @@ func TestToBigInt(t *testing.T) {
 	assert := internal.NewAssert(t, "TestToBigInt")
 
 	tests := []struct {
-		name  string
-		input int64
-		want  *big.Int
+		name   string
+		input  any
+		want   *big.Int
+		hasErr bool
 	}{
 		{
 			name:  "int",
@@ -759,17 +760,17 @@ func TestToBigInt(t *testing.T) {
 		},
 		{
 			name:  "int8",
-			input: int64(int8(127)),
+			input: int8(127),
 			want:  big.NewInt(127),
 		},
 		{
 			name:  "int16",
-			input: int64(int16(32000)),
+			input: int16(32000),
 			want:  big.NewInt(32000),
 		},
 		{
 			name:  "int32",
-			input: int64(int32(123456)),
+			input: int32(123456),
 			want:  big.NewInt(123456),
 		},
 		{
@@ -777,13 +778,43 @@ func TestToBigInt(t *testing.T) {
 			input: int64(987654321),
 			want:  big.NewInt(987654321),
 		},
+		{
+			name:  "uint",
+			input: uint(987654321),
+			want:  big.NewInt(987654321),
+		},
+		{
+			name:  "uint8",
+			input: uint8(255),
+			want:  big.NewInt(255),
+		},
+		{
+			name:  "uint16",
+			input: uint16(65535),
+			want:  big.NewInt(65535),
+		},
+		{
+			name:  "uint32",
+			input: uint32(4294967295),
+			want:  big.NewInt(4294967295),
+		},
+		{
+			name:  "uint64",
+			input: uint64(18446744073709551615),
+			want:  new(big.Int).SetUint64(18446744073709551615),
+		},
+		{
+			name:   "unsupported type",
+			input:  3.14, // Unsupported type
+			hasErr: true,
+		},
 	}
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			got, err := ToBigInt(tt.input)
-			if err != nil {
-				t.Errorf("ToBigInt() error = %v", err)
+			if (err != nil) != tt.hasErr {
+				t.Errorf("ToBigInt() error = %v, hasErr %v", err, tt.hasErr)
 				return
 			}
 

@@ -1153,12 +1153,12 @@ func main() {
 
 ### <span id="ToBigInt">ToBigInt</span>
 
-<p>值转换为bigInt。</p>
+<p>将整数值转换为bigInt。</p>
 
 <b>函数签名:<span style="float:right;display:inline-block;">[运行](todo)</span></b>
 
 ```go
-func ToBigInt[T constraints.Integer](v T) (*big.Int, error)
+func ToBigInt[T any](v T) (*big.Int, error)
 ```
 
 <b>示例:</b>

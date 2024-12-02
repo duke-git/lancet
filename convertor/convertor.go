@@ -20,7 +20,6 @@ import (
 	"strings"
 
 	"github.com/duke-git/lancet/v2/structs"
-	"golang.org/x/exp/constraints"
 	"golang.org/x/text/encoding/simplifiedchinese"
 	"golang.org/x/text/transform"
 )
@@ -488,7 +487,7 @@ func ToRawUrlBase64(value any) string {
 
 // ToBigInt converts an integer of any supported type (int, int64, uint64, etc.) to *big.Int
 // Play: todo
-func ToBigInt[T constraints.Integer](v T) (*big.Int, error) {
+func ToBigInt[T any](v T) (*big.Int, error) {
 	result := new(big.Int)
 
 	switch v := any(v).(type) {
