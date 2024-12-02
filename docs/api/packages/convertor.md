@@ -47,6 +47,7 @@ import (
 -   [ToUrlBase64](#ToUrlBase64)
 -   [ToRawStdBase64](#ToRawStdBase64)
 -   [ToRawUrlBase64](#ToRawUrlBase64)
+-   [ToBigInt](#ToBigInt)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -1147,5 +1148,35 @@ func main() {
     // MTIzLjQ1Ng
     // dHJ1ZQ
     // ZXJy
+}
+```
+
+### <span id="ToBigInt">ToBigInt</span>
+
+<p>值转换为bigInt。</p>
+
+<b>函数签名:<span style="float:right;display:inline-block;">[运行](todo)</span></b>
+
+```go
+func ToBigInt[T constraints.Integer](v T) (*big.Int, error)
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/convertor"
+)
+
+func main() {
+    n := 9876543210
+    bigInt, _ := convertor.ToBigInt(n)
+
+    fmt.Println(bigInt)
+    // Output:
+    // 9876543210
 }
 ```

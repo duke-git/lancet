@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	"math/big"
 	"reflect"
 	"strconv"
 	"testing"
@@ -740,4 +741,53 @@ func TestToRawUrlBase64(t *testing.T) {
 	r15 := ToRawUrlBase64("4+3/4?=")
 	d15, _ := base64.RawURLEncoding.DecodeString(r15)
 	assert.Equal("4+3/4?=", string(d15))
+}
+
+func TestToBigInt(t *testing.T) {
+	t.Parallel()
+	assert := internal.NewAssert(t, "TestToBigInt")
+
+	tests := []struct {
+		name  string
+		input int64
+		want  *big.Int
+	}{
+		{
+			name:  "int",
+			input: 42,
+			want:  big.NewInt(42),
+		},
+		{
+			name:  "int8",
+			input: int64(int8(127)),
+			want:  big.NewInt(127),
+		},
+		{
+			name:  "int16",
+			input: int64(int16(32000)),
+			want:  big.NewInt(32000),
+		},
+		{
+			name:  "int32",
+			input: int64(int32(123456)),
+			want:  big.NewInt(123456),
+		},
+		{
+			name:  "int64",
+			input: int64(987654321),
+			want:  big.NewInt(987654321),
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got, err := ToBigInt(tt.input)
+			if err != nil {
+				t.Errorf("ToBigInt() error = %v", err)
+				return
+			}
+
+			assert.Equal(tt.want, got)
+		})
+	}
 }

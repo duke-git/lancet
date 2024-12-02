@@ -47,6 +47,7 @@ import (
 -   [ToUrlBase64](#ToUrlBase64)
 -   [ToRawStdBase64](#ToRawStdBase64)
 -   [ToRawUrlBase64](#ToRawUrlBase64)
+-   [ToBigInt](#ToBigInt)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -1115,5 +1116,35 @@ func main() {
     // 0.1 false
     // map[a:1 b:2] false
     // &{test 1 0.1 true <nil> } false
+}
+```
+
+### <span id="ToBigInt">ToBigInt</span>
+
+<p>Converts an integer of any supported type (int, int64, uint64, etc.) to *big.Int</p>
+
+<b>Signature:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
+
+```go
+func ToBigInt[T constraints.Integer](v T) (*big.Int, error)
+```
+
+<b>Example:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/convertor"
+)
+
+func main() {
+    n := 9876543210
+    bigInt, _ := convertor.ToBigInt(n)
+
+    fmt.Println(bigInt)
+    // Output:
+    // 9876543210
 }
 ```
