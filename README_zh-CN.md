@@ -38,7 +38,7 @@
 go get github.com/duke-git/lancet/v2 //安装v2最新版本v2.x.x
 ```
 
-2. <b>使用 go1.18 以下版本的用户，必须安装 v1.x.x。目前最新的 v1 版本是 v1.4.5。</b>
+2. <b>使用 go1.18 以下版本的用户，必须安装 v1.x.x。目前最新的 v1 版本是 v1.4.6。</b>
 
 ```go
 go get github.com/duke-git/lancet// 使用go1.18以下版本, 必须安装v1.x.x版本
