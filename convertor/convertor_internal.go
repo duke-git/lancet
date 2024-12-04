@@ -240,7 +240,8 @@ func setStructField(structObj interface{}, fieldName string, fieldValue interfac
 
 	if fieldVal.Type() != val.Type() {
 
-		if val.CanConvert(fieldVal.Type()) {
+		// fix: issue #275
+		if canConvert(fieldValue, fieldVal.Type()) {
 			fieldVal.Set(val.Convert(fieldVal.Type()))
 			return nil
 		}
@@ -283,4 +284,15 @@ func getFieldNameByJsonTag(structObj interface{}, jsonTag string) string {
 	}
 
 	return ""
+}
+
+func canConvert(value interface{}, targetType reflect.Type) bool {
+	v := reflect.ValueOf(value)
+
+	defer func() {
+		if r := recover(); r != nil {
+		}
+	}()
+	v.Convert(targetType)
+	return true
 }

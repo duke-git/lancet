@@ -535,13 +535,20 @@ func RemoveWhiteSpace(str string, repalceAll bool) string {
 
 // SubInBetween return substring between the start and end position(excluded) of source string.
 func SubInBetween(str string, start string, end string) string {
-	if _, after, ok := strings.Cut(str, start); ok {
-		if before, _, ok := strings.Cut(after, end); ok {
+	if _, after, ok := Cut(str, start); ok {
+		if before, _, ok := Cut(after, end); ok {
 			return before
 		}
 	}
-
 	return ""
+}
+
+// Cut splits the string at the first occurrence of separator.
+func Cut(str, sep string) (before, after string, found bool) {
+	if i := strings.Index(str, sep); i >= 0 {
+		return str[:i], str[i+len(sep):], true
+	}
+	return str, "", false
 }
 
 // HammingDistance calculates the Hamming distance between two strings.

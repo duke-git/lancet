@@ -66,6 +66,7 @@ import (
 -   [Rotate](#Rotate)
 -   [TemplateReplace](#TemplateReplace)
 -   [RegexMatchAllGroups](#RegexMatchAllGroups)
+-   [Cut](#Cut)
 
 
 <div STYLE="page-break-after: always;"></div>
@@ -1573,3 +1574,36 @@ func main() {
     // [jane.doe@example.com jane.doe example com]
 }
 ```
+
+### <span id="Cut">Cut</span>
+
+<p>分割字符串。</p>
+
+<b>函数签名:</b>
+
+```go
+func Cut(str, sep string) (before, after string, found bool)
+```
+
+<b>示例:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/strutil"
+)
+
+func main() {
+    str := "hello-world"
+
+    before, after, found := strutil.Cut("hello-world", "-")
+
+    fmt.Println(before)
+    fmt.Println(after)
+    fmt.Println(found)
+
+    // Output:
+    // hello
+    // world
+    // true
+}

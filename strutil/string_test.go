@@ -668,3 +668,77 @@ func TestRegexMatchAllGroups(t *testing.T) {
 		assert.Equal(tt.expected, result)
 	}
 }
+
+func TestCut(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestCut")
+
+	tests := []struct {
+		name   string
+		s      string
+		sep    string
+		before string
+		after  string
+		found  bool
+	}{
+		{
+			name:   "test with separator",
+			s:      "hello-world",
+			sep:    "-",
+			before: "hello",
+			after:  "world",
+			found:  true,
+		},
+		{
+			name:   "test without separator",
+			s:      "helloworld",
+			sep:    "-",
+			before: "helloworld",
+			after:  "",
+			found:  false,
+		},
+		{
+			name:   "test empty string",
+			s:      "",
+			sep:    "-",
+			before: "",
+			after:  "",
+			found:  false,
+		},
+		{
+			name:   "test separator at the beginning",
+			s:      "-hello",
+			sep:    "-",
+			before: "",
+			after:  "hello",
+			found:  true,
+		},
+		{
+			name:   "test separator at the end",
+			s:      "hello-",
+			sep:    "-",
+			before: "hello",
+			after:  "",
+			found:  true,
+		},
+		{
+			name:   "test multiple separators",
+			s:      "a-b-c-d",
+			sep:    "-",
+			before: "a",
+			after:  "b-c-d",
+			found:  true,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			before, after, found := Cut(tt.s, tt.sep)
+			assert.Equal(tt.before, before)
+			assert.Equal(tt.after, after)
+			assert.Equal(tt.found, found)
+		})
+	}
+
+}

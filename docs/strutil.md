@@ -66,6 +66,7 @@ import (
 -   [Rotate](#Rotate)
 -   [TemplateReplace](#TemplateReplace)
 -   [RegexMatchAllGroups](#RegexMatchAllGroups)
+-   [Cut](#Cut)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -1536,5 +1537,39 @@ func main() {
     // Output:
     // [john.doe@example.com john.doe example com]
     // [jane.doe@example.com jane.doe example com]
+}
+```
+
+### <span id="Cut">Cut</span>
+
+<p>Splits the string at the first occurrence of separator.</p>
+
+<b>Signature:</b>
+
+```go
+func Cut(str, sep string) (before, after string, found bool)
+```
+
+<b>example:</b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/strutil"
+)
+
+func main() {
+    str := "hello-world"
+
+    before, after, found := strutil.Cut("hello-world", "-")
+
+    fmt.Println(before)
+    fmt.Println(after)
+    fmt.Println(found)
+
+    // Output:
+    // hello
+    // world
+    // true
 }
 ```

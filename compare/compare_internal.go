@@ -37,7 +37,8 @@ func compareRefValue(operator string, leftObj, rightObj interface{}, kind reflec
 	case reflect.Struct:
 
 		// compare time
-		if leftVal.CanConvert(timeType) {
+		// fix: issue #275
+		if canConvert(leftObj, timeType) {
 			timeObj1, ok := leftObj.(time.Time)
 			if !ok {
 				timeObj1 = leftVal.Convert(timeType).Interface().(time.Time)
@@ -59,7 +60,7 @@ func compareRefValue(operator string, leftObj, rightObj interface{}, kind reflec
 
 	case reflect.Slice:
 		// compare []byte
-		if leftVal.CanConvert(bytesType) {
+		if canConvert(leftObj, bytesType) {
 			bytesObj1, ok := leftObj.([]byte)
 			if !ok {
 				bytesObj1 = leftVal.Convert(bytesType).Interface().([]byte)
@@ -281,4 +282,16 @@ func compareBools(operator string, left, right bool) bool {
 		return left == right
 	}
 	return false
+}
+
+// canConvert checks if the value can be converted to the target type
+func canConvert(value interface{}, targetType reflect.Type) bool {
+	v := reflect.ValueOf(value)
+
+	defer func() {
+		if r := recover(); r != nil {
+		}
+	}()
+	v.Convert(targetType)
+	return true
 }
