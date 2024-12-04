@@ -325,7 +325,6 @@ func TimestampNano(timezone ...string) int64 {
 
 // TrackFuncTime track the time of function execution.
 // call it at top of the func like `defer TrackFuncTime(time.Now())()`
-// Play: todo
 func TrackFuncTime(pre time.Time) func() {
 	callerName := getCallerName()
 	return func() {

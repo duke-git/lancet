@@ -900,7 +900,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/v2/fileutil"
+    "github.com/duke-git/lancet/fileutil"
 )
 
 func main() {

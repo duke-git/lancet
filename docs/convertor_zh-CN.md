@@ -45,6 +45,7 @@ import (
 -   [ToUrlBase64](#ToUrlBase64)
 -   [ToRawStdBase64](#ToRawStdBase64)
 -   [ToRawUrlBase64](#ToRawUrlBase64)
+-   [ToBigInt](#ToBigInt)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -453,7 +454,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func EncodeByte(data any) ([]byte, error)
+func EncodeByte(data interface{}) ([]byte, error)
 ```
 
 <b>例子:</b>
@@ -479,7 +480,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func DecodeByte(data []byte, target any) error
+func DecodeByte(data []byte, target interface{}) error
 ```
 
 <b>例子:</b>
@@ -507,7 +508,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func DeepClone[T any](src T) T
+func DeepClone[T interface{}](src T) T
 ```
 
 <b>示例:</b>
@@ -753,7 +754,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func ToStdBase64(value any) string
+func ToStdBase64(value interface{}) string
 ```
 
 <b>示例:</b>
@@ -763,7 +764,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/v2/convertor"
+    "github.com/duke-git/lancet/convertor"
 )
 
 func main() {
@@ -785,7 +786,7 @@ func main() {
     afterEncode = convertor.ToStdBase64(intVal)
     fmt.Println(afterEncode)
 
-    mapVal := map[string]any{"a": "hi", "b": 2, "c": struct {
+    mapVal := map[string]interface{}{"a": "hi", "b": 2, "c": struct {
         A string
         B int
     }{"hello", 3}}
@@ -825,7 +826,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func ToUrlBase64(value any) string
+func ToUrlBase64(value interface{}) string
 ```
 
 <b>示例:</b>
@@ -835,7 +836,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/v2/convertor"
+    "github.com/duke-git/lancet/convertor"
 )
 
 func main() {
@@ -855,7 +856,7 @@ func main() {
     afterEncode = convertor.ToUrlBase64(intVal)
     fmt.Println(afterEncode)
 
-    mapVal := map[string]any{"a": "hi", "b": 2, "c": struct {
+    mapVal := map[string]interface{}{"a": "hi", "b": 2, "c": struct {
         A string
         B int
     }{"hello", 3}}
@@ -894,7 +895,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func ToRawStdBase64(value any) string
+func ToRawStdBase64(value interface{}) string
 ```
 
 <b>示例:</b>
@@ -904,7 +905,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/v2/convertor"
+    "github.com/duke-git/lancet/convertor"
 )
 
 func main() {
@@ -921,7 +922,7 @@ func main() {
     afterEncode = convertor.ToRawStdBase64(intVal)
     fmt.Println(afterEncode)
 
-    mapVal := map[string]any{"a": "hi", "b": 2, "c": struct {
+    mapVal := map[string]interface{}{"a": "hi", "b": 2, "c": struct {
         A string
         B int
     }{"hello", 3}}
@@ -958,7 +959,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func ToRawUrlBase64(value any) string
+func ToRawUrlBase64(value interface{}) string
 ```
 
 <b>示例:</b>
@@ -968,7 +969,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/v2/convertor"
+    "github.com/duke-git/lancet/convertor"
 )
 
 func main() {
@@ -985,7 +986,7 @@ func main() {
     afterEncode = convertor.ToRawUrlBase64(intVal)
     fmt.Println(afterEncode)
 
-    mapVal := map[string]any{"a": "hi", "b": 2, "c": struct {
+    mapVal := map[string]interface{}{"a": "hi", "b": 2, "c": struct {
         A string
         B int
     }{"hello", 3}}
@@ -1012,5 +1013,35 @@ func main() {
     // MTIzLjQ1Ng
     // dHJ1ZQ
     // ZXJy
+}
+```
+
+### <span id="ToBigInt">ToBigInt</span>
+
+<p>将整数值转换为bigInt。</p>
+
+<b>函数签名:</b>
+
+```go
+func ToBigInt(v interface{}) (*big.Int, error)
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/convertor"
+)
+
+func main() {
+    n := 9876543210
+    bigInt, _ := convertor.ToBigInt(n)
+
+    fmt.Println(bigInt)
+    // Output:
+    // 9876543210
 }
 ```

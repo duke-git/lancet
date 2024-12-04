@@ -1225,7 +1225,7 @@ func IsMasterCard(v string) bool
 ```go
 import (
     "fmt"
-    "github.com/duke-git/lancet/v2/validator"
+    "github.com/duke-git/lancet/validator"
 )
 
 func main() {

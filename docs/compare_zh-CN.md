@@ -42,7 +42,7 @@ import (
 <b>函数签名:</b>
 
 ```go
-func Equal(left, right any) bool
+func Equal(left, right interface{}) bool
 ```
 
 <b>示例:</b>
@@ -91,7 +91,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func EqualValue(left, right any) bool
+func EqualValue(left, right interface{}) bool
 ```
 
 <b>示例:</b>
@@ -130,7 +130,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func LessThan(left, right any) bool
+func LessThan(left, right interface{}) bool
 ```
 
 <b>示例:</b>
@@ -179,7 +179,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func GreaterThan(left, right any) bool
+func GreaterThan(left, right interface{}) bool
 ```
 
 <b>示例:</b>
@@ -231,7 +231,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func LessOrEqual(left, right any) bool
+func LessOrEqual(left, right interface{}) bool
 ```
 
 <b>示例:</b>
@@ -280,7 +280,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func GreaterOrEqual(left, right any) bool
+func GreaterOrEqual(left, right interface{}) bool
 ```
 
 <b>示例:</b>

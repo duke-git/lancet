@@ -1,6 +1,7 @@
 package compare
 
 import (
+	"encoding/json"
 	"testing"
 	"time"
 
@@ -70,18 +71,28 @@ func TestEqualValue(t *testing.T) {
 }
 
 func TestLessThan(t *testing.T) {
+	t.Parallel()
 	assert := internal.NewAssert(t, "TestLessThan")
 
-	assert.Equal(true, LessThan(1, 2))
-	assert.Equal(true, LessThan(1.1, 2.2))
-	assert.Equal(true, LessThan("a", "b"))
+	tests := []struct {
+		left  interface{}
+		right interface{}
+		want  bool
+	}{
+		{1, 2, true},
+		{1.1, 2.2, true},
+		{"a", "b", true},
+		{time.Now(), time.Now().Add(time.Second), true},
+		{[]byte("hello1"), []byte("hello2"), true},
+		{json.Number("123"), json.Number("124"), true},
+		{645680099112988673, 645680099112988675, true},
+		{1, 1, false},
+		{1, int64(1), false},
+	}
 
-	time1 := time.Now()
-	time2 := time1.Add(time.Second)
-	assert.Equal(true, LessThan(time1, time2))
-
-	assert.Equal(false, LessThan(1, 1))
-	assert.Equal(false, LessThan(1, int64(1)))
+	for _, tt := range tests {
+		assert.Equal(tt.want, LessThan(tt.left, tt.right))
+	}
 }
 
 func TestGreaterThan(t *testing.T) {

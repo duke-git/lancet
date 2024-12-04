@@ -360,7 +360,6 @@ func StringToBytes(str string) (b []byte) {
 }
 
 // BytesToString converts a byte slice to string without a memory allocation.
-// Play: todo
 func BytesToString(bytes []byte) string {
 	return *(*string)(unsafe.Pointer(&bytes))
 }

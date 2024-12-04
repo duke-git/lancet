@@ -1381,7 +1381,7 @@ package main
 
 import (
     "fmt"
-    "github.com/duke-git/lancet/v2/datetime"
+    "github.com/duke-git/lancet/datetime"
 )
 
 func main() {

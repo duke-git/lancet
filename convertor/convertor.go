@@ -14,6 +14,7 @@ import (
 	"fmt"
 	"io"
 	"math"
+	"math/big"
 	"reflect"
 	"regexp"
 	"strconv"
@@ -459,4 +460,37 @@ func ToRawUrlBase64(value interface{}) string {
 		}
 		return base64.RawURLEncoding.EncodeToString(marshal)
 	}
+}
+
+// ToBigInt converts an integer of any supported type (int, int64, uint64, etc.) to *big.Int
+// Play: todo
+func ToBigInt(v interface{}) (*big.Int, error) {
+	result := new(big.Int)
+
+	switch v := (v).(type) {
+	case int:
+		result.SetInt64(int64(v))
+	case int8:
+		result.SetInt64(int64(v))
+	case int16:
+		result.SetInt64(int64(v))
+	case int32:
+		result.SetInt64(int64(v))
+	case int64:
+		result.SetInt64(v)
+	case uint:
+		result.SetUint64(uint64(v))
+	case uint8:
+		result.SetUint64(uint64(v))
+	case uint16:
+		result.SetUint64(uint64(v))
+	case uint32:
+		result.SetUint64(uint64(v))
+	case uint64:
+		result.SetUint64(v)
+	default:
+		return nil, fmt.Errorf("unsupported type: %T", v)
+	}
+
+	return result, nil
 }
