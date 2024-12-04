@@ -4,7 +4,7 @@
 <br/>
 
 ![Go version](https://img.shields.io/badge/go-v1.16-9cf)
-[![Release](https://img.shields.io/badge/release-1.4.5-green.svg)](https://github.com/duke-git/lancet/releases)
+[![Release](https://img.shields.io/badge/release-1.4.6-green.svg)](https://github.com/duke-git/lancet/releases)
 [![GoDoc](https://godoc.org/github.com//duke-git/lancet?status.svg)](https://pkg.go.dev/github.com/duke-git/lancet)
 [![Go Report Card](https://goreportcard.com/badge/github.com/duke-git/lancet)](https://goreportcard.com/report/github.com/duke-git/lancet)
 [![test](https://github.com/duke-git/lancet/actions/workflows/codecov.yml/badge.svg?branch=main&event=push)](https://github.com/duke-git/lancet/actions/workflows/codecov.yml)
@@ -486,6 +486,7 @@ import "github.com/duke-git/lancet/strutil"
 -   [Rotate](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#Rotate)
 -   [TemplateReplace](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#TemplateReplace)
 -   [RegexMatchAllGroups](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#RegexMatchAllGroups)
+-   [Cut](https://github.com/duke-git/lancet/blob/v1/docs/strutil_zh-CN.md#Cut)
 
 ### 14. system 包含 os, runtime, shell command 相关函数。
 
