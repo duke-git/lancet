@@ -4,7 +4,7 @@
 <br/>
 
 ![Go version](https://img.shields.io/badge/go-%3E%3Dv1.18-9cf)
-[![Release](https://img.shields.io/badge/release-2.3.3-green.svg)](https://github.com/duke-git/lancet/releases)
+[![Release](https://img.shields.io/badge/release-2.3.4-green.svg)](https://github.com/duke-git/lancet/releases)
 [![GoDoc](https://godoc.org/github.com/duke-git/lancet/v2?status.svg)](https://pkg.go.dev/github.com/duke-git/lancet/v2)
 [![Go Report Card](https://goreportcard.com/badge/github.com/duke-git/lancet/v2)](https://goreportcard.com/report/github.com/duke-git/lancet/v2)
 [![test](https://github.com/duke-git/lancet/actions/workflows/codecov.yml/badge.svg?branch=main&event=push)](https://github.com/duke-git/lancet/actions/workflows/codecov.yml)
@@ -38,7 +38,7 @@
 go get github.com/duke-git/lancet/v2 //安装v2最新版本v2.x.x
 ```
 
-2. <b>使用 go1.18 以下版本的用户，必须安装 v1.x.x。目前最新的 v1 版本是 v1.4.4。</b>
+2. <b>使用 go1.18 以下版本的用户，必须安装 v1.x.x。目前最新的 v1 版本是 v1.4.5。</b>
 
 ```go
 go get github.com/duke-git/lancet// 使用go1.18以下版本, 必须安装v1.x.x版本
@@ -321,13 +321,19 @@ import "github.com/duke-git/lancet/v2/convertor"
     [[play](https://go.dev/play/p/OphmHCN_9u8)]
 -   **<big>ToStdBase64</big>** : 将值转换为StdBase64编码的字符串。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/convertor.md#ToStdBase64)]
+    [[play](https://go.dev/play/p/_fLJqJD3NMo)]
 -   **<big>ToUrlBase64</big>** : 将值转换为url Base64编码的字符串。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/convertor.md#ToUrlBase64)]
+    [[play](https://go.dev/play/p/C_d0GlvEeUR)]
 -   **<big>ToRawStdBase64</big>** : 将值转换为RawStdBase64编码的字符串。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/convertor.md#ToRawStdBase64)]
+    [[play](https://go.dev/play/p/wSAr3sfkDcv)]
 -   **<big>ToRawUrlBase64</big>** : 将值转换为RawUrlBase64编码的字符串。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/convertor.md#ToRawUrlBase64)]
-
+    [[play](https://go.dev/play/p/HwdDPFcza1O)]
+-   **<big>ToBigInt</big>** : 将整数转为*big.Int。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/convertor.md#ToBigInt)]
+    [[play](https://go.dev/play/p/todo)]
 
 <h3 id="cryptor"> 6. cryptor 加密包支持数据加密和解密，获取 md5，hash 值。支持 base64, md5, hmac, aes, des, rsa。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 
@@ -477,7 +483,12 @@ import "github.com/duke-git/lancet/v2/cryptor"
 -   **<big>RsaDecryptOAEP</big>** : rsa OAEP解密。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/cryptor.md#RsaDecryptOAEP)]
     [[play](https://go.dev/play/p/sSVmkfENKMz)]
-
+-   **<big>RsaSign</big>** : 应用RSA算法签名数据。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/cryptor.md#RsaSign)]
+    [[play](https://go.dev/play/p/todo)]
+-   **<big>RsaVerifySign</big>** : 验证数据的签名是否符合RSA算法。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/cryptor.md#RsaVerifySign)]
+    [[play](https://go.dev/play/p/todo)]
 
 <h3 id="datetime"> 7. datetime日期时间处理包，格式化日期，比较日期。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 
@@ -622,6 +633,15 @@ import "github.com/duke-git/lancet/v2/datetime"
 -   **<big>GenerateDatetimesBetween</big>** : 生成从start到end的所有日期时间的字符串列表。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/datetime.md#GenerateDatetimesBetween)]
     [[play](https://go.dev/play/p/6kHBpAxD9ZC)]
+-   **<big>Min</big>** : 返回最早时间。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/datetime.md#Min)]
+    [[play](https://go.dev/play/p/todo)]
+-   **<big>Max</big>** : 返回最晚时间。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/datetime.md#Max)]
+    [[play](https://go.dev/play/p/todo)]
+-   **<big>MaxMin</big>** : 返回最早和最晚时间。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/datetime.md#MaxMin)]
+    [[play](https://go.dev/play/p/todo)]
 
 
 <h3 id="datastructure"> 8. datastructure 包含一些普通的数据结构实现。例如：list, linklist, stack, queue, set, tree, graph。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
@@ -754,7 +774,9 @@ import "github.com/duke-git/lancet/v2/fileutil"
 -   **<big>ParallelChunkRead</big>** : 并行读取文件并将每个块的行发送到指定通道。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/fileutil.md#ParallelChunkRead)]
     [[play](https://go.dev/play/p/teMXnCsdSEw)]
-
+-   **<big>GetExeOrDllVersion</big>** : 返回exe,dll文件版本号(仅Window平台)。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/fileutil.md#GetExeOrDllVersion)]
+    [[play](https://go.dev/play/p/todo)]
 
 
 <h3 id="formatter"> 10. formatter 格式化器包含一些数据格式化处理方法。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
@@ -1121,7 +1143,18 @@ import "github.com/duke-git/lancet/v2/mathutil"
 -   **<big>Div</big>** : 除法运算。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/mathutil.md#Div)]
     [[play](https://go.dev/play/p/WLxDdGXXYat)]
-
+-   **<big>Variance</big>** : 计算方差。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/mathutil.md#Variance)]
+    [[play](https://go.dev/play/p/todo)]
+-   **<big>StdDev</big>** : 计算标准差。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/mathutil.md#StdDev)]
+    [[play](https://go.dev/play/p/todo)]
+-   **<big>Permutation</big>** : 计算排列数P(n, k)。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/mathutil.md#Permutation)]
+    [[play](https://go.dev/play/p/todo)]
+-   **<big>Combination</big>** : 计算组合数C(n, k)。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/mathutil.md#Combination)]
+    [[play](https://go.dev/play/p/todo)]
 
 <h3 id="netutil"> 14. netutil 网络包支持获取 ip 地址，发送 http 请求。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 
@@ -1282,7 +1315,9 @@ import "github.com/duke-git/lancet/v2/random"
 -   **<big>RandSliceFromGivenSlice</big>** : 从给定切片中生成长度为 num 的随机切片。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/random.md#RandSliceFromGivenSlice)]
     [[play](https://go.dev/play/p/68UikN9d6VT)]
-
+-   **<big>RandNumberOfLength</big>** : 生成指定长度的随机数。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/random.md#RandNumberOfLength)]
+    [[play](https://go.dev/play/p/todo)]
 
 <h3 id="retry"> 17. retry 重试执行函数直到函数运行成功或被 context cancel。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 
@@ -1301,7 +1336,7 @@ import "github.com/duke-git/lancet/v2/retry"
 -   **<big>RetryFunc</big>** : 重试执行的函数。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/retry.md#RetryFunc)]
     [[play](https://go.dev/play/p/nk2XRmagfVF)]
--   **<big>RetryTimes</big>** : 设置重试次数，默认 5。
+-   **<big>RetryTimes</big>** : 设置重试次数，默认5。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/retry.md#RetryTimes)]
     [[play](https://go.dev/play/p/ssfVeU2SwLO)]
 -   **<big>BackoffStrategy</big>** : 定义计算退避间隔的方法的接口。
@@ -1573,7 +1608,12 @@ import "github.com/duke-git/lancet/v2/slice"
 -   **<big>Frequency</big>** : 计算切片中每个元素出现的频率。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/slice.md#Frequency)]
     [[play](https://go.dev/play/p/CW3UVNdUZOq)]
-
+-   **<big>JoinFunc</big>** : 将切片元素用给定的分隔符连接成一个单一的字符串。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/slice.md#JoinFunc)]
+    [[play](https://go.dev/play/p/todo)]
+-   **<big>ConcatBy</big>** : 将切片中的元素连接成一个值，使用指定的分隔符和连接器函数。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/slice.md#ConcatBy)]
+    [[play](https://go.dev/play/p/todo)]
 
 <h3 id="stream"> 19. stream 流，该包仅验证简单的 stream 实现，功能有限。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 
@@ -1664,7 +1704,12 @@ import "github.com/duke-git/lancet/v2/stream"
 -   **<big>ToSlice</big>** : 返回 stream 中的元素切片。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/stream.md#ToSlice)]
     [[play](https://go.dev/play/p/jI6_iZZuVFE)]
-
+-   **<big>IndexOf</big>** : 返回在stream中找到值的第一个匹配项的索引，如果找不到值，则返回-1。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/stream.md#IndexOf)]
+    [[play](https://go.dev/play/p/todo)]
+-   **<big>LastIndexOf</big>** : 返回在stream中找到值的最后一个匹配项的索引，如果找不到值，则返回-1。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/stream.md#LastIndexOf)]
+    [[play](https://go.dev/play/p/todo)]
 
 <h3 id="structs"> 20. structs 提供操作 struct, tag, field 的相关函数。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 
@@ -1849,6 +1894,9 @@ import "github.com/duke-git/lancet/v2/strutil"
 -   **<big>RegexMatchAllGroups</big>** : 使用正则表达式匹配字符串中的所有子组并返回结果。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/strutil.md#RegexMatchAllGroups)]
     [[play](https://go.dev/play/p/JZiu0RXpgN-)]
+-   **<big>ExtractContent</big>** : 提取两个标记之间的内容。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/strutil.md#ExtractContent)]
+    [[play](https://go.dev/play/p/todo)]
 
 <h3 id="system"> 22. system 包含 os, runtime, shell command 的相关函数。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 
@@ -2061,7 +2109,7 @@ import "github.com/duke-git/lancet/v2/validator"
 -   **<big>IsCreditCard</big>** : 验证字符串是否是信用卡号码。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/validator.md#IsCreditCard)]
     [[play](https://go.dev/play/p/sNwwL6B0-v4)]
--   **<big>IsDns</big>** : 验证字符串是否是有效 dns。
+-   **<big>IsDns</big>** : 验证字符串是否是有效dns。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/validator.md#IsDns)]
     [[play](https://go.dev/play/p/jlYApVLLGTZ)]
 -   **<big>IsEmail</big>** : 验证字符串是否是有效电子邮件地址。
@@ -2097,10 +2145,10 @@ import "github.com/duke-git/lancet/v2/validator"
 -   **<big>IsIp</big>** : 验证字符串是否是 ip 地址。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/validator.md#IsIp)]
     [[play](https://go.dev/play/p/FgcplDvmxoD)]
--   **<big>IsIpV4</big>** : 验证字符串是否是 ipv4 地址。
+-   **<big>IsIpV4</big>** : 验证字符串是否是ipv4地址。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/validator.md#IsIpV4)]
     [[play](https://go.dev/play/p/zBGT99EjaIu)]
--   **<big>IsIpV6</big>** : 验证字符串是否是 ipv6 地址。
+-   **<big>IsIpV6</big>** : 验证字符串是否是ipv6地址。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/validator.md#IsIpV6)]
     [[play](https://go.dev/play/p/AHA0r0AzIdC)]
 -   **<big>IsStrongPassword</big>** : 验证字符串是否是强密码：（字母+数字+特殊字符)。
@@ -2115,10 +2163,10 @@ import "github.com/duke-git/lancet/v2/validator"
 -   **<big>IsZeroValue</big>** : 判断传入的参数值是否为零值。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/validator.md#IsZeroValue)]
     [[play](https://go.dev/play/p/UMrwaDCi_t4)]
--   **<big>IsGBK</big>** : 检查数据编码是否为 gbk（汉字内部代码扩展规范）。
+-   **<big>IsGBK</big>** : 检查数据编码是否为gbk（汉字内部代码扩展规范）。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/validator.md#IsGBK)]
     [[play](https://go.dev/play/p/E2nt3unlmzP)]
--   **<big>IsASCII</big>** : 验证字符串全部为 ASCII 字符。
+-   **<big>IsASCII</big>** : 验证字符串全部为ASCII字符。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/validator.md#IsASCII)]
     [[play](https://go.dev/play/p/hfQNPLX0jNa)]
 -   **<big>IsPrintable</big>** : 检查字符串是否全部为可打印字符。
@@ -2133,13 +2181,13 @@ import "github.com/duke-git/lancet/v2/validator"
 -   **<big>IsBase64URL</big>** : 检查字符串是否是有效的 base64 url。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/validator.md#IsBase64URL)]
     [[play](https://go.dev/play/p/vhl4mr8GZ6S)]
--   **<big>IsJWT</big>** : 检查字符串是否是有效的 JSON Web Token (JWT)。
+-   **<big>IsJWT</big>** : 检查字符串是否是有效的JSON Web Token (JWT)。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/validator.md#IsJWT)]
     [[play](https://go.dev/play/p/R6Op7heJbKI)]
--   **<big>IsVisa</big>** : 检查字符串是否是有效的 visa 卡号。
+-   **<big>IsVisa</big>** : 检查字符串是否是有效的visa卡号。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/validator.md#IsVisa)]
     [[play](https://go.dev/play/p/SdS2keOyJsl)]
--   **<big>IsMasterCard</big>** : 检查字符串是否是有效的 MasterCard 卡号。
+-   **<big>IsMasterCard</big>** : 检查字符串是否是有效的MasterCard卡号。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/validator.md#IsMasterCard)]
     [[play](https://go.dev/play/p/CwWBFRrG27b)]
 -   **<big>IsAmericanExpress</big>** : 检查字符串是否是有效的 American Express 卡号。
@@ -2175,30 +2223,33 @@ import "github.com/duke-git/lancet/v2/xerror"
 -   **<big>XError_Unwrap</big>** : 解构 XEerror 为 error 对象。适配 github.com/pkg/errors。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/xerror.md#XError_Unwrap)
     [[play](https://go.dev/play/p/VUXJ8BST4c6)]
--   **<big>XError_With</big>** : 添加与 XError 对象的键和值。
+-   **<big>XError_With</big>** : 添加与XError对象的键和值。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/xerror.md#XError_With)]
     [[play](https://go.dev/play/p/ow8UISXX_Dp)]
--   **<big>XError_Id</big>** : 设置 XError 对象的 id。
+-   **<big>XError_Id</big>** : 设置XError对象的id。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/xerror.md#XError_Id)]
     [[play](https://go.dev/play/p/X6HBlsy58U9)]
--   **<big>XError_Is</big>** : 检查目标 error 是否为 XError，两个错误中的 error.id 是否匹配。
+-   **<big>XError_Is</big>** : 检查目标error是否为XError，两个错误中的error.id是否匹配。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/xerror.md#XError_Is)]
     [[play](https://go.dev/play/p/X6HBlsy58U9)]
--   **<big>XError_Values</big>** : 返回由 With 设置的键和值的映射。将合并所有 XError 键和值。
+-   **<big>XError_Values</big>** : 返回由With设置的键和值的映射。将合并所有XError键和值。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/xerror.md#XError_Values)]
     [[play](https://go.dev/play/p/ow8UISXX_Dp)]
--   **<big>XError_StackTrace</big>** : 返回与 pkg/error 兼容的堆栈信息。
+-   **<big>XError_StackTrace</big>** : 返回与pkg/error兼容的堆栈信息。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/xerror.md#XError_StackTrace)]
     [[play](https://go.dev/play/p/6FAvSQpa7pc)]
--   **<big>XError_Info</big>** : 返回可打印的 XError 对象信息。
+-   **<big>XError_Info</big>** : 返回可打印的XError对象信息。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/xerror.md#XError_Info)]
     [[play](https://go.dev/play/p/1ZX0ME1F-Jb)]
--   **<big>XError_Error</big>** : 实现标准库的 error 接口。
+-   **<big>XError_Error</big>** : 实现标准库的error接口。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/xerror.md#XError_Error)]
     [[play](https://go.dev/play/p/w4oWZts7q7f)]
--   **<big>TryUnwrap</big>** : 检查 error, 如果 err 为 nil 则展开，则它返回一个有效值，如果 err 不是 nil 则 Unwrap 使用 err 发生 panic。
+-   **<big>TryUnwrap</big>** : 检查error, 如果err为nil则展开，则它返回一个有效值，如果err不是nil则Unwrap使用err发生panic。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/xerror.md#TryUnwrap)]
     [[play](https://go.dev/play/p/acyZVkNZEeW)]
+-   **<big>TryCatch</big>** : 简单实现的java风格异常处理（try-catch-finally）。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/xerror.md#TryCatch)]
+    [[play](https://go.dev/play/p/todo)]
 
 ## 如何贡献代码
 

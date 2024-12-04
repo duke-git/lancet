@@ -4,7 +4,7 @@
 <br/>
 
 ![Go version](https://img.shields.io/badge/go-%3E%3Dv1.18-9cf)
-[![Release](https://img.shields.io/badge/release-2.3.3-green.svg)](https://github.com/duke-git/lancet/releases)
+[![Release](https://img.shields.io/badge/release-2.3.4-green.svg)](https://github.com/duke-git/lancet/releases)
 [![GoDoc](https://godoc.org/github.com/duke-git/lancet/v2?status.svg)](https://pkg.go.dev/github.com/duke-git/lancet/v2)
 [![Go Report Card](https://goreportcard.com/badge/github.com/duke-git/lancet/v2)](https://goreportcard.com/report/github.com/duke-git/lancet/v2)
 [![test](https://github.com/duke-git/lancet/actions/workflows/codecov.yml/badge.svg?branch=main&event=push)](https://github.com/duke-git/lancet/actions/workflows/codecov.yml)
@@ -39,7 +39,7 @@
 go get github.com/duke-git/lancet/v2 // will install latest version of v2.x.x
 ```
 
-2. <b>For users who use version below go1.18, you should install v1.x.x. The latest of v1.x.x is v1.4.4. </b>
+2. <b>For users who use version below go1.18, you should install v1.x.x. The latest of v1.x.x is v1.4.5. </b>
 
 ```go
 go get github.com/duke-git/lancet // below go1.18, install latest version of v1.x.x
@@ -321,12 +321,19 @@ import "github.com/duke-git/lancet/v2/convertor"
     [[play](https://go.dev/play/p/OphmHCN_9u8)]
 -   **<big>ToStdBase64</big>** : converts a value to a string encoded in standard Base64.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/convertor.md#ToStdBase64)]
+    [[play](https://go.dev/play/p/_fLJqJD3NMo)]
 -   **<big>ToUrlBase64</big>** : converts a value to a string encoded in url Base64.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/convertor.md#ToUrlBase64)]
+    [[play](https://go.dev/play/p/C_d0GlvEeUR)]
 -   **<big>ToRawStdBase64</big>** : converts a value to a string encoded in raw standard Base64.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/convertor.md#ToRawStdBase64)]
+    [[play](https://go.dev/play/p/wSAr3sfkDcv)]
 -   **<big>ToRawUrlBase64</big>** : converts a value to a string encoded in raw url Base64.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/convertor.md#ToRawUrlBase64)]
+    [[play](https://go.dev/play/p/HwdDPFcza1O)]
+-   **<big>ToBigInt</big>** : converts an integer of any supported type (int, int64, uint64, etc.) to *big.Int.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/convertor.md#ToBigInt)]
+    [[play](https://go.dev/play/p/todo)]
 
 <h3 id="cryptor"> 6. Cryptor package is for data encryption and decryption.&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
@@ -475,7 +482,12 @@ import "github.com/duke-git/lancet/v2/cryptor"
 -   **<big>RsaDecryptOAEP</big>** : decrypts the data with RSA-OAEP
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/cryptor.md#RsaDecryptOAEP)]
     [[play](https://go.dev/play/p/sSVmkfENKMz)]
-
+-   **<big>RsaSign</big>** : signs the data with RSA.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/cryptor.md#RsaSign)]
+    [[play](https://go.dev/play/p/todo)]
+-   **<big>RsaVerifySign</big>** : verifies the signature of the data with RSA.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/cryptor.md#RsaVerifySign)]
+    [[play](https://go.dev/play/p/todo)]
 
 <h3 id="datetime"> 7. Datetime package supports date and time format and compare. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
@@ -619,7 +631,15 @@ import "github.com/duke-git/lancet/v2/datetime"
 -   **<big>GenerateDatetimesBetween</big>** : returns a slice of strings between two times.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/datetime.md#GenerateDatetimesBetween)]
     [[play](https://go.dev/play/p/6kHBpAxD9ZC)]
-
+-   **<big>Min</big>** : returns the earliest time among the given times.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/datetime.md#Min)]
+    [[play](https://go.dev/play/p/todo)]
+-   **<big>Max</big>** : returns the latest time among the given times.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/datetime.md#Max)]
+    [[play](https://go.dev/play/p/todo)]
+-   **<big>MaxMin</big>** : returns the latest and earliest time among the given times.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/datetime.md#MaxMin)]
+    [[play](https://go.dev/play/p/todo)]
 
 <h3 id="datastructure"> 8. Datastructure package contains some common data structure. eg. list, linklist, stack, queue, set, tree, graph. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
@@ -755,6 +775,9 @@ import "github.com/duke-git/lancet/v2/fileutil"
 -   **<big>ParallelChunkRead</big>** : reads the file in parallel and send each chunk of lines to the specified channel.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/fileutil.md#ParallelChunkRead)]  
     [[play](https://go.dev/play/p/teMXnCsdSEw)]
+-   **<big>GetExeOrDllVersion</big>** : Get the version of exe or dll file on windows os.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/fileutil.md#GetExeOrDllVersion)]
+    [[play](https://go.dev/play/p/todo)]
 
 <h3 id="formatter"> 10. Formatter contains some functions for data formatting. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
@@ -1120,7 +1143,18 @@ import "github.com/duke-git/lancet/v2/mathutil"
 -   **<big>Div</big>** : returns the result of x divided by y.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/mathutil.md#Div)]
     [[play](https://go.dev/play/p/WLxDdGXXYat)]
-
+-   **<big>Variance</big>** : returns the variance of numbers.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/mathutil.md#Variance)]
+    [[play](https://go.dev/play/p/todo)]
+-   **<big>StdDev</big>** : returns the standard deviation of numbers.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/mathutil.md#StdDev)]
+    [[play](https://go.dev/play/p/todo)]
+-   **<big>Permutation</big>** : calculates P(n, k).
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/mathutil.md#Permutation)]
+    [[play](https://go.dev/play/p/todo)]
+-   **<big>Combination</big>** : calculates C(n, k).
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/mathutil.md#Combination)]
+    [[play](https://go.dev/play/p/todo)]
 
 <h3 id="netutil"> 14. Netutil package contains functions to get net information and send http request. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
@@ -1281,7 +1315,9 @@ import "github.com/duke-git/lancet/v2/random"
 -   **<big>RandSliceFromGivenSlice</big>** : generate a random slice of length num from given slice.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/random.md#RandSliceFromGivenSlice)]
     [[play](https://go.dev/play/p/68UikN9d6VT)]
-
+-   **<big>RandNumberOfLength</big>** : generates a random int number of specified length.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/random.md#RandNumberOfLength)]
+    [[play](https://go.dev/play/p/todo)]
 
 <h3 id="retry"> 17. Retry package is for executing a function repeatedly until it was successful or canceled by the context. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
@@ -1575,7 +1611,12 @@ import "github.com/duke-git/lancet/v2/slice"
 -   **<big>Frequency</big>** : counts the frequency of each element in the slice.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#Frequency)]
     [[play](https://go.dev/play/p/CW3UVNdUZOq)]
-
+-   **<big>JoinFunc</big>** : joins the slice elements into a single string with the given separator.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#JoinFunc)]
+    [[play](https://go.dev/play/p/todo)]
+-   **<big>ConcatBy</big>** : concats the elements of a slice into a single value using the provided separator and connector function.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#ConcatBy)]
+    [[play](https://go.dev/play/p/todo)]
 
 <h3 id="stream"> 19. Stream package implements a sequence of elements supporting sequential and operations. this package is an experiment to explore if stream in go can work as the way java does. its function is very limited. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
@@ -1666,6 +1707,12 @@ import "github.com/duke-git/lancet/v2/stream"
 -   **<big>ToSlice</big>** : returns the elements in the stream.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/stream.md#ToSlice)]
     [[play](https://go.dev/play/p/jI6_iZZuVFE)]
+-   **<big>IndexOf</big>** : returns the index of the first occurrence of the specified element in this stream.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/stream.md#IndexOf)]
+    [[play](https://go.dev/play/p/todo)]
+-   **<big>LastIndexOf</big>** : returns the index of the last occurrence of the specified element in this stream.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/stream.md#LastIndexOf)]
+    [[play](https://go.dev/play/p/todo)]
 
 <h3 id="structs"> 20. Structs package provides several high level functions to manipulate struct, tag, and field. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
@@ -1847,6 +1894,9 @@ import "github.com/duke-git/lancet/v2/strutil"
 -   **<big>RegexMatchAllGroups</big>** : matches all subgroups in a string using a regular expression and returns the result.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/strutil.md#RegexMatchAllGroups)]
     [[play](https://go.dev/play/p/JZiu0RXpgN-)]
+-   **<big>ExtractContent</big>** : extracts the content between the start and end strings in the source string.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/strutil.md#ExtractContent)]
+    [[play](https://go.dev/play/p/todo)]
 
 
 <h3 id="system"> 22. System package contain some functions about os, runtime, shell command. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
@@ -2197,6 +2247,9 @@ import "github.com/duke-git/lancet/v2/xerror"
 -   **<big>TryUnwrap</big>** : check if err is nil then it returns a valid value. If err is not nil, TryUnwrap panics with err.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/xerror.md#TryUnwrap)]
     [[play](https://go.dev/play/p/acyZVkNZEeW)]
+-   **<big>TryCatch</big>** : simple simulation of Java-style try-catch. 
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/xerror.md#TryCatch)]
+    [[play](https://go.dev/play/p/todo)]
 
 ## How to Contribute
 

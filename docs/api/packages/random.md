@@ -526,7 +526,7 @@ func main() {
 ```
 ### <span id="RandNumberOfLength">RandNumberOfLength</span>
 
-<p>生成指定长度的随机数</p>
+<p>生成指定长度的随机数。</p>
 
 <b>函数签名:</b>
 

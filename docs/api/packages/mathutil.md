@@ -1236,7 +1236,7 @@ func main() {
 
 ### <span id="Permutation">Permutation</span>
 
-<p>计算排列数（P(n, k)）。</p>
+<p>计算排列数P(n, k)。</p>
 
 <b>函数签名:</b>
 
@@ -1269,7 +1269,7 @@ func main() {
 
 ### <span id="Combination">Combination</span>
 
-<p>计算组合数（C(n, k)）。</p>
+<p>计算组合数C(n, k)。</p>
 
 <b>函数签名:</b>
 

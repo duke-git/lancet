@@ -100,12 +100,6 @@ func TestBSTree_Delete(t *testing.T) {
 
 	acturl1 := bstree.InOrderTraverse()
 	assert.Equal([]int{2, 5, 6, 7}, acturl1)
-
-	//todo
-	// bstree.DeletetNode(6, comparator)
-	// bstree.Print()
-	// acturl2 := bstree.InOrderTraverse()
-	// assert.Equal([]int{2, 5, 7}, acturl2)
 }
 
 func TestBSTree_Depth(t *testing.T) {

@@ -10,7 +10,7 @@ outline: deep
 go get github.com/duke-git/lancet/v2 // will install latest version of v2.x.x
 ```
 
-2. <b>使用 go1.18 以下版本的用户，必须安装 v1.x.x。目前最新的 v1 版本是 v1.4.4。</b>
+2. <b>使用 go1.18 以下版本的用户，必须安装 v1.x.x。目前最新的 v1 版本是 v1.4.5。</b>
 
 ```go
 go get github.com/duke-git/lancet // below go1.18, install latest version of v1.x.x
