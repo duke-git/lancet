@@ -1743,7 +1743,7 @@ func main() {
 func ExtractContent(s, start, end string) []string
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/Ay9UIk7Rum9)</span></b>
 
 ```go
 import (

@@ -2999,7 +2999,7 @@ func main() {
 func JoinFunc[T any](slice []T, sep string, transform func(T) T) string
 ```
 
-<b>示例:<span style="float:right;display:inline-block;">[运行](todo)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/55ib3SB5fM2)</span></b>
 
 ```go
 import (
@@ -3029,7 +3029,7 @@ func main() {
 func ConcatBy[T any](slice []T, sep T, connector func(T, T) T) T
 ```
 
-<b>示例:<span style="float:right;display:inline-block;">[运行](todo)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/6QcUpcY4UMW)</span></b>
 
 ```go
 import (

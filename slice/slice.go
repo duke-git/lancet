@@ -1415,7 +1415,7 @@ func Frequency[T comparable](slice []T) map[T]int {
 }
 
 // JoinFunc joins the slice elements into a single string with the given separator.
-// Play: todo
+// Play: https://go.dev/play/p/55ib3SB5fM2
 func JoinFunc[T any](slice []T, sep string, transform func(T) T) string {
 	var buf strings.Builder
 	for i, v := range slice {
@@ -1428,7 +1428,7 @@ func JoinFunc[T any](slice []T, sep string, transform func(T) T) string {
 }
 
 // ConcatBy concats the elements of a slice into a single value using the provided separator and connector function.
-// Play: todo
+// Play: https://go.dev/play/p/6QcUpcY4UMW
 func ConcatBy[T any](slice []T, sep T, connector func(T, T) T) T {
 	var result T
 

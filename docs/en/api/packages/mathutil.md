@@ -1177,7 +1177,7 @@ func main() {
 func Variance[T constraints.Float | constraints.Integer](numbers []T) float64
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/uHuV4YgXf8F)</span></b>
 
 ```go
 package main
@@ -1210,7 +1210,7 @@ func main() {
 func StdDev[T constraints.Float | constraints.Integer](numbers []T) float64
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/FkNZDXvHD2l)</span></b>
 
 ```go
 package main
@@ -1243,7 +1243,7 @@ func main() {
 func Permutation(n, k uint) uint
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/MgobwH_FOxj)</span></b>
 
 ```go
 package main
@@ -1276,7 +1276,7 @@ func main() {
 func Combination(n, k uint) uint
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/ENFQRDQUFi9)</span></b>
 
 ```go
 package main

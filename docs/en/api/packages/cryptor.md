@@ -1435,7 +1435,7 @@ func main() {
 func RsaEncrypt(data []byte, pubKeyFileName string) []byte
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/uef0q1fz53I)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/7_zo6mrx-eX)</span></b>
 
 ```go
 package main
@@ -1472,7 +1472,7 @@ func main() {
 func RsaDecrypt(data []byte, privateKeyFileName string) []byte
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/uef0q1fz53I)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/7_zo6mrx-eX)</span></b>
 
 ```go
 package main
@@ -1620,7 +1620,7 @@ func main() {
 func RsaSign(hash crypto.Hash, data []byte, privateKeyFileName string) ([]byte, error)
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/qhsbf8BJ6Mf)</span></b>
 
 ```go
 package main
@@ -1659,7 +1659,7 @@ func main() {
 func RsaVerifySign(hash crypto.Hash, data, signature []byte, pubKeyFileName string) error
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/qhsbf8BJ6Mf)</span></b>
 
 ```go
 package main

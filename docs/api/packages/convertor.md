@@ -1155,7 +1155,7 @@ func main() {
 
 <p>将整数值转换为bigInt。</p>
 
-<b>函数签名:<span style="float:right;display:inline-block;">[运行](todo)</span></b>
+<b>函数签名:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/X3itkCxwB_x)</span></b>
 
 ```go
 func ToBigInt[T any](v T) (*big.Int, error)

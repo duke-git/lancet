@@ -737,7 +737,7 @@ func RegexMatchAllGroups(pattern, str string) [][]string {
 }
 
 // ExtractContent extracts the content between the start and end strings in the source string.
-// Play: todo
+// Play: https://go.dev/play/p/Ay9UIk7Rum9
 func ExtractContent(s, start, end string) []string {
 	result := []string{}
 

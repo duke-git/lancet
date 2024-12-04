@@ -536,7 +536,7 @@ func main() {
 func RandNumberOfLength(len int) int
 ```
 
-<b>Signature:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
+<b>Signature:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/oyZbuV7bu7b)</span></b>
 
 ```go
 package main

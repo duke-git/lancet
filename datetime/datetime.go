@@ -445,7 +445,7 @@ func GenerateDatetimesBetween(start, end time.Time, layout string, interval stri
 }
 
 // Min returns the earliest time among the given times.
-// Play: todo
+// Play: https://go.dev/play/p/MCIDvHNOGGb
 func Min(t1 time.Time, times ...time.Time) time.Time {
 	minTime := t1
 
@@ -459,7 +459,7 @@ func Min(t1 time.Time, times ...time.Time) time.Time {
 }
 
 // Max returns the latest time among the given times.
-// Play: todo
+// Play: https://go.dev/play/p/9m6JMk1LB7-
 func Max(t1 time.Time, times ...time.Time) time.Time {
 	maxTime := t1
 
@@ -473,7 +473,7 @@ func Max(t1 time.Time, times ...time.Time) time.Time {
 }
 
 // MaxMin returns the latest and earliest time among the given times.
-// Play: todo
+// Play: https://go.dev/play/p/rbW51cDtM_2
 func MaxMin(t1 time.Time, times ...time.Time) (maxTime time.Time, minTime time.Time) {
 	maxTime = t1
 	minTime = t1

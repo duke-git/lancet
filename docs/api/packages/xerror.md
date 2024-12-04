@@ -509,7 +509,7 @@ func (tc *TryCatch) Finally(finallyFunc func(ctx context.Context)) *TryCatch
 func (tc *TryCatch) Do()
 ```
 
-<b>示例:<span style="float:right;display:inline-block">[运行](todo)</span></b>
+<b>示例:<span style="float:right;display:inline-block">[运行](https://go.dev/play/p/D5Mdb0mRj0P)</span></b>
 
 ```go
 package main
@@ -529,8 +529,6 @@ func main() {
         return errors.New("error in try block")
     }).Catch(func(ctx context.Context, err error) {
         calledCatch = true
-        // Error in try block at /path/xxx.go:{line_number} - Cause: error message
-        // fmt.Println(err.Error())
     }).Finally(func(ctx context.Context) {
         calledFinally = true
     }).Do()

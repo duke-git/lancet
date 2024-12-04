@@ -400,7 +400,7 @@ func Div[T constraints.Float | constraints.Integer](x T, y T) float64 {
 }
 
 // Variance returns the variance of numbers.
-// Play: todo
+// Play: https://go.dev/play/p/uHuV4YgXf8F
 func Variance[T constraints.Float | constraints.Integer](numbers []T) float64 {
 	n := len(numbers)
 	if n == 0 {
@@ -418,13 +418,13 @@ func Variance[T constraints.Float | constraints.Integer](numbers []T) float64 {
 }
 
 // StdDev returns the standard deviation of numbers.
-// Play: todo
+// Play: https://go.dev/play/p/FkNZDXvHD2l
 func StdDev[T constraints.Float | constraints.Integer](numbers []T) float64 {
 	return math.Sqrt(Variance(numbers))
 }
 
 // Permutation calculate P(n, k).
-// Play: todo
+// Play: https://go.dev/play/p/MgobwH_FOxj
 func Permutation(n, k uint) uint {
 	if n < k {
 		return 0
@@ -437,7 +437,7 @@ func Permutation(n, k uint) uint {
 }
 
 // Combination calculate C(n, k).
-// Play: todo
+// Play: https://go.dev/play/p/ENFQRDQUFi9
 func Combination(n, k uint) uint {
 	if n < k {
 		return 0

@@ -143,12 +143,8 @@ func ToString(value any) string {
 		if err != nil {
 			return ""
 		}
-		return string(b)
 
-		// todo: maybe we should't supprt other type conversion
-		// v := reflect.ValueOf(value)
-		// log.Panicf("Unsupported data type: %s ", v.String())
-		// return ""
+		return string(b)
 	}
 }
 
@@ -486,7 +482,7 @@ func ToRawUrlBase64(value any) string {
 }
 
 // ToBigInt converts an integer of any supported type (int, int64, uint64, etc.) to *big.Int
-// Play: todo
+// Play: https://go.dev/play/p/X3itkCxwB_x
 func ToBigInt[T any](v T) (*big.Int, error) {
 	result := new(big.Int)
 

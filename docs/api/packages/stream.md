@@ -951,7 +951,7 @@ func main() {
 func (s Stream[T]) IndexOf(target T, equal func(a, b T) bool) int
 ```
 
-<b>示例:<span style="float:right;display:inline-block;">[运行](todo)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/tBV5Nc-XDX2)</span></b>
 
 ```go
 import (
@@ -984,7 +984,7 @@ func main() {
 func (s Stream[T]) LastIndexOf(target T, equal func(a, b T) bool) int
 ```
 
-<b>示例:<span style="float:right;display:inline-block;">[运行](todo)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/CjeoNw2eac_G)</span></b>
 
 ```go
 import (

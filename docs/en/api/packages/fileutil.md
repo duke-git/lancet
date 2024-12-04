@@ -1087,7 +1087,7 @@ func main() {
 func GetExeOrDllVersion(filePath string) (string, error)
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/iLRrDBhE38E)</span></b>
 
 ```go
 package main

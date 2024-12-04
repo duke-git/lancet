@@ -565,7 +565,7 @@ func GenerateRsaKey(keySize int, priKeyFile, pubKeyFile string) error {
 }
 
 // RsaEncrypt encrypt data with ras algorithm.
-// Play: https://go.dev/play/p/rDqTT01SPkZ
+// Play: https://go.dev/play/p/7_zo6mrx-eX
 func RsaEncrypt(data []byte, pubKeyFileName string) []byte {
 	file, err := os.Open(pubKeyFileName)
 	if err != nil {
@@ -600,7 +600,7 @@ func RsaEncrypt(data []byte, pubKeyFileName string) []byte {
 }
 
 // RsaDecrypt decrypt data with ras algorithm.
-// Play: https://go.dev/play/p/rDqTT01SPkZ
+// Play: https://go.dev/play/p/7_zo6mrx-eX
 func RsaDecrypt(data []byte, privateKeyFileName string) []byte {
 	file, err := os.Open(privateKeyFileName)
 	if err != nil {
@@ -663,7 +663,7 @@ func RsaDecryptOAEP(ciphertext []byte, label []byte, key rsa.PrivateKey) ([]byte
 }
 
 // RsaSign signs the data with RSA.
-// Play: todo
+// Play: https://go.dev/play/p/qhsbf8BJ6Mf
 func RsaSign(hash crypto.Hash, data []byte, privateKeyFileName string) ([]byte, error) {
 	privateKey, err := loadRasPrivateKey(privateKeyFileName)
 	if err != nil {
@@ -679,7 +679,7 @@ func RsaSign(hash crypto.Hash, data []byte, privateKeyFileName string) ([]byte, 
 }
 
 // RsaVerifySign verifies the signature of the data with RSA.
-// Play: todo
+// Play: https://go.dev/play/p/qhsbf8BJ6Mf
 func RsaVerifySign(hash crypto.Hash, data, signature []byte, pubKeyFileName string) error {
 	publicKey, err := loadRsaPublicKey(pubKeyFileName)
 	if err != nil {
@@ -712,7 +712,6 @@ func loadRsaPublicKey(filename string) (*rsa.PublicKey, error) {
 	if blockType == "RSA PUBLIC KEY" {
 		pubKey, err = x509.ParsePKCS1PublicKey(block.Bytes)
 		if err != nil {
-			// todo: here should be a bug, should return nil, err
 			key, err := x509.ParsePKIXPublicKey(block.Bytes)
 			if err != nil {
 				return nil, err

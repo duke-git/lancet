@@ -333,7 +333,7 @@ import "github.com/duke-git/lancet/v2/convertor"
     [[play](https://go.dev/play/p/HwdDPFcza1O)]
 -   **<big>ToBigInt</big>** : 将整数转为*big.Int。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/convertor.md#ToBigInt)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/X3itkCxwB_x)]
 
 <h3 id="cryptor"> 6. cryptor 加密包支持数据加密和解密，获取 md5，hash 值。支持 base64, md5, hmac, aes, des, rsa。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 
@@ -470,10 +470,10 @@ import "github.com/duke-git/lancet/v2/cryptor"
     [[play](https://go.dev/play/p/zutRHrDqs0X)]
 -   **<big>RsaEncrypt</big>** : 用公钥文件 ras 加密数据。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/cryptor.md#RsaEncrypt)]
-    [[play](https://go.dev/play/p/uef0q1fz53I)]
+    [[play](https://go.dev/play/p/7_zo6mrx-eX)]
 -   **<big>RsaDecrypt</big>** : 用私钥文件 rsa 解密数据。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/cryptor.md#RsaDecrypt)]
-    [[play](https://go.dev/play/p/uef0q1fz53I)]
+    [[play](https://go.dev/play/p/7_zo6mrx-eX)]
 -   **<big>GenerateRsaKeyPair</big>** : 创建rsa公钥私钥和key。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/cryptor.md#GenerateRsaKeyPair)]
     [[play](https://go.dev/play/p/sSVmkfENKMz)]
@@ -485,10 +485,10 @@ import "github.com/duke-git/lancet/v2/cryptor"
     [[play](https://go.dev/play/p/sSVmkfENKMz)]
 -   **<big>RsaSign</big>** : 应用RSA算法签名数据。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/cryptor.md#RsaSign)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/qhsbf8BJ6Mf)]
 -   **<big>RsaVerifySign</big>** : 验证数据的签名是否符合RSA算法。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/cryptor.md#RsaVerifySign)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/qhsbf8BJ6Mf)]
 
 <h3 id="datetime"> 7. datetime日期时间处理包，格式化日期，比较日期。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 
@@ -635,13 +635,13 @@ import "github.com/duke-git/lancet/v2/datetime"
     [[play](https://go.dev/play/p/6kHBpAxD9ZC)]
 -   **<big>Min</big>** : 返回最早时间。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/datetime.md#Min)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/MCIDvHNOGGb)]
 -   **<big>Max</big>** : 返回最晚时间。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/datetime.md#Max)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/9m6JMk1LB7-)]
 -   **<big>MaxMin</big>** : 返回最早和最晚时间。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/datetime.md#MaxMin)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/rbW51cDtM_2)]
 
 
 <h3 id="datastructure"> 8. datastructure 包含一些普通的数据结构实现。例如：list, linklist, stack, queue, set, tree, graph。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
@@ -776,7 +776,7 @@ import "github.com/duke-git/lancet/v2/fileutil"
     [[play](https://go.dev/play/p/teMXnCsdSEw)]
 -   **<big>GetExeOrDllVersion</big>** : 返回exe,dll文件版本号(仅Window平台)。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/fileutil.md#GetExeOrDllVersion)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/iLRrDBhE38E)]
 
 
 <h3 id="formatter"> 10. formatter 格式化器包含一些数据格式化处理方法。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
@@ -1145,16 +1145,16 @@ import "github.com/duke-git/lancet/v2/mathutil"
     [[play](https://go.dev/play/p/WLxDdGXXYat)]
 -   **<big>Variance</big>** : 计算方差。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/mathutil.md#Variance)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/uHuV4YgXf8F)]
 -   **<big>StdDev</big>** : 计算标准差。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/mathutil.md#StdDev)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/FkNZDXvHD2l)]
 -   **<big>Permutation</big>** : 计算排列数P(n, k)。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/mathutil.md#Permutation)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/MgobwH_FOxj)]
 -   **<big>Combination</big>** : 计算组合数C(n, k)。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/mathutil.md#Combination)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/ENFQRDQUFi9)]
 
 <h3 id="netutil"> 14. netutil 网络包支持获取 ip 地址，发送 http 请求。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 
@@ -1317,7 +1317,7 @@ import "github.com/duke-git/lancet/v2/random"
     [[play](https://go.dev/play/p/68UikN9d6VT)]
 -   **<big>RandNumberOfLength</big>** : 生成指定长度的随机数。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/random.md#RandNumberOfLength)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/oyZbuV7bu7b)]
 
 <h3 id="retry"> 17. retry 重试执行函数直到函数运行成功或被 context cancel。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 
@@ -1610,10 +1610,10 @@ import "github.com/duke-git/lancet/v2/slice"
     [[play](https://go.dev/play/p/CW3UVNdUZOq)]
 -   **<big>JoinFunc</big>** : 将切片元素用给定的分隔符连接成一个单一的字符串。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/slice.md#JoinFunc)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/55ib3SB5fM2)]
 -   **<big>ConcatBy</big>** : 将切片中的元素连接成一个值，使用指定的分隔符和连接器函数。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/slice.md#ConcatBy)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/6QcUpcY4UMW)]
 
 <h3 id="stream"> 19. stream 流，该包仅验证简单的 stream 实现，功能有限。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 
@@ -1706,10 +1706,10 @@ import "github.com/duke-git/lancet/v2/stream"
     [[play](https://go.dev/play/p/jI6_iZZuVFE)]
 -   **<big>IndexOf</big>** : 返回在stream中找到值的第一个匹配项的索引，如果找不到值，则返回-1。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/stream.md#IndexOf)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/tBV5Nc-XDX2)]
 -   **<big>LastIndexOf</big>** : 返回在stream中找到值的最后一个匹配项的索引，如果找不到值，则返回-1。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/stream.md#LastIndexOf)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/CjeoNw2eac_G)]
 
 <h3 id="structs"> 20. structs 提供操作 struct, tag, field 的相关函数。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 
@@ -1896,7 +1896,7 @@ import "github.com/duke-git/lancet/v2/strutil"
     [[play](https://go.dev/play/p/JZiu0RXpgN-)]
 -   **<big>ExtractContent</big>** : 提取两个标记之间的内容。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/strutil.md#ExtractContent)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/Ay9UIk7Rum9)]
 
 <h3 id="system"> 22. system 包含 os, runtime, shell command 的相关函数。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 
@@ -2249,7 +2249,7 @@ import "github.com/duke-git/lancet/v2/xerror"
     [[play](https://go.dev/play/p/acyZVkNZEeW)]
 -   **<big>TryCatch</big>** : 简单实现的java风格异常处理（try-catch-finally）。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/xerror.md#TryCatch)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/D5Mdb0mRj0P)]
 
 ## 如何贡献代码
 

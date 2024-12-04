@@ -1123,7 +1123,7 @@ func main() {
 
 <p>Converts an integer of any supported type (int, int64, uint64, etc.) to *big.Int</p>
 
-<b>Signature:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
+<b>Signature:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/X3itkCxwB_x)</span></b>
 
 ```go
 func ToBigInt[T any](v T) (*big.Int, error)

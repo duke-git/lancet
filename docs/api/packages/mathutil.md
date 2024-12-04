@@ -1178,7 +1178,7 @@ func main() {
 func Variance[T constraints.Float | constraints.Integer](numbers []T) float64
 ```
 
-<b>示例:<span style="float:right;display:inline-block;">[示例](todo)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[示例](https://go.dev/play/p/uHuV4YgXf8F)</span></b>
 
 ```go
 package main
@@ -1211,7 +1211,7 @@ func main() {
 func StdDev[T constraints.Float | constraints.Integer](numbers []T) float64
 ```
 
-<b>示例:<span style="float:right;display:inline-block;">[运行](todo)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/FkNZDXvHD2l)</span></b>
 
 ```go
 package main
@@ -1222,8 +1222,8 @@ import (
 )
 
 func main() {
-    result1 := mathutil.T运行cRound(mathutil.StdDev([]int{1, 2, 3, 4, 5}), 2)
-    result2 := mathutil.T运行cRound(mathutil.StdDev([]float64{1.1, 2.2, 3.3, 4.4, 5.5}), 2)
+    result1 := mathutil.TruncRound(mathutil.StdDev([]int{1, 2, 3, 4, 5}), 2)
+    result2 := mathutil.TruncRound(mathutil.StdDev([]float64{1.1, 2.2, 3.3, 4.4, 5.5}), 2)
 
     fmt.Println(result1)
     fmt.Println(result2)
@@ -1244,7 +1244,7 @@ func main() {
 func Permutation(n, k uint) uint
 ```
 
-<b>示例:<span style="float:right;display:inline-block;">[运行](todo)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/MgobwH_FOxj)</span></b>
 
 ```go
 package main
@@ -1277,7 +1277,7 @@ func main() {
 func Combination(n, k uint) uint
 ```
 
-<b>示例:<span style="float:right;display:inline-block;">[运行](todo)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/ENFQRDQUFi9)</span></b>
 
 ```go
 package main

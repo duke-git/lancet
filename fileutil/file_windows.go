@@ -26,7 +26,7 @@ type tagVS_FIXEDFILEINFO struct {
 }
 
 // GetExeOrDllVersion get the version of exe or dll file on windows.
-// Play: todo
+// Play: https://go.dev/play/p/iLRrDBhE38E
 func GetExeOrDllVersion(filePath string) (string, error) {
 	// 加载系统dll
 	versionDLL := syscall.NewLazyDLL("version.dll")

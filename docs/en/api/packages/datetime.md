@@ -1586,7 +1586,7 @@ func main() {
 func Min(t1 time.Time, times ...time.Time) time.Time
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/MCIDvHNOGGb)</span></b>
 
 ```go
 package main
@@ -1616,7 +1616,7 @@ func main() {
 func Max(t1 time.Time, times ...time.Time) time.Time
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/9m6JMk1LB7-)</span></b>
 
 ```go
 package main
@@ -1646,7 +1646,7 @@ func main() {
 func MaxMin(t1 time.Time, times ...time.Time) (maxTime time.Time, minTime time.Time)
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/rbW51cDtM_2)</span></b>
 
 ```go
 package main

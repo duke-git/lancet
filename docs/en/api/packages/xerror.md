@@ -507,7 +507,7 @@ func (tc *TryCatch) Finally(finallyFunc func(ctx context.Context)) *TryCatch
 func (tc *TryCatch) Do()
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/D5Mdb0mRj0P)</span></b>
 
 ```go
 package main

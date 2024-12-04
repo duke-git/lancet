@@ -1436,7 +1436,7 @@ func main() {
 func RsaEncrypt(data []byte, pubKeyFileName string) []byte
 ```
 
-<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/uef0q1fz53I)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/7_zo6mrx-eX)</span></b>
 
 ```go
 package main
@@ -1473,7 +1473,7 @@ func main() {
 func RsaDecrypt(data []byte, privateKeyFileName string) []byte
 ```
 
-<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/uef0q1fz53I)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/7_zo6mrx-eX)</span></b>
 
 ```go
 package main
@@ -1621,7 +1621,7 @@ func main() {
 func RsaSign(hash crypto.Hash, data []byte, privateKeyFileName string) ([]byte, error)
 ```
 
-<b>示例:<span style="float:right;display:inline-block;">[运行](todo)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/qhsbf8BJ6Mf)</span></b>
 
 ```go
 package main
@@ -1638,12 +1638,12 @@ func main() {
     privateKey := "./rsa_private.pem"
     publicKey := "./rsa_public.pem"
 
-    signature, err := RsaSign(hash, data, privateKey)
+    signature, err := cryptor.RsaSign(hash, data, privateKey)
     if err != nil {
         return
     }
 
-    err = RsaVerifySign(hash, data, signature, publicKey)
+    err = cryptor.RsaVerifySign(hash, data, signature, publicKey)
     if err != nil {
         return
     }
@@ -1660,7 +1660,7 @@ func main() {
 func RsaVerifySign(hash crypto.Hash, data, signature []byte, pubKeyFileName string) error
 ```
 
-<b>示例:<span style="float:right;display:inline-block;">[运行](todo)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/qhsbf8BJ6Mf)</span></b>
 
 ```go
 package main
@@ -1677,12 +1677,12 @@ func main() {
     privateKey := "./rsa_private.pem"
     publicKey := "./rsa_public.pem"
 
-    signature, err := RsaSign(hash, data, privateKey)
+    signature, err := cryptor.RsaSign(hash, data, privateKey)
     if err != nil {
         return
     }
 
-    err = RsaVerifySign(hash, data, signature, publicKey)
+    err = cryptor.RsaVerifySign(hash, data, signature, publicKey)
     if err != nil {
         return
     }
