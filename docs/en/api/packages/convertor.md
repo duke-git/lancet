@@ -373,7 +373,7 @@ import (
 
 func main() {
     aMap := map[string]int{"a": 1, "b": 2, "c": 3}
-    result, err := ToJson(aMap)
+    result, err := convertor.ToJson(aMap)
 
     if err != nil {
         fmt.Printf("%v", err)
