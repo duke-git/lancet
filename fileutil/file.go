@@ -25,6 +25,8 @@ import (
 	"sync"
 
 	"github.com/duke-git/lancet/v2/validator"
+	"golang.org/x/text/encoding/simplifiedchinese"
+	"golang.org/x/text/transform"
 )
 
 // FileReader is a reader supporting offset seeking and reading one
@@ -422,8 +424,15 @@ func UnZip(zipFile string, destPath string) error {
 	defer zipReader.Close()
 
 	for _, f := range zipReader.File {
+		decodeName := f.Name
+		if f.Flags == 0 {
+			i := bytes.NewReader([]byte(f.Name))
+			decoder := transform.NewReader(i, simplifiedchinese.GB18030.NewDecoder())
+			content, _ := io.ReadAll(decoder)
+			decodeName = string(content)
+		}
 		// issue#62: fix ZipSlip bug
-		path, err := safeFilepathJoin(destPath, f.Name)
+		path, err := safeFilepathJoin(destPath, decodeName)
 		if err != nil {
 			return err
 		}
