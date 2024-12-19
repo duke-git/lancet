@@ -1300,3 +1300,15 @@ func ExampleConcatBy() {
 	// Alice | Bob | Charlie
 	// 90
 }
+
+func ExampleEqualUnordered() {
+	result1 := EqualUnordered([]int{1, 2, 3}, []int{3, 2, 1})
+	result2 := EqualUnordered([]int{1, 2, 3}, []int{4, 5, 6})
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+
+	// Output:
+	// true
+	// false
+}

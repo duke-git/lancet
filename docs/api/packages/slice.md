@@ -44,6 +44,7 @@ import (
 -   [Every](#Every)
 -   [Equal](#Equal)
 -   [EqualWith](#EqualWith)
+-   [EqualUnordered](#EqualUnordered)
 -   [Filter](#Filter)
 -   [FilterConcurrent](#FilterConcurrent)
 -   [Find<sup>deprecated</sup>](#Find)
@@ -871,6 +872,37 @@ func main() {
 
     // Output:
     // true
+}
+```
+
+### <span id="EqualUnordered">EqualUnordered</span>
+
+<p>检查两个切片是否相等，元素数量相同，值相等，不考虑元素顺序。</p>
+
+<b>函数签名:</b>
+
+```go
+func EqualUnordered[T comparable](slice1, slice2 []T) bool
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](todo)</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+    result1 := slice.EqualUnordered([]int{1, 2, 3}, []int{3, 2, 1})
+    result2 := slice.EqualUnordered([]int{1, 2, 3}, []int{4, 5, 6})
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+
+    // Output:
+    // true
+    // false
 }
 ```
 

@@ -220,6 +220,28 @@ func EqualWith[T, U any](slice1 []T, slice2 []U, comparator func(T, U) bool) boo
 	return true
 }
 
+// EqualUnordered checks if two slices are equal: the same length and all elements' value are equal (unordered).
+// Play: todo
+func EqualUnordered[T comparable](slice1, slice2 []T) bool {
+	if len(slice1) != len(slice2) {
+		return false
+	}
+
+	seen := make(map[T]int)
+	for _, v := range slice1 {
+		seen[v]++
+	}
+
+	for _, v := range slice2 {
+		if seen[v] == 0 {
+			return false
+		}
+		seen[v]--
+	}
+
+	return true
+}
+
 // Every return true if all of the values in the slice pass the predicate function.
 // Play: https://go.dev/play/p/R8U6Sl-j8cD
 func Every[T any](slice []T, predicate func(index int, item T) bool) bool {

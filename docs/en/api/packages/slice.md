@@ -43,6 +43,7 @@ import (
 -   [DropRightWhile](#DropRightWhile)
 -   [Equal](#Equal)
 -   [EqualWith](#EqualWith)
+-   [EqualUnordered](#EqualUnordered)
 -   [Every](#Every)
 -   [Filter](#Filter)
 -   [FilterConcurrent](#FilterConcurrent)
@@ -836,6 +837,37 @@ func main() {
 
     // Output:
     // true
+}
+```
+
+### <span id="EqualUnordered">EqualUnordered</span>
+
+<p>Checks if two slices are equal: the same length and all elements' value are equal (unordered).</p>
+
+<b>Signature:</b>
+
+```go
+func EqualUnordered[T comparable](slice1, slice2 []T) bool
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[运行](todo)</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+    result1 := slice.EqualUnordered([]int{1, 2, 3}, []int{3, 2, 1})
+    result2 := slice.EqualUnordered([]int{1, 2, 3}, []int{4, 5, 6})
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+
+    // Output:
+    // true
+    // false
 }
 ```
 

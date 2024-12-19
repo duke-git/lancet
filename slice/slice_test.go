@@ -1926,3 +1926,25 @@ func TestConcatBy(t *testing.T) {
 		assert.Equal(90, result.Age)
 	})
 }
+
+func TestEqualUnordered(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestEqualUnordered")
+
+	tests := []struct {
+		slice1, slice2 []int
+		expected       bool
+	}{
+		{[]int{}, []int{}, true},
+		{[]int{1, 2, 3}, []int{1, 2, 3}, true},
+		{[]int{1, 2, 3}, []int{3, 2, 1}, true},
+		{[]int{1, 2, 3}, []int{1, 2, 3, 4}, false},
+		{[]int{1, 2, 3}, []int{1, 2}, false},
+		{[]int{1, 2, 3}, []int{1, 2, 4}, false},
+	}
+
+	for _, test := range tests {
+		assert.Equal(test.expected, EqualUnordered(test.slice1, test.slice2))
+	}
+}
