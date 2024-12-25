@@ -197,6 +197,14 @@ func TestRandFloats(t *testing.T) {
 	}
 
 	assert.Equal(len(numbers), 5)
+
+	numbers2 := RandFloats(10, 3.14, 3.2, 2)
+	for _, n := range numbers2 {
+		assert.GreaterOrEqual(n, 3.14)
+		assert.Less(n, 3.2)
+	}
+
+	assert.Equal(len(numbers2), 6)
 }
 
 func TestRandIntSlice(t *testing.T) {

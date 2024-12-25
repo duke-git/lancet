@@ -126,12 +126,24 @@ func RandFloat(min, max float64, precision int) float64 {
 
 	n := rand.Float64()*(max-min) + min
 
-	return mathutil.RoundToFloat(n, precision)
+	return mathutil.FloorToFloat(n, precision)
 }
 
 // RandFloats generate a slice of random float64 numbers of length that do not repeat.
 // Play: https://go.dev/play/p/I3yndUQ-rhh
 func RandFloats(length int, min, max float64, precision int) []float64 {
+	if max < min {
+		min, max = max, min
+	}
+
+	maxLength := int((max - min) * math.Pow10(precision))
+	if maxLength == 0 {
+		maxLength = 1
+	}
+	if length > maxLength {
+		length = maxLength
+	}
+
 	nums := make([]float64, length)
 	used := make(map[float64]struct{}, length)
 	for i := 0; i < length; {
