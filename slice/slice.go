@@ -131,6 +131,11 @@ func Concat[T any](slices ...[]T) []T {
 // Difference creates a slice of whose element in slice but not in comparedSlice.
 // Play: https://go.dev/play/p/VXvadzLzhDa
 func Difference[T comparable](slice, comparedSlice []T) []T {
+	if len(slice) == 0 {
+		result := make([]T, len(comparedSlice))
+		copy(result, comparedSlice)
+		return result
+	}
 	result := []T{}
 
 	for _, v := range slice {
