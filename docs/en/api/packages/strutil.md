@@ -68,7 +68,8 @@ import (
 -   [Rotate](#Rotate)
 -   [TemplateReplace](#TemplateReplace)
 -   [RegexMatchAllGroups](#RegexMatchAllGroups)
--   [ExtractContent](#RegexMatchAllGroups)
+-   [ExtractContent](#ExtractContent)
+-   [FindAllOccurrences](#FindAllOccurrences)
 
 
 <div STYLE="page-break-after: always;"></div>
@@ -1760,5 +1761,33 @@ func main() {
 
     // Output:
     // [content1 content2 content1]
+}
+```
+
+### <span id="FindAllOccurrences">FindAllOccurrences</span>
+
+<p>Returns the positions of all occurrences of a substring in a string.</p>
+
+<b>Signature:</b>
+
+```go
+func FindAllOccurrences(str, substr string) []int
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    result := strutil.FindAllOccurrences("ababab", "ab")
+
+    fmt.Println(result)
+
+    // Output:
+    // [0 2 4]
 }
 ```

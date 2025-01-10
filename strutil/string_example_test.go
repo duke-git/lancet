@@ -763,5 +763,13 @@ func ExampleExtractContent() {
 
 	// Output:
 	// [content1 content2 content1]
+}
 
+func ExampleFindAllOccurrences() {
+	result := FindAllOccurrences("ababab", "ab")
+
+	fmt.Println(result)
+
+	// Output:
+	// [0 2 4]
 }

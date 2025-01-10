@@ -738,14 +738,14 @@ func RegexMatchAllGroups(pattern, str string) [][]string {
 
 // ExtractContent extracts the content between the start and end strings in the source string.
 // Play: https://go.dev/play/p/Ay9UIk7Rum9
-func ExtractContent(s, start, end string) []string {
+func ExtractContent(str, start, end string) []string {
 	result := []string{}
 
 	for {
-		if _, after, ok := strings.Cut(s, start); ok {
+		if _, after, ok := strings.Cut(str, start); ok {
 			if before, _, ok := strings.Cut(after, end); ok {
 				result = append(result, before)
-				s = after
+				str = after
 			} else {
 				break
 			}
@@ -755,4 +755,21 @@ func ExtractContent(s, start, end string) []string {
 	}
 
 	return result
+}
+
+// FindAllOccurrences returns the positions of all occurrences of a substring in a string.
+// Play: todo
+func FindAllOccurrences(str, substr string) []int {
+	var positions []int
+
+	for i := 0; i < len(str); {
+		index := strings.Index(str[i:], substr)
+		if index == -1 {
+			break
+		}
+		positions = append(positions, i+index)
+		i += index + 1
+	}
+
+	return positions
 }

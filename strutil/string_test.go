@@ -937,3 +937,32 @@ func TestExtractContent(t *testing.T) {
 		})
 	}
 }
+
+func TestFindAllOccurrences(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestFindAllOccurrences")
+
+	var empty []int
+	tests := []struct {
+		input    string
+		substr   string
+		expected []int
+	}{
+		{"", "", empty},
+		{"", "a", empty},
+		{"a", "", []int{0}},
+		{"a", "a", []int{0}},
+		{"aa", "a", []int{0, 1}},
+		{"ababab", "ab", []int{0, 2, 4}},
+		{"ababab", "ba", []int{1, 3}},
+		{"ababab", "c", empty},
+		{"ababab", "ababab", []int{0}},
+		{"ababab", "abababc", empty},
+		{"ababab", "abababa", empty},
+	}
+
+	for _, tt := range tests {
+		assert.Equal(tt.expected, FindAllOccurrences(tt.input, tt.substr))
+	}
+}

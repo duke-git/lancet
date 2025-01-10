@@ -69,6 +69,7 @@ import (
 -   [TemplateReplace](#TemplateReplace)
 -   [RegexMatchAllGroups](#RegexMatchAllGroups)
 -   [ExtractContent](#ExtractContent)
+-   [FindAllOccurrences](#FindAllOccurrences)
 
 
 <div STYLE="page-break-after: always;"></div>
@@ -1708,7 +1709,7 @@ func main() {
 func RegexMatchAllGroups(pattern, str string) [][]string
 ```
 
-<b>示例:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/JZiu0RXpgN-)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/JZiu0RXpgN-)</span></b>
 
 ```go
 import (
@@ -1741,7 +1742,7 @@ func main() {
 func ExtractContent(s, start, end string) []string
 ```
 
-<b>示例:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/Ay9UIk7Rum9)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/Ay9UIk7Rum9)</span></b>
 
 ```go
 import (
@@ -1758,5 +1759,33 @@ func main() {
 
     // Output:
     // [content1 content2 content1]
+}
+```
+
+### <span id="FindAllOccurrences">FindAllOccurrences</span>
+
+<p>返回子字符串在字符串中所有出现的位置。</p>
+
+<b>函数签名:</b>
+
+```go
+func FindAllOccurrences(str, substr string) []int
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](todo)</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/strutil"
+)
+
+func main() {
+    result := strutil.FindAllOccurrences("ababab", "ab")
+
+    fmt.Println(result)
+
+    // Output:
+    // [0 2 4]
 }
 ```
