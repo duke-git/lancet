@@ -173,12 +173,14 @@ func (c *Channel[T]) Bridge(ctx context.Context, chanStream <-chan <-chan T) <-c
 				return
 			}
 
-			for val := range c.OrDone(ctx, stream) {
-				select {
-				case valStream <- val:
-				case <-ctx.Done():
+			go func() {
+				for val := range c.OrDone(ctx, stream) {
+					select {
+					case valStream <- val:
+					case <-ctx.Done():
+					}
 				}
-			}
+			}()
 		}
 	}()
 
