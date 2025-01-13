@@ -168,7 +168,8 @@ func ExampleChannel_Tee() {
 func ExampleChannel_Bridge() {
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
-
+	m1 := make(map[int]int)
+	m2 := make(map[int]int)
 	c := NewChannel[int]()
 	genVals := func() <-chan <-chan int {
 		out := make(chan (<-chan int))
@@ -177,6 +178,7 @@ func ExampleChannel_Bridge() {
 			for i := 1; i <= 5; i++ {
 				stream := make(chan int, 1)
 				stream <- i
+				m1[i]++
 				close(stream)
 				out <- stream
 			}
@@ -185,12 +187,15 @@ func ExampleChannel_Bridge() {
 	}
 
 	for v := range c.Bridge(ctx, genVals()) {
-		fmt.Println(v)
+		m2[v]++
+	}
+	for k, v := range m1 {
+		fmt.Println(m2[k] == v)
 	}
 	// Output:
-	// 1
-	// 2
-	// 3
-	// 4
-	// 5
+	// true
+	// true
+	// true
+	// true
+	// true
 }
