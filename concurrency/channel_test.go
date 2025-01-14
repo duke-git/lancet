@@ -169,7 +169,8 @@ func TestTee(t *testing.T) {
 func TestBridge(t *testing.T) {
 	t.Parallel()
 	assert := internal.NewAssert(t, "TestBridge")
-
+	m1 := make(map[int]int)
+	m2 := make(map[int]int)
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
@@ -181,6 +182,7 @@ func TestBridge(t *testing.T) {
 			for i := 0; i < 10; i++ {
 				stream := make(chan int, 1)
 				stream <- i
+				m1[i]++
 				close(stream)
 				chanStream <- stream
 			}
@@ -188,9 +190,11 @@ func TestBridge(t *testing.T) {
 		return chanStream
 	}
 
-	index := 0
 	for val := range c.Bridge(ctx, genVals()) {
-		assert.Equal(index, val)
-		index++
+		m2[val]++
+	}
+
+	for k, v := range m1 {
+		assert.Equal(m2[k], v)
 	}
 }
