@@ -108,6 +108,13 @@ func ToString(value any) string {
 	if value == nil {
 		return ""
 	}
+	rv := reflect.ValueOf(value)
+	if rv.Kind() == reflect.Ptr {
+		if rv.IsNil() {
+			return ""
+		}
+		return ToString(rv.Elem().Interface())
+	}
 
 	switch val := value.(type) {
 	case float32:
