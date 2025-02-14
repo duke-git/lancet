@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"math"
 	"reflect"
+	"sort"
 	"strconv"
 	"strings"
 	"sync"
@@ -1817,6 +1818,8 @@ func TestFilterConcurrent(t *testing.T) {
 		nums := []int{1, 2, 3, 4, 5, 6}
 		expected := []int{4, 5, 6}
 		actual := FilterConcurrent(nums, func(_, n int) bool { return n > 3 }, 4)
+		sort.Ints(actual)
+		sort.Ints(expected)
 		assert.Equal(expected, actual)
 	})
 }

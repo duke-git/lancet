@@ -142,13 +142,24 @@ func TestToString(t *testing.T) {
 	}
 	aStruct := TestStruct{Name: "TestStruct"}
 
+	i32Val := int32(123)
+	i64Val := int64(123)
+	iZeroVal := 0
+	fVal := 12.3
+	sVal := "abc"
+	var iNilPointer *int
+	var sNilPointer *string
+
 	cases := []any{
 		"", nil,
 		int(0), int8(1), int16(-1), int32(123), int64(123),
 		uint(123), uint8(123), uint16(123), uint32(123), uint64(123),
 		float64(12.3), float32(12.3),
 		true, false,
-		[]int{1, 2, 3}, aMap, aStruct, []byte{104, 101, 108, 108, 111}}
+		[]int{1, 2, 3}, aMap, aStruct, []byte{104, 101, 108, 108, 111},
+		&i32Val, &i64Val, &fVal, &sVal, &aStruct, iNilPointer, sNilPointer,
+		&iZeroVal,
+	}
 
 	expected := []string{
 		"", "",
@@ -157,6 +168,8 @@ func TestToString(t *testing.T) {
 		"12.3", "12.3",
 		"true", "false",
 		"[1,2,3]", "{\"a\":1,\"b\":2,\"c\":3}", "{\"Name\":\"TestStruct\"}", "hello",
+		"123", "123", "12.3", "abc", "{\"Name\":\"TestStruct\"}", "", "",
+		"0",
 	}
 
 	for i := 0; i < len(cases); i++ {

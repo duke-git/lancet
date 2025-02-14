@@ -157,10 +157,10 @@ func (c *Channel[T]) Tee(ctx context.Context, in <-chan T) (<-chan T, <-chan T) 
 // Play: https://go.dev/play/p/qmWSy1NVF-Y
 func (c *Channel[T]) Bridge(ctx context.Context, chanStream <-chan <-chan T) <-chan T {
 	valStream := make(chan T)
-
 	go func() {
 		defer close(valStream)
-
+		wg := sync.WaitGroup{}
+		defer wg.Wait()
 		for {
 			var stream <-chan T
 			select {
@@ -169,19 +169,22 @@ func (c *Channel[T]) Bridge(ctx context.Context, chanStream <-chan <-chan T) <-c
 					return
 				}
 				stream = maybeStream
+				wg.Add(1)
 			case <-ctx.Done():
 				return
 			}
 
-			for val := range c.OrDone(ctx, stream) {
-				select {
-				case valStream <- val:
-				case <-ctx.Done():
+			go func() {
+				defer wg.Done()
+				for val := range c.OrDone(ctx, stream) {
+					select {
+					case valStream <- val:
+					case <-ctx.Done():
+					}
 				}
-			}
+			}()
 		}
 	}()
-
 	return valStream
 }
 
