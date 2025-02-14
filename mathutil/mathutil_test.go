@@ -178,6 +178,7 @@ func TestMax(t *testing.T) {
 	assert.Equal(0, Max(0, 0))
 	assert.Equal(3, Max(1, 2, 3))
 	assert.Equal(1.4, Max(1.2, 1.4, 1.1, 1.4))
+	assert.Equal("abc", Max("a", "ab", "abc"))
 
 	type Integer int
 	assert.Equal(Integer(1), Max(Integer(1), Integer(0)))
@@ -212,6 +213,8 @@ func TestMin(t *testing.T) {
 	assert.Equal(0, Min(0, 0))
 	assert.Equal(1, Min(1, 2, 3))
 	assert.Equal(1.1, Min(1.2, 1.4, 1.1, 1.4))
+
+	assert.Equal("a", Min("a", "ab", "abc"))
 }
 
 func TestMinBy(t *testing.T) {

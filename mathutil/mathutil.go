@@ -145,10 +145,14 @@ func CeilToString[T constraints.Float | constraints.Integer](x T, n int) string 
 
 // Max return max value of numbers.
 // Play: https://go.dev/play/p/cN8DHI0rTkH
-func Max[T constraints.Integer | constraints.Float](numbers ...T) T {
-	max := numbers[0]
+func Max[T constraints.Ordered](items ...T) T {
+	if len(items) < 1 {
+		panic("mathutil.Max: empty list")
+	}
 
-	for _, v := range numbers {
+	max := items[0]
+
+	for _, v := range items {
 		if max < v {
 			max = v
 		}
@@ -181,10 +185,14 @@ func MaxBy[T any](slice []T, comparator func(T, T) bool) T {
 
 // Min return min value of numbers.
 // Play: https://go.dev/play/p/21BER_mlGUj
-func Min[T constraints.Integer | constraints.Float](numbers ...T) T {
-	min := numbers[0]
+func Min[T constraints.Ordered](items ...T) T {
+	if len(items) < 1 {
+		panic("mathutil.min: empty list")
+	}
 
-	for _, v := range numbers {
+	min := items[0]
+
+	for _, v := range items {
 		if min > v {
 			min = v
 		}
