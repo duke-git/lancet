@@ -1114,6 +1114,17 @@ func TestReverse(t *testing.T) {
 	assert.Equal([]string{"e", "d", "c", "b", "a"}, s2)
 }
 
+func TestReverseCopy(t *testing.T) {
+	t.Parallel()
+	assert := internal.NewAssert(t, "TestReverseCopy")
+
+	numbers := []int{1, 2, 3, 4, 5}
+	reversedNumbers := ReverseCopy(numbers)
+
+	assert.Equal([]int{5, 4, 3, 2, 1}, reversedNumbers)
+	assert.Equal([]int{1, 2, 3, 4, 5}, numbers)
+}
+
 func TestDifference(t *testing.T) {
 	t.Parallel()
 

@@ -70,6 +70,7 @@ import (
 -   [FlatMap](#FlatMap)
 -   [Merge](#Merge)
 -   [Reverse](#Reverse)
+-   [ReverseCopy](#ReverseCopy)
 -   [Reduce<sup>deprecated</sup>](#Reduce)
 -   [ReduceConcurrent](#ReduceConcurrent)
 -   [ReduceBy](#ReduceBy)
@@ -1757,6 +1758,38 @@ func main() {
 
     // Output:
     // [d c b a]
+}
+```
+
+### <span id="ReverseCopy">ReverseCopy</span>
+
+<p>反转切片中的元素顺序, 不改变原slice。</p>
+
+<b>函数签名:</b>
+
+```go
+func ReverseCopy[T any](slice []T) []T
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](todo)</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+    strs := []string{"a", "b", "c", "d"}
+
+    reversedStrs := slice.ReverseCopy(strs)
+
+    fmt.Println(reversedStrs)
+    fmt.Println(strs)
+
+    // Output:
+    // [d c b a]
+    // [a b c d]
 }
 ```
 

@@ -937,6 +937,19 @@ func ExampleReverse() {
 	// [d c b a]
 }
 
+func ExampleReverseCopy() {
+	strs := []string{"a", "b", "c", "d"}
+
+	reversedStrs := ReverseCopy(strs)
+
+	fmt.Println(reversedStrs)
+	fmt.Println(strs)
+
+	// Output:
+	// [d c b a]
+	// [a b c d]
+}
+
 func ExampleIsAscending() {
 
 	result1 := IsAscending([]int{1, 2, 3, 4, 5})

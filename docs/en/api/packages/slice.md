@@ -70,6 +70,7 @@ import (
 -   [FlatMap](#FlatMap)
 -   [Merge](#Merge)
 -   [Reverse](#Reverse)
+-   [ReverseCopy](#ReverseCopy)
 -   [Reduce<sup>deprecated</sup>](#Reduce)
 -   [ReduceConcurrent](#ReduceConcurrent)
 -   [ReduceBy](#ReduceBy)
@@ -1753,6 +1754,38 @@ func main() {
 
     // Output:
     // [d c b a]
+}
+```
+
+### <span id="ReverseCopy">ReverseCopy</span>
+
+<p>Return a new slice of element order is reversed to the given slice.</p>
+
+<b>Signature:</b>
+
+```go
+func ReverseCopy[T any](slice []T) []T
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+    strs := []string{"a", "b", "c", "d"}
+
+    reversedStrs := slice.ReverseCopy(strs)
+
+    fmt.Println(reversedStrs)
+    fmt.Println(strs)
+
+    // Output:
+    // [d c b a]
+    // [a b c d]
 }
 ```
 

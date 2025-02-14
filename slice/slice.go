@@ -1002,7 +1002,19 @@ func Reverse[T any](slice []T) {
 	}
 }
 
-// Shuffle the slice.
+// ReverseCopy return a new slice of element order is reversed to the given slice.
+// Play: todo
+func ReverseCopy[T any](slice []T) []T {
+	result := make([]T, len(slice))
+
+	for i, j := 0, len(slice)-1; i < len(slice); i, j = i+1, j-1 {
+		result[i] = slice[j]
+	}
+
+	return result
+}
+
+// Shuffle return a new slice with elements shuffled.
 // Play: https://go.dev/play/p/YHvhnWGU3Ge
 func Shuffle[T any](slice []T) []T {
 	rand.Seed(time.Now().UnixNano())
