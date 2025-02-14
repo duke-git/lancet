@@ -1340,6 +1340,18 @@ func TestShuffle(t *testing.T) {
 	assert.Equal(5, len(result))
 }
 
+func TestShuffleCopy(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestShuffleCopy")
+
+	numbers := []int{1, 2, 3, 4, 5}
+	result := ShuffleCopy(numbers)
+
+	assert.Equal(5, len(result))
+	assert.Equal([]int{1, 2, 3, 4, 5}, numbers)
+}
+
 func TestIndexOf(t *testing.T) {
 	t.Parallel()
 

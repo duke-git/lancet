@@ -79,6 +79,7 @@ import (
 -   [ReplaceAll](#ReplaceAll)
 -   [Repeat](#Repeat)
 -   [Shuffle](#Shuffle)
+-   [ShuffleCopy](#ShuffleCopy)
 -   [IsAscending](#IsAscending)
 -   [IsDescending](#IsDescending)
 -   [IsSorted](#IsSorted)
@@ -2027,7 +2028,7 @@ func main() {
 
 ### <span id="Shuffle">Shuffle</span>
 
-<p>随机打乱切片中的元素顺序</p>
+<p>随机打乱切片中的元素顺序。</p>
 
 <b>函数签名:</b>
 
@@ -2051,6 +2052,37 @@ func main() {
 
     // Output:
     // [3 1 5 4 2] (random order)
+}
+```
+
+### <span id="ShuffleCopy">ShuffleCopy</span>
+
+<p>随机打乱切片中的元素顺序, 不改变原切片。</p>
+
+<b>函数签名:</b>
+
+```go
+func ShuffleCopy[T any](slice []T) []T
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](todo)</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+    nums := []int{1, 2, 3, 4, 5}
+    result := slice.ShuffleCopy(nums)
+
+    fmt.Println(result)
+    fmt.Println(nums)
+
+    // Output:
+    // [3 1 5 4 2] (random order)
+    // [1 2 3 4 5]
 }
 ```
 

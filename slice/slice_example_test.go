@@ -950,6 +950,28 @@ func ExampleReverseCopy() {
 	// [a b c d]
 }
 
+func ExampleShuffle() {
+	strs := []string{"a", "b", "c", "d"}
+	Shuffle(strs)
+
+	fmt.Println(len(strs))
+
+	// Output:
+	// 4
+}
+
+func ExampleShuffleCopy() {
+	strs := []string{"a", "b", "c", "d"}
+	shuffledStrs := ShuffleCopy(strs)
+
+	fmt.Println(len(shuffledStrs))
+	fmt.Println(strs)
+
+	// Output:
+	// 4
+	// [a b c d]
+}
+
 func ExampleIsAscending() {
 
 	result1 := IsAscending([]int{1, 2, 3, 4, 5})

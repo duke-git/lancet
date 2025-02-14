@@ -79,6 +79,7 @@ import (
 -   [ReplaceAll](#ReplaceAll)
 -   [Repeat](#Repeat)
 -   [Shuffle](#Shuffle)
+-   [ShuffleCopy](#ShuffleCopy)
 -   [IsAscending](#IsAscending)
 -   [IsDescending](#IsDescending)
 -   [IsSorted](#IsSorted)
@@ -2048,6 +2049,37 @@ func main() {
 
     // Output:
     // [3 1 5 4 2] (random order)
+}
+```
+
+### <span id="ShuffleCopy">ShuffleCopy</span>
+
+<p>Return a new slice with elements shuffled.</p>
+
+<b>Signature:</b>
+
+```go
+func ShuffleCopy[T any](slice []T) []T
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+    nums := []int{1, 2, 3, 4, 5}
+    result := slice.ShuffleCopy(nums)
+
+    fmt.Println(result)
+    fmt.Println(nums)
+
+    // Output:
+    // [3 1 5 4 2] (random order)
+    // [1 2 3 4 5]
 }
 ```
 

@@ -1026,6 +1026,20 @@ func Shuffle[T any](slice []T) []T {
 	return slice
 }
 
+// ShuffleCopy return a new slice with elements shuffled.
+// Play: todo
+func ShuffleCopy[T any](slice []T) []T {
+	result := make([]T, len(slice))
+	copy(result, slice)
+
+	rand.Seed(time.Now().UnixNano())
+	rand.Shuffle(len(result), func(i, j int) {
+		result[i], result[j] = result[j], result[i]
+	})
+
+	return result
+}
+
 // IsAscending checks if a slice is ascending order.
 // Play: https://go.dev/play/p/9CtsFjet4SH
 func IsAscending[T constraints.Ordered](slice []T) bool {
