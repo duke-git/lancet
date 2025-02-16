@@ -207,6 +207,18 @@ func IsIp(ipstr string) bool {
 	return ip != nil
 }
 
+// IsIpPort check if the string is ip:port.
+// Play:
+func IsIpPort(str string) bool {
+	host, port, err := net.SplitHostPort(str)
+	if err != nil {
+		return false
+	}
+
+	ip := net.ParseIP(host)
+	return ip != nil && IsPort(port)
+}
+
 // IsIpV4 check if the string is a ipv4 address.
 // Play: https://go.dev/play/p/zBGT99EjaIu
 func IsIpV4(ipstr string) bool {
