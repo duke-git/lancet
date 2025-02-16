@@ -7,6 +7,7 @@ package function
 import (
 	"fmt"
 	"reflect"
+	"sync"
 	"time"
 )
 
@@ -84,36 +85,97 @@ func Delay(delay time.Duration, fn any, args ...any) {
 }
 
 // Debounced creates a debounced function that delays invoking fn until after wait duration have elapsed since the last time the debounced function was invoked.
+// Deprecated: Use Debounce function instead.
 // Play: https://go.dev/play/p/absuEGB_GN7
-func Debounced(fn func(), duration time.Duration) func() {
-	// Catch programming error while constructing the closure
-	mustBeFunction(fn)
+func Debounced(fn func(), delay time.Duration) func() {
+	debouncedFn, _ := Debounce(fn, delay)
+	return debouncedFn
+}
 
-	timer := time.NewTimer(duration)
-	timer.Stop()
+// Debounce creates a debounced version of the provided function.
+// Play: https://go.dev/play/p/-dGFrYn_1Zi
+func Debounce(fn func(), delay time.Duration) (debouncedFn func(), cancelFn func()) {
+	var (
+		timer *time.Timer
+		mu    sync.Mutex
+	)
 
-	go func() {
-		for {
-			<-timer.C
-			go fn()
+	debouncedFn = func() {
+		mu.Lock()
+		defer mu.Unlock()
+
+		if timer != nil {
+			timer.Stop()
 		}
-	}()
 
-	return func() { timer.Reset(duration) }
+		timer = time.AfterFunc(delay, func() {
+			fn()
+		})
+	}
+
+	cancelFn = func() {
+		mu.Lock()
+		defer mu.Unlock()
+
+		if timer != nil {
+			timer.Stop()
+		}
+	}
+
+	return debouncedFn, cancelFn
+}
+
+// Throttle creates a throttled version of the provided function.
+// The returned function guarantees that it will only be invoked at most once per interval.
+// Play: https://go.dev/play/p/HpoMov-tJSN
+func Throttle(fn func(), interval time.Duration) func() {
+	var (
+		timer   *time.Timer
+		lastRun time.Time
+		mu      sync.Mutex
+	)
+
+	return func() {
+		mu.Lock()
+		defer mu.Unlock()
+
+		now := time.Now()
+		if now.Sub(lastRun) >= interval {
+			fn()
+			lastRun = now
+			if timer != nil {
+				timer.Stop()
+				timer = nil
+			}
+		} else if timer == nil {
+			delay := interval - now.Sub(lastRun)
+
+			timer = time.AfterFunc(delay, func() {
+				mu.Lock()
+				defer mu.Unlock()
+
+				fn()
+				lastRun = time.Now()
+				timer = nil
+			})
+		}
+	}
 }
 
 // Schedule invoke function every duration time, util close the returned bool channel.
 // Play: https://go.dev/play/p/hbON-Xeyn5N
-func Schedule(d time.Duration, fn any, args ...any) chan bool {
+func Schedule(duration time.Duration, fn any, args ...any) chan bool {
 	// Catch programming error while constructing the closure
 	mustBeFunction(fn)
 
 	quit := make(chan bool)
+
 	go func() {
 		for {
 			unsafeInvokeFunc(fn, args...)
+
 			select {
-			case <-time.After(d):
+			case <-time.After(duration):
 			case <-quit:
 				return
 			}

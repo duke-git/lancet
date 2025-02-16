@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	"math/big"
 	"reflect"
 	"strconv"
 	"testing"
@@ -740,4 +741,84 @@ func TestToRawUrlBase64(t *testing.T) {
 	r15 := ToRawUrlBase64("4+3/4?=")
 	d15, _ := base64.RawURLEncoding.DecodeString(r15)
 	assert.Equal("4+3/4?=", string(d15))
+}
+
+func TestToBigInt(t *testing.T) {
+	t.Parallel()
+	assert := internal.NewAssert(t, "TestToBigInt")
+
+	tests := []struct {
+		name   string
+		input  any
+		want   *big.Int
+		hasErr bool
+	}{
+		{
+			name:  "int",
+			input: 42,
+			want:  big.NewInt(42),
+		},
+		{
+			name:  "int8",
+			input: int8(127),
+			want:  big.NewInt(127),
+		},
+		{
+			name:  "int16",
+			input: int16(32000),
+			want:  big.NewInt(32000),
+		},
+		{
+			name:  "int32",
+			input: int32(123456),
+			want:  big.NewInt(123456),
+		},
+		{
+			name:  "int64",
+			input: int64(987654321),
+			want:  big.NewInt(987654321),
+		},
+		{
+			name:  "uint",
+			input: uint(987654321),
+			want:  big.NewInt(987654321),
+		},
+		{
+			name:  "uint8",
+			input: uint8(255),
+			want:  big.NewInt(255),
+		},
+		{
+			name:  "uint16",
+			input: uint16(65535),
+			want:  big.NewInt(65535),
+		},
+		{
+			name:  "uint32",
+			input: uint32(4294967295),
+			want:  big.NewInt(4294967295),
+		},
+		{
+			name:  "uint64",
+			input: uint64(18446744073709551615),
+			want:  new(big.Int).SetUint64(18446744073709551615),
+		},
+		{
+			name:   "unsupported type",
+			input:  3.14, // Unsupported type
+			hasErr: true,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got, err := ToBigInt(tt.input)
+			if (err != nil) != tt.hasErr {
+				t.Errorf("ToBigInt() error = %v, hasErr %v", err, tt.hasErr)
+				return
+			}
+
+			assert.Equal(tt.want, got)
+		})
+	}
 }

@@ -1,4 +1,4 @@
-# Lancet Contributing Guide
+# Lancet Contribution Guide
 
 Hi! Thank you for choosing Lancet.
 

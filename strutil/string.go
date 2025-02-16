@@ -5,12 +5,17 @@ package strutil
 
 import (
 	"errors"
+	"math/rand"
 	"regexp"
 	"strings"
+	"time"
 	"unicode"
 	"unicode/utf8"
 	"unsafe"
 )
+
+// used in `Shuffle` function
+var rng = rand.New(rand.NewSource(int64(time.Now().UnixNano())))
 
 // CamelCase coverts string to camelCase string. Non letters and numbers will be ignored.
 // Play: https://go.dev/play/p/9eXP3tn2tUy
@@ -70,7 +75,7 @@ func LowerFirst(s string) string {
 	return string(r) + s[size:]
 }
 
-// PadStart pads string on the left and right side if it's shorter than size.
+// Pad pads string on the left and right side if it's shorter than size.
 // Padding characters are truncated if they exceed size.
 // Play: https://go.dev/play/p/NzImQq-VF8q
 func Pad(source string, size int, padStr string) string {
@@ -621,6 +626,8 @@ func HammingDistance(a, b string) (int, error) {
 // Concat uses the strings.Builder to concatenate the input strings.
 //   - `length` is the expected length of the concatenated string.
 //   - if you are unsure about the length of the string to be concatenated, please pass 0 or a negative number.
+//
+// Play: https://go.dev/play/p/gD52SZHr4Kp
 func Concat(length int, str ...string) string {
 	if len(str) == 0 {
 		return ""
@@ -637,4 +644,115 @@ func Concat(length int, str ...string) string {
 		sb.WriteString(s)
 	}
 	return sb.String()
+}
+
+// Ellipsis truncates a string to a specified length and appends an ellipsis.
+// Play: https://go.dev/play/p/i1vbdQiQVRR
+func Ellipsis(str string, length int) string {
+	str = strings.TrimSpace(str)
+
+	if length <= 0 {
+		return ""
+	}
+
+	runes := []rune(str)
+
+	if len(runes) <= length {
+		return str
+	}
+
+	return string(runes[:length]) + "..."
+}
+
+// Shuffle the order of characters of given string.
+// Play: https://go.dev/play/p/iStFwBwyGY7
+func Shuffle(str string) string {
+	runes := []rune(str)
+
+	for i := len(runes) - 1; i > 0; i-- {
+		j := rng.Intn(i + 1)
+		runes[i], runes[j] = runes[j], runes[i]
+	}
+
+	return string(runes)
+}
+
+// Rotate rotates the string by the specified number of characters.
+// Play: https://go.dev/play/p/Kf03iOeT5bd
+func Rotate(str string, shift int) string {
+	if shift == 0 {
+		return str
+	}
+
+	runes := []rune(str)
+	length := len(runes)
+	if length == 0 {
+		return str
+	}
+
+	shift = shift % length
+
+	if shift < 0 {
+		shift = length + shift
+	}
+
+	var sb strings.Builder
+	sb.Grow(length)
+
+	sb.WriteString(string(runes[length-shift:]))
+	sb.WriteString(string(runes[:length-shift]))
+
+	return sb.String()
+}
+
+// TemplateReplace replaces the placeholders in the template string with the corresponding values in the data map.
+// The placeholders are enclosed in curly braces, e.g. {key}.
+// for example, the template string is "Hello, {name}!", and the data map is {"name": "world"},
+// the result will be "Hello, world!".
+// Play: https://go.dev/play/p/cXSuFvyZqv9
+func TemplateReplace(template string, data map[string]string) string {
+	re := regexp.MustCompile(`\{(\w+)\}`)
+
+	result := re.ReplaceAllStringFunc(template, func(s string) string {
+		key := strings.Trim(s, "{}")
+		if val, ok := data[key]; ok {
+			return val
+		}
+
+		return s
+	})
+
+	result = strings.ReplaceAll(result, "{{", "{")
+	result = strings.ReplaceAll(result, "}}", "}")
+
+	return result
+}
+
+// RegexMatchAllGroups Matches all subgroups in a string using a regular expression and returns the result.
+// Play: https://go.dev/play/p/JZiu0RXpgN-
+func RegexMatchAllGroups(pattern, str string) [][]string {
+	re := regexp.MustCompile(pattern)
+	matches := re.FindAllStringSubmatch(str, -1)
+	return matches
+}
+
+// ExtractContent extracts the content between the start and end strings in the source string.
+// Play: https://go.dev/play/p/Ay9UIk7Rum9
+func ExtractContent(s, start, end string) []string {
+	result := []string{}
+
+	for {
+		if _, after, ok := strings.Cut(s, start); ok {
+			if before, _, ok := strings.Cut(after, end); ok {
+				result = append(result, before)
+				s = after
+			} else {
+				break
+			}
+		} else {
+			break
+		}
+	}
+
+	return result
 }

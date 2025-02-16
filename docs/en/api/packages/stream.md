@@ -939,3 +939,69 @@ func main() {
     // [1 2 3]
 }
 ```
+
+### <span id="IndexOf">IndexOf</span>
+
+<p>Returns the index of the first occurrence of the specified element in this stream, or -1 if this stream does not contain the element.</p>
+
+<b>Signature:</b>
+
+```go
+func (s Stream[T]) IndexOf(target T, equal func(a, b T) bool) int
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/tBV5Nc-XDX2)</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/stream"
+)
+
+func main() {
+    s := stream.FromSlice([]int{1, 2, 3, 2})
+
+    result1 := s.IndexOf(0, func(a, b int) bool { return a == b })
+    result2 := s.IndexOf(2, func(a, b int) bool { return a == b })
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+
+    // Output:
+    // -1
+    // 1
+}
+```
+
+### <span id="LastIndexOf">LastIndexOf</span>
+
+<p>Returns the index of the last occurrence of the specified element in this stream, or -1 if this stream does not contain the element.</p>
+
+<b>Signature:</b>
+
+```go
+func (s Stream[T]) LastIndexOf(target T, equal func(a, b T) bool) int
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/CjeoNw2eac_G)</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/stream"
+)
+
+func main() {
+    s := stream.FromSlice([]int{1, 2, 3, 2})
+
+    result1 := s.LastIndexOf(0, func(a, b int) bool { return a == b })
+    result2 := s.LastIndexOf(2, func(a, b int) bool { return a == b })
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+
+    // Output:
+    // -1
+    // 3
+}
+```

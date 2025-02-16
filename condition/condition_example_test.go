@@ -148,13 +148,13 @@ func ExampleNand() {
 	// false
 }
 
-func ExampleTernaryOperator() {
+func ExampleTernary() {
 	conditionTrue := 2 > 1
-	result1 := TernaryOperator(conditionTrue, 0, 1)
+	result1 := Ternary(conditionTrue, 0, 1)
 	fmt.Println(result1)
 
 	conditionFalse := 2 > 3
-	result2 := TernaryOperator(conditionFalse, 0, 1)
+	result2 := Ternary(conditionFalse, 0, 1)
 	fmt.Println(result2)
 
 	// Output:

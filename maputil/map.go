@@ -70,7 +70,12 @@ func ValuesBy[K comparable, V any, T any](m map[K]V, mapper func(item V) T) []T 
 // Merge maps, next key will overwrite previous key.
 // Play: https://go.dev/play/p/H95LENF1uB-
 func Merge[K comparable, V any](maps ...map[K]V) map[K]V {
-	result := make(map[K]V, 0)
+	size := 0
+	for i := range maps {
+		size += len(maps[i])
+	}
+
+	result := make(map[K]V, size)
 
 	for _, m := range maps {
 		for k, v := range m {
@@ -310,7 +315,7 @@ func HasKey[K comparable, V any](m map[K]V, key K) bool {
 }
 
 // MapToStruct converts map to struct
-// Play: todo
+// Play: https://go.dev/play/p/7wYyVfX38Dp
 func MapToStruct(m map[string]any, structObj any) error {
 	for k, v := range m {
 		err := setStructField(structObj, k, v)
@@ -389,6 +394,7 @@ func getFieldNameByJsonTag(structObj any, jsonTag string) string {
 }
 
 // ToSortedSlicesDefault converts a map to two slices sorted by key: one for the keys and another for the values.
+// Play: https://go.dev/play/p/43gEM2po-qy
 func ToSortedSlicesDefault[K constraints.Ordered, V any](m map[K]V) ([]K, []V) {
 	keys := make([]K, 0, len(m))
 
@@ -413,6 +419,7 @@ func ToSortedSlicesDefault[K constraints.Ordered, V any](m map[K]V) ([]K, []V) {
 
 // ToSortedSlicesWithComparator converts a map to two slices sorted by key and using a custom comparison function:
 // one for the keys and another for the values.
+// Play: https://go.dev/play/p/0nlPo6YLdt3
 func ToSortedSlicesWithComparator[K comparable, V any](m map[K]V, comparator func(a, b K) bool) ([]K, []V) {
 	keys := make([]K, 0, len(m))
 
@@ -433,4 +440,229 @@ func ToSortedSlicesWithComparator[K comparable, V any](m map[K]V, comparator fun
 	}
 
 	return keys, sortedValues
+}
+
+// GetOrSet returns value of the given key or set the given value value if not present.
+// Play: https://go.dev/play/p/IVQwO1OkEJC
+func GetOrSet[K comparable, V any](m map[K]V, key K, value V) V {
+	if v, ok := m[key]; ok {
+		return v
+	}
+
+	m[key] = value
+
+	return value
+}
+
+// SortByKey sorts the map by its keys and returns a new map with sorted keys.
+// Play: https://go.dev/play/p/PVdmBSnm6P_W
+func SortByKey[K constraints.Ordered, V any](m map[K]V, less func(a, b K) bool) (sortedKeysMap map[K]V) {
+	keys := make([]K, 0, len(m))
+	for k := range m {
+		keys = append(keys, k)
+	}
+
+	sort.Slice(keys, func(i, j int) bool {
+		return less(keys[i], keys[j])
+	})
+
+	sortedKeysMap = make(map[K]V, len(m))
+	for _, k := range keys {
+		sortedKeysMap[k] = m[k]
+	}
+
+	return
+}
+
+var mapHandlers = map[reflect.Kind]func(reflect.Value, reflect.Value) error{
+	reflect.String:     convertNormal,
+	reflect.Int:        convertNormal,
+	reflect.Int16:      convertNormal,
+	reflect.Int32:      convertNormal,
+	reflect.Int64:      convertNormal,
+	reflect.Uint:       convertNormal,
+	reflect.Uint16:     convertNormal,
+	reflect.Uint32:     convertNormal,
+	reflect.Uint64:     convertNormal,
+	reflect.Float32:    convertNormal,
+	reflect.Float64:    convertNormal,
+	reflect.Uint8:      convertNormal,
+	reflect.Int8:       convertNormal,
+	reflect.Struct:     convertNormal,
+	reflect.Complex64:  convertNormal,
+	reflect.Complex128: convertNormal,
+}
+
+var _ = func() struct{} {
+	mapHandlers[reflect.Map] = convertMap
+	mapHandlers[reflect.Array] = convertSlice
+	mapHandlers[reflect.Slice] = convertSlice
+	return struct{}{}
+}()
+
+// MapTo try to map any interface to struct or base type
+/*
+	Eg:
+		v := map[string]interface{}{
+			"service":map[string]interface{}{
+				"ip":"127.0.0.1",
+				"port":1234,
+			},
+			version:"v1.0.01"
+		}
+
+		type Target struct {
+			Service struct {
+				Ip string `json:"ip"`
+				Port int `json:"port"`
+			} `json:"service"`
+			Ver string `json:"version"`
+		}
+
+		var dist Target
+		if err := maputil.MapTo(v,&dist); err != nil {
+			log.Println(err)
+			return
+		}
+
+		log.Println(dist)
+
+*/
+// Play: https://go.dev/play/p/4K7KBEPgS5M
+func MapTo(src any, dst any) error {
+	dstRef := reflect.ValueOf(dst)
+
+	if dstRef.Kind() != reflect.Ptr {
+		return fmt.Errorf("dst is not ptr")
+	}
+
+	dstElem := dstRef.Type().Elem()
+	if dstElem.Kind() == reflect.Struct {
+		srcMap := src.(map[string]interface{})
+		return MapToStruct(srcMap, dst)
+	}
+
+	dstRef = reflect.Indirect(dstRef)
+
+	srcRef := reflect.ValueOf(src)
+	if srcRef.Kind() == reflect.Ptr || srcRef.Kind() == reflect.Interface {
+		srcRef = srcRef.Elem()
+	}
+
+	if f, ok := mapHandlers[srcRef.Kind()]; ok {
+		return f(srcRef, dstRef)
+	}
+
+	return fmt.Errorf("no implemented:%s", srcRef.Type())
+}
+
+func convertNormal(src reflect.Value, dst reflect.Value) error {
+	if dst.CanSet() {
+		if src.Type() == dst.Type() {
+			dst.Set(src)
+		} else if src.CanConvert(dst.Type()) {
+			dst.Set(src.Convert(dst.Type()))
+		} else {
+			return fmt.Errorf("can not convert:%s:%s", src.Type().String(), dst.Type().String())
+		}
+	}
+	return nil
+}
+
+func convertSlice(src reflect.Value, dst reflect.Value) error {
+	if dst.Kind() != reflect.Array && dst.Kind() != reflect.Slice {
+		return fmt.Errorf("error type:%s", dst.Type().String())
+	}
+	l := src.Len()
+	target := reflect.MakeSlice(dst.Type(), l, l)
+	if dst.CanSet() {
+		dst.Set(target)
+	}
+	for i := 0; i < l; i++ {
+		srcValue := src.Index(i)
+		if srcValue.Kind() == reflect.Ptr || srcValue.Kind() == reflect.Interface {
+			srcValue = srcValue.Elem()
+		}
+		if f, ok := mapHandlers[srcValue.Kind()]; ok {
+			err := f(srcValue, dst.Index(i))
+			if err != nil {
+				return err
+			}
+		}
+	}
+
+	return nil
+}
+
+func convertMap(src reflect.Value, dst reflect.Value) error {
+	if src.Kind() != reflect.Map || dst.Kind() != reflect.Struct {
+		if src.Kind() == reflect.Interface && dst.IsValid() {
+			return convertMap(src.Elem(), dst)
+		} else {
+			return fmt.Errorf("src or dst type error,%s,%s", src.Type().String(), dst.Type().String())
+		}
+	}
+	dstType := dst.Type()
+	num := dstType.NumField()
+
+	exist := map[string]int{}
+
+	for i := 0; i < num; i++ {
+		k := dstType.Field(i).Tag.Get("json")
+		if k == "" {
+			k = dstType.Field(i).Name
+		}
+		if strings.Contains(k, ",") {
+			taglist := strings.Split(k, ",")
+			if taglist[0] == "" {
+				k = dstType.Field(i).Name
+			} else {
+				k = taglist[0]
+
+			}
+
+		}
+		exist[k] = i
+	}
+
+	keys := src.MapKeys()
+
+	for _, key := range keys {
+		if index, ok := exist[key.String()]; ok {
+			v := dst.Field(index)
+
+			if v.Kind() == reflect.Struct {
+				err := convertMap(src.MapIndex(key), v)
+				if err != nil {
+					return err
+				}
+			} else {
+				if v.CanSet() {
+					if v.Type() == src.MapIndex(key).Elem().Type() {
+						v.Set(src.MapIndex(key).Elem())
+					} else if src.MapIndex(key).Elem().CanConvert(v.Type()) {
+						v.Set(src.MapIndex(key).Elem().Convert(v.Type()))
+					} else if f, ok := mapHandlers[src.MapIndex(key).Elem().Kind()]; ok && f != nil {
+						err := f(src.MapIndex(key).Elem(), v)
+						if err != nil {
+							return err
+						}
+					} else {
+						return fmt.Errorf("error type:d(%s)s(%s)", v.Type(), src.Type())
+					}
+				}
+			}
+		}
+	}
+
+	return nil
+}
+
+// GetOrDefault returns the value of the given key or a default value if the key is not present.
+// Play: https://go.dev/play/p/99QjSYSBdiM
+func GetOrDefault[K comparable, V any](m map[K]V, key K, defaultValue V) V {
+	if v, ok := m[key]; ok {
+		return v
+	}
+	return defaultValue
 }

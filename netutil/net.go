@@ -21,20 +21,47 @@ import (
 // GetInternalIp return internal ipv4.
 // Play: https://go.dev/play/p/5mbu-gFp7ei
 func GetInternalIp() string {
-	addr, err := net.InterfaceAddrs()
+	addrs, err := net.InterfaceAddrs()
 	if err != nil {
 		panic(err.Error())
 	}
-	for _, a := range addr {
-		if ipNet, ok := a.(*net.IPNet); ok && !ipNet.IP.IsLoopback() {
-			if ipNet.IP.To4() != nil {
-				return ipNet.IP.String()
-			}
+
+	for _, addr := range addrs {
+		var ip net.IP
+		switch v := addr.(type) {
+		case *net.IPNet:
+			ip = v.IP
+		case *net.IPAddr:
+			ip = v.IP
+		}
+
+		if ip != nil && (ip.IsLinkLocalUnicast() || ip.IsGlobalUnicast()) {
+			continue
+		}
+
+		if ipv4 := ip.To4(); ipv4 != nil {
+			return ipv4.String()
 		}
 	}
 
 	return ""
 }
+
+// func GetInternalIp() string {
+// 	addr, err := net.InterfaceAddrs()
+// 	if err != nil {
+// 		panic(err.Error())
+// 	}
+// 	for _, a := range addr {
+// 		if ipNet, ok := a.(*net.IPNet); ok && !ipNet.IP.IsLoopback() {
+// 			if ipNet.IP.To4() != nil {
+// 				return ipNet.IP.String()
+// 			}
+// 		}
+// 	}
+
+// 	return ""
+// }
 
 // GetRequestPublicIp return the requested public ip.
 // Play: https://go.dev/play/p/kxU-YDc_eBo

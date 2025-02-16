@@ -119,58 +119,43 @@ func CreateDir(absPath string) error {
 // if dstPath exists, it will return an error.
 // Play: https://go.dev/play/p/YAyFTA_UuPb
 func CopyDir(srcPath string, dstPath string) error {
-	if !IsDir(srcPath) {
-		return errors.New("source path is not a directory")
-	}
-	var err error
-	srcPath, err = filepath.Abs(srcPath)
+	srcInfo, err := os.Stat(srcPath)
 	if err != nil {
-		return err
-	}
-	if IsExist(dstPath) {
-		return errors.New("destination path already exists")
-	}
-	dstPath, err = filepath.Abs(dstPath)
-	if err != nil {
-		return err
+		return fmt.Errorf("failed to get source directory info: %w", err)
 	}
 
-	// get srcPath's file info
-	srcFileInfo, err := os.Stat(srcPath)
-	if err != nil {
-		return err
+	if !srcInfo.IsDir() {
+		return fmt.Errorf("source path is not a directory: %s", srcPath)
 	}
 
-	// create dstPath with srcPath's mode
-	err = os.MkdirAll(dstPath, srcFileInfo.Mode())
+	err = os.MkdirAll(dstPath, 0755)
 	if err != nil {
-		return err
+		return fmt.Errorf("failed to create destination directory: %w", err)
 	}
 
-	err = filepath.Walk(srcPath, func(path string, info os.FileInfo, err error) error {
-		if srcPath == path {
-			return nil
-		}
-		curDstPath := filepath.Join(dstPath, filepath.Base(path))
-		if info.IsDir() {
-			err = CopyDir(path, curDstPath)
+	entries, err := os.ReadDir(srcPath)
+	if err != nil {
+		return fmt.Errorf("failed to read source directory: %w", err)
+	}
+
+	for _, entry := range entries {
+		srcDir := filepath.Join(srcPath, entry.Name())
+		dstDir := filepath.Join(dstPath, entry.Name())
+
+		if entry.IsDir() {
+			err := CopyDir(srcDir, dstDir)
 			if err != nil {
 				return err
 			}
 		} else {
-			err = CopyFile(path, curDstPath)
-			if err != nil {
-				return err
-			}
-			err = os.Chmod(curDstPath, info.Mode())
+			err := CopyFile(srcDir, dstDir)
 			if err != nil {
 				return err
 			}
 		}
-		return err
-	})
+	}
 
-	return err
+	return nil
 }
 
 // IsDir checks if the path is directory or not.
@@ -835,6 +820,7 @@ func WriteMapsToCsv(filepath string, records []map[string]any, appendToExistingF
 	if len(headers) > 0 {
 		columnHeaders = headers[0]
 	} else {
+		columnHeaders = make([]string, 0, len(records[0]))
 		for key := range records[0] {
 			columnHeaders = append(columnHeaders, key)
 		}
@@ -848,7 +834,7 @@ func WriteMapsToCsv(filepath string, records []map[string]any, appendToExistingF
 	}
 
 	for _, record := range records {
-		var row []string
+		row := make([]string, 0, len(columnHeaders))
 		for _, h := range columnHeaders {
 			row = append(row, fmt.Sprintf("%v", record[h]))
 		}

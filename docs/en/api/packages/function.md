@@ -28,7 +28,8 @@ import (
 -   [Before](#Before)
 -   [CurryFn](#CurryFn)
 -   [Compose](#Compose)
--   [Debounced](#Debounced)
+-   [Debounce](#Debounce)
+-   [Debounced<sup>deprecated</sup>](#Debounced)
 -   [Delay](#Delay)
 -   [Schedule](#Schedule)
 -   [Pipeline](#Pipeline)
@@ -40,6 +41,8 @@ import (
 -   [Xnor](#Xnor)
 -   [Nand](#Nand)
 -   [AcceptIf](#AcceptIf)
+-   [Throttle](#Throttle)
+
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -191,10 +194,58 @@ func main() {
     // ABCDE
 }
 ```
+### <span id="Debounce">Debounce</span>
+
+<p>Creates a debounced version of the provided function. The debounced function will only invoke the original function after the specified delay has passed since the last time it was invoked. It also supports canceling the debounce.</p>
+
+<b>Signature:</b>
+
+```go
+func Debounce(fn func(), delay time.Duration) (debouncedFn func(), cancelFn func())
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/-dGFrYn_1Zi)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/function"
+)
+
+func main() {
+    callCount := 0
+    fn := func() {
+        callCount++
+    }
+
+    debouncedFn, _ := function.Debounce(fn, 500*time.Millisecond)
+
+    for i := 0; i < 10; i++ {
+        debouncedFn()
+        time.Sleep(50 * time.Millisecond)
+    }
+
+    time.Sleep(1 * time.Second)
+    fmt.Println(callCount)
+
+    debouncedFn()
+
+    time.Sleep(1 * time.Second)
+    fmt.Println(callCount)
+
+    // Output:
+    // 1
+    // 2
+}
+```
 
 ### <span id="Debounced">Debounced</span>
 
 <p>Creates a debounced function that delays invoking fn until after wait duration have elapsed since the last time the debounced function was invoked.</p>
+
+> ⚠️ This function is deprecated. use `Debounce` instead.
 
 <b>Signature:</b>
 
@@ -689,5 +740,46 @@ func main() {
     // 0
     // false
 }
+```
 
+### <span id="Throttle">Throttle</span>
+
+<p>Throttle creates a throttled version of the provided function. The returned function guarantees that it will only be invoked at most once per interval.</p>
+
+<b>Signature:</b>
+
+```go
+func Throttle(fn func(), interval time.Duration) func()
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/HpoMov-tJSN)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/function"
+)
+
+func main() {
+    callCount := 0
+
+    fn := func() {
+        callCount++
+    }
+
+    throttledFn := function.Throttle(fn, 1*time.Second)
+
+    for i := 0; i < 5; i++ {
+        throttledFn()
+    }
+
+    time.Sleep(1 * time.Second)
+
+    fmt.Println(callCount)
+
+    // Output:
+    // 1
+}
 ```

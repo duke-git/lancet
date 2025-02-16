@@ -178,7 +178,7 @@ func ExampleAverage() {
 	fmt.Println(result2)
 
 	// Output:
-	// 1
+	// 1.5
 	// 1.3
 }
 
@@ -477,4 +477,52 @@ func ExampleDiv() {
 	// 2.25
 	// 0.5
 	// 0
+}
+
+func ExampleVariance() {
+	result1 := Variance([]int{1, 2, 3, 4, 5})
+	result2 := Variance([]float64{1.1, 2.2, 3.3, 4.4, 5.5})
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+
+	// Output:
+	// 2
+	// 2.42
+}
+
+func ExampleStdDev() {
+	result1 := TruncRound(StdDev([]int{1, 2, 3, 4, 5}), 2)
+	result2 := TruncRound(StdDev([]float64{1.1, 2.2, 3.3, 4.4, 5.5}), 2)
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+
+	// Output:
+	// 1.41
+	// 1.55
+}
+
+func ExamplePermutation() {
+	result1 := Permutation(5, 3)
+	result2 := Permutation(5, 5)
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+
+	// Output:
+	// 60
+	// 120
+}
+
+func ExampleCombination() {
+	result1 := Combination(5, 3)
+	result2 := Combination(5, 5)
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+
+	// Output:
+	// 10
+	// 1
 }

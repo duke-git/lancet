@@ -24,7 +24,7 @@ import (
 
 -   [New](#New)
 -   [FromSlice](#FromSlice)
--   [Values](#Values)
+-   [Values<sup>deprecated</sup>](#Values)
 -   [Add](#Add)
 -   [AddIfNotExist](#AddIfNotExist)
 -   [AddIfNotExistBy](#AddIfNotExistBy)
@@ -101,10 +101,11 @@ func main() {
 }
 ```
 
-### <span id="Values">Values<sup>deprecated</sup></span>
+### <span id="Values">Values</span>
 
-<p>获取集合中所有元素的切片<br>
-<a href='#ToSlice'>ToSlice()</a> 方法提供与 Values 方法相同的功能</p>
+<p>获取集合中所有元素的切片。</p>
+
+> ⚠️ 本函数已弃用，使用`ToSlice`代替。
 
 <b>函数签名:</b>
 

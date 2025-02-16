@@ -6,7 +6,8 @@ slice 包包含操作切片的方法集合。
 
 ## 源码:
 
--   [https://github.com/duke-git/lancet/blob/main/slice/slice.go](https://github.com/duke-git/lancet/blob/main/slice/slice.go)
+- [https://github.com/duke-git/lancet/blob/main/slice/slice.go](https://github.com/duke-git/lancet/blob/main/slice/slice.go)
+- [https://github.com/duke-git/lancet/blob/main/slice/slice_concurrent.go](https://github.com/duke-git/lancet/blob/main/slice/slice_concurrent.go)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -44,6 +45,7 @@ import (
 -   [Equal](#Equal)
 -   [EqualWith](#EqualWith)
 -   [Filter](#Filter)
+-   [FilterConcurrent](#FilterConcurrent)
 -   [Find<sup>deprecated</sup>](#Find)
 -   [FindBy](#FindBy)
 -   [FindLast<sup>deprecated</sup>](#FindLast)
@@ -51,6 +53,7 @@ import (
 -   [Flatten](#Flatten)
 -   [FlattenDeep](#FlattenDeep)
 -   [ForEach](#ForEach)
+-   [ForEachConcurrent](#ForEachConcurrent)
 -   [ForEachWithBreak](#ForEachWithBreak)
 -   [GroupBy](#GroupBy)
 -   [GroupWith](#GroupWith)
@@ -61,11 +64,13 @@ import (
 -   [IndexOf](#IndexOf)
 -   [LastIndexOf](#LastIndexOf)
 -   [Map](#Map)
+-   [MapConcurrent](#MapConcurrent)
 -   [FilterMap](#FilterMap)
 -   [FlatMap](#FlatMap)
 -   [Merge](#Merge)
 -   [Reverse](#Reverse)
 -   [Reduce<sup>deprecated</sup>](#Reduce)
+-   [ReduceConcurrent](#ReduceConcurrent)
 -   [ReduceBy](#ReduceBy)
 -   [ReduceRight](#ReduceRight)
 -   [Replace](#Replace)
@@ -86,6 +91,9 @@ import (
 -   [ToSlicePointer](#ToSlicePointer)
 -   [Unique](#Unique)
 -   [UniqueBy](#UniqueBy)
+-   [UniqueByComparator](#UniqueByComparator)
+-   [UniqueByField](#UniqueByField)
+-   [UniqueByConcurrent](#UniqueByConcurrent)
 -   [Union](#Union)
 -   [UnionBy](#UnionBy)
 -   [UpdateAt](#UpdateAt)
@@ -97,6 +105,10 @@ import (
 -   [Break](#Break)
 -   [RightPadding](#RightPadding)
 -   [LeftPadding](#LeftPadding)
+-   [Frequency](#Frequency)
+-   [JoinFunc](#JoinFunc)
+-   [ConcatBy](#ConcatBy)
+
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -322,12 +334,12 @@ func main() {
 
 ### <span id="Concat">Concat</span>
 
-<p>合并多个slices到slice中</p>
+<p>创建一个新的切片，将传入的切片拼接起来返回。</p>
 
 <b>函数签名:</b>
 
 ```go
-func Concat[T any](slice []T, slices ...[]T) []T
+func Concat[T any](slices ...[]T) []T
 ```
 
 <b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/gPt-q7zr5mk)</span></b>
@@ -896,9 +908,45 @@ func main() {
 }
 ```
 
-### <span id="Find">Find (废弃：使用 FindBy)</span>
+### <span id="FilterConcurrent">FilterConcurrent</span>
+
+<p>对slice并发执行filter操作。</p>
+
+<b>函数签名:</b>
+
+```go
+func FilterConcurrent[T any](slice []T, predicate func(index int, item T) bool, numThreads int) []T
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/t_pkwerIRVx)</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+    nums := []int{1, 2, 3, 4, 5}
+
+    isEven := func(i, num int) bool {
+        return num%2 == 0
+    }
+
+    result := slice.FilterConcurrent(nums, isEven, 2)
+
+    fmt.Println(result)
+
+    // Output:
+    // [2 4]
+}
+```
+
+### <span id="Find">Find</span>
 
 <p>遍历slice的元素，返回第一个通过predicate函数真值测试的元素</p>
+
+> ⚠️ 本函数已弃用，使用`FindBy`代替。
 
 <b>函数签名:</b>
 
@@ -968,9 +1016,11 @@ func main() {
 }
 ```
 
-### <span id="FindLast">FindLast(废弃：使用 FindLastBy)</span>
+### <span id="FindLast">FindLast</span>
 
 <p>遍历slice的元素，返回最后一个通过predicate函数真值测试的元素。</p>
+
+> ⚠️ 本函数已弃用，使用`FindLastBy`代替。
 
 <b>函数签名:</b>
 
@@ -1135,6 +1185,43 @@ func main() {
 }
 ```
 
+### <span id="ForEachConcurrent">ForEachConcurrent</span>
+
+<p>对slice并发执行foreach操作。</p>
+
+<b>函数签名:</b>
+
+```go
+func ForEachConcurrent[T any](slice []T, iteratee func(index int, item T), numThreads int)
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/kT4XW7DKVoV)</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+    nums := []int{1, 2, 3, 4, 5, 6, 7, 8}
+
+    result := make([]int, len(nums))
+
+    addOne := func(index int, value int) {
+        result[index] = value + 1
+    }
+
+    slice.ForEachConcurrent(nums, addOne, 4)
+
+    fmt.Println(result)
+
+    // Output:
+    // [2 3 4 5 6 7 8 9]
+}
+```
+
+
 ### <span id="ForEachWithBreak">ForEachWithBreak</span>
 
 <p>遍历切片的元素并为每个元素调用iteratee函数，当iteratee函数返回false时，终止遍历。</p>
@@ -1243,9 +1330,11 @@ func main() {
 }
 ```
 
-### <span id="IntSlice">IntSlice (已弃用: 使用 go1.18+泛型代替)</span>
+### <span id="IntSlice">IntSlice</span>
 
 <p>将接口切片转换为int切片</p>
+
+> ⚠️ 本函数已弃用，使用go1.18+泛型代替。
 
 <b>函数签名:</b>
 
@@ -1272,9 +1361,11 @@ func main() {
 }
 ```
 
-### <span id="InterfaceSlice">InterfaceSlice(已弃用: 使用 go1.18+泛型代替)</span>
+### <span id="InterfaceSlice">InterfaceSlice</span>
 
 <p>将值转换为接口切片</p>
+
+> ⚠️ 本函数已弃用，使用go1.18+泛型代替。
 
 <b>函数签名:</b>
 
@@ -1440,7 +1531,7 @@ func main() {
 
 ### <span id="Map">Map</span>
 
-<p>对slice中的每个元素执行map函数以创建一个新切片</p>
+<p>对slice中的每个元素执行map函数以创建一个新切片。</p>
 
 <b>函数签名:</b>
 
@@ -1469,6 +1560,38 @@ func main() {
 
     // Output:
     // [2 3 4]
+}
+```
+
+### <span id="MapConcurrent">MapConcurrent</span>
+
+<p>对slice并发执行map操作。</p>
+
+<b>函数签名:</b>
+
+```go
+func MapConcurrent[T any, U any](slice []T, iteratee func(index int, item T) U, numThreads int) []U
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/H1ehfPkPen0)</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+    nums := []int{1, 2, 3, 4, 5, 6}
+    
+    result := slice.MapConcurrent(nums, func(_, n int) int {     
+        return n * n 
+    }, 4)
+
+    fmt.Println(result)
+
+    // Output:
+    // [1 4 9 16 25 36]
 }
 ```
 
@@ -1546,6 +1669,8 @@ func main() {
 
 <p>合并多个切片（不会消除重复元素).</p>
 
+> ⚠️ 本函数已弃用，使用`Concat`代替。
+
 <b>函数签名:</b>
 
 ```go
@@ -1605,7 +1730,9 @@ func main() {
 
 ### <span id="Reduce">Reduce</span>
 
-<p>将切片中的元素依次运行iteratee函数，返回运行结果(废弃：建议使用ReduceBy)</p>
+<p>将切片中的元素依次运行iteratee函数，返回运行结果。</p>
+
+> ⚠️ 本函数已弃用，使用`ReduceBy`代替。
 
 <b>函数签名:</b>
 
@@ -1634,6 +1761,38 @@ func main() {
 
     // Output:
     // 6
+}
+```
+
+### <span id="ReduceConcurrent">ReduceConcurrent</span>
+
+<p>对切片元素执行并发reduce操作。</p>
+
+<b>函数签名:</b>
+
+```go
+func ReduceConcurrent[T any](slice []T, initial T, reducer func(index int, item T, agg T) T, numThreads int) T
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/Tjwe6OtaG07)</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+    nums := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+    
+    result := slice.ReduceConcurrent(nums, 0, func(_ int, item, agg int) int {
+        return agg + item
+    }, 1)
+
+    fmt.Println(result)
+
+    // Output:
+    // 55
 }
 ```
 
@@ -2131,9 +2290,11 @@ func main() {
 }
 ```
 
-### <span id="StringSlice">StringSlice(已弃用: 使用 go1.18+泛型代替)</span>
+### <span id="StringSlice">StringSlice</span>
 
 <p>将接口切片转换为字符串切片</p>
+
+> ⚠️ 本函数已弃用，使用go1.18+泛型代替。
 
 <b>函数签名:</b>
 
@@ -2283,15 +2444,15 @@ func main() {
 
 ### <span id="UniqueBy">UniqueBy</span>
 
-<p>对切片的每个元素调用iteratee函数，然后删除重复元素</p>
+<p>根据迭代函数返回的值，从输入切片中移除重复元素。此函数保持元素的顺序。</p>
 
 <b>函数签名:</b>
 
 ```go
-func UniqueBy[T comparable](slice []T, iteratee func(item T) T) []T
+func UniqueBy[T any, U comparable](slice []T, iteratee func(item T) U) []T
 ```
 
-<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/UR323iZLDpv)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/GY7JE4yikrl)</span></b>
 
 ```go
 import (
@@ -2308,7 +2469,114 @@ func main() {
     fmt.Println(result)
 
     // Output:
-    // [1 2 0]
+    // [1 2 3]
+}
+```
+
+### <span id="UniqueByComparator">UniqueByComparator</span>
+
+<p>使用提供的比较器函数从输入切片中移除重复元素。此函数保持元素的顺序。</p>
+
+<b>函数签名:</b>
+
+```go
+func UniqueByComparator[T comparable](slice []T, comparator func(item T, other T) bool) []T
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/rwSacr-ZHsR)</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/slice"
+)
+
+func main() {
+    uniqueNums := slice.UniqueByComparator([]int{1, 2, 3, 1, 2, 4, 5, 6, 4}, func(item int, other int) bool {
+        return item == other
+    })
+
+    caseInsensitiveStrings := slice.UniqueByComparator([]string{"apple", "banana", "Apple", "cherry", "Banana", "date"}, func(item string, other string) bool {
+        return strings.ToLower(item) == strings.ToLower(other)
+    })
+
+    fmt.Println(uniqueNums)
+    fmt.Println(caseInsensitiveStrings)
+
+    // Output:
+    // [1 2 3 4 5 6]
+    // [apple banana cherry date]
+}
+```
+
+### <span id="UniqueByConcurrent">UniqueByConcurrent</span>
+
+<p>并发的从输入切片中移除重复元素，结果保持元素的顺序。</p>
+
+<b>函数签名:</b>
+
+```go
+func UniqueByConcurrent[T comparable](slice []T, comparator func(item T, other T) bool, numThreads int) []T
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/wXZ7LcYRMGL)</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/slice"
+)
+
+func main() {
+    nums := []int{1, 2, 3, 1, 2, 4, 5, 6, 4, 7}
+    comparator := func(item int, other int) bool { return item == other }
+
+    result := slice.UniqueByConcurrent(nums, comparator, 4)
+
+    fmt.Println(result)
+    // Output:
+    // [1 2 3 4 5 6 7]
+}
+```
+
+### <span id="UniqueByField">UniqueByField</span>
+
+<p>根据struct字段对struct切片去重复。</p>
+
+<b>函数签名:</b>
+
+```go
+func UniqueByField[T any](slice []T, field string) ([]T, error)
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/6cifcZSPIGu)</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/slice"
+)
+
+func main() {
+    type User struct {
+        ID   int    `json:"id"`
+        Name string `json:"name"`
+    }
+
+    users := []User{
+        {ID: 1, Name: "a"},
+        {ID: 2, Name: "b"},
+        {ID: 1, Name: "c"},
+    }
+
+    result, err := slice.UniqueByField(users, "ID")
+    if err != nil {
+    }
+
+    fmt.Println(result)
+
+    // Output:
+    // [{1 a} {2 b}]
 }
 ```
 
@@ -2594,14 +2862,14 @@ import (
 
 func main() {
     strs := []string{"a", "b", "a", "c", "d", "a"}
-	modifiedStrs, count := slice.SetToDefaultIf(strs, func(s string) bool { return "a" == s })
-	
+    modifiedStrs, count := slice.SetToDefaultIf(strs, func(s string) bool { return "a" == s })
+    
     fmt.Println(modifiedStrs)
-	fmt.Println(count)
-	
+    fmt.Println(count)
+    
     // Output:
-	// [ b  c d ]
-	// 3
+    // [ b  c d ]
+    // 3
 }
 ```
 
@@ -2615,7 +2883,7 @@ func main() {
 func Break[T any](values []T, predicate func(T) bool) ([]T, []T)
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/yLYcBTyeQIz)</span></b>
 
 ```go
 import (
@@ -2638,7 +2906,7 @@ func main() {
 }
 ```
 
-<span id="RightPadding">RightPadding</span>
+### <span id="RightPadding">RightPadding</span>
 
 <p>在切片的右部添加元素。</p>
 
@@ -2648,7 +2916,7 @@ func main() {
 func RightPadding[T any](slice []T, paddingValue T, paddingLength int) []T
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/0_2rlLEMBXL)</span></b>
 
 ```go
 import (
@@ -2657,15 +2925,15 @@ import (
 )
 
 func main() {
-  	nums := []int{1, 2, 3, 4, 5}
-	padded := slice.RightPadding(nums, 0, 3)
-	fmt.Println(padded)
-	// Output:
-	// [1 2 3 4 5 0 0 0]
+    nums := []int{1, 2, 3, 4, 5}
+    padded := slice.RightPadding(nums, 0, 3)
+    fmt.Println(padded)
+    // Output:
+    // [1 2 3 4 5 0 0 0]
 }
 ```
 
-<span id="LeftPadding">LeftPadding</span>
+### <span id="LeftPadding">LeftPadding</span>
 
 <p>在切片的左部添加元素。</p>
 
@@ -2675,7 +2943,7 @@ func main() {
 func LeftPadding[T any](slice []T, paddingValue T, paddingLength int) []T
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/jlQVoelLl2k)</span></b>
 
 ```go
 import (
@@ -2684,10 +2952,116 @@ import (
 )
 
 func main() {
-  	nums := []int{1, 2, 3, 4, 5}
-	padded := slice.LeftPadding(nums, 0, 3)
-	fmt.Println(padded)
-	// Output:
-	// [0 0 0 1 2 3 4 5]
+    nums := []int{1, 2, 3, 4, 5}
+    padded := slice.LeftPadding(nums, 0, 3)
+    fmt.Println(padded)
+    // Output:
+    // [0 0 0 1 2 3 4 5]
+}
+```
+
+### <span id="Frequency">Frequency</span>
+
+<p>计算切片中每个元素出现的频率。</p>
+
+<b>函数签名:</b>
+
+```go
+func Frequency[T comparable](slice []T) map[T]int
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/CW3UVNdUZOq)</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+    strs := []string{"a", "b", "b", "c", "c", "c"}
+    result := slice.Frequency(strs)
+
+    fmt.Println(result)
+
+    // Output:
+    // map[a:1 b:2 c:3]
+}
+```
+
+### <span id="JoinFunc">JoinFunc</span>
+
+<p>将切片元素用给定的分隔符连接成一个单一的字符串。</p>
+
+<b>函数签名:</b>
+
+```go
+func JoinFunc[T any](slice []T, sep string, transform func(T) T) string
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/55ib3SB5fM2)</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+    result := slice.JoinFunc([]string{"a", "b", "c"}, ", ", func(s string) string {
+        return strings.ToUpper(s)
+    })
+
+    fmt.Println(result)
+
+    // Output:
+    // A, B, C
+}
+```
+
+### <span id="ConcatBy">ConcatBy</span>
+
+<p>将切片中的元素连接成一个值，使用指定的分隔符和连接器函数。</p>
+
+<b>函数签名:</b>
+
+```go
+func ConcatBy[T any](slice []T, sep T, connector func(T, T) T) T
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/6QcUpcY4UMW)</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+    type Person struct {
+        Name string
+        Age  int
+    }
+
+    people := []Person{
+        {Name: "Alice", Age: 30},
+        {Name: "Bob", Age: 25},
+        {Name: "Charlie", Age: 35},
+    }
+
+    sep := Person{Name: " | ", Age: 0}
+
+    personConnector := func(a, b Person) Person {
+        return Person{Name: a.Name + b.Name, Age: a.Age + b.Age}
+    }
+
+    result := slice.ConcatBy(people, sep, personConnector)
+
+    fmt.Println(result.Name)
+    fmt.Println(result.Age)
+
+    // Output:
+    // Alice | Bob | Charlie
+    // 90
 }
 ```

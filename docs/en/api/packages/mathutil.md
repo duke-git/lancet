@@ -52,6 +52,10 @@ import (
 -   [Sum](#Sum)
 -   [Abs](#Abs)
 -   [Div](#Div)
+-   [Variance](#Variance)
+-   [StdDev](#StdDev)
+-   [Permutation](#Permutation)
+-   [Combination](#Combination)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -64,7 +68,7 @@ import (
 <b>Signature:</b>
 
 ```go
-func Average[T constraints.Integer | constraints.Float](numbers ...T) T
+func Average[T constraints.Integer | constraints.Float](numbers ...T) float64
 ```
 
 <b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/Vv7LBwER-pz)</span></b>
@@ -87,7 +91,7 @@ func main() {
     fmt.Println(result2)
 
     // Output:
-    // 1
+    // 1.5
     // 1.3
 }
 ```
@@ -1160,5 +1164,137 @@ func main() {
     // 2.25
     // 0.5
     // 0
+}
+```
+
+### <span id="Variance">Variance</span>
+
+<p>Returns the variance of numbers.</p>
+
+<b>Signature:</b>
+
+```go
+func Variance[T constraints.Float | constraints.Integer](numbers []T) float64
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/uHuV4YgXf8F)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/mathutil"
+)
+
+func main() {
+    result1 := mathutil.Variance([]int{1, 2, 3, 4, 5})
+    result2 := mathutil.Variance([]float64{1.1, 2.2, 3.3, 4.4, 5.5})
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+
+    // Output:
+    // 2
+    // 2.42
+}
+```
+
+### <span id="StdDev">StdDev</span>
+
+<p>Returns the standard deviation of numbers.</p>
+
+<b>Signature:</b>
+
+```go
+func StdDev[T constraints.Float | constraints.Integer](numbers []T) float64
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/FkNZDXvHD2l)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/mathutil"
+)
+
+func main() {
+    result1 := mathutil.TruncRound(mathutil.StdDev([]int{1, 2, 3, 4, 5}), 2)
+    result2 := mathutil.TruncRound(mathutil.StdDev([]float64{1.1, 2.2, 3.3, 4.4, 5.5}), 2)
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+
+    // Output:
+    // 1.41
+    // 1.55
+}
+```
+
+### <span id="Permutation">Permutation</span>
+
+<p>Calculates P(n, k).</p>
+
+<b>Signature:</b>
+
+```go
+func Permutation(n, k uint) uint
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/MgobwH_FOxj)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/mathutil"
+)
+
+func main() {
+    result1 := mathutil.Permutation(5, 3)
+	result2 := mathutil.Permutation(5, 5)
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+
+	// Output:
+	// 60
+	// 120
+}
+```
+
+### <span id="Combination">Combination</span>
+
+<p>Calculates C(n, k).</p>
+
+<b>Signature:</b>
+
+```go
+func Combination(n, k uint) uint
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/ENFQRDQUFi9)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/mathutil"
+)
+
+func main() {
+    result1 := mathutil.Combination(5, 3)
+	result2 := mathutil.Combination(5, 5)
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+
+	// Output:
+	// 10
+	// 1
 }
 ```

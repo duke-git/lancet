@@ -30,6 +30,7 @@ package datetime
 
 import (
 	"fmt"
+	"runtime"
 	"strings"
 	"time"
 )
@@ -382,11 +383,110 @@ func TimestampNano(timezone ...string) int64 {
 	return t.UnixNano()
 }
 
-// TraceFuncTime: trace the func costed time,just call it at top of the func like `defer TraceFuncTime()()`
-func TraceFuncTime() func() {
-	pre := time.Now()
+// TrackFuncTime track the time of function execution.
+// call it at top of the func like `defer TrackFuncTime(time.Now())()`
+// Play: https://go.dev/play/p/QBSEdfXHPTp
+func TrackFuncTime(pre time.Time) func() {
+	callerName := getCallerName()
 	return func() {
 		elapsed := time.Since(pre)
-		fmt.Println("Costs Time:\t", elapsed)
+		fmt.Printf("Function %s execution time:\t %v", callerName, elapsed)
 	}
+}
+
+func getCallerName() string {
+	pc, _, _, ok := runtime.Caller(2)
+	if !ok {
+		return "Unknown"
+	}
+	fn := runtime.FuncForPC(pc)
+	if fn == nil {
+		return "Unknown"
+	}
+
+	fullName := fn.Name()
+	if lastDot := strings.LastIndex(fullName, "."); lastDot != -1 {
+		return fullName[lastDot+1:]
+	}
+
+	return fullName
+}
+
+// DaysBetween returns the number of days between two times.
+// Play: https://go.dev/play/p/qD6qGb3TbOy
+func DaysBetween(start, end time.Time) int {
+	duration := end.Sub(start)
+	days := int(duration.Hours() / 24)
+
+	return days
+}
+
+// GenerateDatetimesBetween returns a slice of strings between two times.
+// layout: the format of the datetime string
+// interval: the interval between two datetimes
+// Play: https://go.dev/play/p/6kHBpAxD9ZC
+func GenerateDatetimesBetween(start, end time.Time, layout string, interval string) ([]string, error) {
+	var result []string
+
+	if start.After(end) {
+		start, end = end, start
+	}
+
+	duration, err := time.ParseDuration(interval)
+	if err != nil {
+		return nil, err
+	}
+
+	for current := start; !current.After(end); current = current.Add(duration) {
+		result = append(result, current.Format(layout))
+	}
+
+	return result, nil
+}
+
+// Min returns the earliest time among the given times.
+// Play: https://go.dev/play/p/MCIDvHNOGGb
+func Min(t1 time.Time, times ...time.Time) time.Time {
+	minTime := t1
+
+	for _, t := range times {
+		if t.Before(minTime) {
+			minTime = t
+		}
+	}
+
+	return minTime
+}
+
+// Max returns the latest time among the given times.
+// Play: https://go.dev/play/p/9m6JMk1LB7-
+func Max(t1 time.Time, times ...time.Time) time.Time {
+	maxTime := t1
+
+	for _, t := range times {
+		if t.After(maxTime) {
+			maxTime = t
+		}
+	}
+
+	return maxTime
+}
+
+// MaxMin returns the latest and earliest time among the given times.
+// Play: https://go.dev/play/p/rbW51cDtM_2
+func MaxMin(t1 time.Time, times ...time.Time) (maxTime time.Time, minTime time.Time) {
+	maxTime = t1
+	minTime = t1
+
+	for _, t := range times {
+		if t.Before(minTime) {
+			minTime = t
+		}
+
+		if t.After(maxTime) {
+			maxTime = t
+		}
+	}
+
+	return maxTime, minTime
 }

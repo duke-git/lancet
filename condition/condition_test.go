@@ -124,13 +124,13 @@ func TestNand(t *testing.T) {
 	assert.Equal(false, Nand(1, 1))
 }
 
-func TestTernaryOperator(t *testing.T) {
+func TestTernary(t *testing.T) {
 	t.Parallel()
 
-	assert := internal.NewAssert(t, "TernaryOperator")
+	assert := internal.NewAssert(t, "TestTernary")
 
 	trueValue := "1"
 	falseValue := "0"
 
-	assert.Equal(trueValue, TernaryOperator(true, trueValue, falseValue))
+	assert.Equal(trueValue, Ternary(true, trueValue, falseValue))
 }

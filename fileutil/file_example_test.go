@@ -192,6 +192,27 @@ func ExampleListFileNames() {
 	// [assert.go assert_test.go error_join.go]
 }
 
+func ExampleMiMeType() {
+	fname := "./test.txt"
+	file, _ := os.Create(fname)
+
+	_, err := file.WriteString("hello\nworld")
+	if err != nil {
+		return
+	}
+
+	f, _ := os.Open(fname)
+	defer f.Close()
+
+	mimeType := MiMeType(f)
+	fmt.Println(mimeType)
+
+	os.Remove(fname)
+
+	// Output:
+	// application/octet-stream
+}
+
 func ExampleZip() {
 	srcFile := "./test.txt"
 	CreateFile(srcFile)
@@ -214,24 +235,20 @@ func ExampleZip() {
 }
 
 func ExampleUnZip() {
-	fname := "./test.txt"
-	file, _ := os.Create(fname)
+	zipFile := "./testdata/file.go.zip"
 
-	_, err := file.WriteString("hello\nworld")
+	err := UnZip(zipFile, "./testdata")
 	if err != nil {
 		return
 	}
 
-	f, _ := os.Open(fname)
-	defer f.Close()
+	exist := IsExist("./testdata/file.go")
+	fmt.Println(exist)
 
-	mimeType := MiMeType(f)
-	fmt.Println(mimeType)
-
-	os.Remove(fname)
+	os.Remove("./testdata/file.go")
 
 	// Output:
-	// application/octet-stream
+	// true
 }
 
 func ExampleZipAppendEntry() {

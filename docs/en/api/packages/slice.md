@@ -6,7 +6,8 @@ Package slice implements some functions to manipulate slice.
 
 ## Source:
 
--   [https://github.com/duke-git/lancet/blob/main/slice/slice.go](https://github.com/duke-git/lancet/blob/main/slice/slice.go)
+- [https://github.com/duke-git/lancet/blob/main/slice/slice.go](https://github.com/duke-git/lancet/blob/main/slice/slice.go)
+- [https://github.com/duke-git/lancet/blob/main/slice/slice_concurrent.go](https://github.com/duke-git/lancet/blob/main/slice/slice_concurrent.go)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -44,6 +45,7 @@ import (
 -   [EqualWith](#EqualWith)
 -   [Every](#Every)
 -   [Filter](#Filter)
+-   [FilterConcurrent](#FilterConcurrent)
 -   [Find<sup>deprecated</sup>](#Find)
 -   [FindBy](#FindBy)
 -   [FindLast<sup>deprecated</sup>](#FindLast)
@@ -51,6 +53,7 @@ import (
 -   [Flatten](#Flatten)
 -   [FlattenDeep](#FlattenDeep)
 -   [ForEach](#ForEach)
+-   [ForEachConcurrent](#ForEachConcurrent)
 -   [ForEachWithBreak](#ForEachWithBreak)
 -   [GroupBy](#GroupBy)
 -   [GroupWith](#GroupWith)
@@ -61,11 +64,13 @@ import (
 -   [IndexOf](#IndexOf)
 -   [LastIndexOf](#LastIndexOf)
 -   [Map](#Map)
+-   [MapConcurrent](#MapConcurrent)
 -   [FilterMap](#FilterMap)
 -   [FlatMap](#FlatMap)
 -   [Merge](#Merge)
 -   [Reverse](#Reverse)
 -   [Reduce<sup>deprecated</sup>](#Reduce)
+-   [ReduceConcurrent](#ReduceConcurrent)
 -   [ReduceBy](#ReduceBy)
 -   [ReduceRight](#ReduceRight)
 -   [Replace](#Replace)
@@ -86,6 +91,9 @@ import (
 -   [ToSlicePointer](#ToSlicePointer)
 -   [Unique](#Unique)
 -   [UniqueBy](#UniqueBy)
+-   [UniqueByComparator](#UniqueByComparator)
+-   [UniqueByField](#UniqueByField)
+-   [UniqueByConcurrent](#UniqueByConcurrent)
 -   [Union](#Union)
 -   [UnionBy](#UnionBy)
 -   [UpdateAt](#UpdateAt)
@@ -97,6 +105,11 @@ import (
 -   [Break](#Break)
 -   [RightPadding](#RightPadding)
 -   [LeftPadding](#LeftPadding)
+-   [Frequency](#Frequency)
+-   [JoinFunc](#JoinFunc)
+-   [ConcatBy](#ConcatBy)
+
+
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -321,12 +334,12 @@ func main() {
 
 ### <span id="Concat">Concat</span>
 
-<p>Creates a new slice concatenating slice with any additional slices.</p>
+<p>Concat creates a new slice concatenating slice with any additional slices.</p>
 
 <b>Signature:</b>
 
 ```go
-func Concat[T any](slice []T, slices ...[]T) []T
+func Concat[T any](slices ...[]T) []T
 ```
 
 <b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/gPt-q7zr5mk)</span></b>
@@ -894,9 +907,45 @@ func main() {
 }
 ```
 
-### <span id="Find">Find(deprecated: use FindBy)</span>
+### <span id="FilterConcurrent">FilterConcurrent</span>
+
+<p>Applies the provided filter function `predicate` to each element of the input slice concurrently.</p>
+
+<b>Signature:</b>
+
+```go
+func FilterConcurrent[T any](slice []T, predicate func(index int, item T) bool, numThreads int) []T
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/t_pkwerIRVx)</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+    nums := []int{1, 2, 3, 4, 5}
+
+    isEven := func(i, num int) bool {
+        return num%2 == 0
+    }
+
+    result := slice.FilterConcurrent(nums, isEven, 2)
+
+    fmt.Println(result)
+
+    // Output:
+    // [2 4]
+}
+```
+
+### <span id="Find">Find</span>
 
 <p>Iterates over elements of slice, returning the first one that passes a truth test on function.</p>
+
+> ⚠️ This function is deprecated. use `FindBy` instead.
 
 <b>Signature:</b>
 
@@ -966,9 +1015,11 @@ func main() {
 }
 ```
 
-### <span id="FindLast">FindLast(deprecated: use FindLastBy)</span>
+### <span id="FindLast">FindLast</span>
 
 <p>iterates over elements of slice from end to begin, returning the last one that passes a truth test on function.</p>
+
+> ⚠️ This function is deprecated. use `FindLastBy` instead.
 
 <b>Signature:</b>
 
@@ -1133,6 +1184,42 @@ func main() {
 }
 ```
 
+### <span id="ForEachConcurrent">ForEachConcurrent</span>
+
+<p>Applies the iteratee function to each item in the slice concurrently.</p>
+
+<b>Signature:</b>
+
+```go
+func ForEachConcurrent[T any](slice []T, iteratee func(index int, item T), numThreads int)
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/kT4XW7DKVoV)</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+    nums := []int{1, 2, 3, 4, 5, 6, 7, 8}
+
+    result := make([]int, len(nums))
+
+    addOne := func(index int, value int) {
+        result[index] = value + 1
+    }
+
+    slice.ForEachConcurrent(nums, addOne, 4)
+
+    fmt.Println(result)
+
+    // Output:
+    // [2 3 4 5 6 7 8 9]
+}
+```
+
 ### <span id="ForEachWithBreak">ForEachWithBreak</span>
 
 <p>Iterates over elements of slice and invokes function for each element, when iteratee return false, will break the for each loop.</p>
@@ -1241,9 +1328,11 @@ func main() {
 }
 ```
 
-### <span id="IntSlice">IntSlice (Deprecated: use generic feature of go1.18+ for replacement)</span>
+### <span id="IntSlice">IntSlice</span>
 
 <p>Convert interface slice to int slice.</p>
+
+> ⚠️ This function is deprecated. Use generic feature of go1.18+ for replacement.
 
 <b>Signature:</b>
 
@@ -1270,9 +1359,11 @@ func main() {
 }
 ```
 
-### <span id="InterfaceSlice">InterfaceSlice (Deprecated: use generic feature of go1.18+ for replacement)</span>
+### <span id="InterfaceSlice">InterfaceSlice</span>
 
 <p>Convert value to interface slice.</p>
+
+> ⚠️ This function is deprecated. Use generic feature of go1.18+ for replacement.
 
 <b>Signature:</b>
 
@@ -1470,6 +1561,36 @@ func main() {
 }
 ```
 
+### <span id="MapConcurrent">MapConcurrent</span>
+
+<p>Applies the iteratee function to each item in the slice by concrrent.</p>
+
+<b>Signature:</b>
+
+```go
+func MapConcurrent[T any, U any](slice []T, iteratee func(index int, item T) U, numThreads int) []U
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/H1ehfPkPen0)</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+    nums := []int{1, 2, 3, 4, 5, 6}
+    
+    result := slice.MapConcurrent(nums, func(_, n int) int { return n * n }, 4)
+
+    fmt.Println(result)
+
+    // Output:
+    // [1 4 9 16 25 36]
+}
+```
+
 ### <span id="FilterMap">FilterMap</span>
 
 <p>Returns a slice which apply both filtering and mapping to the given slice. iteratee callback function should returntwo values: 1, mapping result. 2, whether the result element should be included or not.</p>
@@ -1544,6 +1665,8 @@ func main() {
 
 <p>Merge all given slices into one slice.</p>
 
+> ⚠️ This function is deprecated. use `Concat` instead.
+
 <b>Signature:</b>
 
 ```go
@@ -1603,7 +1726,9 @@ func main() {
 
 ### <span id="Reduce">Reduce</span>
 
-<p>Reduce slice.(Deprecated: use ReduceBy)</p>
+<p>Reduce slice.</p>
+
+> ⚠️ This function is deprecated. use `ReduceBy` instead.
 
 <b>Signature:</b>
 
@@ -1634,6 +1759,39 @@ func main() {
     // 6
 }
 ```
+
+### <span id="ReduceConcurrent">ReduceConcurrent</span>
+
+<p>Reduces the slice to a single value by applying the reducer function to each item in the slice concurrently.</p>
+
+<b>Signature:</b>
+
+```go
+func ReduceConcurrent[T any](slice []T, initial T, reducer func(index int, item T, agg T) T, numThreads int) T
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/Tjwe6OtaG07)</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+    nums := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+    
+    result := slice.ReduceConcurrent(nums, 0, func(_ int, item, agg int) int {
+        return agg + item
+    }, 1)
+
+    fmt.Println(result)
+
+    // Output:
+    // 55
+}
+```
+
 
 ### <span id="ReduceBy">ReduceBy</span>
 
@@ -2129,9 +2287,11 @@ func main() {
 }
 ```
 
-### <span id="StringSlice">StringSlice (Deprecated: use generic feature of go1.18+ for replacement)</span>
+### <span id="StringSlice">StringSlice</span>
 
 <p>Convert interface slice to string slice.</p>
+
+> ⚠️ This function is deprecated. use generic feature of go1.18+ for replacement
 
 <b>Signature:</b>
 
@@ -2281,15 +2441,15 @@ func main() {
 
 ### <span id="UniqueBy">UniqueBy</span>
 
-<p>Call iteratee func with every item of slice, then remove duplicated.</p>
+<p>Removes duplicate elements from the input slice based on the values returned by the iteratee function. this function maintains the order of the elements.</p>
 
 <b>Signature:</b>
 
 ```go
-func UniqueBy[T comparable](slice []T, iteratee func(item T) T) []T
+func UniqueBy[T any, U comparable](slice []T, iteratee func(item T) U) []T
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/UR323iZLDpv)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/GY7JE4yikrl)</span></b>
 
 ```go
 import (
@@ -2306,7 +2466,114 @@ func main() {
     fmt.Println(result)
 
     // Output:
-    // [1 2 0]
+    // [1 2 3]
+}
+```
+
+### <span id="UniqueByComparator">UniqueByComparator</span>
+
+<p>Removes duplicate elements from the input slice using the provided comparator function. The function maintains the order of the elements.</p>
+
+<b>Signature:</b>
+
+```go
+func UniqueByComparator[T comparable](slice []T, comparator func(item T, other T) bool) []T
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/rwSacr-ZHsR)</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/slice"
+)
+
+func main() {
+    uniqueNums := slice.UniqueByComparator([]int{1, 2, 3, 1, 2, 4, 5, 6, 4}, func(item int, other int) bool {
+        return item == other
+    })
+
+    caseInsensitiveStrings := slice.UniqueByComparator([]string{"apple", "banana", "Apple", "cherry", "Banana", "date"}, func(item string, other string) bool {
+        return strings.ToLower(item) == strings.ToLower(other)
+    })
+
+    fmt.Println(uniqueNums)
+    fmt.Println(caseInsensitiveStrings)
+
+    // Output:
+    // [1 2 3 4 5 6]
+    // [apple banana cherry date]
+}
+```
+
+### <span id="UniqueByConcurrent">UniqueByConcurrent</span>
+
+<p>Removes duplicate elements from the slice by parallel.</p>
+
+<b>Signature:</b>
+
+```go
+func UniqueByConcurrent[T comparable](slice []T, comparator func(item T, other T) bool, numThreads int) []T
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Runs](https://go.dev/play/p/wXZ7LcYRMGL)</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/slice"
+)
+
+func main() {
+    nums := []int{1, 2, 3, 1, 2, 4, 5, 6, 4, 7}
+    comparator := func(item int, other int) bool { return item == other }
+
+    result := slice.UniqueByConcurrent(nums,comparator, 4)
+
+    fmt.Println(result)
+    // Output:
+    // [1 2 3 4 5 6 7]
+}
+```
+
+### <span id="UniqueByField">UniqueByField</span>
+
+<p>Remove duplicate elements in struct slice by struct field.</p>
+
+<b>Signature:</b>
+
+```go
+func UniqueByField[T any](slice []T, field string) ([]T, error)
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Runs](https://go.dev/play/p/6cifcZSPIGu)</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/slice"
+)
+
+func main() {
+    type User struct {
+        ID   int    `json:"id"`
+        Name string `json:"name"`
+    }
+
+    users := []User{
+        {ID: 1, Name: "a"},
+        {ID: 2, Name: "b"},
+        {ID: 1, Name: "c"},
+    }
+
+    result, err := slice.UniqueByField(users, "ID")
+    if err != nil {
+    }
+
+    fmt.Println(result)
+
+    // Output:
+    // [{1 a} {2 b}]
 }
 ```
 
@@ -2591,14 +2858,14 @@ import (
 
 func main() {
     strs := []string{"a", "b", "a", "c", "d", "a"}
-	modifiedStrs, count := slice.SetToDefaultIf(strs, func(s string) bool { return "a" == s })
-	
+    modifiedStrs, count := slice.SetToDefaultIf(strs, func(s string) bool { return "a" == s })
+    
     fmt.Println(modifiedStrs)
-	fmt.Println(count)
-	
+    fmt.Println(count)
+    
     // Output:
-	// [ b  c d ]
-	// 3
+    // [ b  c d ]
+    // 3
 }
 ```
 
@@ -2612,7 +2879,7 @@ func main() {
 func Break[T any](values []T, predicate func(T) bool) ([]T, []T)
 ```
 
-<b>Example:</b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/yLYcBTyeQIz)</span></b>
 
 ```go
 import (
@@ -2635,7 +2902,7 @@ func main() {
 }
 ```
 
-<span id="c">RightPadding</span>
+### <span id="RightPadding">RightPadding</span>
 
 <p>RightPadding adds padding to the right end of a slice.</p>
 
@@ -2645,7 +2912,7 @@ func main() {
 func RightPadding[T any](slice []T, paddingValue T, paddingLength int) []T
 ```
 
-<b>Example:</b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/0_2rlLEMBXL)</span></b>
 
 ```go
 import (
@@ -2654,15 +2921,15 @@ import (
 )
 
 func main() {
-  	nums := []int{1, 2, 3, 4, 5}
-	padded := RightPadding(nums, 0, 3)
-	fmt.Println(padded)
-	// Output:
-	// [1 2 3 4 5 0 0 0]
+    nums := []int{1, 2, 3, 4, 5}
+    padded := slice.RightPadding(nums, 0, 3)
+    fmt.Println(padded)
+    // Output:
+    // [1 2 3 4 5 0 0 0]
 }
 ```
 
-<span id="LeftPadding">LeftPadding</span>
+### <span id="LeftPadding">LeftPadding</span>
 
 <p>LeftPadding adds padding to the left begin of a slice.</p>
 
@@ -2672,7 +2939,7 @@ func main() {
 func LeftPadding[T any](slice []T, paddingValue T, paddingLength int) []T
 ```
 
-<b>Example:</b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/jlQVoelLl2k)</span></b>
 
 ```go
 import (
@@ -2681,10 +2948,116 @@ import (
 )
 
 func main() {
-  	nums := []int{1, 2, 3, 4, 5}
-	padded := LeftPadding(nums, 0, 3)
-	fmt.Println(padded)
-	// Output:
-	// [0 0 0 1 2 3 4 5]
+    nums := []int{1, 2, 3, 4, 5}
+    padded := slice.LeftPadding(nums, 0, 3)
+    fmt.Println(padded)
+    // Output:
+    // [0 0 0 1 2 3 4 5]
+}
+```
+
+### <span id="Frequency">Frequency</span>
+
+<p>Counts the frequency of each element in the slice.</p>
+
+<b>Signature:</b>
+
+```go
+func Frequency[T comparable](slice []T) map[T]int
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/CW3UVNdUZOq)</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+    strs := []string{"a", "b", "b", "c", "c", "c"}
+    result := slice.Frequency(strs)
+
+    fmt.Println(result)
+
+    // Output:
+    // map[a:1 b:2 c:3]
+}
+```
+
+### <span id="JoinFunc">JoinFunc</span>
+
+<p>Joins the slice elements into a single string with the given separator.</p>
+
+<b>Signature:</b>
+
+```go
+func JoinFunc[T any](slice []T, sep string, transform func(T) T) string
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/55ib3SB5fM2)</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+    result := slice.JoinFunc([]string{"a", "b", "c"}, ", ", func(s string) string {
+        return strings.ToUpper(s)
+    })
+
+    fmt.Println(result)
+
+    // Output:
+    // A, B, C
+}
+```
+
+### <span id="ConcatBy">ConcatBy</span>
+
+<p>Concats the elements of a slice into a single value using the provided separator and connector function.</p>
+
+<b>Signature:</b>
+
+```go
+func ConcatBy[T any](slice []T, sep T, connector func(T, T) T) T
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/6QcUpcY4UMW)</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+    type Person struct {
+        Name string
+        Age  int
+    }
+
+    people := []Person{
+        {Name: "Alice", Age: 30},
+        {Name: "Bob", Age: 25},
+        {Name: "Charlie", Age: 35},
+    }
+
+    sep := Person{Name: " | ", Age: 0}
+
+    personConnector := func(a, b Person) Person {
+        return Person{Name: a.Name + b.Name, Age: a.Age + b.Age}
+    }
+
+    result := slice.ConcatBy(people, sep, personConnector)
+
+    fmt.Println(result.Name)
+    fmt.Println(result.Age)
+
+    // Output:
+    // Alice | Bob | Charlie
+    // 90
 }
 ```

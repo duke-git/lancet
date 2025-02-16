@@ -64,6 +64,12 @@ import (
 -   [TimestampMilli](#TimestampMilli)
 -   [TimestampMicro](#TimestampMicro)
 -   [TimestampNano](#TimestampNano)
+-   [TrackFuncTime](#TrackFuncTime)
+-   [DaysBetween](#DaysBetween)
+-   [GenerateDatetimesBetween](#GenerateDatetimesBetween)
+-   [Min](#Min)
+-   [Max](#Max)
+-   [MaxMin](#MaxMin)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -1334,7 +1340,7 @@ import (
 func main() {
     result1 := datetime.NowDateOrTime("yyyy-mm-dd hh:mm:ss")
 
-	result2 := datetime.NowDateOrTime("yyyy-mm-dd hh:mm:ss", "EST")
+    result2 := datetime.NowDateOrTime("yyyy-mm-dd hh:mm:ss", "EST")
 
     fmt.Println(result1)
     fmt.Println(result2)
@@ -1463,5 +1469,200 @@ func main() {
 
     // Output:
     // 1690363051331788000
+}
+```
+
+### <span id="TrackFuncTime">TrackFuncTime</span>
+
+<p>测试函数执行时间。</p>
+
+<b>函数签名:</b>
+
+```go
+func TrackFuncTime(pre time.Time) func()
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/QBSEdfXHPTp)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/datetime"
+)
+
+func main() {
+    defer datetime.TrackFuncTime(time.Now())()
+
+    var n int
+    for i := 0; i < 5000000; i++ {
+        n++
+    }
+
+    fmt.Println(1) // Function main execution time:     1.460287ms
+}
+```
+
+### <span id="DaysBetween">DaysBetween</span>
+
+<p>返回两个日期之间的天数差。</p>
+
+<b>函数签名:</b>
+
+```go
+func DaysBetween(start, end time.Time) int
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/qD6qGb3TbOy)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/datetime"
+)
+
+func main() {
+    start := time.Date(2024, time.September, 1, 0, 0, 0, 0, time.UTC)
+    end := time.Date(2024, time.September, 10, 0, 0, 0, 0, time.UTC)
+
+    result := datetime.DaysBetween(start, end)
+
+    fmt.Println(result)
+
+    // Output:
+    // 9
+}
+```
+
+### <span id="GenerateDatetimesBetween">GenerateDatetimesBetween</span>
+
+<p>生成从start到end的所有日期时间的字符串列表。layout参数表示时间格式，例如"2006-01-02 15:04:05"，interval参数表示时间间隔，例如"1h"表示1小时，"30m"表示30分钟。</p>
+
+<b>函数签名:</b>
+
+```go
+func GenerateDatetimesBetween(start, end time.Time, layout string, interval string) ([]string, error)
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/6kHBpAxD9ZC)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/datetime"
+)
+
+func main() {
+    start := time.Date(2024, time.September, 1, 0, 0, 0, 0, time.UTC)
+    end := time.Date(2024, time.September, 1, 2, 0, 0, 0, time.UTC)
+
+    layout := "2006-01-02 15:04:05"
+    interval := "1h"
+
+    result, err := datetime.GenerateDatetimesBetween(start, end, layout, interval)
+
+    fmt.Println(result)
+    fmt.Println(err)
+
+    // Output:
+    // [2024-09-01 00:00:00 2024-09-01 01:00:00 2024-09-01 02:00:00]
+    // <nil>
+}
+```
+
+### <span id="Min">Min</span>
+
+<p>返回最早时间。</p>
+
+<b>函数签名:</b>
+
+```go
+func Min(t1 time.Time, times ...time.Time) time.Time
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/MCIDvHNOGGb)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/datetime"
+)
+
+func main() {
+    minTime := datetime.Min(time.Date(2024, time.September, 1, 0, 0, 0, 0, time.UTC), time.Date(2024, time.September, 2, 0, 0, 0, 0, time.UTC))
+
+	fmt.Println(minTime)
+
+	// Output:
+	// 2024-09-01 00:00:00 +0000 UTC
+}
+```
+
+### <span id="Max">Max</span>
+
+<p>返回最晚时间。</p>
+
+<b>函数签名:</b>
+
+```go
+func Max(t1 time.Time, times ...time.Time) time.Time
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/9m6JMk1LB7-)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/datetime"
+)
+
+func main() {
+    maxTime := datetime.Min(time.Date(2024, time.September, 1, 0, 0, 0, 0, time.UTC), time.Date(2024, time.September, 2, 0, 0, 0, 0, time.UTC))
+
+	fmt.Println(maxTime)
+
+	// Output:
+	// 2024-09-02 00:00:00 +0000 UTC
+}
+```
+
+### <span id="MaxMin">MaxMin</span>
+
+<p>返回最早和最晚时间。</p>
+
+<b>函数签名:</b>
+
+```go
+func MaxMin(t1 time.Time, times ...time.Time) (maxTime time.Time, minTime time.Time)
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/rbW51cDtM_2)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/datetime"
+)
+
+func main() {
+    max, min := datetime.MaxMin(time.Date(2024, time.September, 1, 0, 0, 0, 0, time.UTC), time.Date(2024, time.September, 2, 0, 0, 0, 0, time.UTC), time.Date(2024, time.September, 3, 0, 0, 0, 0, time.UTC))
+
+	fmt.Println(max)
+	fmt.Println(min)
+
+	// Output:
+	// 2024-09-03 00:00:00 +0000 UTC
+	// 2024-09-01 00:00:00 +0000 UTC
 }
 ```

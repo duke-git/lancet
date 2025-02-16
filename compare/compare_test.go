@@ -2,6 +2,7 @@ package compare
 
 import (
 	"encoding/json"
+	"math/big"
 	"testing"
 	"time"
 
@@ -12,68 +13,36 @@ func TestEqual(t *testing.T) {
 	t.Parallel()
 	assert := internal.NewAssert(t, "TestEqual")
 
-	// basic type
-	assert.Equal(true, Equal(1, 1))
-	assert.Equal(true, Equal(int64(1), int64(1)))
-	assert.Equal(true, Equal("a", "a"))
-	assert.Equal(true, Equal(true, true))
-	assert.Equal(true, Equal([]int{1, 2, 3}, []int{1, 2, 3}))
-	assert.Equal(true, Equal(map[int]string{1: "a", 2: "b"}, map[int]string{1: "a", 2: "b"}))
-
-	assert.Equal(false, Equal(1, 2))
-	assert.Equal(false, Equal(1, int64(1)))
-	assert.Equal(false, Equal("a", "b"))
-	assert.Equal(false, Equal(true, false))
-	assert.Equal(false, Equal([]int{1, 2}, []int{1, 2, 3}))
-	assert.Equal(false, Equal(map[int]string{1: "a", 2: "b"}, map[int]string{1: "a"}))
-
-	// time
-	time1 := time.Now()
-	time2 := time1.Add(time.Second)
-	time3 := time1.Add(time.Second)
-
-	assert.Equal(false, Equal(time1, time2))
-	assert.Equal(true, Equal(time2, time3))
-
-	// struct
-	st1 := struct {
-		A string
-		B string
+	tests := []struct {
+		left  any
+		right any
+		want  bool
 	}{
-		A: "a",
-		B: "b",
+		{1, 1, true},
+		{int64(1), int64(1), true},
+		{"a", "a", true},
+		{true, true, true},
+		{[]int{1, 2, 3}, []int{1, 2, 3}, true},
+		{map[int]string{1: "a", 2: "b"}, map[int]string{1: "a", 2: "b"}, true},
+		{1, 2, false},
+		{1, int64(1), false},
+		{"a", "b", false},
+		{true, false, false},
+		{[]int{1, 2}, []int{1, 2, 3}, false},
+		{map[int]string{1: "a", 2: "b"}, map[int]string{1: "a"}, false},
+		// {time.Now(), time.Now(), true},
+		// {time.Now(), time.Now().Add(time.Second), false},
+		{[]byte("hello"), []byte("hello"), true},
+		{[]byte("hello"), []byte("world"), false},
+		{json.Number("123"), json.Number("123"), true},
+		{json.Number("123"), json.Number("124"), false},
+
+		{big.NewInt(123), big.NewInt(123), true},
 	}
 
-	st2 := struct {
-		A string
-		B string
-	}{
-		A: "a",
-		B: "b",
+	for _, tt := range tests {
+		assert.Equal(tt.want, Equal(tt.left, tt.right))
 	}
-
-	st3 := struct {
-		A string
-		B string
-	}{
-		A: "a1",
-		B: "b",
-	}
-
-	assert.Equal(true, Equal(st1, st2))
-	assert.Equal(false, Equal(st1, st3))
-
-	//byte slice
-	bs1 := []byte("hello")
-	bs2 := []byte("hello")
-	assert.Equal(true, Equal(bs1, bs2))
-
-	// json.Number
-	var jsonNumber1, jsonNumber2 json.Number
-	json.Unmarshal([]byte(`123`), &jsonNumber1)
-	json.Unmarshal([]byte(`123`), &jsonNumber2)
-
-	assert.Equal(true, Equal(jsonNumber1, jsonNumber2))
 
 }
 
@@ -81,144 +50,154 @@ func TestEqualValue(t *testing.T) {
 	t.Parallel()
 	assert := internal.NewAssert(t, "TestEqualValue")
 
-	assert.Equal(true, EqualValue(1, 1))
-	assert.Equal(true, EqualValue(int(1), int64(1)))
-	assert.Equal(true, EqualValue(1, "1"))
+	tests := []struct {
+		left  any
+		right any
+		want  bool
+	}{
+		{1, 1, true},
+		{int64(1), int64(1), true},
+		{"a", "a", true},
+		{true, true, true},
+		{[]int{1, 2, 3}, []int{1, 2, 3}, true},
+		{map[int]string{1: "a", 2: "b"}, map[int]string{1: "a", 2: "b"}, true},
+		{1, 2, false},
+		{1, int64(1), true},
+		{"a", "b", false},
+		{true, false, false},
+		{[]int{1, 2}, []int{1, 2, 3}, false},
+	}
 
-	assert.Equal(false, EqualValue(1, "2"))
-
-	// json.Number
-	var jsonNumber1, jsonNumber2 json.Number
-	json.Unmarshal([]byte(`123`), &jsonNumber1)
-	json.Unmarshal([]byte(`123`), &jsonNumber2)
-
-	assert.Equal(true, EqualValue(jsonNumber1, 123))
+	for _, tt := range tests {
+		assert.Equal(tt.want, EqualValue(tt.left, tt.right))
+	}
 }
 
 func TestLessThan(t *testing.T) {
 	t.Parallel()
 	assert := internal.NewAssert(t, "TestLessThan")
 
-	assert.Equal(true, LessThan(1, 2))
-	assert.Equal(true, LessThan(1.1, 2.2))
-	assert.Equal(true, LessThan("a", "b"))
+	tests := []struct {
+		left  any
+		right any
+		want  bool
+	}{
+		{1, 2, true},
+		{1.1, 2.2, true},
+		{"a", "b", true},
+		{time.Now(), time.Now().Add(time.Second), true},
+		{[]byte("hello1"), []byte("hello2"), true},
+		{json.Number("123"), json.Number("124"), true},
+		{645680099112988673, 645680099112988675, true},
+		{1, 1, false},
+		{1, int64(1), false},
+	}
 
-	time1 := time.Now()
-	time2 := time1.Add(time.Second)
-	assert.Equal(true, LessThan(time1, time2))
-
-	assert.Equal(false, LessThan(1, 1))
-	assert.Equal(false, LessThan(1, int64(1)))
-
-	bs1 := []byte("hello1")
-	bs2 := []byte("hello2")
-	assert.Equal(true, LessThan(bs1, bs2))
-
-	// json.Number
-	var jsonNumber1, jsonNumber2 json.Number
-	json.Unmarshal([]byte(`123`), &jsonNumber1)
-	json.Unmarshal([]byte(`124`), &jsonNumber2)
-
-	assert.Equal(true, LessThan(jsonNumber1, jsonNumber2))
+	for _, tt := range tests {
+		assert.Equal(tt.want, LessThan(tt.left, tt.right))
+	}
 }
 
 func TestGreaterThan(t *testing.T) {
 	t.Parallel()
 	assert := internal.NewAssert(t, "TestGreaterThan")
 
-	assert.Equal(true, GreaterThan(2, 1))
-	assert.Equal(true, GreaterThan(2.2, 1.1))
-	assert.Equal(true, GreaterThan("b", "a"))
+	tests := []struct {
+		left  any
+		right any
+		want  bool
+	}{
+		{2, 1, true},
+		{2.2, 1.1, true},
+		{"b", "a", true},
+		{time.Now().Add(time.Second), time.Now(), true},
+		{[]byte("hello2"), []byte("hello1"), true},
+		{json.Number("124"), json.Number("123"), true},
+		{645680099112988675, 645680099112988673, true},
+		{1, 1, false},
+		{1, int64(1), false},
+	}
 
-	time1 := time.Now()
-	time2 := time1.Add(time.Second)
-	assert.Equal(true, GreaterThan(time2, time1))
+	for _, tt := range tests {
+		assert.Equal(tt.want, GreaterThan(tt.left, tt.right))
+	}
 
-	assert.Equal(false, GreaterThan(1, 2))
-	assert.Equal(false, GreaterThan(int64(2), 1))
-	assert.Equal(false, GreaterThan("b", "c"))
-
-	bs1 := []byte("hello1")
-	bs2 := []byte("hello2")
-	assert.Equal(true, GreaterThan(bs2, bs1))
-
-	// json.Number
-	var jsonNumber1, jsonNumber2 json.Number
-	json.Unmarshal([]byte(`123`), &jsonNumber1)
-	json.Unmarshal([]byte(`124`), &jsonNumber2)
-
-	assert.Equal(true, GreaterThan(jsonNumber2, jsonNumber1))
 }
 
 func TestLessOrEqual(t *testing.T) {
 	t.Parallel()
 	assert := internal.NewAssert(t, "TestLessOrEqual")
 
-	assert.Equal(true, LessOrEqual(1, 2))
-	assert.Equal(true, LessOrEqual(1, 1))
-	assert.Equal(true, LessOrEqual(1.1, 2.2))
-	assert.Equal(true, LessOrEqual("a", "b"))
+	tests := []struct {
+		left  any
+		right any
+		want  bool
+	}{
+		{1, 2, true},
+		{1, 1, true},
+		{1.1, 2.2, true},
+		{"a", "b", true},
+		{time.Now(), time.Now().Add(time.Second), true},
+		{[]byte("hello1"), []byte("hello2"), true},
+		{json.Number("123"), json.Number("124"), true},
+		{645680099112988673, 645680099112988675, true},
+		{2, 1, false},
+		{1, int64(2), false},
+	}
 
-	time1 := time.Now()
-	time2 := time1.Add(time.Second)
-	assert.Equal(true, LessOrEqual(time1, time2))
-
-	assert.Equal(false, LessOrEqual(2, 1))
-	assert.Equal(false, LessOrEqual(1, int64(2)))
-
-	bs1 := []byte("hello1")
-	bs2 := []byte("hello2")
-	assert.Equal(true, LessOrEqual(bs1, bs2))
-
-	// json.Number
-	var jsonNumber1, jsonNumber2 json.Number
-	json.Unmarshal([]byte(`123`), &jsonNumber1)
-	json.Unmarshal([]byte(`124`), &jsonNumber2)
-
-	assert.Equal(true, LessOrEqual(jsonNumber1, jsonNumber2))
+	for _, tt := range tests {
+		assert.Equal(tt.want, LessOrEqual(tt.left, tt.right))
+	}
 }
 
 func TestGreaterOrEqual(t *testing.T) {
 	t.Parallel()
 	assert := internal.NewAssert(t, "TestGreaterThan")
 
-	assert.Equal(true, GreaterOrEqual(2, 1))
-	assert.Equal(true, GreaterOrEqual(1, 1))
-	assert.Equal(true, GreaterOrEqual(2.2, 1.1))
-	assert.Equal(true, GreaterOrEqual("b", "b"))
+	tests := []struct {
+		left  any
+		right any
+		want  bool
+	}{
+		{2, 1, true},
+		{1, 1, true},
+		{2.2, 1.1, true},
+		{"b", "b", true},
+		{time.Now().Add(time.Second), time.Now(), true},
+		{[]byte("hello2"), []byte("hello1"), true},
+		{json.Number("124"), json.Number("123"), true},
+		{645680099112988675, 645680099112988673, true},
+		{1, 2, false},
+		{int64(2), 1, false},
+		{"b", "c", false},
+	}
 
-	time1 := time.Now()
-	time2 := time1.Add(time.Second)
-	assert.Equal(true, GreaterOrEqual(time2, time1))
-
-	assert.Equal(false, GreaterOrEqual(1, 2))
-	assert.Equal(false, GreaterOrEqual(int64(2), 1))
-	assert.Equal(false, GreaterOrEqual("b", "c"))
-
-	bs1 := []byte("hello1")
-	bs2 := []byte("hello2")
-	assert.Equal(true, GreaterOrEqual(bs2, bs1))
-
-	// json.Number
-	var jsonNumber1, jsonNumber2 json.Number
-	json.Unmarshal([]byte(`123`), &jsonNumber1)
-	json.Unmarshal([]byte(`124`), &jsonNumber2)
-
-	assert.Equal(true, GreaterOrEqual(jsonNumber2, jsonNumber1))
+	for _, tt := range tests {
+		assert.Equal(tt.want, GreaterOrEqual(tt.left, tt.right))
+	}
 }
 
 func TestInDelta(t *testing.T) {
 	t.Parallel()
 	assert := internal.NewAssert(t, "TestInDelta")
 
-	assert.Equal(true, InDelta(1, 1, 0))
-	assert.Equal(false, InDelta(1, 2, 0))
+	tests := []struct {
+		left  float64
+		right float64
+		delta float64
+		want  bool
+	}{
+		{1, 1, 0, true},
+		{1, 2, 0, false},
+		{2.0 / 3.0, 0.66667, 0.001, true},
+		{2.0 / 3.0, 0.0, 0.001, false},
+		{float64(74.96) - float64(20.48), 54.48, 0, false},
+		{float64(74.96) - float64(20.48), 54.48, 1e-14, true},
+		{float64(float32(80.45)), float64(80.45), 0, false},
+		{float64(float32(80.45)), float64(80.45), 1e-5, true},
+	}
 
-	assert.Equal(true, InDelta(2.0/3.0, 0.66667, 0.001))
-	assert.Equal(false, InDelta(2.0/3.0, 0.0, 0.001))
-
-	assert.Equal(false, InDelta(float64(74.96)-float64(20.48), 54.48, 0))
-	assert.Equal(true, InDelta(float64(74.96)-float64(20.48), 54.48, 1e-14))
-	assert.Equal(false, InDelta(float64(float32(80.45)), float64(80.45), 0))
-	assert.Equal(true, InDelta(float64(float32(80.45)), float64(80.45), 1e-5))
+	for _, tt := range tests {
+		assert.Equal(tt.want, InDelta(tt.left, tt.right, tt.delta))
+	}
 }

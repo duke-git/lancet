@@ -44,7 +44,7 @@ func (l *LRUCache[K, V]) Get(key K) (V, bool) {
 
 	node, ok := l.cache[key]
 	if ok {
-		l.moveToHead(node)
+		l.moveToTail(node)
 		return node.value, true
 	}
 
@@ -66,7 +66,7 @@ func (l *LRUCache[K, V]) Put(key K, value V) {
 		}
 	} else {
 		node.value = value
-		l.moveToHead(node)
+		l.moveToTail(node)
 	}
 	l.length = len(l.cache)
 }
@@ -79,7 +79,7 @@ func (l *LRUCache[K, V]) Delete(key K) bool {
 		delete(l.cache, key)
 		return true
 	}
-
+	l.length = len(l.cache)
 	return false
 }
 
@@ -112,7 +112,7 @@ func (l *LRUCache[K, V]) deleteNode(node *lruNode[K, V]) K {
 	return node.key
 }
 
-func (l *LRUCache[K, V]) moveToHead(node *lruNode[K, V]) {
+func (l *LRUCache[K, V]) moveToTail(node *lruNode[K, V]) {
 	if l.tail == node {
 		return
 	}

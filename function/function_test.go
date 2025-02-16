@@ -125,24 +125,178 @@ func TestDebounced(t *testing.T) {
 	assert.Equal(2, count)
 }
 
+func TestDebounce(t *testing.T) {
+	assert := internal.NewAssert(t, "TestDebounce")
+
+	t.Run("Single call", func(t *testing.T) {
+		callCount := 0
+
+		debouncedFn, _ := Debounce(func() {
+			callCount++
+		}, 500*time.Millisecond)
+
+		debouncedFn()
+
+		time.Sleep(1 * time.Second)
+
+		assert.Equal(1, callCount)
+	})
+
+	t.Run("Multiple calls within debounce interval", func(t *testing.T) {
+		callCount := 0
+
+		debouncedFn, _ := Debounce(func() {
+			callCount++
+		}, 1*time.Second)
+
+		for i := 0; i < 5; i++ {
+			go func(index int) {
+				time.Sleep(time.Duration(index) * 200 * time.Millisecond)
+				debouncedFn()
+			}(i)
+		}
+
+		time.Sleep(2 * time.Second)
+
+		assert.Equal(1, callCount)
+	})
+
+	t.Run("Immediate consecutive calls", func(t *testing.T) {
+		callCount := 0
+
+		debouncedFn, _ := Debounce(func() {
+			callCount++
+		}, 500*time.Millisecond)
+
+		for i := 0; i < 10; i++ {
+			debouncedFn()
+			time.Sleep(50 * time.Millisecond)
+		}
+
+		time.Sleep(1 * time.Second)
+
+		assert.Equal(1, callCount)
+	})
+
+	t.Run("Cancel calls", func(t *testing.T) {
+		callCount := 0
+
+		debouncedFn, cancelFn := Debounce(func() {
+			callCount++
+		}, 500*time.Millisecond)
+
+		debouncedFn()
+
+		cancelFn()
+
+		time.Sleep(1 * time.Second)
+
+		assert.Equal(0, callCount)
+	})
+
+}
+
+func TestThrottle(t *testing.T) {
+	assert := internal.NewAssert(t, "TestThrottle")
+
+	t.Run("Single call", func(t *testing.T) {
+		callCount := 0
+
+		throttledFn := Throttle(func() {
+			callCount++
+		}, 1*time.Second)
+
+		throttledFn()
+
+		time.Sleep(100 * time.Millisecond)
+
+		assert.Equal(1, callCount)
+	})
+
+	t.Run("Multiple calls within throttle interval", func(t *testing.T) {
+		callCount := 0
+
+		throttledFn := Throttle(func() {
+			callCount++
+		}, 1*time.Second)
+
+		for i := 0; i < 5; i++ {
+			throttledFn()
+		}
+
+		time.Sleep(1 * time.Second)
+
+		assert.Equal(1, callCount)
+	})
+
+	t.Run("Mutiple calls space out throttle interval", func(t *testing.T) {
+		callCount := 0
+
+		throttledFn := Throttle(func() {
+			callCount++
+		}, 500*time.Millisecond)
+
+		throttledFn()
+		time.Sleep(600 * time.Millisecond)
+
+		throttledFn()
+		time.Sleep(600 * time.Millisecond)
+
+		throttledFn()
+
+		time.Sleep(1 * time.Second)
+
+		assert.Equal(3, callCount)
+	})
+
+	t.Run("Call function near the end of the interval", func(t *testing.T) {
+		callCount := 0
+
+		throttledFn := Throttle(func() {
+			callCount++
+		}, 1*time.Second)
+
+		throttledFn()
+		time.Sleep(900 * time.Millisecond)
+
+		throttledFn()
+		time.Sleep(200 * time.Millisecond)
+
+		assert.Equal(2, callCount)
+	})
+
+}
+
 func TestSchedule(t *testing.T) {
-	// assert := internal.NewAssert(t, "TestSchedule")
+	assert := internal.NewAssert(t, "TestSchedule")
 
-	var res []string
-	appendStr := func(s string) {
-		res = append(res, s)
-	}
+	t.Run("Single call", func(t *testing.T) {
+		res := []string{}
+		appendStr := func(s string) {
+			res = append(res, s)
+		}
+		stop := Schedule(200*time.Millisecond, appendStr, "*")
+		close(stop)
 
-	stop := Schedule(1*time.Second, appendStr, "*")
-	time.Sleep(5 * time.Second)
-	close(stop)
+		time.Sleep(400 * time.Millisecond)
 
-	t.Log(res)
+		assert.Equal([]string{"*"}, res)
+	})
 
-	// todo: in github action, for now, this test is not working sometimes
-	// res maybe [* * * * *] or [* * * * * *]
-	// expected := []string{"*", "*", "*", "*", "*"}
-	// assert.Equal(expected, res)
+	t.Run("Multiple calls", func(t *testing.T) {
+		res := []string{}
+		appendStr := func(s string) {
+			res = append(res, s)
+		}
+		stop := Schedule(200*time.Millisecond, appendStr, "*")
+
+		time.Sleep(800 * time.Millisecond)
+
+		close(stop)
+
+		assert.Equal([]string{"*", "*", "*", "*"}, res)
+	})
+
 }
 
 func TestPipeline(t *testing.T) {

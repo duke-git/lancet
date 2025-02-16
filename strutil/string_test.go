@@ -1,7 +1,6 @@
 package strutil
 
 import (
-	"reflect"
 	"testing"
 
 	"github.com/duke-git/lancet/v2/internal"
@@ -12,19 +11,22 @@ func TestCamelCase(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestCamelCase")
 
-	cases := map[string]string{
-		"":                         "",
-		"foobar":                   "foobar",
-		"&FOO:BAR$BAZ":             "fooBarBaz",
-		"fooBar":                   "fooBar",
-		"FOObar":                   "foObar",
-		"$foo%":                    "foo",
-		"   $#$Foo   22    bar   ": "foo22Bar",
-		"Foo-#1😄$_%^&*(1bar":       "foo11Bar",
+	tests := []struct {
+		input    string
+		expected string
+	}{
+		{"", ""},
+		{"foobar", "foobar"},
+		{"&FOO:BAR$BAZ", "fooBarBaz"},
+		{"fooBar", "fooBar"},
+		{"FOObar", "foObar"},
+		{"$foo%", "foo"},
+		{"   $#$Foo   22    bar   ", "foo22Bar"},
+		{"Foo-#1😄$_%^&*(1bar", "foo11Bar"},
 	}
 
-	for k, v := range cases {
-		assert.Equal(v, CamelCase(k))
+	for _, tt := range tests {
+		assert.Equal(tt.expected, CamelCase(tt.input))
 	}
 }
 
@@ -33,19 +35,22 @@ func TestCapitalize(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestCapitalize")
 
-	cases := map[string]string{
-		"":        "",
-		"Foo":     "Foo",
-		"_foo":    "_foo",
-		"foobar":  "Foobar",
-		"fooBar":  "Foobar",
-		"foo Bar": "Foo bar",
-		"foo-bar": "Foo-bar",
-		"$foo%":   "$foo%",
+	tests := []struct {
+		input    string
+		expected string
+	}{
+		{"", ""},
+		{"Foo", "Foo"},
+		{"_foo", "_foo"},
+		{"foobar", "Foobar"},
+		{"fooBar", "Foobar"},
+		{"foo Bar", "Foo bar"},
+		{"foo-bar", "Foo-bar"},
+		{"$foo%", "$foo%"},
 	}
 
-	for k, v := range cases {
-		assert.Equal(v, Capitalize(k))
+	for _, tt := range tests {
+		assert.Equal(tt.expected, Capitalize(tt.input))
 	}
 }
 
@@ -54,23 +59,26 @@ func TestKebabCase(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestKebabCase")
 
-	cases := map[string]string{
-		"":                         "",
-		"foo-bar":                  "foo-bar",
-		"--Foo---Bar-":             "foo-bar",
-		"Foo Bar-":                 "foo-bar",
-		"foo_Bar":                  "foo-bar",
-		"fooBar":                   "foo-bar",
-		"FOOBAR":                   "foobar",
-		"FOO_BAR":                  "foo-bar",
-		"__FOO_BAR__":              "foo-bar",
-		"$foo@Bar":                 "foo-bar",
-		"   $#$Foo   22    bar   ": "foo-22-bar",
-		"Foo-#1😄$_%^&*(1bar":       "foo-1-1-bar",
+	tests := []struct {
+		input    string
+		expected string
+	}{
+		{"", ""},
+		{"foo-bar", "foo-bar"},
+		{"--Foo---Bar-", "foo-bar"},
+		{"Foo Bar-", "foo-bar"},
+		{"foo_Bar", "foo-bar"},
+		{"fooBar", "foo-bar"},
+		{"FOOBAR", "foobar"},
+		{"FOO_BAR", "foo-bar"},
+		{"__FOO_BAR__", "foo-bar"},
+		{"$foo@Bar", "foo-bar"},
+		{"   $#$Foo   22    bar   ", "foo-22-bar"},
+		{"Foo-#1😄$_%^&*(1bar", "foo-1-1-bar"},
 	}
 
-	for k, v := range cases {
-		assert.Equal(v, KebabCase(k))
+	for _, tt := range tests {
+		assert.Equal(tt.expected, KebabCase(tt.input))
 	}
 }
 
@@ -79,23 +87,26 @@ func TestUpperKebabCase(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestUpperKebabCase")
 
-	cases := map[string]string{
-		"":                         "",
-		"foo-bar":                  "FOO-BAR",
-		"--Foo---Bar-":             "FOO-BAR",
-		"Foo Bar-":                 "FOO-BAR",
-		"foo_Bar":                  "FOO-BAR",
-		"fooBar":                   "FOO-BAR",
-		"FOOBAR":                   "FOOBAR",
-		"FOO_BAR":                  "FOO-BAR",
-		"__FOO_BAR__":              "FOO-BAR",
-		"$foo@Bar":                 "FOO-BAR",
-		"   $#$Foo   22    bar   ": "FOO-22-BAR",
-		"Foo-#1😄$_%^&*(1bar":       "FOO-1-1-BAR",
+	tests := []struct {
+		input    string
+		expected string
+	}{
+		{"", ""},
+		{"foo-bar", "FOO-BAR"},
+		{"--Foo---Bar-", "FOO-BAR"},
+		{"Foo Bar-", "FOO-BAR"},
+		{"foo_Bar", "FOO-BAR"},
+		{"fooBar", "FOO-BAR"},
+		{"FOOBAR", "FOOBAR"},
+		{"FOO_BAR", "FOO-BAR"},
+		{"__FOO_BAR__", "FOO-BAR"},
+		{"$foo@Bar", "FOO-BAR"},
+		{"   $#$Foo   22    bar   ", "FOO-22-BAR"},
+		{"Foo-#1😄$_%^&*(1bar", "FOO-1-1-BAR"},
 	}
 
-	for k, v := range cases {
-		assert.Equal(v, UpperKebabCase(k))
+	for _, tt := range tests {
+		assert.Equal(tt.expected, UpperKebabCase(tt.input))
 	}
 }
 
@@ -104,23 +115,26 @@ func TestSnakeCase(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestSnakeCase")
 
-	cases := map[string]string{
-		"":                         "",
-		"foo-bar":                  "foo_bar",
-		"--Foo---Bar-":             "foo_bar",
-		"Foo Bar-":                 "foo_bar",
-		"foo_Bar":                  "foo_bar",
-		"fooBar":                   "foo_bar",
-		"FOOBAR":                   "foobar",
-		"FOO_BAR":                  "foo_bar",
-		"__FOO_BAR__":              "foo_bar",
-		"$foo@Bar":                 "foo_bar",
-		"   $#$Foo   22    bar   ": "foo_22_bar",
-		"Foo-#1😄$_%^&*(1bar":       "foo_1_1_bar",
+	tests := []struct {
+		input    string
+		expected string
+	}{
+		{"", ""},
+		{"foo-bar", "foo_bar"},
+		{"--Foo---Bar-", "foo_bar"},
+		{"Foo Bar-", "foo_bar"},
+		{"foo_Bar", "foo_bar"},
+		{"fooBar", "foo_bar"},
+		{"FOOBAR", "foobar"},
+		{"FOO_BAR", "foo_bar"},
+		{"__FOO_BAR__", "foo_bar"},
+		{"$foo@Bar", "foo_bar"},
+		{"   $#$Foo   22    bar   ", "foo_22_bar"},
+		{"Foo-#1😄$_%^&*(1bar", "foo_1_1_bar"},
 	}
 
-	for k, v := range cases {
-		assert.Equal(v, SnakeCase(k))
+	for _, tt := range tests {
+		assert.Equal(tt.expected, SnakeCase(tt.input))
 	}
 }
 
@@ -129,23 +143,26 @@ func TestUpperSnakeCase(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestUpperSnakeCase")
 
-	cases := map[string]string{
-		"":                         "",
-		"foo-bar":                  "FOO_BAR",
-		"--Foo---Bar-":             "FOO_BAR",
-		"Foo Bar-":                 "FOO_BAR",
-		"foo_Bar":                  "FOO_BAR",
-		"fooBar":                   "FOO_BAR",
-		"FOOBAR":                   "FOOBAR",
-		"FOO_BAR":                  "FOO_BAR",
-		"__FOO_BAR__":              "FOO_BAR",
-		"$foo@Bar":                 "FOO_BAR",
-		"   $#$Foo   22    bar   ": "FOO_22_BAR",
-		"Foo-#1😄$_%^&*(1bar":       "FOO_1_1_BAR",
+	tests := []struct {
+		input    string
+		expected string
+	}{
+		{"", ""},
+		{"foo-bar", "FOO_BAR"},
+		{"--Foo---Bar-", "FOO_BAR"},
+		{"Foo Bar-", "FOO_BAR"},
+		{"foo_Bar", "FOO_BAR"},
+		{"fooBar", "FOO_BAR"},
+		{"FOOBAR", "FOOBAR"},
+		{"FOO_BAR", "FOO_BAR"},
+		{"__FOO_BAR__", "FOO_BAR"},
+		{"$foo@Bar", "FOO_BAR"},
+		{"   $#$Foo   22    bar   ", "FOO_22_BAR"},
+		{"Foo-#1😄$_%^&*(1bar", "FOO_1_1_BAR"},
 	}
 
-	for k, v := range cases {
-		assert.Equal(v, UpperSnakeCase(k))
+	for _, tt := range tests {
+		assert.Equal(tt.expected, UpperSnakeCase(tt.input))
 	}
 }
 
@@ -154,16 +171,19 @@ func TestUpperFirst(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestLowerFirst")
 
-	cases := map[string]string{
-		"":     "",
-		"foo":  "Foo",
-		"bAR":  "BAR",
-		"FOo":  "FOo",
-		"fOo大": "FOo大",
+	tests := []struct {
+		input    string
+		expected string
+	}{
+		{"", ""},
+		{"foo", "Foo"},
+		{"bAR", "BAR"},
+		{"FOo", "FOo"},
+		{"fOo大", "FOo大"},
 	}
 
-	for k, v := range cases {
-		assert.Equal(v, UpperFirst(k))
+	for _, tt := range tests {
+		assert.Equal(tt.expected, UpperFirst(tt.input))
 	}
 }
 
@@ -172,16 +192,19 @@ func TestLowerFirst(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestLowerFirst")
 
-	cases := map[string]string{
-		"":     "",
-		"foo":  "foo",
-		"bAR":  "bAR",
-		"FOo":  "fOo",
-		"fOo大": "fOo大",
+	tests := []struct {
+		input    string
+		expected string
+	}{
+		{"", ""},
+		{"foo", "foo"},
+		{"bAR", "bAR"},
+		{"FOo", "fOo"},
+		{"fOo大", "fOo大"},
 	}
 
-	for k, v := range cases {
-		assert.Equal(v, LowerFirst(k))
+	for _, tt := range tests {
+		assert.Equal(tt.expected, LowerFirst(tt.input))
 	}
 }
 
@@ -190,23 +213,48 @@ func TestPad(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestPad")
 
-	assert.Equal("a ", Pad("a", 2, ""))
-	assert.Equal("a", Pad("a", 1, "b"))
-	assert.Equal("ab", Pad("a", 2, "b"))
-	assert.Equal("mabcdm", Pad("abcd", 6, "m"))
+	tests := []struct {
+		input    string
+		padSize  int
+		padChar  string
+		expected string
+	}{
+		{"", 0, "", ""},
+		{"a", 0, "", "a"},
+		{"a", 1, "", "a"},
+		{"a", 2, "", "a "},
+		{"a", 1, "b", "a"},
+		{"a", 2, "b", "ab"},
+		{"abcd", 6, "m", "mabcdm"},
+	}
+
+	for _, tt := range tests {
+		assert.Equal(tt.expected, Pad(tt.input, tt.padSize, tt.padChar))
+	}
 }
 
 func TestPadEnd(t *testing.T) {
+	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestPadEnd")
 
-	assert.Equal("a ", PadEnd("a", 2, " "))
-	assert.Equal("a", PadEnd("a", 1, "b"))
-	assert.Equal("ab", PadEnd("a", 2, "b"))
-	assert.Equal("abcdmn", PadEnd("abcd", 6, "mno"))
-	assert.Equal("abcdmm", PadEnd("abcd", 6, "m"))
-	assert.Equal("abcaba", PadEnd("abc", 6, "ab"))
+	tests := []struct {
+		input    string
+		padSize  int
+		padChar  string
+		expected string
+	}{
+		{"a", 2, " ", "a "},
+		{"a", 1, "b", "a"},
+		{"a", 2, "b", "ab"},
+		{"abcd", 6, "mno", "abcdmn"},
+		{"abcd", 6, "m", "abcdmm"},
+		{"abcd", 6, "ab", "abcdab"},
+	}
 
-	assert.NotEqual("ba", PadEnd("a", 2, "b"))
+	for _, tt := range tests {
+		assert.Equal(tt.expected, PadEnd(tt.input, tt.padSize, tt.padChar))
+	}
 }
 
 func TestPadStart(t *testing.T) {
@@ -214,13 +262,22 @@ func TestPadStart(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestPadStart")
 
-	assert.Equal("a", PadStart("a", 1, "b"))
-	assert.Equal("ba", PadStart("a", 2, "b"))
-	assert.Equal("mnabcd", PadStart("abcd", 6, "mno"))
-	assert.Equal("mmabcd", PadStart("abcd", 6, "m"))
-	assert.Equal("abaabc", PadStart("abc", 6, "ab"))
+	tests := []struct {
+		input    string
+		padSize  int
+		padChar  string
+		expected string
+	}{
+		{"a", 1, "b", "a"},
+		{"a", 2, "b", "ba"},
+		{"abcd", 6, "mno", "mnabcd"},
+		{"abcd", 6, "m", "mmabcd"},
+		{"abc", 6, "ab", "abaabc"},
+	}
 
-	assert.NotEqual("ab", PadStart("a", 2, "b"))
+	for _, tt := range tests {
+		assert.Equal(tt.expected, PadStart(tt.input, tt.padSize, tt.padChar))
+	}
 }
 
 func TestBefore(t *testing.T) {
@@ -228,12 +285,21 @@ func TestBefore(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestBefore")
 
-	assert.Equal("lancet", Before("lancet", ""))
-	assert.Equal("", Before("lancet", "lancet"))
-	assert.Equal("lancet", Before("lancet", "abcdef"))
+	tests := []struct {
+		input    string
+		char     string
+		expected string
+	}{
+		{"lancet", "", "lancet"},
+		{"lancet", "lancet", ""},
+		{"lancet", "abcdef", "lancet"},
+		{"github.com/test/lancet", "/", "github.com"},
+		{"github.com/test/lancet", "test", "github.com/"},
+	}
 
-	assert.Equal("github.com", Before("github.com/test/lancet", "/"))
-	assert.Equal("github.com/", Before("github.com/test/lancet", "test"))
+	for _, tt := range tests {
+		assert.Equal(tt.expected, Before(tt.input, tt.char))
+	}
 }
 
 func TestBeforeLast(t *testing.T) {
@@ -243,7 +309,6 @@ func TestBeforeLast(t *testing.T) {
 
 	assert.Equal("lancet", BeforeLast("lancet", ""))
 	assert.Equal("lancet", BeforeLast("lancet", "abcdef"))
-
 	assert.Equal("github.com/test", BeforeLast("github.com/test/lancet", "/"))
 	assert.Equal("github.com/test/", BeforeLast("github.com/test/test/lancet", "test"))
 }
@@ -257,7 +322,6 @@ func TestAfter(t *testing.T) {
 	assert.Equal("", After("lancet", "lancet"))
 	assert.Equal("test/lancet", After("github.com/test/lancet", "/"))
 	assert.Equal("/lancet", After("github.com/test/lancet", "test"))
-
 	assert.Equal("lancet", After("lancet", "abcdef"))
 }
 
@@ -403,10 +467,8 @@ func TestStringToBytes(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestStringToBytes")
 
-	str := "abc"
-	bytes := StringToBytes(str)
-
-	assert.Equal(reflect.DeepEqual(bytes, []byte{'a', 'b', 'c'}), true)
+	bytes := StringToBytes("abc")
+	assert.Equal(bytes, []byte{'a', 'b', 'c'})
 }
 
 func TestBytesToString(t *testing.T) {
@@ -414,16 +476,15 @@ func TestBytesToString(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestBytesToString")
 
-	bytes := []byte{'a', 'b', 'c'}
-	str := BytesToString(bytes)
-
-	assert.Equal(str == "abc", true)
+	str := BytesToString([]byte{'a', 'b', 'c'})
+	assert.Equal("abc", str)
 }
 
 func TestIsBlank(t *testing.T) {
 	t.Parallel()
 
 	assert := internal.NewAssert(t, "TestIsBlank")
+
 	assert.Equal(IsBlank(""), true)
 	assert.Equal(IsBlank("\t\v\f\n"), true)
 
@@ -434,6 +495,7 @@ func TestIsNotBlank(t *testing.T) {
 	t.Parallel()
 
 	assert := internal.NewAssert(t, "TestIsBlank")
+
 	assert.Equal(IsNotBlank(""), false)
 	assert.Equal(IsNotBlank("			"), false)
 	assert.Equal(IsNotBlank("\t\v\f\n"), false)
@@ -446,6 +508,7 @@ func TestHasPrefixAny(t *testing.T) {
 	t.Parallel()
 
 	assert := internal.NewAssert(t, "TestHasPrefixAny")
+
 	str := "foo bar"
 	prefixes := []string{"fo", "xyz", "hello"}
 	notMatches := []string{"oom", "world"}
@@ -458,6 +521,7 @@ func TestHasSuffixAny(t *testing.T) {
 	t.Parallel()
 
 	assert := internal.NewAssert(t, "TestHasSuffixAny")
+
 	str := "foo bar"
 	suffixes := []string{"bar", "xyz", "hello"}
 	notMatches := []string{"oom", "world"}
@@ -503,6 +567,7 @@ func TestTrim(t *testing.T) {
 
 	assert.Equal("$ ab	cd $", Trim(str1))
 	assert.Equal("ab	cd", Trim(str1, "$"))
+
 	assert.Equal("abcd", Trim("\nabcd"))
 }
 
@@ -525,19 +590,27 @@ func TestHideString(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestTrim")
 
-	str := "13242658976"
+	tests := []struct {
+		input        string
+		start        int
+		end          int
+		replacedChar string
+		expected     string
+	}{
+		{"13242658976", 0, -1, "*", "13242658976"},
+		{"13242658976", 0, 0, "*", "13242658976"},
+		{"13242658976", 0, 4, "*", "****2658976"},
+		{"13242658976", 3, 3, "*", "13242658976"},
+		{"13242658976", 3, 4, "*", "132*2658976"},
+		{"13242658976", 3, 7, "*", "132****8976"},
+		{"13242658976", 3, 11, "*", "132********"},
+		{"13242658976", 7, 100, "*", "1324265****"},
+		{"13242658976", 100, 100, "*", "13242658976"},
+	}
 
-	assert.Equal("13242658976", HideString(str, 0, -1, "*"))
-	assert.Equal("13242658976", HideString(str, 0, 0, "*"))
-	assert.Equal("****2658976", HideString(str, 0, 4, "*"))
-
-	assert.Equal("13242658976", HideString(str, 3, 3, "*"))
-	assert.Equal("132*2658976", HideString(str, 3, 4, "*"))
-	assert.Equal("132****8976", HideString(str, 3, 7, "*"))
-	assert.Equal("1324265****", HideString(str, 7, 11, "*"))
-
-	assert.Equal("1324265****", HideString(str, 7, 100, "*"))
-	assert.Equal("13242658976", HideString(str, 100, 100, "*"))
+	for _, tt := range tests {
+		assert.Equal(tt.expected, HideString(tt.input, tt.start, tt.end, tt.replacedChar))
+	}
 }
 
 func TestContainsAll(t *testing.T) {
@@ -593,23 +666,34 @@ func TestHammingDistance(t *testing.T) {
 		return c
 	}
 
-	assert.Equal(0, hd(" ", " "))
-	assert.Equal(1, hd(" ", "c"))
-	assert.Equal(1, hd("a", "d"))
-	assert.Equal(1, hd("a", " "))
-	assert.Equal(1, hd("a", "f"))
+	tests := []struct {
+		strA            string
+		strB            string
+		hammingDistance int
+	}{
+		{" ", " ", 0},
+		{" ", "c", 1},
+		{"a", "d", 1},
+		{"a", " ", 1},
+		{"a", "f", 1},
 
-	assert.Equal(0, hd("", ""))
-	assert.Equal(-1, hd("abc", "ab"))
-	assert.Equal(3, hd("abc", "def"))
-	assert.Equal(-1, hd("kitten", "sitting"))
-	assert.Equal(1, hd("ö", "ü"))
-	assert.Equal(0, hd("日本語", "日本語"))
-	assert.Equal(3, hd("日本語", "語日本"))
+		{"", "", 0},
+		{"abc", "ab", -1},
+		{"abc", "def", 3},
+		{"kitten", "sitting", -1},
+		{"ö", "ü", 1},
+		{"日本語", "日本語", 0},
+		{"日本語", "語日本", 3},
+	}
+
+	for _, tt := range tests {
+		assert.Equal(tt.hammingDistance, hd(tt.strA, tt.strB))
+	}
 }
 
 func TestConcat(t *testing.T) {
 	t.Parallel()
+
 	assert := internal.NewAssert(t, "TestConcat")
 
 	assert.Equal("", Concat(0))
@@ -619,4 +703,237 @@ func TestConcat(t *testing.T) {
 	assert.Equal("abc", Concat(3, "a", "", "b", "c", ""))
 	assert.Equal("你好，世界！", Concat(0, "你好", "，", "", "世界！", ""))
 	assert.Equal("Hello World!", Concat(0, "Hello", " Wo", "r", "ld!", ""))
+}
+
+func TestEllipsis(t *testing.T) {
+	t.Parallel()
+	assert := internal.NewAssert(t, "TestEllipsis")
+
+	tests := []struct {
+		input    string
+		length   int
+		expected string
+	}{
+		{"", 0, ""},
+		{"hello world", 0, ""},
+		{"hello world", -1, ""},
+		{"hello world", 5, "hello..."},
+		{"hello world", 11, "hello world"},
+		{"你好，世界!", 2, "你好..."},
+		{"😀😃😄😁😆", 3, "😀😃😄..."},
+		{"This is a test.", 10, "This is a ..."},
+	}
+
+	for _, tt := range tests {
+		assert.Equal(tt.expected, Ellipsis(tt.input, tt.length))
+	}
+}
+
+func TestShuffle(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestShuffle")
+
+	assert.Equal("", Shuffle(""))
+	assert.Equal("a", Shuffle("a"))
+
+	str := "hello"
+	shuffledStr := Shuffle(str)
+	assert.Equal(5, len(shuffledStr))
+}
+
+func TestRotate(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestRotate")
+
+	tests := []struct {
+		input    string
+		shift    int
+		expected string
+	}{
+		{"", 1, ""},
+		{"a", 0, "a"},
+		{"a", 1, "a"},
+		{"a", -1, "a"},
+
+		{"Hello", -2, "lloHe"},
+		{"Hello", 1, "oHell"},
+		{"Hello, world!", 3, "ld!Hello, wor"},
+	}
+
+	for _, tt := range tests {
+		assert.Equal(tt.expected, Rotate(tt.input, tt.shift))
+	}
+}
+
+func TestTemplateReplace(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestTemplateReplace")
+
+	t.Run("basic", func(t *testing.T) {
+		template := `Hello, my name is {name}, I'm {age} years old.`
+		data := map[string]string{
+			"name": "Bob",
+			"age":  "20",
+		}
+
+		expected := `Hello, my name is Bob, I'm 20 years old.`
+		result := TemplateReplace(template, data)
+
+		assert.Equal(expected, result)
+	})
+
+	t.Run("not found", func(t *testing.T) {
+		template := `Hello, my name is {name}, I'm {age} years old.`
+		data := map[string]string{
+			"name": "Bob",
+		}
+
+		expected := `Hello, my name is Bob, I'm {age} years old.`
+		result := TemplateReplace(template, data)
+
+		assert.Equal(expected, result)
+	})
+
+	t.Run("brackets", func(t *testing.T) {
+		template := `Hello, my name is {name}, I'm {{age}} years old.`
+		data := map[string]string{
+			"name": "Bob",
+			"age":  "20",
+		}
+
+		expected := `Hello, my name is Bob, I'm {20} years old.`
+		result := TemplateReplace(template, data)
+
+		assert.Equal(expected, result)
+	})
+}
+
+func TestRegexMatchAllGroups(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestRegexMatchAllGroups")
+
+	tests := []struct {
+		pattern  string
+		str      string
+		expected [][]string
+	}{
+		{
+			pattern:  `(\w+\.+\w+)@(\w+)\.(\w+)`,
+			str:      "Emails: john.doe@example.com and jane.doe@example.com",
+			expected: [][]string{{"john.doe@example.com", "john.doe", "example", "com"}, {"jane.doe@example.com", "jane.doe", "example", "com"}},
+		},
+		{
+			pattern:  `(\d+)`,
+			str:      "No numbers here!",
+			expected: nil,
+		},
+		{
+			pattern:  `(\d{3})-(\d{2})-(\d{4})`,
+			str:      "My number is 123-45-6789",
+			expected: [][]string{{"123-45-6789", "123", "45", "6789"}},
+		},
+		{
+			pattern:  `(\w+)\s(\d+)`,
+			str:      "Item A 123, Item B 456",
+			expected: [][]string{{"A 123", "A", "123"}, {"B 456", "B", "456"}},
+		},
+		{
+			pattern:  `(\d{2})-(\d{2})-(\d{4})`,
+			str:      "Dates: 01-01-2020, 12-31-1999",
+			expected: [][]string{{"01-01-2020", "01", "01", "2020"}, {"12-31-1999", "12", "31", "1999"}},
+		},
+	}
+
+	for _, tt := range tests {
+		result := RegexMatchAllGroups(tt.pattern, tt.str)
+		assert.Equal(tt.expected, result)
+	}
+}
+
+func TestExtractContent(t *testing.T) {
+	t.Parallel()
+	assert := internal.NewAssert(t, "TestExtractContent")
+
+	tests := []struct {
+		name     string
+		input    string
+		start    string
+		end      string
+		expected []string
+	}{
+		{
+			name:     "Extract content between <tag> and </tag>",
+			input:    "This is <tag>content1</tag> and <tag>content2</tag> and <tag>content3</tag>",
+			start:    "<tag>",
+			end:      "</tag>",
+			expected: []string{"content1", "content2", "content3"},
+		},
+		{
+			name:     "No tags in the string",
+			input:    "This string has no tags",
+			start:    "<tag>",
+			end:      "</tag>",
+			expected: []string{},
+		},
+		{
+			name:     "Single tag pair",
+			input:    "<tag>onlyContent</tag>",
+			start:    "<tag>",
+			end:      "</tag>",
+			expected: []string{"onlyContent"},
+		},
+		{
+			name:     "Tags without end tag",
+			input:    "This <tag>content without end tag",
+			start:    "<tag>",
+			end:      "</tag>",
+			expected: []string{},
+		},
+		{
+			name:     "Tags with nested content",
+			input:    "<tag>content <nested>inner</nested> end</tag>",
+			start:    "<tag>",
+			end:      "</tag>",
+			expected: []string{"content <nested>inner</nested> end"},
+		},
+		{
+			name:     "Edge case with empty string",
+			input:    "",
+			start:    "<tag>",
+			end:      "</tag>",
+			expected: []string{},
+		},
+		{
+			name:     "Edge case with no start tag",
+			input:    "content without start tag",
+			start:    "<tag>",
+			end:      "</tag>",
+			expected: []string{},
+		},
+		{
+			name:     "Edge case with no end tag",
+			input:    "<tag>content without end tag",
+			start:    "<tag>",
+			end:      "</tag>",
+			expected: []string{},
+		},
+		{
+			name:     "Multiple consecutive tags",
+			input:    "<tag>content1</tag><tag>content2</tag><tag>content3</tag>",
+			start:    "<tag>",
+			end:      "</tag>",
+			expected: []string{"content1", "content2", "content3"},
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			result := ExtractContent(tt.input, tt.start, tt.end)
+			assert.Equal(tt.expected, result)
+		})
+	}
 }

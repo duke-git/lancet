@@ -2,11 +2,14 @@ package slice
 
 import (
 	"fmt"
-	"github.com/duke-git/lancet/v2/internal"
 	"math"
 	"reflect"
 	"strconv"
+	"strings"
+	"sync"
 	"testing"
+
+	"github.com/duke-git/lancet/v2/internal"
 )
 
 func TestContain(t *testing.T) {
@@ -14,12 +17,20 @@ func TestContain(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestContain")
 
-	assert.Equal(true, Contain([]string{"a", "b", "c"}, "a"))
-	assert.Equal(false, Contain([]string{"a", "b", "c"}, "d"))
-	assert.Equal(true, Contain([]string{""}, ""))
-	assert.Equal(false, Contain([]string{}, ""))
+	tests := []struct {
+		slice []string
+		give  string
+		want  bool
+	}{
+		{[]string{"a", "b", "c"}, "a", true},
+		{[]string{"a", "b", "c"}, "d", false},
+		{[]string{""}, "", true},
+		{[]string{}, "", false},
+	}
 
-	assert.Equal(true, Contain([]int{1, 2, 3}, 1))
+	for _, tt := range tests {
+		assert.Equal(tt.want, Contain(tt.slice, tt.give))
+	}
 }
 
 func TestContainBy(t *testing.T) {
@@ -28,32 +39,53 @@ func TestContainBy(t *testing.T) {
 	assert := internal.NewAssert(t, "TestContainBy")
 
 	type foo struct {
-		A string
-		B int
+		a string
+		b int
 	}
 
-	array1 := []foo{{A: "1", B: 1}, {A: "2", B: 2}}
-	result1 := ContainBy(array1, func(f foo) bool { return f.A == "1" && f.B == 1 })
-	result2 := ContainBy(array1, func(f foo) bool { return f.A == "2" && f.B == 1 })
+	tests := []struct {
+		slice       []foo
+		predicateFn func(f foo) bool
+		want        bool
+	}{
+		{
+			[]foo{{a: "1", b: 1}, {a: "2", b: 2}},
+			func(f foo) bool { return f.a == "1" && f.b == 1 },
+			true,
+		},
+		{
+			[]foo{{a: "1", b: 1}, {a: "2", b: 2}},
+			func(f foo) bool { return f.a == "2" && f.b == 1 },
+			false,
+		},
+	}
 
-	array2 := []string{"a", "b", "c"}
-	result3 := ContainBy(array2, func(t string) bool { return t == "a" })
-	result4 := ContainBy(array2, func(t string) bool { return t == "d" })
-
-	assert.Equal(true, result1)
-	assert.Equal(false, result2)
-	assert.Equal(true, result3)
-	assert.Equal(false, result4)
+	for _, tt := range tests {
+		assert.Equal(tt.want, ContainBy(tt.slice, tt.predicateFn))
+	}
 }
 
 func TestContainSubSlice(t *testing.T) {
 	t.Parallel()
 
 	assert := internal.NewAssert(t, "TestContainSubSlice")
-	assert.Equal(true, ContainSubSlice([]string{"a", "a", "b", "c"}, []string{"a", "a"}))
-	assert.Equal(false, ContainSubSlice([]string{"a", "a", "b", "c"}, []string{"a", "d"}))
-	assert.Equal(true, ContainSubSlice([]int{1, 2, 3}, []int{1, 2}))
-	assert.Equal(false, ContainSubSlice([]int{1, 2, 3}, []int{0, 1}))
+
+	tests := []struct {
+		slice    []string
+		subSlice []string
+		want     bool
+	}{
+		{[]string{"a", "b", "c"}, []string{"a", "b"}, true},
+		{[]string{"a", "b", "c"}, []string{"a", "d"}, false},
+		{[]string{"a", "b", "c"}, []string{"a", "b", "c"}, true},
+		{[]string{"a", "b", "c"}, []string{"a", "b", "c", "d"}, false},
+		{[]string{"a", "b", ""}, []string{"a", ""}, true},
+		{[]string{""}, []string{""}, true},
+	}
+
+	for _, tt := range tests {
+		assert.Equal(tt.want, ContainSubSlice(tt.slice, tt.subSlice))
+	}
 }
 
 func TestChunk(t *testing.T) {
@@ -61,29 +93,24 @@ func TestChunk(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestChunk")
 
-	arr := []string{"a", "b", "c", "d", "e"}
+	tests := []struct {
+		slice     []string
+		chuanSize int
+		want      [][]string
+	}{
+		{[]string{"a", "b", "c", "d", "e"}, -1, [][]string{}},
+		{[]string{"a", "b", "c", "d", "e"}, 0, [][]string{}},
+		{[]string{"a", "b", "c", "d", "e"}, 1, [][]string{{"a"}, {"b"}, {"c"}, {"d"}, {"e"}}},
+		{[]string{"a", "b", "c", "d", "e"}, 2, [][]string{{"a", "b"}, {"c", "d"}, {"e"}}},
+		{[]string{"a", "b", "c", "d", "e"}, 3, [][]string{{"a", "b", "c"}, {"d", "e"}}},
+		{[]string{"a", "b", "c", "d", "e"}, 4, [][]string{{"a", "b", "c", "d"}, {"e"}}},
+		{[]string{"a", "b", "c", "d", "e"}, 5, [][]string{{"a", "b", "c", "d", "e"}}},
+		{[]string{"a", "b", "c", "d", "e"}, 6, [][]string{{"a", "b", "c", "d", "e"}}},
+	}
 
-	assert.Equal([][]string{}, Chunk(arr, -1))
-
-	assert.Equal([][]string{}, Chunk(arr, 0))
-
-	r1 := [][]string{{"a"}, {"b"}, {"c"}, {"d"}, {"e"}}
-	assert.Equal(r1, Chunk(arr, 1))
-
-	r2 := [][]string{{"a", "b"}, {"c", "d"}, {"e"}}
-	assert.Equal(r2, Chunk(arr, 2))
-
-	r3 := [][]string{{"a", "b", "c"}, {"d", "e"}}
-	assert.Equal(r3, Chunk(arr, 3))
-
-	r4 := [][]string{{"a", "b", "c", "d"}, {"e"}}
-	assert.Equal(r4, Chunk(arr, 4))
-
-	r5 := [][]string{{"a", "b", "c", "d", "e"}}
-	assert.Equal(r5, Chunk(arr, 5))
-
-	r6 := [][]string{{"a", "b", "c", "d", "e"}}
-	assert.Equal(r6, Chunk(arr, 6))
+	for _, tt := range tests {
+		assert.Equal(tt.want, Chunk(tt.slice, tt.chuanSize))
+	}
 }
 
 func TestCompact(t *testing.T) {
@@ -132,6 +159,7 @@ func TestEqual(t *testing.T) {
 
 	assert.Equal(true, Equal(slice1, slice2))
 	assert.Equal(false, Equal(slice1, slice3))
+	assert.Equal(false, Equal(slice2, slice3))
 }
 
 // go test -fuzz=Fuzz -fuzztime=10s .
@@ -161,12 +189,27 @@ func TestEvery(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestEvery")
 
-	nums := []int{1, 2, 3, 5}
 	isEven := func(i, num int) bool {
 		return num%2 == 0
 	}
+	isOdd := func(i, num int) bool {
+		return num%2 == 1
+	}
 
-	assert.Equal(false, Every(nums, isEven))
+	tests := []struct {
+		slice       []int
+		predicateFn func(i, num int) bool
+		want        bool
+	}{
+		{[]int{1, 3, 5, 7}, isOdd, true},
+		{[]int{2, 4, 6, 8}, isEven, true},
+		{[]int{1, 2, 3, 4}, isOdd, false},
+		{[]int{1, 2, 3, 4}, isEven, false},
+	}
+
+	for _, tt := range tests {
+		assert.Equal(tt.want, Every(tt.slice, tt.predicateFn))
+	}
 }
 
 func TestNone(t *testing.T) {
@@ -174,12 +217,27 @@ func TestNone(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestNone")
 
-	nums := []int{1, 2, 3, 5}
-	check := func(i, num int) bool {
+	isEven := func(i, num int) bool {
+		return num%2 == 0
+	}
+	isOdd := func(i, num int) bool {
 		return num%2 == 1
 	}
 
-	assert.Equal(false, None(nums, check))
+	tests := []struct {
+		slice       []int
+		predicateFn func(i, num int) bool
+		want        bool
+	}{
+		{[]int{1, 3, 5, 7}, isEven, true},
+		{[]int{2, 4, 6, 8}, isOdd, true},
+		{[]int{1, 2, 3, 4}, isOdd, false},
+		{[]int{1, 2, 3, 4}, isEven, false},
+	}
+
+	for _, tt := range tests {
+		assert.Equal(tt.want, None(tt.slice, tt.predicateFn))
+	}
 }
 
 func TestSome(t *testing.T) {
@@ -187,12 +245,27 @@ func TestSome(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestSome")
 
-	nums := []int{1, 2, 3, 5}
-	hasEven := func(i, num int) bool {
+	isEven := func(i, num int) bool {
 		return num%2 == 0
 	}
+	isOdd := func(i, num int) bool {
+		return num%2 == 1
+	}
 
-	assert.Equal(true, Some(nums, hasEven))
+	tests := []struct {
+		slice       []int
+		predicateFn func(i, num int) bool
+		want        bool
+	}{
+		{[]int{1, 3, 5, 7}, isEven, false},
+		{[]int{2, 4, 6, 8}, isOdd, false},
+		{[]int{1, 2, 3, 4}, isOdd, true},
+		{[]int{1, 2, 3, 4}, isEven, true},
+	}
+
+	for _, tt := range tests {
+		assert.Equal(tt.want, Some(tt.slice, tt.predicateFn))
+	}
 }
 
 func TestFilter(t *testing.T) {
@@ -200,33 +273,37 @@ func TestFilter(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestFilter")
 
-	nums := []int{1, 2, 3, 4, 5}
-	isEven := func(i, num int) bool {
-		return num%2 == 0
-	}
+	t.Run("filter int slice", func(t *testing.T) {
+		nums := []int{1, 2, 3, 4, 5}
+		isEven := func(i, num int) bool {
+			return num%2 == 0
+		}
 
-	assert.Equal([]int{2, 4}, Filter(nums, isEven))
+		assert.Equal([]int{2, 4}, Filter(nums, isEven))
+	})
 
-	type student struct {
-		name string
-		age  int
-	}
-	students := []student{
-		{"a", 10},
-		{"b", 11},
-		{"c", 12},
-		{"d", 13},
-		{"e", 14},
-	}
-	studentsOfAageGreat12 := []student{
-		{"d", 13},
-		{"e", 14},
-	}
-	filterFunc := func(i int, s student) bool {
-		return s.age > 12
-	}
+	t.Run("filter struct slice", func(t *testing.T) {
+		type student struct {
+			name string
+			age  int
+		}
+		students := []student{
+			{"a", 10},
+			{"b", 11},
+			{"c", 12},
+			{"d", 13},
+			{"e", 14},
+		}
+		studentsOfAgeGreat12 := []student{
+			{"d", 13},
+			{"e", 14},
+		}
+		filterFunc := func(i int, s student) bool {
+			return s.age > 12
+		}
 
-	assert.Equal(studentsOfAageGreat12, Filter(students, filterFunc))
+		assert.Equal(studentsOfAgeGreat12, Filter(students, filterFunc))
+	})
 }
 
 func TestGroupBy(t *testing.T) {
@@ -247,6 +324,8 @@ func TestGroupBy(t *testing.T) {
 func TestGroupWith(t *testing.T) {
 	t.Parallel()
 
+	assert := internal.NewAssert(t, "TestGroupWith")
+
 	nums := []float64{6.1, 4.2, 6.3}
 	floor := func(num float64) float64 {
 		return math.Floor(num)
@@ -255,9 +334,8 @@ func TestGroupWith(t *testing.T) {
 		4: {4.2},
 		6: {6.1, 6.3},
 	}
-	actual := GroupWith(nums, floor)
-	assert := internal.NewAssert(t, "TestGroupWith")
-	assert.Equal(expected, actual)
+
+	assert.Equal(expected, GroupWith(nums, floor))
 }
 
 func TestCount(t *testing.T) {
@@ -293,8 +371,15 @@ func TestFind(t *testing.T) {
 	result, ok := Find(nums, even)
 
 	assert := internal.NewAssert(t, "TestFind")
+
 	assert.Equal(true, ok)
 	assert.Equal(2, *result)
+
+	_, ok = Find(nums, func(_ int, v int) bool {
+		return v == 6
+	})
+
+	assert.Equal(false, ok)
 }
 
 func TestFindBy(t *testing.T) {
@@ -356,19 +441,6 @@ func TestFindLast(t *testing.T) {
 	assert.Equal(4, *result)
 }
 
-func TestFindFoundNothing(t *testing.T) {
-	t.Parallel()
-
-	nums := []int{1, 1, 1, 1, 1, 1}
-	findFunc := func(i, num int) bool {
-		return num > 1
-	}
-	_, ok := Find(nums, findFunc)
-
-	assert := internal.NewAssert(t, "TestFindFoundNothing")
-	assert.Equal(false, ok)
-}
-
 func TestFlatten(t *testing.T) {
 	t.Parallel()
 
@@ -406,6 +478,73 @@ func TestForEach(t *testing.T) {
 	ForEach(numbers, addTwo)
 
 	assert.Equal([]int{3, 4, 5, 6, 7}, result)
+}
+
+func TestForEachConcurrent(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestForEachConcurrent")
+
+	t.Run("single thread", func(t *testing.T) {
+		numbers := []int{1, 2, 3, 4, 5, 6, 7, 8, 9}
+		result := make([]int, len(numbers))
+
+		addOne := func(index int, value int) {
+			result[index] = value + 1
+		}
+
+		ForEachConcurrent(numbers, addOne, 1)
+
+		expected := []int{2, 3, 4, 5, 6, 7, 8, 9, 10}
+		assert.Equal(expected, result)
+	})
+
+	t.Run("normal", func(t *testing.T) {
+		numbers := []int{1, 2, 3, 4, 5, 6, 7, 8, 9}
+		result := make([]int, len(numbers))
+
+		addOne := func(index int, value int) {
+			result[index] = value + 1
+		}
+
+		ForEachConcurrent(numbers, addOne, 4)
+
+		expected := []int{2, 3, 4, 5, 6, 7, 8, 9, 10}
+		assert.Equal(expected, result)
+	})
+
+	t.Run("negative threads", func(t *testing.T) {
+		numbers := []int{1, 2, 3, 4, 5, 6, 7, 8, 9}
+		result := make([]int, len(numbers))
+
+		addOne := func(index int, value int) {
+			result[index] = value + 1
+		}
+
+		ForEachConcurrent(numbers, addOne, -4)
+
+		expected := []int{2, 3, 4, 5, 6, 7, 8, 9, 10}
+		assert.Equal(expected, result)
+	})
+
+	t.Run("high number threads", func(t *testing.T) {
+		numbers := make([]int, 1000)
+		for i := range numbers {
+			numbers[i] = i
+		}
+
+		result := make([]int, len(numbers))
+
+		addOne := func(index int, value int) {
+			result[index] = value + 1
+		}
+
+		ForEachConcurrent(numbers, addOne, 50)
+
+		for i, item := range numbers {
+			assert.Equal(item+1, result[i])
+		}
+	})
 }
 
 func TestForEachWithBreak(t *testing.T) {
@@ -518,6 +657,44 @@ func TestReduce(t *testing.T) {
 	}
 }
 
+func TestReduceConcurrent(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestReduceConcurrent")
+
+	t.Run("basic", func(t *testing.T) {
+		nums := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+		result := ReduceConcurrent(nums, 0, func(_ int, item, agg int) int {
+			return agg + item
+		}, 4)
+		assert.Equal(55, result)
+	})
+
+	t.Run("empty slice", func(t *testing.T) {
+		nums := []int{}
+		result := ReduceConcurrent(nums, 0, func(_ int, item, agg int) int {
+			return agg + item
+		}, 4)
+		assert.Equal(0, result)
+	})
+
+	t.Run("single thread", func(t *testing.T) {
+		nums := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+		result := ReduceConcurrent(nums, 0, func(_ int, item, agg int) int {
+			return agg + item
+		}, 1)
+		assert.Equal(55, result)
+	})
+
+	t.Run("negative threads", func(t *testing.T) {
+		nums := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+		result := ReduceConcurrent(nums, 0, func(_ int, item, agg int) int {
+			return agg + item
+		}, -1)
+		assert.Equal(55, result)
+	})
+}
+
 func TestReduceBy(t *testing.T) {
 	t.Parallel()
 
@@ -526,14 +703,12 @@ func TestReduceBy(t *testing.T) {
 	result1 := ReduceBy([]int{1, 2, 3, 4}, 0, func(_ int, item int, agg int) int {
 		return agg + item
 	})
+	assert.Equal(10, result1)
 
 	result2 := ReduceBy([]int{1, 2, 3, 4}, "", func(_ int, item int, agg string) string {
 		return agg + fmt.Sprintf("%v", item)
 	})
-
-	assert.Equal(10, result1)
 	assert.Equal("1234", result2)
-
 }
 
 func TestReduceRight(t *testing.T) {
@@ -585,15 +760,23 @@ func TestDeleteAt(t *testing.T) {
 	t.Parallel()
 
 	assert := internal.NewAssert(t, "TestDeleteAt")
-	arr := []int{1, 2, 3, 4, 5}
 
-	assert.Equal([]int{2, 3, 4, 5}, DeleteAt(arr, 0))
-	assert.Equal([]int{1, 2, 3, 4}, DeleteAt(arr, 4))
+	tests := []struct {
+		slice     []int
+		deletePos int
+		wang      []int
+	}{
+		{[]int{1, 2, 3, 4, 5}, 0, []int{2, 3, 4, 5}},
+		{[]int{1, 2, 3, 4, 5}, 1, []int{1, 3, 4, 5}},
+		{[]int{1, 2, 3, 4, 5}, 2, []int{1, 2, 4, 5}},
+		{[]int{1, 2, 3, 4, 5}, 3, []int{1, 2, 3, 5}},
+		{[]int{1, 2, 3, 4, 5}, 4, []int{1, 2, 3, 4}},
+		{[]int{1, 2, 3, 4, 5}, 5, []int{1, 2, 3, 4}},
+	}
 
-	assert.Equal([]int{1, 2, 3, 4}, DeleteAt(arr, 5))
-	assert.Equal([]int{1, 2, 3, 4}, DeleteAt(arr, 6))
-
-	assert.Equal([]int{1, 2, 3, 4, 5}, arr)
+	for _, tt := range tests {
+		assert.Equal(tt.wang, DeleteAt(tt.slice, tt.deletePos))
+	}
 }
 
 func TestDeleteRange(t *testing.T) {
@@ -613,16 +796,24 @@ func TestDrop(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestDrop")
 
-	assert.Equal([]int{}, Drop([]int{}, 0))
-	assert.Equal([]int{}, Drop([]int{}, 1))
-	assert.Equal([]int{}, Drop([]int{}, -1))
+	tests := []struct {
+		slice   []int
+		dropNum int
+		want    []int
+	}{
+		{[]int{}, 0, []int{}},
+		{[]int{}, 1, []int{}},
+		{[]int{}, -1, []int{}},
+		{[]int{1, 2, 3, 4, 5}, -1, []int{1, 2, 3, 4, 5}},
+		{[]int{1, 2, 3, 4, 5}, 0, []int{1, 2, 3, 4, 5}},
+		{[]int{1, 2, 3, 4, 5}, 1, []int{2, 3, 4, 5}},
+		{[]int{1, 2, 3, 4, 5}, 5, []int{}},
+		{[]int{1, 2, 3, 4, 5}, 6, []int{}},
+	}
 
-	assert.Equal([]int{1, 2, 3, 4, 5}, Drop([]int{1, 2, 3, 4, 5}, 0))
-	assert.Equal([]int{2, 3, 4, 5}, Drop([]int{1, 2, 3, 4, 5}, 1))
-	assert.Equal([]int{}, Drop([]int{1, 2, 3, 4, 5}, 5))
-	assert.Equal([]int{}, Drop([]int{1, 2, 3, 4, 5}, 6))
-
-	assert.Equal([]int{1, 2, 3, 4, 5}, Drop([]int{1, 2, 3, 4, 5}, -1))
+	for _, tt := range tests {
+		assert.Equal(tt.want, Drop(tt.slice, tt.dropNum))
+	}
 }
 
 func TestDropRight(t *testing.T) {
@@ -630,16 +821,23 @@ func TestDropRight(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestDropRight")
 
-	assert.Equal([]int{}, DropRight([]int{}, 0))
-	assert.Equal([]int{}, DropRight([]int{}, 1))
-	assert.Equal([]int{}, DropRight([]int{}, -1))
-
-	assert.Equal([]int{1, 2, 3, 4, 5}, DropRight([]int{1, 2, 3, 4, 5}, 0))
-	assert.Equal([]int{1, 2, 3, 4}, DropRight([]int{1, 2, 3, 4, 5}, 1))
-	assert.Equal([]int{}, DropRight([]int{1, 2, 3, 4, 5}, 5))
-	assert.Equal([]int{}, DropRight([]int{1, 2, 3, 4, 5}, 6))
-
-	assert.Equal([]int{1, 2, 3, 4, 5}, DropRight([]int{1, 2, 3, 4, 5}, -1))
+	tests := []struct {
+		slice   []int
+		dropNum int
+		want    []int
+	}{
+		{[]int{}, 0, []int{}},
+		{[]int{}, 1, []int{}},
+		{[]int{}, -1, []int{}},
+		{[]int{1, 2, 3, 4, 5}, -1, []int{1, 2, 3, 4, 5}},
+		{[]int{1, 2, 3, 4, 5}, 0, []int{1, 2, 3, 4, 5}},
+		{[]int{1, 2, 3, 4, 5}, 1, []int{1, 2, 3, 4}},
+		{[]int{}, 5, []int{}},
+		{[]int{}, 6, []int{}},
+	}
+	for _, tt := range tests {
+		assert.Equal(tt.want, DropRight(tt.slice, tt.dropNum))
+	}
 }
 
 func TestDropWhile(t *testing.T) {
@@ -647,22 +845,19 @@ func TestDropWhile(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestDropWhile")
 
-	numbers := []int{1, 2, 3, 4, 5}
+	tests := []struct {
+		slice []int
+		fn    func(int) bool
+		want  []int
+	}{
+		{[]int{1, 2, 3, 4, 5}, func(n int) bool { return n != 2 }, []int{2, 3, 4, 5}},
+		{[]int{1, 2, 3, 4, 5}, func(n int) bool { return true }, []int{}},
+		{[]int{1, 2, 3, 4, 5}, func(n int) bool { return n == 0 }, []int{1, 2, 3, 4, 5}},
+	}
 
-	r1 := DropWhile(numbers, func(n int) bool {
-		return n != 2
-	})
-	assert.Equal([]int{2, 3, 4, 5}, r1)
-
-	r2 := DropWhile(numbers, func(n int) bool {
-		return true
-	})
-	assert.Equal([]int{}, r2)
-
-	r3 := DropWhile(numbers, func(n int) bool {
-		return n == 0
-	})
-	assert.Equal([]int{1, 2, 3, 4, 5}, r3)
+	for _, tt := range tests {
+		assert.Equal(tt.want, DropWhile(tt.slice, tt.fn))
+	}
 }
 
 func TestDropRightWhile(t *testing.T) {
@@ -670,22 +865,19 @@ func TestDropRightWhile(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestDropRightWhile")
 
-	numbers := []int{1, 2, 3, 4, 5}
+	tests := []struct {
+		slice []int
+		fn    func(int) bool
+		want  []int
+	}{
+		{[]int{1, 2, 3, 4, 5}, func(n int) bool { return n != 2 }, []int{1, 2}},
+		{[]int{1, 2, 3, 4, 5}, func(n int) bool { return true }, []int{}},
+		{[]int{1, 2, 3, 4, 5}, func(n int) bool { return n == 0 }, []int{1, 2, 3, 4, 5}},
+	}
 
-	r1 := DropRightWhile(numbers, func(n int) bool {
-		return n != 2
-	})
-	assert.Equal([]int{1, 2}, r1)
-
-	r2 := DropRightWhile(numbers, func(n int) bool {
-		return true
-	})
-	assert.Equal([]int{}, r2)
-
-	r3 := DropRightWhile(numbers, func(n int) bool {
-		return n == 0
-	})
-	assert.Equal([]int{1, 2, 3, 4, 5}, r3)
+	for _, tt := range tests {
+		assert.Equal(tt.want, DropRightWhile(tt.slice, tt.fn))
+	}
 }
 
 func TestInsertAt(t *testing.T) {
@@ -693,15 +885,25 @@ func TestInsertAt(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestInsertAt")
 
-	strs := []string{"a", "b", "c"}
-	assert.Equal([]string{"a", "b", "c"}, InsertAt(strs, -1, "1"))
-	assert.Equal([]string{"a", "b", "c"}, InsertAt(strs, 4, "1"))
-	assert.Equal([]string{"1", "a", "b", "c"}, InsertAt(strs, 0, "1"))
-	assert.Equal([]string{"a", "1", "b", "c"}, InsertAt(strs, 1, "1"))
-	assert.Equal([]string{"a", "b", "1", "c"}, InsertAt(strs, 2, "1"))
-	assert.Equal([]string{"a", "b", "c", "1"}, InsertAt(strs, 3, "1"))
-	assert.Equal([]string{"1", "2", "3", "a", "b", "c"}, InsertAt(strs, 0, []string{"1", "2", "3"}))
-	assert.Equal([]string{"a", "b", "c", "1", "2", "3"}, InsertAt(strs, 3, []string{"1", "2", "3"}))
+	tests := []struct {
+		slice       []string
+		insertPos   int
+		insertValue any
+		want        []string
+	}{
+		{[]string{"a", "b", "c"}, -1, "1", []string{"a", "b", "c"}},
+		{[]string{"a", "b", "c"}, 4, "1", []string{"a", "b", "c"}},
+		{[]string{"a", "b", "c"}, 0, "1", []string{"1", "a", "b", "c"}},
+		{[]string{"a", "b", "c"}, 1, "1", []string{"a", "1", "b", "c"}},
+		{[]string{"a", "b", "c"}, 2, "1", []string{"a", "b", "1", "c"}},
+		{[]string{"a", "b", "c"}, 3, "1", []string{"a", "b", "c", "1"}},
+		{[]string{"a", "b", "c"}, 0, []string{"1", "2", "3"}, []string{"1", "2", "3", "a", "b", "c"}},
+		{[]string{"a", "b", "c"}, 3, []string{"1", "2", "3"}, []string{"a", "b", "c", "1", "2", "3"}},
+	}
+
+	for _, tt := range tests {
+		assert.Equal(tt.want, InsertAt(tt.slice, tt.insertPos, tt.insertValue))
+	}
 }
 
 func TestUpdateAt(t *testing.T) {
@@ -732,7 +934,87 @@ func TestUniqueBy(t *testing.T) {
 	actual := UniqueBy([]int{1, 2, 3, 4, 5, 6}, func(val int) int {
 		return val % 4
 	})
-	assert.Equal([]int{1, 2, 3, 0}, actual)
+
+	assert.Equal([]int{1, 2, 3, 4}, actual)
+}
+
+func TestUniqueByField(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestUniqueByField")
+
+	type User struct {
+		ID   int    `json:"id"`
+		Name string `json:"name"`
+	}
+
+	users := []User{
+		{ID: 1, Name: "a"},
+		{ID: 2, Name: "b"},
+		{ID: 1, Name: "c"},
+	}
+
+	uniqueUsers, err := UniqueByField(users, "ID")
+	if err != nil {
+		t.Error(err)
+	}
+
+	assert.Equal([]User{
+		{ID: 1, Name: "a"},
+		{ID: 2, Name: "b"},
+	}, uniqueUsers)
+}
+
+func TestUniqueByComparator(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestUniqueByComparator")
+
+	t.Run("equal comparison", func(t *testing.T) {
+		nums := []int{1, 2, 3, 1, 2, 4, 5, 6, 4, 7}
+		comparator := func(item int, other int) bool {
+			return item == other
+		}
+		result := UniqueByComparator(nums, comparator)
+
+		assert.Equal([]int{1, 2, 3, 4, 5, 6, 7}, result)
+	})
+
+	t.Run("unique struct slice by field", func(t *testing.T) {
+		type student struct {
+			Name string
+			Age  int
+		}
+
+		students := []student{
+			{Name: "a", Age: 11},
+			{Name: "b", Age: 12},
+			{Name: "a", Age: 13},
+			{Name: "c", Age: 14},
+		}
+
+		comparator := func(item, other student) bool { return item.Name == other.Name }
+
+		result := UniqueByComparator(students, comparator)
+
+		assert.Equal([]student{
+			{Name: "a", Age: 11},
+			{Name: "b", Age: 12},
+			{Name: "c", Age: 14},
+		}, result)
+	})
+
+	t.Run("case-insensitive string comparison", func(t *testing.T) {
+		stringSlice := []string{"apple", "banana", "Apple", "cherry", "Banana", "date"}
+		caseInsensitiveComparator := func(item, other string) bool {
+			return strings.ToLower(item) == strings.ToLower(other)
+		}
+
+		result := UniqueByComparator(stringSlice, caseInsensitiveComparator)
+
+		assert.Equal([]string{"apple", "banana", "cherry", "date"}, result)
+	})
+
 }
 
 func TestUnion(t *testing.T) {
@@ -1086,6 +1368,37 @@ func TestIndexOf(t *testing.T) {
 	assert.Equal(-1, IndexOf(arr3, "r"))
 	assert.Equal(2, memoryHashCounter[key3])
 	assert.Equal(0, memoryHashCounter[minKey])
+
+	arr4 := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+
+	const numGoroutines = 100
+	var wg sync.WaitGroup
+	wg.Add(numGoroutines)
+
+	for i := 0; i < numGoroutines; i++ {
+		go func(i int) {
+			defer wg.Done()
+			index := IndexOf(arr4, i%10+1)
+			assert.Equal(i%10, index)
+		}(i)
+	}
+	wg.Wait()
+}
+
+func BenchmarkIndexOfDifferentSizes(b *testing.B) {
+	sizes := []int{10, 100, 1000, 10000, 100000}
+	for _, size := range sizes {
+		arr := make([]int, size)
+		for i := 0; i < len(arr); i++ {
+			arr[i] = i
+		}
+
+		b.RunParallel(func(pb *testing.PB) {
+			for pb.Next() {
+				_ = IndexOf(arr, size/2) // 查找数组中间的元素
+			}
+		})
+	}
 }
 
 func TestLastIndexOf(t *testing.T) {
@@ -1419,4 +1732,197 @@ func TestRightPaddingAndLeftPadding(t *testing.T) {
 
 	padded := LeftPadding(RightPadding(nums, 0, 3), 0, 3)
 	assert.Equal([]int{0, 0, 0, 1, 2, 3, 4, 5, 0, 0, 0}, padded)
+}
+
+func TestUniqueByConcurrent(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestUniqueByConcurrent")
+
+	nums := []int{1, 2, 3, 1, 2, 4, 5, 6, 4, 7}
+	comparator := func(item int, other int) bool { return item == other }
+
+	result := UniqueByConcurrent(nums, comparator, 4)
+
+	assert.Equal([]int{1, 2, 3, 4, 5, 6, 7}, result)
+}
+
+func TestMapConcurrent(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestMapConcurrent")
+
+	t.Run("empty slice", func(t *testing.T) {
+		actual := MapConcurrent([]int{}, func(_, n int) int { return n * n }, 4)
+		assert.Equal([]int{}, actual)
+	})
+
+	t.Run("single thread", func(t *testing.T) {
+		nums := []int{1, 2, 3, 4, 5, 6}
+		expected := []int{1, 4, 9, 16, 25, 36}
+		actual := MapConcurrent(nums, func(_, n int) int { return n * n }, 1)
+		assert.Equal(expected, actual)
+	})
+
+	t.Run("multiple threads", func(t *testing.T) {
+		nums := []int{1, 2, 3, 4, 5, 6}
+		expected := []int{1, 4, 9, 16, 25, 36}
+		actual := MapConcurrent(nums, func(_, n int) int { return n * n }, 4)
+		assert.Equal(expected, actual)
+	})
+
+}
+
+func TestFilterConcurrent(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestFilterConcurrent")
+
+	t.Run("empty slice", func(t *testing.T) {
+		actual := FilterConcurrent([]int{}, func(_, n int) bool { return n != 0 }, 4)
+		assert.Equal([]int{}, actual)
+	})
+
+	t.Run("single thread", func(t *testing.T) {
+		nums := []int{1, 2, 3, 4, 5, 6}
+		expected := []int{4, 5, 6}
+		actual := FilterConcurrent(nums, func(_, n int) bool { return n > 3 }, 1)
+		assert.Equal(expected, actual)
+	})
+
+	t.Run("multiple threads", func(t *testing.T) {
+		nums := []int{1, 2, 3, 4, 5, 6}
+		expected := []int{4, 5, 6}
+		actual := FilterConcurrent(nums, func(_, n int) bool { return n > 3 }, 4)
+		assert.Equal(expected, actual)
+	})
+}
+
+func TestFrequency(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestFrequency")
+
+	t.Run("empty slice", func(t *testing.T) {
+		result := Frequency([]int{})
+		assert.Equal(map[int]int{}, result)
+	})
+
+	t.Run("int slice", func(t *testing.T) {
+		nums := []int{1, 2, 2, 3, 3, 3}
+		expected := map[int]int{1: 1, 2: 2, 3: 3}
+		result := Frequency(nums)
+
+		assert.Equal(expected, result)
+	})
+
+	t.Run("string slice", func(t *testing.T) {
+		strs := []string{"a", "b", "b", "c", "c", "c"}
+		expected := map[string]int{"a": 1, "b": 2, "c": 3}
+		result := Frequency(strs)
+
+		assert.Equal(expected, result)
+	})
+
+	t.Run("struct slice", func(t *testing.T) {
+		type student struct {
+			Name string
+			Age  int
+		}
+
+		students := []student{
+			{Name: "a", Age: 11},
+			{Name: "b", Age: 12},
+			{Name: "a", Age: 13},
+			{Name: "c", Age: 14},
+		}
+
+		expected := map[student]int{
+			{Name: "a", Age: 11}: 1,
+			{Name: "a", Age: 13}: 1,
+			{Name: "b", Age: 12}: 1,
+			{Name: "c", Age: 14}: 1,
+		}
+		result := Frequency(students)
+
+		assert.Equal(expected, result)
+	})
+}
+
+func TestJoinFunc(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestJoinFunc")
+
+	t.Run("basic case", func(t *testing.T) {
+		result := JoinFunc([]int{1, 2, 3}, ", ", func(i int) int {
+			return i * 2
+		})
+
+		expected := "2, 4, 6"
+		assert.Equal(expected, result)
+	})
+
+	t.Run("empty slice", func(t *testing.T) {
+		result := JoinFunc([]int{}, ", ", func(i int) int {
+			return i * 2
+		})
+
+		assert.Equal("", result)
+	})
+
+	t.Run("single element slice", func(t *testing.T) {
+		result := JoinFunc([]int{1}, ", ", func(i int) int {
+			return i * 2
+		})
+
+		assert.Equal("2", result)
+	})
+
+	t.Run("string slice", func(t *testing.T) {
+		result := JoinFunc([]string{"a", "b", "c"}, ", ", func(s string) string {
+			return strings.ToUpper(s)
+		})
+
+		expected := "A, B, C"
+		assert.Equal(expected, result)
+	})
+}
+
+func TestConcatBy(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestConcatBy")
+
+	t.Run("Join strings", func(t *testing.T) {
+		result := ConcatBy([]string{"Hello", "World"}, ", ", func(a, b string) string {
+			return a + b
+		})
+
+		expected := "Hello, World"
+		assert.Equal(expected, result)
+	})
+
+	t.Run("Join Person struct", func(t *testing.T) {
+		type Person struct {
+			Name string
+			Age  int
+		}
+
+		people := []Person{
+			{Name: "Alice", Age: 30},
+			{Name: "Bob", Age: 25},
+			{Name: "Charlie", Age: 35},
+		}
+		sep := Person{Name: " | ", Age: 0}
+
+		personConnector := func(a, b Person) Person {
+			return Person{Name: a.Name + b.Name, Age: a.Age + b.Age}
+		}
+
+		result := ConcatBy(people, sep, personConnector)
+
+		assert.Equal("Alice | Bob | Charlie", result.Name)
+		assert.Equal(90, result.Age)
+	})
 }

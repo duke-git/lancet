@@ -6,6 +6,9 @@ import (
 	"strconv"
 	"strings"
 	"unicode"
+
+	"github.com/duke-git/lancet/v2/mathutil"
+	"github.com/duke-git/lancet/v2/strutil"
 )
 
 //
@@ -15,63 +18,63 @@ import (
 // http://en.wikipedia.org/wiki/Binary_prefix
 const (
 	// Decimal
-	UnitB  = 1
-	UnitKB = 1000
-	UnitMB = 1000 * UnitKB
-	UnitGB = 1000 * UnitMB
-	UnitTB = 1000 * UnitGB
-	UnitPB = 1000 * UnitTB
-	UnitEB = 1000 * UnitPB
+	unitB  = 1
+	unitKB = 1000
+	unitMB = 1000 * unitKB
+	unitGB = 1000 * unitMB
+	unitTB = 1000 * unitGB
+	unitPB = 1000 * unitTB
+	unitEB = 1000 * unitPB
 
 	// Binary
-	UnitBiB = 1
-	UnitKiB = 1024
-	UnitMiB = 1024 * UnitKiB
-	UnitGiB = 1024 * UnitMiB
-	UnitTiB = 1024 * UnitGiB
-	UnitPiB = 1024 * UnitTiB
-	UnitEiB = 1024 * UnitPiB
+	unitBiB = 1
+	unitKiB = 1024
+	unitMiB = 1024 * unitKiB
+	unitGiB = 1024 * unitMiB
+	unitTiB = 1024 * unitGiB
+	unitPiB = 1024 * unitTiB
+	unitEiB = 1024 * unitPiB
 )
 
 // type byteUnitMap map[byte]int64
 
 var (
 	decimalByteMap = map[string]uint64{
-		"b":  UnitB,
-		"kb": UnitKB,
-		"mb": UnitMB,
-		"gb": UnitGB,
-		"tb": UnitTB,
-		"pb": UnitPB,
-		"eb": UnitEB,
+		"b":  unitB,
+		"kb": unitKB,
+		"mb": unitMB,
+		"gb": unitGB,
+		"tb": unitTB,
+		"pb": unitPB,
+		"eb": unitEB,
 
 		// Without suffix
-		"":  UnitB,
-		"k": UnitKB,
-		"m": UnitMB,
-		"g": UnitGB,
-		"t": UnitTB,
-		"p": UnitPB,
-		"e": UnitEB,
+		"":  unitB,
+		"k": unitKB,
+		"m": unitMB,
+		"g": unitGB,
+		"t": unitTB,
+		"p": unitPB,
+		"e": unitEB,
 	}
 
 	binaryByteMap = map[string]uint64{
-		"bi":  UnitBiB,
-		"kib": UnitKiB,
-		"mib": UnitMiB,
-		"gib": UnitGiB,
-		"tib": UnitTiB,
-		"pib": UnitPiB,
-		"eib": UnitEiB,
+		"bi":  unitBiB,
+		"kib": unitKiB,
+		"mib": unitMiB,
+		"gib": unitGiB,
+		"tib": unitTiB,
+		"pib": unitPiB,
+		"eib": unitEiB,
 
 		// Without suffix
-		"":   UnitBiB,
-		"ki": UnitKiB,
-		"mi": UnitMiB,
-		"gi": UnitGiB,
-		"ti": UnitTiB,
-		"pi": UnitPiB,
-		"ei": UnitEiB,
+		"":   unitBiB,
+		"ki": unitKiB,
+		"mi": unitMiB,
+		"gi": unitGiB,
+		"ti": unitTiB,
+		"pi": unitPiB,
+		"ei": unitEiB,
 	}
 )
 
@@ -84,26 +87,28 @@ var (
 // The precision parameter specifies the number of digits after the decimal point, which defaults to 4.
 // Play: https://go.dev/play/p/FPXs1suwRcs
 func DecimalBytes(size float64, precision ...int) string {
-	p := 5
+	pointPosition := 4
 	if len(precision) > 0 {
-		p = precision[0] + 1
+		pointPosition = precision[0]
 	}
+
 	size, unit := calculateByteSize(size, 1000.0, decimalByteUnits)
 
-	return fmt.Sprintf("%.*g%s", p, size, unit)
+	return roundToToString(size, pointPosition) + unit
 }
 
 // BinaryBytes returns a human-readable byte size under binary standard (base 1024)
 // The precision parameter specifies the number of digits after the decimal point, which defaults to 4.
 // Play: https://go.dev/play/p/G9oHHMCAZxP
 func BinaryBytes(size float64, precision ...int) string {
-	p := 5
+	pointPosition := 4
 	if len(precision) > 0 {
-		p = precision[0] + 1
+		pointPosition = precision[0]
 	}
+
 	size, unit := calculateByteSize(size, 1024.0, binaryByteUnits)
 
-	return fmt.Sprintf("%.*g%s", p, size, unit)
+	return roundToToString(size, pointPosition) + unit
 }
 
 func calculateByteSize(size float64, base float64, byteUnits []string) (float64, string) {
@@ -114,6 +119,29 @@ func calculateByteSize(size float64, base float64, byteUnits []string) (float64,
 		i++
 	}
 	return size, byteUnits[i]
+}
+
+func roundToToString(x float64, max ...int) string {
+	pointPosition := 4
+	if len(max) > 0 {
+		pointPosition = max[0]
+	}
+	result := mathutil.RoundToString(x, pointPosition)
+
+	// 删除小数位结尾的0
+	decimal := strings.TrimRight(strutil.After(result, "."), "0")
+	if decimal == "" || pointPosition == 0 {
+		// 没有小数位直接返回整数
+		return strutil.Before(result, ".")
+	}
+
+	// 小数位大于想要设置的位数，按需要截断
+	if len(decimal) > pointPosition {
+		return strutil.Before(result, ".") + "." + decimal[:pointPosition]
+	}
+
+	// 小数位小于等于想要的位数，直接拼接返回
+	return strutil.Before(result, ".") + "." + decimal
 }
 
 // ParseDecimalBytes return the human readable bytes size string into the amount it represents(base 1000).

@@ -32,6 +32,8 @@ import (
 -   [AesCfbDecrypt](#AesCfbDecrypt)
 -   [AesOfbEncrypt](#AesOfbEncrypt)
 -   [AesOfbDecrypt](#AesOfbDecrypt)
+-   [AesGcmEncrypt](#AesGcmEncrypt)
+-   [AesGcmDecrypt](#AesGcmDecrypt)
 -   [Base64StdEncode](#Base64StdEncode)
 -   [Base64StdDecode](#Base64StdDecode)
 -   [DesEcbEncrypt](#DesEcbEncrypt)
@@ -68,6 +70,9 @@ import (
 -   [GenerateRsaKeyPair](#GenerateRsaKeyPair)
 -   [RsaEncryptOAEP](#RsaEncryptOAEP)
 -   [RsaDecryptOAEP](#RsaDecryptOAEP)
+-   [RsaSign](#RsaSign)
+-   [RsaVerifySign](#RsaVerifySign)
+
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -371,6 +376,74 @@ func main() {
 
     encrypted := cryptor.AesOfbEncrypt([]byte(data), []byte(key))
     decrypted := cryptor.AesCfbDecrypt(encrypted, []byte(key))
+
+    fmt.Println(string(decrypted))
+
+    // Output:
+    // hello
+}
+```
+
+### <span id="AesGcmEncrypt">AesGcmEncrypt</span>
+
+<p>使用AES GCM算法模式加密数据。</p>
+
+<b>函数签名:</b>
+
+```go
+func AesGcmEncrypt(data, key []byte) []byte
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/rUt0-DmsPCs)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/cryptor"
+)
+
+func main() {
+    data := "hello"
+    key := "abcdefghijklmnop"
+
+    encrypted := cryptor.AesGcmEncrypt([]byte(data), []byte(key))
+    decrypted := cryptor.AesGcmDecrypt(encrypted, []byte(key))
+
+    fmt.Println(string(decrypted))
+
+    // Output:
+    // hello
+}
+```
+
+### <span id="AesGcmDecrypt">AesGcmDecrypt</span>
+
+<p>使用AES GCM算法解密数据。</p>
+
+<b>函数签名:</b>
+
+```go
+func AesGcmDecrypt(data, key []byte) []byte
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/rUt0-DmsPCs)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/cryptor"
+)
+
+func main() {
+    data := "hello"
+    key := "abcdefghijklmnop"
+
+    encrypted := cryptor.AesGcmEncrypt([]byte(data), []byte(key))
+    decrypted := cryptor.AesGcmDecrypt(encrypted, []byte(key))
 
     fmt.Println(string(decrypted))
 
@@ -1363,7 +1436,7 @@ func main() {
 func RsaEncrypt(data []byte, pubKeyFileName string) []byte
 ```
 
-<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/uef0q1fz53I)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/7_zo6mrx-eX)</span></b>
 
 ```go
 package main
@@ -1400,7 +1473,7 @@ func main() {
 func RsaDecrypt(data []byte, privateKeyFileName string) []byte
 ```
 
-<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/uef0q1fz53I)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/7_zo6mrx-eX)</span></b>
 
 ```go
 package main
@@ -1535,5 +1608,83 @@ func main() {
 
     // Output:
     // hello world
+}
+```
+
+### <span id="RsaSign">RsaSign</span>
+
+<p>应用RSA算法签名数据。</p>
+
+<b>函数签名:</b>
+
+```go
+func RsaSign(hash crypto.Hash, data []byte, privateKeyFileName string) ([]byte, error)
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/qhsbf8BJ6Mf)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/cryptor"
+)
+
+func main() {
+    data := []byte("This is a test data for RSA signing")
+    hash := crypto.SHA256
+
+    privateKey := "./rsa_private.pem"
+    publicKey := "./rsa_public.pem"
+
+    signature, err := cryptor.RsaSign(hash, data, privateKey)
+    if err != nil {
+        return
+    }
+
+    err = cryptor.RsaVerifySign(hash, data, signature, publicKey)
+    if err != nil {
+        return
+    }
+}
+```
+
+### <span id="RsaVerifySign">RsaVerifySign</span>
+
+<p>验证数据的签名是否符合RSA算法。</p>
+
+<b>函数签名:</b>
+
+```go
+func RsaVerifySign(hash crypto.Hash, data, signature []byte, pubKeyFileName string) error
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/qhsbf8BJ6Mf)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/cryptor"
+)
+
+func main() {
+    data := []byte("This is a test data for RSA signing")
+    hash := crypto.SHA256
+
+    privateKey := "./rsa_private.pem"
+    publicKey := "./rsa_public.pem"
+
+    signature, err := cryptor.RsaSign(hash, data, privateKey)
+    if err != nil {
+        return
+    }
+
+    err = cryptor.RsaVerifySign(hash, data, signature, publicKey)
+    if err != nil {
+        return
+    }
 }
 ```

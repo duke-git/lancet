@@ -33,7 +33,7 @@ import (
 -   [Percent](#Percent)
 -   [RoundToFloat](#RoundToFloat)
 -   [RoundToString](#RoundToString)
--   [TruncRound](#TruncRound)
+-   [T运行cRound](#T运行cRound)
 -   [CeilToFloat](#CeilToFloat)
 -   [CeilToString](#CeilToString)
 -   [FloorToFloat](#FloorToFloat)
@@ -52,6 +52,10 @@ import (
 -   [Sum](#Sum)
 -   [Abs](#Abs)
 -   [Div](#Div)
+-   [Variance](#Variance)
+-   [StdDev](#StdDev)
+-   [Permutation](#Permutation)
+-   [Combination](#Combination)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -64,7 +68,7 @@ import (
 <b>函数签名:</b>
 
 ```go
-func Average[T constraints.Integer | constraints.Float](numbers ...T) T
+func Average[T constraints.Integer | constraints.Float](numbers ...T) float64
 ```
 
 <b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/HFd70x4DrMj)</span></b>
@@ -87,7 +91,7 @@ func main() {
     fmt.Println(result2)
 
     // Output:
-    // 1
+    // 1.5
     // 1.3
 }
 ```
@@ -462,14 +466,14 @@ func main() {
 }
 ```
 
-### <span id="TruncRound">TruncRound</span>
+### <span id="T运行cRound">T运行cRound</span>
 
 <p>截短n位小数（不进行四舍五入）</p>
 
 <b>函数签名:</b>
 
 ```go
-func TruncRound[T constraints.Float | constraints.Integer](x T, n int) T 
+func T运行cRound[T constraints.Float | constraints.Integer](x T, n int) T 
 ```
 
 <b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/aumarSHIGzP)</span></b>
@@ -483,9 +487,9 @@ import (
 )
 
 func main() {
-    result1 := mathutil.TruncRound(0.124, 2)
-    result2 := mathutil.TruncRound(0.125, 2)
-    result3 := mathutil.TruncRound(0.125, 3)
+    result1 := mathutil.T运行cRound(0.124, 2)
+    result2 := mathutil.T运行cRound(0.125, 2)
+    result3 := mathutil.T运行cRound(0.125, 3)
 
     fmt.Println(result1)
     fmt.Println(result2)
@@ -1045,8 +1049,8 @@ import (
 
 func main() {
     result1 := mathutil.Log(8, 2)
-    result2 := mathutil.TruncRound(mathutil.Log(5, 2), 2)
-    result3 := mathutil.TruncRound(mathutil.Log(27, 3), 0)
+    result2 := mathutil.T运行cRound(mathutil.Log(5, 2), 2)
+    result3 := mathutil.T运行cRound(mathutil.Log(27, 3), 0)
 
     fmt.Println(result1)
     fmt.Println(result2)
@@ -1161,5 +1165,137 @@ func main() {
     // 2.25
     // 0.5
     // 0
+}
+```
+
+### <span id="Variance">Variance</span>
+
+<p>计算方差。</p>
+
+<b>函数签名:</b>
+
+```go
+func Variance[T constraints.Float | constraints.Integer](numbers []T) float64
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[示例](https://go.dev/play/p/uHuV4YgXf8F)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/mathutil"
+)
+
+func main() {
+    result1 := mathutil.Variance([]int{1, 2, 3, 4, 5})
+    result2 := mathutil.Variance([]float64{1.1, 2.2, 3.3, 4.4, 5.5})
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+
+    // Output:
+    // 2
+    // 2.42
+}
+```
+
+### <span id="StdDev">StdDev</span>
+
+<p>计算标准差。</p>
+
+<b>函数签名:</b>
+
+```go
+func StdDev[T constraints.Float | constraints.Integer](numbers []T) float64
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/FkNZDXvHD2l)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/mathutil"
+)
+
+func main() {
+    result1 := mathutil.TruncRound(mathutil.StdDev([]int{1, 2, 3, 4, 5}), 2)
+    result2 := mathutil.TruncRound(mathutil.StdDev([]float64{1.1, 2.2, 3.3, 4.4, 5.5}), 2)
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+
+    // Output:
+    // 1.41
+    // 1.55
+}
+```
+
+### <span id="Permutation">Permutation</span>
+
+<p>计算排列数P(n, k)。</p>
+
+<b>函数签名:</b>
+
+```go
+func Permutation(n, k uint) uint
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/MgobwH_FOxj)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/mathutil"
+)
+
+func main() {
+    result1 := mathutil.Permutation(5, 3)
+    result2 := mathutil.Permutation(5, 5)
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+
+    // Output:
+    // 60
+    // 120
+}
+```
+
+### <span id="Combination">Combination</span>
+
+<p>计算组合数C(n, k)。</p>
+
+<b>函数签名:</b>
+
+```go
+func Combination(n, k uint) uint
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/ENFQRDQUFi9)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/mathutil"
+)
+
+func main() {
+    result1 := mathutil.Combination(5, 3)
+    result2 := mathutil.Combination(5, 5)
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+
+    // Output:
+    // 10
+    // 1
 }
 ```

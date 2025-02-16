@@ -70,7 +70,7 @@ func main() {
         return errors.New("error occurs")
     }
 
-    duration := retry.RetryDuration(time.Microsecond*50)
+    duration := retry.RetryWithLinearBackoff(time.Microsecond*50)
 
     retry.Retry(increaseNumber,
         duration,
@@ -116,7 +116,7 @@ func main() {
         return errors.New("error occurs")
     }
 
-    duration := retry.RetryDuration(time.Microsecond*50)
+    duration := retry.RetryWithLinearBackoff(time.Microsecond*50)
 
     err := retry.Retry(increaseNumber, duration)
     if err != nil {
@@ -173,52 +173,6 @@ func main() {
 }
 ```
 
-### <span id="RetryDuration">RetryDuration</span>
-
-<p>设置重试间隔时间，默认3秒</p>
-
-<b>函数签名:</b>
-
-```go
-func RetryDuration(d time.Duration)
-```
-
-<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/nk2XRmagfVF)</span></b>
-
-```go
-package main
-
-import (
-    "fmt"
-    "errors"
-    "log"
-    "github.com/duke-git/lancet/v2/retry"
-)
-
-func main() {
-    number := 0
-    increaseNumber := func() error {
-        number++
-        if number == 3 {
-            return nil
-        }
-        return errors.New("error occurs")
-    }
-
-    duration := retry.RetryDuration(time.Microsecond*50)
-
-    err := retry.Retry(increaseNumber, duration)
-    if err != nil {
-        return
-    }
-
-    fmt.Println(number)
-
-    // Output:
-    // 3
-}
-```
-
 ### <span id="Retry">Retry</span>
 
 <p>重试执行函数retryFunc，直到函数运行成功，或被context停止</p>
@@ -251,7 +205,7 @@ func main() {
         return errors.New("error occurs")
     }
 
-    duration := retry.RetryDuration(time.Microsecond*50)
+    duration := retry.RetryWithLinearBackoff(time.Microsecond*50)
 
     err := retry.Retry(increaseNumber, duration)
     if err != nil {
@@ -331,7 +285,7 @@ func main() {
 func RetryWithCustomBackoff(backoffStrategy BackoffStrategy) Option 
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/jIm_o2vb5Y4)</span></b>
 
 ```go
 package main
@@ -384,7 +338,7 @@ func main() {
 func RetryWithLinearBackoff(interval time.Duration) Option
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/PDet2ZQZwcB)</span></b>
 
 ```go
 package main
@@ -429,7 +383,7 @@ func main() {
 func RetryWithExponentialWithJitterBackoff(interval time.Duration, base uint64, maxJitter time.Duration) Option
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/xp1avQmn16X)</span></b>
 
 ```go
 package main

@@ -42,7 +42,7 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
                     },
                     {
                         text: 'Contribution',
-                        link: 'https://github.com/duke-git/lancet/blob/main/CONTRIBUTING.en-US.md',
+                        link: 'https://github.com/duke-git/lancet/blob/main/CONTRIBUTION.md',
                     },
                 ],
             },

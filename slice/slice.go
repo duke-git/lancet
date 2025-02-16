@@ -10,6 +10,7 @@ import (
 	"reflect"
 	"sort"
 	"strings"
+	"sync"
 	"time"
 
 	"github.com/duke-git/lancet/v2/random"
@@ -21,6 +22,7 @@ import (
 var (
 	memoryHashMap     = make(map[string]map[any]int)
 	memoryHashCounter = make(map[string]int)
+	muForMemoryHash   sync.RWMutex
 )
 
 // Contain check if the target value is in the slice or not.
@@ -109,18 +111,18 @@ func Compact[T comparable](slice []T) []T {
 
 // Concat creates a new slice concatenating slice with any additional slices.
 // Play: https://go.dev/play/p/gPt-q7zr5mk
-func Concat[T any](slice []T, slices ...[]T) []T {
-	totalLen := len(slice)
-
+func Concat[T any](slices ...[]T) []T {
+	totalLen := 0
 	for _, v := range slices {
 		totalLen += len(v)
+		if totalLen < 0 {
+			panic("len out of range")
+		}
 	}
-
 	result := make([]T, 0, totalLen)
 
-	result = append(result, slice...)
-	for _, s := range slices {
-		result = append(result, s...)
+	for _, v := range slices {
+		result = append(result, v...)
 	}
 
 	return result
@@ -771,36 +773,105 @@ func UpdateAt[T any](slice []T, index int, value T) []T {
 // Unique remove duplicate elements in slice.
 // Play: https://go.dev/play/p/AXw0R3ZTE6a
 func Unique[T comparable](slice []T) []T {
-	result := []T{}
+	result := make([]T, 0, len(slice))
+	seen := make(map[T]struct{}, len(slice))
 
-	for i := 0; i < len(slice); i++ {
-		v := slice[i]
-		skip := true
-		for j := range result {
-			if v == result[j] {
-				skip = false
+	for i := range slice {
+		if _, ok := seen[slice[i]]; ok {
+			continue
+		}
+
+		seen[slice[i]] = struct{}{}
+
+		result = append(result, slice[i])
+	}
+
+	return result
+}
+
+// UniqueBy removes duplicate elements from the input slice based on the values returned by the iteratee function.
+// The function maintains the order of the elements.
+// Play: https://go.dev/play/p/GY7JE4yikrl
+func UniqueBy[T any, U comparable](slice []T, iteratee func(item T) U) []T {
+	result := make([]T, 0, len(slice))
+	seen := make(map[U]struct{}, len(slice))
+
+	for i := range slice {
+		key := iteratee(slice[i])
+		if _, ok := seen[key]; ok {
+			continue
+		}
+
+		seen[key] = struct{}{}
+
+		result = append(result, slice[i])
+	}
+
+	return result
+}
+
+// UniqueByComparator removes duplicate elements from the input slice using the provided comparator function.
+// The function maintains the order of the elements.
+// Play: https://go.dev/play/p/rwSacr-ZHsR
+func UniqueByComparator[T comparable](slice []T, comparator func(item T, other T) bool) []T {
+	result := make([]T, 0, len(slice))
+	seen := make([]T, 0, len(slice))
+
+	for _, item := range slice {
+		duplicate := false
+		for _, seenItem := range seen {
+			if comparator(item, seenItem) {
+				duplicate = true
 				break
 			}
 		}
-		if skip {
-			result = append(result, v)
+		if !duplicate {
+			seen = append(seen, item)
+			result = append(result, item)
 		}
 	}
 
 	return result
 }
 
-// UniqueBy call iteratee func with every item of slice, then remove duplicated.
-// Play: https://go.dev/play/p/UR323iZLDpv
-func UniqueBy[T comparable](slice []T, iteratee func(item T) T) []T {
-	result := []T{}
+// UniqueByField remove duplicate elements in struct slice by struct field.
+// Play: https://go.dev/play/p/6cifcZSPIGu
+func UniqueByField[T any](slice []T, field string) ([]T, error) {
+	seen := map[any]struct{}{}
 
-	for _, v := range slice {
-		val := iteratee(v)
-		result = append(result, val)
+	var result []T
+	for _, item := range slice {
+		val, err := getField(item, field)
+		if err != nil {
+			return nil, fmt.Errorf("get field %s failed: %v", field, err)
+		}
+		if _, ok := seen[val]; !ok {
+			seen[val] = struct{}{}
+			result = append(result, item)
+		}
 	}
 
-	return Unique(result)
+	return result, nil
+}
+
+func getField[T any](item T, field string) (interface{}, error) {
+	v := reflect.ValueOf(item)
+	t := reflect.TypeOf(item)
+
+	if t.Kind() == reflect.Ptr {
+		t = t.Elem()
+		v = v.Elem()
+	}
+	if v.Kind() != reflect.Struct {
+		return nil, fmt.Errorf("data type %T not support, shuld be struct or pointer to struct", item)
+	}
+
+	f := v.FieldByName(field)
+	if !f.IsValid() {
+		return nil, fmt.Errorf("field name %s not found", field)
+	}
+
+	return v.FieldByName(field).Interface(), nil
 }
 
 // Union creates a slice of unique elements, in order, from all given slices.
@@ -840,55 +911,35 @@ func UnionBy[T any, V comparable](predicate func(item T) V, slices ...[]T) []T {
 	return result
 }
 
+// Deprecated:  Please use Concat() function instead.
 // Merge all given slices into one slice.
 // Play: https://go.dev/play/p/lbjFp784r9N
 func Merge[T any](slices ...[]T) []T {
-	totalLen := 0
-	for _, v := range slices {
-		totalLen += len(v)
-	}
-	result := make([]T, 0, totalLen)
-
-	for _, v := range slices {
-		result = append(result, v...)
-	}
-
-	return result
+	return Concat(slices...)
 }
 
 // Intersection creates a slice of unique elements that included by all slices.
 // Play: https://go.dev/play/p/anJXfB5wq_t
 func Intersection[T comparable](slices ...[]T) []T {
-	if len(slices) == 0 {
-		return []T{}
-	}
-	if len(slices) == 1 {
-		return Unique(slices[0])
-	}
+	result := []T{}
+	elementCount := make(map[T]int)
 
-	reducer := func(sliceA, sliceB []T) []T {
-		hashMap := make(map[T]int)
-		for _, v := range sliceA {
-			hashMap[v] = 1
-		}
+	for _, slice := range slices {
+		seen := make(map[T]bool)
 
-		out := make([]T, 0)
-		for _, val := range sliceB {
-			if v, ok := hashMap[val]; v == 1 && ok {
-				out = append(out, val)
-				hashMap[val]++
+		for _, item := range slice {
+			if !seen[item] {
+				seen[item] = true
+				elementCount[item]++
 			}
 		}
-		return out
 	}
 
-	result := reducer(slices[0], slices[1])
-
-	reduceSlice := make([][]T, 2)
-	for i := 2; i < len(slices); i++ {
-		reduceSlice[0] = result
-		reduceSlice[1] = slices[i]
-		result = reducer(reduceSlice[0], reduceSlice[1])
+	for _, item := range slices[0] {
+		if elementCount[item] == len(slices) {
+			result = append(result, item)
+			elementCount[item] = 0
+		}
 	}
 
 	return result
@@ -1114,23 +1165,46 @@ func IndexOf[T comparable](arr []T, val T) int {
 	limit := 10
 	// gets the hash value of the array as the key of the hash table.
 	key := fmt.Sprintf("%p", arr)
+
+	muForMemoryHash.RLock()
 	// determines whether the hash table is empty. If so, the hash table is created.
 	if memoryHashMap[key] == nil {
-		memoryHashMap[key] = make(map[any]int)
-		// iterate through the array, adding the value and index of each element to the hash table.
-		for i := len(arr) - 1; i >= 0; i-- {
-			memoryHashMap[key][arr[i]] = i
+
+		muForMemoryHash.RUnlock()
+		muForMemoryHash.Lock()
+
+		if memoryHashMap[key] == nil {
+			memoryHashMap[key] = make(map[any]int)
+			// iterate through the array, adding the value and index of each element to the hash table.
+			for i := len(arr) - 1; i >= 0; i-- {
+				memoryHashMap[key][arr[i]] = i
+			}
 		}
+
+		muForMemoryHash.Unlock()
+	} else {
+		muForMemoryHash.RUnlock()
 	}
+
+	muForMemoryHash.Lock()
 	// update the hash table counter.
 	memoryHashCounter[key]++
+	muForMemoryHash.Unlock()
 
 	// use the hash table to find the specified value. If found, the index is returned.
-	if index, ok := memoryHashMap[key][val]; ok {
+	muForMemoryHash.RLock()
+	index, ok := memoryHashMap[key][val]
+	muForMemoryHash.RUnlock()
+
+	if ok {
+		muForMemoryHash.RLock()
 		// calculate the memory usage of the hash table.
 		size := len(memoryHashMap)
+		muForMemoryHash.RUnlock()
+
 		// If the memory usage of the hash table exceeds the memory limit, the hash table with the lowest counter is cleared.
 		if size > limit {
+			muForMemoryHash.Lock()
 			var minKey string
 			var minVal int
 			for k, v := range memoryHashCounter {
@@ -1144,6 +1218,7 @@ func IndexOf[T comparable](arr []T, val T) int {
 			}
 			delete(memoryHashMap, minKey)
 			delete(memoryHashCounter, minKey)
+			muForMemoryHash.Unlock()
 		}
 		return index
 	}
@@ -1261,7 +1336,7 @@ func Partition[T any](slice []T, predicates ...func(item T) bool) [][]T {
 }
 
 // Breaks a list into two parts at the point where the predicate for the first time is true.
-// Play: Todo
+// Play: https://go.dev/play/p/yLYcBTyeQIz
 func Break[T any](values []T, predicate func(T) bool) ([]T, []T) {
 	a := make([]T, 0)
 	b := make([]T, 0)
@@ -1296,7 +1371,7 @@ func Random[T any](slice []T) (val T, idx int) {
 }
 
 // RightPadding adds padding to the right end of a slice.
-// Play: Todo
+// Play: https://go.dev/play/p/0_2rlLEMBXL
 func RightPadding[T any](slice []T, paddingValue T, paddingLength int) []T {
 	if paddingLength == 0 {
 		return slice
@@ -1308,7 +1383,7 @@ func RightPadding[T any](slice []T, paddingValue T, paddingLength int) []T {
 }
 
 // LeftPadding adds padding to the left begin of a slice.
-// Play: Todo
+// Play: https://go.dev/play/p/jlQVoelLl2k
 func LeftPadding[T any](slice []T, paddingValue T, paddingLength int) []T {
 	if paddingLength == 0 {
 		return slice
@@ -1325,4 +1400,48 @@ func LeftPadding[T any](slice []T, paddingValue T, paddingLength int) []T {
 	}
 
 	return paddedSlice
+}
+
+// Frequency counts the frequency of each element in the slice.
+// Play: https://go.dev/play/p/CW3UVNdUZOq
+func Frequency[T comparable](slice []T) map[T]int {
+	result := make(map[T]int)
+
+	for _, v := range slice {
+		result[v]++
+	}
+
+	return result
+}
+
+// JoinFunc joins the slice elements into a single string with the given separator.
+// Play: https://go.dev/play/p/55ib3SB5fM2
+func JoinFunc[T any](slice []T, sep string, transform func(T) T) string {
+	var buf strings.Builder
+	for i, v := range slice {
+		if i > 0 {
+			buf.WriteString(sep)
+		}
+		buf.WriteString(fmt.Sprint(transform(v)))
+	}
+	return buf.String()
+}
+
+// ConcatBy concats the elements of a slice into a single value using the provided separator and connector function.
+// Play: https://go.dev/play/p/6QcUpcY4UMW
+func ConcatBy[T any](slice []T, sep T, connector func(T, T) T) T {
+	var result T
+
+	if len(slice) == 0 {
+		return result
+	}
+
+	for i, v := range slice {
+		result = connector(result, v)
+		if i < len(slice)-1 {
+			result = connector(result, sep)
+		}
+	}
+
+	return result
 }

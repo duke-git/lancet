@@ -43,6 +43,21 @@ func ExampleRandString() {
 	// 6
 }
 
+func ExampleRandFromGivenSlice() {
+	goods := []string{"apple", "banana", "cherry", "elderberry", "fig", "grape", "honeydew", "kiwi", "lemon",
+		"mango", "nectarine", "orange"}
+
+	result := RandFromGivenSlice(goods)
+	fmt.Println(result)
+}
+
+func ExampleRandSliceFromGivenSlice() {
+	goods := []string{"apple", "banana", "cherry", "elderberry", "fig", "grape", "honeydew", "kiwi", "lemon",
+		"mango", "nectarine", "orange"}
+	chosen3goods := RandSliceFromGivenSlice(goods, 3, false)
+	fmt.Println(chosen3goods)
+}
+
 func ExampleRandUpper() {
 	pattern := `^[A-Z]+$`
 	reg := regexp.MustCompile(pattern)

@@ -35,6 +35,7 @@ import (
 -   [XError_Info](#XError_Info)
 -   [XError_Error](#XError_Error)
 -   [TryUnwrap](#TryUnwrap)
+-   [TryCatch](#TryCatch)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -167,12 +168,12 @@ import (
 
 func main() {
     err1 := xerror.New("error").With("level", "high")
-	err2 := err1.Wrap(errors.New("invalid username"))
+    err2 := err1.Wrap(errors.New("invalid username"))
 
-	fmt.Println(err2.Error())
+    fmt.Println(err2.Error())
 
-	// Output:
-	// error: invalid username
+    // Output:
+    // error: invalid username
 }
 ```
 
@@ -486,6 +487,57 @@ func main() {
 
     // Output:
     // 42
+    // true
+}
+```
+
+### <span id="TryCatch">TryCatch</span>
+
+<p>简单实现的java风格异常处理（try-catch-finally）。try catch不符合go错误处理风格，谨慎使用。</p>
+
+<b>函数签名:</b>
+
+```go
+func NewTryCatch(ctx context.Context) *TryCatch
+
+func (tc *TryCatch) Try(tryFunc func(ctx context.Context) error) *TryCatch
+
+func (tc *TryCatch) Catch(catchFunc func(ctx context.Context, err error)) *TryCatch
+
+func (tc *TryCatch) Finally(finallyFunc func(ctx context.Context)) *TryCatch
+
+func (tc *TryCatch) Do()
+```
+
+<b>示例:<span style="float:right;display:inline-block">[运行](https://go.dev/play/p/D5Mdb0mRj0P)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/xerror"
+)
+
+func main() {
+    calledFinally := false
+    calledCatch := false
+
+    tc := xerror.NewTryCatch(context.Background())
+
+    tc.Try(func(ctx context.Context) error {
+        return errors.New("error in try block")
+    }).Catch(func(ctx context.Context, err error) {
+        calledCatch = true
+    }).Finally(func(ctx context.Context) {
+        calledFinally = true
+    }).Do()
+
+    fmt.Println(calledCatch)
+    fmt.Println(calledFinally)
+
+    // Output:
+    // true
     // true
 }
 ```

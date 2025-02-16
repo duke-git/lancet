@@ -571,3 +571,12 @@ func ExampleToRawUrlBase64() {
 	// dHJ1ZQ
 	// ZXJy
 }
+
+func ExampleToBigInt() {
+	n := 9876543210
+	bigInt, _ := ToBigInt(n)
+
+	fmt.Println(bigInt)
+	// Output:
+	// 9876543210
+}

@@ -1,6 +1,7 @@
 package xerror
 
 import (
+	"context"
 	"errors"
 	"fmt"
 	"reflect"
@@ -61,7 +62,7 @@ func ExampleXError_StackTrace() {
 
 	// Output:
 	// github.com/duke-git/lancet/v2/xerror.ExampleXError_StackTrace
-	// 52
+	// 53
 	// true
 }
 
@@ -152,5 +153,29 @@ func ExampleTryUnwrap() {
 
 	// Output:
 	// 42
+	// true
+}
+
+func ExampleTryCatch() {
+	calledFinally := false
+	calledCatch := false
+
+	tc := NewTryCatch(context.Background())
+
+	tc.Try(func(ctx context.Context) error {
+		return errors.New("error message")
+	}).Catch(func(ctx context.Context, err error) {
+		calledCatch = true
+		// Error in try block at /path/xxx.go:174 - Cause: error message
+		// fmt.Println(err.Error())
+	}).Finally(func(ctx context.Context) {
+		calledFinally = true
+	}).Do()
+
+	fmt.Println(calledCatch)
+	fmt.Println(calledFinally)
+
+	// Output:
+	// true
 	// true
 }

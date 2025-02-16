@@ -27,7 +27,8 @@ import (
 - [Nor](#Nor)
 - [Xnor](#Xnor)
 - [Nand](#Nand)
-- [TernaryOperator](#TernaryOperator)
+- [Ternary](#Ternary)
+- [TernaryOperator<sup>deprecated</sup>](#TernaryOperator)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -257,8 +258,44 @@ func main() {
 }
 ```
 
+### <span id="Ternary">Ternary</span>
+<p>三元运算符。</p>
+
+<b>函数签名:</b>
+
+```go
+func Ternary[T, U any](isTrue T, ifValue U, elseValue U) U
+```
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/ElllPZY0guT)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/condition"
+)
+
+func main() {
+    conditionTrue := 2 > 1
+    result1 := condition.Ternary(conditionTrue, 0, 1)
+
+    conditionFalse := 2 > 3
+    result2 := condition.Ternary(conditionFalse, 0, 1)
+    
+    fmt.Println(result1)
+    fmt.Println(result2)
+
+    // Output:
+    // 0
+    // 1
+}
+```
+
 ### <span id="TernaryOperator">TernaryOperator</span>
 <p>三元运算符</p>
+
+> ⚠️ 本函数已弃用，使用`Ternary`代替。
 
 <b>函数签名:</b>
 

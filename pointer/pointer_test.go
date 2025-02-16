@@ -47,10 +47,10 @@ func TestUnwarpOr(t *testing.T) {
 	assert.Equal("def", UnwarpOr(d, "def"))
 }
 
-func TestUnwarpOrDefault(t *testing.T) {
+func TestUnwrapOrDefault(t *testing.T) {
 	t.Parallel()
 
-	assert := internal.NewAssert(t, "TestUnwarpOrDefault")
+	assert := internal.NewAssert(t, "TestUnwrapOrDefault")
 
 	a := 123
 	b := "abc"

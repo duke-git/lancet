@@ -14,6 +14,7 @@ import (
 	"fmt"
 	"io"
 	"math"
+	"math/big"
 	"reflect"
 	"strconv"
 	"strings"
@@ -74,7 +75,7 @@ func ToBytes(value any) ([]byte, error) {
 // ToChar convert string to char slice.
 // Play: https://go.dev/play/p/JJ1SvbFkVdM
 func ToChar(s string) []string {
-	c := make([]string, 0)
+	c := make([]string, 0, len(s))
 	if len(s) == 0 {
 		c = append(c, "")
 	}
@@ -142,12 +143,8 @@ func ToString(value any) string {
 		if err != nil {
 			return ""
 		}
-		return string(b)
 
-		// todo: maybe we should't supprt other type conversion
-		// v := reflect.ValueOf(value)
-		// log.Panicf("Unsupported data type: %s ", v.String())
-		// return ""
+		return string(b)
 	}
 }
 
@@ -482,4 +479,37 @@ func ToRawUrlBase64(value any) string {
 		}
 		return base64.RawURLEncoding.EncodeToString(marshal)
 	}
+}
+
+// ToBigInt converts an integer of any supported type (int, int64, uint64, etc.) to *big.Int
+// Play: https://go.dev/play/p/X3itkCxwB_x
+func ToBigInt[T any](v T) (*big.Int, error) {
+	result := new(big.Int)
+
+	switch v := any(v).(type) {
+	case int:
+		result.SetInt64(int64(v)) // Convert to int64 for big.Int
+	case int8:
+		result.SetInt64(int64(v))
+	case int16:
+		result.SetInt64(int64(v))
+	case int32:
+		result.SetInt64(int64(v))
+	case int64:
+		result.SetInt64(v)
+	case uint:
+		result.SetUint64(uint64(v)) // Convert to uint64 for big.Int
+	case uint8:
+		result.SetUint64(uint64(v))
+	case uint16:
+		result.SetUint64(uint64(v))
+	case uint32:
+		result.SetUint64(uint64(v))
+	case uint64:
+		result.SetUint64(v)
+	default:
+		return nil, fmt.Errorf("unsupported type: %T", v)
+	}
+
+	return result, nil
 }

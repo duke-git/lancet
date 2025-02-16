@@ -25,15 +25,22 @@ import (
 -   [RandBytes](#RandBytes)
 -   [RandInt](#RandInt)
 -   [RandString](#RandString)
+-   [RandFromGivenSlice](#RandFromGivenSlice)
+-   [RandSliceFromGivenSlice](#RandSliceFromGivenSlice)
 -   [RandUpper](#RandUpper)
 -   [RandLower](#RandLower)
 -   [RandNumeral](#RandNumeral)
 -   [RandNumeralOrLetter](#RandNumeralOrLetter)
 -   [RandSymbolChar](#RandSymbolChar)
 -   [UUIdV4](#UUIdV4)
+-   [RandIntSlice](#RandIntSlice)
 -   [RandUniqueIntSlice](#RandUniqueIntSlice)
 -   [RandFloat](#RandFloat)
 -   [RandFloats](#RandFloats)
+-   [RandStringSlice](#RandStringSlice)
+-   [RandBool](#RandBool)
+-   [RandBoolSlice](#RandBoolSlice)
+-   [RandNumberOfLength](#RandNumberOfLength)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -114,6 +121,62 @@ import (
 func main() {
     randStr := random.RandString(6)
     fmt.Println(randStr) //pGWsze
+}
+```
+
+### <span id="RandFromGivenSlice">RandFromGivenSlice</span>
+
+<p>Generate a random element from given slice.</p>
+
+<b>Signature:</b>
+
+```go
+func RandFromGivenSlice[T any](slice []T) T
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/UrkWueF6yYo)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/random"
+)
+
+func main() {
+    randomSet := []any{"a", 8, "hello", true, 1.1}
+    randElm := random.RandFromGivenSlice(randomSet)
+    fmt.Println(randElm)
+}
+```
+
+### <span id="RandSliceFromGivenSlice">RandSliceFromGivenSlice</span>
+
+<p>Generate a random slice of length num from given slice.</p>
+
+<b>Signature:</b>
+
+```go
+func RandSliceFromGivenSlice[T any](slice []T, num int, repeatable bool) []T
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/68UikN9d6VT)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/random"
+)
+
+func main() {
+    goods := []string{"apple", "banana", "cherry", "elderberry", "fig", "grape", "honeydew", "kiwi", "lemon", "mango", "nectarine", "orange"}
+	
+    chosen3goods := random.RandSliceFromGivenSlice(goods, 3, false)
+
+	fmt.Println(chosen3goods)
 }
 ```
 
@@ -276,15 +339,41 @@ func main() {
 }
 ```
 
+### <span id="RandIntSlice">RandIntSlice</span>
 
-### <span id="RandUniqueIntSlice">RandUniqueIntSlice</span>
-
-<p>Generate a slice of random int of length n that do not repeat.</p>
+<p>Generate a slice of random int. Number range in [min, max)</p>
 
 <b>Signature:</b>
 
 ```go
-func RandUniqueIntSlice(n, min, max int) []int
+func RandIntSlice(length, min, max int) []int
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/GATTQ5xTEG8)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/random"
+)
+
+func main() {
+    result := random.RandIntSlice(5, 0, 10)
+    fmt.Println(result) //[1 4 7 1 5] (random)
+}
+```
+
+
+### <span id="RandUniqueIntSlice">RandUniqueIntSlice</span>
+
+<p>Generate a slice of random int of length that do not repeat. Number range in [min, max)</p>
+
+<b>Signature:</b>
+
+```go
+func RandUniqueIntSlice(length, min, max int) []int
 ```
 
 <b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/uBkRSOz73Ec)</span></b>
@@ -331,12 +420,12 @@ func main() {
 
 ### <span id="RandFloats">RandFloats</span>
 
-<p>Generate a slice of random float64 numbers of length n that do not repeat.</p>
+<p>Generate a slice of random float64 numbers of length n that do not repeat. Number range in [min, max)</p>
 
 <b>Signature:</b>
 
 ```go
-func RandFloats(n int, min, max float64, precision int) []float64
+func RandFloats(length int, min, max float64, precision int) []float64
 ```
 
 <b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/I3yndUQ-rhh)</span></b>
@@ -352,5 +441,113 @@ import (
 func main() {
     floatNumbers := random.RandFloats(5, 1.0, 5.0, 2)
     fmt.Println(floatNumbers) //[3.42 3.99 1.3 2.38 4.23] (random)
+}
+```
+
+
+### <span id="RandStringSlice">RandStringSlice</span>
+
+<p>Generate a slice of random string of length strLen based on charset. chartset should be one of the following: random.Numeral, random.LowwerLetters, random.UpperLetters random.Letters, random.SymbolChars, random.AllChars. or a combination of them.</p>
+
+<b>Signature:</b>
+
+```go
+func RandStringSlice(charset string, sliceLen, strLen int) []string
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/2_-PiDv3tGn)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/random"
+)
+
+func main() {
+    strs := random.RandStringSlice(random.Letters, 4, 6)
+    fmt.Println(strs)
+
+    // output random string slice like below:
+    //[CooSMq RUFjDz FAeMPf heRyGv]
+}
+```
+
+### <span id="RandBool">RandBool</span>
+
+<p>Generate a random boolean value (true or false).</p>
+
+<b>Signature:</b>
+
+```go
+func RandBool() bool
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/to6BLc26wBv)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/random"
+)
+
+func main() {
+    result := random.RandBool()
+    fmt.Println(result) // true or false (random)
+}
+```
+
+### <span id="RandBoolSlice">RandBoolSlice</span>
+
+<p>Generates a random boolean slice of specified length.</p>
+
+<b>Signature:</b>
+
+```go
+func RandBoolSlice(length int) []bool
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/o-VSjPjnILI)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/random"
+)
+
+func main() {
+    result := random.RandBoolSlice(2)
+    fmt.Println(result) // [true false] (random)
+}
+```
+
+### <span id="RandNumberOfLength">RandNumberOfLength</span>
+
+<p>Generates a random int number of specified length.</p>
+
+<b>Signature:</b>
+
+```go
+func RandNumberOfLength(len int) int
+```
+
+<b>Signature:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/oyZbuV7bu7b)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/random"
+)
+
+func main() {
+    i := random.RandNumberOfLength(2)
+    fmt.Println(i) // 21 (random number of length 2)
 }
 ```

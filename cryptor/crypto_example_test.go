@@ -1,6 +1,7 @@
 package cryptor
 
 import (
+	"crypto"
 	"fmt"
 )
 
@@ -122,6 +123,34 @@ func ExampleAesOfbDecrypt() {
 	encrypted := AesOfbEncrypt([]byte(data), []byte(key))
 
 	decrypted := AesOfbDecrypt(encrypted, []byte(key))
+
+	fmt.Println(string(decrypted))
+
+	// Output:
+	// hello
+}
+
+func ExampleAesGcmEncrypt() {
+	data := "hello"
+	key := "abcdefghijklmnop"
+
+	encrypted := AesGcmEncrypt([]byte(data), []byte(key))
+
+	decrypted := AesGcmDecrypt(encrypted, []byte(key))
+
+	fmt.Println(string(decrypted))
+
+	// Output:
+	// hello
+}
+
+func ExampleAesGcmDecrypt() {
+	data := "hello"
+	key := "abcdefghijklmnop"
+
+	encrypted := AesGcmEncrypt([]byte(data), []byte(key))
+
+	decrypted := AesGcmDecrypt(encrypted, []byte(key))
 
 	fmt.Println(string(decrypted))
 
@@ -256,7 +285,7 @@ func ExampleDesOfbDecrypt() {
 
 func ExampleGenerateRsaKey() {
 	// Create ras private and public pem file
-	err := GenerateRsaKey(4096, "rsa_private.pem", "rsa_public.pem")
+	err := GenerateRsaKey(4096, "rsa_private_example.pem", "rsa_public_example.pem")
 	if err != nil {
 		return
 	}
@@ -269,14 +298,14 @@ func ExampleGenerateRsaKey() {
 
 func ExampleRsaEncrypt() {
 	// Create ras private and public pem file
-	err := GenerateRsaKey(4096, "rsa_private.pem", "rsa_public.pem")
+	err := GenerateRsaKey(4096, "rsa_private_example.pem", "rsa_public_example.pem")
 	if err != nil {
 		return
 	}
 
 	data := []byte("hello")
-	encrypted := RsaEncrypt(data, "rsa_public.pem")
-	decrypted := RsaDecrypt(encrypted, "rsa_private.pem")
+	encrypted := RsaEncrypt(data, "rsa_public_example.pem")
+	decrypted := RsaDecrypt(encrypted, "rsa_private_example.pem")
 
 	fmt.Println(string(decrypted))
 
@@ -286,14 +315,14 @@ func ExampleRsaEncrypt() {
 
 func ExampleRsaDecrypt() {
 	// Create ras private and public pem file
-	err := GenerateRsaKey(4096, "rsa_private.pem", "rsa_public.pem")
+	err := GenerateRsaKey(4096, "rsa_private_example.pem", "rsa_public_example.pem")
 	if err != nil {
 		return
 	}
 
 	data := []byte("hello")
-	encrypted := RsaEncrypt(data, "rsa_public.pem")
-	decrypted := RsaDecrypt(encrypted, "rsa_private.pem")
+	encrypted := RsaEncrypt(data, "rsa_public_example.pem")
+	decrypted := RsaDecrypt(encrypted, "rsa_private_example.pem")
 
 	fmt.Println(string(decrypted))
 
@@ -507,4 +536,50 @@ func ExampleRsaEncryptOAEP() {
 
 	// Output:
 	// hello world
+}
+
+func ExampleRsaSign() {
+	data := []byte("This is a test data for RSA signing")
+	hash := crypto.SHA256
+
+	privateKey := "./rsa_private_example.pem"
+	publicKey := "./rsa_public_example.pem"
+
+	signature, err := RsaSign(hash, data, privateKey)
+	if err != nil {
+		return
+	}
+
+	err = RsaVerifySign(hash, data, signature, publicKey)
+	if err != nil {
+		return
+	}
+
+	fmt.Println("ok")
+
+	// Output:
+	// ok
+}
+
+func ExampleRsaVerifySign() {
+	data := []byte("This is a test data for RSA signing")
+	hash := crypto.SHA256
+
+	privateKey := "./rsa_private_example.pem"
+	publicKey := "./rsa_public_example.pem"
+
+	signature, err := RsaSign(hash, data, privateKey)
+	if err != nil {
+		return
+	}
+
+	err = RsaVerifySign(hash, data, signature, publicKey)
+	if err != nil {
+		return
+	}
+
+	fmt.Println("ok")
+
+	// Output:
+	// ok
 }

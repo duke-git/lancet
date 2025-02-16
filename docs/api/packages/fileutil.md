@@ -52,6 +52,7 @@ import (
 -   [ReadFile](#ReadFile)
 -   [ChunkRead](#ChunkRead)
 -   [ParallelChunkRead](#ParallelChunkRead)
+-   [GetExeOrDllVersion](#GetExeOrDllVersion)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -559,7 +560,7 @@ import (
 )
 
 func main() {
-    err := fileutil.Zip("./test.zip", "./unzip/test.txt")
+    err := fileutil.UnZip("./test.zip", "./test.txt")
     if err != nil {
         fmt.Println(err)
     }
@@ -1075,5 +1076,35 @@ func main() {
     // Lili,22,female
     // Jim,21,male
     // 2
+}
+```
+### <span id="GetExeOrDllVersion">GetExeOrDllVersion</span>
+
+<p>返回exe,dll文件版本号(仅Window平台).</p>
+
+<b>函数签名:</b>
+
+```go
+func GetExeOrDllVersion(filePath string) (string, error)
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/iLRrDBhE38E)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/fileutil"
+)
+
+func main() {
+    v, err := fileutil.GetExeOrDllVersion(`C:\Program Files\Tencent\WeChat\WeChat.exe`)
+	if err != nil {
+		panic(err)
+    }
+    fmt.Println(v)
+    // Output:
+    // 3.9.10.19
 }
 ```

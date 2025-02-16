@@ -130,7 +130,6 @@ func (s Stream[T]) Distinct() Stream[T] {
 	distinct := map[string]bool{}
 
 	for _, v := range s.source {
-		// todo: performance issue
 		k := hashKey(v)
 		if _, ok := distinct[k]; !ok {
 			distinct[k] = true
@@ -202,6 +201,7 @@ func (s Stream[T]) Skip(n int) Stream[T] {
 		return FromSlice(source)
 	}
 
+	source = make([]T, 0, l-n)
 	for i := n; i < l; i++ {
 		source = append(source, s.source[i])
 	}
@@ -391,6 +391,28 @@ func (s Stream[T]) Min(less func(a, b T) bool) (T, bool) {
 	}
 
 	return min, true
+}
+
+// IndexOf returns the index of the first occurrence of the specified element in this stream, or -1 if this stream does not contain the element.
+// Play: https://go.dev/play/p/tBV5Nc-XDX2
+func (s Stream[T]) IndexOf(target T, equal func(a, b T) bool) int {
+	for i, v := range s.source {
+		if equal(v, target) {
+			return i
+		}
+	}
+	return -1
+}
+
+// LastIndexOf returns the index of the last occurrence of the specified element in this stream, or -1 if this stream does not contain the element.
+// Play: https://go.dev/play/p/CjeoNw2eac_G
+func (s Stream[T]) LastIndexOf(target T, equal func(a, b T) bool) int {
+	for i := len(s.source) - 1; i >= 0; i-- {
+		if equal(s.source[i], target) {
+			return i
+		}
+	}
+	return -1
 }
 
 // ToSlice return the elements in the stream.

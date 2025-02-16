@@ -71,7 +71,7 @@ func ConvertMapToQueryString(param map[string]any) string {
 	if param == nil {
 		return ""
 	}
-	var keys []string
+	keys := make([]string, 0, len(param))
 	for key := range param {
 		keys = append(keys, key)
 	}
@@ -102,6 +102,7 @@ type HttpRequest struct {
 
 // HttpClientConfig contains some configurations for http client
 type HttpClientConfig struct {
+	Timeout          time.Duration
 	SSLEnabled       bool
 	TLSConfig        *tls.Config
 	Compressed       bool
@@ -113,9 +114,10 @@ type HttpClientConfig struct {
 
 // defaultHttpClientConfig defalut client config.
 var defaultHttpClientConfig = &HttpClientConfig{
+	Timeout:          50 * time.Second,
 	Compressed:       false,
-	HandshakeTimeout: 20 * time.Second,
-	ResponseTimeout:  40 * time.Second,
+	HandshakeTimeout: 10 * time.Second,
+	ResponseTimeout:  10 * time.Second,
 }
 
 // HttpClient is used for sending http request.
@@ -131,6 +133,7 @@ type HttpClient struct {
 func NewHttpClient() *HttpClient {
 	client := &HttpClient{
 		Client: &http.Client{
+			Timeout: defaultHttpClientConfig.Timeout,
 			Transport: &http.Transport{
 				TLSHandshakeTimeout:   defaultHttpClientConfig.HandshakeTimeout,
 				ResponseHeaderTimeout: defaultHttpClientConfig.ResponseTimeout,
@@ -216,6 +219,22 @@ func (client *HttpClient) SendRequest(request *HttpRequest) (*http.Response, err
 	}
 
 	return resp, nil
+}
+
+// AsyncSendRequest send http request with goroutine, pop response and error to channels
+func (client *HttpClient) AsyncSendRequest(request *HttpRequest, respChan chan *http.Response, errChan chan error) {
+	go func() {
+		defer func() {
+			if err := recover(); err != nil {
+				errChan <- fmt.Errorf("%v", err)
+			}
+		}()
+		resp, err := client.SendRequest(request)
+		if err != nil {
+			errChan <- err
+		}
+		respChan <- resp
+	}()
 }
 
 // DecodeResponse decode response into target object.

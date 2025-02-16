@@ -5,6 +5,7 @@ import (
 	"math"
 	"reflect"
 	"strconv"
+	"strings"
 )
 
 func ExampleContain() {
@@ -246,6 +247,21 @@ func ExampleFilter() {
 	// [2 4]
 }
 
+func ExampleFilterConcurrent() {
+	nums := []int{1, 2, 3, 4, 5}
+
+	isEven := func(i, num int) bool {
+		return num%2 == 0
+	}
+
+	result := FilterConcurrent(nums, isEven, 2)
+
+	fmt.Println(result)
+
+	// Output:
+	// [2 4]
+}
+
 func ExampleCount() {
 	nums := []int{1, 2, 3, 3, 4}
 
@@ -413,6 +429,23 @@ func ExampleForEach() {
 	// [2 3 4]
 }
 
+func ExampleForEachConcurrent() {
+	nums := []int{1, 2, 3, 4, 5, 6, 7, 8}
+
+	result := make([]int, len(nums))
+
+	addOne := func(index int, value int) {
+		result[index] = value + 1
+	}
+
+	ForEachConcurrent(nums, addOne, 4)
+
+	fmt.Println(result)
+
+	// Output:
+	// [2 3 4 5 6 7 8 9]
+}
+
 func ExampleForEachWithBreak() {
 	numbers := []int{1, 2, 3, 4, 5}
 
@@ -492,6 +525,18 @@ func ExampleReduce() {
 
 	// Output:
 	// 6
+}
+
+func ExampleReduceConcurrent() {
+	nums := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+	result := ReduceConcurrent(nums, 0, func(_ int, item, agg int) int {
+		return agg + item
+	}, 1)
+
+	fmt.Println(result)
+
+	// Output:
+	// 55
 }
 
 func ExampleReduceBy() {
@@ -777,7 +822,46 @@ func ExampleUniqueBy() {
 	fmt.Println(result)
 
 	// Output:
-	// [1 2 0]
+	// [1 2 3]
+}
+
+func ExampleUniqueByComparator() {
+	uniqueNums := UniqueByComparator([]int{1, 2, 3, 1, 2, 4, 5, 6, 4}, func(item int, other int) bool {
+		return item == other
+	})
+
+	caseInsensitiveStrings := UniqueByComparator([]string{"apple", "banana", "Apple", "cherry", "Banana", "date"}, func(item string, other string) bool {
+		return strings.ToLower(item) == strings.ToLower(other)
+	})
+
+	fmt.Println(uniqueNums)
+	fmt.Println(caseInsensitiveStrings)
+
+	// Output:
+	// [1 2 3 4 5 6]
+	// [apple banana cherry date]
+}
+
+func ExampleUniqueByField() {
+	type User struct {
+		ID   int    `json:"id"`
+		Name string `json:"name"`
+	}
+
+	users := []User{
+		{ID: 1, Name: "a"},
+		{ID: 2, Name: "b"},
+		{ID: 1, Name: "c"},
+	}
+
+	result, err := UniqueByField(users, "ID")
+	if err != nil {
+	}
+
+	fmt.Println(result)
+
+	// Output:
+	// [{1 a} {2 b}]
 }
 
 func ExampleUnion() {
@@ -1099,6 +1183,7 @@ func ExampleRandom() {
 	if idx >= 0 && idx < len(nums) && Contain(nums, val) {
 		fmt.Println("okk")
 	}
+
 	// Output:
 	// okk
 }
@@ -1108,6 +1193,7 @@ func ExampleSetToDefaultIf() {
 	modifiedStrs, count := SetToDefaultIf(strs, func(s string) bool { return "a" == s })
 	fmt.Println(modifiedStrs)
 	fmt.Println(count)
+
 	// Output:
 	// [ b  c d ]
 	// 3
@@ -1130,6 +1216,7 @@ func ExampleRightPadding() {
 	nums := []int{1, 2, 3, 4, 5}
 	padded := RightPadding(nums, 0, 3)
 	fmt.Println(padded)
+
 	// Output:
 	// [1 2 3 4 5 0 0 0]
 }
@@ -1138,6 +1225,78 @@ func ExampleLeftPadding() {
 	nums := []int{1, 2, 3, 4, 5}
 	padded := LeftPadding(nums, 0, 3)
 	fmt.Println(padded)
+
 	// Output:
 	// [0 0 0 1 2 3 4 5]
+}
+
+func ExampleUniqueByConcurrent() {
+	nums := []int{1, 2, 3, 1, 2, 4, 5, 6, 4, 7}
+	comparator := func(item int, other int) bool { return item == other }
+
+	result := UniqueByConcurrent(nums, comparator, 4)
+
+	fmt.Println(result)
+
+	// Output:
+	// [1 2 3 4 5 6 7]
+}
+
+func ExampleMapConcurrent() {
+	nums := []int{1, 2, 3, 4, 5, 6}
+	result := MapConcurrent(nums, func(_, n int) int { return n * n }, 4)
+
+	fmt.Println(result)
+
+	// Output:
+	// [1 4 9 16 25 36]
+}
+
+func ExampleFrequency() {
+	strs := []string{"a", "b", "b", "c", "c", "c"}
+	result := Frequency(strs)
+
+	fmt.Println(result)
+
+	// Output:
+	// map[a:1 b:2 c:3]
+}
+
+func ExampleJoinFunc() {
+	result := JoinFunc([]string{"a", "b", "c"}, ", ", func(s string) string {
+		return strings.ToUpper(s)
+	})
+
+	fmt.Println(result)
+
+	// Output:
+	// A, B, C
+}
+
+func ExampleConcatBy() {
+	type Person struct {
+		Name string
+		Age  int
+	}
+
+	people := []Person{
+		{Name: "Alice", Age: 30},
+		{Name: "Bob", Age: 25},
+		{Name: "Charlie", Age: 35},
+	}
+
+	sep := Person{Name: " | ", Age: 0}
+
+	personConnector := func(a, b Person) Person {
+		return Person{Name: a.Name + b.Name, Age: a.Age + b.Age}
+	}
+
+	result := ConcatBy(people, sep, personConnector)
+
+	fmt.Println(result.Name)
+	fmt.Println(result.Age)
+
+	// Output:
+	// Alice | Bob | Charlie
+	// 90
 }

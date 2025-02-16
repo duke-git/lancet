@@ -1,6 +1,7 @@
 package cryptor
 
 import (
+	"crypto"
 	"testing"
 
 	"github.com/duke-git/lancet/v2/internal"
@@ -139,13 +140,13 @@ func TestDesOfbEncrypt(t *testing.T) {
 func TestRsaEncrypt(t *testing.T) {
 	t.Parallel()
 
-	err := GenerateRsaKey(4096, "rsa_private.pem", "rsa_public.pem")
+	err := GenerateRsaKey(4096, "./rsa_private_example.pem", "./rsa_public_example.pem")
 	if err != nil {
 		t.FailNow()
 	}
 	data := []byte("hello world")
-	encrypted := RsaEncrypt(data, "rsa_public.pem")
-	decrypted := RsaDecrypt(encrypted, "rsa_private.pem")
+	encrypted := RsaEncrypt(data, "./rsa_public_example.pem")
+	decrypted := RsaDecrypt(encrypted, "./rsa_private_example.pem")
 
 	assert := internal.NewAssert(t, "TestRsaEncrypt")
 	assert.Equal(string(data), string(decrypted))
@@ -167,4 +168,67 @@ func TestRsaEncryptOAEP(t *testing.T) {
 
 	assert.IsNil(err)
 	assert.Equal("hello world", string(decrypted))
+}
+
+func TestAesGcmEncrypt(t *testing.T) {
+	t.Parallel()
+
+	data := "hello world"
+	key := "abcdefghijklmnop"
+
+	encrypted := AesGcmEncrypt([]byte(data), []byte(key))
+	decrypted := AesGcmDecrypt(encrypted, []byte(key))
+
+	assert := internal.NewAssert(t, "TestAesGcmEncrypt")
+	assert.Equal(data, string(decrypted))
+}
+
+func TestRsaSignAndVerify(t *testing.T) {
+	t.Parallel()
+
+	data := []byte("This is a test data for RSA signing")
+	hash := crypto.SHA256
+
+	t.Run("RSA Sign and Verify", func(t *testing.T) {
+		privateKey := "./rsa_private_example.pem"
+		publicKey := "./rsa_public_example.pem"
+
+		signature, err := RsaSign(hash, data, privateKey)
+		if err != nil {
+			t.Fatalf("RsaSign failed: %v", err)
+		}
+
+		err = RsaVerifySign(hash, data, signature, publicKey)
+		if err != nil {
+			t.Fatalf("RsaVerifySign failed: %v", err)
+		}
+	})
+
+	t.Run("RSA Sign and Verify Invalid Signature", func(t *testing.T) {
+		publicKey := "./rsa_public_example.pem"
+
+		invalidSig := []byte("InvalidSignature")
+
+		err := RsaVerifySign(hash, data, invalidSig, publicKey)
+		if err == nil {
+			t.Fatalf("RsaVerifySign failed: %v", err)
+		}
+	})
+
+	t.Run("RSA Sign and Verify With Different Hash", func(t *testing.T) {
+		publicKey := "./rsa_public_example.pem"
+		privateKey := "./rsa_private_example.pem"
+		hashSign := crypto.SHA256
+		hashVerify := crypto.SHA512
+
+		signature, err := RsaSign(hashSign, data, privateKey)
+		if err != nil {
+			t.Fatalf("RsaSign failed: %v", err)
+		}
+
+		err = RsaVerifySign(hashVerify, data, signature, publicKey)
+		if err == nil {
+			t.Fatalf("RsaVerifySign failed: %v", err)
+		}
+	})
 }

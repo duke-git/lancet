@@ -37,12 +37,12 @@ import (
 
 ### <span id="Comma">Comma</span>
 
-<p>Add comma to a number value by every 3 numbers from right to left. ahead by symbol char. if value is a invalid number string like "aa", return empty string.</p>
+<p>Add comma to a number value by every 3 numbers from right to left. ahead by a prefix symbol char. if value is a invalid number string like "aa", return empty string.</p>
 
 <b>Signature:</b>
 
 ```go
-func Comma[T constraints.Float | constraints.Integer | string](value T, symbol string) string
+func Comma[T constraints.Float | constraints.Integer | string](value T, prefixSymbol string) string
 ```
 
 <b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/eRD5k2vzUVX)</span></b>
