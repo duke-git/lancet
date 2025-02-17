@@ -348,6 +348,24 @@ func ExampleIsIp() {
 	// false
 }
 
+func ExampleIsIpPort() {
+	result1 := IsIpPort("127.0.0.1:8080")
+	result2 := IsIpPort("[0:0:0:0:0:0:0:1]:8080")
+	result3 := IsIpPort(":8080")
+	result4 := IsIpPort("::0:0:0:0:")
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+	fmt.Println(result4)
+
+	// Output:
+	// true
+	// true
+	// false
+	// false
+}
+
 func ExampleIsIpV4() {
 	result1 := IsIpV4("127.0.0.1")
 	result2 := IsIpV4("::0:0:0:0:0:0:1")

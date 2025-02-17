@@ -225,6 +225,23 @@ func TestIsIp(t *testing.T) {
 	assert.Equal(false, IsIp("127"))
 }
 
+func TestIsIpPort(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestIsIpPort")
+
+	assert.Equal(true, IsIpPort("[0:0:0:0:0:0:0:1]:8080")) // valid IPv6 and port
+	assert.Equal(true, IsIpPort("127.0.0.1:8080"))         // valid IP and port
+
+	assert.Equal(false, IsIpPort(""))                     // empty string
+	assert.Equal(false, IsIpPort(":8080"))                // only port
+	assert.Equal(false, IsIpPort("127.0.0.1"))            // valid IP without port
+	assert.Equal(false, IsIpPort("0:0:0:0:0:0:0:1"))      // valid IPv6 without port
+	assert.Equal(false, IsIpPort("256.256.256.256:8080")) // invalid IP with valid port
+	assert.Equal(false, IsIpPort("256.256.256.256:abc"))  // invalid IP and invalid port
+	assert.Equal(false, IsIpPort("127.0.0.1:70000"))      // valid IP with invalid port
+}
+
 func TestIsIpV4(t *testing.T) {
 	t.Parallel()
 
@@ -315,7 +332,7 @@ func TestIsChinesePhone(t *testing.T) {
 
 	assert.Equal(true, IsChinesePhone("010-32116675"))
 	assert.Equal(true, IsChinesePhone("0464-8756213"))
-	assert.Equal(true, IsChinesePhone("0731-82251545")) //长沙晚报电话
+	assert.Equal(true, IsChinesePhone("0731-82251545")) // 长沙晚报电话
 	assert.Equal(false, IsChinesePhone("123-87562"))
 
 }
