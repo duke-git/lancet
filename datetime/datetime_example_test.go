@@ -7,71 +7,87 @@ import (
 )
 
 func ExampleAddDay() {
-	now := time.Now()
+	date, _ := time.Parse("2006-01-02 15:04:05", "2021-01-01 00:00:00")
 
-	tomorrow := AddDay(now, 1)
-	diff1 := tomorrow.Sub(now)
+	after1Day := AddDay(date, 1)
+	before1Day := AddDay(date, -1)
 
-	yesterday := AddDay(now, -1)
-	diff2 := yesterday.Sub(now)
-
-	fmt.Println(diff1)
-	fmt.Println(diff2)
+	fmt.Println(after1Day.Format("2006-01-02 15:04:05"))
+	fmt.Println(before1Day.Format("2006-01-02 15:04:05"))
 
 	// Output:
-	// 24h0m0s
-	// -24h0m0s
+	// 2021-01-02 00:00:00
+	// 2020-12-31 00:00:00
+}
+
+func ExampleAddWeek() {
+	date, _ := time.Parse("2006-01-02", "2021-01-01")
+
+	after2Weeks := AddWeek(date, 2)
+	before2Weeks := AddWeek(date, -2)
+
+	fmt.Println(after2Weeks.Format("2006-01-02"))
+	fmt.Println(before2Weeks.Format("2006-01-02"))
+
+	// Output:
+	// 2021-01-15
+	// 2020-12-18
+}
+
+func ExampleAddMonth() {
+	date, _ := time.Parse("2006-01-02", "2021-01-01")
+
+	after2Months := AddMonth(date, 2)
+	before2Months := AddMonth(date, -2)
+
+	fmt.Println(after2Months.Format("2006-01-02"))
+	fmt.Println(before2Months.Format("2006-01-02"))
+
+	// Output:
+	// 2021-03-01
+	// 2020-11-01
 }
 
 func ExampleAddHour() {
-	now := time.Now()
+	date, _ := time.Parse("2006-01-02 15:04:05", "2021-01-01 00:00:00")
 
-	after2Hours := AddHour(now, 2)
-	diff1 := after2Hours.Sub(now)
+	after2Hours := AddHour(date, 2)
+	before2Hours := AddHour(date, -2)
 
-	before2Hours := AddHour(now, -2)
-	diff2 := before2Hours.Sub(now)
-
-	fmt.Println(diff1)
-	fmt.Println(diff2)
+	fmt.Println(after2Hours.Format("2006-01-02 15:04:05"))
+	fmt.Println(before2Hours.Format("2006-01-02 15:04:05"))
 
 	// Output:
-	// 2h0m0s
-	// -2h0m0s
+	// 2021-01-01 02:00:00
+	// 2020-12-31 22:00:00
 }
 
 func ExampleAddMinute() {
-	now := time.Now()
+	date, _ := time.Parse("2006-01-02 15:04:05", "2021-01-01 00:00:00")
 
-	after2Minutes := AddMinute(now, 2)
-	diff1 := after2Minutes.Sub(now)
+	after2Minutes := AddMinute(date, 2)
+	before2Minutes := AddMinute(date, -2)
 
-	before2Minutes := AddMinute(now, -2)
-	diff2 := before2Minutes.Sub(now)
-
-	fmt.Println(diff1)
-	fmt.Println(diff2)
+	fmt.Println(after2Minutes.Format("2006-01-02 15:04:05"))
+	fmt.Println(before2Minutes.Format("2006-01-02 15:04:05"))
 
 	// Output:
-	// 2m0s
-	// -2m0s
+	// 2021-01-01 00:02:00
+	// 2020-12-31 23:58:00
 }
 
 func ExampleAddYear() {
-	now := time.Now()
+	date, _ := time.Parse("2006-01-02", "2021-01-01")
 
-	after1Year := AddYear(now, 1)
-	diff1 := after1Year.Sub(now)
+	after2Years := AddYear(date, 2)
+	before2Years := AddYear(date, -2)
 
-	before1Year := AddYear(now, -1)
-	diff2 := before1Year.Sub(now)
-
-	fmt.Println(diff1)
-	fmt.Println(diff2)
+	fmt.Println(after2Years.Format("2006-01-02"))
+	fmt.Println(before2Years.Format("2006-01-02"))
 
 	// Output:
-	// 8760h0m0s
-	// -8760h0m0s
+	// 2023-01-01
+	// 2019-01-01
 }
 
 func ExampleGetNowDate() {

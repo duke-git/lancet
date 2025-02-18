@@ -64,28 +64,40 @@ func init() {
 	}
 }
 
-// AddMinute add or sub minute to the time.
+// AddMinute add or sub minutes to the time.
 // Play: https://go.dev/play/p/nT1heB1KUUK
-func AddMinute(t time.Time, minute int64) time.Time {
-	return t.Add(time.Minute * time.Duration(minute))
+func AddMinute(t time.Time, minutes int64) time.Time {
+	return t.Add(time.Minute * time.Duration(minutes))
 }
 
-// AddHour add or sub hour to the time.
+// AddHour add or sub hours to the time.
 // Play: https://go.dev/play/p/rcMjd7OCsi5
-func AddHour(t time.Time, hour int64) time.Time {
-	return t.Add(time.Hour * time.Duration(hour))
+func AddHour(t time.Time, hours int64) time.Time {
+	return t.Add(time.Hour * time.Duration(hours))
 }
 
-// AddDay add or sub day to the time.
+// AddDay add or sub days to the time.
 // Play: https://go.dev/play/p/dIGbs_uTdFa
-func AddDay(t time.Time, day int64) time.Time {
-	return t.Add(24 * time.Hour * time.Duration(day))
+func AddDay(t time.Time, days int64) time.Time {
+	return t.Add(24 * time.Hour * time.Duration(days))
+}
+
+// AddWeek add or sub weeks to the time.
+// play: todo
+func AddWeek(t time.Time, weeks int64) time.Time {
+	return t.Add(7 * 24 * time.Hour * time.Duration(weeks))
+}
+
+// AddMonth add or sub months to the time.
+// Play: todo
+func AddMonth(t time.Time, months int64) time.Time {
+	return t.AddDate(0, int(months), 0)
 }
 
 // AddYear add or sub year to the time.
 // Play: https://go.dev/play/p/MqW2ujnBx10
 func AddYear(t time.Time, year int64) time.Time {
-	return t.Add(365 * 24 * time.Hour * time.Duration(year))
+	return t.AddDate(int(year), 0, 0)
 }
 
 // GetNowDate return format yyyy-mm-dd of current date.

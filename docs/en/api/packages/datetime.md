@@ -24,6 +24,8 @@ import (
 ## Index
 
 -   [AddDay](#AddDay)
+-   [AddWeek](#AddWeek)
+-   [AddMonth](#AddMonth)
 -   [AddHour](#AddHour)
 -   [AddMinute](#AddMinute)
 -   [AddYear](#AddYear)
@@ -111,7 +113,7 @@ import (
 <b>Signature:</b>
 
 ```go
-func AddDay(t time.Time, day int64) time.Time
+func AddDay(t time.Time, days int64) time.Time
 ```
 
 <b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/dIGbs_uTdFa)</span></b>
@@ -126,20 +128,89 @@ import (
 )
 
 func main() {
-    now := time.Now()
+    date, _ := time.Parse("2006-01-02 15:04:05", "2021-01-01 00:00:00")
 
-    tomorrow := datetime.AddDay(now, 1)
-    diff1 := tomorrow.Sub(now)
+    after1Day := datetime.AddDay(date, 1)
+    before1Day := datetime.AddDay(date, -1)
 
-    yesterday := datetime.AddDay(now, -1)
-    diff2 := yesterday.Sub(now)
-
-    fmt.Println(diff1)
-    fmt.Println(diff2)
+    fmt.Println(after1Day.Format("2006-01-02 15:04:05"))
+    fmt.Println(before1Day.Format("2006-01-02 15:04:05"))
 
     // Output:
-    // 24h0m0s
-    // -24h0m0s
+    // 2021-01-02 00:00:00
+    // 2020-12-31 00:00:00
+}
+```
+
+### <span id="AddWeek">AddWeek</span>
+
+<p>Add or sub weeks to time.</p>
+
+<b>Signature:</b>
+
+```go
+func AddWeek(t time.Time, weeks int64) time.Time
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "time"
+    "github.com/duke-git/lancet/v2/datetime"
+)
+
+func main() {
+    date, _ := time.Parse("2006-01-02", "2021-01-01")
+
+    after2Weeks := datetime.AddWeek(date, 2)
+    before2Weeks := datetime.AddWeek(date, -2)
+
+    fmt.Println(after2Weeks.Format("2006-01-02"))
+    fmt.Println(before2Weeks.Format("2006-01-02"))
+
+    // Output:
+    // 2021-01-15
+    // 2020-12-18
+}
+```
+
+### <span id="AddMonth">AddMonth</span>
+
+<p>Add or sub months to time.</p>
+
+<b>Signature:</b>
+
+```go
+func AddMonth(t time.Time, months int64) time.Time
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "time"
+    "github.com/duke-git/lancet/v2/datetime"
+)
+
+func main() {
+    date, _ := time.Parse("2006-01-02", "2021-01-01")
+
+    after2Months := datetime.AddMonth(date, 2)
+    before2Months := datetime.AddMonth(date, -2)
+
+    fmt.Println(after2Months.Format("2006-01-02"))
+    fmt.Println(before2Months.Format("2006-01-02"))
+
+    // Output:
+    // 2021-03-01
+    // 2020-11-01
 }
 ```
 
@@ -165,20 +236,17 @@ import (
 )
 
 func main() {
-    now := time.Now()
+    date, _ := time.Parse("2006-01-02 15:04:05", "2021-01-01 00:00:00")
 
-    after2Hours := datetime.AddHour(now, 2)
-    diff1 := after2Hours.Sub(now)
+    after2Hours := datetime.AddHour(date, 2)
+    before2Hours := datetime.AddHour(date, -2)
 
-    before2Hours := datetime.AddHour(now, -2)
-    diff2 := before2Hours.Sub(now)
-
-    fmt.Println(diff1)
-    fmt.Println(diff2)
+    fmt.Println(after2Hours.Format("2006-01-02 15:04:05"))
+    fmt.Println(before2Hours.Format("2006-01-02 15:04:05"))
 
     // Output:
-    // 2h0m0s
-    // -2h0m0s
+    // 2021-01-01 02:00:00
+    // 2020-12-31 22:00:00
 }
 ```
 
@@ -204,20 +272,17 @@ import (
 )
 
 func main() {
-    now := time.Now()
+    date, _ := time.Parse("2006-01-02 15:04:05", "2021-01-01 00:00:00")
 
-    after2Minutes := datetime.AddMinute(now, 2)
-    diff1 := after2Minutes.Sub(now)
+    after2Minutes := datetime.AddMinute(date, 2)
+    before2Minutes := datetime.AddMinute(date, -2)
 
-    before2Minutes := datetime.AddMinute(now, -2)
-    diff2 := before2Minutes.Sub(now)
-
-    fmt.Println(diff1)
-    fmt.Println(diff2)
+    fmt.Println(after2Minutes.Format("2006-01-02 15:04:05"))
+    fmt.Println(before2Minutes.Format("2006-01-02 15:04:05"))
 
     // Output:
-    // 2m0s
-    // -2m0s
+    // 2021-01-01 00:02:00
+    // 2020-12-31 23:58:00
 }
 ```
 
@@ -243,20 +308,17 @@ import (
 )
 
 func main() {
-    now := time.Now()
+    date, _ := time.Parse("2006-01-02", "2021-01-01")
 
-    after1Year := datetime.AddYear(now, 1)
-    diff1 := after1Year.Sub(now)
+    after2Years := AddYear(date, 2)
+    before2Years := AddYear(date, -2)
 
-    before1Year := datetime.AddYear(now, -1)
-    diff2 := before1Year.Sub(now)
-
-    fmt.Println(diff1)
-    fmt.Println(diff2)
+    fmt.Println(after2Years.Format("2006-01-02"))
+    fmt.Println(before2Years.Format("2006-01-02"))
 
     // Output:
-    // 8760h0m0s
-    // -8760h0m0s
+    // 2023-01-01
+    // 2019-01-01
 }
 ```
 
@@ -1342,7 +1404,7 @@ import (
 func main() {
     result1 := datetime.NowDateOrTime("yyyy-mm-dd hh:mm:ss")
 
-	result2 := datetime.NowDateOrTime("yyyy-mm-dd hh:mm:ss", "EST")
+    result2 := datetime.NowDateOrTime("yyyy-mm-dd hh:mm:ss", "EST")
 
     fmt.Println(result1)
     fmt.Println(result2)

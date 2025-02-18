@@ -9,78 +9,304 @@ import (
 
 func TestAddYear(t *testing.T) {
 	t.Parallel()
-
 	assert := internal.NewAssert(t, "TestAddDay")
 
-	now := time.Now()
-	after2Years := AddYear(now, 1)
-	diff1 := after2Years.Sub(now)
-	assert.Equal(float64(8760), diff1.Hours())
+	tests := []struct {
+		inputDate string
+		years     int
+		expected  string
+	}{
+		{
+			inputDate: "2021-01-01 00:00:00",
+			years:     1,
+			expected:  "2022-01-01 00:00:00",
+		},
+		{
+			inputDate: "2021-01-01 00:00:00",
+			years:     -1,
+			expected:  "2020-01-01 00:00:00",
+		},
+		{
+			inputDate: "2021-01-01 00:00:00",
+			years:     0,
+			expected:  "2021-01-01 00:00:00",
+		},
+		{
+			inputDate: "2021-01-01 00:00:00",
+			years:     2,
+			expected:  "2023-01-01 00:00:00",
+		},
+		{
+			inputDate: "2021-01-01 00:00:00",
+			years:     3,
+			expected:  "2024-01-01 00:00:00",
+		},
+		{
+			inputDate: "2021-01-01 00:00:00",
+			years:     4,
+			expected:  "2025-01-01 00:00:00",
+		},
+	}
 
-	before2Years := AddYear(now, -1)
-	diff2 := before2Years.Sub(now)
-	assert.Equal(float64(-8760), diff2.Hours())
-}
-
-func TestBetweenSeconds(t *testing.T) {
-	t.Parallel()
-
-	assert := internal.NewAssert(t, "TestBetweenSeconds")
-
-	today := time.Now()
-	tomorrow := AddDay(today, 1)
-	yesterday := AddDay(today, -1)
-
-	result1 := BetweenSeconds(today, tomorrow)
-	result2 := BetweenSeconds(today, yesterday)
-
-	assert.Equal(int64(86400), result1)
-	assert.Equal(int64(-86400), result2)
+	for _, tt := range tests {
+		date, _ := time.Parse("2006-01-02 15:04:05", tt.inputDate)
+		result := AddYear(date, int64(tt.years))
+		assert.Equal(tt.expected, result.Format("2006-01-02 15:04:05"))
+	}
 }
 
 func TestAddDay(t *testing.T) {
 	t.Parallel()
-
 	assert := internal.NewAssert(t, "TestAddDay")
 
-	now := time.Now()
-	after2Days := AddDay(now, 2)
-	diff1 := after2Days.Sub(now)
-	assert.Equal(float64(48), diff1.Hours())
+	tests := []struct {
+		inputDate string
+		days      int
+		expected  string
+	}{
+		{
+			inputDate: "2021-01-01 00:00:00",
+			days:      1,
+			expected:  "2021-01-02 00:00:00",
+		},
+		{
+			inputDate: "2021-01-01 00:00:00",
+			days:      -1,
+			expected:  "2020-12-31 00:00:00",
+		},
+		{
+			inputDate: "2021-01-01 00:00:00",
+			days:      0,
+			expected:  "2021-01-01 00:00:00",
+		},
+		{
+			inputDate: "2021-01-01 00:00:00",
+			days:      2,
+			expected:  "2021-01-03 00:00:00",
+		},
+		{
+			inputDate: "2021-01-01 00:00:00",
+			days:      3,
+			expected:  "2021-01-04 00:00:00",
+		},
+		{
+			inputDate: "2021-01-01 00:00:00",
+			days:      4,
+			expected:  "2021-01-05 00:00:00",
+		},
+	}
 
-	before2Days := AddDay(now, -2)
-	diff2 := before2Days.Sub(now)
-	assert.Equal(float64(-48), diff2.Hours())
+	for _, tt := range tests {
+		date, _ := time.Parse("2006-01-02 15:04:05", tt.inputDate)
+		result := AddDay(date, int64(tt.days))
+		assert.Equal(tt.expected, result.Format("2006-01-02 15:04:05"))
+	}
 }
 
 func TestAddHour(t *testing.T) {
 	t.Parallel()
-
 	assert := internal.NewAssert(t, "TestAddHour")
 
-	now := time.Now()
-	after2Hours := AddHour(now, 2)
-	diff1 := after2Hours.Sub(now)
-	assert.Equal(float64(2), diff1.Hours())
+	tests := []struct {
+		inputDate string
+		hours     int
+		expected  string
+	}{
+		{
+			inputDate: "2021-01-01 00:00:00",
+			hours:     1,
+			expected:  "2021-01-01 01:00:00",
+		},
+		{
+			inputDate: "2021-01-01 00:00:00",
+			hours:     -1,
+			expected:  "2020-12-31 23:00:00",
+		},
+		{
+			inputDate: "2021-01-01 00:00:00",
+			hours:     0,
+			expected:  "2021-01-01 00:00:00",
+		},
+		{
+			inputDate: "2021-01-01 00:00:00",
+			hours:     24,
+			expected:  "2021-01-02 00:00:00",
+		},
+		{
+			inputDate: "2021-01-01 00:00:00",
+			hours:     25,
+			expected:  "2021-01-02 01:00:00",
+		},
+		{
+			inputDate: "2021-01-01 00:00:00",
+			hours:     48,
+			expected:  "2021-01-03 00:00:00",
+		},
+		{
+			inputDate: "2021-01-01 00:00:00",
+			hours:     49,
+			expected:  "2021-01-03 01:00:00",
+		},
+	}
 
-	before2Hours := AddHour(now, -2)
-	diff2 := before2Hours.Sub(now)
-	assert.Equal(float64(-2), diff2.Hours())
+	for _, tt := range tests {
+		date, _ := time.Parse("2006-01-02 15:04:05", tt.inputDate)
+		result := AddHour(date, int64(tt.hours))
+		assert.Equal(tt.expected, result.Format("2006-01-02 15:04:05"))
+	}
+
 }
 
 func TestAddMinute(t *testing.T) {
 	t.Parallel()
-
 	assert := internal.NewAssert(t, "TestAddMinute")
 
-	now := time.Now()
-	after2Minutes := AddMinute(now, 2)
-	diff1 := after2Minutes.Sub(now)
-	assert.Equal(float64(2), diff1.Minutes())
+	tests := []struct {
+		inputDate string
+		minutes   int
+		expected  string
+	}{
+		{
+			inputDate: "2021-01-01 00:00:00",
+			minutes:   1,
+			expected:  "2021-01-01 00:01:00",
+		},
+		{
+			inputDate: "2021-01-01 00:00:00",
+			minutes:   -1,
+			expected:  "2020-12-31 23:59:00",
+		},
+		{
+			inputDate: "2021-01-01 00:00:00",
+			minutes:   0,
+			expected:  "2021-01-01 00:00:00",
+		},
+		{
+			inputDate: "2021-01-01 00:00:00",
+			minutes:   60,
+			expected:  "2021-01-01 01:00:00",
+		},
+		{
+			inputDate: "2021-01-01 00:00:00",
+			minutes:   61,
+			expected:  "2021-01-01 01:01:00",
+		},
+		{
+			inputDate: "2021-01-01 00:00:00",
+			minutes:   1440,
+			expected:  "2021-01-02 00:00:00",
+		},
+		{
+			inputDate: "2021-01-01 00:00:00",
+			minutes:   1441,
+			expected:  "2021-01-02 00:01:00",
+		},
+	}
 
-	before2Minutes := AddMinute(now, -2)
-	diff2 := before2Minutes.Sub(now)
-	assert.Equal(float64(-2), diff2.Minutes())
+	for _, tt := range tests {
+		date, _ := time.Parse("2006-01-02 15:04:05", tt.inputDate)
+		result := AddMinute(date, int64(tt.minutes))
+		assert.Equal(tt.expected, result.Format("2006-01-02 15:04:05"))
+	}
+}
+
+func TestAddWeek(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestAddWeek")
+
+	tests := []struct {
+		inputDate string
+		weeks     int
+		expected  string
+	}{
+		{
+			inputDate: "2021-01-01",
+			weeks:     1,
+			expected:  "2021-01-08",
+		},
+		{
+			inputDate: "2021-01-01",
+			weeks:     -1,
+			expected:  "2020-12-25",
+		},
+		{
+			inputDate: "2021-01-01",
+			weeks:     0,
+			expected:  "2021-01-01",
+		},
+		{
+			inputDate: "2021-01-01",
+			weeks:     52,
+			expected:  "2021-12-31",
+		},
+		{
+			inputDate: "2021-01-01",
+			weeks:     53,
+			expected:  "2022-01-07",
+		},
+		{
+			inputDate: "2021-01-01",
+			weeks:     104,
+			expected:  "2022-12-30",
+		},
+	}
+
+	for _, tt := range tests {
+		date, _ := time.Parse("2006-01-02", tt.inputDate)
+		result := AddWeek(date, int64(tt.weeks))
+		assert.Equal(tt.expected, result.Format("2006-01-02"))
+	}
+}
+
+func TestAddMonth(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestAddMonth")
+
+	tests := []struct {
+		inputDate string
+		months    int
+		expected  string
+	}{
+		{
+			inputDate: "2021-01-01",
+			months:    1,
+			expected:  "2021-02-01",
+		},
+		{
+			inputDate: "2021-01-01",
+			months:    -1,
+			expected:  "2020-12-01",
+		},
+		{
+			inputDate: "2021-01-01",
+			months:    0,
+			expected:  "2021-01-01",
+		},
+		{
+			inputDate: "2021-01-01",
+			months:    12,
+			expected:  "2022-01-01",
+		},
+		{
+			inputDate: "2021-01-01",
+			months:    13,
+			expected:  "2022-02-01",
+		},
+		{
+			inputDate: "2021-01-01",
+			months:    24,
+			expected:  "2023-01-01",
+		},
+	}
+
+	for _, tt := range tests {
+		date, _ := time.Parse("2006-01-02", tt.inputDate)
+		result := AddMonth(date, int64(tt.months))
+		assert.Equal(tt.expected, result.Format("2006-01-02"))
+	}
+
 }
 
 func TestGetNowDate(t *testing.T) {
@@ -577,4 +803,20 @@ func TestMaxMin(t *testing.T) {
 	max, min = MaxMin(oneMinuteAgo, now, oneMinuteAfter)
 	assert.Equal(oneMinuteAgo, min)
 	assert.Equal(oneMinuteAfter, max)
+}
+
+func TestBetweenSeconds(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestBetweenSeconds")
+
+	today := time.Now()
+	tomorrow := AddDay(today, 1)
+	yesterday := AddDay(today, -1)
+
+	result1 := BetweenSeconds(today, tomorrow)
+	result2 := BetweenSeconds(today, yesterday)
+
+	assert.Equal(int64(86400), result1)
+	assert.Equal(int64(-86400), result2)
 }
