@@ -100,6 +100,61 @@ func AddYear(t time.Time, year int64) time.Time {
 	return t.AddDate(int(year), 0, 0)
 }
 
+// AddDaySafe add or sub days to the time and ensure that the returned date does not exceed the valid date of the target year and month.
+// Play: todo
+func AddDaySafe(t time.Time, days int) time.Time {
+	t = t.AddDate(0, 0, days)
+	year, month, day := t.Date()
+
+	lastDayOfMonth := time.Date(year, month+1, 0, 0, 0, 0, 0, t.Location()).Day()
+
+	if day > lastDayOfMonth {
+		t = time.Date(year, month, lastDayOfMonth, t.Hour(), t.Minute(), t.Second(), t.Nanosecond(), t.Location())
+	}
+
+	return t
+}
+
+// AddMonthSafe add or sub months to the time and ensure that the returned date does not exceed the valid date of the target year and month.
+// Play: todo
+func AddMonthSafe(t time.Time, months int) time.Time {
+	year := t.Year()
+	month := int(t.Month()) + months
+
+	for month > 12 {
+		month -= 12
+		year++
+	}
+	for month < 1 {
+		month += 12
+		year--
+	}
+
+	daysInMonth := time.Date(year, time.Month(month+1), 0, 0, 0, 0, 0, time.UTC).Day()
+
+	day := t.Day()
+	if day > daysInMonth {
+		day = daysInMonth
+	}
+
+	return time.Date(year, time.Month(month), day, t.Hour(), t.Minute(), t.Second(), t.Nanosecond(), t.Location())
+}
+
+// AddYearSafe add or sub years to the time and ensure that the returned date does not exceed the valid date of the target year and month.
+// Play: todo
+func AddYearSafe(t time.Time, years int) time.Time {
+	year, month, day := t.Date()
+	year += years
+
+	if month == time.February && day == 29 {
+		if !IsLeapYear(year) {
+			day = 28
+		}
+	}
+
+	return time.Date(year, month, day, t.Hour(), t.Minute(), t.Second(), t.Nanosecond(), t.Location())
+}
+
 // GetNowDate return format yyyy-mm-dd of current date.
 // Play: https://go.dev/play/p/PvfkPpcpBBf
 func GetNowDate() string {

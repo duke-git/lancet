@@ -90,6 +90,60 @@ func ExampleAddYear() {
 	// 2019-01-01
 }
 
+func ExampleAddDaySafe() {
+	leapYearDate1, _ := time.Parse("2006-01-02", "2024-02-29")
+	result1 := AddDaySafe(leapYearDate1, 1)
+
+	leapYearDate2, _ := time.Parse("2006-01-02", "2024-03-01")
+	result2 := AddDaySafe(leapYearDate2, -1)
+
+	nonLeapYearDate1, _ := time.Parse("2006-01-02", "2025-02-28")
+	result3 := AddDaySafe(nonLeapYearDate1, 1)
+
+	nonLeaYearDate2, _ := time.Parse("2006-01-02", "2025-03-01")
+	result4 := AddDaySafe(nonLeaYearDate2, -1)
+
+	fmt.Println(result1.Format("2006-01-02"))
+	fmt.Println(result2.Format("2006-01-02"))
+	fmt.Println(result3.Format("2006-01-02"))
+	fmt.Println(result4.Format("2006-01-02"))
+
+	// Output:
+	// 2024-03-01
+	// 2024-02-29
+	// 2025-03-01
+	// 2025-02-28
+}
+
+func ExampleAddMonthSafe() {
+	date1, _ := time.Parse("2006-01-02", "2025-01-31")
+	result1 := AddMonthSafe(date1, 1)
+
+	date2, _ := time.Parse("2006-01-02", "2024-02-29")
+	result2 := AddMonthSafe(date2, -1)
+
+	fmt.Println(result1.Format("2006-01-02"))
+	fmt.Println(result2.Format("2006-01-02"))
+
+	// Output:
+	// 2025-02-28
+	// 2024-01-29
+}
+
+func ExampleAddYearSafe() {
+	date, _ := time.Parse("2006-01-02", "2020-02-29")
+
+	result1 := AddYearSafe(date, 1)
+	result2 := AddYearSafe(date, -1)
+
+	fmt.Println(result1.Format("2006-01-02"))
+	fmt.Println(result2.Format("2006-01-02"))
+
+	// Output:
+	// 2021-02-28
+	// 2019-02-28
+}
+
 func ExampleGetNowDate() {
 	result := GetNowDate()
 

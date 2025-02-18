@@ -309,6 +309,129 @@ func TestAddMonth(t *testing.T) {
 
 }
 
+func TestAddDaySafe(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestAddDaySafe")
+
+	tests := []struct {
+		inputDate string
+		days      int
+		expected  string
+	}{
+		{"2025-01-31", 10, "2025-02-10"},
+		{"2025-01-01", 30, "2025-01-31"},
+		{"2025-01-31", 1, "2025-02-01"},
+		{"2025-02-28", 1, "2025-03-01"},
+		{"2024-02-29", 1, "2024-03-01"},
+		{"2024-02-29", 365, "2025-02-28"},
+
+		{"2025-01-31", -10, "2025-01-21"},
+		{"2025-01-01", -30, "2024-12-02"},
+		{"2025-02-01", -1, "2025-01-31"},
+		{"2025-03-01", -1, "2025-02-28"},
+		{"2024-03-01", -1, "2024-02-29"},
+
+		{"2025-01-31", -31, "2024-12-31"},
+		{"2025-12-31", 1, "2026-01-01"},
+	}
+
+	for _, tt := range tests {
+		date, _ := time.Parse("2006-01-02", tt.inputDate)
+		result := AddDaySafe(date, tt.days)
+		assert.Equal(tt.expected, result.Format("2006-01-02"))
+	}
+}
+
+func TestAddMonthSafe(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestAddMonthSafe")
+
+	tests := []struct {
+		inputDate string
+		months    int
+		expected  string
+	}{
+		{
+			inputDate: "2025-01-31",
+			months:    1,
+			expected:  "2025-02-28",
+		},
+		{
+			inputDate: "2025-01-31",
+			months:    -1,
+			expected:  "2024-12-31",
+		},
+		{
+			inputDate: "2025-12-31",
+			months:    1,
+			expected:  "2026-01-31",
+		},
+		{
+			inputDate: "2025-01-31",
+			months:    -1,
+			expected:  "2024-12-31",
+		},
+		{
+			inputDate: "2024-02-29",
+			months:    1,
+			expected:  "2024-03-29",
+		},
+		{
+			inputDate: "2024-02-29",
+			months:    -1,
+			expected:  "2024-01-29",
+		},
+	}
+
+	for _, tt := range tests {
+		date, _ := time.Parse("2006-01-02", tt.inputDate)
+		result := AddMonthSafe(date, tt.months)
+		assert.Equal(tt.expected, result.Format("2006-01-02"))
+	}
+
+}
+
+func TestAddYearSafe(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestAddYearSafe")
+
+	tests := []struct {
+		inputDate string
+		years     int
+		expected  string
+	}{
+		{
+			inputDate: "2020-02-29",
+			years:     1,
+			expected:  "2021-02-28",
+		},
+		{
+			inputDate: "2020-02-29",
+			years:     2,
+			expected:  "2022-02-28",
+		},
+		{
+			inputDate: "2020-02-29",
+			years:     -1,
+			expected:  "2019-02-28",
+		},
+		{
+			inputDate: "2020-02-29",
+			years:     -2,
+			expected:  "2018-02-28",
+		},
+	}
+
+	for _, tt := range tests {
+		date, _ := time.Parse("2006-01-02", tt.inputDate)
+		result := AddYearSafe(date, tt.years)
+		assert.Equal(tt.expected, result.Format("2006-01-02"))
+	}
+}
+
 func TestGetNowDate(t *testing.T) {
 	t.Parallel()
 
