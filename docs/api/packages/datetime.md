@@ -28,6 +28,9 @@ import (
 -   [AddHour](#AddHour)
 -   [AddMinute](#AddMinute)
 -   [AddYear](#AddYear)
+-   [AddDaySafe](#AddDaySafe)
+-   [AddMonthSafe](#AddMonthSafe)
+-   [AddYearSafe](#AddYearSafe)
 -   [BeginOfMinute](#BeginOfMinute)
 -   [BeginOfHour](#BeginOfHour)
 -   [BeginOfDay](#BeginOfDay)
@@ -317,6 +320,126 @@ func main() {
     // Output:
     // 2023-01-01
     // 2019-01-01
+}
+```
+
+### <span id="AddDaySafe">AddDaySafe</span>
+
+<p>增加/减少指定的天数，并确保日期是有效日期。</p>
+
+<b>函数签名:</b>
+
+```go
+func AddDaySafe(t time.Time, days int) time.Time
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](todo)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "time"
+    "github.com/duke-git/lancet/v2/datetime"
+)
+
+func main() {
+    leapYearDate1, _ := time.Parse("2006-01-02", "2024-02-29")
+    result1 := datetime.AddDaySafe(leapYearDate1, 1)
+
+    leapYearDate2, _ := time.Parse("2006-01-02", "2024-03-01")
+    result2 := datetime.AddDaySafe(leapYearDate2, -1)
+
+    nonLeapYearDate1, _ := time.Parse("2006-01-02", "2025-02-28")
+    result3 := datetime.AddDaySafe(nonLeapYearDate1, 1)
+
+    nonLeaYearDate2, _ := time.Parse("2006-01-02", "2025-03-01")
+    result4 := datetime.AddDaySafe(nonLeaYearDate2, -1)
+
+    fmt.Println(result1.Format("2006-01-02"))
+    fmt.Println(result2.Format("2006-01-02"))
+    fmt.Println(result3.Format("2006-01-02"))
+    fmt.Println(result4.Format("2006-01-02"))
+
+    // Output:
+    // 2024-03-01
+    // 2024-02-29
+    // 2025-03-01
+    // 2025-02-28
+}
+```
+
+### <span id="AddMonthSafe">AddMonthSafe</span>
+
+<p>增加/减少指定的月份，并确保日期是有效日期。</p>
+
+<b>函数签名:</b>
+
+```go
+func AddMonthSafe(t time.Time, months int) time.Time
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](todo)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "time"
+    "github.com/duke-git/lancet/v2/datetime"
+)
+
+func main() {
+    date1, _ := time.Parse("2006-01-02", "2025-01-31")
+    result1 := datetime.AddMonthSafe(date1, 1)
+
+    date2, _ := time.Parse("2006-01-02", "2024-02-29")
+    result2 := datetime.AddMonthSafe(date2, -1)
+
+    fmt.Println(result1.Format("2006-01-02"))
+    fmt.Println(result2.Format("2006-01-02"))
+
+    // Output:
+    // 2025-02-28
+    // 2024-01-29
+}
+```
+
+### <span id="AddYearSafe">AddYearSafe</span>
+
+<p>增加/减少指定的年份，并确保日期是有效日期。</p>
+
+<b>函数签名:</b>
+
+```go
+func AddYearSafe(t time.Time, years int) time.Time
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](todo)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "time"
+    "github.com/duke-git/lancet/v2/datetime"
+)
+
+func main() {
+    date, _ := time.Parse("2006-01-02", "2020-02-29")
+
+    result1 := datetime.AddYearSafe(date, 1)
+    result2 := datetime.AddYearSafe(date, -1)
+
+    fmt.Println(result1.Format("2006-01-02"))
+    fmt.Println(result2.Format("2006-01-02"))
+
+    // Output:
+    // 2021-02-28
+    // 2019-02-28
 }
 ```
 
