@@ -844,7 +844,7 @@ func main() {
 
 ### <span id="EqualUnordered">EqualUnordered</span>
 
-<p>Checks if two slices are equal: the same length and all elements' value are equal (unordered).</p>
+<p>Checks if two slices are equal: the same length and all elements value are equal (unordered).</p>
 
 <b>Signature:</b>
 

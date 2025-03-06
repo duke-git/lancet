@@ -1475,6 +1475,9 @@ import "github.com/duke-git/lancet/v2/slice"
 -   **<big>EqualWith</big>** : 检查两个切片是否相等，相等条件：对两个切片的元素调用比较函数 comparator，返回 true。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/slice.md#EqualWith)]
     [[play](https://go.dev/play/p/b9iygtgsHI1)]
+-   **<big>EqualUnordered</big>** : 检查两个切片是否相等，元素数量相同，值相等，不考虑元素顺序。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/slice.md#EqualUnordered)]
+    [[play](todo)]
 -   **<big>Every</big>** : 如果切片中的所有值都通过谓词函数，则返回 true。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/slice.md#Every)]
     [[play](https://go.dev/play/p/R8U6Sl-j8cD)]

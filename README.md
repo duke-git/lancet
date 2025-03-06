@@ -1477,6 +1477,9 @@ import "github.com/duke-git/lancet/v2/slice"
 -   **<big>EqualWith</big>** : checks if two slices are equal with comparator func.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#EqualWith)]
     [[play](https://go.dev/play/p/b9iygtgsHI1)]
+-   **<big>EqualUnordered</big>** : Checks if two slices are equal: the same length and all elements value are equal (unordered).
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#EqualUnordered)]
+    [[play](todo)]
 -   **<big>Every</big>** : return true if all of the values in the slice pass the predicate function.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#Every)]
     [[play](https://go.dev/play/p/R8U6Sl-j8cD)]
