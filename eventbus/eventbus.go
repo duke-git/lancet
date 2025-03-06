@@ -33,6 +33,7 @@ type EventListener[T any] struct {
 }
 
 // NewEventBus creates a new EventBus.
+// Play: todo
 func NewEventBus[T any]() *EventBus[T] {
 	return &EventBus[T]{
 		listeners: sync.Map{},
@@ -40,6 +41,7 @@ func NewEventBus[T any]() *EventBus[T] {
 }
 
 // Subscribe subscribes to an event with a specific event topic and listener function.
+// Play: todo
 func (eb *EventBus[T]) Subscribe(topic string, listener func(eventData T), async bool, priority int, filter func(eventData T) bool) {
 	eb.mu.Lock()
 	defer eb.mu.Unlock()
@@ -63,6 +65,7 @@ func (eb *EventBus[T]) Subscribe(topic string, listener func(eventData T), async
 }
 
 // Unsubscribe unsubscribes from an event with a specific event topic and listener function.
+// Play: todo
 func (eb *EventBus[T]) Unsubscribe(topic string, listener func(eventData T)) {
 	eb.mu.Lock()
 	defer eb.mu.Unlock()
@@ -86,6 +89,7 @@ func (eb *EventBus[T]) Unsubscribe(topic string, listener func(eventData T)) {
 }
 
 // Publish publishes an event with a specific event topic and data payload.
+// Play: todo
 func (eb *EventBus[T]) Publish(event Event[T]) {
 	eb.mu.RLock()
 	defer eb.mu.RUnlock()
@@ -126,6 +130,7 @@ func (eb *EventBus[T]) SetErrorHandler(handler func(err error)) {
 }
 
 // ClearListeners clears all the listeners.
+// Play: todo
 func (eb *EventBus[T]) ClearListeners() {
 	eb.mu.Lock()
 	defer eb.mu.Unlock()
@@ -134,6 +139,7 @@ func (eb *EventBus[T]) ClearListeners() {
 }
 
 // ClearListenersByTopic clears all the listeners by topic.
+// Play: todo
 func (eb *EventBus[T]) ClearListenersByTopic(topic string) {
 	eb.mu.Lock()
 	defer eb.mu.Unlock()
@@ -142,6 +148,7 @@ func (eb *EventBus[T]) ClearListenersByTopic(topic string) {
 }
 
 // GetListenersCount returns the number of listeners for a specific event topic.
+// Play: todo
 func (eb *EventBus[T]) GetListenersCount(topic string) int {
 	eb.mu.RLock()
 	defer eb.mu.RUnlock()
@@ -156,6 +163,7 @@ func (eb *EventBus[T]) GetListenersCount(topic string) int {
 }
 
 // GetAllListenersCount returns the total number of listeners.
+// Play: todo
 func (eb *EventBus[T]) GetAllListenersCount() int {
 	eb.mu.RLock()
 	defer eb.mu.RUnlock()
@@ -170,6 +178,7 @@ func (eb *EventBus[T]) GetAllListenersCount() int {
 }
 
 // GetEvents returns all the events topics.
+// Play: todo
 func (eb *EventBus[T]) GetEvents() []string {
 	eb.mu.RLock()
 	defer eb.mu.RUnlock()

@@ -680,6 +680,45 @@ import optional "github.com/duke-git/lancet/v2/datastructure/optional"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/datastructure/optional.md)]
       
 
+<h3 id="eventbus"> 9. EventBus is an event bus used for handling events within an application. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">Index</a></h3>
+
+```go
+import "github.com/duke-git/lancet/v2/eventbus"
+```
+
+#### 函数列表:
+
+-   **<big>NewEventBus</big>** : Create an EventBus instance.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/eventbus.md#NewEventBus)]
+    [[play](https://go.dev/play/p/todo)]
+-   **<big>Subscribe</big>** : subscribes to an event with a specific event topic and listener function.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/eventbus.md#Subscribe)]
+    [[play](https://go.dev/play/p/todo)]
+-   **<big>Unsubscribe</big>** : unsubscribes from an event with a specific event topic and listener function.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/eventbus.md#Unsubscribe)]
+    [[play](https://go.dev/play/p/todo)]
+-   **<big>Publish</big>** : publishes an event with a specific event topic and data payload.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/eventbus.md#Publish)]
+    [[play](https://go.dev/play/p/todo)]
+-   **<big>ClearListeners</big>** : clears all the listeners.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/eventbus.md#ClearListeners)]
+    [[play](https://go.dev/play/p/todo)]
+-   **<big>ClearListenersByTopic</big>** : clears all the listeners by topic.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/eventbus.md#ClearListenersByTopic)]
+    [[play](https://go.dev/play/p/todo)]
+-   **<big>GetListenersCount</big>** : returns the number of listeners for a specific event topic.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/eventbus.md#GetListenersCount)]
+    [[play](https://go.dev/play/p/todo)]
+-   **<big>GetAllListenersCount</big>** : returns the total number of all listeners.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/eventbus.md#GetAllListenersCount)]
+    [[play](https://go.dev/play/p/todo)]
+-   **<big>GetEvents</big>** : returns all the events topics.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/eventbus.md#GetEvents)]
+    [[play](https://go.dev/play/p/todo)]
+-   **<big>SetErrorHandler</big>** : sets the error handler function.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/eventbus.md#SetErrorHandler)]
+    [[play](https://go.dev/play/p/todo)]
+
 <h3 id="fileutil"> 9. Fileutil package implements some basic functions for file operations. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
 ```go
