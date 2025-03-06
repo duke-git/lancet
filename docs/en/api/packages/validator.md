@@ -49,6 +49,7 @@ import (
 -   [IsIp](#IsIp)
 -   [IsIpV4](#IsIpV4)
 -   [IsIpV6](#IsIpV6)
+-   [IsIpPort](#IsIpPort)
 -   [IsStrongPassword](#IsStrongPassword)
 -   [IsUrl](#IsUrl)
 -   [IsWeakPassword](#IsWeakPassword)
@@ -989,6 +990,43 @@ func main() {
     // Output:
     // false
     // true
+}
+```
+
+### <span id="IsIpPort">IsIpPort</span>
+
+<p>Check if the string is ip:port</p>
+
+<b>Signature:</b>
+
+```go
+func IsIpPort(str string) bool
+```
+
+<b>Example:<span style="float:right;display:inline-block">[Run](todo)</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/validator"
+)
+
+func main() {
+    result1 := validator.IsIpPort("127.0.0.1:8080")
+	result2 := validator.IsIpPort("[0:0:0:0:0:0:0:1]:8080")
+	result3 := validator.IsIpPort(":8080")
+	result4 := validator.IsIpPort("::0:0:0:0:")
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+	fmt.Println(result4)
+
+	// Output:
+	// true
+	// true
+	// false
+	// false
 }
 ```
 

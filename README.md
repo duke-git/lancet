@@ -506,9 +506,24 @@ import "github.com/duke-git/lancet/v2/datetime"
 -   **<big>AddMinute</big>** : add or sub day to the time.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/datetime.md#AddMinute)]
     [[play](https://go.dev/play/p/nT1heB1KUUK)]
+-   **<big>AddWeek</big>** : add or sub week to time.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/datetime.md#AddWeek)]
+    [[play](https://go.dev/play/p/todo)]
+-   **<big>AddMonth</big>** : add or sub months to time.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/datetime.md#AddMonth)]
+    [[play](https://go.dev/play/p/todo)]
 -   **<big>AddYear</big>** : add or sub year to the time.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/datetime.md#AddYear)]
     [[play](https://go.dev/play/p/MqW2ujnBx10)]
+-   **<big>AddDaySafe</big>** : add or sub days to the time and ensure that the returned date does not exceed the valid date of the target year and month.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/datetime.md#AddDaySafe)]
+    [[play](https://go.dev/play/p/todo)]
+-   **<big>AddMonthSafe</big>** : add or sub months to the time and ensure that the returned date does not exceed the valid date of the target year and month.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/datetime.md#AddMonthSafe)]
+    [[play](https://go.dev/play/p/todo)]
+-   **<big>AddYearSafe</big>** : Add or sub years to the time and ensure that the returned date does not exceed the valid date of the target year and month.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/datetime.md#AddYearSafe)]
+    [[play](https://go.dev/play/p/todo)]
 -   **<big>BeginOfMinute</big>** : return the date time at the begin of minute of specific date.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/datetime.md#BeginOfMinute)]
     [[play](https://go.dev/play/p/ieOLVJ9CiFT)]
@@ -1561,6 +1576,9 @@ import "github.com/duke-git/lancet/v2/slice"
 -   **<big>Shuffle</big>** : shuffle the slice.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#Shuffle)]
     [[play](https://go.dev/play/p/YHvhnWGU3Ge)]
+-   **<big>ShuffleCopy</big>** : return a new slice with elements shuffled.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#ShuffleCopy)]
+    [[play](todo)]
 -   **<big>IsAscending</big>** : Checks if a slice is ascending order.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#IsAscending)]
     [[play](https://go.dev/play/p/9CtsFjet4SH)]
@@ -1707,6 +1725,9 @@ import "github.com/duke-git/lancet/v2/stream"
 -   **<big>Reverse</big>** : returns a stream whose elements are reverse order of given stream.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/stream.md#Reverse)]
     [[play](https://go.dev/play/p/A8_zkJnLHm4)]
+-   **<big>ReverseCopy</big>** : returns a new slice of element order is reversed to the given slice.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/stream.md#ReverseCopy)]
+    [[play](todo)]
 -   **<big>Range</big>** : returns a stream whose elements are in the range from start(included) to end(excluded) original stream.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/stream.md#Range)]
     [[play](https://go.dev/play/p/indZY5V2f4j)]
@@ -1936,7 +1957,9 @@ import "github.com/duke-git/lancet/v2/strutil"
 -   **<big>ExtractContent</big>** : extracts the content between the start and end strings in the source string.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/strutil.md#ExtractContent)]
     [[play](https://go.dev/play/p/Ay9UIk7Rum9)]
-
+-   **<big>FindAllOccurrences</big>** : Returns the positions of all occurrences of a substring in a string.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/strutil.md#FindAllOccurrences)]
+    [[play](todo)]
 
 <h3 id="system"> 22. System package contain some functions about os, runtime, shell command. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
@@ -2190,6 +2213,9 @@ import "github.com/duke-git/lancet/v2/validator"
 -   **<big>IsIpV6</big>** : check if the string is ipv6.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/validator.md#IsIpV6)]
     [[play](https://go.dev/play/p/AHA0r0AzIdC)]
+-   **<big>IsIpPort</big>** : check if the string is ip:port.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/validator.md#IsIpPort)]
+    [[play](todo)]
 -   **<big>IsStrongPassword</big>** : check if the string is strong password.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/validator.md#IsStrongPassword)]
     [[play](https://go.dev/play/p/QHdVcSQ3uDg)]

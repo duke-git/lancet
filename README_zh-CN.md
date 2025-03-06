@@ -507,9 +507,24 @@ import "github.com/duke-git/lancet/v2/datetime"
 -   **<big>AddMinute</big>** : 将日期加/减分钟数。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/datetime.md#AddMinute)]
     [[play](https://go.dev/play/p/nT1heB1KUUK)]
+-   **<big>AddWeek</big>** : 将日期加/减星期数.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/datetime.md#AddWeek)]
+    [[play](https://go.dev/play/p/todo)]
+-   **<big>AddMonth</big>** : 将日期加/减月数.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/datetime.md#AddMonth)]
+    [[play](https://go.dev/play/p/todo)]
 -   **<big>AddYear</big>** : 将日期加/减分年数。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/datetime.md#AddYear)]
     [[play](https://go.dev/play/p/MqW2ujnBx10)]
+-   **<big>AddDaySafe</big>** : 增加/减少指定的天数，并确保日期是有效日期。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/datetime.md#AddDaySafe)]
+    [[play](https://go.dev/play/p/todo)]
+-   **<big>AddMonthSafe</big>** : 增加/减少指定的月份，并确保日期是有效日期。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/datetime.md#AddMonthSafe)]
+    [[play](https://go.dev/play/p/todo)]
+-   **<big>AddYearSafe</big>** : 增加/减少指定的年份，并确保日期是有效日期。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/datetime.md#AddYearSafe)]
+    [[play](https://go.dev/play/p/todo)]
 -   **<big>BeginOfMinute</big>** : 返回指定时间的分钟开始时间。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/datetime.md#BeginOfMinute)]
     [[play](https://go.dev/play/p/ieOLVJ9CiFT)]
@@ -1535,6 +1550,9 @@ import "github.com/duke-git/lancet/v2/slice"
 -   **<big>Reverse</big>** : 反转切片中的元素顺序。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/slice.md#Reverse)]
     [[play](https://go.dev/play/p/8uI8f1lwNrQ)]
+-   **<big>ReverseCopy</big>** : 反转切片中的元素顺序, 不改变原slice。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/stream.md#ReverseCopy)]
+    [[play](todo)]
 -   **<big>Reduce<sup>deprecated</sup></big>** : 将切片中的元素依次运行 iteratee 函数，返回运行结果。(废弃：建议使用 ReduceBy)
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/slice.md#Reduce)]
     [[play](https://go.dev/play/p/_RfXJJWIsIm)]
@@ -1559,6 +1577,9 @@ import "github.com/duke-git/lancet/v2/slice"
 -   **<big>Shuffle</big>** : 随机打乱切片中的元素顺序。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/slice.md#Shuffle)]
     [[play](https://go.dev/play/p/YHvhnWGU3Ge)]
+-   **<big>ShuffleCopy</big>** : 随机打乱切片中的元素顺序, 不改变原切片。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/slice.md#ShuffleCopy)]
+    [[play](todo)]
 -   **<big>IsAscending</big>** : 检查切片元素是否按升序排列。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/slice.md#IsAscending)]
     [[play](https://go.dev/play/p/9CtsFjet4SH)]
@@ -1936,6 +1957,10 @@ import "github.com/duke-git/lancet/v2/strutil"
 -   **<big>ExtractContent</big>** : 提取两个标记之间的内容。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/strutil.md#ExtractContent)]
     [[play](https://go.dev/play/p/Ay9UIk7Rum9)]
+-   **<big>FindAllOccurrences</big>** : 返回子字符串在字符串中所有出现的位置。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/strutil.md#FindAllOccurrences)]
+    [[play](todo)]
+
 
 <h3 id="system"> 23. system 包含 os, runtime, shell command 的相关函数。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 
@@ -2190,6 +2215,9 @@ import "github.com/duke-git/lancet/v2/validator"
 -   **<big>IsIpV6</big>** : 验证字符串是否是ipv6地址。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/validator.md#IsIpV6)]
     [[play](https://go.dev/play/p/AHA0r0AzIdC)]
+-   **<big>IsIpPort</big>** : 检查字符串是否是ip:port格式。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/validator.md#IsIpPort)]
+    [[play](todo)]
 -   **<big>IsStrongPassword</big>** : 验证字符串是否是强密码：（字母+数字+特殊字符)。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/validator.md#IsStrongPassword)]
     [[play](https://go.dev/play/p/QHdVcSQ3uDg)]
