@@ -41,9 +41,9 @@ func TestEventBus_Unsubscribe(t *testing.T) {
 	assert.Equal(0, receivedData)
 }
 
-func TestEventBus_Subscribe_WithFilter(t *testing.T) {
+func TestEventBus_Subscribe_withFilter(t *testing.T) {
 	t.Parallel()
-	assert := internal.NewAssert(t, "TestEventBus_Subscribe_WithFilter")
+	assert := internal.NewAssert(t, "TestEventBus_Subscribe_withFilter")
 
 	eb := NewEventBus[int]()
 
@@ -64,9 +64,9 @@ func TestEventBus_Subscribe_WithFilter(t *testing.T) {
 	assert.Equal(1, receivedData)
 }
 
-func TestEventBus_Subscribe_WithPriority(t *testing.T) {
+func TestEventBus_Subscribe_withPriority(t *testing.T) {
 	t.Parallel()
-	assert := internal.NewAssert(t, "TestEventBus_Subscribe_WithPriority")
+	assert := internal.NewAssert(t, "TestEventBus_Subscribe_withPriority")
 
 	eb := NewEventBus[int]()
 
@@ -87,9 +87,9 @@ func TestEventBus_Subscribe_WithPriority(t *testing.T) {
 	assert.Equal([]int{2, 1}, receivedData)
 }
 
-func TestEventBus_Subscribe_Async(t *testing.T) {
+func TestEventBus_Subscribe_async(t *testing.T) {
 	t.Parallel()
-	assert := internal.NewAssert(t, "TestEventBus_Subscribe_Async")
+	assert := internal.NewAssert(t, "TestEventBus_Subscribe_async")
 
 	eb := NewEventBus[string]()
 
