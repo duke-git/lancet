@@ -37,7 +37,7 @@ func ExampleEventBus_Unsubscribe() {
 	// 0
 }
 
-func ExampleEventBus_Subscribe_WithFilter() {
+func ExampleEventBus_Subscribe_withFilter() {
 	eb := NewEventBus[int]()
 
 	receivedData := 0
@@ -60,7 +60,7 @@ func ExampleEventBus_Subscribe_WithFilter() {
 	// 1
 }
 
-func ExampleEventBus_Subscribe_WithPriority() {
+func ExampleEventBus_Subscribe_withPriority() {
 	eb := NewEventBus[int]()
 
 	eb.Subscribe("event1", func(eventData int) {
@@ -78,7 +78,7 @@ func ExampleEventBus_Subscribe_WithPriority() {
 	// 1
 }
 
-func ExampleEventBus_Subscribe_Async() {
+func ExampleEventBus_Subscribe_async() {
 	eb := NewEventBus[int]()
 
 	var wg sync.WaitGroup
