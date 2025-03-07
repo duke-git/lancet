@@ -215,6 +215,5 @@ func TestEventBus_GetEvents(t *testing.T) {
 	events := eb.GetEvents()
 
 	assert.Equal(2, len(events))
-	assert.Equal("event1", events[0])
-	assert.Equal("event2", events[1])
+	assert.EqualValues([]string{"event1", "event2"}, events)
 }
