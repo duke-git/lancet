@@ -114,6 +114,7 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
                             ],
                         },
                         { text: 'datetime', link: '/en/api/packages/datetime' },
+                        { text: 'eventbus', link: '/en/api/packages/eventbus' },
                         { text: 'fileutil', link: '/en/api/packages/fileutil' },
                         { text: 'formatter', link: '/en/api/packages/formatter' },
                         { text: 'function', link: '/en/api/packages/function' },

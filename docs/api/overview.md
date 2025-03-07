@@ -47,6 +47,7 @@ outline: deep
         <div class="package-cell">cryptor</div>
         <div class="package-cell">datastructure</div>
         <div class="package-cell">datetime</div>
+        <div class="package-cell">eventbus</div>
         <div class="package-cell">fileutil</div>
         <div class="package-cell">formatter</div>
         <div class="package-cell">function</div>

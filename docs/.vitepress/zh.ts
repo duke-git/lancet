@@ -127,6 +127,7 @@ export const zhConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
                             ],
                         },
                         { text: '日期&时间', link: '/api/packages/datetime' },
+                        { text: '事件总线', link: '/api/packages/eventbus' },
                         { text: '文件', link: '/api/packages/fileutil' },
                         { text: '格式化工具', link: '/api/packages/formatter' },
                         { text: '函数', link: '/api/packages/function' },
