@@ -852,7 +852,7 @@ func main() {
 func EqualUnordered[T comparable](slice1, slice2 []T) bool
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[运行](todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/n8fSc2w8ZgX)</span></b>
 
 ```go
 import (
@@ -1768,7 +1768,7 @@ func main() {
 func ReverseCopy[T any](slice []T) []T
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/c9arEaP7Cg-)</span></b>
 
 ```go
 import (
@@ -2062,7 +2062,7 @@ func main() {
 func ShuffleCopy[T any](slice []T) []T
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/vqDa-Gs1vT0)</span></b>
 
 ```go
 import (

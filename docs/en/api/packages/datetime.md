@@ -155,7 +155,7 @@ func main() {
 func AddWeek(t time.Time, weeks int64) time.Time
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/M9TqdMiaA2p)</span></b>
 
 ```go
 package main
@@ -191,7 +191,7 @@ func main() {
 func AddMonth(t time.Time, months int64) time.Time
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/DLoiOnpLvsN)</span></b>
 
 ```go
 package main
@@ -335,7 +335,7 @@ func main() {
 func AddDaySafe(t time.Time, days int) time.Time
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/JTohZFpoDJ3)</span></b>
 
 ```go
 package main
@@ -382,7 +382,7 @@ func main() {
 func AddMonthSafe(t time.Time, months int) time.Time
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/KLw0lo6mbVW)</span></b>
 
 ```go
 package main
@@ -419,7 +419,7 @@ func main() {
 func AddYearSafe(t time.Time, years int) time.Time
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/KVGXWZZ54ZH)</span></b>
 
 ```go
 package main

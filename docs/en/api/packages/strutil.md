@@ -1774,7 +1774,7 @@ func main() {
 func FindAllOccurrences(str, substr string) []int
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/uvyA6azGLB1)</span></b>
 
 ```go
 import (

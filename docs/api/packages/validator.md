@@ -1001,7 +1001,7 @@ func main() {
 func IsIpPort(str string) bool
 ```
 
-<b>示例:<span style="float:right;display:inline-block">[运行](todo)</span></b>
+<b>示例:<span style="float:right;display:inline-block">[运行](https://go.dev/play/p/xUmls_b9L29)</span></b>
 
 ```go
 import (

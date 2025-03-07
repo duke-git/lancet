@@ -221,7 +221,7 @@ func EqualWith[T, U any](slice1 []T, slice2 []U, comparator func(T, U) bool) boo
 }
 
 // EqualUnordered checks if two slices are equal: the same length and all elements' value are equal (unordered).
-// Play: todo
+// Play: https://go.dev/play/p/n8fSc2w8ZgX
 func EqualUnordered[T comparable](slice1, slice2 []T) bool {
 	if len(slice1) != len(slice2) {
 		return false
@@ -1003,7 +1003,7 @@ func Reverse[T any](slice []T) {
 }
 
 // ReverseCopy return a new slice of element order is reversed to the given slice.
-// Play: todo
+// Play: https://go.dev/play/p/c9arEaP7Cg-
 func ReverseCopy[T any](slice []T) []T {
 	result := make([]T, len(slice))
 
@@ -1027,7 +1027,7 @@ func Shuffle[T any](slice []T) []T {
 }
 
 // ShuffleCopy return a new slice with elements shuffled.
-// Play: todo
+// Play: https://go.dev/play/p/vqDa-Gs1vT0
 func ShuffleCopy[T any](slice []T) []T {
 	result := make([]T, len(slice))
 	copy(result, slice)

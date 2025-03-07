@@ -136,9 +136,12 @@ func ExampleEventBus_ClearListeners() {
 	}
 
 	eb.Subscribe("event1", listener, false, 0, nil)
+	eb.Subscribe("event2", listener, false, 0, nil)
+
 	eb.ClearListeners()
 
 	eb.Publish(Event[int]{Topic: "event1", Payload: 1})
+	eb.Publish(Event[int]{Topic: "event2", Payload: 2})
 
 	fmt.Println(receivedData)
 
@@ -155,28 +158,31 @@ func ExampleEventBus_ClearListenersByTopic() {
 	}
 
 	eb.Subscribe("event1", listener, false, 0, nil)
+	eb.Subscribe("event2", listener, false, 0, nil)
+
 	eb.ClearListenersByTopic("event1")
 
 	eb.Publish(Event[int]{Topic: "event1", Payload: 1})
+	eb.Publish(Event[int]{Topic: "event2", Payload: 2})
 
 	fmt.Println(receivedData)
 
 	// Output:
-	// 0
+	// 2
 }
 
 func ExampleEventBus_GetListenersCount() {
 	eb := NewEventBus[int]()
 
 	eb.Subscribe("event1", func(eventData int) {}, false, 0, nil)
-	eb.Subscribe("event1", func(eventData int) {}, false, 0, nil)
+	eb.Subscribe("event2", func(eventData int) {}, false, 0, nil)
 
 	count := eb.GetListenersCount("event1")
 
 	fmt.Println(count)
 
 	// Output:
-	// 2
+	// 1
 }
 
 func ExampleEventBus_SetErrorHandler() {

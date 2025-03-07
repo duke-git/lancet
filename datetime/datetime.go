@@ -83,13 +83,13 @@ func AddDay(t time.Time, days int64) time.Time {
 }
 
 // AddWeek add or sub weeks to the time.
-// play: todo
+// play: https://go.dev/play/p/M9TqdMiaA2p
 func AddWeek(t time.Time, weeks int64) time.Time {
 	return t.Add(7 * 24 * time.Hour * time.Duration(weeks))
 }
 
 // AddMonth add or sub months to the time.
-// Play: todo
+// Play: https://go.dev/play/p/DLoiOnpLvsN
 func AddMonth(t time.Time, months int64) time.Time {
 	return t.AddDate(0, int(months), 0)
 }
@@ -101,7 +101,7 @@ func AddYear(t time.Time, year int64) time.Time {
 }
 
 // AddDaySafe add or sub days to the time and ensure that the returned date does not exceed the valid date of the target year and month.
-// Play: todo
+// Play: https://go.dev/play/p/JTohZFpoDJ3
 func AddDaySafe(t time.Time, days int) time.Time {
 	t = t.AddDate(0, 0, days)
 	year, month, day := t.Date()
@@ -116,7 +116,7 @@ func AddDaySafe(t time.Time, days int) time.Time {
 }
 
 // AddMonthSafe add or sub months to the time and ensure that the returned date does not exceed the valid date of the target year and month.
-// Play: todo
+// Play: https://go.dev/play/p/KLw0lo6mbVW
 func AddMonthSafe(t time.Time, months int) time.Time {
 	year := t.Year()
 	month := int(t.Month()) + months
@@ -141,7 +141,7 @@ func AddMonthSafe(t time.Time, months int) time.Time {
 }
 
 // AddYearSafe add or sub years to the time and ensure that the returned date does not exceed the valid date of the target year and month.
-// Play: todo
+// Play: https://go.dev/play/p/KVGXWZZ54ZH
 func AddYearSafe(t time.Time, years int) time.Time {
 	year, month, day := t.Date()
 	year += years

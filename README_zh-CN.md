@@ -509,22 +509,22 @@ import "github.com/duke-git/lancet/v2/datetime"
     [[play](https://go.dev/play/p/nT1heB1KUUK)]
 -   **<big>AddWeek</big>** : 将日期加/减星期数.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/datetime.md#AddWeek)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/M9TqdMiaA2p)]
 -   **<big>AddMonth</big>** : 将日期加/减月数.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/datetime.md#AddMonth)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/DLoiOnpLvsN)]
 -   **<big>AddYear</big>** : 将日期加/减分年数。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/datetime.md#AddYear)]
     [[play](https://go.dev/play/p/MqW2ujnBx10)]
 -   **<big>AddDaySafe</big>** : 增加/减少指定的天数，并确保日期是有效日期。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/datetime.md#AddDaySafe)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/JTohZFpoDJ3)]
 -   **<big>AddMonthSafe</big>** : 增加/减少指定的月份，并确保日期是有效日期。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/datetime.md#AddMonthSafe)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/KLw0lo6mbVW)]
 -   **<big>AddYearSafe</big>** : 增加/减少指定的年份，并确保日期是有效日期。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/datetime.md#AddYearSafe)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/KVGXWZZ54ZH)]
 -   **<big>BeginOfMinute</big>** : 返回指定时间的分钟开始时间。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/datetime.md#BeginOfMinute)]
     [[play](https://go.dev/play/p/ieOLVJ9CiFT)]
@@ -704,34 +704,34 @@ import "github.com/duke-git/lancet/v2/eventbus"
 
 -   **<big>NewEventBus</big>** : 创建EventBus实例。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/eventbus.md#NewEventBus)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/gHbOPV_NUOJ)]
 -   **<big>Subscribe</big>** : 订阅具有特定事件主题和监听函数的事件。支持异步，事件优先级，事件过滤器。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/eventbus.md#Subscribe)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/EYGf_8cHei-)]
 -   **<big>Unsubscribe</big>** : 取消订阅具有特定事件主题的事件。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/eventbus.md#Unsubscribe)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/Tmh7Ttfvprf)]
 -   **<big>Publish</big>** : 发布一个带有特定事件主题和数据负载的事件。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/eventbus.md#Publish)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/gHTtVexFSH9)]
 -   **<big>ClearListeners</big>** : 清空所有事件监听器。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/eventbus.md#ClearListeners)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/KBfBYlKPgqD)]
 -   **<big>ClearListenersByTopic</big>** : 清空特定事件监听器。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/eventbus.md#ClearListenersByTopic)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/gvMljmJOZmU)]
 -   **<big>GetListenersCount</big>** : 获取特定事件的监听器数量。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/eventbus.md#GetListenersCount)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/8VPJsMQgStM)]
 -   **<big>GetAllListenersCount</big>** : 获取所有事件的监听器数量。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/eventbus.md#GetAllListenersCount)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/PUlr0xcpEOz)]
 -   **<big>GetEvents</big>** : 获取所有事件的topic。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/eventbus.md#GetEvents)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/etgjjcOtAjX)]
 -   **<big>SetErrorHandler</big>** : 设置事件的错误处理函数。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/eventbus.md#SetErrorHandler)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/gmB0gnFe5mc)]
 
 <h3 id="fileutil"> 10. fileutil 包含文件基本操作。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 
@@ -1477,7 +1477,7 @@ import "github.com/duke-git/lancet/v2/slice"
     [[play](https://go.dev/play/p/b9iygtgsHI1)]
 -   **<big>EqualUnordered</big>** : 检查两个切片是否相等，元素数量相同，值相等，不考虑元素顺序。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/slice.md#EqualUnordered)]
-    [[play](todo)]
+    [[play](https://go.dev/play/p/n8fSc2w8ZgX)]
 -   **<big>Every</big>** : 如果切片中的所有值都通过谓词函数，则返回 true。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/slice.md#Every)]
     [[play](https://go.dev/play/p/R8U6Sl-j8cD)]
@@ -1555,7 +1555,7 @@ import "github.com/duke-git/lancet/v2/slice"
     [[play](https://go.dev/play/p/8uI8f1lwNrQ)]
 -   **<big>ReverseCopy</big>** : 反转切片中的元素顺序, 不改变原slice。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/stream.md#ReverseCopy)]
-    [[play](todo)]
+    [[play](https://go.dev/play/p/c9arEaP7Cg-)]
 -   **<big>Reduce<sup>deprecated</sup></big>** : 将切片中的元素依次运行 iteratee 函数，返回运行结果。(废弃：建议使用 ReduceBy)
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/slice.md#Reduce)]
     [[play](https://go.dev/play/p/_RfXJJWIsIm)]
@@ -1582,7 +1582,7 @@ import "github.com/duke-git/lancet/v2/slice"
     [[play](https://go.dev/play/p/YHvhnWGU3Ge)]
 -   **<big>ShuffleCopy</big>** : 随机打乱切片中的元素顺序, 不改变原切片。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/slice.md#ShuffleCopy)]
-    [[play](todo)]
+    [[play](https://go.dev/play/p/vqDa-Gs1vT0)]
 -   **<big>IsAscending</big>** : 检查切片元素是否按升序排列。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/slice.md#IsAscending)]
     [[play](https://go.dev/play/p/9CtsFjet4SH)]
@@ -1962,7 +1962,7 @@ import "github.com/duke-git/lancet/v2/strutil"
     [[play](https://go.dev/play/p/Ay9UIk7Rum9)]
 -   **<big>FindAllOccurrences</big>** : 返回子字符串在字符串中所有出现的位置。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/strutil.md#FindAllOccurrences)]
-    [[play](todo)]
+    [[play](https://go.dev/play/p/uvyA6azGLB1)]
 
 
 <h3 id="system"> 23. system 包含 os, runtime, shell command 的相关函数。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
@@ -2220,7 +2220,7 @@ import "github.com/duke-git/lancet/v2/validator"
     [[play](https://go.dev/play/p/AHA0r0AzIdC)]
 -   **<big>IsIpPort</big>** : 检查字符串是否是ip:port格式。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/validator.md#IsIpPort)]
-    [[play](todo)]
+    [[play](https://go.dev/play/p/xUmls_b9L29)]
 -   **<big>IsStrongPassword</big>** : 验证字符串是否是强密码：（字母+数字+特殊字符)。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/validator.md#IsStrongPassword)]
     [[play](https://go.dev/play/p/QHdVcSQ3uDg)]

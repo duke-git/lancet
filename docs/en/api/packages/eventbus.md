@@ -48,7 +48,7 @@ import (
 func NewEventBus[T any]() *EventBus[T]
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/gHbOPV_NUOJ)</span></b>
 
 ```go
 import (
@@ -65,7 +65,7 @@ func main() {
     }
 
     eb.Subscribe("event1", listener, false, 0, nil)
-    eb.Publish(Event[int]{Topic: "event1", Payload: 1})
+    eb.Publish(eventbus.Event[int]{Topic: "event1", Payload: 1})
 
     fmt.Println(receivedData)
 
@@ -84,7 +84,7 @@ func main() {
 func (eb *EventBus[T]) Subscribe(topic string, listener func(eventData T), async bool, priority int, filter func(eventData T) bool)
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/EYGf_8cHei-)</span></b>
 
 ```go
 import (
@@ -106,8 +106,8 @@ func main() {
 
     eb.Subscribe("event1", listener, false, 0, filter)
 
-    eb.Publish(Event[int]{Topic: "event1", Payload: 1})
-    eb.Publish(Event[int]{Topic: "event1", Payload: 2})
+    eb.Publish(eventbus.Event[int]{Topic: "event1", Payload: 1})
+    eb.Publish(eventbus.Event[int]{Topic: "event1", Payload: 2})
 
     fmt.Println(receivedData)
 
@@ -126,7 +126,7 @@ func main() {
 func (eb *EventBus[T]) Unsubscribe(topic string, listener func(eventData T))
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/Tmh7Ttfvprf)</span></b>
 
 ```go
 import (
@@ -145,7 +145,7 @@ func main() {
     eb.Subscribe("event1", listener, false, 0, nil)
     eb.Unsubscribe("event1", listener)
 
-    eb.Publish(Event[int]{Topic: "event1", Payload: 1})
+    eb.Publish(eventbus.Event[int]{Topic: "event1", Payload: 1})
 
     fmt.Println(receivedData)
 
@@ -161,10 +161,10 @@ func main() {
 <b>Signature:</b>
 
 ```go
-func (eb *EventBus[T]) Publish(event Event[T])
+func (eb *EventBus[T]) Publish(event eventbus.Event[T])
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/gHTtVexFSH9)</span></b>
 
 ```go
 import (
@@ -179,7 +179,7 @@ func main() {
         fmt.Println(eventData)
     }, false, 0, nil)
 
-    eb.Publish(Event[int]{Topic: "event1", Payload: 1})
+    eb.Publish(eventbus.Event[int]{Topic: "event1", Payload: 1})
 
     // Output:
     // 1
@@ -196,7 +196,7 @@ func main() {
 func (eb *EventBus[T]) ClearListeners()
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/KBfBYlKPgqD)</span></b>
 
 ```go
 import (
@@ -213,9 +213,12 @@ func main() {
     }
 
     eb.Subscribe("event1", listener, false, 0, nil)
+    eb.Subscribe("event2", listener, false, 0, nil)
+
     eb.ClearListeners()
 
-    eb.Publish(Event[int]{Topic: "event1", Payload: 1})
+    eb.Publish(eventbus.Event[int]{Topic: "event1", Payload: 1})
+    eb.Publish(eventbus.Event[int]{Topic: "event2", Payload: 2})
 
     fmt.Println(receivedData)
 
@@ -234,7 +237,7 @@ func main() {
 func (eb *EventBus[T]) ClearListenersByTopic(topic string)
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/gvMljmJOZmU)</span></b>
 
 ```go
 import (
@@ -251,14 +254,17 @@ func main() {
     }
 
     eb.Subscribe("event1", listener, false, 0, nil)
+    eb.Subscribe("event2", listener, false, 0, nil)
+    
     eb.ClearListenersByTopic("event1")
 
-    eb.Publish(Event[int]{Topic: "event1", Payload: 1})
+    eb.Publish(eventbus.Event[int]{Topic: "event1", Payload: 1})
+    eb.Publish(eventbus.Event[int]{Topic: "event2", Payload: 2})
 
     fmt.Println(receivedData)
 
     // Output:
-    // 0
+    // 2
 }
 ```
 
@@ -272,7 +278,7 @@ func main() {
 func (eb *EventBus[T]) GetListenersCount(topic string) int
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/j6yaJ2xAmFz)</span></b>
 
 ```go
 import (
@@ -284,14 +290,14 @@ func main() {
     eb := eventbus.NewEventBus[int]()
 
     eb.Subscribe("event1", func(eventData int) {}, false, 0, nil)
-    eb.Subscribe("event1", func(eventData int) {}, false, 0, nil)
+    eb.Subscribe("event2", func(eventData int) {}, false, 0, nil)
 
     count := eb.GetListenersCount("event1")
 
     fmt.Println(count)
 
     // Output:
-    // 2
+    // 1
 }
 ```
 
@@ -305,7 +311,7 @@ func main() {
 func (eb *EventBus[T]) GetAllListenersCount() int
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/PUlr0xcpEOz)</span></b>
 
 ```go
 import (
@@ -338,7 +344,7 @@ func main() {
 func (eb *EventBus[T]) GetEvents() []string
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/etgjjcOtAjX)</span></b>
 
 ```go
 import (
@@ -359,8 +365,8 @@ func main() {
     }
 
     // Output:
-    // event1
     // event2
+    // event1
 }
 ```
 
@@ -374,7 +380,7 @@ func main() {
 func (eb *EventBus[T]) SetErrorHandler(handler func(err error))
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/gmB0gnFe5mc)</span></b>
 
 ```go
 import (
@@ -393,7 +399,7 @@ func main() {
 		panic("error")
 	}, false, 0, nil)
 
-	eb.Publish(Event[int]{Topic: "event1", Payload: 1})
+	eb.Publish(eventbus.Event[int]{Topic: "event1", Payload: 1})
 
 	// Output:
 	// error

@@ -208,7 +208,7 @@ func IsIp(ipstr string) bool {
 }
 
 // IsIpPort check if the string is ip:port.
-// Play:
+// Play: https://go.dev/play/p/xUmls_b9L29
 func IsIpPort(str string) bool {
 	host, port, err := net.SplitHostPort(str)
 	if err != nil {

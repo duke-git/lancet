@@ -758,7 +758,7 @@ func ExtractContent(str, start, end string) []string {
 }
 
 // FindAllOccurrences returns the positions of all occurrences of a substring in a string.
-// Play: todo
+// Play: https://go.dev/play/p/uvyA6azGLB1
 func FindAllOccurrences(str, substr string) []int {
 	var positions []int
 

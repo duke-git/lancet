@@ -508,22 +508,22 @@ import "github.com/duke-git/lancet/v2/datetime"
     [[play](https://go.dev/play/p/nT1heB1KUUK)]
 -   **<big>AddWeek</big>** : add or sub week to time.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/datetime.md#AddWeek)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/M9TqdMiaA2p)]
 -   **<big>AddMonth</big>** : add or sub months to time.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/datetime.md#AddMonth)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/DLoiOnpLvsN)]
 -   **<big>AddYear</big>** : add or sub year to the time.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/datetime.md#AddYear)]
     [[play](https://go.dev/play/p/MqW2ujnBx10)]
 -   **<big>AddDaySafe</big>** : add or sub days to the time and ensure that the returned date does not exceed the valid date of the target year and month.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/datetime.md#AddDaySafe)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/JTohZFpoDJ3)]
 -   **<big>AddMonthSafe</big>** : add or sub months to the time and ensure that the returned date does not exceed the valid date of the target year and month.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/datetime.md#AddMonthSafe)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/KLw0lo6mbVW)]
 -   **<big>AddYearSafe</big>** : Add or sub years to the time and ensure that the returned date does not exceed the valid date of the target year and month.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/datetime.md#AddYearSafe)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/KVGXWZZ54ZH)]
 -   **<big>BeginOfMinute</big>** : return the date time at the begin of minute of specific date.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/datetime.md#BeginOfMinute)]
     [[play](https://go.dev/play/p/ieOLVJ9CiFT)]
@@ -705,34 +705,34 @@ import "github.com/duke-git/lancet/v2/eventbus"
 
 -   **<big>NewEventBus</big>** : Create an EventBus instance.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/eventbus.md#NewEventBus)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/gHbOPV_NUOJ)]
 -   **<big>Subscribe</big>** : subscribes to an event with a specific event topic and listener function.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/eventbus.md#Subscribe)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/EYGf_8cHei-)]
 -   **<big>Unsubscribe</big>** : unsubscribes from an event with a specific event topic and listener function.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/eventbus.md#Unsubscribe)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/Tmh7Ttfvprf)]
 -   **<big>Publish</big>** : publishes an event with a specific event topic and data payload.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/eventbus.md#Publish)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/gHTtVexFSH9)]
 -   **<big>ClearListeners</big>** : clears all the listeners.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/eventbus.md#ClearListeners)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/KBfBYlKPgqD)]
 -   **<big>ClearListenersByTopic</big>** : clears all the listeners by topic.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/eventbus.md#ClearListenersByTopic)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/gvMljmJOZmU)]
 -   **<big>GetListenersCount</big>** : returns the number of listeners for a specific event topic.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/eventbus.md#GetListenersCount)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/8VPJsMQgStM)]
 -   **<big>GetAllListenersCount</big>** : returns the total number of all listeners.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/eventbus.md#GetAllListenersCount)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/PUlr0xcpEOz)]
 -   **<big>GetEvents</big>** : returns all the events topics.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/eventbus.md#GetEvents)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/etgjjcOtAjX)]
 -   **<big>SetErrorHandler</big>** : sets the error handler function.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/eventbus.md#SetErrorHandler)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/gmB0gnFe5mc)]
 
 <h3 id="fileutil"> 9. Fileutil package implements some basic functions for file operations. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
@@ -1479,7 +1479,7 @@ import "github.com/duke-git/lancet/v2/slice"
     [[play](https://go.dev/play/p/b9iygtgsHI1)]
 -   **<big>EqualUnordered</big>** : Checks if two slices are equal: the same length and all elements value are equal (unordered).
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#EqualUnordered)]
-    [[play](todo)]
+    [[play](https://go.dev/play/p/n8fSc2w8ZgX)]
 -   **<big>Every</big>** : return true if all of the values in the slice pass the predicate function.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#Every)]
     [[play](https://go.dev/play/p/R8U6Sl-j8cD)]
@@ -1581,7 +1581,7 @@ import "github.com/duke-git/lancet/v2/slice"
     [[play](https://go.dev/play/p/YHvhnWGU3Ge)]
 -   **<big>ShuffleCopy</big>** : return a new slice with elements shuffled.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#ShuffleCopy)]
-    [[play](todo)]
+    [[play](https://go.dev/play/p/vqDa-Gs1vT0)]
 -   **<big>IsAscending</big>** : Checks if a slice is ascending order.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#IsAscending)]
     [[play](https://go.dev/play/p/9CtsFjet4SH)]
@@ -1730,7 +1730,7 @@ import "github.com/duke-git/lancet/v2/stream"
     [[play](https://go.dev/play/p/A8_zkJnLHm4)]
 -   **<big>ReverseCopy</big>** : returns a new slice of element order is reversed to the given slice.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/stream.md#ReverseCopy)]
-    [[play](todo)]
+    [[play](https://go.dev/play/p/c9arEaP7Cg-)]
 -   **<big>Range</big>** : returns a stream whose elements are in the range from start(included) to end(excluded) original stream.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/stream.md#Range)]
     [[play](https://go.dev/play/p/indZY5V2f4j)]
@@ -1962,7 +1962,7 @@ import "github.com/duke-git/lancet/v2/strutil"
     [[play](https://go.dev/play/p/Ay9UIk7Rum9)]
 -   **<big>FindAllOccurrences</big>** : Returns the positions of all occurrences of a substring in a string.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/strutil.md#FindAllOccurrences)]
-    [[play](todo)]
+    [[play](https://go.dev/play/p/uvyA6azGLB1)]
 
 <h3 id="system"> 22. System package contain some functions about os, runtime, shell command. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
@@ -2218,7 +2218,7 @@ import "github.com/duke-git/lancet/v2/validator"
     [[play](https://go.dev/play/p/AHA0r0AzIdC)]
 -   **<big>IsIpPort</big>** : check if the string is ip:port.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/validator.md#IsIpPort)]
-    [[play](todo)]
+    [[play](https://go.dev/play/p/xUmls_b9L29)]
 -   **<big>IsStrongPassword</big>** : check if the string is strong password.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/validator.md#IsStrongPassword)]
     [[play](https://go.dev/play/p/QHdVcSQ3uDg)]
