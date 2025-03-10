@@ -299,23 +299,23 @@ func ExampleEndOfDay() {
 func ExampleBeginOfWeek() {
 	input := time.Date(2023, 1, 8, 18, 50, 10, 100, time.UTC)
 
-	result := BeginOfWeek(input)
+	result := BeginOfWeek(input, time.Monday)
 
 	fmt.Println(result)
 
 	// Output:
-	// 2023-01-08 00:00:00 +0000 UTC
+	// 2023-01-02 00:00:00 +0000 UTC
 }
 
 func ExampleEndOfWeek() {
 	input := time.Date(2023, 1, 8, 18, 50, 10, 100, time.UTC)
 
-	result := EndOfWeek(input)
+	result := EndOfWeek(input, time.Sunday)
 
 	fmt.Println(result)
 
 	// Output:
-	// 2023-01-14 23:59:59.999999999 +0000 UTC
+	// 2023-01-08 23:59:59.999999999 +0000 UTC
 }
 
 func ExampleBeginOfMonth() {
