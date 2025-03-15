@@ -21,6 +21,7 @@ import (
 var (
 	alphaMatcher           *regexp.Regexp = regexp.MustCompile(`^[a-zA-Z]+$`)
 	letterRegexMatcher     *regexp.Regexp = regexp.MustCompile(`[a-zA-Z]`)
+	alphaNumericMatcher    *regexp.Regexp = regexp.MustCompile(`^[a-zA-Z0-9-]+$`)
 	numberRegexMatcher     *regexp.Regexp = regexp.MustCompile(`\d`)
 	intStrMatcher          *regexp.Regexp = regexp.MustCompile(`^[\+-]?\d+$`)
 	urlMatcher             *regexp.Regexp = regexp.MustCompile(`^((ftp|http|https?):\/\/)?(\S+(:\S*)?@)?((([1-9]\d?|1\d\d|2[01]\d|22[0-3])(\.(1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.([0-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(([a-zA-Z0-9]+([-\.][a-zA-Z0-9]+)*)|((www\.)?))?(([a-z\x{00a1}-\x{ffff}0-9]+-?-?)*[a-z\x{00a1}-\x{ffff}0-9]+)(?:\.([a-z\x{00a1}-\x{ffff}]{2,}))?))(:(\d{1,5}))?((\/|\?|#)[^\s]*)?$`)
@@ -179,6 +180,12 @@ func ContainNumber(input string) bool {
 func IsJSON(str string) bool {
 	var js json.RawMessage
 	return json.Unmarshal([]byte(str), &js) == nil
+}
+
+// IsAlphaNumericStr check if the string is alphanumeric.
+// Play: todo
+func IsAlphaNumeric(s string) bool {
+	return alphaNumericMatcher.MatchString(s)
 }
 
 // IsNumberStr check if the string can convert to a number.

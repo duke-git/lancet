@@ -659,3 +659,21 @@ func TestIsChinaUnionPay(t *testing.T) {
 	assert.Equal(true, IsChinaUnionPay("6250941006528599"))
 	assert.Equal(false, IsChinaUnionPay("3782822463100007"))
 }
+
+func TestIsAlphaNumeric(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestIsAlphaNumeric")
+
+	assert.Equal(true, IsAlphaNumeric("ABC"))
+	assert.Equal(true, IsAlphaNumeric("abc"))
+	assert.Equal(true, IsAlphaNumeric("aBC"))
+	assert.Equal(true, IsAlphaNumeric("1BC"))
+	assert.Equal(true, IsAlphaNumeric("1bc"))
+	assert.Equal(true, IsAlphaNumeric("123"))
+
+	assert.Equal(false, IsAlphaNumeric(""))
+	assert.Equal(false, IsAlphaNumeric("你好"))
+	assert.Equal(false, IsAlphaNumeric("A&"))
+	assert.Equal(false, IsAlphaNumeric("&@#$%^&*"))
+}
