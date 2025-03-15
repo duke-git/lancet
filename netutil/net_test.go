@@ -142,3 +142,63 @@ func TestTelnetConnected(t *testing.T) {
 	result2 := IsTelnetConnected("www.baidu.com", "123")
 	assert.Equal(false, result2)
 }
+
+func TestBuildUrl(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestBuildUrl")
+
+	tests := []struct {
+		scheme  string
+		host    string
+		path    string
+		query   map[string]string
+		want    string
+		wantErr bool
+	}{
+		{
+			scheme:  "http",
+			host:    "www.test.com",
+			path:    "/path/subpath",
+			query:   map[string]string{"a": "1", "b": "2"},
+			want:    "http://www.test.com/path/subpath?a=1&b=2",
+			wantErr: false,
+		},
+		{
+			scheme:  "http",
+			host:    "www.test.com",
+			path:    "/simple-path",
+			query:   map[string]string{"a": "1", "b": "2"},
+			want:    "http://www.test.com/simple-path?a=1&b=2",
+			wantErr: false,
+		},
+		{
+			scheme:  "https",
+			host:    "www.test. com",
+			path:    "/path",
+			query:   nil,
+			want:    "",
+			wantErr: true,
+		},
+		{
+			scheme:  "https",
+			host:    "www.test.com",
+			path:    "/path with spaces",
+			query:   nil,
+			want:    "https://www.test.com/path%20with%20spaces",
+			wantErr: false,
+		},
+	}
+
+	for _, tt := range tests {
+		got, err := BuildUrl(tt.scheme, tt.host, tt.path, tt.query)
+		// if (err != nil) != tt.wantErr {
+		// 	t.Errorf("BuildUrl() error = %v, wantErr %v", err, tt.wantErr)
+		// 	return
+		// }
+
+		assert.Equal(tt.want, got)
+		assert.Equal(tt.wantErr, err != nil)
+	}
+
+}

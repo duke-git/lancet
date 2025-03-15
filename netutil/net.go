@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"errors"
+	"fmt"
 	"io"
 	"mime/multipart"
 	"net"
@@ -11,6 +12,7 @@ import (
 	"net/url"
 	"os"
 	"os/exec"
+	"regexp"
 	"runtime"
 	"strings"
 	"time"
@@ -305,3 +307,62 @@ func IsTelnetConnected(host string, port string) bool {
 
 	return true
 }
+
+// BuildUrl builds a URL from the given params.
+// Play: todo
+func BuildUrl(scheme, host, path string, query map[string]string) (string, error) {
+	if err := validateScheme(scheme); err != nil {
+		return "", err
+	}
+
+	if path != "" {
+		if !hostRegex.MatchString(host) {
+			return "", fmt.Errorf("invalid host: '%s' is not a valid host", host)
+		}
+	}
+
+	parsedUrl := &url.URL{
+		Scheme: scheme,
+		Host:   host,
+	}
+
+	if path == "" {
+		parsedUrl.Path = "/"
+	} else if !strings.HasPrefix(path, "/") {
+		path = "/" + path
+	} else {
+		parsedUrl.Path = path
+	}
+
+	queryParams := parsedUrl.Query()
+
+	for key, value := range query {
+		queryParams.Add(key, value)
+	}
+
+	parsedUrl.RawQuery = queryParams.Encode()
+
+	return parsedUrl.String(), nil
+}
+
+// 支持的 Scheme 列表
+var supportedSchemes = map[string]bool{
+	"http":   true,
+	"https":  true,
+	"ftp":    true,
+	"file":   true,
+	"mailto": true,
+	"ws":     true, // WebSocket
+	"wss":    true, // WebSocket Secure
+	"data":   true, // Data URL
+}
+
+func validateScheme(scheme string) error {
+	if _, exists := supportedSchemes[scheme]; !exists {
+		return fmt.Errorf("invalid scheme: '%s' is not supported", scheme)
+	}
+	return nil
+}
+
+var hostRegex = regexp.MustCompile(`^([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]*[a-zA-Z0-9])(\.[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]*[a-zA-Z0-9])*$`)
+var pathRegex = regexp.MustCompile(`^\/([a-zA-Z0-9%_-]+(?:\/[a-zA-Z0-9%_-]+)*)$`)
