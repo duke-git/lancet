@@ -192,13 +192,46 @@ func TestBuildUrl(t *testing.T) {
 
 	for _, tt := range tests {
 		got, err := BuildUrl(tt.scheme, tt.host, tt.path, tt.query)
-		// if (err != nil) != tt.wantErr {
-		// 	t.Errorf("BuildUrl() error = %v, wantErr %v", err, tt.wantErr)
-		// 	return
-		// }
-
 		assert.Equal(tt.want, got)
 		assert.Equal(tt.wantErr, err != nil)
 	}
 
+}
+
+func TestAddQueryParams(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestAddQueryParams")
+
+	tests := []struct {
+		url     string
+		query   map[string]string
+		want    string
+		wantErr bool
+	}{
+		{
+			url:     "http://www.test.com",
+			query:   map[string]string{"a": "1", "b": "2"},
+			want:    "http://www.test.com?a=1&b=2",
+			wantErr: false,
+		},
+		{
+			url:     "http://www.test.com",
+			query:   map[string]string{},
+			want:    "http://www.test.com",
+			wantErr: false,
+		},
+		{
+			url:     "http://www.test.com",
+			query:   map[string]string{"a": "$%"},
+			want:    "",
+			wantErr: true,
+		},
+	}
+
+	for _, tt := range tests {
+		got, err := AddQueryParams(tt.url, tt.query)
+		assert.Equal(tt.want, got)
+		assert.Equal(tt.wantErr, err != nil)
+	}
 }

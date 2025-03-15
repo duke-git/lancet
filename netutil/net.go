@@ -345,7 +345,6 @@ func BuildUrl(scheme, host, path string, query map[string]string) (string, error
 	return parsedUrl.String(), nil
 }
 
-// 支持的 Scheme 列表
 var supportedSchemes = map[string]bool{
 	"http":   true,
 	"https":  true,
@@ -366,3 +365,35 @@ func validateScheme(scheme string) error {
 
 var hostRegex = regexp.MustCompile(`^([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]*[a-zA-Z0-9])(\.[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]*[a-zA-Z0-9])*$`)
 var pathRegex = regexp.MustCompile(`^\/([a-zA-Z0-9%_-]+(?:\/[a-zA-Z0-9%_-]+)*)$`)
+
+var alphaNumericRegex = regexp.MustCompile(`^[a-zA-Z0-9]+$`)
+
+// AddQueryParams adds query parameters to the given URL.
+// Play: todoå
+func AddQueryParams(urlStr string, params map[string]string) (string, error) {
+	parsedUrl, err := url.Parse(urlStr)
+	if err != nil {
+		return "", err
+	}
+
+	queryParams := parsedUrl.Query()
+	for k, v := range params {
+		if k == "" {
+			return "", errors.New("empty key is not allowed")
+		}
+
+		if !alphaNumericRegex.MatchString(k) {
+			return "", fmt.Errorf("query parameter key %s must be alphanumeric", k)
+		}
+
+		if !alphaNumericRegex.MatchString(v) {
+			return "", fmt.Errorf("query parameter value %s must be alphanumeric", v)
+		}
+
+		queryParams.Add(k, v)
+	}
+
+	parsedUrl.RawQuery = queryParams.Encode()
+
+	return parsedUrl.String(), nil
+}
