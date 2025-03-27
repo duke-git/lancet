@@ -307,10 +307,21 @@ func TestBeforeLast(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestBeforeLast")
 
-	assert.Equal("lancet", BeforeLast("lancet", ""))
-	assert.Equal("lancet", BeforeLast("lancet", "abcdef"))
-	assert.Equal("github.com/test", BeforeLast("github.com/test/lancet", "/"))
-	assert.Equal("github.com/test/", BeforeLast("github.com/test/test/lancet", "test"))
+	tests := []struct {
+		input    string
+		char     string
+		expected string
+	}{
+		{"lancet", "", "lancet"},
+		{"lancet", "lancet", ""},
+		{"lancet", "abcdef", "lancet"},
+		{"github.com/test/lancet", "/", "github.com/test"},
+		{"github.com/test/test/lancet", "test", "github.com/test/"},
+	}
+
+	for _, tt := range tests {
+		assert.Equal(tt.expected, BeforeLast(tt.input, tt.char))
+	}
 }
 
 func TestAfter(t *testing.T) {
@@ -318,11 +329,21 @@ func TestAfter(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestAfter")
 
-	assert.Equal("lancet", After("lancet", ""))
-	assert.Equal("", After("lancet", "lancet"))
-	assert.Equal("test/lancet", After("github.com/test/lancet", "/"))
-	assert.Equal("/lancet", After("github.com/test/lancet", "test"))
-	assert.Equal("lancet", After("lancet", "abcdef"))
+	tests := []struct {
+		input    string
+		char     string
+		expected string
+	}{
+		{"lancet", "", "lancet"},
+		{"lancet", "lancet", ""},
+		{"lancet", "abcdef", "lancet"},
+		{"github.com/test/lancet", "/", "test/lancet"},
+		{"github.com/test/lancet", "test", "/lancet"},
+	}
+
+	for _, tt := range tests {
+		assert.Equal(tt.expected, After(tt.input, tt.char))
+	}
 }
 
 func TestAfterLast(t *testing.T) {
@@ -330,11 +351,21 @@ func TestAfterLast(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestAfterLast")
 
-	assert.Equal("lancet", AfterLast("lancet", ""))
-	assert.Equal("lancet", AfterLast("github.com/test/lancet", "/"))
-	assert.Equal("/lancet", AfterLast("github.com/test/lancet", "test"))
-	assert.Equal("/lancet", AfterLast("github.com/test/test/lancet", "test"))
-	assert.Equal("lancet", AfterLast("lancet", "abcdef"))
+	tests := []struct {
+		input    string
+		char     string
+		expected string
+	}{
+		{"lancet", "", "lancet"},
+		{"lancet", "lancet", ""},
+		{"lancet", "abcdef", "lancet"},
+		{"github.com/test/lancet", "/", "lancet"},
+		{"github.com/test/test/lancet", "test", "/lancet"},
+	}
+
+	for _, tt := range tests {
+		assert.Equal(tt.expected, AfterLast(tt.input, tt.char))
+	}
 }
 
 func TestIsString(t *testing.T) {
@@ -342,11 +373,20 @@ func TestIsString(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestIsString")
 
-	assert.Equal(true, IsString("lancet"))
-	assert.Equal(true, IsString(""))
-	assert.Equal(false, IsString(1))
-	assert.Equal(false, IsString(true))
-	assert.Equal(false, IsString([]string{}))
+	tests := []struct {
+		input    interface{}
+		expected bool
+	}{
+		{"lancet", true},
+		{"", true},
+		{1, false},
+		{true, false},
+		{[]string{}, false},
+	}
+
+	for _, tt := range tests {
+		assert.Equal(tt.expected, IsString(tt.input))
+	}
 }
 
 func TestReverse(t *testing.T) {
@@ -363,11 +403,21 @@ func TestWrap(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestWrap")
 
-	assert.Equal("ab", Wrap("ab", ""))
-	assert.Equal("", Wrap("", "*"))
-	assert.Equal("*ab*", Wrap("ab", "*"))
-	assert.Equal("\"ab\"", Wrap("ab", "\""))
-	assert.Equal("'ab'", Wrap("ab", "'"))
+	tests := []struct {
+		input    string
+		wrapper  string
+		expected string
+	}{
+		{"", "", ""},
+		{"ab", "", "ab"},
+		{"ab", "*", "*ab*"},
+		{"ab", "\"", "\"ab\""},
+		{"ab", "'", "'ab'"},
+	}
+
+	for _, tt := range tests {
+		assert.Equal(tt.expected, Wrap(tt.input, tt.wrapper))
+	}
 }
 
 func TestUnwrap(t *testing.T) {
@@ -485,10 +535,21 @@ func TestIsBlank(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestIsBlank")
 
-	assert.Equal(IsBlank(""), true)
-	assert.Equal(IsBlank("\t\v\f\n"), true)
+	tests := []struct {
+		input    string
+		expected bool
+	}{
+		{"", true},
+		{" ", true},
+		{"\t\v\f\n", true},
+		{"\t\v\f\nabc", false},
+		{"abc", false},
+		{" 中文", false},
+	}
 
-	assert.Equal(IsBlank(" 中文"), false)
+	for _, tt := range tests {
+		assert.Equal(tt.expected, IsBlank(tt.input))
+	}
 }
 
 func TestIsNotBlank(t *testing.T) {
@@ -496,12 +557,22 @@ func TestIsNotBlank(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestIsBlank")
 
-	assert.Equal(IsNotBlank(""), false)
-	assert.Equal(IsNotBlank("			"), false)
-	assert.Equal(IsNotBlank("\t\v\f\n"), false)
+	tests := []struct {
+		input    string
+		expected bool
+	}{
+		{"", false},
+		{"	", false},
+		{"\t\v\f\n", false},
+		{"\t\v\f\nabc", true},
+		{"abc", true},
+		{" 中文", true},
+		{"  	world	", true},
+	}
 
-	assert.Equal(IsNotBlank(" 中文"), true)
-	assert.Equal(IsNotBlank(" 	world	"), true)
+	for _, tt := range tests {
+		assert.Equal(tt.expected, IsNotBlank(tt.input))
+	}
 }
 
 func TestHasPrefixAny(t *testing.T) {
@@ -509,12 +580,19 @@ func TestHasPrefixAny(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestHasPrefixAny")
 
-	str := "foo bar"
-	prefixes := []string{"fo", "xyz", "hello"}
-	notMatches := []string{"oom", "world"}
+	tests := []struct {
+		str      string
+		prefixes []string
+		expected bool
+	}{
+		{"foo bar", []string{"fo", "xyz", "hello"}, true},
+		{"foo bar", []string{"oom", "world"}, false},
+		{"foo bar", []string{}, false},
+	}
 
-	assert.Equal(HasPrefixAny(str, prefixes), true)
-	assert.Equal(HasPrefixAny(str, notMatches), false)
+	for _, tt := range tests {
+		assert.Equal(tt.expected, HasPrefixAny(tt.str, tt.prefixes))
+	}
 }
 
 func TestHasSuffixAny(t *testing.T) {
@@ -522,25 +600,44 @@ func TestHasSuffixAny(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestHasSuffixAny")
 
-	str := "foo bar"
-	suffixes := []string{"bar", "xyz", "hello"}
-	notMatches := []string{"oom", "world"}
+	tests := []struct {
+		str      string
+		suffixes []string
+		expected bool
+	}{
+		{"foo bar", []string{"bar", "xyz", "hello"}, true},
+		{"foo bar", []string{"oom", "world"}, false},
+		{"foo bar", []string{}, false},
+	}
 
-	assert.Equal(HasSuffixAny(str, suffixes), true)
-	assert.Equal(HasSuffixAny(str, notMatches), false)
+	for _, tt := range tests {
+		assert.Equal(tt.expected, HasSuffixAny(tt.str, tt.suffixes))
+	}
 }
 
 func TestIndexOffset(t *testing.T) {
 	t.Parallel()
 
 	assert := internal.NewAssert(t, "TestIndexOffset")
+
 	str := "foo bar hello world"
 
-	assert.Equal(IndexOffset(str, "o", 5), 12)
-	assert.Equal(IndexOffset(str, "o", 0), 1)
-	assert.Equal(IndexOffset(str, "d", len(str)-1), len(str)-1)
-	assert.Equal(IndexOffset(str, "d", len(str)), -1)
-	assert.Equal(IndexOffset(str, "f", -1), -1)
+	tests := []struct {
+		str      string
+		substr   string
+		offset   int
+		expected int
+	}{
+		{str, "o", 5, 12},
+		{str, "o", 0, 1},
+		{str, "d", len(str) - 1, len(str) - 1},
+		{str, "d", len(str), -1},
+		{str, "f", -1, -1},
+	}
+
+	for _, tt := range tests {
+		assert.Equal(tt.expected, IndexOffset(tt.str, tt.substr, tt.offset))
+	}
 }
 
 func TestReplaceWithMap(t *testing.T) {
@@ -648,13 +745,23 @@ func TestSubInBetween(t *testing.T) {
 	t.Parallel()
 	assert := internal.NewAssert(t, "TestSubInBetween")
 
-	str := "abcde"
+	tests := []struct {
+		input    string
+		start    string
+		end      string
+		expected string
+	}{
+		{"abcde", "", "", ""},
+		{"abcde", "a", "d", "bc"},
+		{"abcde", "a", "e", "bcd"},
+		{"abcde", "a", "f", ""},
+		{"abcde", "a", "", ""},
+		{"abcde", "", "e", "abcd"},
+	}
 
-	assert.Equal("", SubInBetween(str, "", ""))
-	assert.Equal("ab", SubInBetween(str, "", "c"))
-	assert.Equal("bc", SubInBetween(str, "a", "d"))
-	assert.Equal("", SubInBetween(str, "a", ""))
-	assert.Equal("", SubInBetween(str, "a", "f"))
+	for _, tt := range tests {
+		assert.Equal(tt.expected, SubInBetween(tt.input, tt.start, tt.end))
+	}
 }
 
 func TestHammingDistance(t *testing.T) {
@@ -696,13 +803,22 @@ func TestConcat(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestConcat")
 
-	assert.Equal("", Concat(0))
-	assert.Equal("a", Concat(1, "a"))
-	assert.Equal("ab", Concat(2, "a", "b"))
-	assert.Equal("abc", Concat(3, "a", "b", "c"))
-	assert.Equal("abc", Concat(3, "a", "", "b", "c", ""))
-	assert.Equal("你好，世界！", Concat(0, "你好", "，", "", "世界！", ""))
-	assert.Equal("Hello World!", Concat(0, "Hello", " Wo", "r", "ld!", ""))
+	tests := []struct {
+		args     []string
+		expected string
+	}{
+		{[]string{}, ""},
+		{[]string{"a"}, "a"},
+		{[]string{"a", "b"}, "ab"},
+		{[]string{"a", "b", "c"}, "abc"},
+		{[]string{"a", "", "b", "c", ""}, "abc"},
+		{[]string{"你好", "，", "", "世界！", ""}, "你好，世界！"},
+		{[]string{"Hello", " Wo", "r", "ld!", ""}, "Hello World!"},
+	}
+
+	for _, tt := range tests {
+		assert.Equal(tt.expected, Concat(0, tt.args...))
+	}
 }
 
 func TestEllipsis(t *testing.T) {
