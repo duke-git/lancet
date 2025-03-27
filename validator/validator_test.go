@@ -15,16 +15,25 @@ func TestIsAllUpper(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestIsAllUpper")
 
-	assert.Equal(true, IsAllUpper("ABC"))
-	assert.Equal(false, IsAllUpper(""))
-	assert.Equal(false, IsAllUpper("abc"))
-	assert.Equal(false, IsAllUpper("aBC"))
-	assert.Equal(false, IsAllUpper("1BC"))
-	assert.Equal(false, IsAllUpper("1bc"))
-	assert.Equal(false, IsAllUpper("123"))
-	assert.Equal(false, IsAllUpper("你好"))
-	assert.Equal(false, IsAllUpper("A&"))
-	assert.Equal(false, IsAllUpper("&@#$%^&*"))
+	tests := []struct {
+		input    string
+		expected bool
+	}{
+		{"ABC", true},
+		{"", false},
+		{"abc", false},
+		{"aBC", false},
+		{"1BC", false},
+		{"1bc", false},
+		{"123", false},
+		{"你好", false},
+		{"A&", false},
+		{"&@#$%^&*", false},
+	}
+
+	for _, tt := range tests {
+		assert.Equal(tt.expected, IsAllUpper(tt.input))
+	}
 }
 
 func TestIsAllLower(t *testing.T) {
@@ -32,16 +41,25 @@ func TestIsAllLower(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestIsAllLower")
 
-	assert.Equal(true, IsAllLower("abc"))
-	assert.Equal(false, IsAllLower("ABC"))
-	assert.Equal(false, IsAllLower(""))
-	assert.Equal(false, IsAllLower("aBC"))
-	assert.Equal(false, IsAllLower("1BC"))
-	assert.Equal(false, IsAllLower("1bc"))
-	assert.Equal(false, IsAllLower("123"))
-	assert.Equal(false, IsAllLower("你好"))
-	assert.Equal(false, IsAllLower("A&"))
-	assert.Equal(false, IsAllLower("&@#$%^&*"))
+	tests := []struct {
+		input    string
+		expected bool
+	}{
+		{"abc", true},
+		{"", false},
+		{"ABC", false},
+		{"aBC", false},
+		{"1BC", false},
+		{"1bc", false},
+		{"123", false},
+		{"你好", false},
+		{"A&", false},
+		{"&@#$%^&*", false},
+	}
+
+	for _, tt := range tests {
+		assert.Equal(tt.expected, IsAllLower(tt.input))
+	}
 }
 
 func TestContainLower(t *testing.T) {
@@ -49,17 +67,25 @@ func TestContainLower(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestContainLower")
 
-	assert.Equal(true, ContainLower("abc"))
-	assert.Equal(true, ContainLower("aBC"))
-	assert.Equal(true, ContainLower("1bc"))
-	assert.Equal(true, ContainLower("a&"))
+	tests := []struct {
+		input    string
+		expected bool
+	}{
+		{"abc", true},
+		{"aBC", true},
+		{"1bc", true},
+		{"a&", true},
+		{"ABC", false},
+		{"", false},
+		{"1BC", false},
+		{"123", false},
+		{"你好", false},
+		{"&@#$%^&*", false},
+	}
 
-	assert.Equal(false, ContainLower("ABC"))
-	assert.Equal(false, ContainLower(""))
-	assert.Equal(false, ContainLower("1BC"))
-	assert.Equal(false, ContainLower("123"))
-	assert.Equal(false, ContainLower("你好"))
-	assert.Equal(false, ContainLower("&@#$%^&*"))
+	for _, tt := range tests {
+		assert.Equal(tt.expected, ContainLower(tt.input))
+	}
 }
 
 func TestContainUpper(t *testing.T) {
@@ -67,17 +93,25 @@ func TestContainUpper(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestContainUpper")
 
-	assert.Equal(true, ContainUpper("ABC"))
-	assert.Equal(true, ContainUpper("aBC"))
-	assert.Equal(true, ContainUpper("1BC"))
-	assert.Equal(true, ContainUpper("A&"))
+	tests := []struct {
+		input    string
+		expected bool
+	}{
+		{"ABC", true},
+		{"aBC", true},
+		{"1BC", true},
+		{"A&", true},
+		{"abc", false},
+		{"", false},
+		{"1bc", false},
+		{"123", false},
+		{"你好", false},
+		{"&@#$%^&*", false},
+	}
 
-	assert.Equal(false, ContainUpper("abc"))
-	assert.Equal(false, ContainUpper(""))
-	assert.Equal(false, ContainUpper("1bc"))
-	assert.Equal(false, ContainUpper("123"))
-	assert.Equal(false, ContainUpper("你好"))
-	assert.Equal(false, ContainUpper("&@#$%^&*"))
+	for _, tt := range tests {
+		assert.Equal(tt.expected, ContainUpper(tt.input))
+	}
 }
 
 func TestContainLetter(t *testing.T) {
@@ -85,15 +119,23 @@ func TestContainLetter(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestContainLetter")
 
-	assert.Equal(true, ContainLetter("ABC"))
-	assert.Equal(true, ContainLetter("1Bc"))
-	assert.Equal(true, ContainLetter("1ab"))
-	assert.Equal(true, ContainLetter("A&"))
+	tests := []struct {
+		input    string
+		expected bool
+	}{
+		{"ABC", true},
+		{"1Bc", true},
+		{"1ab", true},
+		{"A&", true},
+		{"", false},
+		{"123", false},
+		{"你好", false},
+		{"&@#$%^&*", false},
+	}
 
-	assert.Equal(false, ContainLetter(""))
-	assert.Equal(false, ContainLetter("123"))
-	assert.Equal(false, ContainLetter("你好"))
-	assert.Equal(false, ContainLetter("&@#$%^&*"))
+	for _, tt := range tests {
+		assert.Equal(tt.expected, ContainLetter(tt.input))
+	}
 }
 
 func TestContainNumber(t *testing.T) {
@@ -101,18 +143,26 @@ func TestContainNumber(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestContainNumber")
 
-	assert.Equal(true, ContainNumber("123"))
-	assert.Equal(true, ContainNumber("1Bc"))
-	assert.Equal(true, ContainNumber("a2c"))
-	assert.Equal(true, ContainNumber("ab3"))
-	assert.Equal(true, ContainNumber("a23"))
-	assert.Equal(true, ContainNumber("a23c"))
-	assert.Equal(true, ContainNumber("1%%%"))
+	tests := []struct {
+		input    string
+		expected bool
+	}{
+		{"123", true},
+		{"1Bc", true},
+		{"a2c", true},
+		{"ab3", true},
+		{"a23", true},
+		{"a23c", true},
+		{"1%%%", true},
+		{"ABC", false},
+		{"", false},
+		{"你好", false},
+		{"&@#$%^&*", false},
+	}
 
-	assert.Equal(false, ContainNumber("ABC"))
-	assert.Equal(false, ContainNumber(""))
-	assert.Equal(false, ContainNumber("你好"))
-	assert.Equal(false, ContainNumber("&@#$%^&*"))
+	for _, tt := range tests {
+		assert.Equal(tt.expected, ContainNumber(tt.input))
+	}
 }
 
 func TestIsJSON(t *testing.T) {
@@ -120,15 +170,23 @@ func TestIsJSON(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestIsJSON")
 
-	assert.Equal(true, IsJSON("{}"))
-	assert.Equal(true, IsJSON("{\"name\": \"test\"}"))
-	assert.Equal(true, IsJSON("[]"))
-	assert.Equal(true, IsJSON("123"))
+	tests := []struct {
+		input    string
+		expected bool
+	}{
+		{"{}", true},
+		{"{\"name\": \"test\"}", true},
+		{"[]", true},
+		{"123", true},
+		{"", false},
+		{"abc", false},
+		{"你好", false},
+		{"&@#$%^&*", false},
+	}
 
-	assert.Equal(false, IsJSON(""))
-	assert.Equal(false, IsJSON("abc"))
-	assert.Equal(false, IsJSON("你好"))
-	assert.Equal(false, IsJSON("&@#$%^&*"))
+	for _, tt := range tests {
+		assert.Equal(tt.expected, IsJSON(tt.input))
+	}
 }
 
 func TestIsNumber(t *testing.T) {
@@ -136,10 +194,19 @@ func TestIsNumber(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestIsNumber")
 
-	assert.Equal(false, IsNumber(""))
-	assert.Equal(false, IsNumber("3"))
-	assert.Equal(true, IsNumber(0))
-	assert.Equal(true, IsNumber(0.1))
+	tests := []struct {
+		input    interface{}
+		expected bool
+	}{
+		{"", false},
+		{"3", false},
+		{0, true},
+		{0.1, true},
+	}
+
+	for _, tt := range tests {
+		assert.Equal(tt.expected, IsNumber(tt.input))
+	}
 }
 
 func TestIsFloat(t *testing.T) {
@@ -147,10 +214,19 @@ func TestIsFloat(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestIsFloat")
 
-	assert.Equal(false, IsFloat(""))
-	assert.Equal(false, IsFloat("3"))
-	assert.Equal(false, IsFloat(0))
-	assert.Equal(true, IsFloat(0.1))
+	tests := []struct {
+		input    interface{}
+		expected bool
+	}{
+		{"", false},
+		{"3", false},
+		{0, false},
+		{0.1, true},
+	}
+
+	for _, tt := range tests {
+		assert.Equal(tt.expected, IsFloat(tt.input))
+	}
 }
 
 func TestIsInt(t *testing.T) {
@@ -158,11 +234,20 @@ func TestIsInt(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestIsInt")
 
-	assert.Equal(false, IsInt(""))
-	assert.Equal(false, IsInt("3"))
-	assert.Equal(false, IsInt(0.1))
-	assert.Equal(true, IsInt(0))
-	assert.Equal(true, IsInt(-1))
+	tests := []struct {
+		input    interface{}
+		expected bool
+	}{
+		{"", false},
+		{"3", false},
+		{0.1, false},
+		{0, true},
+		{-1, true},
+	}
+
+	for _, tt := range tests {
+		assert.Equal(tt.expected, IsInt(tt.input))
+	}
 }
 
 func TestIsNumberStr(t *testing.T) {
@@ -170,11 +255,21 @@ func TestIsNumberStr(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestIsNumberStr")
 
-	assert.Equal(true, IsNumberStr("3."))
-	assert.Equal(true, IsNumberStr("+3."))
-	assert.Equal(true, IsNumberStr("-3."))
-	assert.Equal(true, IsNumberStr("+3e2"))
-	assert.Equal(false, IsNumberStr("abc"))
+	tests := []struct {
+		input    string
+		expected bool
+	}{
+		{"3", true},
+		{"3.", true},
+		{"+3.", true},
+		{"-3.", true},
+		{"+3e2", true},
+		{"abc", false},
+	}
+
+	for _, tt := range tests {
+		assert.Equal(tt.expected, IsNumberStr(tt.input))
+	}
 }
 
 func TestIsFloatStr(t *testing.T) {
@@ -182,11 +277,21 @@ func TestIsFloatStr(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestIsFloatStr")
 
-	assert.Equal(true, IsFloatStr("3."))
-	assert.Equal(true, IsFloatStr("+3."))
-	assert.Equal(true, IsFloatStr("-3."))
-	assert.Equal(true, IsFloatStr("12"))
-	assert.Equal(false, IsFloatStr("abc"))
+	tests := []struct {
+		input    string
+		expected bool
+	}{
+		{"3", true},
+		{"3.", true},
+		{"+3.", true},
+		{"-3.", true},
+		{"12", true},
+		{"abc", false},
+	}
+
+	for _, tt := range tests {
+		assert.Equal(tt.expected, IsFloatStr(tt.input))
+	}
 }
 
 func TestIsIntStr(t *testing.T) {
@@ -194,10 +299,20 @@ func TestIsIntStr(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestIsIntStr")
 
-	assert.Equal(true, IsIntStr("+3"))
-	assert.Equal(true, IsIntStr("-3"))
-	assert.Equal(false, IsIntStr("3."))
-	assert.Equal(false, IsIntStr("abc"))
+	tests := []struct {
+		input    string
+		expected bool
+	}{
+		{"3", true},
+		{"3.", false},
+		{"+3", true},
+		{"-3", true},
+		{"abc", false},
+	}
+
+	for _, tt := range tests {
+		assert.Equal(tt.expected, IsIntStr(tt.input))
+	}
 }
 
 func TestIsPort(t *testing.T) {
@@ -205,13 +320,22 @@ func TestIsPort(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestIsPort")
 
-	assert.Equal(true, IsPort("1"))
-	assert.Equal(true, IsPort("65535"))
-	assert.Equal(false, IsPort("abc"))
-	assert.Equal(false, IsPort("123abc"))
-	assert.Equal(false, IsPort(""))
-	assert.Equal(false, IsPort("-1"))
-	assert.Equal(false, IsPort("65536"))
+	tests := []struct {
+		input    string
+		expected bool
+	}{
+		{"1", true},
+		{"65535", true},
+		{"abc", false},
+		{"123abc", false},
+		{"", false},
+		{"-1", false},
+		{"65536", false},
+	}
+
+	for _, tt := range tests {
+		assert.Equal(tt.expected, IsPort(tt.input))
+	}
 }
 
 func TestIsIp(t *testing.T) {
@@ -219,10 +343,19 @@ func TestIsIp(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestIsIntStr")
 
-	assert.Equal(true, IsIp("127.0.0.1"))
-	assert.Equal(true, IsIp("::0:0:0:0:0:0:1"))
-	assert.Equal(false, IsIp("127.0.0"))
-	assert.Equal(false, IsIp("127"))
+	tests := []struct {
+		input    string
+		expected bool
+	}{
+		{"127.0.0.1", true},
+		{"::0:0:0:0:0:0:1", true},
+		{"127.0.0", false},
+		{"127", false},
+	}
+
+	for _, tt := range tests {
+		assert.Equal(tt.expected, IsIp(tt.input))
+	}
 }
 
 func TestIsIpPort(t *testing.T) {
@@ -230,16 +363,25 @@ func TestIsIpPort(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestIsIpPort")
 
-	assert.Equal(true, IsIpPort("[0:0:0:0:0:0:0:1]:8080")) // valid IPv6 and port
-	assert.Equal(true, IsIpPort("127.0.0.1:8080"))         // valid IP and port
+	tests := []struct {
+		input    string
+		expected bool
+	}{
+		{"[::0:0:0:0:0:0:1]:8080", true},
+		{"127.0.0.1:8080", true},
 
-	assert.Equal(false, IsIpPort(""))                     // empty string
-	assert.Equal(false, IsIpPort(":8080"))                // only port
-	assert.Equal(false, IsIpPort("127.0.0.1"))            // valid IP without port
-	assert.Equal(false, IsIpPort("0:0:0:0:0:0:0:1"))      // valid IPv6 without port
-	assert.Equal(false, IsIpPort("256.256.256.256:8080")) // invalid IP with valid port
-	assert.Equal(false, IsIpPort("256.256.256.256:abc"))  // invalid IP and invalid port
-	assert.Equal(false, IsIpPort("127.0.0.1:70000"))      // valid IP with invalid port
+		{"", false},
+		{":8080", false},
+		{"127.0.0.1", false},
+		{"0:0:0:0:0:0:0:1", false},
+		{"256.256.256.256:8080", false},
+		{"256.256.256.256:abc", false},
+		{"127.0.0.1:70000", false},
+	}
+
+	for _, tt := range tests {
+		assert.Equal(tt.expected, IsIpPort(tt.input))
+	}
 }
 
 func TestIsIpV4(t *testing.T) {
@@ -247,13 +389,23 @@ func TestIsIpV4(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestIsIpV4")
 
-	assert.Equal(true, IsIpV4("127.0.0.1"))
+	tests := []struct {
+		input    string
+		expected bool
+	}{
+		{"127.0.0.1", true},
+		{"::0:0:0:0:0:0:1", false},
 
-	assert.Equal(false, IsIpV4("::0:0:0:0:0:0:1"))
-	assert.Equal(false, IsIpV4("127.0.0.1.1"))
-	assert.Equal(false, IsIpV4("256.0.0.1"))
-	assert.Equal(false, IsIpV4("127.0.0.a"))
-	assert.Equal(false, IsIpV4(""))
+		{"::0:0:0:0:0:0:1", false},
+		{"127.0.0.1.1", false},
+		{"256.0.0.1", false},
+		{"127.0.0.a", false},
+		{"", false},
+	}
+
+	for _, tt := range tests {
+		assert.Equal(tt.expected, IsIpV4(tt.input))
+	}
 }
 
 func TestIsIpV6(t *testing.T) {
@@ -261,14 +413,23 @@ func TestIsIpV6(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestIsIpV6")
 
-	assert.Equal(true, IsIpV6("::0:0:0:0:0:0:1"))
-	assert.Equal(true, IsIpV6("::1"))
-	assert.Equal(true, IsIpV6("::"))
+	tests := []struct {
+		input    string
+		expected bool
+	}{
+		{"::0:0:0:0:0:0:1", true},
+		{"::1", true},
+		{"::", true},
+		{"127.0.0.1", false},
+		{"2001:db8::8a2e:37023:7334", false},
+		{"2001::25de::cade", false},
+		{"", false},
+	}
 
-	assert.Equal(false, IsIpV6("127.0.0.1"))
-	assert.Equal(false, IsIpV6("2001:db8::8a2e:37023:7334"))
-	assert.Equal(false, IsIpV6("2001::25de::cade"))
-	assert.Equal(false, IsIpV6(""))
+	for _, tt := range tests {
+		assert.Equal(tt.expected, IsIpV6(tt.input))
+	}
+
 }
 
 func TestIsUrl(t *testing.T) {
@@ -287,13 +448,21 @@ func TestIsDns(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestIsDns")
 
-	assert.Equal(true, IsDns("abc.com"))
-	assert.Equal(true, IsDns("123.cn"))
-	assert.Equal(true, IsDns("a.b.com"))
+	tests := []struct {
+		input    string
+		expected bool
+	}{
+		{"abc.com", true},
+		{"123.cn", true},
+		{"a.b.com", true},
+		{"a.b.c", false},
+		{"a@b.com", false},
+		{"http://abc.com", false},
+	}
 
-	assert.Equal(false, IsDns("a.b.c"))
-	assert.Equal(false, IsDns("a@b.com"))
-	assert.Equal(false, IsDns("http://abc.com"))
+	for _, tt := range tests {
+		assert.Equal(tt.expected, IsDns(tt.input))
+	}
 }
 
 func TestIsEmail(t *testing.T) {
@@ -330,11 +499,19 @@ func TestIsChinesePhone(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestIsChinesePhone")
 
-	assert.Equal(true, IsChinesePhone("010-32116675"))
-	assert.Equal(true, IsChinesePhone("0464-8756213"))
-	assert.Equal(true, IsChinesePhone("0731-82251545")) // 长沙晚报电话
-	assert.Equal(false, IsChinesePhone("123-87562"))
+	tests := []struct {
+		input    string
+		expected bool
+	}{
+		{"010-32116675", true},
+		{"0464-8756213", true},
+		{"0731-82251545", true},
+		{"123-87562", false},
+	}
 
+	for _, tt := range tests {
+		assert.Equal(tt.expected, IsChinesePhone(tt.input))
+	}
 }
 
 func TestIsChineseIdNum(t *testing.T) {
@@ -342,13 +519,23 @@ func TestIsChineseIdNum(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestIsChineseIdNum")
 
-	assert.Equal(true, IsChineseIdNum("210911192105130714"))
-	assert.Equal(true, IsChineseIdNum("11010519491231002X"))
-	assert.Equal(true, IsChineseIdNum("11010519491231002x"))
-	assert.Equal(false, IsChineseIdNum("123456"))
-	assert.Equal(false, IsChineseIdNum("990911192105130714"))
-	assert.Equal(false, IsChineseIdNum("990911189905130714"))
-	assert.Equal(false, IsChineseIdNum("210911222205130714"))
+	tests := []struct {
+		input    string
+		expected bool
+	}{
+		{"210911192105130714", true},
+		{"11010519491231002X", true},
+		{"11010519491231002x", true},
+		{"123456", false},
+		{"990911192105130714", false},
+		{"990911189905130714", false},
+		{"210911222205130714", false},
+		{"", false},
+	}
+
+	for _, tt := range tests {
+		assert.Equal(tt.expected, IsChineseIdNum(tt.input))
+	}
 }
 
 func TestIsCreditCard(t *testing.T) {
@@ -407,13 +594,23 @@ func TestIsStrongPassword(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestIsStrongPassword")
 
-	assert.Equal(false, IsStrongPassword("abc", 3))
-	assert.Equal(false, IsStrongPassword("abc123", 6))
-	assert.Equal(false, IsStrongPassword("abcABC", 6))
-	assert.Equal(false, IsStrongPassword("abc123@#$", 9))
-	assert.Equal(false, IsStrongPassword("abcABC123@#$", 16))
-	assert.Equal(true, IsStrongPassword("abcABC123@#$", 12))
-	assert.Equal(true, IsStrongPassword("abcABC123@#$", 10))
+	tests := []struct {
+		input    string
+		length   int
+		expected bool
+	}{
+		{"abc", 3, false},
+		{"abc123", 6, false},
+		{"abcABC", 6, false},
+		{"abc123@#$", 9, false},
+		{"abcABC123@#$", 16, false},
+		{"abcABC123@#$", 12, true},
+		{"abcABC123@#$", 10, true},
+	}
+
+	for _, tt := range tests {
+		assert.Equal(tt.expected, IsStrongPassword(tt.input, tt.length))
+	}
 }
 
 func TestIsWeakPassword(t *testing.T) {
@@ -421,11 +618,20 @@ func TestIsWeakPassword(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestIsWeakPassword")
 
-	assert.Equal(true, IsWeakPassword("abc"))
-	assert.Equal(true, IsWeakPassword("123"))
-	assert.Equal(true, IsWeakPassword("abc123"))
-	assert.Equal(true, IsWeakPassword("abcABC123"))
-	assert.Equal(false, IsWeakPassword("abc123@#$"))
+	tests := []struct {
+		input    string
+		expected bool
+	}{
+		{"abc", true},
+		{"123", true},
+		{"abc123", true},
+		{"abcABC123", true},
+		{"abc123@#$", false},
+	}
+
+	for _, tt := range tests {
+		assert.Equal(tt.expected, IsWeakPassword(tt.input))
+	}
 }
 
 func TestIsZeroValue(t *testing.T) {
@@ -566,50 +772,83 @@ func TestIsPrintable(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestIsPrintable")
 
-	assert.Equal(true, IsPrintable("ABC"))
-	assert.Equal(true, IsPrintable("{id: 123}"))
-	assert.Equal(true, IsPrintable(""))
-	assert.Equal(true, IsPrintable("😄"))
-	assert.Equal(false, IsPrintable("\u0000"))
+	tests := []struct {
+		input    string
+		expected bool
+	}{
+		{"ABC", true},
+		{"123", true},
+		{"你好", true},
+		{"", true},
+		{"😄", true},
+		{"\u0000", false},
+	}
+
+	for _, tt := range tests {
+		assert.Equal(tt.expected, IsPrintable(tt.input))
+	}
 }
 
 func TestIsBin(t *testing.T) {
 	t.Parallel()
 	assert := internal.NewAssert(t, "TestIsBin")
 
-	assert.Equal(true, IsBin("0101"))
-	assert.Equal(true, IsBin("0b1101"))
+	tests := []struct {
+		input    string
+		expected bool
+	}{
+		{"0101", true},
+		{"0b1101", true},
+		{"b1101", false},
+		{"1201", false},
+		{"", false},
+	}
 
-	assert.Equal(false, IsBin("b1101"))
-	assert.Equal(false, IsBin("1201"))
-	assert.Equal(false, IsBin(""))
+	for _, tt := range tests {
+		assert.Equal(tt.expected, IsBin(tt.input))
+	}
 }
 
 func TestIsHex(t *testing.T) {
 	t.Parallel()
 	assert := internal.NewAssert(t, "TestIsHex")
 
-	assert.Equal(true, IsHex("ABCDE"))
-	assert.Equal(true, IsHex("abcde"))
-	assert.Equal(true, IsHex("0xabcde"))
-	assert.Equal(true, IsHex("0Xabcde"))
-	assert.Equal(true, IsHex("#abcde"))
+	tests := []struct {
+		input    string
+		expected bool
+	}{
+		{"ABCDE", true},
+		{"abcde", true},
+		{"0xabcde", true},
+		{"0Xabcde", true},
+		{"#abcde", true},
+		{"cdfeg", false},
+		{"0xcdfeg", false},
+		{"", false},
+	}
 
-	assert.Equal(false, IsHex("cdfeg"))
-	assert.Equal(false, IsHex("0xcdfeg"))
-	assert.Equal(false, IsHex(""))
+	for _, tt := range tests {
+		assert.Equal(tt.expected, IsHex(tt.input))
+	}
 }
 
 func TestIsBase64URL(t *testing.T) {
 	t.Parallel()
 	assert := internal.NewAssert(t, "TestIsBase64URL")
 
-	assert.Equal(true, IsBase64URL("SAGsbG8sIHdvcmxkIQ"))
-	assert.Equal(true, IsBase64URL("SAGsbG8sIHdvcmxkIQ=="))
+	tests := []struct {
+		input    string
+		expected bool
+	}{
+		{"SAGsbG8sIHdvcmxkIQ", true},
+		{"SAGsbG8sIHdvcmxkIQ==", true},
+		{"SAGsbG8sIHdvcmxkIQ=", false},
+		{"SAGsbG8sIHdvcmxkIQ===", false},
+	}
 
-	assert.Equal(false, IsBase64URL("SAGsbG8sIHdvcmxkIQ="))
-	assert.Equal(false, IsBase64URL("SAGsbG8sIHdvcmxkIQ==="))
-	// assert.Equal(false, IsBase64URL(""))
+	for _, tt := range tests {
+		assert.Equal(tt.expected, IsBase64URL(tt.input))
+	}
 }
 
 func TestIsJWT(t *testing.T) {
@@ -665,15 +904,23 @@ func TestIsAlphaNumeric(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestIsAlphaNumeric")
 
-	assert.Equal(true, IsAlphaNumeric("ABC"))
-	assert.Equal(true, IsAlphaNumeric("abc"))
-	assert.Equal(true, IsAlphaNumeric("aBC"))
-	assert.Equal(true, IsAlphaNumeric("1BC"))
-	assert.Equal(true, IsAlphaNumeric("1bc"))
-	assert.Equal(true, IsAlphaNumeric("123"))
+	tests := []struct {
+		input    string
+		expected bool
+	}{
+		{"ABC", true},
+		{"abc", true},
+		{"aBC", true},
+		{"1BC", true},
+		{"1bc", true},
+		{"123", true},
+		{"你好", false},
+		{"A&", false},
+		{"&@#$%^&*", false},
+		{"", false},
+	}
 
-	assert.Equal(false, IsAlphaNumeric(""))
-	assert.Equal(false, IsAlphaNumeric("你好"))
-	assert.Equal(false, IsAlphaNumeric("A&"))
-	assert.Equal(false, IsAlphaNumeric("&@#$%^&*"))
+	for _, tt := range tests {
+		assert.Equal(tt.expected, IsAlphaNumeric(tt.input))
+	}
 }
