@@ -35,6 +35,7 @@ import (
 -   [IsDir](#IsDir)
 -   [ListFileNames](#ListFileNames)
 -   [RemoveFile](#RemoveFile)
+-   [RemoveDir](#RemoveDir)
 -   [ReadFileToString](#ReadFileToString)
 -   [ReadFileByLine](#ReadFileByLine)
 -   [Zip](#Zip)
@@ -390,12 +391,12 @@ func main() {
 
 ### <span id="RemoveFile">RemoveFile</span>
 
-<p>删除文件</p>
+<p>删除文件，支持传入删除前的回调函数。</p>
 
 <b>函数签名:</b>
 
 ```go
-func RemoveFile(path string) error
+func RemoveFile(path string, onDelete ...func(path string)) error
 ```
 
 <b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/P2y0XW8a1SH)</span></b>
@@ -413,6 +414,41 @@ func main() {
     if err != nil {
         fmt.Println(err)
     }
+}
+```
+
+### <span id="RemoveDir">RemoveDir</span>
+
+<p>删除目录，支持传入删除前的回调函数。</p>
+
+<b>函数签名:</b>
+
+```go
+func RemoveDir(path string, onDelete ...func(path string)) error
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](todo)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/fileutil"
+)
+
+func main() {
+    var deletedPaths []string
+
+	err := fileutil.RemoveDir("./tempdir", func(p string) {
+		deletedPaths = append(deletedPaths, p)
+	})
+
+    if err != nil {
+        fmt.Println(err)
+    }
+
+    fmt.Println(deletedPaths)
 }
 ```
 

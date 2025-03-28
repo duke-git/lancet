@@ -35,6 +35,7 @@ import (
 -   [IsDir](#IsDir)
 -   [ListFileNames](#ListFileNames)
 -   [RemoveFile](#RemoveFile)
+-   [RemoveDir](#RemoveDir)
 -   [ReadFileToString](#ReadFileToString)
 -   [ReadFileByLine](#ReadFileByLine)
 -   [Zip](#Zip)
@@ -395,7 +396,7 @@ func main() {
 <b>Signature:</b>
 
 ```go
-func RemoveFile(path string) error
+func RemoveFile(path string, onDelete ...func(path string)) error
 ```
 
 <b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/P2y0XW8a1SH)</span></b>
@@ -413,6 +414,41 @@ func main() {
     if err != nil {
         fmt.Println(err)
     }
+}
+```
+
+### <span id="RemoveDir">RemoveDir</span>
+
+<p>Delete directory.</p>
+
+<b>Signature:</b>
+
+```go
+func RemoveDir(path string, onDelete ...func(path string)) error
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/fileutil"
+)
+
+func main() {
+    var deletedPaths []string
+
+    err := fileutil.RemoveDir("./tempdir", func(p string) {
+        deletedPaths = append(deletedPaths, p)
+    })
+
+    if err != nil {
+        fmt.Println(err)
+    }
+
+    fmt.Println(deletedPaths)
 }
 ```
 

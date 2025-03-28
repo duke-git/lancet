@@ -172,8 +172,52 @@ func IsDir(path string) bool {
 
 // RemoveFile remove the path file.
 // Play: https://go.dev/play/p/P2y0XW8a1SH
-func RemoveFile(path string) error {
+func RemoveFile(path string, onDelete ...func(path string)) error {
+	info, err := os.Stat(path)
+	if err != nil {
+		return err
+	}
+
+	if info.IsDir() {
+		return fmt.Errorf("%s is a directory", path)
+	}
+
+	if len(onDelete) > 0 && onDelete[0] != nil {
+		onDelete[0](path)
+	}
+
 	return os.Remove(path)
+}
+
+// RemoveDir remove the path directory.
+// Play: todo
+func RemoveDir(path string, onDelete ...func(path string)) error {
+	info, err := os.Stat(path)
+	if err != nil {
+		return err
+	}
+
+	if !info.IsDir() {
+		return fmt.Errorf("%s is not a directory", path)
+	}
+
+	var callback func(string)
+	if len(onDelete) > 0 {
+		callback = onDelete[0]
+	}
+
+	err = filepath.Walk(path, func(p string, info os.FileInfo, err error) error {
+		if err == nil && callback != nil {
+			callback(p)
+		}
+		return nil
+	})
+
+	if err != nil {
+		return err
+	}
+
+	return os.RemoveAll(path)
 }
 
 // CopyFile copy src file to dest file.

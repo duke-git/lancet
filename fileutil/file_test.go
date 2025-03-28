@@ -85,14 +85,37 @@ func TestIsDir(t *testing.T) {
 
 func TestRemoveFile(t *testing.T) {
 	t.Parallel()
-
 	assert := internal.NewAssert(t, "TestRemoveFile")
+
 	f := "./text.txt"
-	if !IsExist(f) {
-		CreateFile(f)
-		err := RemoveFile(f)
-		assert.IsNil(err)
+	CreateFile(f)
+	err := RemoveFile(f)
+	assert.IsNil(err)
+}
+
+func TestRemoveDir(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestRemoveDir")
+
+	err := os.MkdirAll("./tempdir/a/b", 0755)
+	if err != nil {
+		t.Error(err)
+		t.FailNow()
 	}
+
+	var deletedPaths []string
+
+	err = RemoveDir("./tempdir", func(p string) {
+		deletedPaths = append(deletedPaths, p)
+	})
+	if err != nil {
+		t.Error(err)
+		t.FailNow()
+	}
+
+	assert.Equal([]string{"./tempdir", "tempdir/a", "tempdir/a/b"}, deletedPaths)
+	assert.Equal(false, IsExist("./tempdir"))
 }
 
 func TestCopyFile(t *testing.T) {
