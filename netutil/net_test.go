@@ -152,7 +152,7 @@ func TestBuildUrl(t *testing.T) {
 		scheme  string
 		host    string
 		path    string
-		query   map[string]string
+		query   map[string][]string
 		want    string
 		wantErr bool
 	}{
@@ -160,7 +160,7 @@ func TestBuildUrl(t *testing.T) {
 			scheme:  "http",
 			host:    "www.test.com",
 			path:    "/path/subpath",
-			query:   map[string]string{"a": "1", "b": "2"},
+			query:   map[string][]string{"a": {"1"}, "b": {"2"}},
 			want:    "http://www.test.com/path/subpath?a=1&b=2",
 			wantErr: false,
 		},
@@ -168,8 +168,16 @@ func TestBuildUrl(t *testing.T) {
 			scheme:  "http",
 			host:    "www.test.com",
 			path:    "/simple-path",
-			query:   map[string]string{"a": "1", "b": "2"},
+			query:   map[string][]string{"a": {"1"}, "b": {"2"}},
 			want:    "http://www.test.com/simple-path?a=1&b=2",
+			wantErr: false,
+		},
+		{
+			scheme:  "http",
+			host:    "www.test.com",
+			path:    "",
+			query:   map[string][]string{"a": {"foo", "bar"}, "b": {"baz"}},
+			want:    "http://www.test.com/?a=foo&a=bar&b=baz",
 			wantErr: false,
 		},
 		{
@@ -205,25 +213,31 @@ func TestAddQueryParams(t *testing.T) {
 
 	tests := []struct {
 		url     string
-		query   map[string]string
+		query   map[string][]string
 		want    string
 		wantErr bool
 	}{
 		{
 			url:     "http://www.test.com",
-			query:   map[string]string{"a": "1", "b": "2"},
+			query:   map[string][]string{"a": {"1"}, "b": {"2"}},
 			want:    "http://www.test.com?a=1&b=2",
 			wantErr: false,
 		},
 		{
 			url:     "http://www.test.com",
-			query:   map[string]string{},
+			query:   map[string][]string{"a": {"foo", "bar"}, "b": {"baz"}},
+			want:    "http://www.test.com?a=foo&a=bar&b=baz",
+			wantErr: false,
+		},
+		{
+			url:     "http://www.test.com",
+			query:   map[string][]string{},
 			want:    "http://www.test.com",
 			wantErr: false,
 		},
 		{
 			url:     "http://www.test.com",
-			query:   map[string]string{"a": "$%"},
+			query:   map[string][]string{"a": {"$%"}},
 			want:    "",
 			wantErr: true,
 		},

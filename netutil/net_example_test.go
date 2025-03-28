@@ -201,3 +201,40 @@ func ExampleIsTelnetConnected() {
 	// true
 	// false
 }
+
+func ExampleBuildUrl() {
+	urlStr, err := BuildUrl(
+		"https",
+		"example.com",
+		"query",
+		map[string][]string{
+			"a": {"foo", "bar"},
+			"b": {"baz"},
+		},
+	)
+
+	fmt.Println(urlStr)
+	fmt.Println(err)
+
+	// Output:
+	// https://example.com/query?a=foo&a=bar&b=baz
+	// <nil>
+}
+
+func ExampleAddQueryParams() {
+	urlStr := "https://example.com"
+
+	params := map[string][]string{
+		"a": {"foo", "bar"},
+		"b": {"baz"},
+	}
+
+	urlStr, err := AddQueryParams(urlStr, params)
+
+	fmt.Println(urlStr)
+	fmt.Println(err)
+
+	// Output:
+	// https://example.com?a=foo&a=bar&b=baz
+	// <nil>
+}

@@ -310,7 +310,7 @@ func IsTelnetConnected(host string, port string) bool {
 
 // BuildUrl builds a URL from the given params.
 // Play: todo
-func BuildUrl(scheme, host, path string, query map[string]string) (string, error) {
+func BuildUrl(scheme, host, path string, query map[string][]string) (string, error) {
 	if err := validateScheme(scheme); err != nil {
 		return "", err
 	}
@@ -329,15 +329,17 @@ func BuildUrl(scheme, host, path string, query map[string]string) (string, error
 	if path == "" {
 		parsedUrl.Path = "/"
 	} else if !strings.HasPrefix(path, "/") {
-		path = "/" + path
+		parsedUrl.Path = "/" + path
 	} else {
 		parsedUrl.Path = path
 	}
 
 	queryParams := parsedUrl.Query()
 
-	for key, value := range query {
-		queryParams.Add(key, value)
+	for key, values := range query {
+		for _, value := range values {
+			queryParams.Add(key, value)
+		}
 	}
 
 	parsedUrl.RawQuery = queryParams.Encode()
@@ -370,14 +372,15 @@ var alphaNumericRegex = regexp.MustCompile(`^[a-zA-Z0-9]+$`)
 
 // AddQueryParams adds query parameters to the given URL.
 // Play: todoå
-func AddQueryParams(urlStr string, params map[string]string) (string, error) {
+func AddQueryParams(urlStr string, params map[string][]string) (string, error) {
 	parsedUrl, err := url.Parse(urlStr)
 	if err != nil {
 		return "", err
 	}
 
 	queryParams := parsedUrl.Query()
-	for k, v := range params {
+
+	for k, values := range params {
 		if k == "" {
 			return "", errors.New("empty key is not allowed")
 		}
@@ -386,11 +389,12 @@ func AddQueryParams(urlStr string, params map[string]string) (string, error) {
 			return "", fmt.Errorf("query parameter key %s must be alphanumeric", k)
 		}
 
-		if !alphaNumericRegex.MatchString(v) {
-			return "", fmt.Errorf("query parameter value %s must be alphanumeric", v)
+		for _, v := range values {
+			if !alphaNumericRegex.MatchString(v) {
+				return "", fmt.Errorf("query parameter value %s must be alphanumeric", v)
+			}
+			queryParams.Add(k, v)
 		}
-
-		queryParams.Add(k, v)
 	}
 
 	parsedUrl.RawQuery = queryParams.Encode()

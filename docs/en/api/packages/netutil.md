@@ -48,6 +48,9 @@ import (
 -   [UploadFile](#UploadFile)
 -   [IsPingConnected](#IsPingConnected)
 -   [IsTelnetConnected](#IsTelnetConnected)
+-   [BuildUrl](#BuildUrl)
+-   [AddQueryParams](#AddQueryParams)
+
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -1029,5 +1032,85 @@ func main() {
     // Output:
     // true
     // false
+}
+```
+
+### <span id="BuildUrl">BuildUrl</span>
+
+<p>Builds a URL from the given params.</p>
+
+<b>Signature:</b>
+
+```go
+func BuildUrl(scheme, host, path string, query map[string][]string) (string, error)
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/netutil"
+)
+
+func main() {
+    urlStr, err := netutil.BuildUrl(
+        "https",
+        "example.com",
+        "query",
+        map[string][]string{
+            "a": {"foo", "bar"},
+            "b": {"baz"},
+        },
+    )
+
+    fmt.Println(urlStr)
+    fmt.Println(err)
+
+    // Output:
+    // https://example.com/query?a=foo&a=bar&b=baz
+    // <nil>
+}
+```
+
+### <span id="AddQueryParams">AddQueryParams</span>
+
+<p>Adds query parameters to the given URL.</p>
+
+<b>Signature:</b>
+
+```go
+func AddQueryParams(urlStr string, params map[string][]string) (string, error)
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/netutil"
+)
+
+func main() {
+    urlStr, err := netutil.BuildUrl(
+        "https",
+        "example.com",
+        "query",
+        map[string][]string{
+            "a": {"foo", "bar"},
+            "b": {"baz"},
+        },
+    )
+
+    fmt.Println(urlStr)
+    fmt.Println(err)
+
+    // Output:
+    // https://example.com/query?a=foo&a=bar&b=baz
+    // <nil>
 }
 ```
