@@ -281,12 +281,8 @@ func EndOfDay(t time.Time) time.Time {
 
 // BeginOfWeek return beginning week, default week begin from Sunday.
 // Play: https://go.dev/play/p/ynjoJPz7VNV
-func BeginOfWeek(t time.Time, beginFrom ...time.Weekday) time.Time {
-	var beginFromWeekday = time.Sunday
-	if len(beginFrom) > 0 {
-		beginFromWeekday = beginFrom[0]
-	}
-	y, m, d := t.AddDate(0, 0, int(beginFromWeekday-t.Weekday())).Date()
+func BeginOfWeek(t time.Time, beginFrom time.Weekday) time.Time {
+	y, m, d := t.AddDate(0, 0, int(beginFrom-t.Weekday())).Date()
 	beginOfWeek := time.Date(y, m, d, 0, 0, 0, 0, t.Location())
 	if beginOfWeek.After(t) {
 		return beginOfWeek.AddDate(0, 0, -7)
@@ -296,12 +292,8 @@ func BeginOfWeek(t time.Time, beginFrom ...time.Weekday) time.Time {
 
 // EndOfWeek return end week time, default week end with Saturday.
 // Play: https://go.dev/play/p/i08qKXD9flf
-func EndOfWeek(t time.Time, endWith ...time.Weekday) time.Time {
-	var endWithWeekday = time.Saturday
-	if len(endWith) > 0 {
-		endWithWeekday = endWith[0]
-	}
-	y, m, d := t.AddDate(0, 0, int(endWithWeekday-t.Weekday())).Date()
+func EndOfWeek(t time.Time, endWith time.Weekday) time.Time {
+	y, m, d := t.AddDate(0, 0, int(endWith-t.Weekday())).Date()
 	var endWithWeek = time.Date(y, m, d, 23, 59, 59, int(time.Second-time.Nanosecond), t.Location())
 	if endWithWeek.Before(t) {
 		endWithWeek = endWithWeek.AddDate(0, 0, 7)

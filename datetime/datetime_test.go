@@ -611,9 +611,9 @@ func TestBeginOfWeek(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestBeginOfWeek")
 
-	expected := time.Date(2022, 2, 13, 0, 0, 0, 0, time.Local)
+	expected := time.Date(2022, 2, 14, 0, 0, 0, 0, time.Local)
 	td := time.Date(2022, 2, 15, 15, 48, 40, 112, time.Local)
-	actual := BeginOfWeek(td)
+	actual := BeginOfWeek(td, time.Monday)
 
 	assert.Equal(expected, actual)
 }
@@ -623,9 +623,9 @@ func TestEndOfWeek(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestEndOfWeek")
 
-	expected := time.Date(2022, 2, 19, 23, 59, 59, 999999999, time.Local)
+	expected := time.Date(2022, 2, 20, 23, 59, 59, 999999999, time.Local)
 	td := time.Date(2022, 2, 15, 15, 48, 40, 112, time.Local)
-	actual := EndOfWeek(td)
+	actual := EndOfWeek(td, time.Sunday)
 
 	assert.Equal(expected, actual)
 }
