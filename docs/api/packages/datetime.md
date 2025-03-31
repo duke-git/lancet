@@ -741,7 +741,7 @@ func main() {
 func EndOfWeek(t time.Time, endWith time.Weekday) time.Time
 ```
 
-<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/i08qKXD9flf)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/mGSA162YgX9)</span></b>
 
 ```go
 package main

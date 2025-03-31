@@ -536,7 +536,7 @@ import "github.com/duke-git/lancet/v2/datetime"
     [[play](https://go.dev/play/p/94m_UT6cWs9)]
 -   **<big>BeginOfWeek</big>** : 返回指定时间的每周开始时间,默认开始时间星期日。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/datetime.md#BeginOfWeek)]
-    [[play](https://go.dev/play/p/ynjoJPz7VNV)]
+    [[play](https://go.dev/play/p/DCHdcL6gnfV)]
 -   **<big>BeginOfMonth</big>** : 返回指定时间的当月开始时间。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/datetime.md#BeginOfMonth)]
     [[play](https://go.dev/play/p/bWXVFsmmzwL)]
@@ -554,7 +554,7 @@ import "github.com/duke-git/lancet/v2/datetime"
     [[play](https://go.dev/play/p/eMBOvmq5Ih1)]
 -   **<big>EndOfWeek</big>** : 返回指定时间的星期结束时间,默认结束时间星期六。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/datetime.md#EndOfWeek)]
-    [[play](https://go.dev/play/p/i08qKXD9flf)]
+    [[play](https://go.dev/play/p/mGSA162YgX9)]
 -   **<big>EndOfMonth</big>** : 返回指定时间的月份结束时间。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/datetime.md#EndOfMonth)]
     [[play](https://go.dev/play/p/_GWh10B3Nqi)]

@@ -551,7 +551,7 @@ func main() {
 func BeginOfWeek(t time.Time, beginFrom ...time.Weekday) time.Time
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/ynjoJPz7VNV)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/DCHdcL6gnfV)</span></b>
 
 ```go
 package main
@@ -564,12 +564,13 @@ import (
 
 func main() {
     input := time.Date(2023, 1, 8, 18, 50, 10, 100, time.UTC)
-    result := datetime.BeginOfWeek(input)
+
+    result := datetime.BeginOfWeek(input, time.Monday)
 
     fmt.Println(result)
 
     // Output:
-    // 2023-01-08 00:00:00 +0000 UTC
+    // 2023-01-02 00:00:00 +0000 UTC
 }
 ```
 
@@ -743,7 +744,7 @@ func main() {
 func EndOfWeek(t time.Time, endWith ...time.Weekday) time.Time
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/i08qKXD9flf)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/mGSA162YgX9)</span></b>
 
 ```go
 package main
@@ -756,12 +757,12 @@ import (
 
 func main() {
     input := time.Date(2023, 1, 8, 18, 50, 10, 100, time.UTC)
-    result := datetime.EndOfWeek(input)
+    result := datetime.EndOfWeek(input, time.Sunday)
 
     fmt.Println(result)
 
     // Output:
-    // 2023-01-14 23:59:59.999999999 +0000 UTC
+    // 2023-01-08 23:59:59.999999999 +0000 UTC
 }
 ```
 

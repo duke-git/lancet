@@ -535,7 +535,7 @@ import "github.com/duke-git/lancet/v2/datetime"
     [[play](https://go.dev/play/p/94m_UT6cWs9)]
 -   **<big>BeginOfWeek</big>** : return the date time at the begin of week of specific date.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/datetime.md#BeginOfWeek)]
-    [[play](https://go.dev/play/p/ynjoJPz7VNV)]
+    [[play](https://go.dev/play/p/DCHdcL6gnfV)]
 -   **<big>BeginOfMonth</big>** : return the date time at the begin of month of specific date.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/datetime.md#BeginOfMonth)]
     [[play](https://go.dev/play/p/bWXVFsmmzwL)]
@@ -553,7 +553,7 @@ import "github.com/duke-git/lancet/v2/datetime"
     [[play](https://go.dev/play/p/eMBOvmq5Ih1)]
 -   **<big>EndOfWeek</big>** : return the date time at the end of week of specific date.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/datetime.md#EndOfWeek)]
-    [[play](https://go.dev/play/p/i08qKXD9flf)]
+    [[play](https://go.dev/play/p/mGSA162YgX9)]
 -   **<big>EndOfMonth</big>** : return the date time at the end of month of specific date.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/datetime.md#EndOfMonth)]
     [[play](https://go.dev/play/p/_GWh10B3Nqi)]

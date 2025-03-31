@@ -280,7 +280,7 @@ func EndOfDay(t time.Time) time.Time {
 }
 
 // BeginOfWeek return beginning week, default week begin from Sunday.
-// Play: https://go.dev/play/p/ynjoJPz7VNV
+// Play: https://go.dev/play/p/DCHdcL6gnfV
 func BeginOfWeek(t time.Time, beginFrom time.Weekday) time.Time {
 	y, m, d := t.AddDate(0, 0, int(beginFrom-t.Weekday())).Date()
 	beginOfWeek := time.Date(y, m, d, 0, 0, 0, 0, t.Location())
@@ -291,7 +291,7 @@ func BeginOfWeek(t time.Time, beginFrom time.Weekday) time.Time {
 }
 
 // EndOfWeek return end week time, default week end with Saturday.
-// Play: https://go.dev/play/p/i08qKXD9flf
+// Play: https://go.dev/play/p/mGSA162YgX9
 func EndOfWeek(t time.Time, endWith time.Weekday) time.Time {
 	y, m, d := t.AddDate(0, 0, int(endWith-t.Weekday())).Date()
 	var endWithWeek = time.Date(y, m, d, 23, 59, 59, int(time.Second-time.Nanosecond), t.Location())
