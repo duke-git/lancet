@@ -78,7 +78,7 @@ import (
 -   [GetOrSet](#GetOrSet)
 -   [SortByKey](#SortByKey)
 -   [GetOrDefault](#GetOrDefault)
-
+-   [FindValuesBy](#FindValuesBy)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -2306,5 +2306,44 @@ func main() {
     // Output:
     // a
     // default
+}
+```
+
+### <span id="FindValuesBy">FindValuesBy</span>
+
+<p>返回一个切片，包含满足给定谓词判断函数的map中的值。</p>
+
+<b>函数签名:</b>
+
+```go
+func FindValuesBy[K comparable, V any](m map[K]V, predicate func(key K, value V) bool) []V
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](todo)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/maputil"
+)
+
+func main() {
+    m := map[int]string{
+        1: "a",
+        2: "b",
+        3: "c",
+        4: "d",
+    }
+
+    result := maputil.FindValuesBy(m, func(k int, v string) bool {
+        return k%2 == 0
+    })
+
+    fmt.Println(result)
+
+    // Output:
+    // [b d]
 }
 ```

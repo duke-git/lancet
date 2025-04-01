@@ -829,3 +829,21 @@ func ExampleOrderedMap_UnmarshalJSON() {
 
 	// fmt.Println(om.Elements())
 }
+
+func ExampleFindValuesBy() {
+	m := map[int]string{
+		1: "a",
+		2: "b",
+		3: "c",
+		4: "d",
+	}
+
+	result := FindValuesBy(m, func(k int, v string) bool {
+		return k%2 == 0
+	})
+
+	fmt.Println(result)
+
+	// Output:
+	// [b d]
+}

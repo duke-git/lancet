@@ -666,3 +666,17 @@ func GetOrDefault[K comparable, V any](m map[K]V, key K, defaultValue V) V {
 	}
 	return defaultValue
 }
+
+// FindValuesBy returns a slice of values from the map that satisfy the given predicate function.
+// Play: todo
+func FindValuesBy[K comparable, V any](m map[K]V, predicate func(key K, value V) bool) []V {
+	result := make([]V, 0)
+
+	for k, v := range m {
+		if predicate(k, v) {
+			result = append(result, v)
+		}
+	}
+
+	return result
+}
