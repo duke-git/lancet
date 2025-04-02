@@ -400,3 +400,26 @@ func TestStream_LastIndexOf(t *testing.T) {
 	assert.Equal(-1, s.LastIndexOf(0, func(a, b int) bool { return a == b }))
 	assert.Equal(4, s.LastIndexOf(2, func(a, b int) bool { return a == b }))
 }
+
+func TestStream_ToMap(t *testing.T) {
+	assert := internal.NewAssert(t, "TestStream_ToMap")
+	type Person struct {
+		Name string
+		Age  int
+	}
+	s := FromSlice([]Person{
+		{Name: "Tom", Age: 10},
+		{Name: "Jim", Age: 20},
+		{Name: "Mike", Age: 30},
+	})
+	m := ToMap(s, func(p Person) (string, Person) {
+		return p.Name, p
+	})
+	expected := map[string]Person{
+		"Tom":  {Name: "Tom", Age: 10},
+		"Jim":  {Name: "Jim", Age: 20},
+		"Mike": {Name: "Mike", Age: 30},
+	}
+	assert.EqualValues(expected, m)
+
+}
