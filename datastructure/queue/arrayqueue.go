@@ -55,7 +55,7 @@ func (q *ArrayQueue[T]) IsFull() bool {
 
 // Front return front value of queue
 func (q *ArrayQueue[T]) Front() T {
-	return q.data[0]
+	return q.data[q.head]
 }
 
 // Back return back value of queue
