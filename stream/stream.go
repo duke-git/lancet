@@ -424,8 +424,8 @@ func (s Stream[T]) ToSlice() []T {
 func ToMap[T any, K comparable, V any](s Stream[T], mapper func(item T) (K, V)) map[K]V {
 	result := map[K]V{}
 	for _, v := range s.source {
-		k, v := mapper(v)
-		result[k] = v
+		key, value := mapper(v)
+		result[key] = value
 	}
 	return result
 }
