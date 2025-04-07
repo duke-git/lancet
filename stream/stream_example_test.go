@@ -413,7 +413,7 @@ func ExampleStream_LastIndexOf() {
 	// 3
 }
 
-func ExampleStream_ToMap() {
+func ExampleToMap() {
 	type Person struct {
 		Name string
 		Age  int
