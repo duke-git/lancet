@@ -400,3 +400,57 @@ func TestStream_LastIndexOf(t *testing.T) {
 	assert.Equal(-1, s.LastIndexOf(0, func(a, b int) bool { return a == b }))
 	assert.Equal(4, s.LastIndexOf(2, func(a, b int) bool { return a == b }))
 }
+
+func TestStream_ToMapNoMerge(t *testing.T) {
+	assert := internal.NewAssert(t, "TestStream_ToMap")
+	type person struct {
+		Name string
+		Age  int
+	}
+	s := FromSlice([]person{
+		{Name: "Tom", Age: 10},
+		{Name: "Jim", Age: 20},
+		{Name: "Mike", Age: 30},
+		{Name: "Tom", Age: 100},
+	})
+	m := ToMap(s, func(p person) (string, person) {
+		return p.Name, p
+	}, nil)
+	expected := map[string]person{
+		"Tom":  {Name: "Tom", Age: 100},
+		"Jim":  {Name: "Jim", Age: 20},
+		"Mike": {Name: "Mike", Age: 30},
+	}
+	t.Log(m)
+	assert.EqualValues(expected, m)
+}
+
+func TestStream_ToMapWithMerge(t *testing.T) {
+	assert := internal.NewAssert(t, "TestStream_ToMap")
+	type person struct {
+		Name  string
+		Coins int
+	}
+	s := FromSlice([]person{
+		{Name: "Tom", Coins: 10},
+		{Name: "Jim", Coins: 20},
+		{Name: "Mike", Coins: 30},
+		{Name: "Tom", Coins: 20},
+	})
+	m := ToMap(s, func(p person) (string, person) {
+		return p.Name, p
+	}, func(existing, new person) person {
+		return person{
+			Name:  existing.Name,
+			Coins: existing.Coins + new.Coins,
+		}
+	})
+	expected := map[string]person{
+		"Tom":  {Name: "Tom", Coins: 30},
+		"Jim":  {Name: "Jim", Coins: 20},
+		"Mike": {Name: "Mike", Coins: 30},
+	}
+	t.Log(m)
+	assert.EqualValues(expected, m)
+
+}

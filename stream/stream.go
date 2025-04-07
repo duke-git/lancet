@@ -122,6 +122,21 @@ func Concat[T any](a, b Stream[T]) Stream[T] {
 	return FromSlice(source)
 }
 
+func ToMap[T any, K comparable, V any](s Stream[T], mapper func(item T) (K, V), mergeFunc func(existing, new V) V) map[K]V {
+	m := make(map[K]V, len(s.source))
+	for _, v := range s.source {
+		key, value := mapper(v)
+		if existing, ok := m[key]; ok {
+			if mergeFunc != nil {
+				m[key] = mergeFunc(existing, value)
+				continue
+			}
+		}
+		m[key] = value
+	}
+	return m
+}
+
 // Distinct returns a stream that removes the duplicated items.
 // Play: https://go.dev/play/p/eGkOSrm64cB
 func (s Stream[T]) Distinct() Stream[T] {
