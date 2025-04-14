@@ -412,18 +412,20 @@ func ExampleStream_LastIndexOf() {
 	// -1
 	// 3
 }
+
+
 func ExampleToMap() {
-	type person struct {
-		Name  string
-		Coins int
+	type Person struct {
+		Name string
+		Age  int
 	}
-	s := FromSlice([]person{
-		{Name: "Tom", Coins: 10},
-		{Name: "Jim", Coins: 20},
-		{Name: "Mike", Coins: 30},
-		{Name: "Tom", Coins: 40},
+	s := FromSlice([]Person{
+		{Name: "Tom", Age: 10},
+		{Name: "Jim", Age: 20},
+		{Name: "Mike", Age: 30},
+    {Name: "Tom", Age: 40},
 	})
-	m := ToMap(s, func(p person) (string, person) {
+	m := ToMap(s, func(p Person) (string, Person) {
 		return p.Name, p
 	})
 	fmt.Println(m)

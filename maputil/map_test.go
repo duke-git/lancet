@@ -888,3 +888,41 @@ func TestGetOrDefault(t *testing.T) {
 	result2 := GetOrDefault(m1, 5, "123")
 	assert.Equal("123", result2)
 }
+
+func TestFindValuesBy(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestFindValuesBy")
+
+	tests := []struct {
+		name     string
+		inputMap map[string]string
+		key      string
+		expected []string
+	}{
+		{
+			name:     "Key exists",
+			inputMap: map[string]string{"a": "1", "b": "2", "c": "3"},
+			key:      "b",
+			expected: []string{"2"},
+		},
+		{
+			name:     "Key does not exist",
+			inputMap: map[string]string{"a": "1", "b": "2", "c": "3"},
+			key:      "d",
+			expected: []string{},
+		},
+		{
+			name:     "Empty map",
+			inputMap: map[string]string{},
+			key:      "a",
+			expected: []string{},
+		},
+	}
+	for _, tt := range tests {
+		result := FindValuesBy(tt.inputMap, func(key string, value string) bool {
+			return key == tt.key
+		})
+		assert.Equal(tt.expected, result)
+	}
+}

@@ -439,3 +439,12 @@ func (s Stream[T]) LastIndexOf(target T, equal func(a, b T) bool) int {
 func (s Stream[T]) ToSlice() []T {
 	return s.source
 }
+
+func ToMap[T any, K comparable, V any](s Stream[T], mapper func(item T) (K, V)) map[K]V {
+	result := map[K]V{}
+	for _, v := range s.source {
+		key, value := mapper(v)
+		result[key] = value
+	}
+	return result
+}

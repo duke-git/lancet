@@ -421,12 +421,11 @@ func TestStream_ToMap(t *testing.T) {
 		"Jim":  {Name: "Jim", Age: 20},
 		"Mike": {Name: "Mike", Age: 30},
 	}
-	t.Log(m)
 	assert.EqualValues(expected, m)
 }
 
 func TestStream_ToMapWithMerge(t *testing.T) {
-	assert := internal.NewAssert(t, "TestStream_ToMap")
+	assert := internal.NewAssert(t, "TestStream_ToMapWithMerge")
 	type person struct {
 		Name  string
 		Coins int
@@ -450,7 +449,6 @@ func TestStream_ToMapWithMerge(t *testing.T) {
 		"Jim":  {Name: "Jim", Coins: 20},
 		"Mike": {Name: "Mike", Coins: 30},
 	}
-	t.Log(m)
 	assert.EqualValues(expected, m)
 
 }

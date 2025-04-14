@@ -79,6 +79,7 @@ import (
 -   [GetOrSet](#GetOrSet)
 -   [SortByKey](#SortByKey)
 -   [GetOrDefault](#GetOrDefault)
+-   [FindValuesBy](#FindValuesBy)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -2276,8 +2277,8 @@ func main() {
     }
 
     result := maputil.SortByKey(m, func(a, b int) bool {
-		return a < b
-	})
+        return a < b
+    })
 
     fmt.Println(result)
 
@@ -2288,7 +2289,7 @@ func main() {
 
 ### <span id="GetOrDefault">GetOrDefault</span>
 
-<p>returns the value of the given key or a default value if the key is not present.</p>
+<p>Returns the value of the given key or a default value if the key is not present.</p>
 
 <b>Signature:</b>
 
@@ -2296,7 +2297,7 @@ func main() {
 func GetOrDefault[K comparable, V any](m map[K]V, key K, defaultValue V) V 
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/99QjSYSBdiM)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/99QjSYSBdiM)</span></b>
 
 ```go
 package main
@@ -2323,5 +2324,44 @@ func main() {
     // Output:
     // a
     // default
+}
+```
+
+### <span id="FindValuesBy">FindValuesBy</span>
+
+<p>Returns a slice of values from the map that satisfy the given predicate function.</p>
+
+<b>Signature:</b>
+
+```go
+func FindValuesBy[K comparable, V any](m map[K]V, predicate func(key K, value V) bool) []V
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/maputil"
+)
+
+func main() {
+    m := map[int]string{
+        1: "a",
+        2: "b",
+        3: "c",
+        4: "d",
+    }
+
+    result := maputil.FindValuesBy(m, func(k int, v string) bool {
+        return k%2 == 0
+    })
+
+    fmt.Println(result)
+
+    // Output:
+    // [b d]
 }
 ```
