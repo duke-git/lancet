@@ -401,7 +401,7 @@ func TestStream_LastIndexOf(t *testing.T) {
 	assert.Equal(4, s.LastIndexOf(2, func(a, b int) bool { return a == b }))
 }
 
-func TestStream_ToMapNoMerge(t *testing.T) {
+func TestStream_ToMap(t *testing.T) {
 	assert := internal.NewAssert(t, "TestStream_ToMap")
 	type person struct {
 		Name string
@@ -415,7 +415,7 @@ func TestStream_ToMapNoMerge(t *testing.T) {
 	})
 	m := ToMap(s, func(p person) (string, person) {
 		return p.Name, p
-	}, nil)
+	})
 	expected := map[string]person{
 		"Tom":  {Name: "Tom", Age: 100},
 		"Jim":  {Name: "Jim", Age: 20},
@@ -437,7 +437,7 @@ func TestStream_ToMapWithMerge(t *testing.T) {
 		{Name: "Mike", Coins: 30},
 		{Name: "Tom", Coins: 20},
 	})
-	m := ToMap(s, func(p person) (string, person) {
+	m := ToMapWithMerge(s, func(p person) (string, person) {
 		return p.Name, p
 	}, func(existing, new person) person {
 		return person{

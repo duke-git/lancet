@@ -425,21 +425,34 @@ func ExampleToMap() {
 	})
 	m := ToMap(s, func(p person) (string, person) {
 		return p.Name, p
-	}, nil)
-	fmt.Println(m)
-
-	mergeMap := ToMap(s, func(p person) (string, person) {
-		return p.Name, p
-	}, func(p1, p2 person) person {
-		return person{
-			Name:  p1.Name,
-			Coins: p1.Coins + p2.Coins,
-		}
 	})
-
-	fmt.Println(mergeMap)
+	fmt.Println(m)
 
 	// Output:
 	// map[Jim:{Jim 20} Mike:{Mike 30} Tom:{Tom 40}]
-	// map[Jim:{Jim 20} Mike:{Mike 30} Tom:{Tom 50}]
+}
+
+func ExampleToMapWithMerge() {
+	type person struct {
+		Name  string
+		Coins int
+	}
+	s := FromSlice([]person{
+		{Name: "Tom", Coins: 10},
+		{Name: "Jim", Coins: 20},
+		{Name: "Mike", Coins: 30},
+		{Name: "Tom", Coins: 20},
+	})
+	mergeMap := ToMapWithMerge(s, func(p person) (string, person) {
+		return p.Name, p
+	}, func(existing, new person) person {
+		return person{
+			Name:  existing.Name,
+			Coins: existing.Coins + new.Coins,
+		}
+	})
+	fmt.Println(mergeMap)
+
+	// Output:
+	// map[Jim:{Jim 20} Mike:{Mike 30} Tom:{Tom 30}]
 }

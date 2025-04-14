@@ -122,7 +122,7 @@ func Concat[T any](a, b Stream[T]) Stream[T] {
 	return FromSlice(source)
 }
 
-func ToMap[T any, K comparable, V any](s Stream[T], mapper func(item T) (K, V), mergeFunc func(existing, new V) V) map[K]V {
+func ToMapWithMerge[T any, K comparable, V any](s Stream[T], mapper func(item T) (K, V), mergeFunc func(existing, new V) V) map[K]V {
 	m := make(map[K]V, len(s.source))
 	for _, v := range s.source {
 		key, value := mapper(v)
@@ -135,6 +135,10 @@ func ToMap[T any, K comparable, V any](s Stream[T], mapper func(item T) (K, V), 
 		m[key] = value
 	}
 	return m
+}
+
+func ToMap[T any, K comparable, V any](s Stream[T], mapper func(item T) (K, V)) map[K]V {
+	return ToMapWithMerge(s, mapper, nil)
 }
 
 // Distinct returns a stream that removes the duplicated items.
