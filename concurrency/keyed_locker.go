@@ -58,6 +58,7 @@ func (l *KeyedLocker[K]) Do(ctx context.Context, key K, fn func()) error {
 	}
 }
 
+// acquire tries to acquire a lock for the specified key.
 func (l *KeyedLocker[K]) acquire(key K) *lockEntry {
 	lock, _ := l.locks.LoadOrStore(key, &lockEntry{})
 	entry := lock.(*lockEntry)
@@ -70,6 +71,7 @@ func (l *KeyedLocker[K]) acquire(key K) *lockEntry {
 	return entry
 }
 
+// release releases the lock for the specified key.
 func (l *KeyedLocker[K]) release(key K, entry *lockEntry, rawKey K) {
 	if atomic.AddInt32(&entry.ref, -1) == 0 {
 		entry.mu.Lock()
@@ -89,5 +91,103 @@ func (l *KeyedLocker[K]) release(key K, entry *lockEntry, rawKey K) {
 				entry.timer.Store(t)
 			}
 		}
+	}
+}
+
+// RWKeyedLocker is a read-write version of KeyedLocker.
+type RWKeyedLocker[K comparable] struct {
+	locks sync.Map
+	ttl   time.Duration
+}
+
+type rwLockEntry struct {
+	mu    sync.RWMutex
+	ref   int32
+	timer atomic.Pointer[time.Timer]
+}
+
+// NewRWKeyedLocker creates a new RWKeyedLocker with the specified TTL for lock expiration.
+// The TTL is used to automatically release locks that are no longer held.
+func NewRWKeyedLocker[K comparable](ttl time.Duration) *RWKeyedLocker[K] {
+	return &RWKeyedLocker[K]{ttl: ttl}
+}
+
+// RLock acquires a read lock for the specified key and executes the provided function.
+// It returns an error if the context is canceled before the function completes.
+func (l *RWKeyedLocker[K]) RLock(ctx context.Context, key K, fn func()) error {
+	entry := l.acquire(key)
+	defer l.release(entry, key)
+
+	done := make(chan struct{})
+
+	go func() {
+		entry.mu.RLock()
+		defer entry.mu.RUnlock()
+
+		select {
+		case <-ctx.Done():
+		default:
+			fn()
+		}
+		close(done)
+	}()
+
+	select {
+	case <-ctx.Done():
+		return ctx.Err()
+	case <-done:
+		return nil
+	}
+}
+
+// Lock acquires a write lock for the specified key and executes the provided function.
+// It returns an error if the context is canceled before the function completes.
+func (l *RWKeyedLocker[K]) Lock(ctx context.Context, key K, fn func()) error {
+	entry := l.acquire(key)
+	defer l.release(entry, key)
+
+	done := make(chan struct{})
+
+	go func() {
+		entry.mu.Lock()
+		defer entry.mu.Unlock()
+
+		select {
+		case <-ctx.Done():
+		default:
+			fn()
+		}
+		close(done)
+	}()
+
+	select {
+	case <-ctx.Done():
+		return ctx.Err()
+	case <-done:
+		return nil
+	}
+}
+
+// acquire tries to acquire a read lock for the specified key.
+func (l *RWKeyedLocker[K]) acquire(key K) *rwLockEntry {
+	actual, _ := l.locks.LoadOrStore(key, &rwLockEntry{})
+	entry := actual.(*rwLockEntry)
+	atomic.AddInt32(&entry.ref, 1)
+
+	if t := entry.timer.Swap(nil); t != nil {
+		t.Stop()
+	}
+	return entry
+}
+
+// release releases the lock for the specified key.
+func (l *RWKeyedLocker[K]) release(entry *rwLockEntry, rawKey K) {
+	if atomic.AddInt32(&entry.ref, -1) == 0 {
+		timer := time.AfterFunc(l.ttl, func() {
+			if atomic.LoadInt32(&entry.ref) == 0 {
+				l.locks.Delete(rawKey)
+			}
+		})
+		entry.timer.Store(timer)
 	}
 }
