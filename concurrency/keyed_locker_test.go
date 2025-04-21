@@ -175,3 +175,56 @@ func TestRWKeyedLocker_LockTimeout(t *testing.T) {
 
 	assert.IsNotNil(err)
 }
+
+func TestTryKeyedLocker_SimpleLockUnlock(t *testing.T) {
+	t.Parallel()
+	assert := internal.NewAssert(t, "TestTryKeyedLocker_SimpleLockUnlock")
+
+	locker := NewTryKeyedLocker[string]()
+
+	ok := locker.TryLock("key1")
+	assert.Equal(true, ok)
+
+	ok = locker.TryLock("key1")
+	assert.Equal(false, ok)
+
+	locker.Unlock("key1")
+
+	ok = locker.TryLock("key1")
+	assert.Equal(true, ok)
+
+	locker.Unlock("key1")
+}
+
+func TestTryKeyedLocker_ParallelTry(t *testing.T) {
+	t.Parallel()
+	assert := internal.NewAssert(t, "TestTryKeyedLocker_ParallelTry")
+
+	locker := NewTryKeyedLocker[string]()
+
+	var wg sync.WaitGroup
+	var mu sync.Mutex
+	var count int
+
+	for i := 0; i < 5; i++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			ok := locker.TryLock("key" + strconv.Itoa(i))
+			mu.Lock()
+			if ok {
+				count++
+			}
+			mu.Unlock()
+			time.Sleep(10 * time.Millisecond)
+			if ok {
+				locker.Unlock("key" + strconv.Itoa(i))
+			}
+		}(i)
+	}
+
+	wg.Wait()
+
+	assert.Equal(5, count)
+	assert.Equal(0, len(locker.locks))
+}

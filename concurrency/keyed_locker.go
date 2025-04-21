@@ -191,3 +191,60 @@ func (l *RWKeyedLocker[K]) release(entry *rwLockEntry, rawKey K) {
 		entry.timer.Store(timer)
 	}
 }
+
+// TryKeyedLocker is a non-blocking version of KeyedLocker.
+// It allows for trying to acquire a lock without blocking if the lock is already held.
+type TryKeyedLocker[K comparable] struct {
+	mu    sync.Mutex
+	locks map[K]*casMutex
+}
+
+// NewTryKeyedLocker creates a new TryKeyedLocker.
+func NewTryKeyedLocker[K comparable]() *TryKeyedLocker[K] {
+	return &TryKeyedLocker[K]{locks: make(map[K]*casMutex)}
+}
+
+// TryLock tries to acquire a lock for the specified key.
+// It returns true if the lock was acquired, false otherwise.
+func (l *TryKeyedLocker[K]) TryLock(key K) bool {
+	l.mu.Lock()
+
+	lock, ok := l.locks[key]
+	if !ok {
+		lock = &casMutex{}
+		l.locks[key] = lock
+	}
+	l.mu.Unlock()
+
+	return lock.TryLock()
+}
+
+// Unlock releases the lock for the specified key.
+func (l *TryKeyedLocker[K]) Unlock(key K) {
+	l.mu.Lock()
+	defer l.mu.Unlock()
+
+	lock, ok := l.locks[key]
+	if ok {
+		lock.Unlock()
+		if lock.lock == 0 {
+			delete(l.locks, key)
+		}
+	}
+}
+
+// casMutex is a simple mutex that uses atomic operations to provide a non-blocking lock.
+type casMutex struct {
+	lock int32
+}
+
+// TryLock tries to acquire the lock without blocking.
+// It returns true if the lock was acquired, false otherwise.
+func (m *casMutex) TryLock() bool {
+	return atomic.CompareAndSwapInt32(&m.lock, 0, 1)
+}
+
+// Unlock releases the lock.
+func (m *casMutex) Unlock() {
+	atomic.StoreInt32(&m.lock, 0)
+}
