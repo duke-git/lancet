@@ -37,16 +37,17 @@ func CamelCase(s string) string {
 // Capitalize converts the first character of a string to upper case and the remaining to lower case.
 // Play: https://go.dev/play/p/2OAjgbmAqHZ
 func Capitalize(s string) string {
-	result := make([]rune, len(s))
-	for i, v := range s {
-		if i == 0 {
-			result[i] = unicode.ToUpper(v)
-		} else {
-			result[i] = unicode.ToLower(v)
-		}
+	if s == "" {
+		return s
 	}
 
-	return string(result)
+	runes := []rune(s)
+	runes[0] = unicode.ToUpper(runes[0])
+	for i := 1; i < len(runes); i++ {
+		runes[i] = unicode.ToLower(runes[i])
+	}
+
+	return string(runes)
 }
 
 // UpperFirst converts the first character of string to upper case.
@@ -127,49 +128,57 @@ func UpperSnakeCase(s string) string {
 // Before returns the substring of the source string up to the first occurrence of the specified string.
 // Play: https://go.dev/play/p/JAWTZDS4F5w
 func Before(s, char string) string {
-	i := strings.Index(s, char)
-
-	if s == "" || char == "" || i == -1 {
+	if char == "" {
 		return s
 	}
 
-	return s[0:i]
+	if i := strings.Index(s, char); i >= 0 {
+		return s[:i]
+	}
+
+	return s
 }
 
 // BeforeLast returns the substring of the source string up to the last occurrence of the specified string.
 // Play: https://go.dev/play/p/pJfXXAoG_Te
 func BeforeLast(s, char string) string {
-	i := strings.LastIndex(s, char)
-
-	if s == "" || char == "" || i == -1 {
+	if char == "" {
 		return s
 	}
 
-	return s[0:i]
+	if i := strings.LastIndex(s, char); i >= 0 {
+		return s[:i]
+	}
+
+	return s
 }
 
 // After returns the substring after the first occurrence of a specified string in the source string.
 // Play: https://go.dev/play/p/RbCOQqCDA7m
 func After(s, char string) string {
-	i := strings.Index(s, char)
-
-	if s == "" || char == "" || i == -1 {
+	if char == "" {
 		return s
 	}
 
-	return s[i+len(char):]
+	if i := strings.Index(s, char); i >= 0 {
+		return s[i+len(char):]
+	}
+
+	return s
 }
 
 // AfterLast returns the substring after the last occurrence of a specified string in the source string.
 // Play: https://go.dev/play/p/1TegARrb8Yn
 func AfterLast(s, char string) string {
-	i := strings.LastIndex(s, char)
-
-	if s == "" || char == "" || i == -1 {
+	if char == "" {
 		return s
 	}
 
-	return s[i+len(char):]
+	if i := strings.LastIndex(s, char); i >= 0 {
+		return s[i+len(char):]
+	}
+
+	return s
 }
 
 // IsString check if the value data type is string or not.
@@ -213,20 +222,15 @@ func Wrap(str string, wrapWith string) string {
 // Unwrap a given string from anther string. will change source string.
 // Play: https://go.dev/play/p/Ec2q4BzCpG-
 func Unwrap(str string, wrapToken string) string {
-	if str == "" || wrapToken == "" {
+	if wrapToken == "" || !strings.HasPrefix(str, wrapToken) || !strings.HasSuffix(str, wrapToken) {
 		return str
 	}
 
-	firstIndex := strings.Index(str, wrapToken)
-	lastIndex := strings.LastIndex(str, wrapToken)
-
-	if firstIndex == 0 && lastIndex > 0 && lastIndex <= len(str)-1 {
-		if len(wrapToken) <= lastIndex {
-			str = str[len(wrapToken):lastIndex]
-		}
+	if len(str) < 2*len(wrapToken) {
+		return str
 	}
 
-	return str
+	return str[len(wrapToken) : len(str)-len(wrapToken)]
 }
 
 // SplitEx split a given string which can control the result slice contains empty string or not.
@@ -286,22 +290,21 @@ func Substring(s string, offset int, length uint) string {
 	size := len(rs)
 
 	if offset < 0 {
-		offset = size + offset
-		if offset < 0 {
-			offset = 0
-		}
+		offset += size
+	}
+	if offset < 0 {
+		offset = 0
 	}
 	if offset > size {
 		return ""
 	}
 
-	if length > uint(size)-uint(offset) {
-		length = uint(size - offset)
+	end := offset + int(length)
+	if end > size {
+		end = size
 	}
 
-	str := string(rs[offset : offset+int(length)])
-
-	return strings.Replace(str, "\x00", "", -1)
+	return strings.ReplaceAll(string(rs[offset:end]), "\x00", "")
 }
 
 // SplitWords splits a string into words, word only contains alphabetic characters.

@@ -1,6 +1,7 @@
 package strutil
 
 import (
+	"strings"
 	"unicode"
 )
 
@@ -111,31 +112,27 @@ func padAtPosition(str string, length int, padStr string, position int) string {
 		padStr = " "
 	}
 
-	length = length - len(str)
-	startPadLen := 0
+	totalPad := length - len(str)
+	startPad := 0
+
 	if position == 0 {
-		startPadLen = length / 2
+		startPad = totalPad / 2
 	} else if position == 1 {
-		startPadLen = length
+		startPad = totalPad
+	} else if position == 2 {
+		startPad = 0
 	}
-	endPadLen := length - startPadLen
+	endPad := totalPad - startPad
 
-	charLen := len(padStr)
-	leftPad := ""
-	cur := 0
-	for cur < startPadLen {
-		leftPad += string(padStr[cur%charLen])
-		cur++
-	}
-
-	cur = 0
-	rightPad := ""
-	for cur < endPadLen {
-		rightPad += string(padStr[cur%charLen])
-		cur++
+	repeatPad := func(n int) string {
+		repeated := strings.Repeat(padStr, (n+len(padStr)-1)/len(padStr))
+		return repeated[:n]
 	}
 
-	return leftPad + str + rightPad
+	left := repeatPad(startPad)
+	right := repeatPad(endPad)
+
+	return left + str + right
 }
 
 // isLetter checks r is a letter but not CJK character.
