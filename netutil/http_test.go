@@ -3,7 +3,6 @@ package netutil
 import (
 	"bytes"
 	"encoding/json"
-	"io"
 	"io/ioutil"
 	"net/http"
 	"net/http/httptest"
@@ -27,8 +26,8 @@ func TestHttpGet(t *testing.T) {
 		return
 	}
 
-	body, _ := io.ReadAll(resp.Body)
-	t.Log("response: ", resp.StatusCode, string(body))
+	defer resp.Body.Close()
+	t.Log("response status:", resp.StatusCode)
 }
 
 func TestHttpPost(t *testing.T) {
@@ -49,8 +48,8 @@ func TestHttpPost(t *testing.T) {
 		return
 	}
 
-	body, _ := io.ReadAll(resp.Body)
-	t.Log("response: ", resp.StatusCode, string(body))
+	defer resp.Body.Close()
+	t.Log("response status:", resp.StatusCode)
 }
 
 func TestHttpPostFormData(t *testing.T) {
@@ -69,8 +68,8 @@ func TestHttpPostFormData(t *testing.T) {
 		return
 	}
 
-	body, _ := io.ReadAll(resp.Body)
-	t.Log("response: ", resp.StatusCode, string(body))
+	defer resp.Body.Close()
+	t.Log("response status:", resp.StatusCode)
 }
 
 func TestHttpPut(t *testing.T) {
@@ -92,8 +91,8 @@ func TestHttpPut(t *testing.T) {
 		return
 	}
 
-	body, _ := io.ReadAll(resp.Body)
-	t.Log("response: ", resp.StatusCode, string(body))
+	defer resp.Body.Close()
+	t.Log("response status:", resp.StatusCode)
 }
 
 func TestHttpPatch(t *testing.T) {
@@ -115,8 +114,8 @@ func TestHttpPatch(t *testing.T) {
 		return
 	}
 
-	body, _ := io.ReadAll(resp.Body)
-	t.Log("response: ", resp.StatusCode, string(body))
+	defer resp.Body.Close()
+	t.Log("response status:", resp.StatusCode)
 }
 
 func TestHttpDelete(t *testing.T) {
@@ -127,8 +126,8 @@ func TestHttpDelete(t *testing.T) {
 		return
 	}
 
-	body, _ := io.ReadAll(resp.Body)
-	t.Log("response: ", resp.StatusCode, string(body))
+	defer resp.Body.Close()
+	t.Log("response status:", resp.StatusCode)
 }
 
 func TestConvertMapToQueryString(t *testing.T) {
@@ -229,8 +228,8 @@ func TestHttpClent_Post(t *testing.T) {
 		return
 	}
 
-	body, _ := io.ReadAll(resp.Body)
-	t.Log("response: ", resp.StatusCode, string(body))
+	defer resp.Body.Close()
+	t.Log("response status:", resp.StatusCode)
 }
 
 func TestStructToUrlValues(t *testing.T) {

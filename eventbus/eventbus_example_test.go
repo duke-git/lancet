@@ -2,6 +2,7 @@ package eventbus
 
 import (
 	"fmt"
+	"sort"
 	"sync"
 	"time"
 )
@@ -224,6 +225,7 @@ func ExampleEventBus_GetEvents() {
 	eb.Subscribe("event2", func(eventData int) {}, false, 0, nil)
 
 	events := eb.GetEvents()
+	sort.Strings(events)
 
 	for _, event := range events {
 		fmt.Println(event)

@@ -15,7 +15,6 @@ func TestSinglyLink_InsertAtFirst(t *testing.T) {
 	link.InsertAtHead(1)
 	link.InsertAtHead(2)
 	link.InsertAtHead(3)
-	link.Print()
 
 	expected := []int{3, 2, 1}
 	values := link.Values()
@@ -32,7 +31,6 @@ func TestSinglyLink_InsertAtTail(t *testing.T) {
 	link.InsertAtTail(1)
 	link.InsertAtTail(2)
 	link.InsertAtTail(3)
-	link.Print()
 
 	expected := []int{1, 2, 3}
 	values := link.Values()
@@ -77,7 +75,6 @@ func TestSinglyLink_DeleteAtHead(t *testing.T) {
 	link.InsertAtTail(4)
 
 	link.DeleteAtHead()
-	link.Print()
 
 	expected := []int{2, 3, 4}
 	values := link.Values()

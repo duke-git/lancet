@@ -1,6 +1,7 @@
 package eventbus
 
 import (
+	"sort"
 	"sync"
 	"testing"
 	"time"
@@ -213,7 +214,8 @@ func TestEventBus_GetEvents(t *testing.T) {
 	eb.Subscribe("event2", func(eventData int) {}, false, 0, nil)
 
 	events := eb.GetEvents()
+	sort.Strings(events)
 
 	assert.Equal(2, len(events))
-	assert.EqualValues([]string{"event1", "event2"}, events)
+	assert.Equal([]string{"event1", "event2"}, events)
 }
