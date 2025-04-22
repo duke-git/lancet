@@ -662,15 +662,22 @@ func IntSlice(slice any) []int {
 // DeleteAt delete the element of slice at index.
 // Play: https://go.dev/play/p/800B1dPBYyd
 func DeleteAt[T any](slice []T, index int) []T {
-	if index >= len(slice) {
-		index = len(slice) - 1
+	if index < 0 || index >= len(slice) {
+		return slice[:len(slice)-1]
 	}
 
-	result := make([]T, len(slice)-1)
-	copy(result, slice[:index])
-	copy(result[index:], slice[index+1:])
+	result := append([]T(nil), slice...)
+	copy(result[index:], result[index+1:])
 
-	return result
+	// Set the last element to zero value, clean up the memory.
+	result[len(result)-1] = zeroValue[T]()
+
+	return result[:len(result)-1]
+}
+
+func zeroValue[T any]() T {
+	var zero T
+	return zero
 }
 
 // DeleteRange delete the element of slice from start index to end index（exclude).
