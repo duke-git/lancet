@@ -2,7 +2,6 @@
 // Use of this source code is governed by MIT license
 
 // Package concurrency contain some functions to support concurrent programming. eg, goroutine, channel, locker.
-
 package concurrency
 
 import (

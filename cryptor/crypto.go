@@ -15,39 +15,40 @@ import (
 	"crypto/rand"
 	"crypto/rsa"
 	"crypto/sha256"
-	"crypto/sha512"
 	"crypto/x509"
 	"encoding/pem"
-	"errors"
 	"io"
 	"os"
-	"strings"
 )
 
 // AesEcbEncrypt encrypt data with key use AES ECB algorithm
 // len(key) should be 16, 24 or 32.
 // Play: https://go.dev/play/p/jT5irszHx-j
 func AesEcbEncrypt(data, key []byte) []byte {
-	size := len(key)
-	if size != 16 && size != 24 && size != 32 {
-		panic("key length shoud be 16 or 24 or 32")
+	if !isAesKeyLengthValid(len(key)) {
+		panic("aes: invalid key length (must be 16, 24, or 32 bytes)")
 	}
 
-	length := (len(data) + aes.BlockSize) / aes.BlockSize
-	plain := make([]byte, length*aes.BlockSize)
+	blockSize := aes.BlockSize
+	dataLen := len(data)
+	padding := blockSize - (dataLen % blockSize)
+	paddedLen := dataLen + padding
 
-	copy(plain, data)
+	paddedData := make([]byte, paddedLen)
+	copy(paddedData, data)
 
-	pad := byte(len(plain) - len(data))
-	for i := len(data); i < len(plain); i++ {
-		plain[i] = pad
+	for i := dataLen; i < paddedLen; i++ {
+		paddedData[i] = byte(padding)
 	}
 
-	encrypted := make([]byte, len(plain))
-	cipher, _ := aes.NewCipher(generateAesKey(key, size))
+	cipher, err := aes.NewCipher(generateAesKey(key, len(key)))
+	if err != nil {
+		panic("aes: failed to create cipher: " + err.Error())
+	}
 
-	for bs, be := 0, cipher.BlockSize(); bs <= len(data); bs, be = bs+cipher.BlockSize(), be+cipher.BlockSize() {
-		cipher.Encrypt(encrypted[bs:be], plain[bs:be])
+	encrypted := make([]byte, paddedLen)
+	for bs := 0; bs < paddedLen; bs += blockSize {
+		cipher.Encrypt(encrypted[bs:], paddedData[bs:])
 	}
 
 	return encrypted
@@ -57,77 +58,107 @@ func AesEcbEncrypt(data, key []byte) []byte {
 // len(key) should be 16, 24 or 32.
 // Play: https://go.dev/play/p/jT5irszHx-j
 func AesEcbDecrypt(encrypted, key []byte) []byte {
-	size := len(key)
-	if size != 16 && size != 24 && size != 32 {
-		panic("key length shoud be 16 or 24 or 32")
+	if !isAesKeyLengthValid(len(key)) {
+		panic("aes: invalid key length (must be 16, 24, or 32 bytes)")
 	}
-	cipher, _ := aes.NewCipher(generateAesKey(key, size))
+
+	blockSize := aes.BlockSize
+	if len(encrypted)%blockSize != 0 {
+		panic("aes: encrypted data length is not a multiple of block size")
+	}
+
+	cipher, err := aes.NewCipher(generateAesKey(key, len(key)))
+	if err != nil {
+		panic("aes: failed to create cipher: " + err.Error())
+	}
+
 	decrypted := make([]byte, len(encrypted))
-
-	for bs, be := 0, cipher.BlockSize(); bs < len(encrypted); bs, be = bs+cipher.BlockSize(), be+cipher.BlockSize() {
-		cipher.Decrypt(decrypted[bs:be], encrypted[bs:be])
+	for i := 0; i < len(encrypted); i += blockSize {
+		cipher.Decrypt(decrypted[i:], encrypted[i:])
 	}
 
-	trim := 0
-	if len(decrypted) > 0 {
-		trim = len(decrypted) - int(decrypted[len(decrypted)-1])
+	if len(decrypted) == 0 {
+		return nil
+	}
+	padding := int(decrypted[len(decrypted)-1])
+	if padding == 0 || padding > blockSize {
+		panic("aes: invalid PKCS#7 padding")
+	}
+	for i := len(decrypted) - padding; i < len(decrypted); i++ {
+		if decrypted[i] != byte(padding) {
+			panic("aes: invalid PKCS#7 padding content")
+		}
 	}
 
-	return decrypted[:trim]
+	return decrypted[:len(decrypted)-padding]
 }
 
 // AesCbcEncrypt encrypt data with key use AES CBC algorithm
 // len(key) should be 16, 24 or 32.
 // Play: https://go.dev/play/p/IOq_g8_lKZD
 func AesCbcEncrypt(data, key []byte) []byte {
-	size := len(key)
-	if size != 16 && size != 24 && size != 32 {
-		panic("key length shoud be 16 or 24 or 32")
+	if !isAesKeyLengthValid(len(key)) {
+		panic("aes: invalid key length (must be 16, 24, or 32 bytes)")
 	}
 
-	block, _ := aes.NewCipher(key)
-	data = pkcs7Padding(data, block.BlockSize())
+	block, err := aes.NewCipher(key)
+	if err != nil {
+		panic("aes: failed to create cipher: " + err.Error())
+	}
 
-	encrypted := make([]byte, aes.BlockSize+len(data))
-	iv := encrypted[:aes.BlockSize]
+	padding := aes.BlockSize - len(data)%aes.BlockSize
+	padded := append(data, bytes.Repeat([]byte{byte(padding)}, padding)...)
+
+	iv := make([]byte, aes.BlockSize)
 	if _, err := io.ReadFull(rand.Reader, iv); err != nil {
-		panic(err)
+		panic("aes: failed to generate IV: " + err.Error())
 	}
 
+	encrypted := make([]byte, len(padded))
 	mode := cipher.NewCBCEncrypter(block, iv)
-	mode.CryptBlocks(encrypted[aes.BlockSize:], data)
+	mode.CryptBlocks(encrypted, padded)
 
-	return encrypted
+	return append(iv, encrypted...)
 }
 
 // AesCbcDecrypt decrypt data with key use AES CBC algorithm
 // len(key) should be 16, 24 or 32.
 // Play: https://go.dev/play/p/IOq_g8_lKZD
 func AesCbcDecrypt(encrypted, key []byte) []byte {
-	size := len(key)
-	if size != 16 && size != 24 && size != 32 {
-		panic("key length shoud be 16 or 24 or 32")
+	if !isAesKeyLengthValid(len(key)) {
+		panic("aes: invalid key length (must be 16, 24, or 32 bytes)")
 	}
 
-	block, _ := aes.NewCipher(key)
+	if len(encrypted) < aes.BlockSize {
+		panic("aes: ciphertext too short")
+	}
+
+	if len(encrypted)%aes.BlockSize != 0 {
+		panic("aes: ciphertext is not a multiple of the block size")
+	}
 
 	iv := encrypted[:aes.BlockSize]
-	encrypted = encrypted[aes.BlockSize:]
+	ciphertext := encrypted[aes.BlockSize:]
 
+	block, err := aes.NewCipher(key)
+	if err != nil {
+		panic("aes: failed to create cipher: " + err.Error())
+	}
+
+	decrypted := make([]byte, len(ciphertext))
 	mode := cipher.NewCBCDecrypter(block, iv)
-	mode.CryptBlocks(encrypted, encrypted)
+	mode.CryptBlocks(decrypted, ciphertext)
 
-	decrypted := pkcs7UnPadding(encrypted)
-	return decrypted
+	return pkcs7UnPadding(decrypted)
 }
 
 // AesCtrCrypt encrypt data with key use AES CTR algorithm
 // len(key) should be 16, 24 or 32.
 // Play: https://go.dev/play/p/SpaZO0-5Nsp
+// deprecated: use AesCtrEncrypt and AesCtrDecrypt instead.
 func AesCtrCrypt(data, key []byte) []byte {
-	size := len(key)
-	if size != 16 && size != 24 && size != 32 {
-		panic("key length shoud be 16 or 24 or 32")
+	if !isAesKeyLengthValid(len(key)) {
+		panic("aes: invalid key length (must be 16, 24, or 32 bytes)")
 	}
 
 	block, _ := aes.NewCipher(key)
@@ -141,158 +172,214 @@ func AesCtrCrypt(data, key []byte) []byte {
 	return dst
 }
 
-// AesCfbEncrypt encrypt data with key use AES CFB algorithm
+// AesCtrEncrypt encrypt data with key use AES CTR algorithm
 // len(key) should be 16, 24 or 32.
-// Play: https://go.dev/play/p/tfkF10B13kH
-func AesCfbEncrypt(data, key []byte) []byte {
-	size := len(key)
-	if size != 16 && size != 24 && size != 32 {
-		panic("key length shoud be 16 or 24 or 32")
+// Play: todo
+func AesCtrEncrypt(data, key []byte) []byte {
+	if !isAesKeyLengthValid(len(key)) {
+		panic("aes: invalid key length (must be 16, 24, or 32 bytes)")
 	}
 
 	block, err := aes.NewCipher(key)
 	if err != nil {
-		panic(err)
+		panic("aes: failed to create cipher: " + err.Error())
 	}
 
-	encrypted := make([]byte, aes.BlockSize+len(data))
-	iv := encrypted[:aes.BlockSize]
-
+	iv := make([]byte, aes.BlockSize)
 	if _, err := io.ReadFull(rand.Reader, iv); err != nil {
-		panic(err)
+		panic("aes: failed to generate IV: " + err.Error())
 	}
 
-	stream := cipher.NewCFBEncrypter(block, iv)
-	stream.XORKeyStream(encrypted[aes.BlockSize:], data)
+	stream := cipher.NewCTR(block, iv)
+	ciphertext := make([]byte, len(data))
+	stream.XORKeyStream(ciphertext, data)
 
-	return encrypted
+	return append(iv, ciphertext...)
+}
+
+// AesCtrDecrypt decrypt data with key use AES CTR algorithm
+// len(key) should be 16, 24 or 32.
+// Play: todo
+func AesCtrDecrypt(encrypted, key []byte) []byte {
+	if !isAesKeyLengthValid(len(key)) {
+		panic("aes: invalid key length (must be 16, 24, or 32 bytes)")
+	}
+	if len(encrypted) < aes.BlockSize {
+		panic("aes: invalid ciphertext length")
+	}
+
+	iv := encrypted[:aes.BlockSize]
+	ciphertext := encrypted[aes.BlockSize:]
+
+	block, err := aes.NewCipher(key)
+	if err != nil {
+		panic("aes: failed to create cipher: " + err.Error())
+	}
+
+	stream := cipher.NewCTR(block, iv)
+	plaintext := make([]byte, len(ciphertext))
+	stream.XORKeyStream(plaintext, ciphertext)
+
+	return plaintext
+}
+
+// AesCfbEncrypt encrypt data with key use AES CFB algorithm
+// len(key) should be 16, 24 or 32.
+// Play: https://go.dev/play/p/tfkF10B13kH
+func AesCfbEncrypt(data, key []byte) []byte {
+	if !isAesKeyLengthValid(len(key)) {
+		panic("aes: invalid key length (must be 16, 24, or 32 bytes)")
+	}
+
+	block, err := aes.NewCipher(key)
+	if err != nil {
+		panic("aes: failed to create cipher: " + err.Error())
+	}
+
+	iv := make([]byte, aes.BlockSize)
+	if _, err := io.ReadFull(rand.Reader, iv); err != nil {
+		panic("aes: failed to generate IV: " + err.Error())
+	}
+
+	ciphertext := make([]byte, len(data))
+	stream := cipher.NewCFBEncrypter(block, iv)
+	stream.XORKeyStream(ciphertext, data)
+
+	return append(iv, ciphertext...)
 }
 
 // AesCfbDecrypt decrypt data with key use AES CFB algorithm
 // len(encrypted) should be great than 16, len(key) should be 16, 24 or 32.
 // Play: https://go.dev/play/p/tfkF10B13kH
 func AesCfbDecrypt(encrypted, key []byte) []byte {
-	size := len(key)
-	if size != 16 && size != 24 && size != 32 {
-		panic("key length shoud be 16 or 24 or 32")
+	if !isAesKeyLengthValid(len(key)) {
+		panic("aes: invalid key length (must be 16, 24, or 32 bytes)")
 	}
 
 	if len(encrypted) < aes.BlockSize {
-		panic("encrypted data is too short")
+		panic("aes: encrypted data too short")
 	}
 
-	block, _ := aes.NewCipher(key)
 	iv := encrypted[:aes.BlockSize]
-	encrypted = encrypted[aes.BlockSize:]
+	ciphertext := encrypted[aes.BlockSize:]
 
+	block, err := aes.NewCipher(key)
+	if err != nil {
+		panic("aes: failed to create cipher: " + err.Error())
+	}
+
+	plaintext := make([]byte, len(ciphertext))
 	stream := cipher.NewCFBDecrypter(block, iv)
+	stream.XORKeyStream(plaintext, ciphertext)
 
-	stream.XORKeyStream(encrypted, encrypted)
-
-	return encrypted
+	return plaintext
 }
 
 // AesOfbEncrypt encrypt data with key use AES OFB algorithm
 // len(key) should be 16, 24 or 32.
 // Play: https://go.dev/play/p/VtHxtkUj-3F
 func AesOfbEncrypt(data, key []byte) []byte {
-	size := len(key)
-	if size != 16 && size != 24 && size != 32 {
-		panic("key length shoud be 16 or 24 or 32")
+	if !isAesKeyLengthValid(len(key)) {
+		panic("aes: invalid key length (must be 16, 24, or 32 bytes)")
 	}
 
 	block, err := aes.NewCipher(key)
 	if err != nil {
-		panic(err)
+		panic("aes: failed to create cipher: " + err.Error())
 	}
 
-	data = pkcs7Padding(data, aes.BlockSize)
-	encrypted := make([]byte, aes.BlockSize+len(data))
-	iv := encrypted[:aes.BlockSize]
+	iv := make([]byte, aes.BlockSize)
 	if _, err := io.ReadFull(rand.Reader, iv); err != nil {
-		panic(err)
+		panic("aes: failed to generate IV: " + err.Error())
 	}
 
+	ciphertext := make([]byte, len(data))
 	stream := cipher.NewOFB(block, iv)
-	stream.XORKeyStream(encrypted[aes.BlockSize:], data)
+	stream.XORKeyStream(ciphertext, data)
 
-	return encrypted
+	return append(iv, ciphertext...)
 }
 
 // AesOfbDecrypt decrypt data with key use AES OFB algorithm
 // len(key) should be 16, 24 or 32.
 // Play: https://go.dev/play/p/VtHxtkUj-3F
 func AesOfbDecrypt(data, key []byte) []byte {
-	size := len(key)
-	if size != 16 && size != 24 && size != 32 {
-		panic("key length shoud be 16 or 24 or 32")
+	if !isAesKeyLengthValid(len(key)) {
+		panic("aes: invalid key length (must be 16, 24, or 32 bytes)")
 	}
 
-	block, err := aes.NewCipher(key)
-	if err != nil {
-		panic(err)
+	if len(data) < aes.BlockSize {
+		panic("aes: encrypted data too short")
 	}
 
 	iv := data[:aes.BlockSize]
-	data = data[aes.BlockSize:]
-	if len(data)%aes.BlockSize != 0 {
-		return nil
+	ciphertext := data[aes.BlockSize:]
+
+	block, err := aes.NewCipher(key)
+	if err != nil {
+		panic("aes: failed to create cipher: " + err.Error())
 	}
 
-	decrypted := make([]byte, len(data))
-	mode := cipher.NewOFB(block, iv)
-	mode.XORKeyStream(decrypted, data)
+	plaintext := make([]byte, len(ciphertext))
+	stream := cipher.NewOFB(block, iv)
+	stream.XORKeyStream(plaintext, ciphertext)
 
-	decrypted = pkcs7UnPadding(decrypted)
-
-	return decrypted
+	return plaintext
 }
 
 // AesGcmEncrypt encrypt data with key use AES GCM algorithm
 // Play: https://go.dev/play/p/rUt0-DmsPCs
 func AesGcmEncrypt(data, key []byte) []byte {
+	if !isAesKeyLengthValid(len(key)) {
+		panic("aes: invalid key length (must be 16, 24, or 32 bytes)")
+	}
+
 	block, err := aes.NewCipher(key)
 	if err != nil {
-		panic(err)
+		panic("aes: failed to create cipher: " + err.Error())
 	}
 
 	gcm, err := cipher.NewGCM(block)
 	if err != nil {
-		panic(err)
+		panic("aes: failed to create GCM: " + err.Error())
 	}
 
 	nonce := make([]byte, gcm.NonceSize())
-	if _, err = io.ReadFull(rand.Reader, nonce); err != nil {
-		panic(err)
+	if _, err := io.ReadFull(rand.Reader, nonce); err != nil {
+		panic("aes: failed to generate nonce: " + err.Error())
 	}
 
-	ciphertext := gcm.Seal(nonce, nonce, data, nil)
+	ciphertext := gcm.Seal(nil, nonce, data, nil)
 
-	return ciphertext
+	return append(nonce, ciphertext...)
 }
 
 // AesGcmDecrypt decrypt data with key use AES GCM algorithm
 // Play: https://go.dev/play/p/rUt0-DmsPCs
 func AesGcmDecrypt(data, key []byte) []byte {
+	if !isAesKeyLengthValid(len(key)) {
+		panic("aes: invalid key length (must be 16, 24, or 32 bytes)")
+	}
+
 	block, err := aes.NewCipher(key)
 	if err != nil {
-		panic(err)
+		panic("aes: failed to create cipher: " + err.Error())
 	}
 
 	gcm, err := cipher.NewGCM(block)
 	if err != nil {
-		panic(err)
+		panic("aes: failed to create GCM: " + err.Error())
 	}
 
 	nonceSize := gcm.NonceSize()
 	if len(data) < nonceSize {
-		panic("ciphertext too short")
+		panic("aes: ciphertext too short")
 	}
 
 	nonce, ciphertext := data[:nonceSize], data[nonceSize:]
 	plaintext, err := gcm.Open(nil, nonce, ciphertext, nil)
 	if err != nil {
-		panic(err)
+		panic("aes: decryption failed: " + err.Error())
 	}
 
 	return plaintext
@@ -302,20 +389,17 @@ func AesGcmDecrypt(data, key []byte) []byte {
 // len(key) should be 8.
 // Play: https://go.dev/play/p/8qivmPeZy4P
 func DesEcbEncrypt(data, key []byte) []byte {
-	length := (len(data) + des.BlockSize) / des.BlockSize
-	plain := make([]byte, length*des.BlockSize)
-	copy(plain, data)
-
-	pad := byte(len(plain) - len(data))
-	for i := len(data); i < len(plain); i++ {
-		plain[i] = pad
+	cipher, err := des.NewCipher(generateDesKey(key))
+	if err != nil {
+		panic("des: failed to create cipher: " + err.Error())
 	}
 
-	encrypted := make([]byte, len(plain))
-	cipher, _ := des.NewCipher(generateDesKey(key))
+	blockSize := cipher.BlockSize()
+	padded := pkcs5Padding(data, blockSize)
+	encrypted := make([]byte, len(padded))
 
-	for bs, be := 0, cipher.BlockSize(); bs <= len(data); bs, be = bs+cipher.BlockSize(), be+cipher.BlockSize() {
-		cipher.Encrypt(encrypted[bs:be], plain[bs:be])
+	for i := 0; i < len(padded); i += blockSize {
+		cipher.Encrypt(encrypted[i:], padded[i:])
 	}
 
 	return encrypted
@@ -325,42 +409,50 @@ func DesEcbEncrypt(data, key []byte) []byte {
 // len(key) should be 8.
 // Play: https://go.dev/play/p/8qivmPeZy4P
 func DesEcbDecrypt(encrypted, key []byte) []byte {
-	cipher, _ := des.NewCipher(generateDesKey(key))
+	cipher, err := des.NewCipher(generateDesKey(key))
+	if err != nil {
+		panic("des: failed to create cipher: " + err.Error())
+	}
+
+	blockSize := cipher.BlockSize()
+	if len(encrypted)%blockSize != 0 {
+		panic("des: invalid encrypted data length")
+	}
+
 	decrypted := make([]byte, len(encrypted))
-
-	for bs, be := 0, cipher.BlockSize(); bs < len(encrypted); bs, be = bs+cipher.BlockSize(), be+cipher.BlockSize() {
-		cipher.Decrypt(decrypted[bs:be], encrypted[bs:be])
+	for i := 0; i < len(encrypted); i += blockSize {
+		cipher.Decrypt(decrypted[i:], encrypted[i:])
 	}
 
-	trim := 0
-	if len(decrypted) > 0 {
-		trim = len(decrypted) - int(decrypted[len(decrypted)-1])
-	}
-
-	return decrypted[:trim]
+	// Remove padding
+	return pkcs5UnPadding(decrypted)
 }
 
 // DesCbcEncrypt encrypt data with key use DES CBC algorithm
 // len(key) should be 8.
 // Play: https://go.dev/play/p/4cC4QvWfe3_1
 func DesCbcEncrypt(data, key []byte) []byte {
-	size := len(key)
-	if size != 8 {
-		panic("key length shoud be 8")
+	if len(key) != 8 {
+		panic("des: key length must be 8 bytes")
 	}
 
-	block, _ := des.NewCipher(key)
-	data = pkcs7Padding(data, block.BlockSize())
+	block, err := des.NewCipher(key)
+	if err != nil {
+		panic("des: failed to create cipher: " + err.Error())
+	}
 
-	encrypted := make([]byte, des.BlockSize+len(data))
-	iv := encrypted[:des.BlockSize]
+	blockSize := block.BlockSize()
+	data = pkcs7Padding(data, blockSize)
+
+	encrypted := make([]byte, blockSize+len(data))
+	iv := encrypted[:blockSize]
 
 	if _, err := io.ReadFull(rand.Reader, iv); err != nil {
-		panic(err)
+		panic("des: failed to generate IV: " + err.Error())
 	}
 
 	mode := cipher.NewCBCEncrypter(block, iv)
-	mode.CryptBlocks(encrypted[des.BlockSize:], data)
+	mode.CryptBlocks(encrypted[blockSize:], data)
 
 	return encrypted
 }
@@ -369,26 +461,33 @@ func DesCbcEncrypt(data, key []byte) []byte {
 // len(key) should be 8.
 // Play: https://go.dev/play/p/4cC4QvWfe3_1
 func DesCbcDecrypt(encrypted, key []byte) []byte {
-	size := len(key)
-	if size != 8 {
-		panic("key length shoud be 8")
+	if len(key) != 8 {
+		panic("des: key length must be 8 bytes")
 	}
 
-	block, _ := des.NewCipher(key)
+	block, err := des.NewCipher(key)
+	if err != nil {
+		panic("des: failed to create cipher: " + err.Error())
+	}
 
-	iv := encrypted[:des.BlockSize]
-	encrypted = encrypted[des.BlockSize:]
+	blockSize := block.BlockSize()
+	if len(encrypted) < blockSize || len(encrypted)%blockSize != 0 {
+		panic("des: invalid encrypted data length")
+	}
+
+	iv := encrypted[:blockSize]
+	ciphertext := encrypted[blockSize:]
 
 	mode := cipher.NewCBCDecrypter(block, iv)
-	mode.CryptBlocks(encrypted, encrypted)
+	mode.CryptBlocks(ciphertext, ciphertext)
 
-	decrypted := pkcs7UnPadding(encrypted)
-	return decrypted
+	return pkcs7UnPadding(ciphertext)
 }
 
 // DesCtrCrypt encrypt data with key use DES CTR algorithm
 // len(key) should be 8.
 // Play: https://go.dev/play/p/9-T6OjKpcdw
+// deprecated: use DesCtrEncrypt and DesCtrDecrypt instead.
 func DesCtrCrypt(data, key []byte) []byte {
 	size := len(key)
 	if size != 8 {
@@ -406,25 +505,83 @@ func DesCtrCrypt(data, key []byte) []byte {
 	return dst
 }
 
-// DesCfbEncrypt encrypt data with key use DES CFB algorithm
+// DesCtrEncrypt encrypt data with key use DES CTR algorithm
 // len(key) should be 8.
-// Play: https://go.dev/play/p/y-eNxcFBlxL
-func DesCfbEncrypt(data, key []byte) []byte {
-	size := len(key)
-	if size != 8 {
-		panic("key length shoud be 8")
+// Play: todo
+func DesCtrEncrypt(data, key []byte) []byte {
+	if len(key) != 8 {
+		panic("des: key length must be 8 bytes")
 	}
 
 	block, err := des.NewCipher(key)
 	if err != nil {
-		panic(err)
+		panic("des: failed to create cipher: " + err.Error())
+	}
+
+	iv := make([]byte, block.BlockSize())
+	if _, err := io.ReadFull(rand.Reader, iv); err != nil {
+		panic("des: failed to generate IV: " + err.Error())
+	}
+
+	stream := cipher.NewCTR(block, iv)
+
+	encrypted := make([]byte, len(data))
+	stream.XORKeyStream(encrypted, data)
+
+	// 返回前缀包含 IV，便于解密
+	return append(iv, encrypted...)
+}
+
+// DesCtrDecrypt decrypt data with key use DES CTR algorithm
+// len(key) should be 8.
+// Play: todo
+func DesCtrDecrypt(encrypted, key []byte) []byte {
+	if len(key) != 8 {
+		panic("des: key length must be 8 bytes")
+	}
+
+	block, err := des.NewCipher(key)
+	if err != nil {
+		panic("des: failed to create cipher: " + err.Error())
+	}
+
+	blockSize := block.BlockSize()
+	if len(encrypted) < blockSize {
+		panic("des: ciphertext too short")
+	}
+
+	iv := encrypted[:blockSize]
+	ciphertext := encrypted[blockSize:]
+
+	stream := cipher.NewCTR(block, iv)
+
+	decrypted := make([]byte, len(ciphertext))
+	stream.XORKeyStream(decrypted, ciphertext)
+
+	return decrypted
+}
+
+// DesCfbEncrypt encrypt data with key use DES CFB algorithm
+// len(key) should be 8.
+// Play: https://go.dev/play/p/y-eNxcFBlxL
+func DesCfbEncrypt(data, key []byte) []byte {
+	if len(key) != 8 {
+		panic("des: key length must be 8 bytes")
+	}
+
+	block, err := des.NewCipher(key)
+	if err != nil {
+		panic("des: failed to create cipher: " + err.Error())
+	}
+
+	iv := make([]byte, des.BlockSize)
+	if _, err := io.ReadFull(rand.Reader, iv); err != nil {
+		panic("des: failed to generate IV: " + err.Error())
 	}
 
 	encrypted := make([]byte, des.BlockSize+len(data))
-	iv := encrypted[:des.BlockSize]
-	if _, err := io.ReadFull(rand.Reader, iv); err != nil {
-		panic(err)
-	}
+
+	copy(encrypted[:des.BlockSize], iv)
 
 	stream := cipher.NewCFBEncrypter(block, iv)
 	stream.XORKeyStream(encrypted[des.BlockSize:], data)
@@ -436,43 +593,50 @@ func DesCfbEncrypt(data, key []byte) []byte {
 // len(encrypted) should be great than 16, len(key) should be 8.
 // Play: https://go.dev/play/p/y-eNxcFBlxL
 func DesCfbDecrypt(encrypted, key []byte) []byte {
-	size := len(key)
-	if size != 8 {
-		panic("key length shoud be 8")
+	if len(key) != 8 {
+		panic("des: key length must be 8 bytes")
 	}
 
-	block, _ := des.NewCipher(key)
-	if len(encrypted) < des.BlockSize {
-		panic("encrypted data is too short")
+	block, err := des.NewCipher(key)
+	if err != nil {
+		panic("des: failed to create cipher: " + err.Error())
 	}
+
+	if len(encrypted) < des.BlockSize {
+		panic("des: encrypted data too short")
+	}
+
 	iv := encrypted[:des.BlockSize]
-	encrypted = encrypted[des.BlockSize:]
+	ciphertext := encrypted[des.BlockSize:]
 
 	stream := cipher.NewCFBDecrypter(block, iv)
-	stream.XORKeyStream(encrypted, encrypted)
+	stream.XORKeyStream(ciphertext, ciphertext)
 
-	return encrypted
+	return ciphertext
 }
 
 // DesOfbEncrypt encrypt data with key use DES OFB algorithm
 // len(key) should be 8.
 // Play: https://go.dev/play/p/74KmNadjN1J
 func DesOfbEncrypt(data, key []byte) []byte {
-	size := len(key)
-	if size != 8 {
-		panic("key length shoud be 8")
+	if len(key) != 8 {
+		panic("des: key length must be 8 bytes")
 	}
 
 	block, err := des.NewCipher(key)
 	if err != nil {
-		panic(err)
+		panic("des: failed to create cipher: " + err.Error())
 	}
+
 	data = pkcs7Padding(data, des.BlockSize)
-	encrypted := make([]byte, des.BlockSize+len(data))
-	iv := encrypted[:des.BlockSize]
+
+	iv := make([]byte, des.BlockSize)
 	if _, err := io.ReadFull(rand.Reader, iv); err != nil {
-		panic(err)
+		panic("des: failed to generate IV: " + err.Error())
 	}
+
+	encrypted := make([]byte, des.BlockSize+len(data))
+	copy(encrypted[:des.BlockSize], iv)
 
 	stream := cipher.NewOFB(block, iv)
 	stream.XORKeyStream(encrypted[des.BlockSize:], data)
@@ -484,25 +648,25 @@ func DesOfbEncrypt(data, key []byte) []byte {
 // len(key) should be 8.
 // Play: https://go.dev/play/p/74KmNadjN1J
 func DesOfbDecrypt(data, key []byte) []byte {
-	size := len(key)
-	if size != 8 {
-		panic("key length shoud be 8")
+	if len(key) != 8 {
+		panic("des: key length must be 8 bytes")
 	}
 
 	block, err := des.NewCipher(key)
 	if err != nil {
-		panic(err)
+		panic("des: failed to create cipher: " + err.Error())
+	}
+
+	if len(data) < des.BlockSize {
+		panic("des: encrypted data too short")
 	}
 
 	iv := data[:des.BlockSize]
-	data = data[des.BlockSize:]
-	if len(data)%des.BlockSize != 0 {
-		return nil
-	}
+	ciphertext := data[des.BlockSize:]
 
-	decrypted := make([]byte, len(data))
-	mode := cipher.NewOFB(block, iv)
-	mode.XORKeyStream(decrypted, data)
+	stream := cipher.NewOFB(block, iv)
+	decrypted := make([]byte, len(ciphertext))
+	stream.XORKeyStream(decrypted, ciphertext)
 
 	decrypted = pkcs7UnPadding(decrypted)
 
@@ -692,118 +856,4 @@ func RsaVerifySign(hash crypto.Hash, data, signature []byte, pubKeyFileName stri
 	}
 
 	return rsa.VerifyPKCS1v15(publicKey, hash, hashed, signature)
-}
-
-// loadRsaPrivateKey loads and parses a PEM encoded private key file.
-func loadRsaPublicKey(filename string) (*rsa.PublicKey, error) {
-	pubKeyData, err := os.ReadFile(filename)
-	if err != nil {
-		return nil, err
-	}
-
-	block, _ := pem.Decode(pubKeyData)
-	if block == nil {
-		return nil, errors.New("failed to decode PEM block containing the public key")
-	}
-
-	var pubKey *rsa.PublicKey
-	blockType := strings.ToUpper(block.Type)
-
-	if blockType == "RSA PUBLIC KEY" {
-		pubKey, err = x509.ParsePKCS1PublicKey(block.Bytes)
-		if err != nil {
-			key, err := x509.ParsePKIXPublicKey(block.Bytes)
-			if err != nil {
-				return nil, err
-			}
-
-			var ok bool
-			pubKey, ok = key.(*rsa.PublicKey)
-			if !ok {
-				return nil, errors.New("failed to parse RSA private key")
-			}
-		}
-	} else if blockType == "PUBLIC KEY" {
-		key, err := x509.ParsePKIXPublicKey(block.Bytes)
-		if err != nil {
-			return nil, err
-		}
-
-		var ok bool
-		pubKey, ok = key.(*rsa.PublicKey)
-		if !ok {
-			return nil, errors.New("failed to parse RSA private key")
-		}
-
-	} else {
-		return nil, errors.New("unsupported key type")
-	}
-
-	return pubKey, nil
-}
-
-// loadRsaPrivateKey loads and parses a PEM encoded private key file.
-func loadRasPrivateKey(filename string) (*rsa.PrivateKey, error) {
-	priKeyData, err := os.ReadFile(filename)
-	if err != nil {
-		return nil, err
-	}
-
-	block, _ := pem.Decode(priKeyData)
-	if block == nil {
-		return nil, errors.New("failed to decode PEM block containing the private key")
-	}
-
-	var privateKey *rsa.PrivateKey
-	blockType := strings.ToUpper(block.Type)
-
-	// PKCS#1 format
-	if blockType == "RSA PRIVATE KEY" {
-		privateKey, err = x509.ParsePKCS1PrivateKey(block.Bytes)
-		if err != nil {
-			return nil, err
-		}
-	} else if blockType == "PRIVATE KEY" { // PKCS#8 format
-		priKey, err := x509.ParsePKCS8PrivateKey(block.Bytes)
-		if err != nil {
-			return nil, err
-		}
-		var ok bool
-		privateKey, ok = priKey.(*rsa.PrivateKey)
-		if !ok {
-			return nil, errors.New("failed to parse RSA private key")
-		}
-	} else {
-		return nil, errors.New("unsupported key type")
-	}
-
-	return privateKey, nil
-}
-
-// hashData returns the hash value of the data, using the specified hash function
-func hashData(hash crypto.Hash, data []byte) ([]byte, error) {
-	if !hash.Available() {
-		return nil, errors.New("unsupported hash algorithm")
-	}
-
-	var hashed []byte
-
-	switch hash {
-	case crypto.SHA224:
-		h := sha256.Sum224(data)
-		hashed = h[:]
-	case crypto.SHA256:
-		h := sha256.Sum256(data)
-		hashed = h[:]
-	case crypto.SHA384:
-		h := sha512.Sum384(data)
-		hashed = h[:]
-	case crypto.SHA512:
-		h := sha512.Sum512(data)
-		hashed = h[:]
-	default:
-		return nil, errors.New("unsupported hash algorithm")
-	}
-
-	return hashed, nil
 }

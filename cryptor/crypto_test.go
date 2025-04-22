@@ -7,7 +7,7 @@ import (
 	"github.com/duke-git/lancet/v2/internal"
 )
 
-func TestAesEcbEncrypt(t *testing.T) {
+func TestAesEcbCrypt(t *testing.T) {
 	t.Parallel()
 
 	data := "hello world"
@@ -16,11 +16,11 @@ func TestAesEcbEncrypt(t *testing.T) {
 	aesEcbEncrypt := AesEcbEncrypt([]byte(data), []byte(key))
 	aesEcbDecrypt := AesEcbDecrypt(aesEcbEncrypt, []byte(key))
 
-	assert := internal.NewAssert(t, "TestAesEcbEncrypt")
+	assert := internal.NewAssert(t, "TestAesEcbCrypt")
 	assert.Equal(data, string(aesEcbDecrypt))
 }
 
-func TestAesCbcEncrypt(t *testing.T) {
+func TestAesCbcCrypt(t *testing.T) {
 	t.Parallel()
 
 	data := "hello world"
@@ -29,7 +29,7 @@ func TestAesCbcEncrypt(t *testing.T) {
 	aesCbcEncrypt := AesCbcEncrypt([]byte(data), []byte(key))
 	aesCbcDecrypt := AesCbcDecrypt(aesCbcEncrypt, []byte(key))
 
-	assert := internal.NewAssert(t, "TestAesCbcEncrypt")
+	assert := internal.NewAssert(t, "TestAesCbcCrypt")
 	assert.Equal(data, string(aesCbcDecrypt))
 }
 
@@ -39,14 +39,14 @@ func TestAesCtrCrypt(t *testing.T) {
 	data := "hello world"
 	key := "abcdefghijklmnop"
 
-	aesCtrCrypt := AesCtrCrypt([]byte(data), []byte(key))
-	aesCtrDeCrypt := AesCtrCrypt(aesCtrCrypt, []byte(key))
+	aesCtrCrypt := AesCtrEncrypt([]byte(data), []byte(key))
+	aesCtrDeCrypt := AesCtrDecrypt(aesCtrCrypt, []byte(key))
 
 	assert := internal.NewAssert(t, "TestAesCtrCrypt")
 	assert.Equal(data, string(aesCtrDeCrypt))
 }
 
-func TestAesCfbEncrypt(t *testing.T) {
+func TestAesCfbCrypt(t *testing.T) {
 	t.Parallel()
 
 	data := "hello world"
@@ -55,11 +55,11 @@ func TestAesCfbEncrypt(t *testing.T) {
 	aesCfbEncrypt := AesCfbEncrypt([]byte(data), []byte(key))
 	aesCfbDecrypt := AesCfbDecrypt(aesCfbEncrypt, []byte(key))
 
-	assert := internal.NewAssert(t, "TestAesCfbEncrypt")
+	assert := internal.NewAssert(t, "TestAesCfbCrypt")
 	assert.Equal(data, string(aesCfbDecrypt))
 }
 
-func TestAesOfbEncrypt(t *testing.T) {
+func TestAesOfbCrypt(t *testing.T) {
 	t.Parallel()
 
 	data := "hello world"
@@ -72,7 +72,7 @@ func TestAesOfbEncrypt(t *testing.T) {
 	assert.Equal(data, string(aesOfbDecrypt))
 }
 
-func TestDesEcbEncrypt(t *testing.T) {
+func TestDesEcbCrypt(t *testing.T) {
 	t.Parallel()
 
 	data := "hello world"
@@ -85,7 +85,7 @@ func TestDesEcbEncrypt(t *testing.T) {
 	assert.Equal(data, string(desEcbDecrypt))
 }
 
-func TestDesCbcEncrypt(t *testing.T) {
+func TestDesCbcCrypt(t *testing.T) {
 	t.Parallel()
 
 	data := "hello world"
@@ -104,14 +104,14 @@ func TestDesCtrCrypt(t *testing.T) {
 	data := "hello world"
 	key := "abcdefgh"
 
-	desCtrCrypt := DesCtrCrypt([]byte(data), []byte(key))
-	desCtrDeCrypt := DesCtrCrypt(desCtrCrypt, []byte(key))
+	desCtrCrypt := DesCtrEncrypt([]byte(data), []byte(key))
+	desCtrDeCrypt := DesCtrDecrypt(desCtrCrypt, []byte(key))
 
 	assert := internal.NewAssert(t, "TestDesCtrCrypt")
 	assert.Equal(data, string(desCtrDeCrypt))
 }
 
-func TestDesCfbEncrypt(t *testing.T) {
+func TestDesCfbCrypt(t *testing.T) {
 	t.Parallel()
 
 	data := "hello world"
@@ -124,7 +124,7 @@ func TestDesCfbEncrypt(t *testing.T) {
 	assert.Equal(data, string(desCfbDecrypt))
 }
 
-func TestDesOfbEncrypt(t *testing.T) {
+func TestDesOfbCrypt(t *testing.T) {
 	t.Parallel()
 
 	data := "hello world"

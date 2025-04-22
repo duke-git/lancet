@@ -6,7 +6,6 @@
 package cryptor
 
 import (
-	"bufio"
 	"crypto/hmac"
 	"crypto/md5"
 	"crypto/sha1"
@@ -66,34 +65,37 @@ func Md5ByteWithBase64(data []byte) string {
 
 // Md5File return the md5 value of file.
 func Md5File(filename string) (string, error) {
-	if fileInfo, err := os.Stat(filename); err != nil {
-		return "", err
-	} else if fileInfo.IsDir() {
-		return "", nil
-	}
-
 	file, err := os.Open(filename)
 	if err != nil {
 		return "", err
 	}
 	defer file.Close()
 
-	hash := md5.New()
-
-	chunkSize := 65536
-	for buf, reader := make([]byte, chunkSize), bufio.NewReader(file); ; {
-		n, err := reader.Read(buf)
-		if err != nil {
-			if err == io.EOF {
-				break
-			}
-			return "", err
-		}
-		hash.Write(buf[:n])
+	stat, err := file.Stat()
+	if err != nil {
+		return "", err
+	}
+	if stat.IsDir() {
+		return "", nil
 	}
 
-	checksum := fmt.Sprintf("%x", hash.Sum(nil))
-	return checksum, nil
+	hash := md5.New()
+	buf := make([]byte, 65536) // 64KB
+
+	for {
+		n, err := file.Read(buf)
+		if err != nil && err != io.EOF {
+			return "", err
+		}
+		if n > 0 {
+			hash.Write(buf[:n])
+		}
+		if err == io.EOF {
+			break
+		}
+	}
+
+	return fmt.Sprintf("%x", hash.Sum(nil)), nil
 }
 
 // HmacMd5 return the hmac hash of string use md5.
