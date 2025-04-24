@@ -59,16 +59,18 @@ func ContainSubSlice[T comparable](slice, subSlice []T) bool {
 		return false
 	}
 
-	elementMap := make(map[T]struct{}, len(slice))
+	elementCount := make(map[T]int, len(slice))
 	for _, item := range slice {
-		elementMap[item] = struct{}{}
+		elementCount[item]++
 	}
 
 	for _, item := range subSlice {
-		if _, ok := elementMap[item]; !ok {
+		if elementCount[item] == 0 {
 			return false
 		}
+		elementCount[item]--
 	}
+
 	return true
 }
 
@@ -81,14 +83,18 @@ func Chunk[T any](slice []T, size int) [][]T {
 		return result
 	}
 
-	for _, item := range slice {
-		l := len(result)
-		if l == 0 || len(result[l-1]) == size {
-			result = append(result, []T{})
-			l++
-		}
+	currentChunk := []T{}
 
-		result[l-1] = append(result[l-1], item)
+	for _, item := range slice {
+		if len(currentChunk) == size {
+			result = append(result, currentChunk)
+			currentChunk = []T{}
+		}
+		currentChunk = append(currentChunk, item)
+	}
+
+	if len(currentChunk) > 0 {
+		result = append(result, currentChunk)
 	}
 
 	return result
@@ -106,6 +112,7 @@ func Compact[T comparable](slice []T) []T {
 			result = append(result, v)
 		}
 	}
+
 	return result[:len(result):len(result)]
 }
 
@@ -133,8 +140,17 @@ func Concat[T any](slices ...[]T) []T {
 func Difference[T comparable](slice, comparedSlice []T) []T {
 	result := []T{}
 
+	if len(slice) == 0 {
+		return result
+	}
+
+	comparedMap := make(map[T]struct{}, len(comparedSlice))
+	for _, v := range comparedSlice {
+		comparedMap[v] = struct{}{}
+	}
+
 	for _, v := range slice {
-		if !Contain(comparedSlice, v) {
+		if _, found := comparedMap[v]; !found {
 			result = append(result, v)
 		}
 	}
@@ -147,13 +163,17 @@ func Difference[T comparable](slice, comparedSlice []T) []T {
 // like lodash.js differenceBy: https://lodash.com/docs/4.17.15#differenceBy.
 // Play: https://go.dev/play/p/DiivgwM5OnC
 func DifferenceBy[T comparable](slice []T, comparedSlice []T, iteratee func(index int, item T) T) []T {
-	orginSliceAfterMap := Map(slice, iteratee)
-	comparedSliceAfterMap := Map(comparedSlice, iteratee)
-
 	result := make([]T, 0)
-	for i, v := range orginSliceAfterMap {
-		if !Contain(comparedSliceAfterMap, v) {
-			result = append(result, slice[i])
+
+	comparedMap := make(map[T]struct{}, len(comparedSlice))
+	for _, item := range comparedSlice {
+		comparedMap[iteratee(0, item)] = struct{}{}
+	}
+
+	for i, item := range slice {
+		transformedItem := iteratee(i, item)
+		if _, found := comparedMap[transformedItem]; !found {
+			result = append(result, item)
 		}
 	}
 
@@ -165,23 +185,32 @@ func DifferenceBy[T comparable](slice []T, comparedSlice []T, iteratee func(inde
 // The comparator is invoked with two arguments: (arrVal, othVal).
 // Play: https://go.dev/play/p/v2U2deugKuV
 func DifferenceWith[T any](slice []T, comparedSlice []T, comparator func(item1, item2 T) bool) []T {
-	result := make([]T, 0)
-
 	getIndex := func(arr []T, item T, comparison func(v1, v2 T) bool) int {
-		index := -1
 		for i, v := range arr {
 			if comparison(item, v) {
-				index = i
+				return i
+			}
+		}
+		return -1
+	}
+
+	result := make([]T, 0, len(slice))
+
+	comparedMap := make(map[int]T, len(comparedSlice))
+	for _, v := range comparedSlice {
+		comparedMap[getIndex(comparedSlice, v, comparator)] = v
+	}
+
+	for _, v := range slice {
+		found := false
+		for _, existing := range comparedSlice {
+			if comparator(v, existing) {
+				found = true
 				break
 			}
 		}
-		return index
-	}
-
-	for i, v := range slice {
-		index := getIndex(comparedSlice, v, comparator)
-		if index == -1 {
-			result = append(result, slice[i])
+		if !found {
+			result = append(result, v)
 		}
 	}
 
@@ -423,19 +452,20 @@ func FindLastBy[T any](slice []T, predicate func(index int, item T) bool) (v T, 
 // Flatten flattens slice with one level.
 // Play: https://go.dev/play/p/hYa3cBEevtm
 func Flatten(slice any) any {
-	sv := sliceValue(slice)
-
-	var result reflect.Value
-	if sv.Type().Elem().Kind() == reflect.Interface {
-		result = reflect.MakeSlice(reflect.TypeOf([]interface{}{}), 0, sv.Len())
-	} else if sv.Type().Elem().Kind() == reflect.Slice {
-		result = reflect.MakeSlice(sv.Type().Elem(), 0, sv.Len())
-	} else {
-		return result
+	sv := reflect.ValueOf(slice)
+	if sv.Kind() != reflect.Slice {
+		panic("Flatten: input must be a slice")
 	}
 
+	elemType := sv.Type().Elem()
+	if elemType.Kind() == reflect.Slice {
+		elemType = elemType.Elem()
+	}
+
+	result := reflect.MakeSlice(reflect.SliceOf(elemType), 0, sv.Len())
+
 	for i := 0; i < sv.Len(); i++ {
-		item := reflect.ValueOf(sv.Index(i).Interface())
+		item := sv.Index(i)
 		if item.Kind() == reflect.Slice {
 			for j := 0; j < item.Len(); j++ {
 				result = reflect.Append(result, item.Index(j))
@@ -607,7 +637,7 @@ func Repeat[T any](item T, n int) []T {
 }
 
 // InterfaceSlice convert param to slice of interface.
-// This function is deprecated, use generics feature of go1.18+ for replacement.
+// deprecated: use generics feature of go1.18+ for replacement.
 // Play: https://go.dev/play/p/FdQXF0Vvqs-
 func InterfaceSlice(slice any) []any {
 	sv := sliceValue(slice)
@@ -624,7 +654,7 @@ func InterfaceSlice(slice any) []any {
 }
 
 // StringSlice convert param to slice of string.
-// This function is deprecated, use generics feature of go1.18+ for replacement.
+// deprecated: use generics feature of go1.18+ for replacement.
 // Play: https://go.dev/play/p/W0TZDWCPFcI
 func StringSlice(slice any) []string {
 	v := sliceValue(slice)
@@ -642,7 +672,7 @@ func StringSlice(slice any) []string {
 }
 
 // IntSlice convert param to slice of int.
-// This function is deprecated, use generics feature of go1.18+ for replacement.
+// deprecated: use generics feature of go1.18+ for replacement.
 // Play: https://go.dev/play/p/UQDj-on9TGN
 func IntSlice(slice any) []int {
 	sv := sliceValue(slice)
@@ -773,46 +803,54 @@ func InsertAt[T any](slice []T, index int, value any) []T {
 		return slice
 	}
 
-	if v, ok := value.(T); ok {
-		slice = append(slice[:index], append([]T{v}, slice[index:]...)...)
+	switch v := value.(type) {
+	case T:
+		result := make([]T, size+1)
+		copy(result, slice[:index])
+		result[index] = v
+		copy(result[index+1:], slice[index:])
+		return result
+	case []T:
+		result := make([]T, size+len(v))
+		copy(result, slice[:index])
+		copy(result[index:], v)
+		copy(result[index+len(v):], slice[index:])
+		return result
+	default:
 		return slice
 	}
-
-	if v, ok := value.([]T); ok {
-		slice = append(slice[:index], append(v, slice[index:]...)...)
-		return slice
-	}
-
-	return slice
 }
 
 // UpdateAt update the slice element at index.
 // Play: https://go.dev/play/p/f3mh2KloWVm
 func UpdateAt[T any](slice []T, index int, value T) []T {
-	size := len(slice)
-
-	if index < 0 || index >= size {
+	if index < 0 || index >= len(slice) {
 		return slice
 	}
-	slice = append(slice[:index], append([]T{value}, slice[index+1:]...)...)
 
-	return slice
+	result := make([]T, len(slice))
+	copy(result, slice)
+
+	result[index] = value
+
+	return result
 }
 
 // Unique remove duplicate elements in slice.
 // Play: https://go.dev/play/p/AXw0R3ZTE6a
 func Unique[T comparable](slice []T) []T {
-	result := make([]T, 0, len(slice))
+	if len(slice) == 0 {
+		return slice
+	}
+
 	seen := make(map[T]struct{}, len(slice))
+	result := slice[:0]
 
-	for i := range slice {
-		if _, ok := seen[slice[i]]; ok {
-			continue
+	for _, item := range slice {
+		if _, exists := seen[item]; !exists {
+			seen[item] = struct{}{}
+			result = append(result, item)
 		}
-
-		seen[slice[i]] = struct{}{}
-
-		result = append(result, slice[i])
 	}
 
 	return result
@@ -822,18 +860,19 @@ func Unique[T comparable](slice []T) []T {
 // The function maintains the order of the elements.
 // Play: https://go.dev/play/p/GY7JE4yikrl
 func UniqueBy[T any, U comparable](slice []T, iteratee func(item T) U) []T {
-	result := make([]T, 0, len(slice))
+	if len(slice) == 0 {
+		return slice
+	}
+
 	seen := make(map[U]struct{}, len(slice))
+	result := slice[:0]
 
-	for i := range slice {
-		key := iteratee(slice[i])
-		if _, ok := seen[key]; ok {
-			continue
+	for _, item := range slice {
+		key := iteratee(item)
+		if _, exists := seen[key]; !exists {
+			seen[key] = struct{}{}
+			result = append(result, item)
 		}
-
-		seen[key] = struct{}{}
-
-		result = append(result, slice[i])
 	}
 
 	return result
@@ -843,19 +882,20 @@ func UniqueBy[T any, U comparable](slice []T, iteratee func(item T) U) []T {
 // The function maintains the order of the elements.
 // Play: https://go.dev/play/p/rwSacr-ZHsR
 func UniqueByComparator[T comparable](slice []T, comparator func(item T, other T) bool) []T {
-	result := make([]T, 0, len(slice))
-	seen := make([]T, 0, len(slice))
+	if len(slice) == 0 {
+		return slice
+	}
 
+	result := make([]T, 0, len(slice))
 	for _, item := range slice {
-		duplicate := false
-		for _, seenItem := range seen {
-			if comparator(item, seenItem) {
-				duplicate = true
+		isDuplicate := false
+		for _, existing := range result {
+			if comparator(item, existing) {
+				isDuplicate = true
 				break
 			}
 		}
-		if !duplicate {
-			seen = append(seen, item)
+		if !isDuplicate {
 			result = append(result, item)
 		}
 	}
