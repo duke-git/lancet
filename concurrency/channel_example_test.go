@@ -3,6 +3,7 @@ package concurrency
 import (
 	"context"
 	"fmt"
+	"log"
 	"time"
 )
 
@@ -198,4 +199,161 @@ func ExampleChannel_Bridge() {
 	// true
 	// true
 	// true
+}
+
+func ExampleKeyedLocker_Do() {
+	locker := NewKeyedLocker[string](2 * time.Second)
+
+	task := func() {
+		fmt.Println("Executing task...")
+		time.Sleep(1 * time.Second)
+		fmt.Println("Task completed.")
+	}
+
+	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+	defer cancel()
+
+	if err := locker.Do(ctx, "mykey", task); err != nil {
+		log.Fatalf("Error executing task: %v\n", err)
+	} else {
+		fmt.Println("Task successfully executed.")
+	}
+
+	// 再次尝试获取同一把锁，任务会被阻塞，直到释放锁
+	ctx2, cancel2 := context.WithTimeout(context.Background(), 3*time.Second)
+	defer cancel2()
+
+	if err := locker.Do(ctx2, "mykey", task); err != nil {
+		log.Fatalf("Error executing task: %v\n", err)
+	} else {
+		fmt.Println("Task successfully executed.")
+	}
+
+	// Output:
+	// Executing task...
+	// Task completed.
+	// Task successfully executed.
+	// Executing task...
+	// Task completed.
+	// Task successfully executed.
+}
+
+func ExampleRWKeyedLocker_Lock() {
+	locker := NewRWKeyedLocker[string](2 * time.Second)
+
+	// Simulate a key
+	key := "resource_key"
+
+	fn := func() {
+		fmt.Println("Starting write operation...")
+		// Simulate write operation, assuming it takes 2 seconds
+		time.Sleep(200 * time.Millisecond)
+		fmt.Println("Write operation completed!")
+	}
+
+	// Acquire the write lock and execute the operation
+	ctx, cancel := context.WithTimeout(context.Background(), 1*time.Second)
+	defer cancel()
+
+	// Execute the lock operation with a 3-second timeout
+	err := locker.Lock(ctx, key, fn)
+	if err != nil {
+		return
+	}
+
+	//output:
+	//Starting write operation...
+	//Write operation completed!
+}
+
+func ExampleRWKeyedLocker_RLock() {
+	locker := NewRWKeyedLocker[string](2 * time.Second)
+
+	// Simulate a key
+	key := "resource_key"
+
+	fn := func() {
+		fmt.Println("Starting write operation...")
+		// Simulate write operation, assuming it takes 2 seconds
+		time.Sleep(200 * time.Millisecond)
+		fmt.Println("Write operation completed!")
+	}
+
+	// Acquire the write lock and execute the operation
+	ctx, cancel := context.WithTimeout(context.Background(), 1*time.Second)
+	defer cancel()
+
+	// Execute the lock operation with a 3-second timeout
+	err := locker.RLock(ctx, key, fn)
+	if err != nil {
+		return
+	}
+
+	//output:
+	//Starting write operation...
+	//Write operation completed!
+}
+
+func ExampleTryKeyedLocker() {
+	locker := NewTryKeyedLocker[string]()
+
+	key := "resource_key"
+
+	if locker.TryLock(key) {
+		fmt.Println("Lock acquired")
+		time.Sleep(1 * time.Second)
+		// Unlock after work is done
+		locker.Unlock(key)
+		fmt.Println("Lock released")
+	} else {
+		fmt.Println("Lock failed")
+	}
+
+	//output:
+	//Lock acquired
+	//Lock released
+}
+
+func ExampleTryKeyedLocker_TryLock() {
+	locker := NewTryKeyedLocker[string]()
+
+	key := "resource_key"
+
+	done := make(chan struct{})
+	go func() {
+		if locker.TryLock(key) {
+			time.Sleep(2 * time.Second)
+			locker.Unlock(key)
+		}
+		close(done)
+	}()
+
+	time.Sleep(100 * time.Millisecond)
+
+	if locker.TryLock(key) {
+		fmt.Println("Lock acquired")
+		locker.Unlock(key)
+	} else {
+		fmt.Println("Lock failed")
+	}
+
+	// wait for the goroutine to finish
+	<-done
+
+	fmt.Println("Retrying...")
+	time.Sleep(100 * time.Millisecond)
+
+	if locker.TryLock(key) {
+		fmt.Println("Lock acquired")
+		locker.Unlock(key)
+		fmt.Println("Lock released")
+	} else {
+		fmt.Println("Lock failed")
+	}
+
+	// Output:
+	// Lock failed
+	// Retrying...
+	// Lock acquired
+	// Lock released
 }
