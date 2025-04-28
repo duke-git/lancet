@@ -219,7 +219,6 @@ func ExampleKeyedLocker_Do() {
 		fmt.Println("Task successfully executed.")
 	}
 
-	// 再次尝试获取同一把锁，任务会被阻塞，直到释放锁
 	ctx2, cancel2 := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel2()
 

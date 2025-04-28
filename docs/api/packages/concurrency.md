@@ -7,6 +7,7 @@
 ## 源码:
 
 -   [https://github.com/duke-git/lancet/blob/main/concurrency/channel.go](https://github.com/duke-git/lancet/blob/main/concurrency/channel.go)
+-   [https://github.com/duke-git/lancet/blob/main/concurrency/keyed_locker.go](https://github.com/duke-git/lancet/blob/main/concurrency/keyed_locker.go)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -34,6 +35,18 @@ import (
 -   [RepeatFn](#RepeatFn)
 -   [Take](#Take)
 -   [Tee](#Tee)
+
+### KeyedLocker
+
+-   [NewKeyedLocker](#NewKeyedLocker)
+-   [KeyedLocker_Do](#Do)
+-   [NewRWKeyedLocker](#NewRWKeyedLocker)
+-   [RWKeyedLocker_RLock](#RLock)
+-   [RWKeyedLocker_Lock](#Lock)
+-   [NewTryKeyedLocker](#NewTryKeyedLocker)
+-   [TryKeyedLocker_TryLock](#TryLock)
+-   [TryKeyedLocker_Unlock](#Unlock)
+
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -450,5 +463,387 @@ func main() {
     // 1
     // 1
     // 1
+}
+```
+
+### KeyedLocker
+
+### <span id="NewKeyedLocker">NewKeyedLocker</span>
+
+<p>NewKeyedLocker创建一个新的KeyedLocker，并为锁的过期设置指定的 TTL。KeyedLocker 是一个简单的键值锁实现，允许非阻塞的锁获取。</p>
+
+<b>函数签名:</b>
+
+```go
+func NewKeyedLocker[K comparable](ttl time.Duration) *KeyedLocker[K]
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/todo)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/concurrency"
+)
+
+func main() {
+    locker := concurrency.NewKeyedLocker[string](2 * time.Second)
+
+    task := func() {
+        fmt.Println("Executing task...")
+        time.Sleep(1 * time.Second)
+        fmt.Println("Task completed.")
+    }
+
+    ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+    defer cancel()
+
+    if err := locker.Do(ctx, "mykey", task); err != nil {
+        log.Fatalf("Error executing task: %v\n", err)
+    } else {
+        fmt.Println("Task successfully executed.")
+    }
+
+    ctx2, cancel2 := context.WithTimeout(context.Background(), 3*time.Second)
+    defer cancel2()
+
+    if err := locker.Do(ctx2, "mykey", task); err != nil {
+        log.Fatalf("Error executing task: %v\n", err)
+    } else {
+        fmt.Println("Task successfully executed.")
+    }
+
+    // Output:
+    // Executing task...
+    // Task completed.
+    // Task successfully executed.
+    // Executing task...
+    // Task completed.
+    // Task successfully executed.
+}
+```
+
+### <span id="Do">KeyedLocker_Do</span>
+
+<p>为指定的键获取锁并执行提供的函数。</p>
+
+<b>函数签名:</b>
+
+```go
+func (l *KeyedLocker[K]) Do(ctx context.Context, key K, fn func()) error
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/todo)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/concurrency"
+)
+
+func main() {
+    locker := concurrency.NewKeyedLocker[string](2 * time.Second)
+
+    task := func() {
+        fmt.Println("Executing task...")
+        time.Sleep(1 * time.Second)
+        fmt.Println("Task completed.")
+    }
+
+    ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+    defer cancel()
+
+    if err := locker.Do(ctx, "mykey", task); err != nil {
+        log.Fatalf("Error executing task: %v\n", err)
+    } else {
+        fmt.Println("Task successfully executed.")
+    }
+
+    ctx2, cancel2 := context.WithTimeout(context.Background(), 3*time.Second)
+    defer cancel2()
+
+    if err := locker.Do(ctx2, "mykey", task); err != nil {
+        log.Fatalf("Error executing task: %v\n", err)
+    } else {
+        fmt.Println("Task successfully executed.")
+    }
+
+    // Output:
+    // Executing task...
+    // Task completed.
+    // Task successfully executed.
+    // Executing task...
+    // Task completed.
+    // Task successfully executed.
+}
+```
+
+### <span id="NewRWKeyedLocker">NewRWKeyedLocker</span>
+
+<p>NewRWKeyedLocker创建一个新的RWKeyedLocker，并为锁的过期设置指定的 TTL。RWKeyedLocker 是一个简单的键值读写锁实现，允许非阻塞的锁获取。</p>
+
+<b>函数签名:</b>
+
+```go
+func NewRWKeyedLocker[K comparable](ttl time.Duration) *RWKeyedLocker[K]
+```
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/todo)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/concurrency"
+)
+
+func main() {
+    locker := concurrency.NewRWKeyedLocker[string](2 * time.Second)
+
+    // Simulate a key
+    key := "resource_key"
+
+    fn := func() {
+        fmt.Println("Starting write operation...")
+        // Simulate write operation, assuming it takes 2 seconds
+        time.Sleep(200 * time.Millisecond)
+        fmt.Println("Write operation completed!")
+    }
+
+    // Acquire the write lock and execute the operation
+    ctx, cancel := context.WithTimeout(context.Background(), 1*time.Second)
+    defer cancel()
+
+    // Execute the lock operation with a 3-second timeout
+    err := locker.Lock(ctx, key, fn)
+    if err != nil {
+        return
+    }
+
+    //output:
+    //Starting write operation...
+    //Write operation completed!
+}
+```
+
+### <span id="RLock">RWKeyedLocker_RLock</span>
+
+<p>RLock为指定的键获取读锁并执行提供的函数。</p>
+
+<b>函数签名:</b>
+
+```go
+func (l *RWKeyedLocker[K]) RLock(ctx context.Context, key K, fn func()) error
+```
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/todo)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/concurrency"
+)
+
+func main() {
+    locker := concurrency.NewRWKeyedLocker[string](2 * time.Second)
+
+    // Simulate a key
+    key := "resource_key"
+
+    fn := func() {
+        fmt.Println("Starting write operation...")
+        // Simulate write operation, assuming it takes 2 seconds
+        time.Sleep(200 * time.Millisecond)
+        fmt.Println("Write operation completed!")
+    }
+
+    // Acquire the write lock and execute the operation
+    ctx, cancel := context.WithTimeout(context.Background(), 1*time.Second)
+    defer cancel()
+
+    // Execute the lock operation with a 3-second timeout
+    err := locker.RLock(ctx, key, fn)
+    if err != nil {
+        return
+    }
+
+    //output:
+    //Starting write operation...
+    //Write operation completed!
+}
+```
+
+### <span id="Lock">RWKeyedLocker_Lock</span>
+
+<p>RLock为指定的键获取锁并执行提供的函数。</p>
+
+<b>函数签名:</b>
+
+```go
+func (l *RWKeyedLocker[K]) Lock(ctx context.Context, key K, fn func()) error
+```
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/todo)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/concurrency"
+)
+
+func main() {
+    locker := NewRWKeyedLocker[string](2 * time.Second)
+
+    // Simulate a key
+    key := "resource_key"
+
+    fn := func() {
+        fmt.Println("Starting write operation...")
+        // Simulate write operation, assuming it takes 2 seconds
+        time.Sleep(200 * time.Millisecond)
+        fmt.Println("Write operation completed!")
+    }
+
+    // Acquire the write lock and execute the operation
+    ctx, cancel := context.WithTimeout(context.Background(), 1*time.Second)
+    defer cancel()
+
+    // Execute the lock operation with a 3-second timeout
+    err := locker.Lock(ctx, key, fn)
+    if err != nil {
+        return
+    }
+
+    //output:
+    //Starting write operation...
+    //Write operation completed!
+}
+```
+
+### <span id="NewTryKeyedLocker">NewTryKeyedLocker</span>
+
+<p>创建一个TryKeyedLocker实例，TryKeyedLocker是KeyedLocker的非阻塞版本。</p>
+
+<b>函数签名:</b>
+
+```go
+func NewTryKeyedLocker[K comparable]() *TryKeyedLocker[K] 
+```
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/todo)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/concurrency"
+)
+
+func main() {
+    locker := concurrency.NewTryKeyedLocker[string]()
+
+    key := "resource_key"
+
+    if locker.TryLock(key) {
+        fmt.Println("Lock acquired")
+        time.Sleep(1 * time.Second)
+        // Unlock after work is done
+        locker.Unlock(key)
+        fmt.Println("Lock released")
+    } else {
+        fmt.Println("Lock failed")
+    }
+
+    //output:
+    //Lock acquired
+    //Lock released
+}
+```
+
+### <span id="TryLock">TryKeyedLocker_TryLock</span>
+
+<p>TryLock尝试获取指定键的锁。如果锁成功获取，则返回true，否则返回false。</p>
+
+<b>函数签名:</b>
+
+```go
+func (l *TryKeyedLocker[K]) TryLock(key K) bool
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/todo)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/concurrency"
+)
+
+func main() {
+    locker := concurrency.NewTryKeyedLocker[string]()
+
+    key := "resource_key"
+
+    if locker.TryLock(key) {
+        fmt.Println("Lock acquired")
+        time.Sleep(1 * time.Second)
+        // Unlock after work is done
+        locker.Unlock(key)
+        fmt.Println("Lock released")
+    } else {
+        fmt.Println("Lock failed")
+    }
+
+    //output:
+    //Lock acquired
+    //Lock released
+}
+```
+
+### <span id="Unlock">TryKeyedLocker_Unlock</span>
+
+<p>释放指定键的锁。</p>
+
+<b>函数签名:</b>
+
+```go
+func (l *TryKeyedLocker[K]) Unlock(key K)
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/todo)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/concurrency"
+)
+
+func main() {
+    locker := concurrency.NewTryKeyedLocker[string]()
+
+    key := "resource_key"
+
+    if locker.TryLock(key) {
+        fmt.Println("Lock acquired")
+        time.Sleep(1 * time.Second)
+        // Unlock after work is done
+        locker.Unlock(key)
+        fmt.Println("Lock released")
+    } else {
+        fmt.Println("Lock failed")
+    }
+
+    //output:
+    //Lock acquired
+    //Lock released
 }
 ```

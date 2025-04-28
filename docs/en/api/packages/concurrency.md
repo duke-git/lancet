@@ -6,6 +6,7 @@ Package concurrency contain some functions to support concurrent programming. eg
 ## Source:
 
 - [https://github.com/duke-git/lancet/blob/main/concurrency/channel.go](https://github.com/duke-git/lancet/blob/main/concurrency/channel.go)
+-   [https://github.com/duke-git/lancet/blob/main/concurrency/keyed_locker.go](https://github.com/duke-git/lancet/blob/main/concurrency/keyed_locker.go)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -19,7 +20,9 @@ import (
 <div STYLE="page-break-after: always;"></div>
 
 ## Index
+
 ### Channel
+
 - [NewChannel](#NewChannel)
 - [Bridge](#Bridge)
 - [FanIn](#FanIn)
@@ -30,6 +33,17 @@ import (
 - [RepeatFn](#RepeatFn)
 - [Take](#Take)
 - [Tee](#Tee)
+
+### KeyedLocker
+
+-   [NewKeyedLocker](#NewKeyedLocker)
+-   [KeyedLocker_Do](#Do)
+-   [NewRWKeyedLocker](#NewRWKeyedLocker)
+-   [RWKeyedLocker_RLock](#RLock)
+-   [RWKeyedLocker_Lock](#Lock)
+-   [NewTryKeyedLocker](#NewTryKeyedLocker)
+-   [TryKeyedLocker_TryLock](#TryLock)
+-   [TryKeyedLocker_Unlock](#Unlock)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -436,5 +450,387 @@ func main() {
     // 1
     // 1
     // 1
+}
+```
+
+### KeyedLocker
+
+### <span id="NewKeyedLocker">NewKeyedLocker</span>
+
+<p>KeyedLocker is a simple implementation of a keyed locker that allows for non-blocking lock acquisition.</p>
+
+<b>Signature:</b>
+
+```go
+func NewKeyedLocker[K comparable](ttl time.Duration) *KeyedLocker[K]
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/todo)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/concurrency"
+)
+
+func main() {
+    locker := concurrency.NewKeyedLocker[string](2 * time.Second)
+
+    task := func() {
+        fmt.Println("Executing task...")
+        time.Sleep(1 * time.Second)
+        fmt.Println("Task completed.")
+    }
+
+    ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+    defer cancel()
+
+    if err := locker.Do(ctx, "mykey", task); err != nil {
+        log.Fatalf("Error executing task: %v\n", err)
+    } else {
+        fmt.Println("Task successfully executed.")
+    }
+
+    ctx2, cancel2 := context.WithTimeout(context.Background(), 3*time.Second)
+    defer cancel2()
+
+    if err := locker.Do(ctx2, "mykey", task); err != nil {
+        log.Fatalf("Error executing task: %v\n", err)
+    } else {
+        fmt.Println("Task successfully executed.")
+    }
+
+    // Output:
+    // Executing task...
+    // Task completed.
+    // Task successfully executed.
+    // Executing task...
+    // Task completed.
+    // Task successfully executed.
+}
+```
+
+### <span id="Do">KeyedLocker_Do</span>
+
+<p>Acquires a lock for the specified key and executes the provided function.</p>
+
+<b>Signature:</b>
+
+```go
+func (l *KeyedLocker[K]) Do(ctx context.Context, key K, fn func()) error
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/todo)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/concurrency"
+)
+
+func main() {
+    locker := concurrency.NewKeyedLocker[string](2 * time.Second)
+
+    task := func() {
+        fmt.Println("Executing task...")
+        time.Sleep(1 * time.Second)
+        fmt.Println("Task completed.")
+    }
+
+    ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+    defer cancel()
+
+    if err := locker.Do(ctx, "mykey", task); err != nil {
+        log.Fatalf("Error executing task: %v\n", err)
+    } else {
+        fmt.Println("Task successfully executed.")
+    }
+
+    ctx2, cancel2 := context.WithTimeout(context.Background(), 3*time.Second)
+    defer cancel2()
+
+    if err := locker.Do(ctx2, "mykey", task); err != nil {
+        log.Fatalf("Error executing task: %v\n", err)
+    } else {
+        fmt.Println("Task successfully executed.")
+    }
+
+    // Output:
+    // Executing task...
+    // Task completed.
+    // Task successfully executed.
+    // Executing task...
+    // Task completed.
+    // Task successfully executed.
+}
+```
+
+### <span id="NewRWKeyedLocker">NewRWKeyedLocker</span>
+
+<p>RWKeyedLocker is a read-write version of KeyedLocker.</p>
+
+<b>Signature:</b>
+
+```go
+func NewRWKeyedLocker[K comparable](ttl time.Duration) *RWKeyedLocker[K]
+```
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/todo)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/concurrency"
+)
+
+func main() {
+    locker := concurrency.NewRWKeyedLocker[string](2 * time.Second)
+
+    // Simulate a key
+    key := "resource_key"
+
+    fn := func() {
+        fmt.Println("Starting write operation...")
+        // Simulate write operation, assuming it takes 2 seconds
+        time.Sleep(200 * time.Millisecond)
+        fmt.Println("Write operation completed!")
+    }
+
+    // Acquire the write lock and execute the operation
+    ctx, cancel := context.WithTimeout(context.Background(), 1*time.Second)
+    defer cancel()
+
+    // Execute the lock operation with a 3-second timeout
+    err := locker.Lock(ctx, key, fn)
+    if err != nil {
+        return
+    }
+
+    //output:
+    //Starting write operation...
+    //Write operation completed!
+}
+```
+
+### <span id="RLock">RWKeyedLocker_RLock</span>
+
+<p>Acquires a read lock for the specified key and executes the provided function.</p>
+
+<b>Signature:</b>
+
+```go
+func (l *RWKeyedLocker[K]) RLock(ctx context.Context, key K, fn func()) error
+```
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/todo)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/concurrency"
+)
+
+func main() {
+    locker := concurrency.NewRWKeyedLocker[string](2 * time.Second)
+
+    // Simulate a key
+    key := "resource_key"
+
+    fn := func() {
+        fmt.Println("Starting write operation...")
+        // Simulate write operation, assuming it takes 2 seconds
+        time.Sleep(200 * time.Millisecond)
+        fmt.Println("Write operation completed!")
+    }
+
+    // Acquire the write lock and execute the operation
+    ctx, cancel := context.WithTimeout(context.Background(), 1*time.Second)
+    defer cancel()
+
+    // Execute the lock operation with a 3-second timeout
+    err := locker.RLock(ctx, key, fn)
+    if err != nil {
+        return
+    }
+
+    //output:
+    //Starting write operation...
+    //Write operation completed!
+}
+```
+
+### <span id="Lock">RWKeyedLocker_Lock</span>
+
+<p>Acquires a write lock for the specified key and executes the provided function.</p>
+
+<b>Signature:</b>
+
+```go
+func (l *RWKeyedLocker[K]) Lock(ctx context.Context, key K, fn func()) error
+```
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/todo)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/concurrency"
+)
+
+func main() {
+    locker := NewRWKeyedLocker[string](2 * time.Second)
+
+    // Simulate a key
+    key := "resource_key"
+
+    fn := func() {
+        fmt.Println("Starting write operation...")
+        // Simulate write operation, assuming it takes 2 seconds
+        time.Sleep(200 * time.Millisecond)
+        fmt.Println("Write operation completed!")
+    }
+
+    // Acquire the write lock and execute the operation
+    ctx, cancel := context.WithTimeout(context.Background(), 1*time.Second)
+    defer cancel()
+
+    // Execute the lock operation with a 3-second timeout
+    err := locker.Lock(ctx, key, fn)
+    if err != nil {
+        return
+    }
+
+    //output:
+    //Starting write operation...
+    //Write operation completed!
+}
+```
+
+### <span id="NewTryKeyedLocker">NewTryKeyedLocker</span>
+
+<p>TryKeyedLocker is a non-blocking version of KeyedLocker.</p>
+
+<b>Signature:</b>
+
+```go
+func NewTryKeyedLocker[K comparable]() *TryKeyedLocker[K] 
+```
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/todo)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/concurrency"
+)
+
+func main() {
+    locker := concurrency.NewTryKeyedLocker[string]()
+
+    key := "resource_key"
+
+    if locker.TryLock(key) {
+        fmt.Println("Lock acquired")
+        time.Sleep(1 * time.Second)
+        // Unlock after work is done
+        locker.Unlock(key)
+        fmt.Println("Lock released")
+    } else {
+        fmt.Println("Lock failed")
+    }
+
+    //output:
+    //Lock acquired
+    //Lock released
+}
+```
+
+### <span id="TryLock">TryKeyedLocker_TryLock</span>
+
+<p>TryLock tries to acquire a lock for the specified key.</p>
+
+<b>Signature:</b>
+
+```go
+func (l *TryKeyedLocker[K]) TryLock(key K) bool
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/todo)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/concurrency"
+)
+
+func main() {
+    locker := concurrency.NewTryKeyedLocker[string]()
+
+    key := "resource_key"
+
+    if locker.TryLock(key) {
+        fmt.Println("Lock acquired")
+        time.Sleep(1 * time.Second)
+        // Unlock after work is done
+        locker.Unlock(key)
+        fmt.Println("Lock released")
+    } else {
+        fmt.Println("Lock failed")
+    }
+
+    //output:
+    //Lock acquired
+    //Lock released
+}
+```
+
+### <span id="Unlock">TryKeyedLocker_Unlock</span>
+
+<p>Unlock releases the lock for the specified key.</p>
+
+<b>Signature:</b>
+
+```go
+func (l *TryKeyedLocker[K]) Unlock(key K)
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/todo)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/concurrency"
+)
+
+func main() {
+    locker := concurrency.NewTryKeyedLocker[string]()
+
+    key := "resource_key"
+
+    if locker.TryLock(key) {
+        fmt.Println("Lock acquired")
+        time.Sleep(1 * time.Second)
+        // Unlock after work is done
+        locker.Unlock(key)
+        fmt.Println("Lock released")
+    } else {
+        fmt.Println("Lock failed")
+    }
+
+    //output:
+    //Lock acquired
+    //Lock released
 }
 ```
