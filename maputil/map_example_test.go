@@ -842,6 +842,10 @@ func ExampleFindValuesBy() {
 		return k%2 == 0
 	})
 
+	// github action will excute this test currently, so sort the result
+	// to make it deterministic
+	sort.Strings(result)
+
 	fmt.Println(result)
 
 	// Output:
