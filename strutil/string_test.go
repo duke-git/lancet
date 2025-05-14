@@ -518,7 +518,8 @@ func TestStringToBytes(t *testing.T) {
 	assert := internal.NewAssert(t, "TestStringToBytes")
 
 	bytes := StringToBytes("abc")
-	assert.Equal(bytes, []byte{'a', 'b', 'c'})
+	assert.Equal([]byte{'a', 'b', 'c'}, bytes)
+	assert.Equal(3, cap(bytes))
 }
 
 func TestBytesToString(t *testing.T) {

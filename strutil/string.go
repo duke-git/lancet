@@ -396,7 +396,10 @@ func RemoveNonPrintable(str string) string {
 // StringToBytes converts a string to byte slice without a memory allocation.
 // Play: https://go.dev/play/p/7OyFBrf9AxA
 func StringToBytes(str string) (b []byte) {
-	return *(*[]byte)(unsafe.Pointer(&str))
+	return *(*[]byte)(unsafe.Pointer(&struct {
+		string
+		Cap int
+	}{str, len(str)}))
 }
 
 // BytesToString converts a byte slice to string without a memory allocation.
