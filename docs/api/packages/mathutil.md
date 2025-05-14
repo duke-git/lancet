@@ -466,14 +466,14 @@ func main() {
 }
 ```
 
-### <span id="T运行cRound">T运行cRound</span>
+### <span id="TruncRound">TruncRound</span>
 
 <p>截短n位小数（不进行四舍五入）</p>
 
 <b>函数签名:</b>
 
 ```go
-func T运行cRound[T constraints.Float | constraints.Integer](x T, n int) T 
+func TruncRound[T constraints.Float | constraints.Integer](x T, n int) T 
 ```
 
 <b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/aumarSHIGzP)</span></b>
@@ -487,9 +487,9 @@ import (
 )
 
 func main() {
-    result1 := mathutil.T运行cRound(0.124, 2)
-    result2 := mathutil.T运行cRound(0.125, 2)
-    result3 := mathutil.T运行cRound(0.125, 3)
+    result1 := mathutil.TruncRound(0.124, 2)
+    result2 := mathutil.TruncRound(0.125, 2)
+    result3 := mathutil.TruncRound(0.125, 3)
 
     fmt.Println(result1)
     fmt.Println(result2)
