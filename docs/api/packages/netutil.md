@@ -48,7 +48,6 @@ import (
 -   [UploadFile](#UploadFile)
 -   [IsPingConnected](#IsPingConnected)
 -   [IsTelnetConnected](#IsTelnetConnected)
--   [IsTelnetConnected](#IsTelnetConnected)
 -   [BuildUrl](#BuildUrl)
 -   [AddQueryParams](#AddQueryParams)
 

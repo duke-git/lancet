@@ -182,7 +182,7 @@ func IsJSON(str string) bool {
 	return json.Unmarshal([]byte(str), &js) == nil
 }
 
-// IsAlphaNumericStr check if the string is alphanumeric.
+// IsAlphaNumeric check if the string is alphanumeric.
 // Play: todo
 func IsAlphaNumeric(s string) bool {
 	return alphaNumericMatcher.MatchString(s)

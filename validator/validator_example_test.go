@@ -665,3 +665,21 @@ func ExampleIsChinaUnionPay() {
 	// true
 	// false
 }
+
+func ExampleIsAlphaNumeric() {
+	result1 := IsAlphaNumeric("ABC")
+	result2 := IsAlphaNumeric("123")
+	result3 := IsAlphaNumeric("abc123")
+	result4 := IsAlphaNumeric("abc123@#$")
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+	fmt.Println(result4)
+
+	// Output:
+	// true
+	// true
+	// true
+	// false
+}

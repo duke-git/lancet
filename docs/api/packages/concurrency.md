@@ -41,12 +41,11 @@ import (
 -   [NewKeyedLocker](#NewKeyedLocker)
 -   [KeyedLocker_Do](#Do)
 -   [NewRWKeyedLocker](#NewRWKeyedLocker)
--   [RWKeyedLocker_RLock](#RLock)
--   [RWKeyedLocker_Lock](#Lock)
+-   [RLock](#RLock)
+-   [Lock](#Lock)
 -   [NewTryKeyedLocker](#NewTryKeyedLocker)
--   [TryKeyedLocker_TryLock](#TryLock)
--   [TryKeyedLocker_Unlock](#Unlock)
-
+-   [TryLock](#TryLock)
+-   [Unlock](#Unlock)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -525,7 +524,7 @@ func main() {
 }
 ```
 
-### <span id="Do">KeyedLocker_Do</span>
+### <span id="Do">Do</span>
 
 <p>为指定的键获取锁并执行提供的函数。</p>
 
@@ -591,6 +590,7 @@ func main() {
 ```go
 func NewRWKeyedLocker[K comparable](ttl time.Duration) *RWKeyedLocker[K]
 ```
+
 <b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/todo)</span></b>
 
 ```go
@@ -630,7 +630,7 @@ func main() {
 }
 ```
 
-### <span id="RLock">RWKeyedLocker_RLock</span>
+### <span id="RLock">RLock</span>
 
 <p>RLock为指定的键获取读锁并执行提供的函数。</p>
 
@@ -639,6 +639,7 @@ func main() {
 ```go
 func (l *RWKeyedLocker[K]) RLock(ctx context.Context, key K, fn func()) error
 ```
+
 <b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/todo)</span></b>
 
 ```go
@@ -678,15 +679,16 @@ func main() {
 }
 ```
 
-### <span id="Lock">RWKeyedLocker_Lock</span>
+### <span id="Lock">Lock</span>
 
-<p>RLock为指定的键获取锁并执行提供的函数。</p>
+<p>Lock为指定的键获取锁并执行提供的函数。</p>
 
 <b>函数签名:</b>
 
 ```go
 func (l *RWKeyedLocker[K]) Lock(ctx context.Context, key K, fn func()) error
 ```
+
 <b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/todo)</span></b>
 
 ```go
@@ -733,8 +735,9 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func NewTryKeyedLocker[K comparable]() *TryKeyedLocker[K] 
+func NewTryKeyedLocker[K comparable]() *TryKeyedLocker[K]
 ```
+
 <b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/todo)</span></b>
 
 ```go
@@ -766,7 +769,7 @@ func main() {
 }
 ```
 
-### <span id="TryLock">TryKeyedLocker_TryLock</span>
+### <span id="TryLock">TryLock</span>
 
 <p>TryLock尝试获取指定键的锁。如果锁成功获取，则返回true，否则返回false。</p>
 
@@ -807,7 +810,7 @@ func main() {
 }
 ```
 
-### <span id="Unlock">TryKeyedLocker_Unlock</span>
+### <span id="Unlock">Unlock</span>
 
 <p>释放指定键的锁。</p>
 

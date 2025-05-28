@@ -1,16 +1,18 @@
 # Concurrency
+
 Package concurrency contain some functions to support concurrent programming. eg, goroutine, channel.
 
 <div STYLE="page-break-after: always;"></div>
 
 ## Source:
 
-- [https://github.com/duke-git/lancet/blob/main/concurrency/channel.go](https://github.com/duke-git/lancet/blob/main/concurrency/channel.go)
+-   [https://github.com/duke-git/lancet/blob/main/concurrency/channel.go](https://github.com/duke-git/lancet/blob/main/concurrency/channel.go)
 -   [https://github.com/duke-git/lancet/blob/main/concurrency/keyed_locker.go](https://github.com/duke-git/lancet/blob/main/concurrency/keyed_locker.go)
 
 <div STYLE="page-break-after: always;"></div>
 
 ## Usage:
+
 ```go
 import (
     "github.com/duke-git/lancet/v2/concurrency"
@@ -23,34 +25,36 @@ import (
 
 ### Channel
 
-- [NewChannel](#NewChannel)
-- [Bridge](#Bridge)
-- [FanIn](#FanIn)
-- [Generate](#Generate)
-- [Or](#Or)
-- [OrDone](#OrDone)
-- [Repeat](#Repeat)
-- [RepeatFn](#RepeatFn)
-- [Take](#Take)
-- [Tee](#Tee)
+-   [NewChannel](#NewChannel)
+-   [Bridge](#Bridge)
+-   [FanIn](#FanIn)
+-   [Generate](#Generate)
+-   [Or](#Or)
+-   [OrDone](#OrDone)
+-   [Repeat](#Repeat)
+-   [RepeatFn](#RepeatFn)
+-   [Take](#Take)
+-   [Tee](#Tee)
 
 ### KeyedLocker
 
 -   [NewKeyedLocker](#NewKeyedLocker)
--   [KeyedLocker_Do](#Do)
+-   [Do](#Do)
 -   [NewRWKeyedLocker](#NewRWKeyedLocker)
--   [RWKeyedLocker_RLock](#RLock)
--   [RWKeyedLocker_Lock](#Lock)
+-   [RLock](#RLock)
+-   [Lock](#Lock)
 -   [NewTryKeyedLocker](#NewTryKeyedLocker)
--   [TryKeyedLocker_TryLock](#TryLock)
--   [TryKeyedLocker_Unlock](#Unlock)
+-   [TryLock](#TryLock)
+-   [Unlock](#Unlock)
 
 <div STYLE="page-break-after: always;"></div>
 
 ## Documentation
 
 ## Channel
+
 ### <span id="NewChannel">NewChannel</span>
+
 <p>Create a Channel pointer instance.</p>
 
 <b>Signature:</b>
@@ -59,6 +63,7 @@ import (
 type Channel[T any] struct
 func NewChannel[T any]() *Channel[T]
 ```
+
 <b>Example: <span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/7aB4KyMMp9A)</span></b>
 
 ```go
@@ -83,6 +88,7 @@ func main() {
 ```go
 func (c *Channel[T]) Bridge(ctx context.Context, chanStream <-chan <-chan T) <-chan T
 ```
+
 <b>Example: <span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/qmWSy1NVF-Y)</span></b>
 
 ```go
@@ -135,6 +141,7 @@ func main() {
 ```go
 func (c *Channel[T]) FanIn(ctx context.Context, channels ...<-chan T) <-chan T
 ```
+
 <b>Example: <span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/2VYFMexEvTm)</span></b>
 
 ```go
@@ -174,6 +181,7 @@ func main() {
 ```go
 func (c *Channel[T]) Repeat(ctx context.Context, values ...T) <-chan T
 ```
+
 <b>Example:</b>
 
 ```go
@@ -213,6 +221,7 @@ func main() {
 ```go
 func (c *Channel[T]) Generate(ctx context.Context, values ...T) <-chan T
 ```
+
 <b>Example: <span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/7aB4KyMMp9A)</span></b>
 
 ```go
@@ -251,6 +260,7 @@ func main() {
 ```go
 func (c *Channel[T]) RepeatFn(ctx context.Context, fn func() T) <-chan T
 ```
+
 <b>Example:</b>
 
 ```go
@@ -293,6 +303,7 @@ func main() {
 ```go
 func (c *Channel[T]) Or(channels ...<-chan T) <-chan T
 ```
+
 <b>Example:</b>
 
 ```go
@@ -336,6 +347,7 @@ func main() {
 ```go
 func (c *Channel[T]) OrDone(ctx context.Context, channel <-chan T) <-chan T
 ```
+
 <b>Example:</b>
 
 ```go
@@ -374,6 +386,7 @@ func main() {
 ```go
 func (c *Channel[T]) Take(ctx context.Context, valueStream <-chan T, number int) <-chan T
 ```
+
 <b>Example:</b>
 
 ```go
@@ -420,6 +433,7 @@ func main() {
 ```go
 func (c *Channel[T]) Tee(ctx context.Context, in <-chan T) (<-chan T, <-chan T)
 ```
+
 <b>Example:</b>
 
 ```go
@@ -444,7 +458,7 @@ func main() {
         fmt.Println(v)
         fmt.Println(<-ch2)
     }
-    
+
     // Output:
     // 1
     // 1
@@ -512,7 +526,7 @@ func main() {
 }
 ```
 
-### <span id="Do">KeyedLocker_Do</span>
+### <span id="Do">Do</span>
 
 <p>Acquires a lock for the specified key and executes the provided function.</p>
 
@@ -578,6 +592,7 @@ func main() {
 ```go
 func NewRWKeyedLocker[K comparable](ttl time.Duration) *RWKeyedLocker[K]
 ```
+
 <b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/todo)</span></b>
 
 ```go
@@ -617,7 +632,7 @@ func main() {
 }
 ```
 
-### <span id="RLock">RWKeyedLocker_RLock</span>
+### <span id="RLock">RLock</span>
 
 <p>Acquires a read lock for the specified key and executes the provided function.</p>
 
@@ -626,6 +641,7 @@ func main() {
 ```go
 func (l *RWKeyedLocker[K]) RLock(ctx context.Context, key K, fn func()) error
 ```
+
 <b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/todo)</span></b>
 
 ```go
@@ -665,7 +681,7 @@ func main() {
 }
 ```
 
-### <span id="Lock">RWKeyedLocker_Lock</span>
+### <span id="Lock">Lock</span>
 
 <p>Acquires a write lock for the specified key and executes the provided function.</p>
 
@@ -674,6 +690,7 @@ func main() {
 ```go
 func (l *RWKeyedLocker[K]) Lock(ctx context.Context, key K, fn func()) error
 ```
+
 <b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/todo)</span></b>
 
 ```go
@@ -720,8 +737,9 @@ func main() {
 <b>Signature:</b>
 
 ```go
-func NewTryKeyedLocker[K comparable]() *TryKeyedLocker[K] 
+func NewTryKeyedLocker[K comparable]() *TryKeyedLocker[K]
 ```
+
 <b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/todo)</span></b>
 
 ```go
@@ -753,7 +771,7 @@ func main() {
 }
 ```
 
-### <span id="TryLock">TryKeyedLocker_TryLock</span>
+### <span id="TryLock">TryLock</span>
 
 <p>TryLock tries to acquire a lock for the specified key.</p>
 
@@ -794,7 +812,7 @@ func main() {
 }
 ```
 
-### <span id="Unlock">TryKeyedLocker_Unlock</span>
+### <span id="Unlock">Unlock</span>
 
 <p>Unlock releases the lock for the specified key.</p>
 

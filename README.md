@@ -214,6 +214,30 @@ import "github.com/duke-git/lancet/v2/concurrency"
 -   **<big>Tee</big>** : split one chanel into two channels, until cancel the context.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/concurrency.md#Tee)]
     [[play](https://go.dev/play/p/3TQPKnCirrP)]
+-   **<big>NewKeyedLocker</big>** : KeyedLocker is a simple implementation of a keyed locker that allows for non-blocking lock acquisition.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/concurrency.md#NewKeyedLocker)]
+    [[play](https://go.dev/play/p/todo)]
+-   **<big>Do</big>** :acquires a lock for the specified key and executes the provided function.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/concurrency.md#Do)]
+    [[play](https://go.dev/play/p/todo)]
+-   **<big>NewRWKeyedLocker</big>** :RRWKeyedLocker is a read-write version of KeyedLocker.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/concurrency.md#NewRWKeyedLocker)]
+    [[play](https://go.dev/play/p/todo)]
+-   **<big>RLock</big>** : acquires a read lock for the specified key and executes the provided function.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/concurrency.md#RLock)]
+    [[play](https://go.dev/play/p/todo)]
+-   **<big>Lock</big>** : acquires a write lock for the specified key and executes the provided function.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/concurrency.md#Lock)]
+    [[play](https://go.dev/play/p/todo)]
+-   **<big>NewTryKeyedLocker</big>** : TryKeyedLocker is a non-blocking version of KeyedLocker.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/concurrency.md#NewTryKeyedLocker)]
+    [[play](https://go.dev/play/p/todo)]
+-   **<big>TryLock</big>** : TryLock tries to acquire a lock for the specified key.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/concurrency.md#TryLock)]
+    [[play](https://go.dev/play/p/todo)]
+-   **<big>Unlock</big>** : Unlock releases the lock for the specified key.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/concurrency.md#Unlock)]
+    [[play](https://go.dev/play/p/todo)]
 
 <h3 id="condition"> 4. Condition package contains some functions for conditional judgment. eg. And, Or, TernaryOperator...&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a> </h3>
 
@@ -331,7 +355,7 @@ import "github.com/duke-git/lancet/v2/convertor"
 -   **<big>ToRawUrlBase64</big>** : converts a value to a string encoded in raw url Base64.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/convertor.md#ToRawUrlBase64)]
     [[play](https://go.dev/play/p/HwdDPFcza1O)]
--   **<big>ToBigInt</big>** : converts an integer of any supported type (int, int64, uint64, etc.) to *big.Int.
+-   **<big>ToBigInt</big>** : converts an integer of any supported type (int, int64, uint64, etc.) to \*big.Int.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/convertor.md#ToBigInt)]
     [[play](https://go.dev/play/p/X3itkCxwB_x)]
 
@@ -693,7 +717,6 @@ import optional "github.com/duke-git/lancet/v2/datastructure/optional"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/datastructure/hashmap.md)]
 -   **<big>Optional</big>** : Optional container.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/datastructure/optional.md)]
-      
 
 <h3 id="eventbus"> 9. EventBus is an event bus used for handling events within an application. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">Index</a></h3>
 
@@ -778,6 +801,9 @@ import "github.com/duke-git/lancet/v2/fileutil"
 -   **<big>RemoveFile</big>** : remove file, param should be file path.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/fileutil.md#RemoveFile)]
     [[play](https://go.dev/play/p/P2y0XW8a1SH)]
+-   **<big>RemoveDir</big>** : delete directory.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/fileutil.md#RemoveDir)]
+    [[play](https://go.dev/play/p/todo)]
 -   **<big>ReadFileToString</big>** : return string of file content.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/fileutil.md#ReadFileToString)]
     [[play](https://go.dev/play/p/cmfwp_5SQTp)]
@@ -925,7 +951,6 @@ import "github.com/duke-git/lancet/v2/function"
 -   **<big>Watcher</big>** : Watcher is used for record code execution time. can start/stop/reset the watch timer. get the elapsed time of function execution.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/function.md#Watcher)]
     [[play](https://go.dev/play/p/l2yrOpCLd1I)]
-
 
 <h3 id="maputil"> 12. Maputil package includes some functions to manipulate map.&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
@@ -1097,7 +1122,9 @@ import "github.com/duke-git/lancet/v2/maputil"
 -   **<big>GetOrDefault</big>** : returns the value of the given key or a default value if the key is not present.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/maputil.md#GetOrDefault)]
     [[play](https://go.dev/play/p/99QjSYSBdiM)]
-
+-   **<big>FindValuesBy</big>** : returns a slice of values from the map that satisfy the given predicate function.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/maputil.md#FindValuesBy)]
+    [[play](https://go.dev/play/p/todo)]
 
 <h3 id="mathutil"> 13. Mathutil package implements some functions for math calculation. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
@@ -1282,6 +1309,12 @@ import "github.com/duke-git/lancet/v2/netutil"
 -   **<big>IsTelnetConnected</big>** : checks if can if can telnet the specified host or not.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/netutil.md#IsTelnetConnected)]
     [[play](https://go.dev/play/p/yiLCGtQv_ZG)]
+-   **<big>BuildUrl</big>** : builds a URL from the given params.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/netutil.md#BuildUrl)]
+    [[play](https://go.dev/play/p/todo)]
+-   **<big>AddQueryParams</big>** : adds query parameters to the given URL.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/netutil.md#AddQueryParams)]
+    [[play](https://go.dev/play/p/todo)]
 
 <h3 id="pointer"> 15. Pointer package contains some util functions to operate go pointer. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
@@ -1407,7 +1440,6 @@ import "github.com/duke-git/lancet/v2/retry"
 -   **<big>RetryWithExponentialWithJitterBackoff</big>** : set exponential strategy backoff.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/retry.md#RetryWithExponentialWithJitterBackoff)]
     [[play](https://go.dev/play/p/xp1avQmn16X)]
-   
 
 <h3 id="slice"> 18. Slice contains some functions to manipulate slice. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
@@ -1654,7 +1686,7 @@ import "github.com/duke-git/lancet/v2/slice"
 -   **<big>Partition</big>** : partition all slice elements with the evaluation of the given predicate functions.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#Partition)]
     [[play](https://go.dev/play/p/lkQ3Ri2NQhV)]
--   **<big>Random</big>** : get a random item of slice, return its index, when slice is empty, return -1. 
+-   **<big>Random</big>** : get a random item of slice, return its index, when slice is empty, return -1.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#Random)]
     [[play](https://go.dev/play/p/UzpGQptWppw)]
 -   **<big>SetToDefaultIf</big>** : set elements to their default value if they match the given predicate.
@@ -2012,7 +2044,6 @@ import "github.com/duke-git/lancet/v2/system"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/system.md#GetProcessInfo)]
     [[play](https://go.dev/play/p/NQDVywEYYx7)]
 
-
 <h3 id="tuple"> 23. Tuple package implements tuple data type and some operations on it. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
 ```go
@@ -2195,6 +2226,9 @@ import "github.com/duke-git/lancet/v2/validator"
 -   **<big>IsNumberStr</big>** : check if the string can convert to a number.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/validator.md#IsNumberStr)]
     [[play](https://go.dev/play/p/LzaKocSV79u)]
+-   **<big>IsAlphaNumeric</big>** : check if the string is alphanumeric.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/validator.md#IsAlphaNumeric)]
+    [[play](https://go.dev/play/p/todo)]
 -   **<big>IsJSON</big>** : check if the string is valid JSON.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/validator.md#IsJSON)]
     [[play](https://go.dev/play/p/8Kip1Itjiil)]
@@ -2315,7 +2349,7 @@ import "github.com/duke-git/lancet/v2/xerror"
 -   **<big>TryUnwrap</big>** : check if err is nil then it returns a valid value. If err is not nil, TryUnwrap panics with err.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/xerror.md#TryUnwrap)]
     [[play](https://go.dev/play/p/acyZVkNZEeW)]
--   **<big>TryCatch</big>** : simple simulation of Java-style try-catch. 
+-   **<big>TryCatch</big>** : simple simulation of Java-style try-catch.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/xerror.md#TryCatch)]
     [[play](https://go.dev/play/p/D5Mdb0mRj0P)]
 
@@ -2324,6 +2358,7 @@ import "github.com/duke-git/lancet/v2/xerror"
 #### [Contribution Guide](./CONTRIBUTION.md)
 
 ## Contributors
+
 Thank you to all the people who contributed to lancet!
 
 <a href="https://github.com/duke-git/lancet/graphs/contributors">

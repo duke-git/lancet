@@ -826,6 +826,43 @@ func main() {
 }
 ```
 
+### <span id="IsAlphaNumeric">IsAlphaNumeric</span>
+
+<p>Check if the string is alphanumeric.</p>
+
+<b>Signature:</b>
+
+```go
+func IsAlphaNumeric(s string) bool
+```
+
+<b>Example:<span style="float:right;display:inline-block">[Run](https://go.dev/play/p/todo)</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/validator"
+)
+
+func main() {
+    result1 := validator.IsAlphaNumeric("ABC")
+	result2 := validator.IsAlphaNumeric("123")
+	result3 := validator.IsAlphaNumeric("abc123")
+	result4 := validator.IsAlphaNumeric("abc123@#$")
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+	fmt.Println(result4)
+
+	// Output:
+	// true
+	// true
+	// true
+	// false
+}
+```
+
 ### <span id="IsJSON">IsJSON</span>
 
 <p>Check if the string is valid JSON.</p>
