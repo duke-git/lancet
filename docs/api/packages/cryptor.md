@@ -719,7 +719,7 @@ func main() {
 }
 ```
 
-### <span id="DesCtrEncrypt">DesCtrCrypt</span>
+### <span id="DesCtrEncrypt">DesCtrEncrypt</span>
 
 <p>使用DES CTR算法模式加密数据，参数`key`的长度是8</p>
 
