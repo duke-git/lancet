@@ -219,6 +219,8 @@ func main() {
 
 <p>使用AES CTR算法模式加密/解密数据，参数`key`的长度是16, 24 or 32。</p>
 
+> ⚠️ 本函数已弃用，使用`AesCtrEncrypt`和`AesCtrDecrypt`代替。
+
 <b>函数签名:</b>
 
 ```go
@@ -788,6 +790,8 @@ func main() {
 ### <span id="DesCtrCrypt">DesCtrCrypt</span>
 
 <p>使用DES CTR算法模式加密/解密数据，参数`key`的长度是8</p>
+
+> ⚠️ 本函数已弃用，使用`DesCtrEncrypt`和`DesCtrDecrypt`代替。
 
 <b>函数签名:</b>
 
