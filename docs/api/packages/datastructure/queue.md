@@ -1092,7 +1092,7 @@ func main() {
 
 
 ### 4. PriorityQueue
-切片实现的额优先级队列。
+切片实现的优先级队列。
 
 ### <span id="NewPriorityQueue">NewPriorityQueue</span>
 <p>返回一个具有特定容量的PriorityQueue指针，参数 `comarator` 用于比较队列中T类型的值。</p>
