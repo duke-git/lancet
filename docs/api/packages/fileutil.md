@@ -427,7 +427,7 @@ func main() {
 func RemoveDir(path string, onDelete ...func(path string)) error
 ```
 
-<b>示例:<span style="float:right;display:inline-block;">[运行](todo)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/Oa6KnPek2uy)</span></b>
 
 ```go
 package main
@@ -970,7 +970,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func ReadFile(path string) (reader io.ReadCloser, closeFn func(), err error) 
+func ReadFile(path string) (reader io.ReadCloser, closeFn func(), err error)
 ```
 
 <b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/uNep3Tr8fqF)</span></b>
@@ -994,9 +994,9 @@ func main() {
     if err != nil {
         return
     }
-    
+
     fmt.Println(string(dat))
-    
+
     // Output:
     // User-agent: *
     // Disallow: /deny
@@ -1025,7 +1025,7 @@ import (
 
 func main() {
     const mb = 1024 * 1024
-    const defaultChunkSizeMB = 100 
+    const defaultChunkSizeMB = 100
 
     // test1.csv file content:
     // Lili,22,female
@@ -1089,7 +1089,7 @@ func main() {
     numParsers := runtime.NumCPU()
 
     linesCh := make(chan []string, numParsers)
-    
+
     // test1.csv file content:
     // Lili,22,female
     // Jim,21,male
@@ -1114,6 +1114,7 @@ func main() {
     // 2
 }
 ```
+
 ### <span id="GetExeOrDllVersion">GetExeOrDllVersion</span>
 
 <p>返回exe,dll文件版本号(仅Window平台).</p>

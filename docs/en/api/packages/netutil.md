@@ -51,7 +51,6 @@ import (
 -   [BuildUrl](#BuildUrl)
 -   [AddQueryParams](#AddQueryParams)
 
-
 <div STYLE="page-break-after: always;"></div>
 
 <link rel="stylesheet" type="text/css" href="/styles/api_doc.css">
@@ -1045,7 +1044,7 @@ func main() {
 func BuildUrl(scheme, host, path string, query map[string][]string) (string, error)
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/JLXl1hZK7l4)</span></b>
 
 ```go
 package main
@@ -1085,7 +1084,7 @@ func main() {
 func AddQueryParams(urlStr string, params map[string][]string) (string, error)
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/JLXl1hZK7l4)</span></b>
 
 ```go
 package main

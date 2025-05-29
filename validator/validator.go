@@ -183,7 +183,7 @@ func IsJSON(str string) bool {
 }
 
 // IsAlphaNumeric check if the string is alphanumeric.
-// Play: todo
+// Play: https://go.dev/play/p/RHeESLrLg9c
 func IsAlphaNumeric(s string) bool {
 	return alphaNumericMatcher.MatchString(s)
 }

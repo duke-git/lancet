@@ -74,6 +74,32 @@ func ExampleAesCtrCrypt() {
 	// hello
 }
 
+func ExampleAesCtrEncrypt() {
+	data := "hello"
+	key := "abcdefghijklmnop"
+
+	enCrypt := AesCtrEncrypt([]byte(data), []byte(key))
+	deCrypt := AesCtrDecrypt(enCrypt, []byte(key))
+
+	fmt.Println(string(deCrypt))
+
+	// Output:
+	// hello
+}
+
+func ExampleAesCtrDecrypt() {
+	data := "hello"
+	key := "abcdefghijklmnop"
+
+	enCrypt := AesCtrEncrypt([]byte(data), []byte(key))
+	deCrypt := AesCtrDecrypt(enCrypt, []byte(key))
+
+	fmt.Println(string(deCrypt))
+
+	// Output:
+	// hello
+}
+
 func ExampleAesCfbEncrypt() {
 	data := "hello"
 	key := "abcdefghijklmnop"
@@ -222,6 +248,19 @@ func ExampleDesCtrCrypt() {
 	decrypted := DesCtrCrypt(encrypted, []byte(key))
 
 	fmt.Println(string(decrypted))
+
+	// Output:
+	// hello
+}
+
+func ExampleDesCtrDecrypt() {
+	data := "hello"
+	key := "abcdefgh"
+
+	enCrypt := DesCtrEncrypt([]byte(data), []byte(key))
+	deCrypt := DesCtrDecrypt(enCrypt, []byte(key))
+
+	fmt.Println(string(deCrypt))
 
 	// Output:
 	// hello

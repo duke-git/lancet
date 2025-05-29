@@ -1095,7 +1095,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func ToSortedSlicesWithComparator[K comparable, V any](m map[K]V, comparator func(a, b K) bool) ([]K, []V) 
+func ToSortedSlicesWithComparator[K comparable, V any](m map[K]V, comparator func(a, b K) bool) ([]K, []V)
 ```
 
 <b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/0nlPo6YLdt3)</span></b>
@@ -1258,7 +1258,6 @@ func main() {
     // 0 false
 }
 ```
-
 
 ### <span id="OrderedMap_Delete">OrderedMap_Delete</span>
 
@@ -2192,7 +2191,6 @@ func main() {
 }
 ```
 
-
 ### <span id="GetOrSet">GetOrSet</span>
 
 <p>返回给定键的值，如果不存在则设置该值。</p>
@@ -2276,7 +2274,7 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func GetOrDefault[K comparable, V any](m map[K]V, key K, defaultValue V) V 
+func GetOrDefault[K comparable, V any](m map[K]V, key K, defaultValue V) V
 ```
 
 <b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/99QjSYSBdiM)</span></b>
@@ -2319,7 +2317,7 @@ func main() {
 func FindValuesBy[K comparable, V any](m map[K]V, predicate func(key K, value V) bool) []V
 ```
 
-<b>示例:<span style="float:right;display:inline-block;">[运行](todo)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/bvNwNBZDm6v)</span></b>
 
 ```go
 package main

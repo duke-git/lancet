@@ -25,12 +25,14 @@ type lockEntry struct {
 
 // NewKeyedLocker creates a new KeyedLocker with the specified TTL for lock expiration.
 // The TTL is used to automatically release locks that are no longer held.
+// Play: https://go.dev/play/p/GzeyC33T5rw
 func NewKeyedLocker[K comparable](ttl time.Duration) *KeyedLocker[K] {
 	return &KeyedLocker[K]{ttl: ttl}
 }
 
 // Do acquires a lock for the specified key and executes the provided function.
 // It returns an error if the context is canceled before the function completes.
+// Play: https://go.dev/play/p/GzeyC33T5rw
 func (l *KeyedLocker[K]) Do(ctx context.Context, key K, fn func()) error {
 	entry := l.acquire(key)
 	defer l.release(key, entry, key)
@@ -107,12 +109,14 @@ type rwLockEntry struct {
 
 // NewRWKeyedLocker creates a new RWKeyedLocker with the specified TTL for lock expiration.
 // The TTL is used to automatically release locks that are no longer held.
+// Play: https://go.dev/play/p/CkaJWWwZm9
 func NewRWKeyedLocker[K comparable](ttl time.Duration) *RWKeyedLocker[K] {
 	return &RWKeyedLocker[K]{ttl: ttl}
 }
 
 // RLock acquires a read lock for the specified key and executes the provided function.
 // It returns an error if the context is canceled before the function completes.
+// Play: https://go.dev/play/p/ZrCr8sMo77T
 func (l *RWKeyedLocker[K]) RLock(ctx context.Context, key K, fn func()) error {
 	entry := l.acquire(key)
 	defer l.release(entry, key)
@@ -141,6 +145,7 @@ func (l *RWKeyedLocker[K]) RLock(ctx context.Context, key K, fn func()) error {
 
 // Lock acquires a write lock for the specified key and executes the provided function.
 // It returns an error if the context is canceled before the function completes.
+// Play: https://go.dev/play/p/WgAcXbOPKGk
 func (l *RWKeyedLocker[K]) Lock(ctx context.Context, key K, fn func()) error {
 	entry := l.acquire(key)
 	defer l.release(entry, key)
@@ -199,12 +204,14 @@ type TryKeyedLocker[K comparable] struct {
 }
 
 // NewTryKeyedLocker creates a new TryKeyedLocker.
+// Play: https://go.dev/play/p/VG9qLvyetE2
 func NewTryKeyedLocker[K comparable]() *TryKeyedLocker[K] {
 	return &TryKeyedLocker[K]{locks: make(map[K]*casMutex)}
 }
 
 // TryLock tries to acquire a lock for the specified key.
 // It returns true if the lock was acquired, false otherwise.
+// Play: https://go.dev/play/p/VG9qLvyetE2
 func (l *TryKeyedLocker[K]) TryLock(key K) bool {
 	l.mu.Lock()
 
@@ -219,6 +226,7 @@ func (l *TryKeyedLocker[K]) TryLock(key K) bool {
 }
 
 // Unlock releases the lock for the specified key.
+// Play: https://go.dev/play/p/VG9qLvyetE2
 func (l *TryKeyedLocker[K]) Unlock(key K) {
 	l.mu.Lock()
 	defer l.mu.Unlock()

@@ -309,7 +309,7 @@ func IsTelnetConnected(host string, port string) bool {
 }
 
 // BuildUrl builds a URL from the given params.
-// Play: todo
+// Play: https://go.dev/play/p/JLXl1hZK7l4
 func BuildUrl(scheme, host, path string, query map[string][]string) (string, error) {
 	if err := validateScheme(scheme); err != nil {
 		return "", err
@@ -371,7 +371,7 @@ var pathRegex = regexp.MustCompile(`^\/([a-zA-Z0-9%_-]+(?:\/[a-zA-Z0-9%_-]+)*)$`
 var alphaNumericRegex = regexp.MustCompile(`^[a-zA-Z0-9]+$`)
 
 // AddQueryParams adds query parameters to the given URL.
-// Play: todoå
+// Play: https://go.dev/play/p/JLXl1hZK7l4
 func AddQueryParams(urlStr string, params map[string][]string) (string, error) {
 	parsedUrl, err := url.Parse(urlStr)
 	if err != nil {

@@ -216,28 +216,28 @@ import "github.com/duke-git/lancet/v2/concurrency"
     [[play](https://go.dev/play/p/3TQPKnCirrP)]
 -   **<big>NewKeyedLocker</big>** : KeyedLocker is a simple implementation of a keyed locker that allows for non-blocking lock acquisition.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/concurrency.md#NewKeyedLocker)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/GzeyC33T5rw)]
 -   **<big>Do</big>** :acquires a lock for the specified key and executes the provided function.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/concurrency.md#Do)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/GzeyC33T5rw)]
 -   **<big>NewRWKeyedLocker</big>** :RRWKeyedLocker is a read-write version of KeyedLocker.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/concurrency.md#NewRWKeyedLocker)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/ZrCr8sMo77T)]
 -   **<big>RLock</big>** : acquires a read lock for the specified key and executes the provided function.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/concurrency.md#RLock)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/ZrCr8sMo77T)]
 -   **<big>Lock</big>** : acquires a write lock for the specified key and executes the provided function.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/concurrency.md#Lock)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/WgAcXbOPKGk)]
 -   **<big>NewTryKeyedLocker</big>** : TryKeyedLocker is a non-blocking version of KeyedLocker.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/concurrency.md#NewTryKeyedLocker)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/VG9qLvyetE2)]
 -   **<big>TryLock</big>** : TryLock tries to acquire a lock for the specified key.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/concurrency.md#TryLock)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/VG9qLvyetE2)]
 -   **<big>Unlock</big>** : Unlock releases the lock for the specified key.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/concurrency.md#Unlock)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/VG9qLvyetE2)]
 
 <h3 id="condition"> 4. Condition package contains some functions for conditional judgment. eg. And, Or, TernaryOperator...&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a> </h3>
 
@@ -803,7 +803,7 @@ import "github.com/duke-git/lancet/v2/fileutil"
     [[play](https://go.dev/play/p/P2y0XW8a1SH)]
 -   **<big>RemoveDir</big>** : delete directory.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/fileutil.md#RemoveDir)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/Oa6KnPek2uy)]
 -   **<big>ReadFileToString</big>** : return string of file content.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/fileutil.md#ReadFileToString)]
     [[play](https://go.dev/play/p/cmfwp_5SQTp)]
@@ -1124,7 +1124,7 @@ import "github.com/duke-git/lancet/v2/maputil"
     [[play](https://go.dev/play/p/99QjSYSBdiM)]
 -   **<big>FindValuesBy</big>** : returns a slice of values from the map that satisfy the given predicate function.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/maputil.md#FindValuesBy)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/bvNwNBZDm6v)]
 
 <h3 id="mathutil"> 13. Mathutil package implements some functions for math calculation. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
@@ -1311,10 +1311,10 @@ import "github.com/duke-git/lancet/v2/netutil"
     [[play](https://go.dev/play/p/yiLCGtQv_ZG)]
 -   **<big>BuildUrl</big>** : builds a URL from the given params.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/netutil.md#BuildUrl)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/JLXl1hZK7l4)]
 -   **<big>AddQueryParams</big>** : adds query parameters to the given URL.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/netutil.md#AddQueryParams)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/JLXl1hZK7l4)]
 
 <h3 id="pointer"> 15. Pointer package contains some util functions to operate go pointer. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
@@ -2228,7 +2228,7 @@ import "github.com/duke-git/lancet/v2/validator"
     [[play](https://go.dev/play/p/LzaKocSV79u)]
 -   **<big>IsAlphaNumeric</big>** : check if the string is alphanumeric.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/validator.md#IsAlphaNumeric)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/RHeESLrLg9c)]
 -   **<big>IsJSON</big>** : check if the string is valid JSON.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/validator.md#IsJSON)]
     [[play](https://go.dev/play/p/8Kip1Itjiil)]

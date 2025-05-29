@@ -27,7 +27,9 @@ import (
 -   [AesEcbDecrypt](#AesEcbDecrypt)
 -   [AesCbcEncrypt](#AesCbcEncrypt)
 -   [AesCbcDecrypt](#AesCbcDecrypt)
--   [AesCtrCrypt](#AesCtrCrypt)
+-   [AesCtrCrypt<sup>deprecated</sup>](#AesCtrCrypt)
+-   [AesCtrEncrypt](#AesCtrEncrypt)
+-   [AesCtrDecrypt](#AesCtrDecrypt)
 -   [AesCfbEncrypt](#AesCfbEncrypt)
 -   [AesCfbDecrypt](#AesCfbDecrypt)
 -   [AesOfbEncrypt](#AesOfbEncrypt)
@@ -40,7 +42,7 @@ import (
 -   [DesEcbDecrypt](#DesEcbDecrypt)
 -   [DesCbcEncrypt](#DesCbcEncrypt)
 -   [DesCbcDecrypt](#DesCbcDecrypt)
--   [DesCtrCrypt](#DesCtrCrypt)
+-   [DesCtrCrypt<sup>deprecated</sup>](#DesCtrCrypt)
 -   [DesCfbEncrypt](#DesCfbEncrypt)
 -   [DesCfbDecrypt](#DesCfbDecrypt)
 -   [DesOfbEncrypt](#DesOfbEncrypt)
@@ -72,7 +74,6 @@ import (
 -   [RsaDecryptOAEP](#RsaDecryptOAEP)
 -   [RsaSign](#RsaSign)
 -   [RsaVerifySign](#RsaVerifySign)
-
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -240,6 +241,74 @@ func main() {
 
     encrypted := cryptor.AesCtrCrypt([]byte(data), []byte(key))
     decrypted := cryptor.AesCtrCrypt(encrypted, []byte(key))
+
+    fmt.Println(string(decrypted))
+
+    // Output:
+    // hello
+}
+```
+
+### <span id="AesCtrEncrypt">AesCtrEncrypt</span>
+
+<p>使用AES CTR算法模式加密数据，参数`key`的长度是16, 24 or 32。</p>
+
+<b>函数签名:</b>
+
+```go
+func AesCtrEncrypt(data, key []byte) []byte
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/x6pjPAvThRz)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/cryptor"
+)
+
+func main() {
+    data := "hello"
+    key := "abcdefghijklmnop"
+
+    encrypted := cryptor.AesCtrEncrypt([]byte(data), []byte(key))
+    decrypted := cryptor.AesCtrDecrypt(encrypted, []byte(key))
+
+    fmt.Println(string(decrypted))
+
+    // Output:
+    // hello
+}
+```
+
+### <span id="AesCtrDecrypt">AesCtrDecrypt</span>
+
+<p>使用AES CTR算法模式解密数据，参数`key`的长度是16, 24 or 32。</p>
+
+<b>函数签名:</b>
+
+```go
+func AesCtrDecrypt(encrypted, key []byte) []byte
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/x6pjPAvThRz)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/cryptor"
+)
+
+func main() {
+    data := "hello"
+    key := "abcdefghijklmnop"
+
+    encrypted := cryptor.AesCtrEncrypt([]byte(data), []byte(key))
+    decrypted := cryptor.AesCtrDecrypt(encrypted, []byte(key))
 
     fmt.Println(string(decrypted))
 
@@ -640,6 +709,74 @@ func main() {
 
     encrypted := cryptor.DesCbcEncrypt([]byte(data), []byte(key))
     decrypted := cryptor.DesCbcDecrypt(encrypted, []byte(key))
+
+    fmt.Println(string(decrypted))
+
+    // Output:
+    // hello
+}
+```
+
+### <span id="DesCtrEncrypt">DesCtrCrypt</span>
+
+<p>使用DES CTR算法模式加密数据，参数`key`的长度是8</p>
+
+<b>函数签名:</b>
+
+```go
+func DesCtrEncrypt(data, key []byte) []byte
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/S6p_WHCgH1d)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/cryptor"
+)
+
+func main() {
+    data := "hello"
+    key := "abcdefgh"
+
+    encrypted := cryptor.DesCtrEncrypt([]byte(data), []byte(key))
+    decrypted := cryptor.DesCtrDecrypt(encrypted, []byte(key))
+
+    fmt.Println(string(decrypted))
+
+    // Output:
+    // hello
+}
+```
+
+### <span id="DesCtrDecrypt">DesCtrDecrypt</span>
+
+<p>使用DES CTR算法模式加密数据，参数`key`的长度是8</p>
+
+<b>函数签名:</b>
+
+```go
+func DesCtrDecrypt(encrypted, key []byte) []byte
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/S6p_WHCgH1d)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/cryptor"
+)
+
+func main() {
+    data := "hello"
+    key := "abcdefgh"
+
+    encrypted := cryptor.DesCtrEncrypt([]byte(data), []byte(key))
+    decrypted := cryptor.DesCtrDecrypt(encrypted, []byte(key))
 
     fmt.Println(string(decrypted))
 

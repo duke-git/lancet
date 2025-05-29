@@ -834,7 +834,7 @@ func main() {
 func IsAlphaNumeric(s string) bool
 ```
 
-<b>示例:<span style="float:right;display:inline-block">[运行](https://go.dev/play/p/todo)</span></b>
+<b>示例:<span style="float:right;display:inline-block">[运行](https://go.dev/play/p/RHeESLrLg9c)</span></b>
 
 ```go
 import (

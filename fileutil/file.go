@@ -190,7 +190,7 @@ func RemoveFile(path string, onDelete ...func(path string)) error {
 }
 
 // RemoveDir remove the path directory.
-// Play: todo
+// Play: https://go.dev/play/p/Oa6KnPek2uy
 func RemoveDir(path string, onDelete ...func(path string)) error {
 	info, err := os.Stat(path)
 	if err != nil {

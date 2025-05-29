@@ -668,7 +668,7 @@ func GetOrDefault[K comparable, V any](m map[K]V, key K, defaultValue V) V {
 }
 
 // FindValuesBy returns a slice of values from the map that satisfy the given predicate function.
-// Play: todo
+// Play: https://go.dev/play/p/bvNwNBZDm6v
 func FindValuesBy[K comparable, V any](m map[K]V, predicate func(key K, value V) bool) []V {
 	result := make([]V, 0)
 

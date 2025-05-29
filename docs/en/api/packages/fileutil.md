@@ -427,7 +427,7 @@ func main() {
 func RemoveDir(path string, onDelete ...func(path string)) error
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/Oa6KnPek2uy)</span></b>
 
 ```go
 package main
@@ -970,7 +970,7 @@ func main() {
 <b>Signature:</b>
 
 ```go
-func ReadFile(path string) (reader io.ReadCloser, closeFn func(), err error) 
+func ReadFile(path string) (reader io.ReadCloser, closeFn func(), err error)
 ```
 
 <b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/uNep3Tr8fqF)</span></b>
@@ -1023,7 +1023,7 @@ import (
 
 func main() {
     const mb = 1024 * 1024
-    const defaultChunkSizeMB = 100 
+    const defaultChunkSizeMB = 100
 
     // test1.csv file content:
     // Lili,22,female
@@ -1087,7 +1087,7 @@ func main() {
     numParsers := runtime.NumCPU()
 
     linesCh := make(chan []string, numParsers)
-    
+
     // test1.csv file content:
     // Lili,22,female
     // Jim,21,male
@@ -1140,7 +1140,7 @@ func main() {
     }
 
     fmt.Println(v)
-    
+
     // Output:
     // 3.9.10.19
 }

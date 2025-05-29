@@ -174,7 +174,7 @@ func AesCtrCrypt(data, key []byte) []byte {
 
 // AesCtrEncrypt encrypt data with key use AES CTR algorithm
 // len(key) should be 16, 24 or 32.
-// Play: todo
+// Play: https://go.dev/play/p/x6pjPAvThRz
 func AesCtrEncrypt(data, key []byte) []byte {
 	if !isAesKeyLengthValid(len(key)) {
 		panic("aes: invalid key length (must be 16, 24, or 32 bytes)")
@@ -199,7 +199,7 @@ func AesCtrEncrypt(data, key []byte) []byte {
 
 // AesCtrDecrypt decrypt data with key use AES CTR algorithm
 // len(key) should be 16, 24 or 32.
-// Play: todo
+// Play: https://go.dev/play/p/x6pjPAvThRz
 func AesCtrDecrypt(encrypted, key []byte) []byte {
 	if !isAesKeyLengthValid(len(key)) {
 		panic("aes: invalid key length (must be 16, 24, or 32 bytes)")
@@ -507,7 +507,7 @@ func DesCtrCrypt(data, key []byte) []byte {
 
 // DesCtrEncrypt encrypt data with key use DES CTR algorithm
 // len(key) should be 8.
-// Play: todo
+// Play: https://go.dev/play/p/S6p_WHCgH1d
 func DesCtrEncrypt(data, key []byte) []byte {
 	if len(key) != 8 {
 		panic("des: key length must be 8 bytes")
@@ -534,7 +534,7 @@ func DesCtrEncrypt(data, key []byte) []byte {
 
 // DesCtrDecrypt decrypt data with key use DES CTR algorithm
 // len(key) should be 8.
-// Play: todo
+// Play: https://go.dev/play/p/S6p_WHCgH1d
 func DesCtrDecrypt(encrypted, key []byte) []byte {
 	if len(key) != 8 {
 		panic("des: key length must be 8 bytes")

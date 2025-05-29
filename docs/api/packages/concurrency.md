@@ -477,7 +477,7 @@ func main() {
 func NewKeyedLocker[K comparable](ttl time.Duration) *KeyedLocker[K]
 ```
 
-<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/todo)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/GzeyC33T5rw)</span></b>
 
 ```go
 package main
@@ -534,7 +534,7 @@ func main() {
 func (l *KeyedLocker[K]) Do(ctx context.Context, key K, fn func()) error
 ```
 
-<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/todo)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/GzeyC33T5rw)</span></b>
 
 ```go
 package main
@@ -591,7 +591,7 @@ func main() {
 func NewRWKeyedLocker[K comparable](ttl time.Duration) *RWKeyedLocker[K]
 ```
 
-<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/todo)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/CkaJWWwZm9)</span></b>
 
 ```go
 package main
@@ -640,7 +640,7 @@ func main() {
 func (l *RWKeyedLocker[K]) RLock(ctx context.Context, key K, fn func()) error
 ```
 
-<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/todo)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/ZrCr8sMo77T)</span></b>
 
 ```go
 package main
@@ -689,7 +689,7 @@ func main() {
 func (l *RWKeyedLocker[K]) Lock(ctx context.Context, key K, fn func()) error
 ```
 
-<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/todo)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/WgAcXbOPKGk)</span></b>
 
 ```go
 package main
@@ -738,7 +738,7 @@ func main() {
 func NewTryKeyedLocker[K comparable]() *TryKeyedLocker[K]
 ```
 
-<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/todo)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/VG9qLvyetE2)</span></b>
 
 ```go
 package main
@@ -779,7 +779,7 @@ func main() {
 func (l *TryKeyedLocker[K]) TryLock(key K) bool
 ```
 
-<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/todo)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/VG9qLvyetE2)</span></b>
 
 ```go
 package main
@@ -820,7 +820,7 @@ func main() {
 func (l *TryKeyedLocker[K]) Unlock(key K)
 ```
 
-<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/todo)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/VG9qLvyetE2)</span></b>
 
 ```go
 package main

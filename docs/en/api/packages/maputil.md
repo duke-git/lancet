@@ -10,7 +10,6 @@ Package maputil includes some functions to manipulate map.
 -   [https://github.com/duke-git/lancet/blob/main/maputil/concurrentmap.go](https://github.com/duke-git/lancet/blob/main/maputil/concurrentmap.go)
 -   [https://github.com/duke-git/lancet/blob/main/maputil/orderedmap.go](https://github.com/duke-git/lancet/blob/main/maputil/orderedmap.go)
 
-
 <div STYLE="page-break-after: always;"></div>
 
 ## Example:
@@ -1111,7 +1110,7 @@ Translate the key and value of the map into two slices that are sorted according
 <b>Signature:</b>
 
 ```go
-func ToSortedSlicesWithComparator[K comparable, V any](m map[K]V, comparator func(a, b K) bool) ([]K, []V) 
+func ToSortedSlicesWithComparator[K comparable, V any](m map[K]V, comparator func(a, b K) bool) ([]K, []V)
 ```
 
 <b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/0nlPo6YLdt3)</span></b>
@@ -1274,7 +1273,6 @@ func main() {
     // 0 false
 }
 ```
-
 
 ### <span id="OrderedMap_Delete">OrderedMap_Delete</span>
 
@@ -1838,7 +1836,7 @@ func main() {
     fmt.Println(om.Elements())
 
     // Output:
-    // [{a 1} {b 2} {c 3}] 
+    // [{a 1} {b 2} {c 3}]
 }
 ```
 
@@ -2294,7 +2292,7 @@ func main() {
 <b>Signature:</b>
 
 ```go
-func GetOrDefault[K comparable, V any](m map[K]V, key K, defaultValue V) V 
+func GetOrDefault[K comparable, V any](m map[K]V, key K, defaultValue V) V
 ```
 
 <b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/99QjSYSBdiM)</span></b>
@@ -2337,7 +2335,7 @@ func main() {
 func FindValuesBy[K comparable, V any](m map[K]V, predicate func(key K, value V) bool) []V
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/bvNwNBZDm6v)</span></b>
 
 ```go
 package main

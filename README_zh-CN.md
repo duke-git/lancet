@@ -215,28 +215,28 @@ import "github.com/duke-git/lancet/v2/concurrency"
     [[play](https://go.dev/play/p/3TQPKnCirrP)]
 -   **<big>NewKeyedLocker</big>** : NewKeyedLocker 创建一个新的 KeyedLocker，并为锁的过期设置指定的 TTL。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/concurrency.md#NewKeyedLocker)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/GzeyC33T5rw)]
 -   **<big>Do</big>** :为指定的键获取锁并执行提供的函数。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/concurrency.md#Do)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/GzeyC33T5rw)]
 -   **<big>NewRWKeyedLocker</big>** :RWKeyedLocker 是一个简单的键值读写锁实现，允许非阻塞的锁获取。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/concurrency.md#NewRWKeyedLocker)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/ZrCr8sMo77T)]
 -   **<big>RLock</big>** : 为指定的键获取读锁并执行提供的函数。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/concurrency.md#RLock)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/ZrCr8sMo77T)]
 -   **<big>Lock</big>** : 为指定的键获取锁并执行提供的函数。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/concurrency.md#Lock)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/WgAcXbOPKGk)]
 -   **<big>NewTryKeyedLocker</big>** : 创建一个 TryKeyedLocker 实例，TryKeyedLocker 是 KeyedLocker 的非阻塞版本。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/concurrency.md#NewTryKeyedLocker)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/VG9qLvyetE2)]
 -   **<big>TryLock</big>** : TryLock 尝试获取指定键的锁。如果锁成功获取，则返回 true，否则返回 false。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/concurrency.md#TryLock)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/VG9qLvyetE2)]
 -   **<big>Unlock</big>** : 释放指定键的锁。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/concurrency.md#Unlock)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/VG9qLvyetE2)]
 
 <h3 id="condition"> 4. condition 包含一些用于条件判断的函数。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 
@@ -378,9 +378,15 @@ import "github.com/duke-git/lancet/v2/cryptor"
 -   **<big>AesCbcDecrypt</big>** : 使用 AES CBC 算法模式解密数据。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/cryptor.md#AesCbcDecrypt)]
     [[play](https://go.dev/play/p/IOq_g8_lKZD)]
--   **<big>AesCtrCrypt</big>** : 使用 AES CTR 算法模式加密/解密数据。
+-   **<big>AesCtrCrypt<sup>deprecated</sup></big>** : 使用 AES CTR 算法模式加密/解密数据。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/cryptor.md#AesCtrCrypt)]
     [[play](https://go.dev/play/p/SpaZO0-5Nsp)]
+-   **<big>AesCtrEncrypt</big>** : 使用 AES CTR 算法模式加密数据。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/cryptor.md#AesCtrCrypt)]
+    [[play](https://go.dev/play/p/x6pjPAvThRz)]
+-   **<big>AesCtrDecrypt</big>** : 使用 AES CTR 算法模式解密数据。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/cryptor.md#AesCtrCrypt)]
+    [[play](https://go.dev/play/p/x6pjPAvThRz)]
 -   **<big>AesCfbEncrypt</big>** : 使用 AES CFB 算法模式加密数据。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/cryptor.md#AesCfbEncrypt)]
     [[play](https://go.dev/play/p/tfkF10B13kH)]
@@ -417,9 +423,15 @@ import "github.com/duke-git/lancet/v2/cryptor"
 -   **<big>DesCbcDecrypt</big>** : 使用 DES CBC 算法模式解密数据。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/cryptor.md#DesCbcDecrypt)]
     [[play](https://go.dev/play/p/4cC4QvWfe3_1)]
--   **<big>DesCtrCrypt</big>** : 使用 DES CTR 算法模式加密/解密数据。
+-   **<big>DesCtrCrypt<sup>deprecated</sup></big>** : 使用 DES CTR 算法模式加密/解密数据。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/cryptor.md#DesCtrCrypt)]
     [[play](https://go.dev/play/p/9-T6OjKpcdw)]
+-   **<big>DesCtrEncrypt</big>** : 使用 DES CTR 算法模式加密数据。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/cryptor.md#DesCtrEncrypt)]
+    [[play](https://go.dev/play/p/S6p_WHCgH1d)]
+-   **<big>DesCtrDecrypt</big>** : 使用 DES CTR 算法模式解密数据。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/cryptor.md#DesCtrDecrypt)]
+    [[play](https://go.dev/play/p/S6p_WHCgH1d)]
 -   **<big>DesCfbEncrypt</big>** : 使用 DES CFB 算法模式加密数据。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/cryptor.md#DesCfbEncrypt)]
     [[play](https://go.dev/play/p/y-eNxcFBlxL)]
@@ -801,7 +813,7 @@ import "github.com/duke-git/lancet/v2/fileutil"
     [[play](https://go.dev/play/p/P2y0XW8a1SH)]
 -   **<big>RemoveDir</big>** : 删除目录，支持传入删除前的回调函数。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/fileutil.md#RemoveDir)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/Oa6KnPek2uy)]
 -   **<big>ReadFileToString</big>** : 读取文件内容并返回字符串。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/fileutil.md#ReadFileToString)]
     [[play](https://go.dev/play/p/cmfwp_5SQTp)]
@@ -1122,7 +1134,7 @@ import "github.com/duke-git/lancet/v2/maputil"
     [[play](https://go.dev/play/p/99QjSYSBdiM)]
 -   **<big>FindValuesBy</big>** : 返回一个切片，包含满足给定谓词判断函数的 map 中的值。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/maputil.md#FindValuesBy)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/bvNwNBZDm6v)]
 
 <h3 id="mathutil"> 14. mathutil 包实现了一些数学计算的函数。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 
@@ -1309,10 +1321,10 @@ import "github.com/duke-git/lancet/v2/netutil"
     [[play](https://go.dev/play/p/yiLCGtQv_ZG)]
 -   **<big>BuildUrl</big>** : 创建 url 字符串。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/netutil.md#BuildUrl)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/JLXl1hZK7l4)]
 -   **<big>AddQueryParams</big>** : 向 url 添加查询参数。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/netutil.md#AddQueryParams)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/JLXl1hZK7l4)]
 
 <h3 id="pointer"> 16. pointer 包支持一些指针类型的操作。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 
@@ -2225,7 +2237,7 @@ import "github.com/duke-git/lancet/v2/validator"
     [[play](https://go.dev/play/p/LzaKocSV79u)]
 -   **<big>IsAlphaNumeric</big>** : 验证字符串是字母或数字。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/validator.md#IsAlphaNumeric)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/RHeESLrLg9c)]
 -   **<big>IsJSON</big>** : 验证字符串是否是有效 json。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/validator.md#IsJSON)]
     [[play](https://go.dev/play/p/8Kip1Itjiil)]

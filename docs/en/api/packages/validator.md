@@ -836,7 +836,7 @@ func main() {
 func IsAlphaNumeric(s string) bool
 ```
 
-<b>Example:<span style="float:right;display:inline-block">[Run](https://go.dev/play/p/todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block">[Run](https://go.dev/play/p/RHeESLrLg9c)</span></b>
 
 ```go
 import (

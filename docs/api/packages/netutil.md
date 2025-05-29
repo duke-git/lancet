@@ -1044,7 +1044,7 @@ func main() {
 func BuildUrl(scheme, host, path string, query map[string][]string) (string, error)
 ```
 
-<b>示例:<span style="float:right;display:inline-block;">[运行](todo)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/JLXl1hZK7l4)</span></b>
 
 ```go
 package main
@@ -1084,7 +1084,7 @@ func main() {
 func AddQueryParams(urlStr string, params map[string][]string) (string, error)
 ```
 
-<b>示例:<span style="float:right;display:inline-block;">[运行](todo)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/JLXl1hZK7l4)</span></b>
 
 ```go
 package main

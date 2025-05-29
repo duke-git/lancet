@@ -27,7 +27,9 @@ import (
 -   [AesEcbDecrypt](#AesEcbDecrypt)
 -   [AesCbcEncrypt](#AesCbcEncrypt)
 -   [AesCbcDecrypt](#AesCbcDecrypt)
--   [AesCtrCrypt](#AesCtrCrypt)
+-   [AesCtrCrypt<sup>deprecated</sup>](#AesCtrCrypt)
+-   [AesCtrEncrypt](#AesCtrEncrypt)
+-   [AesCtrDecrypt](#AesCtrDecrypt)
 -   [AesCfbEncrypt](#AesCfbEncrypt)
 -   [AesCfbDecrypt](#AesCfbDecrypt)
 -   [AesOfbEncrypt](#AesOfbEncrypt)
@@ -40,7 +42,9 @@ import (
 -   [DesEcbDecrypt](#DesEcbDecrypt)
 -   [DesCbcEncrypt](#DesCbcEncrypt)
 -   [DesCbcDecrypt](#DesCbcDecrypt)
--   [DesCtrCrypt](#DesCtrCrypt)
+-   [DesCtrCrypt<sup>deprecated</sup>](#DesCtrCrypt)
+-   [DesCfbEncrypt](#DesCfbEncrypt)
+-   [DesCfbDecrypt](#DesCfbDecrypt)
 -   [DesCfbEncrypt](#DesCfbEncrypt)
 -   [DesCfbDecrypt](#DesCfbDecrypt)
 -   [DesOfbEncrypt](#DesOfbEncrypt)
@@ -217,6 +221,8 @@ func main() {
 
 <p>Encrypt or decrypt data with key use AES CTR algorithm. Length of `key` param should be 16, 24 or 32.</p>
 
+> ⚠️ This function is deprecated. use `AesCtrEncrypt` and `AesCtrDecrypt` instead.
+
 <b>Signature:</b>
 
 ```go
@@ -239,6 +245,74 @@ func main() {
 
     encrypted := cryptor.AesCtrCrypt([]byte(data), []byte(key))
     decrypted := cryptor.AesCtrCrypt(encrypted, []byte(key))
+
+    fmt.Println(string(decrypted))
+
+    // Output:
+    // hello
+}
+```
+
+### <span id="AesCtrEncrypt">AesCtrEncrypt</span>
+
+<p>Encrypt data with key use AES CTR algorithm</p>
+
+<b>Signature:</b>
+
+```go
+func AesCtrEncrypt(data, key []byte) []byte
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/x6pjPAvThRz)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/cryptor"
+)
+
+func main() {
+    data := "hello"
+    key := "abcdefghijklmnop"
+
+    encrypted := cryptor.AesCtrEncrypt([]byte(data), []byte(key))
+    decrypted := cryptor.AesCtrDecrypt(encrypted, []byte(key))
+
+    fmt.Println(string(decrypted))
+
+    // Output:
+    // hello
+}
+```
+
+### <span id="AesCtrDecrypt">AesCtrDecrypt</span>
+
+<p>Decrypt data with key use AES CTR algorithm</p>
+
+<b>Signature:</b>
+
+```go
+func AesCtrDecrypt(encrypted, key []byte) []byte
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/x6pjPAvThRz)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/cryptor"
+)
+
+func main() {
+    data := "hello"
+    key := "abcdefghijklmnop"
+
+    encrypted := cryptor.AesCtrEncrypt([]byte(data), []byte(key))
+    decrypted := cryptor.AesCtrDecrypt(encrypted, []byte(key))
 
     fmt.Println(string(decrypted))
 
@@ -651,6 +725,8 @@ func main() {
 
 <p>Encrypt or decrypt data with key use DES CTR algorithm. Length of `key` param should be 8.</p>
 
+> ⚠️ This function is deprecated. use `DesCtrEncrypt` and `DesCtrDecrypt` instead.
+
 <b>Signature:</b>
 
 ```go
@@ -673,6 +749,74 @@ func main() {
 
     encrypted := cryptor.DesCtrCrypt([]byte(data), []byte(key))
     decrypted := cryptor.DesCtrCrypt(encrypted, []byte(key))
+
+    fmt.Println(string(decrypted))
+
+    // Output:
+    // hello
+}
+```
+
+### <span id="DesCtrEncrypt">DesCtrCrypt</span>
+
+<p>Encrypt data with key use DES CTR algorithm. Length of `key` param should be 8.</p>
+
+<b>Signature:</b>
+
+```go
+func DesCtrEncrypt(data, key []byte) []byte
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/S6p_WHCgH1d)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/cryptor"
+)
+
+func main() {
+    data := "hello"
+    key := "abcdefgh"
+
+    encrypted := cryptor.DesCtrEncrypt([]byte(data), []byte(key))
+    decrypted := cryptor.DesCtrDecrypt(encrypted, []byte(key))
+
+    fmt.Println(string(decrypted))
+
+    // Output:
+    // hello
+}
+```
+
+### <span id="DesCtrDecrypt">DesCtrDecrypt</span>
+
+<p>Decrypt data with key use DES CTR algorithm. Length of `key` param should be 8.</p>
+
+<b>Signature:</b>
+
+```go
+func DesCtrDecrypt(encrypted, key []byte) []byte
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/S6p_WHCgH1d)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/cryptor"
+)
+
+func main() {
+    data := "hello"
+    key := "abcdefgh"
+
+    encrypted := cryptor.DesCtrEncrypt([]byte(data), []byte(key))
+    decrypted := cryptor.DesCtrDecrypt(encrypted, []byte(key))
 
     fmt.Println(string(decrypted))
 
