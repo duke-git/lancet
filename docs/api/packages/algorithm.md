@@ -8,7 +8,7 @@ algorithm 算法包实现一些基本算法，sort，search，lrucache。
 
 -   [https://github.com/duke-git/lancet/blob/main/algorithm/sort.go](https://github.com/duke-git/lancet/blob/main/algorithm/sort.go)
 -   [https://github.com/duke-git/lancet/blob/main/algorithm/search.go](https://github.com/duke-git/lancet/blob/main/algorithm/search.go)
--   [https://github.com/duke-git/lancet/blob/main/algorithm/lru_cache.go](https://github.com/duke-git/lancet/blob/main/algorithm/lru_cache.go)
+-   [https://github.com/duke-git/lancet/blob/main/algorithm/lrucache.go](https://github.com/duke-git/lancet/blob/main/algorithm/lrucache.go)
 
 <div STYLE="page-break-after: always;"></div>
 
