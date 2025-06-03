@@ -130,14 +130,16 @@ func Retry(retryFunc RetryFunc, opts ...Option) error {
 	var i uint
 	for i < config.retryTimes {
 		err := retryFunc()
-		if err != nil {
+		if err == nil {
+			return nil
+		}
+
+		if i < config.retryTimes-1 { // Only wait if it's not the last retry
 			select {
 			case <-time.After(config.backoffStrategy.CalculateInterval()):
 			case <-config.context.Done():
 				return errors.New("retry is cancelled")
 			}
-		} else {
-			return nil
 		}
 		i++
 	}
