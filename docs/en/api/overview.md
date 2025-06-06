@@ -6,7 +6,6 @@ outline: deep
 
 <b>Lancet (Lancet) is a powerful, comprehensive, efficient and reusable go language tool function library. Contains 25 packages, more than 600 utility functions. Functions cover string processing, slice processing, network, concurrency, encryption and decryption, file processing, time/date, stream processing, iterators, and more.</b>
 
-
 <style>
 .package-title {
     color: black;
@@ -27,7 +26,7 @@ outline: deep
     display: inline-block;
     vertical-align: middle;
     line-height: 40px;
-    background: #059669;
+    background: #6cadf5;
     border: 1px solid;
     margin-right: 10px;
     margin-bottom: 10px;
@@ -47,6 +46,7 @@ outline: deep
         <div class="package-cell">cryptor</div>
         <div class="package-cell">datastructure</div>
         <div class="package-cell">datetime</div>
+        <div class="package-cell">eventbus</div>
         <div class="package-cell">fileutil</div>
         <div class="package-cell">formatter</div>
         <div class="package-cell">function</div>
@@ -67,4 +67,3 @@ outline: deep
         <div class="package-cell">xerror</div>
     </div>
 </div>
-

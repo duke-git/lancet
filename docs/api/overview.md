@@ -2,10 +2,9 @@
 outline: deep
 ---
 
-# API概述
+# API 概述
 
-<b>lancet（柳叶刀）是一个功能强大、全面、高效、可复用的go语言工具函数库。包含25个包，超过600个工具函数。功能涵盖字符串处理、切片处理、网络、并发、加解密、文件处理、时间/日期、流处理、迭代器等等。</b>
-
+<b>lancet（柳叶刀）是一个功能强大、全面、高效、可复用的 go 语言工具函数库。包含 25 个包，超过 600 个工具函数。功能涵盖字符串处理、切片处理、网络、并发、加解密、文件处理、时间/日期、流处理、迭代器等等。</b>
 
 <style>
 .package-title {
@@ -27,7 +26,7 @@ outline: deep
     display: inline-block;
     vertical-align: middle;
     line-height: 40px;
-    background: #10b981;
+    background: #6cadf5;
     border: 1px solid;
     margin-right: 10px;
     margin-bottom: 10px;
