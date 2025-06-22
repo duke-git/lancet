@@ -118,7 +118,7 @@ func ExampleRetryTimes() {
 	}
 
 	// Output:
-	// function retry.ExampleRetryTimes.func1 run failed after 2 times retry
+	// function retry.ExampleRetryTimes.func1 run failed after 2 times retry, last error: error occurs
 }
 
 func ExampleRetry() {
