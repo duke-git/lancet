@@ -15,14 +15,16 @@ func TestRetryFailed(t *testing.T) {
 	assert := internal.NewAssert(t, "TestRetryFailed")
 
 	var number int
+	customError := errors.New("error occurs")
 	increaseNumber := func() error {
 		number++
-		return errors.New("error occurs")
+		return customError
 	}
 
 	err := Retry(increaseNumber, RetryWithLinearBackoff(time.Microsecond*50))
 
 	assert.IsNotNil(err)
+	assert.Equal(errors.Is(err, customError), true)
 	assert.Equal(DefaultRetryTimes, number)
 }
 

@@ -60,7 +60,7 @@ func (q *ArrayQueue[T]) Front() T {
 
 // Back return back value of queue
 func (q *ArrayQueue[T]) Back() T {
-	return q.data[q.size-1]
+	return q.data[q.tail-1]
 }
 
 // EnQueue put element into queue
