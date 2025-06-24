@@ -125,6 +125,8 @@ func ReduceConcurrent[T any](slice []T, initial T, reducer func(index int, item 
 func FilterConcurrent[T any](slice []T, predicate func(index int, item T) bool, numThreads int) []T {
 	result := make([]T, 0)
 	var wg sync.WaitGroup
+	var mu sync.Mutex
+
 
 	workerChan := make(chan struct{}, numThreads)
 
@@ -137,7 +139,9 @@ func FilterConcurrent[T any](slice []T, predicate func(index int, item T) bool, 
 			defer wg.Done()
 
 			if predicate(i, v) {
+				mu.Lock()
 				result = append(result, v)
+				mu.Unlock()
 			}
 
 			<-workerChan
