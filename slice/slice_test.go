@@ -1008,7 +1008,7 @@ func TestUniqueByComparator(t *testing.T) {
 	t.Run("case-insensitive string comparison", func(t *testing.T) {
 		stringSlice := []string{"apple", "banana", "Apple", "cherry", "Banana", "date"}
 		caseInsensitiveComparator := func(item, other string) bool {
-			return strings.ToLower(item) == strings.ToLower(other)
+			return strings.EqualFold(item, other)
 		}
 
 		result := UniqueByComparator(stringSlice, caseInsensitiveComparator)
