@@ -65,7 +65,7 @@ func TestPredicatesNandPure(t *testing.T) {
 	)
 
 	assert.ShouldBeFalse(isNumericAndLength5("12345"))
-	assert.ShouldBeFalse(isNumericAndLength5("1234"))
+	assert.ShouldBeTrue(isNumericAndLength5("1234"))
 	assert.ShouldBeTrue(isNumericAndLength5("abcdef"))
 }
 

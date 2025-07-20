@@ -18,7 +18,7 @@ func And[T any](predicates ...func(T) bool) func(T) bool {
 }
 
 // Nand returns a composed predicate that represents the logical NAND of a list of predicates.
-// It evaluates to true only if all predicates evaluate to false for the given value.
+// It evaluates to false only if all predicates evaluate to true for the given value.
 // Play: https://go.dev/play/p/Rb-FdNGpgSO
 func Nand[T any](predicates ...func(T) bool) func(T) bool {
 	if len(predicates) < 2 {
@@ -26,11 +26,11 @@ func Nand[T any](predicates ...func(T) bool) func(T) bool {
 	}
 	return func(value T) bool {
 		for _, predicate := range predicates {
-			if predicate(value) {
-				return false // Short-circuit on the first true predicate
+			if !predicate(value) {
+				return true // Short-circuit on the first false predicate
 			}
 		}
-		return true // True if all predicates are false
+		return false // False if all predicates are true
 	}
 }
 
