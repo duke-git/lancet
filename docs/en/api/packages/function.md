@@ -620,7 +620,7 @@ func main() {
 
 ### <span id="Nand">Nand</span>
 
-<p>Returns a composed predicate that represents the logical NAND of a list of predicates. It evaluates to true only if all predicates evaluate to false for the given value.</p>
+<p>Returns a composed predicate that represents the logical NAND of a list of predicates. It evaluates to false only if all predicates evaluate to true for the given value.</p>
 
 <b>Signature:</b>
 
@@ -650,7 +650,7 @@ func main() {
 
     // Output:
     // false
-    // false
+    // true
     // true
 }
 ```
