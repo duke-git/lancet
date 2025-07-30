@@ -507,19 +507,17 @@ func flattenRecursive(value reflect.Value, result reflect.Value) reflect.Value {
 }
 
 // ForEach iterates over elements of slice and invokes function for each element.
-// Play: https://go.dev/play/p/DrPaa4YsHRF
 func ForEach[T any](slice []T, iteratee func(index int, item T)) {
-	for i := 0; i < len(slice); i++ {
-		iteratee(i, slice[i])
+	for idx, elem := range slice {
+		iteratee(idx, elem)
 	}
 }
 
 // ForEachWithBreak iterates over elements of slice and invokes function for each element,
-// when iteratee return false, will break the for each loop.
-// Play: https://go.dev/play/p/qScs39f3D9W
+// when function return false, will break the for each loop.
 func ForEachWithBreak[T any](slice []T, iteratee func(index int, item T) bool) {
-	for i := 0; i < len(slice); i++ {
-		if !iteratee(i, slice[i]) {
+	for idx, elem := range slice {
+		if !iteratee(idx, elem) {
 			break
 		}
 	}
