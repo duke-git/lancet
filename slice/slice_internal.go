@@ -2,6 +2,7 @@ package slice
 
 import (
 	"fmt"
+	"math/bits"
 	"reflect"
 
 	"golang.org/x/exp/constraints"
@@ -95,4 +96,72 @@ func partitionAnySlice[T any](slice []T, lowIndex, highIndex int, less func(a, b
 // swap two slice value at index i and j
 func swap[T any](slice []T, i, j int) {
 	slice[i], slice[j] = slice[j], slice[i]
+}
+
+// `repeat` returns a new slice that repeats the provided slice the given number of
+// times. The result has length and capacity (len(x) * count). The result is never nil.
+// Repeat panics if count is negative or if the result of (len(x) * count)  overflows.
+//
+// repeat has been provided in the standard lib within the package `slices` under the
+// name Repeat since GO version 1.21 onwards. As lancet commits to compatibility with GO
+// 1.18 onwards, we implement the functionality as an internal function.
+func repeat[S ~[]E, E any](x S, count int) S {
+	if count < 0 {
+		panic("count cannot be negative")
+	}
+
+	const maxInt = ^uint(0) >> 1
+	hi, lo := bits.Mul(uint(len(x)), uint(count))
+	if hi > 0 || lo > maxInt {
+		panic("the result of (len(x) * count) overflows")
+	}
+
+	newslice := make(S, int(lo)) // lo = len(x) * count
+	n := copy(newslice, x)
+	for n < len(newslice) {
+		n += copy(newslice[n:], newslice[:n])
+	}
+	return newslice
+}
+
+// concat returns a new slice concatenating the passed in slices.
+//
+// concat has been provided in the standard lib within the package `slices` under the
+// name Concat since GO version 1.21 onwards. As lancet commits to compatibility with GO
+// 1.18 onwards, we implement the functionality as an internal function.
+func concat[S ~[]E, E any](slices ...S) S {
+	size := 0
+	for _, s := range slices {
+		size += len(s)
+		if size < 0 {
+			panic("len out of range")
+		}
+	}
+	// Use Grow, not make, to round up to the size class:
+	// the extra space is otherwise unused and helps
+	// callers that append a few elements to the result.
+	newslice := grow[S](nil, size)
+	for _, s := range slices {
+		newslice = append(newslice, s...)
+	}
+	return newslice
+}
+
+// grow increases the slice's capacity, if necessary, to guarantee space for
+// another n elements. After grow(n), at least n elements can be appended
+// to the slice without another allocation. If n is negative or too large to
+// allocate the memory, grow panics.
+//
+// grow has been provided in the standard lib within the package `slices` under the
+// name Grow since GO version 1.21 onwards. As lancet commits to compatibility with GO
+// 1.18 onwards, we implement the functionality as an internal function.
+func grow[S ~[]E, E any](s S, n int) S {
+	if n < 0 {
+		panic("cannot be negative")
+	}
+	if n -= cap(s) - len(s); n > 0 {
+		// This expression allocates only once.
+		s = append(s[:cap(s)], make([]E, n)...)[:len(s)]
+	}
+	return s
 }

@@ -12,7 +12,6 @@ import (
 	"strings"
 	"sync"
 	"time"
-	stdslices "slices"
 
 	"github.com/duke-git/lancet/v2/random"
 	"golang.org/x/exp/constraints"
@@ -1472,9 +1471,9 @@ func Random[T any](slice []T) (val T, idx int) {
 func RightPadding[T any](slice []T, paddingValue T, paddingLength int) []T {
 	suffix := []T{}
 	if paddingLength > 0 {
-		suffix = stdslices.Repeat([]T{paddingValue}, paddingLength)
+		suffix = repeat([]T{paddingValue}, paddingLength)
 	}
-	padded := stdslices.Concat(slice, suffix)
+	padded := concat(slice, suffix)
 	return padded
 }
 
@@ -1484,9 +1483,9 @@ func RightPadding[T any](slice []T, paddingValue T, paddingLength int) []T {
 func LeftPadding[T any](slice []T, paddingValue T, paddingLength int) []T {
 	prefix := []T{}
 	if paddingLength > 0 {
-		prefix = stdslices.Repeat([]T{paddingValue}, paddingLength)
+		prefix = repeat([]T{paddingValue}, paddingLength)
 	}
-	padded := stdslices.Concat(prefix, slice)
+	padded := concat(prefix, slice)
 	return padded
 }
 
