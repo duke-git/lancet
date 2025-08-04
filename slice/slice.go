@@ -1463,36 +1463,28 @@ func Random[T any](slice []T) (val T, idx int) {
 	return slice[idx], idx
 }
 
-// RightPadding adds padding to the right end of a slice.
+// RightPadding returns a copy of the slice padding the given value to the right end of a slice.
+// If paddingLength is zero or less, the function returns a copy of the slice.
 // Play: https://go.dev/play/p/0_2rlLEMBXL
 func RightPadding[T any](slice []T, paddingValue T, paddingLength int) []T {
-	if paddingLength == 0 {
-		return slice
+	suffix := []T{}
+	if paddingLength > 0 {
+		suffix = repeat([]T{paddingValue}, paddingLength)
 	}
-	for i := 0; i < paddingLength; i++ {
-		slice = append(slice, paddingValue)
-	}
-	return slice
+	padded := concat(slice, suffix)
+	return padded
 }
 
-// LeftPadding adds padding to the left begin of a slice.
+// LeftPadding returns a copy of the slice padding the given value to the left begin of a slice.
+// If paddingLength is zero or less, the function returns a copy of the slice.
 // Play: https://go.dev/play/p/jlQVoelLl2k
 func LeftPadding[T any](slice []T, paddingValue T, paddingLength int) []T {
-	if paddingLength == 0 {
-		return slice
+	prefix := []T{}
+	if paddingLength > 0 {
+		prefix = repeat([]T{paddingValue}, paddingLength)
 	}
-
-	paddedSlice := make([]T, len(slice)+paddingLength)
-	i := 0
-	for ; i < paddingLength; i++ {
-		paddedSlice[i] = paddingValue
-	}
-	for j := 0; j < len(slice); j++ {
-		paddedSlice[i] = slice[j]
-		i++
-	}
-
-	return paddedSlice
+	padded := concat(prefix, slice)
+	return padded
 }
 
 // Frequency counts the frequency of each element in the slice.

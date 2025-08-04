@@ -1756,6 +1756,20 @@ func TestRightPaddingAndLeftPadding(t *testing.T) {
 
 	padded := LeftPadding(RightPadding(nums, 0, 3), 0, 3)
 	assert.Equal([]int{0, 0, 0, 1, 2, 3, 4, 5, 0, 0, 0}, padded)
+
+	// Test with negative padding length
+	paddedNegative := LeftPadding(RightPadding(nums, 0, -3), 0, -3)
+	assert.Equal([]int{1, 2, 3, 4, 5}, paddedNegative)
+
+	// Test with empty slice
+	empty := []int{}
+	paddedEmpty := LeftPadding(RightPadding(empty, 0, 3), 0, 3)
+	assert.Equal([]int{0, 0, 0, 0, 0, 0}, paddedEmpty)
+
+	// Test with nil
+	nilSlice := []int(nil)
+	paddedNil := LeftPadding(RightPadding(nilSlice, 0, 3), 0, 3)
+	assert.Equal([]int{0, 0, 0, 0, 0, 0}, paddedNil)
 }
 
 func TestUniqueByConcurrent(t *testing.T) {
