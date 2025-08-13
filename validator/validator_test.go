@@ -924,3 +924,33 @@ func TestIsAlphaNumeric(t *testing.T) {
 		assert.Equal(tt.expected, IsAlphaNumeric(tt.input))
 	}
 }
+
+func TestIsPassport(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestIsPassport")
+
+	tests := []struct {
+		passport    string
+		countryCode string
+		expected    bool
+	}{
+		{"P123456789", "CN", true},
+		{"123456789", "US", true},
+		{"A12345678", "GB", true},
+		{"AB1234567", "FR", true},
+		{"12345678", "JP", true},
+		{"M12345678", "HK", true},
+		{"A12345678", "MO", true},
+		{"A1234567", "IN", true},
+		{"12345678", "IT", true},
+		{"A12345678", "AU", true},
+		{"123456789", "BR", true},
+		{"AB1234567", "RU", true},
+		{"123456789", "CN", false},
+	}
+
+	for _, tt := range tests {
+		assert.Equal(tt.expected, IsPassport(tt.passport, tt.countryCode))
+	}
+}

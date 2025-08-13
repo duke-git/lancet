@@ -683,3 +683,21 @@ func ExampleIsAlphaNumeric() {
 	// true
 	// false
 }
+
+func ExampleIsPassport() {
+	result1 := IsPassport("P123456789", "CN")
+	result2 := IsPassport("123456789", "US")
+	result3 := IsPassport("AB1234567", "RU")
+	result4 := IsPassport("123456789", "CN")
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+	fmt.Println(result4)
+
+	// Output:
+	// true
+	// true
+	// true
+	// false
+}

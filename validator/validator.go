@@ -39,9 +39,25 @@ var (
 	visaMatcher            *regexp.Regexp = regexp.MustCompile(`^4[0-9]{12}(?:[0-9]{3})?$`)
 	masterCardMatcher      *regexp.Regexp = regexp.MustCompile(`^5[1-5][0-9]{14}$`)
 	americanExpressMatcher *regexp.Regexp = regexp.MustCompile(`^3[47][0-9]{13}$`)
-	unionPay               *regexp.Regexp = regexp.MustCompile("^62[0-5]\\d{13,16}$")
-	chinaUnionPay          *regexp.Regexp = regexp.MustCompile(`^62[0-9]{14,17}$`)
+	unionPayMatcher        *regexp.Regexp = regexp.MustCompile(`^62[0-5]\\d{13,16}$`)
+	chinaUnionPayMatcher   *regexp.Regexp = regexp.MustCompile(`^62[0-9]{14,17}$`)
 )
+
+var passportMatcher = map[string]*regexp.Regexp{
+	"CN": regexp.MustCompile(`^P\d{9}$`),
+	"US": regexp.MustCompile(`^\d{9}$`),
+	"GB": regexp.MustCompile(`^[A-Z0-9]{9}$`),
+	"RU": regexp.MustCompile(`^[A-Z]{2}\d{7}$`),
+	"DE": regexp.MustCompile(`^\d{9}$`),
+	"FR": regexp.MustCompile(`^[A-Z]{2}\d{7}$`),
+	"JP": regexp.MustCompile(`^\d{8}$`),
+	"IT": regexp.MustCompile(`^\d{8}$`),
+	"AU": regexp.MustCompile(`^[A-Z]{1}\d{8}$`),
+	"BR": regexp.MustCompile(`^\d{9}$`),
+	"IN": regexp.MustCompile(`^[A-Z]{1,2}\d{7}$`),
+	"HK": regexp.MustCompile(`^M\d{8}$`),
+	"MO": regexp.MustCompile(`^[A-Z]\d{8}$`),
+}
 
 var (
 	// Identity card formula
@@ -460,12 +476,13 @@ func IsZeroValue(value any) bool {
 func IsGBK(data []byte) bool {
 	i := 0
 	for i < len(data) {
-		if data[i] <= 0xff {
+		if data[i] < 0x81 {
 			i++
 			continue
 		} else {
 			if data[i] >= 0x81 &&
 				data[i] <= 0xfe &&
+				i+1 < len(data) &&
 				data[i+1] >= 0x40 &&
 				data[i+1] <= 0xfe &&
 				data[i+1] != 0xf7 {
@@ -562,11 +579,22 @@ func IsAmericanExpress(v string) bool {
 // IsUnionPay check if a give string is a valid union pay nubmer or not.
 // Play: https://go.dev/play/p/CUHPEwEITDf
 func IsUnionPay(v string) bool {
-	return unionPay.MatchString(v)
+	return unionPayMatcher.MatchString(v)
 }
 
 // IsChinaUnionPay check if a give string is a valid china union pay nubmer or not.
 // Play: https://go.dev/play/p/yafpdxLiymu
 func IsChinaUnionPay(v string) bool {
-	return chinaUnionPay.MatchString(v)
+	return chinaUnionPayMatcher.MatchString(v)
+}
+
+// IsPassport checks if the passport number is valid for a given country.
+// country is a two-letter country code (ISO 3166-1 alpha-2).
+// Play: todo
+func IsPassport(passport, country string) bool {
+	if matcher, ok := passportMatcher[country]; ok {
+		return matcher.MatchString(passport)
+	}
+
+	return false
 }
