@@ -692,11 +692,12 @@ func IntSlice(slice any) []int {
 // DeleteAt delete the element of slice at index.
 // Play: https://go.dev/play/p/800B1dPBYyd
 func DeleteAt[T any](slice []T, index int) []T {
+	result := append([]T(nil), slice...)
+
 	if index < 0 || index >= len(slice) {
-		return slice[:len(slice)-1]
+		return result[:len(slice)-1]
 	}
 
-	result := append([]T(nil), slice...)
 	copy(result[index:], result[index+1:])
 
 	// Set the last element to zero value, clean up the memory.
@@ -736,7 +737,8 @@ func Drop[T any](slice []T, n int) []T {
 	}
 
 	if n <= 0 {
-		return slice
+		result := make([]T, 0, size)
+		return append(result, slice...)
 	}
 
 	result := make([]T, 0, size-n)
@@ -754,7 +756,8 @@ func DropRight[T any](slice []T, n int) []T {
 	}
 
 	if n <= 0 {
-		return slice
+		result := make([]T, 0, size)
+		return append(result, slice...)
 	}
 
 	result := make([]T, 0, size-n)
@@ -800,7 +803,9 @@ func InsertAt[T any](slice []T, index int, value any) []T {
 	size := len(slice)
 
 	if index < 0 || index > size {
-		return slice
+		result := make([]T, size)
+		copy(result, slice)
+		return result
 	}
 
 	switch v := value.(type) {
@@ -817,21 +822,21 @@ func InsertAt[T any](slice []T, index int, value any) []T {
 		copy(result[index+len(v):], slice[index:])
 		return result
 	default:
-		return slice
+		result := make([]T, size)
+		copy(result, slice)
+		return result
 	}
 }
 
 // UpdateAt update the slice element at index.
 // Play: https://go.dev/play/p/f3mh2KloWVm
 func UpdateAt[T any](slice []T, index int, value T) []T {
-	if index < 0 || index >= len(slice) {
-		return slice
-	}
-
 	result := make([]T, len(slice))
 	copy(result, slice)
 
-	result[index] = value
+	if index >= 0 && index < len(slice) {
+		result[index] = value
+	}
 
 	return result
 }
