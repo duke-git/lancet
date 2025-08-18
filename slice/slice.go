@@ -1026,7 +1026,9 @@ func SymmetricDifference[T comparable](slices ...[]T) []T {
 		return []T{}
 	}
 	if len(slices) == 1 {
-		return Unique(slices[0])
+		result := make([]T, len(slices[0]))
+		copy(result, slices[0])
+		return Unique(result)
 	}
 
 	result := make([]T, 0)
@@ -1047,6 +1049,7 @@ func SymmetricDifference[T comparable](slices ...[]T) []T {
 }
 
 // Reverse return slice of element order is reversed to the given slice.
+// Reverse modifies the slice in place.
 // Play: https://go.dev/play/p/8uI8f1lwNrQ
 func Reverse[T any](slice []T) {
 	for i, j := 0, len(slice)-1; i < j; i, j = i+1, j-1 {
@@ -1054,7 +1057,8 @@ func Reverse[T any](slice []T) {
 	}
 }
 
-// ReverseCopy return a new slice of element order is reversed to the given slice.
+// ReverseCopy return a new slice of element where the order is reversed to the given
+// slice.
 // Play: https://go.dev/play/p/c9arEaP7Cg-
 func ReverseCopy[T any](slice []T) []T {
 	result := make([]T, len(slice))
@@ -1245,11 +1249,12 @@ func SortByField[T any](slice []T, field string, sortType ...string) error {
 // Without creates a slice excluding all given items.
 // Play: https://go.dev/play/p/bwhEXEypThg
 func Without[T comparable](slice []T, items ...T) []T {
+	result := make([]T, 0, len(slice))
+
 	if len(items) == 0 || len(slice) == 0 {
-		return slice
+		return append(result, slice...)
 	}
 
-	result := make([]T, 0, len(slice))
 	for _, v := range slice {
 		if !Contain(items, v) {
 			result = append(result, v)
