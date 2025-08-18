@@ -1076,7 +1076,7 @@ func Shuffle[T any](slice []T) []T {
 	rand.Seed(time.Now().UnixNano())
 
 	rand.Shuffle(len(slice), func(i, j int) {
-		slice[i], slice[j] = slice[j], slice[i]
+		swap(slice, i, j)
 	})
 
 	return slice
