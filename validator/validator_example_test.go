@@ -214,7 +214,7 @@ func ExampleIsUrl() {
 	fmt.Println(result3)
 
 	// Output:
-	// true
+	// false
 	// true
 	// false
 }

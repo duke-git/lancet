@@ -19,16 +19,17 @@ import (
 )
 
 var (
-	alphaMatcher           *regexp.Regexp = regexp.MustCompile(`^[a-zA-Z]+$`)
-	letterRegexMatcher     *regexp.Regexp = regexp.MustCompile(`[a-zA-Z]`)
-	alphaNumericMatcher    *regexp.Regexp = regexp.MustCompile(`^[a-zA-Z0-9-]+$`)
-	numberRegexMatcher     *regexp.Regexp = regexp.MustCompile(`\d`)
-	intStrMatcher          *regexp.Regexp = regexp.MustCompile(`^[\+-]?\d+$`)
-	urlMatcher             *regexp.Regexp = regexp.MustCompile(`^((ftp|http|https?):\/\/)?(\S+(:\S*)?@)?((([1-9]\d?|1\d\d|2[01]\d|22[0-3])(\.(1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.([0-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(([a-zA-Z0-9]+([-\.][a-zA-Z0-9]+)*)|((www\.)?))?(([a-z\x{00a1}-\x{ffff}0-9]+-?-?)*[a-z\x{00a1}-\x{ffff}0-9]+)(?:\.([a-z\x{00a1}-\x{ffff}]{2,}))?))(:(\d{1,5}))?((\/|\?|#)[^\s]*)?$`)
-	dnsMatcher             *regexp.Regexp = regexp.MustCompile(`^(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,}$`)
-	emailMatcher           *regexp.Regexp = regexp.MustCompile(`^[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,4}$`)
+	alphaMatcher        *regexp.Regexp = regexp.MustCompile(`^[a-zA-Z]+$`)
+	letterRegexMatcher  *regexp.Regexp = regexp.MustCompile(`[a-zA-Z]`)
+	alphaNumericMatcher *regexp.Regexp = regexp.MustCompile(`^[a-zA-Z0-9-]+$`)
+	numberRegexMatcher  *regexp.Regexp = regexp.MustCompile(`\d`)
+	intStrMatcher       *regexp.Regexp = regexp.MustCompile(`^[\+-]?\d+$`)
+	urlMatcher          *regexp.Regexp = regexp.MustCompile(`^((ftp|http|https?):\/\/)?(\S+(:\S*)?@)?((([1-9]\d?|1\d\d|2[01]\d|22[0-3])(\.(1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.([0-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(([a-zA-Z0-9]+([-\.][a-zA-Z0-9]+)*)|((www\.)?))?(([a-z\x{00a1}-\x{ffff}0-9]+-?-?)*[a-z\x{00a1}-\x{ffff}0-9]+)(?:\.([a-z\x{00a1}-\x{ffff}]{2,}))?))(:(\d{1,5}))?((\/|\?|#)[^\s]*)?$`)
+	dnsMatcher          *regexp.Regexp = regexp.MustCompile(`^(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,}$`)
+	// emailMatcher           *regexp.Regexp = regexp.MustCompile(`^[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,4}$`)
+	emailMatcher           *regexp.Regexp = regexp.MustCompile(`\w+(-+.\w+)*@\w+(-.\w+)*.\w+(-.\w+)*`)
 	chineseMobileMatcher   *regexp.Regexp = regexp.MustCompile(`^1(?:3\d|4[4-9]|5[0-35-9]|6[67]|7[013-8]|8\d|9\d)\d{8}$`)
-	chineseIdMatcher       *regexp.Regexp = regexp.MustCompile(`^(\d{17})([0-9]|X|x)$`)
+	chineseIdMatcher       *regexp.Regexp = regexp.MustCompile(`([1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx])|([1-9]\d{5}\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{2}[0-9Xx])`)
 	chineseMatcher         *regexp.Regexp = regexp.MustCompile("[\u4e00-\u9fa5]")
 	chinesePhoneMatcher    *regexp.Regexp = regexp.MustCompile(`\d{3}-\d{8}|\d{4}-\d{7}|\d{4}-\d{8}`)
 	creditCardMatcher      *regexp.Regexp = regexp.MustCompile(`^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|(222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)[0-9]{12}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\\d{3})\\d{11}|6[27][0-9]{14})$`)
@@ -274,21 +275,45 @@ func IsPort(str string) bool {
 // IsUrl check if the string is url.
 // Play: https://go.dev/play/p/pbJGa7F98Ka
 func IsUrl(str string) bool {
-	if str == "" || len(str) >= 2083 || len(str) <= 3 || strings.HasPrefix(str, ".") {
-		return false
-	}
-	u, err := url.Parse(str)
-	if err != nil {
-		return false
-	}
-	if strings.HasPrefix(u.Host, ".") {
-		return false
-	}
-	if u.Host == "" && (u.Path != "" && !strings.Contains(u.Path, ".")) {
+	if str == "" {
 		return false
 	}
 
-	return urlMatcher.MatchString(str)
+	u, err := url.Parse(str)
+	if err != nil || u.Scheme == "" || u.Host == "" {
+		return false
+	}
+
+	allowedSchemes := map[string]struct{}{
+		"http":   {},
+		"https":  {},
+		"ftp":    {},
+		"ws":     {},
+		"wss":    {},
+		"file":   {},
+		"mailto": {},
+		"data":   {},
+	}
+
+	if _, ok := allowedSchemes[u.Scheme]; !ok {
+		return false
+	}
+
+	if u.Scheme == "file" || u.Scheme == "mailto" || u.Scheme == "data" {
+		return true
+	}
+
+	host := u.Hostname()
+	if !strings.Contains(host, ".") || strings.HasSuffix(host, ".") {
+		return false
+	}
+
+	// domainRegexp := regexp.MustCompile(`^[a-zA-Z0-9][a-zA-Z0-9\-\.]*[a-zA-Z0-9]$`)
+	if !dnsMatcher.MatchString(host) {
+		return false
+	}
+
+	return true
 }
 
 // IsDns check if the string is dns.
@@ -302,8 +327,6 @@ func IsDns(dns string) bool {
 func IsEmail(email string) bool {
 	_, err := mail.ParseAddress(email)
 	return err == nil
-
-	// return emailMatcher.MatchString(email)
 }
 
 // IsChineseMobile check if the string is chinese mobile number.

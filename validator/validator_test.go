@@ -437,10 +437,32 @@ func TestIsUrl(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestIsUrl")
 
-	assert.Equal(true, IsUrl("http://abc.com"))
-	assert.Equal(true, IsUrl("abc.com"))
-	assert.Equal(true, IsUrl("a.b.com"))
-	assert.Equal(false, IsUrl("abc"))
+	tests := []struct {
+		input    string
+		expected bool
+	}{
+		{"http://abc.com", true},
+		{"https://abc.com", true},
+		{"ftp://abc.com", true},
+		{"http://abc.com/path?query=123", true},
+		{"https://abc.com/path/to/resource", true},
+		{"ws://abc.com", true},
+		{"wss://abc.com", true},
+		{"mailto://abc.com", true},
+		{"file://path/to/file", true},
+		{"data://text/plain;base64,SGVsbG8sIFdvcmxkIQ==", true},
+		{"http://abc.com/path/to/resource?query=123#fragment", true},
+
+		{"abc", false},
+		{"http://", false},
+		{"http://abc", false},
+		{"http://abc:8080", false},
+		{"http://abc:99999999", false},
+	}
+
+	for _, tt := range tests {
+		assert.Equal(tt.expected, IsUrl(tt.input))
+	}
 }
 
 func TestIsDns(t *testing.T) {
@@ -477,12 +499,24 @@ func TestIsEmail(t *testing.T) {
 
 func TestContainChinese(t *testing.T) {
 	t.Parallel()
-
 	assert := internal.NewAssert(t, "TestContainChinese")
 
-	assert.Equal(true, ContainChinese("你好"))
-	assert.Equal(true, ContainChinese("你好hello"))
-	assert.Equal(false, ContainChinese("hello"))
+	tests := []struct {
+		input    string
+		expected bool
+	}{
+		{"你好", true},
+		{"hello", false},
+		{"你好hello", true},
+		{"hello你好", true},
+		{"", false},
+		{"123", false},
+		{"!@#$%^&*()", false},
+	}
+
+	for _, tt := range tests {
+		assert.Equal(tt.expected, ContainChinese(tt.input))
+	}
 }
 
 func TestIsChineseMobile(t *testing.T) {
@@ -490,8 +524,20 @@ func TestIsChineseMobile(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestIsChineseMobile")
 
-	assert.Equal(true, IsChineseMobile("13263527980"))
-	assert.Equal(false, IsChineseMobile("434324324"))
+	tests := []struct {
+		input    string
+		expected bool
+	}{
+		{"13263527980", true},
+		{"1326352798", false},
+		{"132635279801", false},
+		{"1326352798a", false},
+		{"1326352798@", false},
+	}
+
+	for _, tt := range tests {
+		assert.Equal(tt.expected, IsChineseMobile(tt.input))
+	}
 }
 
 func TestIsChinesePhone(t *testing.T) {
