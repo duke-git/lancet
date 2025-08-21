@@ -690,11 +690,12 @@ func IntSlice(slice any) []int {
 // DeleteAt delete the element of slice at index.
 // Play: https://go.dev/play/p/800B1dPBYyd
 func DeleteAt[T any](slice []T, index int) []T {
+	result := append([]T(nil), slice...)
+
 	if index < 0 || index >= len(slice) {
-		return slice[:len(slice)-1]
+		return result[:len(slice)-1]
 	}
 
-	result := append([]T(nil), slice...)
 	copy(result[index:], result[index+1:])
 
 	// Set the last element to zero value, clean up the memory.
@@ -734,7 +735,8 @@ func Drop[T any](slice []T, n int) []T {
 	}
 
 	if n <= 0 {
-		return slice
+		result := make([]T, 0, size)
+		return append(result, slice...)
 	}
 
 	result := make([]T, 0, size-n)
@@ -752,7 +754,8 @@ func DropRight[T any](slice []T, n int) []T {
 	}
 
 	if n <= 0 {
-		return slice
+		result := make([]T, 0, size)
+		return append(result, slice...)
 	}
 
 	result := make([]T, 0, size-n)
@@ -798,7 +801,9 @@ func InsertAt[T any](slice []T, index int, value any) []T {
 	size := len(slice)
 
 	if index < 0 || index > size {
-		return slice
+		result := make([]T, size)
+		copy(result, slice)
+		return result
 	}
 
 	switch v := value.(type) {
@@ -815,21 +820,21 @@ func InsertAt[T any](slice []T, index int, value any) []T {
 		copy(result[index+len(v):], slice[index:])
 		return result
 	default:
-		return slice
+		result := make([]T, size)
+		copy(result, slice)
+		return result
 	}
 }
 
 // UpdateAt update the slice element at index.
 // Play: https://go.dev/play/p/f3mh2KloWVm
 func UpdateAt[T any](slice []T, index int, value T) []T {
-	if index < 0 || index >= len(slice) {
-		return slice
-	}
-
 	result := make([]T, len(slice))
 	copy(result, slice)
 
-	result[index] = value
+	if index >= 0 && index < len(slice) {
+		result[index] = value
+	}
 
 	return result
 }
@@ -1019,7 +1024,9 @@ func SymmetricDifference[T comparable](slices ...[]T) []T {
 		return []T{}
 	}
 	if len(slices) == 1 {
-		return Unique(slices[0])
+		result := make([]T, len(slices[0]))
+		copy(result, slices[0])
+		return Unique(result)
 	}
 
 	result := make([]T, 0)
@@ -1040,6 +1047,7 @@ func SymmetricDifference[T comparable](slices ...[]T) []T {
 }
 
 // Reverse return slice of element order is reversed to the given slice.
+// Reverse modifies the slice in place.
 // Play: https://go.dev/play/p/8uI8f1lwNrQ
 func Reverse[T any](slice []T) {
 	for i, j := 0, len(slice)-1; i < j; i, j = i+1, j-1 {
@@ -1047,7 +1055,8 @@ func Reverse[T any](slice []T) {
 	}
 }
 
-// ReverseCopy return a new slice of element order is reversed to the given slice.
+// ReverseCopy return a new slice of element where the order is reversed to the given
+// slice.
 // Play: https://go.dev/play/p/c9arEaP7Cg-
 func ReverseCopy[T any](slice []T) []T {
 	result := make([]T, len(slice))
@@ -1065,7 +1074,7 @@ func Shuffle[T any](slice []T) []T {
 	rand.Seed(time.Now().UnixNano())
 
 	rand.Shuffle(len(slice), func(i, j int) {
-		slice[i], slice[j] = slice[j], slice[i]
+		swap(slice, i, j)
 	})
 
 	return slice
@@ -1238,11 +1247,12 @@ func SortByField[T any](slice []T, field string, sortType ...string) error {
 // Without creates a slice excluding all given items.
 // Play: https://go.dev/play/p/bwhEXEypThg
 func Without[T comparable](slice []T, items ...T) []T {
+	result := make([]T, 0, len(slice))
+
 	if len(items) == 0 || len(slice) == 0 {
-		return slice
+		return append(result, slice...)
 	}
 
-	result := make([]T, 0, len(slice))
 	for _, v := range slice {
 		if !Contain(items, v) {
 			result = append(result, v)
