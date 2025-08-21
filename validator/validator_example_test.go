@@ -701,3 +701,24 @@ func ExampleIsPassport() {
 	// true
 	// false
 }
+
+func ExampleIsChineseHMPassport() {
+	result1 := IsChineseHMPassport("C12345678")
+	result2 := IsChineseHMPassport("C00000000")
+	result3 := IsChineseHMPassport("M12345678")
+	result4 := IsChineseHMPassport("c12345678")
+	result5 := IsChineseHMPassport("C1234567")
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+	fmt.Println(result4)
+	fmt.Println(result5)
+
+	// Output:
+	// true
+	// true
+	// true
+	// false
+	// false
+}

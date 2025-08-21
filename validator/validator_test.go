@@ -933,7 +933,7 @@ func TestIsUnionPay(t *testing.T) {
 	t.Parallel()
 	assert := internal.NewAssert(t, "TestIsUnionPay")
 
-	assert.Equal(true, IsUnionPay("6221263430109903"))
+	assert.Equal(true, IsUnionPay("6228480402564890"))
 	assert.Equal(false, IsUnionPay("3782822463100007"))
 }
 
@@ -941,8 +941,25 @@ func TestIsChinaUnionPay(t *testing.T) {
 	t.Parallel()
 	assert := internal.NewAssert(t, "TestIsChinaUnionPay")
 
-	assert.Equal(true, IsChinaUnionPay("6250941006528599"))
-	assert.Equal(false, IsChinaUnionPay("3782822463100007"))
+	tests := []struct {
+		cardNumber string
+		expected   bool
+	}{
+		{"6228480420000000000", true},
+		{"6214830000000000", true},
+		{"6230580000000000000", true},
+		{"6259640000000000000", true},
+		{"6260000000000000000", true},
+		{"6288888888888888", true},
+
+		// 非银联前缀
+		{"4123456789012345", false},
+		{"3528000000000000", false},
+	}
+
+	for _, tt := range tests {
+		assert.Equal(tt.expected, IsChinaUnionPay(tt.cardNumber))
+	}
 }
 
 func TestIsAlphaNumeric(t *testing.T) {
@@ -998,5 +1015,44 @@ func TestIsPassport(t *testing.T) {
 
 	for _, tt := range tests {
 		assert.Equal(tt.expected, IsPassport(tt.passport, tt.countryCode))
+	}
+}
+
+func TestIsChineseHMPassport(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestIsChineseHMPassport")
+
+	tests := []struct {
+		input    string
+		expected bool
+	}{
+		{"C12345678", true},
+		{"C00000000", true},
+		{"C99999999", true},
+		{"M12345678", true},   // M prefix
+		{"M00000000", true},   // M prefix
+		{"M99999999", true},   // M prefix
+		{"c12345678", false},  // lowercase c
+		{"m12345678", false},  // lowercase m
+		{"C1234567", false},   // 7 digits
+		{"M1234567", false},   // 7 digits with M
+		{"C123456789", false}, // 9 digits
+		{"M123456789", false}, // 9 digits with M
+		{"C1234567a", false},  // contains letter
+		{"M1234567a", false},  // contains letter with M
+		{"D12345678", false},  // starts with D
+		{"12345678", false},   // no prefix
+		{"CC12345678", false}, // double C
+		{"MM12345678", false}, // double M
+		{"C 12345678", false}, // contains space
+		{"M 12345678", false}, // contains space with M
+		{"C12345-678", false}, // contains dash
+		{"M12345-678", false}, // contains dash with M
+		{"", false},
+	}
+
+	for _, tt := range tests {
+		assert.Equal(tt.expected, IsChineseHMPassport(tt.input))
 	}
 }
