@@ -122,3 +122,8 @@ func (s *Struct) IsStruct() bool {
 func ToMap(v any) (map[string]any, error) {
 	return New(v).ToMap()
 }
+
+// Name return struct name
+func (s *Struct) Name() string {
+	return s.rtype.Name()
+}
