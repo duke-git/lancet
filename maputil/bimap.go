@@ -14,19 +14,17 @@ type BiMap[K comparable, V comparable] struct {
 }
 
 // Value  returns the value for the given key.
-func (m *BiMap[K, V]) Value(k K) (V, bool) {
+func (m *BiMap[K, V]) Value(k K) V {
 	m.mu.RLock()
 	defer m.mu.RUnlock()
-	v, ok := m.normal[k]
-	return v, ok
+	return m.normal[k]
 }
 
 // Key  returns the key for the given value.
-func (m *BiMap[K, V]) Key(v V) (K, bool) {
+func (m *BiMap[K, V]) Key(v V) K {
 	m.mu.RLock()
 	defer m.mu.RUnlock()
-	k, ok := m.reverse[v]
-	return k, ok
+	return m.reverse[v]
 }
 
 // ContainsValue returns true if the given value exists.
