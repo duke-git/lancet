@@ -13,6 +13,13 @@ type BiMap[K comparable, V comparable] struct {
 	reverse map[V]K
 }
 
+// Key  returns the key for the given value.
+func (m *BiMap[K, V]) Key(v V) K {
+	m.mu.RLock()
+	defer m.mu.RUnlock()
+	return m.reverse[v]
+}
+
 // Value  returns the value for the given key.
 func (m *BiMap[K, V]) Value(k K) V {
 	m.mu.RLock()
@@ -20,11 +27,32 @@ func (m *BiMap[K, V]) Value(k K) V {
 	return m.normal[k]
 }
 
-// Key  returns the key for the given value.
-func (m *BiMap[K, V]) Key(v V) K {
+// Keys returns a slice of query keys
+func (m *BiMap[K, V]) Keys(v ...V) []K {
 	m.mu.RLock()
 	defer m.mu.RUnlock()
-	return m.reverse[v]
+	return Keys(FilterByValues(m.normal, v))
+}
+
+// Values returns a slice of query values
+func (m *BiMap[K, V]) Values(k ...K) []V {
+	m.mu.RLock()
+	defer m.mu.RUnlock()
+	return Values(FilterByKeys(m.normal, k))
+}
+
+// AllKeys returns a slice of all keys
+func (m *BiMap[K, V]) AllKeys() []K {
+	m.mu.RLock()
+	defer m.mu.RUnlock()
+	return Keys(m.normal)
+}
+
+// AllValues returns a slice of all values
+func (m *BiMap[K, V]) AllValues() []V {
+	m.mu.RLock()
+	defer m.mu.RUnlock()
+	return Values(m.normal)
 }
 
 // ContainsValue returns true if the given value exists.
@@ -133,22 +161,6 @@ func (m *BiMap[K, V]) Inverse() *BiMap[V, K] {
 // ToMap returns a map
 func (m *BiMap[K, V]) ToMap() map[K]V {
 	return m.normal
-}
-
-// Keys returns a slice of keys
-func (m *BiMap[K, V]) Keys(v ...V) []K {
-	if len(v) == 0 {
-		return Keys(m.normal)
-	}
-	return Keys(FilterByValues(m.normal, v))
-}
-
-// Values returns a slice of values
-func (m *BiMap[K, V]) Values(k ...K) []V {
-	if len(k) == 0 {
-		return Values(m.normal)
-	}
-	return Values(FilterByKeys(m.normal, k))
 }
 
 // MarshalJSON implements the json.Marshaler interface.
