@@ -139,19 +139,6 @@ func (m *BiMap[K, V]) Len() int {
 	return len(m.normal)
 }
 
-func (m *BiMap[K, V]) fromMap(d map[K]V) error {
-	m.mu.Lock()
-	defer m.mu.Unlock()
-	for k, v := range d {
-		if _, ok := m.reverse[v]; ok {
-			return fmt.Errorf("value %v already exists", v)
-		}
-		m.normal[k] = v
-		m.reverse[v] = k
-	}
-	return nil
-}
-
 // Inverse returns a new BiMap with the keys and values swapped
 func (m *BiMap[K, V]) Inverse() *BiMap[V, K] {
 	r, _ := NewBiMapFromMap(m.reverse)
@@ -175,6 +162,23 @@ func (m *BiMap[K, V]) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return m.fromMap(normal)
+}
+
+func (m *BiMap[K, V]) fromMap(d map[K]V) error {
+	m.mu.Lock()
+	defer m.mu.Unlock()
+	if m.normal == nil || m.reverse == nil {
+		m.normal = make(map[K]V)
+		m.reverse = make(map[V]K)
+	}
+	for k, v := range d {
+		if _, ok := m.reverse[v]; ok {
+			return fmt.Errorf("value %v already exists", v)
+		}
+		m.normal[k] = v
+		m.reverse[v] = k
+	}
+	return nil
 }
 
 // NewBiMap creates a new BiMap

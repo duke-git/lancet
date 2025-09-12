@@ -161,16 +161,16 @@ func TestBiMap_Json(t *testing.T) {
 
 	j, err := json.Marshal(_biMap)
 	assert.IsNil(err)
-	biMap := NewBiMap[string, int]()
-	err = json.Unmarshal(j, biMap)
+
+	biMap1 := BiMap[string, int]{}
+	err = json.Unmarshal(j, &biMap1)
 	assert.IsNil(err)
+	assert.Equal(1, biMap1.Value("one"))
+	assert.Equal("one", biMap1.Key(1))
+	assert.Equal(3, biMap1.Len())
 
-	assert.Equal(1, biMap.Value("one"))
-	assert.Equal("one", biMap.Key(1))
-	assert.Equal(3, biMap.Len())
-
-	biMap = NewBiMap[string, int]()
-	err = biMap.UnmarshalJSON([]byte("{;"))
+	biMap2 := NewBiMap[string, int]()
+	err = biMap2.UnmarshalJSON([]byte("{;"))
 	assert.IsNotNil(err)
 
 }
