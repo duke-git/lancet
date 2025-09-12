@@ -5,6 +5,7 @@ import (
 	"testing"
 
 	"github.com/duke-git/lancet/v2/internal"
+	"golang.org/x/exp/slices"
 )
 
 func TestBiMap_Get(t *testing.T) {
@@ -28,6 +29,15 @@ func TestBiMap_Get(t *testing.T) {
 	assert.Equal("three", biMap.Key(3))
 	assert.Equal("", biMap.Key(4))
 	assert.Equal(false, biMap.ContainsValue(4))
+
+	assert.Equal(2, len(biMap.Keys(1, 2)))
+	assert.Equal(true, slices.Contains(biMap.Keys(1, 2), "one"))
+	assert.Equal(false, slices.Contains(biMap.Keys(1, 2), "three"))
+
+	assert.Equal(1, len(biMap.Values("one")))
+	assert.Equal(true, slices.Contains(biMap.Values("one"), 1))
+	assert.Equal(false, slices.Contains(biMap.Values("one"), 2))
+
 }
 
 func TestBiMap_Contains(t *testing.T) {

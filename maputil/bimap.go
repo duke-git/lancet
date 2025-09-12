@@ -136,21 +136,19 @@ func (m *BiMap[K, V]) ToMap() map[K]V {
 }
 
 // Keys returns a slice of keys
-func (m *BiMap[K, V]) Keys() []K {
-	keys := make([]K, 0, m.Len())
-	for k := range m.normal {
-		keys = append(keys, k)
+func (m *BiMap[K, V]) Keys(v ...V) []K {
+	if len(v) == 0 {
+		return Keys(m.normal)
 	}
-	return keys
+	return Keys(FilterByValues(m.normal, v))
 }
 
 // Values returns a slice of values
-func (m *BiMap[K, V]) Values() []V {
-	values := make([]V, 0, m.Len())
-	for _, v := range m.normal {
-		values = append(values, v)
+func (m *BiMap[K, V]) Values(k ...K) []V {
+	if len(k) == 0 {
+		return Values(m.normal)
 	}
-	return values
+	return Values(FilterByKeys(m.normal, k))
 }
 
 // MarshalJSON implements the json.Marshaler interface.
