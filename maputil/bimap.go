@@ -27,6 +27,20 @@ func (m *BiMap[K, V]) Value(k K) V {
 	return m.normal[k]
 }
 
+// Keys returns a slice of all keys
+func (m *BiMap[K, V]) Keys() []K {
+	m.mu.RLock()
+	defer m.mu.RUnlock()
+	return Keys(m.normal)
+}
+
+// Values returns a slice of all values
+func (m *BiMap[K, V]) Values() []V {
+	m.mu.RLock()
+	defer m.mu.RUnlock()
+	return Values(m.normal)
+}
+
 // KeysFilterByValue returns a slice keys by value filter
 func (m *BiMap[K, V]) KeysFilterByValue(v []V) []K {
 	m.mu.RLock()
@@ -39,20 +53,6 @@ func (m *BiMap[K, V]) ValuesFilterByKey(k []K) []V {
 	m.mu.RLock()
 	defer m.mu.RUnlock()
 	return Values(FilterByKeys(m.normal, k))
-}
-
-// AllKeys returns a slice of all keys
-func (m *BiMap[K, V]) AllKeys() []K {
-	m.mu.RLock()
-	defer m.mu.RUnlock()
-	return Keys(m.normal)
-}
-
-// AllValues returns a slice of all values
-func (m *BiMap[K, V]) AllValues() []V {
-	m.mu.RLock()
-	defer m.mu.RUnlock()
-	return Values(m.normal)
 }
 
 // ContainsValue returns true if the given value exists.

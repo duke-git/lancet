@@ -121,8 +121,8 @@ func TestBiMap_Remove(t *testing.T) {
 	assert.Equal(true, biMap.ContainsValue(6))
 	assert.Equal(4, biMap.Len())
 	assert.Equal(4, len(biMap.ToMap()))
-	assert.Equal(4, len(biMap.AllKeys()))
-	assert.Equal(4, len(biMap.AllValues()))
+	assert.Equal(4, len(biMap.Keys()))
+	assert.Equal(4, len(biMap.Values()))
 
 	biMap.RemoveKey("seven")
 	biMap.RemoveValue(7)
