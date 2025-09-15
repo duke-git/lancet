@@ -27,15 +27,15 @@ func (m *BiMap[K, V]) Value(k K) V {
 	return m.normal[k]
 }
 
-// Keys returns a slice of query keys
-func (m *BiMap[K, V]) Keys(v ...V) []K {
+// KeysFilterByValue returns a slice keys by value filter
+func (m *BiMap[K, V]) KeysFilterByValue(v ...V) []K {
 	m.mu.RLock()
 	defer m.mu.RUnlock()
 	return Keys(FilterByValues(m.normal, v))
 }
 
-// Values returns a slice of query values
-func (m *BiMap[K, V]) Values(k ...K) []V {
+// ValuesFilterByKey returns a slice values by key filter
+func (m *BiMap[K, V]) ValuesFilterByKey(k ...K) []V {
 	m.mu.RLock()
 	defer m.mu.RUnlock()
 	return Values(FilterByKeys(m.normal, k))

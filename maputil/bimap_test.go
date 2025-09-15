@@ -30,13 +30,13 @@ func TestBiMap_Get(t *testing.T) {
 	assert.Equal("", biMap.Key(4))
 	assert.Equal(false, biMap.ContainsValue(4))
 
-	assert.Equal(2, len(biMap.Keys(1, 2)))
-	assert.Equal(true, slices.Contains(biMap.Keys(1, 2), "one"))
-	assert.Equal(false, slices.Contains(biMap.Keys(1, 2), "three"))
+	assert.Equal(2, len(biMap.KeysFilterByValue(1, 2)))
+	assert.Equal(true, slices.Contains(biMap.KeysFilterByValue(1, 2), "one"))
+	assert.Equal(false, slices.Contains(biMap.KeysFilterByValue(1, 2), "three"))
 
-	assert.Equal(1, len(biMap.Values("one")))
-	assert.Equal(true, slices.Contains(biMap.Values("one"), 1))
-	assert.Equal(false, slices.Contains(biMap.Values("one"), 2))
+	assert.Equal(1, len(biMap.ValuesFilterByKey("one")))
+	assert.Equal(true, slices.Contains(biMap.ValuesFilterByKey("one"), 1))
+	assert.Equal(false, slices.Contains(biMap.ValuesFilterByKey("one"), 2))
 
 }
 
@@ -133,8 +133,8 @@ func TestBiMap_Remove(t *testing.T) {
 	assert.Equal(false, biMap.ContainsKey("four"))
 	assert.Equal(false, biMap.ContainsValue(6))
 	assert.Equal(0, len(biMap.ToMap()))
-	assert.Equal(0, len(biMap.Keys()))
-	assert.Equal(0, len(biMap.Values()))
+	assert.Equal(0, len(biMap.KeysFilterByValue()))
+	assert.Equal(0, len(biMap.ValuesFilterByKey()))
 }
 
 func TestBiMap_Inverse(t *testing.T) {
