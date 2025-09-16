@@ -178,20 +178,20 @@ func TestStruct_IsStruct(t *testing.T) {
 	assert.Equal(false, s2.IsStruct())
 }
 
-func TestStruct_Name(t *testing.T) {
+func TestStruct_TypeName(t *testing.T) {
 	t.Parallel()
 
-	assert := internal.NewAssert(t, "TestStruct_Name")
+	assert := internal.NewAssert(t, "TestStruct_TypeName")
 
 	type Test1 struct{}
 	t1 := &Test1{}
 
 	s1 := New(t1)
-	assert.Equal("Test1", s1.Name())
+	assert.Equal("Test1", s1.TypeName())
 
 	type Test2 struct{}
 	t2 := Test2{}
 
 	s2 := New(t2)
-	assert.Equal("Test2", s2.Name())
+	assert.Equal("Test2", s2.TypeName())
 }

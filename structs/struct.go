@@ -123,7 +123,7 @@ func ToMap(v any) (map[string]any, error) {
 	return New(v).ToMap()
 }
 
-// Name return struct name
-func (s *Struct) Name() string {
+// TypeName return struct type name
+func (s *Struct) TypeName() string {
 	return s.rtype.Name()
 }
