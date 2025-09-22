@@ -196,6 +196,14 @@ func TestBuildUrl(t *testing.T) {
 			want:    "https://www.test.com/path%20with%20spaces",
 			wantErr: false,
 		},
+		{
+			scheme:  "https",
+			host:    "my.api.edu.cn",
+			path:    "/api",
+			query:   nil,
+			want:    "https://my.api.edu.cn/api",
+			wantErr: false,
+		},
 	}
 
 	for _, tt := range tests {

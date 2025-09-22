@@ -128,9 +128,10 @@ func Retry(retryFunc RetryFunc, opts ...Option) error {
 	}
 
 	var i uint
+	var lastErr error
 	for i < config.retryTimes {
-		err := retryFunc()
-		if err == nil {
+		lastErr = retryFunc()
+		if lastErr == nil {
 			return nil
 		}
 
@@ -148,7 +149,7 @@ func Retry(retryFunc RetryFunc, opts ...Option) error {
 	lastSlash := strings.LastIndex(funcPath, "/")
 	funcName := funcPath[lastSlash+1:]
 
-	return fmt.Errorf("function %s run failed after %d times retry", funcName, i)
+	return fmt.Errorf("function %s run failed after %d times retry, last error: %w", funcName, i, lastErr)
 }
 
 // BackoffStrategy is an interface that defines a method for calculating backoff intervals.

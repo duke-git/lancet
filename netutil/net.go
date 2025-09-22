@@ -365,7 +365,7 @@ func validateScheme(scheme string) error {
 	return nil
 }
 
-var hostRegex = regexp.MustCompile(`^([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]*[a-zA-Z0-9])(\.[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]*[a-zA-Z0-9])*$`)
+var hostRegex = regexp.MustCompile(`^([a-zA-Z0-9][a-zA-Z0-9\-]*[a-zA-Z0-9]?)(\.[a-zA-Z0-9][a-zA-Z0-9\-]*[a-zA-Z0-9]?)+$`)
 var pathRegex = regexp.MustCompile(`^\/([a-zA-Z0-9%_-]+(?:\/[a-zA-Z0-9%_-]+)*)$`)
 
 var alphaNumericRegex = regexp.MustCompile(`^[a-zA-Z0-9]+$`)
