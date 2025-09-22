@@ -238,6 +238,9 @@ func Sum[T constraints.Integer | constraints.Float](numbers ...T) T {
 // Average return average value of numbers.
 // Play: https://go.dev/play/p/Vv7LBwER-pz
 func Average[T constraints.Integer | constraints.Float](numbers ...T) float64 {
+	if len(numbers) == 0 {
+		return 0
+	}
 	var sum float64
 	for _, num := range numbers {
 		sum += float64(num)
