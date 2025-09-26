@@ -114,7 +114,8 @@ func TestEventBus_ErrorHandler(t *testing.T) {
 
 	eb := NewEventBus[string]()
 
-	eb.SetErrorHandler(func(err error) {
+	eb.SetErrorHandler(func(topic string, err error) {
+		assert.Equal("event1", topic)
 		assert.Equal("error", err.Error())
 	})
 
