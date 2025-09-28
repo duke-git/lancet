@@ -189,8 +189,8 @@ func ExampleEventBus_GetListenersCount() {
 func ExampleEventBus_SetErrorHandler() {
 	eb := NewEventBus[int]()
 
-	eb.SetErrorHandler(func(err error) {
-		fmt.Println(err)
+	eb.SetErrorHandler(func(topic string, err error) {
+		fmt.Println(topic, err)
 	})
 
 	eb.Subscribe("event1", func(eventData int) {
@@ -200,7 +200,7 @@ func ExampleEventBus_SetErrorHandler() {
 	eb.Publish(Event[int]{Topic: "event1", Payload: 1})
 
 	// Output:
-	// error
+	// event1 error
 }
 
 func ExampleEventBus_GetAllListenersCount() {
