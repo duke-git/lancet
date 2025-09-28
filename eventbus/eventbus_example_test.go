@@ -200,7 +200,7 @@ func ExampleEventBus_SetErrorHandler() {
 	eb.Publish(Event[int]{Topic: "event1", Payload: 1})
 
 	// Output:
-	// error
+	// event1 error
 }
 
 func ExampleEventBus_GetAllListenersCount() {
