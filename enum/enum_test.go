@@ -161,3 +161,58 @@ func TestRegistry_ValidateAll(t *testing.T) {
 	err = registry.ValidateAll(Active, Unknown)
 	assert.IsNotNil(err)
 }
+
+func TestRegistry_Range(t *testing.T) {
+	t.Parallel()
+	assert := internal.NewAssert(t, "TestRegistry_Range")
+
+	registry := NewRegistry[Status]()
+	item1 := NewItem(Active, "Active")
+	item2 := NewItem(Inactive, "Inactive")
+	registry.Add(item1, item2)
+
+	var values []Status
+	registry.Range(func(item *Item[Status]) bool {
+		values = append(values, item.Value())
+		return true
+	})
+
+	assert.Equal(2, len(values))
+	assert.Equal(Active, values[0])
+	assert.Equal(Inactive, values[1])
+}
+
+func TestRegistry_SortedItems(t *testing.T) {
+	t.Parallel()
+	assert := internal.NewAssert(t, "TestRegistry_SortedItems")
+
+	registry := NewRegistry[Status]()
+	item1 := NewItem(Inactive, "Inactive")
+	item2 := NewItem(Active, "Active")
+	registry.Add(item1, item2)
+
+	sortedItems := registry.SortedItems(func(i1, i2 *Item[Status]) bool {
+		return i1.value < i2.value
+	})
+
+	assert.Equal(2, len(sortedItems))
+	assert.Equal(Active, sortedItems[0].Value())
+	assert.Equal(Inactive, sortedItems[1].Value())
+}
+
+func TestRegistry_Filter(t *testing.T) {
+	t.Parallel()
+	assert := internal.NewAssert(t, "TestRegistry_Filter")
+
+	registry := NewRegistry[Status]()
+	item1 := NewItem(Active, "Active")
+	item2 := NewItem(Inactive, "Inactive")
+	registry.Add(item1, item2)
+
+	filteredItems := registry.Filter(func(item *Item[Status]) bool {
+		return item.Value() == Active
+	})
+
+	assert.Equal(1, len(filteredItems))
+	assert.Equal(Active, filteredItems[0].Value())
+}

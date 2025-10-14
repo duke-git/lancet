@@ -8,6 +8,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"reflect"
+	"sort"
 	"sync"
 )
 
@@ -15,6 +16,7 @@ import (
 type Enum[T comparable] interface {
 	Value() T
 	String() string
+	Name() string
 	Valid() bool
 }
 
@@ -64,6 +66,10 @@ func (e *Item[T]) Value() T {
 }
 
 func (e *Item[T]) Name() string {
+	return e.name
+}
+
+func (e *Item[T]) String() string {
 	return e.name
 }
 
@@ -279,4 +285,39 @@ func (r *Registry[T]) Size() int {
 	defer r.mu.RUnlock()
 
 	return len(r.items)
+}
+
+// Range iterates over all enum items in the registry and applies the given function.
+func (r *Registry[T]) Range(fn func(*Item[T]) bool) {
+	r.mu.RLock()
+	defer r.mu.RUnlock()
+
+	for _, item := range r.items {
+		if !fn(item) {
+			break
+		}
+	}
+}
+
+// SortedItems returns a slice of all enum items sorted by the given less function.
+func (r *Registry[T]) SortedItems(less func(*Item[T], *Item[T]) bool) []*Item[T] {
+	items := r.Items()
+	sort.Slice(items, func(i, j int) bool {
+		return less(items[i], items[j])
+	})
+	return items
+}
+
+// Filter returns a slice of enum items that satisfy the given predicate function.
+func (r *Registry[T]) Filter(predicate func(*Item[T]) bool) []*Item[T] {
+	r.mu.RLock()
+	defer r.mu.RUnlock()
+
+	var result []*Item[T]
+	for _, item := range r.items {
+		if predicate(item) {
+			result = append(result, item)
+		}
+	}
+	return result
 }
