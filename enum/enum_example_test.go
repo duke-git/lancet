@@ -3,9 +3,9 @@ package enum
 import "fmt"
 
 func ExampleNewItem() {
-	items := NewItems[Status](
-		Active, "Active",
-		Inactive, "Inactive",
+	items := NewItems(
+		Pair[Status]{Value: Active, Name: "Active"},
+		Pair[Status]{Value: Inactive, Name: "Inactive"},
 	)
 
 	fmt.Println(items[0].Name(), items[0].Value())

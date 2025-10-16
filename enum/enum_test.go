@@ -21,9 +21,9 @@ func TestNewItem(t *testing.T) {
 	t.Parallel()
 	assert := internal.NewAssert(t, "TestNewItem")
 
-	items := NewItems[Status](
-		Active, "Active",
-		Inactive, "Inactive",
+	items := NewItems(
+		Pair[Status]{Value: Active, Name: "Active"},
+		Pair[Status]{Value: Inactive, Name: "Inactive"},
 	)
 
 	assert.Equal(2, len(items))

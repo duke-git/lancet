@@ -17,7 +17,7 @@ type Enum[T comparable] interface {
 	Value() T
 	String() string
 	Name() string
-	Valid() bool
+	Valid(checker ...func(T) bool) bool
 }
 
 // Item defines a common enum item struct implement Enum interface.
@@ -30,35 +30,24 @@ func NewItem[T comparable](value T, name string) *Item[T] {
 	return &Item[T]{value: value, name: name}
 }
 
-// NewWithItems creates enum items from value-name pairs.
-// It requires an even number of arguments, where each pair consists of a value of type T and a string name.
-// If the number of arguments is odd or if any argument does not match the expected type, it will panic.
-func NewItems[T comparable](args ...any) []*Item[T] {
-	if len(args) == 0 {
+// Pair represents a value-name pair for creating enum items
+type Pair[T comparable] struct {
+	Value T
+	Name  string
+}
+
+// NewItemsFromPairs creates enum items from a slice of Pair structs.
+func NewItems[T comparable](pairs ...Pair[T]) []*Item[T] {
+	if len(pairs) == 0 {
 		return []*Item[T]{}
 	}
-	if len(args)%2 != 0 {
-		panic("New requires even number of arguments (value, name pairs)")
-	}
 
-	items := make([]*Item[T], 0, len(args)/2)
-
-	for i := 0; i < len(args); i += 2 {
-		value, ok := args[i].(T)
-		if !ok {
-			panic(fmt.Sprintf("argument %d is not of type %T", i, value))
-		}
-
-		name, ok := args[i+1].(string)
-		if !ok {
-			panic(fmt.Sprintf("argument %d is not of type string", i+1))
-		}
-
-		items = append(items, &Item[T]{value: value, name: name})
+	items := make([]*Item[T], 0, len(pairs))
+	for _, pair := range pairs {
+		items = append(items, &Item[T]{value: pair.Value, name: pair.Name})
 	}
 
 	return items
-
 }
 
 func (e *Item[T]) Value() T {
@@ -74,9 +63,9 @@ func (e *Item[T]) String() string {
 }
 
 // Valid checks if the enum item is valid. If a custom check function is provided, it will be used to validate the value.
-func (e *Item[T]) Valid(check ...func(T) bool) bool {
-	if len(check) > 0 {
-		return check[0](e.value) && e.name != ""
+func (e *Item[T]) Valid(checker ...func(T) bool) bool {
+	if len(checker) > 0 {
+		return checker[0](e.value) && e.name != ""
 	}
 	var zero T
 	return e.value != zero && e.name != ""
