@@ -437,10 +437,32 @@ func TestIsUrl(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestIsUrl")
 
-	assert.Equal(true, IsUrl("http://abc.com"))
-	assert.Equal(true, IsUrl("abc.com"))
-	assert.Equal(true, IsUrl("a.b.com"))
-	assert.Equal(false, IsUrl("abc"))
+	tests := []struct {
+		input    string
+		expected bool
+	}{
+		{"http://abc.com", true},
+		{"https://abc.com", true},
+		{"ftp://abc.com", true},
+		{"http://abc.com/path?query=123", true},
+		{"https://abc.com/path/to/resource", true},
+		{"ws://abc.com", true},
+		{"wss://abc.com", true},
+		{"mailto://abc.com", true},
+		{"file://path/to/file", true},
+		{"data://text/plain;base64,SGVsbG8sIFdvcmxkIQ==", true},
+		{"http://abc.com/path/to/resource?query=123#fragment", true},
+
+		{"abc", false},
+		{"http://", false},
+		{"http://abc", false},
+		{"http://abc:8080", false},
+		{"http://abc:99999999", false},
+	}
+
+	for _, tt := range tests {
+		assert.Equal(tt.expected, IsUrl(tt.input))
+	}
 }
 
 func TestIsDns(t *testing.T) {
@@ -477,12 +499,24 @@ func TestIsEmail(t *testing.T) {
 
 func TestContainChinese(t *testing.T) {
 	t.Parallel()
-
 	assert := internal.NewAssert(t, "TestContainChinese")
 
-	assert.Equal(true, ContainChinese("你好"))
-	assert.Equal(true, ContainChinese("你好hello"))
-	assert.Equal(false, ContainChinese("hello"))
+	tests := []struct {
+		input    string
+		expected bool
+	}{
+		{"你好", true},
+		{"hello", false},
+		{"你好hello", true},
+		{"hello你好", true},
+		{"", false},
+		{"123", false},
+		{"!@#$%^&*()", false},
+	}
+
+	for _, tt := range tests {
+		assert.Equal(tt.expected, ContainChinese(tt.input))
+	}
 }
 
 func TestIsChineseMobile(t *testing.T) {
@@ -490,8 +524,20 @@ func TestIsChineseMobile(t *testing.T) {
 
 	assert := internal.NewAssert(t, "TestIsChineseMobile")
 
-	assert.Equal(true, IsChineseMobile("13263527980"))
-	assert.Equal(false, IsChineseMobile("434324324"))
+	tests := []struct {
+		input    string
+		expected bool
+	}{
+		{"13263527980", true},
+		{"1326352798", false},
+		{"132635279801", false},
+		{"1326352798a", false},
+		{"1326352798@", false},
+	}
+
+	for _, tt := range tests {
+		assert.Equal(tt.expected, IsChineseMobile(tt.input))
+	}
 }
 
 func TestIsChinesePhone(t *testing.T) {
@@ -887,7 +933,7 @@ func TestIsUnionPay(t *testing.T) {
 	t.Parallel()
 	assert := internal.NewAssert(t, "TestIsUnionPay")
 
-	assert.Equal(true, IsUnionPay("6221263430109903"))
+	assert.Equal(true, IsUnionPay("6228480402564890"))
 	assert.Equal(false, IsUnionPay("3782822463100007"))
 }
 
@@ -895,8 +941,25 @@ func TestIsChinaUnionPay(t *testing.T) {
 	t.Parallel()
 	assert := internal.NewAssert(t, "TestIsChinaUnionPay")
 
-	assert.Equal(true, IsChinaUnionPay("6250941006528599"))
-	assert.Equal(false, IsChinaUnionPay("3782822463100007"))
+	tests := []struct {
+		cardNumber string
+		expected   bool
+	}{
+		{"6228480420000000000", true},
+		{"6214830000000000", true},
+		{"6230580000000000000", true},
+		{"6259640000000000000", true},
+		{"6260000000000000000", true},
+		{"6288888888888888", true},
+
+		// 非银联前缀
+		{"4123456789012345", false},
+		{"3528000000000000", false},
+	}
+
+	for _, tt := range tests {
+		assert.Equal(tt.expected, IsChinaUnionPay(tt.cardNumber))
+	}
 }
 
 func TestIsAlphaNumeric(t *testing.T) {
@@ -922,5 +985,74 @@ func TestIsAlphaNumeric(t *testing.T) {
 
 	for _, tt := range tests {
 		assert.Equal(tt.expected, IsAlphaNumeric(tt.input))
+	}
+}
+
+func TestIsPassport(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestIsPassport")
+
+	tests := []struct {
+		passport    string
+		countryCode string
+		expected    bool
+	}{
+		{"P123456789", "CN", true},
+		{"123456789", "US", true},
+		{"A12345678", "GB", true},
+		{"AB1234567", "FR", true},
+		{"12345678", "JP", true},
+		{"M12345678", "HK", true},
+		{"A12345678", "MO", true},
+		{"A1234567", "IN", true},
+		{"12345678", "IT", true},
+		{"A12345678", "AU", true},
+		{"123456789", "BR", true},
+		{"AB1234567", "RU", true},
+		{"123456789", "CN", false},
+	}
+
+	for _, tt := range tests {
+		assert.Equal(tt.expected, IsPassport(tt.passport, tt.countryCode))
+	}
+}
+
+func TestIsChineseHMPassport(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestIsChineseHMPassport")
+
+	tests := []struct {
+		input    string
+		expected bool
+	}{
+		{"C12345678", true},
+		{"C00000000", true},
+		{"C99999999", true},
+		{"M12345678", true},   // M prefix
+		{"M00000000", true},   // M prefix
+		{"M99999999", true},   // M prefix
+		{"c12345678", false},  // lowercase c
+		{"m12345678", false},  // lowercase m
+		{"C1234567", false},   // 7 digits
+		{"M1234567", false},   // 7 digits with M
+		{"C123456789", false}, // 9 digits
+		{"M123456789", false}, // 9 digits with M
+		{"C1234567a", false},  // contains letter
+		{"M1234567a", false},  // contains letter with M
+		{"D12345678", false},  // starts with D
+		{"12345678", false},   // no prefix
+		{"CC12345678", false}, // double C
+		{"MM12345678", false}, // double M
+		{"C 12345678", false}, // contains space
+		{"M 12345678", false}, // contains space with M
+		{"C12345-678", false}, // contains dash
+		{"M12345-678", false}, // contains dash with M
+		{"", false},
+	}
+
+	for _, tt := range tests {
+		assert.Equal(tt.expected, IsChineseHMPassport(tt.input))
 	}
 }
