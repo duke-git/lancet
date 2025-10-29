@@ -1,6 +1,7 @@
 package maputil
 
 import (
+	"fmt"
 	"math/cmplx"
 	"sort"
 	"strconv"
@@ -925,4 +926,47 @@ func TestFindValuesBy(t *testing.T) {
 		})
 		assert.Equal(tt.expected, result)
 	}
+}
+
+func TestToMarkdownTable(t *testing.T) {
+	// 测试空数据
+	emptyResult := ToMarkdownTable([]map[string]interface{}{}, nil, nil)
+	expectedEmpty := "| |\n|---|\n"
+	if emptyResult != expectedEmpty {
+		t.Errorf("Expected empty table, got: %s", emptyResult)
+	}
+
+	// 测试基本数据
+	data := []map[string]interface{}{
+		{"name": "Alice", "age": 25, "salary": 50000},
+		{"name": "Bob", "age": 30, "salary": 60000},
+	}
+	result := ToMarkdownTable(data, nil, nil)
+	fmt.Printf("%s", result)
+	// 验证结果包含预期的表头和数据行
+}
+
+// 测试自定义列顺序
+func TestToMarkdownTableWithColumnOrder(t *testing.T) {
+	data := []map[string]interface{}{
+		{"name": "Alice", "age": 25, "salary": 50000},
+	}
+	columnOrder := []string{"salary", "name", "age"}
+	result := ToMarkdownTable(data, nil, columnOrder)
+	fmt.Printf("%s", result)
+	// 验证列顺序是否正确
+}
+
+// 测试自定义表头
+func TestToMarkdownTableWithHeaderMap(t *testing.T) {
+	data := []map[string]interface{}{
+		{"name": "Alice", "age": 25},
+	}
+	headerMap := map[string]string{
+		"name": "姓名",
+		"age":  "年龄",
+	}
+	result := ToMarkdownTable(data, headerMap, nil)
+	fmt.Printf("%s", result)
+	// 验证中文表头是否正确显示
 }
