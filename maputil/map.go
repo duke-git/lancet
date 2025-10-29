@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"reflect"
 	"sort"
+	"strconv"
 	"strings"
 
 	"golang.org/x/exp/constraints"
@@ -679,4 +680,150 @@ func FindValuesBy[K comparable, V any](m map[K]V, predicate func(key K, value V)
 	}
 
 	return result
+}
+
+// ToMarkdownTable converts a slice of maps to a Markdown table.
+func ToMarkdownTable(data []map[string]interface{}, headerMap map[string]string, columnOrder []string) string {
+	if len(data) == 0 {
+		return "| |\n|---|\n"
+	}
+
+	var headers []string
+
+	// 如果提供了columnOrder，则按指定顺序排列
+	if len(columnOrder) > 0 {
+		headers = make([]string, len(columnOrder))
+		copy(headers, columnOrder)
+	} else {
+		// 否则按自然顺序提取headers
+		seen := make(map[string]bool)
+		for _, row := range data {
+			for k := range row {
+				if !seen[k] {
+					seen[k] = true
+					headers = append(headers, k)
+				}
+			}
+		}
+	}
+
+	var builder strings.Builder
+
+	// Header row - 使用映射的中文标题
+	builder.WriteString("| ")
+	for i, h := range headers {
+		// 如果有映射则使用中文标题，否则使用原字段名
+		displayHeader := h
+		if headerMap != nil && headerMap[h] != "" {
+			displayHeader = headerMap[h]
+		}
+		builder.WriteString(displayHeader)
+		if i < len(headers)-1 {
+			builder.WriteString(" | ")
+		}
+	}
+	builder.WriteString(" |\n")
+
+	// Separator
+	builder.WriteString("|")
+	for i := range headers {
+		if i > 0 {
+			builder.WriteString("|")
+		}
+		builder.WriteString("---")
+	}
+	builder.WriteString("|\n")
+
+	// Data rows
+	for _, row := range data {
+		builder.WriteString("| ")
+		for i, h := range headers {
+			val, exists := row[h]
+			var cell string
+			if !exists {
+				cell = ""
+			} else {
+				cell = formatValue(val)
+			}
+			builder.WriteString(cell)
+			if i < len(headers)-1 {
+				builder.WriteString(" | ")
+			}
+		}
+		builder.WriteString(" |\n")
+	}
+
+	return builder.String()
+}
+
+// formatValue formats any value for display in Markdown table
+func formatValue(v interface{}) string {
+	switch val := v.(type) {
+	case int:
+		return commaInt64(int64(val))
+	case int8:
+		return commaInt64(int64(val))
+	case int16:
+		return commaInt64(int64(val))
+	case int32:
+		return commaInt64(int64(val))
+	case int64:
+		return commaInt64(val)
+	case uint:
+		return commaUint64(uint64(val))
+	case uint8:
+		return commaUint64(uint64(val))
+	case uint16:
+		return commaUint64(uint64(val))
+	case uint32:
+		return commaUint64(uint64(val))
+	case uint64:
+		return commaUint64(val)
+	case float32:
+		return fmt.Sprintf("%.2f", val)
+	case float64:
+		return fmt.Sprintf("%.2f", val)
+	case string:
+		return val
+	case bool:
+		return fmt.Sprintf("%t", val)
+	case nil:
+		return ""
+	default:
+		return fmt.Sprintf("%v", val)
+	}
+}
+
+// commaInt64 adds comma separators to int64
+func commaInt64(n int64) string {
+	if n == 0 {
+		return "0"
+	}
+	neg := n < 0
+	if neg {
+		n = -n
+	}
+	s := strconv.FormatInt(n, 10)
+	return addCommas(s)
+}
+
+// commaUint64 adds comma separators to uint64
+func commaUint64(n uint64) string {
+	if n == 0 {
+		return "0"
+	}
+	s := strconv.FormatUint(n, 10)
+	return addCommas(s)
+}
+
+// addCommas inserts commas every 3 digits
+func addCommas(s string) string {
+	var result strings.Builder
+	for i, c := range s {
+		if i > 0 && (len(s)-i)%3 == 0 {
+			result.WriteRune(',')
+		}
+		result.WriteRune(c)
+	}
+	return result.String()
 }
