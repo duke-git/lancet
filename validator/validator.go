@@ -19,15 +19,12 @@ import (
 )
 
 var (
-	alphaMatcher        *regexp.Regexp = regexp.MustCompile(`^[a-zA-Z]+$`)
-	letterRegexMatcher  *regexp.Regexp = regexp.MustCompile(`[a-zA-Z]`)
-	alphaNumericMatcher *regexp.Regexp = regexp.MustCompile(`^[a-zA-Z0-9-]+$`)
-	numberRegexMatcher  *regexp.Regexp = regexp.MustCompile(`\d`)
-	intStrMatcher       *regexp.Regexp = regexp.MustCompile(`^[\+-]?\d+$`)
-	urlMatcher          *regexp.Regexp = regexp.MustCompile(`^((ftp|http|https?):\/\/)?(\S+(:\S*)?@)?((([1-9]\d?|1\d\d|2[01]\d|22[0-3])(\.(1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.([0-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(([a-zA-Z0-9]+([-\.][a-zA-Z0-9]+)*)|((www\.)?))?(([a-z\x{00a1}-\x{ffff}0-9]+-?-?)*[a-z\x{00a1}-\x{ffff}0-9]+)(?:\.([a-z\x{00a1}-\x{ffff}]{2,}))?))(:(\d{1,5}))?((\/|\?|#)[^\s]*)?$`)
-	dnsMatcher          *regexp.Regexp = regexp.MustCompile(`^(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,}$`)
-	// emailMatcher           *regexp.Regexp = regexp.MustCompile(`^[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,4}$`)
-	emailMatcher             *regexp.Regexp = regexp.MustCompile(`\w+(-+.\w+)*@\w+(-.\w+)*.\w+(-.\w+)*`)
+	alphaMatcher             *regexp.Regexp = regexp.MustCompile(`^[a-zA-Z]+$`)
+	letterRegexMatcher       *regexp.Regexp = regexp.MustCompile(`[a-zA-Z]`)
+	alphaNumericMatcher      *regexp.Regexp = regexp.MustCompile(`^[a-zA-Z0-9-]+$`)
+	numberRegexMatcher       *regexp.Regexp = regexp.MustCompile(`\d`)
+	intStrMatcher            *regexp.Regexp = regexp.MustCompile(`^[\+-]?\d+$`)
+	dnsMatcher               *regexp.Regexp = regexp.MustCompile(`^(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,}$`)
 	chineseMobileMatcher     *regexp.Regexp = regexp.MustCompile(`^1(?:3\d|4[4-9]|5[0-35-9]|6[67]|7[013-8]|8\d|9\d)\d{8}$`)
 	chineseIdMatcher         *regexp.Regexp = regexp.MustCompile(`([1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx])|([1-9]\d{5}\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{2}[0-9Xx])`)
 	chineseMatcher           *regexp.Regexp = regexp.MustCompile("[\u4e00-\u9fa5]")
@@ -40,7 +37,6 @@ var (
 	visaMatcher              *regexp.Regexp = regexp.MustCompile(`^4[0-9]{12}(?:[0-9]{3})?$`)
 	masterCardMatcher        *regexp.Regexp = regexp.MustCompile(`^5[1-5][0-9]{14}$`)
 	americanExpressMatcher   *regexp.Regexp = regexp.MustCompile(`^3[47][0-9]{13}$`)
-	unionPayMatcher          *regexp.Regexp = regexp.MustCompile(`^62[0-5]\\d{13,16}$`)
 	chinaUnionPayMatcher     *regexp.Regexp = regexp.MustCompile(`^62[0-9]{14,17}$`)
 	chineseHMPassportMatcher *regexp.Regexp = regexp.MustCompile(`^[CM]\d{8}$`)
 )
@@ -633,24 +629,6 @@ func IsUnionPay(cardNo string) bool {
 // Play: https://go.dev/play/p/yafpdxLiymu
 func IsChinaUnionPay(cardNo string) bool {
 	return chinaUnionPayMatcher.MatchString(cardNo)
-}
-
-// luhnCheck checks if the credit card number is valid using the Luhn algorithm.
-func luhnCheck(card string) bool {
-	var sum int
-	alt := false
-	for i := len(card) - 1; i >= 0; i-- {
-		n := int(card[i] - '0')
-		if alt {
-			n *= 2
-			if n > 9 {
-				n -= 9
-			}
-		}
-		sum += n
-		alt = !alt
-	}
-	return sum%10 == 0
 }
 
 // IsPassport checks if the passport number is valid for a given country.
