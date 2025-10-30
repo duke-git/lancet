@@ -58,6 +58,24 @@ func ExampleContainSubSlice() {
 	// false
 }
 
+func ExampleContainAny() {
+	result1 := ContainAny([]string{"a", "b", "c"}, []string{"a"})
+	result2 := ContainAny([]string{"a", "b", "c"}, []string{"d", "e"})
+	result3 := ContainAny([]string{"a", "b", "c"}, []string{"d", "a"})
+	result4 := ContainAny([]string{"a", "b", "c"}, []string{})
+
+	fmt.Println(result1)
+	fmt.Println(result2)
+	fmt.Println(result3)
+	fmt.Println(result4)
+
+	// Output:
+	// true
+	// false
+	// true
+	// false
+}
+
 func ExampleChunk() {
 	arr := []string{"a", "b", "c", "d", "e"}
 

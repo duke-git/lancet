@@ -27,6 +27,7 @@ import (
 -   [Contain](#Contain)
 -   [ContainBy](#ContainBy)
 -   [ContainSubSlice](#ContainSubSlice)
+-   [ContainAny](#ContainAny)
 -   [Chunk](#Chunk)
 -   [Compact](#Compact)
 -   [Concat](#Concat)
@@ -251,6 +252,43 @@ func main() {
     fmt.Println(result2)
 
     // Output:
+    // true
+    // false
+}
+```
+
+### <span id="ContainAny">ContainAny</span>
+
+<p>Check if the slice contains any element from the targets slice.</p>
+
+<b>Signature:</b>
+
+```go
+func ContainAny[T comparable](slice []T, targets []T) bool
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/4xoxhc9XSSw)</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/slice"
+)
+
+func main() {
+    result1 := slice.ContainAny([]string{"a", "b", "c"}, []string{"a"})
+    result2 := slice.ContainAny([]string{"a", "b", "c"}, []string{"d", "e"})
+    result3 := slice.ContainAny([]string{"a", "b", "c"}, []string{"d", "a"})
+    result4 := slice.ContainAny([]string{"a", "b", "c"}, []string{})
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
+
+    // Output:
+    // true
+    // false
     // true
     // false
 }
