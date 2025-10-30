@@ -74,6 +74,27 @@ func ContainSubSlice[T comparable](slice, subSlice []T) bool {
 	return true
 }
 
+// ContainAny check if the slice contains any element from the targets slice.
+// Play: https://go.dev/play/p/4xoxhc9XSSw
+func ContainAny[T comparable](slice []T, targets []T) bool {
+	if len(targets) == 0 {
+		return false
+	}
+
+	sliceMap := make(map[T]struct{}, len(slice))
+	for _, item := range slice {
+		sliceMap[item] = struct{}{}
+	}
+
+	for _, target := range targets {
+		if _, exists := sliceMap[target]; exists {
+			return true
+		}
+	}
+
+	return false
+}
+
 // Chunk creates a slice of elements split into groups the length of size.
 // Play: https://go.dev/play/p/b4Pou5j2L_C
 func Chunk[T any](slice []T, size int) [][]T {

@@ -1468,6 +1468,9 @@ import "github.com/duke-git/lancet/v2/slice"
 -   **<big>ContainSubSlice</big>** : 判断 slice 是否包含 subslice。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/slice.md#ContainSubSlice)]
     [[play](https://go.dev/play/p/bcuQ3UT6Sev)]
+-   **<big>ContainAny</big>** : 判断 slice 是否包含 targets 切片中的任意一个元素。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/slice.md#ContainAny)]
+    [[play](https://go.dev/play/p/4xoxhc9XSSw)]
 -   **<big>Chunk</big>** : 按照 size 参数均分 slice。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/slice.md#Chunk)]
     [[play](https://go.dev/play/p/b4Pou5j2L_C)]
