@@ -477,7 +477,8 @@ func TestIsDns(t *testing.T) {
 		{"abc.com", true},
 		{"123.cn", true},
 		{"a.b.com", true},
-		{"a.b.c", false},
+		{"a.b.c", true},
+		{"www.xn--6qq986b3xl.xn--fiqs8s.com", true},
 		{"a@b.com", false},
 		{"http://abc.com", false},
 	}
