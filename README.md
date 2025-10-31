@@ -1465,6 +1465,9 @@ import "github.com/duke-git/lancet/v2/slice"
 -   **<big>ContainSubSlice</big>** : check if the slice contain a given subslice or not.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#ContainSubSlice)]
     [[play](https://go.dev/play/p/bcuQ3UT6Sev)]
+-   **<big>ContainAny</big>** : check if the slice contains any element from the targets slice.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#ContainAny)]
+    [[play](https://go.dev/play/p/4xoxhc9XSSw)]
 -   **<big>Chunk</big>** : creates a slice of elements split into groups the length of size.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#Chunk)]
     [[play](https://go.dev/play/p/b4Pou5j2L_C)]

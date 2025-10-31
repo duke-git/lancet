@@ -89,6 +89,46 @@ func TestContainSubSlice(t *testing.T) {
 	}
 }
 
+func TestContainAny(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestContainAny")
+
+	tests := []struct {
+		slice   []string
+		targets []string
+		want    bool
+	}{
+		{[]string{"a", "b", "c"}, []string{"a"}, true},
+		{[]string{"a", "b", "c"}, []string{"a", "b"}, true},
+		{[]string{"a", "b", "c"}, []string{"d", "e"}, false},
+		{[]string{"a", "b", "c"}, []string{"d", "a"}, true},
+		{[]string{"a", "b", "c"}, []string{}, false},
+		{[]string{}, []string{"a"}, false},
+		{[]string{}, []string{}, false},
+		{[]string{"a", "b", "c"}, []string{"c", "d", "e"}, true},
+	}
+
+	for _, tt := range tests {
+		assert.Equal(tt.want, ContainAny(tt.slice, tt.targets))
+	}
+
+	intTests := []struct {
+		slice   []int
+		targets []int
+		want    bool
+	}{
+		{[]int{1, 2, 3, 4, 5}, []int{3}, true},
+		{[]int{1, 2, 3, 4, 5}, []int{6, 7}, false},
+		{[]int{1, 2, 3, 4, 5}, []int{5, 6, 7}, true},
+		{[]int{1, 2, 3, 4, 5}, []int{}, false},
+	}
+
+	for _, tt := range intTests {
+		assert.Equal(tt.want, ContainAny(tt.slice, tt.targets))
+	}
+}
+
 func TestChunk(t *testing.T) {
 	t.Parallel()
 
