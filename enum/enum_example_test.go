@@ -3,7 +3,19 @@ package enum
 import "fmt"
 
 func ExampleNewItem() {
-	items := NewItems(
+	item1 := NewItem(Active, "Active")
+	item2 := NewItem(Inactive, "Inactive")
+
+	fmt.Println(item1.Name(), item1.Value())
+	fmt.Println(item2.Name(), item2.Value())
+
+	// Output:
+	// Active 1
+	// Inactive 2
+}
+
+func ExampleNewItemsFromPairs() {
+	items := NewItemsFromPairs(
 		Pair[Status]{Value: Active, Name: "Active"},
 		Pair[Status]{Value: Inactive, Name: "Inactive"},
 	)
@@ -114,41 +126,15 @@ func ExampleRegistry_Items() {
 
 func ExampleRegistry_Contains() {
 	registry := NewRegistry[Status]()
-	item1 := NewItem(Active, "Active")
-	registry.Add(item1)
+	item := NewItem(Active, "Active")
+	registry.Add(item)
 
-	fmt.Println("Contains Active:", registry.Contains(Active))
-	fmt.Println("Contains Inactive:", registry.Contains(Inactive))
-}
-
-func ExampleRegistry_Validate() {
-	registry := NewRegistry[Status]()
-	item1 := NewItem(Active, "Active")
-	item2 := NewItem(Inactive, "Inactive")
-	registry.Add(item1, item2)
-
-	fmt.Println("Validate Active:", registry.Validate(Active))
-	fmt.Println("Validate Inactive:", registry.Validate(Inactive))
-	fmt.Println("Validate Unknown:", registry.Validate(Unknown))
+	fmt.Println(registry.Contains(Active))
+	fmt.Println(registry.Contains(Inactive))
 
 	// Output:
-	// Validate Active: <nil>
-	// Validate Inactive: <nil>
-	// Validate Unknown: invalid enum value: 0
-}
-
-func ExampleRegistry_ValidateAll() {
-	registry := NewRegistry[Status]()
-	item1 := NewItem(Active, "Active")
-	item2 := NewItem(Inactive, "Inactive")
-	registry.Add(item1, item2)
-
-	fmt.Println("ValidateAll Active, Inactive:", registry.ValidateAll(Active, Inactive))
-	fmt.Println("ValidateAll Active, Unknown:", registry.ValidateAll(Active, Unknown))
-
-	// Output:
-	// ValidateAll Active, Inactive: <nil>
-	// ValidateAll Active, Unknown: invalid enum value: 0
+	// true
+	// false
 }
 
 func ExampleRegistry_Size() {

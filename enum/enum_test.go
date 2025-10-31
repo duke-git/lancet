@@ -17,11 +17,11 @@ const (
 	Inactive
 )
 
-func TestNewItem(t *testing.T) {
+func TestNewItemsFromPairs(t *testing.T) {
 	t.Parallel()
-	assert := internal.NewAssert(t, "TestNewItem")
+	assert := internal.NewAssert(t, "TestNewItemsFromPairs")
 
-	items := NewItems(
+	items := NewItemsFromPairs(
 		Pair[Status]{Value: Active, Name: "Active"},
 		Pair[Status]{Value: Inactive, Name: "Inactive"},
 	)
@@ -126,40 +126,6 @@ func TestRegistry_Contains(t *testing.T) {
 
 	assert.Equal(true, registry.Contains(Active))
 	assert.Equal(false, registry.Contains(Inactive))
-}
-
-func TestRegistry_Validate(t *testing.T) {
-	t.Parallel()
-	assert := internal.NewAssert(t, "TestRegistry_Validate")
-
-	registry := NewRegistry[Status]()
-	item1 := NewItem(Active, "Active")
-	item2 := NewItem(Inactive, "Inactive")
-	registry.Add(item1, item2)
-
-	err := registry.Validate(Active)
-	assert.IsNil(err)
-	err = registry.Validate(Inactive)
-	assert.IsNil(err)
-
-	err = registry.Validate(Unknown)
-	assert.IsNotNil(err)
-}
-
-func TestRegistry_ValidateAll(t *testing.T) {
-	t.Parallel()
-	assert := internal.NewAssert(t, "TestRegistry_ValidateAll")
-
-	registry := NewRegistry[Status]()
-	item1 := NewItem(Active, "Active")
-	item2 := NewItem(Inactive, "Inactive")
-	registry.Add(item1, item2)
-
-	err := registry.ValidateAll(Active, Inactive)
-	assert.IsNil(err)
-
-	err = registry.ValidateAll(Active, Unknown)
-	assert.IsNotNil(err)
 }
 
 func TestRegistry_Range(t *testing.T) {

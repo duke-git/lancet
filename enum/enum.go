@@ -26,6 +26,7 @@ type Item[T comparable] struct {
 	name  string
 }
 
+// NewItem creates a new enum item.
 func NewItem[T comparable](value T, name string) *Item[T] {
 	return &Item[T]{value: value, name: name}
 }
@@ -37,7 +38,7 @@ type Pair[T comparable] struct {
 }
 
 // NewItemsFromPairs creates enum items from a slice of Pair structs.
-func NewItems[T comparable](pairs ...Pair[T]) []*Item[T] {
+func NewItemsFromPairs[T comparable](pairs ...Pair[T]) []*Item[T] {
 	if len(pairs) == 0 {
 		return []*Item[T]{}
 	}
@@ -50,37 +51,40 @@ func NewItems[T comparable](pairs ...Pair[T]) []*Item[T] {
 	return items
 }
 
-func (e *Item[T]) Value() T {
-	return e.value
+// Value returns the value of the enum item.
+func (it *Item[T]) Value() T {
+	return it.value
 }
 
-func (e *Item[T]) Name() string {
-	return e.name
+// Name returns the name of the enum item.
+func (it *Item[T]) Name() string {
+	return it.name
 }
 
-func (e *Item[T]) String() string {
-	return e.name
+// String returns the string representation of the enum item.
+func (it *Item[T]) String() string {
+	return it.name
 }
 
 // Valid checks if the enum item is valid. If a custom check function is provided, it will be used to validate the value.
-func (e *Item[T]) Valid(checker ...func(T) bool) bool {
+func (it *Item[T]) Valid(checker ...func(T) bool) bool {
 	if len(checker) > 0 {
-		return checker[0](e.value) && e.name != ""
+		return checker[0](it.value) && it.name != ""
 	}
 	var zero T
-	return e.value != zero && e.name != ""
+	return it.value != zero && it.name != ""
 }
 
 // MarshalJSON implements the json.Marshaler interface.
-func (e *Item[T]) MarshalJSON() ([]byte, error) {
+func (it *Item[T]) MarshalJSON() ([]byte, error) {
 	return json.Marshal(map[string]any{
-		"value": e.value,
-		"name":  e.name,
+		"value": it.value,
+		"name":  it.name,
 	})
 }
 
 // UnmarshalJSON implements the json.Unmarshaler interface.
-func (e *Item[T]) UnmarshalJSON(data []byte) error {
+func (it *Item[T]) UnmarshalJSON(data []byte) error {
 	type alias struct {
 		Value any    `json:"value"`
 		Name  string `json:"name"`
@@ -99,48 +103,47 @@ func (e *Item[T]) UnmarshalJSON(data []byte) error {
 			return fmt.Errorf("invalid type for value, want int family")
 		}
 		converted := reflect.ValueOf(int64(val)).Convert(rv)
-		e.value = converted.Interface().(T)
+		it.value = converted.Interface().(T)
 	case reflect.Uint, reflect.Uint8, reflect.Uint16, reflect.Uint32, reflect.Uint64:
 		val, ok := temp.Value.(float64)
 		if !ok {
 			return fmt.Errorf("invalid type for value, want uint family")
 		}
 		converted := reflect.ValueOf(uint64(val)).Convert(rv)
-		e.value = converted.Interface().(T)
+		it.value = converted.Interface().(T)
 	case reflect.Float32, reflect.Float64:
 		val, ok := temp.Value.(float64)
 		if !ok {
 			return fmt.Errorf("invalid type for value, want float family")
 		}
 		converted := reflect.ValueOf(val).Convert(rv)
-		e.value = converted.Interface().(T)
+		it.value = converted.Interface().(T)
 	case reflect.String:
 		val, ok := temp.Value.(string)
 		if !ok {
 			return fmt.Errorf("invalid type for value, want string")
 		}
-		e.value = any(val).(T)
+		it.value = any(val).(T)
 	case reflect.Bool:
 		val, ok := temp.Value.(bool)
 		if !ok {
 			return fmt.Errorf("invalid type for value, want bool")
 		}
-		e.value = any(val).(T)
+		it.value = any(val).(T)
 	default:
-		// 枚举类型底层通常是 int，可以尝试 float64->int64->底层类型
 		val, ok := temp.Value.(float64)
 		if ok {
 			converted := reflect.ValueOf(int64(val)).Convert(rv)
-			e.value = converted.Interface().(T)
+			it.value = converted.Interface().(T)
 		} else {
 			val2, ok2 := temp.Value.(T)
 			if !ok2 {
 				return fmt.Errorf("invalid type for value")
 			}
-			e.value = val2
+			it.value = val2
 		}
 	}
-	e.name = temp.Name
+	it.name = temp.Name
 	return nil
 }
 
@@ -152,6 +155,7 @@ type Registry[T comparable] struct {
 	items  []*Item[T]
 }
 
+// NewRegistry creates a new enum registry.
 func NewRegistry[T comparable](items ...*Item[T]) *Registry[T] {
 	r := &Registry[T]{
 		values: make(map[T]*Item[T]),
@@ -248,24 +252,6 @@ func (r *Registry[T]) Items() []*Item[T] {
 func (r *Registry[T]) Contains(value T) bool {
 	_, ok := r.GetByValue(value)
 	return ok
-}
-
-// Validate checks if the given value is a valid enum item in the registry.
-func (r *Registry[T]) Validate(value T) error {
-	if !r.Contains(value) {
-		return fmt.Errorf("invalid enum value: %v", value)
-	}
-	return nil
-}
-
-// ValidateAll checks if all given values are valid enum items in the registry.
-func (r *Registry[T]) ValidateAll(values ...T) error {
-	for _, value := range values {
-		if err := r.Validate(value); err != nil {
-			return err
-		}
-	}
-	return nil
 }
 
 // Size returns the number of enum items in the registry.
