@@ -65,6 +65,8 @@ import (
 -   [IsAmericanExpress](#IsAmericanExpress)
 -   [IsUnionPay](#IsUnionPay)
 -   [IsChinaUnionPay](#IsChinaUnionPay)
+-   [IsPassport](#IsPassport)
+-   [IsChineseHMPassport](#IsChineseHMPassport)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -1566,6 +1568,83 @@ func main() {
 
     // Output:
     // true
+    // false
+}
+```
+
+### <span id="IsPassport">IsPassport</span>
+
+<p>Passport validation(using regex).</p>
+
+<b>Signature:</b>
+
+```go
+func IsPassport(passport, country string) bool
+```
+
+<b>Example:<span style="float:right;display:inline-block">[Run](https://go.dev/play/p/todo)</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/validator"
+)
+
+func main() {
+    result1 := validator.IsPassport("P123456789", "CN")
+    result2 := validator.IsPassport("123456789", "US")
+    result3 := validator.IsPassport("AB1234567", "RU")
+    result4 := validator.IsPassport("123456789", "CN")
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
+
+    // Output:
+    // true
+    // true
+    // true
+    // false
+}
+```
+
+### <span id="IsChineseHMPassport">IsChineseHMPassport</span>
+
+<p>Mainland travel permit for Hong Kong, Macao validation (using regex). </p>
+
+<b>Signature:</b>
+
+```go
+func IsChineseHMPassport(hmPassport string) bool
+```
+
+<b>Example:<span style="float:right;display:inline-block">[Run](https://go.dev/play/p/todo)</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/validator"
+)
+
+func main() {
+    result1 := validator.IsChineseHMPassport("C12345678")
+    result2 := validator.IsChineseHMPassport("C00000000")
+    result3 := validator.IsChineseHMPassport("M12345678")
+    result4 := validator.IsChineseHMPassport("c12345678")
+    result5 := validator.IsChineseHMPassport("C1234567")
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
+    fmt.Println(result5)
+
+    // Output:
+    // true
+    // true
+    // true
+    // false
     // false
 }
 ```

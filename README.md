@@ -1125,6 +1125,10 @@ import "github.com/duke-git/lancet/v2/maputil"
 -   **<big>FindValuesBy</big>** : returns a slice of values from the map that satisfy the given predicate function.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/maputil.md#FindValuesBy)]
     [[play](https://go.dev/play/p/bvNwNBZDm6v)]
+-   **<big>ToMarkdownTable</big>** : Convert a map slice data to a Markdown table string. It supports custom header display names and column display order.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/maputil.md#ToMarkdownTable)]
+    [[play](https://go.dev/play/p/todo)]
+
 
 <h3 id="mathutil"> 13. Mathutil package implements some functions for math calculation. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
@@ -1819,30 +1823,50 @@ import "github.com/duke-git/lancet/v2/structs"
 
 -   **<big>New</big>** : creates a `Struct` instance.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/struct.md#New)]
+    [[play](https://go.dev/play/p/O29l8kk-Z17)]
 -   **<big>ToMap</big>** : converts a valid struct to a map.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/struct.md#ToMap)]
+    [[play](https://go.dev/play/p/qQbLySBgerZ)]
 -   **<big>Fields</big>** : get all fields of a given struct, that the fields are abstract struct field.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/struct.md#Fields)]
+    [[play](https://go.dev/play/p/w3Kk_CyVY7D)]
+-   **<big>Field</big>** : get an abstract field of a struct by given field name
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/struct.md#Field)]
+    [[play](https://go.dev/play/p/KocZMSYarza)]
 -   **<big>IsStruct</big>** : check if the struct is valid.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/struct.md#IsStruct)]
+    [[play](https://go.dev/play/p/bU2FSdkbK1C)]
 -   **<big>Tag</big>** : get a `Tag` of the `Field`, `Tag` is a abstract struct field tag.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/struct.md#Tag)]
+    [[play](https://go.dev/play/p/DVrx5HvvUJr)]
 -   **<big>Name</big>** : get the field name.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/struct.md#Name)]
+    [[play](https://go.dev/play/p/zfIGlqsatee)]
 -   **<big>Value</big>** : get the `Field` underlying value.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/struct.md#Value)]
+    [[play](https://go.dev/play/p/qufYEU2o4Oi)]
 -   **<big>Kind</big>** : get the field's kind.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/struct.md#Kind)]
+    [[play](https://go.dev/play/p/wg4NlcUNG5o)]
 -   **<big>IsEmbedded</big>** : check if the field is an embedded field.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/struct.md#IsEmbedded)]
+    [[play](https://go.dev/play/p/wV2PrbYm3Ec)]
 -   **<big>IsExported</big>** : check if the field is exported.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/struct.md#IsExported)]
+    [[play](https://go.dev/play/p/csK4AXYaNbJ)]
 -   **<big>IsZero</big>** : check if the field is zero value.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/struct.md#IsZero)]
+    [[play](https://go.dev/play/p/RzqpGISf87r)]
 -   **<big>IsSlice</big>** : check if the field is a slice.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/struct.md#IsSlice)]
+    [[play](https://go.dev/play/p/MKz4CgBIUrU)]
 -   **<big>IsTargetType</big>** : check if the field is target type.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/struct.md#IsTargetType)]
+    [[play](https://go.dev/play/p/Ig75P-agN39)]
+-   **<big>TypeName</big>** : Return struct type name.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/struct.md#TypeName)]
+    [[play](https://go.dev/play/p/todo)]
+
 
 <h3 id="strutil"> 21. Strutil package contains some functions to manipulate string. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
@@ -2301,6 +2325,12 @@ import "github.com/duke-git/lancet/v2/validator"
 -   **<big>IsChinaUnionPay</big>** : check if a give string is a valid china union pay number or not.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/validator.md#IsChinaUnionPay)]
     [[play](https://go.dev/play/p/yafpdxLiymu)]
+-   **<big>IsPassport</big>** : Passport validation(using regex).
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/validator.md#IsPassport)]
+    [[play](https://go.dev/play/p/todo)]
+-   **<big>IsChineseHMPassport</big>** : Mainland travel permit for Hong Kong, Macao validation (using regex). 
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/validator.md#IsChineseHMPassport)]
+    [[play](https://go.dev/play/p/todo)]
 
 <h3 id="xerror"> 25. Xerror package implements helpers for errors. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 

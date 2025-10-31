@@ -65,6 +65,8 @@ import (
 -   [IsAmericanExpress](#IsAmericanExpress)
 -   [IsUnionPay](#IsUnionPay)
 -   [IsChinaUnionPay](#IsChinaUnionPay)
+-   [IsPassport](#IsPassport)
+-   [IsChineseHMPassport](#IsChineseHMPassport)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -844,20 +846,20 @@ import (
 
 func main() {
     result1 := validator.IsAlphaNumeric("ABC")
-	result2 := validator.IsAlphaNumeric("123")
-	result3 := validator.IsAlphaNumeric("abc123")
-	result4 := validator.IsAlphaNumeric("abc123@#$")
+    result2 := validator.IsAlphaNumeric("123")
+    result3 := validator.IsAlphaNumeric("abc123")
+    result4 := validator.IsAlphaNumeric("abc123@#$")
 
-	fmt.Println(result1)
-	fmt.Println(result2)
-	fmt.Println(result3)
-	fmt.Println(result4)
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
 
-	// Output:
-	// true
-	// true
-	// true
-	// false
+    // Output:
+    // true
+    // true
+    // true
+    // false
 }
 ```
 
@@ -1564,6 +1566,83 @@ func main() {
 
     // Output:
     // true
+    // false
+}
+```
+
+### <span id="IsPassport">IsPassport</span>
+
+<p>判断护照(正则判断)。</p>
+
+<b>函数签名:</b>
+
+```go
+func IsPassport(passport, country string) bool
+```
+
+<b>示例:<span style="float:right;display:inline-block">[运行](https://go.dev/play/p/todo)</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/validator"
+)
+
+func main() {
+    result1 := validator.IsPassport("P123456789", "CN")
+    result2 := validator.IsPassport("123456789", "US")
+    result3 := validator.IsPassport("AB1234567", "RU")
+    result4 := validator.IsPassport("123456789", "CN")
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
+
+    // Output:
+    // true
+    // true
+    // true
+    // false
+}
+```
+
+### <span id="IsChineseHMPassport">IsChineseHMPassport</span>
+
+<p>判断港澳台通行证(正则判断)。</p>
+
+<b>函数签名:</b>
+
+```go
+func IsChineseHMPassport(hmPassport string) bool
+```
+
+<b>示例:<span style="float:right;display:inline-block">[运行](https://go.dev/play/p/todo)</span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/validator"
+)
+
+func main() {
+    result1 := validator.IsChineseHMPassport("C12345678")
+    result2 := validator.IsChineseHMPassport("C00000000")
+    result3 := validator.IsChineseHMPassport("M12345678")
+    result4 := validator.IsChineseHMPassport("c12345678")
+    result5 := validator.IsChineseHMPassport("C1234567")
+
+    fmt.Println(result1)
+    fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
+    fmt.Println(result5)
+
+    // Output:
+    // true
+    // true
+    // true
+    // false
     // false
 }
 ```

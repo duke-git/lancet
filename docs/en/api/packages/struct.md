@@ -31,6 +31,7 @@ import (
 -   [IsStruct](#IsStruct)
 -   [Tag](#Tag)
 -   [Name](#Name)
+-   [TypeName](#TypeName)
 -   [Value](#Value)
 -   [Kind](#Kind)
 -   [IsEmbedded](#IsEmbedded)
@@ -53,12 +54,13 @@ import (
 func New(value any, tagName ...string) *Struct
 ```
 
-<b>Example:</b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/O29l8kk-Z17)</span></b>
 
 ```go
 package main
 
 import (
+    "fmt"
     "github.com/duke-git/lancet/v2/structs"
 )
 
@@ -68,7 +70,11 @@ func main() {
     }
     p1 := &People{Name: "11"}
     s := structs.New(p1)
-    // to do something
+    
+    fmt.Println(s.ToMap())
+
+    // Output:
+    // map[name:11] <nil>
 }
 ```
 
@@ -88,7 +94,7 @@ func (s *Struct) ToMap() (map[string]any, error)
 func ToMap(v any) (map[string]any, error)
 ```
 
-<b>Example:</b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/qQbLySBgerZ)</span></b>
 
 ```go
 package main
@@ -130,7 +136,7 @@ func main() {
 func (s *Struct) Fields() []*Field
 ```
 
-<b>Example:</b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/w3Kk_CyVY7D)</span></b>
 
 ```go
 package main
@@ -162,10 +168,10 @@ func main() {
 <b>Signature:</b>
 
 ```go
-func (s *Struct) Field(name string) *Field
+func (s *Struct) Field(name string) (*Field, bool)
 ```
 
-<b>Example:</b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/KocZMSYarza)</span></b>
 
 ```go
 package main
@@ -181,12 +187,14 @@ func main() {
     }
     p1 := &People{Name: "11"}
     s := structs.New(p1)
-    f := s.Field("Name")
+    f, found := s.Field("Name")
 
     fmt.Println(f.Value())
+    fmt.Println(found)
 
     // Output:
     // 11
+    // true
 }
 ```
 
@@ -200,7 +208,7 @@ func main() {
 func (s *Struct) IsStruct() bool
 ```
 
-<b>Example:</b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/bU2FSdkbK1C)</span></b>
 
 ```go
 package main
@@ -234,7 +242,7 @@ func main() {
 func (f *Field) Tag() *Tag
 ```
 
-<b>Example:</b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/DVrx5HvvUJr)</span></b>
 
 ```go
 package main
@@ -271,7 +279,7 @@ func main() {
 func (f *Field) Value() any
 ```
 
-<b>Example:</b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/qufYEU2o4Oi)</span></b>
 
 ```go
 package main
@@ -307,7 +315,7 @@ func main() {
 func (f *Field) IsEmbedded() bool
 ```
 
-<b>Example:</b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/wV2PrbYm3Ec)</span></b>
 
 ```go
 package main
@@ -352,7 +360,7 @@ func main() {
 func (f *Field) IsExported() bool
 ```
 
-<b>Example:</b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/csK4AXYaNbJ)</span></b>
 
 ```go
 package main
@@ -391,7 +399,7 @@ func main() {
 func (f *Field) IsZero() bool
 ```
 
-<b>Example:</b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/RzqpGISf87r)</span></b>
 
 ```go
 package main
@@ -430,7 +438,7 @@ func main() {
 func (f *Field) Name() string
 ```
 
-<b>Example:</b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/zfIGlqsatee)</span></b>
 
 ```go
 package main
@@ -469,7 +477,7 @@ func main() {
 func (f *Field) Kind() reflect.Kind
 ```
 
-<b>Example:</b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/wg4NlcUNG5o)</span></b>
 
 ```go
 package main
@@ -498,6 +506,42 @@ func main() {
 }
 ```
 
+### <span id="TypeName">TypeName</span>
+
+<p>Return struct type name.</p>
+
+<b>Signature:</b>
+
+```go
+func (s *Struct) TypeName() string
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/todo)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/structs"
+)
+
+func main() {
+    type Parent struct {
+        Name string
+        Age  int
+    }
+
+    p := &Parent{Age: 11}
+    s := structs.New(p1)
+
+    fmt.Println(s.TypeName())
+    
+    // Output: 
+    // Parent
+}
+```
+
 ### <span id="IsSlice">IsSlice</span>
 
 <p>Check if the field is a slice</p>
@@ -508,7 +552,7 @@ func main() {
 func (f *Field) IsSlice() bool
 ```
 
-<b>Example:</b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/MKz4CgBIUrU)</span></b>
 
 ```go
 package main
@@ -545,7 +589,7 @@ func main() {
 func (f *Field) IsTargetType(targetType reflect.Kind) bool
 ```
 
-<b>Example:</b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/Ig75P-agN39)</span></b>
 
 ```go
 package main

@@ -1135,6 +1135,9 @@ import "github.com/duke-git/lancet/v2/maputil"
 -   **<big>FindValuesBy</big>** : 返回一个切片，包含满足给定谓词判断函数的 map 中的值。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/maputil.md#FindValuesBy)]
     [[play](https://go.dev/play/p/bvNwNBZDm6v)]
+-   **<big>ToMarkdownTable</big>** : 将一个 map 切片数据转换为 Markdown 表格字符串。支持自定义表头显示名称和列的显示顺序。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/maputil.md#ToMarkdownTable)]
+    [[play](https://go.dev/play/p/todo)]
 
 <h3 id="mathutil"> 14. mathutil 包实现了一些数学计算的函数。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 
@@ -1825,32 +1828,50 @@ import "github.com/duke-git/lancet/v2/structs"
 
 -   **<big>New</big>** : `Struct`结构体的构造函数。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/struct.md#New)]
+    [[play](https://go.dev/play/p/O29l8kk-Z17)]
 -   **<big>ToMap</big>** : 将一个合法的 struct 对象转换为 map[string]any。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/struct.md#ToMap)]
+    [[play](https://go.dev/play/p/qQbLySBgerZ)]
 -   **<big>Fields</big>** : 获取一个 struct 对象的属性列表。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/struct.md#Fields)]
+    [[play](https://go.dev/play/p/w3Kk_CyVY7D)]
 -   **<big>Field</big>** : 根据属性名获取一个 struct 对象的属性。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/struct.md#Fields)]
+    [[play](https://go.dev/play/p/KocZMSYarza)]
 -   **<big>IsStruct</big>** : 判断是否为一个合法的 struct 对象。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/struct.md#IsStruct)]
+    [[play](https://go.dev/play/p/bU2FSdkbK1C)]
 -   **<big>Tag</big>** : 获取`Field`的`Tag`，默认的 tag key 是 json。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/struct.md#Tag)]
+    [[play](https://go.dev/play/p/DVrx5HvvUJr)]
 -   **<big>Name</big>** : 获取属性名。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/struct.md#Name)]
+    [[play](https://go.dev/play/p/zfIGlqsatee)]
 -   **<big>Value</big>** : 获取`Field`属性的值。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/struct.md#Value)]
+    [[play](https://go.dev/play/p/qufYEU2o4Oi)]
 -   **<big>Kind</big>** : 获取属性 Kind。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/struct.md#Kind)]
+    [[play](https://go.dev/play/p/wg4NlcUNG5o)]
 -   **<big>IsEmbedded</big>** : 判断属性是否为嵌入。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/struct.md#IsEmbedded)]
+    [[play](https://go.dev/play/p/wV2PrbYm3Ec)]
 -   **<big>IsExported</big>** : 判断属性是否导出。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/struct.md#IsExported)]
+    [[play](https://go.dev/play/p/csK4AXYaNbJ)]
 -   **<big>IsZero</big>** : 判断属性是否为零值。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/struct.md#IsZero)]
+    [[play](https://go.dev/play/p/RzqpGISf87r)]
 -   **<big>IsSlice</big>** : 判断属性是否是切片。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/struct.md#IsSlice)]
+    [[play](https://go.dev/play/p/MKz4CgBIUrU)]
 -   **<big>IsTargetType</big>** : 判断属性是否是目标类型。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/struct.md#IsTargetType)]
+    [[play](https://go.dev/play/p/Ig75P-agN39)]
+-   **<big>TypeName</big>** : 获取结构体类型名。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/struct.md#TypeName)]
+    [[play](https://go.dev/play/p/todo)]
+
 
 <h3 id="strutil"> 22. strutil 包含字符串处理的相关函数。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 
@@ -2310,7 +2331,12 @@ import "github.com/duke-git/lancet/v2/validator"
 -   **<big>IsChinaUnionPay</big>** : 检查字符串是否是有效的中国银联卡号。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/validator.md#IsChinaUnionPay)]
     [[play](https://go.dev/play/p/yafpdxLiymu)]
-
+-   **<big>IsPassport</big>** : 判断护照(正则判断)。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/validator.md#IsPassport)]
+    [[play](https://go.dev/play/p/todo)]
+-   **<big>IsChineseHMPassport</big>** : 判断港澳台通行证(正则判断)。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/validator.md#IsChineseHMPassport)]
+    [[play](https://go.dev/play/p/todo)]
 <h3 id="xerror"> 26. xerror 包实现一些错误处理函数。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 
 ```go

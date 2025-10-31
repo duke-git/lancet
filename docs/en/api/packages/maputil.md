@@ -79,6 +79,8 @@ import (
 -   [SortByKey](#SortByKey)
 -   [GetOrDefault](#GetOrDefault)
 -   [FindValuesBy](#FindValuesBy)
+-   [ToMarkdownTable](#ToMarkdownTable)
+
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -2361,5 +2363,71 @@ func main() {
 
     // Output:
     // [b d]
+}
+```
+
+### <span id="ToMarkdownTable">ToMarkdownTable</span>
+
+<p>Convert a map slice data to a Markdown table string. It supports custom header display names and column display order.</p>
+
+<b>Signature:</b>
+
+```go
+编辑
+func ToMarkdownTable(data []map[string]interface{}, headerMap map[string]string, columnOrder []string) string
+```
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/todo)</span></b>
+
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/maputil"
+)
+
+func main() {
+    // basic usage: automatically extract column names from data as table headers
+
+    data := []map[string]interface{}{
+        {"name": "Alice", "age": 25, "salary": 50000},
+        {"name": "Bob", "age": 30, "salary": 60000},
+    }
+
+    result := maputil.ToMarkdownTable(data, nil, nil)
+    fmt.Println(result)
+
+    // output:
+    // |name|age|salary|
+    // |---|---|---|
+    // |Alice|25|50000|
+    // |Bob|30|60000|
+
+    // custom header name
+    headerMap := map[string]string{
+        "name":   "n",
+        "age":    "a",
+        "salary": "s",
+    }
+    result = maputil.ToMarkdownTable(data, headerMap, nil)
+    fmt.Println(result)
+
+    // ouput:
+    // |m|a|s|
+    // |---|---|---|
+    // |Alice|25|50000|
+    // |Bob|30|60000|
+
+    // custom column display order
+    columnOrder := []string{"salary", "name"}
+    result = maputil.ToMarkdownTable(data, nil, columnOrder)
+    fmt.Println(result)
+
+    // 输出:
+    // |salary|name|
+    // |---|---|
+    // |50000|Alice|
+    // |60000|Bob|
 }
 ```
