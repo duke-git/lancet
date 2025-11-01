@@ -4,7 +4,7 @@
 <br/>
 
 ![Go version](https://img.shields.io/badge/go-%3E%3Dv1.18-9cf)
-[![Release](https://img.shields.io/badge/release-2.3.7-green.svg)](https://github.com/duke-git/lancet/releases)
+[![Release](https://img.shields.io/badge/release-2.3.8-green.svg)](https://github.com/duke-git/lancet/releases)
 [![GoDoc](https://godoc.org/github.com/duke-git/lancet/v2?status.svg)](https://pkg.go.dev/github.com/duke-git/lancet/v2)
 [![Go Report Card](https://goreportcard.com/badge/github.com/duke-git/lancet/v2)](https://goreportcard.com/report/github.com/duke-git/lancet/v2)
 [![test](https://github.com/duke-git/lancet/actions/workflows/codecov.yml/badge.svg?branch=main&event=push)](https://github.com/duke-git/lancet/actions/workflows/codecov.yml)
@@ -1129,7 +1129,6 @@ import "github.com/duke-git/lancet/v2/maputil"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/maputil.md#ToMarkdownTable)]
     [[play](https://go.dev/play/p/todo)]
 
-
 <h3 id="mathutil"> 13. Mathutil package implements some functions for math calculation. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
 ```go
@@ -1870,7 +1869,6 @@ import "github.com/duke-git/lancet/v2/structs"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/struct.md#TypeName)]
     [[play](https://go.dev/play/p/todo)]
 
-
 <h3 id="strutil"> 21. Strutil package contains some functions to manipulate string. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
 ```go
@@ -2331,7 +2329,7 @@ import "github.com/duke-git/lancet/v2/validator"
 -   **<big>IsPassport</big>** : Passport validation(using regex).
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/validator.md#IsPassport)]
     [[play](https://go.dev/play/p/todo)]
--   **<big>IsChineseHMPassport</big>** : Mainland travel permit for Hong Kong, Macao validation (using regex). 
+-   **<big>IsChineseHMPassport</big>** : Mainland travel permit for Hong Kong, Macao validation (using regex).
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/validator.md#IsChineseHMPassport)]
     [[play](https://go.dev/play/p/todo)]
 
