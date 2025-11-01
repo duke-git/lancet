@@ -169,6 +169,45 @@ func ExampleToPointer() {
 	// 123
 }
 
+func ExampleToPointers() {
+	strs := []string{"a", "b", "c"}
+	pointerStrs := ToPointers(strs)
+	fmt.Println(*pointerStrs[0])
+	fmt.Println(*pointerStrs[1])
+	fmt.Println(*pointerStrs[2])
+
+	// Output:
+	// a
+	// b
+	// c
+}
+
+func ExampleFromPointer() {
+	str := "abc"
+	strPtr := &str
+	result := FromPointer(strPtr)
+	fmt.Println(result)
+
+	// Output:
+	// abc
+}
+
+func ExampleFromPointers() {
+	strs := []string{"a", "b", "c"}
+	strPtr := []*string{&strs[0], &strs[1], &strs[2]}
+
+	result := FromPointers(strPtr)
+
+	fmt.Println(result[0])
+	fmt.Println(result[1])
+	fmt.Println(result[2])
+
+	// Output:
+	// a
+	// b
+	// c
+}
+
 func ExampleToMap() {
 	type Message struct {
 		name string

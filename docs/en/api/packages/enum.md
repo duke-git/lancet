@@ -6,7 +6,7 @@ Package enum provides a simple enum implementation.
 
 ## Source:
 
-- [https://github.com/duke-git/lancet/blob/main/enum/enum.go](https://github.com/duke-git/lancet/blob/main/enum/enum.go)
+-   [https://github.com/duke-git/lancet/blob/main/enum/enum.go](https://github.com/duke-git/lancet/blob/main/enum/enum.go)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -55,7 +55,7 @@ import (
 func NewItem[T comparable](value T, name string) *Item[T]
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/8qNsLw01HD5)</span></b>
 
 ```go
 package main
@@ -96,7 +96,7 @@ func main() {
 func NewItemsFromPairs[T comparable](pairs ...Pair[T]) []*Item[T]
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/xKnoGa7gnev)</span></b>
 
 ```go
 package main
@@ -139,7 +139,7 @@ func main() {
 func (it *Item[T]) Value() T
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/xKnoGa7gnev)</span></b>
 
 ```go
 package main
@@ -182,7 +182,7 @@ func main() {
 func (it *Item[T]) Name() string
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/xKnoGa7gnev)</span></b>
 
 ```go
 package main
@@ -225,7 +225,7 @@ func main() {
 func (it *Item[T]) Valid(checker ...func(T) bool) bool
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/pA3lYY2VSm3)</span></b>
 
 ```go
 package main
@@ -267,7 +267,7 @@ func (it *Item[T]) MarshalJSON() ([]byte, error)
 func (it *Item[T]) UnmarshalJSON(data []byte) error
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/zIZEdAnneB5)</span></b>
 
 ```go
 package main
@@ -290,7 +290,7 @@ func main() {
     data, _ := item.MarshalJSON()
     fmt.Println(string(data))
 
-    var unmarshaledItem Item[Status]
+    var unmarshaledItem enum.Item[Status]
     _ = unmarshaledItem.UnmarshalJSON(data)
     fmt.Println(unmarshaledItem.Name(), unmarshaledItem.Value())
 
@@ -310,7 +310,7 @@ func main() {
 func NewRegistry[T comparable](items ...*Item[T]) *Registry[T]
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/ABEXsYfJKMo)</span></b>
 
 ```go
 package main
@@ -359,7 +359,7 @@ func main() {
 func (r *Registry[T]) Add(items ...*Item[T])
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/ABEXsYfJKMo)</span></b>
 
 ```go
 package main
@@ -408,7 +408,7 @@ func main() {
 func (r *Registry[T]) Remove(value T) bool
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/dSG84wQ3TuC)</span></b>
 
 ```go
 package main
@@ -454,7 +454,7 @@ func main() {
 func (r *Registry[T]) Update(value T, newName string) bool
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/Ol0moT1J9Xl)</span></b>
 
 ```go
 package main
@@ -500,7 +500,7 @@ func main() {
 func (r *Registry[T]) GetByValue(value T) (*Item[T], bool)
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/niJ1U2KlE_m)</span></b>
 
 ```go
 package main
@@ -520,9 +520,9 @@ const (
 
 func main() {
     registry := enum.NewRegistry[Status]()
-    item1 := enum.NewItem(Active, "Active")
+    item := enum.NewItem(Active, "Active")
 
-    registry.Add(item1, item2)
+    registry.Add(item)
 
     if item, found := registry.GetByValue(Active); found {
         fmt.Println("Found name by value:", item.Name())
@@ -543,7 +543,7 @@ func main() {
 func (r *Registry[T]) GetByName(name string) (*Item[T], bool)
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/49ie_gpqH0m)</span></b>
 
 ```go
 package main
@@ -586,7 +586,7 @@ func main() {
 func (r *Registry[T]) Items() []*Item[T]
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/lAJFAradbvQ)</span></b>
 
 ```go
 package main
@@ -631,7 +631,7 @@ func main() {
 func (r *Registry[T]) Contains(value T) bool
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/_T-lPYkZn2j)</span></b>
 
 ```go
 package main
@@ -673,7 +673,7 @@ func main() {
 func (r *Registry[T]) Size() int
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/TeDArWhlQe2)</span></b>
 
 ```go
 package main
@@ -721,7 +721,7 @@ func main() {
 func (r *Registry[T]) Range(fn func(*Item[T]) bool)
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/GPsZbQbefWN)</span></b>
 
 ```go
 package main
@@ -745,7 +745,7 @@ func main() {
     item2 := enum.NewItem(Inactive, "Inactive")
     registry.Add(item1, item2)
 
-    registry.Range(func(item *Item[Status]) bool {
+    registry.Range(func(item *enum.Item[Status]) bool {
         fmt.Println(item.Name(), item.Value())
         return true // continue iteration
     })
@@ -766,7 +766,7 @@ func main() {
 func (r *Registry[T]) SortedItems(less func(*Item[T], *Item[T]) bool) []*Item[T]
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/tN9RE_m_WEI)</span></b>
 
 ```go
 package main
@@ -790,8 +790,8 @@ func main() {
     item2 := enum.NewItem(Active, "Active")
     registry.Add(item1, item2)
 
-    for _, item := range registry.SortedItems(func(i1, i2 *Item[Status]) bool {
-        return i1.value < i2.value
+    for _, item := range registry.SortedItems(func(i1, i2 *enum.Item[Status]) bool {
+        return i1.Value() < i2.Value()
     }) {
         fmt.Println(item.Name(), item.Value())
     }
@@ -812,7 +812,7 @@ func main() {
 func (r *Registry[T]) Filter(predicate func(*Item[T]) bool) []*Item[T]
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/uTUpTdcyoCU)</span></b>
 
 ```go
 package main
@@ -836,7 +836,7 @@ func main() {
     item2 := enum.NewItem(Inactive, "Inactive")
     registry.Add(item1, item2)
 
-    activeItems := registry.Filter(func(item *Item[Status]) bool {
+    activeItems := registry.Filter(func(item *enum.Item[Status]) bool {
         return item.Value() == Active
     })
 

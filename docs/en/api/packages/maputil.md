@@ -81,7 +81,6 @@ import (
 -   [FindValuesBy](#FindValuesBy)
 -   [ToMarkdownTable](#ToMarkdownTable)
 
-
 <div STYLE="page-break-after: always;"></div>
 
 ## Documentation
@@ -2376,8 +2375,8 @@ func main() {
 编辑
 func ToMarkdownTable(data []map[string]interface{}, headerMap map[string]string, columnOrder []string) string
 ```
-<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/todo)</span></b>
 
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/w_pSLfeyEB5)</span></b>
 
 ```go
 package main
@@ -2424,7 +2423,7 @@ func main() {
     result = maputil.ToMarkdownTable(data, nil, columnOrder)
     fmt.Println(result)
 
-    // 输出:
+    // output:
     // |salary|name|
     // |---|---|
     // |50000|Alice|

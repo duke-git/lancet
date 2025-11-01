@@ -27,6 +27,7 @@ type Item[T comparable] struct {
 }
 
 // NewItem creates a new enum item.
+// Play: https://go.dev/play/p/8qNsLw01HD5
 func NewItem[T comparable](value T, name string) *Item[T] {
 	return &Item[T]{value: value, name: name}
 }
@@ -38,6 +39,7 @@ type Pair[T comparable] struct {
 }
 
 // NewItemsFromPairs creates enum items from a slice of Pair structs.
+// Play: https://go.dev/play/p/xKnoGa7gnev
 func NewItemsFromPairs[T comparable](pairs ...Pair[T]) []*Item[T] {
 	if len(pairs) == 0 {
 		return []*Item[T]{}
@@ -52,11 +54,13 @@ func NewItemsFromPairs[T comparable](pairs ...Pair[T]) []*Item[T] {
 }
 
 // Value returns the value of the enum item.
+// Play: https://go.dev/play/p/xKnoGa7gnev
 func (it *Item[T]) Value() T {
 	return it.value
 }
 
 // Name returns the name of the enum item.
+// Play: https://go.dev/play/p/xKnoGa7gnev
 func (it *Item[T]) Name() string {
 	return it.name
 }
@@ -67,6 +71,7 @@ func (it *Item[T]) String() string {
 }
 
 // Valid checks if the enum item is valid. If a custom check function is provided, it will be used to validate the value.
+// Play: https://go.dev/play/p/pA3lYY2VSm3
 func (it *Item[T]) Valid(checker ...func(T) bool) bool {
 	if len(checker) > 0 {
 		return checker[0](it.value) && it.name != ""
@@ -76,6 +81,7 @@ func (it *Item[T]) Valid(checker ...func(T) bool) bool {
 }
 
 // MarshalJSON implements the json.Marshaler interface.
+// Play: https://go.dev/play/p/zIZEdAnneB5
 func (it *Item[T]) MarshalJSON() ([]byte, error) {
 	return json.Marshal(map[string]any{
 		"value": it.value,
@@ -84,6 +90,7 @@ func (it *Item[T]) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON implements the json.Unmarshaler interface.
+// Play: https://go.dev/play/p/zIZEdAnneB5
 func (it *Item[T]) UnmarshalJSON(data []byte) error {
 	type alias struct {
 		Value any    `json:"value"`
@@ -156,6 +163,7 @@ type Registry[T comparable] struct {
 }
 
 // NewRegistry creates a new enum registry.
+// Play: https://go.dev/play/p/ABEXsYfJKMo
 func NewRegistry[T comparable](items ...*Item[T]) *Registry[T] {
 	r := &Registry[T]{
 		values: make(map[T]*Item[T]),
@@ -169,6 +177,7 @@ func NewRegistry[T comparable](items ...*Item[T]) *Registry[T] {
 }
 
 // Add adds enum items to the registry.
+// Play: https://go.dev/play/p/ABEXsYfJKMo
 func (r *Registry[T]) Add(items ...*Item[T]) {
 	r.mu.Lock()
 	defer r.mu.Unlock()
@@ -188,6 +197,7 @@ func (r *Registry[T]) Add(items ...*Item[T]) {
 }
 
 // Remove removes an enum item from the registry by its value.
+// Play: https://go.dev/play/p/dSG84wQ3TuC
 func (r *Registry[T]) Remove(value T) bool {
 	r.mu.Lock()
 	defer r.mu.Unlock()
@@ -207,6 +217,7 @@ func (r *Registry[T]) Remove(value T) bool {
 }
 
 // Update updates the name of an enum item in the registry by its value.
+// Play: https://go.dev/play/p/Ol0moT1J9Xl
 func (r *Registry[T]) Update(value T, newName string) bool {
 	r.mu.Lock()
 	defer r.mu.Unlock()
@@ -221,6 +232,7 @@ func (r *Registry[T]) Update(value T, newName string) bool {
 }
 
 // GetByValue retrieves an enum item by its value.
+// Play: https://go.dev/play/p/niJ1U2KlE_m
 func (r *Registry[T]) GetByValue(value T) (*Item[T], bool) {
 	r.mu.RLock()
 	defer r.mu.RUnlock()
@@ -230,6 +242,7 @@ func (r *Registry[T]) GetByValue(value T) (*Item[T], bool) {
 }
 
 // GetByName retrieves an enum item by its name.
+// Play: https://go.dev/play/p/49ie_gpqH0m
 func (r *Registry[T]) GetByName(name string) (*Item[T], bool) {
 	r.mu.RLock()
 	defer r.mu.RUnlock()
@@ -239,6 +252,7 @@ func (r *Registry[T]) GetByName(name string) (*Item[T], bool) {
 }
 
 // Items returns a slice of all enum items in the registry.
+// Play: https://go.dev/play/p/lAJFAradbvQ
 func (r *Registry[T]) Items() []*Item[T] {
 	r.mu.RLock()
 	defer r.mu.RUnlock()
@@ -249,12 +263,14 @@ func (r *Registry[T]) Items() []*Item[T] {
 }
 
 // Contains checks if an enum item with the given value exists in the registry.
+// Play: https://go.dev/play/p/_T-lPYkZn2j
 func (r *Registry[T]) Contains(value T) bool {
 	_, ok := r.GetByValue(value)
 	return ok
 }
 
 // Size returns the number of enum items in the registry.
+// Play: https://go.dev/play/p/TeDArWhlQe2
 func (r *Registry[T]) Size() int {
 	r.mu.RLock()
 	defer r.mu.RUnlock()
@@ -263,6 +279,7 @@ func (r *Registry[T]) Size() int {
 }
 
 // Range iterates over all enum items in the registry and applies the given function.
+// Play: https://go.dev/play/p/GPsZbQbefWN
 func (r *Registry[T]) Range(fn func(*Item[T]) bool) {
 	r.mu.RLock()
 	defer r.mu.RUnlock()
@@ -275,6 +292,7 @@ func (r *Registry[T]) Range(fn func(*Item[T]) bool) {
 }
 
 // SortedItems returns a slice of all enum items sorted by the given less function.
+// Play: https://go.dev/play/p/tN9RE_m_WEI
 func (r *Registry[T]) SortedItems(less func(*Item[T], *Item[T]) bool) []*Item[T] {
 	items := r.Items()
 	sort.Slice(items, func(i, j int) bool {
@@ -284,6 +302,7 @@ func (r *Registry[T]) SortedItems(less func(*Item[T], *Item[T]) bool) []*Item[T]
 }
 
 // Filter returns a slice of enum items that satisfy the given predicate function.
+// Play: https://go.dev/play/p/uTUpTdcyoCU
 func (r *Registry[T]) Filter(predicate func(*Item[T]) bool) []*Item[T] {
 	r.mu.RLock()
 	defer r.mu.RUnlock()

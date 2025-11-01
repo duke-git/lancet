@@ -229,7 +229,7 @@ func ToPointer[T any](value T) *T {
 }
 
 // ToPointers convert a slice of values to a slice of pointers.
-// Play: todo
+// Play: https://go.dev/play/p/ZUoXd2i5ZkV
 func ToPointers[T any](values []T) []*T {
 	result := make([]*T, len(values))
 	for i := range values {
@@ -239,7 +239,7 @@ func ToPointers[T any](values []T) []*T {
 }
 
 // FromPointer returns the value pointed to by the pointer.
-// Play: todo
+// Play: https://go.dev/play/p/wAp90V7Zu6g
 func FromPointer[T any](ptr *T) T {
 	if ptr == nil {
 		var zeroValue T
@@ -250,7 +250,7 @@ func FromPointer[T any](ptr *T) T {
 }
 
 // FromPointers convert a slice of pointers to a slice of values.
-// Play: todo
+// Play: https://go.dev/play/p/qIPsyYtNy3Q
 func FromPointers[T any](pointers []*T) []T {
 	result := make([]T, len(pointers))
 	for i, ptr := range pointers {

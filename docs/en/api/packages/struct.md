@@ -70,7 +70,7 @@ func main() {
     }
     p1 := &People{Name: "11"}
     s := structs.New(p1)
-    
+
     fmt.Println(s.ToMap())
 
     // Output:
@@ -516,7 +516,7 @@ func main() {
 func (s *Struct) TypeName() string
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/SWLWd0XBaBb)</span></b>
 
 ```go
 package main
@@ -533,11 +533,11 @@ func main() {
     }
 
     p := &Parent{Age: 11}
-    s := structs.New(p1)
+    s := structs.New(p)
 
     fmt.Println(s.TypeName())
-    
-    // Output: 
+
+    // Output:
     // Parent
 }
 ```
@@ -610,11 +610,11 @@ func main() {
     s := structs.New(p1)
     n, _ := s.Field("Name")
 	a, _ := s.Field("arr")
-    
+
     fmt.Println(n.IsTargetType(reflect.String))
     fmt.Println(a.IsTargetType(reflect.Slice))
-    
-    // Output: 
+
+    // Output:
     // true
     // true
 }

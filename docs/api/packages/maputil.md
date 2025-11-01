@@ -2357,8 +2357,8 @@ func main() {
 编辑
 func ToMarkdownTable(data []map[string]interface{}, headerMap map[string]string, columnOrder []string) string
 ```
-<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/todo)</span></b>
 
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/w_pSLfeyEB5)</span></b>
 
 ```go
 package main

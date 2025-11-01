@@ -1582,7 +1582,7 @@ func main() {
 func IsPassport(passport, country string) bool
 ```
 
-<b>Example:<span style="float:right;display:inline-block">[Run](https://go.dev/play/p/todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block">[Run](https://go.dev/play/p/dvOiV2BW7Aw)</span></b>
 
 ```go
 import (
@@ -1619,7 +1619,7 @@ func main() {
 func IsChineseHMPassport(hmPassport string) bool
 ```
 
-<b>Example:<span style="float:right;display:inline-block">[Run](https://go.dev/play/p/todo)</span></b>
+<b>Example:<span style="float:right;display:inline-block">[Run](https://go.dev/play/p/xKG6spQTcY0)</span></b>
 
 ```go
 import (

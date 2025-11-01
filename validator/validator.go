@@ -634,7 +634,7 @@ func IsChinaUnionPay(cardNo string) bool {
 
 // IsPassport checks if the passport number is valid for a given country.
 // country is a two-letter country code (ISO 3166-1 alpha-2).
-// Play: todo
+// Play: https://go.dev/play/p/dvOiV2BW7Aw
 func IsPassport(passport, country string) bool {
 	if matcher, ok := passportMatcher[country]; ok {
 		return matcher.MatchString(passport)
@@ -645,7 +645,7 @@ func IsPassport(passport, country string) bool {
 
 // IsChineseHMPassport checks if the string is a valid Chinese Hong Kong and Macau Travel Permit number.
 // Chinese Hong Kong and Macau Travel Permit format: C or M + 8 digits (e.g., C12345678, M12345678).
-// Play: https://go.dev/play/p/TODO
+// Play: https://go.dev/play/p/xKG6spQTcY0
 func IsChineseHMPassport(hmPassport string) bool {
 	return chineseHMPassportMatcher.MatchString(hmPassport)
 }

@@ -33,6 +33,9 @@ import (
 -   [ToJson](#ToJson)
 -   [ToMap](#ToMap)
 -   [ToPointer](#ToPointer)
+-   [ToPointers](#ToPointers)
+-   [FromPointer](#FromPointer)
+-   [FromPointers](#FromPointers)
 -   [ToString](#ToString)
 -   [StructToMap](#StructToMap)
 -   [MapToSlice](#MapToSlice)
@@ -453,6 +456,108 @@ func main() {
 
     // Output:
     // 123
+}
+```
+
+### <span id="ToPointers">ToPointers</span>
+
+<p>将值的切片转换为指针的切片。</p>
+
+<b>函数签名:</b>
+
+```go
+func ToPointers[T any](values []T) []*T
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/ZUoXd2i5ZkV)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/convertor"
+)
+
+func main() {
+    strs := []string{"a", "b", "c"}
+	pointerStrs := convertor.ToPointers(strs)
+	fmt.Println(*pointerStrs[0])
+	fmt.Println(*pointerStrs[1])
+	fmt.Println(*pointerStrs[2])
+
+	// Output:
+	// a
+	// b
+	// c
+}
+```
+
+### <span id="FromPointer">FromPointer</span>
+
+<p>返回指针所指向的值。</p>
+
+<b>函数签名:</b>
+
+```go
+func FromPointer[T any](ptr *T) T
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/wAp90V7Zu6g)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/convertor"
+)
+
+func main() {
+    str := "abc"
+    strPtr := &str
+	result := convertor.FromPointer(strPtr)
+	fmt.Println(result)
+
+	// Output:
+	// abc
+}
+```
+
+### <span id="FromPointers">FromPointers</span>
+
+<p>将指针的切片转换为值的切片。</p>
+
+<b>函数签名:</b>
+
+```go
+func FromPointers[T any](pointers []*T) []T
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/qIPsyYtNy3Q)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/convertor"
+)
+
+func main() {
+    strs := []string{"a", "b", "c"}
+    strPtr := []*string{&strs[0], &strs[1], &strs[2]}
+
+	result := convertor.FromPointers(strPtr)
+
+	fmt.Println(result[0])
+    fmt.Println(result[1])
+    fmt.Println(result[2])
+
+	// Output:
+	// a
+    // b
+    // c
 }
 ```
 

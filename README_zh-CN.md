@@ -312,6 +312,15 @@ import "github.com/duke-git/lancet/v2/convertor"
 -   **<big>ToPointer</big>** : 返回传入值的指针。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/convertor.md#ToPointer)]
     [[play](https://go.dev/play/p/ASf_etHNlw1)]
+-   **<big>ToPointers</big>** : 将值的切片转换为指针的切片。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/convertor.md#ToPointers)]
+    [[play](https://go.dev/play/p/ZUoXd2i5ZkV)]
+-   **<big>FromPointer</big>** : 返回指针所指向的值。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/convertor.md#FromPointer)]
+    [[play](https://go.dev/play/p/wAp90V7Zu6g)]
+-   **<big>FromPointers</big>** : 将指针的切片转换为值的切片。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/convertor.md#FromPointers)]
+    [[play](https://go.dev/play/p/qIPsyYtNy3Q)]
 -   **<big>ToString</big>** : 将值转换为字符串，对于数字、字符串、[]byte，将转换为字符串。 对于其他类型（切片、映射、数组、结构）将调用 json.Marshal。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/convertor.md#ToString)]
     [[play](https://go.dev/play/p/nF1zOOslpQq)]
@@ -767,6 +776,69 @@ import "github.com/duke-git/lancet/v2/eventbus"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/eventbus.md#SetErrorHandler)]
     [[play](https://go.dev/play/p/gmB0gnFe5mc)]
 
+<h3 id="eventbus"> 9. Package enum provides a simple enum implementation. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">Index</a></h3>
+
+```go
+import "github.com/duke-git/lancet/v2/enum"
+```
+
+#### Function list:
+
+-   **<big>NewItem</big>** : 创建枚举项。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/enum.md#NewEventBus)]
+    [[play](https://go.dev/play/p/8qNsLw01HD5)]
+-   **<big>NewItemsFromPairs</big>** : 从 Pair 结构体的切片创建枚举项。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/enum.md#NewItemsFromPairs)]
+    [[play](https://go.dev/play/p/xKnoGa7gnev)]
+-   **<big>Value</big>** : R 返回枚举项的值。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/enum.md#Value)]
+    [[play](https://go.dev/play/p/xKnoGa7gnev)]
+-   **<big>Name</big>** : 返回枚举项的名称。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/enum.md#Name)]
+    [[play](https://go.dev/play/p/xKnoGa7gnev)]
+-   **<big>Valid</big>** : 检查枚举项是否有效。如果提供了自定义检查函数，将使用该函数验证值。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/enum.md#Valid)]
+    [[play](https://go.dev/play/p/pA3lYY2VSm3)]
+-   **<big>MarshalJSON</big>** : 枚举项实现 json.Marshaler 接口。</p>
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/enum.md#MarshalJSON)]
+    [[play](https://go.dev/play/p/zIZEdAnneB5)]
+-   **<big>NewRegistry</big>** : Registry 定义了一个通用的枚举注册表结构体。</p>
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/enum.md#NewRegistry)]
+    [[play](https://go.dev/play/p/ABEXsYfJKMo)]
+-   **<big>Add</big>** : 向枚举注册表添加枚举项。</p>
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/enum.md#Add)]
+    [[play](https://go.dev/play/p/ABEXsYfJKMo)]
+-   **<big>Remove</big>** : 在枚举注册表中删除枚举项。</p>
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/enum.md#Remove)]
+    [[play](https://go.dev/play/p/dSG84wQ3TuC)]
+-   **<big>Update</big>** : 在枚举注册表中更新枚举项。</p>
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/enum.md#Update)]
+    [[play](https://go.dev/play/p/Ol0moT1J9Xl)]
+-   **<big>GetByValue</big>** : 在枚举注册表中通过值获取枚举项。</p>
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/enum.md#GetByValue)]
+    [[play](https://go.dev/play/p/niJ1U2KlE_m)]
+-   **<big>GetByName</big>** : 在枚举注册表中通过名称获取枚举项。</p>
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/enum.md#GetByName)]
+    [[play](https://go.dev/play/p/49ie_gpqH0m)]
+-   **<big>Items</big>** : 返回枚举注册表中的枚举项。</p>
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/enum.md#Items)]
+    [[play](https://go.dev/play/p/lAJFAradbvQ)]
+-   **<big>Contains</big>** : 检查注册表中是否存在具有给定值的枚举项。</p>
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/enum.md#Contains)]
+    [[play](https://go.dev/play/p/_T-lPYkZn2j)]
+-   **<big>Size</big>** : 返回注册表中枚举项的数目。</p>
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/enum.md#Size)]
+    [[play](https://go.dev/play/p/TeDArWhlQe2)]
+-   **<big>Range</big>** : 遍历注册表中的所有枚举项，并应用给定的函数。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/enum.md#Range)]
+    [[play](https://go.dev/play/p/GPsZbQbefWN)]
+-   **<big>SortedItems</big>** : 返回按给定比较函数排序的所有枚举项的切片。</p>
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/enum.md#SortedItems)]
+    [[play](https://go.dev/play/p/tN9RE_m_WEI)]
+-   **<big>Filter</big>** : 返回满足给定谓词函数的枚举项切片。</p>
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/enum.md#Filter)]
+    [[play](https://go.dev/play/p/uTUpTdcyoCU)]
+
 <h3 id="fileutil"> 10. fileutil 包含文件基本操作。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 
 ```go
@@ -1137,7 +1209,7 @@ import "github.com/duke-git/lancet/v2/maputil"
     [[play](https://go.dev/play/p/bvNwNBZDm6v)]
 -   **<big>ToMarkdownTable</big>** : 将一个 map 切片数据转换为 Markdown 表格字符串。支持自定义表头显示名称和列的显示顺序。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/maputil.md#ToMarkdownTable)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/w_pSLfeyEB5)]
 
 <h3 id="mathutil"> 14. mathutil 包实现了一些数学计算的函数。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 
@@ -1873,7 +1945,7 @@ import "github.com/duke-git/lancet/v2/structs"
     [[play](https://go.dev/play/p/Ig75P-agN39)]
 -   **<big>TypeName</big>** : 获取结构体类型名。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/struct.md#TypeName)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/SWLWd0XBaBb)]
 
 <h3 id="strutil"> 22. strutil 包含字符串处理的相关函数。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 
@@ -2335,10 +2407,11 @@ import "github.com/duke-git/lancet/v2/validator"
     [[play](https://go.dev/play/p/yafpdxLiymu)]
 -   **<big>IsPassport</big>** : 判断护照(正则判断)。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/validator.md#IsPassport)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/dvOiV2BW7Aw)]
 -   **<big>IsChineseHMPassport</big>** : 判断港澳台通行证(正则判断)。
-[[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/validator.md#IsChineseHMPassport)]
-[[play](https://go.dev/play/p/todo)]
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/validator.md#IsChineseHMPassport)]
+    [[play](https://go.dev/play/p/xKG6spQTcY0)]
+
 <h3 id="xerror"> 26. xerror 包实现一些错误处理函数。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 
 ```go

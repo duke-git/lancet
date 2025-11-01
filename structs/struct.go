@@ -130,7 +130,7 @@ func ToMap(v any) (map[string]any, error) {
 }
 
 // TypeName return struct type name
-// Play: https://go.dev/play/p/todo
+// Play: https://go.dev/play/p/SWLWd0XBaBb
 func (s *Struct) TypeName() string {
 	return s.rtype.Name()
 }

@@ -313,6 +313,15 @@ import "github.com/duke-git/lancet/v2/convertor"
 -   **<big>ToPointer</big>** : return a pointer of passed value.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/convertor.md#ToPointer)]
     [[play](https://go.dev/play/p/ASf_etHNlw1)]
+-   **<big>ToPointers</big>** : convert a slice of values to a slice of pointers.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/convertor.md#ToPointers)]
+    [[play](https://go.dev/play/p/ZUoXd2i5ZkV)]
+-   **<big>FromPointer</big>** : returns the value pointed to by the pointer.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/convertor.md#FromPointer)]
+    [[play](https://go.dev/play/p/wAp90V7Zu6g)]
+-   **<big>FromPointers</big>** : convert a slice of pointers to a slice of values.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/convertor.md#FromPointers)]
+    [[play](https://go.dev/play/p/qIPsyYtNy3Q)]
 -   **<big>ToString</big>** : convert value to string.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/convertor.md#ToString)]
     [[play](https://go.dev/play/p/nF1zOOslpQq)]
@@ -724,7 +733,7 @@ import optional "github.com/duke-git/lancet/v2/datastructure/optional"
 import "github.com/duke-git/lancet/v2/eventbus"
 ```
 
-#### 函数列表:
+#### Function list:
 
 -   **<big>NewEventBus</big>** : Create an EventBus instance.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/eventbus.md#NewEventBus)]
@@ -756,6 +765,69 @@ import "github.com/duke-git/lancet/v2/eventbus"
 -   **<big>SetErrorHandler</big>** : sets the error handler function.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/eventbus.md#SetErrorHandler)]
     [[play](https://go.dev/play/p/gmB0gnFe5mc)]
+
+<h3 id="eventbus"> 9. Package enum provides a simple enum implementation. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">Index</a></h3>
+
+```go
+import "github.com/duke-git/lancet/v2/enum"
+```
+
+#### Function list:
+
+-   **<big>NewItem</big>** : Creates a new enum item.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/enum.md#NewEventBus)]
+    [[play](https://go.dev/play/p/8qNsLw01HD5)]
+-   **<big>NewItemsFromPairs</big>** : Creates enum items from a slice of Pair structs.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/enum.md#NewItemsFromPairs)]
+    [[play](https://go.dev/play/p/xKnoGa7gnev)]
+-   **<big>Value</big>** : Returns the value of the enum item.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/enum.md#Value)]
+    [[play](https://go.dev/play/p/xKnoGa7gnev)]
+-   **<big>Name</big>** : Returns the name of the enum item.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/enum.md#Name)]
+    [[play](https://go.dev/play/p/xKnoGa7gnev)]
+-   **<big>Valid</big>** : Checks if the enum item is valid. If a custom check function is provided, it will be used to validate the value.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/enum.md#Valid)]
+    [[play](https://go.dev/play/p/pA3lYY2VSm3)]
+-   **<big>MarshalJSON</big>** : Implementation of json.Marshaler interface.</p>
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/enum.md#MarshalJSON)]
+    [[play](https://go.dev/play/p/zIZEdAnneB5)]
+-   **<big>NewRegistry</big>** : Creates a new enum registry..</p>
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/enum.md#NewRegistry)]
+    [[play](https://go.dev/play/p/ABEXsYfJKMo)]
+-   **<big>Add</big>** : Adds enum items to the registry.</p>
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/enum.md#Add)]
+    [[play](https://go.dev/play/p/ABEXsYfJKMo)]
+-   **<big>Remove</big>** : Removes an enum item from the registry by its value.</p>
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/enum.md#Remove)]
+    [[play](https://go.dev/play/p/dSG84wQ3TuC)]
+-   **<big>Update</big>** : Updates the name of an enum item in the registry by its value.</p>
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/enum.md#Update)]
+    [[play](https://go.dev/play/p/Ol0moT1J9Xl)]
+-   **<big>GetByValue</big>** : Retrieves an enum item by its value.</p>
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/enum.md#GetByValue)]
+    [[play](https://go.dev/play/p/niJ1U2KlE_m)]
+-   **<big>GetByName</big>** : Retrieves an enum item by its name.</p>
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/enum.md#GetByName)]
+    [[play](https://go.dev/play/p/49ie_gpqH0m)]
+-   **<big>Items</big>** : Returns a slice of all enum items in the registry.</p>
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/enum.md#Items)]
+    [[play](https://go.dev/play/p/lAJFAradbvQ)]
+-   **<big>Contains</big>** : Checks if an enum item with the given value exists in the registry.</p>
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/enum.md#Contains)]
+    [[play](https://go.dev/play/p/_T-lPYkZn2j)]
+-   **<big>Size</big>** : Returns the number of enum items in the registry.</p>
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/enum.md#Size)]
+    [[play](https://go.dev/play/p/TeDArWhlQe2)]
+-   **<big>Range</big>** : Iterates over all enum items in the registry and applies the given function.</p>
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/enum.md#Range)]
+    [[play](https://go.dev/play/p/GPsZbQbefWN)]
+-   **<big>SortedItems</big>** : Returns a slice of all enum items sorted by the given less function.</p>
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/enum.md#SortedItems)]
+    [[play](https://go.dev/play/p/tN9RE_m_WEI)]
+-   **<big>Filter</big>** : Returns a slice of enum items that satisfy the given predicate function.</p>
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/enum.md#Filter)]
+    [[play](https://go.dev/play/p/uTUpTdcyoCU)]
 
 <h3 id="fileutil"> 9. Fileutil package implements some basic functions for file operations. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
@@ -1127,7 +1199,7 @@ import "github.com/duke-git/lancet/v2/maputil"
     [[play](https://go.dev/play/p/bvNwNBZDm6v)]
 -   **<big>ToMarkdownTable</big>** : Convert a map slice data to a Markdown table string. It supports custom header display names and column display order.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/maputil.md#ToMarkdownTable)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/w_pSLfeyEB5)]
 
 <h3 id="mathutil"> 13. Mathutil package implements some functions for math calculation. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
@@ -1867,7 +1939,7 @@ import "github.com/duke-git/lancet/v2/structs"
     [[play](https://go.dev/play/p/Ig75P-agN39)]
 -   **<big>TypeName</big>** : Return struct type name.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/struct.md#TypeName)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/SWLWd0XBaBb)]
 
 <h3 id="strutil"> 21. Strutil package contains some functions to manipulate string. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
@@ -2328,10 +2400,10 @@ import "github.com/duke-git/lancet/v2/validator"
     [[play](https://go.dev/play/p/yafpdxLiymu)]
 -   **<big>IsPassport</big>** : Passport validation(using regex).
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/validator.md#IsPassport)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/dvOiV2BW7Aw)]
 -   **<big>IsChineseHMPassport</big>** : Mainland travel permit for Hong Kong, Macao validation (using regex).
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/validator.md#IsChineseHMPassport)]
-    [[play](https://go.dev/play/p/todo)]
+    [[play](https://go.dev/play/p/xKG6spQTcY0)]
 
 <h3 id="xerror"> 25. Xerror package implements helpers for errors. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 

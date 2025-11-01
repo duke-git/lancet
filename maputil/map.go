@@ -683,7 +683,7 @@ func FindValuesBy[K comparable, V any](m map[K]V, predicate func(key K, value V)
 }
 
 // ToMarkdownTable converts a slice of maps to a Markdown table.
-// Play: ttps://go.dev/play/p/todo
+// Play: ttps://go.dev/play/p/w_pSLfeyEB5
 func ToMarkdownTable(data []map[string]interface{}, headerMap map[string]string, columnOrder []string) string {
 	if len(data) == 0 {
 		return "| |\n|---|\n"

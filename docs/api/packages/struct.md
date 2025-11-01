@@ -69,7 +69,7 @@ func main() {
     }
     p1 := &People{Name: "11"}
     s := structs.New(p1)
-    
+
     fmt.Println(s.ToMap())
 
     // Output:
@@ -261,7 +261,7 @@ func main() {
     tag := n.Tag()
 
     fmt.Println(tag.Name)
-    
+
     // Output:
     // name
 }
@@ -295,10 +295,10 @@ func main() {
 
     s := structs.New(p1)
     n, _ := s.Field("Name")
-    
+
     fmt.Println(n.Value())
-    
-    // Output: 
+
+    // Output:
     // 111
 }
 ```
@@ -338,11 +338,11 @@ func main() {
     s := structs.New(c1)
     n, _ := s.Field("Name")
     a, _ := s.Field("Age")
-    
+
     fmt.Println(n.IsEmbedded())
     fmt.Println(a.IsEmbedded())
-    
-    // Output: 
+
+    // Output:
     // true
     // false
 }
@@ -377,11 +377,11 @@ func main() {
     s := structs.New(p1)
     n, _ := s.Field("Name")
     a, _ := s.Field("age")
-    
+
     fmt.Println(n.IsExported())
     fmt.Println(a.IsExported())
-    
-    // Output: 
+
+    // Output:
     // true
     // false
 }
@@ -416,11 +416,11 @@ func main() {
     s := structs.New(p1)
     n, _ := s.Field("Name")
     a, _ := s.Field("Age")
-    
+
     fmt.Println(n.IsZero())
     fmt.Println(a.IsZero())
-    
-    // Output: 
+
+    // Output:
     // true
     // false
 }
@@ -455,11 +455,11 @@ func main() {
     s := structs.New(p1)
     n, _ := s.Field("Name")
     a, _ := s.Field("Age")
-    
+
     fmt.Println(n.Name())
     fmt.Println(a.Name())
-    
-    // Output: 
+
+    // Output:
     // Name
     // Age
 }
@@ -494,11 +494,11 @@ func main() {
     s := structs.New(p1)
     n, _ := s.Field("Name")
     a, _ := s.Field("Age")
-    
+
     fmt.Println(n.Kind())
     fmt.Println(a.Kind())
-    
-    // Output: 
+
+    // Output:
     // string
     // int
 }
@@ -514,7 +514,7 @@ func main() {
 func (s *Struct) TypeName() string
 ```
 
-<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/todo)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/SWLWd0XBaBb)</span></b>
 
 ```go
 package main
@@ -529,13 +529,13 @@ func main() {
         Name string
         Age  int
     }
-    
+
     p := &Parent{Age: 11}
-    s := structs.New(p1)
+    s := structs.New(p)
 
     fmt.Println(s.TypeName())
-    
-    // Output: 
+
+    // Output:
     // Parent
 }
 ```
@@ -569,10 +569,10 @@ func main() {
     p1 := &Parent{arr: []int{1, 2, 3}}
     s := structs.New(p1)
     a, _ := s.Field("arr")
-    
+
     fmt.Println(a.IsSlice())
-    
-    // Output: 
+
+    // Output:
     // true
 }
 ```
@@ -608,11 +608,11 @@ func main() {
     s := structs.New(p1)
     n, _ := s.Field("Name")
 	a, _ := s.Field("arr")
-    
+
     fmt.Println(n.IsTargetType(reflect.String))
     fmt.Println(a.IsTargetType(reflect.Slice))
-    
-    // Output: 
+
+    // Output:
     // true
     // true
 }
