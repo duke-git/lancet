@@ -766,7 +766,7 @@ import "github.com/duke-git/lancet/v2/eventbus"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/eventbus.md#SetErrorHandler)]
     [[play](https://go.dev/play/p/gmB0gnFe5mc)]
 
-<h3 id="eventbus"> 9. Package enum provides a simple enum implementation. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">Index</a></h3>
+<h3 id="eventbus"> 10. Package enum provides a simple enum implementation. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">Index</a></h3>
 
 ```go
 import "github.com/duke-git/lancet/v2/enum"
@@ -829,7 +829,7 @@ import "github.com/duke-git/lancet/v2/enum"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/enum.md#Filter)]
     [[play](https://go.dev/play/p/uTUpTdcyoCU)]
 
-<h3 id="fileutil"> 9. Fileutil package implements some basic functions for file operations. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
+<h3 id="fileutil"> 11. Fileutil package implements some basic functions for file operations. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
 ```go
 import "github.com/duke-git/lancet/v2/fileutil"
@@ -931,7 +931,7 @@ import "github.com/duke-git/lancet/v2/fileutil"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/fileutil.md#GetExeOrDllVersion)]
     [[play](https://go.dev/play/p/iLRrDBhE38E)]
 
-<h3 id="formatter"> 10. Formatter contains some functions for data formatting. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
+<h3 id="formatter"> 12. Formatter contains some functions for data formatting. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
 ```go
 import "github.com/duke-git/lancet/v2/formatter"
@@ -961,7 +961,7 @@ import "github.com/duke-git/lancet/v2/formatter"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/formatter.md#ParseBinaryBytes)]
     [[play](https://go.dev/play/p/69v1tTT62x8)]
 
-<h3 id="function"> 11. Function package can control the flow of function execution and support part of functional programming.&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
+<h3 id="function"> 13. Function package can control the flow of function execution and support part of functional programming.&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
 ```go
 import "github.com/duke-git/lancet/v2/function"
@@ -1024,7 +1024,7 @@ import "github.com/duke-git/lancet/v2/function"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/function.md#Watcher)]
     [[play](https://go.dev/play/p/l2yrOpCLd1I)]
 
-<h3 id="maputil"> 12. Maputil package includes some functions to manipulate map.&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
+<h3 id="maputil"> 14. Maputil package includes some functions to manipulate map.&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
 ```go
 import "github.com/duke-git/lancet/v2/maputil"
@@ -1201,7 +1201,7 @@ import "github.com/duke-git/lancet/v2/maputil"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/maputil.md#ToMarkdownTable)]
     [[play](https://go.dev/play/p/w_pSLfeyEB5)]
 
-<h3 id="mathutil"> 13. Mathutil package implements some functions for math calculation. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
+<h3 id="mathutil"> 15. Mathutil package implements some functions for math calculation. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
 ```go
 import "github.com/duke-git/lancet/v2/mathutil"
@@ -1312,7 +1312,7 @@ import "github.com/duke-git/lancet/v2/mathutil"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/mathutil.md#Combination)]
     [[play](https://go.dev/play/p/ENFQRDQUFi9)]
 
-<h3 id="netutil"> 14. Netutil package contains functions to get net information and send http request. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
+<h3 id="netutil"> 16. Netutil package contains functions to get net information and send http request. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
 ```go
 import "github.com/duke-git/lancet/v2/netutil"
@@ -1391,7 +1391,7 @@ import "github.com/duke-git/lancet/v2/netutil"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/netutil.md#AddQueryParams)]
     [[play](https://go.dev/play/p/JLXl1hZK7l4)]
 
-<h3 id="pointer"> 15. Pointer package contains some util functions to operate go pointer. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
+<h3 id="pointer"> 17. Pointer package contains some util functions to operate go pointer. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
 ```go
 import "github.com/duke-git/lancet/v2/pointer"
@@ -1415,7 +1415,7 @@ import "github.com/duke-git/lancet/v2/pointer"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/pointer.md#UnwrapOrDefault)]
     [[play](https://go.dev/play/p/ZnGIHf8_o4E)]
 
-<h3 id="random"> 16. Random package implements some basic functions to generate random int and string. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
+<h3 id="random"> 18. Random package implements some basic functions to generate random int and string. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
 ```go
 import "github.com/duke-git/lancet/v2/random"
@@ -1481,7 +1481,7 @@ import "github.com/duke-git/lancet/v2/random"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/random.md#RandNumberOfLength)]
     [[play](https://go.dev/play/p/oyZbuV7bu7b)]
 
-<h3 id="retry"> 17. Retry package is for executing a function repeatedly until it was successful or canceled by the context. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
+<h3 id="retry"> 19. Retry package is for executing a function repeatedly until it was successful or canceled by the context. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
 ```go
 import "github.com/duke-git/lancet/v2/retry"
@@ -1516,7 +1516,7 @@ import "github.com/duke-git/lancet/v2/retry"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/retry.md#RetryWithExponentialWithJitterBackoff)]
     [[play](https://go.dev/play/p/xp1avQmn16X)]
 
-<h3 id="slice"> 18. Slice contains some functions to manipulate slice. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
+<h3 id="slice"> 20. Slice contains some functions to manipulate slice. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
 ```go
 import "github.com/duke-git/lancet/v2/slice"
@@ -1788,7 +1788,7 @@ import "github.com/duke-git/lancet/v2/slice"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#ConcatBy)]
     [[play](https://go.dev/play/p/6QcUpcY4UMW)]
 
-<h3 id="stream"> 19. Stream package implements a sequence of elements supporting sequential and operations. this package is an experiment to explore if stream in go can work as the way java does. its function is very limited. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
+<h3 id="stream"> 21. Stream package implements a sequence of elements supporting sequential and operations. this package is an experiment to explore if stream in go can work as the way java does. its function is very limited. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
 ```go
 import "github.com/duke-git/lancet/v2/stream"
@@ -1887,7 +1887,7 @@ import "github.com/duke-git/lancet/v2/stream"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/stream.md#LastIndexOf)]
     [[play](https://go.dev/play/p/CjeoNw2eac_G)]
 
-<h3 id="structs"> 20. Structs package provides several high level functions to manipulate struct, tag, and field. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
+<h3 id="structs"> 22. Structs package provides several high level functions to manipulate struct, tag, and field. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
 ```go
 import "github.com/duke-git/lancet/v2/structs"
@@ -1941,7 +1941,7 @@ import "github.com/duke-git/lancet/v2/structs"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/struct.md#TypeName)]
     [[play](https://go.dev/play/p/SWLWd0XBaBb)]
 
-<h3 id="strutil"> 21. Strutil package contains some functions to manipulate string. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
+<h3 id="strutil"> 23. Strutil package contains some functions to manipulate string. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
 ```go
 import "github.com/duke-git/lancet/v2/strutil"
@@ -2093,7 +2093,7 @@ import "github.com/duke-git/lancet/v2/strutil"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/strutil.md#FindAllOccurrences)]
     [[play](https://go.dev/play/p/uvyA6azGLB1)]
 
-<h3 id="system"> 22. System package contain some functions about os, runtime, shell command. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
+<h3 id="system"> 24. System package contain some functions about os, runtime, shell command. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
 ```go
 import "github.com/duke-git/lancet/v2/system"
@@ -2141,7 +2141,7 @@ import "github.com/duke-git/lancet/v2/system"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/system.md#GetProcessInfo)]
     [[play](https://go.dev/play/p/NQDVywEYYx7)]
 
-<h3 id="tuple"> 23. Tuple package implements tuple data type and some operations on it. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
+<h3 id="tuple"> 25. Tuple package implements tuple data type and some operations on it. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
 ```go
 import "github.com/duke-git/lancet/v2/tuple"
@@ -2258,7 +2258,7 @@ import "github.com/duke-git/lancet/v2/tuple"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/tuple.md#Unzip10)]
     [[play](https://go.dev/play/p/-taQB6Wfre_z)]
 
-<h3 id="validator"> 24. Validator package contains some functions for data validation. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
+<h3 id="validator"> 26. Validator package contains some functions for data validation. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
 ```go
 import "github.com/duke-git/lancet/v2/validator"
@@ -2405,7 +2405,7 @@ import "github.com/duke-git/lancet/v2/validator"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/validator.md#IsChineseHMPassport)]
     [[play](https://go.dev/play/p/xKG6spQTcY0)]
 
-<h3 id="xerror"> 25. Xerror package implements helpers for errors. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
+<h3 id="xerror"> 27. Xerror package implements helpers for errors. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
 ```go
 import "github.com/duke-git/lancet/v2/xerror"
