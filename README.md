@@ -84,6 +84,8 @@ func main() {
 -   [Cryptor](#user-content-cryptor)
 -   [Datetime](#user-content-datetime)
 -   [Datastructure](#user-content-datastructure)
+-   [EventBus](#user-content-eventbus)
+-   [Enum](#user-content-enum)
 -   [Fileutil](#user-content-fileutil)
 -   [Formatter](#user-content-formatter)
 -   [Function](#user-content-function)
@@ -766,7 +768,7 @@ import "github.com/duke-git/lancet/v2/eventbus"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/eventbus.md#SetErrorHandler)]
     [[play](https://go.dev/play/p/gmB0gnFe5mc)]
 
-<h3 id="eventbus"> 10. Package enum provides a simple enum implementation. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">Index</a></h3>
+<h3 id="enum"> 10. Package enum provides a simple enum implementation. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">Index</a></h3>
 
 ```go
 import "github.com/duke-git/lancet/v2/enum"
@@ -789,43 +791,43 @@ import "github.com/duke-git/lancet/v2/enum"
 -   **<big>Valid</big>** : Checks if the enum item is valid. If a custom check function is provided, it will be used to validate the value.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/enum.md#Valid)]
     [[play](https://go.dev/play/p/pA3lYY2VSm3)]
--   **<big>MarshalJSON</big>** : Implementation of json.Marshaler interface.</p>
+-   **<big>MarshalJSON</big>** : Implementation of json.Marshaler interface.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/enum.md#MarshalJSON)]
     [[play](https://go.dev/play/p/zIZEdAnneB5)]
--   **<big>NewRegistry</big>** : Creates a new enum registry..</p>
+-   **<big>NewRegistry</big>** : Creates a new enum registry.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/enum.md#NewRegistry)]
     [[play](https://go.dev/play/p/ABEXsYfJKMo)]
--   **<big>Add</big>** : Adds enum items to the registry.</p>
+-   **<big>Add</big>** : Adds enum items to the registry.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/enum.md#Add)]
     [[play](https://go.dev/play/p/ABEXsYfJKMo)]
--   **<big>Remove</big>** : Removes an enum item from the registry by its value.</p>
+-   **<big>Remove</big>** : Removes an enum item from the registry by its value.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/enum.md#Remove)]
     [[play](https://go.dev/play/p/dSG84wQ3TuC)]
--   **<big>Update</big>** : Updates the name of an enum item in the registry by its value.</p>
+-   **<big>Update</big>** : Updates the name of an enum item in the registry by its value.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/enum.md#Update)]
     [[play](https://go.dev/play/p/Ol0moT1J9Xl)]
--   **<big>GetByValue</big>** : Retrieves an enum item by its value.</p>
+-   **<big>GetByValue</big>** : Retrieves an enum item by its value.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/enum.md#GetByValue)]
     [[play](https://go.dev/play/p/niJ1U2KlE_m)]
--   **<big>GetByName</big>** : Retrieves an enum item by its name.</p>
+-   **<big>GetByName</big>** : Retrieves an enum item by its name.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/enum.md#GetByName)]
     [[play](https://go.dev/play/p/49ie_gpqH0m)]
--   **<big>Items</big>** : Returns a slice of all enum items in the registry.</p>
+-   **<big>Items</big>** : Returns a slice of all enum items in the registry.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/enum.md#Items)]
     [[play](https://go.dev/play/p/lAJFAradbvQ)]
 -   **<big>Contains</big>** : Checks if an enum item with the given value exists in the registry.</p>
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/enum.md#Contains)]
     [[play](https://go.dev/play/p/_T-lPYkZn2j)]
--   **<big>Size</big>** : Returns the number of enum items in the registry.</p>
+-   **<big>Size</big>** : Returns the number of enum items in the registry.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/enum.md#Size)]
     [[play](https://go.dev/play/p/TeDArWhlQe2)]
--   **<big>Range</big>** : Iterates over all enum items in the registry and applies the given function.</p>
+-   **<big>Range</big>** : Iterates over all enum items in the registry and applies the given function.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/enum.md#Range)]
     [[play](https://go.dev/play/p/GPsZbQbefWN)]
--   **<big>SortedItems</big>** : Returns a slice of all enum items sorted by the given less function.</p>
+-   **<big>SortedItems</big>** : Returns a slice of all enum items sorted by the given less function.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/enum.md#SortedItems)]
     [[play](https://go.dev/play/p/tN9RE_m_WEI)]
--   **<big>Filter</big>** : Returns a slice of enum items that satisfy the given predicate function.</p>
+-   **<big>Filter</big>** : Returns a slice of enum items that satisfy the given predicate function.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/enum.md#Filter)]
     [[play](https://go.dev/play/p/uTUpTdcyoCU)]
 

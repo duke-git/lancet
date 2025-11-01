@@ -83,6 +83,8 @@ func main() {
 -   [Cryptor](#user-content-cryptor)
 -   [Datetime](#user-content-datetime)
 -   [Datastructure](#user-content-datastructure)
+-   [EventBus](#user-content-eventbus)
+-   [Enum](#user-content-enum)
 -   [Fileutil](#user-content-fileutil)
 -   [Formatter](#user-content-formatter)
 -   [Function](#user-content-function)
@@ -776,7 +778,7 @@ import "github.com/duke-git/lancet/v2/eventbus"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/eventbus.md#SetErrorHandler)]
     [[play](https://go.dev/play/p/gmB0gnFe5mc)]
 
-<h3 id="eventbus"> 10. Enum实现一个简单枚举工具包。. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">Index</a></h3>
+<h3 id="enum"> 10. Enum实现一个简单枚举工具包。. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">Index</a></h3>
 
 ```go
 import "github.com/duke-git/lancet/v2/enum"
@@ -799,43 +801,43 @@ import "github.com/duke-git/lancet/v2/enum"
 -   **<big>Valid</big>** : 检查枚举项是否有效。如果提供了自定义检查函数，将使用该函数验证值。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/enum.md#Valid)]
     [[play](https://go.dev/play/p/pA3lYY2VSm3)]
--   **<big>MarshalJSON</big>** : 枚举项实现 json.Marshaler 接口。</p>
+-   **<big>MarshalJSON</big>** : 枚举项实现 json.Marshaler 接口。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/enum.md#MarshalJSON)]
     [[play](https://go.dev/play/p/zIZEdAnneB5)]
--   **<big>NewRegistry</big>** : Registry 定义了一个通用的枚举注册表结构体。</p>
+-   **<big>NewRegistry</big>** : Registry 定义了一个通用的枚举注册表结构体。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/enum.md#NewRegistry)]
     [[play](https://go.dev/play/p/ABEXsYfJKMo)]
--   **<big>Add</big>** : 向枚举注册表添加枚举项。</p>
+-   **<big>Add</big>** : 向枚举注册表添加枚举项。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/enum.md#Add)]
     [[play](https://go.dev/play/p/ABEXsYfJKMo)]
--   **<big>Remove</big>** : 在枚举注册表中删除枚举项。</p>
+-   **<big>Remove</big>** : 在枚举注册表中删除枚举项。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/enum.md#Remove)]
     [[play](https://go.dev/play/p/dSG84wQ3TuC)]
--   **<big>Update</big>** : 在枚举注册表中更新枚举项。</p>
+-   **<big>Update</big>** : 在枚举注册表中更新枚举项。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/enum.md#Update)]
     [[play](https://go.dev/play/p/Ol0moT1J9Xl)]
--   **<big>GetByValue</big>** : 在枚举注册表中通过值获取枚举项。</p>
+-   **<big>GetByValue</big>** : 在枚举注册表中通过值获取枚举项。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/enum.md#GetByValue)]
     [[play](https://go.dev/play/p/niJ1U2KlE_m)]
--   **<big>GetByName</big>** : 在枚举注册表中通过名称获取枚举项。</p>
+-   **<big>GetByName</big>** : 在枚举注册表中通过名称获取枚举项。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/enum.md#GetByName)]
     [[play](https://go.dev/play/p/49ie_gpqH0m)]
--   **<big>Items</big>** : 返回枚举注册表中的枚举项。</p>
+-   **<big>Items</big>** : 返回枚举注册表中的枚举项。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/enum.md#Items)]
     [[play](https://go.dev/play/p/lAJFAradbvQ)]
--   **<big>Contains</big>** : 检查注册表中是否存在具有给定值的枚举项。</p>
+-   **<big>Contains</big>** : 检查注册表中是否存在具有给定值的枚举项。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/enum.md#Contains)]
     [[play](https://go.dev/play/p/_T-lPYkZn2j)]
--   **<big>Size</big>** : 返回注册表中枚举项的数目。</p>
+-   **<big>Size</big>** : 返回注册表中枚举项的数目。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/enum.md#Size)]
     [[play](https://go.dev/play/p/TeDArWhlQe2)]
 -   **<big>Range</big>** : 遍历注册表中的所有枚举项，并应用给定的函数。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/enum.md#Range)]
     [[play](https://go.dev/play/p/GPsZbQbefWN)]
--   **<big>SortedItems</big>** : 返回按给定比较函数排序的所有枚举项的切片。</p>
+-   **<big>SortedItems</big>** : 返回按给定比较函数排序的所有枚举项的切片。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/enum.md#SortedItems)]
     [[play](https://go.dev/play/p/tN9RE_m_WEI)]
--   **<big>Filter</big>** : 返回满足给定谓词函数的枚举项切片。</p>
+-   **<big>Filter</big>** : 返回满足给定谓词函数的枚举项切片。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/enum.md#Filter)]
     [[play](https://go.dev/play/p/uTUpTdcyoCU)]
 
