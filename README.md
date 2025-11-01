@@ -815,7 +815,7 @@ import "github.com/duke-git/lancet/v2/enum"
 -   **<big>Items</big>** : Returns a slice of all enum items in the registry.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/enum.md#Items)]
     [[play](https://go.dev/play/p/lAJFAradbvQ)]
--   **<big>Contains</big>** : Checks if an enum item with the given value exists in the registry.</p>
+-   **<big>Contains</big>** : Checks if an enum item with the given value exists in the registry.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/enum.md#Contains)]
     [[play](https://go.dev/play/p/_T-lPYkZn2j)]
 -   **<big>Size</big>** : Returns the number of enum items in the registry.
