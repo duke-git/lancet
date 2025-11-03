@@ -79,6 +79,7 @@ import (
 -   [SortByKey](#SortByKey)
 -   [GetOrDefault](#GetOrDefault)
 -   [FindValuesBy](#FindValuesBy)
+-   [ToMarkdownTable](#ToMarkdownTable)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -2343,5 +2344,70 @@ func main() {
 
     // Output:
     // [b d]
+}
+```
+
+### <span id="ToMarkdownTable">ToMarkdownTable</span>
+
+<p>将一个 map 切片数据转换为 Markdown 表格字符串。支持自定义表头显示名称和列的显示顺序。</p>
+
+<b>函数签名:</b>
+
+```go
+编辑
+func ToMarkdownTable(data []map[string]interface{}, headerMap map[string]string, columnOrder []string) string
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/w_pSLfeyEB5)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/maputil"
+)
+
+func main() {
+    // 基本用法：自动从数据中提取列名作为表头
+    data := []map[string]interface{}{
+        {"name": "Alice", "age": 25, "salary": 50000},
+        {"name": "Bob", "age": 30, "salary": 60000},
+    }
+
+    result := maputil.ToMarkdownTable(data, nil, nil)
+    fmt.Println(result)
+
+    // 输出:
+    // |name|age|salary|
+    // |---|---|---|
+    // |Alice|25|50000|
+    // |Bob|30|60000|
+
+    // 自定义表头显示名称
+    headerMap := map[string]string{
+        "name":   "姓名",
+        "age":    "年龄",
+        "salary": "薪资",
+    }
+    result = maputil.ToMarkdownTable(data, headerMap, nil)
+    fmt.Println(result)
+
+    // 输出:
+    // |姓名|年龄|薪资|
+    // |---|---|---|
+    // |Alice|25|50000|
+    // |Bob|30|60000|
+
+    // 自定义列顺序
+    columnOrder := []string{"salary", "name"}
+    result = maputil.ToMarkdownTable(data, nil, columnOrder)
+    fmt.Println(result)
+
+    // 输出:
+    // |salary|name|
+    // |---|---|
+    // |50000|Alice|
+    // |60000|Bob|
 }
 ```

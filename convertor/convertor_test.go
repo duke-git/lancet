@@ -302,6 +302,75 @@ func TestToPointer(t *testing.T) {
 	assert.Equal(*result, 123)
 }
 
+func TestToPointers(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestToPointers")
+
+	intVals := []int{1, 2, 3}
+	result := ToPointers(intVals)
+
+	assert.Equal(3, len(result))
+	assert.Equal(1, *result[0])
+	assert.Equal(2, *result[1])
+	assert.Equal(3, *result[2])
+
+	stringVals := []string{"a", "b", "c"}
+	resultStr := ToPointers(stringVals)
+	assert.Equal(3, len(resultStr))
+	assert.Equal("a", *resultStr[0])
+	assert.Equal("b", *resultStr[1])
+	assert.Equal("c", *resultStr[2])
+}
+
+func TestFromPointer(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestFromPointer")
+
+	intVal := 123
+	pointer := &intVal
+	result := FromPointer(pointer)
+
+	assert.Equal(123, result)
+
+	stringVal := "abc"
+	stringPointer := &stringVal
+	resultStr := FromPointer(stringPointer)
+
+	assert.Equal("abc", resultStr)
+}
+
+func TestFromPointers(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestFromPointers")
+
+	intPointers := []*int{new(int), new(int), new(int)}
+	*intPointers[0] = 1
+	*intPointers[1] = 2
+	*intPointers[2] = 3
+
+	result := FromPointers(intPointers)
+
+	assert.Equal(3, len(result))
+	assert.Equal(1, result[0])
+	assert.Equal(2, result[1])
+	assert.Equal(3, result[2])
+
+	stringPointers := []*string{new(string), new(string), new(string)}
+	*stringPointers[0] = "a"
+	*stringPointers[1] = "b"
+	*stringPointers[2] = "c"
+
+	resultStr := FromPointers(stringPointers)
+
+	assert.Equal(3, len(resultStr))
+	assert.Equal("a", resultStr[0])
+	assert.Equal("b", resultStr[1])
+	assert.Equal("c", resultStr[2])
+}
+
 func TestEncodeByte(t *testing.T) {
 	t.Parallel()
 

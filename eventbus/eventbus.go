@@ -21,7 +21,7 @@ type EventBus[T any] struct {
 	// listeners    map[string][]*EventListener[T]
 	listeners    sync.Map
 	mu           sync.RWMutex
-	errorHandler func(err error)
+	errorHandler func(topic string, err error)
 }
 
 // EventListener is the struct that holds the listener function and its priority.
@@ -117,7 +117,7 @@ func (eb *EventBus[T]) Publish(event Event[T]) {
 func (eb *EventBus[T]) publishToListener(listener *EventListener[T], event Event[T]) {
 	defer func() {
 		if r := recover(); r != nil && eb.errorHandler != nil {
-			eb.errorHandler(fmt.Errorf("%v", r))
+			eb.errorHandler(event.Topic, fmt.Errorf("%v", r))
 		}
 	}()
 
@@ -126,7 +126,7 @@ func (eb *EventBus[T]) publishToListener(listener *EventListener[T], event Event
 
 // SetErrorHandler sets the error handler function.
 // Play: https://go.dev/play/p/gmB0gnFe5mc
-func (eb *EventBus[T]) SetErrorHandler(handler func(err error)) {
+func (eb *EventBus[T]) SetErrorHandler(handler func(topic string, err error)) {
 	eb.errorHandler = handler
 }
 

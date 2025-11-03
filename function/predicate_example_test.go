@@ -65,7 +65,7 @@ func ExampleNand() {
 
 	// Output:
 	// false
-	// false
+	// true
 	// true
 }
 

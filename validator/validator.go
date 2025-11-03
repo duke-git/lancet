@@ -19,29 +19,44 @@ import (
 )
 
 var (
-	alphaMatcher           *regexp.Regexp = regexp.MustCompile(`^[a-zA-Z]+$`)
-	letterRegexMatcher     *regexp.Regexp = regexp.MustCompile(`[a-zA-Z]`)
-	alphaNumericMatcher    *regexp.Regexp = regexp.MustCompile(`^[a-zA-Z0-9-]+$`)
-	numberRegexMatcher     *regexp.Regexp = regexp.MustCompile(`\d`)
-	intStrMatcher          *regexp.Regexp = regexp.MustCompile(`^[\+-]?\d+$`)
-	urlMatcher             *regexp.Regexp = regexp.MustCompile(`^((ftp|http|https?):\/\/)?(\S+(:\S*)?@)?((([1-9]\d?|1\d\d|2[01]\d|22[0-3])(\.(1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.([0-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(([a-zA-Z0-9]+([-\.][a-zA-Z0-9]+)*)|((www\.)?))?(([a-z\x{00a1}-\x{ffff}0-9]+-?-?)*[a-z\x{00a1}-\x{ffff}0-9]+)(?:\.([a-z\x{00a1}-\x{ffff}]{2,}))?))(:(\d{1,5}))?((\/|\?|#)[^\s]*)?$`)
-	dnsMatcher             *regexp.Regexp = regexp.MustCompile(`^(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,}$`)
-	emailMatcher           *regexp.Regexp = regexp.MustCompile(`^[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,4}$`)
-	chineseMobileMatcher   *regexp.Regexp = regexp.MustCompile(`^1(?:3\d|4[4-9]|5[0-35-9]|6[67]|7[013-8]|8\d|9\d)\d{8}$`)
-	chineseIdMatcher       *regexp.Regexp = regexp.MustCompile(`^(\d{17})([0-9]|X|x)$`)
-	chineseMatcher         *regexp.Regexp = regexp.MustCompile("[\u4e00-\u9fa5]")
-	chinesePhoneMatcher    *regexp.Regexp = regexp.MustCompile(`\d{3}-\d{8}|\d{4}-\d{7}|\d{4}-\d{8}`)
-	creditCardMatcher      *regexp.Regexp = regexp.MustCompile(`^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|(222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)[0-9]{12}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\\d{3})\\d{11}|6[27][0-9]{14})$`)
-	base64Matcher          *regexp.Regexp = regexp.MustCompile(`^(?:[A-Za-z0-9+\\/]{4})*(?:[A-Za-z0-9+\\/]{2}==|[A-Za-z0-9+\\/]{3}=|[A-Za-z0-9+\\/]{4})$`)
-	base64URLMatcher       *regexp.Regexp = regexp.MustCompile(`^([A-Za-z0-9_-]{4})*([A-Za-z0-9_-]{2}(==)?|[A-Za-z0-9_-]{3}=?)?$`)
-	binMatcher             *regexp.Regexp = regexp.MustCompile(`^(0b)?[01]+$`)
-	hexMatcher             *regexp.Regexp = regexp.MustCompile(`^(#|0x|0X)?[0-9a-fA-F]+$`)
-	visaMatcher            *regexp.Regexp = regexp.MustCompile(`^4[0-9]{12}(?:[0-9]{3})?$`)
-	masterCardMatcher      *regexp.Regexp = regexp.MustCompile(`^5[1-5][0-9]{14}$`)
-	americanExpressMatcher *regexp.Regexp = regexp.MustCompile(`^3[47][0-9]{13}$`)
-	unionPay               *regexp.Regexp = regexp.MustCompile("^62[0-5]\\d{13,16}$")
-	chinaUnionPay          *regexp.Regexp = regexp.MustCompile(`^62[0-9]{14,17}$`)
+	alphaMatcher        *regexp.Regexp = regexp.MustCompile(`^[a-zA-Z]+$`)
+	letterRegexMatcher  *regexp.Regexp = regexp.MustCompile(`[a-zA-Z]`)
+	alphaNumericMatcher *regexp.Regexp = regexp.MustCompile(`^[a-zA-Z0-9-]+$`)
+	numberRegexMatcher  *regexp.Regexp = regexp.MustCompile(`\d`)
+	intStrMatcher       *regexp.Regexp = regexp.MustCompile(`^[\+-]?\d+$`)
+	// dnsMatcher               *regexp.Regexp = regexp.MustCompile(`^(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,}$`)
+	dnsMatcher               *regexp.Regexp = regexp.MustCompile(`^(?:[a-zA-Z0-9](?:[a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?\.)*(?:xn--[a-zA-Z0-9\-]{1,59}|[a-zA-Z0-9](?:[a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?)$`)
+	chineseMobileMatcher     *regexp.Regexp = regexp.MustCompile(`^1(?:3\d|4[4-9]|5[0-35-9]|6[67]|7[013-8]|8\d|9\d)\d{8}$`)
+	chineseIdMatcher         *regexp.Regexp = regexp.MustCompile(`([1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx])|([1-9]\d{5}\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{2}[0-9Xx])`)
+	chineseMatcher           *regexp.Regexp = regexp.MustCompile("[\u4e00-\u9fa5]")
+	chinesePhoneMatcher      *regexp.Regexp = regexp.MustCompile(`\d{3}-\d{8}|\d{4}-\d{7}|\d{4}-\d{8}`)
+	creditCardMatcher        *regexp.Regexp = regexp.MustCompile(`^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|(222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)[0-9]{12}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\\d{3})\\d{11}|6[27][0-9]{14})$`)
+	base64Matcher            *regexp.Regexp = regexp.MustCompile(`^(?:[A-Za-z0-9+\\/]{4})*(?:[A-Za-z0-9+\\/]{2}==|[A-Za-z0-9+\\/]{3}=|[A-Za-z0-9+\\/]{4})$`)
+	base64URLMatcher         *regexp.Regexp = regexp.MustCompile(`^([A-Za-z0-9_-]{4})*([A-Za-z0-9_-]{2}(==)?|[A-Za-z0-9_-]{3}=?)?$`)
+	binMatcher               *regexp.Regexp = regexp.MustCompile(`^(0b)?[01]+$`)
+	hexMatcher               *regexp.Regexp = regexp.MustCompile(`^(#|0x|0X)?[0-9a-fA-F]+$`)
+	visaMatcher              *regexp.Regexp = regexp.MustCompile(`^4[0-9]{12}(?:[0-9]{3})?$`)
+	masterCardMatcher        *regexp.Regexp = regexp.MustCompile(`^5[1-5][0-9]{14}$`)
+	americanExpressMatcher   *regexp.Regexp = regexp.MustCompile(`^3[47][0-9]{13}$`)
+	chinaUnionPayMatcher     *regexp.Regexp = regexp.MustCompile(`^62[0-9]{14,17}$`)
+	chineseHMPassportMatcher *regexp.Regexp = regexp.MustCompile(`^[CM]\d{8}$`)
 )
+
+var passportMatcher = map[string]*regexp.Regexp{
+	"CN": regexp.MustCompile(`^P\d{9}$`),
+	"US": regexp.MustCompile(`^\d{9}$`),
+	"GB": regexp.MustCompile(`^[A-Z0-9]{9}$`),
+	"RU": regexp.MustCompile(`^[A-Z]{2}\d{7}$`),
+	"DE": regexp.MustCompile(`^\d{9}$`),
+	"FR": regexp.MustCompile(`^[A-Z]{2}\d{7}$`),
+	"JP": regexp.MustCompile(`^\d{8}$`),
+	"IT": regexp.MustCompile(`^\d{8}$`),
+	"AU": regexp.MustCompile(`^[A-Z]{1}\d{8}$`),
+	"BR": regexp.MustCompile(`^\d{9}$`),
+	"IN": regexp.MustCompile(`^[A-Z]{1,2}\d{7}$`),
+	"HK": regexp.MustCompile(`^M\d{8}$`),
+	"MO": regexp.MustCompile(`^[A-Z]\d{8}$`),
+}
 
 var (
 	// Identity card formula
@@ -258,21 +273,45 @@ func IsPort(str string) bool {
 // IsUrl check if the string is url.
 // Play: https://go.dev/play/p/pbJGa7F98Ka
 func IsUrl(str string) bool {
-	if str == "" || len(str) >= 2083 || len(str) <= 3 || strings.HasPrefix(str, ".") {
-		return false
-	}
-	u, err := url.Parse(str)
-	if err != nil {
-		return false
-	}
-	if strings.HasPrefix(u.Host, ".") {
-		return false
-	}
-	if u.Host == "" && (u.Path != "" && !strings.Contains(u.Path, ".")) {
+	if str == "" {
 		return false
 	}
 
-	return urlMatcher.MatchString(str)
+	u, err := url.Parse(str)
+	if err != nil || u.Scheme == "" || u.Host == "" {
+		return false
+	}
+
+	allowedSchemes := map[string]struct{}{
+		"http":   {},
+		"https":  {},
+		"ftp":    {},
+		"ws":     {},
+		"wss":    {},
+		"file":   {},
+		"mailto": {},
+		"data":   {},
+	}
+
+	if _, ok := allowedSchemes[u.Scheme]; !ok {
+		return false
+	}
+
+	if u.Scheme == "file" || u.Scheme == "mailto" || u.Scheme == "data" {
+		return true
+	}
+
+	host := u.Hostname()
+	if !strings.Contains(host, ".") || strings.HasSuffix(host, ".") {
+		return false
+	}
+
+	// domainRegexp := regexp.MustCompile(`^[a-zA-Z0-9][a-zA-Z0-9\-\.]*[a-zA-Z0-9]$`)
+	if !dnsMatcher.MatchString(host) {
+		return false
+	}
+
+	return true
 }
 
 // IsDns check if the string is dns.
@@ -286,8 +325,6 @@ func IsDns(dns string) bool {
 func IsEmail(email string) bool {
 	_, err := mail.ParseAddress(email)
 	return err == nil
-
-	// return emailMatcher.MatchString(email)
 }
 
 // IsChineseMobile check if the string is chinese mobile number.
@@ -460,12 +497,13 @@ func IsZeroValue(value any) bool {
 func IsGBK(data []byte) bool {
 	i := 0
 	for i < len(data) {
-		if data[i] <= 0xff {
+		if data[i] < 0x81 {
 			i++
 			continue
 		} else {
 			if data[i] >= 0x81 &&
 				data[i] <= 0xfe &&
+				i+1 < len(data) &&
 				data[i+1] >= 0x40 &&
 				data[i+1] <= 0xfe &&
 				data[i+1] != 0xf7 {
@@ -561,12 +599,53 @@ func IsAmericanExpress(v string) bool {
 
 // IsUnionPay check if a give string is a valid union pay nubmer or not.
 // Play: https://go.dev/play/p/CUHPEwEITDf
-func IsUnionPay(v string) bool {
-	return unionPay.MatchString(v)
+func IsUnionPay(cardNo string) bool {
+	if len(cardNo) < 16 || len(cardNo) > 19 {
+		return false
+	}
+
+	matched, _ := regexp.MatchString(`^\d+$`, cardNo)
+	if !matched {
+		return false
+	}
+
+	if len(cardNo) < 3 {
+		return false
+	}
+
+	prefix := cardNo[:3]
+	prefixNum, err := strconv.Atoi(prefix)
+	if err != nil {
+		return false
+	}
+
+	if prefixNum < 620 || prefixNum > 625 {
+		return false
+	}
+
+	return true
 }
 
 // IsChinaUnionPay check if a give string is a valid china union pay nubmer or not.
 // Play: https://go.dev/play/p/yafpdxLiymu
-func IsChinaUnionPay(v string) bool {
-	return chinaUnionPay.MatchString(v)
+func IsChinaUnionPay(cardNo string) bool {
+	return chinaUnionPayMatcher.MatchString(cardNo)
+}
+
+// IsPassport checks if the passport number is valid for a given country.
+// country is a two-letter country code (ISO 3166-1 alpha-2).
+// Play: https://go.dev/play/p/dvOiV2BW7Aw
+func IsPassport(passport, country string) bool {
+	if matcher, ok := passportMatcher[country]; ok {
+		return matcher.MatchString(passport)
+	}
+
+	return false
+}
+
+// IsChineseHMPassport checks if the string is a valid Chinese Hong Kong and Macau Travel Permit number.
+// Chinese Hong Kong and Macau Travel Permit format: C or M + 8 digits (e.g., C12345678, M12345678).
+// Play: https://go.dev/play/p/xKG6spQTcY0
+func IsChineseHMPassport(hmPassport string) bool {
+	return chineseHMPassportMatcher.MatchString(hmPassport)
 }

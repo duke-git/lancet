@@ -528,19 +528,17 @@ func flattenRecursive(value reflect.Value, result reflect.Value) reflect.Value {
 }
 
 // ForEach iterates over elements of slice and invokes function for each element.
-// Play: https://go.dev/play/p/DrPaa4YsHRF
 func ForEach[T any](slice []T, iteratee func(index int, item T)) {
-	for i := 0; i < len(slice); i++ {
-		iteratee(i, slice[i])
+	for idx, elem := range slice {
+		iteratee(idx, elem)
 	}
 }
 
 // ForEachWithBreak iterates over elements of slice and invokes function for each element,
-// when iteratee return false, will break the for each loop.
-// Play: https://go.dev/play/p/qScs39f3D9W
+// when function return false, will break the for each loop.
 func ForEachWithBreak[T any](slice []T, iteratee func(index int, item T) bool) {
-	for i := 0; i < len(slice); i++ {
-		if !iteratee(i, slice[i]) {
+	for idx, elem := range slice {
+		if !iteratee(idx, elem) {
 			break
 		}
 	}
@@ -713,11 +711,12 @@ func IntSlice(slice any) []int {
 // DeleteAt delete the element of slice at index.
 // Play: https://go.dev/play/p/800B1dPBYyd
 func DeleteAt[T any](slice []T, index int) []T {
+	result := append([]T(nil), slice...)
+
 	if index < 0 || index >= len(slice) {
-		return slice[:len(slice)-1]
+		return result[:len(slice)-1]
 	}
 
-	result := append([]T(nil), slice...)
 	copy(result[index:], result[index+1:])
 
 	// Set the last element to zero value, clean up the memory.
@@ -757,7 +756,8 @@ func Drop[T any](slice []T, n int) []T {
 	}
 
 	if n <= 0 {
-		return slice
+		result := make([]T, 0, size)
+		return append(result, slice...)
 	}
 
 	result := make([]T, 0, size-n)
@@ -775,7 +775,8 @@ func DropRight[T any](slice []T, n int) []T {
 	}
 
 	if n <= 0 {
-		return slice
+		result := make([]T, 0, size)
+		return append(result, slice...)
 	}
 
 	result := make([]T, 0, size-n)
@@ -821,7 +822,9 @@ func InsertAt[T any](slice []T, index int, value any) []T {
 	size := len(slice)
 
 	if index < 0 || index > size {
-		return slice
+		result := make([]T, size)
+		copy(result, slice)
+		return result
 	}
 
 	switch v := value.(type) {
@@ -838,21 +841,21 @@ func InsertAt[T any](slice []T, index int, value any) []T {
 		copy(result[index+len(v):], slice[index:])
 		return result
 	default:
-		return slice
+		result := make([]T, size)
+		copy(result, slice)
+		return result
 	}
 }
 
 // UpdateAt update the slice element at index.
 // Play: https://go.dev/play/p/f3mh2KloWVm
 func UpdateAt[T any](slice []T, index int, value T) []T {
-	if index < 0 || index >= len(slice) {
-		return slice
-	}
-
 	result := make([]T, len(slice))
 	copy(result, slice)
 
-	result[index] = value
+	if index >= 0 && index < len(slice) {
+		result[index] = value
+	}
 
 	return result
 }
@@ -1042,7 +1045,9 @@ func SymmetricDifference[T comparable](slices ...[]T) []T {
 		return []T{}
 	}
 	if len(slices) == 1 {
-		return Unique(slices[0])
+		result := make([]T, len(slices[0]))
+		copy(result, slices[0])
+		return Unique(result)
 	}
 
 	result := make([]T, 0)
@@ -1063,6 +1068,7 @@ func SymmetricDifference[T comparable](slices ...[]T) []T {
 }
 
 // Reverse return slice of element order is reversed to the given slice.
+// Reverse modifies the slice in place.
 // Play: https://go.dev/play/p/8uI8f1lwNrQ
 func Reverse[T any](slice []T) {
 	for i, j := 0, len(slice)-1; i < j; i, j = i+1, j-1 {
@@ -1070,7 +1076,8 @@ func Reverse[T any](slice []T) {
 	}
 }
 
-// ReverseCopy return a new slice of element order is reversed to the given slice.
+// ReverseCopy return a new slice of element where the order is reversed to the given
+// slice.
 // Play: https://go.dev/play/p/c9arEaP7Cg-
 func ReverseCopy[T any](slice []T) []T {
 	result := make([]T, len(slice))
@@ -1088,7 +1095,7 @@ func Shuffle[T any](slice []T) []T {
 	rand.Seed(time.Now().UnixNano())
 
 	rand.Shuffle(len(slice), func(i, j int) {
-		slice[i], slice[j] = slice[j], slice[i]
+		swap(slice, i, j)
 	})
 
 	return slice
@@ -1261,11 +1268,12 @@ func SortByField[T any](slice []T, field string, sortType ...string) error {
 // Without creates a slice excluding all given items.
 // Play: https://go.dev/play/p/bwhEXEypThg
 func Without[T comparable](slice []T, items ...T) []T {
+	result := make([]T, 0, len(slice))
+
 	if len(items) == 0 || len(slice) == 0 {
-		return slice
+		return append(result, slice...)
 	}
 
-	result := make([]T, 0, len(slice))
 	for _, v := range slice {
 		if !Contain(items, v) {
 			result = append(result, v)
@@ -1486,36 +1494,28 @@ func Random[T any](slice []T) (val T, idx int) {
 	return slice[idx], idx
 }
 
-// RightPadding adds padding to the right end of a slice.
+// RightPadding returns a copy of the slice padding the given value to the right end of a slice.
+// If paddingLength is zero or less, the function returns a copy of the slice.
 // Play: https://go.dev/play/p/0_2rlLEMBXL
 func RightPadding[T any](slice []T, paddingValue T, paddingLength int) []T {
-	if paddingLength == 0 {
-		return slice
+	suffix := []T{}
+	if paddingLength > 0 {
+		suffix = repeat([]T{paddingValue}, paddingLength)
 	}
-	for i := 0; i < paddingLength; i++ {
-		slice = append(slice, paddingValue)
-	}
-	return slice
+	padded := concat(slice, suffix)
+	return padded
 }
 
-// LeftPadding adds padding to the left begin of a slice.
+// LeftPadding returns a copy of the slice padding the given value to the left begin of a slice.
+// If paddingLength is zero or less, the function returns a copy of the slice.
 // Play: https://go.dev/play/p/jlQVoelLl2k
 func LeftPadding[T any](slice []T, paddingValue T, paddingLength int) []T {
-	if paddingLength == 0 {
-		return slice
+	prefix := []T{}
+	if paddingLength > 0 {
+		prefix = repeat([]T{paddingValue}, paddingLength)
 	}
-
-	paddedSlice := make([]T, len(slice)+paddingLength)
-	i := 0
-	for ; i < paddingLength; i++ {
-		paddedSlice[i] = paddingValue
-	}
-	for j := 0; j < len(slice); j++ {
-		paddedSlice[i] = slice[j]
-		i++
-	}
-
-	return paddedSlice
+	padded := concat(prefix, slice)
+	return padded
 }
 
 // Frequency counts the frequency of each element in the slice.

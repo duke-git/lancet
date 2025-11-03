@@ -4,7 +4,7 @@
 <br/>
 
 ![Go version](https://img.shields.io/badge/go-%3E%3Dv1.18-9cf)
-[![Release](https://img.shields.io/badge/release-2.3.7-green.svg)](https://github.com/duke-git/lancet/releases)
+[![Release](https://img.shields.io/badge/release-2.3.8-green.svg)](https://github.com/duke-git/lancet/releases)
 [![GoDoc](https://godoc.org/github.com/duke-git/lancet/v2?status.svg)](https://pkg.go.dev/github.com/duke-git/lancet/v2)
 [![Go Report Card](https://goreportcard.com/badge/github.com/duke-git/lancet/v2)](https://goreportcard.com/report/github.com/duke-git/lancet/v2)
 [![test](https://github.com/duke-git/lancet/actions/workflows/codecov.yml/badge.svg?branch=main&event=push)](https://github.com/duke-git/lancet/actions/workflows/codecov.yml)
@@ -83,6 +83,8 @@ func main() {
 -   [Cryptor](#user-content-cryptor)
 -   [Datetime](#user-content-datetime)
 -   [Datastructure](#user-content-datastructure)
+-   [EventBus](#user-content-eventbus)
+-   [Enum](#user-content-enum)
 -   [Fileutil](#user-content-fileutil)
 -   [Formatter](#user-content-formatter)
 -   [Function](#user-content-function)
@@ -312,6 +314,15 @@ import "github.com/duke-git/lancet/v2/convertor"
 -   **<big>ToPointer</big>** : 返回传入值的指针。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/convertor.md#ToPointer)]
     [[play](https://go.dev/play/p/ASf_etHNlw1)]
+-   **<big>ToPointers</big>** : 将值的切片转换为指针的切片。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/convertor.md#ToPointers)]
+    [[play](https://go.dev/play/p/ZUoXd2i5ZkV)]
+-   **<big>FromPointer</big>** : 返回指针所指向的值。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/convertor.md#FromPointer)]
+    [[play](https://go.dev/play/p/wAp90V7Zu6g)]
+-   **<big>FromPointers</big>** : 将指针的切片转换为值的切片。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/convertor.md#FromPointers)]
+    [[play](https://go.dev/play/p/qIPsyYtNy3Q)]
 -   **<big>ToString</big>** : 将值转换为字符串，对于数字、字符串、[]byte，将转换为字符串。 对于其他类型（切片、映射、数组、结构）将调用 json.Marshal。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/convertor.md#ToString)]
     [[play](https://go.dev/play/p/nF1zOOslpQq)]
@@ -767,7 +778,70 @@ import "github.com/duke-git/lancet/v2/eventbus"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/eventbus.md#SetErrorHandler)]
     [[play](https://go.dev/play/p/gmB0gnFe5mc)]
 
-<h3 id="fileutil"> 10. fileutil 包含文件基本操作。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
+<h3 id="enum"> 10. Enum实现一个简单枚举工具包。. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">Index</a></h3>
+
+```go
+import "github.com/duke-git/lancet/v2/enum"
+```
+
+#### Function list:
+
+-   **<big>NewItem</big>** : 创建枚举项。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/enum.md#NewItem)]
+    [[play](https://go.dev/play/p/8qNsLw01HD5)]
+-   **<big>NewItemsFromPairs</big>** : 从 Pair 结构体的切片创建枚举项。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/enum.md#NewItemsFromPairs)]
+    [[play](https://go.dev/play/p/xKnoGa7gnev)]
+-   **<big>Value</big>** : 返回枚举项的值。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/enum.md#Value)]
+    [[play](https://go.dev/play/p/xKnoGa7gnev)]
+-   **<big>Name</big>** : 返回枚举项的名称。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/enum.md#Name)]
+    [[play](https://go.dev/play/p/xKnoGa7gnev)]
+-   **<big>Valid</big>** : 检查枚举项是否有效。如果提供了自定义检查函数，将使用该函数验证值。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/enum.md#Valid)]
+    [[play](https://go.dev/play/p/pA3lYY2VSm3)]
+-   **<big>MarshalJSON</big>** : 枚举项实现 json.Marshaler 接口。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/enum.md#MarshalJSON)]
+    [[play](https://go.dev/play/p/zIZEdAnneB5)]
+-   **<big>NewRegistry</big>** : Registry 定义了一个通用的枚举注册表结构体。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/enum.md#NewRegistry)]
+    [[play](https://go.dev/play/p/ABEXsYfJKMo)]
+-   **<big>Add</big>** : 向枚举注册表添加枚举项。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/enum.md#Add)]
+    [[play](https://go.dev/play/p/ABEXsYfJKMo)]
+-   **<big>Remove</big>** : 在枚举注册表中删除枚举项。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/enum.md#Remove)]
+    [[play](https://go.dev/play/p/dSG84wQ3TuC)]
+-   **<big>Update</big>** : 在枚举注册表中更新枚举项。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/enum.md#Update)]
+    [[play](https://go.dev/play/p/Ol0moT1J9Xl)]
+-   **<big>GetByValue</big>** : 在枚举注册表中通过值获取枚举项。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/enum.md#GetByValue)]
+    [[play](https://go.dev/play/p/niJ1U2KlE_m)]
+-   **<big>GetByName</big>** : 在枚举注册表中通过名称获取枚举项。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/enum.md#GetByName)]
+    [[play](https://go.dev/play/p/49ie_gpqH0m)]
+-   **<big>Items</big>** : 返回枚举注册表中的枚举项。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/enum.md#Items)]
+    [[play](https://go.dev/play/p/lAJFAradbvQ)]
+-   **<big>Contains</big>** : 检查注册表中是否存在具有给定值的枚举项。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/enum.md#Contains)]
+    [[play](https://go.dev/play/p/_T-lPYkZn2j)]
+-   **<big>Size</big>** : 返回注册表中枚举项的数目。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/enum.md#Size)]
+    [[play](https://go.dev/play/p/TeDArWhlQe2)]
+-   **<big>Range</big>** : 遍历注册表中的所有枚举项，并应用给定的函数。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/enum.md#Range)]
+    [[play](https://go.dev/play/p/GPsZbQbefWN)]
+-   **<big>SortedItems</big>** : 返回按给定比较函数排序的所有枚举项的切片。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/enum.md#SortedItems)]
+    [[play](https://go.dev/play/p/tN9RE_m_WEI)]
+-   **<big>Filter</big>** : 返回满足给定谓词函数的枚举项切片。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/enum.md#Filter)]
+    [[play](https://go.dev/play/p/uTUpTdcyoCU)]
+
+<h3 id="fileutil"> 11. fileutil 包含文件基本操作。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 
 ```go
 import "github.com/duke-git/lancet/v2/fileutil"
@@ -869,7 +943,7 @@ import "github.com/duke-git/lancet/v2/fileutil"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/fileutil.md#GetExeOrDllVersion)]
     [[play](https://go.dev/play/p/iLRrDBhE38E)]
 
-<h3 id="formatter"> 11. formatter 格式化器包含一些数据格式化处理方法。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
+<h3 id="formatter"> 12. formatter 格式化器包含一些数据格式化处理方法。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 
 ```go
 import "github.com/duke-git/lancet/v2/formatter"
@@ -899,7 +973,7 @@ import "github.com/duke-git/lancet/v2/formatter"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/formatter.md#ParseBinaryBytes)]
     [[play](https://go.dev/play/p/69v1tTT62x8)]
 
-<h3 id="function"> 12. function 函数包控制函数执行流程，包含部分函数式编程。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
+<h3 id="function"> 13. function 函数包控制函数执行流程，包含部分函数式编程。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 
 ```go
 import "github.com/duke-git/lancet/v2/function"
@@ -962,7 +1036,7 @@ import "github.com/duke-git/lancet/v2/function"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/function.md#Watcher)]
     [[play](https://go.dev/play/p/l2yrOpCLd1I)]
 
-<h3 id="maputil"> 13. maputil 包括一些操作 map 的函数。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
+<h3 id="maputil"> 14. maputil 包括一些操作 map 的函数。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 
 ```go
 import "github.com/duke-git/lancet/v2/maputil"
@@ -1135,8 +1209,11 @@ import "github.com/duke-git/lancet/v2/maputil"
 -   **<big>FindValuesBy</big>** : 返回一个切片，包含满足给定谓词判断函数的 map 中的值。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/maputil.md#FindValuesBy)]
     [[play](https://go.dev/play/p/bvNwNBZDm6v)]
+-   **<big>ToMarkdownTable</big>** : 将一个 map 切片数据转换为 Markdown 表格字符串。支持自定义表头显示名称和列的显示顺序。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/maputil.md#ToMarkdownTable)]
+    [[play](https://go.dev/play/p/w_pSLfeyEB5)]
 
-<h3 id="mathutil"> 14. mathutil 包实现了一些数学计算的函数。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
+<h3 id="mathutil"> 15. mathutil 包实现了一些数学计算的函数。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 
 ```go
 import "github.com/duke-git/lancet/v2/mathutil"
@@ -1247,7 +1324,7 @@ import "github.com/duke-git/lancet/v2/mathutil"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/mathutil.md#Combination)]
     [[play](https://go.dev/play/p/ENFQRDQUFi9)]
 
-<h3 id="netutil"> 15. netutil 网络包支持获取 ip 地址，发送 http 请求。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
+<h3 id="netutil"> 16. netutil 网络包支持获取 ip 地址，发送 http 请求。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 
 ```go
 import "github.com/duke-git/lancet/v2/netutil"
@@ -1326,7 +1403,7 @@ import "github.com/duke-git/lancet/v2/netutil"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/netutil.md#AddQueryParams)]
     [[play](https://go.dev/play/p/JLXl1hZK7l4)]
 
-<h3 id="pointer"> 16. pointer 包支持一些指针类型的操作。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
+<h3 id="pointer"> 17. pointer 包支持一些指针类型的操作。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 
 ```go
 import "github.com/duke-git/lancet/v2/pointer"
@@ -1350,7 +1427,7 @@ import "github.com/duke-git/lancet/v2/pointer"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/pointer.md#UnwrapOrDefault)]
     [[play](https://go.dev/play/p/ZnGIHf8_o4E)]
 
-<h3 id="random"> 17. random 随机数生成器包，可以生成随机[]bytes, int, string。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
+<h3 id="random"> 18. random 随机数生成器包，可以生成随机[]bytes, int, string。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 
 ```go
 import "github.com/duke-git/lancet/v2/random"
@@ -1416,7 +1493,7 @@ import "github.com/duke-git/lancet/v2/random"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/random.md#RandNumberOfLength)]
     [[play](https://go.dev/play/p/oyZbuV7bu7b)]
 
-<h3 id="retry"> 18. retry 重试执行函数直到函数运行成功或被 context cancel。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
+<h3 id="retry"> 19. retry 重试执行函数直到函数运行成功或被 context cancel。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 
 ```go
 import "github.com/duke-git/lancet/v2/retry"
@@ -1448,7 +1525,7 @@ import "github.com/duke-git/lancet/v2/retry"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/retry.md#RetryWithExponentialWithJitterBackoff)]
     [[play](https://go.dev/play/p/xp1avQmn16X)]
 
-<h3 id="slice"> 19. slice 包含操作切片的方法集合。&nbsp; &nbsp; &nbsp; &nbsp; <a href="#index">回到目录</a></h3>
+<h3 id="slice"> 20. slice 包含操作切片的方法集合。&nbsp; &nbsp; &nbsp; &nbsp; <a href="#index">回到目录</a></h3>
 
 ```go
 import "github.com/duke-git/lancet/v2/slice"
@@ -1722,7 +1799,7 @@ import "github.com/duke-git/lancet/v2/slice"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/slice.md#ConcatBy)]
     [[play](https://go.dev/play/p/6QcUpcY4UMW)]
 
-<h3 id="stream"> 20. stream 流，该包仅验证简单的 stream 实现，功能有限。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
+<h3 id="stream"> 21. stream 流，该包仅验证简单的 stream 实现，功能有限。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 
 ```go
 import "github.com/duke-git/lancet/v2/stream"
@@ -1818,7 +1895,7 @@ import "github.com/duke-git/lancet/v2/stream"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/stream.md#LastIndexOf)]
     [[play](https://go.dev/play/p/CjeoNw2eac_G)]
 
-<h3 id="structs"> 21. structs 提供操作 struct, tag, field 的相关函数。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
+<h3 id="structs"> 22. structs 提供操作 struct, tag, field 的相关函数。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 
 ```go
 import "github.com/duke-git/lancet/v2/structs"
@@ -1828,34 +1905,51 @@ import "github.com/duke-git/lancet/v2/structs"
 
 -   **<big>New</big>** : `Struct`结构体的构造函数。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/struct.md#New)]
+    [[play](https://go.dev/play/p/O29l8kk-Z17)]
 -   **<big>ToMap</big>** : 将一个合法的 struct 对象转换为 map[string]any。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/struct.md#ToMap)]
+    [[play](https://go.dev/play/p/qQbLySBgerZ)]
 -   **<big>Fields</big>** : 获取一个 struct 对象的属性列表。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/struct.md#Fields)]
+    [[play](https://go.dev/play/p/w3Kk_CyVY7D)]
 -   **<big>Field</big>** : 根据属性名获取一个 struct 对象的属性。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/struct.md#Fields)]
+    [[play](https://go.dev/play/p/KocZMSYarza)]
 -   **<big>IsStruct</big>** : 判断是否为一个合法的 struct 对象。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/struct.md#IsStruct)]
+    [[play](https://go.dev/play/p/bU2FSdkbK1C)]
 -   **<big>Tag</big>** : 获取`Field`的`Tag`，默认的 tag key 是 json。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/struct.md#Tag)]
+    [[play](https://go.dev/play/p/DVrx5HvvUJr)]
 -   **<big>Name</big>** : 获取属性名。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/struct.md#Name)]
+    [[play](https://go.dev/play/p/zfIGlqsatee)]
 -   **<big>Value</big>** : 获取`Field`属性的值。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/struct.md#Value)]
+    [[play](https://go.dev/play/p/qufYEU2o4Oi)]
 -   **<big>Kind</big>** : 获取属性 Kind。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/struct.md#Kind)]
+    [[play](https://go.dev/play/p/wg4NlcUNG5o)]
 -   **<big>IsEmbedded</big>** : 判断属性是否为嵌入。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/struct.md#IsEmbedded)]
+    [[play](https://go.dev/play/p/wV2PrbYm3Ec)]
 -   **<big>IsExported</big>** : 判断属性是否导出。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/struct.md#IsExported)]
+    [[play](https://go.dev/play/p/csK4AXYaNbJ)]
 -   **<big>IsZero</big>** : 判断属性是否为零值。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/struct.md#IsZero)]
+    [[play](https://go.dev/play/p/RzqpGISf87r)]
 -   **<big>IsSlice</big>** : 判断属性是否是切片。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/struct.md#IsSlice)]
+    [[play](https://go.dev/play/p/MKz4CgBIUrU)]
 -   **<big>IsTargetType</big>** : 判断属性是否是目标类型。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/struct.md#IsTargetType)]
+    [[play](https://go.dev/play/p/Ig75P-agN39)]
+-   **<big>TypeName</big>** : 获取结构体类型名。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/struct.md#TypeName)]
+    [[play](https://go.dev/play/p/SWLWd0XBaBb)]
 
-<h3 id="strutil"> 22. strutil 包含字符串处理的相关函数。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
+<h3 id="strutil"> 23. strutil 包含字符串处理的相关函数。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 
 ```go
 import "github.com/duke-git/lancet/v2/strutil"
@@ -2008,7 +2102,7 @@ import "github.com/duke-git/lancet/v2/strutil"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/strutil.md#FindAllOccurrences)]
     [[play](https://go.dev/play/p/uvyA6azGLB1)]
 
-<h3 id="system"> 23. system 包含 os, runtime, shell command 的相关函数。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
+<h3 id="system"> 24. system 包含 os, runtime, shell command 的相关函数。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 
 ```go
 import "github.com/duke-git/lancet/v2/system"
@@ -2056,7 +2150,7 @@ import "github.com/duke-git/lancet/v2/system"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/system.md#GetProcessInfo)]
     [[play](https://go.dev/play/p/NQDVywEYYx7)]
 
-<h3 id="tuple"> 24. Tuple 包实现一个元组数据类型。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
+<h3 id="tuple"> 25. Tuple 包实现一个元组数据类型。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 
 ```go
 import "github.com/duke-git/lancet/v2/tuple"
@@ -2173,7 +2267,7 @@ import "github.com/duke-git/lancet/v2/tuple"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/tuple.md#Unzip10)]
     [[play](https://go.dev/play/p/-taQB6Wfre_z)]
 
-<h3 id="validator"> 25. validator 验证器包，包含常用字符串格式验证函数。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
+<h3 id="validator"> 26. validator 验证器包，包含常用字符串格式验证函数。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 
 ```go
 import "github.com/duke-git/lancet/v2/validator"
@@ -2313,8 +2407,14 @@ import "github.com/duke-git/lancet/v2/validator"
 -   **<big>IsChinaUnionPay</big>** : 检查字符串是否是有效的中国银联卡号。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/validator.md#IsChinaUnionPay)]
     [[play](https://go.dev/play/p/yafpdxLiymu)]
+-   **<big>IsPassport</big>** : 判断护照(正则判断)。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/validator.md#IsPassport)]
+    [[play](https://go.dev/play/p/dvOiV2BW7Aw)]
+-   **<big>IsChineseHMPassport</big>** : 判断港澳台通行证(正则判断)。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/validator.md#IsChineseHMPassport)]
+    [[play](https://go.dev/play/p/xKG6spQTcY0)]
 
-<h3 id="xerror"> 26. xerror 包实现一些错误处理函数。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
+<h3 id="xerror"> 27. xerror 包实现一些错误处理函数。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 
 ```go
 import "github.com/duke-git/lancet/v2/xerror"

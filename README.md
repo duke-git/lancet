@@ -4,7 +4,7 @@
 <br/>
 
 ![Go version](https://img.shields.io/badge/go-%3E%3Dv1.18-9cf)
-[![Release](https://img.shields.io/badge/release-2.3.7-green.svg)](https://github.com/duke-git/lancet/releases)
+[![Release](https://img.shields.io/badge/release-2.3.8-green.svg)](https://github.com/duke-git/lancet/releases)
 [![GoDoc](https://godoc.org/github.com/duke-git/lancet/v2?status.svg)](https://pkg.go.dev/github.com/duke-git/lancet/v2)
 [![Go Report Card](https://goreportcard.com/badge/github.com/duke-git/lancet/v2)](https://goreportcard.com/report/github.com/duke-git/lancet/v2)
 [![test](https://github.com/duke-git/lancet/actions/workflows/codecov.yml/badge.svg?branch=main&event=push)](https://github.com/duke-git/lancet/actions/workflows/codecov.yml)
@@ -84,6 +84,8 @@ func main() {
 -   [Cryptor](#user-content-cryptor)
 -   [Datetime](#user-content-datetime)
 -   [Datastructure](#user-content-datastructure)
+-   [EventBus](#user-content-eventbus)
+-   [Enum](#user-content-enum)
 -   [Fileutil](#user-content-fileutil)
 -   [Formatter](#user-content-formatter)
 -   [Function](#user-content-function)
@@ -313,6 +315,15 @@ import "github.com/duke-git/lancet/v2/convertor"
 -   **<big>ToPointer</big>** : return a pointer of passed value.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/convertor.md#ToPointer)]
     [[play](https://go.dev/play/p/ASf_etHNlw1)]
+-   **<big>ToPointers</big>** : convert a slice of values to a slice of pointers.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/convertor.md#ToPointers)]
+    [[play](https://go.dev/play/p/ZUoXd2i5ZkV)]
+-   **<big>FromPointer</big>** : returns the value pointed to by the pointer.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/convertor.md#FromPointer)]
+    [[play](https://go.dev/play/p/wAp90V7Zu6g)]
+-   **<big>FromPointers</big>** : convert a slice of pointers to a slice of values.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/convertor.md#FromPointers)]
+    [[play](https://go.dev/play/p/qIPsyYtNy3Q)]
 -   **<big>ToString</big>** : convert value to string.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/convertor.md#ToString)]
     [[play](https://go.dev/play/p/nF1zOOslpQq)]
@@ -724,7 +735,7 @@ import optional "github.com/duke-git/lancet/v2/datastructure/optional"
 import "github.com/duke-git/lancet/v2/eventbus"
 ```
 
-#### 函数列表:
+#### Function list:
 
 -   **<big>NewEventBus</big>** : Create an EventBus instance.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/eventbus.md#NewEventBus)]
@@ -757,7 +768,70 @@ import "github.com/duke-git/lancet/v2/eventbus"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/eventbus.md#SetErrorHandler)]
     [[play](https://go.dev/play/p/gmB0gnFe5mc)]
 
-<h3 id="fileutil"> 9. Fileutil package implements some basic functions for file operations. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
+<h3 id="enum"> 10. Package enum provides a simple enum implementation. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">Index</a></h3>
+
+```go
+import "github.com/duke-git/lancet/v2/enum"
+```
+
+#### Function list:
+
+-   **<big>NewItem</big>** : Creates a new enum item.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/enum.md#NewEventBus)]
+    [[play](https://go.dev/play/p/8qNsLw01HD5)]
+-   **<big>NewItemsFromPairs</big>** : Creates enum items from a slice of Pair structs.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/enum.md#NewItemsFromPairs)]
+    [[play](https://go.dev/play/p/xKnoGa7gnev)]
+-   **<big>Value</big>** : Returns the value of the enum item.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/enum.md#Value)]
+    [[play](https://go.dev/play/p/xKnoGa7gnev)]
+-   **<big>Name</big>** : Returns the name of the enum item.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/enum.md#Name)]
+    [[play](https://go.dev/play/p/xKnoGa7gnev)]
+-   **<big>Valid</big>** : Checks if the enum item is valid. If a custom check function is provided, it will be used to validate the value.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/enum.md#Valid)]
+    [[play](https://go.dev/play/p/pA3lYY2VSm3)]
+-   **<big>MarshalJSON</big>** : Implementation of json.Marshaler interface.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/enum.md#MarshalJSON)]
+    [[play](https://go.dev/play/p/zIZEdAnneB5)]
+-   **<big>NewRegistry</big>** : Creates a new enum registry.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/enum.md#NewRegistry)]
+    [[play](https://go.dev/play/p/ABEXsYfJKMo)]
+-   **<big>Add</big>** : Adds enum items to the registry.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/enum.md#Add)]
+    [[play](https://go.dev/play/p/ABEXsYfJKMo)]
+-   **<big>Remove</big>** : Removes an enum item from the registry by its value.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/enum.md#Remove)]
+    [[play](https://go.dev/play/p/dSG84wQ3TuC)]
+-   **<big>Update</big>** : Updates the name of an enum item in the registry by its value.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/enum.md#Update)]
+    [[play](https://go.dev/play/p/Ol0moT1J9Xl)]
+-   **<big>GetByValue</big>** : Retrieves an enum item by its value.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/enum.md#GetByValue)]
+    [[play](https://go.dev/play/p/niJ1U2KlE_m)]
+-   **<big>GetByName</big>** : Retrieves an enum item by its name.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/enum.md#GetByName)]
+    [[play](https://go.dev/play/p/49ie_gpqH0m)]
+-   **<big>Items</big>** : Returns a slice of all enum items in the registry.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/enum.md#Items)]
+    [[play](https://go.dev/play/p/lAJFAradbvQ)]
+-   **<big>Contains</big>** : Checks if an enum item with the given value exists in the registry.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/enum.md#Contains)]
+    [[play](https://go.dev/play/p/_T-lPYkZn2j)]
+-   **<big>Size</big>** : Returns the number of enum items in the registry.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/enum.md#Size)]
+    [[play](https://go.dev/play/p/TeDArWhlQe2)]
+-   **<big>Range</big>** : Iterates over all enum items in the registry and applies the given function.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/enum.md#Range)]
+    [[play](https://go.dev/play/p/GPsZbQbefWN)]
+-   **<big>SortedItems</big>** : Returns a slice of all enum items sorted by the given less function.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/enum.md#SortedItems)]
+    [[play](https://go.dev/play/p/tN9RE_m_WEI)]
+-   **<big>Filter</big>** : Returns a slice of enum items that satisfy the given predicate function.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/enum.md#Filter)]
+    [[play](https://go.dev/play/p/uTUpTdcyoCU)]
+
+<h3 id="fileutil"> 11. Fileutil package implements some basic functions for file operations. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
 ```go
 import "github.com/duke-git/lancet/v2/fileutil"
@@ -859,7 +933,7 @@ import "github.com/duke-git/lancet/v2/fileutil"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/fileutil.md#GetExeOrDllVersion)]
     [[play](https://go.dev/play/p/iLRrDBhE38E)]
 
-<h3 id="formatter"> 10. Formatter contains some functions for data formatting. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
+<h3 id="formatter"> 12. Formatter contains some functions for data formatting. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
 ```go
 import "github.com/duke-git/lancet/v2/formatter"
@@ -889,7 +963,7 @@ import "github.com/duke-git/lancet/v2/formatter"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/formatter.md#ParseBinaryBytes)]
     [[play](https://go.dev/play/p/69v1tTT62x8)]
 
-<h3 id="function"> 11. Function package can control the flow of function execution and support part of functional programming.&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
+<h3 id="function"> 13. Function package can control the flow of function execution and support part of functional programming.&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
 ```go
 import "github.com/duke-git/lancet/v2/function"
@@ -952,7 +1026,7 @@ import "github.com/duke-git/lancet/v2/function"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/function.md#Watcher)]
     [[play](https://go.dev/play/p/l2yrOpCLd1I)]
 
-<h3 id="maputil"> 12. Maputil package includes some functions to manipulate map.&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
+<h3 id="maputil"> 14. Maputil package includes some functions to manipulate map.&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
 ```go
 import "github.com/duke-git/lancet/v2/maputil"
@@ -1125,8 +1199,11 @@ import "github.com/duke-git/lancet/v2/maputil"
 -   **<big>FindValuesBy</big>** : returns a slice of values from the map that satisfy the given predicate function.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/maputil.md#FindValuesBy)]
     [[play](https://go.dev/play/p/bvNwNBZDm6v)]
+-   **<big>ToMarkdownTable</big>** : Convert a map slice data to a Markdown table string. It supports custom header display names and column display order.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/maputil.md#ToMarkdownTable)]
+    [[play](https://go.dev/play/p/w_pSLfeyEB5)]
 
-<h3 id="mathutil"> 13. Mathutil package implements some functions for math calculation. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
+<h3 id="mathutil"> 15. Mathutil package implements some functions for math calculation. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
 ```go
 import "github.com/duke-git/lancet/v2/mathutil"
@@ -1237,7 +1314,7 @@ import "github.com/duke-git/lancet/v2/mathutil"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/mathutil.md#Combination)]
     [[play](https://go.dev/play/p/ENFQRDQUFi9)]
 
-<h3 id="netutil"> 14. Netutil package contains functions to get net information and send http request. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
+<h3 id="netutil"> 16. Netutil package contains functions to get net information and send http request. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
 ```go
 import "github.com/duke-git/lancet/v2/netutil"
@@ -1316,7 +1393,7 @@ import "github.com/duke-git/lancet/v2/netutil"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/netutil.md#AddQueryParams)]
     [[play](https://go.dev/play/p/JLXl1hZK7l4)]
 
-<h3 id="pointer"> 15. Pointer package contains some util functions to operate go pointer. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
+<h3 id="pointer"> 17. Pointer package contains some util functions to operate go pointer. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
 ```go
 import "github.com/duke-git/lancet/v2/pointer"
@@ -1340,7 +1417,7 @@ import "github.com/duke-git/lancet/v2/pointer"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/pointer.md#UnwrapOrDefault)]
     [[play](https://go.dev/play/p/ZnGIHf8_o4E)]
 
-<h3 id="random"> 16. Random package implements some basic functions to generate random int and string. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
+<h3 id="random"> 18. Random package implements some basic functions to generate random int and string. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
 ```go
 import "github.com/duke-git/lancet/v2/random"
@@ -1406,7 +1483,7 @@ import "github.com/duke-git/lancet/v2/random"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/random.md#RandNumberOfLength)]
     [[play](https://go.dev/play/p/oyZbuV7bu7b)]
 
-<h3 id="retry"> 17. Retry package is for executing a function repeatedly until it was successful or canceled by the context. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
+<h3 id="retry"> 19. Retry package is for executing a function repeatedly until it was successful or canceled by the context. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
 ```go
 import "github.com/duke-git/lancet/v2/retry"
@@ -1441,7 +1518,7 @@ import "github.com/duke-git/lancet/v2/retry"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/retry.md#RetryWithExponentialWithJitterBackoff)]
     [[play](https://go.dev/play/p/xp1avQmn16X)]
 
-<h3 id="slice"> 18. Slice contains some functions to manipulate slice. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
+<h3 id="slice"> 20. Slice contains some functions to manipulate slice. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
 ```go
 import "github.com/duke-git/lancet/v2/slice"
@@ -1713,7 +1790,7 @@ import "github.com/duke-git/lancet/v2/slice"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/slice.md#ConcatBy)]
     [[play](https://go.dev/play/p/6QcUpcY4UMW)]
 
-<h3 id="stream"> 19. Stream package implements a sequence of elements supporting sequential and operations. this package is an experiment to explore if stream in go can work as the way java does. its function is very limited. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
+<h3 id="stream"> 21. Stream package implements a sequence of elements supporting sequential and operations. this package is an experiment to explore if stream in go can work as the way java does. its function is very limited. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
 ```go
 import "github.com/duke-git/lancet/v2/stream"
@@ -1812,7 +1889,7 @@ import "github.com/duke-git/lancet/v2/stream"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/stream.md#LastIndexOf)]
     [[play](https://go.dev/play/p/CjeoNw2eac_G)]
 
-<h3 id="structs"> 20. Structs package provides several high level functions to manipulate struct, tag, and field. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
+<h3 id="structs"> 22. Structs package provides several high level functions to manipulate struct, tag, and field. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
 ```go
 import "github.com/duke-git/lancet/v2/structs"
@@ -1822,32 +1899,51 @@ import "github.com/duke-git/lancet/v2/structs"
 
 -   **<big>New</big>** : creates a `Struct` instance.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/struct.md#New)]
+    [[play](https://go.dev/play/p/O29l8kk-Z17)]
 -   **<big>ToMap</big>** : converts a valid struct to a map.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/struct.md#ToMap)]
+    [[play](https://go.dev/play/p/qQbLySBgerZ)]
 -   **<big>Fields</big>** : get all fields of a given struct, that the fields are abstract struct field.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/struct.md#Fields)]
+    [[play](https://go.dev/play/p/w3Kk_CyVY7D)]
+-   **<big>Field</big>** : get an abstract field of a struct by given field name
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/struct.md#Field)]
+    [[play](https://go.dev/play/p/KocZMSYarza)]
 -   **<big>IsStruct</big>** : check if the struct is valid.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/struct.md#IsStruct)]
+    [[play](https://go.dev/play/p/bU2FSdkbK1C)]
 -   **<big>Tag</big>** : get a `Tag` of the `Field`, `Tag` is a abstract struct field tag.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/struct.md#Tag)]
+    [[play](https://go.dev/play/p/DVrx5HvvUJr)]
 -   **<big>Name</big>** : get the field name.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/struct.md#Name)]
+    [[play](https://go.dev/play/p/zfIGlqsatee)]
 -   **<big>Value</big>** : get the `Field` underlying value.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/struct.md#Value)]
+    [[play](https://go.dev/play/p/qufYEU2o4Oi)]
 -   **<big>Kind</big>** : get the field's kind.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/struct.md#Kind)]
+    [[play](https://go.dev/play/p/wg4NlcUNG5o)]
 -   **<big>IsEmbedded</big>** : check if the field is an embedded field.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/struct.md#IsEmbedded)]
+    [[play](https://go.dev/play/p/wV2PrbYm3Ec)]
 -   **<big>IsExported</big>** : check if the field is exported.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/struct.md#IsExported)]
+    [[play](https://go.dev/play/p/csK4AXYaNbJ)]
 -   **<big>IsZero</big>** : check if the field is zero value.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/struct.md#IsZero)]
+    [[play](https://go.dev/play/p/RzqpGISf87r)]
 -   **<big>IsSlice</big>** : check if the field is a slice.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/struct.md#IsSlice)]
+    [[play](https://go.dev/play/p/MKz4CgBIUrU)]
 -   **<big>IsTargetType</big>** : check if the field is target type.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/struct.md#IsTargetType)]
+    [[play](https://go.dev/play/p/Ig75P-agN39)]
+-   **<big>TypeName</big>** : Return struct type name.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/struct.md#TypeName)]
+    [[play](https://go.dev/play/p/SWLWd0XBaBb)]
 
-<h3 id="strutil"> 21. Strutil package contains some functions to manipulate string. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
+<h3 id="strutil"> 23. Strutil package contains some functions to manipulate string. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
 ```go
 import "github.com/duke-git/lancet/v2/strutil"
@@ -1999,7 +2095,7 @@ import "github.com/duke-git/lancet/v2/strutil"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/strutil.md#FindAllOccurrences)]
     [[play](https://go.dev/play/p/uvyA6azGLB1)]
 
-<h3 id="system"> 22. System package contain some functions about os, runtime, shell command. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
+<h3 id="system"> 24. System package contain some functions about os, runtime, shell command. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
 ```go
 import "github.com/duke-git/lancet/v2/system"
@@ -2047,7 +2143,7 @@ import "github.com/duke-git/lancet/v2/system"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/system.md#GetProcessInfo)]
     [[play](https://go.dev/play/p/NQDVywEYYx7)]
 
-<h3 id="tuple"> 23. Tuple package implements tuple data type and some operations on it. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
+<h3 id="tuple"> 25. Tuple package implements tuple data type and some operations on it. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
 ```go
 import "github.com/duke-git/lancet/v2/tuple"
@@ -2164,7 +2260,7 @@ import "github.com/duke-git/lancet/v2/tuple"
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/tuple.md#Unzip10)]
     [[play](https://go.dev/play/p/-taQB6Wfre_z)]
 
-<h3 id="validator"> 24. Validator package contains some functions for data validation. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
+<h3 id="validator"> 26. Validator package contains some functions for data validation. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
 ```go
 import "github.com/duke-git/lancet/v2/validator"
@@ -2304,8 +2400,14 @@ import "github.com/duke-git/lancet/v2/validator"
 -   **<big>IsChinaUnionPay</big>** : check if a give string is a valid china union pay number or not.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/validator.md#IsChinaUnionPay)]
     [[play](https://go.dev/play/p/yafpdxLiymu)]
+-   **<big>IsPassport</big>** : Passport validation(using regex).
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/validator.md#IsPassport)]
+    [[play](https://go.dev/play/p/dvOiV2BW7Aw)]
+-   **<big>IsChineseHMPassport</big>** : Mainland travel permit for Hong Kong, Macao validation (using regex).
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/validator.md#IsChineseHMPassport)]
+    [[play](https://go.dev/play/p/xKG6spQTcY0)]
 
-<h3 id="xerror"> 25. Xerror package implements helpers for errors. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
+<h3 id="xerror"> 27. Xerror package implements helpers for errors. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
 ```go
 import "github.com/duke-git/lancet/v2/xerror"

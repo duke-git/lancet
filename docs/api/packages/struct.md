@@ -31,6 +31,7 @@ import (
 -   [IsStruct](#IsStruct)
 -   [Tag](#Tag)
 -   [Name](#Name)
+-   [TypeName](#TypeName)
 -   [Value](#Value)
 -   [Kind](#Kind)
 -   [IsEmbedded](#IsEmbedded)
@@ -53,7 +54,7 @@ import (
 func New(value any, tagName ...string) *Struct
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/O29l8kk-Z17)</span></b>
 
 ```go
 package main
@@ -68,7 +69,11 @@ func main() {
     }
     p1 := &People{Name: "11"}
     s := structs.New(p1)
-    // to do something
+
+    fmt.Println(s.ToMap())
+
+    // Output:
+    // map[name:11] <nil>
 }
 ```
 
@@ -88,7 +93,7 @@ func (s *Struct) ToMap() (map[string]any, error)
 func ToMap(v any) (map[string]any, error)
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/qQbLySBgerZ)</span></b>
 
 ```go
 package main
@@ -129,7 +134,7 @@ func main() {
 func (s *Struct) Fields() []*Field
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/w3Kk_CyVY7D)</span></b>
 
 ```go
 package main
@@ -161,10 +166,10 @@ func main() {
 <b>函数签名:</b>
 
 ```go
-func (s *Struct) Field(name string) *Field
+func (s *Struct) Field(name string) (*Field, bool)
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/KocZMSYarza)</span></b>
 
 ```go
 package main
@@ -180,12 +185,14 @@ func main() {
     }
     p1 := &People{Name: "11"}
     s := structs.New(p1)
-    f := s.Field("Name")
+    f, found := s.Field("Name")
 
     fmt.Println(f.Value())
+    fmt.Println(found)
 
     // Output:
     // 11
+    // true
 }
 ```
 
@@ -199,7 +206,7 @@ func main() {
 func (s *Struct) IsStruct() bool
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/bU2FSdkbK1C)</span></b>
 
 ```go
 package main
@@ -233,7 +240,7 @@ func main() {
 func (f *Field) Tag() *Tag
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/DVrx5HvvUJr)</span></b>
 
 ```go
 package main
@@ -254,7 +261,7 @@ func main() {
     tag := n.Tag()
 
     fmt.Println(tag.Name)
-    
+
     // Output:
     // name
 }
@@ -270,7 +277,7 @@ func main() {
 func (f *Field) Value() any
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/qufYEU2o4Oi)</span></b>
 
 ```go
 package main
@@ -288,10 +295,10 @@ func main() {
 
     s := structs.New(p1)
     n, _ := s.Field("Name")
-    
+
     fmt.Println(n.Value())
-    
-    // Output: 
+
+    // Output:
     // 111
 }
 ```
@@ -306,7 +313,7 @@ func main() {
 func (f *Field) IsEmbedded() bool
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/wV2PrbYm3Ec)</span></b>
 
 ```go
 package main
@@ -331,11 +338,11 @@ func main() {
     s := structs.New(c1)
     n, _ := s.Field("Name")
     a, _ := s.Field("Age")
-    
+
     fmt.Println(n.IsEmbedded())
     fmt.Println(a.IsEmbedded())
-    
-    // Output: 
+
+    // Output:
     // true
     // false
 }
@@ -351,7 +358,7 @@ func main() {
 func (f *Field) IsExported() bool
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/csK4AXYaNbJ)</span></b>
 
 ```go
 package main
@@ -370,11 +377,11 @@ func main() {
     s := structs.New(p1)
     n, _ := s.Field("Name")
     a, _ := s.Field("age")
-    
+
     fmt.Println(n.IsExported())
     fmt.Println(a.IsExported())
-    
-    // Output: 
+
+    // Output:
     // true
     // false
 }
@@ -390,7 +397,7 @@ func main() {
 func (f *Field) IsZero() bool
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/RzqpGISf87r)</span></b>
 
 ```go
 package main
@@ -409,11 +416,11 @@ func main() {
     s := structs.New(p1)
     n, _ := s.Field("Name")
     a, _ := s.Field("Age")
-    
+
     fmt.Println(n.IsZero())
     fmt.Println(a.IsZero())
-    
-    // Output: 
+
+    // Output:
     // true
     // false
 }
@@ -429,7 +436,7 @@ func main() {
 func (f *Field) Name() string
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/zfIGlqsatee)</span></b>
 
 ```go
 package main
@@ -448,11 +455,11 @@ func main() {
     s := structs.New(p1)
     n, _ := s.Field("Name")
     a, _ := s.Field("Age")
-    
+
     fmt.Println(n.Name())
     fmt.Println(a.Name())
-    
-    // Output: 
+
+    // Output:
     // Name
     // Age
 }
@@ -468,7 +475,7 @@ func main() {
 func (f *Field) Kind() reflect.Kind
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/wg4NlcUNG5o)</span></b>
 
 ```go
 package main
@@ -487,13 +494,49 @@ func main() {
     s := structs.New(p1)
     n, _ := s.Field("Name")
     a, _ := s.Field("Age")
-    
+
     fmt.Println(n.Kind())
     fmt.Println(a.Kind())
-    
-    // Output: 
+
+    // Output:
     // string
     // int
+}
+```
+
+### <span id="TypeName">TypeName</span>
+
+<p>获取结构体类型名。</p>
+
+<b>函数签名:</b>
+
+```go
+func (s *Struct) TypeName() string
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/SWLWd0XBaBb)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/structs"
+)
+
+func main() {
+    type Parent struct {
+        Name string
+        Age  int
+    }
+
+    p := &Parent{Age: 11}
+    s := structs.New(p)
+
+    fmt.Println(s.TypeName())
+
+    // Output:
+    // Parent
 }
 ```
 
@@ -507,7 +550,7 @@ func main() {
 func (f *Field) IsSlice() bool
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/MKz4CgBIUrU)</span></b>
 
 ```go
 package main
@@ -526,10 +569,10 @@ func main() {
     p1 := &Parent{arr: []int{1, 2, 3}}
     s := structs.New(p1)
     a, _ := s.Field("arr")
-    
+
     fmt.Println(a.IsSlice())
-    
-    // Output: 
+
+    // Output:
     // true
 }
 ```
@@ -544,7 +587,7 @@ func main() {
 func (f *Field) IsTargetType(targetType reflect.Kind) bool
 ```
 
-<b>示例:</b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/Ig75P-agN39)</span></b>
 
 ```go
 package main
@@ -565,11 +608,11 @@ func main() {
     s := structs.New(p1)
     n, _ := s.Field("Name")
 	a, _ := s.Field("arr")
-    
+
     fmt.Println(n.IsTargetType(reflect.String))
     fmt.Println(a.IsTargetType(reflect.Slice))
-    
-    // Output: 
+
+    // Output:
     // true
     // true
 }

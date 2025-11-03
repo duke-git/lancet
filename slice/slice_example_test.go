@@ -849,7 +849,7 @@ func ExampleUniqueByComparator() {
 	})
 
 	caseInsensitiveStrings := UniqueByComparator([]string{"apple", "banana", "Apple", "cherry", "Banana", "date"}, func(item string, other string) bool {
-		return strings.ToLower(item) == strings.ToLower(other)
+		return strings.EqualFold(item, other)
 	})
 
 	fmt.Println(uniqueNums)

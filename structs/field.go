@@ -26,26 +26,31 @@ func newField(v reflect.Value, f reflect.StructField, tagName string) *Field {
 }
 
 // Tag returns the value that the key in the tag string.
+// Play: https://go.dev/play/p/DVrx5HvvUJr
 func (f *Field) Tag() *Tag {
 	return f.tag
 }
 
 // Value returns the underlying value of the field.
+// Play: https://go.dev/play/p/qufYEU2o4Oi
 func (f *Field) Value() any {
 	return f.rvalue.Interface()
 }
 
 // IsEmbedded returns true if the given field is an embedded field.
+// Play: https://go.dev/play/p/wV2PrbYm3Ec
 func (f *Field) IsEmbedded() bool {
 	return len(f.field.Index) > 1
 }
 
 // IsExported returns true if the given field is exported.
+// Play: https://go.dev/play/p/csK4AXYaNbJ
 func (f *Field) IsExported() bool {
 	return f.field.IsExported()
 }
 
 // IsZero returns true if the given field is zero value.
+// Play: https://go.dev/play/p/RzqpGISf87r
 func (f *Field) IsZero() bool {
 	z := reflect.Zero(f.rvalue.Type()).Interface()
 	v := f.Value()
@@ -63,22 +68,26 @@ func (f *Field) IsNil() bool {
 }
 
 // Name returns the name of the given field
+// Play: https://go.dev/play/p/zfIGlqsatee
 func (f *Field) Name() string {
 	return f.field.Name
 }
 
 // Kind returns the field's kind
+// Play: https://go.dev/play/p/wg4NlcUNG5o
 func (f *Field) Kind() reflect.Kind {
 	return f.rvalue.Kind()
 }
 
 // IsSlice check if a struct field type is slice or not
+// Play: https://go.dev/play/p/MKz4CgBIUrU
 func (f *Field) IsSlice() bool {
 	k := f.rvalue.Kind()
 	return k == reflect.Slice
 }
 
 // IsTargetType check if a struct field type is target type or not
+// Play: https://go.dev/play/p/Ig75P-agN39
 func (f *Field) IsTargetType(targetType reflect.Kind) bool {
 	return f.rvalue.Kind() == targetType
 }

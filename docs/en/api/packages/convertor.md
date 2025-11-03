@@ -33,6 +33,9 @@ import (
 -   [ToJson](#ToJson)
 -   [ToMap](#ToMap)
 -   [ToPointer](#ToPointer)
+-   [ToPointers](#ToPointers)
+-   [FromPointer](#FromPointer)
+-   [FromPointers](#FromPointers)
 -   [ToString](#ToString)
 -   [StructToMap](#StructToMap)
 -   [MapToSlice](#MapToSlice)
@@ -456,6 +459,108 @@ func main() {
 }
 ```
 
+### <span id="ToPointers">ToPointers</span>
+
+<p>Convert a slice of values to a slice of pointers.</p>
+
+<b>Signature:</b>
+
+```go
+func ToPointers[T any](values []T) []*T
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/ZUoXd2i5ZkV)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/convertor"
+)
+
+func main() {
+    strs := []string{"a", "b", "c"}
+	pointerStrs := convertor.ToPointers(strs)
+	fmt.Println(*pointerStrs[0])
+	fmt.Println(*pointerStrs[1])
+	fmt.Println(*pointerStrs[2])
+
+	// Output:
+	// a
+	// b
+	// c
+}
+```
+
+### <span id="FromPointer">FromPointer</span>
+
+<p>Returns the value pointed to by the pointer.</p>
+
+<b>Signature:</b>
+
+```go
+func FromPointer[T any](ptr *T) T
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/wAp90V7Zu6g)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/convertor"
+)
+
+func main() {
+    str := "abc"
+    strPtr := &str
+	result := convertor.FromPointer(strPtr)
+	fmt.Println(result)
+
+	// Output:
+	// abc
+}
+```
+
+### <span id="FromPointers">FromPointers</span>
+
+<p>Convert a slice of pointers to a slice of values.</p>
+
+<b>Signature:</b>
+
+```go
+func FromPointers[T any](pointers []*T) []T
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/qIPsyYtNy3Q)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/convertor"
+)
+
+func main() {
+    strs := []string{"a", "b", "c"}
+    strPtr := []*string{&strs[0], &strs[1], &strs[2]}
+
+	result := convertor.FromPointers(strPtr)
+
+	fmt.Println(result[0])
+    fmt.Println(result[1])
+    fmt.Println(result[2])
+
+	// Output:
+	// a
+    // b
+    // c
+}
+```
+
 ### <span id="ToString">ToString</span>
 
 <p>ToString convert value to string, for number, string, []byte, will convert to string. For other type (slice, map, array, struct) will call json.Marshal</p>
@@ -572,7 +677,6 @@ func main() {
 }
 ```
 
-
 ### <span id="EncodeByte">EncodeByte</span>
 
 <p>Encode data to byte slice.</p>
@@ -637,7 +741,6 @@ func main() {
     // abc
 }
 ```
-
 
 ### <span id="CopyProperties">CopyProperties</span>
 
@@ -748,7 +851,7 @@ func main() {
 
     // Output:
     // true
-    // true   
+    // true
 }
 ```
 
@@ -781,7 +884,7 @@ func main() {
 
     // Output:
     // true
-    // hello   
+    // hello
 }
 ```
 
@@ -856,8 +959,6 @@ func main() {
 }
 
 ```
-
-
 
 ### <span id="ToUrlBase64">ToUrlBase64</span>
 

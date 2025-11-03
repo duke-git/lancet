@@ -1048,7 +1048,7 @@ func TestUniqueByComparator(t *testing.T) {
 	t.Run("case-insensitive string comparison", func(t *testing.T) {
 		stringSlice := []string{"apple", "banana", "Apple", "cherry", "Banana", "date"}
 		caseInsensitiveComparator := func(item, other string) bool {
-			return strings.ToLower(item) == strings.ToLower(other)
+			return strings.EqualFold(item, other)
 		}
 
 		result := UniqueByComparator(stringSlice, caseInsensitiveComparator)
@@ -1796,6 +1796,20 @@ func TestRightPaddingAndLeftPadding(t *testing.T) {
 
 	padded := LeftPadding(RightPadding(nums, 0, 3), 0, 3)
 	assert.Equal([]int{0, 0, 0, 1, 2, 3, 4, 5, 0, 0, 0}, padded)
+
+	// Test with negative padding length
+	paddedNegative := LeftPadding(RightPadding(nums, 0, -3), 0, -3)
+	assert.Equal([]int{1, 2, 3, 4, 5}, paddedNegative)
+
+	// Test with empty slice
+	empty := []int{}
+	paddedEmpty := LeftPadding(RightPadding(empty, 0, 3), 0, 3)
+	assert.Equal([]int{0, 0, 0, 0, 0, 0}, paddedEmpty)
+
+	// Test with nil
+	nilSlice := []int(nil)
+	paddedNil := LeftPadding(RightPadding(nilSlice, 0, 3), 0, 3)
+	assert.Equal([]int{0, 0, 0, 0, 0, 0}, paddedNil)
 }
 
 func TestUniqueByConcurrent(t *testing.T) {

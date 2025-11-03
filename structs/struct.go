@@ -20,6 +20,7 @@ type Struct struct {
 }
 
 // New returns a new *Struct
+// Play: https://go.dev/play/p/O29l8kk-Z17
 func New(value any, tagName ...string) *Struct {
 	value = pointer.ExtractPointer(value)
 	v := reflect.ValueOf(value)
@@ -60,6 +61,7 @@ func New(value any, tagName ...string) *Struct {
 //	 	Name string `json:"myName"`
 //
 // ToMap convert the exported fields of a struct to map.
+// Play: https://go.dev/play/p/qQbLySBgerZ
 func (s *Struct) ToMap() (map[string]any, error) {
 	if !s.IsStruct() {
 		return nil, fmt.Errorf("invalid struct %v", s)
@@ -87,6 +89,7 @@ func (s *Struct) ToMap() (map[string]any, error) {
 }
 
 // Fields returns all the struct fields within a slice
+// Play: https://go.dev/play/p/w3Kk_CyVY7D
 func (s *Struct) Fields() []*Field {
 	fieldNum := s.rvalue.NumField()
 	fields := make([]*Field, 0, fieldNum)
@@ -100,6 +103,7 @@ func (s *Struct) Fields() []*Field {
 }
 
 // Field returns a Field if the given field name was found
+// Play: https://go.dev/play/p/KocZMSYarza
 func (s *Struct) Field(name string) (*Field, bool) {
 	f, ok := s.rtype.FieldByName(name)
 	if !ok {
@@ -109,6 +113,7 @@ func (s *Struct) Field(name string) (*Field, bool) {
 }
 
 // IsStruct returns true if the given rvalue is a struct
+// Play: https://go.dev/play/p/bU2FSdkbK1C
 func (s *Struct) IsStruct() bool {
 	k := s.rvalue.Kind()
 	if k == reflect.Invalid {
@@ -119,6 +124,13 @@ func (s *Struct) IsStruct() bool {
 
 // ToMap convert struct to map, only convert exported struct field
 // map key is specified same as struct field tag `json` value.
+// Play: https://go.dev/play/p/qQbLySBgerZ
 func ToMap(v any) (map[string]any, error) {
 	return New(v).ToMap()
+}
+
+// TypeName return struct type name
+// Play: https://go.dev/play/p/SWLWd0XBaBb
+func (s *Struct) TypeName() string {
+	return s.rtype.Name()
 }
