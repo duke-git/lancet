@@ -2309,7 +2309,7 @@ import "github.com/duke-git/lancet/v2/validator"
     [[play](https://go.dev/play/p/jlYApVLLGTZ)]
 -   **<big>IsEmail</big>** : check if the string is a email address.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/validator.md#IsEmail)]
-    [[play](https://go.dev/play/p/Os9VaFlT33G)]
+    [[play](https://go.dev/play/p/HVQ5LAe-vFz)]
 -   **<big>IsEmptyString</big>** : check if the string is empty.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/validator.md#IsEmptyString)]
     [[play](https://go.dev/play/p/dpzgUjFnBCX)]

@@ -549,7 +549,7 @@ func main() {
 func IsEmail(email string) bool
 ```
 
-<b>示例:<span style="float:right;display:inline-block">[运行](https://go.dev/play/p/Os9VaFlT33G)</span></b>
+<b>示例:<span style="float:right;display:inline-block">[运行](https://go.dev/play/p/HVQ5LAe-vFz)</span></b>
 
 ```go
 import (
@@ -559,13 +559,28 @@ import (
 
 func main() {
     result1 := validator.IsEmail("abc@xyz.com")
-    result2 := validator.IsEmail("a.b@@com")
+    result2 := validator.IsEmail("user@domain.co")
+    result3 := validator.IsEmail("test.user@example.org")
+    result4 := validator.IsEmail("@abc@xyz.com")
+    result5 := validator.IsEmail("a.b@@com")
+    result6 := validator.IsEmail("a.b@com")
+    result7 := validator.IsEmail("test@example")
 
     fmt.Println(result1)
     fmt.Println(result2)
+    fmt.Println(result3)
+    fmt.Println(result4)
+    fmt.Println(result5)
+    fmt.Println(result6)
+    fmt.Println(result7)
 
     // Output:
     // true
+    // true
+    // true
+    // false
+    // false
+    // false
     // false
 }
 ```

@@ -2316,7 +2316,7 @@ import "github.com/duke-git/lancet/v2/validator"
     [[play](https://go.dev/play/p/jlYApVLLGTZ)]
 -   **<big>IsEmail</big>** : 验证字符串是否是有效电子邮件地址。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/validator.md#IsEmail)]
-    [[play](https://go.dev/play/p/Os9VaFlT33G)]
+    [[play](https://go.dev/play/p/HVQ5LAe-vFz)]
 -   **<big>IsEmptyString</big>** : 验证字符串是否是空字符串。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/validator.md#IsEmptyString)]
     [[play](https://go.dev/play/p/dpzgUjFnBCX)]
