@@ -1,6 +1,6 @@
 # Cryptor
 
-cryptor 包包含数据加密和解密功能。支持 base64, md5, hmac, hash, aes, des, rsa。
+cryptor 包包含数据加密和解密功能。支持 base64, md5, hmac, hash, aes, des, rsa, sm2, sm3, sm4。
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -74,6 +74,14 @@ import (
 -   [RsaDecryptOAEP](#RsaDecryptOAEP)
 -   [RsaSign](#RsaSign)
 -   [RsaVerifySign](#RsaVerifySign)
+-   [Sm3](#Sm3)
+-   [Sm4EcbEncrypt](#Sm4EcbEncrypt)
+-   [Sm4EcbDecrypt](#Sm4EcbDecrypt)
+-   [Sm4CbcEncrypt](#Sm4CbcEncrypt)
+-   [Sm4CbcDecrypt](#Sm4CbcDecrypt)
+-   [GenerateSm2Key](#GenerateSm2Key)
+-   [Sm2Encrypt](#Sm2Encrypt)
+-   [Sm2Decrypt](#Sm2Decrypt)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -1827,5 +1835,281 @@ func main() {
     if err != nil {
         return
     }
+}
+```
+
+
+
+### <span id="Sm3">Sm3</span>
+
+<p>计算 SM3 哈希值（国密SM3密码杂凑算法）。SM3 是中国国家密码管理局发布的密码杂凑算法，用于替代 MD5/SHA-1/SHA-2 等国际算法。</p>
+
+<b>函数签名:</b>
+
+```go
+func Sm3(data []byte) []byte
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/zDAQpteAiOc)</span></b>
+
+```go
+package main
+
+import (
+    "encoding/hex"
+    "fmt"
+    "github.com/duke-git/lancet/v2/cryptor"
+)
+
+func main() {
+    data := []byte("hello world")
+    hash := cryptor.Sm3(data)
+    
+    fmt.Println(hex.EncodeToString(hash))
+
+    // Output:
+    // 44f0061e69fa6fdfc290c494654a05dc0c053da7e5c52b84ef93a9d67d3fff88
+}
+```
+
+### <span id="Sm4EcbEncrypt">Sm4EcbEncrypt</span>
+
+<p>使用 SM4 ECB 模式加密数据（国密SM4分组密码算法）。密钥长度必须为 16 字节。</p>
+
+<b>函数签名:</b>
+
+```go
+func Sm4EcbEncrypt(data, key []byte) []byte
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/l5IQxYuuaED)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/cryptor"
+)
+
+func main() {
+    key := []byte("1234567890abcdef") // 16 bytes key
+    plaintext := []byte("hello world")
+    
+    encrypted := cryptor.Sm4EcbEncrypt(plaintext, key)
+    decrypted := cryptor.Sm4EcbDecrypt(encrypted, key)
+    
+    fmt.Println(string(decrypted))
+
+    // Output:
+    // hello world
+}
+```
+
+### <span id="Sm4EcbDecrypt">Sm4EcbDecrypt</span>
+
+<p>使用 SM4 ECB 模式解密数据。密钥长度必须为 16 字节。</p>
+
+<b>函数签名:</b>
+
+```go
+func Sm4EcbDecrypt(encrypted, key []byte) []byte
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/l5IQxYuuaED)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/cryptor"
+)
+
+func main() {
+    key := []byte("1234567890abcdef")
+    plaintext := []byte("hello world")
+    
+    encrypted := cryptor.Sm4EcbEncrypt(plaintext, key)
+    decrypted := cryptor.Sm4EcbDecrypt(encrypted, key)
+    
+    fmt.Println(string(decrypted))
+
+    // Output:
+    // hello world
+}
+```
+
+### <span id="Sm4CbcEncrypt">Sm4CbcEncrypt</span>
+
+<p>使用 SM4 CBC 模式加密数据。密钥长度必须为 16 字节。返回的密文包含 IV（前 16 字节）。</p>
+
+<b>函数签名:</b>
+
+```go
+func Sm4CbcEncrypt(data, key []byte) []byte
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/65Q6iYhLRTa)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/cryptor"
+)
+
+func main() {
+    key := []byte("1234567890abcdef")
+    plaintext := []byte("hello world")
+    
+    encrypted := cryptor.Sm4CbcEncrypt(plaintext, key)
+    decrypted := cryptor.Sm4CbcDecrypt(encrypted, key)
+    
+    fmt.Println(string(decrypted))
+
+    // Output:
+    // hello world
+}
+```
+
+### <span id="Sm4CbcDecrypt">Sm4CbcDecrypt</span>
+
+<p>使用 SM4 CBC 模式解密数据。密钥长度必须为 16 字节。密文应包含 IV（前 16 字节）。</p>
+
+<b>函数签名:</b>
+
+```go
+func Sm4CbcDecrypt(encrypted, key []byte) []byte
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/65Q6iYhLRTa)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/cryptor"
+)
+
+func main() {
+    key := []byte("1234567890abcdef")
+    plaintext := []byte("hello world")
+    
+    encrypted := cryptor.Sm4CbcEncrypt(plaintext, key)
+    decrypted := cryptor.Sm4CbcDecrypt(encrypted, key)
+    
+    fmt.Println(string(decrypted))
+
+    // Output:
+    // hello world
+}
+```
+
+### <span id="GenerateSm2Key">GenerateSm2Key</span>
+
+<p>生成 SM2 密钥对（国密SM2椭圆曲线公钥密码算法）。SM2 是基于椭圆曲线的非对称加密算法。</p>
+
+<b>函数签名:</b>
+
+```go
+func GenerateSm2Key() (*Sm2PrivateKey, error)
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/bKYMqRLvIx3)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/cryptor"
+)
+
+func main() {
+    privateKey, err := cryptor.GenerateSm2Key()
+    if err != nil {
+        return
+    }
+    
+    plaintext := []byte("hello world")
+    
+    ciphertext, _ := cryptor.Sm2Encrypt(&privateKey.PublicKey, plaintext)
+    decrypted, _ := cryptor.Sm2Decrypt(privateKey, ciphertext)
+    
+    fmt.Println(string(decrypted))
+
+    // Output:
+    // hello world
+}
+```
+
+### <span id="Sm2Encrypt">Sm2Encrypt</span>
+
+<p>使用 SM2 公钥加密数据。返回的密文格式为：C1(65字节) || C3(32字节) || C2(明文长度)。</p>
+
+<b>函数签名:</b>
+
+```go
+func Sm2Encrypt(pub *Sm2PublicKey, plaintext []byte) ([]byte, error)
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/bKYMqRLvIx3)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/cryptor"
+)
+
+func main() {
+    privateKey, _ := cryptor.GenerateSm2Key()
+    plaintext := []byte("hello world")
+    
+    ciphertext, _ := cryptor.Sm2Encrypt(&privateKey.PublicKey, plaintext)
+    decrypted, _ := cryptor.Sm2Decrypt(privateKey, ciphertext)
+    
+    fmt.Println(string(decrypted))
+
+    // Output:
+    // hello world
+}
+```
+
+### <span id="Sm2Decrypt">Sm2Decrypt</span>
+
+<p>使用 SM2 私钥解密数据。密文格式应为：C1(65字节) || C3(32字节) || C2(明文长度)。</p>
+
+<b>函数签名:</b>
+
+```go
+func Sm2Decrypt(priv *Sm2PrivateKey, ciphertext []byte) ([]byte, error)
+```
+
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/bKYMqRLvIx3)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/cryptor"
+)
+
+func main() {
+    privateKey, _ := cryptor.GenerateSm2Key()
+    plaintext := []byte("hello world")
+    
+    ciphertext, _ := cryptor.Sm2Encrypt(&privateKey.PublicKey, plaintext)
+    decrypted, _ := cryptor.Sm2Decrypt(privateKey, ciphertext)
+    
+    fmt.Println(string(decrypted))
+
+    // Output:
+    // hello world
 }
 ```
