@@ -523,6 +523,30 @@ import "github.com/duke-git/lancet/v2/cryptor"
 -   **<big>RsaVerifySign</big>** : verifies the signature of the data with RSA.
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/cryptor.md#RsaVerifySign)]
     [[play](https://go.dev/play/p/qhsbf8BJ6Mf)]
+-   **<big>GenerateSm2Key</big>** : generate SM2 private and public key.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/cryptor.md#GenerateSm2Key)]
+    [[play](https://go.dev/play/p/bKYMqRLvIx3)]
+-   **<big>Sm2Encrypt</big>** : encrypt data with SM2 public key.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/cryptor.md#Sm2Encrypt)]
+    [[play](https://go.dev/play/p/bKYMqRLvIx3)]
+-   **<big>Sm2Decrypt</big>** : decrypt data with SM2 private key.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/cryptor.md#Sm2Decrypt)]
+    [[play](https://go.dev/play/p/bKYMqRLvIx3)]
+-   **<big>Sm3</big>** : return the SM3 hash value (256-bit) of data.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/cryptor.md#Sm3)]
+    [[play](https://go.dev/play/p/zDAQpteAiOc)]
+-   **<big>Sm4EcbEncrypt</big>** : encrypt data with SM4 ECB mode.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/cryptor.md#Sm4EcbEncrypt)]
+    [[play](https://go.dev/play/p/l5IQxYuuaED)]
+-   **<big>Sm4EcbDecrypt</big>** : decrypt data with SM4 ECB mode.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/cryptor.md#Sm4EcbDecrypt)]
+    [[play](https://go.dev/play/p/l5IQxYuuaED)]
+-   **<big>Sm4CbcEncrypt</big>** : encrypt data with SM4 CBC mode.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/cryptor.md#Sm4CbcEncrypt)]
+    [[play](https://go.dev/play/p/65Q6iYhLRTa)]
+-   **<big>Sm4CbcDecrypt</big>** : decrypt data with SM4 CBC mode.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/cryptor.md#Sm4CbcDecrypt)]
+    [[play](https://go.dev/play/p/65Q6iYhLRTa)]
 
 <h3 id="datetime"> 7. Datetime package supports date and time format and compare. &nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 
