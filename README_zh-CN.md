@@ -535,6 +535,30 @@ import "github.com/duke-git/lancet/v2/cryptor"
 -   **<big>RsaVerifySign</big>** : 验证数据的签名是否符合 RSA 算法。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/cryptor.md#RsaVerifySign)]
     [[play](https://go.dev/play/p/qhsbf8BJ6Mf)]
+-   **<big>GenerateSm2Key</big>** : 生成 SM2 公钥和私钥。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/cryptor.md#GenerateSm2Key)]
+    [[play](https://go.dev/play/p/bKYMqRLvIx3)]
+-   **<big>Sm2Encrypt</big>** : 使用 SM2 公钥加密数据。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/cryptor.md#Sm2Encrypt)]
+    [[play](https://go.dev/play/p/bKYMqRLvIx3)]
+-   **<big>Sm2Decrypt</big>** : 使用 SM2 私钥解密数据。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/cryptor.md#Sm2Decrypt)]
+    [[play](https://go.dev/play/p/bKYMqRLvIx3)]
+-   **<big>Sm3</big>** : 返回数据的 SM3 哈希值（256 位）。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/cryptor.md#Sm3)]
+    [[play](https://go.dev/play/p/zDAQpteAiOc)]
+-   **<big>Sm4EcbEncrypt</big>** : 使用 SM4 ECB 模式加密数据。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/cryptor.md#Sm4EcbEncrypt)]
+    [[play](https://go.dev/play/p/l5IQxYuuaED)]
+-   **<big>Sm4EcbDecrypt</big>** : 使用 SM4 ECB 模式解密数据。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/cryptor.md#Sm4EcbDecrypt)]
+    [[play](https://go.dev/play/p/l5IQxYuuaED)]
+-   **<big>Sm4CbcEncrypt</big>** : 使用 SM4 CBC 模式加密数据。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/cryptor.md#Sm4CbcEncrypt)]
+    [[play](https://go.dev/play/p/65Q6iYhLRTa)]
+-   **<big>Sm4CbcDecrypt</big>** : 使用 SM4 CBC 模式解密数据。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/cryptor.md#Sm4CbcDecrypt)]
+    [[play](https://go.dev/play/p/65Q6iYhLRTa)]
 
 <h3 id="datetime"> 7. datetime日期时间处理包，格式化日期，比较日期。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 
