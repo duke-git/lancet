@@ -1,6 +1,6 @@
 # Cryptor
 
-Package cryptor contains some functions for data encryption and decryption. Support base64, md5, hmac, aes, des, rsa.
+Package cryptor contains some functions for data encryption and decryption. Support base64, md5, hmac, aes, des, rsa, sm2, sm3, sm4.
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -76,6 +76,14 @@ import (
 -   [RsaDecryptOAEP](#RsaDecryptOAEP)
 -   [RsaSign](#RsaSign)
 -   [RsaVerifySign](#RsaVerifySign)
+-   [Sm3](#Sm3)
+-   [Sm4EcbEncrypt](#Sm4EcbEncrypt)
+-   [Sm4EcbDecrypt](#Sm4EcbDecrypt)
+-   [Sm4CbcEncrypt](#Sm4CbcEncrypt)
+-   [Sm4CbcDecrypt](#Sm4CbcDecrypt)
+-   [GenerateSm2Key](#GenerateSm2Key)
+-   [Sm2Encrypt](#Sm2Encrypt)
+-   [Sm2Decrypt](#Sm2Decrypt)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -1829,5 +1837,280 @@ func main() {
     if err != nil {
         return
     }
+}
+```
+
+
+### <span id="Sm3">Sm3</span>
+
+<p>Calculate SM3 hash (Chinese National Cryptography SM3 Hash Algorithm). SM3 is a cryptographic hash algorithm published by the Chinese State Cryptography Administration, designed to replace MD5/SHA-1/SHA-2.</p>
+
+<b>Signature:</b>
+
+```go
+func Sm3(data []byte) []byte
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/zDAQpteAiOc)</span></b>
+
+```go
+package main
+
+import (
+    "encoding/hex"
+    "fmt"
+    "github.com/duke-git/lancet/v2/cryptor"
+)
+
+func main() {
+    data := []byte("hello world")
+    hash := cryptor.Sm3(data)
+    
+    fmt.Println(hex.EncodeToString(hash))
+
+    // Output:
+    // 44f0061e69fa6fdfc290c494654a05dc0c053da7e5c52b84ef93a9d67d3fff88
+}
+```
+
+### <span id="Sm4EcbEncrypt">Sm4EcbEncrypt</span>
+
+<p>Encrypt data using SM4 ECB mode (Chinese National Cryptography SM4 Block Cipher Algorithm). Key length must be 16 bytes.</p>
+
+<b>Signature:</b>
+
+```go
+func Sm4EcbEncrypt(data, key []byte) []byte
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/l5IQxYuuaED)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/cryptor"
+)
+
+func main() {
+    key := []byte("1234567890abcdef") // 16 bytes key
+    plaintext := []byte("hello world")
+    
+    encrypted := cryptor.Sm4EcbEncrypt(plaintext, key)
+    decrypted := cryptor.Sm4EcbDecrypt(encrypted, key)
+    
+    fmt.Println(string(decrypted))
+
+    // Output:
+    // hello world
+}
+```
+
+### <span id="Sm4EcbDecrypt">Sm4EcbDecrypt</span>
+
+<p>Decrypt data using SM4 ECB mode. Key length must be 16 bytes.</p>
+
+<b>Signature:</b>
+
+```go
+func Sm4EcbDecrypt(encrypted, key []byte) []byte
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/l5IQxYuuaED)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/cryptor"
+)
+
+func main() {
+    key := []byte("1234567890abcdef")
+    plaintext := []byte("hello world")
+    
+    encrypted := cryptor.Sm4EcbEncrypt(plaintext, key)
+    decrypted := cryptor.Sm4EcbDecrypt(encrypted, key)
+    
+    fmt.Println(string(decrypted))
+
+    // Output:
+    // hello world
+}
+```
+
+### <span id="Sm4CbcEncrypt">Sm4CbcEncrypt</span>
+
+<p>Encrypt data using SM4 CBC mode. Key length must be 16 bytes. The returned ciphertext contains IV (first 16 bytes).</p>
+
+<b>Signature:</b>
+
+```go
+func Sm4CbcEncrypt(data, key []byte) []byte
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/65Q6iYhLRTa)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/cryptor"
+)
+
+func main() {
+    key := []byte("1234567890abcdef")
+    plaintext := []byte("hello world")
+    
+    encrypted := cryptor.Sm4CbcEncrypt(plaintext, key)
+    decrypted := cryptor.Sm4CbcDecrypt(encrypted, key)
+    
+    fmt.Println(string(decrypted))
+
+    // Output:
+    // hello world
+}
+```
+
+### <span id="Sm4CbcDecrypt">Sm4CbcDecrypt</span>
+
+<p>Decrypt data using SM4 CBC mode. Key length must be 16 bytes. The ciphertext should contain IV (first 16 bytes).</p>
+
+<b>Signature:</b>
+
+```go
+func Sm4CbcDecrypt(encrypted, key []byte) []byte
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/65Q6iYhLRTa)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/cryptor"
+)
+
+func main() {
+    key := []byte("1234567890abcdef")
+    plaintext := []byte("hello world")
+    
+    encrypted := cryptor.Sm4CbcEncrypt(plaintext, key)
+    decrypted := cryptor.Sm4CbcDecrypt(encrypted, key)
+    
+    fmt.Println(string(decrypted))
+
+    // Output:
+    // hello world
+}
+```
+
+### <span id="GenerateSm2Key">GenerateSm2Key</span>
+
+<p>Generate SM2 key pair (Chinese National Cryptography SM2 Elliptic Curve Public Key Algorithm). SM2 is an asymmetric encryption algorithm based on elliptic curve cryptography.</p>
+
+<b>Signature:</b>
+
+```go
+func GenerateSm2Key() (*Sm2PrivateKey, error)
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/bKYMqRLvIx3)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/cryptor"
+)
+
+func main() {
+    privateKey, err := cryptor.GenerateSm2Key()
+    if err != nil {
+        return
+    }
+    
+    plaintext := []byte("hello world")
+    
+    ciphertext, _ := cryptor.Sm2Encrypt(&privateKey.PublicKey, plaintext)
+    decrypted, _ := cryptor.Sm2Decrypt(privateKey, ciphertext)
+    
+    fmt.Println(string(decrypted))
+
+    // Output:
+    // hello world
+}
+```
+
+### <span id="Sm2Encrypt">Sm2Encrypt</span>
+
+<p>Encrypt data using SM2 public key. The returned ciphertext format is: C1(65 bytes) || C3(32 bytes) || C2(plaintext length).</p>
+
+<b>Signature:</b>
+
+```go
+func Sm2Encrypt(pub *Sm2PublicKey, plaintext []byte) ([]byte, error)
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/bKYMqRLvIx3)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/cryptor"
+)
+
+func main() {
+    privateKey, _ := cryptor.GenerateSm2Key()
+    plaintext := []byte("hello world")
+    
+    ciphertext, _ := cryptor.Sm2Encrypt(&privateKey.PublicKey, plaintext)
+    decrypted, _ := cryptor.Sm2Decrypt(privateKey, ciphertext)
+    
+    fmt.Println(string(decrypted))
+
+    // Output:
+    // hello world
+}
+```
+
+### <span id="Sm2Decrypt">Sm2Decrypt</span>
+
+<p>Decrypt data using SM2 private key. The ciphertext format should be: C1(65 bytes) || C3(32 bytes) || C2(plaintext length).</p>
+
+<b>Signature:</b>
+
+```go
+func Sm2Decrypt(priv *Sm2PrivateKey, ciphertext []byte) ([]byte, error)
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/bKYMqRLvIx3)</span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/cryptor"
+)
+
+func main() {
+    privateKey, _ := cryptor.GenerateSm2Key()
+    plaintext := []byte("hello world")
+    
+    ciphertext, _ := cryptor.Sm2Encrypt(&privateKey.PublicKey, plaintext)
+    decrypted, _ := cryptor.Sm2Decrypt(privateKey, ciphertext)
+    
+    fmt.Println(string(decrypted))
+
+    // Output:
+    // hello world
 }
 ```
