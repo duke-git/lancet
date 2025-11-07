@@ -494,8 +494,12 @@ func TestIsEmail(t *testing.T) {
 	assert := internal.NewAssert(t, "TestIsEmail")
 
 	assert.Equal(true, IsEmail("abc@xyz.com"))
+	assert.Equal(true, IsEmail("user@domain.co"))
+	assert.Equal(true, IsEmail("test.user@example.org"))
 	assert.Equal(false, IsEmail("@abc@xyz.com"))
 	assert.Equal(false, IsEmail("a.b@@com"))
+	assert.Equal(false, IsEmail("a.b@com"))
+	assert.Equal(false, IsEmail("test@example"))
 }
 
 func TestContainChinese(t *testing.T) {
