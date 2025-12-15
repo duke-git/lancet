@@ -8,6 +8,7 @@ formatter contains some functions for data formatting.
 
 -   [https://github.com/duke-git/lancet/blob/main/formatter/formatter.go](https://github.com/duke-git/lancet/blob/main/formatter/formatter.go)
 -   [https://github.com/duke-git/lancet/blob/main/formatter/byte.go](https://github.com/duke-git/lancet/blob/main/formatter/byte.go)
+-   [https://github.com/duke-git/lancet/blob/main/formatter/address.go](https://github.com/duke-git/lancet/blob/main/formatter/address.go)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -30,6 +31,8 @@ import (
 -   [BinaryBytes](#BinaryBytes)
 -   [ParseDecimalBytes](#ParseDecimalBytes)
 -   [ParseBinaryBytes](#ParseBinaryBytes)
+-   [Smart](#Smart)
+-   [Decompose](#Decompose)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -306,5 +309,136 @@ func main() {
     // 12288
     // 12288
     // 12492
+}
+```
+
+### <span id="Smart">Smart</span>
+
+<p>Parses a Chinese address string intelligently and extracts structured information. It can parse addresses with or without user information (name, phone, ID card, etc.). When withUser is true, it extracts user information from the address string. When withUser is false, it only parses the location information. Supports various address formats: standard format, compact format, labeled format, county-level cities format, etc.</p>
+
+<b>Signature:</b>
+
+```go
+func Smart(str string, withUser bool) *AddressInfo
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/HtTw0FSzenp)</span></b>
+
+```go
+package main
+
+import (
+    "encoding/json"
+    "fmt"
+    "github.com/duke-git/lancet/v2/formatter"
+)
+
+func main() {
+    // Parse complete address with user information
+    result1 := formatter.Smart("张三 13800138000 北京市朝阳区建国路1号", true)
+    jsonData1, _ := json.MarshalIndent(result1, "", "  ")
+    fmt.Println("Example 1 - With user info:")
+    fmt.Println(string(jsonData1))
+
+    // Parse address only, without extracting user information
+    result2 := formatter.Smart("北京市海淀区中关村大街1号", false)
+    fmt.Printf("\nExample 2 - Address only:\n")
+    fmt.Printf("Province: %s, City: %s, Region: %s, Street: %s\n",
+        result2.Province, result2.City, result2.Region, result2.Street)
+
+    // Parse county-level city address
+    result3 := formatter.Smart("河北省石家庄市新乐市经济开发区兴工街10号", false)
+    fmt.Printf("\nExample 3 - County-level city:\n")
+    fmt.Printf("Province: %s, City: %s, Region: %s, Street: %s\n",
+        result3.Province, result3.City, result3.Region, result3.Street)
+
+    // Compact format
+    result4 := formatter.Smart("马云13593464918陕西省西安市雁塔区丈八沟街道", true)
+    fmt.Printf("\nExample 4 - Compact format:\n")
+    fmt.Printf("Name: %s, Phone: %s, Address: %s%s%s%s\n",
+        result4.Name, result4.Mobile, result4.Province, result4.City, result4.Region, result4.Street)
+
+    // Output:
+    // Example 1 - With user info:
+    // {
+    //   "name": "张三",
+    //   "mobile": "13800138000",
+    //   "idn": "",
+    //   "postcode": "",
+    //   "province": "北京",
+    //   "city": "北京市",
+    //   "region": "朝阳区",
+    //   "street": "建国路1号",
+    //   "addr": "北京市朝阳区建国路1号"
+    // }
+    //
+    // Example 2 - Address only:
+    // Province: 北京, City: 北京市, Region: 海淀区, Street: 中关村大街1号
+    //
+    // Example 3 - County-level city:
+    // Province: 河北省, City: 石家庄市, Region: 新乐市, Street: 经济开发区兴工街10号
+    //
+    // Example 4 - Compact format:
+    // Name: 马云, Phone: 13593464918, Address: 陕西省西安市雁塔区丈八沟街道
+}
+```
+
+### <span id="Decompose">Decompose</span>
+
+<p>Extracts user information (name, phone, ID card, postal code) from an address string. It separates personal information from the address, supporting labeled format, compact format, and formats with separators. Returns an AddressInfo with extracted user information and cleaned address string.</p>
+
+<b>Signature:</b>
+
+```go
+func Decompose(str string) *AddressInfo
+```
+
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/wXsE5aKfhPk)</span></b>
+
+```go
+package main
+
+import (
+    "encoding/json"
+    "fmt"
+    "github.com/duke-git/lancet/v2/formatter"
+)
+
+func main() {
+    // Extract name and phone
+    result1 := formatter.Decompose("张三 13800138000 北京市朝阳区")
+    fmt.Println("Example 1 - Name and phone:")
+    fmt.Printf("Name: %s, Phone: %s, Address: %s\n", result1.Name, result1.Mobile, result1.Addr)
+
+    // Extract ID card number
+    result2 := formatter.Decompose("李四 110101199001011234 上海市")
+    fmt.Println("\nExample 2 - ID card number:")
+    fmt.Printf("Name: %s, ID Card: %s, Address: %s\n", result2.Name, result2.IDN, result2.Addr)
+
+    // Labeled format
+    result3 := formatter.Decompose("收货人：王五 电话：13900139000 收货地址：天津市河西区友谊路20号")
+    jsonData3, _ := json.MarshalIndent(result3, "", "  ")
+    fmt.Println("\nExample 3 - Labeled format:")
+    fmt.Println(string(jsonData3))
+
+    // Output:
+    // Example 1 - Name and phone:
+    // Name: 张三, Phone: 13800138000, Address: 北京市朝阳区
+    //
+    // Example 2 - ID card number:
+    // Name: 李四, ID Card: 110101199001011234, Address: 上海市
+    //
+    // Example 3 - Labeled format:
+    // {
+    //   "name": "王五",
+    //   "mobile": "13900139000",
+    //   "idn": "",
+    //   "postcode": "",
+    //   "province": "",
+    //   "city": "",
+    //   "region": "",
+    //   "street": "",
+    //   "addr": "天津市河西区友谊路20号"
+    // }
 }
 ```
