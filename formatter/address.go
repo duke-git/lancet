@@ -284,14 +284,17 @@ func fuzz(addr string) *fuzzyResult {
 					if mbStrstr(addrAfterSecondCity, "区") || mbStrstr(addrAfterSecondCity, "县") {
 						// 提取两个"市"之间的内容
 						betweenCities := mbSubstr(addr, firstCityPos+1, secondCityAbsPos-firstCityPos)
-						// 检查是否是重复的地名（如"北京市北京市"）
-						// 第一个"市"及之前的内容
-						firstCityFull := mbSubstr(addr, 0, firstCityPos+1)
-						if betweenCities != firstCityFull {
-							// 不是重复地名，这是县级市
-							a3 = betweenCities
-							deep3KeywordPos = secondCityAbsPos
-							hasCountyLevelCity = true
+						// 检查是否是重复的地名（如"北京市北京市"或"杭州市西湖区杭州市"）
+						// 如果两个"市"之间包含"区"或"县"，说明不是县级市，而是重复地名
+						if !mbStrstr(betweenCities, "区") && !mbStrstr(betweenCities, "县") {
+							// 第一个"市"及之前的内容
+							firstCityFull := mbSubstr(addr, 0, firstCityPos+1)
+							if betweenCities != firstCityFull {
+								// 不是重复地名，这是县级市
+								a3 = betweenCities
+								deep3KeywordPos = secondCityAbsPos
+								hasCountyLevelCity = true
+							}
 						}
 					}
 				}
@@ -307,11 +310,13 @@ func fuzz(addr string) *fuzzyResult {
 
 			// 处理区
 			if mbStrstr(addr, "区") {
+				// 使用第一个"区"（避免重复地名干扰，如"西湖区杭州市西湖区"）
 				deep3KeywordPos = mbStrpos(addr, "区")
+
 				if mbStrstr(addr, "市") {
 					// 策略:找到"区"之前的最后一个"市"
 					// 这样可以避免详细地址中的"市"字干扰(如"农贸市场")
-					zonePos := mbStrpos(addr, "区")
+					zonePos := deep3KeywordPos
 					// 从开头到"区"的子串中,查找最后一个"市"
 					addrBeforeZone := mbSubstr(addr, 0, zonePos)
 					cityPos := mbStrripos(addrBeforeZone, "市")
@@ -328,11 +333,25 @@ func fuzz(addr string) *fuzzyResult {
 
 			// 处理县
 			if mbStrstr(addr, "县") {
+				// 使用第一个"县"（避免重复地名干扰）
 				deep3KeywordPos = mbStrpos(addr, "县")
 				if mbStrstr(addr, "市") {
-					cityPos := mbStrpos(addr, "市")
-					zonePos := mbStrpos(addr, "县")
-					a3 = mbSubstr(addr, cityPos+1, zonePos-cityPos)
+					// 从开头到"县"的子串中,查找最后一个"市"
+					addrBeforeCounty := mbSubstr(addr, 0, deep3KeywordPos)
+					cityPos := mbStrripos(addrBeforeCounty, "市")
+					if cityPos != -1 {
+						a3 = mbSubstr(addr, cityPos+1, deep3KeywordPos-cityPos)
+					} else {
+						if mbStrstr(addr, "自治县") {
+							a3 = mbSubstr(addr, deep3KeywordPos-6, 7)
+							firstChar := mbSubstr(a3, 0, 1)
+							if firstChar == "省" || firstChar == "市" || firstChar == "州" {
+								a3 = mbSubstr(a3, 1, utf8.RuneCountInString(a3)-1)
+							}
+						} else {
+							a3 = mbSubstr(addr, deep3KeywordPos-2, 3)
+						}
+					}
 				} else {
 					if mbStrstr(addr, "自治县") {
 						a3 = mbSubstr(addr, deep3KeywordPos-6, 7)
@@ -373,10 +392,12 @@ func fuzz(addr string) *fuzzyResult {
 	if mbStrpos(addr, "市") != -1 || mbStrstr(addr, "盟") || mbStrstr(addr, "州") {
 		tmpPos := -1
 		if tmpPos = mbStrpos(addr, "市"); tmpPos != -1 {
+			// 使用第一个"市"（避免重复地名干扰，如"杭州市西湖区杭州市"）
 			// 向前查找省的位置，如果有省就从省后开始，否则从开头开始
-			provincePos := mbStrpos(addr, "省")
+			addrBeforeCity := mbSubstr(addr, 0, tmpPos)
+			provincePos := mbStrripos(addrBeforeCity, "省")
 			startPos := 0
-			if provincePos != -1 && provincePos < tmpPos {
+			if provincePos != -1 {
 				startPos = provincePos + 1
 			}
 			a2 = mbSubstr(addr, startPos, tmpPos-startPos+1)

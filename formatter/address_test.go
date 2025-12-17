@@ -150,6 +150,28 @@ func TestSmart(t *testing.T) {
 				Street:   "",
 			},
 		},
+		{
+			name:     "浙江杭州西湖区重复地址",
+			input:    "浙江省杭州市西湖区杭州市西湖区人民政府109号",
+			withUser: false,
+			want: &AddressInfo{
+				Province: "浙江省",
+				City:     "杭州市",
+				Region:   "西湖区",
+				Street:   "人民政府109号",
+			},
+		},
+		{
+			name:     "湖南长沙市重复地址",
+			input:    "湖南省长沙市岳麓区银盆岭街道长沙市人民政府长沙市政府大楼",
+			withUser: false,
+			want: &AddressInfo{
+				Province: "湖南省",
+				City:     "长沙市",
+				Region:   "岳麓区",
+				Street:   "银盆岭街道人民政府政府大楼",
+			},
+		},
 	}
 
 	for _, tt := range tests {
