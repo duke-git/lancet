@@ -118,6 +118,38 @@ func TestSmart(t *testing.T) {
 				Street:   "真州镇解放东路99号",
 			},
 		},
+		{
+			name:     "新疆石河子市地址",
+			input:    "新疆石河子市北三路25小区",
+			withUser: false,
+			want: &AddressInfo{
+				Province: "新疆维吾尔自治区",
+				City:     "自治区直辖县级市",
+				Region:   "石河子市",
+			},
+		},
+		{
+			name:     "新疆石河子市-简化格式省+县级市",
+			input:    "新疆维吾尔自治区石河子市",
+			withUser: false,
+			want: &AddressInfo{
+				Province: "新疆维吾尔自治区",
+				City:     "自治区直辖县级市",
+				Region:   "石河子市",
+				Street:   "",
+			},
+		},
+		{
+			name:     "新疆石河子市-完整行政区划表述",
+			input:    "新疆维吾尔自治区自治区直辖县级市石河子市",
+			withUser: false,
+			want: &AddressInfo{
+				Province: "新疆维吾尔自治区",
+				City:     "自治区直辖县级市",
+				Region:   "石河子市",
+				Street:   "",
+			},
+		},
 	}
 
 	for _, tt := range tests {

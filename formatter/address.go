@@ -65,14 +65,35 @@ func Smart(str string, withUser bool) *AddressInfo {
 	result.City = parse.City
 	result.Region = parse.Region
 
-	if fuzz.Street != "" {
+	// 提取街道地址：从原始地址中找到区/县的位置，提取后面的内容
+	if result.Region != "" && result.Addr != "" {
+		// 在原始地址中查找区/县的位置（转换为rune数组以正确处理中文）
+		addrRunes := []rune(result.Addr)
+		regionRunes := []rune(result.Region)
+		regionPos := mbStrpos(result.Addr, result.Region)
+
+		if regionPos != -1 {
+			// 提取区/县后面的内容作为街道地址
+			streetStart := regionPos + len(regionRunes)
+			if streetStart < len(addrRunes) {
+				result.Street = string(addrRunes[streetStart:])
+			}
+		} else if fuzz.Street != "" {
+			// 如果没找到区/县，使用fuzz返回的街道
+			result.Street = fuzz.Street
+		}
+	} else if fuzz.Street != "" {
 		result.Street = fuzz.Street
 	}
 
-	// 清理街道地址中的重复省市区信息
+	// 清理街道地址中的重复省市区信息（可能存在部分匹配的残留）
 	result.Street = strings.ReplaceAll(result.Street, result.Region, "")
 	result.Street = strings.ReplaceAll(result.Street, result.City, "")
 	result.Street = strings.ReplaceAll(result.Street, result.Province, "")
+	// 清理街道地址中的残留片段（如"自治区直辖县级市"被替换后的残留）
+	result.Street = strings.ReplaceAll(result.Street, "自治区直辖县级市", "")
+	result.Street = strings.ReplaceAll(result.Street, "直辖县级市", "")
+	result.Street = strings.TrimSpace(result.Street)
 
 	return result
 }
@@ -217,6 +238,8 @@ func fuzz(addr string) *fuzzyResult {
 	addrOrigin := addr
 	addr = strings.ReplaceAll(addr, " ", "")
 	addr = strings.ReplaceAll(addr, ",", "")
+	// 先替换"自治区直辖县级市"为"市"，避免后续"自治区"替换时产生问题
+	addr = strings.ReplaceAll(addr, "自治区直辖县级市", "市")
 	addr = strings.ReplaceAll(addr, "自治区", "省")
 	addr = strings.ReplaceAll(addr, "自治州", "州")
 	addr = strings.ReplaceAll(addr, "小区", "")
