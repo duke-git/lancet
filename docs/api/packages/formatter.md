@@ -31,8 +31,8 @@ import (
 -   [BinaryBytes](#BinaryBytes)
 -   [ParseDecimalBytes](#ParseDecimalBytes)
 -   [ParseBinaryBytes](#ParseBinaryBytes)
--   [Smart](#Smart)
--   [Decompose](#Decompose)
+-   [ParseCNAddress](#ParseCNAddress)
+-   [ParsePersonInfo](#ParsePersonInfo)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -312,17 +312,17 @@ func main() {
 }
 ```
 
-### <span id="Smart">Smart</span>
+### <span id="ParseCNAddress">ParseCNAddress</span>
 
 <p>智能解析中国地址字符串并提取结构化信息。可以解析带或不带用户信息（姓名、电话、身份证等）的地址。当 withUser 为 true 时，从地址字符串中提取用户信息。当 withUser 为 false 时，仅解析位置信息。支持多种地址格式：标准格式、紧凑格式、带关键词格式、县级市格式等。</p>
 
 <b>函数签名:</b>
 
 ```go
-func Smart(str string, withUser bool) *AddressInfo
+func ParseCNAddress(str string, withUser bool) *AddressInfo
 ```
 
-<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/HtTw0FSzenp)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/o5l09hQopEV)</span></b>
 
 ```go
 package main
@@ -335,25 +335,25 @@ import (
 
 func main() {
     // 解析包含用户信息的完整地址
-    result1 := formatter.Smart("张三 13800138000 北京市朝阳区建国路1号", true)
+    result1 := formatter.ParseCNAddress("张三 13800138000 北京市朝阳区建国路1号", true)
     jsonData1, _ := json.MarshalIndent(result1, "", "  ")
     fmt.Println("示例 1 - 带用户信息:")
     fmt.Println(string(jsonData1))
 
     // 仅解析地址，不提取用户信息
-    result2 := formatter.Smart("北京市海淀区中关村大街1号", false)
+    result2 := formatter.ParseCNAddress("北京市海淀区中关村大街1号", false)
     fmt.Printf("\n示例 2 - 仅地址:\n")
     fmt.Printf("省: %s, 市: %s, 区: %s, 街道: %s\n",
         result2.Province, result2.City, result2.Region, result2.Street)
 
     // 解析县级市地址
-    result3 := formatter.Smart("河北省石家庄市新乐市经济开发区兴工街10号", false)
+    result3 := formatter.ParseCNAddress("河北省石家庄市新乐市经济开发区兴工街10号", false)
     fmt.Printf("\n示例 3 - 县级市:\n")
     fmt.Printf("省: %s, 市: %s, 区/县: %s, 街道: %s\n",
         result3.Province, result3.City, result3.Region, result3.Street)
 
     // 紧凑格式
-    result4 := formatter.Smart("马云13593464918陕西省西安市雁塔区丈八沟街道", true)
+    result4 := formatter.ParseCNAddress("马云13593464918陕西省西安市雁塔区丈八沟街道", true)
     fmt.Printf("\n示例 4 - 紧凑格式:\n")
     fmt.Printf("姓名: %s, 电话: %s, 地址: %s%s%s%s\n",
         result4.Name, result4.Mobile, result4.Province, result4.City, result4.Region, result4.Street)
@@ -383,17 +383,17 @@ func main() {
 }
 ```
 
-### <span id="Decompose">Decompose</span>
+### <span id="ParsePersonInfo">ParsePersonInfo</span>
 
 <p>从地址字符串中提取用户信息（姓名、电话、身份证、邮编）。将个人信息与地址分离，支持带标签格式、紧凑格式、带分隔符格式。返回包含提取的用户信息和清理后地址字符串的 AddressInfo。</p>
 
 <b>函数签名:</b>
 
 ```go
-func Decompose(str string) *AddressInfo
+func ParsePersonInfo(str string) *AddressInfo
 ```
 
-<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/wXsE5aKfhPk)</span></b>
+<b>示例:<span style="float:right;display:inline-block;">[运行](https://go.dev/play/p/JO-uTlJlTy7)</span></b>
 
 ```go
 package main
@@ -406,17 +406,17 @@ import (
 
 func main() {
     // 提取姓名和手机号
-    result1 := formatter.Decompose("张三 13800138000 北京市朝阳区")
+    result1 := formatter.ParsePersonInfo("张三 13800138000 北京市朝阳区")
     fmt.Println("示例 1 - 姓名和手机号:")
     fmt.Printf("姓名: %s, 手机: %s, 地址: %s\n", result1.Name, result1.Mobile, result1.Addr)
 
     // 提取身份证号
-    result2 := formatter.Decompose("李四 110101199001011234 上海市")
+    result2 := formatter.ParsePersonInfo("李四 110101199001011234 上海市")
     fmt.Println("\n示例 2 - 身份证号:")
     fmt.Printf("姓名: %s, 身份证: %s, 地址: %s\n", result2.Name, result2.IDN, result2.Addr)
 
     // 带标签格式
-    result3 := formatter.Decompose("收货人：王五 电话：13900139000 收货地址：天津市河西区友谊路20号")
+    result3 := formatter.ParsePersonInfo("收货人：王五 电话：13900139000 收货地址：天津市河西区友谊路20号")
     jsonData3, _ := json.MarshalIndent(result3, "", "  ")
     fmt.Println("\n示例 3 - 带标签格式:")
     fmt.Println(string(jsonData3))

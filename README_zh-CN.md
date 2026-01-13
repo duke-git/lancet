@@ -972,6 +972,12 @@ import "github.com/duke-git/lancet/v2/formatter"
 -   **<big>ParseBinaryBytes</big>** : 将字节单位字符串转换成其所表示的字节数（以 1024 为基数）。
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/formatter.md#ParseBinaryBytes)]
     [[play](https://go.dev/play/p/69v1tTT62x8)]
+-   **<big>ParseCNAddress</big>** : 智能解析中国地址字符串并提取结构化信息（省、市、区、街道、姓名、电话等）。支持多种地址格式，包括县级市。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/formatter.md#ParseCNAddress)]
+    [[play](https://go.dev/play/p/o5l09hQopEV)]
+-   **<big>ParsePersonInfo</big>** : 从地址字符串中提取用户信息（姓名、电话、身份证、邮编）并将其与位置地址分离。
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/api/packages/formatter.md#ParsePersonInfo)]
+    [[play](https://go.dev/play/p/JO-uTlJlTy7)]
 
 <h3 id="function"> 13. function 函数包控制函数执行流程，包含部分函数式编程。&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">回到目录</a></h3>
 

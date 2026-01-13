@@ -30,7 +30,7 @@ type fuzzyResult struct {
 	Street string // Street address / 街道地址
 }
 
-// Smart parses a Chinese address string intelligently and extracts structured information.
+// ParseCNAddress parses a Chinese address string intelligently and extracts structured information.
 // It can parse addresses with or without user information (name, phone, ID card, etc.).
 // When withUser is true, it extracts user information from the address string.
 // When withUser is false, it only parses the location information.
@@ -39,7 +39,7 @@ type fuzzyResult struct {
 // - Compact format: "Name Phone Province City District Street"
 // - With keywords: "Name: xxx Phone: xxx Address: xxx"
 // - County-level cities: "Province City CountyCity District" (e.g., "河北省石家庄市新乐市")
-// Smart 智能解析中国地址字符串并提取结构化信息。
+// ParseCNAddress 智能解析中国地址字符串并提取结构化信息。
 // 可以解析带或不带用户信息（姓名、电话、身份证等）的地址。
 // 当 withUser 为 true 时，从地址字符串中提取用户信息。
 // 当 withUser 为 false 时，仅解析位置信息。
@@ -48,12 +48,12 @@ type fuzzyResult struct {
 // - 紧凑格式："姓名 电话 省 市 区 街道"
 // - 带关键词："姓名:xxx 电话:xxx 地址:xxx"
 // - 县级市："省 市 县级市 区"（如"河北省石家庄市新乐市"）
-func Smart(str string, withUser bool) *AddressInfo {
+func ParseCNAddress(str string, withUser bool) *AddressInfo {
 	result := &AddressInfo{}
 
 	if withUser {
-		decompose := Decompose(str)
-		result = decompose
+		ParsePersonInfo := ParsePersonInfo(str)
+		result = ParsePersonInfo
 	} else {
 		result.Addr = str
 	}
@@ -98,19 +98,19 @@ func Smart(str string, withUser bool) *AddressInfo {
 	return result
 }
 
-// Decompose extracts user information (name, phone, ID card, postal code) from an address string.
+// ParsePersonInfo extracts user information (name, phone, ID card, postal code) from an address string.
 // It separates personal information from the address, supporting various formats:
 // - Labeled format: "Name: xxx Phone: xxx Address: xxx"
 // - Compact format: "Name Phone Address" (e.g., "张三13800138000北京市朝阳区")
 // - With separators: using colons, commas, newlines as delimiters
 // Returns an AddressInfo with extracted user information and cleaned address string in Addr field.
-// Decompose 从地址字符串中提取用户信息（姓名、电话、身份证、邮编）。
+// ParsePersonInfo 从地址字符串中提取用户信息（姓名、电话、身份证、邮编）。
 // 将个人信息与地址分离，支持多种格式：
 // - 带标签格式："姓名:xxx 电话:xxx 地址:xxx"
 // - 紧凑格式："姓名 电话 地址"（如"张三13800138000北京市朝阳区"）
 // - 带分隔符：使用冒号、逗号、换行符作为分隔符
 // 返回包含提取的用户信息和清理后地址字符串（在 Addr 字段中）的 AddressInfo。
-func Decompose(str string) *AddressInfo {
+func ParsePersonInfo(str string) *AddressInfo {
 	compose := &AddressInfo{}
 
 	// 先尝试提取带标签的信息

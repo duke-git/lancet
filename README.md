@@ -962,6 +962,12 @@ import "github.com/duke-git/lancet/v2/formatter"
 -   **<big>ParseBinaryBytes</big>** : return the human readable bytes size string into the amount it represents(base 1024).
     [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/formatter.md#ParseBinaryBytes)]
     [[play](https://go.dev/play/p/69v1tTT62x8)]
+-   **<big>ParseCNAddress</big>** : parses a Chinese address string intelligently and extracts structured information (province, city, district, street, name, phone, etc.). Supports various address formats including county-level cities.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/formatter.md#ParseCNAddress)]
+    [[play](https://go.dev/play/p/o5l09hQopEV)]
+-   **<big>ParsePersonInfo</big>** : extracts user information (name, phone, ID card, postal code) from an address string and separates it from the location address.
+    [[doc](https://github.com/duke-git/lancet/blob/main/docs/en/api/packages/formatter.md#ParsePersonInfo)]
+    [[play](https://go.dev/play/p/JO-uTlJlTy7)]
 
 <h3 id="function"> 13. Function package can control the flow of function execution and support part of functional programming.&nbsp; &nbsp; &nbsp; &nbsp;<a href="#index">index</a></h3>
 

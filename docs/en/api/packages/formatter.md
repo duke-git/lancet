@@ -31,8 +31,8 @@ import (
 -   [BinaryBytes](#BinaryBytes)
 -   [ParseDecimalBytes](#ParseDecimalBytes)
 -   [ParseBinaryBytes](#ParseBinaryBytes)
--   [Smart](#Smart)
--   [Decompose](#Decompose)
+-   [ParseCNAddress](#ParseCNAddress)
+-   [ParsePersonInfo](#ParsePersonInfo)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -312,17 +312,17 @@ func main() {
 }
 ```
 
-### <span id="Smart">Smart</span>
+### <span id="ParseCNAddress">ParseCNAddress</span>
 
 <p>Parses a Chinese address string intelligently and extracts structured information. It can parse addresses with or without user information (name, phone, ID card, etc.). When withUser is true, it extracts user information from the address string. When withUser is false, it only parses the location information. Supports various address formats: standard format, compact format, labeled format, county-level cities format, etc.</p>
 
 <b>Signature:</b>
 
 ```go
-func Smart(str string, withUser bool) *AddressInfo
+func ParseCNAddress(str string, withUser bool) *AddressInfo
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/HtTw0FSzenp)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/o5l09hQopEV)</span></b>
 
 ```go
 package main
@@ -335,25 +335,25 @@ import (
 
 func main() {
     // Parse complete address with user information
-    result1 := formatter.Smart("张三 13800138000 北京市朝阳区建国路1号", true)
+    result1 := formatter.ParseCNAddress("张三 13800138000 北京市朝阳区建国路1号", true)
     jsonData1, _ := json.MarshalIndent(result1, "", "  ")
     fmt.Println("Example 1 - With user info:")
     fmt.Println(string(jsonData1))
 
     // Parse address only, without extracting user information
-    result2 := formatter.Smart("北京市海淀区中关村大街1号", false)
+    result2 := formatter.ParseCNAddress("北京市海淀区中关村大街1号", false)
     fmt.Printf("\nExample 2 - Address only:\n")
     fmt.Printf("Province: %s, City: %s, Region: %s, Street: %s\n",
         result2.Province, result2.City, result2.Region, result2.Street)
 
     // Parse county-level city address
-    result3 := formatter.Smart("河北省石家庄市新乐市经济开发区兴工街10号", false)
+    result3 := formatter.ParseCNAddress("河北省石家庄市新乐市经济开发区兴工街10号", false)
     fmt.Printf("\nExample 3 - County-level city:\n")
     fmt.Printf("Province: %s, City: %s, Region: %s, Street: %s\n",
         result3.Province, result3.City, result3.Region, result3.Street)
 
     // Compact format
-    result4 := formatter.Smart("马云13593464918陕西省西安市雁塔区丈八沟街道", true)
+    result4 := formatter.ParseCNAddress("马云13593464918陕西省西安市雁塔区丈八沟街道", true)
     fmt.Printf("\nExample 4 - Compact format:\n")
     fmt.Printf("Name: %s, Phone: %s, Address: %s%s%s%s\n",
         result4.Name, result4.Mobile, result4.Province, result4.City, result4.Region, result4.Street)
@@ -383,17 +383,17 @@ func main() {
 }
 ```
 
-### <span id="Decompose">Decompose</span>
+### <span id="ParsePersonInfo">ParsePersonInfo</span>
 
 <p>Extracts user information (name, phone, ID card, postal code) from an address string. It separates personal information from the address, supporting labeled format, compact format, and formats with separators. Returns an AddressInfo with extracted user information and cleaned address string.</p>
 
 <b>Signature:</b>
 
 ```go
-func Decompose(str string) *AddressInfo
+func ParsePersonInfo(str string) *AddressInfo
 ```
 
-<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/wXsE5aKfhPk)</span></b>
+<b>Example:<span style="float:right;display:inline-block;">[Run](https://go.dev/play/p/JO-uTlJlTy7)</span></b>
 
 ```go
 package main
@@ -406,17 +406,17 @@ import (
 
 func main() {
     // Extract name and phone
-    result1 := formatter.Decompose("张三 13800138000 北京市朝阳区")
+    result1 := formatter.ParsePersonInfo("张三 13800138000 北京市朝阳区")
     fmt.Println("Example 1 - Name and phone:")
     fmt.Printf("Name: %s, Phone: %s, Address: %s\n", result1.Name, result1.Mobile, result1.Addr)
 
     // Extract ID card number
-    result2 := formatter.Decompose("李四 110101199001011234 上海市")
+    result2 := formatter.ParsePersonInfo("李四 110101199001011234 上海市")
     fmt.Println("\nExample 2 - ID card number:")
     fmt.Printf("Name: %s, ID Card: %s, Address: %s\n", result2.Name, result2.IDN, result2.Addr)
 
     // Labeled format
-    result3 := formatter.Decompose("收货人：王五 电话：13900139000 收货地址：天津市河西区友谊路20号")
+    result3 := formatter.ParsePersonInfo("收货人：王五 电话：13900139000 收货地址：天津市河西区友谊路20号")
     jsonData3, _ := json.MarshalIndent(result3, "", "  ")
     fmt.Println("\nExample 3 - Labeled format:")
     fmt.Println(string(jsonData3))

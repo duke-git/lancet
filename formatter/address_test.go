@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func TestSmart(t *testing.T) {
+func TestParseCNAddress(t *testing.T) {
 	tests := []struct {
 		name     string
 		input    string
@@ -176,7 +176,7 @@ func TestSmart(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got := Smart(tt.input, tt.withUser)
+			got := ParseCNAddress(tt.input, tt.withUser)
 
 			// 打印结果便于调试
 			jsonData, _ := json.MarshalIndent(got, "", "  ")
@@ -202,7 +202,7 @@ func TestSmart(t *testing.T) {
 	}
 }
 
-func TestDecompose(t *testing.T) {
+func TestParsePersonInfo(t *testing.T) {
 	tests := []struct {
 		name   string
 		input  string
@@ -248,7 +248,7 @@ func TestDecompose(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got := Decompose(tt.input)
+			got := ParsePersonInfo(tt.input)
 			jsonData, _ := json.MarshalIndent(got, "", "  ")
 			t.Logf("Result: %s", jsonData)
 			tt.verify(t, got)
@@ -345,16 +345,16 @@ func TestFuzz(t *testing.T) {
 	}
 }
 
-func ExampleSmart() {
+func ExampleParseCNAddress() {
 	// 解析包含用户信息的完整地址
-	result := Smart("张三 13800138000 北京市朝阳区建国路1号", true)
+	result := ParseCNAddress("张三 13800138000 北京市朝阳区建国路1号", true)
 	jsonData, _ := json.MarshalIndent(result, "", "  ")
 	println(string(jsonData))
 }
 
-func ExampleDecompose() {
+func ExampleParsePersonInfo() {
 	// 分离用户信息
-	result := Decompose("收货人：李四 电话：18612345678 地址：上海市浦东新区世纪大道100号")
+	result := ParsePersonInfo("收货人：李四 电话：18612345678 地址：上海市浦东新区世纪大道100号")
 	jsonData, _ := json.MarshalIndent(result, "", "  ")
 	println(string(jsonData))
 }
