@@ -209,6 +209,9 @@ func (client *HttpClient) SendRequest(request *HttpRequest) (*http.Response, err
 		} else {
 			err = client.setFormData(req, request.FormData, nil)
 		}
+		if err != nil {
+			return nil, err
+		}
 	}
 
 	client.Request = req
