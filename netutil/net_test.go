@@ -95,6 +95,36 @@ func TestIsInternalIP(t *testing.T) {
 	}
 }
 
+func TestIsInternalIPCoversIPv6AndSharedSpace(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestIsInternalIPCoversIPv6AndSharedSpace")
+
+	ips := []net.IP{
+		net.ParseIP("fd12:3456:789a::1"),
+		net.ParseIP("fe80::1"),
+		net.ParseIP("100.64.0.1"),
+		net.ParseIP("100.127.255.255"),
+		net.ParseIP("100.63.255.255"),
+		net.ParseIP("100.128.0.1"),
+		net.ParseIP("::ffff:192.168.0.1"),
+		net.ParseIP("64:ff9b::a9fe:a9fe"),
+		net.ParseIP("64:ff9b::808:808"),
+		net.ParseIP("2002:7f00:1::1"),
+		net.ParseIP("2002:808:808::1"),
+		net.ParseIP("2001::80ff:fffe"),
+		net.ParseIP("2001:db8::1"),
+	}
+	expected := []bool{
+		true, true, true, true, false, false, true,
+		true, false, true, false, true, false,
+	}
+
+	for i := 0; i < len(ips); i++ {
+		assert.Equal(expected[i], IsInternalIP(ips[i]))
+	}
+}
+
 func TestGetIps(t *testing.T) {
 	ips := GetIps()
 	t.Log(ips)
