@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"io"
 	"log"
+	"net/http"
+	"net/http/httptest"
 	"os"
 	"runtime"
 	"sync"
@@ -430,7 +432,12 @@ func ExampleWriteBytesToFile() {
 }
 
 func ExampleReadFile() {
-	reader, fn, err := ReadFile("https://httpbin.org/robots.txt")
+	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprint(w, "User-agent: *\nDisallow: /deny\n")
+	}))
+	defer ts.Close()
+
+	reader, fn, err := ReadFile(ts.URL)
 	if err != nil {
 		return
 	}

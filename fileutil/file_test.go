@@ -1,7 +1,10 @@
 package fileutil
 
 import (
+	"fmt"
 	"io"
+	"net/http"
+	"net/http/httptest"
 	"os"
 	"path/filepath"
 	"runtime"
@@ -516,9 +519,14 @@ func TestWriteBytesToFile(t *testing.T) {
 }
 
 func TestReadFile(t *testing.T) {
-	reader, close, err := ReadFile("https://httpbin.org/robots.txt")
+	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprint(w, "User-agent: *\nDisallow: /deny\n")
+	}))
+	defer ts.Close()
+
+	reader, close, err := ReadFile(ts.URL)
 	if err != nil {
-		t.Fail()
+		t.Fatal(err)
 	}
 	defer close()
 
