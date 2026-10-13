@@ -192,16 +192,35 @@ func IsPublicIP(IP net.IP) bool {
 // IsInternalIP verify an ip is intranet or not.
 // Play: https://go.dev/play/p/sYGhXbgO4Cb
 func IsInternalIP(IP net.IP) bool {
-	if IP.IsLoopback() {
+	if IP.IsLoopback() || IP.IsPrivate() || IP.IsLinkLocalUnicast() {
 		return true
 	}
 	if ip4 := IP.To4(); ip4 != nil {
-		return ip4[0] == 10 ||
-			(ip4[0] == 172 && ip4[1] >= 16 && ip4[1] <= 31) ||
-			(ip4[0] == 169 && ip4[1] == 254) ||
-			(ip4[0] == 192 && ip4[1] == 168)
+		// RFC 6598 shared address space, 100.64.0.0/10.
+		return ip4[0] == 100 && ip4[1]&0xc0 == 0x40
+	}
+	if embedded, ok := embeddedTransitionIPv4(IP); ok {
+		return IsInternalIP(embedded)
 	}
 	return false
+}
+
+// embeddedTransitionIPv4 returns the IPv4 address carried by a NAT64, 6to4, or Teredo address.
+func embeddedTransitionIPv4(ip net.IP) (net.IP, bool) {
+	ip = ip.To16()
+	if ip == nil || ip.To4() != nil {
+		return nil, false
+	}
+	switch {
+	case bytes.Equal(ip[:12], []byte{0x00, 0x64, 0xff, 0x9b, 0, 0, 0, 0, 0, 0, 0, 0}):
+		return net.IPv4(ip[12], ip[13], ip[14], ip[15]), true
+	case ip[0] == 0x20 && ip[1] == 0x02:
+		return net.IPv4(ip[2], ip[3], ip[4], ip[5]), true
+	case ip[0] == 0x20 && ip[1] == 0x01 && ip[2] == 0 && ip[3] == 0:
+		return net.IPv4(ip[12]^0xff, ip[13]^0xff, ip[14]^0xff, ip[15]^0xff), true
+	default:
+		return nil, false
+	}
 }
 
 // EncodeUrl encode url.
