@@ -412,21 +412,41 @@ func TestHttpClient_AsyncSendRequest(t *testing.T) {
 }
 
 func TestProxy(t *testing.T) {
+	t.Parallel()
+
+	// Local target server
+	target := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(http.StatusOK)
+		_, _ = w.Write([]byte("ok"))
+	}))
+	defer target.Close()
+
+	// Local proxy server (basic forwarding stub)
+	proxy := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		// In real proxy tests, you'd validate request form and forward.
+		// Keep deterministic: just return OK.
+		w.WriteHeader(http.StatusOK)
+		_, _ = w.Write([]byte("proxied"))
+	}))
+	defer proxy.Close()
+
+	proxyURL, err := url.Parse(proxy.URL)
+	if err != nil {
+		t.Fatalf("failed to parse proxy URL: %v", err)
+	}
+
 	config := &HttpClientConfig{
 		HandshakeTimeout: 20 * time.Second,
 		ResponseTimeout:  40 * time.Second,
-		// Use the proxy ip to add it here
-		//Proxy: &url.URL{
-		//	Scheme: "http",
-		//	Host:   "46.17.63.166:18888",
-		//},
+		Proxy:            proxyURL,
 	}
+
 	httpClient := NewHttpClientWithConfig(config)
-	resp, err := httpClient.Get("https://www.ipplus360.com/getLocation")
+	resp, err := httpClient.Get(target.URL)
 	if err != nil {
-		t.Log("net error: ", err.Error())
-		return
+		t.Fatalf("request failed: %v", err)
 	}
+	defer resp.Body.Close()
 
 	if resp.StatusCode != http.StatusOK {
 		t.Fatalf("expected %d, got %d", http.StatusOK, resp.StatusCode)
