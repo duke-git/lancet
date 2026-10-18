@@ -602,6 +602,9 @@ func TestIsBase64(t *testing.T) {
 	t.Parallel()
 
 	assert := internal.NewAssert(t, "TestIsBase64")
+	assert.Equal(false, IsBase64(`ab\=`))
+	assert.Equal(false, IsBase64(`\\\\`))
+	assert.Equal(true, IsBase64("////"))
 
 	assert.Equal(true, IsBase64("aGVsbG8="))
 	assert.Equal(false, IsBase64("123456"))
