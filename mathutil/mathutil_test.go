@@ -49,6 +49,19 @@ func TestPercent(t *testing.T) {
 	assert.EqualValues(-7.42, Percent(-30305, 408420, 2))
 }
 
+func TestIntegerRoundingScale(t *testing.T) {
+	assert := internal.NewAssert(t, "TestIntegerRoundingScale")
+	assert.Equal(float64(42), RoundToFloat(int8(42), 2))
+	assert.Equal("42.00", RoundToString(int8(42), 2))
+	assert.Equal(float64(42), FloorToFloat(uint8(42), 2))
+	assert.Equal("42.00", FloorToString(uint8(42), 2))
+	assert.Equal(float64(42), CeilToFloat(int8(42), 2))
+	assert.Equal("42.00", CeilToString(int8(42), 2))
+	assert.Equal(float64(150), RoundToFloat(149, -1))
+	assert.Equal(float64(140), FloorToFloat(149, -1))
+	assert.Equal(float64(150), CeilToFloat(149, -1))
+}
+
 func TestRoundToFloat(t *testing.T) {
 	t.Parallel()
 
