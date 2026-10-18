@@ -516,7 +516,7 @@ func SplitAndTrim(str, delimiter string, characterMask ...string) []string {
 
 var (
 	// DefaultTrimChars are the characters which are stripped by Trim* functions in default.
-	DefaultTrimChars = string([]byte{
+	DefaultTrimChars = string([]rune{
 		'\t', // Tab.
 		'\v', // Vertical tab.
 		'\n', // New line (line feed).
