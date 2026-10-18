@@ -575,9 +575,12 @@ func convertSlice(src reflect.Value, dst reflect.Value) error {
 		return fmt.Errorf("error type:%s", dst.Type().String())
 	}
 	l := src.Len()
-	target := reflect.MakeSlice(dst.Type(), l, l)
-	if dst.CanSet() {
-		dst.Set(target)
+	if dst.Kind() == reflect.Array {
+		if l > dst.Len() {
+			return fmt.Errorf("source length %d exceeds destination length %d", l, dst.Len())
+		}
+	} else if dst.CanSet() {
+		dst.Set(reflect.MakeSlice(dst.Type(), l, l))
 	}
 	for i := 0; i < l; i++ {
 		srcValue := src.Index(i)

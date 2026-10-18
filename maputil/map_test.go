@@ -11,6 +11,16 @@ import (
 	"github.com/duke-git/lancet/v2/internal"
 )
 
+func TestMapToArray(t *testing.T) {
+	var dst [2]int
+	if err := MapTo([]int{3, 4}, &dst); err != nil || dst != [2]int{3, 4} {
+		t.Fatalf("got %v, %v", dst, err)
+	}
+	if err := MapTo([]int{1, 2, 3}, &dst); err == nil {
+		t.Fatal("expected an error for an oversized source")
+	}
+}
+
 func TestKeys(t *testing.T) {
 	t.Parallel()
 
