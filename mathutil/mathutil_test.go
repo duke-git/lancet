@@ -17,6 +17,13 @@ func TestExponent(t *testing.T) {
 	assert.Equal(int64(100), Exponent(10, 2))
 }
 
+func TestPermutationBeyondFactorialRange(t *testing.T) {
+	assert := internal.NewAssert(t, "TestPermutationBeyondFactorialRange")
+	assert.Equal(uint(1), Permutation(100, 0))
+	assert.Equal(uint(100), Permutation(100, 1))
+	assert.Equal(uint(9900), Permutation(100, 2))
+}
+
 func TestFibonacci(t *testing.T) {
 	t.Parallel()
 
