@@ -90,11 +90,16 @@ func (c *cloner) clone(v reflect.Value) reflect.Value {
 }
 
 func (c *cloner) cloneArray(v reflect.Value) reflect.Value {
-	if v.IsNil() {
+	if v.Kind() == reflect.Slice && v.IsNil() {
 		return reflect.Zero(v.Type())
 	}
 
-	arr := reflect.MakeSlice(v.Type(), v.Len(), v.Len())
+	var arr reflect.Value
+	if v.Kind() == reflect.Array {
+		arr = reflect.New(v.Type()).Elem()
+	} else {
+		arr = reflect.MakeSlice(v.Type(), v.Len(), v.Len())
+	}
 
 	for i := 0; i < v.Len(); i++ {
 		val := c.clone(v.Index(i))
