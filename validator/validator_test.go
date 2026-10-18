@@ -798,6 +798,9 @@ func TestIsGBK(t *testing.T) {
 	t.Parallel()
 
 	assert := internal.NewAssert(t, "TestIsGBK")
+	if !IsGBK([]byte{0x81, 0xf7}) || IsGBK([]byte{0x81, 0x7f}) {
+		t.Error("GBK trails must allow 0xf7 and reject 0x7f")
+	}
 
 	str := "你好"
 	gbkData, _ := simplifiedchinese.GBK.NewEncoder().Bytes([]byte(str))

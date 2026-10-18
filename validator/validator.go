@@ -505,7 +505,7 @@ func IsGBK(data []byte) bool {
 				i+1 < len(data) &&
 				data[i+1] >= 0x40 &&
 				data[i+1] <= 0xfe &&
-				data[i+1] != 0xf7 {
+				data[i+1] != 0x7f {
 				i += 2
 				continue
 			} else {
