@@ -801,6 +801,8 @@ func TestDeleteAt(t *testing.T) {
 	t.Parallel()
 
 	assert := internal.NewAssert(t, "TestDeleteAt")
+	assert.Equal(0, len(DeleteAt([]int(nil), 0)))
+	assert.Equal(0, len(DeleteAt([]int{}, -1)))
 
 	tests := []struct {
 		slice     []int
