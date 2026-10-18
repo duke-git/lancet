@@ -44,9 +44,17 @@ func Filter[T any](iter Iterator[T], predicateFunc func(item T) bool) Iterator[T
 type filterIterator[T any] struct {
 	iter          Iterator[T]
 	predicateFunc func(T) bool
+	next          T
+	ready         bool
 }
 
 func (fr *filterIterator[T]) Next() (T, bool) {
+	if fr.ready {
+		item := fr.next
+		var zero T
+		fr.next, fr.ready = zero, false
+		return item, true
+	}
 	for item, ok := fr.iter.Next(); ok; item, ok = fr.iter.Next() {
 		if fr.predicateFunc(item) {
 			return item, true
@@ -57,7 +65,10 @@ func (fr *filterIterator[T]) Next() (T, bool) {
 }
 
 func (fr *filterIterator[T]) HasNext() bool {
-	return fr.iter.HasNext()
+	if !fr.ready {
+		fr.next, fr.ready = fr.Next()
+	}
+	return fr.ready
 }
 
 // Join creates an iterator that join all elements of iters[0], then all elements of iters[1] and so on.
@@ -135,5 +146,5 @@ func (iter *takeIterator[T]) Next() (T, bool) {
 }
 
 func (iter *takeIterator[T]) HasNext() bool {
-	return iter.num > 0
+	return iter.num > 0 && iter.it.HasNext()
 }
