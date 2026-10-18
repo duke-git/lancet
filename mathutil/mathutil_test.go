@@ -17,6 +17,13 @@ func TestExponent(t *testing.T) {
 	assert.Equal(int64(100), Exponent(10, 2))
 }
 
+func TestLCMIntermediateOverflow(t *testing.T) {
+	assert := internal.NewAssert(t, "TestLCMIntermediateOverflow")
+	assert.Equal(uint8(32), LCM(uint8(32)))
+	assert.Equal(uint8(192), LCM(uint8(64), uint8(96)))
+	assert.Equal(uint64(1<<40), LCM(uint64(1<<40), uint64(1<<39)))
+}
+
 func TestFibonacci(t *testing.T) {
 	t.Parallel()
 

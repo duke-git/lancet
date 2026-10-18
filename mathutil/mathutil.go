@@ -363,7 +363,7 @@ func lcm[T constraints.Integer](a, b T) T {
 	if a == 0 || b == 0 {
 		panic("lcm function: provide non zero integers only.")
 	}
-	return a * b / gcd(a, b)
+	return a / gcd(a, b) * b
 }
 
 // Cos returns the cosine of the radian argument.
