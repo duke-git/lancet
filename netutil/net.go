@@ -269,9 +269,13 @@ func UploadFile(filepath string, server string) (bool, error) {
 	contentType := writer.FormDataContentType()
 	writer.Close()
 
-	_, err = http.Post(server, contentType, bodyBuffer)
+	resp, err := http.Post(server, contentType, bodyBuffer)
 	if err != nil {
 		return false, err
+	}
+	defer resp.Body.Close()
+	if resp.StatusCode < http.StatusOK || resp.StatusCode >= http.StatusMultipleChoices {
+		return false, fmt.Errorf("upload failed: %s", resp.Status)
 	}
 
 	return true, nil
