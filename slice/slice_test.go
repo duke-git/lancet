@@ -1103,6 +1103,7 @@ func TestIntersection(t *testing.T) {
 	t.Parallel()
 
 	assert := internal.NewAssert(t, "TestIntersection")
+	assert.Equal([]int{}, Intersection[int]())
 
 	s1 := []int{1, 2, 2, 3}
 	s2 := []int{1, 2, 3, 4}
