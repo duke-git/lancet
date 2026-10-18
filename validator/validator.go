@@ -278,7 +278,7 @@ func IsUrl(str string) bool {
 	}
 
 	u, err := url.Parse(str)
-	if err != nil || u.Scheme == "" || u.Host == "" {
+	if err != nil || u.Scheme == "" {
 		return false
 	}
 
@@ -298,7 +298,7 @@ func IsUrl(str string) bool {
 	}
 
 	if u.Scheme == "file" || u.Scheme == "mailto" || u.Scheme == "data" {
-		return true
+		return u.Host != "" || u.Path != "" || u.Opaque != ""
 	}
 
 	host := u.Hostname()

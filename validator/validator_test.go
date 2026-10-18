@@ -436,6 +436,11 @@ func TestIsUrl(t *testing.T) {
 	t.Parallel()
 
 	assert := internal.NewAssert(t, "TestIsUrl")
+	assert.Equal(true, IsUrl("mailto:user@example.com"))
+	assert.Equal(true, IsUrl("file:///tmp/file.txt"))
+	assert.Equal(true, IsUrl("data:text/plain,hello"))
+	assert.Equal(false, IsUrl("mailto:"))
+	assert.Equal(false, IsUrl("http:/path"))
 
 	tests := []struct {
 		input    string
