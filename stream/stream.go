@@ -219,6 +219,9 @@ func (s Stream[T]) Limit(maxSize int) Stream[T] {
 	if maxSize < 0 {
 		return FromSlice([]T{})
 	}
+	if maxSize > len(s.source) {
+		maxSize = len(s.source)
+	}
 
 	source := make([]T, 0, maxSize)
 
