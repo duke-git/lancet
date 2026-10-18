@@ -593,6 +593,8 @@ func TestIsCreditCard(t *testing.T) {
 	t.Parallel()
 
 	assert := internal.NewAssert(t, "TestIsCreditCard")
+	assert.Equal(true, IsCreditCard("3530111333300000"))
+	assert.Equal(true, IsCreditCard("213100000000000"))
 
 	assert.Equal(true, IsCreditCard("4111111111111111"))
 	assert.Equal(false, IsCreditCard("123456"))
