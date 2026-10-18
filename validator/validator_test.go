@@ -549,6 +549,9 @@ func TestIsChinesePhone(t *testing.T) {
 	t.Parallel()
 
 	assert := internal.NewAssert(t, "TestIsChinesePhone")
+	for _, phone := range []string{"x010-32116675", "0464-8756213x", "0731-822515456", "010-32116675\n"} {
+		assert.Equal(false, IsChinesePhone(phone))
+	}
 
 	tests := []struct {
 		input    string
