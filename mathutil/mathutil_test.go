@@ -17,6 +17,12 @@ func TestExponent(t *testing.T) {
 	assert.Equal(int64(100), Exponent(10, 2))
 }
 
+func TestTruncRoundInteger(t *testing.T) {
+	assert := internal.NewAssert(t, "TestTruncRoundInteger")
+	assert.Equal(42, TruncRound(42, 0))
+	assert.Equal(int8(-42), TruncRound(int8(-42), 2))
+}
+
 func TestFibonacci(t *testing.T) {
 	t.Parallel()
 
