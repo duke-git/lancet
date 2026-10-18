@@ -300,6 +300,15 @@ func TestRadianToAngle(t *testing.T) {
 	assert.Equal(float64(45), result3)
 }
 
+func TestPointDistanceExtremeScales(t *testing.T) {
+	for _, scale := range []float64{1e200, 1e-200} {
+		got := PointDistance(0, 0, 3*scale, 4*scale)
+		if math.Abs(got/(5*scale)-1) > 1e-15 {
+			t.Errorf("scale %g: got %g, want %g", scale, got, 5*scale)
+		}
+	}
+}
+
 func TestPointDistance(t *testing.T) {
 	t.Parallel()
 
