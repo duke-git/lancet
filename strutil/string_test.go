@@ -658,6 +658,8 @@ func TestIndexOffset(t *testing.T) {
 		{str, "d", len(str) - 1, len(str) - 1},
 		{str, "d", len(str), -1},
 		{str, "f", -1, -1},
+		{str, "missing", 5, -1},
+		{str, "foo", 5, -1},
 	}
 
 	for _, tt := range tests {
