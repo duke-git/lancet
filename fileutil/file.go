@@ -229,6 +229,13 @@ func CopyFile(srcPath string, dstPath string) error {
 		return err
 	}
 	defer srcFile.Close()
+	srcInfo, err := srcFile.Stat()
+	if err != nil {
+		return err
+	}
+	if dstInfo, err := os.Stat(dstPath); err == nil && os.SameFile(srcInfo, dstInfo) {
+		return errors.New("source and destination are the same file")
+	}
 
 	distFile, err := os.Create(dstPath)
 	if err != nil {

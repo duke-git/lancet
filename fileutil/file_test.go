@@ -139,6 +139,34 @@ func TestCopyFile(t *testing.T) {
 	os.Remove(destFile)
 }
 
+func TestCopyFilePreservesSource(t *testing.T) {
+	for _, mode := range []string{"same", "hardlink", "different"} {
+		t.Run(mode, func(t *testing.T) {
+			assert := internal.NewAssert(t, "TestCopyFilePreservesSource")
+			src := filepath.Join(t.TempDir(), "source.txt")
+			assert.IsNil(os.WriteFile(src, []byte("keep this content"), 0600))
+			dst := src + ".copy"
+			if mode == "same" {
+				dst = src
+			} else if mode == "hardlink" {
+				if err := os.Link(src, dst); err != nil {
+					t.Skipf("hard links unavailable: %v", err)
+				}
+			}
+			err := CopyFile(src, dst)
+			if (err != nil) != (mode != "different") {
+				t.Errorf("unexpected copy result: %v", err)
+			}
+			data, err := os.ReadFile(src)
+			assert.IsNil(err)
+			assert.Equal("keep this content", string(data))
+			data, err = os.ReadFile(dst)
+			assert.IsNil(err)
+			assert.Equal("keep this content", string(data))
+		})
+	}
+}
+
 func TestReadFileToString(t *testing.T) {
 	assert := internal.NewAssert(t, "TestReadFileToString")
 
