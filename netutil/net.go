@@ -315,7 +315,7 @@ func IsPingConnected(host string) bool {
 // IsTelnetConnected checks if can telnet specified host or not.
 // Play: https://go.dev/play/p/yiLCGtQv_ZG
 func IsTelnetConnected(host string, port string) bool {
-	adder := host + ":" + port
+	adder := net.JoinHostPort(host, port)
 	conn, err := net.DialTimeout("tcp", adder, 5*time.Second)
 
 	if err != nil {
