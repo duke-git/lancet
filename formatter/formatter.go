@@ -26,8 +26,9 @@ func Comma[T constraints.Float | constraints.Integer | string](value T, prefixSy
 		return ""
 	}
 
-	isNegative := strings.HasPrefix(numString, "-")
-	if isNegative {
+	sign := ""
+	if strings.HasPrefix(numString, "-") || strings.HasPrefix(numString, "+") {
+		sign = numString[:1]
 		numString = numString[1:]
 	}
 
@@ -41,11 +42,7 @@ func Comma[T constraints.Float | constraints.Integer | string](value T, prefixSy
 		numString = numString[:index] + "," + numString[index:]
 	}
 
-	if isNegative {
-		numString = "-" + numString
-	}
-
-	return prefixSymbol + numString
+	return prefixSymbol + sign + numString
 }
 
 // Pretty data to JSON string.
