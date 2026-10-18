@@ -418,6 +418,36 @@ func TestWriteCsvFile(t *testing.T) {
 	// RemoveFile(csvFilePath)
 }
 
+func TestWriteCsvFileRoundTrip(t *testing.T) {
+	for _, delimiter := range []rune{',', ';'} {
+		t.Run(string(delimiter), func(t *testing.T) {
+			assert := internal.NewAssert(t, "TestWriteCsvFileRoundTrip")
+			path := filepath.Join(t.TempDir(), "quoted.csv")
+			want := [][]string{{"a,b;c", "\"quoted\"", "two\nlines"}}
+			records := [][]string{append([]string(nil), want[0]...)}
+			assert.IsNil(WriteCsvFile(path, records, false, delimiter))
+			got, err := ReadCsvFile(path, delimiter)
+			assert.IsNil(err)
+			assert.Equal(want, got)
+			assert.Equal(want, records)
+		})
+	}
+}
+
+func TestWriteCsvFileOverwriteAndAppend(t *testing.T) {
+	assert := internal.NewAssert(t, "TestWriteCsvFileOverwriteAndAppend")
+	path := filepath.Join(t.TempDir(), "overwrite.csv")
+	assert.IsNil(os.WriteFile(path, []byte(strings.Repeat("old,value\n", 10)), 0600))
+	assert.IsNil(WriteCsvFile(path, [][]string{{"new", "row"}}, false))
+	got, err := ReadCsvFile(path)
+	assert.IsNil(err)
+	assert.Equal([][]string{{"new", "row"}}, got)
+	assert.IsNil(WriteCsvFile(path, [][]string{{"appended", "row"}}, true))
+	got, err = ReadCsvFile(path)
+	assert.IsNil(err)
+	assert.Equal([][]string{{"new", "row"}, {"appended", "row"}}, got)
+}
+
 func TestWriteMapsToCsv(t *testing.T) {
 	assert := internal.NewAssert(t, "TestWriteMapsToCSV")
 

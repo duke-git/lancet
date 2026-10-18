@@ -754,6 +754,8 @@ func WriteCsvFile(filepath string, records [][]string, append bool, delimiter ..
 
 	if append {
 		flag = flag | os.O_APPEND
+	} else {
+		flag = flag | os.O_TRUNC
 	}
 
 	f, err := os.OpenFile(filepath, flag, 0644)
@@ -769,13 +771,6 @@ func WriteCsvFile(filepath string, records [][]string, append bool, delimiter ..
 		writer.Comma = delimiter[0]
 	} else {
 		writer.Comma = ','
-	}
-
-	// 遍历所有记录并处理包含分隔符或双引号的单元格
-	for i := range records {
-		for j := range records[i] {
-			records[i][j] = escapeCSVField(records[i][j], writer.Comma)
-		}
 	}
 
 	return writer.WriteAll(records)
@@ -834,19 +829,6 @@ func ReadFile(path string) (reader io.ReadCloser, closeFn func(), err error) {
 	default:
 		return nil, func() {}, errors.New("unknown file type")
 	}
-}
-
-// escapeCSVField 处理单元格内容，如果包含分隔符，则用双引号包裹
-func escapeCSVField(field string, delimiter rune) string {
-	// 替换所有的双引号为两个双引号
-	escapedField := strings.ReplaceAll(field, "\"", "\"\"")
-
-	// 如果字段包含分隔符、双引号或换行符，用双引号包裹整个字段
-	if strings.ContainsAny(escapedField, string(delimiter)+"\"\n") {
-		escapedField = fmt.Sprintf("\"%s\"", escapedField)
-	}
-
-	return escapedField
 }
 
 // WriteMapsToCsv write slice of map to csv file.
