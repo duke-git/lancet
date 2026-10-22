@@ -108,8 +108,8 @@ func (q *CircularQueue[T]) Clear() {
 
 // Contain checks if the value is in queue or not
 func (q *CircularQueue[T]) Contain(value T) bool {
-	for _, v := range q.data {
-		if reflect.DeepEqual(v, value) {
+	for i := q.front; i != q.rear; i = (i + 1) % q.capacity {
+		if reflect.DeepEqual(q.data[i], value) {
 			return true
 		}
 	}
