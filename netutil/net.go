@@ -288,6 +288,9 @@ func DownloadFile(filepath string, url string) error {
 		return err
 	}
 	defer resp.Body.Close()
+	if resp.StatusCode < http.StatusOK || resp.StatusCode >= http.StatusMultipleChoices {
+		return fmt.Errorf("download failed: %s", resp.Status)
+	}
 
 	out, err := os.Create(filepath)
 	if err != nil {
