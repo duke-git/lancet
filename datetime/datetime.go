@@ -207,7 +207,7 @@ func FormatTimeToStr(t time.Time, format string, timezone ...string) string {
 		return ""
 	}
 
-	if timezone != nil && timezone[0] != "" {
+	if len(timezone) > 0 && timezone[0] != "" {
 		loc, err := time.LoadLocation(timezone[0])
 		if err != nil {
 			return ""
@@ -225,7 +225,7 @@ func FormatStrToTime(str, format string, timezone ...string) (time.Time, error) 
 		return time.Time{}, fmt.Errorf("format %s not support", format)
 	}
 
-	if timezone != nil && timezone[0] != "" {
+	if len(timezone) > 0 && timezone[0] != "" {
 		loc, err := time.LoadLocation(timezone[0])
 		if err != nil {
 			return time.Time{}, err
@@ -361,7 +361,7 @@ func NowDateOrTime(format string, timezone ...string) string {
 		return ""
 	}
 
-	if timezone != nil && timezone[0] != "" {
+	if len(timezone) > 0 && timezone[0] != "" {
 		loc, err := time.LoadLocation(timezone[0])
 		if err != nil {
 			return ""
@@ -378,7 +378,7 @@ func NowDateOrTime(format string, timezone ...string) string {
 func Timestamp(timezone ...string) int64 {
 	t := time.Now()
 
-	if timezone != nil && timezone[0] != "" {
+	if len(timezone) > 0 && timezone[0] != "" {
 		loc, err := time.LoadLocation(timezone[0])
 		if err != nil {
 			return 0
@@ -395,7 +395,7 @@ func Timestamp(timezone ...string) int64 {
 func TimestampMilli(timezone ...string) int64 {
 	t := time.Now()
 
-	if timezone != nil && timezone[0] != "" {
+	if len(timezone) > 0 && timezone[0] != "" {
 		loc, err := time.LoadLocation(timezone[0])
 		if err != nil {
 			return 0
@@ -411,7 +411,7 @@ func TimestampMilli(timezone ...string) int64 {
 func TimestampMicro(timezone ...string) int64 {
 	t := time.Now()
 
-	if timezone != nil && timezone[0] != "" {
+	if len(timezone) > 0 && timezone[0] != "" {
 		loc, err := time.LoadLocation(timezone[0])
 		if err != nil {
 			return 0
@@ -427,7 +427,7 @@ func TimestampMicro(timezone ...string) int64 {
 func TimestampNano(timezone ...string) int64 {
 	t := time.Now()
 
-	if timezone != nil && timezone[0] != "" {
+	if len(timezone) > 0 && timezone[0] != "" {
 		loc, err := time.LoadLocation(timezone[0])
 		if err != nil {
 			return 0
