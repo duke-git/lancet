@@ -11,6 +11,9 @@ func TestComma(t *testing.T) {
 	t.Parallel()
 
 	assert := internal.NewAssert(t, "TestComma")
+	assert.Equal("+123", Comma("+123", ""))
+	assert.Equal("+123,456", Comma("+123456", ""))
+	assert.Equal("$+123,456.78", Comma("+123456.78", "$"))
 
 	assert.Equal("", Comma("", ""))
 	assert.Equal("", Comma("aa", ""))
