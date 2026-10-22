@@ -70,12 +70,12 @@ func GetInternalIp() string {
 func GetRequestPublicIp(req *http.Request) string {
 	var ip string
 	for _, ip = range strings.Split(req.Header.Get("X-Forwarded-For"), ",") {
-		if ip = strings.TrimSpace(ip); ip != "" && !IsInternalIP(net.ParseIP(ip)) {
+		if ip = strings.TrimSpace(ip); net.ParseIP(ip) != nil && !IsInternalIP(net.ParseIP(ip)) {
 			return ip
 		}
 	}
 
-	if ip = strings.TrimSpace(req.Header.Get("X-Real-Ip")); ip != "" && !IsInternalIP(net.ParseIP(ip)) {
+	if ip = strings.TrimSpace(req.Header.Get("X-Real-Ip")); net.ParseIP(ip) != nil && !IsInternalIP(net.ParseIP(ip)) {
 		return ip
 	}
 
