@@ -16,49 +16,10 @@ func (c *cloner) clone(v reflect.Value) reflect.Value {
 	case reflect.Invalid:
 		return reflect.ValueOf(nil)
 
-	// bool
-	case reflect.Bool:
-		return reflect.ValueOf(v.Bool())
-
-	//int
-	case reflect.Int:
-		return reflect.ValueOf(int(v.Int()))
-	case reflect.Int8:
-		return reflect.ValueOf(int8(v.Int()))
-	case reflect.Int16:
-		return reflect.ValueOf(int16(v.Int()))
-	case reflect.Int32:
-		return reflect.ValueOf(int32(v.Int()))
-	case reflect.Int64:
-		return reflect.ValueOf(v.Int())
-
-	// uint
-	case reflect.Uint:
-		return reflect.ValueOf(uint(v.Uint()))
-	case reflect.Uint8:
-		return reflect.ValueOf(uint8(v.Uint()))
-	case reflect.Uint16:
-		return reflect.ValueOf(uint16(v.Uint()))
-	case reflect.Uint32:
-		return reflect.ValueOf(uint32(v.Uint()))
-	case reflect.Uint64:
-		return reflect.ValueOf(v.Uint())
-
-	// float
-	case reflect.Float32:
-		return reflect.ValueOf(float32(v.Float()))
-	case reflect.Float64:
-		return reflect.ValueOf(v.Float())
-
-	// complex
-	case reflect.Complex64:
-		return reflect.ValueOf(complex64(v.Complex()))
-	case reflect.Complex128:
-		return reflect.ValueOf(v.Complex())
-
-	// string
-	case reflect.String:
-		return reflect.ValueOf(v.String())
+	case reflect.Bool, reflect.Int, reflect.Int8, reflect.Int16, reflect.Int32, reflect.Int64,
+		reflect.Uint, reflect.Uint8, reflect.Uint16, reflect.Uint32, reflect.Uint64, reflect.Uintptr,
+		reflect.Float32, reflect.Float64, reflect.Complex64, reflect.Complex128, reflect.String:
+		return v
 
 	// array
 	case reflect.Array, reflect.Slice:
@@ -179,8 +140,10 @@ func (c *cloner) clonePtr(v reflect.Value) reflect.Value {
 		}
 	}
 
-	clonedPtr := reflect.New(newVal.Type())
-	clonedPtr.Elem().Set(newVal)
+	clonedPtr := reflect.New(v.Type().Elem())
+	if newVal.IsValid() {
+		clonedPtr.Elem().Set(newVal)
+	}
 
 	return clonedPtr
 }
