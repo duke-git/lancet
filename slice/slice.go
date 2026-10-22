@@ -712,6 +712,9 @@ func IntSlice(slice any) []int {
 // Play: https://go.dev/play/p/800B1dPBYyd
 func DeleteAt[T any](slice []T, index int) []T {
 	result := append([]T(nil), slice...)
+	if len(result) == 0 {
+		return result
+	}
 
 	if index < 0 || index >= len(slice) {
 		return result[:len(slice)-1]
