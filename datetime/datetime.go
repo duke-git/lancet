@@ -495,6 +495,9 @@ func GenerateDatetimesBetween(start, end time.Time, layout string, interval stri
 	if err != nil {
 		return nil, err
 	}
+	if duration <= 0 {
+		return nil, fmt.Errorf("interval must be positive")
+	}
 
 	for current := start; !current.After(end); current = current.Add(duration) {
 		result = append(result, current.Format(layout))
