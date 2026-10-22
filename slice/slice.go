@@ -949,10 +949,8 @@ func UniqueByField[T any](slice []T, field string) ([]T, error) {
 
 func getField[T any](item T, field string) (interface{}, error) {
 	v := reflect.ValueOf(item)
-	t := reflect.TypeOf(item)
 
-	if t.Kind() == reflect.Ptr {
-		t = t.Elem()
+	if v.Kind() == reflect.Ptr {
 		v = v.Elem()
 	}
 	if v.Kind() != reflect.Struct {
@@ -962,6 +960,9 @@ func getField[T any](item T, field string) (interface{}, error) {
 	f := v.FieldByName(field)
 	if !f.IsValid() {
 		return nil, fmt.Errorf("field name %s not found", field)
+	}
+	if !f.CanInterface() {
+		return nil, fmt.Errorf("field name %s is not exported", field)
 	}
 
 	return v.FieldByName(field).Interface(), nil
