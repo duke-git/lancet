@@ -299,11 +299,7 @@ func RadianToAngle(radian float64) float64 {
 // PointDistance get two points distance.
 // Play: https://go.dev/play/p/RrG4JIaziM8
 func PointDistance(x1, y1, x2, y2 float64) float64 {
-	a := x1 - x2
-	b := y1 - y2
-	c := math.Pow(a, 2) + math.Pow(b, 2)
-
-	return math.Sqrt(c)
+	return math.Hypot(x1-x2, y1-y2)
 }
 
 // IsPrime checks if number is prime number.
