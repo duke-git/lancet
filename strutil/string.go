@@ -483,7 +483,10 @@ func IndexOffset(str string, substr string, idxFrom int) int {
 		return -1
 	}
 
-	return strings.Index(str[idxFrom:], substr) + idxFrom
+	if index := strings.Index(str[idxFrom:], substr); index >= 0 {
+		return index + idxFrom
+	}
+	return -1
 }
 
 // ReplaceWithMap returns a copy of `str`,
