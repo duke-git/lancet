@@ -24,6 +24,13 @@ func TestPermutationBeyondFactorialRange(t *testing.T) {
 	assert.Equal(uint(9900), Permutation(100, 2))
 }
 
+func TestLCMIntermediateOverflow(t *testing.T) {
+	assert := internal.NewAssert(t, "TestLCMIntermediateOverflow")
+	assert.Equal(uint8(32), LCM(uint8(32)))
+	assert.Equal(uint8(192), LCM(uint8(64), uint8(96)))
+	assert.Equal(uint64(1<<40), LCM(uint64(1<<40), uint64(1<<39)))
+}
+
 func TestFibonacci(t *testing.T) {
 	t.Parallel()
 
@@ -267,6 +274,10 @@ func TestRangeWithStep(t *testing.T) {
 	t.Parallel()
 
 	assert := internal.NewAssert(t, "TestRangeWithStep")
+	assert.Equal([]int8{120}, RangeWithStep[int8](120, 125, 10))
+	assert.Equal([]uint8{250}, RangeWithStep[uint8](250, 253, 10))
+	assert.Equal([]int{}, RangeWithStep(1, 4, -1))
+	assert.Equal([]float64{1e20}, RangeWithStep(1e20, 1e21, 1.0))
 
 	result1 := RangeWithStep(1, 4, 1)
 	result2 := RangeWithStep(1, -1, 0)

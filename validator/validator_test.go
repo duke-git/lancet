@@ -436,6 +436,11 @@ func TestIsUrl(t *testing.T) {
 	t.Parallel()
 
 	assert := internal.NewAssert(t, "TestIsUrl")
+	assert.Equal(true, IsUrl("mailto:user@example.com"))
+	assert.Equal(true, IsUrl("file:///tmp/file.txt"))
+	assert.Equal(true, IsUrl("data:text/plain,hello"))
+	assert.Equal(false, IsUrl("mailto:"))
+	assert.Equal(false, IsUrl("http:/path"))
 
 	tests := []struct {
 		input    string
@@ -549,6 +554,9 @@ func TestIsChinesePhone(t *testing.T) {
 	t.Parallel()
 
 	assert := internal.NewAssert(t, "TestIsChinesePhone")
+	for _, phone := range []string{"x010-32116675", "0464-8756213x", "0731-822515456", "010-32116675\n"} {
+		assert.Equal(false, IsChinesePhone(phone))
+	}
 
 	tests := []struct {
 		input    string
@@ -602,6 +610,9 @@ func TestIsBase64(t *testing.T) {
 	t.Parallel()
 
 	assert := internal.NewAssert(t, "TestIsBase64")
+	assert.Equal(false, IsBase64(`ab\=`))
+	assert.Equal(false, IsBase64(`\\\\`))
+	assert.Equal(true, IsBase64("////"))
 
 	assert.Equal(true, IsBase64("aGVsbG8="))
 	assert.Equal(false, IsBase64("123456"))

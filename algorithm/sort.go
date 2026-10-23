@@ -188,7 +188,8 @@ func CountSort[T any](slice []T, comparator constraints.Comparator) []T {
 		count := 0
 		for j := 0; j < size; j++ {
 			//slice[i] > slice[j]
-			if comparator.Compare(slice[i], slice[j]) == 1 {
+			order := comparator.Compare(slice[i], slice[j])
+			if order == 1 || (order == 0 && j < i) {
 				count++
 			}
 		}

@@ -239,8 +239,8 @@ func (l *List[T]) Merge(other *List[T]) *List[T] {
 	l1, l2 := len(l.data), len(other.data)
 	ml := NewList(make([]T, l1+l2))
 
-	data := append([]T{}, append(l.data, other.data...)...)
-	ml.data = data
+	copy(ml.data, l.data)
+	copy(ml.data[l1:], other.data)
 
 	return ml
 }

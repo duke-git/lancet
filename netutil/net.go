@@ -70,12 +70,12 @@ func GetInternalIp() string {
 func GetRequestPublicIp(req *http.Request) string {
 	var ip string
 	for _, ip = range strings.Split(req.Header.Get("X-Forwarded-For"), ",") {
-		if ip = strings.TrimSpace(ip); ip != "" && !IsInternalIP(net.ParseIP(ip)) {
+		if ip = strings.TrimSpace(ip); net.ParseIP(ip) != nil && !IsInternalIP(net.ParseIP(ip)) {
 			return ip
 		}
 	}
 
-	if ip = strings.TrimSpace(req.Header.Get("X-Real-Ip")); ip != "" && !IsInternalIP(net.ParseIP(ip)) {
+	if ip = strings.TrimSpace(req.Header.Get("X-Real-Ip")); net.ParseIP(ip) != nil && !IsInternalIP(net.ParseIP(ip)) {
 		return ip
 	}
 
@@ -269,9 +269,13 @@ func UploadFile(filepath string, server string) (bool, error) {
 	contentType := writer.FormDataContentType()
 	writer.Close()
 
-	_, err = http.Post(server, contentType, bodyBuffer)
+	resp, err := http.Post(server, contentType, bodyBuffer)
 	if err != nil {
 		return false, err
+	}
+	defer resp.Body.Close()
+	if resp.StatusCode < http.StatusOK || resp.StatusCode >= http.StatusMultipleChoices {
+		return false, fmt.Errorf("upload failed: %s", resp.Status)
 	}
 
 	return true, nil
@@ -284,6 +288,9 @@ func DownloadFile(filepath string, url string) error {
 		return err
 	}
 	defer resp.Body.Close()
+	if resp.StatusCode < http.StatusOK || resp.StatusCode >= http.StatusMultipleChoices {
+		return fmt.Errorf("download failed: %s", resp.Status)
+	}
 
 	out, err := os.Create(filepath)
 	if err != nil {
@@ -315,7 +322,7 @@ func IsPingConnected(host string) bool {
 // IsTelnetConnected checks if can telnet specified host or not.
 // Play: https://go.dev/play/p/yiLCGtQv_ZG
 func IsTelnetConnected(host string, port string) bool {
-	adder := host + ":" + port
+	adder := net.JoinHostPort(host, port)
 	conn, err := net.DialTimeout("tcp", adder, 5*time.Second)
 
 	if err != nil {
