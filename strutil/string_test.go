@@ -686,6 +686,12 @@ func TestReplaceWithMap(t *testing.T) {
 
 func TestTrim(t *testing.T) {
 	t.Parallel()
+	if got := Trim("\u0085\u00a0value\u00a0\u0085"); got != "value" {
+		t.Errorf("Trim Unicode whitespace = %q, want value", got)
+	}
+	if got := Trim("\ufffdvalue\ufffd"); got != "\ufffdvalue\ufffd" {
+		t.Errorf("Trim removed replacement characters: %q", got)
+	}
 
 	assert := internal.NewAssert(t, "TestTrim")
 
