@@ -93,7 +93,7 @@ func RoundToFloat[T constraints.Float | constraints.Integer](x T, n int) float64
 // TruncRound round off n decimal places.
 // Play: https://go.dev/play/p/aumarSHIGzP
 func TruncRound[T constraints.Float | constraints.Integer](x T, n int) T {
-	floatStr := fmt.Sprintf("%."+strconv.Itoa(n+1)+"f", x)
+	floatStr := fmt.Sprintf("%."+strconv.Itoa(n+1)+"f", float64(x))
 	temp := strings.Split(floatStr, ".")
 	var newFloat string
 	if len(temp) < 2 || n >= len(temp[1]) {
