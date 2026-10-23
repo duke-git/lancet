@@ -260,6 +260,10 @@ func TestRangeWithStep(t *testing.T) {
 	t.Parallel()
 
 	assert := internal.NewAssert(t, "TestRangeWithStep")
+	assert.Equal([]int8{120}, RangeWithStep[int8](120, 125, 10))
+	assert.Equal([]uint8{250}, RangeWithStep[uint8](250, 253, 10))
+	assert.Equal([]int{}, RangeWithStep(1, 4, -1))
+	assert.Equal([]float64{1e20}, RangeWithStep(1e20, 1e21, 1.0))
 
 	result1 := RangeWithStep(1, 4, 1)
 	result2 := RangeWithStep(1, -1, 0)

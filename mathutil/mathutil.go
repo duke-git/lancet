@@ -270,12 +270,17 @@ func Range[T constraints.Integer | constraints.Float](start T, count int) []T {
 func RangeWithStep[T constraints.Integer | constraints.Float](start, end, step T) []T {
 	result := []T{}
 
-	if start >= end || step == 0 {
+	if start >= end || step <= 0 {
 		return result
 	}
 
-	for i := start; i < end; i += step {
+	for i := start; i < end; {
 		result = append(result, i)
+		next := i + step
+		if next <= i {
+			break
+		}
+		i = next
 	}
 
 	return result
