@@ -101,11 +101,14 @@ func FromRange[T constraints.Integer | constraints.Float](start, end, step T) St
 		panic("stream.FromRange: param step should be positive")
 	}
 
-	l := int((end-start)/step) + 1
-	source := make([]T, l)
-
-	for i := 0; i < l; i++ {
-		source[i] = start + (T(i) * step)
+	source := make([]T, 0)
+	for value := start; value <= end; {
+		source = append(source, value)
+		next := value + step
+		if next <= value {
+			break
+		}
+		value = next
 	}
 
 	return FromSlice(source)
@@ -218,6 +221,9 @@ func (s Stream[T]) Limit(maxSize int) Stream[T] {
 
 	if maxSize < 0 {
 		return FromSlice([]T{})
+	}
+	if maxSize > len(s.source) {
+		maxSize = len(s.source)
 	}
 
 	source := make([]T, 0, maxSize)

@@ -45,6 +45,9 @@ func BinarySearch[T any](sortedSlice []T, target T, lowIndex, highIndex int, com
 // If not found return -1.
 // Play: https://go.dev/play/p/Anozfr8ZLH3
 func BinaryIterativeSearch[T any](sortedSlice []T, target T, lowIndex, highIndex int, comparator constraints.Comparator) int {
+	if len(sortedSlice) == 0 {
+		return -1
+	}
 	startIndex := lowIndex
 	endIndex := highIndex
 

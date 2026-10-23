@@ -136,8 +136,8 @@ func (q *ArrayQueue[T]) Clear() {
 
 // Contain checks if the value is in queue or not
 func (q *ArrayQueue[T]) Contain(value T) bool {
-	for _, v := range q.data {
-		if reflect.DeepEqual(v, value) {
+	for i := q.head; i < q.tail; i++ {
+		if reflect.DeepEqual(q.data[i], value) {
 			return true
 		}
 	}

@@ -11,6 +11,23 @@ import (
 	"github.com/duke-git/lancet/v2/internal"
 )
 
+func TestMapToStructInvalidInputs(t *testing.T) {
+	var nilTarget *struct {
+		Name string `json:"name"`
+	}
+	for _, dst := range []any{nil, nilTarget, 1, &[]int{}} {
+		if err := MapToStruct(map[string]any{"name": "value"}, dst); err == nil {
+			t.Errorf("expected an error for %T", dst)
+		}
+	}
+	var dst struct {
+		Name string `json:"name"`
+	}
+	if err := MapToStruct(map[string]any{"name": nil}, &dst); err == nil {
+		t.Error("expected an error for an incompatible nil value")
+	}
+}
+
 func TestKeys(t *testing.T) {
 	t.Parallel()
 

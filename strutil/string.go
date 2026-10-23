@@ -316,10 +316,10 @@ func Substring(s string, offset int, length uint) string {
 		return ""
 	}
 
-	end := offset + int(length)
-	if end > size {
-		end = size
+	if length > uint(size-offset) {
+		length = uint(size - offset)
 	}
+	end := offset + int(length)
 
 	return strings.ReplaceAll(string(rs[offset:end]), "\x00", "")
 }
@@ -483,7 +483,10 @@ func IndexOffset(str string, substr string, idxFrom int) int {
 		return -1
 	}
 
-	return strings.Index(str[idxFrom:], substr) + idxFrom
+	if index := strings.Index(str[idxFrom:], substr); index >= 0 {
+		return index + idxFrom
+	}
+	return -1
 }
 
 // ReplaceWithMap returns a copy of `str`,
@@ -516,7 +519,7 @@ func SplitAndTrim(str, delimiter string, characterMask ...string) []string {
 
 var (
 	// DefaultTrimChars are the characters which are stripped by Trim* functions in default.
-	DefaultTrimChars = string([]byte{
+	DefaultTrimChars = string([]rune{
 		'\t', // Tab.
 		'\v', // Vertical tab.
 		'\n', // New line (line feed).
@@ -629,12 +632,11 @@ func SubInBetween(str string, start string, end string) string {
 // This func returns an error if the input strings are of unequal lengths.
 // Play: https://go.dev/play/p/glNdQEA9HUi
 func HammingDistance(a, b string) (int, error) {
-	if len(a) != len(b) {
-		return -1, errors.New("a length and b length are unequal")
-	}
-
 	ar := []rune(a)
 	br := []rune(b)
+	if len(ar) != len(br) {
+		return -1, errors.New("a length and b length are unequal")
+	}
 
 	var distance int
 	for i, codepoint := range ar {
