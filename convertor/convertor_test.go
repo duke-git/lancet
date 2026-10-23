@@ -394,6 +394,18 @@ func TestDecodeByte(t *testing.T) {
 	assert.Equal("abc", obj)
 }
 
+func TestDeepCloneArrays(t *testing.T) {
+	assert := internal.NewAssert(t, "TestDeepCloneArrays")
+	value := 42
+	type pair [2]*int
+	src := pair{&value, nil}
+	got := DeepClone(src)
+	assert.Equal(src, got)
+	*got[0] = 99
+	assert.Equal(42, *src[0])
+	assert.Equal([0]int{}, DeepClone([0]int{}))
+}
+
 func TestDeepClone(t *testing.T) {
 	t.Parallel()
 

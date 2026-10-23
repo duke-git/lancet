@@ -199,6 +199,9 @@ func TestMergeSort(t *testing.T) {
 func TestCountSort(t *testing.T) {
 	t.Parallel()
 	assert := internal.NewAssert(t, "TestCountSort")
+	assert.Equal([]int{1, 2, 2}, CountSort([]int{2, 1, 2}, &intComparator{}))
+	assert.Equal([]people{{"young", 10}, {"first", 20}, {"second", 20}},
+		CountSort([]people{{"first", 20}, {"young", 10}, {"second", 20}}, &peopleAgeComparator{}))
 
 	peoples := []people{
 		{Name: "a", Age: 20},
