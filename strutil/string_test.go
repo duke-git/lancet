@@ -818,6 +818,9 @@ func TestHammingDistance(t *testing.T) {
 		{"abc", "def", 3},
 		{"kitten", "sitting", -1},
 		{"ö", "ü", 1},
+		{"abc", "你", -1},
+		{"你", "abc", -1},
+		{"a", "你", 1},
 		{"日本語", "日本語", 0},
 		{"日本語", "語日本", 3},
 	}

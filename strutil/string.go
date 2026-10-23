@@ -632,12 +632,11 @@ func SubInBetween(str string, start string, end string) string {
 // This func returns an error if the input strings are of unequal lengths.
 // Play: https://go.dev/play/p/glNdQEA9HUi
 func HammingDistance(a, b string) (int, error) {
-	if len(a) != len(b) {
-		return -1, errors.New("a length and b length are unequal")
-	}
-
 	ar := []rune(a)
 	br := []rune(b)
+	if len(ar) != len(br) {
+		return -1, errors.New("a length and b length are unequal")
+	}
 
 	var distance int
 	for i, codepoint := range ar {
