@@ -1205,6 +1205,9 @@ func TestDifferenceBy(t *testing.T) {
 	}
 
 	assert.Equal([]int{1, 2}, DifferenceBy(s1, s2, addOne))
+	assert.Equal([]int{}, DifferenceBy([]int{10, 10}, []int{10, 10}, func(i, v int) int {
+		return i + v
+	}))
 }
 
 func TestIsAscending(t *testing.T) {

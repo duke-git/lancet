@@ -187,8 +187,8 @@ func DifferenceBy[T comparable](slice []T, comparedSlice []T, iteratee func(inde
 	result := make([]T, 0)
 
 	comparedMap := make(map[T]struct{}, len(comparedSlice))
-	for _, item := range comparedSlice {
-		comparedMap[iteratee(0, item)] = struct{}{}
+	for i, item := range comparedSlice {
+		comparedMap[iteratee(i, item)] = struct{}{}
 	}
 
 	for i, item := range slice {
