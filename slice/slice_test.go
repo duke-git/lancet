@@ -801,6 +801,8 @@ func TestDeleteAt(t *testing.T) {
 	t.Parallel()
 
 	assert := internal.NewAssert(t, "TestDeleteAt")
+	assert.Equal(0, len(DeleteAt([]int(nil), 0)))
+	assert.Equal(0, len(DeleteAt([]int{}, -1)))
 
 	tests := []struct {
 		slice     []int
@@ -1203,6 +1205,9 @@ func TestDifferenceBy(t *testing.T) {
 	}
 
 	assert.Equal([]int{1, 2}, DifferenceBy(s1, s2, addOne))
+	assert.Equal([]int{}, DifferenceBy([]int{10, 10}, []int{10, 10}, func(i, v int) int {
+		return i + v
+	}))
 }
 
 func TestIsAscending(t *testing.T) {

@@ -270,12 +270,17 @@ func Range[T constraints.Integer | constraints.Float](start T, count int) []T {
 func RangeWithStep[T constraints.Integer | constraints.Float](start, end, step T) []T {
 	result := []T{}
 
-	if start >= end || step == 0 {
+	if start >= end || step <= 0 {
 		return result
 	}
 
-	for i := start; i < end; i += step {
+	for i := start; i < end; {
 		result = append(result, i)
+		next := i + step
+		if next <= i {
+			break
+		}
+		i = next
 	}
 
 	return result
@@ -363,7 +368,7 @@ func lcm[T constraints.Integer](a, b T) T {
 	if a == 0 || b == 0 {
 		panic("lcm function: provide non zero integers only.")
 	}
-	return a * b / gcd(a, b)
+	return a / gcd(a, b) * b
 }
 
 // Cos returns the cosine of the radian argument.

@@ -187,8 +187,8 @@ func DifferenceBy[T comparable](slice []T, comparedSlice []T, iteratee func(inde
 	result := make([]T, 0)
 
 	comparedMap := make(map[T]struct{}, len(comparedSlice))
-	for _, item := range comparedSlice {
-		comparedMap[iteratee(0, item)] = struct{}{}
+	for i, item := range comparedSlice {
+		comparedMap[iteratee(i, item)] = struct{}{}
 	}
 
 	for i, item := range slice {
@@ -712,6 +712,9 @@ func IntSlice(slice any) []int {
 // Play: https://go.dev/play/p/800B1dPBYyd
 func DeleteAt[T any](slice []T, index int) []T {
 	result := append([]T(nil), slice...)
+	if len(result) == 0 {
+		return result
+	}
 
 	if index < 0 || index >= len(slice) {
 		return result[:len(slice)-1]
@@ -949,10 +952,8 @@ func UniqueByField[T any](slice []T, field string) ([]T, error) {
 
 func getField[T any](item T, field string) (interface{}, error) {
 	v := reflect.ValueOf(item)
-	t := reflect.TypeOf(item)
 
-	if t.Kind() == reflect.Ptr {
-		t = t.Elem()
+	if v.Kind() == reflect.Ptr {
 		v = v.Elem()
 	}
 	if v.Kind() != reflect.Struct {
@@ -962,6 +963,9 @@ func getField[T any](item T, field string) (interface{}, error) {
 	f := v.FieldByName(field)
 	if !f.IsValid() {
 		return nil, fmt.Errorf("field name %s not found", field)
+	}
+	if !f.CanInterface() {
+		return nil, fmt.Errorf("field name %s is not exported", field)
 	}
 
 	return v.FieldByName(field).Interface(), nil

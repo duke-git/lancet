@@ -98,7 +98,7 @@ func RandIntSlice(length, min, max int) []int {
 // RandUniqueIntSlice generate a slice of random int of length that do not repeat.
 // Play: https://go.dev/play/p/uBkRSOz73Ec
 func RandUniqueIntSlice(length, min, max int) []int {
-	if min > max {
+	if length <= 0 || min > max {
 		return []int{}
 	}
 	if length > max-min {
@@ -139,6 +139,9 @@ func RandFloat(min, max float64, precision int) float64 {
 // RandFloats generate a slice of random float64 numbers of length that do not repeat.
 // Play: https://go.dev/play/p/I3yndUQ-rhh
 func RandFloats(length int, min, max float64, precision int) []float64 {
+	if length <= 0 {
+		return []float64{}
+	}
 	if max < min {
 		min, max = max, min
 	}

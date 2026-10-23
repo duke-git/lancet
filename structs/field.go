@@ -40,7 +40,7 @@ func (f *Field) Value() any {
 // IsEmbedded returns true if the given field is an embedded field.
 // Play: https://go.dev/play/p/wV2PrbYm3Ec
 func (f *Field) IsEmbedded() bool {
-	return len(f.field.Index) > 1
+	return f.field.Anonymous || len(f.field.Index) > 1
 }
 
 // IsExported returns true if the given field is exported.

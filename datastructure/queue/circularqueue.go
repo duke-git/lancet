@@ -57,7 +57,7 @@ func (q *CircularQueue[T]) IsEmpty() bool {
 
 // IsFull checks if queue is full or not
 func (q *CircularQueue[T]) IsFull() bool {
-	return (q.rear+1)%q.capacity == q.front
+	return q.capacity == 0 || (q.rear+1)%q.capacity == q.front
 }
 
 // Front return front value of queue
@@ -101,16 +101,15 @@ func (q *CircularQueue[T]) Dequeue() (*T, error) {
 
 // Clear the queue data
 func (q *CircularQueue[T]) Clear() {
-	q.data = []T{}
+	q.data = make([]T, q.capacity)
 	q.front = 0
 	q.rear = 0
-	q.capacity = 0
 }
 
 // Contain checks if the value is in queue or not
 func (q *CircularQueue[T]) Contain(value T) bool {
-	for _, v := range q.data {
-		if reflect.DeepEqual(v, value) {
+	for i := q.front; i != q.rear; i = (i + 1) % q.capacity {
+		if reflect.DeepEqual(q.data[i], value) {
 			return true
 		}
 	}

@@ -482,6 +482,8 @@ func TestSubstring(t *testing.T) {
 	t.Parallel()
 
 	assert := internal.NewAssert(t, "TestSubstring")
+	assert.Equal("好世界", Substring("你好世界", 1, ^uint(0)))
+	assert.Equal("界", Substring("你好世界", -1, ^uint(0)))
 
 	assert.Equal("bcd", Substring("abcde", 1, 3))
 	assert.Equal("bcde", Substring("abcde", 1, 5))
@@ -658,6 +660,8 @@ func TestIndexOffset(t *testing.T) {
 		{str, "d", len(str) - 1, len(str) - 1},
 		{str, "d", len(str), -1},
 		{str, "f", -1, -1},
+		{str, "missing", 5, -1},
+		{str, "foo", 5, -1},
 	}
 
 	for _, tt := range tests {
@@ -682,6 +686,12 @@ func TestReplaceWithMap(t *testing.T) {
 
 func TestTrim(t *testing.T) {
 	t.Parallel()
+	if got := Trim("\u0085\u00a0value\u00a0\u0085"); got != "value" {
+		t.Errorf("Trim Unicode whitespace = %q, want value", got)
+	}
+	if got := Trim("\ufffdvalue\ufffd"); got != "\ufffdvalue\ufffd" {
+		t.Errorf("Trim removed replacement characters: %q", got)
+	}
 
 	assert := internal.NewAssert(t, "TestTrim")
 
@@ -814,6 +824,9 @@ func TestHammingDistance(t *testing.T) {
 		{"abc", "def", 3},
 		{"kitten", "sitting", -1},
 		{"ö", "ü", 1},
+		{"abc", "你", -1},
+		{"你", "abc", -1},
+		{"a", "你", 1},
 		{"日本語", "日本語", 0},
 		{"日本語", "語日本", 3},
 	}
