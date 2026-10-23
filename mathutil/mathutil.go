@@ -35,8 +35,10 @@ func Fibonacci(first, second, n int) int {
 	if n <= 0 {
 		return 0
 	}
-	if n < 3 {
-		return 1
+	if n == 1 {
+		return first
+	} else if n == 2 {
+		return second
 	} else if n == 3 {
 		return first + second
 	} else {

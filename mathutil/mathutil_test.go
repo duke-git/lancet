@@ -39,6 +39,10 @@ func TestFibonacci(t *testing.T) {
 	assert.Equal(1, Fibonacci(1, 1, 1))
 	assert.Equal(1, Fibonacci(1, 1, 2))
 	assert.Equal(5, Fibonacci(1, 1, 5))
+	assert.Equal(2, Fibonacci(2, 3, 1))
+	assert.Equal(3, Fibonacci(2, 3, 2))
+	assert.Equal(5, Fibonacci(2, 3, 3))
+	assert.Equal(13, Fibonacci(2, 3, 5))
 }
 
 func TestFactorial(t *testing.T) {
