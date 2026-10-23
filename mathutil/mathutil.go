@@ -77,8 +77,7 @@ func Percent(val, total float64, n int) float64 {
 // Play: https://go.dev/play/p/kZwpBRAcllO
 func RoundToString[T constraints.Float | constraints.Integer](x T, n int) string {
 	tmp := math.Pow(10.0, float64(n))
-	x *= T(tmp)
-	r := math.Round(float64(x))
+	r := math.Round(float64(x) * tmp)
 	result := strconv.FormatFloat(r/tmp, 'f', n, 64)
 	return result
 }
@@ -87,8 +86,7 @@ func RoundToString[T constraints.Float | constraints.Integer](x T, n int) string
 // Play: https://go.dev/play/p/ghyb528JRJL
 func RoundToFloat[T constraints.Float | constraints.Integer](x T, n int) float64 {
 	tmp := math.Pow(10.0, float64(n))
-	x *= T(tmp)
-	r := math.Round(float64(x))
+	r := math.Round(float64(x) * tmp)
 	return r / tmp
 }
 
@@ -111,8 +109,7 @@ func TruncRound[T constraints.Float | constraints.Integer](x T, n int) T {
 // Play: https://go.dev/play/p/vbCBrQHZEED
 func FloorToFloat[T constraints.Float | constraints.Integer](x T, n int) float64 {
 	tmp := math.Pow(10.0, float64(n))
-	x *= T(tmp)
-	r := math.Floor(float64(x))
+	r := math.Floor(float64(x) * tmp)
 	return r / tmp
 }
 
@@ -120,8 +117,7 @@ func FloorToFloat[T constraints.Float | constraints.Integer](x T, n int) float64
 // Play: https://go.dev/play/p/Qk9KPd2IdDb
 func FloorToString[T constraints.Float | constraints.Integer](x T, n int) string {
 	tmp := math.Pow(10.0, float64(n))
-	x *= T(tmp)
-	r := math.Floor(float64(x))
+	r := math.Floor(float64(x) * tmp)
 	result := strconv.FormatFloat(r/tmp, 'f', n, 64)
 	return result
 }
@@ -130,8 +126,7 @@ func FloorToString[T constraints.Float | constraints.Integer](x T, n int) string
 // Play: https://go.dev/play/p/8hOeSADZPCo
 func CeilToFloat[T constraints.Float | constraints.Integer](x T, n int) float64 {
 	tmp := math.Pow(10.0, float64(n))
-	x *= T(tmp)
-	r := math.Ceil(float64(x))
+	r := math.Ceil(float64(x) * tmp)
 	return r / tmp
 }
 
@@ -139,8 +134,7 @@ func CeilToFloat[T constraints.Float | constraints.Integer](x T, n int) float64 
 // Play: https://go.dev/play/p/wy5bYEyUKKG
 func CeilToString[T constraints.Float | constraints.Integer](x T, n int) string {
 	tmp := math.Pow(10.0, float64(n))
-	x *= T(tmp)
-	r := math.Ceil(float64(x))
+	r := math.Ceil(float64(x) * tmp)
 	result := strconv.FormatFloat(r/tmp, 'f', n, 64)
 	return result
 }
