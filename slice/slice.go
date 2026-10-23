@@ -1019,6 +1019,9 @@ func Merge[T any](slices ...[]T) []T {
 // Play: https://go.dev/play/p/anJXfB5wq_t
 func Intersection[T comparable](slices ...[]T) []T {
 	result := []T{}
+	if len(slices) == 0 {
+		return result
+	}
 	elementCount := make(map[T]int)
 
 	for _, slice := range slices {
