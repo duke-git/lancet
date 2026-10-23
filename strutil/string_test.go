@@ -482,6 +482,8 @@ func TestSubstring(t *testing.T) {
 	t.Parallel()
 
 	assert := internal.NewAssert(t, "TestSubstring")
+	assert.Equal("好世界", Substring("你好世界", 1, ^uint(0)))
+	assert.Equal("界", Substring("你好世界", -1, ^uint(0)))
 
 	assert.Equal("bcd", Substring("abcde", 1, 3))
 	assert.Equal("bcde", Substring("abcde", 1, 5))

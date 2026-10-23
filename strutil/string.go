@@ -316,10 +316,10 @@ func Substring(s string, offset int, length uint) string {
 		return ""
 	}
 
-	end := offset + int(length)
-	if end > size {
-		end = size
+	if length > uint(size-offset) {
+		length = uint(size - offset)
 	}
+	end := offset + int(length)
 
 	return strings.ReplaceAll(string(rs[offset:end]), "\x00", "")
 }
