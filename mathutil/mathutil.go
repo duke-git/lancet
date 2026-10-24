@@ -438,10 +438,11 @@ func Permutation(n, k uint) uint {
 		return 0
 	}
 
-	nFactorial := Factorial(n)
-	nMinusKFactorial := Factorial(n - k)
-
-	return nFactorial / nMinusKFactorial
+	result := uint(1)
+	for i := uint(0); i < k; i++ {
+		result *= n - i
+	}
+	return result
 }
 
 // Combination calculate C(n, k).
