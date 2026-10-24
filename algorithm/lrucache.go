@@ -77,6 +77,7 @@ func (l *LRUCache[K, V]) Delete(key K) bool {
 	if ok {
 		key := l.deleteNode(node)
 		delete(l.cache, key)
+		l.length = len(l.cache)
 		return true
 	}
 	l.length = len(l.cache)

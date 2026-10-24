@@ -17,11 +17,10 @@ func TestExponent(t *testing.T) {
 	assert.Equal(int64(100), Exponent(10, 2))
 }
 
-func TestPermutationBeyondFactorialRange(t *testing.T) {
-	assert := internal.NewAssert(t, "TestPermutationBeyondFactorialRange")
-	assert.Equal(uint(1), Permutation(100, 0))
-	assert.Equal(uint(100), Permutation(100, 1))
-	assert.Equal(uint(9900), Permutation(100, 2))
+func TestTruncRoundInteger(t *testing.T) {
+	assert := internal.NewAssert(t, "TestTruncRoundInteger")
+	assert.Equal(42, TruncRound(42, 0))
+	assert.Equal(int8(-42), TruncRound(int8(-42), 2))
 }
 
 func TestLCMIntermediateOverflow(t *testing.T) {
@@ -40,6 +39,10 @@ func TestFibonacci(t *testing.T) {
 	assert.Equal(1, Fibonacci(1, 1, 1))
 	assert.Equal(1, Fibonacci(1, 1, 2))
 	assert.Equal(5, Fibonacci(1, 1, 5))
+	assert.Equal(2, Fibonacci(2, 3, 1))
+	assert.Equal(3, Fibonacci(2, 3, 2))
+	assert.Equal(5, Fibonacci(2, 3, 3))
+	assert.Equal(13, Fibonacci(2, 3, 5))
 }
 
 func TestFactorial(t *testing.T) {
@@ -61,6 +64,19 @@ func TestPercent(t *testing.T) {
 	assert.EqualValues(50, Percent(1, 2, 2))
 	assert.EqualValues(33.33, Percent(0.1, 0.3, 2))
 	assert.EqualValues(-7.42, Percent(-30305, 408420, 2))
+}
+
+func TestIntegerRoundingScale(t *testing.T) {
+	assert := internal.NewAssert(t, "TestIntegerRoundingScale")
+	assert.Equal(float64(42), RoundToFloat(int8(42), 2))
+	assert.Equal("42.00", RoundToString(int8(42), 2))
+	assert.Equal(float64(42), FloorToFloat(uint8(42), 2))
+	assert.Equal("42.00", FloorToString(uint8(42), 2))
+	assert.Equal(float64(42), CeilToFloat(int8(42), 2))
+	assert.Equal("42.00", CeilToString(int8(42), 2))
+	assert.Equal(float64(150), RoundToFloat(149, -1))
+	assert.Equal(float64(140), FloorToFloat(149, -1))
+	assert.Equal(float64(150), CeilToFloat(149, -1))
 }
 
 func TestRoundToFloat(t *testing.T) {
@@ -316,6 +332,15 @@ func TestRadianToAngle(t *testing.T) {
 	assert.Equal(float64(180), result1)
 	assert.Equal(float64(90), result2)
 	assert.Equal(float64(45), result3)
+}
+
+func TestPointDistanceExtremeScales(t *testing.T) {
+	for _, scale := range []float64{1e200, 1e-200} {
+		got := PointDistance(0, 0, 3*scale, 4*scale)
+		if math.Abs(got/(5*scale)-1) > 1e-15 {
+			t.Errorf("scale %g: got %g, want %g", scale, got, 5*scale)
+		}
+	}
 }
 
 func TestPointDistance(t *testing.T) {

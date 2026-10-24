@@ -35,8 +35,10 @@ func Fibonacci(first, second, n int) int {
 	if n <= 0 {
 		return 0
 	}
-	if n < 3 {
-		return 1
+	if n == 1 {
+		return first
+	} else if n == 2 {
+		return second
 	} else if n == 3 {
 		return first + second
 	} else {
@@ -75,8 +77,7 @@ func Percent(val, total float64, n int) float64 {
 // Play: https://go.dev/play/p/kZwpBRAcllO
 func RoundToString[T constraints.Float | constraints.Integer](x T, n int) string {
 	tmp := math.Pow(10.0, float64(n))
-	x *= T(tmp)
-	r := math.Round(float64(x))
+	r := math.Round(float64(x) * tmp)
 	result := strconv.FormatFloat(r/tmp, 'f', n, 64)
 	return result
 }
@@ -85,15 +86,14 @@ func RoundToString[T constraints.Float | constraints.Integer](x T, n int) string
 // Play: https://go.dev/play/p/ghyb528JRJL
 func RoundToFloat[T constraints.Float | constraints.Integer](x T, n int) float64 {
 	tmp := math.Pow(10.0, float64(n))
-	x *= T(tmp)
-	r := math.Round(float64(x))
+	r := math.Round(float64(x) * tmp)
 	return r / tmp
 }
 
 // TruncRound round off n decimal places.
 // Play: https://go.dev/play/p/aumarSHIGzP
 func TruncRound[T constraints.Float | constraints.Integer](x T, n int) T {
-	floatStr := fmt.Sprintf("%."+strconv.Itoa(n+1)+"f", x)
+	floatStr := fmt.Sprintf("%."+strconv.Itoa(n+1)+"f", float64(x))
 	temp := strings.Split(floatStr, ".")
 	var newFloat string
 	if len(temp) < 2 || n >= len(temp[1]) {
@@ -109,8 +109,7 @@ func TruncRound[T constraints.Float | constraints.Integer](x T, n int) T {
 // Play: https://go.dev/play/p/vbCBrQHZEED
 func FloorToFloat[T constraints.Float | constraints.Integer](x T, n int) float64 {
 	tmp := math.Pow(10.0, float64(n))
-	x *= T(tmp)
-	r := math.Floor(float64(x))
+	r := math.Floor(float64(x) * tmp)
 	return r / tmp
 }
 
@@ -118,8 +117,7 @@ func FloorToFloat[T constraints.Float | constraints.Integer](x T, n int) float64
 // Play: https://go.dev/play/p/Qk9KPd2IdDb
 func FloorToString[T constraints.Float | constraints.Integer](x T, n int) string {
 	tmp := math.Pow(10.0, float64(n))
-	x *= T(tmp)
-	r := math.Floor(float64(x))
+	r := math.Floor(float64(x) * tmp)
 	result := strconv.FormatFloat(r/tmp, 'f', n, 64)
 	return result
 }
@@ -128,8 +126,7 @@ func FloorToString[T constraints.Float | constraints.Integer](x T, n int) string
 // Play: https://go.dev/play/p/8hOeSADZPCo
 func CeilToFloat[T constraints.Float | constraints.Integer](x T, n int) float64 {
 	tmp := math.Pow(10.0, float64(n))
-	x *= T(tmp)
-	r := math.Ceil(float64(x))
+	r := math.Ceil(float64(x) * tmp)
 	return r / tmp
 }
 
@@ -137,8 +134,7 @@ func CeilToFloat[T constraints.Float | constraints.Integer](x T, n int) float64 
 // Play: https://go.dev/play/p/wy5bYEyUKKG
 func CeilToString[T constraints.Float | constraints.Integer](x T, n int) string {
 	tmp := math.Pow(10.0, float64(n))
-	x *= T(tmp)
-	r := math.Ceil(float64(x))
+	r := math.Ceil(float64(x) * tmp)
 	result := strconv.FormatFloat(r/tmp, 'f', n, 64)
 	return result
 }
@@ -303,11 +299,7 @@ func RadianToAngle(radian float64) float64 {
 // PointDistance get two points distance.
 // Play: https://go.dev/play/p/RrG4JIaziM8
 func PointDistance(x1, y1, x2, y2 float64) float64 {
-	a := x1 - x2
-	b := y1 - y2
-	c := math.Pow(a, 2) + math.Pow(b, 2)
-
-	return math.Sqrt(c)
+	return math.Hypot(x1-x2, y1-y2)
 }
 
 // IsPrime checks if number is prime number.
