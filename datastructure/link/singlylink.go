@@ -103,6 +103,7 @@ func (sl *SinglyLink[T]) DeleteAtTail() {
 	current := sl.Head
 	if current.Next == nil {
 		sl.DeleteAtHead()
+		return
 	}
 
 	for current.Next.Next != nil {
@@ -116,22 +117,20 @@ func (sl *SinglyLink[T]) DeleteAtTail() {
 // DeleteAt delete value in singly linklist at index
 // param `index` should be [0, len(SinglyLink)-1]
 func (sl *SinglyLink[T]) DeleteAt(index int) {
-	if sl.Head == nil {
+	if sl.Head == nil || index < 0 || index >= sl.length {
 		return
 	}
-	current := sl.Head
-	if current.Next == nil || index == 0 {
+	if index == 0 {
 		sl.DeleteAtHead()
+		return
 	}
 
 	if index == sl.length-1 {
 		sl.DeleteAtTail()
-	}
-
-	if index < 0 || index > sl.length-1 {
 		return
 	}
 
+	current := sl.Head
 	i := 0
 	for current != nil {
 		if i == index-1 {
