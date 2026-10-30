@@ -374,6 +374,5 @@ func (c *CopyOnWriteList[T]) SubList(start int, end int) (newList []T) {
 	}
 	newList = make([]T, end-start)
 	copy(newList, list[start:end])
-	c.setList(newList)
 	return
 }
