@@ -44,6 +44,9 @@ func NewHashMapWithCapacity(size, capacity uint64) *HashMap {
 
 // Get return the value of given key in hashmap
 func (hm *HashMap) Get(key any) any {
+	if hm.size == 0 {
+		return nil
+	}
 	hashValue := hm.hash(key)
 	node := hm.table[hashValue]
 	for node != nil {
@@ -66,41 +69,55 @@ func (hm *HashMap) GetOrDefault(key any, defaultValue any) any {
 
 // Put new key value in hashmap
 func (hm *HashMap) Put(key any, value any) {
-	hm.putValue(hm.hash(key), key, value)
-}
-
-func (hm *HashMap) putValue(hash uint64, key, value any) {
 	if hm.capacity == 0 {
 		hm.capacity = defaultMapCapacity
 		hm.table = make([]*mapNode, defaultMapCapacity)
 	}
+	hm.putValue(hm.hash(key), key, value)
+}
 
-	node := hm.table[hash]
-	if node == nil {
-		hm.table[hash] = newMapNode(key, value)
-	} else if node.key == key {
-		hm.table[hash] = newMapNodeWithNext(key, value, node)
-	} else {
-		hm.resize()
-		hm.putValue(hash, value, value)
+func (hm *HashMap) putValue(hash uint64, key, value any) {
+	for node := hm.table[hash]; node != nil; node = node.next {
+		if reflect.DeepEqual(node.key, key) {
+			node.value = value
+			return
+		}
 	}
+
+	if hm.size >= hm.capacity {
+		hm.resize()
+		hash = hm.hash(key)
+	}
+	hm.table[hash] = newMapNodeWithNext(key, value, hm.table[hash])
 	hm.size++
 }
 
 // Delete item by given key in hashmap
 func (hm *HashMap) Delete(key any) {
-	hash := hm.hash(key)
-	node := hm.table[hash]
-	if node == nil {
+	if hm.size == 0 {
 		return
 	}
-
-	hm.table = append(hm.table[:hash], hm.table[hash+1:]...)
-	hm.size--
+	hash := hm.hash(key)
+	var previous *mapNode
+	for node := hm.table[hash]; node != nil; node = node.next {
+		if reflect.DeepEqual(node.key, key) {
+			if previous == nil {
+				hm.table[hash] = node.next
+			} else {
+				previous.next = node.next
+			}
+			hm.size--
+			return
+		}
+		previous = node
+	}
 }
 
 // Contains checks if given key is in hashmap or not
 func (hm *HashMap) Contains(key any) bool {
+	if hm.size == 0 {
+		return false
+	}
 	node := hm.table[hm.hash(key)]
 	for node != nil {
 		if reflect.DeepEqual(node.key, key) {
@@ -113,12 +130,10 @@ func (hm *HashMap) Contains(key any) bool {
 
 // Iterate executes iteratee funcation for every key and value pair of hashmap (random order)
 func (hm *HashMap) Iterate(iteratee func(key, value any)) {
-	if hm.size > 0 {
-		for i := 0; i < len(hm.table); i++ {
-			item := hm.table[i]
-			if item != nil {
-				iteratee(item.key, item.value)
-			}
+	for _, node := range hm.table {
+		for node != nil {
+			iteratee(node.key, node.value)
+			node = node.next
 		}
 	}
 }
@@ -128,17 +143,14 @@ func (hm *HashMap) Iterate(iteratee func(key, value any)) {
 // otherwise it returns the HashMap with selected values.
 func (hm *HashMap) FilterByValue(perdicate func(value any) bool) *HashMap {
 	var filteredHM *HashMap
-	if hm.size > 0 {
-		for i := 0; i < len(hm.table); i++ {
-			item := hm.table[i]
-			if item != nil && perdicate(item.value) {
-				if filteredHM == nil {
-					filteredHM = NewHashMap()
-				}
-				filteredHM.Put(item.key, item.value)
+	hm.Iterate(func(key, value any) {
+		if perdicate(value) {
+			if filteredHM == nil {
+				filteredHM = NewHashMap()
 			}
+			filteredHM.Put(key, value)
 		}
-	}
+	})
 	return filteredHM
 }
 
@@ -172,18 +184,16 @@ func (hm *HashMap) Values() []any {
 
 func (hm *HashMap) resize() {
 	hm.capacity <<= 1
-
 	tempTable := hm.table
-
 	hm.table = make([]*mapNode, hm.capacity)
-
-	for i := 0; i < len(tempTable); i++ {
-		node := tempTable[i]
-		if node == nil {
-			continue
+	for _, node := range tempTable {
+		for node != nil {
+			next := node.next
+			hash := hm.hash(node.key)
+			node.next = hm.table[hash]
+			hm.table[hash] = node
+			node = next
 		}
-
-		hm.table[hm.hash(node.key)] = node
 	}
 }
 
@@ -199,13 +209,6 @@ func (hm *HashMap) hash(key any) uint64 {
 	hashValue := h.Sum64()
 
 	return (hm.capacity - 1) & (hashValue ^ (hashValue >> 16))
-}
-
-func newMapNode(key, value any) *mapNode {
-	return &mapNode{
-		key:   key,
-		value: value,
-	}
 }
 
 func newMapNodeWithNext(key, value any, next *mapNode) *mapNode {
