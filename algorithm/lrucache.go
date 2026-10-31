@@ -102,12 +102,14 @@ func (l *LRUCache[K, V]) addNode(node *lruNode[K, V]) {
 }
 
 func (l *LRUCache[K, V]) deleteNode(node *lruNode[K, V]) K {
-	if node == l.tail {
-		l.tail = l.tail.pre
-	} else if node == l.head {
-		l.head = l.head.next
+	if node.pre == nil {
+		l.head = node.next
 	} else {
 		node.pre.next = node.next
+	}
+	if node.next == nil {
+		l.tail = node.pre
+	} else {
 		node.next.pre = node.pre
 	}
 	return node.key
