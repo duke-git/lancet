@@ -87,6 +87,7 @@ func (dl *DoublyLink[T]) InsertAt(index int, value T) {
 			newNode := datastructure.NewLinkNode(value)
 			newNode.Next = current.Next
 			newNode.Pre = current
+			current.Next.Pre = newNode
 
 			current.Next = newNode
 			dl.length++
@@ -106,7 +107,9 @@ func (dl *DoublyLink[T]) DeleteAtHead() {
 
 	current := dl.Head
 	dl.Head = current.Next
-	dl.Head.Pre = nil
+	if dl.Head != nil {
+		dl.Head.Pre = nil
+	}
 	dl.length--
 }
 
@@ -119,6 +122,7 @@ func (dl *DoublyLink[T]) DeleteAtTail() {
 	current := dl.Head
 	if current.Next == nil {
 		dl.DeleteAtHead()
+		return
 	}
 
 	for current.Next.Next != nil {
@@ -132,27 +136,26 @@ func (dl *DoublyLink[T]) DeleteAtTail() {
 // DeleteAt delete value in doubly linklist at index
 // param `index` should be [0, len(DoublyLink)-1]
 func (dl *DoublyLink[T]) DeleteAt(index int) {
-	if dl.Head == nil {
+	if dl.Head == nil || index < 0 || index >= dl.length {
 		return
 	}
 
-	current := dl.Head
-	if current.Next == nil || index == 0 {
+	if index == 0 {
 		dl.DeleteAtHead()
+		return
 	}
 
 	if index == dl.length-1 {
 		dl.DeleteAtTail()
-	}
-
-	if index < 0 || index > dl.length-1 {
 		return
 	}
 
+	current := dl.Head
 	i := 0
 	for current != nil {
 		if i == index-1 {
 			current.Next = current.Next.Next
+			current.Next.Pre = current
 			dl.length--
 			return
 		}
