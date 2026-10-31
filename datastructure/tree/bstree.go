@@ -40,7 +40,7 @@ func (t *BSTree[T]) Insert(data T) {
 
 // DeletetNode delete data into BSTree
 func (t *BSTree[T]) Delete(data T) {
-	deleteTreeNode(t.root, data, t.comparator)
+	t.root = deleteTreeNode(t.root, data, t.comparator)
 }
 
 // NodeLevel get node level in BSTree

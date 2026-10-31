@@ -69,6 +69,9 @@ func inOrderTraverse[T any](node *datastructure.TreeNode[T]) []T {
 // }
 
 func levelOrderTraverse[T any](root *datastructure.TreeNode[T], traversal *[]T) {
+	if root == nil {
+		return
+	}
 	var q []*datastructure.TreeNode[T] // queue
 	var n *datastructure.TreeNode[T]   // temp node
 
@@ -102,7 +105,6 @@ func insertTreeNode[T any](rootNode, newNode *datastructure.TreeNode[T], compara
 	}
 }
 
-// todo, delete root node failed
 func deleteTreeNode[T any](node *datastructure.TreeNode[T], data T, comparator constraints.Comparator) *datastructure.TreeNode[T] {
 	if node == nil {
 		return nil
