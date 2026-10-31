@@ -354,6 +354,7 @@ func (c *CopyOnWriteList[T]) ForEach(f func(T)) {
 func (c *CopyOnWriteList[T]) Sort(compare func(o1 T, o2 T) bool) {
 	lock := c.lock
 	lock.Lock()
+	defer lock.Unlock()
 	list := c.getList()
 
 	sort.Slice(list, func(i, j int) bool {
