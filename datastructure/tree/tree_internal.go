@@ -21,8 +21,8 @@ func preOrderTraverse[T any](node *datastructure.TreeNode[T]) []T {
 func postOrderTraverse[T any](node *datastructure.TreeNode[T]) []T {
 	data := []T{}
 	if node != nil {
-		data = append(data, preOrderTraverse(node.Left)...)
-		data = append(data, preOrderTraverse(node.Right)...)
+		data = append(data, postOrderTraverse(node.Left)...)
+		data = append(data, postOrderTraverse(node.Right)...)
 		data = append(data, node.Value)
 	}
 	return data

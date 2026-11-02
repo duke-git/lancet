@@ -49,7 +49,7 @@ func TestBSTree_PostOrderTraverse(t *testing.T) {
 	bstree.Insert(4)
 
 	acturl := bstree.PostOrderTraverse()
-	assert.Equal([]int{5, 2, 4, 7, 6}, acturl)
+	assert.Equal([]int{4, 2, 5, 7, 6}, acturl)
 }
 
 func TestBSTree_InOrderTraverse(t *testing.T) {
