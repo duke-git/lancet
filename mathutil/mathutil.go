@@ -452,9 +452,18 @@ func Combination(n, k uint) uint {
 		return 0
 	}
 
-	nFactorial := Factorial(n)
-	kFactorial := Factorial(k)
-	nMinusKFactorial := Factorial(n - k)
+	// C(n, k) == C(n, n-k), so the loop below runs min(k, n-k) times.
+	if k > n-k {
+		k = n - k
+	}
 
-	return nFactorial / (kFactorial * nMinusKFactorial)
+	// Build C(n-k+i, i) for i = 1..k. Each step is an exact integer, and dividing
+	// by the gcd first avoids the overflow of computing the factorials of n and k.
+	result := uint(1)
+	for i := uint(1); i <= k; i++ {
+		g := gcd(result, i)
+		result = result / g * ((n - k + i) / (i / g))
+	}
+
+	return result
 }
