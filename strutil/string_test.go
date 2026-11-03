@@ -23,6 +23,8 @@ func TestCamelCase(t *testing.T) {
 		{"$foo%", "foo"},
 		{"   $#$Foo   22    bar   ", "foo22Bar"},
 		{"Foo-#1😄$_%^&*(1bar", "foo11Bar"},
+		{"Привет Мир", "приветМир"},
+		{"Köln Straße", "kölnStraße"},
 	}
 
 	for _, tt := range tests {
@@ -47,6 +49,8 @@ func TestUpperCamelCase(t *testing.T) {
 		{"$foo%", "Foo"},
 		{"   $#$Foo   22    bar   ", "Foo22Bar"},
 		{"Foo-#1😄$_%^&*(1bar", "Foo11Bar"},
+		{"Привет Мир", "ПриветМир"},
+		{"Köln Straße", "KölnStraße"},
 	}
 
 	for _, tt := range tests {
@@ -99,6 +103,8 @@ func TestKebabCase(t *testing.T) {
 		{"$foo@Bar", "foo-bar"},
 		{"   $#$Foo   22    bar   ", "foo-22-bar"},
 		{"Foo-#1😄$_%^&*(1bar", "foo-1-1-bar"},
+		{"Привет Мир", "привет-мир"},
+		{"Köln Straße", "köln-straße"},
 	}
 
 	for _, tt := range tests {
@@ -127,6 +133,8 @@ func TestUpperKebabCase(t *testing.T) {
 		{"$foo@Bar", "FOO-BAR"},
 		{"   $#$Foo   22    bar   ", "FOO-22-BAR"},
 		{"Foo-#1😄$_%^&*(1bar", "FOO-1-1-BAR"},
+		{"Привет Мир", "ПРИВЕТ-МИР"},
+		{"Köln Straße", "KÖLN-STRAßE"},
 	}
 
 	for _, tt := range tests {
@@ -155,6 +163,8 @@ func TestSnakeCase(t *testing.T) {
 		{"$foo@Bar", "foo_bar"},
 		{"   $#$Foo   22    bar   ", "foo_22_bar"},
 		{"Foo-#1😄$_%^&*(1bar", "foo_1_1_bar"},
+		{"Привет Мир", "привет_мир"},
+		{"Köln Straße", "köln_straße"},
 	}
 
 	for _, tt := range tests {
@@ -183,6 +193,8 @@ func TestUpperSnakeCase(t *testing.T) {
 		{"$foo@Bar", "FOO_BAR"},
 		{"   $#$Foo   22    bar   ", "FOO_22_BAR"},
 		{"Foo-#1😄$_%^&*(1bar", "FOO_1_1_BAR"},
+		{"Привет Мир", "ПРИВЕТ_МИР"},
+		{"Köln Straße", "KÖLN_STRAßE"},
 	}
 
 	for _, tt := range tests {
