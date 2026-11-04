@@ -214,14 +214,17 @@ func NewTryKeyedLocker[K comparable]() *TryKeyedLocker[K] {
 // Play: https://go.dev/play/p/VG9qLvyetE2
 func (l *TryKeyedLocker[K]) TryLock(key K) bool {
 	l.mu.Lock()
+	defer l.mu.Unlock()
 
 	lock, ok := l.locks[key]
 	if !ok {
 		lock = &casMutex{}
 		l.locks[key] = lock
 	}
-	l.mu.Unlock()
 
+	// TryLock must run while l.mu is held. Otherwise Unlock can delete this entry
+	// from the map before the lock is taken, and a later TryLock for the same key
+	// would create a second entry and succeed while this one is still held.
 	return lock.TryLock()
 }
 
