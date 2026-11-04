@@ -310,3 +310,30 @@ func TestRace(t *testing.T) {
 	})
 
 }
+
+func TestPromise_PanicAfterSettled(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestPromise_PanicAfterSettled")
+
+	p1 := New(func(resolve func(string), reject func(error)) {
+		resolve("abc")
+		panic("late panic")
+	})
+	val, err := p1.Await()
+	assert.IsNil(err)
+	assert.Equal("abc", val)
+
+	p2 := New(func(resolve func(string), reject func(error)) {
+		reject(errors.New("first error"))
+		panic("late panic")
+	})
+	_, err = p2.Await()
+	assert.Equal("first error", err.Error())
+
+	p3 := New(func(resolve func(string), reject func(error)) {
+		panic("early panic")
+	})
+	_, err = p3.Await()
+	assert.Equal("early panic", err.Error())
+}
