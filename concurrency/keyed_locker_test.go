@@ -4,6 +4,7 @@ import (
 	"context"
 	"strconv"
 	"sync"
+	"sync/atomic"
 	"testing"
 	"time"
 
@@ -227,4 +228,35 @@ func TestTryKeyedLocker_ParallelTry(t *testing.T) {
 
 	assert.Equal(5, count)
 	assert.Equal(0, len(locker.locks))
+}
+
+func TestTryKeyedLocker_MutualExclusionUnderContention(t *testing.T) {
+	t.Parallel()
+
+	locker := NewTryKeyedLocker[string]()
+
+	var holders, violations int32
+	var wg sync.WaitGroup
+
+	for g := 0; g < 8; g++ {
+		wg.Add(1)
+		go func() {
+			defer wg.Done()
+			for i := 0; i < 20000; i++ {
+				if !locker.TryLock("key") {
+					continue
+				}
+				if atomic.AddInt32(&holders, 1) > 1 {
+					atomic.AddInt32(&violations, 1)
+				}
+				atomic.AddInt32(&holders, -1)
+				locker.Unlock("key")
+			}
+		}()
+	}
+	wg.Wait()
+
+	if v := atomic.LoadInt32(&violations); v != 0 {
+		t.Fatalf("the lock was held by more than one goroutine %d times", v)
+	}
 }
