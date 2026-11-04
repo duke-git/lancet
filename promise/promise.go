@@ -49,10 +49,6 @@ func (p *Promise[T]) run() {
 
 	go func() {
 		defer func() {
-			if !p.pending {
-				return
-			}
-
 			if err := recover(); err != nil {
 				p.reject(errors.New(fmt.Sprint(err)))
 			}
