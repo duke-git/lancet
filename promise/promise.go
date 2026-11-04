@@ -177,7 +177,7 @@ func All[T any](promises []*Promise[T]) *Promise[[]T] {
 
 	return New(func(resolve func([]T), reject func(error)) {
 		valsChan := make(chan tuple[T, int], len(promises))
-		errsChan := make(chan error, 1)
+		errsChan := make(chan error, len(promises))
 
 		for idx, p := range promises {
 			idx := idx
@@ -212,8 +212,10 @@ func Race[T any](promises []*Promise[T]) *Promise[T] {
 	}
 
 	return New(func(resolve func(T), reject func(error)) {
-		valsChan := make(chan T, 1)
-		errsChan := make(chan error, 1)
+		// every promise may settle, so each channel holds all of them. A smaller
+		// buffer leaves the callbacks of the losing promises blocked forever.
+		valsChan := make(chan T, len(promises))
+		errsChan := make(chan error, len(promises))
 
 		for _, p := range promises {
 			_ = Then(p, func(data T) T {
@@ -243,7 +245,7 @@ func Any[T any](promises []*Promise[T]) *Promise[T] {
 	}
 
 	return New(func(resolve func(T), reject func(error)) {
-		valsChan := make(chan T, 1)
+		valsChan := make(chan T, len(promises))
 		errsChan := make(chan tuple[error, int], len(promises))
 
 		for idx, p := range promises {
