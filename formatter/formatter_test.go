@@ -35,6 +35,12 @@ func TestComma(t *testing.T) {
 	assert.Equal("-999", Comma(-999, ""))
 	assert.Equal("-1,000", Comma(-1000, ""))
 	assert.Equal("-1,234,567", Comma(-1234567, ""))
+
+	assert.Equal("1e+21", Comma("1e+21", ""))
+	assert.Equal("$12,345,678e3", Comma("12345678e3", "$"))
+	assert.Equal("1_000", Comma("1_000", ""))
+	assert.Equal("1,234,567.", Comma("1234567.", ""))
+	assert.Equal(".12345", Comma(".12345", ""))
 }
 
 func TestPretty(t *testing.T) {
