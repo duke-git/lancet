@@ -258,3 +258,20 @@ func TestCancelRetry(t *testing.T) {
 	assert.IsNotNil(err)
 	assert.Equal(4, number)
 }
+
+func TestRetryExponentialBackoffMultiplier(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestRetryExponentialBackoffMultiplier")
+
+	for _, base := range []uint64{2, 3, 4, 6, 8, 10} {
+		rc := &RetryConfig{}
+		RetryWithExponentialWithJitterBackoff(time.Millisecond, base, 0)(rc)
+
+		want := time.Millisecond
+		for i := 0; i < 3; i++ {
+			assert.Equal(want, rc.backoffStrategy.CalculateInterval())
+			want *= time.Duration(base)
+		}
+	}
+}
