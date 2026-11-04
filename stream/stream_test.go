@@ -423,3 +423,20 @@ func TestStream_ToMap(t *testing.T) {
 	assert.EqualValues(expected, m)
 
 }
+
+func TestStream_MaxMinDoNotCompareWithZeroValue(t *testing.T) {
+	assert := internal.NewAssert(t, "TestStream_MaxMinDoNotCompareWithZeroValue")
+
+	type Person struct {
+		Age int
+	}
+	s := FromSlice([]*Person{{Age: 20}, {Age: 10}, {Age: 30}})
+
+	max, ok := s.Max(func(a, b *Person) bool { return a.Age > b.Age })
+	assert.Equal(true, ok)
+	assert.Equal(30, max.Age)
+
+	min, ok := s.Min(func(a, b *Person) bool { return a.Age < b.Age })
+	assert.Equal(true, ok)
+	assert.Equal(10, min.Age)
+}
