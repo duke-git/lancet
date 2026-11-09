@@ -220,3 +220,58 @@ func TestEventBus_GetEvents(t *testing.T) {
 	assert.Equal(2, len(events))
 	assert.Equal([]string{"event1", "event2"}, events)
 }
+
+func TestEventBus_ListenerCanChangeSubscriptions(t *testing.T) {
+	t.Parallel()
+	assert := internal.NewAssert(t, "TestEventBus_ListenerCanChangeSubscriptions")
+
+	eb := NewEventBus[int]()
+
+	var self func(eventData int)
+	self = func(eventData int) {
+		eb.Unsubscribe("event1", self)
+		eb.Subscribe("event2", func(eventData int) {}, false, 0, nil)
+	}
+	eb.Subscribe("event1", self, false, 0, nil)
+
+	done := make(chan struct{})
+	go func() {
+		eb.Publish(Event[int]{Topic: "event1", Payload: 1})
+		close(done)
+	}()
+
+	select {
+	case <-done:
+	case <-time.After(5 * time.Second):
+		t.Fatal("Publish did not return when a listener changed the subscriptions")
+	}
+
+	assert.Equal(0, eb.GetListenersCount("event1"))
+	assert.Equal(1, eb.GetListenersCount("event2"))
+}
+
+func TestEventBus_PublishWhileSubscribing(t *testing.T) {
+	t.Parallel()
+
+	eb := NewEventBus[int]()
+	eb.Subscribe("event1", func(eventData int) {}, false, 1, nil)
+
+	var wg sync.WaitGroup
+	wg.Add(2)
+
+	go func() {
+		defer wg.Done()
+		for i := 0; i < 200; i++ {
+			eb.Publish(Event[int]{Topic: "event1", Payload: i})
+		}
+	}()
+
+	go func() {
+		defer wg.Done()
+		for i := 0; i < 200; i++ {
+			eb.Subscribe("event1", func(eventData int) {}, false, i%7, nil)
+		}
+	}()
+
+	wg.Wait()
+}
