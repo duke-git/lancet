@@ -706,10 +706,18 @@ func ToMarkdownTable(data []map[string]interface{}, headerMap map[string]string,
 		headers = make([]string, len(columnOrder))
 		copy(headers, columnOrder)
 	} else {
-		// 否则按自然顺序提取headers
+		// 否则按每行键的字典序提取headers
 		seen := make(map[string]bool)
 		for _, row := range data {
+			// Map iteration order is random, so visit the keys of each row in sorted
+			// order to get the same columns in the same order on every call.
+			keys := make([]string, 0, len(row))
 			for k := range row {
+				keys = append(keys, k)
+			}
+			sort.Strings(keys)
+
+			for _, k := range keys {
 				if !seen[k] {
 					seen[k] = true
 					headers = append(headers, k)
