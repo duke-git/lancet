@@ -943,3 +943,28 @@ func TestBetweenSeconds(t *testing.T) {
 	assert.Equal(int64(86400), result1)
 	assert.Equal(int64(-86400), result2)
 }
+
+func TestGetZeroHourAndNightTimestampLocalZone(t *testing.T) {
+	// not parallel: this test replaces time.Local
+	assert := internal.NewAssert(t, "TestGetZeroHourAndNightTimestampLocalZone")
+
+	oldLocal := time.Local
+	defer func() { time.Local = oldLocal }()
+
+	for _, offset := range []int{-5 * 3600, 0, 8 * 3600, 9 * 3600} {
+		time.Local = time.FixedZone("test", offset)
+
+		before := time.Now()
+		zero := GetZeroHourTimestamp()
+		night := GetNightTimestamp()
+		after := time.Now()
+
+		if before.Day() != after.Day() {
+			continue
+		}
+
+		assert.Equal(BeginOfDay(before).Unix(), zero)
+		assert.Equal(EndOfDay(before).Unix(), night)
+		assert.Equal(int64(86399), night-zero)
+	}
+}
