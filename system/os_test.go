@@ -2,6 +2,7 @@ package system
 
 import (
 	"os/exec"
+	"runtime"
 	"strings"
 	"testing"
 	"time"
@@ -141,4 +142,22 @@ func TestGetProcessInfo(t *testing.T) {
 	assert.IsNil(err)
 
 	t.Log(processInfo)
+}
+
+func TestParseProcessInfo_commandWithSpaces(t *testing.T) {
+	t.Parallel()
+
+	if runtime.GOOS == "windows" {
+		t.Skip("parses ps output")
+	}
+
+	assert := internal.NewAssert(t, "TestParseProcessInfo_commandWithSpaces")
+
+	output := []byte("  PID %CPU %MEM STAT USER     COMM\n 4242  0.1  0.2 S    root     Google Chrome Helper\n")
+
+	info, err := parseProcessInfo(output, 4242)
+	assert.IsNil(err)
+	assert.Equal("Google Chrome Helper", info.Cmd)
+	assert.Equal("root", info.User)
+	assert.Equal("S", info.State)
 }
