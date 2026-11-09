@@ -32,9 +32,11 @@ func Comma[T constraints.Float | constraints.Integer | string](value T, prefixSy
 		numString = numString[1:]
 	}
 
-	index := strings.Index(numString, ".")
-	if index == -1 {
-		index = len(numString)
+	// Only the leading run of digits gets commas, so that an exponent ("1e+21")
+	// or any other suffix that ParseFloat accepts is left as it is.
+	index := 0
+	for index < len(numString) && numString[index] >= '0' && numString[index] <= '9' {
+		index++
 	}
 
 	for index > 3 {
