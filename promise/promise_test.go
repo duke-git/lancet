@@ -243,7 +243,43 @@ func TestAny(t *testing.T) {
 		assert.IsNotNil(err)
 	})
 
+	t.Run("OnlyRejectedJoinsAllErrors", func(_ *testing.T) {
+		err1 := errors.New("error1")
+		err2 := &testPathError{msg: "error2"}
+		p1 := New(func(resolve func(string), reject func(error)) {
+			reject(err1)
+		})
+		p2 := New(func(resolve func(string), reject func(error)) {
+			reject(err2)
+		})
+
+		_, err := Any([]*Promise[string]{p1, p2}).Await()
+
+		assert.IsNotNil(err)
+		assert.Equal("error1\nerror2", err.Error())
+		assert.Equal(true, errors.Is(err, err1))
+		assert.Equal(true, errors.Is(err, err2))
+
+		var target *testPathError
+		assert.Equal(true, errors.As(err, &target))
+		assert.Equal(true, target == err2)
+	})
+
+	t.Run("SingleRejectedKeepsError", func(_ *testing.T) {
+		e := errors.New("only")
+		p1 := New(func(resolve func(string), reject func(error)) {
+			reject(e)
+		})
+
+		_, err := Any([]*Promise[string]{p1}).Await()
+
+		assert.Equal(true, err == e)
+	})
 }
+
+type testPathError struct{ msg string }
+
+func (e *testPathError) Error() string { return e.msg }
 
 func TestRace(t *testing.T) {
 	assert := internal.NewAssert(t, "TestPromise_Race")

@@ -272,10 +272,38 @@ func Any[T any](promises []*Promise[T]) *Promise[T] {
 		}
 
 		errCombo := errs[0]
-		for _, err := range errs[1:] {
-			errCombo = internal.JoinError(err)
+		if len(errs) > 1 {
+			errCombo = &anyError{errs: errs}
 		}
 
 		reject(errCombo)
 	})
+}
+
+// anyError is the error of Any when every promise is rejected. It keeps errors.Is and
+// errors.As working for each member, also on Go versions that cannot traverse Unwrap() []error.
+type anyError struct {
+	errs []error
+}
+
+func (e *anyError) Error() string {
+	return internal.JoinError(e.errs...).Error()
+}
+
+func (e *anyError) Is(target error) bool {
+	for _, err := range e.errs {
+		if errors.Is(err, target) {
+			return true
+		}
+	}
+	return false
+}
+
+func (e *anyError) As(target any) bool {
+	for _, err := range e.errs {
+		if errors.As(err, target) {
+			return true
+		}
+	}
+	return false
 }
