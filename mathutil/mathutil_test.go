@@ -2,6 +2,7 @@ package mathutil
 
 import (
 	"math"
+	"math/bits"
 	"testing"
 
 	"github.com/duke-git/lancet/v2/internal"
@@ -577,9 +578,39 @@ func TestCombination(t *testing.T) {
 		{0, 0, 1},
 		{3, 2, 3},
 		{4, 2, 6},
+		{5, 6, 0},
+		{5, 5, 1},
+		{5, 0, 1},
+		{21, 10, 352716},
+		{34, 17, 2333606220},
 	}
 
 	for _, tt := range tests {
 		assert.Equal(tt.expected, Combination(tt.n, tt.k))
+	}
+}
+
+func TestCombinationLarge(t *testing.T) {
+	t.Parallel()
+
+	if bits.UintSize < 64 {
+		t.Skip("the expected values do not fit in a 32-bit uint")
+	}
+
+	assert := internal.NewAssert(t, "TestCombinationLarge")
+
+	tests := []struct {
+		n        uint
+		k        uint
+		expected uint64
+	}{
+		{40, 20, 137846528820},
+		{60, 30, 118264581564861424},
+		{62, 31, 465428353255261088},
+		{64, 32, 1832624140942590534},
+	}
+
+	for _, tt := range tests {
+		assert.Equal(tt.expected, uint64(Combination(tt.n, tt.k)))
 	}
 }
