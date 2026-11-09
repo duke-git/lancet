@@ -92,7 +92,7 @@ func DecimalBytes(size float64, precision ...int) string {
 		pointPosition = precision[0]
 	}
 
-	size, unit := calculateByteSize(size, 1000.0, decimalByteUnits)
+	size, unit := calculateRoundedByteSize(size, 1000.0, decimalByteUnits, pointPosition)
 
 	return roundToToString(size, pointPosition) + unit
 }
@@ -106,7 +106,7 @@ func BinaryBytes(size float64, precision ...int) string {
 		pointPosition = precision[0]
 	}
 
-	size, unit := calculateByteSize(size, 1024.0, binaryByteUnits)
+	size, unit := calculateRoundedByteSize(size, 1024.0, binaryByteUnits, pointPosition)
 
 	return roundToToString(size, pointPosition) + unit
 }
@@ -119,6 +119,21 @@ func calculateByteSize(size float64, base float64, byteUnits []string) (float64,
 		i++
 	}
 	return size, byteUnits[i]
+}
+
+// calculateRoundedByteSize works like calculateByteSize, but moves to the next unit
+// when the value rounds up to the base at the given (non-negative) precision (e.g. 999999 bytes
+// with precision 2 gives 1MB instead of 1000KB).
+func calculateRoundedByteSize(size float64, base float64, byteUnits []string, precision int) (float64, string) {
+	size, unit := calculateByteSize(size, base, byteUnits)
+	i := 0
+	for byteUnits[i] != unit {
+		i++
+	}
+	if precision >= 0 && i < len(byteUnits)-1 && mathutil.RoundToFloat(size, precision) >= base {
+		return size / base, byteUnits[i+1]
+	}
+	return size, unit
 }
 
 func roundToToString(x float64, max ...int) string {
