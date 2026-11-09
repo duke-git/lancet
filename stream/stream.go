@@ -373,7 +373,7 @@ func (s Stream[T]) Max(less func(a, b T) bool) (T, bool) {
 	}
 
 	for i, v := range s.source {
-		if less(v, max) || i == 0 {
+		if i == 0 || less(v, max) {
 			max = v
 		}
 	}
@@ -391,7 +391,7 @@ func (s Stream[T]) Min(less func(a, b T) bool) (T, bool) {
 	}
 
 	for i, v := range s.source {
-		if less(v, min) || i == 0 {
+		if i == 0 || less(v, min) {
 			min = v
 		}
 	}
