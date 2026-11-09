@@ -2,6 +2,7 @@ package promise
 
 import (
 	"errors"
+	"runtime"
 	"testing"
 	"time"
 
@@ -309,4 +310,40 @@ func TestRace(t *testing.T) {
 		assert.IsNotNil(err)
 	})
 
+}
+
+func TestRaceAnyAllDoNotLeakGoroutines(t *testing.T) {
+	// not parallel: it counts the goroutines of the whole test binary
+	assert := internal.NewAssert(t, "TestRaceAnyAllDoNotLeakGoroutines")
+
+	newResolved := func(n int) []*Promise[int] {
+		ps := make([]*Promise[int], 0, 3)
+		for i := 0; i < 3; i++ {
+			ps = append(ps, New(func(resolve func(int), reject func(error)) { resolve(n) }))
+		}
+		return ps
+	}
+	newRejected := func() []*Promise[int] {
+		ps := make([]*Promise[int], 0, 3)
+		for i := 0; i < 3; i++ {
+			ps = append(ps, New(func(resolve func(int), reject func(error)) { reject(errors.New("e")) }))
+		}
+		return ps
+	}
+
+	before := runtime.NumGoroutine()
+
+	for i := 0; i < 20; i++ {
+		_, _ = Race(newResolved(i)).Await()
+		_, _ = Race(newRejected()).Await()
+		_, _ = Any(newResolved(i)).Await()
+		_, _ = All(newRejected()).Await()
+	}
+
+	deadline := time.Now().Add(2 * time.Second)
+	for runtime.NumGoroutine() > before && time.Now().Before(deadline) {
+		time.Sleep(10 * time.Millisecond)
+	}
+
+	assert.Equal(true, runtime.NumGoroutine() <= before)
 }
