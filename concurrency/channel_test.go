@@ -82,6 +82,34 @@ func TestTake(t *testing.T) {
 	assert.Equal(3, <-intStream)
 }
 
+func TestTake_sourceClosedOrCanceled(t *testing.T) {
+	t.Parallel()
+	assert := internal.NewAssert(t, "TestTake_sourceClosedOrCanceled")
+
+	c := NewChannel[int]()
+
+	// the source ends before number values: no zero values are produced
+	ctx := context.Background()
+	var got []int
+	for v := range c.Take(ctx, c.Generate(ctx, 1, 2), 5) {
+		got = append(got, v)
+	}
+	assert.Equal([]int{1, 2}, got)
+
+	// the source is idle: canceling ctx closes the stream
+	ctx2, cancel := context.WithCancel(context.Background())
+	idle := make(chan int)
+	stream := c.Take(ctx2, idle, 3)
+	cancel()
+
+	select {
+	case _, ok := <-stream:
+		assert.Equal(false, ok)
+	case <-time.After(2 * time.Second):
+		t.Fatal("Take did not stop after the context was canceled")
+	}
+}
+
 func TestFanIn(t *testing.T) {
 	t.Parallel()
 	assert := internal.NewAssert(t, "TestFanIn")

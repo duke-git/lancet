@@ -90,7 +90,16 @@ func (c *Channel[T]) Take(ctx context.Context, valueStream <-chan T, number int)
 			select {
 			case <-ctx.Done():
 				return
-			case takeStream <- <-valueStream:
+			case v, ok := <-valueStream:
+				if !ok {
+					return
+				}
+
+				select {
+				case <-ctx.Done():
+					return
+				case takeStream <- v:
+				}
 			}
 		}
 	}()

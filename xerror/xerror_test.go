@@ -115,3 +115,15 @@ func TestXError_Info(t *testing.T) {
 	assert.Equal(cause, errInfo.Cause)
 	assert.Equal("high", errInfo.Values["level"])
 }
+
+func TestWrap_withoutMessage(t *testing.T) {
+	t.Parallel()
+
+	assert := internal.NewAssert(t, "TestWrap_withoutMessage")
+
+	cause := errors.New("wrong password")
+
+	assert.Equal("wrong password", Wrap(cause).Error())
+	assert.Equal("wrong password", Wrap(Wrap(cause)).Error())
+	assert.Equal("wrong password", New("").Wrap(cause).Error())
+}

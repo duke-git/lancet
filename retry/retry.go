@@ -81,7 +81,8 @@ func RetryWithExponentialWithJitterBackoff(interval time.Duration, base uint64, 
 		panic("programming error: retry maxJitter should not be lower to 0")
 	}
 
-	if base%2 == 0 {
+	// only a power of two can be replaced by a bit shift without changing the multiplier
+	if base != 0 && base&(base-1) == 0 {
 		return func(rc *RetryConfig) {
 			rc.backoffStrategy = &shiftExponentialWithJitter{
 				interval:  interval,

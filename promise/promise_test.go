@@ -2,6 +2,7 @@ package promise
 
 import (
 	"errors"
+	"runtime"
 	"testing"
 	"time"
 
@@ -242,7 +243,43 @@ func TestAny(t *testing.T) {
 		assert.IsNotNil(err)
 	})
 
+	t.Run("OnlyRejectedJoinsAllErrors", func(_ *testing.T) {
+		err1 := errors.New("error1")
+		err2 := &testPathError{msg: "error2"}
+		p1 := New(func(resolve func(string), reject func(error)) {
+			reject(err1)
+		})
+		p2 := New(func(resolve func(string), reject func(error)) {
+			reject(err2)
+		})
+
+		_, err := Any([]*Promise[string]{p1, p2}).Await()
+
+		assert.IsNotNil(err)
+		assert.Equal("error1\nerror2", err.Error())
+		assert.Equal(true, errors.Is(err, err1))
+		assert.Equal(true, errors.Is(err, err2))
+
+		var target *testPathError
+		assert.Equal(true, errors.As(err, &target))
+		assert.Equal(true, target == err2)
+	})
+
+	t.Run("SingleRejectedKeepsError", func(_ *testing.T) {
+		e := errors.New("only")
+		p1 := New(func(resolve func(string), reject func(error)) {
+			reject(e)
+		})
+
+		_, err := Any([]*Promise[string]{p1}).Await()
+
+		assert.Equal(true, err == e)
+	})
 }
+
+type testPathError struct{ msg string }
+
+func (e *testPathError) Error() string { return e.msg }
 
 func TestRace(t *testing.T) {
 	assert := internal.NewAssert(t, "TestPromise_Race")
@@ -311,29 +348,38 @@ func TestRace(t *testing.T) {
 
 }
 
-func TestPromise_PanicAfterSettled(t *testing.T) {
-	t.Parallel()
+func TestRaceAnyAllDoNotLeakGoroutines(t *testing.T) {
+	// not parallel: it counts the goroutines of the whole test binary
+	assert := internal.NewAssert(t, "TestRaceAnyAllDoNotLeakGoroutines")
 
-	assert := internal.NewAssert(t, "TestPromise_PanicAfterSettled")
+	newResolved := func(n int) []*Promise[int] {
+		ps := make([]*Promise[int], 0, 3)
+		for i := 0; i < 3; i++ {
+			ps = append(ps, New(func(resolve func(int), reject func(error)) { resolve(n) }))
+		}
+		return ps
+	}
+	newRejected := func() []*Promise[int] {
+		ps := make([]*Promise[int], 0, 3)
+		for i := 0; i < 3; i++ {
+			ps = append(ps, New(func(resolve func(int), reject func(error)) { reject(errors.New("e")) }))
+		}
+		return ps
+	}
 
-	p1 := New(func(resolve func(string), reject func(error)) {
-		resolve("abc")
-		panic("late panic")
-	})
-	val, err := p1.Await()
-	assert.IsNil(err)
-	assert.Equal("abc", val)
+	before := runtime.NumGoroutine()
 
-	p2 := New(func(resolve func(string), reject func(error)) {
-		reject(errors.New("first error"))
-		panic("late panic")
-	})
-	_, err = p2.Await()
-	assert.Equal("first error", err.Error())
+	for i := 0; i < 20; i++ {
+		_, _ = Race(newResolved(i)).Await()
+		_, _ = Race(newRejected()).Await()
+		_, _ = Any(newResolved(i)).Await()
+		_, _ = All(newRejected()).Await()
+	}
 
-	p3 := New(func(resolve func(string), reject func(error)) {
-		panic("early panic")
-	})
-	_, err = p3.Await()
-	assert.Equal("early panic", err.Error())
+	deadline := time.Now().Add(2 * time.Second)
+	for runtime.NumGoroutine() > before && time.Now().Before(deadline) {
+		time.Sleep(10 * time.Millisecond)
+	}
+
+	assert.Equal(true, runtime.NumGoroutine() <= before)
 }

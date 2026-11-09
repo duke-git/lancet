@@ -252,7 +252,7 @@ func parseProcessInfo(output []byte, pid int) (*ProcessInfo, error) {
 			Memory: fields[2],
 			State:  fields[3],
 			User:   fields[4],
-			Cmd:    fields[5],
+			Cmd:    strings.Join(fields[5:], " "),
 		}
 	}
 

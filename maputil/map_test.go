@@ -997,3 +997,23 @@ func TestToMarkdownTableWithHeaderMap(t *testing.T) {
 	fmt.Printf("%s", result)
 	// 验证中文表头是否正确显示
 }
+
+func TestToMarkdownTableDefaultColumnOrder(t *testing.T) {
+	t.Parallel()
+
+	data := []map[string]interface{}{
+		{"name": "Alice", "age": 25, "salary": 50000, "city": "Seoul"},
+		{"name": "Bob", "zip": "04524", "age": 30},
+	}
+
+	expected := "| age | city | name | salary | zip |\n" +
+		"|---|---|---|---|---|\n" +
+		"| 25 | Seoul | Alice | 50,000 |  |\n" +
+		"| 30 |  | Bob |  | 04524 |\n"
+
+	for i := 0; i < 50; i++ {
+		if result := ToMarkdownTable(data, nil, nil); result != expected {
+			t.Fatalf("call %d: expected:\n%s\ngot:\n%s", i, expected, result)
+		}
+	}
+}

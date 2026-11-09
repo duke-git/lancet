@@ -56,12 +56,16 @@ func (eb *EventBus[T]) Subscribe(topic string, listener func(eventData T), async
 	listenersInterface, _ := eb.listeners.LoadOrStore(topic, []*EventListener[T]{})
 	listeners := listenersInterface.([]*EventListener[T])
 
-	listeners = append(listeners, el)
-	sort.Slice(listeners, func(i, j int) bool {
-		return listeners[i].priority > listeners[j].priority
+	// Build a new slice instead of appending in place: Publish iterates over the
+	// stored slice after releasing the lock, so it must never be modified.
+	updated := make([]*EventListener[T], len(listeners), len(listeners)+1)
+	copy(updated, listeners)
+	updated = append(updated, el)
+	sort.Slice(updated, func(i, j int) bool {
+		return updated[i].priority > updated[j].priority
 	})
 
-	eb.listeners.Store(topic, listeners)
+	eb.listeners.Store(topic, updated)
 }
 
 // Unsubscribe unsubscribes from an event with a specific event topic and listener function.
@@ -91,10 +95,11 @@ func (eb *EventBus[T]) Unsubscribe(topic string, listener func(eventData T)) {
 // Publish publishes an event with a specific event topic and data payload.
 // Play: https://go.dev/play/p/gHTtVexFSH9
 func (eb *EventBus[T]) Publish(event Event[T]) {
+	// The lock is only held to read the listeners, so that a listener can call
+	// Subscribe, Unsubscribe or Publish without deadlocking.
 	eb.mu.RLock()
-	defer eb.mu.RUnlock()
-
 	listenersInterface, exists := eb.listeners.Load(event.Topic)
+	eb.mu.RUnlock()
 	if !exists {
 		return
 	}

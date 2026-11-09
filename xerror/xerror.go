@@ -87,6 +87,10 @@ func (e *XError) Error() string {
 		return msg
 	}
 
+	if msg == "" {
+		return cause.Error()
+	}
+
 	msg = fmt.Sprintf("%s: %v", msg, cause.Error())
 
 	return msg

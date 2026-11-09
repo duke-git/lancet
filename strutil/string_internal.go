@@ -60,25 +60,22 @@ func isDigit(r rune) bool {
 	return r >= '0' && r <= '9'
 }
 
-// isLower checks if a character is lower case ('a' to 'z')
+// isLower checks if a character is a lower case letter
 func isLower(r rune) bool {
-	return r >= 'a' && r <= 'z'
+	return unicode.IsLower(r)
 }
 
-// isUpper checks if a character is upper case ('A' to 'Z')
+// isUpper checks if a character is an upper case letter
 func isUpper(r rune) bool {
-	return r >= 'A' && r <= 'Z'
+	return unicode.IsUpper(r)
 }
 
-// toLower converts a character  'A' to 'Z' to its lower case
+// toLower converts a character to its lower case
 func toLower(r rune) rune {
-	if r >= 'A' && r <= 'Z' {
-		return r + 32
-	}
-	return r
+	return unicode.ToLower(r)
 }
 
-// toLowerAll converts a character  'A' to 'Z' to its lower case
+// toLowerAll converts characters to their lower case
 func toLowerAll(rs []rune) []rune {
 	for i := range rs {
 		rs[i] = toLower(rs[i])
@@ -86,15 +83,12 @@ func toLowerAll(rs []rune) []rune {
 	return rs
 }
 
-// toUpper converts a character  'a' to 'z' to its upper case
+// toUpper converts a character to its upper case
 func toUpper(r rune) rune {
-	if r >= 'a' && r <= 'z' {
-		return r - 32
-	}
-	return r
+	return unicode.ToUpper(r)
 }
 
-// toUpperAll converts a character  'a' to 'z' to its upper case
+// toUpperAll converts characters to their upper case
 func toUpperAll(rs []rune) []rune {
 	for i := range rs {
 		rs[i] = toUpper(rs[i])

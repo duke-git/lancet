@@ -188,15 +188,13 @@ func GetTodayEndTime() string {
 // GetZeroHourTimestamp return timestamp of zero hour (timestamp of 00:00).
 // Play: https://go.dev/play/p/QmL2oIaGE3q
 func GetZeroHourTimestamp() int64 {
-	ts := time.Now().Format("2006-01-02")
-	t, _ := time.Parse("2006-01-02", ts)
-	return t.UTC().Unix() - 8*3600
+	return BeginOfDay(time.Now()).Unix()
 }
 
 // GetNightTimestamp return timestamp of zero hour (timestamp of 23:59).
 // Play: https://go.dev/play/p/UolysR3MYP1
 func GetNightTimestamp() int64 {
-	return GetZeroHourTimestamp() + 86400 - 1
+	return EndOfDay(time.Now()).Unix()
 }
 
 // FormatTimeToStr convert time to string.
