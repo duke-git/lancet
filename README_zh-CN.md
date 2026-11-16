@@ -18,7 +18,7 @@
     lancet（柳叶刀）是一个全面、高效、可复用的go语言工具函数库。 lancet受到了java apache common包和lodash.js的启发。
 </p>
 
-## <a href="https://www.golancet.cn/" target="_blank">官网</a> | [English](./README.md)
+## <a href="https://www.golancet.cn/" target="_blank">官网</a> | [English](./README.md) | [繁體中文](./README_zh-TW.md)
 
 ## 特性
 
