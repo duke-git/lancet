@@ -468,10 +468,12 @@ func getCallerName() string {
 // DaysBetween returns the number of days between two times.
 // Play: https://go.dev/play/p/qD6qGb3TbOy
 func DaysBetween(start, end time.Time) int {
-	duration := end.Sub(start)
-	days := int(duration.Hours() / 24)
+	// compare wall clock times so a DST change does not shorten a day
+	end = end.In(start.Location())
+	wallStart := time.Date(start.Year(), start.Month(), start.Day(), start.Hour(), start.Minute(), start.Second(), start.Nanosecond(), time.UTC)
+	wallEnd := time.Date(end.Year(), end.Month(), end.Day(), end.Hour(), end.Minute(), end.Second(), end.Nanosecond(), time.UTC)
 
-	return days
+	return int(wallEnd.Sub(wallStart).Hours() / 24)
 }
 
 // GenerateDatetimesBetween returns a slice of strings between two times.
