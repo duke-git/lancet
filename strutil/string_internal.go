@@ -1,8 +1,8 @@
 package strutil
 
 import (
-	"strings"
 	"unicode"
+	"unicode/utf8"
 )
 
 func splitIntoStrings(s string, upperCase bool) []string {
@@ -98,7 +98,8 @@ func toUpperAll(rs []rune) []rune {
 
 // padWithPosition pads string
 func padAtPosition(str string, length int, padStr string, position int) string {
-	if len(str) >= length {
+	strLen := utf8.RuneCountInString(str)
+	if strLen >= length {
 		return str
 	}
 
@@ -106,7 +107,7 @@ func padAtPosition(str string, length int, padStr string, position int) string {
 		padStr = " "
 	}
 
-	totalPad := length - len(str)
+	totalPad := length - strLen
 	startPad := 0
 
 	if position == 0 {
@@ -118,9 +119,13 @@ func padAtPosition(str string, length int, padStr string, position int) string {
 	}
 	endPad := totalPad - startPad
 
+	padRunes := []rune(padStr)
 	repeatPad := func(n int) string {
-		repeated := strings.Repeat(padStr, (n+len(padStr)-1)/len(padStr))
-		return repeated[:n]
+		out := make([]rune, n)
+		for i := range out {
+			out[i] = padRunes[i%len(padRunes)]
+		}
+		return string(out)
 	}
 
 	left := repeatPad(startPad)

@@ -262,6 +262,10 @@ func TestPad(t *testing.T) {
 		{"a", 1, "b", "a"},
 		{"a", 2, "b", "ab"},
 		{"abcd", 6, "m", "mabcdm"},
+		{"你好", 4, "*", "*你好*"},
+		{"你好", 2, "*", "你好"},
+		{"é", 4, "ü", "üéüü"},
+		{"ab", 5, "你好", "你ab你好"},
 	}
 
 	for _, tt := range tests {
@@ -286,6 +290,10 @@ func TestPadEnd(t *testing.T) {
 		{"abcd", 6, "mno", "abcdmn"},
 		{"abcd", 6, "m", "abcdmm"},
 		{"abcd", 6, "ab", "abcdab"},
+		{"你好", 4, "*", "你好**"},
+		{"é", 3, "ü", "éüü"},
+		{"ab", 5, "你好", "ab你好你"},
+		{"a", 7, "\xbd\xa0\xe4", "a\uFFFD\uFFFD\uFFFD\uFFFD\uFFFD\uFFFD"},
 	}
 
 	for _, tt := range tests {
@@ -309,6 +317,9 @@ func TestPadStart(t *testing.T) {
 		{"abcd", 6, "mno", "mnabcd"},
 		{"abcd", 6, "m", "mmabcd"},
 		{"abc", 6, "ab", "abaabc"},
+		{"你好", 4, "*", "**你好"},
+		{"é", 3, "ü", "üüé"},
+		{"ab", 5, "你好", "你好你ab"},
 	}
 
 	for _, tt := range tests {

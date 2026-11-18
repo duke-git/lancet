@@ -95,6 +95,7 @@ func LowerFirst(s string) string {
 
 // Pad pads string on the left and right side if it's shorter than size.
 // Padding characters are truncated if they exceed size.
+// The size and the padding are counted in runes, not bytes.
 // Play: https://go.dev/play/p/NzImQq-VF8q
 func Pad(source string, size int, padStr string) string {
 	return padAtPosition(source, size, padStr, 0)
@@ -102,6 +103,7 @@ func Pad(source string, size int, padStr string) string {
 
 // PadStart pads string on the left side if it's shorter than size.
 // Padding characters are truncated if they exceed size.
+// The size and the padding are counted in runes, not bytes.
 // Play: https://go.dev/play/p/xpTfzArDfvT
 func PadStart(source string, size int, padStr string) string {
 	return padAtPosition(source, size, padStr, 1)
@@ -109,6 +111,7 @@ func PadStart(source string, size int, padStr string) string {
 
 // PadEnd pads string on the right side if it's shorter than size.
 // Padding characters are truncated if they exceed size.
+// The size and the padding are counted in runes, not bytes.
 // Play: https://go.dev/play/p/9xP8rN0vz--
 func PadEnd(source string, size int, padStr string) string {
 	return padAtPosition(source, size, padStr, 2)
