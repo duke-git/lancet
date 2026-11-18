@@ -547,9 +547,11 @@ func Trim(str string, characterMask ...string) string {
 
 // HideString hide some chars in source string with param `replaceChar`.
 // replace range is origin[start : end]. [start, end)
+// start and end are rune (character) indexes, not byte indexes.
 // Play: https://go.dev/play/p/pzbaIVCTreZ)
 func HideString(origin string, start, end int, replaceChar string) string {
-	size := len(origin)
+	runes := []rune(origin)
+	size := len(runes)
 
 	if start > size-1 || start < 0 || end < 0 || start > end {
 		return origin
@@ -563,8 +565,8 @@ func HideString(origin string, start, end int, replaceChar string) string {
 		return origin
 	}
 
-	startStr := origin[0:start]
-	endStr := origin[end:size]
+	startStr := string(runes[0:start])
+	endStr := string(runes[end:size])
 
 	replaceSize := end - start
 	replaceStr := strings.Repeat(replaceChar, replaceSize)
