@@ -173,6 +173,19 @@ func TestChannelIterator(t *testing.T) {
 
 	cancel()
 
-	_, ok = iter.Next()
+	// HasNext has already received the second value. Canceling the producer
+	// must not discard the value promised by successful lookahead.
+	item, ok = iter.Next()
+	assert.Equal(2, item)
+	assert.Equal(true, ok)
+
+	// The producer may have sent another value concurrently with cancellation.
+	for i := 0; i < 4; i++ {
+		_, ok = iter.Next()
+		if !ok {
+			break
+		}
+	}
 	assert.Equal(false, ok)
+	assert.Equal(false, iter.HasNext())
 }
