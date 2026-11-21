@@ -533,11 +533,14 @@ func ZipAppendEntry(fpath string, destPath string) error {
 		return err
 	}
 	defer os.Remove(tempFile.Name())
+	defer tempFile.Close()
 
 	zipReader, err := zip.OpenReader(destPath)
 	if err != nil {
 		return err
 	}
+
+	defer zipReader.Close()
 
 	archive := zip.NewWriter(tempFile)
 
