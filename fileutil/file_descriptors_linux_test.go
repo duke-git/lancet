@@ -131,3 +131,62 @@ func TestUnZipBoundsEntryDescriptors(t *testing.T) {
 		checkManyExtractedEntries(t, dest, entries)
 	})
 }
+
+func TestZipAppendEntryBoundsDescriptorsOnErrors(t *testing.T) {
+	for _, kind := range []string{"missing-archive", "invalid-archive", "missing-source", "checksum"} {
+		t.Run(kind, func(t *testing.T) {
+			withLowDescriptorLimit(t, func() {
+				dir := t.TempDir()
+				t.Setenv("TMPDIR", dir)
+				archive := filepath.Join(dir, "input.zip")
+				source := filepath.Join(dir, "missing-source")
+				switch kind {
+				case "invalid-archive":
+					if err := os.WriteFile(archive, []byte("not a zip archive"), 0600); err != nil {
+						t.Fatal(err)
+					}
+				case "missing-source":
+					makeManyEntryArchive(t, archive, 1)
+				case "checksum":
+					makeChecksumErrorArchive(t, archive)
+				}
+				original, _ := os.ReadFile(archive)
+				for i := 0; i < 128; i++ {
+					err := ZipAppendEntry(source, archive)
+					switch kind {
+					case "missing-archive", "missing-source":
+						if !errors.Is(err, os.ErrNotExist) {
+							t.Fatalf("attempt %d: got %v, want not-exist error", i, err)
+						}
+					case "invalid-archive":
+						if !errors.Is(err, zip.ErrFormat) {
+							t.Fatalf("attempt %d: got %v, want zip format error", i, err)
+						}
+					case "checksum":
+						if !errors.Is(err, zip.ErrChecksum) {
+							t.Fatalf("attempt %d: got %v, want checksum error", i, err)
+						}
+					}
+				}
+				if kind != "missing-archive" {
+					after, err := os.ReadFile(archive)
+					if err != nil {
+						t.Fatal(err)
+					}
+					if string(after) != string(original) {
+						t.Fatal("failed append changed original archive")
+					}
+				}
+				entries, err := os.ReadDir(dir)
+				if err != nil {
+					t.Fatal(err)
+				}
+				for _, entry := range entries {
+					if strings.HasPrefix(entry.Name(), "temp.zip") {
+						t.Fatalf("temporary archive remains: %s", entry.Name())
+					}
+				}
+			})
+		})
+	}
+}
