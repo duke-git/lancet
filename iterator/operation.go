@@ -95,22 +95,12 @@ func (iter *joinIterator[T]) Next() (T, bool) {
 }
 
 func (iter *joinIterator[T]) HasNext() bool {
-	if len(iter.iters) == 0 {
-		return false
+	for _, it := range iter.iters {
+		if it.HasNext() {
+			return true
+		}
 	}
-	if len(iter.iters) == 1 {
-		return iter.iters[0].HasNext()
-	}
-
-	result := iter.iters[0].HasNext()
-
-	for i := 1; i < len(iter.iters); i++ {
-		it := iter.iters[i]
-		hasNext := it.HasNext()
-		result = result || hasNext
-	}
-
-	return result
+	return false
 }
 
 // Reduce reduces iter to a single value using the reduction function reducer
