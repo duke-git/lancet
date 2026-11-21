@@ -497,19 +497,7 @@ func UnZip(zipFile string, destPath string) error {
 				return err
 			}
 
-			inFile, err := f.Open()
-			if err != nil {
-				return err
-			}
-			defer inFile.Close()
-
-			outFile, err := os.OpenFile(path, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, f.Mode())
-			if err != nil {
-				return err
-			}
-			defer outFile.Close()
-
-			_, err = io.Copy(outFile, inFile)
+			err = unzipEntry(f, path)
 			if err != nil {
 				return err
 			}
@@ -517,6 +505,24 @@ func UnZip(zipFile string, destPath string) error {
 	}
 
 	return nil
+}
+
+// unzipEntry limits open readers and output files to the current entry.
+func unzipEntry(f *zip.File, path string) error {
+	inFile, err := f.Open()
+	if err != nil {
+		return err
+	}
+	defer inFile.Close()
+
+	outFile, err := os.OpenFile(path, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, f.Mode())
+	if err != nil {
+		return err
+	}
+	defer outFile.Close()
+
+	_, err = io.Copy(outFile, inFile)
+	return err
 }
 
 // ZipAppendEntry append a single file or directory by fpath to an existing zip file.
@@ -527,11 +533,14 @@ func ZipAppendEntry(fpath string, destPath string) error {
 		return err
 	}
 	defer os.Remove(tempFile.Name())
+	defer tempFile.Close()
 
 	zipReader, err := zip.OpenReader(destPath)
 	if err != nil {
 		return err
 	}
+
+	defer zipReader.Close()
 
 	archive := zip.NewWriter(tempFile)
 
@@ -628,6 +637,7 @@ func MiMeType(file any) string {
 		if err != nil {
 			return mediatype
 		}
+		defer f.Close()
 		buffer, err := readBuffer(f)
 		if err != nil {
 			return mediatype
