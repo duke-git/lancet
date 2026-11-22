@@ -84,7 +84,7 @@ func (q *ArrayQueue[T]) Enqueue(item T) bool {
 				}
 				q.capacity *= 2
 			} else {
-				q.capacity += 2 ^ 16
+				q.capacity += 1 << 16
 			}
 
 			tmp := make([]T, q.capacity, q.capacity)
