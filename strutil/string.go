@@ -604,6 +604,7 @@ func ContainsAny(str string, substrs []string) bool {
 var (
 	whitespaceRegexMatcher     *regexp.Regexp = regexp.MustCompile(`\s`)
 	mutiWhitespaceRegexMatcher *regexp.Regexp = regexp.MustCompile(`[[:space:]]{2,}|[\s\p{Zs}]{2,}`)
+	templatePlaceholderMatcher *regexp.Regexp = regexp.MustCompile(`\{(\w+)\}`)
 )
 
 // RemoveWhiteSpace remove whitespace characters from a string.
@@ -741,9 +742,7 @@ func Rotate(str string, shift int) string {
 // the result will be "Hello, world!".
 // Play: https://go.dev/play/p/cXSuFvyZqv9
 func TemplateReplace(template string, data map[string]string) string {
-	re := regexp.MustCompile(`\{(\w+)\}`)
-
-	result := re.ReplaceAllStringFunc(template, func(s string) string {
+	result := templatePlaceholderMatcher.ReplaceAllStringFunc(template, func(s string) string {
 		key := strings.Trim(s, "{}")
 		if val, ok := data[key]; ok {
 			return val
