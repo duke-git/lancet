@@ -192,15 +192,28 @@ func FromChannel[T any](channel <-chan T) *ChannelIterator[T] {
 
 type ChannelIterator[T any] struct {
 	channel <-chan T
+	next    T
+	ready   bool
 }
 
 func (iter *ChannelIterator[T]) Next() (T, bool) {
+	if iter.ready {
+		item := iter.next
+		var zero T
+		iter.next, iter.ready = zero, false
+		return item, true
+	}
 	item, ok := <-iter.channel
 	return item, ok
 }
 
+// HasNext waits for a value or for the channel to close, like Next.
+// A received value is kept for Next; repeated calls do not consume more values.
 func (iter *ChannelIterator[T]) HasNext() bool {
-	return len(iter.channel) == 0
+	if !iter.ready {
+		iter.next, iter.ready = <-iter.channel
+	}
+	return iter.ready
 }
 
 // ToChannel create a new goroutine to pull items from the channel iterator to the returned channel.
