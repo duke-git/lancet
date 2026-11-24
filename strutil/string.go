@@ -772,9 +772,9 @@ func ExtractContent(str, start, end string) []string {
 
 	for {
 		if _, after, ok := strings.Cut(str, start); ok {
-			if before, _, ok := strings.Cut(after, end); ok {
+			if before, rest, ok := strings.Cut(after, end); ok {
 				result = append(result, before)
-				str = after
+				str = rest
 			} else {
 				break
 			}
