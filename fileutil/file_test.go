@@ -262,6 +262,22 @@ func TestZipAndUnZip(t *testing.T) {
 	os.RemoveAll(unZipPath)
 }
 
+func TestZipReportsUnreadableFileInSubfolder(t *testing.T) {
+	if runtime.GOOS == "windows" || os.Geteuid() == 0 {
+		t.Skip("needs a file the current user cannot read")
+	}
+	assert := internal.NewAssert(t, "TestZipReportsUnreadableFileInSubfolder")
+
+	dir := t.TempDir()
+	sub := filepath.Join(dir, "sub")
+	assert.IsNil(os.Mkdir(sub, 0755))
+	secret := filepath.Join(sub, "secret.txt")
+	assert.IsNil(os.WriteFile(secret, []byte("secret"), 0000))
+
+	err := Zip(dir, filepath.Join(t.TempDir(), "out.zip"))
+	assert.IsNotNil(err)
+}
+
 func TestZipAppendEntry(t *testing.T) {
 	assert := internal.NewAssert(t, "TestZipAppendEntry")
 
