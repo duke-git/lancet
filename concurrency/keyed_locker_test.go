@@ -2,6 +2,7 @@ package concurrency
 
 import (
 	"context"
+	"runtime"
 	"strconv"
 	"sync"
 	"sync/atomic"
@@ -104,6 +105,123 @@ func TestKeyedLocker_LockReleaseAfterTTL(t *testing.T) {
 
 	err = locker.Do(context.Background(), "ttl-key", func() {})
 	assert.IsNil(err)
+}
+
+func TestKeyedLocker_MutualExclusionUnderContention(t *testing.T) {
+	t.Parallel()
+
+	locker := NewKeyedLocker[string](time.Millisecond)
+
+	var holders, violations int32
+	var wg sync.WaitGroup
+
+	for g := 0; g < 8; g++ {
+		wg.Add(1)
+		go func() {
+			defer wg.Done()
+			for i := 0; i < 50000; i++ {
+				_ = locker.Do(context.Background(), "key", func() {
+					if atomic.AddInt32(&holders, 1) > 1 {
+						atomic.AddInt32(&violations, 1)
+					}
+					runtime.Gosched()
+					atomic.AddInt32(&holders, -1)
+				})
+			}
+		}()
+	}
+	wg.Wait()
+
+	if v := atomic.LoadInt32(&violations); v != 0 {
+		t.Fatalf("the lock was held by more than one goroutine %d times", v)
+	}
+}
+
+func TestKeyedLocker_ContextTimeoutWhileRunning(t *testing.T) {
+	t.Parallel()
+	assert := internal.NewAssert(t, "TestKeyedLocker_ContextTimeoutWhileRunning")
+
+	locker := NewKeyedLocker[string](time.Millisecond)
+
+	ctx, cancel := context.WithCancel(context.Background())
+	finish := make(chan struct{})
+
+	var running int32
+	result := make(chan error)
+	go func() {
+		result <- locker.Do(ctx, "key", func() {
+			atomic.StoreInt32(&running, 1)
+			cancel()
+			<-finish
+			atomic.StoreInt32(&running, 0)
+		})
+	}()
+
+	// returns although the function still runs
+	select {
+	case err := <-result:
+		assert.Equal(context.Canceled, err)
+	case <-time.After(time.Second):
+		close(finish)
+		t.Fatal("Do waited for the function after the context was canceled")
+	}
+
+	time.AfterFunc(50*time.Millisecond, func() { close(finish) })
+	var overlapped bool
+	err := locker.Do(context.Background(), "key", func() {
+		overlapped = atomic.LoadInt32(&running) == 1
+	})
+	assert.IsNil(err)
+	assert.Equal(false, overlapped)
+}
+
+func TestRWKeyedLocker_ContextTimeoutWhileRunning(t *testing.T) {
+	t.Parallel()
+	assert := internal.NewAssert(t, "TestRWKeyedLocker_ContextTimeoutWhileRunning")
+
+	locker := NewRWKeyedLocker[string](time.Millisecond)
+
+	ctx, cancel := context.WithCancel(context.Background())
+	finish := make(chan struct{})
+
+	var running int32
+	err := locker.Lock(ctx, "key", func() {
+		atomic.StoreInt32(&running, 1)
+		cancel()
+		<-finish
+		atomic.StoreInt32(&running, 0)
+	})
+	assert.Equal(context.Canceled, err)
+
+	// the TTL passes while the function still runs
+	time.Sleep(50 * time.Millisecond)
+	time.AfterFunc(50*time.Millisecond, func() { close(finish) })
+
+	var overlapped bool
+	err = locker.Lock(context.Background(), "key", func() {
+		overlapped = atomic.LoadInt32(&running) == 1
+	})
+	assert.IsNil(err)
+	assert.Equal(false, overlapped)
+}
+
+func TestRWKeyedLocker_RemoveAfterTTL(t *testing.T) {
+	t.Parallel()
+	assert := internal.NewAssert(t, "TestRWKeyedLocker_RemoveAfterTTL")
+
+	locker := NewRWKeyedLocker[string](10 * time.Millisecond)
+
+	count := func() int {
+		locker.mu.Lock()
+		defer locker.mu.Unlock()
+		return len(locker.locks)
+	}
+
+	err := locker.Lock(context.Background(), "key", func() {})
+	assert.IsNil(err)
+
+	time.Sleep(200 * time.Millisecond)
+	assert.Equal(0, count())
 }
 
 func TestRWKeyedLocker_LockAndUnlock(t *testing.T) {

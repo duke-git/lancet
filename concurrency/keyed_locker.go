@@ -13,21 +13,21 @@ import (
 
 // KeyedLocker is a simple implementation of a keyed locker that allows for non-blocking lock acquisition.
 type KeyedLocker[K comparable] struct {
-	locks sync.Map
+	mu    sync.Mutex
+	locks map[K]*lockEntry
 	ttl   time.Duration
 }
 
 type lockEntry struct {
-	mu    sync.Mutex
-	ref   int32
-	timer atomic.Pointer[time.Timer]
+	mu  sync.Mutex
+	ref int // guarded by KeyedLocker.mu
 }
 
 // NewKeyedLocker creates a new KeyedLocker with the specified TTL for lock expiration.
 // The TTL is used to automatically release locks that are no longer held.
 // Play: https://go.dev/play/p/GzeyC33T5rw
 func NewKeyedLocker[K comparable](ttl time.Duration) *KeyedLocker[K] {
-	return &KeyedLocker[K]{ttl: ttl}
+	return &KeyedLocker[K]{locks: make(map[K]*lockEntry), ttl: ttl}
 }
 
 // Do acquires a lock for the specified key and executes the provided function.
@@ -35,11 +35,13 @@ func NewKeyedLocker[K comparable](ttl time.Duration) *KeyedLocker[K] {
 // Play: https://go.dev/play/p/GzeyC33T5rw
 func (l *KeyedLocker[K]) Do(ctx context.Context, key K, fn func()) error {
 	entry := l.acquire(key)
-	defer l.release(key, entry, key)
 
 	done := make(chan struct{})
 
 	go func() {
+		// The entry must stay in use until fn returns, even if the context is done earlier.
+		defer l.release(entry, key)
+
 		entry.mu.Lock()
 		defer entry.mu.Unlock()
 
@@ -61,57 +63,51 @@ func (l *KeyedLocker[K]) Do(ctx context.Context, key K, fn func()) error {
 
 // acquire tries to acquire a lock for the specified key.
 func (l *KeyedLocker[K]) acquire(key K) *lockEntry {
-	lock, _ := l.locks.LoadOrStore(key, &lockEntry{})
-	entry := lock.(*lockEntry)
+	l.mu.Lock()
+	defer l.mu.Unlock()
 
-	atomic.AddInt32(&entry.ref, 1)
-	if t := entry.timer.Swap(nil); t != nil {
-		t.Stop()
+	if l.locks == nil {
+		l.locks = make(map[K]*lockEntry)
 	}
+
+	entry, ok := l.locks[key]
+	if !ok {
+		entry = &lockEntry{}
+		l.locks[key] = entry
+	}
+	entry.ref++
 
 	return entry
 }
 
-// release releases the lock for the specified key.
-func (l *KeyedLocker[K]) release(key K, entry *lockEntry, rawKey K) {
-	if atomic.AddInt32(&entry.ref, -1) == 0 {
-		entry.mu.Lock()
-		defer entry.mu.Unlock()
+func (l *KeyedLocker[K]) release(entry *lockEntry, key K) {
+	l.mu.Lock()
+	defer l.mu.Unlock()
 
-		if entry.ref == 0 {
-			if t := entry.timer.Swap(nil); t != nil {
-				t.Stop()
-			}
-
-			l.locks.Delete(rawKey)
-		} else {
-			if entry.timer.Load() == nil {
-				t := time.AfterFunc(l.ttl, func() {
-					l.release(key, entry, rawKey)
-				})
-				entry.timer.Store(t)
-			}
-		}
+	entry.ref--
+	if entry.ref == 0 {
+		delete(l.locks, key)
 	}
 }
 
 // RWKeyedLocker is a read-write version of KeyedLocker.
 type RWKeyedLocker[K comparable] struct {
-	locks sync.Map
+	mu    sync.Mutex
+	locks map[K]*rwLockEntry
 	ttl   time.Duration
 }
 
 type rwLockEntry struct {
 	mu    sync.RWMutex
-	ref   int32
-	timer atomic.Pointer[time.Timer]
+	ref   int         // guarded by RWKeyedLocker.mu
+	timer *time.Timer // guarded by RWKeyedLocker.mu
 }
 
 // NewRWKeyedLocker creates a new RWKeyedLocker with the specified TTL for lock expiration.
 // The TTL is used to automatically release locks that are no longer held.
 // Play: https://go.dev/play/p/CkaJWWwZm9
 func NewRWKeyedLocker[K comparable](ttl time.Duration) *RWKeyedLocker[K] {
-	return &RWKeyedLocker[K]{ttl: ttl}
+	return &RWKeyedLocker[K]{locks: make(map[K]*rwLockEntry), ttl: ttl}
 }
 
 // RLock acquires a read lock for the specified key and executes the provided function.
@@ -119,11 +115,13 @@ func NewRWKeyedLocker[K comparable](ttl time.Duration) *RWKeyedLocker[K] {
 // Play: https://go.dev/play/p/ZrCr8sMo77T
 func (l *RWKeyedLocker[K]) RLock(ctx context.Context, key K, fn func()) error {
 	entry := l.acquire(key)
-	defer l.release(entry, key)
 
 	done := make(chan struct{})
 
 	go func() {
+		// The entry must stay in use until fn returns, even if the context is done earlier.
+		defer l.release(entry, key)
+
 		entry.mu.RLock()
 		defer entry.mu.RUnlock()
 
@@ -148,11 +146,13 @@ func (l *RWKeyedLocker[K]) RLock(ctx context.Context, key K, fn func()) error {
 // Play: https://go.dev/play/p/WgAcXbOPKGk
 func (l *RWKeyedLocker[K]) Lock(ctx context.Context, key K, fn func()) error {
 	entry := l.acquire(key)
-	defer l.release(entry, key)
 
 	done := make(chan struct{})
 
 	go func() {
+		// The entry must stay in use until fn returns, even if the context is done earlier.
+		defer l.release(entry, key)
+
 		entry.mu.Lock()
 		defer entry.mu.Unlock()
 
@@ -174,26 +174,46 @@ func (l *RWKeyedLocker[K]) Lock(ctx context.Context, key K, fn func()) error {
 
 // acquire tries to acquire a read lock for the specified key.
 func (l *RWKeyedLocker[K]) acquire(key K) *rwLockEntry {
-	actual, _ := l.locks.LoadOrStore(key, &rwLockEntry{})
-	entry := actual.(*rwLockEntry)
-	atomic.AddInt32(&entry.ref, 1)
+	l.mu.Lock()
+	defer l.mu.Unlock()
 
-	if t := entry.timer.Swap(nil); t != nil {
-		t.Stop()
+	if l.locks == nil {
+		l.locks = make(map[K]*rwLockEntry)
 	}
+
+	entry, ok := l.locks[key]
+	if !ok {
+		entry = &rwLockEntry{}
+		l.locks[key] = entry
+	}
+	entry.ref++
+
+	if entry.timer != nil {
+		entry.timer.Stop()
+		entry.timer = nil
+	}
+
 	return entry
 }
 
-// release releases the lock for the specified key.
-func (l *RWKeyedLocker[K]) release(entry *rwLockEntry, rawKey K) {
-	if atomic.AddInt32(&entry.ref, -1) == 0 {
-		timer := time.AfterFunc(l.ttl, func() {
-			if atomic.LoadInt32(&entry.ref) == 0 {
-				l.locks.Delete(rawKey)
-			}
-		})
-		entry.timer.Store(timer)
+func (l *RWKeyedLocker[K]) release(entry *rwLockEntry, key K) {
+	l.mu.Lock()
+	defer l.mu.Unlock()
+
+	entry.ref--
+	if entry.ref > 0 {
+		return
 	}
+
+	entry.timer = time.AfterFunc(l.ttl, func() {
+		l.mu.Lock()
+		defer l.mu.Unlock()
+
+		// A timer that fires while the entry is acquired again can't be stopped anymore.
+		if entry.ref == 0 && l.locks[key] == entry {
+			delete(l.locks, key)
+		}
+	})
 }
 
 // TryKeyedLocker is a non-blocking version of KeyedLocker.
