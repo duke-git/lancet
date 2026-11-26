@@ -456,7 +456,9 @@ func addFileToArchive2(w *zip.Writer, basePath, baseInZip string) error {
 			}
 		} else if file.IsDir() {
 			newBase := basePath + file.Name() + "/"
-			addFileToArchive2(w, newBase, baseInZip+file.Name()+"/")
+			if err := addFileToArchive2(w, newBase, baseInZip+file.Name()+"/"); err != nil {
+				return err
+			}
 		}
 	}
 
