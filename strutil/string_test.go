@@ -1119,6 +1119,34 @@ func TestExtractContent(t *testing.T) {
 	}
 }
 
+func TestExtractContentConsumesClosingDelimiter(t *testing.T) {
+	t.Parallel()
+
+	tests := []struct {
+		name     string
+		input    string
+		start    string
+		end      string
+		expected []string
+	}{
+		{"identical delimiters", `"first" outside "second"`, `"`, `"`, []string{"first", "second"}},
+		{"adjacent pairs", `"first""second"`, `"`, `"`, []string{"first", "second"}},
+		{"multiple character delimiters", "||first|| outside ||second||", "||", "||", []string{"first", "second"}},
+		{"unfinished last pair", `"first" outside "unfinished`, `"`, `"`, []string{"first"}},
+		{"different delimiters", "<tag>first</tag> outside <tag>second</tag>", "<tag>", "</tag>", []string{"first", "second"}},
+		{"adjacent different pairs", "<tag>first</tag><tag>second</tag>", "<tag>", "</tag>", []string{"first", "second"}},
+		{"empty content", `""`, `"`, `"`, []string{""}},
+		{"empty input", "", `"`, `"`, []string{}},
+		{"missing closing delimiter", `"unfinished`, `"`, `"`, []string{}},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			assert := internal.NewAssert(t, "TestExtractContentConsumesClosingDelimiter")
+			assert.Equal(tt.expected, ExtractContent(tt.input, tt.start, tt.end))
+		})
+	}
+}
+
 func TestFindAllOccurrences(t *testing.T) {
 	t.Parallel()
 
