@@ -939,6 +939,9 @@ func TestIsMasterCard(t *testing.T) {
 	assert := internal.NewAssert(t, "TestIsMasterCard")
 
 	assert.Equal(true, IsMasterCard("5425233430109903"))
+	assert.Equal(true, IsMasterCard("2221000000000009"))
+	assert.Equal(true, IsMasterCard("2720992593319364"))
+	assert.Equal(false, IsMasterCard("2721000000000000"))
 	assert.Equal(false, IsMasterCard("4111111111111111"))
 }
 
