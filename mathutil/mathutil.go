@@ -5,8 +5,8 @@
 package mathutil
 
 import (
-	"fmt"
 	"math"
+	"reflect"
 	"strconv"
 	"strings"
 
@@ -93,7 +93,17 @@ func RoundToFloat[T constraints.Float | constraints.Integer](x T, n int) float64
 // TruncRound round off n decimal places.
 // Play: https://go.dev/play/p/aumarSHIGzP
 func TruncRound[T constraints.Float | constraints.Integer](x T, n int) T {
-	floatStr := fmt.Sprintf("%."+strconv.Itoa(n+1)+"f", float64(x))
+	// Use the shortest decimal form of x. Formatting with n+1 decimal places
+	// rounds that last digit, and the carry can change the kept digits
+	// (0.129999 -> "0.130" -> 0.13).
+	bitSize := 64
+	if reflect.TypeOf(x).Kind() == reflect.Float32 {
+		bitSize = 32
+	}
+	floatStr := strconv.FormatFloat(float64(x), 'f', -1, bitSize)
+	if n < 0 {
+		n = 0
+	}
 	temp := strings.Split(floatStr, ".")
 	var newFloat string
 	if len(temp) < 2 || n >= len(temp[1]) {
