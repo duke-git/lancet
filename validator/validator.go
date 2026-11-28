@@ -36,7 +36,7 @@ var (
 	binMatcher               *regexp.Regexp = regexp.MustCompile(`^(0b)?[01]+$`)
 	hexMatcher               *regexp.Regexp = regexp.MustCompile(`^(#|0x|0X)?[0-9a-fA-F]+$`)
 	visaMatcher              *regexp.Regexp = regexp.MustCompile(`^4[0-9]{12}(?:[0-9]{3})?$`)
-	masterCardMatcher        *regexp.Regexp = regexp.MustCompile(`^5[1-5][0-9]{14}$`)
+	masterCardMatcher        *regexp.Regexp = regexp.MustCompile(`^(?:5[1-5][0-9]{14}|(?:222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)[0-9]{12})$`)
 	americanExpressMatcher   *regexp.Regexp = regexp.MustCompile(`^3[47][0-9]{13}$`)
 	chinaUnionPayMatcher     *regexp.Regexp = regexp.MustCompile(`^62[0-9]{14,17}$`)
 	chineseHMPassportMatcher *regexp.Regexp = regexp.MustCompile(`^[CM]\d{8}$`)
