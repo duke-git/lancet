@@ -122,6 +122,16 @@ func TestTruncRound(t *testing.T) {
 	assert.Equal(0.12, TruncRound(0.125, 2))
 	assert.Equal(0.125, TruncRound(0.125, 3))
 	assert.Equal(33.33, TruncRound(33.33333, 2))
+
+	// the digit after the cut must not round up into the kept digits
+	assert.Equal(0.12, TruncRound(0.129999, 2))
+	assert.Equal(1.99, TruncRound(1.9999, 2))
+	assert.Equal(-1.99, TruncRound(-1.9999, 2))
+	assert.Equal(99.9, TruncRound(99.99, 1))
+	assert.Equal(float64(0), TruncRound(0.96, 0))
+	assert.Equal(float32(1.99), TruncRound(float32(1.9999), 2))
+	assert.Equal(float32(0.7), TruncRound(float32(0.7), 1))
+	assert.Equal(float64(1), TruncRound(1.6, -1))
 }
 
 func TestFloorToFloat(t *testing.T) {
